@@ -257,6 +257,11 @@ do
 	local msgsAllowedLastTime = GetTime()
 	local lastWarningTime = 0
 	function grabError(errorMessage, isSimple)
+		-- 不顯示暴雪專業和觀察視窗未翻譯錯誤
+		if tostring(errorMessage):find("Localization.lua", nil, true) then return end
+		-- 不顯示拍賣場瀏覽複數物品的錯誤
+		if tostring(errorMessage):find("MoneyFrame.lua", nil, true) then return end
+
 		-- Flood protection --
 		msgsAllowed = msgsAllowed + (GetTime()-msgsAllowedLastTime)*BUGGRABBER_ERRORS_PER_SEC_BEFORE_THROTTLE
 		msgsAllowedLastTime = GetTime()
@@ -340,12 +345,6 @@ do
 		if not isBugGrabbedRegistered then
 			print(L.ERROR_DETECTED:format(addon:GetChatLink(errorObject)))
 		end
-
-    if (errorObject.message:find("Blizzard_GuildControlUI") or errorObject.message:find("SetPoint") or errorObject.message:find("Blizzard_MoneyFrame") or errorObject.message:find("Blizzard_MacroUI")) then
-      return
-    else
-      -- print("FREEWILL DEBUG: grabError", errorObject.message)
-    end
 
 		addon:StoreError(errorObject)
 
@@ -562,25 +561,10 @@ do
 	local badAddons = {}
 	function events:ADDON_ACTION_FORBIDDEN(event, addonName, addonFunc)
 		local name = addonName or "<name>"
-    -- 定義不需要檢查禁止名稱的常量表
-    local FORBIDDEN_NAMES = {
-      SpellActivationOverlay = true,
-      UnitFramesPlus = true,
-      RXPGuides = true,
-      ["*** ForceTaint_Strong ***"] = true,
-      Glass = true,
-      XIV_Databar = true,
-      Dominos = true,
-      ["Lorti-UI-Classic"] = true
-    }
-    -- 檢查是否在禁止名稱表中
-    if FORBIDDEN_NAMES[name] then
-      -- print("Skipping forbidden name:", name)
-      return
-    end
 		if not badAddons[name] then
 			badAddons[name] = true
-			grabError(L.ADDON_CALL_PROTECTED:format(event, name or "<name>", addonFunc or "<func>"))
+			-- 不顯示保護功能的錯誤
+			-- grabError(L.ADDON_CALL_PROTECTED:format(event, name or "<name>", addonFunc or "<func>"))
 		end
 	end
 end
@@ -589,6 +573,8 @@ function events:LUA_WARNING(_, warnType, warningText)
 	-- Temporary hack for the few dropdown libraries that exist that were designed poorly
 	-- Hopefully we will see a rewrite of dropdowns soon
 	if warnType == 0 and warningText:find("DropDown", nil, true) then return end
+	-- 不顯示暴雪專業視窗未翻譯錯誤
+	if warnType == 0 and warningText:find("(null)", nil, true) then return end
 	grabError(warningText, true)
 end
 
