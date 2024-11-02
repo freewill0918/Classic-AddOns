@@ -71,7 +71,7 @@ function addon:CreateFloatingCombatTextOptions()
       -------------------------------------------------
       onTargetHeader = {
         type = "header",
-        name = "Floating Combat Text on Target",
+        name = "目標的浮動戰鬥文字",
         order = 10,
       },
       floatingCombatTextCombatDamage = {
@@ -89,8 +89,8 @@ function addon:CreateFloatingCombatTextOptions()
       },
       floatingCombatTextCombatLogPeriodicSpells = {
         type = "toggle",
-        name = LOG_PERIODIC_EFFECTS,
-        desc = OPTION_TOOLTIP_LOG_PERIODIC_EFFECTS,
+        name = LOG_PERIODIC_EFFECTS or "週期性傷害",
+        desc = OPTION_TOOLTIP_LOG_PERIODIC_EFFECTS or "顯示週期性傷害效果數值，比如撕裂和暗言術：痛。",
         get = function()
           return C_CVar.GetCVarBool("floatingCombatTextCombatLogPeriodicSpells")
         end,
@@ -102,8 +102,8 @@ function addon:CreateFloatingCombatTextOptions()
       },
       floatingCombatTextPetMeleeDamage = {
         type = "toggle",
-        name = SHOW_PET_MELEE_DAMAGE,
-        desc = OPTION_TOOLTIP_SHOW_PET_MELEE_DAMAGE,
+        name = SHOW_PET_MELEE_DAMAGE or "寵物傷害",
+        desc = OPTION_TOOLTIP_SHOW_PET_MELEE_DAMAGE or "顯示寵物造成的傷害。",
         get = function()
           return C_CVar.GetCVarBool("floatingCombatTextPetMeleeDamage")
         end,
@@ -116,8 +116,8 @@ function addon:CreateFloatingCombatTextOptions()
       },
       floatingCombatTextCombatDamageDirectionalScale = {
         type = "toggle",
-        name = "Directional Scale",
-        desc = "Directional damage numbers movement scale (disabled = no directional numbers)",
+        name = "方向性比例",
+        desc = "方向性傷害數字移動比例 (停用 = 無方向性數字)。",
         get = function()
           return C_CVar.GetCVarBool("floatingCombatTextCombatDamageDirectionalScale")
         end,
@@ -129,8 +129,8 @@ function addon:CreateFloatingCombatTextOptions()
       },
       floatingCombatTextCombatHealing = {
         type = "toggle",
-        name = SHOW_COMBAT_HEALING,
-        desc = OPTION_TOOLTIP_SHOW_COMBAT_HEALING,
+        name = SHOW_COMBAT_HEALING or "顯示治療",
+        desc = OPTION_TOOLTIP_SHOW_COMBAT_HEALING or "顯示你對目標恢復的生命量。",
         get = function()
           return C_CVar.GetCVarBool("floatingCombatTextCombatHealing")
         end,
@@ -142,7 +142,7 @@ function addon:CreateFloatingCombatTextOptions()
       },
       floatingCombatTextCombatHealingAbsorbTarget = {
         type = "toggle",
-        name = SHOW_COMBAT_HEALING_ABSORB_TARGET .. " " .. "(Target)",
+        name = SHOW_COMBAT_HEALING_ABSORB_TARGET .. " " .. "(目標)",
         desc = OPTION_TOOLTIP_SHOW_COMBAT_HEALING_ABSORB_TARGET,
         get = function()
           return C_CVar.GetCVarBool("floatingCombatTextCombatHealingAbsorbTarget")
@@ -181,8 +181,8 @@ function addon:CreateFloatingCombatTextOptions()
       },
       WorldTextScale = {
         type = "range",
-        name = "World Text Scale",
-        desc = "The scale of in-world damage numbers, xp gain, artifact gains, etc",
+        name = "世界文字縮放大小",
+        desc = "遊戲世界中的傷害數字、獲得經驗值、獲得神器點數...等等的縮放大小。",
         min = 0.5,
         max = 2.5,
         step = 0.1,
@@ -198,7 +198,7 @@ function addon:CreateFloatingCombatTextOptions()
       -------------------------------------------------
       onMeHeader = {
         type = "header",
-        name = "Floating Combat Text on Me",
+        name = "我的浮動戰鬥文字",
         order = 20,
       },
       enableFloatingCombatText = {
@@ -220,9 +220,9 @@ function addon:CreateFloatingCombatTextOptions()
         name = COMBAT_TEXT_FLOAT_MODE_LABEL,
         desc = OPTION_TOOLTIP_COMBAT_TEXT_MODE,
         values = {
-          ["1"] = "Scroll Up",
-          ["2"] = "Scroll Down",
-          ["3"] = "Arc",
+          ["1"] = "往上捲動",
+          ["2"] = "往下捲動",
+          ["3"] = "弧形",
         },
         sorting = {
           "1",
@@ -325,7 +325,7 @@ function addon:CreateFloatingCombatTextOptions()
       },
       floatingCombatTextCombatHealingAbsorbSelf = {
         type = "toggle",
-        name = SHOW_COMBAT_HEALING_ABSORB_SELF .. " " .. "(Self)",
+        name = SHOW_COMBAT_HEALING_ABSORB_SELF .. " " .. "(我的)",
         desc = OPTION_TOOLTIP_COMBAT_TEXT_SHOW_COMBAT_STATE,
         get = function()
           return C_CVar.GetCVarBool("floatingCombatTextCombatHealingAbsorbSelf")

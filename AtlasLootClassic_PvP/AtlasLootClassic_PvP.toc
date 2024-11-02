@@ -6,17 +6,17 @@
 
 ## Title: AtlasLootClassic |cFFFF5733Cata|r |cFF0099FF[PvP]|r
 ## Title-zhCN: AtlasLoot经典版 |cFF0099FF[PvP]|r
-## Title-zhTW: |cffB973FF[裝備]|r 副本戰利品查詢-PvP
-## Notes: AtlasLoot PvP loot tables
-## Notes-zhCN: AtlasLootClassic  PvP掉落列表
-## Notes-zhTW: AtlasLootClassic - PvP |nPvP 物品資料庫。
-## DefaultState: Enabled
+## Notes: AtlasLoot loot tables from PvP
+## Notes-zhCN: AtlasLoot  PvP掉落列表
 
 ## X-Category: Map
 ## X-License: GPL v2
 
 ## X-AtlasLootClassic-LootModule: 1
 
+## Title-zhTW: |cffB973FF[裝備]|r 副本戰利品查詢-PvP
+## Notes-zhTW: AtlasLootClassic - PvP |n|nPvP 物品資料庫。
+## DefaultState: disabled
 
 Locales\Locales.xml
 

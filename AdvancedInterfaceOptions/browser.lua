@@ -120,7 +120,7 @@ function addon:PopulateCVarPanel(OptionsPanel)
   Title:SetJustifyV("TOP")
   Title:SetJustifyH("LEFT")
   Title:SetPoint("TOPLEFT", 10, -16)
-  Title:SetText("CVar Browser")
+  Title:SetText("CVar 瀏覽器")
 
   local SubText = OptionsPanel:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
   SubText:SetMaxLines(3)
@@ -129,7 +129,7 @@ function addon:PopulateCVarPanel(OptionsPanel)
   SubText:SetJustifyH("LEFT")
   SubText:SetPoint("TOPLEFT", Title, "BOTTOMLEFT", 0, -12)
   SubText:SetPoint("RIGHT", -32, 0)
-  SubText:SetText("These options allow you to modify various CVars within the game.")
+  SubText:SetText("這些選項可以調整遊戲中的各種 CVars 參數。")
 
   -- FilterBox should adjust the contents of the list frame based on the input text
   -- todo: Display grey "Search" text in the box if it's empty
@@ -153,7 +153,7 @@ function addon:PopulateCVarPanel(OptionsPanel)
   end)
 
   local CVarTable = {}
-  local ListFrame = addon:CreateListFrame(OptionsPanel, 650, 465, { { NAME, 200 }, { "Description", 260, "LEFT" }, { "Value", 100, "RIGHT" } })
+  local ListFrame = addon:CreateListFrame(OptionsPanel, 650, 465, { { NAME, 200 }, { "說明", 260, "LEFT" }, { "數值", 100, "RIGHT" } })
   ListFrame:SetPoint("TOP", FilterBox, "BOTTOM", 0, -20)
   ListFrame:SetPoint("BOTTOMLEFT", 0, 15)
   ListFrame:SetItems(CVarTable)

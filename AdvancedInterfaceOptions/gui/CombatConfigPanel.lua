@@ -10,11 +10,11 @@ function addon:CreateCombatOptions()
   local combatOptions = {
     type = "group",
     childGroups = "tree",
-    name = "Combat",
+    name = "戰鬥",
     args = {
       instructions = {
         type = "description",
-        name = "These options allow you to modify Combat Options.",
+        name = "這些選項可以調整戰鬥設定。",
         fontSize = "medium",
         order = 1,
       },
@@ -66,7 +66,7 @@ function addon:CreateCombatOptions()
       SpellQueueWindow = {
         type = "range",
         name = LAG_TOLERANCE,
-        desc = "Determines how far ahead of the 'end of a spell' start-recovery spell system can be, before allowing spell request to be sent to the server. Ie this controls the built-in lag for the ability queuing system.",
+        desc = "決定在「法術結束」開始恢復法術系統之前，可以提前多久，才允許將法術請求發送到伺服器。也就是說，這控制了技能排隊系統的內建延遲。",
         min = 0,
         max = 400,
         step = 1,

@@ -1,22 +1,20 @@
-## Interface: 11504, 30403, 40400
+## Interface: 11504, 30403, 40401
 ## Author: Snowflame0
 ## Version: v4.2.0
 ## Dependencies: AtlasLootClassic
 ## LoadOnDemand: 1
 
 ## Title: AtlasLootClassic |cFFFF5733Cata|r |cFF0099FF[Options]|r
-## Title-zhTW: |cffB973FF[裝備]|r 副本戰利品查詢-設定選項
 ## Title-zhCN: AtlasLoot经典版 |cFF22B14C[选项]|r
 ## Notes: AtlasLootClassic Options module
-## Notes-zhCN: AtlasLoot t选项模块
-## Notes-zhTW: AtlasLootClassic - Options |n副本戰利品查詢的選項設定。
-## DefaultState: Enabled
+## Notes-zhCN: AtlasLoot 选项模块
 
 ## X-Category: Map
 ## X-License: GPL v2
 
-
-embeds.xml
+## Title-zhTW: |cffB973FF[裝備]|r 副本戰利品查詢-設定選項
+## Notes-zhTW: AtlasLootClassic - Options |n|n副本戰利品查詢的選項設定。
+## DefaultState: disabled
 
 Locales\constants.cn.lua
 Locales\constants.tw.lua

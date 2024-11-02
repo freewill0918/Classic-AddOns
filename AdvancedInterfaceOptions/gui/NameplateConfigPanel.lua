@@ -10,11 +10,11 @@ function addon:CreateNameplateOptions()
   local nameplateOptions = {
     type = "group",
     childGroups = "tree",
-    name = "Nameplates",
+    name = "名條",
     args = {
       instructions = {
         type = "description",
-        name = "These options allow you to modify Nameplate Options.",
+        name = "這些選項可以調整名條/血條設定。",
         fontSize = "medium",
         order = 1,
       },
@@ -26,8 +26,8 @@ function addon:CreateNameplateOptions()
       -------------------------------------------------
       nameplateOtherAtBase = {
         type = "toggle",
-        name = "Nameplate at Base",
-        desc = "Position other nameplates at the base, rather than overhead. 2=under unit, 0=over unit",
+        name = "名條在腳下",
+        desc = "其他名條顯示在腳下，而不是頭頂。 2=腳下, 0=頭頂",
         get = function()
           return C_CVar.GetCVarBool("nameplateOtherAtBase")
         end,
@@ -39,8 +39,8 @@ function addon:CreateNameplateOptions()
       },
       ShowClassColorInFriendlyNameplate = {
         type = "toggle",
-        name = "Class color friendly nameplates",
-        desc = "Class color for friendly nameplates",
+        name = "友方名條顯示職業顏色",
+        desc = "友方名條顯示職業顏色",
         get = function()
           return C_CVar.GetCVarBool("ShowClassColorInFriendlyNameplate")
         end,

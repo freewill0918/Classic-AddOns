@@ -10,11 +10,11 @@ function addon:CreateGeneralOptions()
   local generalOptions = {
     type = "group",
     childGroups = "tree",
-    name = "Advanced Interface Options",
+    name = "進階遊戲選項",
     args = {
       instructions = {
         type = "description",
-        name = "These options allow you to toggle various options that have been removed from the game in Legion.",
+        name = "這些選項可以調整軍臨天下改版後被移除的各種遊戲設定。",
         fontSize = "medium",
         order = 1,
       },
@@ -26,8 +26,8 @@ function addon:CreateGeneralOptions()
       -------------------------------------------------
       enforceBox = {
         type = "toggle",
-        name = "Enforce Settings on Startup",
-        desc = "Reapplies all settings when you log in or change characters.\n\nCheck this if your settings aren't being saved between sessions.",
+        name = "啟動時強制套用設定",
+        desc = "登入遊戲或切換角色時重新套用所有設定。\n\n若每次登入時設定沒有被儲存，請勾選此項。",
         get = function()
           return AdvancedInterfaceOptionsSaved.EnforceSettings
         end,
@@ -40,7 +40,7 @@ function addon:CreateGeneralOptions()
       -------------------------------------------------
       generalHeader = {
         type = "header",
-        name = "General Options",
+        name = "一般選項",
         order = 10,
       },
       UnitNamePlayerPVPTitle = {
@@ -126,8 +126,8 @@ function addon:CreateGeneralOptions()
       },
       noBuffDebuffFilterOnTarget = {
         type = "toggle",
-        name = "No Debuff Filter on Target",
-        desc = "Do not filter buffs or debuffs at all on targets",
+        name = "不要過濾目標的減益",
+        desc = "完全不要過濾目標身上的增益或減益效果。",
         get = function()
           return C_CVar.GetCVarBool("noBuffDebuffFilterOnTarget")
         end,
@@ -220,11 +220,11 @@ function addon:CreateGeneralOptions()
       },
       trackQuestSorting = {
         type = "select",
-        name = "Select quest sorting mode:",
-        desc = "Select how quests are sorted in the quest log.",
+        name = "任務排序方式:",
+        desc = "選擇任務日誌如何排序任務。",
         values = {
-          ["top"] = "Top",
-          ["proximity"] = "Proximity",
+          ["top"] = "上方",
+          ["proximity"] = "距離最近",
         },
         sorting = {
           "top",
@@ -247,7 +247,7 @@ function addon:CreateGeneralOptions()
       },
       backupSettings = {
         type = "execute",
-        name = "Backup Settings",
+        name = "備份設定",
         func = function()
           StaticPopup_Show("AIO_BACKUP_SETTINGS")
         end,
@@ -256,7 +256,7 @@ function addon:CreateGeneralOptions()
       },
       restoreSettings = {
         type = "execute",
-        name = "Restore Settings",
+        name = "還原設定",
         func = function()
           StaticPopup_Show("AIO_RESTORE_SETTINGS")
         end,
@@ -265,7 +265,7 @@ function addon:CreateGeneralOptions()
       },
       resetSettings = {
         type = "execute",
-        name = "Reset Settings",
+        name = "重置設定",
         func = function()
           StaticPopup_Show("AIO_RESET_EVERYTHING")
         end,
