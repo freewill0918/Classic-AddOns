@@ -1,0 +1,12 @@
+lightweight tag d74eaf9f8adf5b9aac11586a807fe4ba66e50c2d 3.4.3.1
+Author:	GitHub <noreply@github.com>
+Date:	Tue Oct 10 22:39:33 2023 -0700
+
+commit d74eaf9f8adf5b9aac11586a807fe4ba66e50c2d
+Author: GovtGeek <26489473+GovtGeek@users.noreply.github.com>
+Date:   Tue Oct 10 22:39:33 2023 -0700
+
+    Update TinyTooltip.toc
+    
+    Updated for patch 3.4.3
+

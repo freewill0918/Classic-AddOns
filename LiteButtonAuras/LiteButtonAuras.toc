@@ -1,0 +1,29 @@
+## Interface: 110002, 40401, 40400, 11504
+## Title: LiteButtonAuras
+## IconTexture: Interface\Icons\ability_deathknight_heartstopaura
+## AddonCompartmentFunc: LiteButtonAuras_AddonCompartmentFunc
+## Version: 11.0.5-2
+## Author: Xodiv-Nagrand
+## Email: mib@post.com
+## OptionalDeps: Bartender4, Dominos, ElvUI, Masque
+## SavedVariables: LiteButtonAurasDB
+## X-Category: Interface
+## X-Curse-Project-ID: 526431
+## X-WoWI-ID: 26528
+
+embeds.xml
+
+Localization.lua
+ClassicCompat.lua
+SpellData.lua
+ColorGradient.lua
+BarIntegrations.lua
+SlashCommand.lua
+Options.lua
+Overlay.xml
+Controller.xml
+
+UI\AceGUIWidgets-LBAAnchorButtons.lua
+UI\AceGUIWidgets-LBAInputFocus.lua
+UI\AceGUIWidgets-LBAInputSpellID.lua
+UI\Options.lua
