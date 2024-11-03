@@ -7,7 +7,7 @@ local ABOUT = {
         "https://www.curseforge.com/wow/addons",
         "https://www.curseforge.com/wow/addons/extended-vendor-ui",
     },
-
+    
     translators = {
         { name = "BNS", locale = "Traditional Chinese (zhTW), Simplified Chinese (zhCN)" },
         { name = "next96", locale = "Korean (koKR)" },
@@ -25,23 +25,14 @@ function ExtVendorConfig_About_OnLoad(self)
     self.okay = function(self) ExtVendorConfig_About_OnClose(); end;
     self.cancel = function(self) ExtVendorConfig_About_OnClose(); end;
     self.refresh = function(self) ExtVendorConfig_About_OnRefresh(); end;
-
-    -- 使用 Settings API 替代 InterfaceOptions_AddCategory
-    if Settings and Settings.RegisterCanvasLayoutCategory then
-        local category = Settings.RegisterCanvasLayoutCategory(self, L["ADDON_TITLE"], L["ABOUT"]);
-        Settings.RegisterAddOnCategory(category);
-    else
-        -- 舊版本的支持
-        if InterfaceOptions_AddCategory then
-            InterfaceOptions_AddCategory(self);
-        end
-    end
+	local category = Settings.GetCategory(self.parent)
+    local subcategory = Settings.RegisterCanvasLayoutSubcategory(category, self, self.name)
 
     ExtVendorConfigAboutTitle:SetText(string.format(L["VERSION_TEXT"], "|cffffffffv" .. EXTVENDOR.Version));
     ExtVendorConfigAboutAuthor:SetText(L["LABEL_AUTHOR"] .. ": |cffffffff" .. ABOUT.author);
     ExtVendorConfigAboutEmail:SetText(L["LABEL_EMAIL"] .. ": |cffffffff" .. ABOUT.email);
     ExtVendorConfigAboutURLs:SetText(L["LABEL_HOSTS"] .. ":");
-
+    
     ExtVendorConfigAboutTranslatorsHeader:SetText(L["TRANSLATORS"]);
 end
 
@@ -52,7 +43,7 @@ function ExtVendorConfig_About_OnRefresh()
     if (CONFIG_SHOWN) then return; end
 
     local i2;
-
+    
     for i = 1, table.maxn(ABOUT.hosts), 1 do
         local fontString = _G["ExtVendorConfigAbout_SiteList" .. i];
         if (not fontString) then

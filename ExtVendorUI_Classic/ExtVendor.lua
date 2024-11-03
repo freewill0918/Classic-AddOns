@@ -82,21 +82,20 @@ function ExtVendor_OnLoad(self)
 
     EXTVENDOR.Hooks["MerchantFrame_UpdateMerchantInfo"] = MerchantFrame_UpdateMerchantInfo;
     MerchantFrame_UpdateMerchantInfo = function() end --ExtVendor_UpdateMerchantInfo;
-    -- MerchantFrame_UpdateMerchantInfo = ExtVendor_UpdateMerchantInfo;
     EXTVENDOR.Hooks["MerchantFrame_UpdateBuybackInfo"] = MerchantFrame_UpdateBuybackInfo;
     MerchantFrame_UpdateBuybackInfo = ExtVendor_UpdateBuybackInfo;
-
+    
     EXTVENDOR.Hooks["MerchantPrevPageButton_OnClick"] = MerchantPrevPageButton_OnClick;
     MerchantPrevPageButton_OnClick = ExtVendor_PrevPageButton;
     EXTVENDOR.Hooks["MerchantNextPageButton_OnClick"] = MerchantNextPageButton_OnClick;
     MerchantNextPageButton_OnClick = ExtVendor_NextPageButton;
-
+    
     MerchantPrevPageButton:SetScript("OnClick", ExtVendor_PrevPageButton);
     MerchantNextPageButton:SetScript("OnClick", ExtVendor_NextPageButton);
 
     MerchantFrame:SetScript("OnShow", ExtVendor_OnShow);
     MerchantFrame:HookScript("OnHide", ExtVendor_OnHide);
-
+    
     MerchantFrameTab1:HookScript("OnClick", ExtVendor_UpdateDisplay);
     MerchantFrameTab2:HookScript("OnClick", ExtVendor_UpdateDisplay);
 
@@ -119,10 +118,10 @@ function ExtVendor_OnShow(self)
 	-- Update repair all button status
 	MerchantFrame_UpdateCanRepairAll();
 	PanelTemplates_SetTab(MerchantFrame, 1);
-
+	
 	MerchantFrame_Update();
 	PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN);
-
+    
     SUPPRESS_UPDATES = true;
     SUPPRESS_SEARCH_ONCHANGE_UPDATE = true;
 
@@ -150,7 +149,7 @@ end
 -- Event handler
 --========================================
 function ExtVendor_OnEvent(self, event, ...)
-
+    
     if (event == "ADDON_LOADED") then
         local arg1 = ...;
         if (arg1 == "ExtVendorUI_Classic") then
@@ -198,7 +197,7 @@ function ExtVendor_OnUpdate(self, elapsed)
             QUEUE_QUICKVENDOR_UPDATE = false;
         end
     end
-
+    
     if (ONSHOW_QUEUE_STATE > 0) then QUEUE_DISPLAY_REFRESH = false; end
     if (ONSHOW_QUEUE_STATE == 1) then
         ExtVendor_UpdateDisplay();
@@ -214,7 +213,7 @@ function ExtVendor_OnUpdate(self, elapsed)
         ExtVendor_UpdateMerchantInfo();
         ONSHOW_QUEUE_STATE = 0;
     end
-
+    
     if (QUEUE_QVBUTTON_UPDATE > 0) then
         QUEUE_QVBUTTON_UPDATE = QUEUE_QVBUTTON_UPDATE - elapsed;
         if (QUEUE_QVBUTTON_UPDATE <= 0) then
@@ -222,7 +221,7 @@ function ExtVendor_OnUpdate(self, elapsed)
             ExtVendor_RefreshQuickVendorButton();
         end
     end
-
+    
     if (QUEUE_DISPLAY_REFRESH) then
         if ((GetTime() - LAST_INVENTORY_UPDATE) > 0.1) then
             ExtVendor_UpdateDisplay();
@@ -230,7 +229,7 @@ function ExtVendor_OnUpdate(self, elapsed)
             QUEUE_DISPLAY_REFRESH = false;
         end
     end
-
+    
     SUPPRESS_SEARCH_ONCHANGE_UPDATE = false;
 end
 
@@ -391,7 +390,7 @@ end
 function ExtVendor_UpdateMerchantInfo(isPageScroll)
     if (SUPPRESS_UPDATES) then return; end
     local startTime = debugprofilestop();
-
+    
     EXTVENDOR.Hooks["MerchantFrame_UpdateMerchantInfo"]();
     ExtVendor_UpdateButtonPositions();
 
@@ -417,7 +416,7 @@ function ExtVendor_UpdateMerchantInfo(isPageScroll)
     local extItemInfo = {};
     local itemInfo = {};
     local highPerf = EXTVENDOR_DATA['config']['high_performance'];
-
+    
     -- reset the hidden items list
     EXTVENDOR.HiddenItemsTooltipList = {};
 
@@ -431,12 +430,12 @@ function ExtVendor_UpdateMerchantInfo(isPageScroll)
             m_name, m_texture, m_price, m_quantity, m_numAvailable, m_isPurchasable, m_isUsable, m_extendedCost = GetMerchantItemInfo(i);
         end
     end
-
+    
     local precheckStart = debugprofilestop();
-
+    
     --EXTVENDOR.PerfProfile.EII_Tooltip.Reset();
     --EXTVENDOR.PerfProfile.EII_Tooltip.Enable = true;
-
+    
     -- **************************************************
     --  Pre-check filtering if hiding filtered items
     -- **************************************************
@@ -462,9 +461,9 @@ function ExtVendor_UpdateMerchantInfo(isPageScroll)
                     i_name, i_link, i_quality, i_itemLevel, i_itemMinLevel, i_itemType, i_itemSubType, i_itemStackCount, i_itemEquipLoc, i_iconFileDataId, i_itemSellPrice, i_itemClassId, i_itemSubClassId, i_bindType, i_expacId, i_itemSetId, i_isCraftingReagent = GetItemInfo(m_link);
                     itemInfo[i] = packItemInfo(i_name, i_link, i_quality, i_itemLevel, i_itemMinLevel, i_itemType, i_itemSubType, i_itemStackCount, i_itemEquipLoc, i_iconFileDataId, i_itemSellPrice, i_itemClassId, i_itemSubClassId, i_bindType, i_expacId, i_itemSetId, i_isCraftingReagent);
                 end
-
+                
                 isFiltered, whyFiltered = ExtVendor_IsItemFiltered(e_itemId, search, i_name, i_quality, i_itemClassId, i_itemSubClassId, i_itemEquipLoc, e_isKnown, m_isPurchasable, m_isUsable, EXTVENDOR_DATA['config']['optimal_armor'] and not EXTVENDOR_DATA['config']['show_suboptimal_armor']);
-
+                
                 -- ***** add item to list if not filtered *****
                 if (isFiltered) then
                     table.insert(EXTVENDOR.HiddenItemsTooltipList, {itemLink = i_link, reason = whyFiltered});
@@ -472,7 +471,7 @@ function ExtVendor_UpdateMerchantInfo(isPageScroll)
                     table.insert(indexes, i);
                     visibleMerchantItems = visibleMerchantItems + 1;
                 end
-
+                
             else
                 return;
             end
@@ -510,7 +509,7 @@ function ExtVendor_UpdateMerchantInfo(isPageScroll)
 	MerchantPageText:SetFormattedText(MERCHANT_PAGE_NUMBER, MerchantFrame.page, math.ceil(visibleMerchantItems / MERCHANT_ITEMS_PER_PAGE));
 
     local displayStart = debugprofilestop();
-
+    
     -- **************************************************
     --  Display items on merchant page
     -- **************************************************
@@ -584,7 +583,7 @@ function ExtVendor_UpdateMerchantInfo(isPageScroll)
                 end
                 _G["MerchantItem" .. i .. "Name"]:SetTextColor(r, g, b);
                 SetItemButtonQuality(itemButton, i_quality, itemButton.link);
-
+                
                 if (EXTVENDOR_DATA['config']['hide_filtered']) then
                     if (EXTVENDOR_DATA['config']['show_suboptimal_armor']) then
                         isFiltered = ExtVendor_IsItemFilteredSuboptimal(e_itemId, i_quality, i_itemClassId, i_itemSubClassId, i_itemEquipLoc, m_isUsable);
@@ -629,9 +628,9 @@ function ExtVendor_UpdateMerchantInfo(isPageScroll)
             ExtVendor_SearchDimItem(_G["MerchantItem" .. i], false);
         end
     end
-
+    
     local displayEnd = debugprofilestop();
-
+    
     local finalDispStart = debugprofilestop();
 
 	MerchantFrame_UpdateRepairButtons();
@@ -959,7 +958,7 @@ function ExtVendor_CommandHandler(cmd)
         end
         return;
     end
-
+    
     local i, h;
     for i, h in pairs(EXTVENDOR.CommandHooks) do
         if (h(cmd)) then return; end

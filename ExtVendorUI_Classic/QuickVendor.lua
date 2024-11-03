@@ -249,7 +249,7 @@ end
 -- Performs quick-vendor
 --========================================
 function ExtVendor_ConfirmQuickVendor()
-    local link, count, name, color, quality, itemLevel, itemReqLevel, price, maxStack, quantity, bindType, expacID, itemType, itemSubType, itemClassId, itemSubClassId, itemEquipLoc, __;
+    local cInfo, link, count, name, color, quality, itemLevel, itemReqLevel, price, maxStack, quantity, bindType, expacID, itemType, itemSubType, itemClassId, itemSubClassId, itemEquipLoc, __;
     local isKnown, reqClasses, itemId, isAccountBound, isFoodOrDrink;
     local bag, slot;
     local totalPrice = 0;

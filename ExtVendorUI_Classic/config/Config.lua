@@ -5,8 +5,7 @@ local CONFIG_SHOWN = false;
 
 function ExtVendor_ShowMainConfig()
     -- call this twice because the interface options panel never likes to open to an addon category the first time for some reason
-    InterfaceOptionsFrame_OpenToCategory(ExtVendorConfigContainer);
-    InterfaceOptionsFrame_OpenToCategory(ExtVendorConfigContainer);
+    Settings.OpenToCategory(L["ADDON_TITLE"]);
 end
 
 --========================================
@@ -14,10 +13,13 @@ end
 --========================================
 function ExtVendorConfig_OnLoad(self)
     self.name = L["ADDON_TITLE"];
-    self.okay = function(self) ExtVendorConfig_OnClose(); end;
-    self.cancel = function(self) ExtVendorConfig_OnClose(); end;
-    self.refresh = function(self) ExtVendorConfig_OnRefresh(); end;
+    self.okay = function(self) ExtVendorConfig_Okay(); end;
+    self.cancel = function(self) ExtVendorConfig_Cancel(); end;
+    self.refresh = function(self) ExtVendorConfig_Refresh(); end;
     self.default = function(self) ExtVendorConfig_SetDefaults(); end;
+    local category = Settings.RegisterCanvasLayoutCategory(self, self.name)
+	category.ID = self.name
+	Settings.RegisterAddOnCategory(category)
 
     ExtVendorConfigTitle:SetText(string.format(L["VERSION_TEXT"], "|cffffffffv" .. EXTVENDOR.Version));
 
@@ -62,17 +64,7 @@ function ExtVendorConfig_OnLoad(self)
 
 	ExtVendorConfig_QuickVendorContainer_OutdatedFoodText:SetText(L["OPTION_QUICKVENDOR_OUTDATEDFOOD"]);
 	ExtVendorConfig_QuickVendorContainer_OutdatedFood.tooltip = L["OPTION_QUICKVENDOR_OUTDATEDFOOD_TOOLTIP"];
-
-    -- 使用 Settings API 替代 InterfaceOptions_AddCategory
-    if Settings and Settings.RegisterCanvasLayoutCategory then
-        local category = Settings.RegisterCanvasLayoutCategory(self, L["ADDON_TITLE"]);
-        Settings.RegisterAddOnCategory(category);
-    else
-        -- 舊版本的支持
-        if InterfaceOptions_AddCategory then
-            InterfaceOptions_AddCategory(self);
-        end
-    end
+    
 end
 
 --========================================
@@ -83,7 +75,7 @@ function ExtVendorConfig_Refresh()
     if (not CONFIG_SHOWN) then
         ExtVendorConfig_StoreCurrentSettings();
     end
-
+    
 	ExtVendorConfig_GeneralContainer_ShowLoadMsg:SetChecked(STORE_SETTINGS.loadMessage);
 	ExtVendorConfig_GeneralContainer_HighPerformance:SetChecked(STORE_SETTINGS.reduceLag);
 
