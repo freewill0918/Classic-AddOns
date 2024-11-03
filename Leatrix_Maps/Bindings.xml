@@ -1,7 +1,7 @@
 ﻿<Bindings>
 
 	<!-- Toggle panel -->
-	<Binding name="LEATRIX_MAPS_GLOBAL_TOGGLE" category = "Leatrix Maps">
+	<Binding name="LEATRIX_MAPS_GLOBAL_TOGGLE" header = "Leatrix Maps" category = "ADDONS">
 		SlashCmdList["Leatrix_Maps"]("")
 	</Binding>
 
