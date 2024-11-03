@@ -97,3 +97,5 @@ L.VerticalOffset = 'Vertical Offset'
 L.TimerOffset = 'Timer Offset (MS)'
 L.TimerOffsetDesc =
     'Subtract an amount of time from your cooldown timer text displays. You can use this, for example, to have timer text end when you are able to queue up an ability'
+
+L.OmniCC = "OmniCC"

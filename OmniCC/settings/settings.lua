@@ -92,7 +92,7 @@ function Addon:GetDBDefaults()
                     -- displaying cooldowns in MM:SS format
                     mmSSDuration = 0,
                     -- what finish effect to display
-                    effect = 'pulse',
+                    effect = 'flare',
                     -- how long a cooldown must be (in seconds) to trigger
                     -- a finish effect
                     minEffectDuration = 30,
