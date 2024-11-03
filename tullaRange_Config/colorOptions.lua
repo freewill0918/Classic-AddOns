@@ -11,7 +11,7 @@ do
 	ColorOptions = Addon.OptionsPanel:New(
 		'tullaRange_ColorOptions',
 		nil,
-		'tullaRange',
+		L.AddonNameLoc,
 		L.ColorSettingsTitle
 	)
 
