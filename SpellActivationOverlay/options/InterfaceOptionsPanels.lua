@@ -64,7 +64,7 @@ function SpellActivationOverlayOptionsPanel_Init(self)
     end
 
     local scaleSlider = SpellActivationOverlayOptionsPanelSpellAlertScaleSlider;
-    scaleSlider.Text:SetText("Spell Alert Scale");
+    scaleSlider.Text:SetText("法術警告縮放大小");
     _G[scaleSlider:GetName().."Low"]:SetText(SMALL);
     _G[scaleSlider:GetName().."High"]:SetText(LARGE);
     scaleSlider:SetMinMaxValues(0.25, 2.5);
@@ -77,7 +77,7 @@ function SpellActivationOverlayOptionsPanel_Init(self)
     end
 
     local offsetSlider = SpellActivationOverlayOptionsPanelSpellAlertOffsetSlider;
-    offsetSlider.Text:SetText("Spell Alert Offset");
+    offsetSlider.Text:SetText("法術警告位置");
     _G[offsetSlider:GetName().."Low"]:SetText(NEAR);
     _G[offsetSlider:GetName().."High"]:SetText(FAR);
     offsetSlider:SetMinMaxValues(-200, 400);
@@ -90,8 +90,8 @@ function SpellActivationOverlayOptionsPanel_Init(self)
     end
 
     local timerSlider = SpellActivationOverlayOptionsPanelSpellAlertTimerSlider;
-    timerSlider.Text:SetText("Spell Alert Progressive Timer");
-    _G[timerSlider:GetName().."Low"]:SetText(DISABLE);
+    timerSlider.Text:SetText("法術警告漸進式計時");
+    _G[timerSlider:GetName().."Low"]:SetText(CLOSE);
     _G[timerSlider:GetName().."High"]:SetText(ENABLE);
     timerSlider:SetMinMaxValues(0, 1);
     timerSlider:SetValueStep(1);
@@ -103,7 +103,7 @@ function SpellActivationOverlayOptionsPanel_Init(self)
     end
 
     local soundSlider = SpellActivationOverlayOptionsPanelSpellAlertSoundSlider;
-    soundSlider.Text:SetText("Spell Alert Sound Effect");
+    soundSlider.Text:SetText("法術警告音效");
     _G[soundSlider:GetName().."Low"]:SetText(DISABLE);
     _G[soundSlider:GetName().."High"]:SetText(ENABLE);
     soundSlider:SetMinMaxValues(0, 1);
@@ -116,12 +116,12 @@ function SpellActivationOverlayOptionsPanel_Init(self)
     end
 
     local testButton = SpellActivationOverlayOptionsPanelSpellAlertTestButton;
-    testButton:SetText("Toggle Test");
+    testButton:SetText("切換測試");
     testButton.fakeSpellID = 42;
     testButton.isTesting = false;
     local testTextureLeftRight = SAO.IsEra() and "echo_of_the_elements" or "imp_empowerment";
     local testTextureTop = SAO.IsEra() and "fury_of_stormrage" or "brain_freeze";
-    local testPositionTop = SAO.IsCata and "Top (CW)" or "Top";
+    local testPositionTop = SAO.IsCata() and "Top (CW)" or "Top";
     testButton.StartTest = function(self)
         if (not self.isTesting) then
             self.isTesting = true;
@@ -150,7 +150,7 @@ function SpellActivationOverlayOptionsPanel_Init(self)
     SAO:MarkTexture(testTextureTop);
 
     local debugButton = SpellActivationOverlayOptionsPanelSpellAlertDebugButton;
-    debugButton.Text:SetText("Write Debug to Chatbox");
+    debugButton.Text:SetText("將除錯訊息輸出到聊天視窗");
     debugButton:SetChecked(SpellActivationOverlayDB.debug == true);
 
     local responsiveButton = SpellActivationOverlayOptionsPanelSpellAlertResponsiveButton;
@@ -158,7 +158,7 @@ function SpellActivationOverlayOptionsPanel_Init(self)
     responsiveButton:SetChecked(SpellActivationOverlayDB.responsiveMode == true);
 
     local glowingButtonCheckbox = SpellActivationOverlayOptionsPanelGlowingButtons;
-    glowingButtonCheckbox.Text:SetText("Glowing Buttons");
+    glowingButtonCheckbox.Text:SetText("按鈕發光");
     glowingButtonCheckbox.initialValue = SpellActivationOverlayDB.glow.enabled;
     glowingButtonCheckbox:SetChecked(glowingButtonCheckbox.initialValue);
     glowingButtonCheckbox.ApplyValueToEngine = function(self, checked)
@@ -344,7 +344,7 @@ if Settings and Settings.RegisterCanvasLayoutCategory then
 end
 
 function SpellActivationOverlayOptionsPanel_OnLoad(self)
-    self.name = AddonName;
+    self.name = "法術警告";
     self.okay = okayFunc;
     self.cancel = cancelFunc;
     self.default = defaultFunc;
