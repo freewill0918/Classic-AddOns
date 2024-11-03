@@ -29,20 +29,20 @@ local pairs, unpack, type = pairs, unpack, type
 local getOpt, setOpt, getColor, setColor
 do
 	function getOpt(info)
-		local key = info[#info]
+		local key = info[#info] 
 		return Quartz3.db.profile[key]
 	end
-
+	
 	function setOpt(info, value)
 		local key = info[#info]
 		Quartz3.db.profile[key] = value
 		Quartz3:ApplySettings()
 	end
-
+	
 	function getColor(info)
 		return unpack(getOpt(info))
 	end
-
+	
 	function setColor(info, r, g, b, a)
 		setOpt(info, {r, g, b, a})
 	end
@@ -53,6 +53,7 @@ local function getOptions()
 	if not options then
 		 options = {
 			type = "group",
+			name = L["Quartz3"],
 			args = {
 				general = {
 					type = "group",
@@ -208,7 +209,7 @@ end
 function Quartz3:SetupOptions()
 	self.optFrames = {}
 	LibStub("AceConfigRegistry-3.0"):RegisterOptionsTable("Quartz3", getOptions)
-	self.optFrames.Quartz3 = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Quartz3", "Quartz 3", nil, "general")
+	self.optFrames.Quartz3 = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Quartz3", L["Quartz3"], nil, "general")
 	self:RegisterChatCommand("quartz", "ChatCommand")
 	self:RegisterChatCommand("q3", "ChatCommand")
 
@@ -218,10 +219,10 @@ function Quartz3:SetupOptions()
 		LibDualSpec:EnhanceOptions(profileOptions, self.db)
 	end
 
-	self:RegisterModuleOptions("Profiles", profileOptions, "Profiles")
+	self:RegisterModuleOptions("Profiles", profileOptions, L["Profiles"])
 end
 
 function Quartz3:RegisterModuleOptions(name, optTable, displayName)
 	moduleOptions[name] = optTable
-	self.optFrames[name] = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Quartz3", displayName or name, "Quartz 3", name)
+	self.optFrames[name] = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Quartz3", displayName or name, L["Quartz3"], name)
 end

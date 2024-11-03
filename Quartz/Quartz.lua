@@ -22,6 +22,9 @@ local media = LibStub("LibSharedMedia-3.0")
 local db
 
 local WoW10 = select(4, GetBuildInfo()) >= 100000
+if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then -- 暫時修正
+	WoW10 = true
+end
 
 ----------------------------
 -- Upvalues
@@ -30,7 +33,7 @@ local type, pairs, tonumber = type, pairs, tonumber
 
 local defaults = {
 	profile = {
-		modules = { ["*"] = true, ["EnemyCasts"] = false },
+		modules = { ["*"] = true, ["EnemyCasts"] = false, ["GCD"] = false, ["Mirror"] = false, ["Buff"] = false, ["Target"] = false, ["Pet"] = false, ["Tradeskill"] = false },
 		hidesamwise = true,
 		sparkcolor = {1, 1, 1, 0.5},
 		spelltextcolor = {1, 1, 1},

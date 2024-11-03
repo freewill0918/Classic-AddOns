@@ -31,8 +31,9 @@ local db, getOptions
 local defaults = {
 	profile = Quartz3:Merge(Quartz3.CastBarTemplate.defaults,
 	{
-		--x =  -- applied automatically in :ApplySettings()
-		y = 250,
+		x = 252, -- applied automatically in :ApplySettings()
+		y = -100,
+		point = "TOPLEFT", -- 更改預設值
 		h = 18,
 		w = 200,
 		texture = "LiteStep",
