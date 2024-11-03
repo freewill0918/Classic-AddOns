@@ -3,7 +3,7 @@
 -- © 2006-2024 Travis Spomer.  This mod is released under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license.
 -- See Readme.htm for more information.
 
---
+-- 
 -- Chinese (Traditional) resources
 ------------------------------------------------------------
 
@@ -94,7 +94,7 @@ PawnLocal =
 		["CritInfo"] = "致命一擊: 影響近戰攻擊，遠程攻擊，法術。",
 		["DefenseInfo"] = "Defense skill.  Decreases the chance that you'll be hit by boss attacks.",
 		["DodgeInfo"] = "Dodge.  Increases the chance that you'll dodge attacks entirely.",
-		["DominationSocketInfo"] = "平均統治碎片的套接字值。",
+		["DominationSocketInfo"] = "平均統御裂片插槽數值。",
 		["DpsInfo"] = [=[每秒武器傷害。
 若你想為不同武器的DPS估值, 請看 "特定武器屬性" 部份]=],
 		--[[Translation missing --]]
@@ -252,14 +252,15 @@ PawnLocal =
 		["WeaponTypeWarglaiveInfo"] = "物品類型為戰刃。",
 	},
 	["UI"] = {
-		["AboutHeader"] = "關於 Pawn",
+		["Pawn"] = "裝備-比較",
+		["AboutHeader"] = "關於裝備比較 Pawn",
 		["AboutMrRobot"] = "Mr. Robot慷慨大方提供了預設的屬性權值。 他們是角色在典型戰鬥中的典型天賦與典型神兵特長的一個很好的起點。 您可以使用askmrrobot.com上的Ask Mr. Robot模擬器獲得更準確的自定義屬性。",
 		["AboutReadme"] = "剛開始用 Pawn 嗎？請參閱[入門]頁面取得基本介紹。",
 		["AboutTab"] = "關於",
-		["AboutTranslation"] = "正體中文: scars 2014/10/21",
+		["AboutTranslation"] = "繁體中文翻譯: scars",
 		["AboutVersion"] = "版本: %s",
 		["AboutWebsite"] = "請至 vgermods.com 檢視由 Vger 製作的其他插件",
-		["AskMrRobotProvider"] = "Ask Mr. Robot權值",
+		["AskMrRobotProvider"] = "Ask Mr. Robot 分數",
 		["CompareClearItems"] = "清除",
 		["CompareClearItemsTooltip"] = "移除兩件比較中的物品.",
 		["CompareColoredSockets"] = "有色插槽",
@@ -298,22 +299,22 @@ Pawn會與你身上的裝備比較]=],
 這些權重分數會顯示在你物品提示欄的底部。
 
 |cff8ec3e6當你已經熟悉基本用法後，你可以試著:|r
- • 用 Pawn 的比較頁面來比較兩件物品的屬性。
- • 在一件物品鏈接上點擊右鍵來查看它與你當前物品的比較。
- • 用Shift-右鍵點擊一件有插槽的物品，可讓 Pawn 為它提供寶石建議。
- • 在權重頁面上為你的一個權重做備份，並在編輯頁面上自訂屬性。
- • 查看說明文件了解更多 Pawn 的相關進階功能。]=],
+ - 用 Pawn 的比較頁面來比較兩件物品的屬性。
+ - 在一件物品鏈接上點擊右鍵來查看它與你當前物品的比較。
+ - 用Shift-右鍵點擊一件有插槽的物品，可讓 Pawn 為它提供寶石建議。
+ - 在權重頁面上為你的一個權重做備份，並在編輯頁面上自訂屬性。
+ - 查看說明文件了解更多 Pawn 的相關進階功能。]=],
 		["InterfaceOptionsBody"] = "點擊 Pawn 按鈕到達此處。你也可從角色資訊頁面打開 Pawn ，或者為它綁定一個按鍵。",
-		["InterfaceOptionsWelcome"] = "Pawn 設置位於 Pawn 介面中",
-		["InventoryButtonTooltip"] = "點擊顯示 Pawn 介面.",
+		["InterfaceOptionsWelcome"] = "裝備比較的設定在 Pawn 介面中",
+		["InventoryButtonTooltip"] = "點一下顯示裝備比較設定選項視窗。",
 		["InventoryButtonTotalsHeader"] = "所有已裝備物品之總計:",
 		["KeyBindingCompareItemLeft"] = "比較物品 (左)",
 		["KeyBindingCompareItemRight"] = "比較物品 (右)",
-		["KeyBindingShowUI"] = "顯示 Pawn 介面",
+		["KeyBindingShowUI"] = "顯示裝備比較設定選項",
 		["OptionsAdvisorHeader"] = "建議選項",
 		["OptionsAlignRight"] = "將數值對齊右方",
 		["OptionsAlignRightTooltip"] = "讓Pawn的數值在物品提示欄對齊右方，而非左方",
-		["OptionsBagUpgradeAdvisor"] = "顯示背包升級建議",
+		["OptionsBagUpgradeAdvisor"] = "顯示背包中裝備的升級建議",
 		["OptionsBagUpgradeAdvisorTooltip"] = [=[啟用此選項讓Pawn接管背包內升級箭頭。
 
 勾選後，Pawn會在你的背包中找到升級物品，並用綠色箭頭標記任何啟用權值的升級物品。
@@ -391,7 +392,7 @@ WoW中所有的物件都有個ID，通常只有寫插件的人才需要這些資
 		["OptionsReforgingAdvisor"] = "顯示重鑄建議",
 		["OptionsReforgingAdvisorTooltip"] = "当访问重铸商时候，将显示一个弹出的统计框，提示重铸的建议。",
 		["OptionsShowItemLevelUpgrades"] = "顯示物品等級提升",
-		["OptionsShowItemLevelUpgradesTooltip"] = "除了正常提升之外，Pawn將向您顯示高於您之前在該部位中裝備的物品等級。",
+		["OptionsShowItemLevelUpgradesTooltip"] = "除了一般的升級之外，若物品等級高於你在該欄位已裝備的物品，Pawn 會顯示。",
 		["OptionsShowRelicUpgrades"] = "顯示聖物升級",
 		["OptionsShowRelicUpgradesTooltip"] = "當一件聖物會增加你的一件神兵物品等級時，Pawn會顯示。（這與其他升級功能不同，因為它基於物品等級，而不是屬性。）",
 		["OptionsSocketingAdvisor"] = "顯示插槽建議",
@@ -441,10 +442,10 @@ WoW中所有的物件都有個ID，通常只有寫插件的人才需要這些資
 		["ReforgeInstructionsNoReforge"] = "不要重鑄",
 		["ReforgeInstructions"] = "重鑄 %s 到 %s",
 		["ReforgeCappedStatWarning"] = "當重鑄命中或者熟練時請小心使用！不要讓你的未擊中的幾率高過0%。",
-		["ScaleAutoOff"] = "自定義",
+		["ScaleAutoOff"] = "自訂",
 		["ScaleAutoOff2"] = "自由設定屬性權重。",
 		["ScaleAutoOffTooltip"] = "你可以自由設定屬性權重的評分標準，或者一種專精幾種評分標準，甚至直接關閉某項專精的評分。",
-		["ScaleAutoOn"] = "自動適配",
+		["ScaleAutoOn"] = "自動",
 		["ScaleAutoOn2"] = "自動選擇當前專精對應的屬性權重。",
 		["ScaleAutoOnTooltip"] = "Pawn會根據你的職業，自動選擇預設的專精屬性權重。",
 		["ScaleAutoWelcome"] = [=[Pawn 會自動切換顯示你現在正在使用的專精對應的屬性權重。
@@ -788,7 +789,7 @@ if VgerCore.IsBurningCrusade or VgerCore.IsWrath or VgerCore.IsCataclysm then
 	local Key, NewString
 	for Key, NewString in pairs(TooltipParsing_BurningCrusade) do
 		PawnLocal.TooltipParsing[Key] = NewString
-	end
+	end	
 end
 
 if VgerCore.IsWrath or VgerCore.IsCataclysm then
