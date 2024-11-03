@@ -106,7 +106,7 @@ local function createShoppingListFrame(self)
 	titletext:SetShadowColor(0,0,0)
 	titletext:SetShadowOffset(1,-1)
 	titletext:SetTextColor(1,1,1)
-	titletext:SetText("Skillet-Classic: " .. L["Shopping List"])
+	titletext:SetText(L["Skillet-Classic"] .. ": " .. L["Shopping List"])
 
 	SkilletShowQueuesFromAllAltsText:SetText(L["Include alts"])
 	SkilletShowQueuesFromAllAlts:SetChecked(Skillet.db.profile.include_alts)

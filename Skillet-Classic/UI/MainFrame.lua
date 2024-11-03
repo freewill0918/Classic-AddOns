@@ -688,10 +688,10 @@ function Skillet:TradeButton_OnEnter(button)
 		local buttonIcon = _G[button:GetName().."Icon"]
 		local r,g,b = buttonIcon:GetVertexColor()
 		if g == 0 then
-			GameTooltip:AddLine("scan incomplete...",1,0,0)
+			GameTooltip:AddLine(L["scan incomplete..."],1,0,0)
 		end
 		if nonLinkingTrade[tradeID] and player ~= UnitName("player") then
-			GameTooltip:AddLine((GetSpellInfo(tradeID)).." not available for alts")
+			GameTooltip:AddLine((GetSpellInfo(tradeID))..L[" not available for alts"])
 		end
 	end
 	GameTooltip:Show()
@@ -1684,7 +1684,7 @@ function Skillet:SetReagentToolTip(reagentID, numNeeded, numCraftable)
 		GameTooltip:AppendText(GRAY_FONT_COLOR_CODE .. " (" .. L["craftable"] .. ")" .. FONT_COLOR_CODE_CLOSE)
 		for recipeID in pairs(self.db.global.itemRecipeSource[reagentID]) do
 			local recipe = self:GetRecipe(recipeID)
-			GameTooltip:AddDoubleLine("Source: ",(self:GetTradeName(recipe.tradeID) or recipe.tradeID)..":"..self:GetRecipeName(recipeID),0,1,0,1,1,1)
+			GameTooltip:AddDoubleLine(L["Source:"],(self:GetTradeName(recipe.tradeID) or recipe.tradeID)..":"..self:GetRecipeName(recipeID),0,1,0,1,1,1)
 			for player,lookupTable in pairs(self.data.skillIndexLookup) do
 				if lookupTable[recipeID] then
 					local rankData = self:GetSkillRanks(player, recipe.tradeID)
@@ -1708,18 +1708,18 @@ function Skillet:SetReagentToolTip(reagentID, numNeeded, numCraftable)
 	local inBoth = self:GetInventory(self.currentPlayer, reagentID)
 	local surplus = inBoth - numNeeded * numCraftable
 	if inBoth < 0 then
-		GameTooltip:AddDoubleLine("in shopping list:",(-inBoth),1,1,0)
+		GameTooltip:AddDoubleLine(L["in shopping list:"],(-inBoth),1,1,0)
 	end
 	if surplus < 0 then
-		GameTooltip:AddDoubleLine("to craft "..numCraftable.." you need:",(-surplus),1,0,0)
+		GameTooltip:AddDoubleLine(L["to craft "]..numCraftable..L[" you need:"],(-surplus),1,0,0)
 	end
 	if self.db.realm.reagentsInQueue[self.currentPlayer] then
 		local inQueue = self.db.realm.reagentsInQueue[self.currentPlayer][reagentID]
 		if inQueue then
 			if inQueue < 0 then
-				GameTooltip:AddDoubleLine("used in queued skills:",-inQueue,1,1,1)
+				GameTooltip:AddDoubleLine(L["used in queued skills:"],-inQueue,1,1,1)
 			else
-				GameTooltip:AddDoubleLine("created from queued skills:",inQueue,1,1,1)
+				GameTooltip:AddDoubleLine(L["created from queued skills:"],inQueue,1,1,1)
 			end
 		end
 	end

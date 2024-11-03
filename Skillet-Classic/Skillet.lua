@@ -427,7 +427,7 @@ StaticPopupDialogs["SKILLET_CONTINUE_CHANGE"] = {
 -- Create a static popup for changing professions
 --
 StaticPopupDialogs["SKILLET_IGNORE_CHANGE"] = {
-	text = "Skillet-Classic\n"..L["Use Action Bar button to change professions"],
+	text = L["Skillet-Classic"].."\n"..L["Use Action Bar button to change professions"],
 	button1 = OKAY,
 	OnAccept = function( self )
 		return
@@ -1732,7 +1732,7 @@ function Skillet:AddItemNotesToTooltip(tooltip, altID)
 			--DA.DEBUG(1,"player= "..tostring(player)..", table= "..DA.DUMP1(notes_table)..", note= '"..tostring(note).."'")
 			if note then
 				if not header_added then
-					tooltip:AddLine("Skillet " .. L["Notes"] .. ":")
+					tooltip:AddLine(L["Skillet-Classic"] .. L["Notes"] .. ":")
 					header_added = true
 				end
 				if player ~= UnitName("player") then

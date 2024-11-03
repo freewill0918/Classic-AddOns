@@ -87,7 +87,7 @@ Skillet.options =
 					type = "toggle",
 					name = L["SHOWCRAFTERSTOOLTIPNAME"],
 					desc = L["SHOWCRAFTERSTOOLTIPDESC"],
-					disabled = true, -- because of 5.4 changes to trade links
+					disabled = true, -- because of 5.4 changes to trade links 
 					get = function()
 						return Skillet.db.profile.show_crafters_tooltip
 					end,
@@ -943,7 +943,7 @@ Skillet.options =
 			order = 72
 		},
 --
--- command to turn on/off custom groups
+-- command to turn on/off custom groups 
 -- (i.e. panic/debug button if they aren't working)
 --
 		customgroups = {
@@ -1008,8 +1008,8 @@ Skillet.options =
 		},
 		invertshiftkey = {
 			type = "toggle",
-			name = "InvertShiftKey",
-			desc = "Invert sense of shift to open the Blizzard frames",
+			name = L["InvertShiftKey"],
+			desc = L["Invert sense of shift to open the Blizzard frames"],
 			get = function()
 				return Skillet.db.profile.invertshiftkey
 			end,
@@ -1596,16 +1596,16 @@ function Skillet:ConfigureOptions()
 	acecfg:RegisterOptionsTable("Skillet Profiles", LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db))
 	acecfg:RegisterOptionsTable("Skillet Plugins", Skillet.pluginsOptions)
 	local acedia = LibStub("AceConfigDialog-3.0")
-	Skillet.optionsFrame = acedia:AddToBlizOptions("Skillet Features", "Skillet")
-	acedia:AddToBlizOptions("Skillet Appearance", "Appearance", "Skillet")
-	acedia:AddToBlizOptions("Skillet Profiles", "Profiles", "Skillet")
-	acedia:AddToBlizOptions("Skillet Plugins", "Plugins", "Skillet")
+	Skillet.optionsFrame = acedia:AddToBlizOptions("Skillet Features", L["Skillet"])
+	acedia:AddToBlizOptions("Skillet Appearance", L["Appearance"], L["Skillet"])
+	acedia:AddToBlizOptions("Skillet Profiles", L["Profiles"], L["Skillet"])
+	acedia:AddToBlizOptions("Skillet Plugins", L["Plugins"], L["Skillet"])
 end
 
 --
 -- Show the options window
 --
 function Skillet:ShowOptions()
-	Settings.OpenToCategory("Skillet")
+	Settings.OpenToCategory(L["Skillet"])
 end
 

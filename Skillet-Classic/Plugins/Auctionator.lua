@@ -987,11 +987,11 @@ function plugin.GetExtraText(skill, recipe)
 -- Show the profit absolute value and as a percentage of the cost
 --
 			if Skillet.db.profile.plugins.ATR.extraProfitValue then
-				label = label.."   Profit:\n"
+				label = label..L["   Profit:\n"]
 				extra_text = extra_text..Skillet:FormatMoneyFull(profit, true).."\n"
 			end
 			if Skillet.db.profile.plugins.ATR.extraProfitPercentage then
-				label = label.."   Profit percentage:\n"
+				label = label..L["   Profit percentage:\n"]
 				extra_text = extra_text..profitPctText(profit,cost,9999).."%\n"
 			end
 		end
