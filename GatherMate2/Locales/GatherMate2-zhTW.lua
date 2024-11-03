@@ -206,6 +206,13 @@ L["World Map Icons"] = "世界地圖圖示"
 L["World Map Icons Clickable"] = "可點擊世界地圖圖示"
 L["Wrath of the Lich King"] = "巫妖王之怒"
 
+L["GatherMate2"] = "採集助手"
+L["GatherMate 2"] = "專業-採集"
+L["Minimap"] = "小地圖"
+L["Maintenance"] = "資料庫維護"
+L["Import"] = "匯入資料"
+L["Profiles"] = "設定檔"
+L["Timber"] = "木材"
 
 local NL = LibStub("AceLocale-3.0"):NewLocale("GatherMate2Nodes", "zhTW")
 if not NL then return end
