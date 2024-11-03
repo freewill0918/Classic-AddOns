@@ -45,6 +45,7 @@ local UpdatePartyMemberBackground = UpdatePartyMemberBackground;
 local PartyMemberFrame_RefreshPetDebuffs = PartyMemberFrame_RefreshPetDebuffs;
 local PartyMemberFrame_UpdateLeader = PartyMemberFrame_UpdateLeader;
 local PartyMemberFrame_UpdatePvPStatus = PartyMemberFrame_UpdatePvPStatus;
+local PartyMemberFrame_UpdateVoiceStatus = PartyMemberFrame_UpdateVoiceStatus;
 local PartyMemberFrame_UpdateReadyCheck = PartyMemberFrame_UpdateReadyCheck;
 local PartyMemberFrame_UpdateNotPresentIcon = PartyMemberFrame_UpdateNotPresentIcon;
 local PartyMemberFrame_ToPlayerArt = PartyMemberFrame_ToPlayerArt;
@@ -288,8 +289,8 @@ end
 
 function UnitFramesPlus_PartyName()
     for id = 1, MAX_PARTY_MEMBERS, 1 do
-        if UnitFramesPlusDB["party"]["origin"] == 1 and (UnitFramesPlusDB["party"]["colorname"] == 1
-        -- or UnitFramesPlusDB["party"]["shortname"] == 1
+        if UnitFramesPlusDB["party"]["origin"] == 1 and (UnitFramesPlusDB["party"]["colorname"] == 1 
+        -- or UnitFramesPlusDB["party"]["shortname"] == 1 
         or UnitFramesPlusDB["party"]["portrait"] == 1) then
             _G["UFP_PartyColorName"..id]:RegisterEvent("PLAYER_ENTERING_WORLD");
             _G["UFP_PartyColorName"..id]:RegisterEvent("GROUP_ROSTER_UPDATE");
@@ -399,10 +400,10 @@ function UnitFramesPlus_PartyPortrait()
                 _G["UFP_PartyPortraitType"..id]:RegisterUnitEvent("UNIT_CONNECTION", "party"..id);
                 _G["UFP_PartyPortraitType"..id]:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", "party"..id);
                 _G["UFP_PartyPortraitType"..id]:SetScript("OnEvent", function(self, event, ...)
-                    if event == "PLAYER_ENTERING_WORLD" or event == "GROUP_ROSTER_UPDATE"
-                    or event == "PARTY_LEADER_CHANGED"  or event == "PARTY_MEMBER_ENABLE"
-                    -- or event == "PARTY_MEMBER_DISABLE"  or event == "UNIT_ENTERED_VEHICLE"
-                    or event == "PARTY_MEMBER_DISABLE"
+                    if event == "PLAYER_ENTERING_WORLD" or event == "GROUP_ROSTER_UPDATE" 
+                    or event == "PARTY_LEADER_CHANGED"  or event == "PARTY_MEMBER_ENABLE" 
+                    -- or event == "PARTY_MEMBER_DISABLE"  or event == "UNIT_ENTERED_VEHICLE" 
+                    or event == "PARTY_MEMBER_DISABLE" 
                     -- or event == "UNIT_EXITED_VEHICLE"  or event == "UNIT_PET" then
                     or event == "UNIT_PET" then
                         if UnitExists("party"..id) then
@@ -477,7 +478,7 @@ end
 --刷新队友3D头像背景显示
 function UnitFramesPlus_PartyPortrait3DBGDisplayUpdate(id)
     if UnitExists("party"..id) and UnitFramesPlusDB["party"]["origin"] == 1 then
-        if UnitFramesPlusDB["party"]["portrait"] == 1
+        if UnitFramesPlusDB["party"]["portrait"] == 1 
         and UnitFramesPlusDB["party"]["portraittype"] == 1
         and UnitFramesPlusDB["party"]["portrait3dbg"] == 1 then
             _G["UFP_Party3DPortrait"..id].Background:Show();
@@ -1140,11 +1141,11 @@ function UnitFramesPlus_OptionsFrame_PartyBuffDisplayUpdate()
                 local _, icon, count, debuffType, duration, expirationTime, caster, _, _, spellId = UnitDebuff("party"..id, j, filter);
                 if icon and (GetDisplayedAllyFrames() == "party" or (GetDisplayedAllyFrames() == "raid" and UnitFramesPlusDB["party"]["hideraid"] == 1 and UnitFramesPlusDB["party"]["always"] == 1)) then
                     _G["UFP_PartyMemberFrame"..id.."Debuff"..j].Icon:SetTexture(icon);
-
+					
 					-- 減益圖示邊框顏色
 					if debuffType then
 						local color = DebuffTypeColor[debuffType];
-						if color then
+						if color then 
 							_G["UFP_PartyMemberFrame"..id.."Debuff"..j].Border:SetVertexColor(color[1], color[2], color[3], 1);
 						else
 							_G["UFP_PartyMemberFrame"..id.."Debuff"..j].Border:SetVertexColor(1, 0, 0, 1);
@@ -1152,7 +1153,7 @@ function UnitFramesPlus_OptionsFrame_PartyBuffDisplayUpdate()
 					else
 						_G["UFP_PartyMemberFrame"..id.."Debuff"..j].Border:SetVertexColor(1, 0, 0, 1);
 					end
-
+					
 					-- 暫時修正，隱藏遊戲內建的減益圖示
 					local debufficon = _G["PartyMemberFrame"..id.."Debuff"..j];
 					if debufficon and debufficon:IsVisible()then
@@ -1659,6 +1660,7 @@ function UnitFramesPlus_PartyMemberFrame_UpdateMember(self)
     PartyMemberFrame_UpdateLeader(self);
     PartyMemberFrame_UpdatePvPStatus(self);
     RefreshDebuffs(self, "party"..id, nil, nil, true);
+    if PartyMemberFrame_UpdateVoiceStatus then PartyMemberFrame_UpdateVoiceStatus(self) end;
     PartyMemberFrame_UpdateReadyCheck(self);
     PartyMemberFrame_UpdateOnlineStatus(self);
     PartyMemberFrame_UpdateNotPresentIcon(self);
@@ -1754,7 +1756,7 @@ function UnitFramesPlus_ShowPartyFrameSet()
         _G["PartyMemberFrame"..id]:Hide();
 
         _G["PartyMemberFrame"..id.."PetFrame"]:Show();
-        _G["PartyMemberFrame"..id.."PetFrame"].Show = function(self)
+        _G["PartyMemberFrame"..id.."PetFrame"].Show = function(self) 
             if ( UnitExists("partypet"..id) and UnitFramesPlusDB["party"]["pet"] == 1 ) then
                 local alpha = UnitInOtherParty("party"..id) and 0.6 or 1;
                 _G["PartyMemberFrame"..id.."PetFrame"]:SetAlpha(alpha);
@@ -1861,7 +1863,7 @@ up:SetScript("OnEvent", function(self, event, ...)
         elseif event == "CVAR_UPDATE" then
             local cvarname, value = ...;
             if cvarname == "USE_RAID_STYLE_PARTY_FRAMES" then
-                if (tonumber(GetCVar("useCompactPartyFrames")) == 1 and UnitFramesPlusDB["party"]["origin"] == 1)
+                if (tonumber(GetCVar("useCompactPartyFrames")) == 1 and UnitFramesPlusDB["party"]["origin"] == 1) 
                     or (tonumber(GetCVar("useCompactPartyFrames")) ~= 1 and UnitFramesPlusDB["party"]["origin"] ~= 1) then
                     UnitFramesPlusDB["party"]["origin"] = 1 - tonumber(GetCVar("useCompactPartyFrames"));
 
