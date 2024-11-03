@@ -598,7 +598,7 @@ function NIT:chatMsgLoot(...)
 end
 
 function NIT:combatLogEventUnfiltered(...)
-	local timestamp, subEvent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID,
+	local timestamp, subEvent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, 
 			destName, destFlags, destRaidFlags, _, spellName = CombatLogGetCurrentEventInfo();
 	--[[if (subEvent == "SWING_DAMAGE" or subEvent == "SPELL_DAMAGE" or subEvent == "RANGE_DAMAGE") then
 		if (sourceGUID and string.match(sourceGUID, "Creature")) then
@@ -785,7 +785,7 @@ function NIT:calcRecordedHonor(logID, useData)
 			return NIT:round(honor.quantity - data.preHonor);
 		else
 			return NIT:round(data.honor);
-		end
+		end				
 	elseif (data.preHonor and data.postHonor) then
 		return NIT:round(data.postHonor - data.preHonor);
 	else
@@ -1483,7 +1483,7 @@ function NIT:showInstanceStats(id, output, showAll, customPrefix, showDate)
 	--local text = sColor .. NIT.lastInstanceName;
 	local text = sColor .. data.instanceName .. "|r";
 	if (data.subDifficulty) then
-		text = sColor .. data.instanceName .. " (|cFFFF2222" .. gsub(data.subDifficulty, "^%l", string.upper) .. "|r)|r";
+		text = sColor .. data.instanceName .. " (|cFFFF2222" .. gsub(data.subDifficulty, "^%l", string.upper) .. "|r)|r"; 
 	end
 	local mobCount = 0;
 	local money = 0;
@@ -1764,7 +1764,7 @@ function NIT:parseGUID(unit, GUID, source)
 			if (NIT.data.instances[2] and NIT.data.instances[2]["zoneID"] and NIT.data.instances[2]["zoneID"] == zoneID
 					and not NIT.data.instances[1].zoneID) then
 					--and (not NIT.data.instances[1].zoneID or NIT.data.instances[1].zoneID < 1)) then
-
+					
 			--Oirignal version
 			--if (NIT.data.instances[2] and NIT.data.instances[2]["zoneID"] and NIT.data.instances[2]["zoneID"] == zoneID) then
 				if (NIT.db.global.detectSameInstance) then
@@ -2557,7 +2557,7 @@ function NIT:recordHonorData()
 	if (not NIT.data.myChars[char]) then
 		NIT.data.myChars[char] = {};
 	end
-
+	
 	if (honor and honor.quantity and honor.quantity > 0) then
 		NIT.data.myChars[char].honor = honor.quantity;
 	else
@@ -3116,7 +3116,7 @@ function NIT:recordCurrency()
 			};
 		end
 	end
-
+	
 	local conq = C_CurrencyInfo.GetCurrencyInfo(390);
 	if (conq and conq.quantity and conq.quantity > 0) then
 		NIT.data.myChars[char].conq = conq.quantity;
