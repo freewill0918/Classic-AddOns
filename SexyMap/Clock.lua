@@ -183,10 +183,11 @@ function mod:OnInitialize(profile)
 	if type(profile.clock) ~= "table" then
 		profile.clock = {
 			xOffset = 0,
-			yOffset = 0,
-			bgColor = {r = 0, g = 0, b = 0, a = 1},
-			borderColor = {r = 0, g = 0, b = 0, a = 1},
-			fontColor = {},
+			yOffset = -5,
+			bgColor = {r = 0, g = 0, b = 0, a = 0},
+			borderColor = {r = 0, g = 0, b = 0, a = 0},
+			fontColor = {r = 255, g = 255, b = 255, a = 0.6},
+			fontsize = 24,
 			font = media:GetDefault("font"),
 			monochrome = false,
 			outline = "NONE",

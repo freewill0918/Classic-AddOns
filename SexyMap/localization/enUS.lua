@@ -224,3 +224,7 @@ L.thick = "Thick"
 L.outline = "Outline"
 L.monochrome = "Monochrome"
 L.monochromeDesc = "Toggles the monochrome flag, removing any smoothing of the font edges."
+
+-- 自行加入
+L["SexyMap"] = "SexyMap"
+L["Sexy Map"] = "SexyMap"

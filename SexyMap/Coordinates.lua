@@ -225,14 +225,15 @@ local options = {
 function mod:OnInitialize(profile)
 	if type(profile.coordinates) ~= "table" then
 		profile.coordinates = {
-			borderColor = {},
-			backgroundColor = {},
+			borderColor = {a = 0, r = 0, g = 0, b = 0},
+			backgroundColor = {a = 0.5, r = 0, g = 0, b = 0},
 			fontColor = {},
 			enabled = true,
-			coordPrecision = "%d,%d",
+			coordPrecision = "%d, %d",
 			updateRate = 1,
-			xOffset = 0,
-			yOffset = 10,
+			xOffset = 5,
+			yOffset = -5,
+			fontSize = 12,
 			font = media:GetDefault("font"),
 			monochrome = false,
 			outline = "NONE",
@@ -346,7 +347,7 @@ function mod:Update()
 	else
 		coordsText:SetText("99, 99")
 	end
-	coordFrame:SetWidth(coordsText:GetUnboundedStringWidth() + 12)
+	coordFrame:SetWidth(coordsText:GetUnboundedStringWidth() + 24)
 	coordFrame:SetHeight(coordsText:GetStringHeight() + 10)
 end
 
