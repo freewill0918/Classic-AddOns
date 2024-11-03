@@ -41,18 +41,18 @@ Core:NewModule("UIManager", "AceHook-3.0")
 Core.defaults = {
   profile = {
     -- General
-    font = "Friz Quadrata TT",
+    font = "聊天",
     fontFlags = "",
     frameWidth = 450,
     frameHeight = 230,
     positionAnchor = {
       point = "BOTTOMLEFT",
-      xOfs = 20,
-      yOfs = 230
+      xOfs = 0,
+      yOfs = 60
     },
 
     -- Edit box
-    editBoxFontSize = 12,
+    editBoxFontSize = 14,
     editBoxBackgroundOpacity = 0.6,
     editBoxAnchor = {
       position = "BELOW",
@@ -60,12 +60,12 @@ Core.defaults = {
     },
 
     -- Messages
-    messageFontSize = 12,
+    messageFontSize = 14,
     chatBackgroundOpacity = 0.4,
-    messageLeading = 3,
-    messageLinePadding = 0.25,
+    messageLeading = 1,
+    messageLinePadding = 0.2,
 
-    chatHoldTime = 10,
+    chatHoldTime = 20,
     chatShowOnMouseOver = true,
     chatFadeInDuration = 0.6,
     chatFadeOutDuration = 0.6,

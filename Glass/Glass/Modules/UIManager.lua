@@ -69,18 +69,22 @@ function UIManager:OnEnable()
   ChatAlertFrame:ClearAllPoints()
   ChatAlertFrame:SetPoint("BOTTOMLEFT", self.container, "TOPLEFT", 15, 10)
 
+  local isTinyChatEnabled = IsAddOnLoaded("TinyChat") -- TinyChat 相容性修正
+  
   -- Hide other chat elements
-  -- if Constants.ENV == "retail" then
-  --   QuickJoinToastButton:Hide()
-  -- end
+  if Constants.ENV == "retail" and not isTinyChatEnabled then -- TinyChat 相容性修正
+    QuickJoinToastButton:Hide()
+  end
 
   ChatFrameChannelButton:Hide()
-  ChatFrameMenuButton:Hide()
+  if not isTinyChatEnabled then -- TinyChat 相容性修正
+	ChatFrameMenuButton:Hide()
+  end
 
   -- New version alert
   --@non-debug@
   if Core.db.global.version == nil or Utils.versionGreaterThan(Core.Version, Core.db.global.version) then
-    Utils.notify('Glass has just been updated. |cFFFFFF00|Hgarrmission:Glass:opennews|h[See what’s new]|h|r')
+    -- Utils.notify('Glass has just been updated. |cFFFFFF00|Hgarrmission:Glass:opennews|h[See what’s new]|h|r')
     Core.db.global.version = Core.Version
   end
   --@end-non-debug@--
@@ -88,7 +92,7 @@ function UIManager:OnEnable()
   -- Force classic chat style
   if GetCVar("chatStyle") ~= "classic" then
     SetCVar("chatStyle", "classic")
-    Utils.notify('Chat Style set to "Classic Style"')
+    -- Utils.notify('Chat Style set to "Classic Style"')
 
     -- Resets the background that IM style causes
     self.editBox:SetFocus()

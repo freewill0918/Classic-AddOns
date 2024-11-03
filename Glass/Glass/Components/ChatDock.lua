@@ -34,7 +34,14 @@ function ChatDockMixin:Init(parent)
   self:SetFadeOutDuration(0.6)
 
   self.scrollFrame:SetHeight(Constants.DOCK_HEIGHT)
-  self.scrollFrame:SetPoint("TOPLEFT", _G.ChatFrame2Tab, "TOPRIGHT")
+
+  -- 修正功能百寶箱的隱藏戰鬥記錄視窗相容性
+  local parnetTab = _G.ChatFrame2Tab
+  if _G.ChatFrame2Tab:GetText() == ' ' then
+	parnetTab = _G.ChatFrame1Tab
+  end
+
+  self.scrollFrame:SetPoint("TOPLEFT", parnetTab, "TOPRIGHT")
   self.scrollFrame.child:SetHeight(Constants.DOCK_HEIGHT)
 
   -- Gradient background

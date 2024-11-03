@@ -22,23 +22,29 @@ function EditBoxMixin:Init(parent)
   self:RawHook(_G[self:GetName().."Mid"], "Show", function () end, true)
   self:RawHook(_G[self:GetName().."Right"], "Show", function () end, true)
 
-  -- if Constants.ENV == "retail" then
-  --   _G[self:GetName().."FocusLeft"]:Hide()
-  --   _G[self:GetName().."FocusMid"]:Hide()
-  --   _G[self:GetName().."FocusRight"]:Hide()
-  --   self:RawHook(_G[self:GetName().."FocusLeft"], "Show", function () end, true)
-  --   self:RawHook(_G[self:GetName().."FocusMid"], "Show", function () end, true)
-  --   self:RawHook(_G[self:GetName().."FocusRight"], "Show", function () end, true)
-  -- end
+  if Constants.ENV == "retail" then
+    _G[self:GetName().."FocusLeft"]:Hide()
+    _G[self:GetName().."FocusMid"]:Hide()
+    _G[self:GetName().."FocusRight"]:Hide()
+    self:RawHook(_G[self:GetName().."FocusLeft"], "Show", function () end, true)
+    self:RawHook(_G[self:GetName().."FocusMid"], "Show", function () end, true)
+    self:RawHook(_G[self:GetName().."FocusRight"], "Show", function () end, true)
+  end
 
   -- New styling
   self:ClearAllPoints()
 
-  self:SetPoint("TOPLEFT", parent, "BOTTOMLEFT", 8, Core.db.profile.editBoxAnchor.yOfs)
+  if Constants.ENV == "retail" and IsAddOnLoaded("TinyChat") then -- TinyChat 相容性修正
+    Core.db.profile.editBoxAnchor.xOfs = 25
+  else
+    Core.db.profile.editBoxAnchor.xOfs = 8
+  end
+
+  self:SetPoint("TOPLEFT", parent, "BOTTOMLEFT", Core.db.profile.editBoxAnchor.xOfs, Core.db.profile.editBoxAnchor.yOfs)
 
   if Core.db.profile.editBoxAnchor.position == "ABOVE" then
     self:ClearAllPoints()
-    self:SetPoint("BOTTOMLEFT", parent, "TOPLEFT", 8, Core.db.profile.editBoxAnchor.yOfs)
+    self:SetPoint("BOTTOMLEFT", parent, "TOPLEFT", 8, Core.db.profile.editBoxAnchor.yOfs) -- TinyChat 相容性修正
   end
 
   self:SetFontObject("GlassEditBoxFont")
@@ -126,7 +132,7 @@ function EditBoxMixin:Init(parent)
         self:SetPoint("BOTTOMLEFT", parent, "TOPLEFT", 8, Core.db.profile.editBoxAnchor.yOfs)
       else
         self:ClearAllPoints()
-        self:SetPoint("TOPLEFT", parent, "BOTTOMLEFT", 8, Core.db.profile.editBoxAnchor.yOfs)
+		self:SetPoint("TOPLEFT", parent, "BOTTOMLEFT", Core.db.profile.editBoxAnchor.xOfs, Core.db.profile.editBoxAnchor.yOfs) -- TinyChat 相容性修正
       end
     end
   end)

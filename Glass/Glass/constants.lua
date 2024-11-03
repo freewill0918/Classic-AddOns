@@ -11,8 +11,9 @@ Constants.TEXT_XPADDING = 15
 
 Constants.ENV = "retail"
 
-if WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC then
-  Constants.ENV = "classic"
+-- 暫時修正 遊戲版本檢查
+if WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE then
+	Constants.ENV = 'classic'
 end
 
 -- Colors

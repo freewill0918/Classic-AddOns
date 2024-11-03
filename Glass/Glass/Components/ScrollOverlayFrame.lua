@@ -14,7 +14,7 @@ local Mixin = Mixin
 local ScrollOverlayFrame = {}
 
 function ScrollOverlayFrame:Init()
-    local overlayOpacity = 0.65
+    local overlayOpacity = 0.5
     local topOffset = Core.db.profile.frameHeight - (Constants.DOCK_HEIGHT + 5 + 62)
 
     self:SetHeight(64)

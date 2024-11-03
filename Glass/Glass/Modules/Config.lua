@@ -14,39 +14,39 @@ local UpdateConfig = Constants.ACTIONS.UpdateConfig
 local SAVE_FRAME_POSITION = Constants.EVENTS.SAVE_FRAME_POSITION
 
 local ANCHORS = {
-  ["TOPLEFT"] = "Top left",
-  ["TOPRIGHT"] = "Top right",
-  ["BOTTOMLEFT"] = "Bottom left",
-  ["BOTTOMRIGHT"] = "Bottom right"
+  ["TOPLEFT"] = "左上",
+  ["TOPRIGHT"] = "右上",
+  ["BOTTOMLEFT"] = "左下",
+  ["BOTTOMRIGHT"] = "右下"
 }
-local FLAGS = { [""] = "None", ["OUTLINE"] = "Outline", ["OUTLINE, MONOCHROME"] = "Outline Monochrome" }
+local FLAGS = { [""] = "無", ["OUTLINE"] = "外框", ["OUTLINE, MONOCHROME"] = "無消除鋸齒外框" }
 
 function C:OnEnable()
   local options = {
-      name = "Glass",
+      name = "聊天視窗美化",
       handler = C,
       type = "group",
       args = {
         general = {
-          name = "General",
+          name = "一般",
           type = "group",
           order = 1,
           args = {
             section1 = {
-              name = "Info",
+              name = "資訊",
               type = "group",
               inline = true,
               order = 2,
               args = {
                 version = {
-                  name = " |cffffd100Version:|r  "..Core.Version,
+                  name = " |cffffd100版本:|r  "..Core.Version,
                   type = "description",
                   width = "double",
                   fontSize = "medium",
                   order = 2.1,
                 },
                 whatsNew = {
-                  name = "What’s new",
+                  name = "更新資訊",
                   type = "execute",
                   func = function()
                     Core:Dispatch(OpenNews())
@@ -54,14 +54,14 @@ function C:OnEnable()
                   order = 2.2,
                 },
                 slashCmd = {
-                  name = "|c00DFBA69/glass|r  |cff808080...............|r  Open config window\n"..
-                         "|c00DFBA69/glass lock|r  |cff808080.......|r  Unlock Glass frame\n",
+                  name = "|c00DFBA69/glass|r  |cff808080...............|r  打開設定選項視窗\n"..
+                         "|c00DFBA69/glass lock|r  |cff808080.......|r  解鎖聊天視窗框架\n",
                   type = "description",
                   width = "double",
                   order = 2.3,
                 },
                 unlockFrame = {
-                  name = "Unlock frame",
+                  name = "解鎖視窗",
                   type = "execute",
                   func = function()
                     Core:Dispatch(UnlockMover())
@@ -71,14 +71,14 @@ function C:OnEnable()
               }
             },
             section2 = {
-              name = "Appearance",
+              name = "外觀",
               type = "group",
               inline = true,
               order = 3,
               args = {
                 font = {
-                  name = "Font",
-                  desc = "Font to use throughout Glass",
+                  name = "字體",
+                  desc = "聊天視窗美化的通用字體",
                   type = "select",
                   order = 3.1,
                   dialogControl = "LSM30_Font",
@@ -92,7 +92,7 @@ function C:OnEnable()
                   end,
                 },
                 fontFlags = {
-                  name = "Font flag",
+                  name = "文字樣式",
                   type = "select",
                   order = 3.2,
                   values = FLAGS,
@@ -107,15 +107,15 @@ function C:OnEnable()
               },
             },
             section3 = {
-              name = "Frame",
+              name = "聊天視窗",
               type = "group",
               inline = true,
               order = 4,
               args = {
                 frameWidth = {
-                  name = "Width",
-                  desc = "Default: "..Core.defaults.profile.frameWidth..
-                    "\nMin: 100",
+                  name = "寬度",
+                  desc = "預設值: "..Core.defaults.profile.frameWidth..
+                    "\n最小: 100",
                   type = "range",
                   order = 4.1,
                   min = 100,
@@ -132,8 +132,8 @@ function C:OnEnable()
                   end
                 },
                 frameHeight = {
-                  name = "Height",
-                  desc = "Default: "..Core.defaults.profile.frameHeight,
+                  name = "高度",
+                  desc = "預設值: "..Core.defaults.profile.frameHeight,
                   type = "range",
                   order = 4.2,
                   min = 1,
@@ -146,12 +146,13 @@ function C:OnEnable()
                   end,
                   set = function (info, input)
                     Core.db.profile.frameHeight = input
+					GlassFrameHeight = Core.db.profile.frameHeight -- 全域變數供 TinyChat 使用
                     Core:Dispatch(UpdateConfig("frameHeight"))
                   end
                 },
                 frameXOfs = {
-                  name = "X offset",
-                  desc = "Default: "..Core.defaults.profile.positionAnchor.xOfs,
+                  name = "水平位置",
+                  desc = "預設值: "..Core.defaults.profile.positionAnchor.xOfs,
                   type = "range",
                   order = 4.3,
                   min = -9999,
@@ -168,8 +169,8 @@ function C:OnEnable()
                   end
                 },
                 frameYOfs = {
-                  name = "Y offset",
-                  desc = "Default: "..Core.defaults.profile.positionAnchor.yOfs,
+                  name = "垂直位置",
+                  desc = "預設值: "..Core.defaults.profile.positionAnchor.yOfs,
                   type = "range",
                   order = 4.4,
                   min = -9999,
@@ -186,8 +187,8 @@ function C:OnEnable()
                   end
                 },
                 frameAnchor = {
-                  name = "Anchor",
-                  desc = "Default: "..Core.db.profile.positionAnchor.point,
+                  name = "對齊",
+                  desc = "預設值: "..Core.db.profile.positionAnchor.point,
                   type = "select",
                   order = 4.5,
                   values = ANCHORS,
@@ -204,19 +205,19 @@ function C:OnEnable()
           }
         },
         editBox = {
-          name = "Edit box",
+          name = "文字輸入框",
           type = "group",
           order = 2,
           args = {
             section1 = {
-              name = "Appearance",
+              name = "外觀",
               type = "group",
               inline = true,
               order = 1,
               args = {
                 editBoxFontSize = {
-                  name = "Font size",
-                  desc = "Default: "..Core.defaults.profile.editBoxFontSize.."\nMin: 1\nMax: 100",
+                  name = "文字大小",
+                  desc = "預設值: "..Core.defaults.profile.editBoxFontSize.."\n最小: 1\n最大: 100",
                   type = "range",
                   min = 1,
                   max = 100,
@@ -233,8 +234,8 @@ function C:OnEnable()
                   order = 1.1,
                 },
                 editBoxBackgroundOpacity = {
-                  name = "Background opacity",
-                  desc = "Default: "..Core.defaults.profile.editBoxBackgroundOpacity,
+                  name = "背景不透明度",
+                  desc = "預設值: "..Core.defaults.profile.editBoxBackgroundOpacity,
                   type = "range",
                   order = 1.3,
                   min = 0,
@@ -253,19 +254,19 @@ function C:OnEnable()
               }
             },
             section2 = {
-              name = "Position",
+              name = "位置",
               type = "group",
               inline = true,
               order = 2,
               args = {
                 editBoxAnchorPosition = {
-                  name = "Position",
-                  desc = "Default: "..Core.defaults.profile.editBoxAnchor.position,
+                  name = "位置",
+                  desc = "預設值: "..Core.defaults.profile.editBoxAnchor.position,
                   type = "select",
                   order = 2.1,
                   values = {
-                    ABOVE = "Above",
-                    BELOW = "Below",
+                    ABOVE = "上方",
+                    BELOW = "下方",
                   },
                   get = function ()
                     return Core.db.profile.editBoxAnchor.position
@@ -281,8 +282,8 @@ function C:OnEnable()
                   end
                 },
                 editBoxAnchorYOfs = {
-                  name = "Vertical offset",
-                  desc = "Default: 5 or -5",
+                  name = "垂直位置偏移",
+                  desc = "預設值: 5 或 -5",
                   type = "range",
                   order = 2.2,
                   min = -9999,
@@ -303,19 +304,19 @@ function C:OnEnable()
           },
         },
         messages = {
-          name = "Messages",
+          name = "訊息內容",
           type = "group",
           order = 3,
           args = {
             section1 = {
-              name = "Appearance",
+              name = "外觀",
               type = "group",
               inline = true,
               order = 1,
               args = {
                 messageFontSize = {
-                  name = "Font size",
-                  desc = "Default: "..Core.defaults.profile.messageFontSize.."\nMin: 1\nMax: 100",
+                  name = "文字大小",
+                  desc = "預設值: "..Core.defaults.profile.messageFontSize.."\n最小: 1\n最大: 100",
                   type = "range",
                   min = 1,
                   max = 100,
@@ -332,8 +333,8 @@ function C:OnEnable()
                   order = 1.2,
                 },
                 chatBackgroundOpacity = {
-                  name = "Background opacity",
-                  desc = "Default: "..Core.defaults.profile.chatBackgroundOpacity,
+                  name = "背景不透明度",
+                  desc = "預設值: "..Core.defaults.profile.chatBackgroundOpacity,
                   type = "range",
                   order = 1.3,
                   min = 0,
@@ -350,8 +351,8 @@ function C:OnEnable()
                   end,
                 },
                 messageLeading = {
-                  name = "Leading",
-                  desc = "Default: "..Core.defaults.profile.messageLeading.."\nMin: 0\nMax: 10",
+                  name = "行距",
+                  desc = "預設值: "..Core.defaults.profile.messageLeading.."\n最小: 0\n最大:10",
                   type = "range",
                   min = 0,
                   max = 10,
@@ -368,8 +369,8 @@ function C:OnEnable()
                   order = 1.4,
                 },
                 messageLinePadding = {
-                  name = "Line padding",
-                  desc = "Default: "..Core.defaults.profile.messageLinePadding.."\nMin: 0\nMax: 5",
+                  name = "內距",
+                  desc = "預設值: "..Core.defaults.profile.messageLinePadding.."\n最小: 0\n最大: 5",
                   type = "range",
                   min = 0,
                   max = 5,
@@ -388,15 +389,15 @@ function C:OnEnable()
               },
             },
             section2 = {
-              name = "Animations",
+              name = "動畫",
               type = "group",
               inline = true,
               order = 2,
               args = {
                 chatHoldTime = {
-                  name = "Fade out delay",
-                  desc = "Default: "..Core.defaults.profile.chatHoldTime..
-                    "\nMin: 1\nMax: 180",
+                  name = "淡出效果延遲",
+                  desc = "預設值: "..Core.defaults.profile.chatHoldTime..
+                    "\n最小: 1\n最大: 180",
                   type = "range",
                   order = 2.1,
                   min = 1,
@@ -412,8 +413,8 @@ function C:OnEnable()
                   end,
                 },
                 chatShowOnMouseOver = {
-                  name = "Show on mouse over",
-                  desc = "Default: "..tostring(Core.defaults.profile.chatShowOnMouseOver),
+                  name = "滑鼠指向時顯示",
+                  desc = "預設值: "..tostring(Core.defaults.profile.chatShowOnMouseOver),
                   type = "toggle",
                   order = 2.2,
                   get = function ()
@@ -424,9 +425,9 @@ function C:OnEnable()
                   end,
                 },
                 fadeInDuration = {
-                  name = "Fade in duration",
-                  desc = "Default: "..Core.defaults.profile.chatFadeInDuration..
-                    "\nMin: 0\nMax:30",
+                  name = "淡入效果持續時間",
+                  desc = "預設值: "..Core.defaults.profile.chatFadeInDuration..
+                    "\n最小: 0\n最大:30",
                   type = "range",
                   order = 2.3,
                   min = 0,
@@ -443,9 +444,9 @@ function C:OnEnable()
                   end
                 },
                 fadeOutDuration = {
-                  name = "Fade out duration",
-                  desc = "Default: "..Core.defaults.profile.chatFadeOutDuration..
-                    "\nMin: 0\nMax:30",
+                  name = "淡出效果持續時間",
+                  desc = "預設值: "..Core.defaults.profile.chatFadeOutDuration..
+                    "\n最小: 0\n最大:30",
                   type = "range",
                   order = 2.3,
                   min = 0,
@@ -462,8 +463,8 @@ function C:OnEnable()
                   end
                 },
                 slideInDuration = {
-                  name = "Slide in duration",
-                  desc = "Default: "..Core.defaults.profile.chatSlideInDuration,
+                  name = "滑入效果持續時間",
+                  desc = "預設值: "..Core.defaults.profile.chatSlideInDuration,
                   type = "range",
                   order = 2.4,
                   min = 0,
@@ -481,14 +482,14 @@ function C:OnEnable()
               }
             },
             section3 = {
-              name = "Misc",
+              name = "其他",
               type = "group",
               inline = true,
               order = 3,
               args = {
                 indentWordWrap = {
-                  name = "Indent on line wrap",
-                  desc = "Adds an indent when a message wraps beyond a single line.",
+                  name = "換行後縮排",
+                  desc = "超過一行的訊息換行時要縮排",
                   type = "toggle",
                   order = 3.1,
                   get = function ()
@@ -500,8 +501,8 @@ function C:OnEnable()
                   end,
                 },
                 mouseOverTooltips = {
-                  name = "Mouse over tooltips",
-                  desc = "Should tooltips appear when hovering over chat links.",
+                  name = "滑鼠指向說明",
+                  desc = "滑鼠指向聊天連結時是否要顯示滑鼠提示",
                   type = "toggle",
                   order = 3.2,
                   get = function ()
@@ -513,9 +514,9 @@ function C:OnEnable()
                 },
                 iconTextureYOffset = {
                   type = "range",
-                  name = "Text icons Y offset",
-                  desc = "Default: "..Core.defaults.profile.iconTextureYOffset..
-                    "\nAdjust this if text icons aren't centered.",
+                  name = "文字圖示水平位置偏移",
+                  desc = "預設值: "..Core.defaults.profile.iconTextureYOffset..
+                    "\n文字圖示沒有置中時可以調整這個值。",
                   order = 3.3,
                   min = 0,
                   max = 12,

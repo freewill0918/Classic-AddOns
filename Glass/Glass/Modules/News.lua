@@ -10,9 +10,9 @@ local CHANGELOG = {
   {
     name = "1.8.0 (2020-10-14)",
     items = {[[
-What's new
+更新資訊
 
-- New: Updated for Shadowlands!
+- 新增: 支援暗影之境!
     ]]}
   },
   {
@@ -150,10 +150,10 @@ function News:OnEnable()
   local baseSize = 13
 
   local frame = AceGUI:Create("Frame")
-  frame:SetTitle("Glass: Version history")
+  frame:SetTitle("聊天視窗美化: 各版本更新資訊")
   frame:SetWidth(600)
   frame:SetHeight(400)
-  frame:SetStatusText("Version: "..Core.Version)
+  frame:SetStatusText("版本: "..Core.Version)
   frame:SetCallback("OnClose", function(widget) frame:Hide() end)
   frame:SetLayout("Fill")
   frame:Hide()
@@ -164,14 +164,14 @@ function News:OnEnable()
 
   for _, release in ipairs(CHANGELOG) do
     local releaseLabel = AceGUI:Create("Label")
-    releaseLabel:SetFont('Fonts\\FRIZQT__.TTF', baseSize, "");
+    releaseLabel:SetFont(STANDARD_TEXT_FONT, baseSize, "");
     releaseLabel:SetRelativeWidth(1)
     releaseLabel:SetText("|c00DFBA69"..release.name.."|r")
     scrollFrame:AddChild(releaseLabel)
 
     for i, item in ipairs(release.items) do
       local itemLabel = AceGUI:Create("Label")
-      itemLabel:SetFont('Fonts\\FRIZQT__.TTF', baseSize, "");
+      itemLabel:SetFont(STANDARD_TEXT_FONT, baseSize, "");
       itemLabel:SetRelativeWidth(1)
       itemLabel.label:SetSpacing(3.2)
       itemLabel.label:SetAlpha(0.95)

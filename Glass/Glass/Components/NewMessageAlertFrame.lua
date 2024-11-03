@@ -22,7 +22,7 @@ function NewMessageAlertFrameMixin:Init()
     end
     self.text:SetTextColor(Colors.apache.r, Colors.apache.g, Colors.apache.b)
     self.text:SetPoint("BOTTOMLEFT", 30, 10)
-    self.text:SetText("Unread messages")
+    self.text:SetText("有未讀的新訊息")
 
     -- Alert line
     if self.bottomLine == nil then

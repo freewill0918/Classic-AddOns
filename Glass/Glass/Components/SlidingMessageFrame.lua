@@ -122,10 +122,20 @@ function SlidingMessageFrameMixin:Init(chatFrame)
 
     if delta < 0 then
       -- Scroll down
-      scrollValue = math.min(self:GetVerticalScroll() + 20, maxScroll)
+      -- 按住 Ctrl 鍵則捲動到最下面
+	  if IsControlKeyDown() then
+		scrollValue = maxScroll
+	  else
+		scrollValue = math.min(self:GetVerticalScroll() + 20, maxScroll)
+	  end
     else
       -- Scroll up
-      scrollValue = math.max(self:GetVerticalScroll() - 20, math.min(minScroll, maxScroll))
+	  -- 按住 Ctrl 鍵則捲動到最開頭
+	  if IsControlKeyDown() then
+		scrollValue = math.min(minScroll, maxScroll)
+	  else
+		scrollValue = math.max(self:GetVerticalScroll() - 20, math.min(minScroll, maxScroll))
+	  end
     end
 
     self:UpdateScrollChildRect()

@@ -93,6 +93,9 @@ function ChatTabMixin:Init(slidingMessageFrame)
   if not self:IsHooked(self, "OnClick") then
     self:HookScript(self, "OnClick", function ()
       FCF_StopAlertFlash(self.chatFrame)
+	  if IsControlKeyDown() and LeatrixPlusShowChatbox then
+		LeatrixPlusShowChatbox(_G[self:GetName():gsub("Tab","")])
+      end
     end)
   end
 
@@ -102,63 +105,69 @@ function ChatTabMixin:Init(slidingMessageFrame)
   end
 
   -- Override context menu
-  if dropDown then
-    UIDropDownMenu_Initialize(dropDown, function ()
-      local info = UIDropDownMenu_CreateInfo()
+  --[[
+  UIDropDownMenu_Initialize(dropDown, function ()
+    local info = UIDropDownMenu_CreateInfo()
 
-      if self.chatFrame == DEFAULT_CHAT_FRAME then
-        -- Unlock chat window
-        info = UIDropDownMenu_CreateInfo()
-        info.text = UNLOCK_WINDOW
-        info.notCheckable = 1
-        info.func = function()
-          Core:Dispatch(UnlockMover())
-        end
-        UIDropDownMenu_AddButton(info)
-
-        -- Create new chat window
-        info = UIDropDownMenu_CreateInfo()
-        info.text = NEW_CHAT_WINDOW
-        info.func = FCF_NewChatWindow
-        info.notCheckable = 1
-        if FCF_GetNumActiveChatFrames() == NUM_CHAT_WINDOWS then
-          info.disabled = 1
-        end
-        UIDropDownMenu_AddButton(info)
-      end
-
-      -- Rename window
-      info.text = RENAME_CHAT_WINDOW
-      info.func = FCF_RenameChatWindow_Popup
-      info.notCheckable = 1
-      UIDropDownMenu_AddButton(info)
-
-      -- Close chat window
-      if self.chatFrame ~= DEFAULT_CHAT_FRAME and not IsCombatLog(self.chatFrame) then
-        info = UIDropDownMenu_CreateInfo()
-        info.text = CLOSE_CHAT_WINDOW
-        info.func = FCF_PopInWindow
-        info.arg1 = self.chatFrame
-        info.notCheckable = 1
-        UIDropDownMenu_AddButton(info)
-      end
-
-      -- Filter header
+    if self.chatFrame == DEFAULT_CHAT_FRAME then
+      -- Unlock chat window
       info = UIDropDownMenu_CreateInfo()
-      info.text = FILTERS
-      info.isTitle = 1
+      info.text = UNLOCK_WINDOW
       info.notCheckable = 1
+      info.func = function()
+        Core:Dispatch(UnlockMover())
+      end
       UIDropDownMenu_AddButton(info)
 
-      -- Configure settings
+      -- Create new chat window
       info = UIDropDownMenu_CreateInfo()
-      info.text = CHAT_CONFIGURATION
-      info.func = function() ShowUIPanel(ChatConfigFrame) end
+      info.text = NEW_CHAT_WINDOW
+      info.func = FCF_NewChatWindow
+      info.notCheckable = 1
+      if FCF_GetNumActiveChatFrames() == NUM_CHAT_WINDOWS then
+        info.disabled = 1
+      end
+      UIDropDownMenu_AddButton(info)
+    end
+
+    -- Rename window
+    info.text = RENAME_CHAT_WINDOW
+    info.func = FCF_RenameChatWindow_Popup
+    info.notCheckable = 1
+    UIDropDownMenu_AddButton(info)
+
+    -- Close chat window
+    if self.chatFrame ~= DEFAULT_CHAT_FRAME and not IsCombatLog(self.chatFrame) then
+      info = UIDropDownMenu_CreateInfo()
+      info.text = CLOSE_CHAT_WINDOW
+      info.func = FCF_PopInWindow
+      info.arg1 = self.chatFrame
       info.notCheckable = 1
       UIDropDownMenu_AddButton(info)
-    end, "MENU")
-  end
+    end
 
+    -- Filter header
+    info = UIDropDownMenu_CreateInfo()
+    info.text = FILTERS
+    info.isTitle = 1
+    info.notCheckable = 1
+    UIDropDownMenu_AddButton(info)
+
+    -- Configure frame settings
+    info = UIDropDownMenu_CreateInfo()
+    info.text = "設定視窗外觀"
+    info.func = function() SlashCmdList["ACECONSOLE_GLASS"]("") end
+    info.notCheckable = 1
+    UIDropDownMenu_AddButton(info)
+
+	-- Configure settings
+    info = UIDropDownMenu_CreateInfo()
+    info.text = "設定訊息內容"
+    info.func = function() ShowUIPanel(ChatConfigFrame) end
+    info.notCheckable = 1
+    UIDropDownMenu_AddButton(info)
+  end, "MENU")
+  --]]
   -- Listeners
   if self.subscriptions == nil then
     self.subscriptions = {
