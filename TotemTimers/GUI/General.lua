@@ -11,10 +11,11 @@ local LSM = LibStub:GetLibrary("LibSharedMedia-3.0", true)
 
 TotemTimers.options = {
     type = "group",
-    args = {
+    name = L["Totem Timers"],
+	args = {
         general = {
             type = "group",
-            name = "General",
+            name = L["General"],
             args = {
                 version= {
                     order = 0,
@@ -255,7 +256,7 @@ TotemTimers.options = {
                 h2 = {
                     order = -10,
                     type = "header",
-                    name = "Debug",
+                    name = L["Debug"],
                 },
                 DebugDescription = {
                     type = "description",
@@ -289,7 +290,7 @@ TotemTimers.options = {
 local ACR =	LibStub("AceConfigRegistry-3.0")
 ACR:RegisterOptionsTable("TotemTimers", TotemTimers.options)
 local ACD = LibStub("AceConfigDialog-3.0")
-local frame, categoryID = ACD:AddToBlizOptions("TotemTimers", "TotemTimers", nil, "general")
+local frame, categoryID = ACD:AddToBlizOptions("TotemTimers", L["TotemTimers"], nil, "general")
 
 function TotemTimers.HookGUIFrame(frame, categoryID)
     frame:SetScript("OnEvent", function(self)

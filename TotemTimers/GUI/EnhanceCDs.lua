@@ -37,13 +37,13 @@ end
 
 TotemTimers.options.args.enhancecds = {
     type = "group",
-    name = "Combat Cooldowns",
+    name = L["Combat Cooldowns"],
     childGroups = "tab",
     args = {
         options = {
             order = 1,
             type = "group",
-            name = "Combat Cooldowns",
+            name = L["Combat Cooldowns"],
             args = {
                 enable = {
                     order = 0,
@@ -194,7 +194,7 @@ TotemTimers.options.args.enhancecds = {
                 stoppulseheader = {
                     order = 20,
                     type = "header",
-                    name = "Stop Pulse",
+                    name = L["Stop Pulse"],
                 },
                 stoppulse = {
                     order = 21,
@@ -234,7 +234,7 @@ TotemTimers.options.args.enhancecds = {
                 FlameShockDuration = {
                     order = 31,
                     type = "description",
-                    name = "Flame shock duration is now changed for each spec in spells section below",
+                    name = L["Flame shock duration is now changed for each spec in spells section below"],
                 },
                 FlameShockOnTop = {
                     order = 32,
@@ -541,5 +541,5 @@ if C_Seasons.GetActiveSeason() == 2 then
 end
 
 local ACD = LibStub("AceConfigDialog-3.0")
-local frame, categoryID = ACD:AddToBlizOptions("TotemTimers", L["Combat Cooldowns"], "TotemTimers", "enhancecds")
+local frame, categoryID = ACD:AddToBlizOptions("TotemTimers", L["Combat Cooldowns"], L["TotemTimers"], "enhancecds")
 TotemTimers.HookGUIFrame(frame, categoryID)

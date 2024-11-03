@@ -31,7 +31,7 @@ local SpellNames = TotemTimers.SpellNames
 
 TotemTimers.options.args.timers = {
     type = "group",
-    name = "Timers",
+    name = L["Timers"],
     args = {
         show = {
             order = 0,
@@ -489,7 +489,7 @@ TotemTimers.options.args.timers = {
         stoppulseheader = {
             order = 50,
             type = "header",
-            name = "Stop Pulse",
+            name = L["Stop Pulse"],
         },
         stoppulse = {
             order = 51,
@@ -516,7 +516,7 @@ TotemTimers.options.args.timers = {
         macro = {
             order = 60,
             type = "header",
-            name = "Macro",
+            name = L["Macro"],
         },
         macroreset = {
             order = 65,
@@ -567,7 +567,7 @@ if LE_EXPANSION_LEVEL_CURRENT > LE_EXPANSION_BURNING_CRUSADE then
         name = L["Multicast"],
         desc = L["Enables button and functionality for Call of Elements etc."],
         set = function(info, val)
-            print("TotemTimers: You might need to relog for the default totem bar to show/hide correctly")
+            print(L["TotemTimers: You might need to relog for the default totem bar to show/hide correctly"])
             TotemTimers.ActiveProfile.MultiCast = val
             TotemTimers.ProcessSetting("MultiCast")
         end,
@@ -594,6 +594,6 @@ if LE_EXPANSION_LEVEL_CURRENT > LE_EXPANSION_BURNING_CRUSADE then
 end
 
 local ACD = LibStub("AceConfigDialog-3.0")
-local frame, categoryID = ACD:AddToBlizOptions("TotemTimers", L["Timers"], "TotemTimers", "timers")
+local frame, categoryID = ACD:AddToBlizOptions("TotemTimers", L["Timers"], L["TotemTimers"], "timers")
 TotemTimers.HookGUIFrame(frame, categoryID)
 

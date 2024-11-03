@@ -19,7 +19,7 @@ end
 
 TotemTimers.options.args.profiles = {
     type = "group",
-    name = "Profiles",
+    name = L["Profiles"],
     args = {
         ["select"] = {
             order = 1,
@@ -29,7 +29,7 @@ TotemTimers.options.args.profiles = {
                 ["solo"] = {
                     order = 1,
                     type = "select",
-                    name = L["Solo"].."/Default",
+                    name = L["Solo"]..L["/Default"],
                     values = CreateProfileList,
                     set = function(info, val)
                         TotemTimers_GlobalSettings.Profiles[UnitName("player")][TotemTimers.Specialization].none = val
@@ -277,5 +277,5 @@ TotemTimers.options.args.profiles = {
     },
 }
 
-local frame, categoryID = ACD:AddToBlizOptions("TotemTimers", L["Profiles"], "TotemTimers", "profiles")
+local frame, categoryID = ACD:AddToBlizOptions("TotemTimers", L["Profiles"], L["TotemTimers"], "profiles")
 TotemTimers.HookGUIFrame(frame, categoryID)
