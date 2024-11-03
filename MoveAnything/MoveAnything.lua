@@ -5270,6 +5270,17 @@ function MovAny_OptionsOnLoad(f)
 	f.okay = MovAny.SetOptions
 	f.default = MovAny.SetDefaultOptions
 
+  if f.SetBackdrop then
+    f:SetBackdrop({
+        bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+        tile = true,
+        tileSize = 8,
+        edgeSize = 4,
+        insets = { left = 2, right = 2, top = 2, bottom = 2 }
+    })
+  end
+
   if Settings and SettingsPanel then
     local category = Settings.RegisterCanvasLayoutCategory(f, f.name)
     category.ID = f.name

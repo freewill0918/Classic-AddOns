@@ -39,7 +39,7 @@
 		</Layers>
 
 		<Frames>
-			<Slider name="MAOptRowsSlider" inherits="OptionsSliderTemplate">
+			<Slider name="MAOptRowsSlider" inherits="OptionsSliderTemplate,BackdropTemplate">
 				<Size>
 					<AbsDimension x="220" y="16"/>
 				</Size>
@@ -51,14 +51,32 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnLoad>
+					<!-- <OnLoad>
 						self:ApplyBackdrop()
 						_G[self:GetName().."Text"]:SetText("# of rows")
 						_G[self:GetName().."High"]:SetText("100")
 						_G[self:GetName().."Low"]:SetText("2")
 						self:SetMinMaxValues(2, 100)
 						self:SetValueStep(1)
-					</OnLoad>
+					</OnLoad> -->
+          <OnLoad>
+            self:SetBackdrop({
+                bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+                edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+                tile = true,
+                tileSize = 8,
+                edgeSize = 8,
+                insets = { left = 2, right = 2, top = 2, bottom = 2 }
+            })
+            self:SetBackdropColor(0, 0, 0, 0.5)
+            self:SetBackdropBorderColor(0.5, 0.5, 0.5, 1)
+            self:ApplyBackdrop()
+						_G[self:GetName().."Text"]:SetText("# of rows")
+						_G[self:GetName().."High"]:SetText("100")
+						_G[self:GetName().."Low"]:SetText("2")
+						self:SetMinMaxValues(2, 100)
+						self:SetValueStep(1)
+          </OnLoad>
 					<OnValueChanged>
 						MovAny:SetNumRows(self:GetValue())
 					</OnValueChanged>
