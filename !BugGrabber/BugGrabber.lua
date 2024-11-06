@@ -261,6 +261,8 @@ do
 		if tostring(errorMessage):find("Localization.lua", nil, true) then return end
 		-- 不顯示拍賣場瀏覽複數物品的錯誤
 		if tostring(errorMessage):find("MoneyFrame.lua", nil, true) then return end
+    -- 不顯示裝備預覽框架的錯誤
+    if tostring(errorMessage):find("DressUpFrames.lua", nil, true) then return end
 
 		-- Flood protection --
 		msgsAllowed = msgsAllowed + (GetTime()-msgsAllowedLastTime)*BUGGRABBER_ERRORS_PER_SEC_BEFORE_THROTTLE
