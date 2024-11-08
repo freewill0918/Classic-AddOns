@@ -1,6 +1,6 @@
 # Syndicator
 
-## [128](https://github.com/Baganator/Syndicator/tree/128) (2024-10-30)
-[Full Changelog](https://github.com/Baganator/Syndicator/compare/127...128) 
+## [130](https://github.com/Baganator/Syndicator/tree/130) (2024-11-07)
+[Full Changelog](https://github.com/Baganator/Syndicator/compare/129...130) 
 
-- Classic: Update toc for 4.4.1  
+- Retail: Fix errors when searching with pets in (Blizzard glitched) guild bank  

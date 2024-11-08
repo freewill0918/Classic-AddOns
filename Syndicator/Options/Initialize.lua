@@ -304,6 +304,6 @@ function Syndicator.Options.Initialize()
   characterEditor:SetSize(320, 340)
 
   local category = Settings.RegisterCanvasLayoutCategory(optionsFrame, SYNDICATOR_L_SYNDICATOR)
-  category.ID = SYNDICATOR_L_SYNDICATOR
+  category.ID = "Syndicator"
   Settings.RegisterAddOnCategory(category)
 end
