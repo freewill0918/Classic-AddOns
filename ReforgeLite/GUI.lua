@@ -81,15 +81,22 @@ end
 function GUI:SetTooltip (widget, tip)
   if tip then
     widget:SetScript ("OnEnter", function (tipFrame)
+      local tooltipFunc = "SetText"
       local tipText
       if type(tip) == "function" then
         tipText = tip()
       else
         tipText = tip
       end
+      if type(tipText) == "table" then
+        if tipText.spellID ~= nil then
+          tooltipFunc = "SetSpellByID"
+          tipText = tipText.spellID
+        end
+      end
       if tipText then
         GameTooltip:SetOwner(tipFrame, "ANCHOR_LEFT")
-        GameTooltip:SetText(tipText)
+        GameTooltip[tooltipFunc](GameTooltip, tipText)
         GameTooltip:Show()
       end
     end)
@@ -331,7 +338,7 @@ function GUI:CreatePanelButton(parent, text, handler)
     end
     btn.RenderText = function(f, ...)
       f:SetText(...)
-      f:SetSize(f:GetFontString():GetStringWidth() + 20, 22)
+      f:FitToText()
     end
   end
   btn:RenderText(text)

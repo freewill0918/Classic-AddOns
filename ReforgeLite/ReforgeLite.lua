@@ -6,34 +6,12 @@ local GetItemStats = C_Item.GetItemStats or GetItemStats
 local ReforgeLite = CreateFrame("Frame", addonName, UIParent, "BackdropTemplate")
 addonTable.ReforgeLite = ReforgeLite
 
-ReforgeLite.isDev = C_AddOns.GetAddOnMetadata(addonName, "Version") == "v1.9.5"
-
 local L = addonTable.L
 local GUI = addonTable.GUI
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 addonTable.MAX_LOOPS = 125000
 
-local function DeepCopy (t, cache)
-  if type (t) ~= "table" then
-    return t
-  end
-  local copy = {}
-  for i, v in pairs (t) do
-    if type (v) ~= "table" then
-      copy[i] = v
-    else
-      cache = cache or {}
-      cache[t] = copy
-      if cache[v] then
-        copy[i] = cache[v]
-      else
-        copy[i] = DeepCopy (v, cache)
-      end
-    end
-  end
-  return copy
-end
-addonTable.DeepCopy = DeepCopy
+local DeepCopy = addonTable.DeepCopy
 
 local gprint = print
 local function print(...)
@@ -50,85 +28,64 @@ local function GetSpellName(id)
 end
 addonTable.GetSpellName = GetSpellName
 
+local ITEM_SIZE = 24
+
 local DefaultDB = {
-  itemSize = 24,
-  windowWidth = 800,
-  windowHeight = 564,
-
-  openOnReforge = true,
-  updateTooltip = true,
-
-  speed = addonTable.MAX_LOOPS * 0.8,
-
-  activeWindowTitle = {0.6, 0, 0},
-  inactiveWindowTitle = {0.5, 0.5, 0.5},
-
-  customPresets = {
+  global = {
+    windowWidth = 800,
+    windowHeight = 564,
+    windowY = false,
+    windowX = false,
+    methodWindowX = false,
+    methodWindowY = false,
+    openOnReforge = true,
+    updateTooltip = true,
+    speed = addonTable.MAX_LOOPS * 0.8,
+    activeWindowTitle = {0.6, 0, 0},
+    inactiveWindowTitle = {0.5, 0.5, 0.5},
   },
-  profiles = {
-  },
-  classProfiles = {
-  },
-}
-local DefaultDBProfile = {
-  targetLevel = 3,
-  spellHaste = true,
-  darkIntent = false,
-
-  buffs = {
-  },
-  weights = {0, 0, 0, 0, 0, 0, 0, 0},
-  caps = {
-    {
-      stat = 0,
-      points = {
-        {
-          method = 1,
-          value = 0,
-          after = 0,
-          preset = 1
+  char = {
+    targetLevel = 3,
+    spellHaste = true,
+    darkIntent = false,
+    buffs = {},
+    weights = {0, 0, 0, 0, 0, 0, 0, 0},
+    caps = {
+      {
+        stat = 0,
+        points = {
+          {
+            method = 1,
+            value = 0,
+            after = 0,
+            preset = 1
+          }
+        }
+      },
+      {
+        stat = 0,
+        points = {
+          {
+            method = 1,
+            value = 0,
+            after = 0,
+            preset = 1
+          }
         }
       }
     },
-    {
-      stat = 0,
-      points = {
-        {
-          method = 1,
-          value = 0,
-          after = 0,
-          preset = 1
-        }
-      }
-    }
+    itemsLocked = {},
+    categoryStates = { [SETTINGS] = true },
   },
-  itemsLocked = {},
-  categoryStates = { [SETTINGS] = true },
+  class = {
+    customPresets = {}
+  },
 }
-local DefaultDBClassProfile = {
-  customPresets = {}
-}
-local function MergeTables (dst, src)
-  for k, v in pairs (src) do
-    if type (v) ~= "table" then
-      if dst[k] == nil then
-        dst[k] = v
-      end
-    else
-      if type (dst[k]) ~= "table" then
-        dst[k] = {}
-      end
-      MergeTables (dst[k], v)
-    end
-  end
-end
-addonTable.MergeTables = MergeTables
 
 local function ReforgeFrameIsVisible()
   return ReforgingFrame and ReforgingFrame:IsShown()
 end
 
-ReforgeLite.dbkey = UnitName ("player") .. " - " .. GetRealmName ()
 addonTable.localeClass, addonTable.playerClass, addonTable.playerClassID = UnitClass ("player")
 addonTable.playerRace = select(2,UnitRace ("player"))
 local playerClass, playerRace, localeClass = addonTable.playerClass, addonTable.playerRace, addonTable.localeClass
@@ -141,77 +98,33 @@ addonTable.StatCapMethods = {
   Exactly = 4,
 }
 
-function ReforgeLite:UpgradeDBCaps (caps)
-  for i = 1, #caps do
-    if caps[i].points == nil or caps[i].value or caps[i].method or caps[i].after then
-      caps[i].points = {}
-      caps[i].points[1] = {
-        method = caps[i].method or 1,
-        value = caps[i].value or 0,
-        after = caps[i].after or 0
-      }
-      for j = 1, #caps[i].points do
-        if not caps[i].points[j].preset then
-          caps[i].points[j].preset = 1
-        end
-      end
-      caps[i].method = nil
-      caps[i].value = nil
-      caps[i].after = nil
-    end
-  end
-end
-function ReforgeLite:UpgradeDB ()
-  if not ReforgeLiteDB then
-    ReforgeLiteDB = DefaultDB
-  else
-    MergeTables (ReforgeLiteDB, DefaultDB)
-  end
+function ReforgeLite:UpgradeDB()
   local db = ReforgeLiteDB
-  if not db.profiles[self.dbkey] then
-    db.profiles[self.dbkey] = DefaultDBProfile
-  else
-    MergeTables (db.profiles[self.dbkey], DefaultDBProfile)
+  if not db then return end
+  if db.classProfiles then
+    db.class = DeepCopy(db.classProfiles)
+    db.classProfiles = nil
   end
-  local pdb = db.profiles[self.dbkey]
-  for k, v in pairs (pdb) do
-    if db[k] ~= nil then
-      pdb[k] = db[k]
-      db[k] = nil
+  if db.profiles then
+    db.char = DeepCopy(db.profiles)
+    db.profiles = nil
+  end
+  if not db.global then
+    db.global = {}
+    for k, v in pairs(db) do
+      local default = DefaultDB.global[k]
+      if default ~= nil then
+        if default ~= v then
+          db.global[k] = DeepCopy(v)
+        end
+        db[k] = nil
+      end
     end
-  end
-  if db.statCaps then
-    pdb.caps = db.statCaps
-    db.statCaps = nil
-  end
-  if db.statWeights then
-    pdb.weights = db.statWeights
-    db.statWeights = nil
-  end
-  self:UpgradeDBCaps (pdb.caps)
-  db.convertSpirit = nil
-  if pdb.storedMethod then
-    pdb.storedMethod.caps = nil
-    pdb.storedMethod.weights = nil
-  end
-  if pdb.method then
-    pdb.method.caps = nil
-    pdb.method.weights = nil
-  end
-  if not db.classProfiles[playerClass] then
-    db.classProfiles[playerClass] = DefaultDBClassProfile
-  else
-    MergeTables (db.classProfiles[playerClass], DefaultDBClassProfile)
-  end
-  if db.speed <= 20 then
-    db.speed = addonTable.MAX_LOOPS*(db.speed/20)
   end
 end
 
 -----------------------------------------------------------------
 
-GUI.CreateStaticPopup("REFORGE_LITE_PARSE_PAWN", L["Enter pawn string"], { func = function(text) ReforgeLite:ParseImportString(text) end })
-GUI.CreateStaticPopup("REFORGE_LITE_PARSE_WOWSIMS", L["Enter WoWSims JSON"], { func = function(text) ReforgeLite:ParseWoWSimsString(text) end } )
 GUI.CreateStaticPopup("REFORGE_LITE_SAVE_PRESET", L["Enter the preset name"], { func = function(text)
   ReforgeLite.cdb.customPresets[text] = {
     caps = DeepCopy(ReforgeLite.pdb.caps),
@@ -267,7 +180,7 @@ function ReforgeLite:CreateItemStats()
       mgetter = function (method, orig)
         return (orig and method.orig_stats and method.orig_stats[i]) or method.stats[i]
       end,
-      parser = short and L["StatFormat"]:gsub("%%s", _G[name_]) or (L["EquipPreString"] .. _G[name_]:gsub("%%s", "(.+)"))
+      parser = short and L["^+(%d+) %s$"]:gsub("%%s", _G[name_]) or (L["EquipPredicate"] .. _G[name_]:gsub("%%s", "(.+)"))
     }
   end
   local CR_HIT, CR_CRIT, CR_HASTE = CR_HIT_SPELL, CR_CRIT_SPELL, CR_HASTE_SPELL
@@ -291,7 +204,7 @@ function ReforgeLite:CreateItemStats()
       end,
       parser = function(line)
         if CreateColor(line:GetTextColor()):IsEqualTo(WHITE_FONT_COLOR) then
-          return strmatch(line:GetText(), L["StatFormat"]:gsub("%%s", ITEM_MOD_SPIRIT_SHORT))
+          return strmatch(line:GetText(), L["^+(%d+) %s$"]:gsub("%%s", ITEM_MOD_SPIRIT_SHORT))
         end
       end
     },
@@ -306,6 +219,7 @@ function ReforgeLite:CreateItemStats()
 end
 ReforgeLite:CreateItemStats()
 
+--[===[@debug@
 local itemStatsLocale = {
   [6]  = ReforgeLite.STATS.SPIRIT, -- SPIRIT
   [13] = ReforgeLite.STATS.DODGE, -- DODGE
@@ -316,6 +230,7 @@ local itemStatsLocale = {
   [37] = ReforgeLite.STATS.EXP, -- EXPERTISE
   [49] = ReforgeLite.STATS.MASTERY, -- MASTERY
 }
+--@end-debug@]===]
 
 ReforgeLite.tankingStats = {
   ["DEATHKNIGHT"] = DeepCopy (ReforgeLite.itemStats),
@@ -456,7 +371,7 @@ function ReforgeLite:GetStatScore (stat, value)
   end
 end
 
-function ReforgeLite:ParseWoWSimsString(importStr)
+function ReforgeLite:ValidateWoWSimsString(importStr)
   local success, wowsims = pcall(function () return addonTable.json.decode(importStr) end)
   if success and (wowsims or {}).player then
     local newItems = DeepCopy(self.pdb.method.items)
@@ -465,8 +380,7 @@ function ReforgeLite:ParseWoWSimsString(importStr)
       local equippedItemInfo = self.itemData[slot]
       if simItemInfo.id ~= equippedItemInfo.itemId then
         local _, importItemLink = C_Item.GetItemInfo(simItemInfo.id)
-        print(L["Item Import Mismatch"]:format(importItemLink, equippedItemInfo.item))
-        return
+        return L["%s does not match your currently equipped %s. ReforgeLite only supports equipped items."]:format(importItemLink or ("item:"..simItemInfo.id), equippedItemInfo.item)
       end
       item.reforge = nil
       if simItemInfo.reforging then
@@ -475,35 +389,36 @@ function ReforgeLite:ParseWoWSimsString(importStr)
       end
       item.stats = nil
     end
-    self.pdb.method.items = newItems
-    self:UpdateMethodStats(self.pdb.method)
-    self:UpdateMethodCategory()
-  else -- error
-    print(wowsims)
+    return newItems
   end
 end
 
-function ReforgeLite:ParseImportString(importStr)
+function ReforgeLite:ApplyWoWSimsImport(newItems)
+  self.pdb.method.items = newItems
+  self:UpdateMethodStats(self.pdb.method)
+  self:UpdateMethodCategory()
+end
+
+--[===[@debug@
+function ReforgeLite:ParsePresetString(presetStr)
+  local success, preset = pcall(function () return addonTable.json.decode(presetStr) end)
+  if success and type(preset.caps) == "table" then
+    DevTools_Dump(preset)
+  end
+end
+--@end-debug@]===]
+
+function ReforgeLite:ValidatePawnString(importStr)
   local pos, _, version, name, values = strfind (importStr, "^%s*%(%s*Pawn%s*:%s*v(%d+)%s*:%s*\"([^\"]+)\"%s*:%s*(.+)%s*%)%s*$")
   version = tonumber (version)
   if version and version > 1 then return end
   if not (pos and version and name and values) or name == "" or values == "" then
-    self:ParsePresetString(importStr)
     return
   end
-  self:ParsePawnString(values)
+  return values
 end
 
-function ReforgeLite:ParsePresetString(presetStr)
-  if not self.isDev then return end
-  local success, preset = pcall(function () return addonTable.json.decode(presetStr) end)
-  if success then
-    DevTools_Dump(preset)
-  end
-end
-
-function ReforgeLite:ParsePawnString (values)
-
+function ReforgeLite:ParsePawnString(values)
   local raw = {}
   local average = 0
   local total = 0
@@ -778,16 +693,25 @@ function ReforgeLite:CreateFrame()
     if self.moving then
       self:StopMovingOrSizing ()
       self.moving = false
-      self.db.windowX = self:GetLeft ()
-      self.db.windowY = self:GetTop ()
+      self.db.windowX = self:GetLeft()
+      self.db.windowY = self:GetTop()
     end
   end)
   tinsert(UISpecialFrames, self:GetName()) -- allow closing with escape
 
+  self.titleIcon = CreateFrame("Frame", nil, self)
+  self.titleIcon:SetSize(16, 16)
+  self.titleIcon:SetPoint ("TOPLEFT", 12, floor(self.titleIcon:GetHeight())-floor(self.titlebar:GetHeight()))
+
+  self.titleIcon.texture = self.titleIcon:CreateTexture("ARTWORK")
+  self.titleIcon.texture:SetAllPoints(self.titleIcon)
+  self.titleIcon.texture:SetTexture([[Interface\Reforging\Reforge-Portrait]])
+
+
   self.title = self:CreateFontString (nil, "OVERLAY", "GameFontNormal")
   self.title:SetText (addonTitle)
   self.title:SetTextColor (1, 1, 1)
-  self.title:SetPoint ("TOPLEFT", 12, floor(self.title:GetHeight()-self.titlebar:GetHeight()))
+  self.title:SetPoint ("BOTTOMLEFT", self.titleIcon, "BOTTOMRIGHT", 2, 1)
 
   self.close = CreateFrame ("Button", nil, self, "UIPanelCloseButtonNoScripts")
   self.close:SetSize(28, 28)
@@ -882,7 +806,7 @@ function ReforgeLite:CreateItemTable ()
   self.itemLevel:SetPoint ("TOPLEFT", 12, -28)
   self.itemLevel:SetTextColor (1, 1, 0.8)
 
-  self.itemTable = GUI:CreateTable (#self.itemSlots + 1, #self.itemStats, self.db.itemSize, self.db.itemSize + 4, {0.5, 0.5, 0.5, 1}, self)
+  self.itemTable = GUI:CreateTable (#self.itemSlots + 1, #self.itemStats, ITEM_SIZE, ITEM_SIZE + 4, {0.5, 0.5, 0.5, 1}, self)
   self.itemTable:SetPoint ("TOPLEFT", self.itemLevel, "BOTTOMLEFT", 0, -10)
   self.itemTable:SetPoint ("BOTTOM", 0, 10)
   self.itemTable:SetWidth (400)
@@ -899,9 +823,8 @@ function ReforgeLite:CreateItemTable ()
   for i, v in ipairs (self.itemSlots) do
     self.itemData[i] = CreateFrame ("Frame", nil, self.itemTable)
     self.itemData[i].slot = v
-    self.itemData[i].originalStats = {}
     self.itemData[i]:ClearAllPoints ()
-    self.itemData[i]:SetSize(self.db.itemSize, self.db.itemSize)
+    self.itemData[i]:SetSize(ITEM_SIZE, ITEM_SIZE)
     self.itemTable:SetCell (i, 0, self.itemData[i])
     self.itemData[i]:EnableMouse (true)
     self.itemData[i]:SetScript ("OnEnter", function (frame)
@@ -1178,7 +1101,7 @@ function ReforgeLite:CapUpdater ()
   self:UpdateCapPoints (2)
 end
 function ReforgeLite:CustomPresetsExist()
-  return (next(ReforgeLite.db.customPresets) or next(ReforgeLite.cdb.customPresets)) ~= nil
+  return next(ReforgeLite.cdb.customPresets) ~= nil
 end
 function ReforgeLite:UpdateStatWeightList ()
   local stats = self.itemStats
@@ -1242,7 +1165,7 @@ function ReforgeLite:UpdateStatWeightList ()
     col = 1 + 2 * col
 
     self.statWeights:SetCellText (row, col, v.long, "LEFT")
-    self.statWeights.inputs[i] = GUI:CreateEditBox (self.statWeights, 60, self.db.itemSize, self.pdb.weights[i], function (val)
+    self.statWeights.inputs[i] = GUI:CreateEditBox (self.statWeights, 60, ITEM_SIZE, self.pdb.weights[i], function (val)
       self.pdb.weights[i] = val
       self:RefreshMethodStats ()
     end)
@@ -1327,15 +1250,15 @@ function ReforgeLite:CreateOptionList ()
     self.deletePresetButton:Disable()
   end
 
-  if self.isDev then
-    self.exportPresetButton = GUI:CreatePanelButton (self.content, L["Export"], function(btn)
-      LibDD:ToggleDropDownMenu (nil, nil, self.exportPresetMenu, btn:GetName(), 0, 0)
-    end)
-    self.statWeightsCategory:AddFrame (self.exportPresetButton)
-    self.exportPresetButton:SetPoint ("LEFT", self.deletePresetButton, "RIGHT", 5, 0)
-  end
+  --[===[@debug@
+  self.exportPresetButton = GUI:CreatePanelButton (self.content, L["Export"], function(btn)
+    LibDD:ToggleDropDownMenu (nil, nil, self.exportPresetMenu, btn:GetName(), 0, 0)
+  end)
+  self.statWeightsCategory:AddFrame (self.exportPresetButton)
+  self.exportPresetButton:SetPoint ("LEFT", self.deletePresetButton, "RIGHT", 5, 0)
+  --@end-debug@]===]
 
-  self.pawnButton = GUI:CreatePanelButton (self.content, L["Import Pawn"], function(btn) StaticPopup_Show ("REFORGE_LITE_PARSE_PAWN") end)
+  self.pawnButton = GUI:CreatePanelButton (self.content, L["Import Pawn"], function(btn) self:ImportPawn() end)
   self.statWeightsCategory:AddFrame (self.pawnButton)
   self:SetAnchor (self.pawnButton, "TOPLEFT", self.presetsButton, "BOTTOMLEFT", 0, -5)
 
@@ -1379,13 +1302,13 @@ function ReforgeLite:CreateOptionList ()
   self:SetAnchor (self.statWeights, "TOPLEFT", self.targetLevel.text, "BOTTOMLEFT", 0, -8)
   self.statWeights:SetPoint ("RIGHT", -5, 0)
   self.statWeightsCategory:AddFrame (self.statWeights)
-  self.statWeights:SetRowHeight (self.db.itemSize + 2)
+  self.statWeights:SetRowHeight (ITEM_SIZE + 2)
 
-  self.statCaps = GUI:CreateTable (2, 4, nil, self.db.itemSize + 2)
+  self.statCaps = GUI:CreateTable (2, 4, nil, ITEM_SIZE + 2)
   self.statWeightsCategory:AddFrame (self.statCaps)
   self:SetAnchor (self.statCaps, "TOPLEFT", self.statWeights, "BOTTOMLEFT", 0, -10)
   self.statCaps:SetPoint ("RIGHT", -5, 0)
-  self.statCaps:SetRowHeight (self.db.itemSize + 2)
+  self.statCaps:SetRowHeight (ITEM_SIZE + 2)
   self.statCaps:SetColumnWidth (1, 100)
   self.statCaps:SetColumnWidth (3, 50)
   self.statCaps:SetColumnWidth (4, 50)
@@ -1456,7 +1379,7 @@ function ReforgeLite:CreateOptionList ()
       end
     )
     self.statCaps[i].darkIntent:Hide()
-    GUI:SetTooltip (self.statCaps[i].darkIntent, ("%s %s - %s +%s%%"):format(CreateSimpleTextureMarkup(463285, 30, 30),GetSpellName(85767),format(STAT_FORMAT, STAT_HASTE),3))
+    GUI:SetTooltip (self.statCaps[i].darkIntent, { spellID = 85767 })
     self.statCaps:SetCell (i, 0, self.statCaps[i].stat, "LEFT", -20, -10)
     self.statCaps:SetCell (i, 2, self.statCaps[i].add, "LEFT")
     self.statCaps:SetCell (i, 3, self.statCaps[i].darkIntent, "LEFT")
@@ -1565,7 +1488,7 @@ function ReforgeLite:CreateOptionList ()
   self.settingsCategory:AddFrame (self.settings)
   self:SetAnchor (self.settings, "TOPLEFT", self.settingsCategory, "BOTTOMLEFT", 0, -5)
   self.settings:SetPoint ("RIGHT", self.content, -10, 0)
-  self.settings:SetRowHeight (self.db.itemSize + 2)
+  self.settings:SetRowHeight (ITEM_SIZE + 2)
 
   self:FillSettings ()
 
@@ -1609,15 +1532,15 @@ function ReforgeLite:FillSettings ()
   self.debugButton = GUI:CreatePanelButton (self.settings, L["Debug"], function(btn) self:DebugMethod () end)
   self.settings:SetCell (getOrderId('settings'), 0, self.debugButton, "LEFT")
 
-  if self.isDev then
-    self.settings:AddRow()
-    self.settings:SetCell (getOrderId('settings'), 0, GUI:CreateCheckButton(
-      self.settings,
-      "Debug Mode",
-      self.db.debug,
-      function (val) self.db.debug = val or nil end
-    ), "LEFT")
-  end
+--[===[@debug@
+  self.settings:AddRow()
+  self.settings:SetCell (getOrderId('settings'), 0, GUI:CreateCheckButton(
+    self.settings,
+    "Debug Mode",
+    self.db.debug,
+    function (val) self.db.debug = val or nil end
+  ), "LEFT")
+--@end-debug@]===]
 end
 function ReforgeLite:GetCurrentScore ()
   local score = 0
@@ -1659,14 +1582,14 @@ function ReforgeLite:UpdateMethodCategory()
     self.methodCategory = self:CreateCategory (L["Result"])
     self:SetAnchor (self.methodCategory, "TOPLEFT", self.computeButton, "BOTTOMLEFT", 0, -10)
 
-    self.importWowSims = GUI:CreatePanelButton (self.methodCategory, L["Import WoWSims"], function(btn) StaticPopup_Show("REFORGE_LITE_PARSE_WOWSIMS") end)
+    self.importWowSims = GUI:CreatePanelButton (self.methodCategory, L["Import WoWSims"], function(btn) self:ImportWoWSims() end)
     self.methodCategory:AddFrame (self.importWowSims)
     self:SetAnchor (self.importWowSims, "TOPLEFT", self.methodCategory, "BOTTOMLEFT", 0, -5)
 
-    self.methodStats = GUI:CreateTable (#self.itemStats, 2, self.db.itemSize, 60, {0.5, 0.5, 0.5, 1})
+    self.methodStats = GUI:CreateTable (#self.itemStats, 2, ITEM_SIZE, 60, {0.5, 0.5, 0.5, 1})
     self.methodCategory:AddFrame (self.methodStats)
     self:SetAnchor (self.methodStats, "TOPLEFT", self.importWowSims, "BOTTOMLEFT", 0, -5)
-    self.methodStats:SetRowHeight (self.db.itemSize + 2)
+    self.methodStats:SetRowHeight (ITEM_SIZE + 2)
     self.methodStats:SetColumnWidth (60)
 
     self.methodStats:SetCellText (0, 0, L["Score"], "LEFT", {1, 0.8, 0})
@@ -1879,18 +1802,6 @@ function ReforgeLite:GetReforgeID (slotId)
   end
 end
 
-local reforgeIdStringCache = setmetatable({}, {
-  __index = function(self, key)
-    local id = tonumber(key:match ("item:%d+:%d+:%d+:%d+:%d+:%d+:%-?%d+:%-?%d+:%d+:(%d+)")) or false
-    rawset(self, key, id)
-    return id
-  end
-})
-
-function ReforgeLite:GetReforgeIDFromString(item)
-  local id = reforgeIdStringCache[item]
-  return ((id and id ~= UNFORGE_INDEX) and (id - self.REFORGE_TABLE_BASE) or nil)
-end
 
 function ReforgeLite:UpdateItems()
   for i, v in ipairs (self.itemData) do
@@ -2075,9 +1986,9 @@ function ReforgeLite:CreateMethodWindow()
   self.methodWindow:ClearAllPoints ()
   self.methodWindow.itemTable:SetPoint ("TOPLEFT", 12, -28)
   self.methodWindow.itemTable:SetRowHeight (26)
-  self.methodWindow.itemTable:SetColumnWidth (1, self.db.itemSize)
-  self.methodWindow.itemTable:SetColumnWidth (2, self.db.itemSize + 2)
-  self.methodWindow.itemTable:SetColumnWidth (3, 274 - self.db.itemSize * 2)
+  self.methodWindow.itemTable:SetColumnWidth (1, ITEM_SIZE)
+  self.methodWindow.itemTable:SetColumnWidth (2, ITEM_SIZE + 2)
+  self.methodWindow.itemTable:SetColumnWidth (3, 274 - ITEM_SIZE * 2)
 
   self.methodOverride = {}
   for i = 1, #self.itemSlots do
@@ -2089,7 +2000,7 @@ function ReforgeLite:CreateMethodWindow()
     self.methodWindow.items[i] = CreateFrame ("Frame", nil, self.methodWindow.itemTable)
     self.methodWindow.items[i].slot = v
     self.methodWindow.items[i]:ClearAllPoints ()
-    self.methodWindow.items[i]:SetSize(self.db.itemSize, self.db.itemSize)
+    self.methodWindow.items[i]:SetSize(ITEM_SIZE, ITEM_SIZE)
     self.methodWindow.itemTable:SetCell (i, 2, self.methodWindow.items[i])
     self.methodWindow.items[i]:EnableMouse (true)
     self.methodWindow.items[i]:RegisterForDrag("LeftButton")
@@ -2344,7 +2255,7 @@ function ReforgeLite:OnTooltipSetItem (tip)
   if not item then return end
   for _, region in pairs({tip:GetRegions()}) do
     if region:GetObjectType() == "FontString" and region:GetText() == REFORGED then
-      local reforgeId = self:GetReforgeIDFromString(item) or SearchTooltipForReforgeID(tip)
+      local reforgeId = SearchTooltipForReforgeID(tip)
       if not reforgeId or reforgeId == UNFORGE_INDEX then return end
       local srcId, destId = unpack(reforgeTable[reforgeId])
       region:SetText(("%s (%s > %s)"):format(REFORGED, self.itemStats[srcId].long, self.itemStats[destId].long))
@@ -2429,11 +2340,17 @@ function ReforgeLite:ADDON_LOADED (addon)
   if addon ~= addonName then return end
   self:Hide()
   self:UpgradeDB()
-  self.db = ReforgeLiteDB
-  self.pdb = self.db.profiles[self.dbkey]
-  self.cdb = self.db.classProfiles[playerClass]
 
-  self.pdb.reforgeIDs = nil
+  local db = LibStub("AceDB-3.0"):New(addonName.."DB", DefaultDB)
+
+  self.db = db.global
+  self.pdb = db.char
+  self.cdb = db.class
+
+  while #self.pdb.caps > #DefaultDB.char.caps do
+    tremove(self.pdb.caps)
+  end
+
   self.s2hFactor = 0
 
   self:SetUpHooks()
@@ -2448,7 +2365,7 @@ function ReforgeLite:ADDON_LOADED (addon)
   self:SetScript("OnShow", self.OnShow)
   self:SetScript("OnHide", self.OnHide)
 
-  for k, v in pairs({ addonName, "reforge", REFORGE:lower(), "rfl" }) do
+  for k, v in ipairs({ addonName, "reforge", REFORGE:lower(), "rfl" }) do
     _G["SLASH_"..addonName:upper()..k] = "/" .. v
   end
   SlashCmdList[addonName:upper()] = function(...) self:OnCommand(...) end

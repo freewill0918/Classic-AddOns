@@ -1,10 +1,16 @@
-tag 9c64117ec634f702f3308f411392e14df9782e50 v1.9.5
+tag 7c4fc9e49dc005fccf83be58e106824d2eebddc9 v1.9.7
 Author:	skyler-code <skylerh15@github.com>
-Date:	Tue Sep 10 11:04:34 2024 -0500
+Date:	Wed Nov 6 23:54:09 2024 -0600
 
-commit 1b779fe50a4584a5107870b15bdf92c08715f301
+commit 0106267fa00fc4a87c628d624df8a9847fd3a104
 Author: skyler-code <skylerh15@github.com>
-Date:   Sun Sep 8 05:10:20 2024 -0500
+Date:   Wed Nov 6 15:41:40 2024 -0600
 
-    Check if MethodWindow is still open rather than the reforge button
+    Fixed error when using delete preset button
+
+commit dc575a1893eb6a1ef591037f0a87e67a1377f710
+Author: skyler-code <skylerh15@github.com>
+Date:   Wed Nov 6 15:38:43 2024 -0600
+
+    Show Dark Intent spell tooltip instead of custom message
 
