@@ -30,11 +30,11 @@ addonTable.Utilities.OnAddonLoaded("Baganator", function()
     if C_AddOns.DoesAddOnExist("Syndicator") then
       addonTable.Utilities.Message(BAGANATOR_L_SYNDICATOR_ENABLE_MESSAGE)
       StaticPopup_Show(syndicatorEnableDialog)
-      error(BAGANATOR_L_SYNDICATOR_ENABLE_MESSAGE)
+      -- error(BAGANATOR_L_SYNDICATOR_ENABLE_MESSAGE)
     else
       addonTable.Utilities.Message(BAGANATOR_L_SYNDICATOR_INSTALL_MESSAGE)
       StaticPopup_Show(syndicatorInstallDialog)
-      error(BAGANATOR_L_SYNDICATOR_INSTALL_MESSAGE)
+      -- error(BAGANATOR_L_SYNDICATOR_INSTALL_MESSAGE)
     end
     return
   end
