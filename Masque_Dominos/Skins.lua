@@ -29,7 +29,7 @@ local API_VERSION = 110000
 
 -- Skin Info
 local Authors = {"StormFX", "Tuller"}
-local Version = "11.0.1"
+local Version = "11.0.2"
 local Websites = {
 	"https://github.com/SFX-WoW/Masque_Dominos",
 	"https://www.curseforge.com/wow/addons/masque-dominos",
@@ -60,8 +60,6 @@ MSQ:AddSkin("Dominos", {
 		TexCoords = {0.06, 0.94, 0.06, 0.94},
 		-- Color = {1, 1, 1, 1},
 		BlendMode = "BLEND",
-		DrawLayer = "BACKGROUND",
-		DrawLevel = 0,
 		Width = 36,
 		Height = 36,
 		Point = "CENTER",
