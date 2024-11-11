@@ -29,7 +29,10 @@ local xpcall = xpcall
 local CreateFrame = CreateFrame
 local GetAddOnMetadata = GetAddOnMetadata
 local GetCVar = GetCVar
-local GetMouseFocus = GetMouseFocus
+local GetMouseFocus = GetMouseFocus or function()
+  -- Fallback implementation
+  return _G.MouseFocus or _G.GetMouseFocus and _G.GetMouseFocus() or UIParent
+end
 local GetRealmName = GetRealmName
 local GetScreenHeight = GetScreenHeight
 local GetScreenWidth = GetScreenWidth
@@ -3782,6 +3785,7 @@ end
 
 function MovAny:NudgerOnUpdate()
 	local obj = GetMouseFocus()
+  if not mouseFrame then return end
 	local text = ""
 	local text2 = ""
 	local label = MANudgerMouseOver
