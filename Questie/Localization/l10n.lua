@@ -146,40 +146,32 @@ function l10n:PostBoot()
     end
 end
 
-local function isValidFormatString(str)
-    if type(str) ~= "string" then return false end
-    local success = pcall(function() string.format(str, "") end)
-    return success
-end
-
-local function safeFormat(formatStr, ...)
-    if not isValidFormatString(formatStr) then
-        return tostring(formatStr) -- Return original string if format is invalid
-    end
-    local success, result = pcall(string.format, formatStr, ...)
-    if not success then
-        return tostring(formatStr) -- Return original string on format error
-    end
-    return result
-end
-
+local format, unpack, tostring = string.format, unpack, tostring
 function _l10n:translate(key, ...)
     local args = {...}
-    local translationValue = l10n.translations[locale] and l10n.translations[locale][key]
 
-    if not translationValue then
-        if (Questie.db.profile.debugEnabled) then
-            Questie:Debug(Questie.DEBUG_ELEVATED, "ERROR: Translations for '" .. tostring(key) .. "' are missing the entry for language", locale, "!")
-        end
-        return safeFormat(key, unpack(args))
+    for i, v in ipairs(args) do
+        args[i] = tostring(v);
+    end
+
+    local translationEntry = l10n.translations[key]
+    if not translationEntry then
+        if (Questie.db.profile.debugEnabled) then Questie:Debug(Questie.DEBUG_ELEVATED, "ERROR: Translations for '" .. tostring(key) .. "' are missing completely!") end
+        return format(key, unpack(args))
+    end
+
+    local translationValue = translationEntry[locale]
+    if (not translationValue) then
+        if (Questie.db.profile.debugEnabled) then Questie:Debug(Questie.DEBUG_ELEVATED, "ERROR: Translations for '" .. tostring(key) .. "' are missing the entry for language" , locale, "!") end
+        return format(key, unpack(args))
     end
 
     if translationValue == true then
         -- Fallback to enUS which is the key
-        return safeFormat(key, unpack(args))
+        return format(key, unpack(args))
     end
 
-    return safeFormat(translationValue, unpack(args))
+    return format(translationValue, unpack(args))
 end
 
 setmetatable(l10n, { __call = function(_, ...) return _l10n:translate(...) end})
