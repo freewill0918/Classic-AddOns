@@ -184,17 +184,21 @@ function BuyEmAll:MerchantItemButton_OnModifiedClick(frame, button)
         end
 
         -- Buying a currency with a currency! Thanks to recent changes, this should cover all cases.
+        local currencyID = tonumber(strmatch(self.itemLink, "currency:(%d+)"))
 
-        if ((strmatch(self.itemLink, "currency")) and (self.price == 0)) then
-            local totalMax = select(6, GetCurrencyInfo(self.itemLink));
-            if (totalMax == 0) then -- 0 meaning no set maximum, so set how much one can fit super high.
-                self.fit = 10000000;
-            elseif (totalMax > 0) then -- Double check and make sure the total max of currency is above 0 then set the fit to that. Just in case.
-                self.fit = totalMax;
+        if (currencyID and (self.price == 0)) then
+            local currencyInfo = C_CurrencyInfo.GetCurrencyInfo(currencyID)
+            if currencyInfo then
+              local totalMax = currencyInfo.maxQuantity
+              if (totalMax == 0) then -- 0 meaning no set maximum, so set how much one can fit super high.
+                  self.fit = 10000000;
+              elseif (totalMax > 0) then -- Double check and make sure the total max of currency is above 0 then set the fit to that. Just in case.
+                  self.fit = totalMax;
+              end
+              self.stack = self.preset;
+              self:AltCurrencyHandling(self.itemIndex, frame);
+              return
             end
-            self.stack = self.preset;
-            self:AltCurrencyHandling(self.itemIndex, frame);
-            return
         end
 
 
@@ -287,21 +291,21 @@ function BuyEmAll:AltCurrencyHandling(itemIndex, frame)
     self.AltCurrAfford = {};
 
     for i = 1, self.NumAltCurrency do
-        self.AltCurrPrice[i] = select(2, GetMerchantItemCostItem(itemIndex, i));
-        local Link = select(3, GetMerchantItemCostItem(itemIndex, i));
-        if (strmatch(Link, "currency")) then -- Item/Currency link check
-            self.AltCurrTex[i] = select(1, GetMerchantItemCostItem(itemIndex, i)); -- Get the currency texture for later display.
-            -- self.AltCurrAfford[i] = floor(select(2, GetCurrencyInfo(Link)) / self.AltCurrPrice[i]) * self.preset; -- Calculate how many can be purchased.
-            -- 修改這裡使用 C_CurrencyInfo.GetCurrencyInfo
-            local currencyID = tonumber(strmatch(Link, "currency:(%d+)"))
-            if currencyID then
-                local currencyInfo = C_CurrencyInfo.GetCurrencyInfo(currencyID)
-                self.AltCurrAfford[i] = floor(currencyInfo.quantity / self.AltCurrPrice[i]) * self.preset
-            end
-        else
-            self.AltCurrTex[i] = select(1, GetMerchantItemCostItem(itemIndex, i)); -- Get the currency texture for later display.
-            self.AltCurrAfford[i] = floor((GetItemCount(tonumber(strmatch(Link, "item:(%d+):")), true)) / self.AltCurrPrice[i]) * self.preset; -- Calculate how many can be purchased.
-        end
+      self.AltCurrPrice[i] = select(2, GetMerchantItemCostItem(itemIndex, i));
+      local Link = select(3, GetMerchantItemCostItem(itemIndex, i));
+      if (strmatch(Link, "currency")) then -- Item/Currency link check
+          self.AltCurrTex[i] = select(1, GetMerchantItemCostItem(itemIndex, i)); -- Get the currency texture for later display.
+          -- self.AltCurrAfford[i] = floor(select(2, GetCurrencyInfo(Link)) / self.AltCurrPrice[i]) * self.preset; -- Calculate how many can be purchased.
+          -- 修改這裡使用 C_CurrencyInfo.GetCurrencyInfo
+          local currencyID = tonumber(strmatch(Link, "currency:(%d+)"))
+          if currencyID then
+              local currencyInfo = C_CurrencyInfo.GetCurrencyInfo(currencyID)
+              self.AltCurrAfford[i] = floor(currencyInfo.quantity / self.AltCurrPrice[i]) * self.preset
+          end
+      else
+          self.AltCurrTex[i] = select(1, GetMerchantItemCostItem(itemIndex, i)); -- Get the currency texture for later display.
+          self.AltCurrAfford[i] = floor((GetItemCount(tonumber(strmatch(Link, "item:(%d+):")), true)) / self.AltCurrPrice[i]) * self.preset; -- Calculate how many can be purchased.
+      end
     end
 
     if (NumAltCurrency == 1) then
