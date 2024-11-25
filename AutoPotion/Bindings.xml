@@ -1,5 +1,5 @@
 <Bindings>
-  <Binding name="使用巨集 AutoPotion" header="Auto Potion" category="ADDONS">
+  <Binding name="AutoPotion Macro" category="Auto Potion">
     -- AutoPotion
   </Binding>
 </Bindings>
