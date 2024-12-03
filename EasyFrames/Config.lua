@@ -96,6 +96,7 @@ local portrait = {
 local frames = {
     ["player"] = L["Player"],
     ["target"] = L["Target"],
+    ["focus"] = L["Focus"],
 }
 
 local MIN_RANGE = 6
@@ -4841,27 +4842,8 @@ local bossOptions = {
 }
 
 function EasyFrames:ChatCommand(input)
-    Settings.OpenToCategory(L["Easy Frames"]) -- 暫時修正
+    Settings.OpenToCategory(L["Easy Frames"])
 end
--- function EasyFrames:ChatCommand(input)
---   if not input or input:trim() == "" then
---       InterfaceOptionsFrame_OpenToCategory(EasyFrames.optFrames.Profiles)
---       InterfaceOptionsFrame_OpenToCategory(EasyFrames.optFrames.EasyFrames)
---   else
---       InterfaceOptionsFrame_OpenToCategory(EasyFrames.optFrames.Profiles)
---       InterfaceOptionsFrame_OpenToCategory(EasyFrames.optFrames[input] or EasyFrames.optFrames.EasyFrames)
---   end
--- end
--- function EasyFrames:ChatCommand(input)
---   if not input or input:trim() == "" then
---       -- 使用新的 Settings API
---       Settings.OpenToCategory(EasyFrames.optFrames.Profiles.ID)
---       Settings.OpenToCategory(EasyFrames.optFrames.EasyFrames.ID)
---   else
---       Settings.OpenToCategory(EasyFrames.optFrames.Profiles.ID)
---       Settings.OpenToCategory((EasyFrames.optFrames[input] or EasyFrames.optFrames.EasyFrames).ID)
---   end
--- end
 
 function EasyFrames:SetupOptions()
     -- Frames in BlizOptions
