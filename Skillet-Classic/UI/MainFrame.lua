@@ -688,10 +688,10 @@ function Skillet:TradeButton_OnEnter(button)
 		local buttonIcon = _G[button:GetName().."Icon"]
 		local r,g,b = buttonIcon:GetVertexColor()
 		if g == 0 then
-			GameTooltip:AddLine(L["scan incomplete..."],1,0,0)
+			GameTooltip:AddLine("scan incomplete...",1,0,0)
 		end
 		if nonLinkingTrade[tradeID] and player ~= UnitName("player") then
-			GameTooltip:AddLine((GetSpellInfo(tradeID))..L[" not available for alts"])
+			GameTooltip:AddLine((GetSpellInfo(tradeID)).." not available for alts")
 		end
 	end
 	GameTooltip:Show()
@@ -1684,7 +1684,7 @@ function Skillet:SetReagentToolTip(reagentID, numNeeded, numCraftable)
 		GameTooltip:AppendText(GRAY_FONT_COLOR_CODE .. " (" .. L["craftable"] .. ")" .. FONT_COLOR_CODE_CLOSE)
 		for recipeID in pairs(self.db.global.itemRecipeSource[reagentID]) do
 			local recipe = self:GetRecipe(recipeID)
-			GameTooltip:AddDoubleLine(L["Source:"],(self:GetTradeName(recipe.tradeID) or recipe.tradeID)..":"..self:GetRecipeName(recipeID),0,1,0,1,1,1)
+			GameTooltip:AddDoubleLine("Source: ",(self:GetTradeName(recipe.tradeID) or recipe.tradeID)..":"..self:GetRecipeName(recipeID),0,1,0,1,1,1)
 			for player,lookupTable in pairs(self.data.skillIndexLookup) do
 				if lookupTable[recipeID] then
 					local rankData = self:GetSkillRanks(player, recipe.tradeID)
@@ -1708,18 +1708,18 @@ function Skillet:SetReagentToolTip(reagentID, numNeeded, numCraftable)
 	local inBoth = self:GetInventory(self.currentPlayer, reagentID)
 	local surplus = inBoth - numNeeded * numCraftable
 	if inBoth < 0 then
-		GameTooltip:AddDoubleLine(L["in shopping list:"],(-inBoth),1,1,0)
+		GameTooltip:AddDoubleLine("in shopping list:",(-inBoth),1,1,0)
 	end
 	if surplus < 0 then
-		GameTooltip:AddDoubleLine(L["to craft "]..numCraftable..L[" you need:"],(-surplus),1,0,0)
+		GameTooltip:AddDoubleLine("to craft "..numCraftable.." you need:",(-surplus),1,0,0)
 	end
 	if self.db.realm.reagentsInQueue[self.currentPlayer] then
 		local inQueue = self.db.realm.reagentsInQueue[self.currentPlayer][reagentID]
 		if inQueue then
 			if inQueue < 0 then
-				GameTooltip:AddDoubleLine(L["used in queued skills:"],-inQueue,1,1,1)
+				GameTooltip:AddDoubleLine("used in queued skills:",-inQueue,1,1,1)
 			else
-				GameTooltip:AddDoubleLine(L["created from queued skills:"],inQueue,1,1,1)
+				GameTooltip:AddDoubleLine("created from queued skills:",inQueue,1,1,1)
 			end
 		end
 	end
@@ -2275,17 +2275,36 @@ function Skillet:SkillButton_OnReceiveDrag(button)
 	end
 end
 
+function Skillet:SkillButton_ListReagents()
+	DA.DEBUG(0,"SkillButton_ListReagents()")
+	local skill = Skillet.menuButton.skill
+	if skill and skill.skillIndex then
+		Skillet:ReagentsLinkOnClick(menuButton, skill.skillIndex, false)
+	else
+		DA.DEBUG(0,"SkillButton_ListReagents: skill= "..DA.DUMP1(skill))
+		return
+	end
+end
+
 function Skillet:SkillButton_LinkRecipe()
 	DA.DEBUG(0,"SkillButton_LinkRecipe()")
 	local skill = Skillet.menuButton.skill
 	local spellLink
 	if skill and skill.skillIndex then
-		if Skillet.isCraft then
+		if Skillet.isCraft and GetCraftItemLink then
 			spellLink = GetCraftItemLink(skill.skillIndex)
-		else
+		elseif (not Skillet.isCraft) and GetTradeSkillRecipeLink then 
 			spellLink = GetTradeSkillRecipeLink(skill.skillIndex)
 		end
-		ChatEdit_InsertLink(spellLink)
+	else
+		DA.DEBUG(0,"SkillButton_LinkRecipe: skill= "..DA.DUMP1(skill))
+		return
+	end
+	DA.DEBUG(0,"SkillButton_LinkRecipe: recipeID= "..tostring(skill.recipeID)..", skillIndex= "..tostring(skill.skillIndex))
+	if spellLink then
+		if not ChatEdit_InsertLink(spellLink) then
+			DA.DEBUG(0,"SkillButton_LinkRecipe: spellLink= "..DA.PLINK(spellLink))
+		end
 	end
 end
 
@@ -3145,28 +3164,18 @@ local function SkillMenuList(SkilletSkillMenu, rootDescription)
 		end
 		rootDescription:CreateTitle(title);
 	end
-	rootDescription:CreateButton(L["Link Recipe"], function() Skillet:SkillButton_LinkRecipe() end);
-	rootDescription:CreateButton(L["Wowhead URL"], function() Skillet:SkillButton_WowheadURL() end);
-	if Skillet.isLocked then
-		rootDescription:CreateButton(L["Add to Ignore Materials"], function()
-			local skill = Skillet.menuButton.skill
-			if skill and skill.recipeID then
-				local recipeID = skill.recipeID
-				local spellLink = C_TradeSkillUI.GetRecipeLink(skill.recipeID)
-				Skillet.db.realm.userIgnoredMats[Skillet.currentPlayer][recipeID] = spellLink
-				if Skillet.ignoreList and Skillet.ignoreList:IsVisible() then
-					Skillet:UpdateIgnoreListWindow()
-				end
-			end
-		end);
+	if isClassic then
+		rootDescription:CreateButton(L["List Reagents"], function() Skillet:SkillButton_ListReagents() end);
+	else
+		rootDescription:CreateButton(L["Link Recipe"], function() Skillet:SkillButton_LinkRecipe() end);
 	end
+	rootDescription:CreateButton(L["Wowhead URL"], function() Skillet:SkillButton_WowheadURL() end);
 	if not Skillet.isLocked then
 		local submenu1 = rootDescription:CreateButton(L["Ignore"]);
 			submenu1:CreateButton(L["Add Recipe to Ignored List"], function()
 				local index = Skillet.menuButton:GetID()
 				local skillDB = Skillet.db.realm.skillDB[Skillet.currentPlayer][Skillet.currentTrade][index]
 				local recipeID = string.sub(skillDB,2)
-				local print=(tostring(index)..", "..tostring(skillDB)..", "..tostring(recipeID))
 				Skillet.db.realm.userIgnoredMats[Skillet.currentPlayer][recipeID] = Skillet.currentTrade
 				if Skillet.ignoreList and Skillet.ignoreList:IsVisible() then
 					Skillet:UpdateIgnoreListWindow()
@@ -3176,7 +3185,6 @@ local function SkillMenuList(SkilletSkillMenu, rootDescription)
 				local index = Skillet.menuButton:GetID()
 				local skillDB = Skillet.db.realm.skillDB[Skillet.currentPlayer][Skillet.currentTrade][index]
 				local recipeID = string.sub(skillDB,2)
-				local print=(tostring(index)..", "..tostring(skillDB)..", "..tostring(recipeID))
 				Skillet.db.realm.userIgnoredMats[Skillet.currentPlayer][recipeID] = nil
 				if Skillet.ignoreList and Skillet.ignoreList:IsVisible() then
 					Skillet:UpdateIgnoreListWindow()

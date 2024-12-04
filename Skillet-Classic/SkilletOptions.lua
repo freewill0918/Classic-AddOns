@@ -1008,8 +1008,8 @@ Skillet.options =
 		},
 		invertshiftkey = {
 			type = "toggle",
-			name = L["InvertShiftKey"],
-			desc = L["Invert sense of shift to open the Blizzard frames"],
+			name = "InvertShiftKey",
+			desc = "Invert sense of shift to open the Blizzard frames",
 			get = function()
 				return Skillet.db.profile.invertshiftkey
 			end,
@@ -1596,16 +1596,16 @@ function Skillet:ConfigureOptions()
 	acecfg:RegisterOptionsTable("Skillet Profiles", LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db))
 	acecfg:RegisterOptionsTable("Skillet Plugins", Skillet.pluginsOptions)
 	local acedia = LibStub("AceConfigDialog-3.0")
-	Skillet.optionsFrame = acedia:AddToBlizOptions("Skillet Features", L["Skillet"])
-	acedia:AddToBlizOptions("Skillet Appearance", L["Appearance"], L["Skillet"])
-	acedia:AddToBlizOptions("Skillet Profiles", L["Profiles"], L["Skillet"])
-	acedia:AddToBlizOptions("Skillet Plugins", L["Plugins"], L["Skillet"])
+	Skillet.optionsFrame = acedia:AddToBlizOptions("Skillet Features", "Skillet")
+	acedia:AddToBlizOptions("Skillet Appearance", "Appearance", "Skillet")
+	acedia:AddToBlizOptions("Skillet Profiles", "Profiles", "Skillet")
+	acedia:AddToBlizOptions("Skillet Plugins", "Plugins", "Skillet")
 end
 
 --
 -- Show the options window
 --
 function Skillet:ShowOptions()
-	Settings.OpenToCategory(L["Skillet"])
+	Settings.OpenToCategory("Skillet")
 end
 

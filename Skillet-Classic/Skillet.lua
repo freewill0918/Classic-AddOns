@@ -427,7 +427,7 @@ StaticPopupDialogs["SKILLET_CONTINUE_CHANGE"] = {
 -- Create a static popup for changing professions
 --
 StaticPopupDialogs["SKILLET_IGNORE_CHANGE"] = {
-	text = L["Skillet-Classic"].."\n"..L["Use Action Bar button to change professions"],
+	text = "Skillet-Classic\n"..L["Use Action Bar button to change professions"],
 	button1 = OKAY,
 	OnAccept = function( self )
 		return
@@ -900,6 +900,7 @@ end
 
 function Skillet:PLAYER_REGEN_DISABLED()
 	DA.TRACE("PLAYER_REGEN_DISABLED()")
+	self.inCombat = true
 	if self:HideAllWindows() then
 		DA.MARK3("|cf0f00000Skillet-Classic|r: Combat lockdown restriction. Leave combat and try again.")
 	end
@@ -907,6 +908,7 @@ end
 
 function Skillet:PLAYER_REGEN_ENABLED()
 	DA.TRACE("PLAYER_REGEN_ENABLED()")
+	self.inCombat = false
 end
 
 function Skillet:PLAYER_LOGOUT()
@@ -1316,6 +1318,10 @@ end
 --
 function Skillet:SkilletShowWindow()
 	DA.DEBUG(0,"SkilletShowWindow(), currentTrade= "..tostring(self.currentTrade)..", scanInProgress= "..tostring(scanInProgress))
+	if UnitAffectingCombat("player") then
+		DA.MARK3(0,"|cff8888ffSkillet|r: Combat lockdown restriction.".." Leave combat and try again.")
+		return
+	end
 	if self:IsModKey2Down() then
 		self.db.realm.skillDB[self.currentPlayer][self.currentTrade] = {}
 	end
@@ -1732,7 +1738,7 @@ function Skillet:AddItemNotesToTooltip(tooltip, altID)
 			--DA.DEBUG(1,"player= "..tostring(player)..", table= "..DA.DUMP1(notes_table)..", note= '"..tostring(note).."'")
 			if note then
 				if not header_added then
-					tooltip:AddLine(L["Skillet-Classic"] .. L["Notes"] .. ":")
+					tooltip:AddLine("Skillet " .. L["Notes"] .. ":")
 					header_added = true
 				end
 				if player ~= UnitName("player") then
