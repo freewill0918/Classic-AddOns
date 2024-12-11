@@ -1,18 +1,21 @@
 # XIV_Databar Continued
 
-## [2.8](https://github.com/ZelionGG/XIV_Databar-Continued/tree/v2.8) (2024-05-16)
+## [3.3](https://github.com/ZelionGG/XIV_Databar-Continued/tree/v3.3) (2024-12-08)
 
-[Full Changelog](https://github.com/ZelionGG/XIV_Databar-Continued/compare/v2.7.3...v2.8) [Previous Releases](https://github.com/ZelionGG/XIV_Databar-Continued/releases)
+[Full Changelog](https://github.com/ZelionGG/XIV_Databar-Continued/compare/v3.2...v3.3) [Previous Releases](https://github.com/ZelionGG/XIV_Databar-Continued/releases)
+
+### _Global :_
+
+- New profile export/import feature.
+- Bar positioning went through a major rework, you can now drag the bar to the desired position on your screen and lock the position.
 
 ### _Retail :_
 
-- TOC update for Retail 10.2.7.
+- Fixed the cooldowns in the tooltip of the [Travel] module.
+- [Gold] tooltip now allows you to shows the amount of gold on your account, with options to make it realm and faction-agnostic.
+- Fixed overlapping issues occuring with [Mythic+ Teleports] module in the [Travel] module.
 
-### _Classic (SOD) :_
+### _Classic SoD and Anniversary :_
 
-- TOC update for Classic SOD 1.15.2.
+- Fixed the "Font not set" error in the [Travel] module.
 
-### _Cata Classic :_
-
-- Initial support for Cata Classic 4.4.0.
-- Known bug : The talent switcher is actually bugged, a fix is planned ASAP.

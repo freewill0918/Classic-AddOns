@@ -101,7 +101,7 @@ function NIT:OnInitialize()
 	self:loadSpecificOptions();
     self.db = LibStub("AceDB-3.0"):New("NITdatabase", NIT.optionDefaults, "Default");
     LibStub("AceConfig-3.0"):RegisterOptionsTable("NovaInstanceTracker", NIT.options);
-	self.NITOptions = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("NovaInstanceTracker", L["NovaInstanceTracker"]);
+	self.NITOptions = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("NovaInstanceTracker", "NovaInstanceTracker");
 	self:RegisterComm(self.commPrefix);
 	self:buildDatabase();
 	self:doOnceAfterWeeklyReset();
@@ -704,7 +704,7 @@ function NIT:explode(div, str, count)
 end
 
 function NIT:openConfig()
-	Settings.OpenToCategory(L["NovaInstanceTracker"]);
+	Settings.OpenToCategory("NovaInstanceTracker");
 end
 
 function NIT:isInArena()
@@ -992,7 +992,7 @@ function NIT:updateMinimapButton(tooltip, frame)
 		return;
 	end
 	tooltip:ClearLines()
-	tooltip:AddLine(L["Nova Instance Tracker"]);
+	tooltip:AddLine("Nova Instance Tracker");
 	if (NIT.inInstance) then
 		if (not tooltip.NITSeparator) then
 		    tooltip.NITSeparator = tooltip:CreateTexture(nil, "BORDER");
@@ -1091,6 +1091,15 @@ function NIT:updateMinimapButton(tooltip, frame)
 						v = "+" .. NIT:commaValue(v);
 					end
 					tooltip:AddLine(" |cFF9CD6DE" .. k .. "|r |cFFFFFFFF" .. v);
+				end
+			end
+			if (data.currencies and next(data.currencies)) then
+				tooltip:AddLine("|cFFFFFF00" .. L["Currencies"] .. ":|r");
+				for k, v in NIT:pairsByKeys(data.currencies) do
+					if (v.count > 0) then
+						local texture = "|T" .. v.icon .. ":12:12:0:0|t";
+						tooltip:AddLine(" " .. texture .. " |cFF9CD6DE" .. v.name .. "|r |cFFFFFFFF+" .. v.count);
+					end
 				end
 			end
 		end
@@ -1329,7 +1338,62 @@ function NIT:recalcLockoutsFrame()
 	local me = UnitName("player");
 	local found;
 	local text = "";
-	for k, v in pairs(NIT.data) do
+	local data = {};
+	for k, v in pairs(NIT.db.global) do
+		if (type(v) == "table" and k ~= "minimpIcon" and k ~= "versions" and v.myChars) then
+			for char, charData in pairs(v.myChars) do
+				local t = {
+					char = char,
+					realm = k,
+					class = charData.classEnglish,
+					savedInstances = charData.savedInstances,
+				};
+				tinsert(data, t);
+			end
+		end
+	end
+	table.sort(data, function(a, b)
+		return a.realm > b.realm
+			or a.realm == b.realm and strcmputf8i(a.char, b.char) > 0;
+	end)
+	for k, v in ipairs(data) do
+		local found2;
+		local _, _, _, classColorHex = GetClassColor(v.class);
+		local text2 = "\n|c" .. classColorHex .. v.char .. "|r";
+		if (v.savedInstances) then
+			for instance, instanceData in pairs(v.savedInstances) do
+				if (instanceData.locked and instanceData.resetTime and instanceData.resetTime > GetServerTime()) then
+					local timeString = "(" .. NIT:getTimeString(instanceData.resetTime - GetServerTime(), true, NIT.db.global.timeStringType) .. ")";
+					local name = instanceData.name;
+					if (instanceData.name and instanceData.difficultyName) then
+						name = GetDungeonNameWithDifficulty(instanceData.name, instanceData.difficultyName);
+					end
+					if (v.realm ~= NIT.realm) then
+						name = name .. "-" .. v.realm;
+					end
+					text2 = text2 .. "\n  |cFFFFFF00-|r|cFFFFAE42" .. name .. "|r |cFF9CD6DE" .. timeString .. "|r";
+					--This will be done in it's own module.
+					--[[if (instanceData.bosses) then
+						for k, v in ipairs(instanceData.bosses) do
+							local bossName = "|cFF00FF00" .. v.bossName .. "|r";
+							if (v.isKilled) then
+								bossName = "|cFFFF2020" .. v.bossName .. "|r";
+							end
+							text2 = text2 .. "\n      " .. bossName;
+						end
+					end]]
+					found = true;
+					found2 = true;
+				end
+			end
+		end
+		if (found2) then
+			text = text .. text2;
+		end
+	end
+	
+	
+	--[[for k, v in pairs(NIT.data) do
 		if (type(v) == "table") then
 			if (k == "myChars") then
 				for char, charData in pairs(v) do
@@ -1346,15 +1410,15 @@ function NIT:recalcLockoutsFrame()
 								end
 								text2 = text2 .. "\n  |cFFFFFF00-|r|cFFFFAE42" .. name .. "|r |cFF9CD6DE" .. timeString .. "|r";
 								--This will be done in it's own module.
-								--[[if (instanceData.bosses) then
-									for k, v in ipairs(instanceData.bosses) do
-										local bossName = "|cFF00FF00" .. v.bossName .. "|r";
-										if (v.isKilled) then
-											bossName = "|cFFFF2020" .. v.bossName .. "|r";
-										end
-										text2 = text2 .. "\n      " .. bossName;
-									end
-								end]]
+								--if (instanceData.bosses) then
+								--	for k, v in ipairs(instanceData.bosses) do
+								--		local bossName = "|cFF00FF00" .. v.bossName .. "|r";
+								--		if (v.isKilled) then
+								--			bossName = "|cFFFF2020" .. v.bossName .. "|r";
+								--		end
+								--		text2 = text2 .. "\n      " .. bossName;
+								--	end
+								--end
 								found = true;
 								found2 = true;
 							end
@@ -1366,7 +1430,10 @@ function NIT:recalcLockoutsFrame()
 				end
 			end
 		end
-	end
+	end]]
+	
+	
+	
 	if (not found) then
 		text = L["noCurrentRaidLockouts"];
 	end
@@ -1752,14 +1819,14 @@ function NIT:setInstanceLogFrameHeader()
 		pvp = "/" .. L["pvp"];
 	end
 	if (NIT.db.global.showAltsLog) then
-		header = NIT.prefixColor .. L["Nova InstanceTracker"] .. "v" .. version .. "|r\n"
+		header = NIT.prefixColor .. "NovaInstanceTracker v" .. version .. "|r\n"
 				.. "|TInterface\\AddOns\\NovaInstanceTracker\\Media\\00C800Square:10:10:0:0|t " .. L["pastHour"]
 				.. "    |TInterface\\AddOns\\NovaInstanceTracker\\Media\\FFFF00Square:10:10:0:0|t " .. L["pastHour24"]
 				.. "    |TInterface\\AddOns\\NovaInstanceTracker\\Media\\FF0000Square:10:10:0:0|t " .. L["older"] .. "\n"
 				.. "|TInterface\\AddOns\\NovaInstanceTracker\\Media\\RaidSquare:10:10:0:0|t " .. L["raid"] .. pvp
 				.. "    |TInterface\\AddOns\\NovaInstanceTracker\\Media\\AltsSquare:10:10:0:0|t " .. L["alts"];
 	else
-		header = NIT.prefixColor .. L["Nova InstanceTracker"] .. version .. "|r\n"
+		header = NIT.prefixColor .. "NovaInstanceTracker v" .. version .. "|r\n"
 				.. "|TInterface\\AddOns\\NovaInstanceTracker\\Media\\00C800Square:10:10:0:0|t " .. L["pastHour"]
 				.. "   |TInterface\\AddOns\\NovaInstanceTracker\\Media\\FFFF00Square:10:10:0:0|t " .. L["pastHour24"]
 				.. "   |TInterface\\AddOns\\NovaInstanceTracker\\Media\\FF0000Square:10:10:0:0|t " .. L["older"]
@@ -3090,7 +3157,7 @@ end)
 
 function NIT:openTradeLogFrame()
 	NITTradeLogFrame.fs:SetFont(NIT.regionFont, 14);
-	local header = NIT.prefixColor .. L["Nova InstanceTracker"] .. "v" .. version .. "|r\n"
+	local header = NIT.prefixColor .. "NovaInstanceTracker v" .. version .. "|r\n"
 			.. "|cffffff00" .. L["tradeLog"];
 	NITTradeLogFrame.fs:SetText(header);
 	NITTradeLogFrameResetButton:SetText(L["Reset Data"]);
@@ -3807,7 +3874,7 @@ function NIT:openAltsFrame()
 		NIT:createAltsFrameLootReminderButton();
 	end
 	NITAltsFrame.fs:SetFont(NIT.regionFont, 14);
-	local header = NIT.prefixColor .. L["Nova InstanceTracker"] .. "v" .. version .. "|r\n"
+	local header = NIT.prefixColor .. "NovaInstanceTracker v" .. version .. "|r\n"
 			.. "|cffffff00" .. L["Alts (Mouseover names for info)"];
 	NITAltsFrame.fs:SetText(header);
 	NIT:createAltsLineFrames(true);

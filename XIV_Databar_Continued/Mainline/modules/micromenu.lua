@@ -8,6 +8,7 @@ local MenuModule = xb:NewModule("MenuModule", 'AceEvent-3.0')
 function MenuModule:GetName()
     return L['Micromenu'];
 end
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 
 function MenuModule:OnInitialize()
     self.LTip = LibStub('LibQTip-1.0')
@@ -60,7 +61,7 @@ function MenuModule:OnInitialize()
         },
 		
         WTCG = {
-            text = L['Hearthstone']
+            text = L['Hearthstone ']
         },
         Hero = {
             text = L['Heroes of the Storm']
@@ -1022,16 +1023,12 @@ function MenuModule:CreateClickFunctions()
         end
     end; -- menu
 
-    self.functions.chat = function(self, button, down)
+	self.functions.chat = function(self, button, down)
         if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
             return;
         end
         if button == "LeftButton" then
-            if ChatMenu:IsVisible() then
-                ChatMenu:Hide()
-            else
-                ChatFrame_ToggleMenu()
-            end
+            _G.ChatFrameMenuButton:OpenMenu()
         end
     end; -- chat
 
@@ -1067,7 +1064,7 @@ function MenuModule:CreateClickFunctions()
             return;
         end
         if button == "LeftButton" then
-            ToggleFrame(SpellBookFrame)
+            PlayerSpellsUtil.TogglePlayerSpellsFrame(3)
         end
     end; -- spell
 
@@ -1076,7 +1073,7 @@ function MenuModule:CreateClickFunctions()
             return;
         end
         if button == "LeftButton" then
-            ToggleTalentFrame()
+            PlayerSpellsUtil.TogglePlayerSpellsFrame(2)
         end
     end; -- talent
 
@@ -1164,21 +1161,21 @@ function MenuModule:GetDefaultOptions()
         showGMOTD = false,
         hideSocialText = false,
         osSocialText = 12,
-        menu = false,
-        chat = false,
+        menu = true,
+        chat = true,
         guild = true,
         social = true,
-        char = false,
-        spell = false,
-        talent = false,
-        ach = false,
-        quest = false,
-        lfg = false,
-        journal = false,
-        pvp = false,
-        pet = false,
-        shop = false,
-        help = false,
+        char = true,
+        spell = true,
+        talent = true,
+        ach = true,
+        quest = true,
+        lfg = true,
+        journal = true,
+        pvp = true,
+        pet = true,
+        shop = true,
+        help = true,
         hideAppContact = true,
 		hideOtherGameContact = false -- 自行加入：隱藏其他遊戲好友
     }
@@ -1371,7 +1368,7 @@ function MenuModule:GetConfig()
 							self:Refresh();
                         end
                     },
-                    chat = {
+					chat = {
                         name = L['Show Chat Button'],
                         order = 2,
                         type = "toggle",
