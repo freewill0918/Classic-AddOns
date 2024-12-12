@@ -686,6 +686,9 @@ AUCTIONATOR_LOCALES.enUS = function()
   L["POSTING_SETTINGS_COLON"] = "Posting Settings:"
   L["ADD_TO_X"] = "Add to %s"
   L["REMOVE_FROM_X"] = "Remove from %s"
+  
+  -- 自行加入
+  L["ADDON_OPTIONS"] = "Auctionator"
 
   L["CONTRIBUTE_HEADER"] = "|cff04cca4Development is time consuming. Consider supporting|r"
   L["CONTRIBUTE_TOOLTIP_HEADER"] = "About donating"

@@ -3,7 +3,7 @@ AuctionatorConfigFrameMixin = CreateFromMixins(AuctionatorPanelConfigMixin)
 function AuctionatorConfigFrameMixin:OnLoad()
   Auctionator.Debug.Message("AuctionatorConfigFrameMixin:OnLoad()")
 
-  self.name = "Auctionator"
+  self.name = AUCTIONATOR_L_ADDON_OPTIONS
   self:SetParent(SettingsPanel or InterfaceOptionsFrame)
 
   self:SetupPanel()
