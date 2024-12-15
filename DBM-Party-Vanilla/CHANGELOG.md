@@ -1,8 +1,6 @@
 # DBM - Dungeons, Delves, & Events
 
-## [r173](https://github.com/DeadlyBossMods/DBM-Dungeons/tree/r173) (2024-11-28)
-[Full Changelog](https://github.com/DeadlyBossMods/DBM-Dungeons/compare/r172...r173) [Previous Releases](https://github.com/DeadlyBossMods/DBM-Dungeons/releases)
+## [r175](https://github.com/DeadlyBossMods/DBM-Dungeons/tree/r175) (2024-12-14)
+[Full Changelog](https://github.com/DeadlyBossMods/DBM-Dungeons/compare/r174...r175) [Previous Releases](https://github.com/DeadlyBossMods/DBM-Dungeons/releases)
 
-- Adjust stop call on trash mods  
-- Add user request. Ground Pound Alert and nameplate timers to Stonevault  
-- Tiny tier tweak  
+- work around annoying core bug where starting a timer of 0 uses self.timer instead. But that annoying bug has to stay since over a decade worth of mods has assumed that to be valid  
