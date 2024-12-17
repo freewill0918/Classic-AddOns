@@ -1,6 +1,6 @@
 # Syndicator
 
-## [140](https://github.com/Baganator/Syndicator/tree/140) (2024-12-05)
-[Full Changelog](https://github.com/Baganator/Syndicator/compare/139...140) 
+## [142](https://github.com/Baganator/Syndicator/tree/142) (2024-12-15)
+[Full Changelog](https://github.com/Baganator/Syndicator/compare/141...142) 
 
--  Add missing ptBR to Locales.lua  
+- When another account has warbank open prevent Warband bank data getting wiped  
