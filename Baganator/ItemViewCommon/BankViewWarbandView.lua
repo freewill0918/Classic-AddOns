@@ -376,11 +376,11 @@ function BaganatorItemViewCommonBankViewWarbandViewMixin:ShowTab(tabIndex, isLiv
 
   local searchText = self:GetParent().SearchWidget.SearchBox:GetText()
 
-  for _, button in ipairs(self.LiveButtons) do
-    button:SetShown(self.isLive)
-  end
-  self.DepositItemsButton:SetShown(isWarbandData and self.isLive)
   self.IncludeReagentsCheckbox:SetShown(isWarbandData and self.isLive)
+  self.DepositItemsButton:SetShown(isWarbandData and self.isLive)
+
+  self.DepositMoneyButton:SetShown(self.isLive and C_PlayerInfo.HasAccountInventoryLock())
+  self.WithdrawMoneyButton:SetShown(self.isLive and C_PlayerInfo.HasAccountInventoryLock())
 
   self:UpdateCurrencies()
 
@@ -394,7 +394,14 @@ function BaganatorItemViewCommonBankViewWarbandViewMixin:ShowTab(tabIndex, isLiv
     self.IncludeReagentsCheckbox:SetPoint("LEFT", self, "LEFT", addonTable.Constants.ButtonFrameOffset + sideSpacing - 2, 0)
     self.DepositItemsButton:SetPoint("LEFT", self, "LEFT", addonTable.Constants.ButtonFrameOffset + sideSpacing - 2, 0)
 
-    self.DepositMoneyButton:SetPoint("RIGHT", self, "RIGHT", -sideSpacing, 0)
+    self.DepositMoneyButton:ClearAllPoints()
+    if isWarbandData then
+      self.DepositMoneyButton:SetPoint("BOTTOM", 0, 29)
+      self.DepositMoneyButton:SetPoint("RIGHT", -sideSpacing, 0)
+    else
+      self.DepositMoneyButton:SetPoint("BOTTOM", 0, 5)
+      self.DepositMoneyButton:SetPoint("RIGHT", self.Money, "LEFT", -sideSpacing, 0)
+    end
   end
 
   self:UpdateTabs()
@@ -407,7 +414,7 @@ function BaganatorItemViewCommonBankViewWarbandViewMixin:ShowTab(tabIndex, isLiv
 
   if self.BankMissingHint:IsShown() then
     -- Ensure bank missing hint has enough space to display
-    local minWidth = self.BankMissingHint:GetWidth() + 40
+    local minWidth = self.BankMissingHint:GetWidth()
     local maxHeight = 30
 
     for _, layout in ipairs(self.Container.Layouts) do
@@ -415,8 +422,8 @@ function BaganatorItemViewCommonBankViewWarbandViewMixin:ShowTab(tabIndex, isLiv
     end
 
     self:SetSize(
-      math.max(minWidth, 400),
-      maxHeight + 75 + topSpacing / 2
+      math.max(400, self.BankMissingHint:GetWidth()) + sideSpacing * 2 + addonTable.Constants.ButtonFrameOffset + 40,
+      80 + topSpacing / 2
     )
 
     addonTable.CallbackRegistry:TriggerEvent("ViewComplete")
@@ -426,6 +433,10 @@ function BaganatorItemViewCommonBankViewWarbandViewMixin:ShowTab(tabIndex, isLiv
 end
 
 function BaganatorItemViewCommonBankViewWarbandViewMixin:OnFinished(character, isLive)
+  if self.BankMissingHint:IsShown() then
+    return
+  end
+
   local sideSpacing, topSpacing = addonTable.Utilities.GetSpacing()
 
   local buttonPadding = 0
