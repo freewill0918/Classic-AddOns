@@ -1,12 +1,12 @@
 RXPGuides.RegisterGuide([[
-#version 8
+#version 5
 #cata
-#wotlk
+#Cata
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 59-61 Hellfire Peninsula
 #displayname 58-61 Hellfire Peninsula << !tbc !wotlk
-#version 8
+#version 5
 #next 61-63 Zangarmarsh
 step << tbc
 #xprate <1.5
@@ -31,11 +31,15 @@ step << tbc/wotlk
 .zoneskip Hellfire Peninsula
 .target Ambassador Ardalan
 step
-.goto Blasted Lands,59.401,14.877
+
+.goto Blasted Lands,64.22,16.64,20,0
+.goto Blasted Lands,63.51,17.01
+>>Go inside Nethergarde Keep
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Bernie Heisten|r on the bottom floor
 >>|cRXP_BUY_Buy a|r |T132791:0|t[|cRXP_LOOT_Nethergarde Bitter|r]
 .collect 23848,1,9563,1 
 .target Bernie Heisten
+
 step << tbc/wotlk
 .goto Swamp of Sorrows,34.28,66.13
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to the |cRXP_FRIENDLY_Fallen Hero of the Horde|r on the border of Swamp of Sorrows
@@ -67,8 +71,9 @@ step
 .accept 10119 >> Accept Through the Dark Portal
 .target Watch Commander Relthorn Netherwane
 step
+
 #completewith next
-.goto Blasted Lands,55.024,54.221
+.goto Blasted Lands,58.74,60.28
 .zone Hellfire Peninsula >> Go through the Dark Portal
 step
 .goto Hellfire Peninsula,87.32,50.75
@@ -85,8 +90,8 @@ step
 step
 #completewith next
 .goto Hellfire Peninsula,87.36,52.42
-.gossip 18931,0 >>Talk to |cRXP_FRIENDLY_Amish Wildhammer|r to fly to Honor Hold
-.skipgossip 18931,1
+>>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Amish Wildhammer|r
+.fly Honor Hold >> Fly to Honor Hold
 .target Amish Wildhammer
 step
 .goto Hellfire Peninsula,54.47,62.80,20,0
@@ -369,7 +374,7 @@ step
 #completewith next
 .goto Hellfire Peninsula,71.41,62.48
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Wing Commander Dabir'ee|r
-.gossip 19409,0 >> Fly to Shatter Point
+.gossip 19409,1 >> Fly to Shatter Point
 .skipgossip 19409,1
 .timer 56,Shatter Point Flight
 .target Wing Commander Dabir'ee
@@ -388,7 +393,7 @@ step
 step
 #completewith next
 .goto Hellfire Peninsula,78.25,34.45
-.gossip 20235,0 >>Talk to |cRXP_FRIENDLY_Gryphoneer Windbellow|r to fly to the Abyssal Shelf. If you don't kill everything after the first flight, talk to her again
+.gossip 20235,1 >>Talk to |cRXP_FRIENDLY_Gryphoneer Windbellow|r to fly to the Abyssal Shelf. If you don't kill everything after the first flight, talk to her again
 .timer 154,Mission: The Abyssal Shelf Flight
 .skipgossip 20235,1
 .target Gryphoneer Windbellow
@@ -413,7 +418,8 @@ step
 step
 #completewith next
 .goto Hellfire Peninsula,78.25,34.45
-.gossip 20235,0 >>Talk to |cRXP_FRIENDLY_Gryphoneer Windbellow|r to fly to Honor Point
+>>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Gryphoneer Windbellow|r
+.fly Honor Point >> Fly to Honor Point
 .skipgossip 20235,1
 .timer 40,Honor Point Flight
 .target Gryphoneer Windbellow
@@ -912,8 +918,7 @@ step
 step
 #completewith next
 .goto 1944/530,2754.11,-707.211
-.gossip 22431,0 >> Talk to |cRXP_FRIENDLY_Anchorite Barada|r in the bedroom to start the exorcism
-.skipgossip 22431,1
+.gossip 22431,1 >> Talk to |cRXP_FRIENDLY_Anchorite Barada|r in the bedroom to start the exorcism
 .target Anchorite Barada
 .timer 215,Colonel Jules RP
 step
@@ -967,13 +972,13 @@ step
 step
 .use 26002 >>|cRXP_WARN_Use the|r |T135432:0|t[Flaming Torch] |cRXP_WARN_on the Catapults|r
 .complete 10078,1 
-.goto Hellfire Peninsula,58.50,47.64,-1
+.goto Hellfire Peninsula,58.50,47.64
 .complete 10078,2 
-.goto Hellfire Peninsula,55.70,47.48,-1
+.goto Hellfire Peninsula,55.70,47.48
 .complete 10078,3 
-.goto Hellfire Peninsula,53.55,48.24,-1
+.goto Hellfire Peninsula,53.55,48.24
 .complete 10078,4 
-.goto Hellfire Peninsula,52.64,48.01,-1
+.goto Hellfire Peninsula,52.64,48.01
 step
 .goto Hellfire Peninsula,51.37,30.52
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Foreman Razelcraz|r outside Thrallmar Mine
@@ -1112,7 +1117,7 @@ step
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Kuma|r
 .fp Temple of Telhamat >> Get the Temple of Telhamat flight path
 .target Kuma
-step << Mage/DK wotlk
+step << Mage/DK
 .goto Hellfire Peninsula,24.40,38.77
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Vodesiin|r
 >>Buy 20 |T134419:0|tRunes of Teleportation from him << Mage
@@ -1780,14 +1785,14 @@ step
 .mob +Thornfang Ravager
 ]])
 RXPGuides.RegisterGuide([[
-#version 8
+#version 5
 #cata
-#wotlk
+#Cata
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 61-63 Zangarmarsh
 #displayname 61-64 Zangarmarsh << !tbc !wotlk
-#version 8
+#version 5
 #next 63-65 Terokkar Forest;65-67 Blade's Edge << tbc/wotlk
 #next 64-66 Nagrand;65-67 Blade's Edge << !tbc !wotlk
 
@@ -3644,14 +3649,14 @@ step << !tbc !wotlk
 .zoneskip Blade's Edge Mountains
 ]])
 RXPGuides.RegisterGuide([[
-#version 8
+#version 5
 #cata
-#wotlk
+#Cata
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #questguide << !tbc
 #name 63-65 Terokkar Forest
-#version 8
+#version 5
 #next 64-66 Nagrand
 #xprate <1.5
 
@@ -5531,14 +5536,14 @@ step
 .target Ishanah
 ]])
 RXPGuides.RegisterGuide([[
-#version 8
+#version 5
 #cata
-#wotlk
+#Cata
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 64-66 Nagrand
 #defaultfor !wotlk
-#version 8
+#version 5
 #next 65-67 Blade's Edge
 #xprate <1.5 << tbc/wotlk
 step << !tbc !wotlk
@@ -7786,13 +7791,13 @@ step
 .itemcount 29425,10
 ]])
 RXPGuides.RegisterGuide([[
-#version 8
+#version 5
 #cata
-#wotlk
+#Cata
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 65-67 Blade's Edge
-#version 8
+#version 5
 
 #next 67-69 Netherstorm << TBC
 #next 67-67 Blade's Edge Turn-ins << !TBC
@@ -9731,13 +9736,13 @@ step
 #label bemend
 ]])
 RXPGuides.RegisterGuide([[
-#version 8
+#version 5
 #cata
-#wotlk
+#Cata
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 67-68 Netherstorm
-#version 8
+#version 5
 #displayname 67-69 Netherstorm << !tbc !wotlk
 #next 69-70 Shadowmoon Valley (Aldor) << TBC
 #next RXP Cataclysm 60-80 (A)\68-71 Howling Fjord << !TBC
@@ -9745,27 +9750,27 @@ step
 #include RXPGuides\67-68 Netherstorm
 ]])
 RXPGuides.RegisterGuide([[
-#version 8
+#version 5
 #cata
-#wotlk
+#Cata
 #questguide << !tbc
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 67-69 Netherstorm
-#version 8
+#version 5
 #next 69-70 Shadowmoon Valley (Aldor) << TBC
 #next 68-71 Howling Fjord << !TBC
 step
 #include RXPGuides\67-69 Netherstorm
 ]])
 RXPGuides.RegisterGuide([[
-#version 8
+#version 5
 #cata
-#wotlk
+#Cata
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 67-67 Blade's Edge Turn-ins
-#version 8
+#version 5
 #next 67-68 Netherstorm
 #defaultfor !tbc
 step
@@ -10355,11 +10360,11 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #cata
-#wotlk
+#Cata
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 68-71 Howling Fjord
-#version 8
+#version 5
 #next 71-73 Borean Tundra
 #questguide << !wotlk
 step
@@ -13621,14 +13626,14 @@ step << Warrior
 
 ]])
 RXPGuides.RegisterGuide([[
-#version 8
+#version 5
 #cata
-#wotlk
+#Cata
 #questguide << !tbc
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 69-70 Shadowmoon Valley (Aldor)
-#version 8
+#version 5
 #aldor
 step
 .goto Shattrath City,24.2,29.8
@@ -14499,14 +14504,14 @@ step << Druid/70
 .target Exarch Onaala
 ]])
 RXPGuides.RegisterGuide([[
-#version 8
+#version 5
 #cata
-#wotlk
+#Cata
 #questguide << !tbc
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 69-70 Shadowmoon Valley (Scryer)
-#version 8
+#version 5
 #scryer
 step
 .goto Shattrath City,45.29,81.17
@@ -15321,13 +15326,13 @@ step
 .mob Ancient Shadowmoon Spirit
 ]])
 RXPGuides.RegisterGuide([[
-#version 8
+#version 5
 #cata
-#wotlk
+#Cata
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 71-73 Borean Tundra
-#version 8
+#version 5
 #displayname 69-73 Borean Tundra << !wotlk
 #next 72-74 Dragonblight; 73-75 Grizzly Hills << wotlk
 #next 73-74 Dragonblight << !wotlk
@@ -15916,140 +15921,6 @@ step
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Gerald|r
 .turnin 11965 >>Turn in Call to Arms!
 .target Gerald Green
-step << !wotlk
-#completewith next
-.goto BoreanTundra,50.07,30.72,80 >> Travel to Coldrock Quarry
-step << !wotlk
->>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Etaruk|r and |cRXP_FRIENDLY_Atkanok|r (|cRXP_WARN_the stone|r)
-.accept 11612 >>Accept Reclaiming the Quarry
-.goto BoreanTundra,54.29,36.09
-.accept 11605 >>Accept The Honored Ancestors
-.goto BoreanTundra,54.63,35.88
-.target Etaruk
-step << !wotlk
-#completewith next
-.goto BoreanTundra,54.1,34.5,0,0
-.goto BoreanTundra,52.0,30.6,0
-.goto BoreanTundra,50.9,33.4,0
->>Kill |cRXP_ENEMY_Beryl Treasure Hunters|r
-.complete 11612,1 
-.mob Beryl Treasure Hunter
-step << !wotlk
->>Click the markers for |cRXP_PICK_"Elder Kesuk"|r, |cRXP_PICK_"Elder Takret"|r and |cRXP_PICK_"Elder Sagani"|r on the ground
-.complete 11605,1 
-.goto BoreanTundra,50.86,32.43
-.complete 11605,3 
-.goto BoreanTundra,52.31,31.13
-.complete 11605,2 
-.goto BoreanTundra,52.81,34.02
-step << !wotlk
-.goto BoreanTundra,54.1,34.5,70,0
-.goto BoreanTundra,52.0,30.6,70,0
-.goto BoreanTundra,50.9,33.4,70,0
-.goto BoreanTundra,54.1,34.5
->>Kill |cRXP_ENEMY_Beryl Treasure Hunters|r
-.complete 11612,1 
-.mob Beryl Treasure Hunter
-step << !wotlk
-.goto BoreanTundra,54.63,35.88
->>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Atkanok|r
-.turnin 11605 >>Turn in The Honored Ancestors
-.accept 11607 >>Accept The Lost Spirits
-step << !wotlk
-.goto BoreanTundra,54.29,36.09
->>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Etaruk|r
-.turnin 11612 >>Turn in Reclaiming the Quarry
-.accept 11617 >>Accept Hampering Their Escape
-.target Etaruk
-step << !wotlk
-#label cores
-#completewith coresEnd
-.waypoint BoreanTundra,51.7,31.6,15,0
-.waypoint BoreanTundra,52.3,31.0,40,0
-.waypoint BoreanTundra,51.0,32.3,40,0
-.goto BoreanTundra,51.7,31.6,0,0
->>Kill |cRXP_ENEMY_Beryl Hounds|r. Loot them for their |T134337:0|t[|cRXP_LOOT_Cores of Malice|r]
-.use 34711 >>|cRXP_WARN_Use the|r |T134337:0|t[|cRXP_LOOT_Cores of Malice|r] |cRXP_WARN_on |cRXP_FRIENDLY_Kaskala Craftsmen|r and|r |cRXP_FRIENDLY_Kaskala Shaman|r
-.collect 34711,6,11607,0x3,-1 
-.complete 11607,1 
-.complete 11607,2 
-.mob Beryl Hound
-step << !wotlk
-.goto BoreanTundra,52.6,35.5
->>Kill |cRXP_ENEMY_Beryl Reclaimers|r. Loot them for their |T133717:0|t[|cRXP_LOOT_Gnomish Grenades|r]
->>|cRXP_WARN_Stand at the edge of the cliff|r
-.use 34772 >> |cRXP_WARN_Use the|r |T133717:0|t[|cRXP_LOOT_Gnomish Grenades|r] |cRXP_WARN_to destroy the|r |cRXP_PICK_East Platform|r
-.collect 34772,3,11617,0x7,-1 
-.complete 11617,1 
-.mob Beryl Reclaimer
-step << !wotlk
-.goto BoreanTundra,50.3,34.1
->>Kill |cRXP_ENEMY_Beryl Reclaimers|r. Loot them for their |T133717:0|t[|cRXP_LOOT_Gnomish Grenades|r]
->>|cRXP_WARN_Stand at the edge of the cliff|r
-.use 34772 >> |cRXP_WARN_Use the|r |T133717:0|t[|cRXP_LOOT_Gnomish Grenades|r] |cRXP_WARN_to destroy the|r |cRXP_PICK_West Platform|r
-.collect 34772,3,11617,0x7,-1 
-.complete 11617,3 
-.mob Beryl Reclaimer
-step << !wotlk
-#label North
-.goto BoreanTundra,52.6,32.4
->>Kill |cRXP_ENEMY_Beryl Reclaimers|r. Loot them for their |T133717:0|t[|cRXP_LOOT_Gnomish Grenades|r]
->>|cRXP_WARN_Stand directly below the|r |cRXP_PICK_North Platform|r
-.use 34772 >> |cRXP_WARN_Use the|r |T133717:0|t[|cRXP_LOOT_Gnomish Grenades|r] |cRXP_WARN_to destroy the|r |cRXP_PICK_North Platform|r
-.collect 34772,3,11617,0x7,-1 
-.complete 11617,2 
-.mob Beryl Reclaimer
-step << !wotlk
-#requires cores
-#label coresEnd
->>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Atkanok|r and |cRXP_FRIENDLY_Etaruk|r
-.turnin 11607 >>Turn in The Lost Spirits
-.accept 11609 >>Accept Picking Up the Pieces
-.goto BoreanTundra,54.63,35.88
-.turnin 11617 >>Turn in Hampering Their Escape
-.accept 11623 >>Accept A Visit to the Curator
-.goto BoreanTundra,54.29,36.09
-.target Etaruk
-step << !wotlk
-#completewith next
-.goto BoreanTundra,51.2,36.5,50,0
-.goto BoreanTundra,52.9,32.6,0
->>Loot the |cRXP_LOOT_Tuskarr Ritual Objects|r on the ground
->>|cRXP_WARN_They look like White and Blue Incense Holders or Anvils|r
-.complete 11609,1 
-step << !wotlk
-.goto BoreanTundra,50.1,32.6
->>Kill |cRXP_ENEMY_Curator Insivius|r
-.complete 11623,1 
-.mob Curator Insivius
-step << !wotlk
-.goto BoreanTundra,52.9,32.6,70,0
-.goto BoreanTundra,53.9,35.0,70,0
-.goto BoreanTundra,50.9,33.2
->>Loot the |cRXP_LOOT_Tuskarr Ritual Objects|r on the ground
->>|cRXP_WARN_They look like White and Blue Incense Holders or Anvils|r
-.complete 11609,1 
-step << !wotlk
->>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Atkanok|r and |cRXP_FRIENDLY_Etaruk|r
-.turnin 11609 >>Turn in Picking Up the Pieces
-.accept 11610 >>Accept Leading the Ancestors Home
-.goto BoreanTundra,54.63,35.88
-.turnin 11623 >>Turn in A Visit to the Curator
-.goto BoreanTundra,54.29,36.09
-.target Etaruk
-step << !wotlk
-.use 34715 >>|cRXP_WARN_Use the|r |T134378:0|t[Tuskarr Ritual Object] |cRXP_WARN_next to the markers for |cRXP_PICK_"Elder Sagani"|r, |cRXP_PICK_"Elder Takret"|r and|r |cRXP_PICK_"Elder Kesuk"|r
->>|cRXP_WARN_Do NOT wait for the RP|r
-.complete 11610,2 
-.goto BoreanTundra,52.81,34.04
-.complete 11610,3 
-.goto BoreanTundra,52.32,31.15
-.complete 11610,1 
-.goto BoreanTundra,50.85,32.40
-step << !wotlk
->>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Atkanok|r
-.turnin 11610 >>Turn in Leading the Ancestors Home
-.goto BoreanTundra,54.63,35.88
 step
 #completewith next
 .goto BoreanTundra,57.05,44.32,120 >> Travel to the D.E.H.T.A. Encampment
@@ -16164,7 +16035,7 @@ step
 #requires ALFP
 #completewith next
 .goto BoreanTundra,54.29,36.09,100 >> Travel to Coldrock Quarry
-step << wotlk
+step
 
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Etaruk|r and |cRXP_FRIENDLY_Atkanok|r (|cRXP_WARN_the stone|r)
 .accept 11612 >>Accept Reclaiming the Quarry
@@ -16486,12 +16357,12 @@ step
 .use 34669 >> |cRXP_WARN_Use the|r |T133015:0|t[Arcanometer] |cRXP_WARN_at the |cRXP_PICK_Sundered Chasm|r on the sea floor|r
 .complete 11582,1 
 .skill coldweatherflying,<1,1
-step << wotlk
+step
 #completewith next
 .groundgoto BoreanTundra,45.5,31.2,20,0
 .groundgoto BoreanTundra,47.12,29.16,20,0
 .goto BoreanTundra,50.07,30.72,80 >> Travel to Coldrock Quarry
-step << wotlk
+step
 #completewith next
 .goto BoreanTundra,54.1,34.5,0,0
 .goto BoreanTundra,52.0,30.6,0
@@ -16499,7 +16370,7 @@ step << wotlk
 >>Kill |cRXP_ENEMY_Beryl Treasure Hunters|r
 .complete 11612,1 
 .mob Beryl Treasure Hunter
-step << wotlk
+step
 >>Click the markers for |cRXP_PICK_"Elder Kesuk"|r, |cRXP_PICK_"Elder Takret"|r and |cRXP_PICK_"Elder Sagani"|r on the ground
 .complete 11605,1 
 .goto BoreanTundra,50.86,32.43
@@ -16507,7 +16378,7 @@ step << wotlk
 .goto BoreanTundra,52.31,31.13
 .complete 11605,2 
 .goto BoreanTundra,52.81,34.02
-step << wotlk
+step
 .goto BoreanTundra,54.1,34.5,70,0
 .goto BoreanTundra,52.0,30.6,70,0
 .goto BoreanTundra,50.9,33.4,70,0
@@ -16515,18 +16386,18 @@ step << wotlk
 >>Kill |cRXP_ENEMY_Beryl Treasure Hunters|r
 .complete 11612,1 
 .mob Beryl Treasure Hunter
-step << wotlk
+step
 .goto BoreanTundra,54.63,35.88
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Atkanok|r
 .turnin 11605 >>Turn in The Honored Ancestors
 .accept 11607 >>Accept The Lost Spirits
-step << wotlk
+step
 .goto BoreanTundra,54.29,36.09
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Etaruk|r
 .turnin 11612 >>Turn in Reclaiming the Quarry
 .accept 11617 >>Accept Hampering Their Escape
 .target Etaruk
-step << wotlk
+step
 #label cores
 #completewith coresEnd
 .waypoint BoreanTundra,51.7,31.6,15,0
@@ -16539,7 +16410,7 @@ step << wotlk
 .complete 11607,1 
 .complete 11607,2 
 .mob Beryl Hound
-step << wotlk
+step
 .goto BoreanTundra,52.6,35.5
 >>Kill |cRXP_ENEMY_Beryl Reclaimers|r. Loot them for their |T133717:0|t[|cRXP_LOOT_Gnomish Grenades|r]
 >>|cRXP_WARN_Stand at the edge of the cliff|r
@@ -16547,7 +16418,7 @@ step << wotlk
 .collect 34772,3,11617,0x7,-1 
 .complete 11617,1 
 .mob Beryl Reclaimer
-step << wotlk
+step
 .goto BoreanTundra,50.3,34.1
 >>Kill |cRXP_ENEMY_Beryl Reclaimers|r. Loot them for their |T133717:0|t[|cRXP_LOOT_Gnomish Grenades|r]
 >>|cRXP_WARN_Stand at the edge of the cliff|r
@@ -16555,7 +16426,7 @@ step << wotlk
 .collect 34772,3,11617,0x7,-1 
 .complete 11617,3 
 .mob Beryl Reclaimer
-step << wotlk
+step
 #label North
 .goto BoreanTundra,52.6,32.4
 >>Kill |cRXP_ENEMY_Beryl Reclaimers|r. Loot them for their |T133717:0|t[|cRXP_LOOT_Gnomish Grenades|r]
@@ -16564,7 +16435,7 @@ step << wotlk
 .collect 34772,3,11617,0x7,-1 
 .complete 11617,2 
 .mob Beryl Reclaimer
-step << wotlk
+step
 #requires cores
 #label coresEnd
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Atkanok|r and |cRXP_FRIENDLY_Etaruk|r
@@ -16575,26 +16446,26 @@ step << wotlk
 .accept 11623 >>Accept A Visit to the Curator
 .goto BoreanTundra,54.29,36.09
 .target Etaruk
-step << wotlk
+step
 #completewith next
 .goto BoreanTundra,51.2,36.5,50,0
 .goto BoreanTundra,52.9,32.6,0
 >>Loot the |cRXP_LOOT_Tuskarr Ritual Objects|r on the ground
 >>|cRXP_WARN_They look like White and Blue Incense Holders or Anvils|r
 .complete 11609,1 
-step << wotlk
+step
 .goto BoreanTundra,50.1,32.6
 >>Kill |cRXP_ENEMY_Curator Insivius|r
 .complete 11623,1 
 .mob Curator Insivius
-step << wotlk
+step
 .goto BoreanTundra,52.9,32.6,70,0
 .goto BoreanTundra,53.9,35.0,70,0
 .goto BoreanTundra,50.9,33.2
 >>Loot the |cRXP_LOOT_Tuskarr Ritual Objects|r on the ground
 >>|cRXP_WARN_They look like White and Blue Incense Holders or Anvils|r
 .complete 11609,1 
-step << wotlk
+step
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Atkanok|r and |cRXP_FRIENDLY_Etaruk|r
 .turnin 11609 >>Turn in Picking Up the Pieces
 .accept 11610 >>Accept Leading the Ancestors Home
@@ -16602,7 +16473,7 @@ step << wotlk
 .turnin 11623 >>Turn in A Visit to the Curator
 .goto BoreanTundra,54.29,36.09
 .target Etaruk
-step << wotlk
+step
 .use 34715 >>|cRXP_WARN_Use the|r |T134378:0|t[Tuskarr Ritual Object] |cRXP_WARN_next to the markers for |cRXP_PICK_"Elder Sagani"|r, |cRXP_PICK_"Elder Takret"|r and|r |cRXP_PICK_"Elder Kesuk"|r
 >>|cRXP_WARN_Do NOT wait for the RP|r
 .complete 11610,2 
@@ -16611,7 +16482,7 @@ step << wotlk
 .goto BoreanTundra,52.32,31.15
 .complete 11610,1 
 .goto BoreanTundra,50.85,32.40
-step << wotlk
+step
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Atkanok|r
 .turnin 11610 >>Turn in Leading the Ancestors Home
 .goto BoreanTundra,54.63,35.88
@@ -16682,7 +16553,7 @@ step
 .goto BoreanTundra,49.90,41.50
 .use 35293 >>Kill |cRXP_ENEMY_Harold Lane|r
 >>|cRXP_WARN_Use the|r |T134229:0|t[Cenarion Horn] |cRXP_WARN_to summon |cRXP_FRIENDLY_Stampeding Mammoths|r which will deal significant damage to |cRXP_ENEMY_Harold Lane|r. Move away from any traps he places
->>|cRXP_WARN_This quest is difficult. Find a group for him if needed. Skip this step if you're unable to find a group or solo him|r << wotlk
+>>|cRXP_WARN_This quest is difficult. Find a group for him if needed. Skip this step if you're unable to find a group or solo him|r
 .complete 11892,1 
 .unitscan Harold Lane
 .isOnQuest 11892
@@ -16886,7 +16757,7 @@ step
 .complete 11942,3 
 .mob High Priest Talet-Kha
 .mob Mystical Webbing
-
+.mob En'kilah Crypt Fiend
 step
 #completewith next
 .groundgoto BoreanTundra,87.7,22.0,40,0
@@ -16913,20 +16784,11 @@ step
 .accept 12019 >>Accept Last Rites
 .target Thassarian
 step
-#optional << !wotlk
-#completewith lastrites
+#completewith next
 .goto BoreanTundra,86.5,28.7,15 >> |cRXP_WARN_Take the teleporter up to the Ziggurat in the sky|r
 .goto BoreanTundra,86.7,30.2,8 >>|cRXP_WARN_After taking the 1st teleporter, take the 2nd (blue) teleporter directly above the green circle where you first entered|r
 .isOnQuest 12019
-.noflyable
 step
-#optional << wotlk
-.goto BoreanTundra,86.64,31.38
-.subzone 4128>>Fly up to the roof of the ziggurat floating in the sky
-.flyable << wotlk
-step
-#completewith next
-#label lastrites
 .goto BoreanTundra,86.64,31.38
 .gossipoption 93099 >> Talk to |cRXP_FRIENDLY_Thassarian|r to start the RP
 .timer 142,Last Rites RP
@@ -16938,31 +16800,23 @@ step
 >>|cRXP_WARN_Let |cRXP_FRIENDLY_Thassarian|r tank |cRXP_ENEMY_Prince Valanar|r for a few seconds before you start doing damage|r
 >>|cRXP_WARN_BEWARE OF|r |T136157:0|t[Soul Deflection]
 >>|cRXP_WARN_THIS DEBUFF |cRXP_ENEMY_Prince Valanar|r APPLIES TO YOU REFLECTS 100% OF THE DAMAGE YOU DEAL FOR 6 SECONDS. STOP ATTACKING DURING THIS. IF YOU HAVE DoT's ON |cRXP_ENEMY_Prince Valanar|r THEY WILL ALSO BE REFLECTED|r
->>|cRXP_WARN_This quest is difficult. Find a group for him if needed. Skip this step if you're unable to find a group or solo him|r << wotlk
+>>|cRXP_WARN_This quest is difficult. Find a group for him if needed. Skip this step if you're unable to find a group or solo him|r
 .complete 12019,1 
 .goto BoreanTundra,86.7,30.2
 .mob Prince Valanar
-step << wotlk
-
+step
 .goto BoreanTundra,86.80,30.58
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Thassarian|r atop the Ziggurat
 .turnin 12019 >>Turn in Last Rites
 .target Thassarian
-step << !wotlk
-.goto 114/571,3683.900,3297.400
->>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Thassarian|r
-.target Thassarian
-.turnin 12019 >>Turn in Last Rites
 step
 #completewith next
 .goto BoreanTundra,86.96,28.93,12,0
 .goto BoreanTundra,86.96,28.93,10 >>|cRXP_WARN_Take the teleporters down to the ground|r
-.noflyable
 step
 #completewith next
 .groundgoto BoreanTundra,85.15,28.46,50,0
 .goto Dragonblight,29.15,55.32,150 >> Travel to Stars' Rest in Dragonblight
-.noflyable
 step
 .goto Dragonblight,29.15,55.32
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Palena|r
@@ -16981,13 +16835,13 @@ step
 step
 #completewith GarrenM
 .goto BoreanTundra,44.98,33.38,100 >> Travel to Amber Ledge
-.flyable
-.skill riding,<300,1
+.skill coldweatherflying,<1,1
 step
 #completewith GarrenM
 .goto BoreanTundra,58.97,68.29
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Tomas|r
 .fly Amber Ledge >>Fly to Amber Ledge
+.skill coldweatherflying,1,1
 .skill riding,300,1
 .target Tomas Riverwell
 step
@@ -17232,8 +17086,17 @@ step
 .turnin 11957 >>Turn in Saragosa's End
 .accept 11967 >>Accept Mustering the Reds
 .goto BoreanTundra,21.57,22.55
-.cooldown item,35671,>30
+.cooldown item,6948,>2
 .target Keristrasza
+step
+.use 35671 >> |cRXP_WARN_Use the|r |T133836:0|t[Augmented Arcane Prison] |cRXP_WARN_to summon|r |cRXP_FRIENDLY_Keristrasza|r
+>>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Keristrasza|r
+.turnin 11957 >>Turn in Saragosa's End
+.accept 11967 >>Accept Mustering the Reds
+.goto BoreanTundra,21.57,22.55
+.skill coldweatherflying,1,1
+.target Keristrasza
+
 step
 #questguide
 .goto BoreanTundra,21.6,22.5,0
@@ -17274,7 +17137,6 @@ step
 .target Raelorasz
 .target Librarian Serrah
 step
-#optional
 .goto BoreanTundra,21.6,22.5,0
 >>|cRXP_WARN_DO NOT Ride back to Transitus|r
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Keristrasza|r for a teleport back to Transitus
@@ -17288,13 +17150,13 @@ step
 .turnin 11910 >>Turn in Secrets of the Ancients
 .goto BoreanTundra,32.94,34.40
 .skipgossip
-.noflyable
+.isOnQuest 11967
 .target Keristrasza
 .target Archmage Berinand
 .target Raelorasz
 .target Librarian Serrah
 step
->>Go back to Transitus Shield
+>>Fly back to Transitus
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Serrah|r, |cRXP_FRIENDLY_Raelorasz|r and |cRXP_FRIENDLY_Berinand|r
 .turnin 11914 >>Turn in Keep the Secret Safe
 .goto BoreanTundra,33.49,34.38
@@ -17303,15 +17165,17 @@ step
 .turnin 11900 >>Turn in Reading the Meters
 .turnin 11910 >>Turn in Secrets of the Ancients
 .goto BoreanTundra,32.94,34.40
+.skill coldweatherflying,<1,1
 .target Archmage Berinand
 .target Raelorasz
 .target Librarian Serrah
 step
-.goto BoreanTundra,21.57,22.55
 .use 35671 >> |cRXP_WARN_Use the|r |T133836:0|t[Augmented Arcane Prison] |cRXP_WARN_to summon|r |cRXP_FRIENDLY_Keristrasza|r
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Keristrasza|r
 .turnin 11957 >>Turn in Saragosa's End
 .accept 11967 >>Accept Mustering the Reds
+.goto BoreanTundra,21.57,22.55
+.skill coldweatherflying,<1,1
 .target Keristrasza
 step
 #questguide
@@ -17436,15 +17300,57 @@ step
 .accept 11708 >>Accept The Mechagnomes
 .target Fizzcrank Fullthrottle
 step
-#completewith next
 .goto BoreanTundra,56.98,18.71
-.gossipoption 93233 >> Talk to |cRXP_FRIENDLY_Fizzcrank|r
-.skipgossip 25590,1,1,2,2,2,2,2,2,2
+.gossipoption 93085 >> Talk to |cRXP_FRIENDLY_Fizzcrank|r to hear his tale
+.skipgossip
 .isOnQuest 11708
 .target Fizzcrank Fullthrottle
 step
 .goto BoreanTundra,56.98,18.71
->> Talk to |cRXP_FRIENDLY_Fizzcrank|r to hear his tale
+.gossipoption 93086 >> Talk to |cRXP_FRIENDLY_Fizzcrank|r to hear his tale
+.skipgossip
+.isOnQuest 11708
+.target Fizzcrank Fullthrottle
+step
+.goto BoreanTundra,56.98,18.71
+.gossipoption 93088 >> Talk to |cRXP_FRIENDLY_Fizzcrank|r to hear his tale
+.skipgossip 25590,2
+.isOnQuest 11708
+.target Fizzcrank Fullthrottle
+step
+.goto BoreanTundra,56.98,18.71
+.gossipoption 93090 >> Talk to |cRXP_FRIENDLY_Fizzcrank|r to hear his tale
+.skipgossip 25590,2
+.isOnQuest 11708
+.target Fizzcrank Fullthrottle
+step
+.goto BoreanTundra,56.98,18.71
+.gossipoption 93225 >> Talk to |cRXP_FRIENDLY_Fizzcrank|r to hear his tale
+.skipgossip 25590,2
+.isOnQuest 11708
+.target Fizzcrank Fullthrottle
+step
+.goto BoreanTundra,56.98,18.71
+.gossipoption 93227 >> Talk to |cRXP_FRIENDLY_Fizzcrank|r to hear his tale
+.skipgossip 25590,2
+.isOnQuest 11708
+.target Fizzcrank Fullthrottle
+step
+.goto BoreanTundra,56.98,18.71
+.gossipoption 93229 >> Talk to |cRXP_FRIENDLY_Fizzcrank|r to hear his tale
+.skipgossip 25590,2
+.isOnQuest 11708
+.target Fizzcrank Fullthrottle
+step
+.goto BoreanTundra,56.98,18.71
+.gossipoption 93231 >> Talk to |cRXP_FRIENDLY_Fizzcrank|r to hear his tale
+.skipgossip 25590,2
+.isOnQuest 11708
+.target Fizzcrank Fullthrottle
+step
+.goto BoreanTundra,56.98,18.71
+.gossipoption 93233 >> Talk to |cRXP_FRIENDLY_Fizzcrank|r to hear his tale
+.skipgossip 25590,2
 .isOnQuest 11708
 .complete 11708,1 
 .target Fizzcrank Fullthrottle
@@ -17525,8 +17431,7 @@ step
 .turnin 11645 >>Turn in Dirty, Stinkin' Snobolds!
 .target Crafty Wobblesprocket
 step
-#sticky
-#label screwdriver1
+#completewith next
 .goto BoreanTundra,61.6,15.0,0
 .goto BoreanTundra,59.4,17.6,0
 .goto BoreanTundra,58.2,23.4,0
@@ -17551,7 +17456,6 @@ step
 .complete 11710,1 
 .mob Fizzcrank Mechagnome
 step
-#requires screwdriver1
 #questguide
 .goto BoreanTundra,61.6,15.0,70,0
 .goto BoreanTundra,59.4,17.6,70,0
@@ -17585,7 +17489,6 @@ step
 .target Mordle Cogspinner
 .target Crafty Wobblesprocket
 step
-#requires screwdriver1
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Crafty|r, |cRXP_FRIENDLY_Mordle|r, and |cRXP_FRIENDLY_Jinky|r
 >>|cRXP_FRIENDLY_Crafty|r |cRXP_WARN_patrols the outside|r
 .turnin 11729 >> Turn in The Ultrasonic Screwdriver
@@ -17601,6 +17504,22 @@ step
 .target Jinky Twizzlefixxit
 .target Mordle Cogspinner
 .target Crafty Wobblesprocket
+step
+#completewith ED
+.goto BoreanTundra,61.6,15.0,70,0
+.goto BoreanTundra,59.4,17.6,70,0
+.goto BoreanTundra,58.2,23.4,70,0
+.goto BoreanTundra,63.5,22.4,70,0
+.goto BoreanTundra,64.5,18.2
+.use 34984 >> Kill |cRXP_ENEMY_Defendo-tank 66Ds|r, |cRXP_ENEMY_Scavenge-bot 004-A8s|r and |cRXP_ENEMY_Sentry-bot 57-Ks|r. Loot them for |T134429:0|t[|cRXP_LOOT_The Ultrasonic Screwdriver|r]
+>>|cRXP_WARN_Use |T134429:0|t[|cRXP_LOOT_The Ultrasonic Screwdriver|r] to start the quest|r
+.collect 34984,1,11729,1
+.accept 11729 >> Accept The Ultrasonic Screwdriver
+.mob Sentry-bot 57-K
+.mob Scavenge-bot 004-A8
+.mob Defendo-tank 66D
+
+
 step
 #questguide
 #completewith ED
@@ -17714,10 +17633,10 @@ step
 .complete 11699,1 
 .mob Festering Ghoul
 step
-.groundgoto BoreanTundra,68.7,15.3,40,0
-.groundgoto BoreanTundra,68.1,11.6,60,0
-.groundgoto BoreanTundra,69.4,11.4,40,0
-.groundgoto BoreanTundra,69.08,13.26,30,0
+.goto BoreanTundra,68.7,15.3,40,0
+.goto BoreanTundra,68.1,11.6,60,0
+.goto BoreanTundra,69.4,11.4,40,0
+.goto BoreanTundra,69.08,13.26,30,0
 .goto BoreanTundra,69.64,13.88
 >>|cRXP_WARN_Travel to the top of Talramas from the outside|r
 >>Kill |cRXP_ENEMY_Lich-Lord Chillwinter|r. Loot him for the |cRXP_LOOT_Scourgestone|r
@@ -18725,12 +18644,12 @@ step << wotlk
 ]])
 RXPGuides.RegisterGuide([[
 #cata
-#wotlk
+#Cata
 #xprate <1.5 << wotlk
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 72-74 Dragonblight
-#version 8
+#version 5
 #next 73-75 Grizzly Hills
 #xprate <1.5 << wotlk
 #questguide << !wotlk
@@ -19214,7 +19133,6 @@ step
 #completewith Kili
 .cast 48359 >> |cRXP_WARN_Use|r |T132822:0|t[Tua'kea's Breathing Bladder]
 .use 37265
-.itemcount 37265,1
 step
 #completewith next
 .use 38351 >>|cRXP_WARN_Use a|r |T134800:0|t[Murliver Oil] |cRXP_WARN_to increase your swim speed|r
@@ -20477,7 +20395,7 @@ step
 .turnin 12262 >>Turn in No One to Save You
 .accept 12263 >>Accept The Best of Intentions
 .target Serinar
-step << wotlk !Gnome/!Female
+step << !Gnome/!Female
 #completewith next
 +|cRXP_WARN_Jump up the|r "|cRXP_WARN_exit route|r" |cRXP_WARN_on the side just as you start heading up the cave. This will save you 45 seconds each time you successfuly jump up|r
 .link https://www.youtube.com/watch?v=xYKP3ECePVw >> |cRXP_WARN_CLICK HERE|r
@@ -20495,7 +20413,7 @@ step
 .accept 12264 >>Accept Culling the Damned
 .accept 12265 >>Accept Defiling the Defilers
 .target Serinar
-step << wotlk !Gnome/!Female
+step << !Gnome/!Female
 #completewith next
 +|cRXP_WARN_Jump up the|r "|cRXP_WARN_exit route|r" |cRXP_WARN_on the side just as you start heading up the cave. This will save you 45 seconds each time you successfuly jump up|r
 .link https://www.youtube.com/watch?v=xYKP3ECePVw >> |cRXP_WARN_CLICK HERE|r
@@ -20522,7 +20440,7 @@ step
 .turnin 12265 >>Turn in Defiling the Defilers
 .accept 12267 >>Accept Neltharion's Flame
 .target Serinar
-step << wotlk !Gnome/!Female
+step << !Gnome/!Female
 #completewith next
 +|cRXP_WARN_Jump up the|r "|cRXP_WARN_exit route|r" |cRXP_WARN_on the side just as you start heading up the cave. This will save you 45 seconds each time you successfuly jump up|r
 .link https://www.youtube.com/watch?v=xYKP3ECePVw >> |cRXP_WARN_CLICK HERE|r
@@ -20544,7 +20462,7 @@ step
 .turnin 12267 >>Turn in Neltharion's Flame
 .accept 12266 >>Accept Tales of Destruction
 .target Serinar
-step << wotlk
+step
 #completewith next
 .goto Dragonblight,35.13,31.65
 .goto Dragonblight,42.26,29.65,50 >> |cRXP_WARN_Jump onto the hand's biggest finger. Log out, then back in|r
@@ -21073,7 +20991,7 @@ step
 .complete 12080,1 
 .mob Rattlebore
 .use 36770
-step << wotlk
+step
 #requires JormungarCave
 #completewith next
 .goto Dragonblight,49.86,16.61,-1
@@ -21764,13 +21682,13 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #cata
-#wotlk
+#Cata
 #speedrunguide
 #xprate >1.49 << wotlk
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 73-74 Dragonblight
-#version 8
+#version 5
 #next 74-75 Grizzly Hills
 
 #include 72-74 Dragonblight@pt1start-pt1end
@@ -21837,9 +21755,6 @@ step
 .turnin 12441 >>Turn in Wanted: High Shaman Bloodpaw
 .turnin 12442 >>Turn in Wanted: Onslaught Commander Iustus
 step
-#optional
-.maxlevel 75,GotoSholazar
-step
 .goto Dragonblight,77.10,50.12
 >>|cRXP_WARN_This will fly you to Grizzly Hills|r
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Urik|r
@@ -21848,31 +21763,14 @@ step
 .target Gryphon Commander Urik
 step
 .zone Grizzly Hills >> Travel to Grizzly Hills
-step
-#label GotoSholazar
-#optional
-.goto Dragonblight,78.908,45.337
->>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Vas the Unstable|r
-.accept 12794 >> Accept The Magical Kingdom of Dalaran
-.target Vas the Unstable
-.zoneskip Dragonblight,1
-.xp <76,1
-step
-#optional
-.goto Dragonblight,78.908,45.337
-.zone Dalaran >> Talk to |cRXP_FRIENDLY_Vas the Unstable|r to be teleported to Dalaran
-.skipgossip 27158,1
-.target Vas the Unstable
-.zoneskip Dragonblight,1
-.xp <76,1
 ]])
 RXPGuides.RegisterGuide([[
 #cata
-#wotlk
+#Cata
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 73-75 Grizzly Hills
-#version 8
+#version 5
 #next 75-77 Zul'Drak
 #xprate <1.5 << wotlk
 #questguide << !wotlk
@@ -24287,7 +24185,7 @@ step << DK/Mage/Druid
 step << !DK !Mage !Druid
 #completewith next
 .goto Grizzly Hills,32.00,59.78
->>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Magistrix Haelani|r
+.zone Dalaran >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Magistrix Haelani|r
 .target Magistrix Haelenai
 .accept 12794 >>Accept The Magical Kingdom of Dalaran
 .zoneskip Stormwind City
@@ -24403,18 +24301,14 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #cata
-#wotlk
+#Cata
 #speedrunguide
 #xprate >1.49 << wotlk
 #group RXP Cataclysm 60-80 (A)
 << Alliance
 #name 74-75 Grizzly Hills
-#version 8
+#version 5
 #next 75-76 Zul'Drak
-step
-#optional
-.maxlevel 75,GotoSholazar
-step
 #include 73-75 Grizzly Hills@pt1start-pt1end
 step
 .goto 116/571,-2812.200,3418.200
@@ -24422,38 +24316,13 @@ step
 .target Woodsman Drake
 .turnin 12255 >>Turn in The Thane of Voldrune
 step
-#optional
-.maxlevel 75,GotoSholazar
-step
 #include 73-75 Grizzly Hills@pt2start-pt2end
 step
 .goto Grizzly Hills,26.46,31.74
 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to the |cRXP_FRIENDLY_Caged Prisoner|r inside
 .turnin 12302 >>Turn in Words of Warning
 >>|cRXP_WARN_Skip the follow-up quest|r
-.target Caged Prisoner
-step
-#optional
-.maxlevel 75,GotoSholazar
 step
 .goto ZulDrak,32.18,74.39
 .zone ZulDrak >> Head northwest to Zul'Drak
-step
-#optional
-#label GotoSholazar
-step
-#completewith next
-.goto Grizzly Hills,32.00,59.78
->>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Magistrix Haelani|r
-.target Magistrix Haelenai
-.accept 12794 >>Accept The Magical Kingdom of Dalaran
-.zoneskip Grizzly Hills,1
-.xp <76,1
-step
-.goto Grizzly Hills,32.00,59.78
-.zone Dalaran >>Ask |cRXP_FRIENDLY_Magistrix Haelani|r to be teleported to Dalaran
-.target Magistrix Haelenai
-.skipgossip
-.zoneskip Grizzly Hills,1
-.xp <76,1
 ]])

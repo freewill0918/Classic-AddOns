@@ -635,7 +635,7 @@ step << Dwarf/Gnome
     .accept 6392 >>Accept Return to Gremlock
 step << Dwarf/Gnome
 #completewith next
-    .goto Ironforge,55.501,47.743
+    .goto 1455/0,-1154.90002,-4820.70020
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Gryth Thurden|r
     .target Gryth Thurden
     .fly Goldshire >> Fly to Goldshire
@@ -977,17 +977,17 @@ step
 step << Hunter
     .goto 37,40.854,65.902
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Benjamin Foxworthy|r
-    .trainer >> Train your class spells
+    .trainer >> Train your class spels
     .target Benjamin Foxworthy
 step << Paladin
     .goto 37,41.074,65.953
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Brother Wilhelm|r
-    .trainer >> Train your class spells
+    .trainer >> Train your class spels
     .target Brother Wilhelm
 step << Warrior
     .goto 37,41.069,65.825
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Lyria Du Lac|r
-    .trainer >> Train your class spells
+    .trainer >> Train your class spels
     .target Lyria Du Lac
 step << Warlock
     #completewith next
@@ -995,7 +995,7 @@ step << Warlock
 step << Warlock
     .goto 37,44.389,66.240
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Maximillian Crowe|r
-    .trainer >> Train your class spells
+    .trainer >> Train your class spels
     .target Maximillian Crowe
 step << Mage/Priest/Rogue
     #completewith next
@@ -1003,17 +1003,17 @@ step << Mage/Priest/Rogue
 step << Mage
     .goto 37,43.246,66.192
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Zaldimar Wefhellt|r
-    .trainer >> Train your class spells
+    .trainer >> Train your class spels
     .target Zaldimar Wefhellt
 step << Priest
     .goto 37,43.282,65.720
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Priestess Josetta|r
-    .trainer >> Train your class spells
+    .trainer >> Train your class spels
     .target Priestess Josetta
 step << Rogue
     .goto 37,43.872,65.943
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Keryn Sylvius|r
-    .trainer >> Train your class spells
+    .trainer >> Train your class spels
     .target Keryn Sylvius
 step << Human
     #xprate <1.2
