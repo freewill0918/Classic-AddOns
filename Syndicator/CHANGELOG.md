@@ -1,6 +1,7 @@
 # Syndicator
 
-## [149](https://github.com/Baganator/Syndicator/tree/149) (2025-01-03)
-[Full Changelog](https://github.com/Baganator/Syndicator/compare/148...149) 
+## [153](https://github.com/Baganator/Syndicator/tree/153) (2025-01-10)
+[Full Changelog](https://github.com/Baganator/Syndicator/compare/152...153) 
 
-- Classic: Fix "usable" search including usable items  
+- Fix gold coin icon used in options being missing from classic (vanilla)  
+- Update icons used for toggling inventory tooltip status on characters/guilds  
