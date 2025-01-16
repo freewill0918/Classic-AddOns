@@ -1,8 +1,6 @@
 # Baganator
 
-## [614](https://github.com/Baganator/Baganator/tree/614) (2025-01-11)
-[Full Changelog](https://github.com/Baganator/Baganator/compare/613...614) 
+## [617](https://github.com/Baganator/Baganator/tree/617) (2025-01-14)
+[Full Changelog](https://github.com/Baganator/Baganator/compare/616...617) 
 
-- Remove unneeded check in last commit  
-- Fix error when toggling "Recent character tabs" option  
-- Prevent race condition causing items to be context faded/highlighted incorrectly  
+- Improve and fix tooltips for warband and guild bank tab buttons  
