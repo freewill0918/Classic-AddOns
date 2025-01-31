@@ -1,10 +1,8 @@
 # Baganator
 
-## [626](https://github.com/Baganator/Baganator/tree/626) (2025-01-25)
-[Full Changelog](https://github.com/Baganator/Baganator/compare/625...626) 
+## [634](https://github.com/Baganator/Baganator/tree/634) (2025-01-29)
+[Full Changelog](https://github.com/Baganator/Baganator/compare/633...634) 
 
-- Add new visual search builder into Categories settings  
-    > GUI to add search terms, options for typing and not typing  
-    > No syntax knowledge required  
-    > Button to revert to previous text input  
-- Update auctionable check ready for Cata 4.4.2  
+- Vanilla: Update toc for 1.15.6  
+- Fix bank theme for cached view not swapping properly when theme changed  
+- Code cleanup  

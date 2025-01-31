@@ -1,6 +1,6 @@
 # Syndicator
 
-## [162](https://github.com/Baganator/Syndicator/tree/162) (2025-01-25)
-[Full Changelog](https://github.com/Baganator/Syndicator/compare/161...162) 
+## [167](https://github.com/Baganator/Syndicator/tree/167) (2025-01-29)
+[Full Changelog](https://github.com/Baganator/Syndicator/compare/166...167) 
 
-- Search Builder: Fix parsing of terms involving ! as a starting element  
+- Vanilla: Update toc for 1.15.6  
