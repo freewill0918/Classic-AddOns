@@ -1,8 +1,7 @@
 # Baganator
 
-## [634](https://github.com/Baganator/Baganator/tree/634) (2025-01-29)
-[Full Changelog](https://github.com/Baganator/Baganator/compare/633...634) 
+## [636](https://github.com/Baganator/Baganator/tree/636) (2025-02-01)
+[Full Changelog](https://github.com/Baganator/Baganator/compare/635...636) 
 
-- Vanilla: Update toc for 1.15.6  
-- Fix bank theme for cached view not swapping properly when theme changed  
-- Code cleanup  
+- Fix gold missing from summary tooltip when using an old version of Syndicator  
+- [Fixes #417] Classic: Moving a section duplicates another section  
