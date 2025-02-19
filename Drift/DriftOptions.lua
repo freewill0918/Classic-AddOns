@@ -7,7 +7,7 @@ if not DriftOptions then DriftOptions = {} end
 local DriftOptionsPanel = {}
 DriftOptionsPanel.config = {}
 
--- Variables for WoW version
+-- Variables for WoW version 
 local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
 local isClassic = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
 local isWC = (WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC)
@@ -57,6 +57,29 @@ local function createButton(name, point, relativeFrame, relativePoint, xOffset, 
 	return button
 end
 
+--Locally define a function removed from Blizzard's API in 11.0
+local InterfaceOptions_AddCategory = InterfaceOptions_AddCategory
+if not InterfaceOptions_AddCategory then
+	InterfaceOptions_AddCategory = function(frame, addOn, position)
+		-- cancel is no longer a default option. May add menu extension for this.
+		frame.OnCommit = frame.okay;
+		frame.OnDefault = frame.default;
+		frame.OnRefresh = frame.refresh;
+
+		if frame.parent then
+			local category = Settings.GetCategory(frame.parent);
+			local subcategory, layout = Settings.RegisterCanvasLayoutSubcategory(category, frame, frame.name, frame.name);
+			subcategory.ID = frame.name;
+			return subcategory, category;
+		else
+			local category, layout = Settings.RegisterCanvasLayoutCategory(frame, frame.name, frame.name);
+			category.ID = frame.name;
+			Settings.RegisterAddOnCategory(category);
+			return category;
+		end
+	end
+end
+
 -- Global functions
 function DriftHelpers:SetupConfig()
 	-- Initialize config options
@@ -92,23 +115,7 @@ function DriftHelpers:SetupConfig()
 	driftOptionsTitle:SetFontObject("GameFontNormalLarge")
 	driftOptionsTitle:SetText("Drift")
 	driftOptionsTitle:SetPoint("TOPLEFT", DriftOptionsPanel.optionspanel, "TOPLEFT", 15, -15)
-
-	-- 在文件開頭添加檢查函數
-	local function AddInterfaceOptions(frame)
-		-- 檢查是否支援新版Settings API
-		if Settings and Settings.RegisterCanvasLayoutCategory then
-			local category = Settings.RegisterCanvasLayoutCategory(frame, frame.name)
-			Settings.RegisterAddOnCategory(category)
-		else
-			-- 舊版本支援
-			if InterfaceOptions_AddCategory then
-				InterfaceOptions_AddCategory(frame)
-			end
-		end
-	end
-
-	-- 然後將第95行的代碼
-	AddInterfaceOptions(DriftOptionsPanel.optionspanel)
+	InterfaceOptions_AddCategory(DriftOptionsPanel.optionspanel)
 
 	-- Frame Dragging
 	local lockMoveTitle = DriftOptionsPanel.optionspanel:CreateFontString(nil, "BACKGROUND")
@@ -357,7 +364,7 @@ function DriftHelpers:SetupConfig()
 
 	local driftOptionsVersionContent = DriftOptionsPanel.optionspanel:CreateFontString(nil, "BACKGROUND")
 	driftOptionsVersionContent:SetFontObject("GameFontHighlight")
-	driftOptionsVersionContent:SetText(GetAddOnMetadata("Drift", "Version"))
+	driftOptionsVersionContent:SetText(C_AddOns.GetAddOnMetadata("Drift", "Version"))
 	driftOptionsVersionContent:SetJustifyH("LEFT")
 	driftOptionsVersionContent:SetPoint("BOTTOMLEFT", DriftOptionsPanel.optionspanel, "BOTTOMLEFT", 70, 30)
 

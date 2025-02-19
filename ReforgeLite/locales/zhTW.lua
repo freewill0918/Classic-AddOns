@@ -12,6 +12,7 @@ L["At most"] = "最多（不超過）"
 --[[Translation missing --]]
 --[[ L["Bearweave"] = ""--]] 
 L["Best Result"] = "最佳結果"
+L["Buffs"] = "增益效果"
 L["Cap value"] = "上限值"
 L["Click an item to lock it"] = "點擊物品鎖定"
 L["Compute"] = "計算"
@@ -32,6 +33,7 @@ L["Inactive window color"] = "非當前視窗的顏色"
 --[[Translation missing --]]
 --[[ L["Masterfrost"] = ""--]] 
 L["Melee DW hit cap"] = "進戰雙持命中上限"
+L["Melee Haste"] = "近戰加速"
 L["Melee hit cap"] = "進戰命中上限"
 --[[Translation missing --]]
 --[[ L["Monocat"] = ""--]] 
@@ -47,6 +49,7 @@ L["Score"] = "分數"
 L["Show reforged stats in item tooltips"] = "在浮動提示資訊顯示物品重鑄狀態"
 L["Slide to the left if the calculation slows your game too much."] = "如果計算使遊戲速度減慢太多，請向左滑動。"
 L["Source stat color"] = "原始屬性顏色"
+L["Spell Haste"] = "法術加速"
 L["Spell hit cap"] = "法術命中上限"
 L["Spirit to hit"] = "精神轉命中"
 L["Stat Weights"] = "屬性比重"

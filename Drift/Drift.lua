@@ -93,19 +93,7 @@ local frames = {
 	["CharacterFrame"] = {
 		DriftDisabledBy = "windowsDisabled",
 	},
-	["PetPaperDollFrameCompanionFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-		DriftDelegate = "CharacterFrame",
-	},
-	["ReputationFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-		DriftDelegate = "CharacterFrame",
-	},
 	["HonorFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-		DriftDelegate = "CharacterFrame"
-	},
-	["PetPaperDollFramePetFrame"] = {
 		DriftDisabledBy = "windowsDisabled",
 		DriftDelegate = "CharacterFrame"
 	},
@@ -118,19 +106,18 @@ local frames = {
 	["QuestLogFrame"] = {
 		DriftDisabledBy = "windowsDisabled",
 	},
-	["QuestLogDetailFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-	},
 	["QuestFrame"] = {
 		DriftDisabledBy = "windowsDisabled",
 	},
-	["WatchFrame"] = {
-		DriftDisabledBy = "objectivesDisabled"
+	["QuestWatchFrame"] = {
+		DriftDisabledBy = "objectivesDisabled",
 	},
 	["MinimapCluster"] = {
 		DriftDisabledBy = "minimapDisabled",
-		DriftDelegate = "MinimapMover",
-		DriftHasMover = true,
+	},
+	["MinimapZoneTextButton"] = {
+		DriftDisabledBy = "minimapDisabled",
+		DriftDelegate = "MinimapCluster",
 	},
 	["GossipFrame"] = {
 		DriftDisabledBy = "windowsDisabled",
@@ -139,16 +126,6 @@ local frames = {
 		DriftDisabledBy = "windowsDisabled",
 	},
 	["PlayerTalentFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-	},
-	["AchievementFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-	},
-	["AchievementFrameHeader"] = {
-		DriftDisabledBy = "windowsDisabled",
-		DriftDelegate = "AchievementFrame"
-	},
-	["AchievementFrame.searchResults"] = {
 		DriftDisabledBy = "windowsDisabled",
 	},
 	["WorldMapFrame"] = {
@@ -269,9 +246,6 @@ local frames = {
 	["InspectFrame"] = {
 		DriftDisabledBy = "windowsDisabled",
 	},
-	["ItemSocketingFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-	},
 	["MacroFrame"] = {
 		DriftDisabledBy = "windowsDisabled",
 	},
@@ -279,26 +253,6 @@ local frames = {
 		DriftDisabledBy = "windowsDisabled",
 	},
 	["WardrobeFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-	},
-	["CalendarFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-	},
-	["CalendarViewEventFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-	},
-	["CalendarViewEventFrame.Header"] = {
-		DriftDisabledBy = "windowsDisabled",
-		DriftDelegate = "CalendarViewEventFrame"
-	},
-	["CalendarViewEventFrame.HeaderFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-		DriftDelegate = "CalendarViewEventFrame"
-	},
-	["CalendarViewHolidayFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-	},
-	["CalendarViewRaidFrame"] = {
 		DriftDisabledBy = "windowsDisabled",
 	},
 	["ClassTrainerFrame"] = {
@@ -322,24 +276,16 @@ local frames = {
 	["WorldStateScoreFrame"] = {
 		DriftDisabledBy = "windowsDisabled",
 	},
+	["BattlefieldFrame"] = {
+		DriftDisabledBy = "windowsDisabled",
+	},
 	["ChatConfigFrame"] = {
 		DriftDisabledBy = "windowsDisabled",
 	},
 	["LFGParentFrame"] = {
 		DriftDisabledBy = "windowsDisabled",
 	},
-	["PVPFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-		DriftDelegate = "PVPParentFrame",
-	},
-	["BattlefieldFrame"] = {
-		DriftDisabledBy = "windowsDisabled",
-		DriftDelegate = "PVPParentFrame",
-	},
 	["DurabilityFrame"] = {
-		DriftDisabledBy = "miscellaneousDisabled",
-	},
-	["VehicleSeatIndicator"] = {
 		DriftDisabledBy = "miscellaneousDisabled",
 	},
 	["SettingsPanel"] = {
