@@ -28,7 +28,7 @@ function AuctionatorPanelConfigMixin:SetupPanel()
       Settings.RegisterAddOnCategory(subcategory)
     end
   else
-    InterfaceOptions_AddCategory(self, AUCTIONATOR_L_ADDON_OPTIONS)
+    InterfaceOptions_AddCategory(self, "Auctionator")
   end
 end
 

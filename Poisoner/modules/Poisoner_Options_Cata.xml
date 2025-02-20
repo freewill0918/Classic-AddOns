@@ -1,12 +1,12 @@
-﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-	<Font name="PoisonerGameFontNormalSmall" font="Fonts\FRIZQT__.TTF" virtual="true"> 
+	<Font name="PoisonerGameFontNormalSmall" font="Fonts\FRIZQT__.TTF" virtual="true">
 		<FontHeight>
 			<AbsValue val="9" />
 		</FontHeight>
-	</Font> 
+	</Font>
 
 <!-- TabTemplate -->
 	<Button name="PoisonerOptions_TabTemplate" inherits="CharacterFrameTabButtonTemplate" virtual="true">
@@ -16,7 +16,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 			</OnClick>
 		</Scripts>
 	</Button>
-	
+
 
 <!-- SettingsFrame -->
 	<Frame name="PoisonerOptions_SettingsFrame" frameStrata="DIALOG" enableMouse="true" movable="true" hidden="true" parent="UIParent">
@@ -26,7 +26,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 		<Anchors>
 			<Anchor point="CENTER"/>
 		</Anchors>
-		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+		<!-- <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
 			<BackgroundInsets>
 				<AbsInset left="11" right="12" top="12" bottom="11" />
 			</BackgroundInsets>
@@ -36,7 +36,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 			<EdgeSize>
 				<AbsValue val="32" />
 			</EdgeSize>
-		</Backdrop>
+		</Backdrop> -->
 		<Layers>
 			<Layer>
 				<Texture name="$parentTitleBorder" file="Interface\DialogFrame\UI-DialogBox-Header">
@@ -76,7 +76,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 				</FontString>
 			</Layer>
 		</Layers>
-		
+
 		<Frames>
 		<!-- TABS -->
 			<Button name="$parentTab1" inherits="PoisonerOptions_TabTemplate" id="1" text="PoisonerOptions_SETTINGS1">
@@ -124,7 +124,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 					</Anchor>
 				</Anchors>
 			</Button>
-			
+
 		<!-- CLOSE button -->
 			<Button name="PoisonerOptions_SettingsClose" inherits="UIPanelButtonTemplate" text="PoisonerOptions_SETTINGS_CLOSE">
 				<Size>
@@ -162,8 +162,8 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 					</OnClick>
 				</Scripts>
 			</Button>
-			
-			
+
+
 	<!-- Frames -->
 
 		<!-- Settings Frame -->
@@ -212,7 +212,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 						</Anchors>
 						<Layers>
 							<Layer>
-							
+
 							</Layer>
 						</Layers>
 						<Frames>
@@ -233,10 +233,10 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 									</PostClick>
 								</Scripts>
 							</CheckButton>
-						
+
 						</Frames>
 					</Frame>
-					
+
 					<Frame name="PoisonerOptions_MinimapButtonFrame">
 						<Size>
 							<AbsDimension x="300" y="160"/>
@@ -281,7 +281,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								</Anchors>
 								<Scripts>
 									<OnLoad>
-										getglobal(self:GetName().."Text"):SetText(PoisonerOptions_LB_MBShow);										
+										getglobal(self:GetName().."Text"):SetText(PoisonerOptions_LB_MBShow);
 										<!--getglobal(self:GetName().."Text"):SetTextColor(1, 1, 1, 1)
 										getglobal(self:GetName().."Text"):SetFont("Fonts\\FRIZQT__.TTF", 11)-->
 									</OnLoad>
@@ -304,7 +304,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								</Anchors>
 								<Scripts>
 									<OnLoad>
-										getglobal(self:GetName().."Text"):SetText(PoisonerOptions_LB_FBShow);										
+										getglobal(self:GetName().."Text"):SetText(PoisonerOptions_LB_FBShow);
 										<!--getglobal(self:GetName().."Text"):SetTextColor(1, 1, 1, 1)
 										getglobal(self:GetName().."Text"):SetFont("Fonts\\FRIZQT__.TTF", 11)-->
 									</OnLoad>
@@ -327,7 +327,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								</Anchors>
 								<Scripts>
 									<OnLoad>
-										getglobal(self:GetName().."Text"):SetText(PoisonerOptions_LB_FBLock);										
+										getglobal(self:GetName().."Text"):SetText(PoisonerOptions_LB_FBLock);
 										getglobal(self:GetName().."Text"):SetTextColor(1, 1, 1, 1)
 										getglobal(self:GetName().."Text"):SetFont("Fonts\\FRIZQT__.TTF", 11)
 									</OnLoad>
@@ -354,7 +354,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 									</OnClick>
 								</Scripts>
 							</Button>
-							
+
 							<Frame name="PoisonerOptions_FBSliderFrame">
 								<Size>
 									<AbsDimension x="300" y="30"/>
@@ -476,10 +476,10 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 									</Slider>
 								</Frames>
 							</Frame>
-							
+
 						</Frames>
 					</Frame>
-				
+
 					<!-- Post-to-Chat Checkbox -->
 					<CheckButton name="PoisonerOptions_ChkBox_PoisonWeaponChatOuput" inherits="InterfaceOptionsCheckButtonTemplate">
 						<Anchors>
@@ -492,7 +492,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								getglobal(self:GetName().."Text"):SetText(PoisonerOptions_LB_PWChatOutput);
 								getglobal(self:GetName().."Text"):SetFont("Fonts\\FRIZQT__.TTF", 14)
 								getglobal(self:GetName().."Text"):SetWidth(300)
-								getglobal(self:GetName().."Text"):SetJustifyH("LEFT")										
+								getglobal(self:GetName().."Text"):SetJustifyH("LEFT")
 								getglobal(self:GetName().."Text"):ClearAllPoints()
 								getglobal(self:GetName().."Text"):SetPoint("TOPLEFT","PoisonerOptions_ChkBox_PoisonWeaponChatOuput","TOPRIGHT",0,-5)
 							</OnLoad>
@@ -501,7 +501,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 							</PostClick>
 						</Scripts>
 					</CheckButton>
-					
+
 					<!-- Show Menu on mouseover -->
 					<Frame name="PoisonerOptions_ShowOnMouseover">
 						<Size>
@@ -554,7 +554,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 							</CheckButton>
 						</Frames>
 					</Frame>
-					
+
 					<!-- AutoHide -->
 					<!-- AutoHide inCombat -->
 					<Frame name="PoisonerOptions_AutoHide">
@@ -608,11 +608,11 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 							</CheckButton>
 						</Frames>
 					</Frame>
-					
-					
+
+
 				</Frames>
 			</Frame>
-			
+
 		<!-- Menu Frame -->
 			<Frame name="PoisonerOptions_SettingsFrame2">
 				<Size>
@@ -956,7 +956,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 									</PostClick>
 								</Scripts>
 							</CheckButton>
-							
+
 							<Button name="PoisonerOptions_MenuSortingButton" inherits="UIPanelButtonTemplate" text="Button Sorting">
 								<Size>
 									<AbsDimension x="120" y="30"/>
@@ -973,7 +973,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 									</OnClick>
 								</Scripts>
 							</Button>
-							
+
 							<Frame name="PoisonerOptions_MenuSliderFrame">
 								<Size>
 									<AbsDimension x="300" y="30"/>
@@ -1080,13 +1080,13 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 											<OnValueChanged>
 												getglobal(self:GetName().."Text"):SetText(Poisoner_round(getglobal(self:GetName()):GetValue(),1));
 												local arg = (getglobal(self:GetName()):GetValue())
-												
+
 											</OnValueChanged>
 										</Scripts>
 									</Slider>-->
 								</Frames>
 							</Frame>
-							
+
 							<Frame name="PoisonerOptions_MenuSpacingSliderFrame">
 								<Size>
 									<AbsDimension x="300" y="75"/>
@@ -1176,10 +1176,10 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 									</Slider>
 								</Frames>
 							</Frame>
-							
+
 						</Frames>
 					</Frame>
-					
+
 					<Frame name="PoisonerOptions_ToolTipFrame">
 						<Size>
 							<AbsDimension x="300" y="60"/>
@@ -1259,7 +1259,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 							</CheckButton>
 						</Frames>
 					</Frame>
-					
+
 					<Frame name="PoisonerOptions_OverwritePresetFrame">
 						<Size>
 							<AbsDimension x="300" y="50"/>
@@ -1331,13 +1331,13 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 										PoisonerOptions_SaveSettings();
 									</PostClick>
 								</Scripts>
-							</CheckButton>							
+							</CheckButton>
 						</Frames>
 					</Frame>
-					
+
 				</Frames>
 			</Frame>
-			
+
 		<!-- Timer Menu -->
 			<Frame name="PoisonerOptions_SettingsFrame3">
 				<Size>
@@ -1839,11 +1839,11 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 							</Frame>
 						</Frames>
 					</Frame>
-					
-				
+
+
 				</Frames>
 			</Frame>
-			
+
 		<!-- Poison Buy Menu -->
 			<Frame name="PoisonerOptions_SettingsFrame4">
 				<Size>
@@ -2074,7 +2074,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								<NormalTexture file="Interface\Icons\Ability_PoisonSting">
 									-- <TexCoords left="0" right="1" top="0" bottom="1"/>
 										<Size>
-											<AbsDimension x="32" y="32"/> 
+											<AbsDimension x="32" y="32"/>
 										</Size>
 								</NormalTexture>
 								<HighlightTexture name="$parentHighlightTexture" alphaMode="add" file="Interface\Buttons\ButtonHilight-Square">
@@ -2203,7 +2203,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								<NormalTexture file="Interface\Icons\Ability_Rogue_DualWeild">
 									-- <TexCoords left="0" right="1" top="0" bottom="1"/>
 										<Size>
-											<AbsDimension x="32" y="32"/> 
+											<AbsDimension x="32" y="32"/>
 										</Size>
 								</NormalTexture>
 								<HighlightTexture name="$parentHighlightTexture" alphaMode="add" file="Interface\Buttons\ButtonHilight-Square">
@@ -2332,7 +2332,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								<NormalTexture file="Interface\Icons\Ability_Poisons">
 									-- <TexCoords left="0" right="1" top="0" bottom="1"/>
 										<Size>
-											<AbsDimension x="32" y="32"/> 
+											<AbsDimension x="32" y="32"/>
 										</Size>
 								</NormalTexture>
 								<HighlightTexture name="$parentHighlightTexture" alphaMode="add" file="Interface\Buttons\ButtonHilight-Square">
@@ -2461,7 +2461,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								<NormalTexture file="Interface\Icons\Spell_Nature_NullifyDisease">
 									-- <TexCoords left="0" right="1" top="0" bottom="1"/>
 										<Size>
-											<AbsDimension x="32" y="32"/> 
+											<AbsDimension x="32" y="32"/>
 										</Size>
 								</NormalTexture>
 								<HighlightTexture name="$parentHighlightTexture" alphaMode="add" file="Interface\Buttons\ButtonHilight-Square">
@@ -2590,7 +2590,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								<NormalTexture file="Interface\Icons\INV_Misc_Herb_16">
 									-- <TexCoords left="0" right="1" top="0" bottom="1"/>
 										<Size>
-											<AbsDimension x="32" y="32"/> 
+											<AbsDimension x="32" y="32"/>
 										</Size>
 								</NormalTexture>
 								<HighlightTexture name="$parentHighlightTexture" alphaMode="add" file="Interface\Buttons\ButtonHilight-Square">
@@ -2647,10 +2647,10 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 							</Slider>
 						</Frames>
 					</Frame>
-					
+
 				</Frames>
 			</Frame>
-		
+
 		<!-- Preset Frame -->
 			<Frame name="PoisonerOptions_SettingsFrame5">
 				<Size>
@@ -2835,10 +2835,10 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								<Frames>
 								</Frames>
 							</Frame>
-							
+
 						</Frames>
 					</Frame>
-					
+
 					<Frame name="PoisonerOptions_DropdownFrame_SHIFT">
 						<Size>
 							<AbsDimension x="300" y="80"/>
@@ -2988,10 +2988,10 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								<Frames>
 								</Frames>
 							</Frame>
-							
+
 						</Frames>
 					</Frame>
-					
+
 					<Frame name="PoisonerOptions_DropdownFrame_CTRL">
 						<Size>
 							<AbsDimension x="300" y="80"/>
@@ -3141,10 +3141,10 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								<Frames>
 								</Frames>
 							</Frame>
-							
+
 						</Frames>
 					</Frame>
-					
+
 					<Frame name="PoisonerOptions_DropdownFrame_ALT">
 						<Size>
 							<AbsDimension x="300" y="80"/>
@@ -3294,10 +3294,10 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 								<Frames>
 								</Frames>
 							</Frame>
-							
+
 						</Frames>
 					</Frame>
-					
+
 					<CheckButton name="PoisonerOptions_ChkBox_QuickButton_Lock" inherits="InterfaceOptionsCheckButtonTemplate"  justifyH="LEFT">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="PoisonerOptions_DropdownFrame_ALT" relativePoint="BOTTOMLEFT">
@@ -3315,7 +3315,7 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 							</PostClick>
 						</Scripts>
 					</CheckButton>
-					
+
 					<Frame name="PoisonerOptions_QuickButtonSlider">
 						<Size>
 							<AbsDimension x="300" y="90"/>
@@ -3440,11 +3440,11 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 							</Slider>
 						</Frames>
 					</Frame>
-					
+
 				</Frames>
 			</Frame>
-		
-			
+
+
 		</Frames>
 		<Scripts>
 			<OnLoad>
@@ -3467,5 +3467,5 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 				PoisonerOptions_SettingsFrame:SetPoint("CENTER");
 			</OnShow>
 		</Scripts>
-	</Frame> 
+	</Frame>
 </Ui>

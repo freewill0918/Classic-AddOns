@@ -1,6 +1,6 @@
 <Bindings>
-	<Binding name="CLICK Poisoner_FreeButton:LeftButton" header="Poisoner" />
-	<Binding name="PoisonerToggleConfig" description="Toggle config">
+	<Binding name="CLICK Poisoner_FreeButton:LeftButton" header="Poisoner" category="Poisoner " />
+	<Binding name="PoisonerToggleConfig" description="Toggle config" category="Poisoner " >
 		PoisonerOptions_ToggleSettings()
 	</Binding>
 </Bindings>

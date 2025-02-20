@@ -1,10 +1,10 @@
-## Interface: 11504
+## Interface: 11505
 ## Title: Poisoner
 ## Notes: Poison application helper for rogues
 ## Author: Original by Karrion@Terenas, Poisoner3 by Silentdave, humfras (06/2010), Poisoner4 by humfras
 ## eMail: N/A
 ## URL: N/A
-## Version: 1.15.4.1-vanilla
+## Version: 1.15.5.3-vanilla
 ## Dependencies:
 ## SavedVariablesPerCharacter: POISONER_CONFIG
 
@@ -17,7 +17,6 @@ libs\LibUIDropDownMenu\LibUIDropDownMenu.lua
 
 Poisoner_Static.lua
 
-Bindings.xml
 locale\locale.xml
 
 modules\Poisoner_Sound.xml

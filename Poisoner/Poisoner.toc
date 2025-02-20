@@ -4,7 +4,7 @@
 ## Author: Original by Karrion@Terenas, Poisoner3 by Silentdave, humfras (06/2010), Poisoner4 by humfras
 ## eMail: N/A
 ## URL: N/A
-## Version: 4.4.1.1-cata
+## Version: 4.4.1.4-cata
 ## Dependencies:
 ## SavedVariablesPerCharacter: POISONER_CONFIG
 
@@ -17,7 +17,6 @@ libs\LibUIDropDownMenu\LibUIDropDownMenu.lua
 
 Poisoner_Static.lua
 
-Bindings.xml
 locale\locale.xml
 
 modules\Poisoner_Sound.xml

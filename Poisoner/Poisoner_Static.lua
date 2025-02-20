@@ -109,6 +109,7 @@ else
 		},
 		["OP"] = {
 			226374,	--Okkultes Gift I
+			234444,	--Okkultes Gift II
 		},
 		["NP"] = {
 			217346,	--Betäubendes Gift
@@ -220,6 +221,7 @@ else
 		[13227] = "WP4",	--Wundgift IV
 		
 		[458821] = "OP1",	--Okkultes Gift I
+		[1214171] = "OP2",	--Okkultes Gift II
 		[439464] = "NP1",	--Betäubendes Gift
 		[439465] = "AP1",	--Atrophisches Gift
 		[439462] = "SP1", 	--Zähes Gift

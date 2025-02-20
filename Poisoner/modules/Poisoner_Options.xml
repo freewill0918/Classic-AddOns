@@ -45,24 +45,13 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 	
 
 <!-- SettingsFrame -->
-	<Frame name="PoisonerOptions_SettingsFrame" frameStrata="DIALOG" enableMouse="true" movable="true" hidden="true" parent="UIParent">
+	<Frame name="PoisonerOptions_SettingsFrame" frameStrata="DIALOG" enableMouse="true" movable="true" hidden="true" parent="UIParent" inherits="BackdropTemplate">
 		<Size>
 			<AbsDimension x="450" y="570"/>
 		</Size>
 		<Anchors>
 			<Anchor point="CENTER"/>
 		</Anchors>
-		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
-			<BackgroundInsets>
-				<AbsInset left="11" right="12" top="12" bottom="11" />
-			</BackgroundInsets>
-			<TileSize>
-				<AbsValue val="32" />
-			</TileSize>
-			<EdgeSize>
-				<AbsValue val="32" />
-			</EdgeSize>
-		</Backdrop>
 		<Layers>
 			<Layer>
 				<Texture name="$parentTitleBorder" file="Interface\DialogFrame\UI-DialogBox-Header">
@@ -3435,6 +3424,15 @@ xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 				self:RegisterForDrag("LeftButton");
 				tinsert(UISpecialFrames, self:GetName());
 				PoisonerOptions_OnLoad(self);
+				self:SetBackdrop({
+					bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+					edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+					tile = true,
+					tileEdge = true,
+					tileSize = 32,
+					edgeSize = 32,
+					insets = { left = 11, right = 12, top = 12, bottom = 11 },
+				})
 			</OnLoad>
 			<OnEvent>
 				PoisonerOptions_OnEvent(self, event, ...);

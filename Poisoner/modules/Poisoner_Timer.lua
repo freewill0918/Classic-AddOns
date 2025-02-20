@@ -90,6 +90,9 @@ function PoisonerTimer_OnUpdate(self, elapsed)
 		if IsMounted() then
 			PoisonerTimer_Mainhand:Hide()
 			PoisonerTimer_Offhand:Hide()
+			if isCata then
+				PoisonerTimer_Thrown:Hide()
+			end
 		elseif isResting
 		or not inWorld
 		or UnitInVehicle("player") 
