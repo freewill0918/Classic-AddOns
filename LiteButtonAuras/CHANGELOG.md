@@ -1,7 +1,6 @@
 # LiteButtonAuras
 
-## [11.0.7-1](https://github.com/xod-wow/LiteButtonAuras/tree/11.0.7-1) (2024-12-18)
-[Full Changelog](https://github.com/xod-wow/LiteButtonAuras/compare/11.0.5-6...11.0.7-1) [Previous Releases](https://github.com/xod-wow/LiteButtonAuras/releases)
+## [11.1.0-2](https://github.com/xod-wow/LiteButtonAuras/tree/11.1.0-2) (2025-02-26)
+[Full Changelog](https://github.com/xod-wow/LiteButtonAuras/compare/11.1.0-1...11.1.0-2) [Previous Releases](https://github.com/xod-wow/LiteButtonAuras/releases)
 
-- Updated ruRU translations  
-- Update ToC for 11.0.7  
+- Try to fix error with ElvUI init order #38  
