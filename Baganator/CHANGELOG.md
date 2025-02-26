@@ -1,7 +1,7 @@
 # Baganator
 
-## [648](https://github.com/Baganator/Baganator/tree/648) (2025-02-21)
-[Full Changelog](https://github.com/Baganator/Baganator/compare/647...648) 
+## [652](https://github.com/Baganator/Baganator/tree/652) (2025-02-25)
+[Full Changelog](https://github.com/Baganator/Baganator/compare/651...652) 
 
-- Fix guild view logs/text dialog position changing when "Lock windows" is enabled  
-- Categories: Fix bug causing blank slots to reset unexpectedly  
+- Update toc for 11.1.0  
+- Add scroll bar on currency panel to skins  

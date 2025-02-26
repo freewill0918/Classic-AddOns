@@ -5,44 +5,26 @@ local spec3 = LBIS:RegisterSpec(LBIS.L["Rogue"], LBIS.L["Subtlety"], "3")
 local spec4 = LBIS:RegisterSpec(LBIS.L["Rogue"], LBIS.L["Subtlety"], "4")
 
 LBIS:AddGem(spec0, "68778", "3", "True") --Agile Shadowspirit Diamond
-LBIS:AddGem(spec1, "52258", "4", "False") --Delicate Chimera's Eye
-LBIS:AddGem(spec0, "59489", "3", "False") --Precise Cogwheel
-LBIS:AddGem(spec0, "59493", "3", "False") --Rigid Cogwheel
+LBIS:AddGem(spec0, "68778", "3", "True") --Agile Shadowspirit Diamond
+LBIS:AddGem(spec0, "71879", "4", "False") --Delicate Queen's Garnet
+LBIS:AddGem(spec0, "71848", "4", "False") --Deft Lava Coral
+LBIS:AddGem(spec0, "59478", "3", "False") --Smooth Cogwheel
+LBIS:AddGem(spec0, "59479", "3", "False") --Quick Cogwheel
 LBIS:AddGem(spec0, "52220", "3", "False") --Glinting Demonseye
 LBIS:AddGem(spec0, "52212", "3", "False") --Delicate Inferno Ruby
-LBIS:AddGem(spec0, "52211", "3", "False") --Deft Ember Topaz
-LBIS:AddGem(spec1, "52204", "3", "False") --Adept Ember Topaz
 
-LBIS:AddEnchant(spec3, "86934", LBIS.L["Head"]) --Arcanum of the Ramkahen
-LBIS:AddEnchant(spec3, "86907", LBIS.L["Shoulder"]) --Greater Inscription of Shattered Crystal
-LBIS:AddEnchant(spec3, "86375", LBIS.L["Shoulder"]) --Swiftsteel Inscription
-LBIS:AddEnchant(spec3, "75178", LBIS.L["Back"]) --Swordguard Embroidery
-LBIS:AddEnchant(spec3, "60663", LBIS.L["Back"]) --Enchant Cloak - Major Agility
-LBIS:AddEnchant(spec3, "55002", LBIS.L["Back"]) --Flexweave Underlay
-LBIS:AddEnchant(spec3, "74250", LBIS.L["Chest"]) --Enchant Chest - Peerless Stats
-LBIS:AddEnchant(spec3, "74191", LBIS.L["Chest"]) --Enchant Chest - Mighty Stats
-LBIS:AddEnchant(spec3, "60692", LBIS.L["Chest"]) --Enchant Chest - Powerful Stats
-LBIS:AddEnchant(spec3, "96264", LBIS.L["Wrist"]) --Enchant Bracer - Agility
-LBIS:AddEnchant(spec3, "85008", LBIS.L["Wrist"]) --Draconic Embossment - Agility
-LBIS:AddEnchant(spec3, "74256", LBIS.L["Wrist"]) --Enchant Bracer - Greater Speed
-LBIS:AddEnchant(spec3, "74239", LBIS.L["Wrist"]) --Enchant Bracer - Greater Expertise
-LBIS:AddEnchant(spec3, "74232", LBIS.L["Wrist"]) --Enchant Bracer - Precision
-LBIS:AddEnchant(spec3, "82175", LBIS.L["Hands"]) --Synapse Springs
-LBIS:AddEnchant(spec3, "74255", LBIS.L["Hands"]) --Enchant Gloves - Greater Mastery
-LBIS:AddEnchant(spec3, "74132", LBIS.L["Hands"]) --Enchant Gloves - Mastery
-LBIS:AddEnchant(spec3, "44529", LBIS.L["Hands"]) --Enchant Gloves - Major Agility
-LBIS:AddEnchant(spec3, "76168", LBIS.L["Waist"]) --Ebonsteel Belt Buckle
-LBIS:AddEnchant(spec3, "55016", LBIS.L["Waist"]) --Nitro Boosts
-LBIS:AddEnchant(spec3, "78171", LBIS.L["Legs"]) --Dragonscale Leg Armor
-LBIS:AddEnchant(spec3, "78169", LBIS.L["Legs"]) --Scorched Leg Armor
-LBIS:AddEnchant(spec3, "74252", LBIS.L["Feet"]) --Enchant Boots - Assassin's Step
-LBIS:AddEnchant(spec3, "74213", LBIS.L["Feet"]) --Enchant Boots - Major Agility
-LBIS:AddEnchant(spec3, "74216", LBIS.L["Ring"]) --Enchant Ring - Agility
-LBIS:AddEnchant(spec3, "74246", LBIS.L["Main Hand"]) --Enchant Weapon - Landslide
-LBIS:AddEnchant(spec3, "74223", LBIS.L["Main Hand~Off Hand"]) --Enchant Weapon - Hurricane
-LBIS:AddEnchant(spec3, "59621", LBIS.L["Main Hand"]) --Enchant Weapon - Berserking
-LBIS:AddEnchant(spec3, "8679", LBIS.L["Main Hand"]) --Instant Poison
-LBIS:AddEnchant(spec3, "2823", LBIS.L["Off Hand"]) --Deadly Poison
+LBIS:AddEnchant(spec4, "86934", LBIS.L["Head"]) --
+LBIS:AddEnchant(spec4, "86907", LBIS.L["Shoulder"]) --
+LBIS:AddEnchant(spec4, "60663", LBIS.L["Back"]) --
+LBIS:AddEnchant(spec4, "74250", LBIS.L["Chest"]) --
+LBIS:AddEnchant(spec4, "96264", LBIS.L["Wrist"]) --
+LBIS:AddEnchant(spec4, "74220", LBIS.L["Hands"]) --
+LBIS:AddEnchant(spec4, "44529", LBIS.L["Hands"]) --
+LBIS:AddEnchant(spec4, "55016", LBIS.L["Waist"]) --
+LBIS:AddEnchant(spec4, "78171", LBIS.L["Legs"]) --
+LBIS:AddEnchant(spec4, "74252", LBIS.L["Feet"]) --
+LBIS:AddEnchant(spec4, "74246", LBIS.L["Main Hand"]) --
+LBIS:AddEnchant(spec4, "74223", LBIS.L["Off Hand"]) --
 
 LBIS:AddItem(spec0, "59455", LBIS.L["Head"], "BIS") --Agile Bio-Optic Killshades
 LBIS:AddItem(spec0, "60299", LBIS.L["Head"], "Alt") --Wind Dancer's Helmet
@@ -96,14 +78,16 @@ LBIS:AddItem(spec0, "58181", LBIS.L["Trinket"], "BIS") --Fluid Death
 LBIS:AddItem(spec0, "56328", LBIS.L["Trinket"], "Alt") --Key to the Endless Chamber
 LBIS:AddItem(spec0, "56427", LBIS.L["Trinket"], "Alt") --Left Eye of Rajh
 LBIS:AddItem(spec0, "56394", LBIS.L["Trinket"], "Alt") --Tia's Grace
-LBIS:AddItem(spec0, "59122", LBIS.L["Main Hand"], "BIS") --Organic Lifeform Inverter
+LBIS:AddItem(spec0, "70155", LBIS.L["Main Hand"], "BIS") --Brainsplinter
 LBIS:AddItem(spec0, "69620", LBIS.L["Main Hand~Off Hand"], "BIS") --Twinblade of the Hakkari
+LBIS:AddItem(spec0, "59122", LBIS.L["Main Hand"], "Alt") --Organic Lifeform Inverter
 LBIS:AddItem(spec0, "56302", LBIS.L["Main Hand"], "Alt") --Steelbender's Masterpiece
 LBIS:AddItem(spec0, "59494", LBIS.L["Off Hand"], "BIS") --Uhn'agh Fash, the Darkest Betrayal
 LBIS:AddItem(spec0, "68601", LBIS.L["Off Hand"], "Alt") --Scaleslicer
 LBIS:AddItem(spec0, "65163", LBIS.L["Off Hand"], "Alt") --Buzzer Blade
 LBIS:AddItem(spec0, "71152", LBIS.L["Ranged/Relic"], "BIS") --Morningstar Shard
 LBIS:AddItem(spec0, "71366", LBIS.L["Ranged/Relic"], "BIS") --Lava Bolt Crossbow
+LBIS:AddItem(spec0, "68608", LBIS.L["Ranged/Relic"], "Alt") --Dragonwreck Throwing Axe
 LBIS:AddItem(spec0, "59367", LBIS.L["Ranged/Relic"], "Alt") --Kickback 5000
 LBIS:AddItem(spec0, "68162", LBIS.L["Ranged/Relic"], "Alt") --Spinerender
 LBIS:AddItem(spec0, "69597", LBIS.L["Ranged/Relic"], "Alt") --Zulian Throwing Axe
@@ -463,3 +447,117 @@ LBIS:AddItem(spec3, "71366", LBIS.L["Ranged/Relic"], "Alt") --Lava Bolt Crossbow
 LBIS:AddItem(spec3, "70991", LBIS.L["Ranged/Relic"], "Alt") --Arbalest of Erupting Fury
 LBIS:AddItem(spec3, "65095", LBIS.L["Ranged/Relic"], "Alt") --Dragonheart Piercer
 LBIS:AddItem(spec3, "65058", LBIS.L["Ranged/Relic"], "Alt") --Themios the Darkbringer
+
+LBIS:AddItem(spec4, "78699", LBIS.L["Head"], "BIS") --Blackfang Battleweave Helmet
+LBIS:AddItem(spec4, "77025", LBIS.L["Head"], "Alt") --Blackfang Battleweave Helmet
+LBIS:AddItem(spec4, "77148", LBIS.L["Head"], "Alt") --Nocturnal Gaze
+LBIS:AddItem(spec4, "71416", LBIS.L["Head"], "Alt") --Hood of Rampant Disdain
+LBIS:AddItem(spec4, "71539", LBIS.L["Head"], "Alt") --Dark Phoenix Helmet
+LBIS:AddItem(spec4, "78794", LBIS.L["Head"], "Alt") --Blackfang Battleweave Helmet
+LBIS:AddItem(spec4, "78738", LBIS.L["Shoulder"], "BIS") --Blackfang Battleweave Spaulders
+LBIS:AddItem(spec4, "78368", LBIS.L["Shoulder"], "BIS") --Underdweller's Spaulders
+LBIS:AddItem(spec4, "71541", LBIS.L["Shoulder"], "BIS") --Dark Phoenix Spaulders
+LBIS:AddItem(spec4, "77027", LBIS.L["Shoulder"], "Alt") --Blackfang Battleweave Spaulders
+LBIS:AddItem(spec4, "77271", LBIS.L["Shoulder"], "Alt") --Underdweller's Spaulders
+LBIS:AddItem(spec4, "71456", LBIS.L["Shoulder"], "Alt") --Shoulderpads of the Forgotten Gate
+LBIS:AddItem(spec4, "78833", LBIS.L["Shoulder"], "Alt") --Blackfang Battleweave Spaulders
+LBIS:AddItem(spec4, "78375", LBIS.L["Shoulder"], "Alt") --Underdweller's Spaulders
+LBIS:AddItem(spec4, "71415", LBIS.L["Back"], "BIS") --Dreadfire Drape
+LBIS:AddItem(spec4, "77095", LBIS.L["Back"], "Alt") --Batwing Cloak
+LBIS:AddItem(spec4, "70992", LBIS.L["Back"], "Alt") --Dreadfire Drape
+LBIS:AddItem(spec4, "78664", LBIS.L["Chest"], "BIS") --Blackfang Battleweave Tunic
+LBIS:AddItem(spec4, "77023", LBIS.L["Chest"], "Alt") --Blackfang Battleweave Tunic
+LBIS:AddItem(spec4, "77126", LBIS.L["Chest"], "Alt") --Shadowbinder Chestguard
+LBIS:AddItem(spec4, "71455", LBIS.L["Chest"], "Alt") --Breastplate of the Incendiary Soul
+LBIS:AddItem(spec4, "71537", LBIS.L["Chest"], "Alt") --Dark Phoenix Tunic
+LBIS:AddItem(spec4, "78759", LBIS.L["Chest"], "Alt") --Blackfang Battleweave Tunic
+LBIS:AddItem(spec4, "78446", LBIS.L["Wrist"], "BIS") --Shadow Wing Armbands
+LBIS:AddItem(spec4, "71994", LBIS.L["Wrist"], "Alt") --Bladeshadow Wristguards
+LBIS:AddItem(spec4, "77240", LBIS.L["Wrist"], "Alt") --Shadow Wing Armbands
+LBIS:AddItem(spec4, "77322", LBIS.L["Wrist"], "Alt") --Bracers of Manifold Pockets
+LBIS:AddItem(spec4, "71428", LBIS.L["Wrist"], "Alt") --Flickering Wristbands
+LBIS:AddItem(spec4, "78454", LBIS.L["Wrist"], "Alt") --Shadow Wing Armbands
+LBIS:AddItem(spec4, "78679", LBIS.L["Hands"], "BIS") --Blackfang Battleweave Gloves
+LBIS:AddItem(spec4, "77161", LBIS.L["Hands"], "Alt") --Lightfinger Handwraps
+LBIS:AddItem(spec4, "77024", LBIS.L["Hands"], "Alt") --Blackfang Battleweave Gloves
+LBIS:AddItem(spec4, "71538", LBIS.L["Hands"], "Alt") --Dark Phoenix Gloves
+LBIS:AddItem(spec4, "71440", LBIS.L["Hands"], "Alt") --Gloves of Dissolving Smoke
+LBIS:AddItem(spec4, "78774", LBIS.L["Hands"], "Alt") --Blackfang Battleweave Gloves
+LBIS:AddItem(spec4, "78388", LBIS.L["Waist"], "BIS") --Belt of Flayed Skin
+LBIS:AddItem(spec4, "77260", LBIS.L["Waist"], "Alt") --Belt of Flayed Skin
+LBIS:AddItem(spec4, "78882", LBIS.L["Waist"], "Alt") --Nightblind Cinch
+LBIS:AddItem(spec4, "77180", LBIS.L["Waist"], "Alt") --Belt of Hidden Keys
+LBIS:AddItem(spec4, "78395", LBIS.L["Waist"], "Alt") --Belt of Flayed Skin
+LBIS:AddItem(spec4, "71641", LBIS.L["Waist"], "Alt") --Riplimb's Lost Collar
+LBIS:AddItem(spec4, "78708", LBIS.L["Legs"], "BIS") --Blackfang Battleweave Legguards
+LBIS:AddItem(spec4, "77026", LBIS.L["Legs"], "Alt") --Blackfang Battleweave Legguards
+LBIS:AddItem(spec4, "71985", LBIS.L["Legs"], "Alt") --Bladeshadow Leggings
+LBIS:AddItem(spec4, "71540", LBIS.L["Legs"], "Alt") --Dark Phoenix Legguards
+LBIS:AddItem(spec4, "71402", LBIS.L["Legs"], "Alt") --Cinderweb Leggings
+LBIS:AddItem(spec4, "78803", LBIS.L["Legs"], "Alt") --Blackfang Battleweave Legguards
+LBIS:AddItem(spec4, "78462", LBIS.L["Feet"], "BIS") --Molten Blood Footpads
+LBIS:AddItem(spec4, "78402", LBIS.L["Feet"], "Alt") --Interrogator's Bloody Footpads
+LBIS:AddItem(spec4, "77238", LBIS.L["Feet"], "Alt") --Molten Blood Footpads
+LBIS:AddItem(spec4, "77254", LBIS.L["Feet"], "Alt") --Interrogator's Bloody Footpads
+LBIS:AddItem(spec4, "77173", LBIS.L["Feet"], "Alt") --Rooftop Griptoes
+LBIS:AddItem(spec4, "78467", LBIS.L["Feet"], "Alt") --Molten Blood Footpads
+LBIS:AddItem(spec4, "78408", LBIS.L["Feet"], "Alt") --Interrogator's Bloody Footpads
+LBIS:AddItem(spec4, "71467", LBIS.L["Feet"], "Alt") --Sandals of Leaping Coals
+LBIS:AddItem(spec4, "77091", LBIS.L["Neck"], "BIS") --Cameo of Terrible Memories
+LBIS:AddItem(spec4, "71610", LBIS.L["Neck"], "Alt") --Choker of the Vanquished Lord
+LBIS:AddItem(spec4, "71354", LBIS.L["Neck"], "Alt") --Choker of the Vanquished Lord
+LBIS:AddItem(spec4, "78413", LBIS.L["Ring"], "BIS") --Signet of Grasping Mouths
+LBIS:AddItem(spec4, "78489", LBIS.L["Ring"], "BIS") --Seal of Primordial Shadow
+LBIS:AddItem(spec4, "78011", LBIS.L["Ring"], "Alt") --Signet of Grasping Mouths
+LBIS:AddItem(spec4, "77231", LBIS.L["Ring"], "Alt") --Seal of Primordial Shadow
+LBIS:AddItem(spec4, "77111", LBIS.L["Ring"], "Alt") --Emergency Descent Loop
+LBIS:AddItem(spec4, "71216", LBIS.L["Ring"], "Alt") --Viridian Signet of the Avengers
+LBIS:AddItem(spec4, "78421", LBIS.L["Ring"], "Alt") --Signet of Grasping Mouths
+LBIS:AddItem(spec4, "71401", LBIS.L["Ring"], "Alt") --Widow's Kiss
+LBIS:AddItem(spec4, "78494", LBIS.L["Ring"], "Alt") --Seal of Primordial Shadow
+LBIS:AddItem(spec4, "77994", LBIS.L["Trinket"], "BIS") --Wrath of Unchaining
+LBIS:AddItem(spec4, "77999", LBIS.L["Trinket"], "BIS") --Vial of Shadows
+LBIS:AddItem(spec4, "77197", LBIS.L["Trinket"], "Alt") --Wrath of Unchaining
+LBIS:AddItem(spec4, "77207", LBIS.L["Trinket"], "Alt") --Vial of Shadows
+LBIS:AddItem(spec4, "77113", LBIS.L["Trinket"], "Alt") --Kiroptyric Sigil
+LBIS:AddItem(spec4, "77993", LBIS.L["Trinket"], "Alt") --Starcatcher Compass
+LBIS:AddItem(spec4, "77974", LBIS.L["Trinket"], "Alt") --Wrath of Unchaining
+LBIS:AddItem(spec4, "77979", LBIS.L["Trinket"], "Alt") --Vial of Shadows
+LBIS:AddItem(spec4, "77202", LBIS.L["Trinket"], "Alt") --Starcatcher Compass
+LBIS:AddItem(spec4, "69150", LBIS.L["Trinket"], "Alt") --Matrix Restabilizer
+LBIS:AddItem(spec4, "69112", LBIS.L["Trinket"], "Alt") --The Hungerer
+LBIS:AddItem(spec4, "77973", LBIS.L["Trinket"], "Alt") --Starcatcher Compass
+LBIS:AddItem(spec4, "77949", LBIS.L["Main Hand"], "BIS") --Golad, Twilight of Aspects
+LBIS:AddItem(spec4, "78414", LBIS.L["Main Hand~Off Hand"], "BIS") --Electrowing Dagger
+LBIS:AddItem(spec4, "78474", LBIS.L["Main Hand"], "Alt") --Blade of the Unmaker
+LBIS:AddItem(spec4, "77947", LBIS.L["Main Hand"], "Alt") --The Sleeper
+LBIS:AddItem(spec4, "73422", LBIS.L["Main Hand"], "Alt") --Cataclysmic Gladiator's Shanker
+LBIS:AddItem(spec4, "77189", LBIS.L["Main Hand"], "Alt") --Blade of the Unmaker
+LBIS:AddItem(spec4, "77945", LBIS.L["Main Hand"], "Alt") --Fear
+LBIS:AddItem(spec4, "73455", LBIS.L["Main Hand"], "Alt") --Cataclysmic Gladiator's Shanker
+LBIS:AddItem(spec4, "71441", LBIS.L["Main Hand"], "Alt") --Feeding Frenzy
+LBIS:AddItem(spec4, "71778", LBIS.L["Main Hand"], "Alt") --Avool's Incendiary Shanker
+LBIS:AddItem(spec4, "78483", LBIS.L["Main Hand"], "Alt") --Blade of the Unmaker
+LBIS:AddItem(spec4, "77950", LBIS.L["Off Hand"], "BIS") --Tiriosh, Nightmare of Ages
+LBIS:AddItem(spec4, "78472", LBIS.L["Off Hand"], "Alt") --No'Kaled, the Elements of Death
+LBIS:AddItem(spec4, "77948", LBIS.L["Off Hand"], "Alt") --The Dreamer
+LBIS:AddItem(spec4, "77946", LBIS.L["Off Hand"], "Alt") --Vengeance
+LBIS:AddItem(spec4, "77188", LBIS.L["Off Hand"], "Alt") --No'Kaled, the Elements of Death
+LBIS:AddItem(spec4, "77220", LBIS.L["Off Hand"], "Alt") --Electrowing Dagger
+LBIS:AddItem(spec4, "73428", LBIS.L["Off Hand"], "Alt") --Cataclysmic Gladiator's Shiv
+LBIS:AddItem(spec4, "71427", LBIS.L["Off Hand"], "Alt") --Alysra's Razor
+LBIS:AddItem(spec4, "78481", LBIS.L["Off Hand"], "Alt") --No'Kaled, the Elements of Death
+LBIS:AddItem(spec4, "78422", LBIS.L["Off Hand"], "Alt") --Electrowing Dagger
+LBIS:AddItem(spec4, "71786", LBIS.L["Off Hand"], "Alt") --Entrail Disgorger
+LBIS:AddItem(spec4, "73461", LBIS.L["Off Hand"], "Alt") --Cataclysmic Gladiator's Shiv
+LBIS:AddItem(spec4, "78369", LBIS.L["Ranged/Relic"], "BIS") --Razor Saronite Chip
+LBIS:AddItem(spec4, "78387", LBIS.L["Ranged/Relic"], "BIS") --Horrifying Horn Arbalest
+LBIS:AddItem(spec4, "71611", LBIS.L["Ranged/Relic"], "Alt") --Arathar, the Eye of Flame
+LBIS:AddItem(spec4, "77213", LBIS.L["Ranged/Relic"], "Alt") --Razor Saronite Chip
+LBIS:AddItem(spec4, "77086", LBIS.L["Ranged/Relic"], "Alt") --Windslicer Boomerang
+LBIS:AddItem(spec4, "77192", LBIS.L["Ranged/Relic"], "Alt") --Ruinblaster Shotgun
+LBIS:AddItem(spec4, "77215", LBIS.L["Ranged/Relic"], "Alt") --Horrifying Horn Arbalest
+LBIS:AddItem(spec4, "71568", LBIS.L["Ranged/Relic"], "Alt") --Morningstar Shard
+LBIS:AddItem(spec4, "78374", LBIS.L["Ranged/Relic"], "Alt") --Razor Saronite Chip
+LBIS:AddItem(spec4, "71353", LBIS.L["Ranged/Relic"], "Alt") --Arathar, the Eye of Flame
+LBIS:AddItem(spec4, "78471", LBIS.L["Ranged/Relic"], "Alt") --Vishanka, Jaws of the Earth

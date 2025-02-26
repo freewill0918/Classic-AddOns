@@ -5,84 +5,61 @@ local spec3 = LBIS:RegisterSpec(LBIS.L["Druid"], LBIS.L["Balance"], "3")
 local spec4 = LBIS:RegisterSpec(LBIS.L["Druid"], LBIS.L["Balance"], "4")
 
 LBIS:AddGem(spec0, "68780", "3", "True") --Burning Shadowspirit Diamond
-LBIS:AddGem(spec0, "59479", "3", "False") --Quick Cogwheel
-LBIS:AddGem(spec0, "59496", "3", "False") --Sparkling Cogwheel
-LBIS:AddGem(spec0, "52208", "3", "False") --Reckless Ember Topaz
-LBIS:AddGem(spec0, "52207", "3", "False") --Brilliant Inferno Ruby
-LBIS:AddGem(spec0, "52236", "3", "False") --Purified Demonseye
+LBIS:AddGem(spec0, "68780", "3", "True") --Burning Shadowspirit Diamond
+LBIS:AddGem(spec0, "71881", "4", "False") --Brilliant Queen's Garnet
+LBIS:AddGem(spec0, "71850", "4", "False") --Reckless Lava Coral
+LBIS:AddGem(spec0, "71881", "4", "False") --Brilliant Queen's Garnet
+LBIS:AddGem(spec0, "71850", "4", "False") --Reckless Lava Coral
+LBIS:AddGem(spec0, "71868", "4", "False") --Purified Shadow Spinel
 
-LBIS:AddEnchant(spec3, "86932", LBIS.L["Head"]) --Arcanum of Hyjal
-LBIS:AddEnchant(spec3, "86899", LBIS.L["Shoulder"]) --Greater Inscription of Charged Lodestone
-LBIS:AddEnchant(spec3, "86403", LBIS.L["Shoulder"]) --Felfire Inscription
-LBIS:AddEnchant(spec3, "75172", LBIS.L["Back"]) --Lightweave Embroidery
-LBIS:AddEnchant(spec3, "74240", LBIS.L["Back"]) --Enchant Cloak - Greater Intellect
-LBIS:AddEnchant(spec3, "74250", LBIS.L["Chest"]) --Enchant Chest - Peerless Stats
-LBIS:AddEnchant(spec3, "96262", LBIS.L["Wrist"]) --Enchant Bracer - Mighty Intellect
-LBIS:AddEnchant(spec3, "85010", LBIS.L["Wrist"]) --Draconic Embossment - Intellect
-LBIS:AddEnchant(spec3, "82175", LBIS.L["Hands"]) --Synapse Springs
-LBIS:AddEnchant(spec3, "74255", LBIS.L["Hands"]) --Enchant Gloves - Greater Mastery
-LBIS:AddEnchant(spec3, "74198", LBIS.L["Hands"]) --Enchant Gloves - Haste
-LBIS:AddEnchant(spec3, "75150", LBIS.L["Legs"]) --Powerful Ghostly Spellthread
-LBIS:AddEnchant(spec3, "74253", LBIS.L["Feet"]) --Enchant Boots - Lavawalker
-LBIS:AddEnchant(spec3, "74199", LBIS.L["Feet"]) --Enchant Boots - Haste
-LBIS:AddEnchant(spec3, "74217", LBIS.L["Ring"]) --Enchant Ring - Intellect
-LBIS:AddEnchant(spec3, "74242", LBIS.L["Main Hand"]) --Enchant Weapon - Power Torrent
-LBIS:AddEnchant(spec3, "74223", LBIS.L["Main Hand"]) --Enchant Weapon - Hurricane
-LBIS:AddEnchant(spec3, "74235", LBIS.L["Off Hand"]) --Enchant Off-Hand - Superior Intellect
+LBIS:AddEnchant(spec4, "86932", LBIS.L["Head"]) --
+LBIS:AddEnchant(spec4, "86899", LBIS.L["Shoulder"]) --
+LBIS:AddEnchant(spec4, "75172", LBIS.L["Back"]) --
+LBIS:AddEnchant(spec4, "74250", LBIS.L["Chest"]) --
+LBIS:AddEnchant(spec4, "96262", LBIS.L["Wrist"]) --
+LBIS:AddEnchant(spec4, "74198", LBIS.L["Hands"]) --
+LBIS:AddEnchant(spec4, "75150", LBIS.L["Legs"]) --
+LBIS:AddEnchant(spec4, "74253", LBIS.L["Feet"]) --
+LBIS:AddEnchant(spec4, "74242", LBIS.L["Main Hand"]) --
+LBIS:AddEnchant(spec4, "74235", LBIS.L["Off Hand"]) --
 
-LBIS:AddItem(spec0, "60282", LBIS.L["Head"], "BIS") --Stormrider's Cover
-LBIS:AddItem(spec0, "59453", LBIS.L["Head"], "Alt") --Camouflage Bio-Optic Killshades
-LBIS:AddItem(spec0, "60284", LBIS.L["Shoulder"], "BIS") --Stormrider's Shoulderwraps
-LBIS:AddItem(spec0, "69551", LBIS.L["Shoulder"], "Alt") --Feathers of Akil'zon
-LBIS:AddItem(spec0, "57866", LBIS.L["Shoulder"], "Alt") --Mantle of Soft Shadows
-LBIS:AddItem(spec0, "56361", LBIS.L["Shoulder"], "Alt") --Mantle of Bestilled Winds
-LBIS:AddItem(spec0, "60232", LBIS.L["Back"], "BIS") --Shroud of Endless Grief
-LBIS:AddItem(spec0, "71267", LBIS.L["Back"], "Alt") --Mantle of Desire
-LBIS:AddItem(spec0, "67131", LBIS.L["Back"], "Alt") --Ritssyn's Ruminous Drape
-LBIS:AddItem(spec0, "58194", LBIS.L["Back"], "Alt") --Heavenly Breeze
-LBIS:AddItem(spec0, "60281", LBIS.L["Chest"], "BIS") --Stormrider's Vestment
-LBIS:AddItem(spec0, "56561", LBIS.L["Chest"], "Alt") --Chestguard of Nature's Fury
-LBIS:AddItem(spec0, "65021", LBIS.L["Wrist"], "BIS") --Manacles of the Sleeping Beast
-LBIS:AddItem(spec0, "69556", LBIS.L["Wrist"], "BIS") --Armbands of the Bear Spirit
-LBIS:AddItem(spec0, "56297", LBIS.L["Wrist"], "Alt") --Armbands of Change
-LBIS:AddItem(spec0, "60285", LBIS.L["Hands"], "BIS") --Stormrider's Gloves
-LBIS:AddItem(spec0, "62381", LBIS.L["Hands"], "Alt") --Aessina-Blessed Gloves
-LBIS:AddItem(spec0, "65374", LBIS.L["Waist"], "BIS") --Gale Rouser Belt
-LBIS:AddItem(spec0, "70114", LBIS.L["Waist"], "Alt") --Fireplume Girdle
-LBIS:AddItem(spec0, "56536", LBIS.L["Waist"], "Alt") --Lightning Lash
-LBIS:AddItem(spec0, "62420", LBIS.L["Waist"], "Alt") --Withered Dream Belt
-LBIS:AddItem(spec0, "62431", LBIS.L["Waist"], "Alt") --Belt of the Untamed
-LBIS:AddItem(spec0, "56423", LBIS.L["Waist"], "Alt") --Underworld Cord
-LBIS:AddItem(spec0, "65384", LBIS.L["Legs"], "BIS") --Gale Rouser Leggings
-LBIS:AddItem(spec0, "60283", LBIS.L["Legs"], "BIS") --Stormrider's Leggings
-LBIS:AddItem(spec0, "60236", LBIS.L["Feet"], "BIS") --Nightmare Rider's Boots
-LBIS:AddItem(spec0, "58484", LBIS.L["Feet"], "Alt") --Fading Violet Sandals
-LBIS:AddItem(spec0, "69882", LBIS.L["Neck"], "BIS") --Planetary Amulet
-LBIS:AddItem(spec0, "70106", LBIS.L["Neck"], "Alt") --Nightweaver's Amulet
-LBIS:AddItem(spec0, "65373", LBIS.L["Ring"], "BIS") --Planetary Band
-LBIS:AddItem(spec0, "70124", LBIS.L["Ring"], "BIS") --Spirit Fragment Band
-LBIS:AddItem(spec0, "64904", LBIS.L["Ring"], "Alt") --Ring of the Boy Emperor
-LBIS:AddItem(spec0, "58189", LBIS.L["Ring"], "Alt") --Twined Band of Flowers
-LBIS:AddItem(spec0, "58188", LBIS.L["Ring"], "Alt") --Band of Secret Names
-LBIS:AddItem(spec0, "62047", LBIS.L["Trinket"], "BIS") --Darkmoon Card: Volcano
+LBIS:AddItem(spec0, "78791", LBIS.L["Head"], "BIS") --Deep Earth Cover
+LBIS:AddItem(spec0, "78839", LBIS.L["Shoulder"], "BIS") --Deep Earth Shoulderwraps
+LBIS:AddItem(spec0, "78835", LBIS.L["Shoulder"], "Alt") --Deep Earth Mantle
+LBIS:AddItem(spec0, "77098", LBIS.L["Back"], "BIS") --Nanoprecise Cape
+LBIS:AddItem(spec0, "60232", LBIS.L["Back"], "Alt") --Shroud of Endless Grief
+LBIS:AddItem(spec0, "78757", LBIS.L["Chest"], "BIS") --Deep Earth Vestment
+LBIS:AddItem(spec0, "71995", LBIS.L["Wrist"], "BIS") --Bracers of Flowing Serenity
+LBIS:AddItem(spec0, "78384", LBIS.L["Wrist"], "Alt") --Mycosynth Wristguards
+LBIS:AddItem(spec0, "78771", LBIS.L["Hands"], "BIS") --Deep Earth Gloves
+LBIS:AddItem(spec0, "77181", LBIS.L["Waist"], "BIS") --Belt of Universal Curing
+LBIS:AddItem(spec0, "78428", LBIS.L["Waist"], "Alt") --Girdle of the Grotesque
+LBIS:AddItem(spec0, "78714", LBIS.L["Legs"], "BIS") --Deep Earth Leggings
+LBIS:AddItem(spec0, "78809", LBIS.L["Legs"], "Alt") --Deep Earth Leggings
+LBIS:AddItem(spec0, "77172", LBIS.L["Feet"], "BIS") --Boots of Fungoid Growth
+LBIS:AddItem(spec0, "78442", LBIS.L["Feet"], "Alt") --Treads of Sordid Screams
+LBIS:AddItem(spec0, "77088", LBIS.L["Neck"], "BIS") --Opal of the Secret Order
+LBIS:AddItem(spec0, "78382", LBIS.L["Neck"], "Alt") --Petrified Fungal Heart
+LBIS:AddItem(spec0, "77108", LBIS.L["Ring"], "BIS") --Seal of the Grand Architect
+LBIS:AddItem(spec0, "78496", LBIS.L["Ring"], "BIS") --Signet of Suturing
+LBIS:AddItem(spec0, "78427", LBIS.L["Ring"], "Alt") --Ring of the Riven
+LBIS:AddItem(spec0, "78495", LBIS.L["Ring"], "Alt") --Infinite Loop
+LBIS:AddItem(spec0, "77975", LBIS.L["Trinket"], "BIS") --Will of Unbinding
+LBIS:AddItem(spec0, "69110", LBIS.L["Trinket"], "BIS") --Variable Pulse Lightning Capacitor
 LBIS:AddItem(spec0, "65105", LBIS.L["Trinket"], "BIS") --Theralion's Mirror
-LBIS:AddItem(spec0, "65053", LBIS.L["Trinket"], "BIS") --Bell of Enraging Resonance
 LBIS:AddItem(spec0, "70142", LBIS.L["Trinket"], "BIS") --Moonwell Chalice
-LBIS:AddItem(spec0, "58183", LBIS.L["Trinket"], "Alt") --Soul Casket
-LBIS:AddItem(spec0, "56320", LBIS.L["Trinket"], "Alt") --Witching Hourglass
-LBIS:AddItem(spec0, "56462", LBIS.L["Trinket"], "Alt") --Gale of Shadows
-LBIS:AddItem(spec0, "70157", LBIS.L["Main Hand"], "BIS") --Lightforged Elementium Hammer
-LBIS:AddItem(spec0, "70164", LBIS.L["Main Hand"], "BIS") --Masterwork Elementium Deathblade
-LBIS:AddItem(spec0, "59341", LBIS.L["Main Hand"], "Alt") --Incineratus
-LBIS:AddItem(spec0, "65133", LBIS.L["Off Hand"], "BIS") --Book of Binding Will
-LBIS:AddItem(spec0, "70112", LBIS.L["Off Hand"], "Alt") --Globe of Moonlight
-LBIS:AddItem(spec0, "67149", LBIS.L["Off Hand"], "Alt") --Heartbound Tome
-LBIS:AddItem(spec0, "57924", LBIS.L["Off Hand"], "Alt") --Apple-Bent Bough
-LBIS:AddItem(spec0, "64489", LBIS.L["Two Hand"], "Alt") --Staff of Sorcerer-Thane Thaurissan
-LBIS:AddItem(spec0, "64880", LBIS.L["Two Hand"], "Alt") --Staff of Ammunae
-LBIS:AddItem(spec0, "70111", LBIS.L["Ranged/Relic"], "BIS") --Relic of Elune's Light
-LBIS:AddItem(spec0, "64672", LBIS.L["Ranged/Relic"], "Alt") --Relic of Norgannon
-LBIS:AddItem(spec0, "64673", LBIS.L["Ranged/Relic"], "Alt") --Relic of Eonar
+LBIS:AddItem(spec0, "77971", LBIS.L["Trinket"], "Alt") --Insignia of the Corrupted Mind
+LBIS:AddItem(spec0, "78484", LBIS.L["Main Hand"], "BIS") --Rathrak, the Poisonous Mind
+LBIS:AddItem(spec0, "78383", LBIS.L["Main Hand"], "Alt") --Vagaries of Time
+LBIS:AddItem(spec0, "78410", LBIS.L["Main Hand"], "Alt") --Scalpel of Unrelenting Agony
+LBIS:AddItem(spec0, "78485", LBIS.L["Main Hand"], "Alt") --Maw of the Dragonlord
+LBIS:AddItem(spec0, "78426", LBIS.L["Main Hand"], "Alt") --Lightning Rod
+LBIS:AddItem(spec0, "78459", LBIS.L["Main Hand"], "Alt") --Visage of the Destroyer
+LBIS:AddItem(spec0, "78486", LBIS.L["Main Hand"], "Alt") --Ti'tahk, the Steps of Time
+LBIS:AddItem(spec0, "78441", LBIS.L["Off Hand"], "BIS") --Ledger of Revolting Rituals
+LBIS:AddItem(spec0, "72829", LBIS.L["Off Hand"], "Alt") --Orb of the First Satyrs
+LBIS:AddItem(spec0, "77082", LBIS.L["Ranged/Relic"], "BIS") --Mindbender Lens
+LBIS:AddItem(spec0, "71148", LBIS.L["Ranged/Relic"], "Alt") --Soulflame Vial
 
 LBIS:AddItem(spec1, "65200", LBIS.L["Head"], "BIS") --Stormrider's Cover
 LBIS:AddItem(spec1, "65066", LBIS.L["Head"], "Alt") --Helm of the Blind Seer
@@ -199,3 +176,109 @@ LBIS:AddItem(spec3, "71462", LBIS.L["Off Hand"], "Alt") --Molten Scream
 LBIS:AddItem(spec3, "65133", LBIS.L["Off Hand"], "Alt") --Book of Binding Will
 LBIS:AddItem(spec3, "71580", LBIS.L["Ranged/Relic"], "BIS") --Soulflame Vial
 LBIS:AddItem(spec3, "71577", LBIS.L["Ranged/Relic"], "Alt") --Singed Plume of Aviana
+
+LBIS:AddItem(spec4, "78696", LBIS.L["Head"], "BIS") --Deep Earth Cover
+LBIS:AddItem(spec4, "78690", LBIS.L["Head"], "Alt") --Deep Earth Helm
+LBIS:AddItem(spec4, "77019", LBIS.L["Head"], "Alt") --Deep Earth Cover
+LBIS:AddItem(spec4, "76750", LBIS.L["Head"], "Alt") --Deep Earth Helm
+LBIS:AddItem(spec4, "77149", LBIS.L["Head"], "Alt") --Helmet of Perpetual Rebirth
+LBIS:AddItem(spec4, "71497", LBIS.L["Head"], "Alt") --Obsidian Arborweave Cover
+LBIS:AddItem(spec4, "78791", LBIS.L["Head"], "Alt") --Deep Earth Cover
+LBIS:AddItem(spec4, "78785", LBIS.L["Head"], "Alt") --Deep Earth Helm
+LBIS:AddItem(spec4, "78740", LBIS.L["Shoulder"], "BIS") --Deep Earth Mantle
+LBIS:AddItem(spec4, "78744", LBIS.L["Shoulder"], "Alt") --Deep Earth Shoulderwraps
+LBIS:AddItem(spec4, "76753", LBIS.L["Shoulder"], "Alt") --Deep Earth Mantle
+LBIS:AddItem(spec4, "77022", LBIS.L["Shoulder"], "Alt") --Deep Earth Shoulderwraps
+LBIS:AddItem(spec4, "71450", LBIS.L["Shoulder"], "Alt") --Flickering Shoulderpads
+LBIS:AddItem(spec4, "78835", LBIS.L["Shoulder"], "Alt") --Deep Earth Mantle
+LBIS:AddItem(spec4, "78839", LBIS.L["Shoulder"], "Alt") --Deep Earth Shoulderwraps
+LBIS:AddItem(spec4, "77096", LBIS.L["Back"], "BIS") --Woundlicker Cover
+LBIS:AddItem(spec4, "71434", LBIS.L["Back"], "Alt") --Wings of Flame
+LBIS:AddItem(spec4, "60232", LBIS.L["Back"], "Alt") --Shroud of Endless Grief
+LBIS:AddItem(spec4, "78662", LBIS.L["Chest"], "BIS") --Deep Earth Vestment
+LBIS:AddItem(spec4, "78660", LBIS.L["Chest"], "Alt") --Deep Earth Robes
+LBIS:AddItem(spec4, "77021", LBIS.L["Chest"], "Alt") --Deep Earth Vestment
+LBIS:AddItem(spec4, "76752", LBIS.L["Chest"], "Alt") --Deep Earth Robes
+LBIS:AddItem(spec4, "77127", LBIS.L["Chest"], "Alt") --Decaying Herbalist's Robes
+LBIS:AddItem(spec4, "78757", LBIS.L["Chest"], "Alt") --Deep Earth Vestment
+LBIS:AddItem(spec4, "78755", LBIS.L["Chest"], "Alt") --Deep Earth Robes
+LBIS:AddItem(spec4, "78372", LBIS.L["Wrist"], "BIS") --Mycosynth Wristguards
+LBIS:AddItem(spec4, "71995", LBIS.L["Wrist"], "Alt") --Bracers of Flowing Serenity
+LBIS:AddItem(spec4, "77261", LBIS.L["Wrist"], "Alt") --Mycosynth Wristguards
+LBIS:AddItem(spec4, "77320", LBIS.L["Wrist"], "Alt") --Luminescent Bracers
+LBIS:AddItem(spec4, "71463", LBIS.L["Wrist"], "Alt") --Glowing Wing Bracers
+LBIS:AddItem(spec4, "76150", LBIS.L["Wrist"], "Alt") --Evergreen Wristbands
+LBIS:AddItem(spec4, "78384", LBIS.L["Wrist"], "Alt") --Mycosynth Wristguards
+LBIS:AddItem(spec4, "78676", LBIS.L["Hands"], "BIS") --Deep Earth Gloves
+LBIS:AddItem(spec4, "77018", LBIS.L["Hands"], "Alt") --Deep Earth Gloves
+LBIS:AddItem(spec4, "78680", LBIS.L["Hands"], "Alt") --Deep Earth Handwraps
+LBIS:AddItem(spec4, "77160", LBIS.L["Hands"], "Alt") --Fungus-Born Gloves
+LBIS:AddItem(spec4, "78771", LBIS.L["Hands"], "Alt") --Deep Earth Gloves
+LBIS:AddItem(spec4, "78420", LBIS.L["Waist"], "BIS") --Girdle of the Grotesque
+LBIS:AddItem(spec4, "77248", LBIS.L["Waist"], "BIS") --Girdle of the Grotesque
+LBIS:AddItem(spec4, "78884", LBIS.L["Waist"], "BIS") --Girdle of Fungal Dreams
+LBIS:AddItem(spec4, "78428", LBIS.L["Waist"], "BIS") --Girdle of the Grotesque
+LBIS:AddItem(spec4, "77181", LBIS.L["Waist"], "Alt") --Belt of Universal Curing
+LBIS:AddItem(spec4, "78714", LBIS.L["Legs"], "BIS") --Deep Earth Leggings
+LBIS:AddItem(spec4, "78710", LBIS.L["Legs"], "Alt") --Deep Earth Legwraps
+LBIS:AddItem(spec4, "77020", LBIS.L["Legs"], "Alt") --Deep Earth Leggings
+LBIS:AddItem(spec4, "71986", LBIS.L["Legs"], "Alt") --Leggings of Nature's Champion
+LBIS:AddItem(spec4, "76751", LBIS.L["Legs"], "Alt") --Deep Earth Legwraps
+LBIS:AddItem(spec4, "78809", LBIS.L["Legs"], "Alt") --Deep Earth Leggings
+LBIS:AddItem(spec4, "78434", LBIS.L["Feet"], "BIS") --Treads of Sordid Screams
+LBIS:AddItem(spec4, "77172", LBIS.L["Feet"], "Alt") --Boots of Fungoid Growth
+LBIS:AddItem(spec4, "77243", LBIS.L["Feet"], "Alt") --Treads of Sordid Screams
+LBIS:AddItem(spec4, "71436", LBIS.L["Feet"], "Alt") --Phoenix-Down Treads
+LBIS:AddItem(spec4, "78442", LBIS.L["Feet"], "Alt") --Treads of Sordid Screams
+LBIS:AddItem(spec4, "78364", LBIS.L["Neck"], "BIS") --Petrified Fungal Heart
+LBIS:AddItem(spec4, "71472", LBIS.L["Neck"], "Alt") --Flowform Choker
+LBIS:AddItem(spec4, "77262", LBIS.L["Neck"], "Alt") --Petrified Fungal Heart
+LBIS:AddItem(spec4, "77088", LBIS.L["Neck"], "Alt") --Opal of the Secret Order
+LBIS:AddItem(spec4, "78382", LBIS.L["Neck"], "Alt") --Petrified Fungal Heart
+LBIS:AddItem(spec4, "78491", LBIS.L["Ring"], "BIS") --Signet of Suturing
+LBIS:AddItem(spec4, "78419", LBIS.L["Ring"], "BIS") --Ring of the Riven
+LBIS:AddItem(spec4, "77229", LBIS.L["Ring"], "Alt") --Signet of Suturing
+LBIS:AddItem(spec4, "78012", LBIS.L["Ring"], "Alt") --Ring of the Riven
+LBIS:AddItem(spec4, "78490", LBIS.L["Ring"], "Alt") --Infinite Loop
+LBIS:AddItem(spec4, "77108", LBIS.L["Ring"], "Alt") --Seal of the Grand Architect
+LBIS:AddItem(spec4, "71217", LBIS.L["Ring"], "Alt") --Infernal Signet of the Avengers
+LBIS:AddItem(spec4, "78496", LBIS.L["Ring"], "Alt") --Signet of Suturing
+LBIS:AddItem(spec4, "78427", LBIS.L["Ring"], "Alt") --Ring of the Riven
+LBIS:AddItem(spec4, "77995", LBIS.L["Trinket"], "BIS") --Will of Unbinding
+LBIS:AddItem(spec4, "77991", LBIS.L["Trinket"], "BIS") --Insignia of the Corrupted Mind
+LBIS:AddItem(spec4, "77990", LBIS.L["Trinket"], "BIS") --Soulshifter Vortex
+LBIS:AddItem(spec4, "65105", LBIS.L["Trinket"], "BIS") --Theralion's Mirror
+LBIS:AddItem(spec4, "70142", LBIS.L["Trinket"], "BIS") --Moonwell Chalice
+LBIS:AddItem(spec4, "77198", LBIS.L["Trinket"], "Alt") --Will of Unbinding
+LBIS:AddItem(spec4, "77203", LBIS.L["Trinket"], "Alt") --Insignia of the Corrupted Mind
+LBIS:AddItem(spec4, "69110", LBIS.L["Trinket"], "Alt") --Variable Pulse Lightning Capacitor
+LBIS:AddItem(spec4, "78000", LBIS.L["Trinket"], "Alt") --Cunning of the Cruel
+LBIS:AddItem(spec4, "77975", LBIS.L["Trinket"], "Alt") --Will of Unbinding
+LBIS:AddItem(spec4, "77971", LBIS.L["Trinket"], "Alt") --Insignia of the Corrupted Mind
+LBIS:AddItem(spec4, "77206", LBIS.L["Trinket"], "Alt") --Soulshifter Vortex
+LBIS:AddItem(spec4, "77970", LBIS.L["Trinket"], "Alt") --Soulshifter Vortex
+LBIS:AddItem(spec4, "71086", LBIS.L["Main Hand"], "BIS") --Dragonwrath, Tarecgosa's Rest
+LBIS:AddItem(spec4, "78475", LBIS.L["Main Hand"], "BIS") --Rathrak, the Poisonous Mind
+LBIS:AddItem(spec4, "78363", LBIS.L["Main Hand"], "Alt") --Vagaries of Time
+LBIS:AddItem(spec4, "78404", LBIS.L["Main Hand"], "Alt") --Scalpel of Unrelenting Agony
+LBIS:AddItem(spec4, "78476", LBIS.L["Main Hand"], "Alt") --Maw of the Dragonlord
+LBIS:AddItem(spec4, "78418", LBIS.L["Main Hand"], "Alt") --Lightning Rod
+LBIS:AddItem(spec4, "78451", LBIS.L["Main Hand"], "Alt") --Visage of the Destroyer
+LBIS:AddItem(spec4, "78477", LBIS.L["Main Hand"], "Alt") --Ti'tahk, the Steps of Time
+LBIS:AddItem(spec4, "77195", LBIS.L["Main Hand"], "Alt") --Rathrak, the Poisonous Mind
+LBIS:AddItem(spec4, "77214", LBIS.L["Main Hand"], "Alt") --Vagaries of Time
+LBIS:AddItem(spec4, "77219", LBIS.L["Main Hand"], "Alt") --Scalpel of Unrelenting Agony
+LBIS:AddItem(spec4, "77196", LBIS.L["Main Hand"], "Alt") --Maw of the Dragonlord
+LBIS:AddItem(spec4, "77221", LBIS.L["Main Hand"], "Alt") --Lightning Rod
+LBIS:AddItem(spec4, "77225", LBIS.L["Main Hand"], "Alt") --Visage of the Destroyer
+LBIS:AddItem(spec4, "77190", LBIS.L["Main Hand"], "Alt") --Ti'tahk, the Steps of Time
+LBIS:AddItem(spec4, "71615", LBIS.L["Main Hand"], "Alt") --Ko'gun, Hammer of the Firelord
+LBIS:AddItem(spec4, "78484", LBIS.L["Main Hand"], "Alt") --Rathrak, the Poisonous Mind
+LBIS:AddItem(spec4, "78486", LBIS.L["Main Hand"], "Alt") --Ti'tahk, the Steps of Time
+LBIS:AddItem(spec4, "78433", LBIS.L["Off Hand"], "BIS") --Ledger of Revolting Rituals
+LBIS:AddItem(spec4, "77245", LBIS.L["Off Hand"], "Alt") --Ledger of Revolting Rituals
+LBIS:AddItem(spec4, "77938", LBIS.L["Off Hand"], "Alt") --Dragonfire Orb
+LBIS:AddItem(spec4, "71448", LBIS.L["Off Hand"], "Alt") --Goblet of Anger
+LBIS:AddItem(spec4, "78441", LBIS.L["Off Hand"], "Alt") --Ledger of Revolting Rituals
+LBIS:AddItem(spec4, "77082", LBIS.L["Ranged/Relic"], "BIS") --Mindbender Lens
+LBIS:AddItem(spec4, "71580", LBIS.L["Ranged/Relic"], "BIS") --Soulflame Vial
