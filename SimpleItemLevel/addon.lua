@@ -33,12 +33,13 @@ ns.upgradeString = CreateAtlasMarkup(ns.upgradeAtlas)
 ns.gemString = CreateAtlasMarkup(isClassic and "worldquest-icon-jewelcrafting" or "jailerstower-score-gem-tooltipicon") -- Professions-ChatIcon-Quality-Tier5-Cap
 ns.enchantString = RED_FONT_COLOR:WrapTextInColorCode("E")
 ns.Fonts = {
-    HighlightSmall = GameFontHighlightSmall,
-    Normal = GameFontNormalOutline,
-    Large = GameFontNormalLargeOutline,
-    Huge = GameFontNormalHugeOutline,
-    NumberNormal = NumberFontNormal,
-    NumberNormalSmall = NumberFontNormalSmall,
+    ["無邊框"] = GameFontHighlightSmall,
+    ["一般"] = GameFontNormalOutline,
+    ["大"] = GameFontNormalLargeOutline,
+    ["更大"] = GameFontNormalHugeOutline,
+    ["小"] = NumberFontNormal,
+    ["不消除鋸齒邊框"] = NumberFontNormalSmall,
+	["中"] = SystemFont_Outline,
 }
 ns.PositionOffsets = {
     TOPLEFT = {2, -2},
@@ -79,11 +80,11 @@ ns.defaults = {
     -- Retail has Uncommon, BCC/Classic has Good
     quality = Enum.ItemQuality.Common or Enum.ItemQuality.Standard,
     -- appearance config
-    font = "NumberNormal",
-    position = "TOPRIGHT",
-    positionup = "TOPLEFT",
+    font = "GameFontNormal",
+    position = "TOP",
+    positionup = "BOTTOMLEFT",
     positionmissing = "LEFT",
-    positionbound = "BOTTOMLEFT",
+    positionbound = "BOTTOMRIGHT",
     scaleup = 1,
     scalebound = 1,
 }
@@ -240,7 +241,7 @@ local function PrepareItemButton(button)
     -- Apply appearance config:
     button.simpleilvl:ClearAllPoints()
     button.simpleilvl:SetPoint(db.position, unpack(ns.PositionOffsets[db.position]))
-    button.simpleilvl:SetFontObject(ns.Fonts[db.font] or NumberFontNormal)
+    button.simpleilvl:SetFontObject(ns.Fonts[db.font] or GameFontNormalOutline)
     -- button.simpleilvl:SetJustifyH('RIGHT')
 
     button.simpleilvlup:ClearAllPoints()
@@ -680,7 +681,7 @@ local OnTooltipSetItem = function(self)
     end
     if not item or item:IsItemEmpty() then return end
     item:ContinueOnItemLoad(function()
-        self:AddLine(ITEM_LEVEL:format(item:GetCurrentItemLevel()))
+		self:AddLine(ITEM_LEVEL:format(item:GetCurrentItemLevel()))
     end)
 end
 if _G.C_TooltipInfo then
@@ -815,6 +816,7 @@ ns:RegisterAddonHook("LiteBag", function()
 end)
 
 -- Baganator
+--[[
 ns:RegisterAddonHook("Baganator", function()
     local function textInit(itemButton)
         local text = itemButton:CreateFontString(nil, "OVERLAY", "NumberFontNormal")
@@ -903,7 +905,7 @@ ns:RegisterAddonHook("Baganator", function()
         textInit, {default_position = "bottom_right", priority = 2}
     )
 end)
-
+--]]
 -- helper
 
 do
