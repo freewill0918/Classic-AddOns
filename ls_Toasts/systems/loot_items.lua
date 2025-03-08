@@ -64,6 +64,18 @@ local function delayedUpdatePatterns()
 	C_Timer.After(0.1, updatePatterns)
 end
 
+local MAT_SUBCLASS_IDS = {
+	[ 1] = true, -- Parts
+	[ 4] = true, -- Jewelcrafting
+	[ 5] = true, -- Cloth
+	[ 6] = true, -- Leather
+	[ 7] = true, -- Metal & Stone
+	[ 8] = true, -- Meat
+	[ 9] = true, -- Herb
+	[10] = true, -- Elemental
+	[12] = true, -- Enchanting
+}
+
 local function Toast_OnClick(self)
 	if self._data.link and IsModifiedClick("DRESSUP") then
 		DressUpItemLink(self._data.link)
@@ -91,7 +103,7 @@ local function Toast_SetUp(event, link, quantity)
 	local toast, isNew, isQueued = E:GetToast(event, "link", sanitizedLink)
 	if isNew then
 		local name, _, quality, _, _, _, _, _, _, icon, _, classID, subClassID, bindType = C_Item.GetItemInfo(originalLink)
-		local isMaterial = classID == 7 and subClassID == 0
+		local isMaterial = classID == 7 and MAT_SUBCLASS_IDS[subClassID]
 		local isPet = classID == 15 and subClassID == 2
 		local isQuestItem = bindType == 4 or (classID == 12 and subClassID == 0)
 

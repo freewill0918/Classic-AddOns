@@ -137,7 +137,7 @@ end
 local function Toast_SetUp(event, id, quantity)
 	local toast, isNew, isQueued = E:GetToast(event, "id", id)
 	if isNew then
-		if C.db.profile.types.loot_currency.filters[id] and quantity > 0 and quantity < C.db.profile.types.loot_currency.filters[id] then -- 暫時修正
+		if quantity > 0 and quantity < C.db.profile.types.loot_currency.filters[id] then
 			toast:Recycle()
 
 			return

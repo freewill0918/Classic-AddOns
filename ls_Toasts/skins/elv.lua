@@ -53,7 +53,7 @@ E:RegisterSkin("elv", {
 })
 
 E:RegisterSkin("elv-legacy", {
-	name = "ElvUI (經典)",
+	name = "ElvUI (Legacy)",
 	template = "elv",
 	bg = {
 		archaeology = {
@@ -96,7 +96,7 @@ E:RegisterSkin("elv-legacy", {
 })
 
 E:RegisterSkin("elv-no-art", {
-	name = "ElvUI (無背景圖)",
+	name = "ElvUI (No Artwork)",
 	template = "elv",
 	text_bg = {
 		hidden = true,
@@ -118,7 +118,7 @@ E:RegisterSkin("elv-no-art", {
 })
 
 E:RegisterSkin("elv-twotone", {
-	name = "ElvUI (雙色調)",
+	name = "ElvUI (Two Tone)",
 	template = "elv",
 	title = {
 		color = {0.15, 0.15, 0.15},

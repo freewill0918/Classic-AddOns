@@ -102,7 +102,7 @@ function NIT:OnInitialize()
 	self:loadSpecificOptions();
     self.db = LibStub("AceDB-3.0"):New("NITdatabase", NIT.optionDefaults, "Default");
     LibStub("AceConfig-3.0"):RegisterOptionsTable("NovaInstanceTracker", NIT.options);
-	self.NITOptions = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("NovaInstanceTracker", L["NovaInstanceTracker"]);
+	self.NITOptions = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("NovaInstanceTracker", "NovaInstanceTracker");
 	self:RegisterComm(self.commPrefix);
 	self:buildDatabase();
 	self:doOnceAfterWeeklyReset();
@@ -709,7 +709,7 @@ function NIT:explode(div, str, count)
 end
 
 function NIT:openConfig()
-	Settings.OpenToCategory(L["NovaInstanceTracker"]);
+	Settings.OpenToCategory("NovaInstanceTracker");
 end
 
 function NIT:isInArena()
@@ -997,7 +997,7 @@ function NIT:updateMinimapButton(tooltip, frame)
 		return;
 	end
 	tooltip:ClearLines()
-	tooltip:AddLine(L["Nova Instance Tracker"]);
+	tooltip:AddLine("Nova Instance Tracker");
 	if (NIT.inInstance) then
 		if (not tooltip.NITSeparator) then
 		    tooltip.NITSeparator = tooltip:CreateTexture(nil, "BORDER");
@@ -1841,14 +1841,14 @@ function NIT:setInstanceLogFrameHeader()
 		pvp = "/" .. L["pvp"];
 	end
 	if (NIT.db.global.showAltsLog) then
-		header = NIT.prefixColor .. L["Nova InstanceTracker"] .. "v" .. version .. "|r\n"
+		header = NIT.prefixColor .. "NovaInstanceTracker v" .. version .. "|r\n"
 				.. "|TInterface\\AddOns\\NovaInstanceTracker\\Media\\00C800Square:10:10:0:0|t " .. L["pastHour"]
 				.. "    |TInterface\\AddOns\\NovaInstanceTracker\\Media\\FFFF00Square:10:10:0:0|t " .. L["pastHour24"]
 				.. "    |TInterface\\AddOns\\NovaInstanceTracker\\Media\\FF0000Square:10:10:0:0|t " .. L["older"] .. "\n"
 				.. "|TInterface\\AddOns\\NovaInstanceTracker\\Media\\RaidSquare:10:10:0:0|t " .. L["raid"] .. pvp
 				.. "    |TInterface\\AddOns\\NovaInstanceTracker\\Media\\AltsSquare:10:10:0:0|t " .. L["alts"];
 	else
-		header = NIT.prefixColor .. L["Nova InstanceTracker"] .. version .. "|r\n"
+		header = NIT.prefixColor .. "NovaInstanceTracker v" .. version .. "|r\n"
 				.. "|TInterface\\AddOns\\NovaInstanceTracker\\Media\\00C800Square:10:10:0:0|t " .. L["pastHour"]
 				.. "   |TInterface\\AddOns\\NovaInstanceTracker\\Media\\FFFF00Square:10:10:0:0|t " .. L["pastHour24"]
 				.. "   |TInterface\\AddOns\\NovaInstanceTracker\\Media\\FF0000Square:10:10:0:0|t " .. L["older"]
@@ -3179,7 +3179,7 @@ end)
 
 function NIT:openTradeLogFrame()
 	NITTradeLogFrame.fs:SetFont(NIT.regionFont, 14);
-	local header = NIT.prefixColor .. L["Nova InstanceTracker"] .. "v" .. version .. "|r\n"
+	local header = NIT.prefixColor .. "NovaInstanceTracker v" .. version .. "|r\n"
 			.. "|cffffff00" .. L["tradeLog"];
 	NITTradeLogFrame.fs:SetText(header);
 	NITTradeLogFrameResetButton:SetText(L["Reset Data"]);
@@ -3928,7 +3928,7 @@ function NIT:openAltsFrame()
 		NIT:createAltsFrameLootReminderButton();
 	end
 	NITAltsFrame.fs:SetFont(NIT.regionFont, 14);
-	local header = NIT.prefixColor .. L["Nova InstanceTracker"] .. "v" .. version .. "|r\n"
+	local header = NIT.prefixColor .. "NovaInstanceTracker v" .. version .. "|r\n"
 			.. "|cffffff00" .. L["Alts (Mouseover names for info)"];
 	NITAltsFrame.fs:SetText(header);
 	NIT:createAltsLineFrames(true);

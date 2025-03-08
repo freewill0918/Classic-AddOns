@@ -95,7 +95,7 @@ local function Test()
 end
 
 E:RegisterOptions("achievement", {
-	enabled = false,
+	enabled = true,
 	anchor = 1,
 	dnd = false,
 }, {

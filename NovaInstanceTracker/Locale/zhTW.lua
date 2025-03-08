@@ -17,32 +17,27 @@ L["hour"] = "小時"; --Hour (singular).
 L["hours"] = "小時"; --Hours (plural).
 L["day"] = "天"; --Day (singular).
 L["days"] = "天"; --Days (plural).
-L["year"] = "年"; --Year (singular).
-L["years"] = "年"; --Years (plural).
 L["secondMedium"] = "秒"; --Second (singular).
 L["secondsMedium"] = "秒"; --Seconds (plural).
 L["minuteMedium"] = "分"; --Minute (singular).
 L["minutesMedium"] = "分"; --Minutes (plural).
 L["hourMedium"] = "小時"; --Hour (singular).
 L["hoursMedium"] = "小時"; --Hours (plural).
-L["dayMedium"] = "年"; --Day (singular).
-L["daysMedium"] = "年"; --Days (plural).
-L["yearMedium"] = "year"; --Day (singular).
-L["yearsMedium"] = "years"; --Days (plural).
+L["dayMedium"] = "天"; --Day (singular).
+L["daysMedium"] = "天"; --Days (plural).
 L["secondShort"] = "秒"; --Used in short timers like 1m30s (single letter only, usually the first letter of seconds).
 L["minuteShort"] = "分"; --Used in short timers like 1m30s (single letter only, usually the first letter of minutes).
 L["hourShort"] = "小時"; --Used in short timers like 1h30m (single letter only, usually the first letter of hours).
 L["dayShort"] = "天"; --Used in short timers like 1d8h (single letter only, usually the first letter of days).
-L["yearShort"] = "年"; --Used in short timers like 1d8h (single letter only, usually the first letter of days).
 L["startsIn"] = "在 %s 後開始"; --"Starts in 1hour".
 L["endsIn"] = "在 %s 後結束"; --"Ends in 1hour".
-L["versionOutOfDate"] = "你的<Nova副本追蹤>插件已經過期了，請上https://www.curseforge.com/wow/addons/nova-instance-tracker 更新，或通過twitch客戶端更新。";
+L["versionOutOfDate"] = "你的<Nova Instance Tracker>插件已經過期了，請上https://www.curseforge.com/wow/addons/nova-instance-tracker 更新，或通過twitch客戶端更新。";
 L["Options"] = " 選項";
 L["Reset Data"] = "重置資料"; --A button to Reset buffs window data.
 
 L["Error"] = "錯誤";
 L["delete"] = "刪除";
-L["confirmInstanceDeletion"] = "確認刪除記錄";
+L["confirmInstanceDeletion"] = "確認刪除紀錄";
 L["confirmCharacterDeletion"] = "確認刪除角色";
 
 -------------
@@ -84,24 +79,15 @@ L["extraSoundOptionsDesc"] = "Enable this to display all the sounds from all you
 L["notesHeaderDesc"] = "注意事項:";
 L["notesDesc"] = "此插件盡最大的努力去計算你的暴本時間，但暴雪的鎖定係統有時會出錯，您可能會在達到暴本限制之前被鎖定。有時您每小時只能進入副本4次，但有時您每小時可進入副本6次。";
 
-L["logHeaderDesc"] = "記錄視窗";
+L["logHeaderDesc"] = "紀錄視窗";
 
-L["openInstanceLogFrameTitle"] = "開啟副本記錄";
+L["openInstanceLogFrameTitle"] = "開啟副本紀錄";
 
-L["logSizeTitle"] = "記錄中顯示多少副本";
-L["logSizeDesc"] = "你想要在記錄中顯示多少記錄? 最多300條，預設為100條 (你可以輸入 /NIT 顯示記錄)。";
+L["logSizeTitle"] = "紀錄中顯示多少副本";
+L["logSizeDesc"] = "你想要在紀錄中顯示多少紀錄? 最多300條，預設為100條 (你可以輸入 /NIT 顯示紀錄).";
 
-L["enteredMsgTitle"] = "副本進入記錄";
-L["enteredMsgDesc"] = "這將會在你進入副本時在聊天室窗出現一個X，讓你如果想刪除此副本追蹤記錄時使用。";
-
-L["raidEnteredMsgTitle"] = "團本進入通報";
-L["raidEnteredMsgDesc"] = "這將會在你進入團本時在聊天室窗出現一個X，讓你如果想刪除此副本追蹤記錄時使用。";
-
-L["pvpEnteredMsgTitle"] = "PvP 進入通報";
-L["pvpEnteredMsgDesc"] = "這將會在你進入PVP事件時在聊天室窗出現一個X，讓你如果想刪除此副本追蹤記錄時使用";
-
-L["noRaidInstanceMergeMsgTitle"] = "隱藏副本合併";
-L["noRaidInstanceMergeMsgDesc"] = "當你進入同一個副本並合併ID時，隱藏通報訊息。";
+L["enteredMsgTitle"] = "副本進入紀錄";
+L["enteredMsgDesc"] = "這將會在你進入副本時在聊天室窗出現一個X，讓你如果想刪除此副本追蹤紀錄時使用";
 
 L["instanceResetMsgTitle"] = "副本重置通報";
 L["instanceResetMsgDesc"] = "當你是隊長的時候這個選項將會通報你的團員你已經成功重置副本。 例如: \"法力墓地已經重置。\"";
@@ -138,7 +124,7 @@ L["instanceStatsOutputAverageGroupLevelDesc"] = "顯示平均等級";
 L["instanceStatsOutputAverageGroupLevelTitle"] = "在地城中顯示平均等級?";
 
 L["showAltsLogTitle"] = "顯示分身";
-L["showAltsLogDesc"] = "在副本記錄顯示分身?";
+L["showAltsLogDesc"] = "在副本紀錄顯示分身?";
 
 L["timeStringTypeTitle"] = "時間格式";
 L["timeStringTypeDesc"] = "What time string format to use in the instance log?\n|cFFFFFF00Long:|r 1 minute 30 seconds\n|cFFFFFF00Medium|r: 1 min 30 secs\n|cFFFFFF00Short|r 1m30s";
@@ -149,10 +135,10 @@ L["showLockoutTimeDesc"] = "This will show lockout time left in the instance log
 L["colorsHeaderDesc"] = "顏色"
 
 L["mergeColorTitle"] = "合併追蹤顏色";
-L["mergeColorDesc"] = "當同一個副本記錄合併時要使用什麼顏色?";
+L["mergeColorDesc"] = "當同一個副本紀錄合併時要使用什麼顏色?";
 
-L["detectSameInstanceTitle"] = "刪除重複的副本記錄";
-L["detectSameInstanceDesc"] = "當你重進副本時，自動刪除同一個副本產生的第二個記錄?";
+L["detectSameInstanceTitle"] = "刪除重複的副本紀錄";
+L["detectSameInstanceDesc"] = "當你重進副本時，自動刪除同一個副本產生的第二個紀錄?";
 
 L["showStatsInRaidTitle"] = "在團本顯示追蹤狀態";
 L["showStatsInRaidDesc"] = "在團本顯示追蹤?關掉這個選項，只有在五人副本顯示追蹤狀態 (這個選項只有作用在當你選擇在團隊發送狀態作用。).";
@@ -164,12 +150,12 @@ L["statsOnlyWhenActivityTitle"] = "實際行動";
 L["statsOnlyWhenActivityDesc"] = "只有在你實際得到經驗值或是金錢或是擊殺怪物才啟動。, got xp, looted some gold etc. This will make it not show empty stats.";
 
 L["show24HourOnlyTitle"] = "只顯示最後24小時";
-L["show24HourOnlyDesc"] = "只顯示最後24小時的副本記錄?";
+L["show24HourOnlyDesc"] = "只顯示最後24小時的副本紀錄?";
 
 L["trimDataHeaderDesc"] = "清除資料";
 
 L["trimDataBelowLevelTitle"] = "移除低於幾等的角色";
-L["trimDataBelowLevelDesc"] = "設定移除低於幾級的角色記錄，那所有低於幾級的角色記錄將會被刪除。";
+L["trimDataBelowLevelDesc"] = "設定移除低於幾級的角色紀錄，那所有低於幾級的角色紀錄將會被刪除。";
 
 L["trimDataBelowLevelButtonTitle"] = "移除角色";
 L["trimDataBelowLevelButtonDesc"] = "Click this button to remove all characters with the selected level and lower from this addon database.";
@@ -195,10 +181,10 @@ L["trimDataMsg9"] = "從資料庫移除 %s 。";
 L["instanceFrameSelectAltMsg"] = "如果\“顯示所有分身\”未勾選，則選擇要顯示的分身。或如果\“顯示所有分身\”被勾選，則選擇哪個分身 要著色。";
 
 L["enteredDungeon"] = "新的追蹤 %s %s， 點擊";
-L["enteredDungeon2"] = "如果這不是一個新的副本記錄。";
+L["enteredDungeon2"] = "如果這不是一個新的副本紀錄。";
 L["enteredRaid"] = "新的追蹤 %s，這個團本沒有進本次數鎖定。";
-L["loggedInDungeon"] = "你已登入 %s %s，如果這不是一個新的記錄，點擊";
-L["loggedInDungeon2"] = "從資料庫刪除此記錄。";
+L["loggedInDungeon"] = "你已登入 %s %s，如果這不是一個新的紀錄，點擊";
+L["loggedInDungeon2"] = "從資料庫刪除此紀錄。";
 L["reloadDungeon"] = "插件重載檢測到 %s，讀取最後副本資料非新建。";
 L["thisHour"] = "這個小時";
 L["statsError"] = "副本ID %s 搜尋錯誤。";
@@ -210,8 +196,8 @@ L["statsRunsNextLevel"] = "到下一級的次數:";
 L["statsTime"] = "時間:";
 L["statsAverageGroupLevel"] = "團隊平均等級:";
 L["statsGold"] = "金錢";
-L["sameInstance"] = "發現到與上次同樣的副本ID %s， 正在合併記錄。";
-L["deleteInstance"] = "從資料庫刪除進本記錄 [%s] %s (%s 之前) 。";
+L["sameInstance"] = "發現到與上次同樣的副本ID %s， 正在合併紀錄。";
+L["deleteInstance"] = "從資料庫刪除進本紀錄 [%s] %s (%s 之前) 。";
 L["deleteInstanceError"] = "刪除出錯 %s。";
 L["countString"] = "你在這小時已進入 %s 次副本，及在這24小時 %s 次。";
 L["countStringColorized"] = "在過去一小時你已經進入 %s %s %s 次副本，%s %s %s 在過去24小時";
@@ -233,20 +219,20 @@ L["thisHour"] = "這個小時";
 L["thisHour24"] = "這24小時";
 L["openInstanceFrame"] = "打開事件視窗";
 L["openYourChars"] = "打開角色清單";
-L["openTradeLog"] = "打開交易記錄";
+L["openTradeLog"] = "打開交易紀錄";
 L["config"] = "設定";
 L["thisChar"] = "這隻角色";
 L["yourChars"] = "你的角色";
-L["instancesPastHour"] = "在過去這個小時的記錄";
-L["instancesPastHour24"] = "在過去24小時的記錄";
+L["instancesPastHour"] = "在過去這個小時的紀錄";
+L["instancesPastHour24"] = "在過去24小時的紀錄";
 L["leftOnLockout"] = "解除爆本";
-L["tradeLog"] = "交易記錄";
+L["tradeLog"] = "交易紀錄";
 L["pastHour"] = "過去1小時";
 L["pastHour24"] = "過去24小時";
-L["older"] = "古老記錄";
+L["older"] = "古老紀錄";
 L["raid"] = "團本";
 L["alts"] = "分身";
-L["deleteEntry"] = "刪除進本記錄";
+L["deleteEntry"] = "刪除進本紀錄";
 L["lastHour"] = "最近1小時";
 L["lastHour24"] = "最近24小時";
 L["entered"] = "進入於";
@@ -267,14 +253,14 @@ L["rawGoldMobs"] = "從怪物獲得金幣";
 L["enteredLevel"] = "進入等級";
 L["leftLevel"] = "離開等級";
 L["averageGroupLevel"] = "團隊平均等級";
-L["currentLockouts"] = "現有記錄";
+L["currentLockouts"] = "現有紀錄";
 L["repGains"] = "聲望提升";
 L["groupMembers"] = "團隊成員";
 L["tradesWhileInside"] = "副本內交易";
-L["noDataInstance"] = "這個副本沒有記錄。";
+L["noDataInstance"] = "這個副本沒有紀錄。";
 L["restedOnlyText"] = "只有休息角色";
 L["restedOnlyTextTooltip"] = "只有顯示有休息經驗的角色? 取消勾選以顯示所有角色，例如滿等角色或是其他分身。";
-L["deleteEntry"] = "刪除進本記錄"; --Example: "Delete entry 5";
+L["deleteEntry"] = "刪除進本紀錄"; --Example: "Delete entry 5";
 L["online"] = "在線";
 L["maximum"] = "最高";
 L["level"] = "等級";
@@ -349,9 +335,6 @@ L["statsRep"] = "聲望:";
 L["instanceStatsOutputRepTitle"] = "聲望提升";
 L["instanceStatsOutputRepDesc"] = "顯示在副本裡提升了多少聲望。";
 
-L["instanceStatsOutputHKTitle"] = "榮譽擊殺";
-L["instanceStatsOutputHKDesc"] = "顯示在戰場得到多少點數。";
-
 L["experiencePerHour"] = "經驗/小時";
 
 L["instanceStatsOutputXpPerHourTitle"] = "顯示經驗/小時";
@@ -398,132 +381,6 @@ L["First Aid"] = "急救";
 
 L["Tarnished Undermine Real"] = "黯淡的幽坑城真幣";
 
-L["resetAllInstancesConfirm"] = "是否確定想要刪除所有副本記錄?";
-L["All Instance log data has been deleted."] = "所有副本記錄已經被刪除。";
-
-L["resetAllInstancesTitle"] = "重置記錄資料";
-L["resetAllInstancesDesc"] = "這將會重置所有記錄資料並移除所以記錄。這不會重置交易。";
-
-L["noCurrentRaidLockouts"] = "目前沒有副本進度。";
-
-L["weeklyQuests"] = "每週任務";
-L["dailyQuests"] = "每日任務";
-L["monthlyQuests"] = "每月任務";
-
-L["openLockouts"] = "打開副本進度";
-
-L["autoGammaBuffDesc"] = "伽瑪地城";
-
-L["autoGammaBuffTitle"] = "自動伽瑪增益";
-L["autoGammaBuffDesc"] = "和伽瑪地城中的增益 NPC 對話時，自動取得適合你的職業的伽瑪增益效果。";
-
-L["autoGammaBuffReminderTitle"] = "伽瑪增益提醒";
-L["autoGammaBuffReminderDesc"] = "開始地城之前，在聊天視窗顯示訊息，提醒你如果沒有增益效果的話要記得去拿。";
-
-L["autoGammaBuffTypeTitle"] = "伽瑪增益類型";
-L["autoGammaBuffTypeDesc"] = "你想要哪種增益效果？自動選擇將根據你的職業專精自動選擇近戰/遠程/治療者/坦克之一。或者也可以用其他選項取代。增益效果的選擇是角色專用的選項。";
-
-L["dungeonPopTimerTitle"] = "剩餘進本時間";
-L["dungeonPopTimerDesc"] = "在副本佇列的彈出視窗上顯示還剩多少時間可以點擊進入?";
-
-L["autoWrathDailiesTitle"] = "自動取得每日任務";
-L["autoWrathDailiesDesc"] = "自動從達拉然的大法師蘭達洛克接取和提交每日任務。";
-			
-L["gammaConfigWarning"] = "伽瑪增益選擇是角色專用的，在此角色上進行更改不會影響其他角色。";
-L["autoGammaBuffReminder"] = "從 %s 取得伽瑪地城增益。";
-L["Sunreaver Warden"] = "Sunreaver Warden";
-L["Silver Covenant Warden"] = "Silver Covenant Warden";
-L["note"] = "備註:"
-
-L["Dungeon weeklies remaining"] = "地城每週剩餘";
-
-L["Currency"] = "貨幣";
-L["Currencies"] = "貨幣";
-
-L["instanceStatsOutputCurrencyTitle"] = "貨幣";
-L["instanceStatsOutputCurrencyDesc"] = "是否要顯示在地城內可以取得什麼貨幣?";
-
-L["lootReminderDesc"] = "拾取提醒";
-
-L["lootReminderRealTitle"] = "黯淡的幽坑城真幣";
-L["lootReminderRealDesc"] = "在探索服會掉落黯淡的幽坑城真幣的首領死亡時提醒你要記得拾取。 ";
-
-L["lootReminderSizeTitle"] = "文字大小";
-L["lootReminderSizeDesc"] = "提醒文字的顯示大小。";
-
-L["lootReminderXTitle"] = "水平位置";
-L["lootReminderXDesc"] = "調整提醒文字的左/右位置。";
-
-L["lootReminderYTitle"] = "垂直位置";
-L["lootReminderYDesc"] = "調整提醒文字的上/下位置。";
-
-L["Looted"] = "已拾取";
-L["Not Looted"] = "未拾取";
-L["Killed But Not Looted"] = "已擊殺但是還沒有拾取";
-L["Loot the Tarnished Undermine Real"] = "拾取黯淡的幽坑城真幣";
-L["Not Killed"] = "未擊殺";
-L["Loot Reminder List"] = "拾取提醒清單";
-L["Check your daily reals status"] = "檢查每日真幣狀態"; --This string can't be any longer characters than this to fit in button.
-L["首領已拾取"] = "Bosses Looted";
-L["今日總計"] = "Total today";
-L["真幣總計"] = "Total Reals";
-
-L["Reminder"] = "提醒";
-L["missingArgentDawnTrinket"] = "%s 飾品提醒 %s 尚未裝備。" --Argent Dawn trinket reminder [Rune of the Dawn] isn't equipped.
-
-L["argentDawnTrinketReminderTitle"] = "銀色黎明飾品提醒";
-L["argentDawnTrinketReminderDesc"] = "進入通靈學院/斯坦索姆時，背包中有飾品且未崇拜，則會在聊天中發出銀色黎明飾品提醒。";
-
-L["skipRealMsgIfCappedTitle"] = "滿了不顯示訊息";
-L["skipRealMsgIfCappedDesc"] = "如果真幣已經滿了 150 個，跳過黯淡的幽坑城真幣的拾取訊息。";
-
-L["Live Side"] = "活人";
-L["Undead Side"] = "不死";
-L["East"] = "東";
-L["West"] = "西";
-L["North"] = "北";
-L["Upper"] = "上";
-L["Lower"] = "下";
-
-L["lootTheItem"] = "拾取%s"; --Example: Loot the Tarnished Undermine Real
-L["Qiraji Lord's Insignia"] = "其拉領主徽記";
-
-L["soundsLootReminderTitle"] = "拾取提醒音效";
-L["soundsLootReminderDesc"] = "選擇拾取提醒顯示時要播放的音效。";
-
-L["lootReminderMysRelicTitle"] = "神秘的遺物";
-L["lootReminderMysRelicDesc"] = "當有人在卡拉贊地穴中拾取神秘的遺物時，在畫面中央/聊天視窗顯示訊息。";
-
-L["lootReminderMysRelicPartyTitle"] = "神秘的遺物隊伍訊息";
-L["lootReminderMysRelicPartyDesc"] = "當有人在卡拉贊地穴中拾取神秘的遺物時，在隊伍頻道發送訊息。";
+L["Qiraji Lord's Insignia"] = "Qiraji Lord's Insignia";
 
 L["Remnants of Valor"] = "Remnants of Valor";
-
---增加
-L["Nova Instance Tracker"] = "Nova 副本進度追蹤";
-L["NovaInstanceTracker"] = "副本-進度";
-L["Nova InstanceTracker"] = "Nova 副本進度追蹤";
-L["Left-Click"] = "左鍵";
-L["Right-Click"] = "右鍵";
-L["Middle-Click"] = "中鍵";
-L["Shift Left-Click"] = "Shift+左鍵";
-L["Shift Right-Click"] = "Shift+右鍵";	
-L["Ctrl Left-Click"] = "Ctrl+左鍵";			
-L["Level Log"] = "升級記錄"		 
-L["Hold to drag"] = "按住以拖曳";
-L["Show Alts"] = "分身";
-L["showAltsTooltip"] = "顯示所有分身的副本追蹤記錄?";
-L["|cffffff00 (Mouseover names for info)"] = "|cffffff00 (將滑鼠移到姓名處以顯示詳細內容)";
-L["|cffffff00Trade Log"] = "交易記錄";
-L["Min Level"] = "對低等級";
-L["Copy Paste"] = "複製 貼上";
-L["Chat Window"] = "聊天視窗";
-L["Group Chat (Party/Raid)"] = "在隊伍回報 (隊伍/團隊)";
-L["Local Time"] = "本地時間";
-L["Server Time"] = "伺服器時間";
-L["Long"] = "長";
-L["Medium"] = "中";
-L["Short"] = "短";
-L["Lockouts"] = "副本進度";
-L["Raid Lockouts (Including Alts)"] = "副本進度 (包括分身}";
-L["Auto Select (Spec Based)"] = "自動選擇 (根據專精)";

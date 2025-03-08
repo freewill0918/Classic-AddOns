@@ -5,7 +5,7 @@ local E, C = addonTable.E, addonTable.C
 local _G = getfenv(0)
 
 E:RegisterSkin("beautycase", {
-	name = "化妝箱",
+	name = "Beautycase",
 	leaves = {
 		points = {
 			{x = -4, y = 18}, -- topleft
@@ -20,7 +20,7 @@ E:RegisterSkin("beautycase", {
 })
 
 E:RegisterSkin("beautycase-no-art", {
-	name = "化妝箱 (無背景圖)",
+	name = "Beautycase (No Artwork)",
 	template = "beautycase",
 	text_bg = {
 		hidden = true,
@@ -85,7 +85,7 @@ E:RegisterSkin("beautycase-legacy", {
 })
 
 E:RegisterSkin("beautycase-twotone", {
-	name = "化妝箱 (雙色調)",
+	name = "Beautycase (Two Tone)",
 	template = "beautycase",
 	title = {
 		color = {0.15, 0.15, 0.15},
