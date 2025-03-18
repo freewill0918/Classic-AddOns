@@ -199,12 +199,15 @@ local function GetSourceID(itemLink)
     return sourceID
   end
   local _, sourceID = C_TransmogCollection.GetItemInfo((C_Item.GetItemInfoInstant(itemLink)))
-  return sourceID
+  if sourceID then
+    return sourceID
+  end
+  return Syndicator.Search.RecoverTransmogInfo(itemLink)
 end
 
 local function IsTMogCollectedCompletionist(itemLink)
   local sourceID = GetSourceID(itemLink)
-  if not sourceID then
+  if not sourceID or not select(2, C_TransmogCollection.AccountCanCollectSource(sourceID)) then
     return nil
   else
     return C_TransmogCollection.PlayerHasTransmogItemModifiedAppearance(sourceID)
@@ -213,7 +216,7 @@ end
 
 local function IsTMogCollectedUnique(itemLink)
   local sourceID = GetSourceID(itemLink)
-  if not sourceID then
+  if not sourceID or not select(2, C_TransmogCollection.AccountCanCollectSource(sourceID)) then
     return
   else
     local subClass = select(7, C_Item.GetItemInfoInstant(itemLink))
@@ -692,11 +695,13 @@ local function SetBonusCheck(details)
 end
 
 local classRestrictionsPattern = ITEM_CLASSES_ALLOWED:gsub("%%s", ".+")
+-- Check for items with the appropriate item class (which have a lot of
+-- variation), not common (to exclude glyphs) and have a class restriction.
 local function TierTokenCheck(details)
   GetInvType(details)
   GetClassSubClass(details)
 
-  if details.invType ~= "INVTYPE_NON_EQUIP_IGNORE" or (details.classID ~= Enum.ItemClass.Consumable and details.classID ~= Enum.ItemClass.Armor and details.classID ~= Enum.ItemClass.Weapon and details.classID ~= Enum.ItemClass.Miscellaneous and details.classID ~= Enum.ItemClass.Reagent) then
+  if details.quality == 1 or details.invType ~= "INVTYPE_NON_EQUIP_IGNORE" or (details.classID ~= Enum.ItemClass.Consumable and details.classID ~= Enum.ItemClass.Armor and details.classID ~= Enum.ItemClass.Weapon and details.classID ~= Enum.ItemClass.Miscellaneous and details.classID ~= Enum.ItemClass.Reagent) then
     return false
   end
 
@@ -834,7 +839,7 @@ AddKeywordManual(ITEM_UNIQUE:lower(), "unique", UniqueCheck, SYNDICATOR_L_GROUP_
 AddKeywordLocalised("KEYWORD_LOCKED", LockedCheck, SYNDICATOR_L_GROUP_ITEM_DETAIL)
 AddKeywordLocalised("KEYWORD_REFUNDABLE", RefundableCheck, SYNDICATOR_L_GROUP_ITEM_DETAIL)
 AddKeywordLocalised("KEYWORD_CRAFTED", CraftedCheck, SYNDICATOR_L_GROUP_ITEM_DETAIL)
-AddKeywordLocalised("KEYWORD_TIER_TOKEN", TierTokenCheck, SYNDICATOR_L_GROUP_ITEM_DETAIL)
+AddKeywordLocalised("KEYWORD_TIER_TOKEN", TierTokenCheck, SYNDICATOR_L_GROUP_ITEM_TYPE)
 
 if Syndicator.Constants.IsRetail then
   AddKeywordLocalised("KEYWORD_COSMETIC", CosmeticCheck, SYNDICATOR_L_GROUP_QUALITY)

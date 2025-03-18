@@ -1,7 +1,6 @@
 # Syndicator
 
-## [178](https://github.com/Baganator/Syndicator/tree/178) (2025-03-14)
-[Full Changelog](https://github.com/Baganator/Syndicator/compare/177...178) 
+## [180](https://github.com/Baganator/Syndicator/tree/180) (2025-03-17)
+[Full Changelog](https://github.com/Baganator/Syndicator/compare/179...180) 
 
-- Search: Add missing tier token item class to check  
-- Search: New keyword "tier token" for items which are used to get tier gear  
+- Search: Avoid Glyphs in the wrong item class from matching #tier token  
