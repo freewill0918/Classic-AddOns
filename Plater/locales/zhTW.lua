@@ -4,12 +4,18 @@ do
     local L = languageTable
 
 ------------------------------------------------------------
+--[[Translation missing --]]
+L["A /reload may be required to take effect."] = "A /reload may be required to take effect."
+--[[Translation missing --]]
+L["CVar, saved within Plater profile and restored when loading the profile."] = "CVar, saved within Plater profile and restored when loading the profile."
 L["EXPORT"] = "匯出"
 L["EXPORT_CAST_COLORS"] = "匯出施法條顏色"
 L["EXPORT_CAST_SOUNDS"] = "匯出施法條聲音"
 L["HIGHLIGHT_HOVEROVER"] = "滑鼠懸停顯示"
 L["HIGHLIGHT_HOVEROVER_ALPHA"] = "滑鼠懸停顯示透明度"
 L["HIGHLIGHT_HOVEROVER_DESC"] = "滑鼠在姓名版的懸停顯示效果"
+--[[Translation missing --]]
+L["Hold Shift to change the sound of all casts with the audio %s to %s"] = "Hold Shift to change the sound of all casts with the audio %s to %s"
 L["IMPORT"] = "匯入"
 L["IMPORT_CAST_COLORS"] = "匯入施法條顏色"
 L["IMPORT_CAST_SOUNDS"] = "匯入施法條聲音"
@@ -96,7 +102,13 @@ L["OPTIONS_CASTBAR_SPELLICON"] = "法術圖示"
 L["OPTIONS_CASTBAR_TOGGLE_TEST"] = "施法條測試開關"
 L["OPTIONS_CASTBAR_TOGGLE_TEST_DESC"] = "開始施法條測試，再次點擊停止"
 L["OPTIONS_CASTBAR_WIDTH"] = "施法條寬度"
+--[[Translation missing --]]
+L["OPTIONS_CASTCOLORS_DISABLE_SOUNDS"] = "Remove All Sounds"
+--[[Translation missing --]]
+L["OPTIONS_CASTCOLORS_DISABLE_SOUNDS_CONFIRM"] = "Are you sure you want to remove all configured cast sounds?"
 L["OPTIONS_CASTCOLORS_DISABLECOLORS"] = "禁用所有顏色"
+--[[Translation missing --]]
+L["OPTIONS_CASTCOLORS_DISABLECOLORS_CONFIRM"] = "Confirm disable all cast colors?"
 L["OPTIONS_CLICK_SPACE_HEIGHT"] = "接受滑鼠點擊以選擇目標的區域高度"
 L["OPTIONS_CLICK_SPACE_WIDTH"] = "接受滑鼠點擊以選擇目標的區域寬度"
 L["OPTIONS_COLOR"] = "顔色"
@@ -170,6 +182,10 @@ L["OPTIONS_ICONROWSPACING"] = "Icon Row Spacing"
 L["OPTIONS_ICONSPACING"] = "Icon Spacing"
 --[[Translation missing --]]
 L["OPTIONS_INDICATORS"] = "Indicators"
+--[[Translation missing --]]
+L["OPTIONS_INTERACT_OBJECT_NAME_COLOR"] = "Game object name color"
+--[[Translation missing --]]
+L["OPTIONS_INTERACT_OBJECT_NAME_COLOR_DESC"] = "Names on objects will get this color."
 --[[Translation missing --]]
 L["OPTIONS_INTERRUPT_FILLBAR"] = "Fill Cast Bar On Interrupt"
 --[[Translation missing --]]
@@ -446,6 +462,16 @@ L["OPTIONS_YOFFSET"] = "Y 偏移"
 L["OPTIONS_YOFFSET_DESC"] = [=[Adjust the position on the Y axis.
 
 *right click to type the value.]=]
+--[[Translation missing --]]
+L[ [=[Show nameplate for friendly npcs.
+
+|cFFFFFF00 Important |r: This option is dependent on the client`s nameplate state (on/off).
+
+|cFFFFFF00 Important |r: when disabled but enabled on the client through (%s), the healthbar isn't visible but the nameplate is still clickable.]=] ] = [=[Show nameplate for friendly npcs.
+
+|cFFFFFF00 Important |r: This option is dependent on the client`s nameplate state (on/off).
+
+|cFFFFFF00 Important |r: when disabled but enabled on the client through (%s), the healthbar isn't visible but the nameplate is still clickable.]=]
 --[[Translation missing --]]
 L["TARGET_CVAR_ALWAYSONSCREEN"] = "Target Always on the Screen|cFFFF7700*|r"
 --[[Translation missing --]]
