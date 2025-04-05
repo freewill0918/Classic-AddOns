@@ -1,11 +1,13 @@
-## Title: WowSimsExporter v2.11.7 |cffff8000Classic SoD|r
-## Version: v2.11.7
+## Title: WowSimsExporter |cffff8000Classic SoD|r
+## Version: v2.12.0
 ## Author: generalwrex(Natop of Old Blanchy), namreeb, coolmodi(FelixPflaum), riotdog
-## Interface: 11500
+## Interface: 11505, 11506
 ## Notes: This is an exporter written to quickly export your character to https://wowsims.github.io/sod/ for simulations.
 ## SavedVariables: WSEDB
 ## OptionalDeps: Ace3
 ## X-Curse-Project-ID: 590920
+## X-Wago-ID: as3Dfg57
+## X-WoWI-ID: 26823
 
 embeds.xml
 

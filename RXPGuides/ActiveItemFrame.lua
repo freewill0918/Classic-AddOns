@@ -207,7 +207,8 @@ function addon.CreateActiveItemFrame(self, anchor, enableText)
 
     addon.enabledFrames["activeItemFrame"] = f
     f.IsFeatureEnabled = function()
-        return not addon.settings.profile.disableItemWindow and next(GetActiveItemList()) ~= nil
+        local shown = not addon.settings.profile.disableItemWindow and next(GetActiveItemList()) ~= nil
+        return shown,true
     end
 
     f.onMouseDown = function()
@@ -394,4 +395,10 @@ function addon.UpdateItemFrame(itemFrame)
     itemFrame:SetWidth(width);
     UpdateCooldowns()
 
+end
+
+function addon.ResetItemPosition()
+    local f = _G.RXPItemFrame
+    f:ClearAllPoints()
+    f:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 end

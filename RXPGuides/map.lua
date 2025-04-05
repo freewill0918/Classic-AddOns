@@ -27,7 +27,8 @@ end
 
 addon.enabledFrames["arrowFrame"] = af
 af.IsFeatureEnabled = function ()
-    return not addon.settings.profile.disableArrow and (addon.hideArrow ~= nil and not addon.hideArrow)
+    local shown = not addon.settings.profile.disableArrow and (addon.hideArrow ~= nil and not addon.hideArrow)
+    return shown,false
 end
 
 --local chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -63,66 +64,74 @@ function addon.SetupArrow()
     af.texture:SetTexture(addon.GetTexture("rxp_navigation_arrow-1"))
     af.text:SetTextColor(unpack(addon.activeTheme.textColor))
 
-    addon.arrowFrame:SetScript("OnUpdate", addon.UpdateArrow)
+    addon.arrowFrame:SetScript("OnUpdate", addon.DrawArrow)
 end
 
-function addon.UpdateArrow(self)
+function addon.DrawArrow(self)
+    self = self or addon.arrowFrame
 
     if addon.settings.profile.disableArrow or not self then return end
-    local element = self.element
     if af.wrongContinent then
+        -- If first time setting wrong continent, notify player
+        if self.text:GetText() ~= "~" then
+            addon.comms.PrettyPrint("%s %s", _G.ERR_TAXINOSUCHPATH, _G.SPELL_FAILED_INCORRECT_AREA)
+        end
+
         af.alpha = 1
         af:SetAlpha(1)
+        addon.hideArrow = true
         self.texture:SetRotation(0)
         self.text:SetText("~")
         return
     end
-    if element then
-        local x, y, instance = HBD:GetPlayerWorldPosition()
-        local angle, dist = HBD:GetWorldVector(instance, x, y, element.wx,
-                                               element.wy)
-        local facing = GetPlayerFacing()
 
-        if not (dist and facing) then
-            if af.alpha ~= 0 then
-                af.alpha = 0
-                af:SetAlpha(0)
-            end
-            return
-        elseif af.alpha ~= 1 then
-            af.alpha = 1
-            af:SetAlpha(1)
+    local element = self.element
+    if not element then return end
+
+    local x, y, instance = HBD:GetPlayerWorldPosition()
+    local angle, dist = HBD:GetWorldVector(instance, x, y, element.wx,
+                                            element.wy)
+    local facing = GetPlayerFacing()
+
+    if not (dist and facing) then
+        if af.alpha ~= 0 then
+            af.alpha = 0
+            af:SetAlpha(0)
         end
+        return
+    elseif af.alpha ~= 1 then
+        af.alpha = 1
+        af:SetAlpha(1)
+    end
 
-        local orientation = angle - facing
-        local diff = math.abs(orientation - self.orientation)
-        dist = math.floor(dist)
+    local orientation = angle - facing
+    local diff = math.abs(orientation - self.orientation)
+    dist = math.floor(dist)
 
-        if diff > self.lowerbound and diff < self.upperbound or self.forceUpdate then
-            self.orientation = orientation
-            self.texture:SetRotation(orientation)
-            self.forceUpdate = false
-        end
+    if diff > self.lowerbound and diff < self.upperbound or self.forceUpdate then
+        self.orientation = orientation
+        self.texture:SetRotation(orientation)
+        self.forceUpdate = false
+    end
 
-        if dist ~= self.distance then
-            self.distance = dist
-            local step = element.step
-            local title = step and (step.title or step.index and ("Step "..step.index))
-            if element.title then
-                for RXP_ in string.gmatch(element.title, "RXP_[A-Z]+_") do
-                    element.title = element.title:gsub(RXP_, addon.guideTextColors[RXP_] or
-                                                 addon.guideTextColors.default["error"])
-                end
-                --self.text:SetText(string.format("%s\n(%dyd)",element.title, dist))
-                self.text:SetText(string.format("%s\n(%dyd)",element.title, dist))
-            elseif title then
-                for RXP_ in string.gmatch(title, "RXP_[A-Z]+_") do
-                    title = title:gsub(RXP_, addon.guideTextColors[RXP_] or addon.guideTextColors.default["error"])
-                end
-                self.text:SetText(string.format("%s\n(%dyd)", title, dist))
-            else
-                self.text:SetText(string.format("(%dyd)", dist))
+    if dist ~= self.distance then
+        self.distance = dist
+        local step = element.step
+        local title = step and (step.title or step.index and ("Step "..step.index))
+        if element.title then
+            for RXP_ in string.gmatch(element.title, "RXP_[A-Z]+_") do
+                element.title = element.title:gsub(RXP_, addon.guideTextColors[RXP_] or
+                                                addon.guideTextColors.default["error"])
             end
+            --self.text:SetText(string.format("%s\n(%dyd)",element.title, dist))
+            self.text:SetText(string.format("%s\n(%dyd)",element.title, dist))
+        elseif title then
+            for RXP_ in string.gmatch(title, "RXP_[A-Z]+_") do
+                title = title:gsub(RXP_, addon.guideTextColors[RXP_] or addon.guideTextColors.default["error"])
+            end
+            self.text:SetText(string.format("%s\n(%dyd)", title, dist))
+        else
+            self.text:SetText(string.format("(%dyd)", dist))
         end
     end
 
@@ -348,6 +357,29 @@ MapPinPool.creationFunc = function(framePool)
                 self:SetWidth(self.text:GetStringWidth() + 3)
                 self:SetHeight(self.text:GetStringHeight() + 5)
                 self.text:SetPoint("CENTER", self, 1, 0)
+            end
+
+            local radius = element.radius
+            if element.activationRadius and element.wx == element.xref and element.wy == element.yref then
+                radius = element.activationRadius
+            end
+            if step.active and addon.settings.profile.debug and radius and not isMiniMapPin then
+
+                radius = math.abs(radius)
+                local zone = _G.WorldMapFrame:GetMapID()
+                local w,h = HBD:GetZoneSize(zone)
+                local canvas = _G.WorldMapFrame:GetCanvas()
+                local scale = canvas:GetScale()
+
+                --local a,b = WorldMapFrame.ScrollContainer:GetCurrentZoomRange()
+
+                radius = radius * 2 * scale
+                local x,y = radius/w,radius/h
+                local width = canvas:GetWidth() * x
+                local height = canvas:GetHeight() * y
+                self:SetWidth(width)
+                self:SetHeight(height)
+                self:SetBackdropColor(0.1, 0.1, 0.1, 0.5)
             end
 
             self:SetScale(addon.settings.profile.worldMapPinScale)
@@ -835,6 +867,8 @@ end
 
 -- Generate pins using the current guide's steps, then add the pins to the world map
 local function addWorldMapPins()
+	if addon.settings.profile.numMapPins == 0 then return end
+
     -- Calculate which pins should be on the world map
     local pins = generatePins(addon.currentGuide.steps, addon.settings.profile.numMapPins,
                               RXPCData.currentStep, false)
@@ -914,12 +948,14 @@ end
 local corpseWP = {title = "Corpse", generated = 1, wpHash = 0}
 -- Updates the arrow
 
-local function updateArrow()
-
+local function updateArrowData()
     local lowPrioWPs
     local loop = {}
+
     local function ProcessWaypoint(element, lowPrio, isComplete)
-        if element.lowPrio and not lowPrio then
+        if element.hidden then
+            return
+        elseif element.lowPrio and not lowPrio then
             table.insert(lowPrioWPs, element)
             return
         end
@@ -937,6 +973,8 @@ local function updateArrow()
             af.dist = 0
             af.orientation = 0
             af.element = element
+
+            -- forceUpdate set if 1/X steps are completed, e.g. 6/7 + 7/7 Plainstriders
             af.forceUpdate = true
             return true
         end
@@ -1003,7 +1041,7 @@ function addon.ResetArrowPosition()
     end
     af:ClearAllPoints()
     af:SetPoint("CENTER", 0, 200)
-    updateArrow()
+    updateArrowData()
 end
 
 -- Removes all pins from the map and mini map and resets all data structrures
@@ -1030,7 +1068,7 @@ function addon.UpdateMap(resetPins)
         addWorldMapLines()
         addWorldMapPins()
         addMiniMapPins()
-        updateArrow()
+        updateArrowData()
         addon.DisplayLines(true)
     else
         addon.updateMap = true
@@ -1074,6 +1112,7 @@ function addon.UpdateGotoSteps()
     local forceArrowUpdate = UnitIsGhost("player") == (af.element ~= corpseWP)
     DisplayLines()
     if #addon.activeWaypoints == 0 and not forceArrowUpdate then
+        addon.hideArrow = true
         af:Hide()
         return
     end
@@ -1113,10 +1152,32 @@ function addon.UpdateGotoSteps()
             hideArrow = true
         end
     end
+    local updateMap
     for i, element in ipairs(addon.activeWaypoints) do
         local step = element.step
         if step and step.active then
 
+            local hidden = element.hidden
+            local isActive = true
+            if element.activationRadius then
+                local _,aDist = HBD:GetWorldVector(instance, x, y, element.xref,
+                                            element.yref)
+                if aDist then
+                    --print(aDist,'-',element.x,element.y)
+                    if element.activationRadius < 0 then aDist = -aDist end
+                    if aDist > element.activationRadius then
+                        element.hidden = true
+                        isActive = false
+                    else
+                        element.hidden = false
+                        if hidden and addon.settings.profile.debug then
+                            print(format("%d: Waypoint activation\n  goto = %.2f,%.2f (%d/%d,%.4f,%.4f)", i,
+                                element.x, element.y, element.zone or 0, element.instance, element.wx, element.wy ))
+                        end
+                    end
+                end
+                --print(isActive,aDist,element.activationRadius)
+            end
             if (element.radius or element.dynamic) and element.arrow and
                 not (element.parent and
                     (element.parent.completed or element.parent.skip) and
@@ -1140,9 +1201,11 @@ function addon.UpdateGotoSteps()
                             closestPoint = element
                         end
                     end
-                    if element.radius then
+
+                    if element.radius and isActive then
                         local source = element.source or element
                         local objectiveCheck = true
+                        if element.radius < 0 then dist = -dist end
                         if source.currentObjective then
                             if source.currentObjective <= source.previousObjective then
                                 objectiveCheck = false
@@ -1150,14 +1213,14 @@ function addon.UpdateGotoSteps()
                             source.previousObjective = source.currentObjective
                         end
                         if dist <= element.radius and objectiveCheck then
-                            if element.persistent and not element.skip then
-                                element.skip = true
-                                addon.UpdateMap()
+                            local enabled = not element.skip
+                            if element.persistent then
+                                element.hidden = true
                             elseif not (element.textOnly and element.hidePin and
                                          element.wpHash ~= af.element.wpHash and not element.generated) then
                                 CheckLoop(element,step)
                                 element.skip = true
-                                addon.UpdateMap()
+                                updateMap = true
                                 if not element.textOnly then
                                     addon.SetElementComplete(element.frame)
                                 end
@@ -1165,19 +1228,28 @@ function addon.UpdateGotoSteps()
                                     addon.StartTimer(element.timer,element.timerText)
                                 end
                             end
-                        elseif element.persistent and element.skip then
-                            element.skip = false
-                            RXPCData.completedWaypoints[step.index or "tip"][element.wpHash] = false
-                            addon.UpdateMap()
+                            if enabled and addon.settings.profile.debug and element.skip then
+                                print(format("%d: Waypoint reached\n  goto = %.2f,%.2f (%d/%d,%.4f,%.4f)", i,
+                                       element.x, element.y, element.zone or 0, element.instance, element.wx, element.wy ))
+                            end
+                        elseif element.persistent then
+                            element.hidden = false
                         end
                     end
                 end
+            end
+            if hidden ~= element.hidden then
+                updateMap = true
             end
             --
         end
     end
 
-    if addon.hideArrow ~= hideArrow then
+    if updateMap then
+        addon.UpdateMap()
+    end
+
+    if addon.hideArrow ~= hideArrow and not af.wrongContinent then
         addon.hideArrow = hideArrow
         forceArrowUpdate = true
     end
@@ -1291,7 +1363,7 @@ function addon.UpdateGotoSteps()
 
     end
 
-    if forceArrowUpdate then updateArrow() end
+    if forceArrowUpdate then updateArrowData() end
 end
 
 local function GetMapCoefficients(p1x,p1y,p1xb,p1yb,p2x,p2y,p2xb,p2yb)

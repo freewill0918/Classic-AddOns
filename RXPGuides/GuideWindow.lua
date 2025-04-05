@@ -24,7 +24,7 @@ local RXPFrame = CreateFrame("Frame", "RXPFrame", UIParent, BackdropTemplate)
 addon.RXPFrame = RXPFrame
 addon.enabledFrames["RXPFrame"] = RXPFrame
 RXPFrame.IsFeatureEnabled = function()
-    return not addon.settings.profile.hideGuideWindow
+    return not addon.settings.profile.hideGuideWindow,false
 end
 
 local BottomFrame = CreateFrame("Frame", "$parent_bottomFrame", RXPFrame,
@@ -441,10 +441,10 @@ local tipMenu = {{
 local TipWindowMouseDown = function(self,button)
     if self.step and self.step.tip then
         if (button == "RightButton") then
-            if LibDD then
-                LibDD:EasyMenu(tipMenu, MenuFrame, "cursor", 0, 0, "MENU");
-            else
+            if _G.EasyMenu then
                 _G.EasyMenu(tipMenu, MenuFrame, "cursor", 0, 0, "MENU");
+            else
+                LibDD:EasyMenu(tipMenu, MenuFrame, "cursor", 0, 0, "MENU");
             end
         else
             self:StartMoving()
@@ -654,6 +654,7 @@ function addon.SetStep(n, n2, loopback)
     ClearFrameData()
     local level = UnitLevel("player")
     local scrollHeight = 1
+    local activeTargets = {}
 
     for i = 1, n - 1 do
         local step = guide.steps[i]
@@ -949,21 +950,32 @@ function addon.SetStep(n, n2, loopback)
                     end
                 end
             end
+
             if element.unitscan then
                 for _, t in ipairs(element.unitscan) do
-                    tinsert(stepUnitscan, addon.GetCreatureName(t))
+                    if not activeTargets[t] then
+                        activeTargets[t] = true
+                        tinsert(stepUnitscan, addon.GetCreatureName(t))
+                    end
                 end
             end
             if element.mobs then
                 for _, t in ipairs(element.mobs) do
-                    tinsert(stepMobs, addon.GetCreatureName(t))
+                    if not activeTargets[t] then
+                        activeTargets[t] = true
+                        tinsert(stepMobs, addon.GetCreatureName(t))
+                    end
                 end
             end
             if element.targets then
                 for _, t in ipairs(element.targets) do
-                    tinsert(stepTargets, addon.GetCreatureName(t))
+                    if not activeTargets[t] then
+                        activeTargets[t] = true
+                        tinsert(stepTargets, addon.GetCreatureName(t))
+                    end
                 end
             end
+
             --local spacing = 0
 
         end
@@ -1038,21 +1050,24 @@ function CurrentStepFrame.UpdateText()
     addon.updateStepText = false
     local guide = addon.currentGuide
     if not guide then return end
-    local group = guide.group
 
     -- StepScroll(n)
-    local totalHeight = 0
-    local c = 0
+    local totalHeight, frameHeight = 0, 0
+    local c, e, h, spacing = 0, 0, 0, 0
     local anchor = 0
     -- local heightDiff = RXPFrame:GetHeight() - CurrentStepFrame:GetHeight()
-    for i, step in ipairs(activeSteps) do
+    local loopStepIndex, stepframe, elementFrame, icon
 
-        local index = step.index
+    for _, step in ipairs(activeSteps) do
+
+        loopStepIndex = step.index
         c = c + 1
-        local stepframe = CurrentStepFrame.framePool[c]
+        stepframe = CurrentStepFrame.framePool[c]
+
         if stepframe then
             if not step.tip then
                 stepframe:ClearAllPoints()
+
                 if anchor < 1 then
                     stepframe:SetPoint("TOPLEFT", CurrentStepFrame, 0, 0)
                     stepframe:SetPoint("TOPRIGHT", CurrentStepFrame, 0, 0)
@@ -1062,23 +1077,25 @@ function CurrentStepFrame.UpdateText()
                     stepframe:SetPoint("TOPRIGHT", CurrentStepFrame.framePool[anchor],
                                     "BOTTOMRIGHT", 0, -5)
                 end
+
                 stepframe:SetMovable(false)
                 anchor = c
             end
 
             stepframe.number.text:SetText(step.title or
-                                            (fmt(L("Step %d"), index)))
+                                            (fmt(L("Step %d"), loopStepIndex)))
             stepframe.number:SetSize(stepframe.number.text:GetStringWidth() + 10, 17)
 
-            local e = 0
-            local frameHeight = 0
+            e = 0
+            frameHeight = 0
             for j, element in ipairs(step.elements or {}) do
                 e = j
-                local elementFrame = stepframe.elements[e]
+                elementFrame = stepframe.elements[e]
+
                 if elementFrame then
                     elementFrame:Show()
 
-                    local spacing = 0
+                    spacing = 0
                     if not IsFrameShown(elementFrame,step) then
                         elementFrame:SetAlpha(0)
                         elementFrame.button:Hide()
@@ -1086,16 +1103,23 @@ function CurrentStepFrame.UpdateText()
                         spacing = 1
                     elseif element.text then
                         elementFrame:SetAlpha(1)
-                        local text = elementFrame.text
 
                         elementFrame.button:ClearAllPoints()
-                        elementFrame.button:SetPoint("TOPLEFT", elementFrame, 6, -1);
+                        elementFrame.button:SetPoint("TOPLEFT", elementFrame, 6, -1)
+
                         elementFrame.text:ClearAllPoints()
                         elementFrame.text:SetPoint("TOPLEFT", elementFrame.button,
                                                 "TOPRIGHT", 11, -1)
                         elementFrame.text:SetPoint("RIGHT", stepframe, -5, 0)
-                        text:SetText(L(element.text))
-                        local h = math.ceil(elementFrame.text:GetStringHeight() *
+
+                         -- Prevent text from overwritten with " ", could be stale text
+                        if element.text ~= ' ' then
+                            elementFrame.text:SetText(L(element.text))
+                        else
+                            element.requestFromServer = true
+                        end
+
+                        h = math.ceil(elementFrame.text:GetStringHeight() *
                                                 1.1) + 1
                         -- print('sh:',h)
                         elementFrame:SetHeight(h)
@@ -1109,9 +1133,11 @@ function CurrentStepFrame.UpdateText()
                             elementFrame:EnableMouse(true)
                             elementFrame.button:EnableMouse(true)
                         end
+
                         elementFrame.icon:ClearAllPoints()
                         elementFrame.icon:SetPoint("TOPLEFT", elementFrame.button,
                                                 "TOPRIGHT", 0, -1)
+
                         if element.textOnly then
                             elementFrame.button:SetChecked(true)
                             elementFrame.button:Hide()
@@ -1127,7 +1153,9 @@ function CurrentStepFrame.UpdateText()
                         element.completed = true
                         spacing = 1
                     end
+
                     elementFrame:ClearAllPoints()
+
                     if e == 1 then
                         elementFrame:SetPoint("TOPLEFT", stepframe, 0, -10 + spacing)
                         elementFrame:SetPoint("TOPRIGHT", stepframe, 0,
@@ -1138,8 +1166,9 @@ function CurrentStepFrame.UpdateText()
                         elementFrame:SetPoint("TOPRIGHT", stepframe.elements[e - 1],
                                             "BOTTOMRIGHT", 0, 0 + spacing)
                     end
+
                     if element.tag and element.text then
-                        local icon = element.icon or addon.icons[element.tag] or ""
+                        icon = element.icon or addon.icons[element.tag] or ""
                         elementFrame.icon:SetText(icon)
                         elementFrame.icon:Show()
                     else
@@ -1163,13 +1192,17 @@ function CurrentStepFrame.UpdateText()
                 stepframe:SetAlpha(1)
                 frameHeight = math.ceil(frameHeight + 18)
             end
+
             stepframe:SetHeight(frameHeight)
+
             if step.tip then
                 frameHeight = -5
             end
+
             totalHeight = totalHeight + frameHeight + 5
         end
     end
+
     CurrentStepFrame:SetHeight(totalHeight - 5)
 end
 
@@ -1254,10 +1287,10 @@ Footer.cog:SetScript("OnClick", function(self) RXPFrame.DropDownMenu() end)
 -- Footer.cog:HookScript("OnLeave", function(self) self:Hide() end)
 
 function RXPFrame.DropDownMenu()
-    if LibDD then
-        LibDD:EasyMenu(RXPFrame.menuList, MenuFrame, "cursor", 0, 0, "MENU");
-    else
+    if _G.EasyMenu then
         _G.EasyMenu(RXPFrame.menuList, MenuFrame, "cursor", 0, 0, "MENU");
+    else
+        LibDD:EasyMenu(RXPFrame.menuList, MenuFrame, "cursor", 0, 0, "MENU");
     end
 end
 
@@ -1419,7 +1452,10 @@ function addon.ProcessGuideTable(guide)
             --print(startAt,stopAt)
         end
         local newGuide = addon:FetchGuide(group,name)
-        if not newGuide then return end
+        if not newGuide then
+            print(format("RXPGuides - Error trying to include guide: %s\\%s",group,name))
+            return
+        end
         if not guideRef[newGuide] and guide ~= newGuide then
             guideRef[newGuide] = true
             ProcessSteps(newGuide,startAt,stopAt)
@@ -1685,10 +1721,10 @@ function addon:LoadGuide(guide, OnLoad)
                 bottomMenu[1].text = L("Go to step") .. " " .. n
                 bottomMenu[1].arg1 = n
                 bottomMenu[feedbackMenuIndex].arg1 = n
-                if LibDD then
-                    LibDD:EasyMenu(bottomMenu, MenuFrame, "cursor", 0, 0, "MENU");
-                else
+                if _G.EasyMenu then
                     _G.EasyMenu(bottomMenu, MenuFrame, "cursor", 0, 0, "MENU");
+                else
+                    LibDD:EasyMenu(bottomMenu, MenuFrame, "cursor", 0, 0, "MENU");
                 end
             else
                 self.timer = GetTime()
@@ -1762,6 +1798,7 @@ end
 
 function BottomFrame.UpdateFrame(self, stepn)
     local level = UnitLevel("player")
+
     if stepPos[0] and ((not self and stepn) or (self and self.step)) and IsFrameShown(self,self and self.step) then
         local stepNumber = stepn or self.step.index
         local frame = ScrollChild.framePool[stepNumber]
@@ -1778,10 +1815,13 @@ function BottomFrame.UpdateFrame(self, stepn)
         local fheight
         local hideStep = step.level > level or (not IsFrameShown(frame,step))
 
-        local text
+        local text, rawtext, icon
+        local stepDiff
+
         for _, element in ipairs(frame.step.elements or {}) do
-            local stepDiff = element.step.index - RXPCData.currentStep
+            stepDiff = element.step.index - RXPCData.currentStep
             element.element = element
+
             if element.requestFromServer then
                 --addon.lastCall = element.tag
                 addon.Call(element.tag,addon.functions[element.tag],element,"WindowUpdate")
@@ -1796,11 +1836,14 @@ function BottomFrame.UpdateFrame(self, stepn)
                 --addon.functions[element.tag](element,"WindowUpdate")
                 addon.Call(element.tag,addon.functions[element.tag],element,"WindowUpdate")
             end
-            local rawtext = element.tooltipText
+
+            rawtext = element.tooltipText
+
             if not rawtext and element.text then
-                local icon = element.icon or addon.icons[element.tag] or ""
+                icon = element.icon or addon.icons[element.tag] or ""
                 rawtext = icon .. element.text
             end
+
             if hideStep then
                 text = ""
             elseif rawtext and not element.hideTooltip then
@@ -1811,10 +1854,13 @@ function BottomFrame.UpdateFrame(self, stepn)
                 end
             end
         end
+
         step.text = text
+
         if frame.text then
             frame.text:SetText(text)
         end
+
         if hideStep then
             fheight = 1
             frame:SetAlpha(0)
@@ -1829,12 +1875,15 @@ function BottomFrame.UpdateFrame(self, stepn)
         for n = stepNumber + 1, #stepPos do
             stepPos[n] = stepPos[n] + hDiff
         end
+
         stepPos[0] = stepPos[0] + hDiff
 
     else
         addon.updateBottomFrame = false
+
         local totalHeight = 0
         --local hiddenFrames = 0
+
         for n, frame in ipairs(ScrollChild.framePool) do
             if not frame:IsShown() then break end
             local text
@@ -1846,7 +1895,9 @@ function BottomFrame.UpdateFrame(self, stepn)
             for _, element in ipairs(frame.step.elements or {}) do
                 if not self then
                     local stepDiff = element.step.index - RXPCData.currentStep
+
                     element.element = element
+
                     if element.requestFromServer then
                         --addon.lastCall = element.tag
                         --addon.functions[element.tag](element,"WindowUpdate")
@@ -1864,11 +1915,14 @@ function BottomFrame.UpdateFrame(self, stepn)
                         addon.Call(element.tag,addon.functions[element.tag],element,"WindowUpdate")
                     end
                 end
+
                 local rawtext = element.tooltipText
+
                 if not rawtext and element.text then
                     local icon = element.icon or addon.icons[element.tag] or ""
                     rawtext = icon .. element.text
                 end
+
                 if hideStep then
                     text = ""
                 elseif rawtext and not element.hideTooltip and rawtext ~= "" then
@@ -1918,14 +1972,18 @@ function BottomFrame.UpdateFrame(self, stepn)
         stepPos[0] = totalHeight
         -- print(ScrollChild.framePool[#ScrollChild.framePool]:GetBottom(),totalHeight)
     end
+
     local guide = addon.currentGuide
+
     if guide then
         ScrollChild:SetHeight(ScrollChild.f1:GetHeight() -
                                   BottomFrame.hiddenFrames * 4)
     end
+
     local w = RXPFrame:GetWidth() - 35
     ScrollChild:SetWidth(w)
     local bottomFrameHeight = BottomFrame:GetHeight()
+
     if bottomFrameHeight < 30 then
         BottomFrame:Hide()
         if RXPFrame:GetHeight() < 28 then RXPFrame:SetHeight(28) end
@@ -1933,6 +1991,7 @@ function BottomFrame.UpdateFrame(self, stepn)
         if RXPFrame:GetHeight() > 50 then
             addon.settings.profile.frameHeight = RXPFrame:GetHeight()
         end
+
         RXPFrame:SetHeight(28)
         BottomFrame:Hide()
     elseif not BottomFrame:IsShown() then
@@ -1940,6 +1999,7 @@ function BottomFrame.UpdateFrame(self, stepn)
             RXPFrame:SetHeight(math.max(addon.settings.profile.frameHeight,
                                         50))
         end
+
         BottomFrame:Show()
     end
 

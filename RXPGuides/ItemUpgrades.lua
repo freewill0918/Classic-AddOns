@@ -1,20 +1,23 @@
 local addonName, addon = ...
+local L = addon.locale.Get
 
-if addon.gameVersion > 30000 then return end
+if not (addon.game == "CLASSIC" or addon.game == "CATA") then return end
 
 local locale = GetLocale()
 
 if not (locale == "enUS" or locale == "enGB" or locale == "frFR") then return end
 
-local fmt, tinsert, ipairs, pairs, next, type, wipe, tonumber, strlower =
+local fmt, tinsert, ipairs, pairs, next, type, wipe, tonumber, strlower, smatch =
     string.format, table.insert, ipairs, pairs, next, type, wipe, tonumber,
-    strlower
+    strlower, string.match
 
 local GetItemInfo = C_Item and C_Item.GetItemInfo or _G.GetItemInfo
-local GetItemInfoInstant, GetInventoryItemLink, IsEquippedItem =
-    _G.GetItemInfoInstant, _G.GetInventoryItemLink, _G.IsEquippedItem
-local GetItemStats = _G.GetItemStats
+local GetItemInfoInstant = C_Item and C_Item.GetItemInfoInstant or
+                               _G.GetItemInfoInstant
+local IsEquippedItem = C_Item and C_Item.IsEquippedItem or _G.IsEquippedItem
+local GetItemStats = C_Item and C_Item.GetItemStats or _G.GetItemStats
 local UnitLevel = _G.UnitLevel
+local GetInventoryItemLink = _G.GetInventoryItemLink
 
 local ItemArmorSubclass, ItemWeaponSubclass = Enum.ItemArmorSubclass,
                                               Enum.ItemWeaponSubclass
@@ -51,6 +54,7 @@ local session = {
 -- TODO support spec awareness
 -- Ignoring for now since overrides are rare and specific
 local ITEM_WEIGHT_ADDITIONS = {
+    ["DEATHKNIGHT"] = {},
     ["DRUID"] = {},
     ["HUNTER"] = {},
     ["MAGE"] = {},
@@ -97,6 +101,31 @@ local CLASS_MAP = {
             [ItemArmorSubclass.Cloth] = true -- Cloaks plus cloth armor
         },
         ["WeaponType"] = {[ItemWeaponSubclass.Generic] = true}
+    },
+    ["DEATHKNIGHT"] = {
+        ["Slot"] = {
+            ["INVTYPE_THROWN"] = _G.INVSLOT_RANGED,
+            ["INVTYPE_RANGEDRIGHT"] = _G.INVSLOT_RANGED,
+            ["INVTYPE_SHIELD"] = _G.INVSLOT_OFFHAND,
+            ["INVTYPE_WEAPONOFFHAND"] = _G.INVSLOT_OFFHAND
+        },
+        ["ArmorType"] = {
+            [ItemArmorSubclass.Leather] = true,
+            [ItemArmorSubclass.Mail] = true,
+            [ItemArmorSubclass.Plate] = true -- DK always 55+
+        },
+        ["WeaponType"] = {
+            [ItemWeaponSubclass.Axe1H] = true,
+            [ItemWeaponSubclass.Axe2H] = true,
+            [ItemWeaponSubclass.Mace1H] = true,
+            [ItemWeaponSubclass.Mace2H] = true,
+            [ItemWeaponSubclass.Polearm] = function()
+                return UnitLevel("player") >= 20
+            end,
+            [ItemWeaponSubclass.Sword1H] = true,
+            [ItemWeaponSubclass.Sword2H] = true,
+            [ItemWeaponSubclass.Unarmed] = true
+        }
     },
     ["DRUID"] = {
         ["Slot"] = {},
@@ -270,7 +299,6 @@ local CLASS_MAP = {
 -- Map quasi-friendly key from GSheet/StatWeights to regex-friendly value
 -- GSheet or pretty name = Regex formatting
 local KEY_TO_TEXT = {
-    ['STAT_ARMOR'] = _G.ARMOR_TEMPLATE,
     ['ITEM_MOD_STRENGTH_SHORT'] = _G.ITEM_MOD_STRENGTH,
     ['ITEM_MOD_AGILITY_SHORT'] = _G.ITEM_MOD_AGILITY,
     ['ITEM_MOD_INTELLECT_SHORT'] = _G.ITEM_MOD_INTELLECT,
@@ -298,6 +326,23 @@ local KEY_TO_TEXT = {
     -- ['ITEM_MOD_PARRY_RATING_SHORT'] = _G.ITEM_MOD_PARRY_RATING
     -- ['ITEM_MOD_ATTACK_POWER_SHORT'] = _G.ITEM_MOD_ATTACK_POWER,
 }
+
+if addon.game == "CATA" then
+    KEY_TO_TEXT['ITEM_MOD_MASTERY_RATING_SHORT'] = _G.ITEM_MOD_MASTERY_RATING
+
+    KEY_TO_TEXT['ITEM_MOD_HIT_RANGED_RATING_SHORT'] =
+        _G.ITEM_MOD_HIT_RANGED_RATING
+
+    KEY_TO_TEXT['ITEM_MOD_CRIT_RANGED_RATING_SHORT'] =
+        _G.ITEM_MOD_CRIT_RANGED_RATING
+    KEY_TO_TEXT['ITEM_MOD_SPELL_PENETRATION_SHORT'] =
+        _G.ITEM_MOD_SPELL_PENETRATION
+
+    KEY_TO_TEXT['ITEM_MOD_HEALTH_REGEN_SHORT'] = _G.ITEM_MOD_HEALTH_REGEN
+    KEY_TO_TEXT['ITEM_MOD_BLOCK_RATING_SHORT'] = _G.ITEM_MOD_BLOCK_RATING
+    KEY_TO_TEXT['ITEM_MOD_RESILIENCE_RATING_SHORT'] =
+        _G.ITEM_MOD_RESILIENCE_RATING
+end
 
 -- Keys only obtained from tooltip text parsing
 -- Explicitly set regex
@@ -380,7 +425,8 @@ local SPEC_MAP = {
     ["SHAMAN"] = {[1] = "Elemental", [2] = "Enhancement", [3] = "Restoration"},
     ["MAGE"] = {[1] = "Arcane", [2] = "Fire", [3] = "Frost"},
     ["WARLOCK"] = {[1] = "Affliction", [2] = "Demonology", [3] = "Destruction"},
-    ["DRUID"] = {[1] = "Balance", [2] = "Feral Combat", [4] = "Restoration"}
+    ["DRUID"] = {[1] = "Balance", [2] = "Feral Combat", [4] = "Restoration"},
+    ["DEATHKNIGHT"] = {[1] = "Blood", [2] = "Frost", [4] = "Unholy"}
 }
 
 -- Setup reverse lookup in session.weaponSlotToWeightKey
@@ -477,7 +523,11 @@ local function TooltipSetItem(tooltip, ...)
         -- Remove base 100 from percentage
         -- A 140% upgrade ratio is only a 40% upgrade
         if data['debug'] or not data['Ratio'] then
-            ratioText = "(debug) " .. (data['debug'] or _G.SPELL_FAILED_ERROR)
+            if addon.settings.profile.debug then
+                ratioText = "(debug) " .. (data['debug'] or _G.SPELL_FAILED_ERROR)
+            else
+                ratioText = _G.SPELL_FAILED_ERROR
+            end
         else
             ratioText = prettyPrintRatio(data['Ratio'])
         end
@@ -659,7 +709,7 @@ local function getSpec()
 
     -- if addon.settings.profile.enableTalentGuides then
     --     -- Difficult/impossible to map talent guide
-    --     -- addon.settings.profile.activeTalentGuide == "Rogue - Hardcore Rogue 10-60"
+    --     -- RXPCData.activeTalentGuide == "Rogue - Hardcore Rogue 10-60"
     -- end
 
     -- Calculate most likely spec
@@ -750,7 +800,10 @@ function addon.itemUpgrades:GetSpecWeights()
     return options
 end
 
-local function GetTooltipLines(tooltip)
+-- ITEM_SET_NAME = "%s (%d/%d)";
+local SET_BONUS_MATCH = "(%w+)%s+%((%d+)/(%d+)%)"
+
+local function GetTooltipLines(tooltip, baseItemData)
     local textLines = {}
     -- print("GetTooltipLines, tooltip", tooltip:GetName(), tooltip:NumLines())
 
@@ -758,11 +811,27 @@ local function GetTooltipLines(tooltip)
     if tooltip:NumLines() == 0 then return end
 
     local regions = {tooltip:GetRegions()}
+    local rText
+    local setMatch = {}
+
     for _, r in ipairs(regions) do
 
         if r:IsObjectType("FontString") and r:GetText() then
-            -- print("GetTooltipLines, regions", r:GetText())
-            tinsert(textLines, r:GetText())
+            rText = r:GetText()
+            -- print("GetTooltipLines, regions", rText)
+
+            -- Set bonus, so stop gathering lines past set bonus
+            if baseItemData and baseItemData.setID then
+                -- print("GetTooltipLines, checking for set bonus line '" .. rText .. "'")
+                setMatch = {smatch(rText, SET_BONUS_MATCH)}
+
+                if setMatch[1] and setMatch[2] and setMatch[3] then
+                    -- print("GetTooltipLines, aborting at set bonuses", rText)
+                    break
+                end
+            end
+
+            tinsert(textLines, rText)
         end
     end
     return textLines
@@ -890,13 +959,18 @@ local function CalculateSpellWeight(stats, tooltipTextLines)
     --    ...
     -- }
 
+    -- No spellpower weights for class
+    if not (session.activeStatWeights['STAT_SPELLDAMAGE'] or session.activeStatWeights['ITEM_MOD_SPELL_POWER']) then
+        return 0
+    end
+
     local schoolStatWeight, totalStatWeight = 0, 0
     local schoolKey, schoolName, spellPower
 
     -- Check all tooltip lines for regex matches
     for _, line in ipairs(tooltipTextLines) do
         -- print("CalculateSpellWeight (", line, ")")
-        schoolName, spellPower = string.match(line, SPELL_KIND_MATCH)
+        schoolName, spellPower = smatch(line, SPELL_KIND_MATCH)
 
         if schoolName then
             schoolKey = SPELL_KIND_MAP[strlower(schoolName)]
@@ -916,16 +990,23 @@ local function CalculateSpellWeight(stats, tooltipTextLines)
     end
 
     -- Not a magic school, return default weighting
-    -- TODO also include base spellpower
-    -- Base spellpower CANNOT BE TRUSTED, 40 Shadow + 40 Frost == 78 ITEM_MOD_SPELL_DAMAGE_DONE
-    if totalStatWeight == 0 and stats['STAT_SPELLDAMAGE'] then
-        --  print("Not a magic school")
+    -- ITEM_MOD_SPELL_DAMAGE_DONE cannot be trusted, e.g. 40 Shadow + 40 Frost == 78 ITEM_MOD_SPELL_DAMAGE_DONE
+    if totalStatWeight == 0 and stats['STAT_SPELLDAMAGE'] then -- Legacy block
+        -- print("STAT_SPELLDAMAGE: Not a magic school", stats['STAT_SPELLDAMAGE'])
         -- ITEM_MOD_SPELL_DAMAGE_DONE cannot be trusted without validation
         -- Set spellPower stat to built-in stat after verifying no school
         stats['STAT_SPELLDAMAGE'] = stats['ITEM_MOD_SPELL_DAMAGE_DONE'] + 1
 
         return stats['STAT_SPELLDAMAGE'] *
                    session.activeStatWeights['STAT_SPELLDAMAGE']
+
+    elseif totalStatWeight == 0 and stats['ITEM_MOD_SPELL_POWER'] then -- Anniversary/Era/SoD/Cata
+        -- print("ITEM_MOD_SPELL_POWER: Not a magic school", stats['ITEM_MOD_SPELL_POWER'])
+        -- Set spellPower stat to built-in stat after verifying no school
+        stats['STAT_SPELLDAMAGE'] = stats['ITEM_MOD_SPELL_POWER'] + 1
+
+        return stats['STAT_SPELLDAMAGE'] *
+                   (session.activeStatWeights['STAT_SPELLDAMAGE'] or session.activeStatWeights['ITEM_MOD_SPELL_POWER'])
     end
 
     return totalStatWeight
@@ -943,7 +1024,7 @@ function addon.itemUpgrades:GetItemData(itemLink, tooltip)
     end
 
     local _, _, _, _, itemMinLevel, _, _, _, itemEquipLoc, _, sellPrice, _,
-          itemSubTypeID = GetItemInfo(itemLink)
+          itemSubTypeID, _, _, setID = GetItemInfo(itemLink)
 
     -- Not an equippable item
     if not itemEquipLoc or itemEquipLoc == "" or itemEquipLoc == "INVTYPE_AMMO" or
@@ -975,12 +1056,13 @@ function addon.itemUpgrades:GetItemData(itemLink, tooltip)
         itemSubTypeID = itemSubTypeID,
         itemEquipLoc = itemEquipLoc,
         sellPrice = sellPrice,
-        itemMinLevel = itemMinLevel
+        itemMinLevel = itemMinLevel,
+        setID = setID
     }
 
     -- Parse tooltip for all additional stats
     if tooltip then
-        tooltipTextLines = GetTooltipLines(tooltip)
+        tooltipTextLines = GetTooltipLines(tooltip, itemData)
     else -- If not tooltip, set hidden comparison tooltip
         tooltip = GetComparisonTip()
 
@@ -993,7 +1075,7 @@ function addon.itemUpgrades:GetItemData(itemLink, tooltip)
         tooltip:SetHyperlink(itemLink)
         -- print("RXPItemUpgradesComparison:SetHyperlink", itemLink)
 
-        tooltipTextLines = GetTooltipLines(tooltip)
+        tooltipTextLines = GetTooltipLines(tooltip, itemData)
 
         if not tooltipTextLines then
             -- print("Comparisontip lines empty")
@@ -1019,7 +1101,7 @@ function addon.itemUpgrades:GetItemData(itemLink, tooltip)
                 if type(regex) == "table" then
                     for _, r in ipairs(regex) do
                         -- print("Parsing table", i, line, "for", r)
-                        match1, match2 = string.match(line, r)
+                        match1, match2 = smatch(line, r)
 
                         -- Only expect one number per line, so ignore if double match
                         if match1 and not match2 then
@@ -1032,7 +1114,7 @@ function addon.itemUpgrades:GetItemData(itemLink, tooltip)
                     end
                 else
                     -- print("Parsing not-table", i, line, "for", regex)
-                    match1, match2 = string.match(line, regex)
+                    match1, match2 = smatch(line, regex)
 
                     -- Only expect one number per line, so ignore if double match
                     if match1 and not match2 then
@@ -1065,10 +1147,10 @@ function addon.itemUpgrades:GetItemData(itemLink, tooltip)
 
             -- dpsWeights is evaluated later, based on slot comparison wich this level doesn't know about
             -- totalWeight = totalWeight + statWeight
-        elseif key == 'ITEM_MOD_SPELL_DAMAGE_DONE' then
+        elseif key == 'ITEM_MOD_SPELL_DAMAGE_DONE' or key == 'ITEM_MOD_SPELL_POWER' then
             -- ITEM_MOD_SPELL_DAMAGE_DONE is terrible, but it's built-in so key off that to parse spell damage
             statWeight = CalculateSpellWeight(stats, tooltipTextLines)
-            -- print("Key", key, "Value", value, "weighted at", statWeight)
+            -- print("Spell: Key", key, "Value", value, "weighted at", statWeight)
 
             -- If fails to parse, return nil instead of misallocating to all spellpower
             if not statWeight then
@@ -1082,7 +1164,7 @@ function addon.itemUpgrades:GetItemData(itemLink, tooltip)
             statWeight = value * session.activeStatWeights[key]
             totalWeight = totalWeight + statWeight
 
-            -- print("Key", key, "Value", value, "weighted at", statWeight)
+            -- print("General: Key", key, "Value", value, "weighted at", statWeight)
         end
     end
 
@@ -1253,13 +1335,29 @@ end
 function addon.itemUpgrades.Test()
     local itemData
     local testData = {
-        14136, 16886, 2816, 7719, 9379, 9479, 12927, 12929, 12963, 18298, 11907,
-        13052, 20703
+        ['CLASSIC'] = {
+            ['WARRIOR'] = {
+                16886, 7719, 9379, 9479, 12927, 12929, 12963, 18298, 11907,
+                13052, 20703
+            },
+            ['SHAMAN'] = {892, 14136, 16923, 6324, 209671}
+        },
+        ['CATA'] = {
+            ['WARRIOR'] = {11820, 35042, 35916, 63827, 66884, 66933},
+            ['SHAMAN'] = {14136, 16923, 199329}
+        }
     }
-    for _, itemID in pairs(testData) do
+
+    addon.itemUpgrades.testItems = {}
+    for _, itemID in pairs(testData[addon.game][addon.player.class]) do
         print('----- ' .. itemID)
         itemData = addon.itemUpgrades:GetItemData("item:" .. itemID)
+
         if itemData then
+            addon.itemUpgrades.testItems[itemData.itemID] = itemData
+        end
+
+        if addon.settings.profile.debug and itemData then
             for key, value in pairs(itemData) do
                 print('  ', key, value)
             end
@@ -1295,7 +1393,7 @@ local ahSession = {
 addon.itemUpgrades.AH = addon:NewModule("ItemUpgradesAH", "AceEvent-3.0")
 
 function addon.itemUpgrades.AH:Setup()
-    if not addon.settings.profile.enableItemUpgradesAH then return end
+    if not addon.settings.profile.enableItemUpgradesAH or addon.game == "CATA" then return end
 
     if ahSession.isInitialized then return end
 
@@ -1919,14 +2017,24 @@ function addon.itemUpgrades.AH:CreateEmbeddedGui()
     PanelTemplates_EnableTab(attachment, index)
 end
 
+StaticPopupDialogs["RXPNoUpgradesFound"] = {
+    text = L("No item upgrades found"),
+    button1 = _G.OKAY,
+    timeout = 0,
+    whileDead = 1,
+    hideOnEscape = 1,
+    showAlert = 1
+}
+
 function addon.itemUpgrades.AH:DisplayEmbeddedResults()
     self:CreateEmbeddedGui()
     if not _G.AuctionFrame:IsShown() then return end
 
     local blockData
-
+    local n = 0
     for slotId, data in pairs(ahSession.bestAnalysis) do
         if data.budget.itemLink or data.best.itemLink then
+            n = n + 1
             -- print("DisplayEmbeddedResults:", data.slotName, "processing upgrades")
             blockData = {['Name'] = data.slotName}
 
@@ -1977,6 +2085,9 @@ function addon.itemUpgrades.AH:DisplayEmbeddedResults()
         else
             -- print("DisplayEmbeddedResults:", data.slotName, "no upgrades found")
         end
+    end
+    if n == 0 then
+        _G.StaticPopup_Show("RXPNoUpgradesFound")
     end
 end
 

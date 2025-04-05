@@ -57,6 +57,7 @@ if not isClassicSoD then
 			12404,	--Verdichteter Wetzstein
 			23528,	--Teuflischer Wetzstein
 			23529,	--Adamantitwetzstein
+			
 		},
 		["WS"] = {
 			3239,	--Rauer Gewichtsstein
@@ -127,6 +128,8 @@ else
 			2871,	--Schwerer Wetzstein
 			7964,	--Robuster Wetzstein
 			12404,	--Verdichteter Wetzstein
+			237810,	--Beschwerter geweihter Wetzstein
+			238241,	--Geweihter Wetzstein
 		},
 		["WS"] = {
 			3239,	--Rauer Gewichtsstein

@@ -607,7 +607,7 @@ RXPGuides.RegisterGuide([[
 #subgroup Gloves
 #name Water Shield - 20 (The Barrens)
 #title Water Shield
-#next Shamanistic Rage - 25 (Stonetalon Mountains)
+#next Greater Ghost Wolf - 25 (Stonetalon Mountains)
 
 
 step
@@ -820,7 +820,7 @@ RXPGuides.RegisterGuide([[
 #subgroup Gloves
 #name Water Shield - 20 (Silverpine Forest)
 #title Water Shield
-#next Shamanistic Rage - 25 (Stonetalon Mountains)
+#next Greater Ghost Wolf - 25 (Stonetalon Mountains)
 
 step
     +|cRXP_WARN_You MUST be at least level 20 in order to acquire|r |T133816:0|t[Engrave Gloves - Water Shield] |cRXP_WARN_as it is the level requirement of training|r |T135849:0|t[Frost Shock]
@@ -1982,13 +1982,13 @@ RXPGuides.RegisterGuide([[
 << Horde Shaman SoD
 #group RestedXP Rune & Books Guide
 #subgroup Legs
-#name Shamanistic Rage - 25 (Stonetalon Mountains)
-#title Shamanistic Rage
+#name Greater Ghost Wolf - 25 (Stonetalon Mountains)
+#title Greater Ghost Wolf
 #next Dual Wield Specialization - 25 (Ratchet)
 
 
 step
-    +|cRXP_WARN_You should be at least level 25 in order to acquire|r |T134596:0|t[Engrave Pants - Shamanistic Rage] |cRXP_WARN_in Stonetalon Mountains alone|r
+    +|cRXP_WARN_You should be at least level 25 in order to acquire|r |T134596:0|t[Engrave Pants - Greater Ghost Wolf] |cRXP_WARN_in Stonetalon Mountains alone|r
     .train 425343,1
     .xp >25,1
 step
@@ -1997,6 +1997,7 @@ step
     .train 425343,1
 step
     #loop
+    .goto Stonetalon Mountains,28.45,65.00,0
     .goto Stonetalon Mountains,28.45,65.00,50,0
     .goto Stonetalon Mountains,29.08,71.97,50,0
     .goto Stonetalon Mountains,33.43,68.97,50,0
@@ -2010,7 +2011,7 @@ step
     .mob Primordial Anomaly
     .train 425343,1
 step
-    .cast 402265 >>|cRXP_WARN_Use the|r |T134419:0|t|cRXP_LOOT_[Rune of Primordial Fury]|r |cRXP_WARN_to learn|r |T134596:0|t[Engrave Pants - Shamanistic Rage]
+    .cast 402265 >>|cRXP_WARN_Use the|r |T134419:0|t|cRXP_LOOT_[Rune of Primordial Fury]|r |cRXP_WARN_to learn|r |T134596:0|t[Engrave Pants - Greater Ghost Wolf]
     .use 210811
     .itemcount 210811,1 --Rune of Primordial Fury (1)
     .train 425343,1
@@ -2099,7 +2100,7 @@ step
     #completewith next
     .goto Kalimdor,44.36,34.86
     >>|cRXP_WARN_Join or create a fresh (0/7) raid (10-man) group for Blackfathom Deeps|r
-    .zone 221 >> Enter Blackfathom Deeps in Ashenvale
+    .subzone 2797,2 >> Make your way to the BFD Instance Portal. Zone in
     .train 410101,1
     .xp <25,1
 step
@@ -2316,7 +2317,7 @@ step
     .train 410101,1
     .xp <25,1
     --XX Rune Routing will never be good for this
-step
+step << skip
     +Congratulations! You have acquired all |T134419:0|t|cRXP_LOOT_[Runes]|r currently available.
     .train 410094,3 --Overload
     .train 410095,3 --Lava Burst
@@ -2352,14 +2353,6 @@ step
     .collect 213451,1
     .mob Flameseer Dubelen
 step
-    #completewith next
-    .zone Orgrimmar >>Travel to |cFFfa9602Orgrimmar|r
-step
-    .goto Orgrimmar,38.94,38.39
-    .gossip 4047 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Zor Lonetree|r and select the dialogoption
-    -- .gossipoption --x insert id
-    .target Zor Lonetree
-step
     .goto 1443,38.23,61,25,0
     .goto 1443,37.13,60.41,25,0
     .goto 1443,35.38,58.25,25,0
@@ -2382,7 +2375,7 @@ step
     .goto 1414,39.26,57.69
     >>Click on the |cRXP_PICK_Blue Crystal|r amongst the orange crystals to collect |T134088:0|t[Tear of Theradras]
     >>|cRXP_WARN_Be careful as enemies in this area are elite and they can stun.|r |cFFFF0000you are likely going to die multiple times|r
-    .collect 213553,1
+    .collect 213552,1
 step
     .goto 1414,38.45,57.84,25,0
     .goto 1414,38.64,57.69,25,0
@@ -2392,7 +2385,15 @@ step
     .goto 1443,27.72,57.51
     >>Click on a |cRXP_PICK_Blue Crystal|r amongst the purple crystals to collect |T134088:0|t[Tear of Theradras]
     >>|cRXP_WARN_Be careful as enemies in this area are elite and they can stun.|r |cFFFF0000you are likely going to die multiple times|r
-    .collect 213552,1
+    .collect 213553,1
+step
+    #completewith next
+    .zone Orgrimmar >>Travel to |cFFfa9602Orgrimmar|r
+step
+    .goto Orgrimmar,38.94,38.39
+    .gossip 4047 >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Zor Lonetree|r and select the dialogoption
+    -- .gossipoption --x insert id
+    .target Zor Lonetree
 step
     #completewith next
     .zone Thunder Bluff >>Travel to |cFFfa9602Thunder Bluff|r
@@ -2826,7 +2827,7 @@ RXPGuides.RegisterGuide([[
 #classic
 << Shaman SoD
 #group RestedXP Rune & Books Guide
-#subgroup Helm
+#subgroup Helmet
 #title Tidal Waves
 #name Tidal Waves - 42 (Feralas)
 
@@ -2905,9 +2906,9 @@ step
     .train 432241,1
 step
     #loop
-    .goto Azshara,19.4 64.0,20,0
-    .goto Azshara,21.2 60.8,20,0
-    .goto Azshara,21.0 60.0,20,0
+    .goto Azshara,19.4,64.0,20,0
+    .goto Azshara,21.2,60.8,20,0
+    .goto Azshara,21.0,60.0,20,0
     >>Kill |cRXP_ENEMY_Haldarr Satyr|r, |cRXP_ENEMY_Haldarr Trickster|r and |cRXP_ENEMY_Haldarr Felsworn.|r Loot them for |cRXP_LOOT_|T134331:0|tWaterlogged Shaman's Notes|r
     .collect 221351,1 --1/1 Waterlogged Shaman's Notes
     .mob Haldarr Satyr
@@ -2936,7 +2937,7 @@ step
     .train 432241,1
 step
     #completewith next
-    .zone Hinterlands >>Travel to Hinterlands
+    .zone The Hinterlands >>Travel to The Hinterlands
     .train 432241,1
 step
     #loop
@@ -2998,7 +2999,7 @@ step
     .use 221349
     .train 432241,1
 step
-    .goto Seaying Gorge,24.0,72.4
+    .goto Searing Gorge,24.0,72.4
     >>Kill |cRXP_ENEMY_Corrupt Moderate Manifestation of Fire|r then >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Moderate Manifestation of Fire.|r
     .turnin 82071 >>Turn in Purifying Fire
     .accept 82074 >>Accept Answering Fire's Call
@@ -3091,4 +3092,113 @@ step
     .train 432241,1
 step
     .train 432241 >> |cRXP_WARN_Use the|r |T134419:0|t[|cRXP_FRIENDLY_Rune of Overcharged|r] |cRXP_WARN_to train|r |T132213:0|t[Overcharged]
+]])
+
+RXPGuides.RegisterGuide([[
+#classic
+<< Shaman SoD
+#group RestedXP Rune & Books Guide
+#subgroup Cloak
+#title Storm, Earth, and Fire
+#name Storm, Earth, and Fire - 52 (Felwood)
+
+step
+    .train 440634,1
+    #completewith next
+    .zone Felwood >>Travel to Felwood
+step
+    .goto Felwood,62.4,9.0
+    .train 440634,1
+    >>Kill |cRXP_ENEMY_Deadwood Shamans|r, |cRXP_ENEMY_Deadwood Avengers|r and |cRXP_ENEMY_Deadwood Den Watchers|r. Loot them for the |T134918:0|t[|cRXP_LOOT_Voltaic Icon|r]
+    .goto Feralas,76.6,48.0
+    .collect 225838,1
+    .mob Deadwood Shaman
+    .mob Deadwood Avenger
+    .mob Deadwood Den Watcher
+step
+    .train 440634,1
+    .equip 18,225838 >> |cRXP_WARN_Equip the|r |T134918:0|t[|cRXP_LOOT_Voltaic Icon|r]
+    .use 225838
+step
+    .train 440634,1
+    .aura 408828 >>|cRXP_WARN_You must now kill 3 enemies with a single cast of|r |T136015:0|t[Chain Lightning]
+    >>|cRXP_WARN_Pull 3 mobs and lower their health to roughly 5% each then cast|r |T136015:0|t[Chain Lightning]
+step
+    .itemcount 225838,1
+    .use 225838
+    .train 440634 >>|cRXP_WARN_Use the|r |T134918:0|t[|cRXP_LOOT_Voltaic Icon|r] |cRXP_WARN_to learn|r |T237588:0|t[Storm, Earth, and Fire]
+]])
+
+RXPGuides.RegisterGuide([[
+#classic
+<< Shaman SoD
+#group RestedXP Rune & Books Guide
+#subgroup Cloak
+#title Coherence
+#name Coherence - 55 (Burning Steppes)
+
+step
+    .train 416062,1
+    #completewith next
+    .zone Burning Steppes >>Travel to Burning Steppes
+step
+    .train 416062,1
+    #loop
+    .goto Burning Steppes,62.4,9.0,60,0
+    .goto Burning Steppes,69.4,31.8,60,0
+    .goto Burning Steppes,61.4,31.8,60,0
+    .goto Burning Steppes,51.2,35.6,60,0
+    .goto Burning Steppes,55.6,49.2,60,0
+    .goto Burning Steppes,54.8,62.2,60,0
+    .goto Burning Steppes,35.6,61.6,60,0
+    .goto Burning Steppes,41.6,43.6,60,0
+    >>Kill |cRXP_ENEMY_Greater Obsidian Elementals|r. Loot them for the |cRXP_LOOT_Molten Obsidian Core|r
+    .collect 225676,1
+    .mob Greater Obsidian Elemental
+step
+    .train 416062,1
+    .goto Redridge Mountains,44.6,50.0
+    >>|cRXP_WARN_You now have 10 minutes to jump into water anywhere in the world|r
+    >>|cRXP_WARN_Travel to Redridge Mountains and jump into the lake|r
+    >>|cRXP_WARN_If you Hearthstone is near water you may also do that instead|r
+    >>|cRXP_WARN_Jumping into water will transform the |cRXP_LOOT_Molten Obsidian Core|r into a|r |T237477:0|t[|cRXP_LOOT_Sooty Obsidian Core|r]
+    .collect 225675,1
+step
+    .train 416062,1
+    .use 225675 >> |cRXP_WARN_Open the|r |T237477:0|t[|cRXP_LOOT_Sooty Obsidian Core|r] |cRXP_WARN_to receive the|r |T134419:0|t[|cRXP_LOOT_Rune of Composure|r]
+    .collect 225740,1
+step
+    .itemcount 225740,1
+    .use 225740
+    .train 416062 >>|cRXP_WARN_Use the|r |T134419:0|t[|cRXP_LOOT_Rune of Composure|r] |cRXP_WARN_to learn|r |T237586:0|t[Coherence]
+]])
+
+RXPGuides.RegisterGuide([[
+#classic
+<< Shaman SoD
+#group RestedXP Rune & Books Guide
+#subgroup Cloak
+#title Feral Sprit
+#name Feral Sprit - 60 (Winterspring)
+
+step
+    .train 440630,1
+    #completewith next
+    .zone Winterspring >>Travel to Winterspring
+    >>|cRXP_WARN_Note you must kill a level 60 elite. Consider bringing a friend|r
+step
+    #completewith next
+    .goto Winterspring,67.93,41.44,50 >> Enter the Yeti cave
+step
+    .goto Winterspring,69.87,37.92
+    >>|cRXP_WARN_Travel to the back of the Yeti cave and talk to the chained elemental|r |cRXP_FRIENDLY_Frijidar|r
+    >>|cRXP_WARN_He will become hostile after a few seconds|r
+    >>Kill |cRXP_ENEMY_Frijidar|r. Loot it for the |T134419:0|t[|cRXP_LOOT_Rune of the Bound Spirit|r]
+    .collect 225914,1
+    .mob Frijidar
+    .skipgossip
+step
+    .itemcount 225914,1
+    .use 225914
+    .train 440630 >>|cRXP_WARN_Use the|r |T134419:0|t[|cRXP_LOOT_Rune of the Bound Spirit|r] |cRXP_WARN_to learn|r |T237577:0|t[Feral Spirit]
 ]])

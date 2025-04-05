@@ -1,6 +1,9 @@
 # RestedXP Guides
 
-## [v4.6.50](https://github.com/RestedXP/RXPGuides/tree/v4.6.50) (2024-11-20)
-[Full Changelog](https://github.com/RestedXP/RXPGuides/compare/v4.6.49...v4.6.50) [Previous Releases](https://github.com/RestedXP/RXPGuides/releases)
+## [v4.6.68](https://github.com/RestedXP/RXPGuides/tree/v4.6.68) (2025-03-05)
+[Full Changelog](https://github.com/RestedXP/RXPGuides/compare/v4.6.67...v4.6.68) [Previous Releases](https://github.com/RestedXP/RXPGuides/releases)
 
-- toc update  
+- Add Chapter 6 Homecoming to the Undermine Campaign  
+- Fix The Ringing Deeps coordinates  
+- SoD Mulgore updated for Rune Vendor  
+- SoD UD starter zone updated for rune vendor  

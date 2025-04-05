@@ -1,10 +1,10 @@
-## Interface: 40401
+## Interface: 40402
 ## Title: Poisoner
 ## Notes: Poison application helper for rogues
 ## Author: Original by Karrion@Terenas, Poisoner3 by Silentdave, humfras (06/2010), Poisoner4 by humfras
 ## eMail: N/A
 ## URL: N/A
-## Version: 4.4.1.4-cata
+## Version: 4.4.2.1-cata
 ## Dependencies:
 ## SavedVariablesPerCharacter: POISONER_CONFIG
 

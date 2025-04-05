@@ -613,6 +613,7 @@ step
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Innkeeper Renee|r
     .home >>Set your hearthstone to Brill
     .target Innkeeper Renee
+    .isQuestAvailable 6323
 step << Undead
     .goto 18,58.84,51.93
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Anette|r
@@ -654,4 +655,9 @@ step
     .goto 110,72.396,85.242,12,0
     .goto 1941/0,-4877.20020,7012.10059
     .zone Eversong Woods >>Exit Silvermoon City
+step
+    .goto Eversong Woods,50.331,50.770
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ranger Jaela|r
+    .accept 8475 >>Accept The Dead Scar
+    .target Ranger Jaela
     ]])
