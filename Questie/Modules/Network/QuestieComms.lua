@@ -1032,6 +1032,10 @@ function _QuestieComms:OnCommReceived_unsafe(message, distribution, sender)
                 if(suggestUpdate) then
                     local major, minor, patch = strsplit(".", decompressedData.ver);
                     local majorOwn, minorOwn, patchOwn = QuestieLib:GetAddonVersionInfo();
+					-- 暫時修正
+					if majorOwn == nil then majorOwn = 0 end
+					if minorOwn == nil then minorOwn = 0 end
+					if patchOwn == nil then patchOwn = 0 end
                     if(majorOwn < tonumber(major) or (majorOwn == tonumber(major) and minorOwn < tonumber(minor)) or (majorOwn == tonumber(major) and minorOwn == tonumber(minor) and patchOwn < tonumber(patch)) and (not UnitAffectingCombat("player"))) then
                         suggestUpdate = false;
                         if(majorOwn < tonumber(major)) then
@@ -1075,7 +1079,7 @@ function _QuestieComms:CreatePacket(messageId)
     local major, minor, patch = QuestieLib:GetAddonVersionInfo();
     -- Set messageId
     pkt.data = {
-        ver = major.."."..minor.."."..patch,
+        ver = (major or 0).."."..(minor or 0).."."..(patch or 0); -- 暫時修正
         msgVer = commMessageVersion,
         msgId = messageId,
     }
