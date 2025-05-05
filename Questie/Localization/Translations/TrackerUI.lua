@@ -138,7 +138,7 @@ local trackerUILocales = {
         ["ptBR"] = true,
         ["ruRU"] = true,
         ["zhCN"] = true,
-        ["zhTW"] = "文字轉語音",
+        ["zhTW"] = true,
     },
     ["Hold shift to see PlayButtons"] = {
         ["enUS"] = true,

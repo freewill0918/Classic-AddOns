@@ -1,4 +1,4 @@
----@class Tutorial
+---@type Tutorial
 local Tutorial = QuestieLoader:ImportModule("Tutorial")
 ---@type l10n
 local l10n = QuestieLoader:ImportModule("l10n")
@@ -27,7 +27,7 @@ function Tutorial.CreateChooseObjectiveTypeFrame()
 
     local titleText = baseFrame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
     titleText:SetText(l10n("Welcome to Questie"))
-    titleText:SetFont(STANDARD_TEXT_FONT, 16)
+    titleText:SetFont("Fonts\\FRIZQT__.TTF", 16)
     titleText:SetPoint("TOP", 0, -10)
 
     local customText = baseFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")

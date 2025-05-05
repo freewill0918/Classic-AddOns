@@ -17,6 +17,8 @@ local GetMinimapZoneText = GetMinimapZoneText;
 local IsInInstance = IsInInstance;
 local format = format;
 
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded or IsAddOnLoaded
+
 
 local function GetMapTitleText()
     local regions = {WorldMapFrame.BorderFrame:GetRegions()}
@@ -84,9 +86,9 @@ function QuestieCoords:WriteCoords()
         curY = (top - curY) / height * 100;
         local precision = "%.".. Questie.db.profile.mapCoordinatePrecision .."f";
 
-        local worldmapCoordsText = "游標: "..format(precision.. " X, ".. precision .." Y  ", curX, curY);
+        local worldmapCoordsText = "Cursor: "..format(precision.. " X, ".. precision .." Y  ", curX, curY);
 
-        worldmapCoordsText = worldmapCoordsText.."|  玩家: "..format(precision.. " X , ".. precision .." Y", posX, posY);
+        worldmapCoordsText = worldmapCoordsText.."|  Player: "..format(precision.. " X , ".. precision .." Y", posX, posY);
         -- Add text to world map
         mapTitleText:SetText(worldmapCoordsText)
 
