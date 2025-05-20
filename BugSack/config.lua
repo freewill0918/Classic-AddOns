@@ -4,7 +4,7 @@ if not addon.healthCheck then return end
 local L = addon.L
 
 local frame = addon.frame
-frame.name = addonName
+frame.name = L["BugSack"]
 frame:Hide()
 local ldbi = LibStub("LibDBIcon-1.0")
 
@@ -29,7 +29,7 @@ frame:SetScript("OnShow", function(frame)
 
 	local title = frame:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 	title:SetPoint("TOPLEFT", 16, -16)
-	title:SetText(addonName)
+	title:SetText(L["BugSack"])
 
 	local autoPopup = newCheckbox(
 		L["Auto popup"],

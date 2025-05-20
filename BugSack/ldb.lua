@@ -16,8 +16,8 @@ local BugGrabber = BugGrabber
 function plugin.OnClick(self, button)
 	if button == "RightButton" then
 		if InterfaceOptionsFrame_OpenToCategory then
-			InterfaceOptionsFrame_OpenToCategory(addonName)
-			InterfaceOptionsFrame_OpenToCategory(addonName)
+			InterfaceOptionsFrame_OpenToCategory(L[addonName])
+			InterfaceOptionsFrame_OpenToCategory(L[addonName])
 		else
 			Settings.OpenToCategory(addon.settingsCategory.ID)
 		end

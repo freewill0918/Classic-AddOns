@@ -1,5 +1,5 @@
-## Interface: 11504, 11503, 20504, 30403, 40400, 40401, 110005, 110000, 110002
-## Version: v11.0.1
+## Interface: 11507, 30404, 40402, 110100, 110105
+## Version: v11.1.2
 ## Title: BugSack
 ## Notes: Toss those bugs inna sack.
 ## Notes-deDE: Werft den Fehler in einen Sack.
@@ -11,7 +11,7 @@
 ## Notes-esES: Mete esos errores en un saco.
 ## Notes-esMX: Mete esos errores en un saco.
 ## Notes-ptBR: Toss those bugs inna sack.
-## Notes-itIT: Toss those bugs inna sack.
+## Notes-itIT: Metti quei bugs in un sacchetto.
 ## Author: Funkydude
 ## SavedVariables: BugSackDB, BugSackLDBIconDB
 ## OptionalDeps: Ace3, LibSharedMedia-3.0, LibDBIcon-1.0, !BugGrabber
@@ -25,6 +25,10 @@
 ## X-WoWI-ID: 5995
 ## X-Wago-ID: rkGrrgGy
 ## X-BugGrabber-Display: BugSack
+
+## Title-zhTW: |cffffffee[系統]|r 錯誤訊息袋
+## Notes-zhTW: BugSack |n|n集中顯示錯誤訊息，避免中斷遊戲。|n|n|cffffd200使用方法: |r點小地圖按鈕的紅色小袋子查看錯誤訊息。從Esc>選項>插件>錯誤訊息，開關錯誤提示音效和進行設定。
+## Category-zhTW: 系統
 
 embeds.xml
 
