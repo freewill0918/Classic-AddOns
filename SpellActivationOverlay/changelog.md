@@ -1,5 +1,42 @@
 ## SpellActivationOverlay Changelog
 
+#### v2.4.3 (2024-06-02)
+
+Bug Fixes
+- Buttons now un-glow as intended when effects end (Classic Era, Cataclysm)
+
+#### v2.4.2 (2025-06-02)
+
+Special thanks to Amanthuul once again for his work on the Shaman class. Kudos!
+
+New Spell Alerts
+- Shaman's Elemental Focus (Mists of Pandaria)
+- Shaman's Fulmination, with 7 Lightning Shield stacks (Mists of Pandaria)
+- Shaman's Lava Surge (Mists of Pandaria)
+- Shaman's Maelstrom Weapon (Mists of Pandaria)
+- Shaman's Tidal Waves (Mists of Pandaria)
+
+New Glowing Buttons
+- Death Knight's Death Strike, during Glyph of Dark Succor (Cataclysm)
+- Shaman's Earth Shock, with 7 Lightning Shield stacks (Mists of Pandaria)
+- Shaman's Elemental Blast, during Maelstrom Weapon (Mists of Pandaria)
+- Shaman's Chain Heal, during Maelstrom Weapon (Mists of Pandaria)
+- Shaman's Chain Lightning, during Maelstrom Weapon (Mists of Pandaria)
+- Shaman's Greater Healing Wave, during Maelstrom Weapon (Mists of Pandaria)
+- Shaman's Healing Rain, during Maelstrom Weapon (Mists of Pandaria)
+- Shaman's Healing Surge, during Maelstrom Weapon (Mists of Pandaria)
+- Shaman's Healing Wave, during Maelstrom Weapon (Mists of Pandaria)
+- Shaman's Hex, during Maelstrom Weapon (Mists of Pandaria)
+- Shaman's Lightning Bolt, during Maelstrom Weapon (Mists of Pandaria)
+- Shaman's Greater Healing Wave, during Tidal Waves (Mists of Pandaria)
+- Shaman's Healing Surge, during Tidal Waves (Mists of Pandaria)
+- Shaman's Healing Wave, during Tidal Waves (Mists of Pandaria)
+
+Bug Fixes
+- Glowing Buttons no longer conflict with the game client's glow (MoP)
+- Death Knight's Dark Tranformation now displays the overlay as intended (MoP)
+- During Dark Succor, Death Strike button only glows in Frost/Unholy presence
+
 #### v2.4.1 (2025-05-29)
 
 Shout-out to Flow who designed Shaman's 6-10 Maelstrom Weapon textures. Thanks!
@@ -31,7 +68,7 @@ Introducting Mists of Pandaria flavor!
 - Support for Warrior's Victory Rush
 - Support for Warrior's Glyph of Incite
 
-Known limitations:
+Known Limitations
 - Dark Transformation does not display an overlay, due to a game client issue
 - Dark Succor will glow Death Strike in all presences, including Blood Presence
 - Mage's Freeze debuff does not track Shaman's Freeze debuff, from Frozen Power
@@ -42,7 +79,7 @@ But in case it did break something, please to report issues. Thank you :)
 #### v2.4.0 (2025-05-11)
 
 Shout-out to fellow developers Skyward, Vanheden and Adal4. Thanks!
-Special thanks to Amanthuul once again for his work on the shaman class. Kudos!
+Special thanks to Amanthuul once again for his work on the Shaman class. Kudos!
 
 Bump in TOC file for Scarlet Enclave update (Classic Era)
 Bump in TOC file for Dragon Soul patch (Cataclysm)
@@ -88,13 +125,13 @@ Bug Fixes
 
 #### v2.3.2 (2024-09-15)
 
-New Spell Alert:
+New Spell Alert
 - Hunter's Mongoose Bite (Era, TBC)
 
-Updated Glowing Button:
+Updated Glowing Button
 - Shaman's Molten Blast no longer glows infinitely after leaving combat (SoD)
 
-Removed Effect:
+Removed Effect
 - Priest's Mind Spike has been removed temporarily until it is resolved (SoD)
 
 Bug Fixes
