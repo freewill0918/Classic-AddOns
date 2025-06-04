@@ -152,7 +152,7 @@ function addon.SetupGuideWindow()
     GuideName.text:SetTextColor(unpack(addon.activeTheme.textColor))
 
     Footer.text:SetFont(addon.font, 9, "")
-    if GetCurrentRegion() < 20 then--PTR Region 72?
+    if addon.player.beta then
         Footer.text:SetText(fmt("%s %s", addon.title, addon.release))
     else
         Footer.text:SetText(fmt("RXP Beta %s %d/%d", addon.release, addon.minGuideVersion ,addon.maxGuideVersion))
@@ -1543,7 +1543,7 @@ end
 function addon:LoadGuide(guide, OnLoad)
     addon.loadNextStep = false
 
-    if not guide or guide.internal or not guide.empty and not addon.IsGuideActive(guide) and
+    if not guide or guide.internal or guide.disabled or not guide.empty and not addon.IsGuideActive(guide) and
         (guide.farm and not RXPCData.GA or not guide.farm and RXPCData.GA) then
         return addon:LoadGuide(addon.emptyGuide)
     end
@@ -1844,9 +1844,7 @@ function BottomFrame.UpdateFrame(self, stepn)
                 rawtext = icon .. element.text
             end
 
-            if hideStep then
-                text = ""
-            elseif rawtext and not element.hideTooltip then
+            if rawtext and not element.hideTooltip then
                 if not text then
                     text = "   " .. rawtext
                 else
@@ -1855,7 +1853,12 @@ function BottomFrame.UpdateFrame(self, stepn)
             end
         end
 
-        step.text = text
+        if hideStep then
+            step.text = ""
+            step.hiddentext = text
+        else
+            step.text = text
+        end
 
         if frame.text then
             frame.text:SetText(text)
@@ -1923,9 +1926,7 @@ function BottomFrame.UpdateFrame(self, stepn)
                     rawtext = icon .. element.text
                 end
 
-                if hideStep then
-                    text = ""
-                elseif rawtext and not element.hideTooltip and rawtext ~= "" then
+                if rawtext and not element.hideTooltip and rawtext ~= "" then
                     if not text then
                         text = "   " .. rawtext
                     else
@@ -1934,6 +1935,10 @@ function BottomFrame.UpdateFrame(self, stepn)
                 end
             end
 
+            if hideStep then
+                step.hiddentext = text
+                text = ""
+            end
             if step.completed or
                 (not step.sticky and RXPCData.currentStep > step.index) or
                 RXPCData.stepSkip[step.index] then
@@ -2038,10 +2043,17 @@ local function IsGuideActive(guide)
     if guide and addon.stepLogic.SeasonCheck(guide) and addon.stepLogic.PhaseCheck(guide) and
         addon.stepLogic.XpRateCheck(guide) and addon.stepLogic.FreshAccountCheck(guide) and
         addon.stepLogic.LevelCheck(guide) and not guide.internal and
-        addon.stepLogic.LoremasterCheck(guide) and
-        (not addon.player.neutral or not guide.enabledFor or addon.applies(guide.enabledFor)) then
-        -- print('-',guide.name,not guide.som,not guide.era,som)
-        return true
+        addon.stepLogic.LoremasterCheck(guide) then
+        if (not addon.player.neutral or not guide.enabledFor) then
+            return true
+        else
+            --Make sure only neutral guides show up if you don't have a faction assigned
+            local enabledFor = guide.enabledFor
+            local enabled = addon.applies(enabledFor)
+            local horde = addon.applies(enabledFor,"Horde")
+            local alliance = addon.applies(enabledFor,"Alliance")
+            return enabled and horde and alliance
+        end
     end
 end
 
@@ -2127,9 +2139,13 @@ function RXPFrame:GenerateMenuTable(menu)
                     end
                     local subitem = {}
                     subitem.text = addon.GetGuideName(guide)
-                    subitem.func = addon.LoadGuideTable
-                    subitem.arg1 = guide.group
-                    subitem.arg2 = guideName
+                    if guide.disabled then
+                        subitem.isTitle = 1
+                    else
+                        subitem.func = addon.LoadGuideTable
+                        subitem.arg1 = guide.group
+                        subitem.arg2 = guideName
+                    end
                     subitem.notCheckable = 1
                     subtable.subweight = tonumber(guide.subweight) or subtable.subweight
                     tinsert(subtable.menuList, subitem)
@@ -2139,9 +2155,13 @@ function RXPFrame:GenerateMenuTable(menu)
                     guide.submenuIndex = submenuIndex
                     local subitem = {}
                     subitem.text = addon.GetGuideName(guide)
-                    subitem.func = addon.LoadGuideTable
-                    subitem.arg1 = guide.group
-                    subitem.arg2 = guideName
+                    if guide.disabled then
+                        subitem.isTitle = 1
+                    else
+                        subitem.func = addon.LoadGuideTable
+                        subitem.arg1 = guide.group
+                        subitem.arg2 = guideName
+                    end
                     subitem.notCheckable = 1
                     tinsert(item.menuList, subitem)
                 end

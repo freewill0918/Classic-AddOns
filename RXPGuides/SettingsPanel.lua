@@ -25,6 +25,10 @@ local GetItemInfo = C_Item and C_Item.GetItemInfo or _G.GetItemInfo
 local fmt, tostr, next, GetTime = string.format, tostring, next, GetTime
 
 local INV_HEIRLOOM = _G.Enum.ItemQuality.Heirloom
+local gameVersion = select(4, GetBuildInfo())
+
+--Unitscan functionality broken on mop and retail
+local unitscanEnabled = gameVersion < 50000
 
 local importCache = {
     bufferString = "",
@@ -101,6 +105,8 @@ function addon.settings.ChatCommand(input)
         addon.settings.ToggleActive()
     elseif input == "bug" or input == "feedback" then
         addon.comms.OpenBugReport()
+    elseif input == "preview" then
+        addon.settings:EnableFramePreviews()
     elseif input == "help" then
         addon.comms.PrettyPrint(_G.HELP .. "\n" ..
                                     addon.help["What are command the line options?"])
@@ -165,7 +171,7 @@ local settingsDBDefaults = {
         enableEnemyTargeting = true,
         enableEnemyMarking = true,
         enableMobMarking = true,
-        showTargetingOnProximity = true,
+        showTargetingOnProximity = unitscanEnabled,
         soundOnFind = 3175,
         soundOnFindChannel = 'Master',
         scanForRares = true,
@@ -389,6 +395,12 @@ function addon.settings:MigrateLegacySettings()
         n("xprate", RXPCData.xprate)
         db.xprate = RXPCData.xprate
         RXPCData.xprate = nil
+    end
+
+    -- As of 11.1.5 TargetUnit now fires ADDON_ACTION_FORBIDDEN at execution, rather than target matches
+    -- Force disable setting, rather than gameVersion everywhere
+    if db.showTargetingOnProximity and not unitscanEnabled then
+        db.showTargetingOnProximity = false
     end
 end
 
@@ -1419,7 +1431,7 @@ function addon.settings:CreateAceOptionsPanel()
                             SetProfileOption(info, value)
                             addon.ReloadGuide()
                         end,
-                        hidden = addon.game ~= "CATA"
+                        hidden = addon.game ~= "CATA" and addon.game ~= "MOP"
                     },
                     chromieTime = {
                         name = L("Show Chromie Time Guides"),
@@ -1503,7 +1515,7 @@ function addon.settings:CreateAceOptionsPanel()
                         width = optionsWidth,
                         order = 2.9,
                         values = RXPCData.guideMetaData.enabledDungeons[addon.player
-                            .faction],
+                            .faction] or {},
                         get = function(_, key)
                             return addon.settings.profile.dungeons[key]
                         end,
@@ -1638,7 +1650,7 @@ function addon.settings:CreateAceOptionsPanel()
                         name = L("Enable Active Targets"), -- TODO locale
                         desc = L("Automatically scan nearby targets"),
                         type = "toggle",
-                        width = optionsWidth,
+                        width = unitscanEnabled and optionsWidth or optionsWidth * 3,
                         order = 2.1,
                         set = function(info, value)
                             SetProfileOption(info, value)
@@ -1662,7 +1674,8 @@ function addon.settings:CreateAceOptionsPanel()
                         end,
                         disabled = function()
                             return not self.profile.enableTargetAutomation
-                        end
+                        end,
+                        hidden = not unitscanEnabled
                     },
                     enableFriendlyTargeting = {
                         name = L("Scan Friendly Targets"), -- TODO locale
@@ -1724,7 +1737,8 @@ function addon.settings:CreateAceOptionsPanel()
                         disabled = function()
                             return not self.profile.enableTargetAutomation or
                                        not self.profile.showTargetingOnProximity
-                        end
+                        end,
+                        hidden = not unitscanEnabled
                     },
                     notifyOnRares = {
                         name = L("Notify on Rares"), -- TODO locale
@@ -1736,7 +1750,8 @@ function addon.settings:CreateAceOptionsPanel()
                             return not self.profile.enableTargetAutomation or
                                        not self.profile.showTargetingOnProximity or
                                        not self.profile.scanForRares
-                        end
+                        end,
+                        hidden = not unitscanEnabled
                     },
                     hideActiveTargetsBackground = {
                         name = L("Hide Targets Background"),
@@ -2678,6 +2693,19 @@ function addon.settings:CreateAceOptionsPanel()
                         type = "toggle",
                         width = optionsWidth,
                         order = 1.92
+                    },
+                    previewFramePositions = {
+                        name = fmt("%s Frame Positions", _G.PREVIEW),
+                        desc = fmt("%s Frame Positions", _G.PREVIEW),
+                        type = 'execute',
+                        width = optionsWidth,
+                        order = 1.93,
+                        confirm = function()
+                            return L("This action will reload your current guide when toggled off.\nAre you sure?")
+                        end,
+                        func = function()
+                            addon.settings:EnableFramePreviews()
+                        end
                     },
                     textColorsHeader = {
                         name = _G.LOCALE_TEXT_LABEL,
@@ -3881,6 +3909,55 @@ function addon.settings:SetupMapButton()
                     recalculateMapButton)
     end
 
+end
+
+function addon.settings:EnableFramePreviews()
+
+    local currentGuide = addon.currentGuide
+
+    -- Prevent overwriting actual guide if activating multiple times
+    if currentGuide.name == fmt("%s Frame Positions", _G.PREVIEW) then
+        return
+    end
+
+    local nextLine = nil
+    if currentGuide.name ~= '' and currentGuide.group ~= '' then
+        nextLine = fmt("%s\\%s", currentGuide.group, currentGuide.name)
+    end
+
+    local previewsGuideContent = fmt([[
+#name %s
+step
+    #sticky
+    #completewith next
+    +This is a temporary guide to allow frame positioning, skip all steps to reload the current guide
+step
+    >> Position Active Targets and Arrow
+    .target %s
+    .hs >> Position Active Items
+    .goto %s,0.0,0.0
+step
+    +%s
+    >>|cRXP_WARN_Skip this step to return%s|r
+    ]],
+    fmt("%s Frame Positions", _G.PREVIEW),
+    addon.player.name,
+    GetRealZoneText(),
+    fmt(_G.ERR_QUEST_COMPLETE_S, _G.PREVIEW),
+    currentGuide.name == "" and '' or fmt(" to %s", nextLine or _G.MAINMENU)
+    )
+
+    addon.RegisterGuide(_G.PREVIEW or L("Preview"), previewsGuideContent)
+
+    local guideToLoad = addon.GetGuideTable(_G.PREVIEW, fmt("%s Frame Positions", _G.PREVIEW))
+
+    guideToLoad.next = nextLine
+
+    local loadPreviewGuide = function ()
+        addon:LoadGuide(guideToLoad)
+    end
+
+    addon:ScheduleTask(loadPreviewGuide)
 end
 
 function addon.settings:SaveFramePositions()

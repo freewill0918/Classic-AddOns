@@ -61,7 +61,7 @@ local function applies(textEntry,customClass)
                         entry = faction
                     elseif uppercase == "DF" then
                         entry = "RETAIL"
-                    elseif faction == "Neutral" and (entry == "Alliance" or entry == "Horde") then
+                    elseif faction == "Neutral" and not customClass and (entry == "Alliance" or entry == "Horde") then
                         entry = faction
                     end
                     v = (not(gendercheck or uppercase == class or entry == race or
@@ -321,7 +321,9 @@ function addon.ImportGuide(guide, text, defaultFor, cache)
 end
 
 function addon.RegisterGuide(groupOrContent, text, defaultFor)
-    if addon.addonLoaded then
+    if not groupOrContent then
+        return error('Guide has no contents')
+    elseif addon.addonLoaded then
         local importedGuide, errorMsg = addon.ParseGuide(groupOrContent, text,
                                                         defaultFor)
 

@@ -1951,7 +1951,8 @@ step
     .goto Durotar,63.00,94.40,60,0
     .goto Durotar,59.85,89.56,60,0
     .goto Durotar,59.49,83.77,60,0
-    >>Loot the |cRXP_PICK_Taillasher Eggs|r on the ground. They're usually guarded by a |cRXP_ENEMY_Bloodtalon Taillasher|r
+    >>Loot the |cRXP_PICK_Taillasher Eggs|r on the ground
+    >>|cRXP_WARN_They're usually guarded by a|r |cRXP_ENEMY_Bloodtalon Taillasher|r
     .complete 815,1 --Taillasher Egg (3)
     .mob Bloodtalon Taillasher
 step
@@ -2459,7 +2460,7 @@ step << Shaman
     .complete 1525,2 --Reagent Pouch (1)
     .mob Burning Blade Cultist
     .solo
-step << Shaman
+step << skip --logout skip Shaman
     .goto Durotar,53.03,26.82
     .goto Durotar,47.31,17.89,30 >>|cRXP_WARN_Jump onto the rock. Perform a Logout Skip by positioning your character until it looks like they're floating, then logging out and back in|r
     .link https://www.youtube.com/watch?v=9A6LHcLZeTU&ab >> |cRXP_WARN_CLICK HERE for an example|r

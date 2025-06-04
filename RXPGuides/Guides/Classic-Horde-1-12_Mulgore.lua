@@ -112,7 +112,7 @@ step << Shaman
     .money <0.0102
     .itemStat 16,QUALITY,<7
     .itemStat 16,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<1.9
-    .target Marjak
+    .target Marjak Keenblade
 step << Shaman
     #completewith RitesoftheEarthmother
     +Equip the |T135139:0|t[Short Staff]
@@ -2019,7 +2019,7 @@ step << Tauren
     .target Kirge Sternhorn
 step
     #completewith next
-    .goto The Barrens,52.07,31.96,120 >>Travel North toward The Crossroads
+    .goto The Barrens,52.07,31.96,120 >>Travel north toward The Crossroads
 step
     .goto The Barrens,52.26,31.93
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Tonga|r
@@ -2949,7 +2949,6 @@ step
     .equip 18 >> Equip the |T134903:0|t[|cRXP_FRIENDLY_Lunar Idol|r], you can use it after 30 seconds to train |T237472:0|t[Fury of Stormrage] << Druid
     .train 425447 >> Use the |T134419:0|t[|cRXP_FRIENDLY_Rune of Frenzied Assault|r] << Warrior
     .train 403470 >> Use the |T134419:0|t[|cRXP_FRIENDLY_Rune of Victory Rush|r] to train |T132342:0|t[Victory Rush], you will engrave it soon << Warrior
-    .train 401768 >> Use the |T134939:0|t[|cRXP_FRIENDLY_Spell Notes: Living Flame|r] << Mage
     .train 410111 >> Use the |T134419:0|t[|cRXP_FRIENDLY_Rune of Kill Command|r] to train |T236174:0|t[Kill Shot] << Hunter
     .train 410121 >> Use the |T134419:0|t[|cRXP_FRIENDLY_Rune of the Chimera|r] to train |T236176:0|t[Chimera Shot] << Hunter
     .train 409580 >> Use the |T133739:0|t[|cRXP_FRIENDLY_Treatise on the Heart of the Lion|r] to train |T132185:0|t[Heart of the Lion] << Hunter
@@ -3011,8 +3010,8 @@ step << Shaman/Druid
     #completewith next
     +|cRXP_WARN_Keep killing |cRXP_ENEMY_Plainstriders|r until you have 42 copper worth of vendor items|r << Shaman
     +|cRXP_WARN_Keep killing |cRXP_ENEMY_Plainstriders|r until you have 20 copper worth of vendor items|r << Druid
-    .money 0.0042 << Shaman
-    .money 0.002 << Druid
+    .money >0.0042 << Shaman
+    .money >0.002 << Druid
 step << Druid
     #season 2
     .goto Mulgore,45.08,75.94
@@ -3188,7 +3187,7 @@ step << Shaman
     .money <0.0102
     .itemStat 16,QUALITY,<7
     .itemStat 16,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<1.9
-    .target Marjak
+    .target Marjak Keenblade
 step << Shaman
     #completewith RitesoftheEarthmother
     +Equip the |T135139:0|t[Short Staff]
@@ -4770,28 +4769,36 @@ step
     .complete 766,2 --Flatland Cougar Femur (1)
     .complete 766,3 --Plainstrider Scale (1)
     .complete 766,4 --Swoop Gizzard (1)
-step
+step << skip --Cannon removed from game
+    #season 2
     #softcore
     #completewith Bloodhoofturnins1
     .goto Thunder Bluff,41.17,67.66
     +Click the |cRXP_PICK_Ultra Cannon|r to blast yourself back to Bloodhoof Village
     >>|cRXP_WARN_You will die upon arrival but can respawn instantly|r
     >>|cRXP_WARN_Remove your|r |T135992:0|t[Magic Wings] |cRXP_WARN_buff when it has 2 seconds remaining to try and land in the river to avoid death
-    .zoneskip Thunder Bluff,1,1
+    .zoneskip Thunder Bluff,1
+step
+    #completewith Bloodhoofturnins1
+    .zone Mulgore >>Exit Thunder Bluff
+    .zoneskip Thunder Bluff,1
 step
     #softcore
     #completewith Bloodhoofturnins1
+    .goto Mulgore,48.22,38.85
     .deathskip >> Die and respawn at the |cRXP_FRIENDLY_Spirit Healer|r
+    >>|cRXP_WARN_Make sure you die at the waypoint arrow or further south of it|r
     .zoneskip Thunder Bluff
 step
     #hardcore
     #completewith Bloodhoofturnins1
     .goto Mulgore,47.33,57.17,120 >> Travel back to Bloodhoof Village
 step
-    .goto Mulgore,46.62,61.08
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Innkeeper Kauth|r
-    .vendor >> Vendor trash
-    .target Innkeeper Kauth
+    .goto Mulgore,46.97,57.07
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Maur|r
+    .turnin 766 >>Turn in Mazzranache
+    .target Maur Raincaller
+    .isQuestComplete 766
 step
     .goto Mulgore,46.75,60.24
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Skorn|r
@@ -4907,12 +4914,6 @@ step << Hunter
     >>|cRXP_BUY_Buy|r |T132384:0|t[Heavy Shots] |cRXP_BUY_from him|r << Hunter
     .collect 2519,1000,6061,1 << Hunter --Heavy Shot (1000)
     .target Kennah Hawkseye
-step
-    .goto Mulgore,46.97,57.07
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Maur|r
-    .turnin 766 >>Turn in Mazzranache
-    .target Maur Raincaller
-    .isQuestComplete 766
 step << Warrior
     .goto Mulgore,49.52,60.58
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Krang|r
@@ -5320,7 +5321,7 @@ step << Tauren
     .target Kirge Sternhorn
 step
     #completewith next
-    .goto The Barrens,52.07,31.96,120 >>Travel North toward The Crossroads
+    .goto The Barrens,52.07,31.96,120 >>Travel north toward The Crossroads
 step
     .goto The Barrens,52.26,31.93
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Tonga|r
@@ -5821,11 +5822,10 @@ step
     .turnin 860 >>Turn in Sergra Darkthorn
     .accept 844 >>Accept Plainstrider Menace
     .target Sergra Darkthorn
-    .isOnQuest 6860
+    .isOnQuest 860
 step
     .goto The Barrens,52.23,31.00
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Sergra|r
-    .turnin 860 >>Turn in Sergra Darkthorn
     .accept 844 >>Accept Plainstrider Menace
     .target Sergra Darkthorn
 step
