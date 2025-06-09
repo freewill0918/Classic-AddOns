@@ -3,11 +3,10 @@
 -------------------------
 --https://www.curseforge.com/members/venomisto/projects
 
-local addonName = ...;
 local L = LibStub("AceLocale-3.0"):GetLocale("NovaInstanceTracker");
-local maxRecordsKept = 250;
-local maxTradesKept = 300;
-NIT.maxRecordsShown = 250;
+local maxRecordsKept = 300;
+local maxTradesKept = 1000;
+NIT.maxRecordsShown = 300;
 
 NIT.options = {
 	name =  "",
@@ -16,7 +15,7 @@ NIT.options = {
 	args = {
 		titleText = {
 			type = "description",
-			name = "        " .. NIT.prefixColor .. "NovaInstanceTracker (v" .. NIT.version .. ")",
+			name = "        " .. NIT.prefixColor .. "NovaInstanceTracker (v" .. GetAddOnMetadata("NovaInstanceTracker", "Version") .. ")",
 			fontSize = "large",
 			order = 1,
 		},
@@ -41,13 +40,13 @@ NIT.options = {
 		autoDialogue = {
 			type = "header",
 			name = L["autoDialogueDesc"],
-			order = 23,
+			order = 14,
 		},
 		autoSlavePens = {
 			type = "toggle",
 			name = L["autoSlavePensTitle"],
 			desc = L["autoSlavePensDesc"],
-			order = 24,
+			order = 15,
 			get = "getAutoSlavePens",
 			set = "setAutoSlavePens",
 		},
@@ -55,7 +54,7 @@ NIT.options = {
 			type = "toggle",
 			name = L["autoCavernsFlightTitle"],
 			desc = L["autoCavernsFlightDesc"],
-			order = 25,
+			order = 16,
 			get = "getAutoCavernsFlight",
 			set = "setAutoCavernsFlight",
 		},
@@ -63,7 +62,7 @@ NIT.options = {
 			type = "toggle",
 			name = L["autoCavernsArthasTitle"],
 			desc = L["autoCavernsArthasDesc"],
-			order = 26,
+			order = 17,
 			get = "getAutoCavernsArthas",
 			set = "setAutoCavernsArthas",
 		},
@@ -71,7 +70,7 @@ NIT.options = {
 			type = "toggle",
 			name = L["autoBlackMorassTitle"],
 			desc = L["autoBlackMorassDesc"],
-			order = 27,
+			order = 18,
 			get = "getAutoBlackMorass",
 			set = "setAutoBlackMorass",
 		},
@@ -79,20 +78,20 @@ NIT.options = {
 			type = "toggle",
 			name = L["autoSfkDoorTitle"],
 			desc = L["autoSfkDoorDesc"],
-			order = 27,
+			order = 19,
 			get = "getAutoSfkDoor",
 			set = "setAutoSfkDoor",
 		},
 		colorsHeader = {
 			type = "header",
 			name = L["colorsHeaderDesc"],
-			order = 28,
+			order = 20,
 		},
 		chatColor = {
 			type = "color",
 			name = L["chatColorTitle"],
 			desc = L["chatColorDesc"],
-			order = 29,
+			order = 21,
 			get = "getChatColor",
 			set = "setChatColor",
 			hasAlpha = false,
@@ -101,7 +100,7 @@ NIT.options = {
 			type = "color",
 			name = L["mergeColorTitle"],
 			desc = L["mergeColorDesc"],
-			order = 30,
+			order = 22,
 			get = "getMergeColor",
 			--get = function()
 			--	return 0, 255, 0;
@@ -114,18 +113,18 @@ NIT.options = {
 			name = L["resetColorsTitle"],
 			desc = L["resetColorsDesc"],
 			func = "resetColors",
-			order = 31,
+			order = 23,
 		},
 		generalHeader = {
 			type = "header",
 			name = L["generalHeaderDesc"],
-			order = 32,
+			order = 24,
 		},
 		enteredMsg = {
 			type = "toggle",
 			name = L["enteredMsgTitle"],
 			desc = L["enteredMsgDesc"],
-			order = 33,
+			order = 25,
 			get = "getEnteredMsg",
 			set = "setEnteredMsg",
 		},
@@ -133,7 +132,7 @@ NIT.options = {
 			type = "toggle",
 			name = L["raidEnteredMsgTitle"],
 			desc = L["raidEnteredMsgDesc"],
-			order = 34,
+			order = 26,
 			get = "getRaidEnteredMsg",
 			set = "setRaidEnteredMsg",
 		},
@@ -141,7 +140,7 @@ NIT.options = {
 			type = "toggle",
 			name = L["pvpEnteredMsgTitle"],
 			desc = L["pvpEnteredMsgDesc"],
-			order = 35,
+			order = 27,
 			get = "getPvpEnteredMsg",
 			set = "setPvpEnteredMsg",
 		},
@@ -149,7 +148,7 @@ NIT.options = {
 			type = "toggle",
 			name = L["noRaidInstanceMergeMsgTitle"],
 			desc = L["noRaidInstanceMergeMsgDesc"],
-			order = 36,
+			order = 28,
 			get = "getNoRaidInstanceMergeMsg",
 			set = "setNoRaidInstanceMergeMsg",
 		},
@@ -157,7 +156,7 @@ NIT.options = {
 			type = "toggle",
 			name = L["instanceResetMsgTitle"],
 			desc = L["instanceResetMsgDesc"],
-			order = 37,
+			order = 29,
 			get = "getInstanceResetMsg",
 			set = "setInstanceResetMsg",
 		},
@@ -165,7 +164,7 @@ NIT.options = {
 			type = "toggle",
 			name = L["minimapButtonTitle"],
 			desc = L["minimapButtonDesc"],
-			order = 36,
+			order = 30,
 			get = "getMinimapButton",
 			set = "setMinimapButton",
 		},
@@ -181,7 +180,7 @@ NIT.options = {
 			type = "toggle",
 			name = L["showMoneyTradedChatTitle"],
 			desc = L["showMoneyTradedChatDesc"],
-			order = 38,
+			order = 32,
 			get = "getShowMoneyTradedChat",
 			set = "setShowMoneyTradedChat",
 		},
@@ -197,7 +196,7 @@ NIT.options = {
 				[1] = 12,
 				[2] = 24,
 			},
-			order = 39,
+			order = 33,
 			get = "getTimeStampFormat",
 			set = "setTimeStampFormat",
 		},
@@ -213,7 +212,7 @@ NIT.options = {
 				[1] = "local",
 				[2] = "server",
 			},
-			order = 40,
+			order = 34,
 			get = "getTimeStampZone",
 			set = "setTimeStampZone",
 		},
@@ -221,7 +220,7 @@ NIT.options = {
 			type = "range",
 			name = L["instanceWindowWidthTitle"],
 			desc = L["instanceWindowWidthDesc"],
-			order = 41,
+			order = 35,
 			get = "getInstanceWindowWidth",
 			set = "setInstanceWindowWidth",
 			min = 575,
@@ -235,7 +234,7 @@ NIT.options = {
 			type = "range",
 			name = L["instanceWindowHeightTitle"],
 			desc = L["instanceWindowHeightDesc"],
-			order = 42,
+			order = 36,
 			get = "getInstanceWindowHeight",
 			set = "setInstanceWindowHeight",
 			min = 150,
@@ -249,7 +248,7 @@ NIT.options = {
 			type = "range",
 			name = L["charsWindowWidthTitle"],
 			desc = L["charsWindowWidthDesc"],
-			order = 43,
+			order = 37,
 			get = "getCharsWindowWidth",
 			set = "setCharsWindowWidth",
 			min = 350,
@@ -263,7 +262,7 @@ NIT.options = {
 			type = "range",
 			name = L["charsWindowHeightTitle"],
 			desc = L["charsWindowHeightDesc"],
-			order = 44,
+			order = 38,
 			get = "getCharsWindowHeight",
 			set = "setCharsWindowHeight",
 			min = 150,
@@ -277,7 +276,7 @@ NIT.options = {
 			type = "range",
 			name = L["tradeWindowWidthTitle"],
 			desc = L["tradeWindowWidthDesc"],
-			order = 45,
+			order = 39,
 			get = "getTradeWindowWidth",
 			set = "setTradeWindowWidth",
 			min = 350,
@@ -291,7 +290,7 @@ NIT.options = {
 			type = "range",
 			name = L["tradeWindowHeightTitle"],
 			desc = L["tradeWindowHeightDesc"],
-			order = 46,
+			order = 40,
 			get = "getTradeWindowHeight",
 			set = "setTradeWindowHeight",
 			min = 150,
@@ -306,13 +305,13 @@ NIT.options = {
 			name = L["resetFramesTitle"],
 			desc = L["resetFramesDesc"],
 			func = "resetFrames",
-			order = 47,
+			order = 41,
 		},
 		detectSameInstance = {
 			type = "toggle",
 			name = L["detectSameInstanceTitle"],
 			desc = L["detectSameInstanceDesc"],
-			order = 48,
+			order = 42,
 			get = "getDetectSameInstance",
 			set = "setDetectSameInstance",
 		},
@@ -539,14 +538,6 @@ NIT.options = {
 			get = "getInstanceStatsOutputHK",
 			set = "setInstanceStatsOutputHK",
 		},
-		instanceStatsOutputCurrency = {
-			type = "toggle",
-			name = L["instanceStatsOutputCurrencyTitle"],
-			desc = L["instanceStatsOutputCurrencyDesc"],
-			order = 89,
-			get = "getInstanceStatsOutputCurrency",
-			set = "setInstanceStatsOutputCurrency",
-		},
 		trimDataHeader = {
 			type = "header",
 			name = L["trimDataHeaderDesc"],
@@ -616,7 +607,7 @@ NIT.options = {
 };
 
 function NIT:loadSpecificOptions()
-	if (NIT.expansionNum == 3 or NIT.expansionNum == 4 or NIT.expansionNum == 5) then
+	if (NIT.isWrath) then
 		NIT.options.args["autoGammaBuffHeader"] = {
 			type = "header",
 			name = L["autoGammaBuffDesc"],
@@ -675,8 +666,6 @@ function NIT:loadSpecificOptions()
 			fontSize = "medium",
 			order = 9,
 		};
-	end
-	if (NIT.expansionNum == 3) then
 		NIT.options.args["autoWrathDailies"] = {
 			type = "toggle",
 			name = L["autoWrathDailiesTitle"],
@@ -684,108 +673,6 @@ function NIT:loadSpecificOptions()
 			order = 10,
 			get = "getAutoWrathDailies",
 			set = "setAutoWrathDailies",
-		};
-	end
-	if (NIT.isSOD) then
-		NIT.options.args["lootReminder"] = {
-			type = "header",
-			name = L["lootReminderDesc"],
-			order = 14,
-		};
-		NIT.options.args["lootReminderReal"] = {
-			type = "toggle",
-			name = L["lootReminderRealTitle"],
-			desc = L["lootReminderRealDesc"],
-			order = 15,
-			get = "getLootReminderReal",
-			set = "setLootReminderReal",
-		};
-		NIT.options.args["skipRealMsgIfCapped"] = {
-			type = "toggle",
-			name = L["skipRealMsgIfCappedTitle"],
-			desc = L["skipRealMsgIfCappedDesc"],
-			order = 16,
-			get = "getSkipRealMsgIfCapped",
-			set = "setSkipRealMsgIfCapped",
-		};
-		NIT.options.args["soundsLootReminder"] = {
-			type = "select",
-			name = L["soundsLootReminderTitle"],
-			desc = L["soundsLootReminderDesc"],
-			values = function()
-				return NIT:getSounds();
-			end,
-			order = 17,
-			get = "getSoundsLootReminder",
-			set = "setSoundsLootReminder",
-		};
-		NIT.options.args["lootReminderSize"] = {
-			type = "range",
-			name = L["lootReminderSizeTitle"],
-			desc = L["lootReminderSizeDesc"],
-			order = 18,
-			get = "getLootReminderSize",
-			set = "setLootReminderSize",
-			min = 10,
-			max = 150,
-			softMin = 10,
-			softMax = 150,
-			step = 1,
-		};
-		NIT.options.args["lootReminderX"] = {
-			type = "range",
-			name = L["lootReminderXTitle"],
-			desc = L["lootReminderXDesc"],
-			order = 19,
-			get = "getLootReminderX",
-			set = "setLootReminderX",
-			min = -1000,
-			max = 1000,
-			softMin = -1000,
-			softMax = 1000,
-			step = 1,
-			width = 1.5,
-		};
-		NIT.options.args["lootReminderY"] = {
-			type = "range",
-			name = L["lootReminderYTitle"],
-			desc = L["lootReminderYDesc"],
-			order = 20,
-			get = "getLootReminderY",
-			set = "setLootReminderY",
-			min = -1000,
-			max = 1000,
-			softMin = -1000,
-			softMax = 1000,
-			step = 1,
-			width = 1.5,
-		};
-		NIT.options.args["lootReminderMysRelic"] = {
-			type = "toggle",
-			name = L["lootReminderMysRelicTitle"],
-			desc = L["lootReminderMysRelicDesc"],
-			order = 21,
-			get = "getLootReminderMysRelic",
-			set = "setLootReminderMysRelic",
-		};
-		NIT.options.args["lootReminderMysRelicParty"] = {
-			type = "toggle",
-			name = L["lootReminderMysRelicPartyTitle"],
-			desc = L["lootReminderMysRelicPartyDesc"],
-			order = 22,
-			get = "getLootReminderMysRelicParty",
-			set = "setLootReminderMysRelicParty",
-		};
-	end
-	if (NIT.isClassic) then
-		NIT.options.args["argentDawnTrinketReminder"] = {
-			type = "toggle",
-			name = L["argentDawnTrinketReminderTitle"],
-			desc = L["argentDawnTrinketReminderDesc"],
-			order = 49,
-			get = "getArgentDawnTrinketReminder",
-			set = "setArgentDawnTrinketReminder",
-			width = 1.5,
 		};
 	end
 end
@@ -840,7 +727,6 @@ NIT.optionDefaults = {
 		instanceStatsOutputRep = true,
 		instanceStatsOutputHK = true,
 		instanceStatsOutputXpPerHour = true,
-		instanceStatsOutputCurrency = true,
 		lastVersionMsg = 0,
 		moneyString = "textures",
 		instanceStatsOutput = true,
@@ -881,26 +767,12 @@ NIT.optionDefaults = {
 		autoGammaBuffType = 1,
 		dungeonPopTimer = true,
 		autoWrathDailies = true,
-		lootReminderReal = true,
-		lootReminderSize = 24,
-		lootReminderX = -10,
-		lootReminderY = 150,
-		lootReminderMinimap = true,
-		lootReminderMysRelic = true,
-		lootReminderMysRelicParty = false,
 		wipeUpgradeData = true,
-		argentDawnTrinketReminder = true,
-		skipRealMsgIfCapped = false,
-		soundsLootReminder = "None",
 	},
 };
 
 if (NIT.isRetail) then
 	NIT.optionDefaults.global.instanceWindowWidth = 650;
-end
-
-function NIT:resetMinimapPosition()
-	NIT.db.global.minimapIcon = NIT.optionDefaults.global.minimapIcon;
 end
 
 --5 per hour and 30 per day lockouts are character specific.
@@ -912,15 +784,7 @@ function NIT:buildDatabase()
 	if (not self.db.global[NIT.realm].instances) then
 		self.db.global[NIT.realm].instances = {};
 	end
-	--Debug stuff.
-	--[[self.db.global[NIT.realm].instances = self.db.global["Thunderstrike"].instances
-	for i = 1, 500 do
-		if (i > 5 and self.db.global[NIT.realm].instances[i]) then
-			print(i)
-			self.db.global[NIT.realm].instances[i] = nil
-		end
-	end]]
- 	if (not self.db.global[NIT.realm].trades) then
+	if (not self.db.global[NIT.realm].trades) then
 		self.db.global[NIT.realm].trades = {};
 	end
 	if (not self.db.global[NIT.realm].myChars) then
@@ -929,128 +793,13 @@ function NIT:buildDatabase()
 	if (not self.db.global[NIT.realm].myChars[UnitName("player")]) then
 		self.db.global[NIT.realm].myChars[UnitName("player")] = {};
 	end
-	if (not self.db.global[NIT.realm].myChars[UnitName("player")].bossKills) then
-		self.db.global[NIT.realm].myChars[UnitName("player")].bossKills = {};
-	end
-	if (not self.db.global[NIT.realm].myChars[UnitName("player")].trackedItems) then
-		self.db.global[NIT.realm].myChars[UnitName("player")].trackedItems = {};
-	end
 	--if (not self.db.global[NIT.realm].myChars[UnitName("player")].levelLog) then
 	--	self.db.global[NIT.realm].myChars[UnitName("player")].levelLog = {};
 	--end
 	if (not self.db.global[NIT.realm].gammaBuffSettings) then
 		self.db.global[NIT.realm].gammaBuffSettings = {};
 	end
-	if (not self.db.global.versions) then
-		self.db.global.versions = {};
-	end
 	self.data = self.db.global[NIT.realm];
-end
-
-local function loadNewVersionFrame(version, notes, title, icon, x, y)
-	if (not _G[addonName .. "UpdateNotesFrame"]) then
- 		local frame = CreateFrame("Frame", _G[addonName .. "UpdateNotesFrame"], UIParent, "BackdropTemplate");
-		frame:SetToplevel(true);
-		frame:SetMovable(true);
-		frame:EnableMouse(true);
-		frame:SetUserPlaced(false);
-		frame:SetFrameStrata("HIGH");
-		frame:SetSize(500, 500);
-		frame:SetPoint("TOP", UIParent, "CENTER", x, y);
-		frame:SetBackdrop({
-			bgFile = "Interface\\Buttons\\WHITE8x8",
-			edgeFile = [[Interface/Buttons/WHITE8X8]],
-			edgeSize = 1,
-			insets = {top = 4, left = 4, bottom = 4, right = 4},
-		});
-		frame:SetBackdropColor(0, 0, 0, 1);
-		frame:SetBackdropBorderColor(1, 1, 1, 0.5);
-		frame.title = frame:CreateFontString("$parentFS", "ARTWORK");
-		frame.title:SetFontObject(Game15Font);
-		frame.title:SetPoint("TOP", 0, -8);
-		frame.title2 = frame:CreateFontString("$parentFS", "ARTWORK");
-		frame.title2:SetFontObject(Game15Font);
-		frame.title2:SetPoint("TOP", 0, -24);
-		frame.fs = frame:CreateFontString("$parentFS", "ARTWORK");
-		frame.fs:SetFontObject(Game13Font);
-		frame.fs:SetPoint("TOPLEFT", 15, -52);
-		frame.fs:SetPoint("TOPRIGHT", -15, -52);
-		frame.fs:SetJustifyH("LEFT");
-		frame.texture = frame:CreateTexture(nil, "ARTWORK");
-		--frame.texture:SetPoint("TOPLEFT", 10, -10);
-		frame.texture:SetPoint("TOPRIGHT", frame.title, "TOPLEFT", -10, 0);
-		frame.texture:SetSize(30, 30);
-		frame.closeButton = CreateFrame("Button", "$parentClose", frame, "UIPanelCloseButton");
-		frame.closeButton:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -1, -1);
-		frame.closeButton:SetWidth(26);
-		frame.closeButton:SetHeight(26);
-		frame.closeButton:SetFrameLevel(15);
-		frame.closeButton:SetScript("OnClick", function(self, arg)
-			frame:Hide();
-		end)
-		frame:SetScript("OnMouseDown", function(self, button)
-			if (button == "LeftButton" and not self.isMoving) then
-				self:StartMoving();
-				self.isMoving = true;
-			end
-		end)
-		frame:SetScript("OnMouseUp", function(self, button)
-			if (button == "LeftButton" and self.isMoving) then
-				self:StopMovingOrSizing();
-				self.isMoving = false;
-				frame:SetUserPlaced(false);
-			end
-		end)
-		frame:SetScript("OnHide", function(self)
-			if (self.isMoving) then
-				self:StopMovingOrSizing();
-				self.isMoving = false;
-			end
-	end)
-		_G[addonName .. "UpdateNotesFrame"] = frame;
- 	end
- 	local frame = _G[addonName .. "UpdateNotesFrame"];
- 	frame.texture:SetTexture(icon);
- 	frame.title:SetText("|cFFFFFF00" .. title);
-	frame.title2:SetText("|cFF00FF00New in|r |cFFFF6900v" .. string.format("%.2f", version) .. "");
- 	local text = "";
-	if (notes) then
-		for k, v in ipairs(notes) do
-			if (string.match(v, "Version 1") or v == " ") then
-				text = text .. "|cFFFFFFFF" .. v .. "|r\n\n";
-			else
-				text = text .. "|TInterface\\QUESTFRAME\\UI-Quest-BulletPoint:12:12:0:0|t |cFFFFFFFF" .. v .. "|r\n\n";
-			end
-		end
-	end
-	if (text ~= "") then
-		frame.fs:SetText(text);
-		local height = frame.fs:GetStringHeight();
-		frame:SetHeight(height + 75);
-		frame:Show();
-	end
-end
-
-function NIT:checkNewVersion()
-	--NIT.db.global.versions = {}; --To test.
-	local newVersionNotes = 1.95;
-	if (NIT.version and NIT.version == newVersionNotes) then
-		if (not NIT.db.global.versions[NIT.version]) then
-			--if (NIT.isClassic) then
-				local notes = {
-					"|cFF00FF00Version 1.95|r",
-					"Added auto get buff and missing buff reminder for Twilight dungeons in cata, works the same way it did in wrath for gamma dungs. It will auto get the right buff for your spec or you can set an overide in config, or hold shift to pick a different buff (bit late adding this I know).",
-					"|cFF00FF00Version 1.93|r",
-					"Added SoD Scarlet Enclave weekly quest \"Prove your worth\" to be tracked in your characters window, right click minimap button to open and mouseover a name to check if the weekly has been done (must log character once after updating for it to be tracked).";
-				};
-				loadNewVersionFrame(NIT.version, notes, "Nova Instance Tracker", "Interface\\AddOns\\NovaInstanceTracker\\Media\\portal", 30, 200);
-			--end
-			--Wipe old data.
-			NIT.db.global.versions = {};
-			--Set this version has been loaded before.
-			NIT.db.global.versions[NIT.version] = GetServerTime();
-		end
-	end
 end
 
 function NIT:setLogSize(info, value)
@@ -1401,14 +1150,6 @@ function NIT:getInstanceStatsOutputHK(info)
 	return self.db.global.instanceStatsOutputHK;
 end
 
-function NIT:setInstanceStatsOutputCurrency(info, value)
-	self.db.global.instanceStatsOutputCurrency = value;
-end
-
-function NIT:getInstanceStatsOutputCurrency(info)
-	return self.db.global.instanceStatsOutputCurrency;
-end
-
 --Instance window dimensions.
 function NIT:setInstanceWindowWidth(info, value)
 	self.db.global.instanceWindowWidth = value;
@@ -1595,113 +1336,5 @@ function NIT:getAutoGammaBuffType(info)
 		return NIT.data.gammaBuffSettings[UnitName("player")];
 	else
 		return self.db.global.autoGammaBuffType;
-	end
-end
-
---Loot reminder Tarnished Undermine Real.
-function NIT:setLootReminderReal(info, value)
-	self.db.global.lootReminderReal = value;
-end
-
-function NIT:getLootReminderReal(info)
-	return self.db.global.lootReminderReal;
-end
-
---Loot reminder Tarnished Undermine Real skip if capped.
-function NIT:setSkipRealMsgIfCapped(info, value)
-	self.db.global.skipRealMsgIfCapped = value;
-end
-
-function NIT:getSkipRealMsgIfCapped(info)
-	return self.db.global.skipRealMsgIfCapped;
-end
-
---Kara relics in SoD.
-function NIT:setLootReminderMysRelic(info, value)
-	self.db.global.lootReminderMysRelic = value;
-end
-
-function NIT:getLootReminderMysRelic(info)
-	return self.db.global.lootReminderMysRelic;
-end
-
-function NIT:setLootReminderMysRelicParty(info, value)
-	self.db.global.lootReminderMysRelicParty = value;
-end
-
-function NIT:getLootReminderMysRelicParty(info)
-	return self.db.global.lootReminderMysRelicParty;
-end
-
---Loot reminder text size.
-function NIT:setLootReminderSize(info, value)
-	self.db.global.lootReminderSize = value;
-	NIT:updateLootReminderFrame(true);
-end
-
-function NIT:getLootReminderSize(info)
-	return self.db.global.lootReminderSize;
-end
-
---Loot reminder X position.
-function NIT:setLootReminderX(info, value)
-	self.db.global.lootReminderX = value;
-	NIT:updateLootReminderFrame(true);
-end
-
-function NIT:getLootReminderX(info)
-	return self.db.global.lootReminderX;
-end
-
---Loot reminder Y position.
-function NIT:setLootReminderY(info, value)
-	self.db.global.lootReminderY = value;
-	NIT:updateLootReminderFrame(true);
-end
-
-function NIT:getLootReminderY(info)
-	return self.db.global.lootReminderY;
-end
-
---Argent Dawn trinket reminder.
-function NIT:setArgentDawnTrinketReminder(info, value)
-	self.db.global.rgentDawnTrinketReminder = value;
-end
-
-function NIT:getArgentDawnTrinketReminder(info)
-	return self.db.global.argentDawnTrinketReminder;
-end
-
---Loot reminder sound.
-function NIT:setSoundsLootReminder(info, value)
-	self.db.global.soundsLootReminder = value;
-	local soundFile = NIT.LSM:Fetch("sound", value);
-	PlaySoundFile(soundFile, "Master");
-end
-
-function NIT:getSoundsLootReminder(info)
-	return self.db.global.soundsLootReminder;
-end
-
-local sounds = {
-	--["NIT - Zelda"] = "Interface\\AddOns\\NovaInstanceTracker\\Media\\Zelda.ogg",
-};
-
-function NIT:getSounds(type)
-	NIT.sounds = {};
-	for _, v in pairs(NIT.LSM:List("sound")) do
-		NIT.sounds[v] = v;
-	end
-	for k, v in NIT:pairsByKeys(sounds) do
-		NIT.sounds[k] = k;
-	end
-	NIT.sounds["None"] = "None";
-	return NIT.sounds;
-end
-
-function NIT:playSound(sound)
-	if (NIT.db.global[sound] and NIT.db.global[sound] ~= "None") then
-		local soundFile = NIT.LSM:Fetch("sound", NIT.db.global[sound]);
-		PlaySoundFile(soundFile, "Master");
 	end
 end

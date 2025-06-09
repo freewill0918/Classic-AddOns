@@ -30,22 +30,12 @@ if (locale == "deDE" and NIT.expansionNum < 5) then
 end
 
 local L = LibStub("AceLocale-3.0"):GetLocale("NovaInstanceTracker");
-local version = NIT.version;
+local version = GetAddOnMetadata("NovaInstanceTracker", "Version") or 9999;
 local GetContainerNumFreeSlots = GetContainerNumFreeSlots or C_Container.GetContainerNumFreeSlots;
 local GetContainerNumSlots = GetContainerNumSlots or C_Container.GetContainerNumSlots;
 local GetContainerItemCooldown = GetContainerItemCooldown or C_Container.GetContainerItemCooldown;
 local GetContainerItemLink = GetContainerItemLink or C_Container.GetContainerItemLink;
 local IsQuestFlaggedCompleted = IsQuestFlaggedCompleted or C_QuestLog.IsQuestFlaggedCompleted;
-local GetQuestInfo = C_QuestLog.GetQuestInfo or C_QuestLog.GetTitleForQuestID;
-local GetSpellInfo = NIT.GetSpellInfo;
-local GetItemCount = GetItemCount or C_Item.GetItemCount;
-NIT.currentInstanceID = 0;
---This is for a system that records before and after honor for bgs honor gained calced.
---Didn't have to end up using it becaus another way was worked out that didn't work at the start of expansion.
---Cata scoreboard isn't accurate honor gained either, but NIT current system is now accurate, hopefully nothing else breaks.
---Can't use CHAT_MSG_CURRENCY becaus bg bonus honor doesn't trigger it.
---local usePreHonor = true;
-local usePreHonor;
 
 --Some of this addon comm stuff is copied from my other addon NovaWorldBuffs and is left here incase of future stuff being added.
 function NIT:OnCommReceived(commPrefix, string, distribution, sender)
@@ -117,8 +107,6 @@ function NIT:OnCommReceived(commPrefix, string, distribution, sender)
 	elseif (cmd == "instanceResetOther") then
 		--Instance reset from NWB user.
 		NIT:instanceResetOtherComm(data, sender, distribution);
-	elseif (cmd == "douse") then
-		NIT:receivedDouse(data, sender, distribution);
 	end
 	NIT:versionCheck(remoteVersion);
 end
@@ -159,14 +147,13 @@ function NIT:sendComm(distribution, string, target)
 end
 
 function NIT:versionCheck(remoteVersion)
-	if (not remoteVersion or remoteVersion == 0) then
-		--Comm is from NWB is version is 0.
-		--Someone reported version was missing all together, someone else started using the NIT prefix maybe?
+	if (remoteVersion == 0) then
+		--Comm is from NWB.
 		return;
 	end
 	local lastVersionMsg = NIT.db.global.lastVersionMsg;
 	if (tonumber(remoteVersion) > tonumber(version) and (GetServerTime() - lastVersionMsg) > 14400) then
-		print("|TInterface\\AddOns\\NovaInstanceTracker\\Media\\portal:12:12:0:0|t |cFF9CD6DE" .. L["versionOutOfDate"]);
+		print("|cFF9CD6DE" .. L["versionOutOfDate"]);
 		NIT.db.global.lastVersionMsg = GetServerTime();
 	end
 	if (tonumber(remoteVersion) > tonumber(version)) then
@@ -179,7 +166,7 @@ function NIT:sendVersion(distribution)
 	if (distribution) then
 		NIT:sendComm(distribution, "version " .. version .. " check");
 	else
-		NIT:sendGroupComm("version " .. version .. " check");
+		NIT:sendGroupComm("version " .. version .. " check")
 	end
 end
 
@@ -203,7 +190,7 @@ function NIT:instanceResetOtherComm(data, sender, distribution)
 	NIT:print(data .. " has been reset by the group leader (" .. who .. ").");
 end
 
-local doGUID, isGhost, scanDungeonSubDifficulty;
+local doGUID, isGhost;
 local currentXP, maxXP = 0, 0;
 local f = CreateFrame("Frame");
 f:RegisterEvent("PLAYER_ENTERING_WORLD");
@@ -219,8 +206,8 @@ f:RegisterEvent("CHAT_MSG_COMBAT_XP_GAIN");
 f:RegisterEvent("PLAYER_REGEN_ENABLED");
 f:RegisterEvent("GROUP_ROSTER_UPDATE");
 f:RegisterEvent("CHAT_MSG_MONEY");
-f:RegisterEvent("CHAT_MSG_SYSTEM");
 f:RegisterEvent("CHAT_MSG_COMBAT_FACTION_CHANGE");
+f:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN");
 f:RegisterEvent("PLAYER_UPDATE_RESTING");
 f:RegisterEvent("PLAYER_XP_UPDATE");
 f:RegisterEvent("PLAYER_LEVEL_UP");
@@ -236,11 +223,6 @@ f:RegisterEvent("PLAYER_LOGOUT");
 if (NIT.expansionNum < 4) then
 	f:RegisterEvent("UNIT_PET_TRAINING_POINTS");
 	f:RegisterEvent("TRADE_SKILL_UPDATE");
-	f:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN");
-end
-if (NIT.expansionNum > 3) then
-	f:RegisterEvent("CHAT_MSG_CURRENCY");
-	f:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN");
 end
 f:RegisterEvent("GROUP_JOINED");
 f:RegisterEvent("GROUP_FORMED");
@@ -250,15 +232,13 @@ f:RegisterEvent("TRADE_SKILL_CLOSE");
 f:RegisterEvent("UPDATE_BATTLEFIELD_SCORE");
 f:RegisterEvent("ENCOUNTER_END");
 f:RegisterEvent("CURRENCY_DISPLAY_UPDATE");
-f:RegisterEvent("CHAT_MSG_LOOT");
 if (NIT.isRetail) then
 	f:RegisterEvent("CHALLENGE_MODE_START");
 	f:RegisterEvent("CHALLENGE_MODE_COMPLETED");
 	f:RegisterEvent("CHALLENGE_MODE_MAPS_UPDATE")
+	f:RegisterEvent("CHAT_MSG_LOOT");
 	f:RegisterEvent("ITEM_CHANGED");
 	f:RegisterEvent("WEEKLY_REWARDS_UPDATE");
-	f:RegisterEvent("ACTIVE_DELVE_DATA_UPDATE");
-	f:RegisterEvent("ZONE_CHANGED_NEW_AREA");
 end
 f:RegisterEvent("UPDATE_INSTANCE_INFO");
 f:RegisterEvent("PLAYER_GUILD_UPDATE");
@@ -275,7 +255,6 @@ f:SetScript('OnEvent', function(self, event, ...)
 		NIT:playerLeavingWorld(...);
 	elseif (event == "PLAYER_ENTERING_WORLD" ) then
 		local isLogon, isReload = ...;
-		scanDungeonSubDifficulty = nil;
 		NIT:playerEnteringWorld(...);
 		if (isLogon) then
 			C_Timer.After(10, function()
@@ -287,6 +266,7 @@ f:SetScript('OnEvent', function(self, event, ...)
 			C_Timer.After(5, function()
 				NIT:fixCooldowns();
 			end)
+			NIT:trimTrades();
 		end
 		if (isLogon or isReload) then
 			--Need to add a delay for pet data to load properly at logon.
@@ -332,7 +312,7 @@ f:SetScript('OnEvent', function(self, event, ...)
 		NIT:combatLogEventUnfiltered(...);
 	elseif (event == "UNIT_TARGET" or event == "PLAYER_TARGET_CHANGED") then
 		NIT:parseGUID("target", nil, "target");
-		if (NIT.inInstance and (NIT.isWrath or NIT.isCata)) then
+		if (NIT.inInstance and NIT.isWrath) then
 			NIT:scanDungeonSubDifficulty();
 		end
 	elseif (event == "UPDATE_MOUSEOVER_UNIT") then
@@ -357,13 +337,7 @@ f:SetScript('OnEvent', function(self, event, ...)
 	elseif (event == "CHAT_MSG_COMBAT_FACTION_CHANGE") then
 		NIT:chatMsgCombatFactionChange(...);
 	elseif (event == "CHAT_MSG_COMBAT_HONOR_GAIN") then
-		--Pre cata.
 		NIT:chatMsgCombatHonorGain(...);
-		NIT:recordHonorData();
-	elseif (event == "CHAT_MSG_CURRENCY") then
-		--Post cata honor recording.
-		NIT:chatMsgCurrency(...);
-		NIT:recordCurrency();
 		NIT:recordHonorData();
 	elseif (event == "PLAYER_REGEN_ENABLED") then
 		NIT:recordCombatEndedData(...);
@@ -425,15 +399,13 @@ f:SetScript('OnEvent', function(self, event, ...)
 	elseif (event == "PLAYER_CAMPING") then
 		--Print stats if logging out inside an instance for an offline reset.
 		if (NIT.inInstance) then
-			NIT:recordLeftInstanceStats();
+			NIT.data.instances[1]["leftTime"] = GetServerTime();
 			NIT:showInstanceStats();
 		end
 		NIT:recordLockoutData();
 		NIT:recordQuests();
 	elseif (event == "PLAYER_LOGOUT") then
-		--if (NIT.inInstance) then
-		--	NIT:recordLeftInstanceStats();
-		--end
+		--Print stats if logging out inside an instance for an offline reset.
 		NIT:recordLockoutData();
 		NIT:recordQuests();
 	elseif (event == "TRADE_SKILL_UPDATE" or event == "TRADE_SKILL_SHOW" or event == "TRADE_SKILL_CLOSE") then
@@ -503,34 +475,13 @@ f:SetScript('OnEvent', function(self, event, ...)
 		end)
 	elseif (event == "PLAYER_GUILD_UPDATE") then
 		NIT:throddleEventByFunc(event, 1, "recordGuildInfo");
-	elseif( event == "ACTIVE_DELVE_DATA_UPDATE") then
-		if (C_PartyInfo and C_PartyInfo.IsDelveInProgress and C_PartyInfo.IsDelveInProgress() and not NIT.inInstance) then
-			NIT:enteredDelve();
-		end
-	elseif (event == "ZONE_CHANGED_NEW_AREA") then
-		if (C_PartyInfo and C_PartyInfo.IsDelveInProgress) then
-			if (NIT.inInstance and NIT.data.instances[1].type == "delve" and not C_PartyInfo.IsDelveInProgress()) then
-				NIT:leftDelve();
-			end
-		end
-	elseif (event == "CHAT_MSG_SYSTEM") then
-		local text = ...;
-		if (string.match(text, INSTANCE_SAVED)) then
-			C_Timer.After(1, function()
-				NIT:recordLockoutData();
-			end)
-			C_Timer.After(10, function()
-				NIT:recordLockoutData();
-			end)
-		end
 	end
 end)
 
 --Trim records to maxRecordsKept, can set records shown to max 500 in options, 100 is default.
 function NIT:trimDatabase()
 	local max = NIT.db.global.maxRecordsKept;
-	--Iterate in reverse when removing elements.
-	for i = #NIT.data.instances, 1, -1 do
+	for i, v in pairs(NIT.data.instances) do
 		if (i > max) then
 			table.remove(NIT.data.instances, i);
 		end
@@ -539,26 +490,12 @@ end
 
 function NIT:trimTrades()
 	local max = NIT.db.global.maxTradesKept;
-	--Iterate in reverse when removing elements.
-	for i = #NIT.data.trades, 1, -1 do
+	for i, v in pairs(NIT.data.trades) do
 		if (i > max) then
 			table.remove(NIT.data.trades, i);
 		end
 	end
 end
-
-local lootCurrency = {
-	[21229] = "Qiraji Lord's Insignia",
-	--SoD.
-	[226404] = "Tarnished Undermine Real",
-	[235786] = "Karazhan Curio",
-	[236397] = "Remnants of Valor",
-};
-
---Same as above for if anyone loots, not just me.
-local lootCurrencyAll = {
-	[12811] = "Righteous Orb",
-};
 
 function NIT:chatMsgLoot(...)
 	local msg = ...;
@@ -569,105 +506,29 @@ function NIT:chatMsgLoot(...)
     --Self receive multiple loot "You receive loot: [Item]x2"
     local amount;
     local name = UnitName("Player");
-    
-    ---This was changed to use an old liv LebDeformat to fix issues with korean strings.
-    ---The SELF loot strings were triggering for other people, so item counts would count everyone in the party.
-    ---The lib fixed this.
-    
+    local otherPlayer;
     --Self loot multiple item "You receive loot: [Item]x2"
-	--local itemLink, amount = strmatch(msg, string.gsub(string.gsub(LOOT_ITEM_SELF_MULTIPLE, "%%s", "(.+)"), "%%d", "(%%d+)"));
-	local itemLink, amount = NIT.libDeformat(msg, LOOT_ITEM_SELF_MULTIPLE);
-	local otherPlayer;
+	local itemLink, amount = strmatch(msg, string.gsub(string.gsub(LOOT_ITEM_SELF_MULTIPLE, "%%s", "(.+)"), "%%d", "(%%d+)"));
 	if (not itemLink) then
  		--Self receive single loot "You receive loot: [Item]"
-    	--itemLink = msg:match(LOOT_ITEM_SELF:gsub("%%s", "(.+)"));
-    	itemLink = NIT.libDeformat(msg, LOOT_ITEM_SELF);
+    	itemLink = msg:match(LOOT_ITEM_SELF:gsub("%%s", "(.+)"));
 		if (not itemLink) then
  			--Self receive single item "You receive item: [Item]"
-			--itemLink = msg:match(LOOT_ITEM_PUSHED_SELF:gsub("%%s", "(.+)"));
-			itemLink = NIT.libDeformat(msg, LOOT_ITEM_PUSHED_SELF);
+			itemLink = msg:match(LOOT_ITEM_PUSHED_SELF:gsub("%%s", "(.+)"));
 		end
     end
-     --If no matches for self loot then check other player loot msgs.
-    if (not itemLink) then
-    	otherPlayer = true;
-    	--Other player receive multiple loot "Otherplayer receives loot: [Item]x2"
-    	name, itemLink, amount = NIT.libDeformat(msg, LOOT_ITEM_MULTIPLE);
-    	if (not itemLink) then
-    		--Other player receive single loot "Otherplayer receives loot: [Item]"
-    		name, itemLink = NIT.libDeformat(msg, LOOT_ITEM);
-			if (not itemLink) then
-				--Other player loot multiple item "Otherplayer receives item: [Item]x2"
-				name, itemLink, amount = NIT.libDeformat(msg, LOOT_ITEM_PUSHED_MULTIPLE);
-				if (not itemLink) then
-	 				--Other player receive single item "Otherplayer receives item: [Item]"
-					name, itemLink = NIT.libDeformat(msg, LOOT_ITEM_PUSHED);
-					item = true;
-				end
-			end
-    	end
-    end
     if (itemLink) then
-    	if (otherPlayer) then
-    		if (NIT.inInstance) then
-		    	local instance = NIT.data.instances[1];
-		    	local itemID = string.match(itemLink, "item:(%d+)");
-		    	if (itemID) then
-		    		itemID = tonumber(itemID);
-		    		if (lootCurrencyAll[itemID]) then
-			    		local itemName, _, _, _, _, _, _, _, _, icon = C_Item.GetItemInfo(itemID);
-			    		if (not instance.currencies) then
-							instance.currencies = {};
-						end
-						if (not instance.currencies[itemID]) then
-							instance.currencies[itemID] = {
-								count = 0;
-							};
-						end
-						instance.currencies[itemID] = {
-							name = itemName,
-							count = instance.currencies[itemID].count + (amount or 1),
-							icon = icon,
-						};
-					end
-		    	end
-	    	end
-    	else
-	    	if (NIT.inInstance) then
-		    	local instance = NIT.data.instances[1];
-		    	local itemID = string.match(itemLink, "item:(%d+)");
-		    	if (itemID) then
-		    		itemID = tonumber(itemID);
-		    		if (lootCurrency[itemID] or lootCurrencyAll[itemID]) then
-			    		local itemName, _, _, _, _, _, _, _, _, icon = C_Item.GetItemInfo(itemID);
-			    		if (not instance.currencies) then
-							instance.currencies = {};
-						end
-						if (not instance.currencies[itemID]) then
-							instance.currencies[itemID] = {
-								count = 0;
-							};
-						end
-						instance.currencies[itemID] = {
-							name = itemName,
-							count = instance.currencies[itemID].count + (amount or 1),
-							icon = icon,
-						};
-					end
-		    	end
-	    	end
-	    	if (string.match(itemLink, "|Hkeystone:(.+)|h") or string.match(itemLink, "item:180653")) then
-	    		C_Timer.After(1, function()
-	    			NIT:debug("looted keystone");
-					NIT:recordKeystoneData(true);
-				end)
-				C_Timer.After(5, function()
-					NIT:checkRewards();
-				end)
-				C_Timer.After(15, function()
-					NIT:checkRewards();
-				end)
-	    	end
+    	if (string.match(itemLink, "|Hkeystone:(.+)|h") or string.match(itemLink, "item:180653")) then
+    		C_Timer.After(1, function()
+    			NIT:debug("looted keystone");
+				NIT:recordKeystoneData(true);
+			end)
+			C_Timer.After(5, function()
+				NIT:checkRewards();
+			end)
+			C_Timer.After(15, function()
+				NIT:checkRewards();
+			end)
     	end
     end
 end
@@ -802,25 +663,20 @@ function NIT:chatMsgCombatFactionChange(...)
 			end
 		end
 	end
-	if (NIT.data.instances[1].type == "delve") then
-		--Brann XP comes through in the rep event, could track this later.
+	if (not repName or not repAmount) then
+		NIT:debug("Faction error:", text);
+		return;
+	end
+	if (not NIT.data.instances[1].rep[repName]) then
+		NIT.data.instances[1].rep[repName] = 0
+	end
+	if (decrease) then
+		NIT.data.instances[1].rep[repName] = NIT.data.instances[1].rep[repName] - repAmount;
 	else
-		if (not repName or not repAmount) then
-			NIT:debug("Faction error:", text);
-			return;
-		end
-		if (not NIT.data.instances[1].rep[repName]) then
-			NIT.data.instances[1].rep[repName] = 0
-		end
-		if (decrease) then
-			NIT.data.instances[1].rep[repName] = NIT.data.instances[1].rep[repName] - repAmount;
-		else
-			NIT.data.instances[1].rep[repName] = NIT.data.instances[1].rep[repName] + repAmount;
-		end
+		NIT.data.instances[1].rep[repName] = NIT.data.instances[1].rep[repName] + repAmount;
 	end
 end
 
---Pre cata honor recording.
 function NIT:chatMsgCombatHonorGain(...)
 	if (not NIT.inInstance or NIT.data.instances[1].type ~= "bg") then
 		return;
@@ -829,90 +685,12 @@ function NIT:chatMsgCombatHonorGain(...)
 		NIT.data.instances[1].honor = 0;
 	end
 	local text = ...;
-	local honorGained;
-	if (string.match(text, "%d+%.%d+")) then
-		--Decimal in cata.
-		honorGained = string.match(text, "%d+%.%d+");
-	else
-		honorGained = string.match(text, "%d+");
-	end
+	local honorGained = string.match(text, "%d+");
 	if (not honorGained) then
 		NIT:debug("Honor error:", text);
 		return;
 	end
-	--NIT:debug("Honor Gained:", honorGained);
 	NIT.data.instances[1].honor = NIT.data.instances[1].honor + honorGained;
-end
-
-function NIT:calcRecordedHonor(logID, useData)
-	local data;
-	if (logID) then
-		data = NIT.data.instances[logID];
-	else
-		data = useData;
-	end
-	if (not data or not data.honor) then
-		return 0;
-	end
-	if (usePreHonor and NIT.inInstance and data.preHonor and logID == 1 and data.type == "bg") then
-		local honor = C_CurrencyInfo.GetCurrencyInfo(1901);
-		if (honor) then
-			return NIT:round(honor.quantity - data.preHonor);
-		else
-			return NIT:round(data.honor);
-		end				
-	elseif (data.preHonor and data.postHonor) then
-		return NIT:round(data.postHonor - data.preHonor);
-	else
-		return NIT:round(data.honor);
-	end
-end
-
---Cata and onwards honor recording, new event added.
-function NIT:chatMsgCurrency(...)
-	if (not NIT.inInstance) then
-		return;
-	end
-	local text = ...;
-	if (not strmatch(text, "currency:")) then
-		return;
-	end
-	local currencyID = tonumber(strmatch(text, "currency:(%d+):"));
-	local instance = NIT.data.instances[1];
-	if (currencyID == 1901 and instance.type == "bg") then
-		--Doesn't work right in cata becaus the currency msgs don't work for bonus honor at the end of a bg.
-		--[[local amount = strmatch(text, "currency:.+\]|h|r%D*(%d+)");
-		if (not amount) then
-			NIT:debug("Honor error:", text);
-			return;
-		end
-		if (not instance.honor) then
-			instance.honor = 0;
-		end
-		instance.honor = instance.honor + amount;
-		NIT:debug("Honor Gained2:", amount);]]
-	else
-		--Don't judge my string matching.
-		local amount = strmatch(text, "currency:.+\]|h|r%D*(%d+)");
-		if (not amount) then
-			NIT:debug("Currency error:", text);
-			return;
-		end
-		local data = C_CurrencyInfo.GetCurrencyInfo(currencyID);
-		if (not instance.currencies) then
-			instance.currencies = {};
-		end
-		if (not instance.currencies[currencyID]) then
-			instance.currencies[currencyID] = {
-				count = 0;
-			};
-		end
-		instance.currencies[currencyID] = {
-			name = data.name,
-			count = instance.currencies[currencyID].count + (amount or 1),
-			icon = data.iconFileID,
-		}; --/run NIT.data.instances[1].currencies[395] = {name = "Justice Points", count = 5, icon = 463446}
-	end
 end
 
 function NIT:playerEnteringWorld(...)
@@ -961,11 +739,11 @@ function NIT:recordBgStats()
 	local totalPlayers = GetNumBattlefieldScores();
 	--local mapID = C_Map.GetBestMapForUnit("player");
 	if (NIT.data.instances[1].type == "bg") then
-		local me = UnitName("player");
 		for i = 1, totalPlayers do
 			local name, kb, hk, deaths, honor, faction, rank, race, class, classEnglish, damage, healing = GetBattlefieldScore(i);
 			--local rankName, rankNumber = GetPVPRankInfo(rank, faction);
 			--Record me only.
+			local me = UnitName("player");
 			if (name == me) then
 				instance.kb = kb;
 				instance.hk = hk;
@@ -1013,11 +791,11 @@ function NIT:recordBgStats()
 			instance.winningFaction = 1;
 		end
 	elseif (NIT.data.instances[1].type == "arena") then
-		local me = UnitName("player");
 		local purpleTeam, goldTeam = {}, {};
 		for i = 1, totalPlayers do
 			local name, kb, hk, deaths, honor, faction, rank, race, class, classEnglish, damage, healing = GetBattlefieldScore(i);
 			--Record all players.
+			local me = UnitName("player");
 			if (name) then
 				local t = {
 					kb = kb,
@@ -1158,13 +936,10 @@ local subDiffculties = {
 	[394435] = "alpha", --Alpha Empowered: Arcane Rune
 	[394437] = "alpha", --Alpha Empowered: Shadow Rune
 	[394438] = "alpha", --Alpha Empowered: Blood Rune
-	--Cata.
-	[470595] = "inferno",
-	[1224923] = "twilight",
 };
 function NIT:scanDungeonSubDifficulty()
-	--Only scan once per entering.
-	if (NIT.inInstance and not scanDungeonSubDifficulty) then
+	--Only scan once if we found it.
+	if (NIT.inInstance and not NIT.data.instances[1].subDifficulty) then
 		local found;
 		local guid = UnitGUID("target");
 		if (guid and string.match(guid, "Creature")) then
@@ -1191,10 +966,7 @@ function NIT:scanDungeonSubDifficulty()
 				end
 			end
 		end
-		if (found) then
-			scanDungeonSubDifficulty = true;
-		end
-		if (found and (NIT.data.instances[1].subDifficulty == "gamma" or NIT.data.instances[1].subDifficulty == "twilight") and NIT.db.global.autoGammaBuffReminder)then
+		if (found and NIT.data.instances[1].subDifficulty == "gamma" and NIT.db.global.autoGammaBuffReminder)then
 			--If we don't have a buff already then remind us, should only fire once per dung.
 			local hasBuff;
 			local gammaBuffs = {
@@ -1202,12 +974,6 @@ function NIT:scanDungeonSubDifficulty()
 				[424403] = true, --Ranged.
 				[424405] = true, --Healer.
 				[424407] = true, --Tank.
-				--Twilight.
-				[1224930] = true, --Blue.
-				[1224926] = true, --Red.
-				[1224932] = true, --Green.
-				[1224928] = true, --Bronze.
-				
 			};
 			for i = 1, 32 do
 				local _, _, _, _, _, _, _, _, _, spellID = UnitBuff("player", i);
@@ -1221,28 +987,21 @@ function NIT:scanDungeonSubDifficulty()
 				end
 			end
 			if (not hasBuff) then
-				if (NIT.data.instances[1].subDifficulty == "gamma") then
-					local npcType;
-					if (NIT.faction == "Horde") then
-						npcType = L["Sunreaver Warden"];
-					else
-						npcType = L["Silver Covenant Warden"];
-					end
-					NIT:print("|cFF00FF00" .. string.format(L["autoGammaBuffReminder"], npcType), nil, "[NIT Reminder]");
-					local colorTable = {r = 1, g = 0.96, b = 0.41, id = 41, sticky = 0};
-					RaidNotice_AddMessage(RaidWarningFrame, NIT.prefixColor .. "[NIT Reminder]:|r |cFF00FF00" .. string.format(L["autoGammaBuffReminder"], npcType), colorTable, 6);
-				elseif (NIT.data.instances[1].subDifficulty == "twilight") then
-					local npcType = L["Wyrmrest Defender"];
-					NIT:print("|cFF00FF00" .. string.format(L["autoTwilightBuffReminder"], npcType), nil, "[NIT Reminder]");
-					local colorTable = {r = 1, g = 0.96, b = 0.41, id = 41, sticky = 0};
-					RaidNotice_AddMessage(RaidWarningFrame, NIT.prefixColor .. "[NIT Reminder]:|r |cFF00FF00" .. string.format(L["autoTwilightBuffReminder"], npcType), colorTable, 6);
+				local npcType;
+				if (NIT.faction == "Horde") then
+					npcType = L["Sunreaver Warden"];
+				else
+					npcType = L["Silver Covenant Warden"];
 				end
+				NIT:print("|cFF00FF00" .. string.format(L["autoGammaBuffReminder"], npcType), nil, "[NIT Reminder]");
+				local colorTable = {r = 1, g = 0.96, b = 0.41, id = 41, sticky = 0};
+				RaidNotice_AddMessage(RaidWarningFrame, NIT.prefixColor .. "[NIT Reminder]:|r |cFF00FF00" .. string.format(L["autoGammaBuffReminder"], npcType), colorTable, 6);
 			end
 		end
 	end
 end
 
---[[function test()
+function test()
 	local npcType;
 	if (NIT.faction == "Horde") then
 		npcType = L["Sunreaver Warden"];
@@ -1252,18 +1011,6 @@ end
 	NIT:print("|cFF00FF00" .. string.format(L["autoGammaBuffReminder"], npcType), nil, "[NIT Reminder]");
 	local colorTable = {r = 1, g = 0.96, b = 0.41, id = 41, sticky = 0};
 	RaidNotice_AddMessage(RaidWarningFrame, NIT.prefixColor .. "[NIT Reminder]:|r |cFF00FF00" .. string.format(L["autoGammaBuffReminder"], npcType), colorTable, 6);
-end]]
-
-function NIT:enteredDelve()
-	C_Timer.After(1, function()
-		if (not NIT.inInstance) then
-			NIT:enteredInstance();
-		end
-	end)
-end
-
-function NIT:leftDelve()
-	NIT:leftInstance();
 end
 
 local isGhost = false;
@@ -1294,14 +1041,6 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 	if (checkAgain) then
 		NIT:debug("Rechecked Instance:", instance, "Type:", instanceType, NIT:isInArena(), UnitInBattleground("player"));
 	end
-	if (instance and instanceType == "scenario") then
-		--Check for delves.
-		local _, _, difficultyID = GetInstanceInfo();
-		if (difficultyID == 208) then
-			instanceType = "party";
-			type = "delve";
-		end
-	end
 	if (instance == true and ((instanceType == "party") or (instanceType == "raid")
 			or (type == "bg") or (type == "arena"))) then
 		local instanceName, instanceType, difficultyID, difficultyName, maxPlayers, dynamicDifficulty,
@@ -1316,14 +1055,8 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 			instanceName = "(Instance Name Not Found)";
 		end
 		local instanceNameMsg = instanceName;
-		--174 was heroic dung in wrath, but 2 is heroic in cata and retail.
-		if (difficultyID == 174 or difficultyID == 2 or difficultyID == 5 or difficultyID == 6 or difficultyID == 11
-			 or difficultyID == 15 or difficultyID == 39 or difficultyID == 149) then
+		if (difficultyID == 174) then
 			instanceNameMsg = instanceNameMsg .. " |cFF9CD6DE(|r|cFFFF2222H|r|cFF9CD6DE)|r";
-		elseif (difficultyID == 8 or difficultyID == 16 or difficultyID == 23 or difficultyID == 40) then --Mythic retail.
-			instanceNameMsg = instanceNameMsg .. " |cFF9CD6DE(|r|cFFa335eeM|r|cFF9CD6DE)|r";
-		elseif (type == "delve") then
-			instanceNameMsg = instanceNameMsg .. " |cFF9CD6DE(|r|cFF00C800D|r|cFF9CD6DE)|r";
 		end
 		if (isGhost) then
 			--This never worked and doesn't need to anyway.
@@ -1345,7 +1078,6 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 					type = type,
 					enteredTime = GetServerTime(),
 					enteredLevel = UnitLevel("player");
-					enteredLevelPercent = NIT:getLevelPercentage();
 					enteredXP = UnitXP("player");
 					enteredMoney = GetMoney(),
 					leftTime = 0,
@@ -1361,12 +1093,6 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 				--t.subDifficulty = getDungeonSubDifficulty();
 				if (type == "bg") then
 					t.honor = 0;
-					if (usePreHonor) then
-						local honor = C_CurrencyInfo.GetCurrencyInfo(1901);
-						if (honor) then
-							t.preHonor = honor.quantity;
-						end
-					end
 				end
 				if (type == "bg" or type == "arena") then
 					t.isPvp = true;
@@ -1385,19 +1111,6 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 						doubleCheckArena();
 					end)
 				end
-				if (type == "delve") then
-					local data = C_UIWidgetManager.GetScenarioHeaderDelvesWidgetVisualizationInfo(6183);
-					if (data.tierText) then
-						t.delveTier = data.tierText;
-					else
-						C_Timer.After(5, function()
-							local data = C_UIWidgetManager.GetScenarioHeaderDelvesWidgetVisualizationInfo(6183);
-							if (NIT.inInstance and data.tierText and NIT.data.instances[1] and NIT.data.instances[1].type == "delve") then
-								NIT.data.instances[1].delveTier = data.tierText; 
-							end
-						end)
-					end
-				end
 				--NIT:debug("entered", UnitLevel("player"));
 				--if (NIT.isDebug) then
 				--	t.GUIDList = {};
@@ -1415,7 +1128,7 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 				if (t.isPvp) then
 					if (NIT.db.global.pvpEnteredMsg) then
 						local msg = string.format(L["enteredDungeon"], instanceNameMsg, "");
-						msg = string.gsub(msg, " , ", ", ");
+						msg = string.gsub(msg, " , ", ", ")
 						C_Timer.After(0.5, function()
 							--local hourCount, hourCount24, hourTimestamp, hourTimestamp24 = NIT:getInstanceLockoutInfo();
 							NIT:print("|HNITCustomLink:instancelog|h" .. msg .. "|h "
@@ -1429,20 +1142,6 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 							NIT:print("|HNITCustomLink:instancelog|h" .. string.format(L["enteredRaid"], instanceNameMsg) .. "|h");
 						end)
 					end
-				elseif (type == "delve") then
-					if (t.delveTier) then
-						instanceNameMsg = instanceName .. " |cFF9CD6DE(|r|cFF00C800D+" .. t.delveTier .. "|r|cFF9CD6DE)|r";
-					else
-						instanceNameMsg = instanceName .. " |cFF9CD6DE(|r|cFF00C800D|r|cFF9CD6DE)|r";
-					end
-					local msg = string.format(L["enteredDungeon"], instanceNameMsg, "");
-					msg = string.gsub(msg, " , ", ", ");
-					C_Timer.After(0.5, function()
-						--local hourCount, hourCount24, hourTimestamp, hourTimestamp24 = NIT:getInstanceLockoutInfo();
-						NIT:print("|HNITCustomLink:instancelog|h" .. msg .. "|h "
-								.. "|HNITCustomLink:deletelast|h" .. texture
-								.. "|h |HNITCustomLink:instancelog|h" .. L["enteredDungeon2"] .. "|h");
-					end)
 				elseif (isLogon) then
 					C_Timer.After(3, function()
 						--local hourCount, hourCount24, hourTimestamp, hourTimestamp24 = NIT:getInstanceLockoutInfo();
@@ -1466,11 +1165,6 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 						NIT:print("|cFF00FF00Gamma Dungeon:|r " .. L["autoGammaBuffReminder"]);
 					end)
 				end]]
-				if (NIT.isClassic and (instanceID == 289 or instanceID == 329)) then
-					C_Timer.After(10, function()
-						NIT:argentDawnTrinketReminder();
-					end)
-				end
 			elseif (isReload) then
 				C_Timer.After(3, function()
 					local texture = "|TInterface\\AddOns\\NovaInstanceTracker\\Media\\redX2:12:12:0:0|t";
@@ -1484,9 +1178,8 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 			end)
 			--NIT.lastInstanceID = #NIT.data.instances + 1;
 			--NIT.data.instances[NIT.lastInstanceID] = t;
-			NIT.currentInstanceID = instanceID;
 			isGhost = false;
-			--NIT:trimDatabase();
+			NIT:trimDatabase();
 			NIT:addInstanceCount(instanceID);
 			local type = "unknown";
 			if (instanceID and NIT.zones[instanceID] and NIT.zones[instanceID].type) then
@@ -1505,33 +1198,17 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 	end
 end
 
-function NIT:recordLeftInstanceStats()
-	local isPvp = NIT.data.instances[1].isPvp
-	NIT.data.instances[1]["leftTime"] = GetServerTime();
-	if (isPvp) then
-		if (usePreHonor and NIT.data.instances[1].type == "bg") then
-			local honor = C_CurrencyInfo.GetCurrencyInfo(1901);
-			if (honor) then
-				NIT.data.instances[1].postHonor = honor.quantity;
-			end
-		end
-	else
-		NIT.data.instances[1]["leftLevel"] = UnitLevel("player");
-		local levelPercentage = NIT:getLevelPercentage();
-		if (levelPercentage) then
-			NIT.data.instances[1]["leftLevelPercent"] = levelPercentage;
-		end
-		NIT.data.instances[1]["leftXP"] = UnitXP("player");
-		NIT.data.instances[1]["leftMoney"] = GetMoney();
-	end
-end
-
 function NIT:leftInstance()
 	if (NIT.inInstance and NIT.data.instances[1]) then
-		NIT:recordLeftInstanceStats();
+		local isPvp = NIT.data.instances[1].isPvp
+		NIT.data.instances[1]["leftTime"] = GetServerTime();
+		if (not isPvp) then
+			NIT.data.instances[1]["leftLevel"] = UnitLevel("player");
+			NIT.data.instances[1]["leftXP"] = UnitXP("player");
+			NIT.data.instances[1]["leftMoney"] = GetMoney();
+		end
 		--NIT:debug("left", UnitLevel("player"));
 		--Don't show party stats if bg or arena, only self.
-		local isPvp = NIT.data.instances[1].isPvp
 		if (not isPvp or NIT.db.global.instanceStatsOutputWhere == "self") then
 			NIT:showInstanceStats();
 		end
@@ -1541,7 +1218,6 @@ function NIT:leftInstance()
 		NIT:recordKeystoneData();
 	end)
 	NIT.inInstance = nil;
-	NIT.currentInstanceID = 0;
 	NIT.lastNpcID = 999999999;
 	NIT.lastInstanceName = "(Unknown Instance)";
 	if (NITAUTORESET) then
@@ -1573,7 +1249,6 @@ function NIT:showInstanceStats(id, output, showAll, customPrefix, showDate)
 	local level = data.enteredLevel or UnitLevel("player");
 	local timeSpent = "";
 	local timeSpentRaw = 0;
-	local nonClickable;
 	if (data.enteredTime and data.leftTime and data.enteredTime > 0 and data.leftTime > 0) then
 		timeSpentRaw = data.leftTime - data.enteredTime;
 	elseif (data.enteredTime and data.leftTime and data.enteredTime > 0 and (GetServerTime() - data.enteredTime) < 21600
@@ -1616,7 +1291,7 @@ function NIT:showInstanceStats(id, output, showAll, customPrefix, showDate)
 	end
 	if (data.isPvp) then
 		if (data.type == "bg") then
-			text = text .. pColor .. " " .. L["Honor"] .. ":|r " .. sColor .. NIT:calcRecordedHonor(nil, data) .. "|r";
+			text = text .. pColor .. " " .. L["Honor"] .. ":|r " .. sColor .. (data.honor or 0) .. "|r";
 			if (NIT.db.global.instanceStatsOutputHK) then
 				text = text .. pColor .. " " .. L["HKs"] .. ":|r " .. sColor .. (data.hk or 0) .. "|r";
 			end
@@ -1697,63 +1372,17 @@ function NIT:showInstanceStats(id, output, showAll, customPrefix, showDate)
 	if (NIT.db.global.instanceStatsOutputRep or showAll) then
 		local repText = "";
 		if (data.rep and next(data.rep)) then
-			local count = 0;
 			for k, v in NIT:pairsByKeys(data.rep) do
-				count = count + 1;
 				if (v > 0) then
 					v = "+" .. NIT:commaValue(v);
 				else
-					v = NIT:commaValue(v);
+					v = "-" .. NIT:commaValue(v);
 				end
-				if (count == 1) then
-					repText = repText .. "(" .. k .. " " .. v .. ")";
-				else
-					repText = repText .. " (" .. k .. " " .. v .. ")";
-				end
+				repText = repText .. "(" .. k .. " " .. v .. ")";
 			end
 		end
 		if (repText ~= "") then
 			text = text .. pColor .. " " .. L["statsRep"] .. "|r " .. sColor .. repText .. "|r";
-		end
-	end
-	if (not data.isPvp and (NIT.db.global.instanceStatsOutputCurrency or showAll)) then
-		local curText = "";
-		if (data.currencies and next(data.currencies)) then
-			local count = 0;
-			local notPrint;
-			if ((not output and NIT.db.global.instanceStatsOutputWhere == "group" and IsInGroup())
-				or (output == "send" and NIT.db.global.instanceStatsOutputWhere == "group" and IsInGroup())
-				or (output and output ~= "self" and output ~= "send")) then
-				--Check if we're going to print or not to use currency textures.
-				notPrint = true;
-			end
-			for k, v in NIT:pairsByKeys(data.currencies) do
-				count = count + 1;
-				local texture = "";
-				if (v.icon) then
-					texture = "|T" .. v.icon .. ":12:12:0:0|t ";
-				end
-				if (count == 1) then
-					if (notPrint) then
-						curText = curText .. "(+" .. v.count .. " " .. v.name .. ")";
-					else
-						curText = curText .. "+" .. v.count .. texture;
-					end
-				else
-					if (notPrint) then
-						curText = curText .. " (+" .. v.count .. " " .. v.name .. ")";
-					else
-						curText = curText .. " +" .. v.count .. texture;
-					end
-					if (texture ~= "") then
-						--Can't have multiple textures inside a link only 1, so if we have multiple we need to make it unclickable.
-						nonClickable = true;
-					end
-				end
-			end
-		end
-		if (curText ~= "") then
-			text = text .. pColor .. " " .. L["Currency"] .. "|r " .. sColor .. curText .. "|r";
 		end
 	end
 	if (output) then
@@ -1771,7 +1400,7 @@ function NIT:showInstanceStats(id, output, showAll, customPrefix, showDate)
 			if (IsInGroup()) then
 	  			NIT:sendGroup("[NIT] " .. NIT:stripColors(prefix.. " " .. text));
 			else
-				NIT:print(NIT.prefixColor .. prefix.. " " .. text, nil, nil, nonClickable);
+				NIT:print(NIT.prefixColor .. prefix.. " " .. text);
 			end
 		elseif (output == "say" or output == "yell" or output == "party" or output == "guild"
 			or output == "officer" or output == "raid") then
@@ -1784,7 +1413,7 @@ function NIT:showInstanceStats(id, output, showAll, customPrefix, showDate)
 			end
 			SendChatMessage("[NIT] " .. NIT:stripColors(prefix.. " " .. text), string.upper(output));
 		elseif (output == "self") then
-			NIT:print(NIT.prefixColor .. prefix.. " " .. text, nil, nil, nonClickable);
+			NIT:print(NIT.prefixColor .. prefix.. " " .. text);
 		elseif (output == "send") then
 			--If no channel was specified run the normal output with added prefix.
 			if (NIT.db.global.instanceStatsOutputWhere == "group") then
@@ -1792,13 +1421,13 @@ function NIT:showInstanceStats(id, output, showAll, customPrefix, showDate)
 					if (NIT.db.global.showStatsInRaid) then
 		  				SendChatMessage("[NIT] " .. NIT:stripColors(prefix.. " " .. text), "RAID");
 		  			elseif (NIT.db.global.printRaidInstead) then
-		  				NIT:print(NIT.prefixColor .. prefix.. " " .. text, nil, nil, nonClickable);
+		  				NIT:print(NIT.prefixColor .. prefix.. " " .. text);
 		  			end
 		  		elseif (IsInGroup()) then
 		  			SendChatMessage("[NIT] " .. NIT:stripColors(prefix.. " " .. text), "PARTY");
 				end
 			else
-				NIT:print(NIT.prefixColor .. prefix.. " " .. text, nil, nil, nonClickable);
+				NIT:print(NIT.prefixColor .. prefix.. " " .. text);
 			end
 		end
 	elseif (not NIT.db.global.statsOnlyWhenActivity or ((data.xpFromChat and data.xpFromChat > 0)
@@ -1809,14 +1438,14 @@ function NIT:showInstanceStats(id, output, showAll, customPrefix, showDate)
 					if (NIT.db.global.showStatsInRaid) then
 		  				SendChatMessage("[NIT] " .. NIT:stripColors(text), "RAID");
 		  			elseif (NIT.db.global.printRaidInstead) then
-		  				NIT:print(text, nil, nil, nonClickable);
+		  				NIT:print(text);
 		  			end
 		  		elseif (IsInGroup()) then
 		  			SendChatMessage("[NIT] " .. NIT:stripColors(text), "PARTY");
 				end
 			elseif (NIT.db.global.instanceStatsOutput) then
 				--NIT:print(text, nil, "[" .. NIT.lastInstanceName .. "]");
-				NIT:print(text, nil, nil, nonClickable);
+				NIT:print(text);
 			end
 		end)
 	end
@@ -1924,10 +1553,9 @@ function NIT:mergeLastInstances(GUID, source)
 	NIT.data.instances[2].playerName = UnitName("player");
 	NIT.data.instances[2].class = class;
 	NIT.data.instances[2].classEnglish = classEnglish;
-	--This stuff should already be recorded and overwriting it would have been incorrect.
-	--NIT.data.instances[2].enteredLevel = UnitLevel("player");
-	--NIT.data.instances[2].enteredXP = UnitXP("player");
-	--NIT.data.instances[2].enteredMoney = GetMoney();
+	NIT.data.instances[2].enteredLevel = UnitLevel("player");
+	NIT.data.instances[2].enteredXP = UnitXP("player");
+	NIT.data.instances[2].enteredMoney = GetMoney();
 	if (not NIT.data.instances[1].isPvp) then
 		NIT.data.instances[2].mobCount =  NIT.data.instances[2].mobCount + NIT.data.instances[1].mobCount;
 		NIT.data.instances[2].mobCountFromKill =  NIT.data.instances[2].mobCountFromKill + NIT.data.instances[1].mobCountFromKill;
@@ -1952,7 +1580,61 @@ function NIT:mergeLastInstances(GUID, source)
 	NIT.lastMerge = GetServerTime();
 end
 
-local function addToGroupData(unit)
+local recordGroupInfoThroddle = 0;
+function NIT:recordGroupInfo()
+	if (not NIT.inInstance) then
+		return;
+	end
+	if (NIT.data.instances[1].type == "arena") then
+		--We get the group info from scoreboard in arena.
+		return;
+	end
+	if ((GetServerTime() - recordGroupInfoThroddle) < 2) then
+		--Throddle to only run this once every 2 seconds because it can be called from a few different things.
+		return;
+	end
+	if (not NIT.data.instances[1].group) then
+		NIT.data.instances[1].group = {};
+	end
+	recordGroupInfoThroddle = GetServerTime();
+	local average, count = 0, 0;
+	local nums = {};
+	nums[0] = UnitLevel("player");
+	if (IsInRaid()) then
+		for i = 1, 40 do
+			local level = NIT:addToGroupData("raid" .. i);
+			if (level) then
+				if (level > 0) then
+					count = count + 1;
+					average = ((average * (count - 1)) + level) / count;
+				end
+			end
+		end
+	elseif (IsInGroup()) then
+		for i = 1, 5 do
+			local level = NIT:addToGroupData("party" .. i);
+			if (level) then
+				if (level > 0) then
+					count = count + 1;
+					average = ((average * (count - 1)) + level) / count;
+				end
+			end
+		end
+	else
+		return;
+	end
+	local level = NIT:addToGroupData("player");
+	if (level) then
+		if (level > 0) then
+			count = count + 1;
+			average = ((average * (count - 1)) + level) / count;
+		end
+	end
+	NIT.data.instances[1].groupAverage = average;
+	return average;
+end
+
+function NIT:addToGroupData(unit)
 	local level = UnitLevel(unit);
 	local name, realm = UnitName(unit);
 	if (realm and realm ~= "" and realm ~= GetRealmName()) then
@@ -1995,60 +1677,6 @@ local function addToGroupData(unit)
 		level = 0;
 	end
 	return level;
-end
-
-local recordGroupInfoThroddle = 0;
-function NIT:recordGroupInfo()
-	if (not NIT.inInstance) then
-		return;
-	end
-	if (NIT.data.instances[1].type == "arena") then
-		--We get the group info from scoreboard in arena.
-		return;
-	end
-	if ((GetServerTime() - recordGroupInfoThroddle) < 2) then
-		--Throddle to only run this once every 2 seconds because it can be called from a few different things.
-		return;
-	end
-	if (not NIT.data.instances[1].group) then
-		NIT.data.instances[1].group = {};
-	end
-	recordGroupInfoThroddle = GetServerTime();
-	local average, count = 0, 0;
-	local nums = {};
-	nums[0] = UnitLevel("player");
-	if (IsInRaid()) then
-		for i = 1, 40 do
-			local level = addToGroupData("raid" .. i);
-			if (level) then
-				if (level > 0) then
-					count = count + 1;
-					average = ((average * (count - 1)) + level) / count;
-				end
-			end
-		end
-	elseif (IsInGroup()) then
-		for i = 1, 5 do
-			local level = addToGroupData("party" .. i);
-			if (level) then
-				if (level > 0) then
-					count = count + 1;
-					average = ((average * (count - 1)) + level) / count;
-				end
-			end
-		end
-	else
-		return;
-	end
-	local level = addToGroupData("player");
-	if (level) then
-		if (level > 0) then
-			count = count + 1;
-			average = ((average * (count - 1)) + level) / count;
-		end
-	end
-	NIT.data.instances[1].groupAverage = average;
-	return average;
 end
 
 --Delete instance by number, called by confirmation popup.
@@ -2123,7 +1751,7 @@ function NIT:getInstanceLockoutInfo(char)
 	end
 	for k, v in ipairs(NIT.data.instances) do
 		if (not NIT.perCharOnly or target == v.playerName) then
-			if (v.isPvp or v.type == "delve" or (NIT.noRaidLockouts and v.instanceID and NIT.zones[v.instanceID] and NIT.zones[v.instanceID].noLockout)) then
+			if (v.isPvp or (NIT.noRaidLockouts and v.instanceID and NIT.zones[v.instanceID] and NIT.zones[v.instanceID].noLockout)) then
 				--NIT:debug("skipping raid", v.instanceID);
 			else
 				count = count + 1;
@@ -2152,11 +1780,6 @@ function NIT:getInstanceLockoutInfo(char)
 	return hourCount, hourCount24, hourTimestamp, hourTimestamp24;
 end
 
---/dump LFGRewardsFrame_EstimateRemainingCompletions(302) throne normal
---/dump LFGRewardsFrame_EstimateRemainingCompletions(324) throne heroic
---/dump LFGRewardsFrame_EstimateRemainingCompletions(300) random normal
---/dump LFGRewardsFrame_EstimateRemainingCompletions(301) random heroic
---https://warcraft.wiki.gg/wiki/LfgDungeonID
 function NIT:recordCharacterData()
 	local char = UnitName("player");
 	if (not NIT.data.myChars[char]) then
@@ -2210,7 +1833,98 @@ function NIT:recordCharacterData()
 	--Durability.
 	local durabilityAverage = NIT.getAverageDurability();
 	NIT.data.myChars[char].durabilityAverage = durabilityAverage;
-	NIT:recordProfessions();
+	--Professions
+	local prof1, prof2, fishing, cooking, firstaid = "none", "none", "none", "none", "none";
+	local profSkill1, profSkill2, fishingSkill, cookingSkill, firstaidSkill = 0, 0, 0, 0, 0;
+	local profSkillMax1, profSkillMax2, fishingSkillMax, cookingSkillMax, firstaidSkillMax = 0, 0, 0, 0, 0;
+	if (NIT.isRetail) then
+		local prof1, prof2, archaeology, fishing, cooking = GetProfessions();
+		if (prof1) then
+			local prof1Name = GetProfessionInfo(prof1);
+			NIT.data.myChars[char].prof1 = prof1Name;
+		end
+		if (prof2) then
+			local prof2Name = GetProfessionInfo(prof2);
+			NIT.data.myChars[char].prof2 = prof2Name;
+		end
+	elseif (NIT.classic) then
+		--Skill list is always in same order, so we can get primary/secondary/weapon by checking the section headers.
+		local section, primaryCount, secondaryCount, weaponCount = 0, 0, 0, 0;
+		for i = 1, GetNumSkillLines() do
+			local skillName, isHeader, _, skillRank, _, _, skillMaxRank = GetSkillLineInfo(i)
+			--[[if (isHeader and skillName == "Professions") then
+				section = 2;
+			elseif (isHeader and skillName == "Secondary Skills") then
+				section = 3;
+			elseif (isHeader and skillName == "Weapon Skills") then
+				section = 4;
+			elseif (isHeader and skillName == "Armor Proficiencies") then
+				section = 5;
+			elseif (isHeader and skillName == "Languages") then
+				section = 6;
+			end]]
+			if (isHeader and skillName == TRADE_SKILLS) then
+				section = 2;
+			elseif (isHeader and skillName == string.gsub(SECONDARY_SKILLS, ":", "")) then
+				section = 3;
+			elseif (isHeader and string.find(skillName, COMBAT_RATING_NAME1)) then
+				section = 4;
+			elseif (isHeader and string.find(skillName, string.gsub(PROFICIENCIES, ":", ""))) then
+				--Global string PROFICIENCIES has a colon so strip it and use that as a close enough.
+				--Couldn't find a "Armor Proficiencies" global string.
+				section = 5;
+			elseif (isHeader and skillName == LANGUAGES_LABEL) then
+				section = 6;
+			end
+			if (not isHeader and section == 2) then
+				--Primary professions.
+				primaryCount = primaryCount + 1;
+				if (primaryCount == 1) then
+					prof1 = skillName;
+					profSkill1 = skillRank;
+					profSkillMax1 = skillMaxRank;
+				elseif (primaryCount == 2) then
+					prof2 = skillName;
+					profSkill2 = skillRank;
+					profSkillMax2 = skillMaxRank;
+				end
+			elseif (not isHeader and (section == 3 or section == 2)) then
+				--Secondary professions.
+				secondaryCount = secondaryCount + 1;
+				if (skillName == PROFESSIONS_FISHING) then
+					fishing = skillName;
+					fishingSkill = skillRank;
+					fishingSkillMax = skillMaxRank;
+				elseif (skillName == PROFESSIONS_COOKING) then
+					cooking = skillName;
+					cookingSkill = skillRank;
+					cookingSkillMax = skillMaxRank;
+				elseif (skillName == PROFESSIONS_FIRST_AID) then
+					firstaid = skillName;
+					firstaidSkill = skillRank;
+					firstaidSkillMax = skillMaxRank;
+				end
+			elseif (not isHeader and section == 4) then
+				--Weapon skills.
+				weaponCount = weaponCount + 1;
+			end
+		end
+		NIT.data.myChars[char].prof1 = prof1;
+		NIT.data.myChars[char].profSkill1 = profSkill1;
+		NIT.data.myChars[char].profSkillMax1 = profSkillMax1;
+		NIT.data.myChars[char].prof2 = prof2;
+		NIT.data.myChars[char].profSkill2 = profSkill2;
+		NIT.data.myChars[char].profSkillMax2 = profSkillMax2;
+		--NIT.data.myChars[char].fishing = fishing;
+		NIT.data.myChars[char].fishingSkill = fishingSkill;
+		NIT.data.myChars[char].fishingSkillMax = fishingSkillMax;
+		--NIT.data.myChars[char].cooking = cooking;
+		NIT.data.myChars[char].cookingSkill = cookingSkill;
+		NIT.data.myChars[char].cookingSkillMax = cookingSkillMax;
+		--NIT.data.myChars[char].firstaid = firstaid;
+		NIT.data.myChars[char].firstaidSkill = firstaidSkill;
+		NIT.data.myChars[char].firstaidSkillMax = firstaidSkillMax;
+	end
 	if (IsQuestFlaggedCompleted(7848) or IsQuestFlaggedCompleted(7487)) then
 		NIT.data.myChars[char].mcAttune = true;
 	end
@@ -2225,9 +1939,6 @@ function NIT:recordCharacterData()
 	end
 	if (IsQuestFlaggedCompleted(9838)) then
 		NIT.data.myChars[char].karaAttune = true;
-	end
-	if (IsQuestFlaggedCompleted(86970)) then
-		NIT.data.myChars[char].karaCrypts = true;
 	end
 	if (IsQuestFlaggedCompleted(10764) or IsQuestFlaggedCompleted(10758)) then
 		NIT.data.myChars[char].shatteredHallsAttune = true;
@@ -2284,177 +1995,45 @@ function NIT:recordGuildInfo()
 end
 
 --Weeklys.
-local weeklyQuests = {};
+local recordQuests = {};
 if (NIT.isRetail) then
-	weeklyQuests[70893] = {name = L["Feast Weekly"]};
-	weeklyQuests[70866] = {name = L["Siege on Dragonbane Keep"]};
-	weeklyQuests[70906] = {name = L["Grand Hunt (1st Time)"]};
-	weeklyQuests[71136] = {name = L["Grand Hunt (2nd Time)"]};
-	weeklyQuests[71137] = {name = L["Grand Hunt (3rd Time)"]};
-	weeklyQuests[71995] = {name = L["Trial of Elements"]};
-	weeklyQuests[71033] = {name = L["Trial of Flood"]};
-	weeklyQuests[69927] = {name = L["World Boss (Bazual)"]};
-	weeklyQuests[69928] = {name = L["World Boss (Liskanoth)"]};
-	weeklyQuests[69929] = {name = L["World Boss (Strunraan)"]};
-	weeklyQuests[69930] = {name = L["World Boss (Basrikron)"]};
+	recordQuests[70893] = L["Feast Weekly"];
+	recordQuests[70866] = L["Siege on Dragonbane Keep"];
+	recordQuests[70906] = L["Grand Hunt (1st Time)"];
+	recordQuests[71136] = L["Grand Hunt (2nd Time)"];
+	recordQuests[71137] = L["Grand Hunt (3rd Time)"];
+	recordQuests[71995] = L["Trial of Elements"];
+	recordQuests[71033] = L["Trial of Flood"];
+	recordQuests[69927] = L["World Boss (Bazual)"];
+	recordQuests[69928] = L["World Boss (Liskanoth)"];
+	recordQuests[69929] = L["World Boss (Strunraan)"];
+	recordQuests[69930] = L["World Boss (Basrikron)"];
 end
 if (NIT.isWrath) then
-	weeklyQuests[24590] = {name = "Lord Marrowgar Must Die!", sharedCooldown = L["Wrath Raid Boss Weekly"]};
-	weeklyQuests[24580] = {name = "Anub'Rekhan Must Die!", sharedCooldown = L["Wrath Raid Boss Weekly"]};
-	weeklyQuests[24585] = {name = "Flame Leviathan Must Die!", sharedCooldown = L["Wrath Raid Boss Weekly"]};
-	weeklyQuests[24587] = {name = "Ignis the Furnace Master Must Die!", sharedCooldown = L["Wrath Raid Boss Weekly"]};
-	weeklyQuests[24582] = {name = "Instructor Razuvious Must Die!", sharedCooldown = L["Wrath Raid Boss Weekly"]};
-	weeklyQuests[24589] = {name = "Lord Jaraxxus Must Die!", sharedCooldown = L["Wrath Raid Boss Weekly"]};
-	weeklyQuests[24584] = {name = "Malygos Must Die!", sharedCooldown = L["Wrath Raid Boss Weekly"]};
-	weeklyQuests[24581] = {name = "Noth the Plaguebringer Must Die!", sharedCooldown = L["Wrath Raid Boss Weekly"]};
-	weeklyQuests[24583] = {name = "Patchwerk Must Die!", sharedCooldown = L["Wrath Raid Boss Weekly"]};
-	weeklyQuests[24586] = {name = "Razorscale Must Die!", sharedCooldown = L["Wrath Raid Boss Weekly"]};
-	weeklyQuests[24579] = {name = "Sartharion Must Die!", sharedCooldown = L["Wrath Raid Boss Weekly"]};
-	weeklyQuests[24588] = {name = "XT-002 Deconstructor Must Die!", sharedCooldown = L["Wrath Raid Boss Weekly"]};
+	recordQuests[24590] = "Lord Marrowgar Must Die!";
+	recordQuests[24580] = "Anub'Rekhan Must Die!";
+	recordQuests[24585] = "Flame Leviathan Must Die!";
+	recordQuests[24587] = "Ignis the Furnace Master Must Die!";
+	recordQuests[24582] = "Instructor Razuvious Must Die!";
+	recordQuests[24589] = "Lord Jaraxxus Must Die!";
+	recordQuests[24584] = "Malygos Must Die!";
+	recordQuests[24581] = "Noth the Plaguebringer Must Die!";
+	recordQuests[24583] = "Patchwerk Must Die!";
+	recordQuests[24586] = "Razorscale Must Die!";
+	recordQuests[24579] = "Sartharion Must Die!";
+	recordQuests[24588] = "XT-002 Deconstructor Must Die!";
 end
 
 --Dailys.
-local dailyQuests = {};
+local recordDailyQuests = {};
 if (NIT.isWrath) then
-	dailyQuests[78752] = {name = L["Proof of Demise: Titan Rune Protocol Gamma"]};
-	dailyQuests[78753] = {name = L["Proof of Demise: Threats to Azeroth"]};
-	dailyQuests[13102] = {name = "Sewer Stew", sharedCooldown = L["Wrath Cooking Daily"]};
-	dailyQuests[13103] = {name = "Cheese for Glowergold", sharedCooldown = L["Wrath Cooking Daily"]};
-	dailyQuests[13101] = {name = "Convention at the Legerdemain", sharedCooldown = L["Wrath Cooking Daily"]};
-	dailyQuests[13100] = {name = "Infused Mushroom Meatloaf", sharedCooldown = L["Wrath Cooking Daily"]};
-	dailyQuests[13107] = {name = "Mustard Dogs!", sharedCooldown = L["Wrath Cooking Daily"]};
-	dailyQuests[13830] = {name = "The Ghostfish", sharedCooldown = L["Wrath Fishing Daily"]};
-	dailyQuests[13832] = {name = "Jewel Of The Sewers", sharedCooldown = L["Wrath Fishing Daily"]};
-	dailyQuests[13834] = {name = "Dangerously Delicious", sharedCooldown = L["Wrath Fishing Daily"]};
-	dailyQuests[13836] = {name = "Disarmed!", sharedCooldown = L["Wrath Fishing Daily"]};
-	dailyQuests[13833] = {name = "Blood Is Thicker", sharedCooldown = L["Wrath Fishing Daily"]};
-	dailyQuests[12958] = {name = "Shipment: Blood Jade Amulet", sharedCooldown = L["Wrath Jewelcrafting Daily"]};
-	dailyQuests[12962] = {name = "Shipment: Bright Armor Relic", sharedCooldown = L["Wrath Jewelcrafting Daily"]};
-	dailyQuests[12959] = {name = "Shipment: Glowing Ivory Figurine", sharedCooldown = L["Wrath Jewelcrafting Daily"]};
-	dailyQuests[12961] = {name = "Shipment: Intricate Bone Figurine", sharedCooldown = L["Wrath Jewelcrafting Daily"]};
-	dailyQuests[12963] = {name = "Shipment: Shifting Sun Curio", sharedCooldown = L["Wrath Jewelcrafting Daily"]};
-	dailyQuests[12960] = {name = "Shipment: Wicked Sun Brooch", sharedCooldown = L["Wrath Jewelcrafting Daily"]};
+	recordDailyQuests[78752] = L["Proof of Demise: Titan Rune Protocol Gamma"];
+	recordDailyQuests[78753] = L["Proof of Demise: Threats to Azeroth"];
 end
 
 if (NIT.isSOD) then
-	dailyQuests[79098] = {name = "Clear the Forest!"};
-	dailyQuests[79090] = {name = "Repelling Invaders"};
-	
-	--weeklyQuests[87361] = {name = "Laid to Rest"};
-	weeklyQuests[89256] = {name = "Prove Your Worth: Shoulderpads", sharedCooldown = L["Prove your worth (Scarlet Junkbox Weekly)"]};
-	weeklyQuests[89255] = {name = "Prove Your Worth: Headgear", sharedCooldown = L["Prove your worth (Scarlet Junkbox Weekly)"]};
-	weeklyQuests[89260] = {name = "Prove Your Worth: Belt", sharedCooldown = L["Prove your worth (Scarlet Junkbox Weekly)"]};
-	weeklyQuests[89262] = {name = "Prove Your Worth: Boots", sharedCooldown = L["Prove your worth (Scarlet Junkbox Weekly)"]};
-	weeklyQuests[89259] = {name = "Prove Your Worth: Gloves", sharedCooldown = L["Prove your worth (Scarlet Junkbox Weekly)"]};
-	weeklyQuests[89258] = {name = "Prove Your Worth: Wristguards", sharedCooldown = L["Prove your worth (Scarlet Junkbox Weekly)"]};
-	weeklyQuests[89257] = {name = "Prove Your Worth: Chestpiece", sharedCooldown = L["Prove your worth (Scarlet Junkbox Weekly)"]};
-	weeklyQuests[89261] = {name = "Prove Your Worth: Legguards", sharedCooldown = L["Prove your worth (Scarlet Junkbox Weekly)"]};
-end
-
-if (NIT.isCata) then
-	--Alliance cooking dailies.
-	dailyQuests[29316] = {name = "Back to Basics", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29314] = {name = "Remembering the Ancestors", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29318] = {name = "Ribs for the Sentinels", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29357] = {name = "Spice Bread Aplenty", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29313] = {name = "The Secret to Perfect Kimchi", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29352] = {name = "A Fowl Shortage", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29351] = {name = "A Round for the Guards", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29355] = {name = "Can't Get Enough Spice Bread", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29356] = {name = "I Need to Cask a Favor", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29353] = {name = "Keepin' the Haggis Flowin'", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[26190] = {name = "A Fisherman's Feast", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[26177] = {name = "Feeling Crabby?", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[26192] = {name = "Orphans Like Cookies Too!", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[26153] = {name = "Penny's Pumpkin Pancakes", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[26183] = {name = "The King's Cider", sharedCooldown = L["Cata Cooking Daily"]};
-	--Horde cooking dailies.
-	dailyQuests[26227] = {name = "Careful, This Fruit Bites Back", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[26226] = {name = "Crawfish Creole", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[26235] = {name = "Even Thieves Get Hungry", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[26220] = {name = "Everything Is Better with Bacon", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[26233] = {name = "Stealing From Our Own", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29362] = {name = "Magic Mushrooms", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29364] = {name = "Corn Mash", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29363] = {name = "Mulgore Spice Bread", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29365] = {name = "Perfectly Picked Portions", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29358] = {name = "Pining for Nuts", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29333] = {name = "Escargot A Go-Go", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29315] = {name = "Fungus Among Us", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29332] = {name = "Lily, Oh Lily", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29334] = {name = "Roach Coach", sharedCooldown = L["Cata Cooking Daily"]};
-	dailyQuests[29360] = {name = "Would You Like Some Flies With That?", sharedCooldown = L["Cata Cooking Daily"]};
-	--Alliance fishing dailies.
-	dailyQuests[29342] = {name = "Cold Water Fishing", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29344] = {name = "Fish fer Squrky", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29347] = {name = "Live Bait", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29343] = {name = "One fer the Ages", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29350] = {name = "The Gnomish Bait-o-Matic", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29325] = {name = "A Slippery Snack", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29359] = {name = "An Old Favorite", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29321] = {name = "Happy as a Clam Digger", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29323] = {name = "Stocking Up", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29324] = {name = "The Sister's Pendant", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[26488] = {name = "Big Gulp", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[26420] = {name = "Diggin' For Worms", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[26414] = {name = "Hitting a Walleye", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[26442] = {name = "Rock Lobster", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[26536] = {name = "Thunder Falls", sharedCooldown = L["Cata Fishing Daily"]};
-	--Horde fishing dailies.
-	dailyQuests[26588] = {name = "A Furious Catch", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[26572] = {name = "A Golden Opportunity", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[26557] = {name = "A Staggering Effort", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[26543] = {name = "Clammy Hands", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[26556] = {name = "No Dumping Allowed", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29349] = {name = "Craving Crayfish", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29345] = {name = "Pond Predators", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29354] = {name = "Shiny Baubles", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29348] = {name = "The Race to Restock", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29346] = {name = "The Ring's the Thing", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29317] = {name = "Fish Head", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29320] = {name = "Like Pike?", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29361] = {name = "Moat Monster!", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29319] = {name = "Tadpole Terror", sharedCooldown = L["Cata Fishing Daily"]};
-	dailyQuests[29322] = {name = "Time for Slime", sharedCooldown = L["Cata Fishing Daily"]};
-	--Jewelcrafting dailies.
-	dailyQuests[25154] = {name = "A Present for Lila", sharedCooldown = L["Cata Jewelcrafting Daily"]};
-	dailyQuests[25156] = {name = "Elemental Goo", sharedCooldown = L["Cata Jewelcrafting Daily"]};
-	dailyQuests[25105] = {name = "Nibbler! No!", sharedCooldown = L["Cata Jewelcrafting Daily"]};
-	dailyQuests[25155] = {name = "Ogrezonians in the Mood", sharedCooldown = L["Cata Jewelcrafting Daily"]};
-	dailyQuests[25157] = {name = "The Latest Fashion!", sharedCooldown = L["Cata Jewelcrafting Daily"]};
-end
-
-local monthlyQuests = {};
-if (NIT.isClassic) then
-	monthlyQuests[85882] = {name = L["End of the Dark Horde"]}; --Rend monthly in SoD alliance.
-	monthlyQuests[85883] = {name = L["For The Horde!"]}; --Rend monthly in SoD horde.
-	monthlyQuests[85659] = {name = L["Celebrating Good Times"]}; --Ony monthly in SoD alliance.
-	monthlyQuests[85658] = {name = L["For All To See"]}; --Ony monthly in SoD horde.
-	monthlyQuests[85660] = {name = L["The Heart of Hakkar"]}; --Zan monthly in SoD.
-end
-
---Cache all quest names.
-for k, v in pairs(weeklyQuests) do
-	GetQuestInfo(k);
-end
-for k, v in pairs(dailyQuests) do
-	GetQuestInfo(k);
-end
-for k, v in pairs(monthlyQuests) do
-	GetQuestInfo(k);
-end
-
-function NIT:getMonthlyReset()
-	local serverTime = C_DateAndTime.GetServerTimeLocal();
-	local currentMonth = tonumber(date("!%m", serverTime));
-	local currentYear = tonumber(date("!%Y", serverTime));
-	local month = currentMonth == 12 and 1 or currentMonth + 1;
-	local year = currentMonth == 12 and currentYear + 1 or currentYear;
-	local timeTable = {year = year, month = month, day = 1, hour = 0, min = 0, sec = 0};
-	local resetTime = time(timeTable);
-	--Needs testing to see exactly when they made monthly reset time.
-	--print(month, year, resetTime)
-	return resetTime;
+	recordDailyQuests[79098] = "Clear the Forest!";
+	recordDailyQuests[79090] = "Repelling Invaders";
 end
 
 function NIT:recordQuests()
@@ -2468,131 +2047,45 @@ function NIT:recordQuests()
 	if (not NIT.data.myChars[char].quests) then
 		NIT.data.myChars[char].quests = {};
 	end
+	--All wrath weeklies are flagged as complete when 1 is so just record 1 and not all.
+	local wrathWeeklyComplete;
+	local wrathWeeklies = {
+		[24590] = "Lord Marrowgar Must Die!";
+		[24580] = "Anub'Rekhan Must Die!";
+		[24585] = "Flame Leviathan Must Die!";
+		[24587] = "Ignis the Furnace Master Must Die!";
+		[24582] = "Instructor Razuvious Must Die!";
+		[24589] = "Lord Jaraxxus Must Die!";
+		[24584] = "Malygos Must Die!";
+		[24581] = "Noth the Plaguebringer Must Die!";
+		[24583] = "Patchwerk Must Die!";
+		[24586] = "Razorscale Must Die!";
+		[24579] = "Sartharion Must Die!";
+		[24588] = "XT-002 Deconstructor Must Die!";
+	};
 	local resetTime = GetServerTime() + C_DateAndTime.GetSecondsUntilWeeklyReset();
-	local sharedQuests = {};
-	for k, v in pairs(weeklyQuests) do
+	for k, v in pairs(recordQuests) do
 		if (IsQuestFlaggedCompleted(k)) then
-			local questName = v.name;
-			local localizedName = GetQuestInfo(k);
-			local skip;
-			if (v.sharedCooldown) then
-				--If shared cooldown type like cata cooking dailies diff quests are up but you can only do one.
-				--It flags all as complete but we only want to record one.
-				if (sharedQuests[v.sharedCooldown]) then
-					skip = true;
-				else
-					sharedQuests[v.sharedCooldown] = true;
-					questName = v.sharedCooldown;
+			--There's bugs with this that need more testing before release.
+			if (wrathWeeklies[k]) then
+				if (not wrathWeeklyComplete) then
+					wrathWeeklyComplete = true;
+					NIT.data.myChars[char].quests[L["Wrath Raid Boss Weekly"]] = resetTime;
+					--Wrath raid weekly isn't resetting at normal server time, it's resetting later on in the day so it's still recording as complete until the following week.
+					--Watching this and see if they fix the reset time, maybe they had to manual reset first week due to a bug?
 				end
-			elseif (localizedName and localizedName ~= "") then
-				questName = localizedName;
-			end
-			if (not skip) then
-				NIT.data.myChars[char].quests[questName] = resetTime;
+			else
+				NIT.data.myChars[char].quests[v] = resetTime;
 			end
 		end
 	end
-	--if (not NIT.data.myChars[char].questsMonthly) then
-		NIT.data.myChars[char].questsMonthly = {}; --Wipe and re-record each time for now until we test exactly when monthly reset happens.
-	--end
-	--[[local currentDay = date("!%d", C_DateAndTime.GetServerTimeLocal());
-	if (currentDay ~= "01") then
-		--Don't record on first day of the month until we text exactly when monthly reset is.
-		--This is so we don't re-save the quest as completed on the first day of the month if it hasn't reset yet.
-		--Reset time could be on daily reset on first of the month, could be with the first weekly reset of the month, could be on monthly tickover server time?
-		local resetTimeMonthly = NIT:getMonthlyReset();
-		for k, v in pairs(monthlyQuests) do
-			if (IsQuestFlaggedCompleted(k)) then
-				local questName = v.name;
-				local localizedName = GetQuestInfo(k);
-				if (localizedName and localizedName ~= "") then
-					questName = localizedName;
-				end
-				NIT.data.myChars[char].questsMonthly[questName] = resetTime;
-			end
-		end
-	end]]
-	--Record cata 7 per week dungeon quests.
-	if (NIT.isCata) then
-		--Always reset the data so new remaining can overwrite old.
-		NIT.data.myChars[char].dungWeeklies = {};
-		--Normal.
-		local _, currencyQuantity, _, _, _, overallLimit = GetLFGDungeonRewardCapInfo(300); --https://warcraft.wiki.gg/wiki/LfgDungeonID
-		--currencyQuantity is 0 if we don't qualify for this type of queue due totoo low level or whatever (I think).
-		if (overallLimit and currencyQuantity and currencyQuantity ~= 0) then
-			local remaining = LFGRewardsFrame_EstimateRemainingCompletions(300);
-			--Only record if we've used some slots this week.
-			--Changed to just show it even if 7 left.
-			--if (remaining < overallLimit) then
-				local remainingText = "|cFF00FF00" .. remaining .. "|r|cFF00FF00/" .. overallLimit .. "|r";
-				if (remaining == 0) then
-					remainingText = "|cFFFF0000" .. remaining .. "|r|cFF00FF00/" .. overallLimit .. "|r";
-				elseif (remaining < overallLimit) then
-					remainingText = "|cFFFFFF00" .. remaining .. "|r|cFF00FF00/" .. overallLimit .. "|r";
-				end
-				local desc = "|cFF9CD6DE(|r|cff00ff00N|r|cFF9CD6DE)|r Dungeon weeklies remaining: " .. remainingText;
-				NIT.data.myChars[char].dungWeeklies[desc] = resetTime;
-			--end
-		end
-		--Heroic.
-		--[[local _, currencyQuantity, _, _, _, overallLimit = GetLFGDungeonRewardCapInfo(301);
-		--if (currencyQuantity ~= 0) then
-		if (UnitLevel("player") == 85) then
-			local remaining = LFGRewardsFrame_EstimateRemainingCompletions(301);
-			--if (remaining < overallLimit) then
-				local remainingText = "|cFF00FF00" .. remaining .. "|r|cFF00FF00/" .. overallLimit .. "|r";
-				if (remaining == 0) then
-					remainingText = "|cFFFF0000" .. remaining .. "|r|cFF00FF00/" .. overallLimit .. "|r";
-				elseif (remaining < overallLimit) then
-					remainingText = "|cFFFFFF00" .. remaining .. "|r|cFF00FF00/" .. overallLimit .. "|r";
-				end
-				local desc = "|cFF9CD6DE(|r|cFFFF2222H|r|cFF9CD6DE)|r Dungeon weeklies remaining: " .. remainingText;
-				NIT.data.myChars[char].dungWeeklies[desc] = resetTime;
-			--end
-		end]]
-		--Heroic was changed from a 7 per week cap to a rolling season cap so we'll display that cap instead.
-		if (UnitLevel("player") == 85) then
-			local valor = C_CurrencyInfo.GetCurrencyInfo(396);
-			if (valor) then
-				local name, totalEarned, max = valor.name, valor.totalEarned, valor.maxQuantity;
-				if (name and totalEarned and max) then
-					local remainingText = "|cFF00FF00" .. totalEarned .. "|r|cFF00FF00/" .. max .. "|r";
-					if (totalEarned == 0) then
-						remainingText = "|cFFFF0000" .. totalEarned .. "|r|cFF00FF00/" .. max .. "|r";
-					elseif (totalEarned < max) then
-						remainingText = "|cFFFFFF00" .. totalEarned .. "|r|cFF00FF00/" .. max .. "|r";
-					end
-					local desc = "|cFF9CD6DE(|r|cFFFF2222H|r|cFF9CD6DE)|r " .. name .. " cap: " .. remainingText;
-					NIT.data.myChars[char].dungWeeklies[desc] = resetTime;
-				end
-			end
-		end
-	end
-	local resetTime = GetServerTime() + C_DateAndTime.GetSecondsUntilDailyReset();
-	local sharedQuests = {};
 	if (not NIT.data.myChars[char].questsDaily) then
 		NIT.data.myChars[char].questsDaily = {};
 	end
-	for k, v in pairs(dailyQuests) do
+	local resetTime = GetServerTime() + C_DateAndTime.GetSecondsUntilDailyReset();
+	for k, v in pairs(recordDailyQuests) do
 		if (IsQuestFlaggedCompleted(k)) then
-			local questName = v.name;
-			local localizedName = GetQuestInfo(k);
-			local skip;
-			if (v.sharedCooldown) then
-				--If shared cooldown type like cata cooking dailies diff quests are up but you can only do one.
-				--It flags all as complete but we only want to record one.
-				if (sharedQuests[v.sharedCooldown]) then
-					skip = true;
-				else
-					sharedQuests[v.sharedCooldown] = true;
-					questName = v.sharedCooldown;
-				end
-			elseif (localizedName and localizedName ~= "") then
-				questName = localizedName;
-			end
-			if (not skip) then
-				NIT.data.myChars[char].questsDaily[questName] = resetTime;
-			end
+			NIT.data.myChars[char].questsDaily[v] = resetTime;
 		end
 	end
 end
@@ -2600,9 +2093,6 @@ end
 function NIT:recordAttunementKeys()
 	if (NIT.expansionNum > 3) then
 		return;
-	end
-	if (not KeyRingButtonIDToInvSlotID) then
-		return; --This was patched out a month after cata release instead of during beta?
 	end
 	local char = UnitName("player");
 	if (not NIT.data.myChars[char]) then
@@ -2677,14 +2167,13 @@ function NIT:recordHonorData()
 	if (NIT.isClassic) then
 		return;
 	end
-	local honor = C_CurrencyInfo.GetCurrencyInfo(1901);
+	local data = C_CurrencyInfo.GetCurrencyInfo(1901);
 	local char = UnitName("player");
 	if (not NIT.data.myChars[char]) then
 		NIT.data.myChars[char] = {};
 	end
-	
-	if (honor and honor.quantity and honor.quantity > 0) then
-		NIT.data.myChars[char].honor = honor.quantity;
+	if (data and data.quantity and data.quantity > 0) then
+		NIT.data.myChars[char].honor = data.quantity;
 	else
 		NIT.data.myChars[char].honor = 0;
 	end
@@ -2749,10 +2238,8 @@ function NIT:recordMarksData()
 	if (not NIT.data.myChars[char].marks) then
 		NIT.data.myChars[char].marks = {};
 	end
-	if (NIT.expansionNum < 4) then
-		for k, v in pairs(NIT.bgMarks) do
-			NIT.data.myChars[char].marks[k] = (GetItemCount(k, true) or 0);
-		end
+	for k, v in pairs(NIT.bgMarks) do
+		NIT.data.myChars[char].marks[k] = (GetItemCount(k, true) or 0);
 	end
 end
 
@@ -2899,20 +2386,7 @@ function NIT:checkRewards()
 	end
 end
 
-local f = CreateFrame("Frame")
-f:RegisterEvent("CHAT_MSG_SYSTEM")
-f:SetScript('OnEvent', function(self, event, msg)
-	if (string.match(msg, DAILY_QUESTS_RESET)) then
-		C_Timer.After(10, function()
-			NIT:resetWeeklyAndDailyData();
-			NIT:updateWeeklyResetTime();
-		end)
-	end
-end)
-
---Weekly and daily data.
-function NIT:resetWeeklyAndDailyData()
-	--local serverTime = C_DateAndTime.GetServerTimeLocal();
+function NIT:resetWeeklyData()
 	for realm, realmData in pairs(NIT.db.global) do
 		if (type(realmData) == "table" and realmData ~= "minimapIcon" and realmData ~= "data") then
 			if (realmData.myChars) then
@@ -2925,13 +2399,6 @@ function NIT:resetWeeklyAndDailyData()
 							end
 						end
 					end
-					if (charData.dungWeeklies) then
-						for k, v in pairs(charData.dungWeeklies) do
-							if (v < GetServerTime()) then
-								NIT.db.global[realm].myChars[char].dungWeeklies[k] = nil;
-							end
-						end
-					end
 					if (charData.questsDaily) then
 						for k, v in pairs(charData.questsDaily) do
 							if (v < GetServerTime()) then
@@ -2939,23 +2406,9 @@ function NIT:resetWeeklyAndDailyData()
 							end
 						end
 					end
-					if (charData.questsMonthly) then
-						for k, v in pairs(charData.questsMonthly) do
-							if (v < GetServerTime()) then
-								NIT.db.global[realm].myChars[char].questsMonthly[k] = nil;
-							end
-						end
-					end
 					if (charData.keystoneData) then
 						if (resetTime < GetServerTime()) then
 							NIT.db.global[realm].myChars[char].keystoneData = nil;
-						end
-					end
-					if (charData.bossKills) then
-						for k, v in pairs(charData.bossKills) do
-							if (not v.resetTime or (v.resetTime and v.resetTime < GetServerTime())) then
-								NIT.db.global[realm].myChars[char].bossKills[k] = nil;
-							end
 						end
 					end
 				end
@@ -3150,22 +2603,6 @@ NIT.trackItemsPALADIN = {
 	},
 };
 
-local trackItemsAllClasses = {
-	
-};
---[[if (NIT.isSOD) then
-	trackItemsAllClasses[236750] = {
-		name = "Heart of Doom",
-		icon = 136210,
-		color = "FFFFFFFF",
-	};
-	trackItemsAllClasses[236397] = {
-		name = "Remnants of Valor",
-		color = "FFA335EE",
-		icon = 236489,
-	};
-end]]
-
 --Sometimes we only need to update inventory data.
 function NIT:recordInventoryData()
 	local char = UnitName("player");
@@ -3200,21 +2637,10 @@ function NIT:recordInventoryData()
 			end
 		end
 	end
-	NIT.data.myChars[char].trackedItems = {};
-	for k, v in pairs(trackItemsAllClasses) do
-		local count = GetItemCount(k)
-		if (not count or count < 1) then
-			NIT.data.myChars[char].trackedItems[k] = nil;
-		else
-			NIT.data.myChars[char].trackedItems[k] = v;
-			NIT.data.myChars[char].trackedItems[k].count = count;
-		end
-	end
 	NIT:recordMarksData();
 	NIT:recordCurrency();
 end
 
---[icon] = "name",
 local currencyItems = {
 	--TBC.
 	[135884] = "Badge of Justice",
@@ -3229,22 +2655,9 @@ local currencyItems = {
 	[237235] = "Sidereal Essence",
 	[236246] = "Champion's Seal",
 	[237273] = "Defiler's Scourgestone",
-	--Cata
-    [463446] = "Justice Points",
-    [463447] = "Valor Points",
-    [236571] = "Chef's Award",
-    [136192] = "Mote of Darkness",
-    [132851] = "Essence of Corrupted Deathwing",
-    [133449] = "Fissure Stone Fragment",
-    [135241] = "Obsidian Fragment",
 	--Profession tokens.
-    [134411] = "Epicurean's Award",
-    [236571] = "Chef's Award",
-    [134138] = "Dalaran Jewelcrafter's Token",
-    [134501] = "Illustrious Jewelcrafter's Token",
-    --Misc
-    [134481] = "Darkmoon Prize Ticket",
-    [409548] = "Tol Barad Commendation",
+	[134411] = "Epicurean's Award",
+	[134138] = "Dalaran Jewelcrafter's Token",
 };
 
 function NIT:recordCurrency()
@@ -3255,10 +2668,9 @@ function NIT:recordCurrency()
 	if (not NIT.data.myChars[char]) then
 		NIT.data.myChars[char] = {};
 	end
-	--Wipe old data for things like currencies disappearing for new expansions etc.
-	--if (not NIT.data.myChars[char].currency) then
+	if (not NIT.data.myChars[char].currency) then
 		NIT.data.myChars[char].currency = {};
-	--end
+	end
 	for i = 1, GetCurrencyListSize() do
 		local name, isHeader, _, _, _, count, icon, max = GetCurrencyListInfo(i);
 		if (icon and currencyItems[icon]) then
@@ -3268,13 +2680,6 @@ function NIT:recordCurrency()
 				max = max,
 			};
 		end
-	end
-	
-	local conq = C_CurrencyInfo.GetCurrencyInfo(390);
-	if (conq and conq.quantity and conq.quantity > 0) then
-		NIT.data.myChars[char].conq = conq.quantity;
-	else
-		NIT.data.myChars[char].conq = 0;
 	end
 end
 
@@ -3299,141 +2704,19 @@ function NIT:recordPlayerLevelData()
 	NIT.data.myChars[char].time = GetServerTime();
 end
 
---Thanks for Stpain and GuildBook addon for spec detection help.
---spellID -> professionID.
---https://warcraft.wiki.gg/wiki/TradeSkillLineID.
---Alchemy:
---[[[28672] = 171,
-[28677] = 171,
-[28675] = 171,
---Engineering:
-[20222] = 202,
-[20219] = 202,
---Tailoring:
-[26798] = 197,
-[26797] = 197,
-[26801] = 197,
---Blacksmithing:
-[9788] = 164,
-[17039] = 164,
-[17040] = 164,
-[17041] = 164,
-[9787] = 164,
---Leatherworking:
-[10656] = 165,
-[10658] = 165,
-[10660] = 165,]]
-local tradeskillSpecs = {
-    --Alchemy:
-    [28672] = L["Alchemy"], --Transmutation Master.
-    [28677] = L["Alchemy"], --Elixir Master.
-    [28675] = L["Alchemy"], --Potion Master.
-    --Engineering:
-    [20222] = L["Engineering"], --Goblin Engineer.
-    [20219] = L["Engineering"], --Gnomish Engineer.
-    --Tailoring:
-    [26798] = L["Tailoring"], --Mooncloth Tailoring.
-    [26797] = L["Tailoring"], --Spellfire Tailoring.
-    [26801] = L["Tailoring"], --Shadoweave Tailoring.
-    --Blacksmithing:
-    [9788] = L["Blacksmithing"], --Armorsmith.
-    [17039] = L["Blacksmithing"], --Master Swordsmith.
-    [17040] = L["Blacksmithing"], --Master Hammersmith.
-    [17041] = L["Blacksmithing"], --Master Axesmith.
-    [9787] = L["Blacksmithing"], --Weaponsmith.
-    --Leatherworking:
-    [10656] = L["Leatherworking"], --Dragonscale Leatherworking.
-    [10658] = L["Leatherworking"], --Elemental Leatherworking.
-    [10660] = L["Leatherworking"], --Tribal Leatherworking.
-}
---Cache all prof spec spell names.
-for k, v in pairs(tradeskillSpecs) do
-	GetSpellInfo(k);
-end
-
---By tab index.
-local function getProfessionSpec(spellTabIndex)
-	if (not spellTabIndex) then
-		return;
-	end
-	local specName;
-    local name, _, offset, numSlots = GetSpellTabInfo(spellTabIndex);
-    for j = offset + 1, offset + numSlots do
-        local _, spellID = GetSpellBookItemInfo(j, BOOKTYPE_SPELL);
-        if (spellID and tradeskillSpecs[spellID]) then
-        	if (C_Spell and C_Spell.GetSpellInfo) then
-				local spellData = C_Spell.GetSpellInfo(spellID);
-				specName = spellData.name;
-			else
-            	specName = GetSpellInfo(spellID);
-            end
-            return specName;
-        end
-    end
-end
-
---By profession name.
-local function getProfessionSpecClassic(profName)
-	if (not profName) then
-		return;
-	end
-    local specName;
-    for i = 1, GetNumSpellTabs() do
-    	local found;
-        local _, _, offset, numSlots = GetSpellTabInfo(i);
-        for j = offset + 1, offset + numSlots do
-           local _, spellID = GetSpellBookItemInfo(j, BOOKTYPE_SPELL);
-           if (spellID and tradeskillSpecs[spellID] and tradeskillSpecs[spellID] == profName) then
-           		if (C_Spell and C_Spell.GetSpellInfo) then
-				local spellData = C_Spell.GetSpellInfo(spellID);
-					specName = spellData.name;
-				else
-	            	specName = GetSpellInfo(spellID);
-	            end
-	            return specName
-	        end
-        end
-    end
-end
-
-function NIT:recordProfessions()
+function NIT:recordSkillUpData(...)
 	local char = UnitName("player");
 	if (not NIT.data.myChars[char]) then
 		NIT.data.myChars[char] = {};
 	end
-	local data = NIT.data.myChars[char];
-	local prof1Name, prof2Name, fishing, cooking, firstaid = "none", "none", "none", "none", "none";
+	local prof1, prof2, fishing, cooking, firstaid = "none", "none", "none", "none", "none";
 	local profSkill1, profSkill2, fishingSkill, cookingSkill, firstaidSkill = 0, 0, 0, 0, 0;
 	local profSkillMax1, profSkillMax2, fishingSkillMax, cookingSkillMax, firstaidSkillMax = 0, 0, 0, 0, 0;
-	if (NIT.isRetail) then
-		--This way would work for cata too now I guess, but skillLines also still works so leaving it for now.
-		local prof1, prof2, archaeology, fishing, cooking = GetProfessions();
-		if (prof1) then
-			local prof1Name = GetProfessionInfo(prof1);
-			data.prof1 = prof1Name;
-			--data.prof1SpecName = getProfessionSpec(prof1);
-		end
-		if (prof2) then
-			local prof2Name = GetProfessionInfo(prof2);
-			data.prof2 = prof2Name;
-			--data.prof2SpecName = getProfessionSpec(prof2);
-		end
-	elseif (NIT.classic) then
+	if (NIT.classic) then
 		--Skill list is always in same order, so we can get primary/secondary/weapon by checking the section headers.
 		local section, primaryCount, secondaryCount, weaponCount = 0, 0, 0, 0;
 		for i = 1, GetNumSkillLines() do
 			local skillName, isHeader, _, skillRank, _, _, skillMaxRank = GetSkillLineInfo(i)
-			--[[if (isHeader and skillName == "Professions") then
-				section = 2;
-			elseif (isHeader and skillName == "Secondary Skills") then
-				section = 3;
-			elseif (isHeader and skillName == "Weapon Skills") then
-				section = 4;
-			elseif (isHeader and skillName == "Armor Proficiencies") then
-				section = 5;
-			elseif (isHeader and skillName == "Languages") then
-				section = 6;
-			end]]
 			if (isHeader and skillName == TRADE_SKILLS) then
 				section = 2;
 			elseif (isHeader and skillName == string.gsub(SECONDARY_SKILLS, ":", "")) then
@@ -3451,26 +2734,26 @@ function NIT:recordProfessions()
 				--Primary professions.
 				primaryCount = primaryCount + 1;
 				if (primaryCount == 1) then
-					prof1Name = skillName;
+					prof1 = skillName;
 					profSkill1 = skillRank;
 					profSkillMax1 = skillMaxRank;
 				elseif (primaryCount == 2) then
-					prof2Name = skillName;
+					prof2 = skillName;
 					profSkill2 = skillRank;
 					profSkillMax2 = skillMaxRank;
 				end
-			elseif (not isHeader and (section == 3 or section == 2)) then
+			elseif (not isHeader and section == 3) then
 				--Secondary professions.
 				secondaryCount = secondaryCount + 1;
-				if (skillName == PROFESSIONS_FISHING) then
+				if (skillName == L["Fishing"]) then
 					fishing = skillName;
 					fishingSkill = skillRank;
 					fishingSkillMax = skillMaxRank;
-				elseif (skillName == PROFESSIONS_COOKING) then
+				elseif (skillName == L["Cooking"]) then
 					cooking = skillName;
 					cookingSkill = skillRank;
 					cookingSkillMax = skillMaxRank;
-				elseif (skillName == PROFESSIONS_FIRST_AID) then
+				elseif (skillName == L["firstAid"]) then
 					firstaid = skillName;
 					firstaidSkill = skillRank;
 					firstaidSkillMax = skillMaxRank;
@@ -3480,39 +2763,22 @@ function NIT:recordProfessions()
 				weaponCount = weaponCount + 1;
 			end
 		end
-		data.prof1 = prof1Name;
-		data.profSkill1 = profSkill1;
-		data.profSkillMax1 = profSkillMax1;
-		data.prof2 = prof2Name;
-		data.profSkill2 = profSkill2;
-		data.profSkillMax2 = profSkillMax2;
-		--data.fishing = fishing;
-		data.fishingSkill = fishingSkill;
-		data.fishingSkillMax = fishingSkillMax;
-		--data.cooking = cooking;
-		data.cookingSkill = cookingSkill;
-		data.cookingSkillMax = cookingSkillMax;
-		--data.firstaid = firstaid;
-		data.firstaidSkill = firstaidSkill;
-		data.firstaidSkillMax = firstaidSkillMax;
-		--print(prof1, profSkill1, profSkillMax1);
-		--print(prof2, profSkill2, profSkillMax2);
-		--print(fishingSkill, cookingSkill, firstaidSkill);
-		if (GetProfessions) then
-			--Cata.
-			local prof1SpellTabIndex, prof2SpellTabIndex = GetProfessions();
-			data.prof1SpecName = getProfessionSpec(prof1SpellTabIndex);
-			data.prof2SpecName = getProfessionSpec(prof2SpellTabIndex);
-		elseif (GetNumPrimaryProfessions) then
-			--Era.
-			data.prof1SpecName = getProfessionSpecClassic(prof1Name);
-			data.prof2SpecName = getProfessionSpecClassic(prof2Name);
-		end
+		NIT.data.myChars[char].prof1 = prof1;
+		NIT.data.myChars[char].profSkill1 = profSkill1;
+		NIT.data.myChars[char].profSkillMax1 = profSkillMax1;
+		NIT.data.myChars[char].prof2 = prof2;
+		NIT.data.myChars[char].profSkill2 = profSkill2;
+		NIT.data.myChars[char].profSkillMax2 = profSkillMax2;
+		--NIT.data.myChars[char].fishing = fishing;
+		NIT.data.myChars[char].fishingSkill = fishingSkill;
+		NIT.data.myChars[char].fishingSkillMax = fishingSkillMax;
+		--NIT.data.myChars[char].cooking = cooking;
+		NIT.data.myChars[char].cookingSkill = cookingSkill;
+		NIT.data.myChars[char].cookingSkillMax = cookingSkillMax;
+		--NIT.data.myChars[char].firstaid = firstaid;
+		NIT.data.myChars[char].firstaidSkill = firstaidSkill;
+		NIT.data.myChars[char].firstaidSkillMax = firstaidSkillMax;
 	end
-end
-
-function NIT:recordSkillUpData(...)
-	NIT:recordProfessions();
 end
 
 --Update certain data like XP etc when combat ends instead of every mob.
@@ -3521,6 +2787,7 @@ function NIT:recordCombatEndedData()
 	if (not NIT.data.myChars[char]) then
 		NIT.data.myChars[char] = {};
 	end
+	
 	if (UnitXP("player") > 0) then
 		NIT.data.myChars[char].currentXP = UnitXP("player");
 	end
@@ -3646,8 +2913,8 @@ function NIT:recordCooldowns()
 		for slot = 1, GetContainerNumSlots(bag) do
 			local item = Item:CreateFromBagAndSlot(bag, slot);
 			if (item) then
-				local itemID = item:GetItemID();
-				local itemName = item:GetItemName();
+				local itemID = item:GetItemID(item);
+				local itemName = item:GetItemName(item);
 				if (itemID and itemName and itemCooldowns[itemID]) then
 					local startTime, duration, isEnabled = GetContainerItemCooldown(bag, slot);
 					--local endTime = (startTime + duration) - (GetTime() - GetServerTime());
@@ -3783,9 +3050,6 @@ function NIT.getAverageDurability()
 end
 
 function NIT.getAmmoCount()
-	if (NIT.expansionNum > 3) then
-		return 0
-	end
 	local slotID = GetInventorySlotInfo("AmmoSlot");
 	if (slotID) then
 		local itemID = GetInventoryItemID("player", slotID);
@@ -3812,18 +3076,6 @@ function NIT:getBagSlots()
 		end
 	end
 	return freeSlots, totalSlots;
-end
-
-SLASH_NRCGHECMD1 = '/ghetto';
-function SlashCmdList.NRCGHECMD(msg, editBox)
-	if (IsInInstance() and not IsInGroup()) then
-		InviteUnit("111"); --Not sure if intentionally changed to not accept a single char? Can remove if needed.
-		C_Timer.After(1,function()
-			LeaveParty();
-		end)
-	else
-		print("|cFFFFFF00This only works inside an instance and while not in a group.");
-	end
 end
 
 --Throddle by function name, delays event for non-vital info and catches any extras to avoid spam when mass looting etc.
@@ -3949,22 +3201,6 @@ end
 
 function NIT:resetCurrentTradeData()
 	playerMoney, targetMoney, tradeWho, tradeWhoClass = 0, 0, "", "";
-end
-
---UnitXP() seems to return nil sometimes? Right on logging out I think?
-function NIT:getLevelPercentage()
-	--[[local xp = UnitXP("player");
-	if (xp and xp > 0) then
-		local percent = (xp / UnitXPMax("player")) * 100;
-		return NIT:round(percent, 2);
-	end]]
-	local playerLevel = UnitLevel("player");
-	local xp = UnitXP("player");
-	if (xp and xp > 0) then
-		local percent = (xp / UnitXPMax("player")) * 100;
-		playerLevel = tonumber(UnitLevel("player") .. "." .. string.format("%02.f", percent));
-		return playerLevel;
-	end
 end
 
 ---Some intergration for softres.it

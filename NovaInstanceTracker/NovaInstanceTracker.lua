@@ -83,6 +83,7 @@ NIT.perCharOnly = false; --Per char is gone in TBC, not sure how I didn't notice
 NIT.loadTime = GetServerTime();
 local GetGossipOptions = GetGossipOptions or C_GossipInfo.GetOptions;
 local GetItemInfo = GetItemInfo or C_Item.GetItemInfo;
+local GetCoinTextureString = C_CurrencyInfo.GetCoinTextureString;
 local floor = floor;
 
 --Temp function until classic era gets the new func and everything can be updated in the addon.
@@ -122,6 +123,8 @@ function NIT:OnInitialize()
 		self:updateLootReminderFrame();
 	end
 	self:checkNewVersion();
+	self:trimDatabase();
+	self:trimTrades();
 --C_Timer.After(2,function()
 --	ToggleCharacter("PaperDollFrame")
 --	ToggleCharacter("PaperDollFrame")
@@ -839,6 +842,10 @@ function NIT:registerTimePlayedMsg()
 		if (_G['ChatFrame' .. k]) then
 			_G['ChatFrame' .. k]:RegisterEvent("TIME_PLAYED_MSG");
 		end
+	end
+	--Filter chat msgs for Chattynator.
+	if (Chattynator and Chattynator.API.FilterTimePlayed) then
+		Chattynator.API.FilterTimePlayed(false);
 	end
 end
 
