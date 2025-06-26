@@ -1,6 +1,6 @@
 ﻿
 	----------------------------------------------------------------------
-	-- 	Leatrix Maps 4.0.69 (14th May 2025)
+	-- 	Leatrix Maps 4.0.71 (18th June 2025)
 	----------------------------------------------------------------------
 
 	-- 10:Func, 20:Comm, 30:Evnt, 40:Panl
@@ -12,7 +12,7 @@
 	local LeaMapsLC, LeaMapsCB, LeaDropList, LeaConfigList, LeaLockList = {}, {}, {}, {}, {}
 
 	-- Version
-	LeaMapsLC["AddonVer"] = "4.0.69"
+	LeaMapsLC["AddonVer"] = "4.0.71"
 
 	-- Get locale table
 	local void, Leatrix_Maps = ...
@@ -1857,159 +1857,6 @@
 		end
 
 		----------------------------------------------------------------------
-		-- Show zone levels (must be before show points of interest)
-		----------------------------------------------------------------------
-
-		if LeaMapsLC["ShowZoneLevels"] == "On" and not LeaLockList["ShowZoneLevels"] then
-
-			-- Create level range table
-			local mapTable = {
-
-				-- https://wowpedia.fandom.com/wiki/Zones_by_level_(Cataclysm)
-
-				-- Eastern Kingdoms
-				--[[Arathi Highlands]]		[1417] = {minLevel = 25, 	maxLevel = 30,},
-				--[[Badlands]]				[1418] = {minLevel = 45, 	maxLevel = 48,},
-				--[[Blasted Lands]]			[1419] = {minLevel = 55, 	maxLevel = 60,},
-				--[[Burning Steppes]]		[1428] = {minLevel = 50, 	maxLevel = 52,},
-				--[[Deadwind Pass]]			[1430] = {minLevel = 55, 	maxLevel = 56,},
-				--[[Dun Morogh]]			[1426] = {minLevel = 1, 	maxLevel = 10,},
-				--[[Duskwood]]				[1431] = {minLevel = 20, 	maxLevel = 25,},
-				--[[Eastern Plaguelands]]	[1423] = {minLevel = 40, 	maxLevel = 45,},
-				--[[Elwynn Forest]]			[1429] = {minLevel = 1, 	maxLevel = 10,},
-				--[[Eversong Woods]]		[1941] = {minLevel = 1,		maxLevel = 10,},
-				--[[Hillsbrad Foothills]]	[1424] = {minLevel = 20, 	maxLevel = 25,},
-				--[[Ghostlands]]			[1942] = {minLevel = 10,	maxLevel = 20,},
-				--[[Isle of Quel'Danas]]	[1957] = {minLevel = 70,	maxLevel = 70,},
-				--[[Loch Modan]]			[1432] = {minLevel = 10,	maxLevel = 20,},
-				--[[Redridge Mountains]]	[1433] = {minLevel = 15, 	maxLevel = 20,},
-				--[[Searing Gorge]]			[1427] = {minLevel = 47, 	maxLevel = 51,},
-				--[[Silverpine Forest]]		[1421] = {minLevel = 10, 	maxLevel = 20,},
-				--[[Stranglethorn Vale]]	[1434] = {minLevel = 25, 	maxLevel = 35,},
-				--[[Swamp of Sorrows]]		[1435] = {minLevel = 52, 	maxLevel = 54,},
-				--[[The Hinterlands]]		[1425] = {minLevel = 30, 	maxLevel = 35,},
-				--[[Tirisfal Glades]]		[1420] = {minLevel = 1, 	maxLevel = 10,},
-				--[[Twilight Highlands]]	[241]  = {minLevel = 84, 	maxLevel = 85,},
-				--[[Westfall]]				[1436] = {minLevel = 10, 	maxLevel = 15,},
-				--[[Western Plaguelands]]	[1422] = {minLevel = 35, 	maxLevel = 40,},
-				--[[Wetlands]]				[1437] = {minLevel = 20, 	maxLevel = 25,},
-
-				-- Kalimdor
-				--[[Ashenvale]]				[1440] = {minLevel = 20, 	maxLevel = 25,},
-				--[[Azshara]]				[1447] = {minLevel = 10, 	maxLevel = 20,},
-				--[[Azuremyst Isle]]		[1943] = {minLevel = 1,		maxLevel = 10,},
-				--[[Bloodmyst Isle]]		[1950] = {minLevel = 10,	maxLevel = 20,},
-				--[[Darkshore]]				[1439] = {minLevel = 10,	maxLevel = 20,},
-				--[[Desolace]]				[1443] = {minLevel = 30, 	maxLevel = 35,},
-				--[[Durotar]]				[1411] = {minLevel = 1, 	maxLevel = 10,},
-				--[[Dustwallow Marsh]]		[1445] = {minLevel = 35, 	maxLevel = 40,},
-				--[[Felwood]]				[1448] = {minLevel = 45, 	maxLevel = 50,},
-				--[[Feralas]]				[1444] = {minLevel = 35, 	maxLevel = 40,},
-				--[[Mulgore]]				[1412] = {minLevel = 1, 	maxLevel = 10,},
-				--[[Northern Barrens]]		[1413] = {minLevel = 10, 	maxLevel = 20,},
-				--[[Silithus]]				[1451] = {minLevel = 55, 	maxLevel = 60,},
-				--[[Southern Barrens]]		[199]  = {minLevel = 30, 	maxLevel = 35,},
-				--[[Stonetalon Mountains]]	[1442] = {minLevel = 25, 	maxLevel = 30,},
-				--[[Tanaris]]				[1446] = {minLevel = 45, 	maxLevel = 50,},
-				--[[Teldrassil]]			[1438] = {minLevel = 1, 	maxLevel = 10,},
-				--[[Thousand Needles]]		[1441] = {minLevel = 40, 	maxLevel = 45,},
-				--[[Un'Goro Crater]]		[1449] = {minLevel = 50, 	maxLevel = 55,},
-				--[[Winterspring]]			[1452] = {minLevel = 50, 	maxLevel = 55,},
-
-				-- Outland
-				--[[Blade's Edge Montains]]	[1949] = {minLevel = 65, 	maxLevel = 68,},
-				--[[Hellfire Peninsula]]	[1944] = {minLevel = 58, 	maxLevel = 63,},
-				--[[Nagrand]]				[1951] = {minLevel = 64, 	maxLevel = 67,},
-				--[[Netherstorm]]			[1953] = {minLevel = 67, 	maxLevel = 70,},
-				--[[Shadowmoon Valley]]		[1948] = {minLevel = 67, 	maxLevel = 70,},
-				--[[Terokkar Forest]]		[1952] = {minLevel = 62, 	maxLevel = 65,},
-				--[[Zangarmarsh]]			[1946] = {minLevel = 60, 	maxLevel = 64,},
-
-				-- Northrend
-				--[[Borean Tundra]]			[114] = {minLevel = 68, 	maxLevel = 72,},
-				--[[Sholazar Basin]]		[119] = {minLevel = 76, 	maxLevel = 78,},
-				--[[Icecrown]]				[118] = {minLevel = 77, 	maxLevel = 80,},
-				--[[The Storm Peaks]]		[120] = {minLevel = 77, 	maxLevel = 80,},
-				--[[Zul'Drak]]				[121] = {minLevel = 74, 	maxLevel = 76,},
-				--[[Grizzly Hills]]			[116] = {minLevel = 73, 	maxLevel = 75,},
-				--[[Howling Fjord]]			[117] = {minLevel = 68, 	maxLevel = 72,},
-				--[[Dragonblight]]			[115] = {minLevel = 71, 	maxLevel = 75,},
-				--[[Crystalsong Forest]]	[127] = {minLevel = 77, 	maxLevel = 80,},
-				--[[Wintergrasp]]			[123] = {minLevel = 77, 	maxLevel = 80,},
-
-				-- Cataclysm
-				--[[Deepholm]]				[207] = {minLevel = 82, 	maxLevel = 83,},
-				--[[Kezan]]					[194] = {minLevel = 1, 		maxLevel = 5,},
-				--[[Mount Hyjal]]			[198] = {minLevel = 80, 	maxLevel = 82,},
-				--[[The Lost Isles]]		[174] = {minLevel = 5, 		maxLevel = 12,},
-				--[[Uldum]]					[249] = {minLevel = 83, 	maxLevel = 84,},
-				--[[Vashj'ir]]				[203] = {minLevel = 80, 	maxLevel = 82,},
-
-			}
-
-			-- Replace AreaLabelFrameMixin.OnUpdate
-			local function AreaLabelOnUpdate(self)
-				self:ClearLabel(MAP_AREA_LABEL_TYPE.AREA_NAME)
-				local map = self.dataProvider:GetMap()
-				if map:IsCanvasMouseFocus() then
-					local name
-					local mapID = map:GetMapID()
-					local normalizedCursorX, normalizedCursorY = map:GetNormalizedCursorPosition()
-					local positionMapInfo = C_Map.GetMapInfoAtPosition(mapID, normalizedCursorX, normalizedCursorY)
-					if positionMapInfo and positionMapInfo.mapID ~= mapID then
-						-- print(positionMapInfo.mapID)
-						name = positionMapInfo.name
-						-- Get level range from table
-						local playerMinLevel, playerMaxLevel
-						if mapTable[positionMapInfo.mapID] then
-							playerMinLevel = mapTable[positionMapInfo.mapID]["minLevel"]
-							playerMaxLevel = mapTable[positionMapInfo.mapID]["maxLevel"]
-						end
-						-- Show level range if map zone exists in table
-						if name and playerMinLevel and playerMaxLevel and playerMinLevel > 0 and playerMaxLevel > 0 then
-							local playerLevel = UnitLevel("player")
-							local color
-							if playerLevel < playerMinLevel then
-								color = GetQuestDifficultyColor(playerMinLevel)
-							elseif playerLevel > playerMaxLevel then
-								-- Subtract 2 from the maxLevel so zones entirely below the player's level won't be yellow
-								color = GetQuestDifficultyColor(playerMaxLevel - 2)
-							else
-								color = QuestDifficultyColors["difficult"]
-							end
-							color = ConvertRGBtoColorString(color)
-							if playerMinLevel ~= playerMaxLevel then
-								name = name..color.." ("..playerMinLevel.."-"..playerMaxLevel..")"..FONT_COLOR_CODE_CLOSE
-							else
-								name = name..color.." ("..playerMaxLevel..")"..FONT_COLOR_CODE_CLOSE
-							end
-						end
-					else
-						name = MapUtil.FindBestAreaNameAtMouse(mapID, normalizedCursorX, normalizedCursorY)
-					end
-					if name then
-						self:SetLabel(MAP_AREA_LABEL_TYPE.AREA_NAME, name)
-					end
-				end
-				self:EvaluateLabels()
-			end
-
-			-- Toggle zone levels
-			local function SetZoneLevelScript()
-				for provider in next, WorldMapFrame.dataProviders do
-					if provider.setAreaLabelCallback then
-						provider.Label:SetScript("OnUpdate", AreaLabelOnUpdate)
-					end
-				end
-			end
-
-			-- Set zone levels when option is clicked and on startup
-			LeaMapsCB["ShowZoneLevels"]:HookScript("OnClick", SetZoneLevelScript)
-			SetZoneLevelScript()
-
-		end
-
-		----------------------------------------------------------------------
 		-- Show coordinates (no reload required)
 		----------------------------------------------------------------------
 
@@ -3471,7 +3318,6 @@
 		or	(LeaMapsLC["UseDefaultMap"] ~= LeaMapsDB["UseDefaultMap"])					-- Use default map
 		or	(LeaMapsLC["RevealMap"] ~= LeaMapsDB["RevealMap"])							-- Show unexplored areas
 		or	(LeaMapsLC["ShowPointsOfInterest"] ~= LeaMapsDB["ShowPointsOfInterest"])	-- Show unexplored areas
-		or	(LeaMapsLC["ShowZoneLevels"] ~= LeaMapsDB["ShowZoneLevels"])				-- Show zone levels
 		or	(LeaMapsLC["HideTownCityIcons"] ~= LeaMapsDB["HideTownCityIcons"])			-- Hide town and city icons
 		or	(LeaMapsLC["EnhanceBattleMap"] ~= LeaMapsDB["EnhanceBattleMap"])			-- Enhance battlefield map
 		then
@@ -3874,7 +3720,6 @@
 				LeaMapsDB["ShowDungeonIcons"] = "On"
 				LeaMapsDB["ShowTravelPoints"] = "On"
 				LeaMapsDB["ShowTravelOpposing"] = "Off"
-				LeaMapsDB["ShowZoneLevels"] = "On"
 				LeaMapsDB["ShowCoords"] = "On"
 				LeaMapsDB["ShowObjectives"] = "On"
 				LeaMapsDB["ShowDigsites"] = "On"
@@ -3985,7 +3830,6 @@
 			LeaMapsLC:LoadVarChk("ShowDungeonIcons", "On")				-- Show dungeons and raids
 			LeaMapsLC:LoadVarChk("ShowTravelPoints", "On")				-- Show travel points for same faction
 			LeaMapsLC:LoadVarChk("ShowTravelOpposing", "Off")			-- Show travel points for opposing faction
-			LeaMapsLC:LoadVarChk("ShowZoneLevels", "On")				-- Show zone levels
 			LeaMapsLC:LoadVarChk("ShowCoords", "On")					-- Show coordinates
 			LeaMapsLC:LoadVarChk("ShowObjectives", "On")				-- Show objectives
 			LeaMapsLC:LoadVarChk("ShowDigsites", "On")					-- Show digsites
@@ -4041,9 +3885,9 @@
 					end
 				end
 
-				-- Mists of Pandaria Beta
+				-- Mists of Pandaria Classic Beta
 				if LeaMapsLC.NewPatch then
-					Lock("ShowZoneLevels", "In Mists of Pandaria Classic, zone levels are shown in the default UI")
+					-- Lock("ShowZoneLevels", "In Mists of Pandaria Classic, zone levels are shown in the default UI")
 				end
 
 				-- Disable items that conflict with ElvUI
@@ -4098,7 +3942,6 @@
 			LeaMapsDB["ShowDungeonIcons"] = LeaMapsLC["ShowDungeonIcons"]
 			LeaMapsDB["ShowTravelPoints"] = LeaMapsLC["ShowTravelPoints"]
 			LeaMapsDB["ShowTravelOpposing"] = LeaMapsLC["ShowTravelOpposing"]
-			LeaMapsDB["ShowZoneLevels"] = LeaMapsLC["ShowZoneLevels"]
 			LeaMapsDB["ShowCoords"] = LeaMapsLC["ShowCoords"]
 			LeaMapsDB["ShowObjectives"] = LeaMapsLC["ShowObjectives"]
 			LeaMapsDB["ShowDigsites"] = LeaMapsLC["ShowDigsites"]
@@ -4239,15 +4082,14 @@
 	LeaMapsLC:MakeTx(PageF, "Elements", 225, -172)
 	LeaMapsLC:MakeCB(PageF, "RevealMap", "Show unexplored areas", 225, -192, true, "If checked, unexplored areas of the map will be shown on the world map and the battlefield map.")
 	LeaMapsLC:MakeCB(PageF, "ShowPointsOfInterest", "Show points of interest", 225, -212, true, "If checked, points of interest will be shown.")
-	LeaMapsLC:MakeCB(PageF, "ShowZoneLevels", "Show zone levels", 225, -232, true, "If checked, zone and dungeon levels will be shown.")
-	LeaMapsLC:MakeCB(PageF, "ShowCoords", "Show coordinates", 225, -252, false, "If checked, coordinates will be shown.")
-	LeaMapsLC:MakeCB(PageF, "ShowObjectives", "Show objectives", 225, -272, false, "If checked, quest objectives will be shown.")
-	LeaMapsLC:MakeCB(PageF, "ShowDigsites", "Show digsites", 225, -292, false, "If checked, archaeology digsites will be shown.")
-	LeaMapsLC:MakeCB(PageF, "HideTownCityIcons", "Hide town and city icons", 225, -312, true, "If checked, town and city icons will not be shown on the continent maps.")
+	LeaMapsLC:MakeCB(PageF, "ShowCoords", "Show coordinates", 225, -232, false, "If checked, coordinates will be shown.")
+	LeaMapsLC:MakeCB(PageF, "ShowObjectives", "Show objectives", 225, -252, false, "If checked, quest objectives will be shown.")
+	LeaMapsLC:MakeCB(PageF, "ShowDigsites", "Show digsites", 225, -272, false, "If checked, archaeology digsites will be shown.")
+	LeaMapsLC:MakeCB(PageF, "HideTownCityIcons", "Hide town and city icons", 225, -292, true, "If checked, town and city icons will not be shown on the continent maps.")
 
-	LeaMapsLC:MakeTx(PageF, "More", 225, -352)
-	LeaMapsLC:MakeCB(PageF, "EnhanceBattleMap", "Enhance battlefield map", 225, -372, true, "If checked, you will be able to customise the battlefield map.")
-	LeaMapsLC:MakeCB(PageF, "ShowMinimapIcon", "Show minimap button", 225, -392, false, "If checked, the minimap button will be shown.")
+	LeaMapsLC:MakeTx(PageF, "More", 225, -332)
+	LeaMapsLC:MakeCB(PageF, "EnhanceBattleMap", "Enhance battlefield map", 225, -352, true, "If checked, you will be able to customise the battlefield map.")
+	LeaMapsLC:MakeCB(PageF, "ShowMinimapIcon", "Show minimap button", 225, -372, false, "If checked, the minimap button will be shown.")
 
 	LeaMapsLC:CfgBtn("IncreaseZoomBtn", LeaMapsCB["IncreaseZoom"])
 	LeaMapsLC:CfgBtn("RevTintBtn", LeaMapsCB["RevealMap"])

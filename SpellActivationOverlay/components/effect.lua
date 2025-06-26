@@ -9,6 +9,7 @@ local Module = "effect"
     name = "my_effect", -- Mandatory
     project = SAO.WRATH + SAO.CATA, -- Mandatory
     spellID = 12345, -- Mandatory; usually a buff to track, for counters this is the counter ability
+    aka = { 2222, 3333 }, -- List of other spell IDs related to the main spellID
     talent = 49188, -- Talent or rune or nil (for counters that don't rely on other talent)
     counter = false, -- Default is false
     combatOnly = false, -- Default is false
@@ -32,6 +33,7 @@ local Module = "effect"
         spellID = nil, -- Default is spellID from effect
         texture = "genericarc_05", -- Mandatory
         position = "Top", -- Mandatory
+        level = 4, -- Default is nil, which eventually defaults to 3 when displayed
         scale = 1, -- Default is 1
         color = {255, 255, 255}, -- Default is {255, 255, 255}
         pulse = true, -- Default is true
@@ -70,6 +72,7 @@ local Module = "effect"
         end,
         onAboutToApplyHash = function(hashCalculator) -- Called right before setting hash for display/hide, possibly altering the hash
             hashCalculator:setAuraStacks(math.max(hashCalculator:getAuraStacks(), 5));
+            return false; -- Return true if the display should be refreshed even if the hash does not change
         end,
     }}, -- Although rare, multiple handlers are possible
 }
@@ -90,12 +93,16 @@ local registeredEffectsByName = {}
 -- Cannot add them immediately to registeredEffects because the game is in need of other initialization, such as talent tree
 local pendingEffects = {}
 
+-- List of spellIDs of 'a.k.a.' spells, i.e. spells that are not the main spellID of an effect, but are related to it
+-- Key = spellID, Value = effect name of the first effect that registered this spellID
+local AKAs = {}
+
 -- Flag to know when the player has logged in, detected by PLAYER_LOGIN event
 local hasPlayerLoggedIn = false;
 
 local function doesUseName(useNameProp)
     if useNameProp == nil then
-        return SAO.IsCata() == false;
+        return SAO.IsProject(SAO.CATA_AND_ONWARD) == false;
     else
         return useNameProp == true;
     end
@@ -267,6 +274,7 @@ local function addOneOverlay(overlays, overlayConfig, project, default, triggers
         hash = getHash(condition, triggers).hash,
         texture = texture,
         position = position,
+        level = overlayConfig.level or default.level,
         scale = overlayConfig.scale or default.scale,
         color = color and { color[1], color[2], color[3] } or nil,
         pulse = getValueOrDefault(overlayConfig.pulse, default.pulse),
@@ -460,7 +468,35 @@ end
     Functions for Native Optimized Effects (NOEs)
 ]]
 
+-- Add a spell ID to the a.k.a. list, and warn if it conflicts with either an existing bucket or an existing a.k.a.
+local function addAKA(effectName, akaSpellID)
+    -- Check if the spellID is already registered in the a.k.a. list
+    local existingEffectName = AKAs[akaSpellID];
+    if existingEffectName then
+        if existingEffectName ~= effectName then
+            SAO:Warn(Module, "Adding a.k.a. spellID "..tostring(akaSpellID).." for effect "..effectName.." which is already registered for effect "..existingEffectName);
+        end
+        return;
+    end
+    AKAs[akaSpellID] = effectName;
+
+    -- Check if the spellID is valid
+    if type(akaSpellID) ~= 'number' or akaSpellID <= 0 or not GetSpellInfo(akaSpellID) then
+        SAO:Warn(Module, "Adding a.k.a. with invalid spellID "..tostring(akaSpellID).." for effect "..effectName);
+        return;
+    end
+
+    -- Check if the spellID is already registered in a bucket
+    local bucket = SAO:GetBucketBySpellID(akaSpellID);
+    if bucket then
+        SAO:Warn(Module, "Adding a.k.a. spellID "..tostring(akaSpellID).." for effect "..effectName.." which is already registered in bucket "..bucket.description);
+        return;
+    end
+end
+
+-- Check that the Native Optimized Effect is valid
 local function checkNativeEffect(effect)
+    -- Check of basic properties
     if type(effect) ~= 'table' then
         SAO:Error(Module, "Registering invalid effect "..tostring(effect));
         return false;
@@ -475,6 +511,10 @@ local function checkNativeEffect(effect)
     end
     if type(effect.spellID) ~= 'number' or effect.spellID <= 0 then
         SAO:Error(Module, "Registering effect "..effect.name.." with invalid spellID "..tostring(effect.spellID));
+        return false;
+    end
+    if effect.overlays and type(effect.overlays) ~= 'table' then
+        SAO:Error(Module, "Registering effect "..effect.name.." with invalid a.k.a. list");
         return false;
     end
     if effect.talent and type(effect.talent) ~= 'number' then
@@ -498,6 +538,20 @@ local function checkNativeEffect(effect)
         return false;
     end
 
+    -- Check AKAs, these are not mandatory, so we do not return if we find a mistake
+    for _, akaSpellID in ipairs(effect.aka or {}) do
+        if akaSpellID == effect.spellID then
+            SAO:Warn(Module, "Effect "..effect.name.." has a.k.a. spellID "..tostring(akaSpellID).." which is the same as its main spellID");
+        else
+            addAKA(effect.name, akaSpellID);
+        end
+    end
+    local existingEffectNameOfAka = AKAs[effect.spellID];
+    if existingEffectNameOfAka and existingEffectNameOfAka ~= effect.name then
+        SAO:Warn(Module, "Effect "..effect.name.." with spellID "..tostring(effect.spellID).." conflicts with a.k.a. spellID already registered for effect "..existingEffectNameOfAka);
+    end
+
+    -- Check Triggers
     local nbTriggers = 0;
     for name, enabled in pairs(effect.triggers) do
         if not tContains(SAO.TriggerNames, name) then
@@ -517,6 +571,7 @@ local function checkNativeEffect(effect)
         return false;
     end
 
+    -- Check Overlays
     local hasStacksZero, hasStacksNonZero, hasStacksNegative = false, false, false;
     for i, overlay in ipairs(effect.overlays or {}) do
         if overlay.project and type(overlay.project) ~= 'number' then
@@ -576,6 +631,7 @@ local function checkNativeEffect(effect)
         end
     end
 
+    -- Check Buttons
     for i, button in ipairs(effect.buttons or {}) do
         if button.project and type(button.project) ~= 'number' then
             SAO:Error(Module, "Registering effect "..effect.name.." for button "..i.." with invalid project flags "..tostring(button.project));
@@ -587,6 +643,7 @@ local function checkNativeEffect(effect)
         end
     end
 
+    -- Check Variables
     for _, var in pairs(SAO.Variables) do
         local triggerName = var.trigger.name;
         local dependencyName = var.import.dependency and var.import.dependency.name;
@@ -618,6 +675,7 @@ local function RegisterNativeEffectNow(self, effect)
             local spellID = overlay.spellID or effect.spellID;
             local texture = overlay.texture;
             local position = overlay.position;
+            local level = overlay.level;
             local scale = overlay.scale or 1;
             local color = overlay.color and { overlay.color[1], overlay.color[2], overlay.color[3] } or { 255, 255, 255 };
             local autoPulse = type(overlay.pulse) == 'function' and overlay.pulse or overlay.pulse ~= false;
@@ -628,6 +686,7 @@ local function RegisterNativeEffectNow(self, effect)
                 spellID = spellID,
                 texture = SAO.TexName[texture], -- Map from TexName
                 position = position,
+                level = level,
                 scale = scale,
                 color = color,
                 autoPulse = autoPulse,
@@ -758,6 +817,9 @@ function SAO:AddEffectOptions()
                     local testHash = type(overlay.option.testHash) == 'string' and overlay.option.testHash or setupHash;
                     local subText = overlay.option.subText;
                     local variants = overlay.option.variants;
+                    if type(subText) == 'function' then
+                        subText = subText();
+                    end
                     if type(variants) == 'function' then
                         variants = variants();
                     end
@@ -778,6 +840,12 @@ function SAO:AddEffectOptions()
                     local spellSubText = button.option.spellSubText;
                     local variants = button.option.variants;
                     local hashName = self.Hash:new(button.hash):toString();
+                    if type(talentSubText) == 'function' then
+                        talentSubText = talentSubText();
+                    end
+                    if type(spellSubText) == 'function' then
+                        spellSubText = spellSubText();
+                    end
                     if type(variants) == 'function' then
                         variants = variants();
                     end
@@ -831,6 +899,10 @@ function SAO:CreateEffect(name, project, spellID, class, props, register)
         self:Error(Module, "Creating effect "..name.." with invalid props "..tostring(props));
         return nil;
     end
+    if props and props.aka ~= nil and type(props.aka) ~= 'number' and type(props.aka) ~= 'table' then
+        self:Error(Module, "Creating effect "..name.." with invalid a.k.a. "..tostring(props.aka));
+        return nil;
+    end
     if props and props.minor ~= nil and type(props.minor) ~= 'boolean' then
         self:Error(Module, "Creating effect "..name.." with invalid minor flag "..tostring(props.minor));
         return nil;
@@ -857,11 +929,43 @@ function SAO:CreateEffect(name, project, spellID, class, props, register)
         end
     end
 
+    local aka = {};
+    if props and props.aka ~= nil then
+        if type(props.aka) == 'number' then
+            tinsert(aka, props.aka);
+        else -- type(props.aka) == 'table'
+            for key, akaSpellID in pairs(props.aka) do
+                if type(key) ~= 'number' then
+                    self:Error(Module, "Creating effect "..name.." with invalid a.k.a. key "..tostring(key));
+                    return nil;
+                elseif key < SAO.ERA then
+                    tinsert(aka, akaSpellID);
+                elseif self.IsProject(key) then
+                    if type(akaSpellID) == 'number' then
+                        tinsert(aka, akaSpellID);
+                    elseif type(akaSpellID) == 'table' then
+                        for _, akaSpellIDSpellID in ipairs(akaSpellID) do
+                            if type(akaSpellIDSpellID) ~= 'number' then
+                                self:Error(Module, "Creating effect "..name.." with invalid a.k.a. spellID "..tostring(akaSpellIDSpellID));
+                                return nil;
+                            end
+                            tinsert(aka, akaSpellIDSpellID);
+                        end
+                    else
+                        self:Error(Module, "Creating effect "..name.." with invalid a.k.a. spellID "..tostring(akaSpellID));
+                        return nil;
+                    end
+                end
+            end
+        end
+    end
+
     -- Properties common to all effect classes
     local effect = {
         name = name,
         project = project,
         spellID = spellID,
+        aka = aka,
         combatOnly = type(props) == 'table' and props.combatOnly,
         minor = type(props) == 'table' and props.minor,
         triggers = {},
@@ -958,4 +1062,8 @@ function SAO:CreateLinkedEffects(name, project, spellIDs, class, props, register
 
     minorProps.minor = wasMinor;
     return effects;
+end
+
+function SAO:IsAka(spellID)
+    return AKAs[spellID] ~= nil;
 end

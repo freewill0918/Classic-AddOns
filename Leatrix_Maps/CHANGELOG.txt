@@ -1,4 +1,7 @@
-﻿4.0.69 - 14th May 2025
+﻿4.0.71 - 18th June 2025
+- The 'Show zone levels' option has been removed since it's now included in the default UI.
+
+4.0.69 - 14th May 2025
 - Mists of Pandaria Classic Beta: Added the Vashj'ir portal to the Stormwind map.
 
 4.0.68 - 7th May 2025
