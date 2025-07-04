@@ -1,4 +1,3 @@
-
 -------------------------------------
 -- 裝備屬性統計
 -- @Author: M
@@ -31,7 +30,7 @@ local function DefaultItemStatsFrame(frame, unit)
     if (not frame.statsFrame) then
         local statsFrame = CreateFrame("Frame", nil, frame, "InsetFrameTemplate3,BackdropTemplate")
         statsFrame:SetSize(180, 157)
-        statsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", 0, -1)
+        statsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", 0, -5)
         for i = 1, 32 do
             statsFrame["stat"..i] = CreateFrame("FRAME", nil, statsFrame, "CharacterStatFrameTemplate")
             statsFrame["stat"..i]:EnableMouse(false)

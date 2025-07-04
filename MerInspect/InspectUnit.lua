@@ -1,4 +1,3 @@
-
 -------------------------------------
 -- 查看装备等级 Author: M
 -------------------------------------
@@ -302,7 +301,7 @@ LibEvent:attachTrigger("INSPECT_FRAME_COMPARE", function(self, frame)
         frame.statsFrame:SetParent(frame)
     end
     if (frame.statsFrame) then
-        frame.statsFrame:SetPoint("TOPLEFT", frame.statsFrame:GetParent(), "TOPRIGHT", 4, 15)
+        frame.statsFrame:SetPoint("TOPLEFT", frame.statsFrame:GetParent(), "TOPRIGHT", 4, 0)
     end
 end)
 
@@ -329,9 +328,9 @@ LibEvent:attachTrigger("TogglePlayerStatsFrame", function(self, frame, bool, for
             stats.ilevel = LibItemInfo:GetUnitItemLevel("player")
             PlayerStatsFrame:SetStats(stats):Show()
             if (frame.inspectFrame and frame.inspectFrame:IsShown()) then
-                PlayerStatsFrame:SetPoint("TOPLEFT", frame.inspectFrame, "TOPRIGHT", 4, 15)
+                PlayerStatsFrame:SetPoint("TOPLEFT", frame.inspectFrame, "TOPRIGHT", 4, 0)
             elseif (not frame:GetName()) then
-                PlayerStatsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", 4, 15)
+                PlayerStatsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", 4, 0)
             else
                 PlayerStatsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", -2, 1)
             end
