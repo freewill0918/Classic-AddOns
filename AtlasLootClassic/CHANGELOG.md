@@ -1,92 +1,72 @@
-# v4.3.0-beta (Feb 18, 2025)
-- THIS RELEASE IS A WORK IN PROGRESS, things still need to be added and organized/simplified
-- Added Procotol Twilight items, still missing Firelands items and costs
-- Added Phase 4 VP/JP items
-- Shoutout to @Firsthunterz for help adding lots of items manually in this release
+# v5.0.0-beta1 (July 1, 2025)
+- Initial MoP Pre-patch Support
+- Lots of things still broken or not populated
+- Dungeons and Raids mostly there
 
-# v4.2.1 (Nov 4, 2024)
-- Added missing trinkets to Fissure Stone vendor
-- Fixed dungeon sets not showing under classic collections
+# 4.3.2 (May 13, 2025)
+- Add rest of S11 PvP gear
+- Noblegarden items added
+- Several small fixes to old world loot
+- Change order of expansions to put newest one on top first
+(2025-07-01)
 
-# v4.2.0 (Oct 29, 2024)
-- Fixed model display, shows models again (some models buggy)
-- Added Phase 3 VP/JP items
-- Added Protocol Inferno items & currency
-- Added currency drops to boss tables (VP/JP/Stones)
-- Some cleanup and beautifying
-- Removed all references to Atlas Maps, can't support it anymore
-- Many small fixes and code cleanup
-# [v4.3.0-beta](https://github.com/snowflame0/AtlasLootClassic_Cata/tree/v4.3.0-beta) (2025-02-18)
-
-[Full Changelog](https://github.com/snowflame0/AtlasLootClassic_Cata/compare/v4.2.3...v4.3.0-beta)
+[Full Changelog](https://github.com/snowflame0/AtlasLootClassic_MoP/compare/v4.3.2...v5.0.0-beta1)
 
 ## Commits
 
-100mll (1):
+Adal (28):
 
-- add T13 HM bonuses fix T13 NM bonuses
-
-Adal (22):
-
-- More locales
-- More locales
-- More locales
-- Update data-cata.lua
-- Update data-cata.lua
-- Update data-cata.lua
-- Update data-cata.lua
-- Update data-cata.lua
-- Update locales
-- Update locales
-- Update locales
+- Collections update
+- Collections update
+- Collections update
+- check update
+- Preliminary support for the Collections module
+- Update DungeonsAndRaidsTBC.lua
+- Update DungeonsAndRaidsWrath.lua
 - Update DungeonsAndRaidsCata.lua
-- Smokywood Pastures updated for Winter Veil
-- Anzu is now a regular Heroic Boss
-- Added all Kael'thas recipes
-- Added all Kael'thas recipes
-- Update shared boss loot
-- Update locales
-- Update locales
-- Update locales
-- Update locales
-- Update Stockade
+- EncounterJournalID update
+- EncounterJournalID update
+- Update data-tbc.lua
+- EncounterJournalID update
+- EncounterJournalID update
+- EncounterJournalID update
+- EncounterJournalID update
+- New Ragefire Chasm
+- Update data.lua
+- Update DungeonsAndRaids.lua
+- Update data-mop.lua
+- Update data.lua
+- Update data.lua
+- Update data.lua
+- Update DungeonsAndRaids.lua
+- Update DungeonsAndRaids.lua
+- Update data.lua
+- Update data-wrath.lua
+- Update data-tbc.lua
+- Update data.lua
 
-Aleksandar Petrovic (1):
+Firsthunter (3):
 
-- Add missing loot for Asaad and Siamat
+- Updated Ahune Drops to 403ilvl
+- More Faction organizing
+- Organized some factions
 
-Firsthunter (17):
-
-- Update data-cata.lua
-- Update data-cata.lua
-- Update source-cata.lua
-- Whitespace fix
-- Update data-cata.lua
-- Update Token.lua
-- Update data-cata.lua
-- Added missing items
-- Update VendorPrice.lua
-- added Obsidian fragment to vendorprice
-- Added obsidian stone vendor
-- Updated VP vendor
-- added missing mounts
-- added ony mount
-- Added FL recipes
-- Fix
-- Added rest of S10 honor gear
-
-Qleksa (2):
-
-- Add proper Ozumat loot
-- Add elemental loot twilight dungeon drops
-
-Snowflame (7):
+Snowflame (16):
 
 - Update build.yml
 - Update build.yml
-- Fix error, new release notes for beta
-- Remove LFR difficulty in Dragon Soul. New locale strings that will be needed in future update
-- Move new epic gems up in JC panel to be more prominent
-- Added missing trinkets, update satchels to reflect heroic change
-- toc and phase bump
+- Fix monk missing icons
+- first beta, still very much WIP
+- Small profession changes, more work needed
+- Add news frame to GUI, not working yet
+- Update README.md
+- Update TODO
+- Added in T14 set data, need to organize output, might need 2 pages with all the new sets
+- Add todo list, start professions module, few fixes
+- Add achievements data to classic dungeons/raids
+- Add raid and dungeon data from old AL versions. Added code to get boss names from dungeon journal with EncounterJournalID
+- Added faction data scrapped from wowhead, needs to be organized
+- Fix game version button generation, caused overlap if running on older xpacs
+- More fixes to prep for MoP
+- Update ToC, Set up GUI, add new data files for MoP
 

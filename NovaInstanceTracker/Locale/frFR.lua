@@ -593,7 +593,7 @@ L["Total today"] = "Total aujourd'hui";
 L["Total Reals"] = "Réaux totaux";
 
 L["Reminder"] = "Rappel";
-L["missingArgentDawnTrinket"] = "Rappel : le bijou %s n'est pas équipé."; --Argent Dawn trinket reminder [Rune of the Dawn] isn't equipped.
+L["missingArgentDawnTrinket"] = "le bijou %s n'est pas équipé."; --Argent Dawn trinket reminder [Rune of the Dawn] isn't equipped.
 
 L["argentDawnTrinketReminderTitle"] = "Rappel du bijou de l'Aube d'argent";
 L["argentDawnTrinketReminderDesc"] = "Rappel du bijou de l'Aube d'argent dans la discussion si vous entrez dans Scholomance/Stratholme avec le bijou dans les sacs et si vous n'êtes pas exalté.";
@@ -605,3 +605,6 @@ L["lootTheItem"] = "Fouille %s"; --Example: Loot the Tarnished Undermine Real
 L["Qiraji Lord's Insignia"] = "Insigne de seigneur qiraji";
 
 L["Remnants of Valor"] = "Vestiges de valeur";
+
+L["Not Doused"] = "Pas éteint";
+L["douseDisclaimer"] = "Remarque : Ce module Éteint utilise une estimation basée sur\nle dernier boss vaincu et d'autres facteurs, il pourrait être inexact.";

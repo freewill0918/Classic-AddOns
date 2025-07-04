@@ -1,5 +1,22 @@
 # Dominos Changelog
 
+## 11.1.7
+
+* Add support for Monk stances in MoP Classic
+
+## 11.1.6
+
+* Fixed multiple paging issues with Mists of Pandaria Classic
+
+## 11.1.5
+
+* Update TOCs for 11.1.7 and 5.5.0 (Mists of Pandaria Classic)
+* Refresh libraries to fix a lua error in MoP Classic
+
+## 11.1.4
+
+* Update TOCs for 11.1.5
+
 ## 11.1.3
 
 * Update TOCs for 1.15.7

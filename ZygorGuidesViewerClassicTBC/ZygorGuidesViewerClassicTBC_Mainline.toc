@@ -1,4 +1,4 @@
-## Interface: 110105
+## Interface: 110107
 ## Title: |cffff0000Zygor Guide Viewer (Wrath)|r
 ## Notes: This version of Zygor is not correct for this server.
 ## Author: Zygor Guides

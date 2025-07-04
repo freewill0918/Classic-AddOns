@@ -1,9 +1,9 @@
-## Interface: 110002
+## Interface: 110100
 ## Title: Better Vendor Price
 ## Notes: Vendor Price display with stack price information (|cFF99E5FF/bvp config|r)
-## Notes: Dragonflight edition
+## Notes: War Within edition
 ## Author: MooreaTV moorea@ymail.com
-## Version: v1.21.03
+## Version: v1.21.07
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 ## SavedVariables: betterVendorPriceSaved

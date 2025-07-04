@@ -1,8 +1,10 @@
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group The Burning Crusade
+#group RXP The Burning Crusade
 #subgroup Horde 60-70 Dungeon Cleave
 << Horde
 #name 060-70 Horde Dungeon Cleave
@@ -1262,7 +1264,9 @@ RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
 #cata
-#group Dungeon Cleave 70-80
+#mop
+#cata
+#group RXP Wrath Of The Lich King  
 << Horde
 #name 070-80 Horde Dungeon Cleave
 #displayname 70-80 Horde Dungeon Cleave
@@ -2563,6 +2567,8 @@ step << skip
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 30-45
 << Horde
@@ -3488,6 +3494,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 30-45
 << Horde
@@ -3649,6 +3657,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 30-45
 << Horde
@@ -4742,6 +4752,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 30-45
 << Horde
@@ -5695,6 +5707,8 @@ step << wotlk
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 30-45
 << Horde
@@ -6762,6 +6776,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 30-45
 << Horde
@@ -7536,6 +7552,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 45-60
 << Horde
@@ -8876,6 +8894,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 45-60
 << Horde
@@ -9592,6 +9612,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 45-60
 << Horde
@@ -10137,6 +10159,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 45-60
 << Horde
@@ -10658,6 +10682,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 45-60
 << Horde
@@ -11148,6 +11174,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 45-60
 << Horde
@@ -11932,6 +11960,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #cata
 #tbc
 #group Horde 60-70
@@ -13719,6 +13749,8 @@ RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
 #cata
+#mop
+#cata
 #tbc
 #group Horde 60-70
 << Horde
@@ -15267,6 +15299,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #cata
 #tbc
 #group Horde 60-70
@@ -17306,6 +17340,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 60-70
 << Horde
@@ -19294,6 +19330,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 60-70
 << Horde
@@ -21532,6 +21570,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #group Horde 60-70
 << Horde
 #name 67-68 Netherstorm
@@ -27008,6 +27048,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #group Horde 70-80
 #name 68-71 Howling Fjord
 #next 71-73 Borean Tundra
@@ -30390,6 +30432,8 @@ step << Warrior
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 60-70
 <<Horde
@@ -30971,6 +31015,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #tbc
 #group Horde 60-70
 << Horde
@@ -31540,6 +31586,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #group Horde 70-80
 #defaultfor None
 << Horde
@@ -33739,7 +33787,9 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#group Dungeon Cleave 70-80
+#cata
+#mop
+#group RXP Wrath Of The Lich King  
 << Horde
 #name 70-73 Nexus Lockout - Coldarra Horde
 #next 70-80 Horde Dungeon Cleave
@@ -34260,6 +34310,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #group Horde 70-80
 << Horde
 #name 71-73 Borean Tundra
@@ -38208,6 +38260,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #xprate <1.5
 #group Horde 70-80
 << Horde
@@ -41826,6 +41880,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #group Horde 70-80
 << Horde
 #name 73-75 Grizzly Hills
@@ -44618,6 +44674,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 << Horde
 #group Horde 70-80
 #name 75-77 Zul'Drak
@@ -48578,7 +48636,9 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#group Dungeon Cleave 70-80
+#cata
+#mop
+#group RXP Wrath Of The Lich King  
 << Horde
 #name 75-77 Gundrak Lockout Horde
 #next 70-80 Horde Dungeon Cleave
@@ -48597,6 +48657,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 << Horde
 #group Horde 70-80
 #name 77-78 Sholazar Basin
@@ -50487,6 +50549,8 @@ step << !Druid !DK !Mage
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 #group Horde 70-80
 << Horde
 #name 78-79 The Storm Peaks
@@ -53144,6 +53208,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
+#cata
+#mop
 << Horde
 #group Horde 70-80
 #name 79-80 Icecrown

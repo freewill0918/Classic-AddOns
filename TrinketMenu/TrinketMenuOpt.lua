@@ -2,10 +2,14 @@
 
 local _G, math, string, table = _G, math, string, table
 
+local IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
+
 TrinketMenu.CheckOptInfo = {
 	{"ShowIcon", "ON", "Minimap Button", "Show or hide minimap button."},
 	{"SquareMinimap", "OFF", "Square Minimap", "Move minimap button as if around a square minimap.", "ShowIcon"},
 	{"CooldownCount", "OFF", "Cooldown Numbers", "Display time remaining on cooldowns ontop of the button."},
+	{"CooldownCountBlizzard", "OFF", "Blizzard Cooldowns", "Display time remaining on cooldowns ontop of the button."},
+	{"CooldownCountOmniCC", "OFF", "OmniCC Cooldowns", "Display time remaining on cooldowns ontop of the button."},
 	{"TooltipFollow", "OFF", "At Mouse", "Display all tooltips near the mouse.", "ShowTooltips"},
 	{"KeepOpen", "OFF", "Keep Menu Open", "Keep menu open at all times."},
 	{"KeepDocked", "ON", "Keep Menu Docked", "Keep menu docked at all times."},
@@ -61,7 +65,7 @@ function TrinketMenu.InitOptions()
 	if TrinketMenu.QueueInit then
 		TrinketMenu.QueueInit()
 		TrinketMenu_Tab1:Show()
-		TrinketMenu_OptFrame:SetHeight(336)
+		TrinketMenu_OptFrame:SetHeight(356)
 		TrinketMenu_SubOptFrame:SetPoint("TOPLEFT", TrinketMenu_OptFrame, "TOPLEFT", 8, - 50)
 	else
 		TrinketMenu_OptStopOnSwap:Hide() -- remove StopOnSwap option if queue not loaded
@@ -96,17 +100,22 @@ end
 --[[ Minimap button ]]
 
 function TrinketMenu.MoveMinimapButton()
-	local xpos,ypos
+	local xpos, ypos
 	if TrinketMenuOptions.SquareMinimap == "ON" then
 		xpos = 110 * cos(TrinketMenuOptions.IconPos or 0)
 		ypos = 110 * sin(TrinketMenuOptions.IconPos or 0)
 		xpos = math.max(- 82, math.min(xpos, 84))
 		ypos = math.max(- 86, math.min(ypos, 82))
 	else
-		xpos = 80 * cos(TrinketMenuOptions.IconPos or 0)
-		ypos = 80 * sin(TrinketMenuOptions.IconPos or 0)
+		local radius = IsRetail and 102 or 80
+		xpos = radius * cos(TrinketMenuOptions.IconPos or 0)
+		ypos = radius * sin(TrinketMenuOptions.IconPos or 0)
 	end
-	TrinketMenu_IconFrame:SetPoint("TOPLEFT", "Minimap", "TOPLEFT", 52 - xpos, ypos - 52)
+	if IsRetail then
+		TrinketMenu_IconFrame:SetPoint("TOPLEFT", "Minimap", "TOPLEFT", 82 - xpos, ypos - 84)
+	else
+		TrinketMenu_IconFrame:SetPoint("TOPLEFT", "Minimap", "TOPLEFT", 52 - xpos, ypos - 52)
+	end
 	if TrinketMenuOptions.ShowIcon == "ON" then
 		TrinketMenu_IconFrame:Show()
 	else
@@ -115,8 +124,8 @@ function TrinketMenu.MoveMinimapButton()
 end
 
 function TrinketMenu.DragMinimapButton()
-	local xpos,ypos = GetCursorPosition()
-	local xmin,ymin = Minimap:GetLeft() or 400, Minimap:GetBottom() or 400
+	local xpos, ypos = GetCursorPosition()
+	local xmin, ymin = Minimap:GetLeft() or 400, Minimap:GetBottom() or 400
 	xpos = xmin - xpos / Minimap:GetEffectiveScale() + 70
 	ypos = ypos / Minimap:GetEffectiveScale() - ymin - 70
 	TrinketMenuOptions.IconPos = math.deg(math.atan2(ypos, xpos))
@@ -238,6 +247,56 @@ function TrinketMenu.CheckButton_OnClick(self)
 	if self == TrinketMenu_OptCooldownCount then
 		TrinketMenu.WriteWornCooldowns()
 		TrinketMenu.WriteMenuCooldowns()
+	elseif self == TrinketMenu_OptCooldownCountBlizzard then
+		if TrinketMenu_Trinket0 and TrinketMenu_Trinket0.cooldown then
+			if TrinketMenuOptions.CooldownCountBlizzard == "ON" then
+				TrinketMenu_Trinket0.cooldown:SetHideCountdownNumbers(false)
+			else
+				TrinketMenu_Trinket0.cooldown:SetHideCountdownNumbers(true)
+			end
+		end
+		if TrinketMenu_Trinket1 and TrinketMenu_Trinket1.cooldown then
+			if TrinketMenuOptions.CooldownCountBlizzard == "ON" then
+				TrinketMenu_Trinket1.cooldown:SetHideCountdownNumbers(false)
+			else
+				TrinketMenu_Trinket1.cooldown:SetHideCountdownNumbers(true)
+			end
+		end
+		for i = 1, TrinketMenu.MaxTrinkets do
+			local menuButton = _G["TrinketMenu_Menu"..i]
+			if menuButton and menuButton.cooldown then
+				if TrinketMenuOptions.CooldownCountBlizzard == "ON" then
+					menuButton.cooldown:SetHideCountdownNumbers(false)
+				else
+					menuButton.cooldown:SetHideCountdownNumbers(true)
+				end
+			end
+		end
+	elseif self == TrinketMenu_OptCooldownCountOmniCC then
+		if TrinketMenu_Trinket0 and TrinketMenu_Trinket0.cooldown then
+			if TrinketMenuOptions.CooldownCountOmniCC == "ON" then
+				TrinketMenu_Trinket0.cooldown.noCooldownCount = false
+			else
+				TrinketMenu_Trinket0.cooldown.noCooldownCount = true
+			end
+		end
+		if TrinketMenu_Trinket1 and TrinketMenu_Trinket1.cooldown then
+			if TrinketMenuOptions.CooldownCountOmniCC == "ON" then
+				TrinketMenu_Trinket1.cooldown.noCooldownCount = false
+			else
+				TrinketMenu_Trinket1.cooldown.noCooldownCount = true
+			end
+		end
+		for i = 1, TrinketMenu.MaxTrinkets do
+			local menuButton = _G["TrinketMenu_Menu"..i]
+			if menuButton and menuButton.cooldown then
+				if TrinketMenuOptions.CooldownCountOmniCC == "ON" then
+					menuButton.cooldown.noCooldownCount = false
+				else
+					menuButton.cooldown.noCooldownCount = true
+				end
+			end
+		end
 	elseif self == TrinketMenu_OptLocked then
 		TrinketMenu.DockWindows()
 		TrinketMenu.ReflectLock()

@@ -26,6 +26,31 @@ local isCata = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
 
 Skillet.NewsName = "Skillet-Classic News"
 Skillet.NewsData = {
+	{	version = "2.14",
+		data = {
+			{	name = "Fixes",
+				data = {
+					{ header = "All", body = "Add more C_Item." },
+				},
+			},
+		},
+	},
+	{	version = "2.13",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "TOC", body = "Update TOC (MOP Beta)" },
+					{ header = "Options", body = "Additional sound and flash options to craft queue" },
+					{ header = "Inventory", body = "Optimize bag handling" },
+				},
+			},
+			{	name = "Fixes",
+				data = {
+					{ header = "All", body = "Add C_AddOns. and C_Item." },
+				},
+			},
+		},
+	},
 	{	version = "2.12",
 		data = {
 			{	name = "Fixes",

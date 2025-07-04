@@ -41,37 +41,6 @@ local function GetInspectTalentInfo(unit)
 end
 
 hooksecurefunc("ShowInspectItemListFrame", function(unit, parent, itemLevel, maxLevel)
-    local frame = parent.inspectFrame
-    if (not frame) then return end
-    if (not frame.specicon) then
-        frame.specicon = frame:CreateTexture(nil, "BORDER")
-        frame.specicon:SetSize(42, 42)
-        frame.specicon:SetPoint("TOPRIGHT", -10, -11)
-        frame.specicon:SetAlpha(0.5)
-        frame.specicon:SetMask("Interface\\Minimap\\UI-Minimap-Background")
-        frame.classicon = frame:CreateTexture(nil, "BORDER")
-        frame.classicon:SetSize(42, 42)
-        frame.classicon:SetPoint("TOPRIGHT", -10, -11)
-        frame.classicon:SetAlpha(0.5)
-        frame.classicon:SetTexture("Interface\\TargetingFrame\\UI-Classes-Circles")
-        frame.spectext = frame:CreateFontString(nil, "BORDER")
-        frame.spectext:SetFont(SystemFont_Outline_Small:GetFont(), 11, "THINOUTLINE")
-        frame.spectext:SetPoint("BOTTOM", frame.specicon, "BOTTOM", 0, -7)
-        frame.spectext:SetJustifyH("CENTER")
-        --frame.spectext:SetAlpha(0.9)
-    end
-
-    local index, talentCache = GetInspectTalentInfo(unit)
-    local specIcon = index and talentCache[index].icon
-    frame.spectext:SetText(index and format("|CFFFFD200%s|r\n\n%s/%s/%s", talentCache[index].name, talentCache[1].point, talentCache[2].point, talentCache[3].point) or format("%s/%s/%s", 0, 0, 0))
-    frame.specicon:SetShown(not not specIcon)
-    frame.classicon:SetShown(not specIcon)
-
-    if specIcon then
-        frame.specicon:SetTexture(specIcon)
-    else
-        local class = select(2, UnitClass(unit))
-        local x1, x2, y1, y2 = unpack(CLASS_ICON_TCOORDS[strupper(class)])
-        frame.classicon:SetTexCoord(x1, x2, y1, y2)
-    end
+    -- 禁用天賦觀察功能以避免錯誤（由於大改版天賦系統變化）
+    -- 此功能已被禁用以防止數字與字串比較錯誤
 end)

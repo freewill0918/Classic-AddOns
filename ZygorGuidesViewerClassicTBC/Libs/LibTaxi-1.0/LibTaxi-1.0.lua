@@ -37,6 +37,7 @@ do
 	Lib.IsClassicTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 	Lib.IsClassicWOTLK = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 	Lib.IsClassicCATA = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
+	Lib.IsClassicMOP = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 	Lib.IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 
 
@@ -200,6 +201,7 @@ do
 		--if cont==ZONE_ARGUS_KROKUUN or cont==ZONE_ARGUS_MACAREE or cont==ZONE_ARGUS_ANTORAN then cont=ZONE_ARGUS end  -- Argus zones need to have a common continent (not so much for ants!).
 		local cont_scan = cont
 		if cont==113 then cont_scan=988 end -- wotlk classic needs to be scanned via separate id
+		if Lib.IsClassicMOP and cont==101 then cont_scan=102 end -- wotlk classic needs to be scanned via separate id
 		if cont==905 then cont_scan=994 end -- argus needs to be scanned via separate id
 		if mapID==2346 then cont_scan=2374 end -- undermine has own taxi map
 		local extracont
@@ -492,7 +494,7 @@ do
 		local taxidata_by_slot = {}
 		for i,taxi in ipairs(taxidata) do if taxi.slotIndex then taxidata_by_slot[taxi.slotIndex]=taxi end end
 
-		if (Lib.IsClassicTBC or Lib.IsClassicWOTLK or Lib.IsClassicCATA) and cont==1945 then
+		if (Lib.IsClassicTBC or Lib.IsClassicWOTLK or Lib.IsClassicCATA or Lib.IsClassicMOP) and cont==1945 then
 			-- two faction specific nodes in SMV are not reported in GetAllTaxiNodes
 			-- we need to add them by hand, filling empty slots in values, since
 			-- taxidata_by_slot needs to be continous
@@ -895,7 +897,7 @@ do
 	end
 
 	function Lib:ImportTaxiDataFromGame()
-		if not Lib.IsRetail then return end
+		if not (Lib.IsRetail or Lib.IsClassicMop) then return end
 		local LOCALE = GetLocale()
 		Lib.master.translation = Lib.master.translation or {}
 		Lib.master.translation[LOCALE] = Lib.master.translation[LOCALE] or {}
@@ -1142,9 +1144,12 @@ do
 
 
 
-	function Lib:DEV_FindNodeIDs(operator)
-		local continent = Lib:GetCurrentMapContinent()
+	function Lib:DEV_FindNodeIDs(operator,continent)
+		local continent = continent or Lib:GetCurrentMapContinent()
 		local taxidata = Lib:GetAllBlizNodesForCurrentContinent()
+
+		local taxidata = C_TaxiMap.GetTaxiNodesForMap(continent)
+
 		local count_ided=0
 		local count_alreadyided=0
 		local count_failed=0
@@ -1153,11 +1158,11 @@ do
 
 		-- find IDs for nodes that don't have them yet
 		for i,taxi in ipairs(taxidata) do
+			local taxi_name_strip = taxi.name:gsub(", .*","")
 
 			local found={}
 			for ti,taxicost in ipairs(Lib.flightcost[continent]) do
-				taxi.name=taxi.name:gsub(", .*","")
-				if taxicost.name==taxi.name and (taxicost.taxioperator==operator) and not is_enemy(taxicost.faction,playerF) then
+				if (taxicost.name==taxi.name or taxicost.name==taxi_name_strip)and (taxicost.taxioperator==operator) and not is_enemy(taxicost.faction,playerF) then
 					found[#found+1]=taxicost
 				end
 			end
@@ -1171,6 +1176,7 @@ do
 				found[1].nodeID=tonumber(taxi.nodeID)
 				count_ided=count_ided+1
 			end
+
 		end
 
 		-- count remaining
@@ -1182,6 +1188,14 @@ do
 				if cont==continent and not is_enemy(taxi.faction,playerF) and not taxi.nodeID then
 					tinsert(remain,taxi)
 				end
+			end
+		end
+
+		Lib.TagToNodeID = Lib.TagToNodeID or {}
+
+		for i,v in pairs(Lib.flightcost[continent]) do
+			if v.nodeID and v.tag then
+				Lib.TagToNodeID[v.tag] = v.nodeID
 			end
 		end
 
@@ -1325,9 +1339,11 @@ do
 					table.sort(sorted_neighs,ZGV.NumericSafeSort)
 
 					for j,ntag in ipairs(sorted_neighs) do
+
 						local cost = data.neighbors[ntag]
-						local name = self.fcnames_by_nodeID[ntag]
-						s = s .. "			["..(tonumber(ntag) and ntag or "\""..ntag.."\"").."] = "..cost..", -- " .. (name or "?") .. "\n"
+						local name = self.fcnames_by_nodeID[ntag] or (self.TagToNodeID and self.fcnames_by_nodeID[self.TagToNodeID[ntag]])
+						local newtag = self.TagToNodeID and self.TagToNodeID[ntag] or tonumber(ntag) and ntag or '"'..ntag..'"'
+						s = s .. "			["..newtag.."] = "..cost..", -- " .. (name or "?") .. "\n"
 					end
 					s=s.."		},\n"
 				end

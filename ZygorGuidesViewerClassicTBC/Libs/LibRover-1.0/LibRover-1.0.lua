@@ -78,6 +78,7 @@ Lib.IsClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 Lib.IsClassicTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 Lib.IsClassicWOTLK = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 Lib.IsClassicCATA = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
+Lib.IsClassicMOP = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 Lib.IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 Lib.IsPandariaRemix =  PlayerGetTimerunningSeasonID and PlayerGetTimerunningSeasonID() == Constants.TimerunningConsts.TIMERUNNING_SEASON_PANDARIA
 
@@ -287,7 +288,7 @@ local function myassert(test,msg,...)  --unused
 end
 
 
-local MAPENUM={
+local MAPENUM={  -- IsRetail and IsClassicMOP
 	["KALIMDOR"]=12,
 	["EASTERNKINGDOMS"]=13,
 	["OUTLAND"]=101,
@@ -354,6 +355,10 @@ local MAPENUM={
 	["SHIMMERINGEXPANSE"]=205,
 }
 
+if Lib.IsClassicMOP then
+	MAPENUM["OUTLAND"]=1467
+end
+
 if Lib.IsClassic or Lib.IsClassicCATA then
 	MAPENUM={
 		["KALIMDOR"]=1414,
@@ -398,6 +403,9 @@ if Lib.IsClassic or Lib.IsClassicCATA then
 	end
 end
 
+Lib.MAPENUM = MAPENUM
+
+
 -- This magic makes a bitmask out of which parts of Eastern see each other.
 -- They're all split by bays and seas, which cannot be flown over, so this is needed for sane navigation.
 -- Result - only zones sharing a "part bit" see each other directly.
@@ -413,7 +421,7 @@ if Lib.IsRetail then
 	table.insert(easterns_init[BIT_NORTH],MAPENUM["DEATHKNELL"])
 	table.insert(easterns_init[BIT_NORTH],MAPENUM["RUINSOFGILNEAS"])
 	table.insert(easterns_init[BIT_MIDDL],MAPENUM["TWILIGHTHIGHLANDS"]) -- middle: twilight
-elseif Lib.IsClassicCata then
+elseif Lib.IsClassicCata or Lib.IsClassicMOP then
 	table.insert(easterns_init[BIT_MIDDL],MAPENUM["TWILIGHTHIGHLANDS"]) -- middle: twilight
 end
 
@@ -1302,7 +1310,7 @@ local function _StartupThread()
 
 	Mdist=ZGV.MapCoords.Mdist
 
-	if Lib.IsRetail then
+	if Lib.IsRetail or Lib.IsClassicMOP then
 		Lib.frame:RegisterEvent("ACHIEVEMENT_EARNED")
 		Lib.frame:RegisterEvent("RECEIVED_ACHIEVEMENT_LIST")
 		Lib.frame:RegisterEvent("UNIT_EXITING_VEHICLE")
@@ -1327,11 +1335,14 @@ local function _StartupThread()
 	--Lib.MapLevels[770]=84 -- 770 is a phase in Twlight Highlands and it returns 0 for GetCurrentMapLevelRange() this is a fix for that since it breaks the taxi system.
 		-- off with her head! Just sanitize as above.
 
+	Lib:FixRemapData(Lib.data.RemapData)
+
 	punchStartupTime("sanitizing")  -- @~ 135ms
 
 	-- work ZoneMeta:
 	do
 		local segment="zoneflags"
+
 		local ZoneMeta=Lib.data.ZoneMeta
 		-- convert Map Name/4 to mapid
 		local zm_new = {}
@@ -1357,6 +1368,7 @@ local function _StartupThread()
 		-- make it respond with defaults to all queries
 		local dummy={}
 		setmetatable(ZoneMeta,{__index=function() return dummy end})
+		
 		punchStartupTime(segment)
 		yield(segment,1)
 	end
@@ -2130,6 +2142,8 @@ function Lib:SetupInitialQuickTravel(startnode)
 	end
 
 	local function FindGarrisonBindLocation(silent)
+		if not C_Garrison then return end
+
 		local garr60 = Enum.GarrisonType.Type_6_0 or Enum.GarrisonType.Type_6_0_Garrison
 		local garrlevel = C_Garrison.GetGarrisonInfo(garr60)
 		if not garrlevel then return end
@@ -2447,7 +2461,7 @@ function Lib:IsDestinationImpossible(mymap,destmap)
 		title = questdata and questdata.title
 		return true,"KORTHIA_LOCKED","You can't get to Korthia until have completed the " .. (title and "quest \""..title.."\"." or "initial quest.")
 
-	elseif (destmap==1670 or destmap==1671) and not IsQuestFlaggedCompleted(60151) then
+	elseif (destmap==1670 or destmap==1671) and (not IsQuestFlaggedCompleted(60151) and not PlayerIsOnQuest(85028)) then
 		local title
 		local questdata = ZGV.Localizers:GetQuestData(60151)
 		title = questdata and questdata.title
@@ -5507,15 +5521,16 @@ function Lib:GetPlayerPosition()
 	if not map then return 0,0,0 end
 	local remap = LibRover.data.RemapData
 
-	local pos = C_Map.GetPlayerMapPosition(map,"player")
 	local x,y
-	
+
+	local pos = C_Map.GetPlayerMapPosition(map,"player")
 	if pos then
 		x,y=pos.x,pos.y
 	else
 		--try a fallback
-		y,x=UnitPosition("player")
-		if x then x,y = ZGV.HBD:GetZoneCoordinatesFromWorld(x,y,map,false) end
+		local wx,wy
+		wy,wx=UnitPosition("player")
+		if wx then x,y = ZGV.HBD:GetZoneCoordinatesFromWorld(wx,wy,map,false) end
 	end
 
 	-- we may want to force parts of map to be treated like it was on another map, regardless of what system tells us
@@ -5526,13 +5541,13 @@ function Lib:GetPlayerPosition()
 
 		if ux and uy then
 			for i=1,#remap[map] do  local remapdata=remap[map][i]
-				if (not remapdata.cond or remapdata.cond()) and (uy<=remapdata.top and remapdata.bottom<=uy and ux<=remapdata.left and remapdata.right<=ux) then
+				if (not remapdata.cond or remapdata.cond()) and (remapdata.top>=uy and uy>=remapdata.bottom and remapdata.left>=ux and ux>=remapdata.right) then
 					x,y = ZGV.HBD:GetZoneCoordinatesFromWorld(ux,uy,remapdata.target,true)
 					if remapdata.offsetx then
 						x = x + remapdata.offsetx
 						y = y + remapdata.offsety
 					end
-					remapfrom,remapnum = map,_
+					remapfrom,remapnum = map,0 -- what was the second return doing? hmm
 					map = remapdata.target
 					break
 				end
@@ -5984,6 +5999,17 @@ local bad_dhs_maps = { -- Dalaran Hearthstone: never use from Dala or class hall
 
 function Lib:ValidDHSMap()
 	return not bad_dhs_maps[ZGV.CurrentMapID]
+end
+
+-- sanity fix for remap data
+function Lib:FixRemapData(remap)
+	for _,instdata in pairs(remap) do
+		for i=1,#instdata do
+			local remapdata=instdata[i]
+			if remapdata.bottom>remapdata.top then remapdata.bottom,remapdata.top = remapdata.top,remapdata.bottom end -- top>bottom!
+			if remapdata.right>remapdata.left then remapdata.right,remapdata.left = remapdata.left,remapdata.right end -- left>right!
+		end
+	end
 end
 
 

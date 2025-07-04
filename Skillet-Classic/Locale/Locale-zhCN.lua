@@ -33,9 +33,9 @@ L["Appearance"] = "外观"
 L["APPEARANCEDESC"] = "控制 Skillet 显示方式的选项"
 --[[Translation missing --]]
 L["Auction"] = "Auction"
+L["bank"] = "银行"
 --[[Translation missing --]]
 L["Bank"] = "Bank"
-L["bank"] = "银行"
 L["Blizzard"] = "暴雪"
 L["Buy Reagents"] = "购买材料"
 L["buyable"] = "可购买"
@@ -109,6 +109,14 @@ L["FEATURESDESC"] = "可选择是否启用的额外功能"
 L["Filter"] = "筛选"
 --[[Translation missing --]]
 L["Filter recipes by source"] = "Filter recipes by source"
+--[[Translation missing --]]
+L["FLASHONEMPTYQUEUEDESC"] = "Flash icon when the queue is empty"
+--[[Translation missing --]]
+L["FLASHONEMPTYQUEUENAME"] = "Flash on Empty Queue"
+--[[Translation missing --]]
+L["FLASHONREMOVEQUEUEDESC"] = "Flash icon when an entry is removed from the queue"
+--[[Translation missing --]]
+L["FLASHONREMOVEQUEUENAME"] = "Flash on Remove Queue Entry"
 L["Flat"] = "不分組"
 L["Flush All Data"] = "刷新所有数据"
 L["Flush Player Data"] = "立即输出玩家资料"
@@ -316,6 +324,10 @@ L["Sorting"] = "排序"
 L["SOUNDONEMPTYQUEUEDESC"] = "Play a sound when the queue is empty"
 --[[Translation missing --]]
 L["SOUNDONEMPTYQUEUENAME"] = "Sound on Empty Queue"
+--[[Translation missing --]]
+L["SOUNDONREMOVEQUEUEDESC"] = "Play a sound when an entry is removed from the queue"
+--[[Translation missing --]]
+L["SOUNDONREMOVEQUEUENAME"] = "Sound on Remove Queue Entry"
 L["Source:"] = "来源:"
 L["STANDBYDESC"] = "切换待命模式开启/关闭"
 L["STANDBYNAME"] = "待命"

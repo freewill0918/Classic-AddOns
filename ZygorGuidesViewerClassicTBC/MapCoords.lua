@@ -573,6 +573,14 @@ elseif ZGV.IsClassicCATA then
 		[C_OUTLAND]=1945,
 		[C_NORTHREND]=113,
 	}
+elseif ZGV.IsClassicMOP then
+	continent_main_maps = {
+		[C_KALIMDOR]=12,
+		[C_EASTERN]=13,
+		[C_NORTHREND]=113,
+		[C_PANDARIA]=424,
+		[C_OUTLAND]=1467,
+	}
 end
 
 local virtual_continents
@@ -708,6 +716,33 @@ elseif ZGV.IsClassicCATA then
 		[C_NORTHREND] = {
 			[C_EASTERN] =   {  1.5,  1.0,  1.0 },
 			[C_KALIMDOR] =  { -1.5,  1.0,  1.0 },
+			[C_OUTLAND] = { 0.0, 0.0,  0.0 },
+		},
+	}
+elseif ZGV.IsClassicMOP then
+	virtual_continents = {
+		[C_KALIMDOR] = {
+			[C_EASTERN] =   { 2.0,  0.0,  1.0 },
+			[C_NORTHREND] = { 1.0, -0.5,  1.0 },
+			[C_OUTLAND] = { 0.0, 0.0,  0.0 },
+			[C_PANDARIA] =  { 1.0,  0.8,  1.0 },
+		},
+		[C_EASTERN] = {
+			[C_KALIMDOR] =  { -2.0,  0.0,  1.0 },
+			[C_NORTHREND] = { -1.0, -0.5,  1.0 },
+			[C_OUTLAND] = { 0.0, 0.0,  0.0 },
+			[C_PANDARIA] =  { 1.0,  0.8,  1.0 },
+		},
+		[C_NORTHREND] = {
+			[C_EASTERN] =   {  1.5,  1.0,  1.0 },
+			[C_KALIMDOR] =  { -1.5,  1.0,  1.0 },
+			[C_OUTLAND] = { 0.0, 0.0,  0.0 },
+			[C_PANDARIA] =  { 1.0,  0.8,  1.0 },
+		},
+		[C_PANDARIA] = {
+			[C_EASTERN] =   {  1.5, -1.5,  1.0 },
+			[C_KALIMDOR] =  { -1.5, -1.5,  1.0 },
+			[C_NORTHREND] = {  0.0, -3.0,  1.0 },
 			[C_OUTLAND] = { 0.0, 0.0,  0.0 },
 		},
 	}

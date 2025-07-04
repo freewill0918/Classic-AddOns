@@ -80,6 +80,8 @@ local function IsInPhase(specItem, specItemSource)
         return true;
     elseif LBISSettings.SelectedPhase == LBIS.L["Phase 4"] and LBIS:FindInPhase(specItem.Phase, "4") then
         return true;
+    elseif LBISSettings.SelectedPhase == LBIS.L["Phase 5"] and LBIS:FindInPhase(specItem.Phase, "5") then
+        return true;
     elseif LBISSettings.SelectedPhase == LBIS.L["BIS"] and strfind(specItem.Bis, "BIS") ~= nil then
         return true;
     end
@@ -109,7 +111,6 @@ slotToWowCodes[LBIS.L["Trinket"]] = "TRINKET0SLOT,TRINKET1SLOT";
 slotToWowCodes[LBIS.L["Main Hand"]] = "MAINHANDSLOT";
 slotToWowCodes[LBIS.L["Off Hand"]] = "SECONDARYHANDSLOT";
 slotToWowCodes[LBIS.L["Two Hand"]] = "MAINHANDSLOT";
-slotToWowCodes[LBIS.L["Ranged/Relic"]] = "RANGEDSLOT";
 local function IsNotObsolete(specItem)
     if LBISSettings.HideObsolete then
 

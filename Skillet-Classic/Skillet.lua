@@ -29,17 +29,24 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Skillet")
 Skillet.L = L
 
 -- Get version info from the .toc file
+local IsAddOnLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
 local GetAddOnMetadata = C_AddOns and C_AddOns.GetAddOnMetadata or GetAddOnMetadata
+local LoadAddOn = C_AddOns and C_AddOns.LoadAddOn or LoadAddOn
+local GetItemInfo = C_Item and C_Item.GetItemInfo or GetItemInfo
+local GetItemCount = C_Item and C_Item.GetItemCount or GetItemCount
+
 Skillet.version = GetAddOnMetadata("Skillet-Classic", "Version")
 Skillet.interface = select(4, GetBuildInfo())
 Skillet.build = (Skillet.interface < 20000 and "Classic") or (Skillet.interface < 30000 and "BCC") or
-  (Skillet.interface < 40000 and "Wrath") or (Skillet.interface < 50000 and "Cata") or "Retail"
+  (Skillet.interface < 40000 and "Wrath") or (Skillet.interface < 50000 and "Cata") or
+  (Skillet.interface < 60000 and "Mists") or "Retail"
 Skillet.project = WOW_PROJECT_ID
 local isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE -- 1
 local isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC -- 2
 local isBCC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC -- 5
 local isWrath = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC -- 11
 local isCata = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC -- 14
+local isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC -- 19
 
 Skillet.isCraft = false			-- true for the Blizzard Craft UI, false for the Blizzard TradeSkill UI
 Skillet.lastCraft = false		-- help events know when to call ConfigureRecipeControls()
@@ -223,6 +230,7 @@ function Skillet:ConfigureProfile()
 	Skillet.TraceShow = Skillet.db.profile.TraceShow
 	Skillet.TraceLog = Skillet.db.profile.TraceLog
 	Skillet.TraceLog2 = Skillet.db.profile.TraceLog2
+	Skillet.TraceLog3 = Skillet.db.profile.TraceLog3
 	Skillet.ProfileShow = Skillet.db.profile.ProfileShow
 --
 -- Profile variable to control Skillet fixes for Blizzard bugs.
@@ -471,6 +479,27 @@ function Skillet:FlushAllData()
 end
 
 --
+-- Flush all data for the current player
+--
+function Skillet:FlushPlayerData()
+	DA.DEBUG(0,"FlushPlayerData()");
+	local player = UnitName("player")
+	Skillet.db.realm.tradeSkills[player] = {}
+	Skillet.db.realm.auctionData[player] = {}
+	Skillet.db.realm.inventoryData[player] = {}
+	Skillet.db.realm.userIgnoredMats[player] = {}
+	Skillet.db.realm.bagData[player] = {}
+	Skillet.db.realm.bagDetails[player] = {}
+	Skillet.db.realm.bankData[player] = {}
+	Skillet.db.realm.bankDetails[player] = {}
+	Skillet.db.realm.queueData[player] = {}
+	Skillet.db.realm.reagentsInQueue[player] = {}
+	Skillet.db.realm.modifiedInQueue[player] = {}
+	Skillet.db.realm.groupDB[player] = {}
+	Skillet.db.realm.options[player] = {}
+end
+
+--
 -- Custom Groups data could represent significant
 -- effort by the player so don't clear it without
 -- good cause.
@@ -507,6 +536,20 @@ function Skillet:FlushRecipeData()
 	Skillet.db.realm.subClass = {}
 	Skillet.db.realm.invSlot = {}
 	Skillet:InitializeSkillLevels()
+end
+
+--
+-- Detailed contents of the bags, bank, and guildbank
+-- can take a lot of space so clearing these tables
+-- can free that up.
+--
+function Skillet:FlushDetailData()
+	DA.DEBUG(0,"FlushDetailData()");
+	Skillet.db.realm.bagData = {}
+	Skillet.db.realm.bagDetails = {}
+	Skillet.db.realm.bankData = {}
+	Skillet.db.realm.bankDetails = {}
+	Skillet.db.global.detailedGuildbank = {}
 end
 
 --
@@ -1508,8 +1551,7 @@ end
 function Skillet:ContinueChange()
 	DA.DEBUG(0,"ContinueChange()")
 	self.isCraft = self.skillIsCraft[self.changingTrade]
-	DA.DEBUG(1,"ContinueChange: changingTrade= "..tostring(self.changingTrade)..", changingName= "..tostring(self.changingName)..
-	  ", isCraft= "..tostring(self.isCraft))
+	DA.DEBUG(1,"ContinueChange: changingTrade= "..tostring(self.changingTrade)..", changingName= "..tostring(self.changingName)..", isCraft= "..tostring(self.isCraft))
 	self.currentTrade = self.changingTrade
 	self:ChangeTradeSkill(self.changingTrade, self.changingName)
 end

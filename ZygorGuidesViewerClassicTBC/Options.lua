@@ -1064,7 +1064,7 @@ function ZGV:Options_DefineOptionTables()
 			end
 		})
 
-		if ZGV.IsRetail then
+		if ZGV.IsRetail or ZGV.IsClassicMOP then
 			AddOptionSpace()
 			AddOption('poienabled',{ type = 'toggle', width = "double", set = function(i,v) Setter_Simple(i,v) ZGV.Poi:ChangeState(v) end, _default = true, })
 			AddOptionSep()
@@ -1347,7 +1347,7 @@ function ZGV:Options_DefineOptionTables()
 		AddOption('questitemselector',{ type = 'toggle', width="double", _default=true})
 		AddOption('autoselectitem',{ type = 'toggle', width="double", _default=false, disabled = function() return not self.db.profile.questitemselector end, indent=20 })
 		AddOption('autogearauto',{ type='toggle', width="full", _default=false, disabled=function() return not self.db.profile.autogear end })
-		if ZGV.IsRetail or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA then 
+		if ZGV.IsRetail or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then 
 			AddOption('autogear_keepheirlooms',{ type = 'toggle', width="double", _default=false, disabled = function() return not self.db.profile.autogear end})
 		end
 
@@ -1473,7 +1473,7 @@ function ZGV:Options_DefineOptionTables()
 				AddOption('gear_15',{ name=PLAYER_DIFFICULTY2, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.db.profile.gear_5=v ZGV.db.profile.gear_6=v ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, }) 
 				AddOption('gear_16',{ name=PLAYER_DIFFICULTY6, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.db.profile.gear_7=v ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, }) 
 			end
-			if ZGV.IsClassicWOTLK or ZGV.IsClassicCATA then
+			if ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
 				AddOption('gear_3',{ name=RAID_DIFFICULTY1, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
 				--AddOption('gear_5',{ name=RAID_DIFFICULTY3, type='toggle', width="150", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear end, }) 
 				AddOption('gear_4',{ name=RAID_DIFFICULTY2, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
@@ -2270,7 +2270,7 @@ function ZGV:Options_DefineOptionTables()
 				})
 	end
 
-	if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA then
+	if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP  then
 		local options = ZGV.ZTA:SetupConfig()
 
 		AddOptionGroup("zta","ZygorTalentAdvisor","zgtalent",options)
@@ -2678,7 +2678,7 @@ function ZGV:Options_DefineOptionTables()
 			do -- Fake skills
 				local skills={"Alchemy","Archaeology","Blacksmithing","Cooking","Enchanting","Engineering","First Aid","Fishing","Herbalism","Inscription","Jewelcrafting","Leatherworking","Mining","Skinning","Tailoring"}
 				local skillvalues={}  for i,v in ipairs(skills) do skillvalues[v]=v end
-				if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA then
+				if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
 					AddOption('fakeskill',{
 						name = "Fake profession",
 						desc = "Check to simulate skill levels.",

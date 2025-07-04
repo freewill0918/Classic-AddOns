@@ -28,8 +28,8 @@ L["alts"] = "альты"
 L["Appearance"] = "Внешний вид"
 L["APPEARANCEDESC"] = "Настройки внешнего вида."
 L["Auction"] = "Аукцион"
-L["Bank"] = "Банк"
 L["bank"] = "банк"
+L["Bank"] = "Банк"
 L["Blizzard"] = "Blizzard"
 L["Buy Reagents"] = "Купить реагенты"
 L["buyable"] = "покупаемые"
@@ -97,6 +97,14 @@ L["Features"] = "Cвойства"
 L["FEATURESDESC"] = "Необязательные свойства которые могут быть включены или выключены"
 L["Filter"] = "Фильтр"
 L["Filter recipes by source"] = "Отфильтровать рецепты по источнику"
+--[[Translation missing --]]
+L["FLASHONEMPTYQUEUEDESC"] = "Flash icon when the queue is empty"
+--[[Translation missing --]]
+L["FLASHONEMPTYQUEUENAME"] = "Flash on Empty Queue"
+--[[Translation missing --]]
+L["FLASHONREMOVEQUEUEDESC"] = "Flash icon when an entry is removed from the queue"
+--[[Translation missing --]]
+L["FLASHONREMOVEQUEUENAME"] = "Flash on Remove Queue Entry"
 L["Flat"] = "Прямой"
 L["Flush All Data"] = "Сбросить все данные"
 L["Flush Player Data"] = "Очистить данные игрока"
@@ -284,6 +292,10 @@ L["SORTDESC"] = "Сортировать список рецептов в обр�
 L["Sorting"] = "Сортировка"
 L["SOUNDONEMPTYQUEUEDESC"] = "Воспроизвести звук, когда очередь пуста"
 L["SOUNDONEMPTYQUEUENAME"] = "Звук при пустой очереди"
+--[[Translation missing --]]
+L["SOUNDONREMOVEQUEUEDESC"] = "Play a sound when an entry is removed from the queue"
+--[[Translation missing --]]
+L["SOUNDONREMOVEQUEUENAME"] = "Sound on Remove Queue Entry"
 L["Source:"] = "Источник:"
 L["STANDBYDESC"] = "Включить/отключить режим ожидания"
 L["STANDBYNAME"] = "ожидание"

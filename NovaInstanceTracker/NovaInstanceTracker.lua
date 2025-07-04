@@ -1053,7 +1053,9 @@ function NIT:updateMinimapButton(tooltip, frame)
 					else
 						instanceDiff = " |cFF9CD6DE(|cFF00C800D|r)|r";
 					end
-				end
+				elseif (data.type == "scenario") then
+          instanceDiff = " |cFF9CD6DE(|cFFFF2222S|r)|r";
+        end
 				tooltip:AddLine("|cFF00C800" .. data.instanceName .. instanceDiff);
 			end
 			tooltip:AddLine("|cFF9CD6DE" .. timeInside);		
@@ -1304,10 +1306,10 @@ function NIT:getMinimapButtonNextExpires(char)
 	local found;
 	for k, v in ipairs(self.data.instances) do
 		local noLockout;
-		if (NIT.noRaidLockouts and v.instanceID and NIT.zones[v.instanceID] and NIT.zones[v.instanceID].noLockout) then
+		if (v.isPvp or v.type == "delve" or v.type == "scenario" or (NIT.noRaidLockouts and v.instanceID and NIT.zones[v.instanceID] and NIT.zones[v.instanceID].noLockout)) then
 			noLockout = true;
 		end
-		if (not v.isPvp and not noLockout and v.type ~= "delve" and (not NIT.perCharOnly or char == v.playerName)) then
+		if (not v.isPvp and not noLockout and v.type ~= "delve" and v.type ~= "delve" and (not NIT.perCharOnly or char == v.playerName)) then
 			if (v.leftTime and v.leftTime > (GetServerTime() - 3600)) then
 				local time = 3600 - (GetServerTime() - v.leftTime);
 				--msg = msg .. "\n|cFF9CD6DE" .. v.instanceName .. " expires in " .. NIT:getTimeString(time, true);
@@ -2307,6 +2309,8 @@ function NIT:buildInstanceLineFrameString(v, count, logID)
 		else
 			instance = instance .. " (|cFF00C800D|r)";
 		end
+	elseif (v.type == "scenario") then
+    instance = instance .. " (|cFFFF2222S|r)";
 	end
 	local time = NIT:getTimeFormat(v.enteredTime, true, true);
 	local timeAgo = GetServerTime() - v.enteredTime;
@@ -2409,10 +2413,16 @@ function NIT:buildInstanceLineFrameString(v, count, logID)
 		elseif (v.faction and v.winningFaction) then
 			lockoutTimeString = lockoutTimeString .. " |cFFFF2222" .. L["Lost"] .. "|r";
 		end
-	elseif (not NIT.isRetail and (NIT.noRaidLockouts and v.instanceID and NIT.zones[v.instanceID] and NIT.zones[v.instanceID].noLockout)) then
+	elseif (not NIT.isRetail and (v.isPvp or v.type == "delve" or v.type == "scenario" or (NIT.noRaidLockouts and v.instanceID and NIT.zones[v.instanceID] and NIT.zones[v.instanceID].noLockout))) then
 		--timeColor = "|cFFFF7F50";
-		timeColor = "|cFFFFA500";
-		lockoutTimeString = instance .. " (" .. L["noLockout"] .. ")";
+		if (count == 1 and NIT.inInstance) then
+		  lockoutTimeString = instance .. " (" .. L["stillInDungeon"] .. ")";
+		else
+		  lockoutTimeString = instance .. " (" .. L["noLockout"] .. ")";
+		end
+		if (v.type ~= "delve" and v.type ~= "scenario") then
+		  timeColor = "|cFFFFA500";
+		end
 	end
 	if (nameMatch ~= v.playerName) then
 		timeColor = "|cFFA1A1A1";
@@ -2548,11 +2558,13 @@ function NIT:recalcInstanceLineFramesTooltip(obj)
 			else
 				heroicString = " (|cFF00C800D|r)";
 			end
+		elseif (data.type == "scenario") then
+      heroicString = " (|cFFFF2222S|r)";
 		end
 		local text = timeColor .. L["Instance"] .. " " .. obj.count .. " (" .. data.instanceName .. heroicString .. ")|r";
 		if (not data.isPvp and data.instanceID and (NIT.noRaidLockouts and NIT.zones[data.instanceID] and NIT.zones[data.instanceID].noLockout)) then
 			timeColor = "|cFFFFA500";
-			text = timeColor .. L["Instance"] .. " " .. obj.count .. " (" .. data.instanceName .. ") (Raid with no lockout)|r";
+			text = timeColor .. L["Instance"] .. " " .. obj.count .. " (" .. data.instanceName .. ") (No lockout)|r";
 		end
 		if (UnitName("player") ~= data.playerName) then
 			timeColor = "|cFFA1A1A1";

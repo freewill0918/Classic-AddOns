@@ -32,9 +32,9 @@ L["Appearance"] = "겉모양"
 L["APPEARANCEDESC"] = "Skillet 표시 방법을 제어하는 옵션"
 --[[Translation missing --]]
 L["Auction"] = "Auction"
+L["bank"] = "은행"
 --[[Translation missing --]]
 L["Bank"] = "Bank"
-L["bank"] = "은행"
 L["Blizzard"] = "블리자드"
 L["Buy Reagents"] = "재료 구입"
 L["buyable"] = "구입 가능"
@@ -108,6 +108,14 @@ L["FEATURESDESC"] = "Skillet 기능 설정"
 L["Filter"] = "필터"
 --[[Translation missing --]]
 L["Filter recipes by source"] = "Filter recipes by source"
+--[[Translation missing --]]
+L["FLASHONEMPTYQUEUEDESC"] = "Flash icon when the queue is empty"
+--[[Translation missing --]]
+L["FLASHONEMPTYQUEUENAME"] = "Flash on Empty Queue"
+--[[Translation missing --]]
+L["FLASHONREMOVEQUEUEDESC"] = "Flash icon when an entry is removed from the queue"
+--[[Translation missing --]]
+L["FLASHONREMOVEQUEUENAME"] = "Flash on Remove Queue Entry"
 L["Flat"] = "단편화"
 L["Flush All Data"] = "모든 데이터 삭제"
 L["Flush Player Data"] = "플레이어 데이터 삭제"
@@ -314,6 +322,10 @@ L["Sorting"] = "정렬"
 L["SOUNDONEMPTYQUEUEDESC"] = "Play a sound when the queue is empty"
 --[[Translation missing --]]
 L["SOUNDONEMPTYQUEUENAME"] = "Sound on Empty Queue"
+--[[Translation missing --]]
+L["SOUNDONREMOVEQUEUEDESC"] = "Play a sound when an entry is removed from the queue"
+--[[Translation missing --]]
+L["SOUNDONREMOVEQUEUENAME"] = "Sound on Remove Queue Entry"
 L["Source:"] = "획득 방법:"
 L["STANDBYDESC"] = "standby 모드를 켜고 끕니다."
 L["STANDBYNAME"] = "standby"

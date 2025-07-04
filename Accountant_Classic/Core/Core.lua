@@ -67,7 +67,7 @@ elseif wowversion < 30000 then
 	WoWClassicTBC = true
 elseif wowversion < 40000 then 
 	WoWWOTLKC = true
-elseif wowversion < 50000 then
+elseif wowversion < 60000 then
 	WoWCATAC = true
 	GetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
 elseif wowversion > 90000 then

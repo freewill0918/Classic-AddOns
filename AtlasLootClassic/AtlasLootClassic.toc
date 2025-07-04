@@ -1,12 +1,12 @@
-## Interface: 30403, 40402
+## Interface: 50500
 ## Author: Snowflame0
-## Version: v4.3.0-Rainbow
+## Version: v5.0.0-beta1
 ## SavedVariables: AtlasLootClassicDB
 ## OptionalDeps: Ace3, LibSharedMedia-3.0, AceGUI-3.0-SharedMediaWidgets, LibDBIcon-1.0, LibDataBroker-1.1
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 
-## Title: AtlasLootClassic |cFFFF5733Cata|r |cFF22B14C[Core]|r
+## Title: AtlasLootClassic |cFF33FFBDMoP|r |cFF22B14C[Core]|r
 ## Notes: Displays loot tables from various aspects of the game
 
 ## Title-deDE: AtlasLootClassic |cFFFF5733Cata|r |cFF22B14C[Kern]|r
@@ -107,3 +107,4 @@ Addons\Addons.lua
 Addons\Sources.lua
 Addons\Favourites.lua
 Addons\Favourites_GUI.lua
+Addons\News.lua

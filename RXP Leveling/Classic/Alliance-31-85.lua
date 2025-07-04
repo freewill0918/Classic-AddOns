@@ -1,8 +1,9 @@
 RXPGuides.RegisterGuide([[
 #version 8
 #cata
+#mop
 #wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 59-61 Hellfire Peninsula
 #displayname 58-61 Hellfire Peninsula << !tbc !wotlk
@@ -1777,8 +1778,9 @@ step
 RXPGuides.RegisterGuide([[
 #version 8
 #cata
+#mop
 #wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 61-63 Zangarmarsh
 #displayname 61-64 Zangarmarsh << !tbc !wotlk
@@ -3637,8 +3639,9 @@ step << !tbc !wotlk
 RXPGuides.RegisterGuide([[
 #version 8
 #cata
+#mop
 #wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #questguide << !tbc
 #name 63-65 Terokkar Forest
@@ -5519,8 +5522,9 @@ step
 RXPGuides.RegisterGuide([[
 #version 8
 #cata
+#mop
 #wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 64-66 Nagrand
 #defaultfor !wotlk
@@ -7767,8 +7771,9 @@ step
 RXPGuides.RegisterGuide([[
 #version 8
 #cata
+#mop
 #wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 65-67 Blade's Edge
 #version 8
@@ -9705,8 +9710,9 @@ step
 RXPGuides.RegisterGuide([[
 #version 8
 #cata
+#mop
 #wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 67-68 Netherstorm
 #version 8
@@ -9719,9 +9725,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 8
 #cata
+#mop
 #wotlk
 #questguide << !tbc
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 67-69 Netherstorm
 #version 8
@@ -9733,8 +9740,9 @@ step
 RXPGuides.RegisterGuide([[
 #version 8
 #cata
+#mop
 #wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 67-67 Blade's Edge Turn-ins
 #version 8
@@ -10322,8 +10330,9 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #cata
+#mop
 #wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 68-71 Howling Fjord
 #version 8
@@ -13552,9 +13561,10 @@ step << Warrior
 RXPGuides.RegisterGuide([[
 #version 8
 #cata
+#mop
 #wotlk
 #questguide << !tbc
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 69-70 Shadowmoon Valley (Aldor)
 #version 8
@@ -14426,9 +14436,10 @@ step << Druid/70
 RXPGuides.RegisterGuide([[
 #version 8
 #cata
+#mop
 #wotlk
 #questguide << !tbc
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 69-70 Shadowmoon Valley (Scryer)
 #version 8
@@ -15247,8 +15258,9 @@ step
 RXPGuides.RegisterGuide([[
 #version 8
 #cata
+#mop
 #wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 71-73 Borean Tundra
 #version 8
@@ -18631,9 +18643,10 @@ step << wotlk
 ]])
 RXPGuides.RegisterGuide([[
 #cata
+#mop
 #wotlk
 #xprate <1.5 << wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 72-74 Dragonblight
 #version 8
@@ -21664,10 +21677,11 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #cata
+#mop
 #wotlk
 #speedrunguide
 #xprate >1.49 << wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 73-74 Dragonblight
 #version 8
@@ -21766,8 +21780,9 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #cata
+#mop
 #wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 73-75 Grizzly Hills
 #version 8
@@ -24291,10 +24306,11 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #cata
+#mop
 #wotlk
 #speedrunguide
 #xprate >1.49 << wotlk
-#group Cataclysm 60-80 (A)
+#group RXP Cataclysm 1-80 (A)
 << Alliance
 #name 74-75 Grizzly Hills
 #version 8

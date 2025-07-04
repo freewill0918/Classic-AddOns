@@ -385,6 +385,7 @@ function BugReport:GetReport_Flavor()
 		or (ZGV.IsClassicCATA and "CLASSIC-CATA")
 		or (ZGV.IsClassicWOTLK and "CLASSIC-WOTLK")
 		or (ZGV.IsClassicTBC and "CLASSIC-TBC")
+		or (ZGV.IsClassicMOP and "CLASSIC-MOP")
 		or "???"
 end
 

@@ -797,15 +797,15 @@ function Tabs:HandleClick()
 		EasyFork(menu,Tabs.TabMenuFrame ,nil,0,0,"MENU",10)
 
 	else
-		self:ActivateGuide()
+		self:ActivateGuide("tabs")
 	end
 end
 
-function Tabs:ActivateGuide()
+function Tabs:ActivateGuide(source)
 	self:SetAsCurrent()
 	ZGV.ProgressBar:SetAnim("noinit") -- don't animate progress bar on switching tabs
 
-	ZGV:SetGuide(self.guide,self.step,false,"silent")
+	ZGV:SetGuide(self.guide,self.step,source,"silent")
 
 	-- tab was in dropdown menu, move to first slot, hide menu
 	if self.Hidden then 
@@ -953,7 +953,7 @@ function Tabs:RemoveTab()
 		LibRover:Abort()
 		ZGV.db.char.unloadedguide=true
 
-		if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA then
+		if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
 			if ZGV.QuestDB.GuideHelperMenu then ZGV.QuestDB.GuideHelperMenu:Hide() end
 			ZGV.QuestDB:Cancel()
 		end

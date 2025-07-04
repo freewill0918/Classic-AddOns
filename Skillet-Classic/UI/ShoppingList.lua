@@ -31,6 +31,9 @@ local isBCC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 local isWrath = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 local isCata = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
 
+local GetItemInfo = C_Item and C_Item.GetItemInfo or GetItemInfo
+local GetItemCount = C_Item and C_Item.GetItemCount or GetItemCount
+
 local L = LibStub("AceLocale-3.0"):GetLocale("Skillet")
 
 -- Stolen from the Waterfall Ace2 addon.
@@ -339,6 +342,7 @@ local function indexBags()
 	DA.TRACE("indexBags()")
 	local player = Skillet.currentPlayer
 	if player then
+		local collect = Skillet.db.profile.collect_details
 		local details = {}
 		local data = {}
 		local bags = {0,1,2,3,4}
@@ -373,7 +377,7 @@ local function indexBags()
 					else
 						name = item						-- when all else fails, use the link
 					end
-					if id then
+					if collect and id then
 						table.insert(details, {
 							["bag"] = container,
 							["slot"] = i,
@@ -388,8 +392,12 @@ local function indexBags()
 					end
 				end
 			end
-		Skillet.db.realm.bagData[player] = data
-		Skillet.db.realm.bagDetails[player] = details
+			Skillet.db.realm.bagData[player] = data
+			if collect then
+				Skillet.db.realm.bagDetails[player] = details
+			else
+				--DA.DEBUG(2,"indexBags: Not collecting details")		
+			end
 		end
 	end
 end
@@ -402,6 +410,7 @@ local function indexBank()
 --
 -- bankData is a count by item.
 --
+	local collect = Skillet.db.profile.collect_details
 	bank = {}
 	local player = Skillet.currentPlayer
 	local bankData = Skillet.db.realm.bankData[player]
@@ -438,7 +447,7 @@ local function indexBank()
 				else
 					name = item						-- when all else fails, use the link
 				end
-				if id then
+				if collect and id then
 					table.insert(bank, {
 						["bag"] = container,
 						["slot"] = i,
@@ -454,7 +463,11 @@ local function indexBank()
 			end
 		end
 	end
-	Skillet.db.realm.bankDetails[player] = bank
+	if collect then
+		Skillet.db.realm.bankDetails[player] = bank
+	else
+		--DA.DEBUG(2,"indexBank: Not collecting details")		
+	end
 end
 
 local function indexGuildBank(tab)
@@ -523,6 +536,27 @@ function Skillet:BAG_CONTAINER_UPDATE(event, bagID)
 	DA.TRACE("BAG_CONTAINER_UPDATE( "..tostring(bagID).." )")
 end
 
+--[[
+  local frame = CreateFrame("Frame")
+  frame:RegisterEvent("BAG_UPDATE")
+  frame:RegisterEvent("BAG_UPDATE_DELAYED")
+  frame:RegisterEvent("UNIT_INVENTORY_CHANGED")
+  local bags = {}
+  frame:SetScript("OnEvent", function(_, event, data)
+    if data then
+      bags[data] = true
+    end
+    frame:SetScript("OnUpdate", function()
+      frame:SetScript("OnUpdate", nil)
+      for bagID in pairs(bags) do
+        self:BAG_UPDATE(event, bagID)
+      end
+      bags = {}
+      self:BAG_UPDATE_DELAYED()
+    end)
+  end)
+--]]
+
 --
 -- So we can track when the players inventory changes and update craftable counts
 --
@@ -539,8 +573,7 @@ function Skillet:BAG_UPDATE(event, bagID)
 		showing = true
 	end
 	if MerchantFrame and MerchantFrame:IsVisible() then
-		-- may need to update the button on the merchant frame window ...
-		self:UpdateMerchantFrame()
+		showing = true
 	end
 	if self.shoppingList and self.shoppingList:IsVisible() then
 		showing = true
@@ -558,10 +591,6 @@ function Skillet:BAG_UPDATE(event, bagID)
 			Skillet:BANK_UPDATE(event,bagID) -- Looks like an event but its not.
 		end
 	end
---
--- Schedule a fake BAG_UPDATE_DELAYED "event" just in case Blizzard forgets
---
-	self:ScheduleTimer("BAG_UPDATE_DELAYED",1.0)
 end
 
 --
@@ -570,10 +599,6 @@ end
 --
 function Skillet:BAG_UPDATE_DELAYED(event)
 	DA.TRACE("BAG_UPDATE_DELAYED")
---
--- Only need one event so cancel the fake if it exists.
---
-	self:CancelTimer("BAG_UPDATE_DELAYED")
 	if Skillet.bagsChanged and not UnitAffectingCombat("player") then
 		indexBags()
 		Skillet.bagsChanged = false
@@ -591,6 +616,37 @@ function Skillet:BAG_UPDATE_DELAYED(event)
 		if Skillet.gotGuildbankEvent and Skillet.gotBagUpdateEvent then
 			Skillet:UpdateGuildQueue("bag update")
 		end
+	end
+	local scanned = false
+	if Skillet.tradeSkillFrame and Skillet.tradeSkillFrame:IsVisible() then
+		Skillet:InventoryScan()
+		scanned = true
+		Skillet:UpdateTradeSkillWindow()
+	end
+	if Skillet.shoppingList and Skillet.shoppingList:IsVisible() then
+		if not scanned then
+			Skillet:InventoryScan()
+			scanned = true
+		end
+		Skillet:UpdateShoppingListWindow(false)
+	end
+	if MerchantFrame and MerchantFrame:IsVisible() then
+		if not scanned then
+			Skillet:InventoryScan()
+			scanned = true
+		end
+		self:UpdateMerchantFrame()
+	end
+end
+
+--
+-- Event is fired when the inventory (bags) changes
+--
+function Skillet:UNIT_INVENTORY_CHANGED(event, unit)
+	DA.TRACE("UNIT_INVENTORY_CHANGED( "..tostring(unit).." )")
+	if Skillet.bagsChanged and not UnitAffectingCombat("player") then
+		indexBags()
+		Skillet.bagsChanged = false
 	end
 	local scanned = false
 	if Skillet.tradeSkillFrame and Skillet.tradeSkillFrame:IsVisible() then
@@ -986,37 +1042,6 @@ end
 
 function Skillet:UpdateGuildQueue(where)
 	processGuildQueue(where)
-end
-
---
--- Event is fired when the inventory (bags) changes
---
-function Skillet:UNIT_INVENTORY_CHANGED(event, unit)
-	DA.TRACE("UNIT_INVENTORY_CHANGED( "..tostring(unit).." )")
-	if Skillet.bagsChanged and not UnitAffectingCombat("player") then
-		indexBags()
-		Skillet.bagsChanged = false
-	end
-	local scanned = false
-	if Skillet.tradeSkillFrame and Skillet.tradeSkillFrame:IsVisible() then
-		Skillet:InventoryScan()
-		scanned = true
-		Skillet:UpdateTradeSkillWindow()
-	end
-	if Skillet.shoppingList and Skillet.shoppingList:IsVisible() then
-		if not scanned then
-			Skillet:InventoryScan()
-			scanned = true
-		end
-		Skillet:UpdateShoppingListWindow(false)
-	end
-	if MerchantFrame and MerchantFrame:IsVisible() then
-		if not scanned then
-			Skillet:InventoryScan()
-			scanned = true
-		end
-		self:UpdateMerchantFrame()
-	end
 end
 
 --

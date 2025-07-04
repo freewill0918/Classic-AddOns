@@ -23,21 +23,7 @@ local media = LibStub("LibSharedMedia-3.0")
 local MSQ = LibStub("Masque", true)
 
 
-local ignoreFrameNameList = {
-	["GameTimeFrame"] = true,
-	["HelpOpenWebTicketButton"] = true,
-	["MinimapBackdrop"] = true,
-	["MinimapZoomIn"] = true,
-	["MinimapZoomOut"] = true,
-	["MiniMapWorldMapButton"] = true,
-	["MiniMapMailFrame"] = true,
-	["MiniMapTracking"] = true,
-	["MiniMapBattlefieldFrame"] = true,
-	["MiniMapLFGFrame"] = true,
-}
-
 local ignoreFrameList = {}
-
 local ignoreFrameNamePattern = {
 	"^GatherMatePin%d+$",
 	"^TTMinimapButton%d+$",
@@ -426,15 +412,6 @@ function hb:ADDON_LOADED(addonName)
 		self:UnregisterEvent("ADDON_LOADED")
 		self.ADDON_LOADED = nil
 
-		-- local function addToIgnoreFrameList(name)
-		-- 	local frame = self:getFrameFromPath(name)
-		-- 	if frame then
-		-- 		ignoreFrameList[frame] = true
-		-- 	else
-		-- 		print(addon..":", name, "not found")
-		-- 	end
-		-- end
-
 		HidingBarDBChar = HidingBarDBChar or {}
 		self.charDB = HidingBarDBChar
 		HidingBarDB = HidingBarDB or {}
@@ -577,6 +554,9 @@ function hb:checkProfile(profile)
 		bar.config.lineBorderOffset = bar.config.lineBorderOffset or 1
 		bar.config.lineBorderSize = bar.config.lineBorderSize or 2
 		bar.config.gapSize = bar.config.gapSize or 0
+		if bar.config.petBattleHide == nil then
+			bar.config.petBattleHide = true
+		end
 		bar.config.omb = bar.config.omb or {}
 		if bar.config.omb.hide == nil then
 			bar.config.omb.hide = true
@@ -597,6 +577,16 @@ function hb:checkProfile(profile)
 				end
 			end
 		end
+	end
+end
+
+
+function hb:addToIgnoreFrameList(name)
+	local frame = self:getFrameFromPath(name)
+	if frame then
+		ignoreFrameList[frame] = true
+	else
+		print(addon..":", name, "not found")
 	end
 end
 
@@ -693,12 +683,6 @@ function hb:init()
 	end
 
 	if self.pConfig.grabDefMinimap then
-		local LFGFrame = MiniMapLFGFrame
-		local parent = LFGFrame:GetParent()
-		local left = LFGFrame:GetLeft() - parent:GetLeft()
-		local top = LFGFrame:GetTop() - parent:GetTop()
-		LFGFrame:ClearAllPoints()
-		LFGFrame:SetPoint("TOPLEFT", left, top)
 		self:grabDefButtons()
 	end
 
@@ -1021,9 +1005,11 @@ end
 
 
 function hb:getFrameFromPath(path)
+	local frame = _G[path]
+	if frame then return frame end
 	local pNames = {("."):split(path)}
 	if #pNames > 1 then
-		local frame = _G[pNames[1]]
+		frame = _G[pNames[1]]
 		for i = 2, #pNames do
 			if type(frame) == "table" then
 				frame = frame[pNames[i]]
@@ -1032,254 +1018,6 @@ function hb:getFrameFromPath(path)
 			end
 		end
 		return frame
-	end
-end
-
-
-function hb:grabDefButtons()
-	local function checkMasqueConditions(btn, btnData)
-		return self.MSQ_MButton and not btn.__MSQ_Addon and not (btnData or self:getMBtnSettings(btn))[6]
-	end
-
-	-- CALENDAR BUTTON
-	local GameTimeFrame = GameTimeFrame
-	if GameTimeFrame and self:ignoreCheck("GameTimeFrame") and not self.btnParams[GameTimeFrame] then
-		local text = GameTimeFrame:GetFontString()
-		text:SetPoint("CENTER", 0, -1)
-		GameTimeFrame:SetNormalFontObject("GameFontBlackMedium")
-		GameTimeCalendarInvitesTexture:SetPoint("CENTER")
-		GameTimeCalendarInvitesGlow.Show = void
-		GameTimeCalendarInvitesGlow:Hide()
-		self:setHooks(GameTimeFrame)
-		self:setSecureHooks(GameTimeFrame)
-		local p = self:setParams(GameTimeFrame, function(p, GameTimeFrame)
-			GameTimeCalendarInvitesGlow.Show = nil
-			GameTimeFrame:SetScript("OnUpdate", p.OnUpdate)
-		end)
-		p.tooltipFrame = GameTooltip
-		p.OnUpdate = GameTimeFrame:GetScript("OnUpdate")
-		self.HookScript(GameTimeFrame, "OnUpdate", function(GameTimeFrame)
-			local bar = GameTimeFrame:GetParent()
-			if bar.config.interceptTooltip and GameTooltip:IsOwned(GameTimeFrame) then
-				bar:updateTooltipPosition()
-			end
-		end)
-
-		if not GameTimeFrame.__MSQ_Addon then
-			GameTimeFrame:GetNormalTexture():SetTexCoord(0, .375, 0, .75)
-			GameTimeFrame:GetPushedTexture():SetTexCoord(.5, .875, 0, .75)
-			GameTimeFrame:GetHighlightTexture():SetTexCoord(0, 1, 0, .9375)
-
-			if checkMasqueConditions(GameTimeFrame) then
-				self:setMButtonRegions(GameTimeFrame, {.0859375, .296875, .156255, .59375})
-			end
-		end
-
-		tinsert(self.minimapButtons, GameTimeFrame)
-		tinsert(self.mixedButtons, GameTimeFrame)
-	end
-
-	-- TRACKING BUTTON
-	local MiniMapTracking = MiniMapTracking
-	if MiniMapTracking and self:ignoreCheck("MiniMapTracking") and not self.btnParams[MiniMapTracking] then
-		local MiniMapTrackingButton = MiniMapTrackingButton
-		local icon = MiniMapTrackingIcon
-		MiniMapTracking.rButton = MiniMapTrackingButton
-		self:setHooks(MiniMapTracking)
-		self:setSecureHooks(MiniMapTracking)
-		local p = self:setParams(MiniMapTracking, function(p)
-			if MiniMapTrackingButton.__MSQ_Addon then return end
-			icon.SetPoint = nil
-			MiniMapTrackingButton:SetScript("OnMouseDown", p.OnMouseDown)
-			MiniMapTrackingButton:SetScript("OnMouseUp", p.OnMouseUp)
-		end)
-
-		icon:ClearAllPoints()
-		icon:SetPoint("CENTER")
-		hooksecurefunc(icon, "SetPoint", function(icon)
-			icon:ClearAllPoints()
-			self.SetPoint(icon, "CENTER")
-		end)
-		p.OnMouseDown = MiniMapTrackingButton:GetScript("OnMouseDown")
-		p.OnMouseUp = MiniMapTrackingButton:GetScript("OnMouseUp")
-		MiniMapTrackingButton:HookScript("OnMouseDown", function()
-			icon:SetScale(.9)
-		end)
-		MiniMapTrackingButton:HookScript("OnMouseUp", function()
-			icon:SetScale(1)
-		end)
-
-		if checkMasqueConditions(MiniMapTrackingButton, self:getMBtnSettings(MiniMapTracking)) then
-			self.MSQ_Button_Data[MiniMapTrackingButton] = {
-				_Border = MiniMapTrackingButtonBorder,
-				_Background = MiniMapTrackingBackground,
-			}
-			self:setTexCurCoord(icon, icon:GetTexCoord())
-			icon.SetTexCoord = self.setTexCoord
-			local data = {
-				Icon = icon,
-				Highlight = MiniMapTrackingButton:GetHighlightTexture()
-			}
-			self.MSQ_MButton:AddButton(MiniMapTrackingButton, data, "Legacy", true)
-			self:MSQ_Button_Update(MiniMapTrackingButton)
-			self:MSQ_CoordUpdate(MiniMapTrackingButton)
-		end
-
-		tinsert(self.minimapButtons, MiniMapTracking)
-		tinsert(self.mixedButtons, MiniMapTracking)
-	end
-
-	-- MINIMAP LFG FRAME
-	local LFGFrame = MiniMapLFGFrame
-	if LFGFrame and self:ignoreCheck("MiniMapLFGFrame") and not self.btnParams[LFGFrame] then
-		LFGFrame.icon = MiniMapLFGFrameIconTexture
-		LFGFrame.icon:SetTexCoord(0, .125, 0, .25)
-		self:setHooks(LFGFrame)
-		self:setSecureHooks(LFGFrame)
-		self:setParams(LFGFrame)
-
-		local btnData = self:getMBtnSettings(LFGFrame)
-		if btnData[5] == nil then btnData[5] = true end
-
-		if checkMasqueConditions(LFGFrame, btnData) then
-			self:setMButtonRegions(LFGFrame)
-		end
-
-		tinsert(self.minimapButtons, LFGFrame)
-		tinsert(self.mixedButtons, LFGFrame)
-	end
-
-	-- BATTLEFIELD FRAME
-	local battlefield = MiniMapBattlefieldFrame
-	if battlefield and self:ignoreCheck("MiniMapBattlefieldFrame") and not self.btnParams[battlefield] then
-		battlefield.icon = MiniMapBattlefieldIcon
-		self:setHooks(battlefield)
-		self:setSecureHooks(battlefield)
-		self:setParams(battlefield)
-
-		local btnData = self:getMBtnSettings(battlefield)
-		if btnData[5] == nil then btnData[5] = true end
-
-		if checkMasqueConditions(battlefield, btnData) then
-			self:setMButtonRegions(battlefield)
-		end
-
-		tinsert(self.minimapButtons, battlefield)
-		tinsert(self.mixedButtons, battlefield)
-	end
-
-	-- MAIL
-	local mail = MiniMapMailFrame
-	if mail and self:ignoreCheck("MiniMapMailFrame") and not self.btnParams[mail] then
-		local btnData = rawget(self.pConfig.mbtnSettings, "HidingBarAddonMail")
-		if btnData then
-			self.pConfig.mbtnSettings["MiniMapMailFrame"] = btnData
-			self.pConfig.mbtnSettings["HidingBarAddonMail"] = nil
-		end
-
-		mail.icon = MiniMapMailIcon
-		self:setHooks(mail)
-		self:setSecureHooks(mail)
-		self:setParams(mail)
-
-		local btnData = self:getMBtnSettings(mail)
-		if btnData[5] == nil then btnData[5] = true end
-
-		if checkMasqueConditions(mail, btnData) then
-			self:setMButtonRegions(mail)
-		end
-
-		tinsert(self.minimapButtons, mail)
-		tinsert(self.mixedButtons, mail)
-	end
-
-	-- ZOOM IN & ZOOM OUT
-	for _, zoom in pairs({MinimapZoomIn, MinimapZoomOut}) do
-		local name = zoom:GetName()
-		if self:ignoreCheck(name) and not self.btnParams[zoom] then
-			self:setHooks(zoom)
-			self:setSecureHooks(zoom)
-			local normal = zoom:GetNormalTexture()
-
-			if checkMasqueConditions(zoom) then
-				zoom.icon = zoom:CreateTexture(nil, "BACKGROUND")
-				zoom.icon:SetTexture(normal:GetTexture())
-				zoom:SetScript("OnMouseDown", function(self) self.icon:SetScale(.9) end)
-				zoom:SetScript("OnMouseUp", function(self) self.icon:SetScale(1) end)
-				self:setMButtonRegions(zoom, {.24, .79, .21, .76})
-			end
-			if not zoom.icon then zoom.icon = normal end
-
-			zoom.click = zoom:GetScript("OnClick")
-			zoom.Disable = function(zoom)
-				zoom:SetScript("OnClick", nil)
-				zoom.icon:SetDesaturated(true)
-				zoom:GetNormalTexture():SetDesaturated(true)
-				zoom:GetPushedTexture():SetDesaturated(true)
-			end
-			zoom.Enable = function(zoom)
-				zoom:SetScript("OnClick", zoom.click)
-				zoom.icon:SetDesaturated(false)
-				zoom:GetNormalTexture():SetDesaturated(false)
-				zoom:GetPushedTexture():SetDesaturated(false)
-			end
-			if not zoom:IsEnabled() then
-				getmetatable(zoom).__index.Enable(zoom)
-				zoom:Disable()
-			end
-
-			local p = self:setParams(zoom, function(p, zoom)
-				zoom.Enable = nil
-				zoom.Disable = nil
-				if not zoom:GetScript("OnClick") then
-					zoom.icon:SetDesaturated(false)
-					zoom:GetNormalTexture():SetDesaturated(false)
-					zoom:GetPushedTexture():SetDesaturated(false)
-					zoom:Disable()
-				end
-				zoom:SetScript("OnClick", zoom.click)
-			end)
-			p.tooltipFrame = GameTooltip
-
-			tinsert(self.minimapButtons, zoom)
-			tinsert(self.mixedButtons, zoom)
-		end
-	end
-
-	-- WORLD MAP BUTTON
-	local mapButton = MiniMapWorldMapButton
-	if mapButton and self:ignoreCheck("MiniMapWorldMapButton") and not self.btnParams[mapButton] then
-		self:setHooks(mapButton)
-		self:setSecureHooks(mapButton)
-		local p = self:setParams(mapButton, function(p, mapButton)
-			if mapButton.__MSQ_Addon then return end
-			mapButton.normal:ClearAllPoints()
-			mapButton.normal:SetPoint(unpack(p.iconPoint))
-			mapButton.puched:ClearAllPoints()
-			mapButton.puched:SetPoint(unpack(p.pushedPoint))
-			mapButton.border:ClearAllPoints()
-			mapButton.border:SetPoint(unpack(p.borderPoint))
-		end)
-
-		mapButton.normal = mapButton:GetNormalTexture()
-		p.iconPoint = {mapButton.normal:GetPoint()}
-		mapButton.normal:ClearAllPoints()
-		mapButton.normal:SetPoint("CENTER")
-		mapButton.puched = mapButton:GetPushedTexture()
-		p.pushedPoint = {mapButton.puched:GetPoint()}
-		mapButton.puched:ClearAllPoints()
-		mapButton.puched:SetPoint("CENTER", 1, -1)
-		mapButton.border = MiniMapWorldBorder
-		p.borderPoint = {mapButton.border:GetPoint()}
-		mapButton.border:ClearAllPoints()
-		mapButton.border:SetPoint("TOPLEFT", 1, -1)
-
-		if checkMasqueConditions(mapButton) then
-			self:setMButtonRegions(mapButton)
-		end
-
-		tinsert(self.minimapButtons, mapButton)
-		tinsert(self.mixedButtons, mapButton)
 	end
 end
 
@@ -1331,7 +1069,7 @@ end
 
 
 function hb:addCustomGrabButton(name)
-	local button = _G[name] or self:getFrameFromPath(name)
+	local button = self:getFrameFromPath(name)
 
 	if type(button) ~= "table" or type(button[0]) ~= "userdata" or self.btnParams[button] or self.IsProtected(button) then return end
 	local oType = self.GetObjectType(button)
@@ -1374,7 +1112,7 @@ end
 
 function hb:addMButton(button, force, MSQ_Group)
 	local name = self.GetName(button)
-	if not ignoreFrameNameList[name] and not ignoreFrameList[button] and self:ignoreCheck(name) or force then
+	if not ignoreFrameList[button] and self:ignoreCheck(name) or force then
 		if self.HasScript(button, "OnClick") and self.GetScript(button, "OnClick")
 		or self.HasScript(button, "OnMouseUp") and self.GetScript(button, "OnMouseUp")
 		or self.HasScript(button, "OnMouseDown") and self.GetScript(button, "OnMouseDown")
@@ -1776,6 +1514,7 @@ end
 -- HIDINGBAR MIXIN
 -------------------------------------------
 local hidingBarMixin = CreateFromMixins(BackdropTemplateMixin)
+ns.hidingBarMixin = hidingBarMixin
 
 
 do
@@ -2763,11 +2502,11 @@ end
 
 function hidingBarMixin:enter(force)
 	if not self.isDrag then
+		self:Raise()
 		if self.config.showHandler ~= 3 or force then
 			frameFadeStop(self.drag, 1)
 			self:SetScript("OnUpdate", nil)
 			self:Show()
-			self:Raise()
 			self:updateDragBarPosition()
 		else
 			frameFadeStop(self, 1)
@@ -2863,6 +2602,19 @@ end
 
 
 function hidingBarMixin:refreshShown()
+	if hb.petBattle then
+		local petBattleHide
+		if self.config.barTypePosition == 2 and self.omb and self.omb.isGrabbed then
+			petBattleHide = self.omb:GetParent().config.petBattleHide
+		else
+			petBattleHide = self.config.petBattleHide
+		end
+		if petBattleHide then
+			self:Hide()
+			self.drag:Hide()
+			return
+		end
+	end
 	if self.config.barTypePosition == 2 then
 		self.drag:Hide()
 		if self.config.showHandler == 3 then
@@ -3104,6 +2856,7 @@ end
 setmetatable(hb.bars, {__index = function(self, key)
 	local bar = CreateFrame("FRAME", nil, UIParent, "HidingBarAddonPanel")
 	bar:SetClampedToScreen(true)
+	bar:SetToplevel(true)
 	bar:SetScript("OnEnter", bar_OnEnter)
 	bar:SetScript("OnLeave", bar_OnLeave)
 	bar:SetScript("OnEvent", bar_OnEvent)

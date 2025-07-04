@@ -19,6 +19,7 @@ local table,string,tonumber,ipairs,pairs,setmetatable,tinsert = table,string,ton
 local IsUsableSpell=IsUsableSpell or C_Spell.IsSpellUsable
 
 local mod="%05d%05d"
+local FREQ_DAILY = Enum.QuestFrequency and Enum.QuestFrequency.Daily or LE_QUEST_FREQUENCY_DAILY
 
 --[[
 local function split (s,t)
@@ -55,7 +56,7 @@ local classspecs=
 	["EVOKER"]		= { "Devastation", "Preservation", "Augmentation", nil, "Starter" },
 	["ADVENTURER"]		= { nil, nil, nil, nil, "Starter" },
 }
-if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA then
+if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
 	classspecs["HUNTER"]		= { "BeastMastery","Marksmanship","Survival" }
 	classspecs["ROGUE"]		= { "Assassination","Combat","Subtlety" }
 	classspecs["DRUID"]		= { "Balance","Feral","Restoration" }
@@ -695,7 +696,7 @@ local ConditionEnv = {
 	end,
 	hasmount = function(mountident)
 		if not mountident then return end
-		if ZGV.IsRetail or ZGV.IsClassicCATA then
+		if ZGV.IsRetail or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
 			local mountID = C_MountJournal.GetMountFromSpell(mountident)
 			if mountID then
 				local name, spell, _, _, _, _, _, _, _, _, isCollected = C_MountJournal.GetMountInfoByID(mountID)
@@ -954,6 +955,15 @@ local ConditionEnv = {
 	isdead = function()
 		return UnitIsDeadOrGhost("player")
 	end,
+	
+	Male = function()
+		return UnitSex("player")==2
+	end,
+
+	Female = function()
+		return UnitSex("player")==3
+	end,	
+	
 	incombat = function()
 		return InCombatLockdown()
 	end,
@@ -1032,6 +1042,7 @@ local ConditionEnv = {
 	end,
 
 	storyactive = function(questID,mapID)
+		if not C_QuestLine then return false end
 		for i,storyline in ipairs(C_QuestLine.GetAvailableQuestLines(mapID)) do
 			if storyline.questID==questID and not storyline.isHidden then return true end
 		end
@@ -1069,12 +1080,14 @@ local ConditionEnv = {
 				if quests[quest.questID] and not quest.isHidden then return true,quest.questID,"map  "..mapID end
 			end
 
-			C_QuestLine.RequestQuestLinesForMap(mapID) -- refresh data
+			if C_QuestLine then
+				C_QuestLine.RequestQuestLinesForMap(mapID) -- refresh data
 
-			local storylines = C_QuestLine.GetAvailableQuestLines(mapID)
-			if not storylines then return true end -- not loaded, wait for proper
-			for i,storyline in ipairs(storylines) do
-				if quests[storyline.questID] and not storyline.isHidden then return true,storyline.questID,"map  "..mapID end
+				local storylines = C_QuestLine.GetAvailableQuestLines(mapID)
+				if not storylines then return true end -- not loaded, wait for proper
+				for i,storyline in ipairs(storylines) do
+					if quests[storyline.questID] and not storyline.isHidden then return true,storyline.questID,"map  "..mapID end
+				end
 			end
 		end
 
@@ -1329,6 +1342,21 @@ local ConditionEnv = {
 	guideflag = function(flag)
 		return ZGV.db.char.guideflags[flag]==true
 	end,
+
+	nodailies = function(npcid) 
+		if ZGV.GetTargetId()==tonumber(npcid) and GossipFrame:IsShown() then
+			for qnum,questInfo in ipairs(C_GossipInfo.GetAvailableQuests()) do
+				if questInfo.frequency==FREQ_DAILY then return false end
+			end
+			for qnum,questInfo in ipairs(C_GossipInfo.GetActiveQuests()) do
+				if questInfo.frequency==FREQ_DAILY then return false end
+			end
+			C_GossipInfo.CloseGossip()
+			return true
+		end
+		return false
+	end,
+
 }
 setmetatable(ConditionEnv,{__index=function(t,k) local lower=rawget(t,k:lower())  if lower~=nil then return lower end  return _G[k]  end})
 
@@ -2754,8 +2782,10 @@ function Parser:ParseHeader(guide)
 			local _,nextguide = ZGV.StepProto:GetJumpDestination(params)
 			guide[cmd] = tostring(nextguide)
 		elseif cmd=="getquestonmap" then
-			for _,mapID in ipairs(params) do
-				C_QuestLine.RequestQuestLinesForMap(mapID)
+			if C_QuestLine then
+				for _,mapID in ipairs(params) do
+					C_QuestLine.RequestQuestLinesForMap(mapID)
+				end
 			end
 		else
 			guide[cmd]=params

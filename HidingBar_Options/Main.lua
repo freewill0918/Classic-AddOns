@@ -4,8 +4,29 @@ main.noIcon:SetTexture("Interface/Icons/INV_Misc_QuestionMark")
 main.noIcon:SetTexCoord(.05, .95, .05, .95)
 main.noIcon:Hide()
 main.buttons, main.mbuttons, main.mixedButtons = {}, {}, {}
+main.defIcon = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and 651945 or 450906
 local media = LibStub("LibSharedMedia-3.0")
 local lsfdd = LibStub("LibSFDropDown-1.5")
+
+
+local ddCreateStretchButton, ddCreateButton, ddCreateMediaBackgroundButton, ddCreateMediaBorderButton, ddCreateMediaStatusbarButton
+if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	ddCreateStretchButton = function(...) return lsfdd:CreateStretchButton(...) end
+	ddCreateButton = function(...) return lsfdd:CreateModernButton(...) end
+	ddCreateMediaBackgroundButton = function(...) return lsfdd:CreateMediaBackgroundModernButton(...) end
+	ddCreateMediaBorderButton = function(...) return lsfdd:CreateMediaBorderModernButton(...) end
+	ddCreateMediaStatusbarButton = function(...) return lsfdd:CreateMediaStatusbarModernButton(...) end
+else
+	ddCreateStretchButton = function(...)
+		local btn = lsfdd:CreateStretchButton(...)
+		btn:ddSetDisplayMode("menuBackdrop")
+		return btn
+	end
+	ddCreateButton = function(...) return lsfdd:CreateButton(...) end
+	ddCreateMediaBackgroundButton = function(...) return lsfdd:CreateMediaBackgroundButton(...) end
+	ddCreateMediaBorderButton = function(...) return lsfdd:CreateMediaBorderButton(...) end
+	ddCreateMediaStatusbarButton = function(...) return lsfdd:CreateMediaStatusbarButton(...) end
+end
 
 
 local lang, margin = GetLocale()
@@ -152,7 +173,7 @@ StaticPopupDialogs[main.addonName.."NEW_PROFILE"] = {
 	editBoxWidth = 350,
 	hideOnEscape = 1,
 	whileDead = 1,
-	OnAccept = function(self, cb) self:Hide() cb(self) end,
+	OnAccept = function(self, cb) cb(self) end,
 	EditBoxOnEnterPressed = function(self)
 		StaticPopup_OnClick(self:GetParent(), 1)
 	end,
@@ -179,7 +200,7 @@ StaticPopupDialogs[main.addonName.."PROFILE_EXISTS"] = {
 	OnAccept = profileExistsAccept,
 	OnCancel = profileExistsAccept,
 }
-StaticPopupDialogs[main.addonName.."EDIT"] = {
+StaticPopupDialogs[main.addonName.."EDIT_PROFILE"] = {
 	text = addon..": "..EDIT,
 	button1 = ACCEPT,
 	button2 = CANCEL,
@@ -188,7 +209,7 @@ StaticPopupDialogs[main.addonName.."EDIT"] = {
 	editBoxWidth = 350,
 	hideOnEscape = 1,
 	whileDead = 1,
-	OnAccept = function(self, cb) self:Hide() cb(self) end,
+	OnAccept = function(self, cb) cb(self) end,
 	EditBoxOnEnterPressed = function(self)
 		StaticPopup_OnClick(self:GetParent(), 1)
 	end,
@@ -213,7 +234,7 @@ StaticPopupDialogs[main.addonName.."NEW_BAR"] = {
 	editBoxWidth = 350,
 	hideOnEscape = 1,
 	whileDead = 1,
-	OnAccept = function(self, cb) self:Hide() cb(self) end,
+	OnAccept = function(self, cb) cb(self) end,
 	EditBoxOnEnterPressed = function(self)
 		StaticPopup_OnClick(self:GetParent(), 1)
 	end,
@@ -303,7 +324,7 @@ title:SetJustifyH("LEFT")
 title:SetText(L["%s Configuration"]:format(addon))
 
 -- PROFILES COMBOBOX
-local profilesCombobox = lsfdd:CreateStretchButton(main, 150, 22)
+local profilesCombobox = ddCreateStretchButton(main, 150, 22)
 profilesCombobox:SetPoint("TOPRIGHT", -16, -12)
 
 profilesCombobox:ddSetInitFunc(function(self, level)
@@ -464,7 +485,7 @@ barPanelScroll.child:SetSize(1, 1)
 barPanelScroll:SetScrollChild(barPanelScroll.child)
 
 -- BAR COMBOBOX
-local barCombobox = lsfdd:CreateButton(barPanelScroll.child, 120)
+local barCombobox = ddCreateButton(barPanelScroll.child, 120)
 barCombobox:SetPoint("TOPLEFT", 3, -6)
 
 barCombobox:ddSetInitFunc(function(self)
@@ -788,19 +809,13 @@ local function getNoErr(func, ...)
 	return status and val
 end
 
-local GetMouseFocus = GetMouseFocus
-if not GetMouseFocus then
-	local GetMouseFoci = GetMouseFoci
-	GetMouseFocus = function() return GetMouseFoci()[1] end
-end
-
 main.customGrabPointBtn = CreateFrame("BUTTON", nil, addBtnOptionsScroll.child, "UIPanelButtonTemplate")
 main.customGrabPointBtn:SetSize(140, 22)
 main.customGrabPointBtn:SetPoint("LEFT", main.customGrabBtn, "RIGHT")
 main.customGrabPointBtn:SetText(L["Point to button"])
 main.customGrabPointBtn:SetScript("OnUpdate", function(btn)
 	if not btn.isPoint then return end
-	local focus = GetMouseFocus()
+	local focus = GetMouseFoci()[1]
 	if focus then
 		local name = getNoErr(btn.GetName, focus)
 		if name and not getNoErr(btn.IsProtected, focus) and (
@@ -891,7 +906,7 @@ expandToText:SetWidth(114)
 expandToText:SetText(L["Expand to"])
 
 -- EXPAND TO COMBOBOX
-local expandToCombobox = lsfdd:CreateButton(main.barSettingsPanel, 120)
+local expandToCombobox = ddCreateButton(main.barSettingsPanel, 120)
 expandToCombobox:SetPoint("TOPRIGHT", expandToText, "BOTTOMRIGHT", 2, -5)
 expandToCombobox.texts = {[0] = L["Right / Bottom"], L["Left / Top"], L["Both direction"]}
 
@@ -917,7 +932,7 @@ orientationText:SetPoint("TOPLEFT", 8, -20)
 orientationText:SetText(L["Orientation"])
 
 -- ORIENTATION COMBOBOX
-local orientationCombobox = lsfdd:CreateButton(main.barSettingsPanel, 120)
+local orientationCombobox = ddCreateButton(main.barSettingsPanel, 120)
 orientationCombobox:SetPoint("LEFT", orientationText, "RIGHT", 3, 0)
 orientationCombobox.texts = {[0] = L["Auto"], L["Horizontal"], L["Vertical"]}
 
@@ -944,7 +959,7 @@ fsText:SetPoint("LEFT", orientationCombobox, "RIGHT", 10, 0)
 fsText:SetText(L["Strata of panel"])
 
 -- FRAME STRATA COMBOBOX
-local fsCombobox = lsfdd:CreateButton(main.barSettingsPanel, 120)
+local fsCombobox = ddCreateButton(main.barSettingsPanel, 120)
 fsCombobox:SetPoint("LEFT", fsText, "RIGHT", 3, 0)
 fsCombobox.texts = {[0] = "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG", "TOOLTIP"}
 
@@ -984,7 +999,7 @@ hideHandlerText:SetPoint("TOPLEFT", lock, "BOTTOMLEFT", 0, -10)
 hideHandlerText:SetText(L["Hide by"])
 
 -- HIDE HANDLER
-local hideHandlerCombobox = lsfdd:CreateButton(main.barSettingsPanel, 120)
+local hideHandlerCombobox = ddCreateButton(main.barSettingsPanel, 120)
 hideHandlerCombobox:SetPoint("LEFT", hideHandlerText, "RIGHT", 3, 0)
 hideHandlerCombobox.texts = {[0] = L["Timer"], L["Clicking on a free place"], L["Timer or clicking on a free place"], L["Clicking on a line or button"]}
 
@@ -1021,7 +1036,7 @@ showHandlerText:SetPoint("TOPLEFT", hideHandlerText, "BOTTOMLEFT", 0, -margin)
 showHandlerText:SetText(L["Show on"])
 
 -- SHOW HANDLER
-local showHandlerCombobox = lsfdd:CreateButton(main.barSettingsPanel, 120)
+local showHandlerCombobox = ddCreateButton(main.barSettingsPanel, 120)
 showHandlerCombobox:SetPoint("LEFT", showHandlerText, "RIGHT", 3, 0)
 showHandlerCombobox.texts = {[0] = L["Hover"], L["Click"], L["Hover or Click"], L["Allways"]}
 
@@ -1076,6 +1091,19 @@ main.fadeOpacity:setOnChanged(function(frame, value)
 	main.barFrame:setFadeOpacity(value)
 end)
 
+-- PET BATTLE HIDE
+if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
+	main.petBattleHide = CreateFrame("CheckButton", nil, main.barSettingsPanel, "HidingBarAddonCheckButtonTemplate")
+	main.petBattleHide:SetPoint("TOPLEFT", main.fade, "BOTTOMLEFT", 0, -5)
+	main.petBattleHide.Text:SetText(L["Hide the bar in Pet Battle"])
+	main.petBattleHide:SetScript("OnClick", function(btn)
+		local checked = btn:GetChecked()
+		PlaySound(checked and SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON or SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF)
+		main.bConfig.petBattleHide = checked
+		main.barFrame:refreshShown()
+	end)
+end
+
 -- ALIGN
 alignText(orientationText, hideHandlerText, showHandlerText)
 
@@ -1096,7 +1124,7 @@ bgText:SetPoint("TOPLEFT", 8, -20)
 bgText:SetText(L["Background"])
 
 -- BACKGROUND COMBOBOX
-local bgCombobox = lsfdd:CreateMediaBackgroundButton(main.displayPanel, 120)
+local bgCombobox = ddCreateMediaBackgroundButton(main.displayPanel, 120)
 bgCombobox:SetPoint("LEFT", bgText, "RIGHT", 3, 0)
 bgCombobox:ddSetOnSelectedFunc(function(value)
 	if value == "None" then value = false end
@@ -1124,7 +1152,7 @@ borderText:SetPoint("TOPLEFT", bgText, "BOTTOMLEFT", 0, -margin)
 borderText:SetText(L["Border"])
 
 -- BORDER COMBOBOX
-local borderCombobox = lsfdd:CreateMediaBorderButton(main.displayPanel, 120)
+local borderCombobox = ddCreateMediaBorderButton(main.displayPanel, 120)
 borderCombobox:SetPoint("LEFT", borderText, "RIGHT", 3, 0)
 borderCombobox:ddSetOnSelectedFunc(function(value)
 	if value == "None" then value = false end
@@ -1174,7 +1202,7 @@ lineText:SetPoint("TOPLEFT", borderSize, "BOTTOMLEFT", 0, -margin)
 lineText:SetText(L["Line"])
 
 -- LINE TEXTURE COMBOBOX
-local lineTextureCombobox = lsfdd:CreateMediaStatusbarButton(main.displayPanel, 120)
+local lineTextureCombobox = ddCreateMediaStatusbarButton(main.displayPanel, 120)
 lineTextureCombobox:SetPoint("LEFT", lineText, "RIGHT", 3, 0)
 lineTextureCombobox:ddSetOnSelectedFunc(function(value)
 	main.barFrame:setLineTexture(value)
@@ -1223,7 +1251,7 @@ lineBorderText:SetPoint("TOPLEFT", lineText, "BOTTOMLEFT", 0, -margin)
 lineBorderText:SetText(L["Line Border"])
 
 -- BORDER COMBOBOX
-local lineBorderCombobox = lsfdd:CreateMediaBorderButton(main.displayPanel, 120)
+local lineBorderCombobox = ddCreateMediaBorderButton(main.displayPanel, 120)
 lineBorderCombobox:SetPoint("LEFT", lineBorderText, "RIGHT", 3, 0)
 lineBorderCombobox:ddSetOnSelectedFunc(function(value)
 	if value == "None" then value = false end
@@ -1351,7 +1379,7 @@ mbtnPostionText:SetPoint("TOPLEFT", rangeBetweenBtns, "BOTTOMLEFT", 0, -margin)
 mbtnPostionText:SetText(L["Position of minimap buttons"])
 
 -- POSITION OF MINIMAP BUTTON
-local mbtnPostionCombobox = lsfdd:CreateButton(main.buttonSettingsPanel, 120)
+local mbtnPostionCombobox = ddCreateButton(main.buttonSettingsPanel, 120)
 mbtnPostionCombobox:SetPoint("LEFT", mbtnPostionText, "RIGHT", 3, 0)
 mbtnPostionCombobox.texts = {[0] = L["A new line"], L["Followed"], L["Mixed"]}
 
@@ -1373,7 +1401,7 @@ mbtnPostionCombobox:ddSetInitFunc(function(self)
 end)
 
 -- DIRECTION OF BUTTONS
-local buttonDirection = lsfdd:CreateStretchButton(main.buttonSettingsPanel, 150, 22)
+local buttonDirection = ddCreateStretchButton(main.buttonSettingsPanel, 150, 22)
 buttonDirection:SetPoint("LEFT", mbtnPostionCombobox, "RIGHT", 10, 1)
 buttonDirection:SetText(L["Direction of buttons"])
 
@@ -1441,7 +1469,7 @@ interceptTooltip:SetScript("OnClick", function(btn)
 end)
 
 -- TOOLTIP POSITION
-main.tooltipPositionCombobox = lsfdd:CreateButton(main.buttonSettingsPanel, 120)
+main.tooltipPositionCombobox = ddCreateButton(main.buttonSettingsPanel, 120)
 main.tooltipPositionCombobox:SetPoint("LEFT", interceptTooltip.Text, "RIGHT", 3, 0)
 main.tooltipPositionCombobox.texts = {
 	[0] = L["Auto"],
@@ -1550,7 +1578,7 @@ main.freeMove:SetScript("OnClick", function()
 end)
 
 -- HIDE TO
-main.hideToCombobox = lsfdd:CreateButton(main.positionBarPanel, 120)
+main.hideToCombobox = ddCreateButton(main.positionBarPanel, 120)
 main.hideToCombobox:SetPoint("TOPLEFT", main.freeMove, "BOTTOMLEFT", 23, -3)
 main.hideToCombobox.texts = {
 	left = L["Hiding to left"],
@@ -1641,7 +1669,7 @@ main.ombIcon.icon:SetTexture(hb.ombDefIcon)
 main.ombIcon:SetScript("OnClick", function(btn)
 	main.iconData:init(btn, function()
 		local icon = btn.icon:GetTexture()
-		if icon == 450906 then icon = nil end
+		if icon == main.defIcon then icon = nil end
 		main.bConfig.omb.icon = icon
 		main.ombIconCustom:SetText(icon or "")
 		main.barFrame:setBarTypePosition()
@@ -1690,7 +1718,7 @@ main.ombIconCustom:SetScript("OnEnable", function(editBox)
 end)
 
 -- MINIMAP BUTTON SHOW TO
-main.ombShowToCombobox = lsfdd:CreateButton(main.positionBarPanel, 120)
+main.ombShowToCombobox = ddCreateButton(main.positionBarPanel, 120)
 main.ombShowToCombobox:SetPoint("TOPLEFT", main.ombIcon, "BOTTOMLEFT", -1, -10)
 main.ombShowToCombobox.texts = {
 	right = L["Show to left"],
@@ -1962,6 +1990,7 @@ end
 function main:createProfile(copy)
 	local dialog = StaticPopup_Show(self.addonName.."NEW_PROFILE", nil, nil, function(popup)
 		local text = popup.editBox:GetText()
+		popup:Hide()
 		if text and text ~= "" then
 			for _, profile in ipairs(hb.profiles) do
 				if profile.name == text then
@@ -1990,8 +2019,9 @@ end
 
 
 function main:editProfile(profileName)
-	local dialog = StaticPopup_Show(self.addonName.."EDIT", nil, nil, function(popup)
+	local dialog = StaticPopup_Show(self.addonName.."EDIT_PROFILE", nil, nil, function(popup)
 		local text = popup.editBox:GetText()
+		popup:Hide()
 		if text and text ~= profileName and text ~= "" then
 			local editProfile
 			for _, profile in ipairs(hb.profiles) do
@@ -2113,6 +2143,7 @@ end
 function main:createBar()
 	local dialog = StaticPopup_Show(self.addonName.."NEW_BAR", nil, nil, function(popup)
 		local text = popup.editBox:GetText()
+		popup:Hide()
 		if text and text ~= "" then
 			for _, bar in ipairs(self.pBars) do
 				if bar.name == text then
@@ -2142,7 +2173,7 @@ end
 
 
 function main:editBar(barName)
-	local dialog = StaticPopup_Show(self.addonName.."EDIT", nil, nil, function(popup)
+	local dialog = StaticPopup_Show(self.addonName.."EDIT_PROFILE", nil, nil, function(popup)
 		local text = popup.editBox:GetText()
 		if text and text ~= barName and text ~= "" then
 			local editBar
@@ -2252,6 +2283,7 @@ function main:setBar(bar)
 		self.fade:SetChecked(self.bConfig.fade)
 		self.fadeOpacity:setValue(self.bConfig.fadeOpacity)
 		self.fadeOpacity:setEnabled(not not self.bConfig.fade)
+		if self.petBattleHide then self.petBattleHide:SetChecked(self.bConfig.petBattleHide) end
 
 		bgCombobox:ddSetSelectedValue(self.bConfig.bgTexture or "None")
 		bgColor.color:SetColorTexture(unpack(self.bConfig.bgColor))

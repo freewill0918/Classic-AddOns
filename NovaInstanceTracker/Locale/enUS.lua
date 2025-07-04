@@ -251,7 +251,7 @@ L["ago"] = "ago";
 L["stillInDungeon"] = "Still inside dungeon";
 L["leftOnLockout"] = "left on lockout";
 L["leftOnDailyLockout"] = "left on daily lockout";
-L["noLockout"] = "No lockout for this raid";
+L["noLockout"] = "No lockout";
 L["unknown"] = "Unknown";
 L["instance"] = "Instance";
 L["timeEntered"] = "Time Entered";
@@ -623,3 +623,6 @@ L["lootReminderMysRelicPartyDesc"] = "Do a party chat message when someone loots
 L["Remnants of Valor"] = "Remnants of Valor";
 
 L["autoTwilightBuffReminder"] = "Get Twilight Dungeon buff from %s.";
+
+L["douseDisclaimer"] = "Note: This douses module uses best guess based on\nlast boss killed and other factors, could be inaccurate.";
+L["Not Doused"] = "Not Doused";

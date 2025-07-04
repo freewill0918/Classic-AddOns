@@ -347,9 +347,16 @@ local function CreateAnchorInput(frame, k)
     return box
 end
 
-local saframe = CreateFrame("Frame", nil, UIParent, "ThinBorderTemplate")
+local saframe = CreateFrame("Frame", nil, UIParent, BackdropTemplateMixin and "BackdropTemplate" or nil)
 saframe:Hide()
 saframe:SetFrameStrata("DIALOG")
+saframe:SetBackdrop({
+    bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+    tile = true, tileSize = 8, edgeSize = 16,
+    insets = {left = 4, right = 4, top = 4, bottom = 4}
+})
+saframe:SetBackdropColor(0.2,0.2,0.2,0.85)
 saframe.close = CreateFrame("Button", nil, saframe, "UIPanelCloseButton")
 saframe.close:SetPoint("CENTER")
 saframe:SetClampedToScreen(true)
@@ -368,7 +375,7 @@ CreateAnchorButton(saframe, "BOTTOM")
 saframe:SetScript("OnShow", function() grid:Show() end)
 saframe:SetScript("OnHide", function() grid:Hide() end)
 
-local caframe = CreateFrame("Frame", nil, UIParent, BackdropTemplateMixin and "ThinBorderTemplate,BackdropTemplate" or "ThinBorderTemplate")
+local caframe = CreateFrame("Frame", nil, UIParent, BackdropTemplateMixin and "BackdropTemplate" or nil)
 caframe:Hide()
 caframe:SetFrameStrata("DIALOG")
 caframe:SetBackdrop({

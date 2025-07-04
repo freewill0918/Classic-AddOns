@@ -1,5 +1,6 @@
 local SharedMedia = LibStub("LibSharedMedia-3.0")
 FojjiCore = {}
+FojjiCore_Version = "1.5.7"
 
 -- T13 Font
 function FojjiCore:GetDSFont()

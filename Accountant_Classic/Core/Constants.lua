@@ -139,7 +139,8 @@ if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC or WoWCATAC) then
 	end
 else
 	constants.events = {
-		-- Garrison
+		-- Garrison -- 暫時修正
+		--[[
 		"GARRISON_MISSION_FINISHED",
 		"GARRISON_ARCHITECT_OPENED",
 		"GARRISON_ARCHITECT_CLOSED",
@@ -148,6 +149,7 @@ else
 		"GARRISON_SHIPYARD_NPC_OPENED",
 		"GARRISON_SHIPYARD_NPC_CLOSED",
 		"GARRISON_UPDATE",
+		--]]
 		-- Barber shop
 		"BARBER_SHOP_APPEARANCE_APPLIED",
 		"BARBER_SHOP_OPEN",

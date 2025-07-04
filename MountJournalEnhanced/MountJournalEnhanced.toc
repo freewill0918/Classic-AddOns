@@ -1,9 +1,9 @@
-## Interface: 110105
+## Interface: 110105,110107
 ## Title: Mount Journal Enhanced
 ## Notes: Extends the default Mount Journal
 ## IconTexture: Interface\Addons\MountJournalEnhanced\UI\icons\mje.png
 ## Author: eXochron
-## Version: 2.48.1
+## Version: 2.49.0
 ## SavedVariablesPerCharacter: MJEPersonalSettings
 ## SavedVariables: MJEGlobalSettings, MJETrackingData
 ## X-Curse-Project-ID: 86372

@@ -1,8 +1,10 @@
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 1-12 Azuremyst Isle
 #version 7
@@ -783,8 +785,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 60-70 Dungeon Cleave
 << Alliance
 #name 060-70 Alliance Dungeon Cleave
@@ -2272,8 +2276,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 11-20 Bloodmyst (Draenei)
 #version 7
@@ -3247,8 +3253,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 20-21 Darkshore (Draenei)
 #version 7
@@ -3419,8 +3427,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 21-23 Ashenvale (Draenei)
 #version 7
@@ -3593,8 +3603,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 1-6 Shadowglen
 #version 7
@@ -3812,8 +3824,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 6-11 Teldrassil
 #version 7
@@ -4348,8 +4362,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 1-11 Elwynn Forest
 #version 7
@@ -5491,8 +5507,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 11-12 Loch Modan << !Warlock
 #name 12-14 Loch Modan << Warlock
@@ -5796,8 +5814,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance Warlock
 #name 14-14 Darkshore
 #version 7
@@ -5881,8 +5901,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance !Warlock !Hunter
 #name 1-11 Dun Morogh
 #version 7
@@ -7220,8 +7242,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance Warlock
 #name 1-12 Dun Morogh
 #version 7
@@ -8238,8 +8262,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance Warlock
 #name 12-14 Loch Modan Gnome
 #version 7
@@ -8575,8 +8601,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance Hunter
 #name 1-11 Dun Morogh
 #version 7
@@ -9114,8 +9142,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance !Warlock
 #name 11-14 Darkshore
 #version 7
@@ -9369,8 +9399,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 14-20 Bloodmyst
 #version 7
@@ -10040,8 +10072,10 @@ step << Druid
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance !Warlock
 #name 20-21 Darkshore
 #version 7
@@ -10313,8 +10347,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance Warlock
 #name 20-23 Darkshore/Ashenvale
 #version 7
@@ -10585,8 +10621,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance !Warlock
 #name 21-23 Ashenvale
 #version 7
@@ -10758,8 +10796,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 23-24 Wetlands
 #version 7
@@ -10957,8 +10997,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 24-27 Redridge/Duskwood
 #version 7
@@ -11630,8 +11672,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 27-30 Wetlands/Hillsbrad
 #version 7
@@ -11995,8 +12039,10 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
+#cata
+#mop
 #version 7
-#group TBC Guide
+#group RXP The Burning Crusade
 << Alliance
 #name 30-32 Duskwood/STV
 #version 7
@@ -12732,8 +12778,10 @@ step << Shaman
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 << Alliance
 #name 32-33 Shimmering Flats
@@ -12939,8 +12987,10 @@ step << Warrior
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 << Alliance
 #name 33-35 Hillsbrad/Arathi/Alterac
@@ -13292,8 +13342,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 << Alliance
 #name 35-37 STV
@@ -13883,8 +13935,10 @@ step << !Mage
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 << Alliance
 #name 37-39 Dustwallow
@@ -14552,8 +14606,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 << Alliance
 #name 39-41 Arathi/Alterac
@@ -15023,8 +15079,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 << Alliance
 #name 39-42 Arathi Highlands
@@ -15222,8 +15280,10 @@ step << Gnome !Warlock
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 << Alliance
 #name 41-43 Badlands
@@ -15748,8 +15808,10 @@ step << Human !Warlock !Paladin
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 << Alliance
 #xprate <1.5
@@ -15946,8 +16008,10 @@ step << !Mage
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 << Alliance
 #xprate >1.3
@@ -16201,8 +16265,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 << Alliance
 #xprate <1.5
@@ -16380,8 +16446,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 << Alliance
 #name 44-46 Tanaris part 1
@@ -16530,8 +16598,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 << Alliance
 #xprate <1.5
@@ -16720,8 +16790,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 32-47
 #xprate <1.5
 << Alliance
@@ -17032,8 +17104,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 47-60
 << Alliance
 #name 47-49 Tanaris
@@ -17478,8 +17552,10 @@ step << !Mage
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 47-60
 << Alliance
 #name 49-50 The Hinterlands
@@ -17673,8 +17749,10 @@ step << skip
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 47-60
 << Alliance
 #name 49-51 Searing Gorge
@@ -18035,9 +18113,11 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
 #xprate <1.5
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 47-60
 << Alliance
 #name 51-52 Burning Steppes
@@ -18195,9 +18275,11 @@ step << Warlock
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
 #xprate <1.5
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 47-60
 << Alliance
 #name 52-53 Felwood
@@ -18441,8 +18523,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 47-60
 << Alliance
 #name 53-55 Un'Goro Crater
@@ -18888,8 +18972,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 47-60
 << Alliance
 #xprate <1.5
@@ -19338,8 +19424,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 47-60
 << Alliance
 #name 56-59 Plaguelands
@@ -20038,8 +20126,10 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 47-60
 << Alliance
 #name 59-60 Silithus (Optional)
@@ -20288,8 +20378,10 @@ RXPGuides.RegisterGuide([[
 #version 7
 #cata
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 60-70
 << Alliance
 #name 59-61 Hellfire Peninsula
@@ -21669,8 +21761,10 @@ RXPGuides.RegisterGuide([[
 #version 7
 #cata
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 60-70
 << Alliance
 #name 61-63 Zangarmarsh
@@ -23181,8 +23275,10 @@ RXPGuides.RegisterGuide([[
 #version 7
 #cata
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 60-70
 << Alliance
 #name 63-64 Terokkar Forest
@@ -24691,8 +24787,10 @@ RXPGuides.RegisterGuide([[
 #version 7
 #cata
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 60-70
 << Alliance
 #name 64-65 Nagrand
@@ -25399,8 +25497,10 @@ RXPGuides.RegisterGuide([[
 #version 7
 #cata
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 60-70
 << Alliance
 #name 65-67 Blade's Edge Mts
@@ -26073,8 +26173,10 @@ RXPGuides.RegisterGuide([[
 #version 7
 #cata
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 60-70
 << Alliance
 #name 67-69 Netherstorm
@@ -29148,8 +29250,10 @@ RXPGuides.RegisterGuide([[
 #version 7
 #cata
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 60-70
 << Alliance
 #name 69-70 Shadowmoon Valley (Aldor)
@@ -29758,8 +29862,10 @@ RXPGuides.RegisterGuide([[
 #version 7
 #cata
 #wotlk
+#cata
+#mop
 #tbc
-#group TBC Guide
+#group RXP The Burning Crusade
 #subgroup RestedXP Alliance 60-70
 << Alliance
 #name 69-70 Shadowmoon Valley (Scryer)

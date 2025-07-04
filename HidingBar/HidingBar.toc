@@ -1,7 +1,7 @@
-## Interface: 40402
+## Interface: 110107, 50500, 11507
 ## Title: HidingBar
 ## Author: sfmict
-## Version: v4.4.15
+## Version: v11.1.7
 ## IconTexture: Interface\AddOns\HidingBar\media\icon
 ## Notes: Convenient hiding panel
 ## Notes-esES: Panel de ocultación conveniente
@@ -28,3 +28,4 @@ locales.xml
 templates.xml
 Config.lua
 HidingBar.lua
+HidingBar-[Game].lua

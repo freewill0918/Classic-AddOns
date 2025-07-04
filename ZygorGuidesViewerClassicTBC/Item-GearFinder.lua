@@ -195,7 +195,8 @@ local function loot_score_dungeon_thread()
 	while true do
 		local fail_counter = 0
 		for ident,dungeon in pairs(GearFinder.ItemsToScore) do
-			for index,itemdata in pairs(dungeon) do
+			for index,itemdata in pairs(dungeon) do if GetItemInfoInstant(itemdata.itemlink) then
+
 				local itemlink = itemdata.itemlink
 				local item = ItemScore:GetItemDetails(itemlink)
 				if not item then
@@ -220,7 +221,7 @@ local function loot_score_dungeon_thread()
 					end
 					GearFinder.ItemsToScore[ident][index]=nil
 				end
-			end
+			end end
 			ZGV:Debug("&gear current scored %d of %d/%d",success_counter,total_current,total)
 			ZGV:Debug("&gear current failed %d",fail_counter)
 			coroutine.yield()
@@ -489,7 +490,7 @@ function GearFinder:ScoreDungeonItems()
 		local ok,ret = coroutine.resume(GearFinder.ScoreThread)
 		if not ok or coroutine.status(GearFinder.ScoreThread)=="dead" then 
 			ZGV:CancelTimer(GearFinder.ScoreTimer) 
-
+			ZGV:Debug("&gear Error %s",ret)
 		end
 	end,
 	0.1)

@@ -1,7 +1,7 @@
 if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then return end
 
-local isDBMLoaded = IsAddOnLoaded("DBM-Core")
-local isBigWigsLoaded = IsAddOnLoaded("BigWigs")
+local isDBMLoaded = C_AddOns.IsAddOnLoaded("DBM-Core")
+local isBigWigsLoaded = C_AddOns.IsAddOnLoaded("BigWigs")
 local ADDON_MESSAGE_PREFIX = "FojjiRangeAddon"
 local PLAYER_NAME = UnitName("player")
 local lastRangeValue

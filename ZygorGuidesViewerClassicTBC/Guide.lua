@@ -69,6 +69,11 @@ function Guide:New(title,header,data)
 		data = "step\nThis is the Retail version of this guide. Cataclysm Classic is running an older version of Cataclysm than Retail and its differences may affect this guide. Based on customer feedback, we've made this guide available to Cataclysm Classic users, but you may run into issues. Our team is working to properly update all guides for Cataclysm Classic.\nClick here to continue.|confirm\n"..data
 	end
 
+	if ZGV.IsClassicMOP and not header.mopready then
+		-- Cata warning clone
+		data = "step\nThis is the Retail version of this guide. Mists of Pandaria Classic is running an older version of MoP than Retail and its differences may affect this guide. Based on customer feedback, we've made this guide available to MoP Classic users, but you may run into issues. Our team is working to properly update all guides for MoP Classic.\nClick here to continue.|confirm\n"..data
+	end
+
 	--if (not not ZGV.IsPandariaRemix)~=(not not header.pandariaremix) then
 	--	return nil -- don't load non remix guides on remix realms, and keep remix off regular
 	--end
@@ -1046,6 +1051,8 @@ function GuideFuncs:LearnMountGuideSuggestion(level)
 end
 
 function GuideFuncs:IsValid(guide,step,from,special,shared,prevguide)
+	if from=="tabs" then return true end -- we already have it loaded, don't ask again
+
 	if type(guide)=="string" then
 		guide = ZGV:GetGuideByTitle(guide)
 	end

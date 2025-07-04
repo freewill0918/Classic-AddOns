@@ -804,6 +804,9 @@ function Upgrades:GetGearReport(new_item)
 	elseif ZGV.IsClassicCATA then
 		out = out .. "\n spec " .. ItemScore.playerspecName  .. " system " .. (select(2,GetTalentTabInfo(ItemScore.playerspec)))
 		--out = out .. "\n build " .. ZGV.db.char.gear_active_build
+	elseif ZGV.IsClassicMOP then
+		out = out .. "\n spec " .. ItemScore.playerspecName  .. " system " .. (select(2,C_SpecializationInfo.GetSpecializationInfo(ItemScore.playerspec)))
+		--out = out .. "\n build " .. ZGV.db.char.gear_active_build
 	else
 		out = out .. "\n spec " .. ItemScore.playerspecName  .. " system " .. (select(2,GetSpecializationInfo(ItemScore.playerspec)))
 	end
@@ -904,7 +907,7 @@ function Upgrades:AttachBagButton()
 		Upgrades.BagButton:SetPoint("TOPLEFT",ContainerFrameCombinedBags,"TOPLEFT",25,-30)
 		Upgrades.BagButton:SetFrameStrata("HIGH")
 		Upgrades.BagButton:SetSize(32,32)
-	elseif ZGV.IsClassic or ZGV.IsClassicCATA then
+	elseif ZGV.IsClassic or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
 		Upgrades.BagButton:SetParent(ContainerFrame1)
 		Upgrades.BagButton:SetPoint("TOPRIGHT",ContainerFrame1CloseButton,"TOPRIGHT",-5,-25)
 		Upgrades.BagButton:SetFrameStrata("HIGH")

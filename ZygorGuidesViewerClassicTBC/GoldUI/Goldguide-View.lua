@@ -810,7 +810,7 @@ function Goldguide:UpdateStatusBar()
 	local timestamptext,updateTitletext,lastScanStr
 
 	local ScanDatabase
-	if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA then
+	if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
 		ScanDatabase = ZGVG.Scan.db.factionrealm
 	else
 		ScanDatabase = ZGVG.Scan.db.realm

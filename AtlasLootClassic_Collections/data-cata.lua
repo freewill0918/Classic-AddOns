@@ -9,7 +9,7 @@ local format = string.format
 -- WoW
 local function C_Map_GetAreaInfo(id)
     local d = C_Map.GetAreaInfo(id)
-    return d or "GetAreaInfo" .. id
+    return d or ("GetAreaInfo" .. id)
 end
 
 -- ----------------------------------------------------------------------------
@@ -127,12 +127,13 @@ data["CookingVendorCata"] = {
     }}
 }
 
-data["ValorPoints"] = {
+data["ValorPointsCata"] = {
     name = format(AL["'%s' Vendor"], format(EPIC_QUALITY, AL["Valor Points"])),
     ContentType = VENDOR_CONTENT,
     TableType = NORMAL_ITTYPE,
     gameVersion = AtlasLoot.CATA_VERSION_NUM,
     ContentPhaseCata = 4,
+    CorrespondingFields = private.VALOR_POINTS,
     items = { {
         name = ALIL["Armor"] .. " - " .. ALIL["Cloth / Leather"],
         [VENDOR_DIFF] = { -- Cloth
@@ -233,11 +234,12 @@ data["ValorPoints"] = {
     }
 }
 
-data["JusticePoints"] = {
+data["JusticePointsCata"] = {
     name = format(AL["'%s' Vendor"], format(SUPERIOR_QUALITY, AL["Justice Points"])),
     ContentType = VENDOR_CONTENT,
     TableType = NORMAL_ITTYPE,
     gameVersion = AtlasLoot.CATA_VERSION_NUM,
+    CorrespondingFields = private.JUSTICE_POINTS,
     items = { {
         name = ALIL["Armor"] .. " - " .. ALIL["Cloth"],
         [VENDOR_DIFF] = { -- Mage
@@ -627,6 +629,7 @@ data["ObsidianFragments"] = {
             { 10, 78384 }, -- Mycosynth Wristguards
             { 12, 78467 }, -- Molten Blood Footpads
             { 16, 239113 }, -- Satchel of the Flickering Wristbands
+            { 17, 239220 }, -- Satchel of the Flickering Shoulderpads
         }
     },
     {
@@ -665,18 +668,43 @@ data["ObsidianFragments"] = {
     {
         name = ALIL["Weapon"],
         [VENDOR_DIFF] = {
-            { 1, 78484 }, -- Rathrak the Poisonous Mind
-            { 2, 78483 }, -- Blade of the Unmaker
-            { 3, 78488 }, -- Souldrinker
-            { 4, 78487 }, -- Gurthalak
-            { 5, 78481 }, -- No'kaled
-            { 6, 78485 }, -- Maw of the Dragonlord
-            { 8, 78422 }, -- Electrowing Dagger
-            { 10, 78374 }, -- Razor Saronite Chip
-            { 12, 78399 }, -- Finger of Zon'ozz
-            { 16, 78482 }, -- Kiril
-            { 17, 78486 }, -- Ti'tahk
-            { 18, 78480 }, -- Vishanka
+            { 1,70733 }, -- Alysra's Razor
+            { 2,78483 }, -- Blade of the Unmaker
+            { 3,78422 }, -- Electrowing Dagger
+            { 4,71779 }, -- Avool's Incendiary Shanker
+            { 5,71787 }, -- Entrail Disgorger
+            { 6,71013 }, -- Feeding Frenzy
+            { 7,78484 }, -- Rathrak the Poisonous Mind
+
+            { 9,78488 }, -- Souldrinker
+            { 10,78481 },-- No'kaled
+            { 11,78485 },-- Maw of the Dragonlord
+            { 12,71776 },-- Eye of Purification
+            { 13,71785 },-- Firethorn Mindslicer
+            { 14,71312 },-- Gatecrasher
+            { 15,71355 },-- Ko'gun
+            { 16,70922 },-- Mandible of Beth'tilac
+            { 17,71782 },-- Shatterskull Bonecrusher
+
+            { 19,78486 }, -- Ti'tahk
+            { 20,69897 },-- Fandral's Flamescythe
+            { 21,71039 },-- Funeral Pyre
+            { 22,71798 },-- Sho'ravon
+            { 23,71775 },-- Smoldering Censer of Purity
+
+            { 25,71353 },-- Arathar, the Eye of Flame
+            { 26,78480 }, -- Vishanka
+            { 27,70991 },-- Arbalest of Erupting Fury
+            { 28,78374 },-- Razor Saronite Chip
+            { 29,78399 },-- Finger of Zon'ozz
+            { 30,71347 },-- Stinger of the Flaming Scorpion
+
+            { 101,78487 }, -- Gurthalak
+            { 102,71352 },-- Sulfuras
+            { 103,71780 },-- Zoid's Firelit Greatsword
+            { 104,71014 },-- Skullstealer Greataxe
+
+            { 106,78482 }, -- Kiril
         }
     },
     {
@@ -709,38 +737,60 @@ data["ObsidianFragments"] = {
     {
         name = ALIL["Trinket"],
         [VENDOR_DIFF] = {
-            {1, 69149 }, -- Eye of Blazing Power
-            {2, 69111}, -- Jaws of Defeat
-            {3, 69109}, -- Scales of Life
-            {4, 69138}, -- Spidersilk Spindle
-            {5, 69112}, -- The Hungerer
-            {6, 69150}, -- Matrix Restabilizer
-            {7, 69110}, -- Variable Pulse Lightning Capacitor
-            {8, 69167}, -- Vessel of Acceleration
-            { 10, 77977 }, -- Eye of Unmaking
-            { 11, 77976 }, -- Heart of Unliving
-            { 12, 77975 }, -- Will of Unbinding
-            { 13, 77974 }, -- Wrath of Unchaining
-            { 14, 77978 }, -- Resolved of Undying
-            { 16, 77969 }, -- Seal of the Seven Signs
-            { 17, 77971 }, -- Insignia of the Corrupted Mind
-            { 18, 77970 }, -- Soulshifter Vortex
-            { 19, 77972 }, -- Creche of the Final Dragon
-            { 20, 77973 }, -- Starcatcher Compass
-            { 21, 77982 }, -- Bone-link Fetish
-            { 22, 77980 }, -- Cunning of the Cruel
-            { 23, 77983 }, -- Indomitble Pride
-            { 24, 77979 }, -- Vial of Shadows
-            { 25, 77981 }, -- Windward Heart
+            { 1, 69149 }, -- Eye of Blazing Power
+            { 2, 69111 }, -- Jaws of Defeat
+            { 3, 69109 }, -- Scales of Life
+            { 4, 69138 }, -- Spidersilk Spindle
+            { 5, 69112 }, -- The Hungerer
+            { 6, 69113 }, -- Apparatus of Khaz'goroth
+            { 7, 69139 }, -- Necromantic Focus
+            { 8, 69150 }, -- Matrix Restabilizer
+            { 9, 69110 }, -- Variable Pulse Lightning Capacitor
+            { 10, 69167 }, -- Vessel of Acceleration
+            { 12, 77977 }, -- Eye of Unmaking
+            { 13, 77976 }, -- Heart of Unliving
+            { 14, 77975 }, -- Will of Unbinding
+            { 15, 77974 }, -- Wrath of Unchaining
+            { 16, 77978 }, -- Resolved of Undying
+            { 18, 77969 }, -- Seal of the Seven Signs
+            { 19, 77971 }, -- Insignia of the Corrupted Mind
+            { 20, 77970 }, -- Soulshifter Vortex
+            { 21, 77972 }, -- Creche of the Final Dragon
+            { 22, 77973 }, -- Starcatcher Compass
+            { 23, 77982 }, -- Bone-link Fetish
+            { 24, 77980 }, -- Cunning of the Cruel
+            { 25, 77983 }, -- Indomitble Pride
+            { 26, 77979 }, -- Vial of Shadows
+            { 27, 77981 }, -- Windward Heart
          }
     },
     {
-        name = AL["Token"],
+        name = AL["Token"] .. " - " .. AL["Dragon Soul"],
+        [VENDOR_DIFF] = {
+            -- T13 iLvl384 Tokens
+            { 1, 78869 },
+            { 2, 78870 },
+            { 3, 78868 },
+            { 5, 78875 },
+            { 6, 78876 },
+            { 7, 78874 },
+            { 9, 78863 },
+            { 10, 78864 },
+            { 11, 78862 },
+            { 16, 78866 },
+            { 17, 78867 },
+            { 18, 78865 },
+            { 20, 78872 },
+            { 21, 78873 },
+            { 22, 78871 },
+        }
+    },
+    {
+        name = AL["Token"] .. " - " .. AL["Firelands"],
         [VENDOR_DIFF] = {
             { 1, 71675 }, -- Helm of the Fiery Conqueror
             { 2, 71682 }, -- Helm of the Fiery Protector
             { 3, 71668 }, -- Helm of the Fiery Vanquisher
-            { 5, "INV_Box_01", nil, AL["Tier Token iLvl384"], nil, "Tier13ElementalRuneTokens"},
             { 16, 71681 }, -- Mantle of the Fiery Conqueror
             { 17, 71688 }, -- Mantle of the Fiery Protector
             { 18, 71674 }, -- Mantle of the Fiery Vanquisher
@@ -750,9 +800,9 @@ data["ObsidianFragments"] = {
         name = AL["Misc"],
         [VENDOR_DIFF] = {
             { 1, 71617 }, -- Crystallized Firestone
-            { 3, "c3148", [ATLASLOOT_IT_AMOUNT1] = 1}, -- Fissure Stone Fragment
-            { 16, 234446 }, -- Commendation of Service
-            { 17, "c396", [ATLASLOOT_IT_AMOUNT1] = 10 }, -- Valor Points
+            { 16, "c396", [ATLASLOOT_IT_AMOUNT1] = 10 }, -- Valor Points
+            { 17, 234446 }, -- Commendation of Service
+            { 18, "c3148", [ATLASLOOT_IT_AMOUNT1] = 1}, -- Fissure Stone Fragment
         }
     },
     }
@@ -1079,60 +1129,74 @@ data["Weapon Sets"] = {
             }
         } }
 }
+
 data["MountsCata"] = {
     name = ALIL["Mounts"],
     ContentType = COLLECTIONS_CONTENT,
     LoadDifficulty = LOAD_DIFF,
     TableType = NORMAL_ITTYPE,
+    gameVersion = AtlasLoot.CATA_VERSION_NUM,
     CorrespondingFields = private.MOUNTS,
-    items = { {
-        name = AL["PvP"],
-        [NORMAL_DIFF] = { { 1, [ATLASLOOT_IT_ALLIANCE] = 70909, [ATLASLOOT_IT_HORDE] = 70910 }, -- Vicious War Steed / Vicious War Wolf
-            { 2, 71339 },                                                                     -- Vicious Gladiator's Twilight Drake
-            { 3, 71954 },                                                                     -- Ruthless Gladiator's Twilight Drake
+    items = {
+        {
+            name = AL["PvP"],
+            [NORMAL_DIFF] = {
+                { 1, [ATLASLOOT_IT_ALLIANCE] = 70909, [ATLASLOOT_IT_HORDE] = 70910 }, -- Vicious War Steed / Vicious War Wolf
+                { 2, 71339 }, -- Vicious Gladiator's Twilight Drake
+                { 3, 71954 },  -- Ruthless Gladiator's Twilight Drake
+            }
+        },
+        {
+            name = AL["Drops"], -- Drops
+            [NORMAL_DIFF] = {
+                { 1, 63043 }, -- Reins of the Vitreous Stone Drake
+                { 2,  63042 }, -- Reins of the Phosphorescent Stone Drake
+                { 4,  63040 }, -- Reins of the Drake of the North Wind
+                { 5,  63041 }, -- Reins of the Drake of the South Wind
+                { 7,  69224 }, -- Smoldering Egg of Millagazor
+                { 8,  71665 }, -- Flametalon of Alysrazor
+                { 10, 77067 }, -- Reins of the Blazing Drake
+                { 11, 77069 }, -- Life-Binder's Handmaiden
+                { 12, 78919 }, -- Experiment 12-B
+                { 14, 68823 }, -- Armored Razzashi Raptor
+                { 15, 68824 }, -- Swift Zulian Panther
+                { 16, 69747 }, -- Amani Battle Bear
+                { 18, 67151 }, -- Reins of Poseidus
+            }
+        },
+        {
+            name = AL["Crafting"],
+            [NORMAL_DIFF] = {
+                { 1, 65891 }, -- Vial of the Sands
+                { 3, 60954 }, -- Fossilized Raptor
+                { 5, 64883 }, -- Scepter of Azj'Aqir
+            }
+        },
+        {
+            name = AL["Factions"],
+            [NORMAL_DIFF] = {
+                { 1, [ATLASLOOT_IT_ALLIANCE] = 63039, [ATLASLOOT_IT_HORDE] = 65356 },
+                { 2, [ATLASLOOT_IT_ALLIANCE] = 64998, [ATLASLOOT_IT_HORDE] = 64999 },
+            }
+        },
+        {
+            name = AL["Darkmoon Faire"],
+            [NORMAL_DIFF] = {
+                { 1, 73766 }, -- Darkmoon Dancing Bear
+                { 2, 72140 }, -- Swift Forest Strider
+            }
+        },
+        {
+            name = ALIL["Achievements"],
+            TableType = AC_ITTYPE,
+            [NORMAL_DIFF] = {
+                { 1, 62900, 4845 }, -- Reins of the Volcanic Stone Drake
+                { 2, 62901, 4853 }, -- Reins of the Drake of the East Wind
+                { 3, 69230, 5828 }, -- Corrupted Egg of Millagazor
+                { 4, 77068, 6169 }, -- Reins of the Twilight Harbinger
+            }
         }
-    }, {                                                                                      -- Drops
-        name = AL["Drops"],
-        [NORMAL_DIFF] = { { 1, 63043 },                                                       -- Reins of the Vitreous Stone Drake
-            { 2,  63042 },                                                                    -- Reins of the Phosphorescent Stone Drake
-            { 4,  63040 },                                                                    -- Reins of the Drake of the North Wind
-            { 5,  63041 },                                                                    -- Reins of the Drake of the South Wind
-            { 7,  69224 },                                                                    -- Smoldering Egg of Millagazor
-            { 8,  71665 },                                                                    -- Flametalon of Alysrazor
-            { 10, 77067 },                                                                    -- Reins of the Blazing Drake
-            { 11, 77069 },                                                                    -- Life-Binder's Handmaiden
-            { 12, 78919 },                                                                    -- Experiment 12-B
-            { 14, 68823 },                                                                    -- Armored Razzashi Raptor
-            { 15, 68824 },                                                                    -- Swift Zulian Panther
-            { 16, 69747 },                                                                    -- Amani Battle Bear
-            { 18, 67151 },                                                                    -- Reins of Poseidus
-        }
-    }, {
-        name = AL["Crafting"],
-        [NORMAL_DIFF] = { { 1, 65891 }, -- Vial of the Sands
-            { 3, 60954 },        -- Fossilized Raptor
-            { 5, 64883 },        -- Scepter of Azj'Aqir
-        }
-    }, {
-        name = AL["Factions"],
-        [NORMAL_DIFF] = {
-            { 1, [ATLASLOOT_IT_ALLIANCE] = 63039, [ATLASLOOT_IT_HORDE] = 65356 },
-            { 2, [ATLASLOOT_IT_ALLIANCE] = 64998, [ATLASLOOT_IT_HORDE] = 64999 },
-        }
-    }, {
-        name = AL["Darkmoon Faire"],
-        [NORMAL_DIFF] = { { 1, 73766 }, -- Darkmoon Dancing Bear
-            { 2, 72140 },        -- Swift Forest Strider
-        }
-    }, {
-        name = ALIL["Achievements"],
-        TableType = AC_ITTYPE,
-        [NORMAL_DIFF] = { { 1, 62900, 4845 }, -- Reins of the Volcanic Stone Drake
-            { 2, 62901, 4853 },        -- Reins of the Drake of the East Wind
-            { 3, 69230, 5828 },        -- Corrupted Egg of Millagazor
-            { 4, 77068, 6169 },        -- Reins of the Twilight Harbinger
-        }
-    } }
+    }
 }
 
 data["CompanionsCata"] = {
@@ -1236,6 +1300,7 @@ data["TabardsCata"] = {
     ContentType = COLLECTIONS_CONTENT,
     LoadDifficulty = LOAD_DIFF,
     TableType = NORMAL_ITTYPE,
+    gameVersion = AtlasLoot.CATA_VERSION_NUM,
     CorrespondingFields = private.TABARDS,
     items = { {
         name = AL["Factions"],
@@ -1303,6 +1368,7 @@ data["HeirloomCata"] = {
     LoadDifficulty = LOAD_DIFF,
     TableType = NORMAL_ITTYPE,
     gameVersion = AtlasLoot.CATA_VERSION_NUM,
+    CorrespondingFields = private.HEIRLOOM,
     items = { {
         name = ALIL["Armor"],
         [NORMAL_DIFF] = {
@@ -1441,6 +1507,33 @@ data["ValentinesdayCata"] = {
     } }
 }
 
+data["NoblegardenCata"] = {
+    name = AL["Noblegarden"],
+    ContentType = WORLD_EVENT_CONTENT,
+    LoadDifficulty = NORMAL_DIFF,
+    TableType = NORMAL_ITTYPE,
+    gameVersion = AtlasLoot.CATA_VERSION_NUM,
+    CorrespondingFields = private.NOBLEGARDEN,
+    items = { {
+            name = AL["Noblegarden"] .. " " .. AL["Vendor"],
+            [NORMAL_DIFF] = {
+                { 1,  44818 }, -- Noblegarden Egg
+                { 2,  45073 }, -- Spring Flowers
+                { 3,  44792 }, -- Blossoming Branch
+                { 5,  44800 }, -- Spring Robes
+                { 6,  19028 }, -- Elegant Dress
+                { 7,  6833 }, -- White Tux Shirt
+                { 8,  6835 }, -- Black Tux Pants
+                { 16, 44803 }, -- Spring Circlet
+                { 17, 74282 }, -- Spring Circlet Black
+                { 18, 74283 }, -- Spring Circlet Pink
+                { 20, 44794 }, -- Spring Rabbit Foot
+                { 21, 72145 }, -- Swift Springstrider
+            },
+        },
+    },
+}
+
 data["MidsummerFestivalCata"] = {
     name = AL["Midsummer Festival"],
     ContentType = WORLD_EVENT_CONTENT,
@@ -1471,12 +1564,12 @@ data["MidsummerFestivalCata"] = {
         name = C_Map_GetAreaInfo(3717) .. " - " .. AL["Ahune"],
         [NORMAL_DIFF] = {
             { 1,  54536 }, -- Satchel of Chilled Goods
-            { 2,  69771 }, -- Frostscythe of Lord Ahune
-            { 4,  69768 }, -- Shroud of Winter's Chill
-            { 5,  69766 }, -- The Frost Lord's War Cloak
-            { 6,  69770 }, -- Icebound Cloak
-            { 7,  69769 }, -- Cloak of the Frigid Winds
-            { 8,  69767 }, -- The Frost Lord's Battle Shroud
+            { 3,  248747 }, -- Frostscythe of Lord Ahune
+            { 4,  248750 }, -- Shroud of Winter's Chill
+            { 5,  248748 }, -- The Frost Lord's War Cloak
+            { 6,  248752 }, -- Icebound Cloak
+            { 7,  248751 }, -- Cloak of the Frigid Winds
+            { 8,  248749 }, -- The Frost Lord's Battle Shroud
             { 10, 35723 }, -- Shards of Ahune
             { 16, 35498 }, -- Formula: Enchant Weapon - Deathfrost
             { 18, 53641 }, -- Ice Chip
@@ -1492,56 +1585,63 @@ data["BrewfestCata"] = {
     TableType = NORMAL_ITTYPE,
     gameVersion = AtlasLoot.CATA_VERSION_NUM,
     CorrespondingFields = private.BREWFEST,
-    items = { {                  -- Brewfest
+    items = {
+        {
         name = AL["Brewfest"],
-        [NORMAL_DIFF] = { { 1, 33968 }, -- Blue Brewfest Hat
-            { 2,  33864 },       -- Brown Brewfest Hat
-            { 3,  33967 },       -- Green Brewfest Hat
-            { 4,  33969 },       -- Purple Brewfest Hat
-            { 5,  33863 },       -- Brewfest Dress
-            { 6,  33862 },       -- Brewfest Regalia
-            { 7,  33966 },       -- Brewfest Slippers
-            { 8,  33868 },       -- Brewfest Boots
-            { 10, 33047 },       -- Belbi's Eyesight Enhancing Romance Goggles (Alliance)
-            { 11, 34008 },       -- Blix's Eyesight Enhancing Romance Goggles (Horde)
-            { 13, 33927 },       -- Brewfest Pony Keg
-            { 15, 37829 },       -- Brewfest Prize Token
-            { 16, 32233 },       -- Wolpertinger's Tankard
-            { 18, 37599 },       -- "Brew of the Month" Club Membership Form
-            { 20, 37750 },       -- Fresh Brewfest Hops
-            { 21, 39477 },       -- Fresh Dwarven Brewfest Hops
-            { 22, 39476 },       -- Fresh Goblin Brewfest Hops
-            { 23, 37816 }        -- Preserved Brewfest Hops
+          [NORMAL_DIFF] = {
+                {1, 37829}, -- Brewfest Prize Token
+                {3, 33968}, -- Blue Brewfest Hat
+                {4, 33864}, -- Brown Brewfest Hat
+                {5, 33967}, -- Green Brewfest Hat
+                {6, 33969}, -- Purple Brewfest Hat
+                {7, 33863}, -- Brewfest Dress
+                {8, 33862}, -- Brewfest Regalia
+                {9, 33966}, -- Brewfest Slippers
+                {10, 33868}, -- Brewfest Boots
+                {12, 33047}, -- Belbi's Eyesight Enhancing Romance Goggles (Alliance)
+                {13, 34008}, -- Blix's Eyesight Enhancing Romance Goggles (Horde)
+                {15, 33927}, -- Brewfest Pony Keg
+                {17, 32233}, -- Wolpertinger's Tankard
+                {19, 37599}, -- "Brew of the Month" Club Membership Form
+                {21, 37750}, -- Fresh Brewfest Hops
+                {22, 39477}, -- Fresh Dwarven Brewfest Hops
+                {23, 39476}, -- Fresh Goblin Brewfest Hops
+                {24, 37816} -- Preserved Brewfest Hops
+            }
+        },
+        {
+            name = AL["Food"],
+            [NORMAL_DIFF] = {
+                {1, 33043}, -- The Essential Brewfest Pretzel
+                {3, 34017}, -- Small Step Brew
+                {4, 34018}, -- long Stride Brew
+                {5, 34019}, -- Path of Brew
+                {6, 34020}, -- Jungle River Water
+                {7, 34021}, -- Brewdoo Magic
+                {8, 34022}, -- Stout Shrunken Head
+                {9, 33034}, -- Gordok Grog
+                {10, 33035}, -- Ogre Mead
+                {11, 33036} -- Mudder's Milk
+            }
+        },
+        {
+            name = C_Map_GetAreaInfo(1584) .. " - " .. AL["Coren Direbrew"],
+            [NORMAL_DIFF] = {
+                { 1, 232017 }, -- Bitter Balebrew Charm
+                { 2,  232016 }, -- Bubbling Brightbrew Charm
+                { 3,  232012 }, -- Coren's Chromium Coaster
+                { 4,  232013 }, -- Mithril Pocketwatch
+                { 5,  232014 }, -- Ancient Pickled Egg
+                { 6,  232015 }, -- Brawler's Souvenir
+                { 8,  232030 }, -- Direbrew's Bloody Shanker
+                { 9,  232031 }, -- Tankard O' Terror
+                {16, 33977}, -- Swift Brewfest Ram
+                {17, 37828}, -- Great Brewfest Kodo
+                {19, 37863}, -- Direbrew's Remote
+                {21, 38280} -- Direbrew's Dire Brew
+            }
         }
-    }, {
-        name = AL["Food"],
-        [NORMAL_DIFF] = { { 1, 33043 }, -- The Essential Brewfest Pretzel
-            { 3,  34017 },       -- Small Step Brew
-            { 4,  34018 },       -- long Stride Brew
-            { 5,  34019 },       -- Path of Brew
-            { 6,  34020 },       -- Jungle River Water
-            { 7,  34021 },       -- Brewdoo Magic
-            { 8,  34022 },       -- Stout Shrunken Head
-            { 9,  33034 },       -- Gordok Grog
-            { 10, 33035 },       -- Ogre Mead
-            { 11, 33036 }        -- Mudder's Milk
-        }
-    }, {
-        name = C_Map_GetAreaInfo(1584) .. " - " .. AL["Coren Direbrew"],
-        [NORMAL_DIFF] = { { 1, 232017 }, -- Bitter Balebrew Charm
-            { 2,  232016 },       -- Bubbling Brightbrew Charm
-            { 3,  232012 },       -- Coren's Chromium Coaster
-            { 4,  232013 },       -- Mithril Pocketwatch
-            { 5,  232014 },       -- Ancient Pickled Egg
-            { 6,  232015 },       -- Brawler's Souvenir
-            { 8,  232030 },       -- Direbrew's Bloody Shanker
-            { 9,  232031 },       -- Tankard O' Terror
-            { 16, 33977 },        -- Swift Brewfest Ram
-            { 17, 37828 },        -- Great Brewfest Kodo
-            { 19, 37863 },        -- Direbrew's Remote
-            { 21, 38280 }         -- Direbrew's Dire Brew
-        }
-    } }
+    }
 }
 
 data["HalloweenCata"] = {
@@ -1554,10 +1654,10 @@ data["HalloweenCata"] = {
     items = { {                  -- Halloween1
         name = AL["Hallow's End"] .. " - " .. AL["Misc"],
         [NORMAL_DIFF] = { { 1, 20400 }, -- Pumpkin Bag
-            { 3,  70722 },       -- Little Wickerman
-            { 4,  70908 },       -- Feline Familiar
-            { 5,  71076 },       -- Creepy Crate
-            { 16, 33226 },       -- Tricky Treat
+            { 3,  70722 }, -- Little Wickerman
+            { 4,  70908 }, -- Feline Familiar
+            { 5,  71076 }, -- Creepy Crate
+            { 16, 33226 }, -- Tricky Treat
         }
     }, {                         -- Halloween1
         name = AL["Hallow's End"] .. " - " .. AL["Wands"],
@@ -1573,33 +1673,33 @@ data["HalloweenCata"] = {
     }, {                         -- Halloween3
         name = AL["Hallow's End"] .. " - " .. AL["Masks"],
         [NORMAL_DIFF] = { { 1, 20561 }, -- Flimsy Male Dwarf Mask
-            { 2,  20391 },       -- Flimsy Male Gnome Mask
-            { 3,  20566 },       -- Flimsy Male Human Mask
-            { 4,  20564 },       -- Flimsy Male Nightelf Mask
-            { 5,  20570 },       -- Flimsy Male Orc Mask
-            { 6,  20572 },       -- Flimsy Male Tauren Mask
-            { 7,  20568 },       -- Flimsy Male Troll Mask
-            { 8,  20573 },       -- Flimsy Male Undead Mask
-            { 9,  49216 },       -- Worgen Male Mask
-            { 10, 49210 },       -- Goblin Male Mask
-            { 12, 69188 },       -- Murloc Male Mask
-            { 13, 69190 },       -- Naga Male Mask
-            { 14, 69193 },       -- Ogre Male Mask
-            { 15, 69195 },       -- Vrykul Male Mask
-            { 16, 20562 },       -- Flimsy Female Dwarf Mask
-            { 17, 20392 },       -- Flimsy Female Gnome Mask
-            { 18, 20565 },       -- Flimsy Female Human Mask
-            { 19, 20563 },       -- Flimsy Female Nightelf Mask
-            { 20, 20569 },       -- Flimsy Female Orc Mask
-            { 21, 20571 },       -- Flimsy Female Tauren Mask
-            { 22, 20567 },       -- Flimsy Female Troll Mask
-            { 23, 20574 },       -- Flimsy Female Undead Mask
-            { 24, 49215 },       -- Worgen Female Mask
-            { 25, 49212 },       -- Goblin Female Mask
-            { 27, 69187 },       -- Murloc Female Mask
-            { 28, 69189 },       -- Naga Female Mask
-            { 29, 69192 },       -- Ogre Female Mask
-            { 30, 69194 },       -- Vrykul Female Mask
+            { 2,  20391 }, -- Flimsy Male Gnome Mask
+            { 3,  20566 }, -- Flimsy Male Human Mask
+            { 4,  20564 }, -- Flimsy Male Nightelf Mask
+            { 5,  20570 }, -- Flimsy Male Orc Mask
+            { 6,  20572 }, -- Flimsy Male Tauren Mask
+            { 7,  20568 }, -- Flimsy Male Troll Mask
+            { 8,  20573 }, -- Flimsy Male Undead Mask
+            { 9,  49216 }, -- Worgen Male Mask
+            { 10, 49210 }, -- Goblin Male Mask
+            { 12, 69188 }, -- Murloc Male Mask
+            { 13, 69190 }, -- Naga Male Mask
+            { 14, 69193 }, -- Ogre Male Mask
+            { 15, 69195 }, -- Vrykul Male Mask
+            { 16, 20562 }, -- Flimsy Female Dwarf Mask
+            { 17, 20392 }, -- Flimsy Female Gnome Mask
+            { 18, 20565 }, -- Flimsy Female Human Mask
+            { 19, 20563 }, -- Flimsy Female Nightelf Mask
+            { 20, 20569 }, -- Flimsy Female Orc Mask
+            { 21, 20571 }, -- Flimsy Female Tauren Mask
+            { 22, 20567 }, -- Flimsy Female Troll Mask
+            { 23, 20574 }, -- Flimsy Female Undead Mask
+            { 24, 49215 }, -- Worgen Female Mask
+            { 25, 49212 }, -- Goblin Female Mask
+            { 27, 69187 }, -- Murloc Female Mask
+            { 28, 69189 }, -- Naga Female Mask
+            { 29, 69192 }, -- Ogre Female Mask
+            { 30, 69194 }, -- Vrykul Female Mask
         }
     }, {                         -- SMHeadlessHorseman
         name = C_Map_GetAreaInfo(796) .. " - " .. AL["Headless Horseman"],
@@ -1703,22 +1803,21 @@ data["WinterVeilCata"] = {
             name = AL["Stolen Present"],
             [NORMAL_DIFF] = {
                 { 1,  66540 }, -- Miniature Winter Veil Tree
-                { 2,  34425 }, -- Clockwork Rocket Bot
-                { 3,  54436 }, -- Blue Clockwork Rocket Bot
-                { 4,  73797 }, -- Lump of Coal
-                { 5,  46709 }, -- MiniZep Controller
-                { 6,  44606 }, -- Toy Train Set
-                { 7,  37710 }, -- Crashin' Thrashin' Racer Controller
-                { 8,  46725 }, -- Red Rider Air Rifle
-                { 9,  54437 }, -- Tiny Green Ragdoll
-                { 10, 54438 }, -- Tiny Blue Ragdoll
-                { 11, 34498 }, -- Paper Zeppelin Kit
-                { 12, 44599 }, -- Zippy Copper Racer
-                { 13, 44601 }, -- Heavy Copper Racer
-                { 14, 44481 }, -- Grindgear Toy Gorilla
-                { 15, 44482 }, -- Trusty Copper Racer
+                { 3,  34425 }, -- Clockwork Rocket Bot
+                { 4,  54436 }, -- Blue Clockwork Rocket Bot
+                { 5,  73797 }, -- Lump of Coal
+                { 7,  46709 }, -- MiniZep Controller
+                { 8,  44606 }, -- Toy Train Set
+                { 9,  37710 }, -- Crashin' Thrashin' Racer Controller
+                { 10,  54437 }, -- Tiny Green Ragdoll
+                { 11, 54438 }, -- Tiny Blue Ragdoll
+                { 13,  46725 }, -- Red Rider Air Rifle
+                { 14, 34498 }, -- Paper Zeppelin Kit
+                { 15, 44599 }, -- Zippy Copper Racer
+                { 16, 44601 }, -- Heavy Copper Racer
+                { 17, 44481 }, -- Grindgear Toy Gorilla
+                { 18, 44482 }, -- Trusty Copper Racer
             },
         },
     },
 }
-

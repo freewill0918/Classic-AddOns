@@ -1,6 +1,8 @@
 # Syndicator
 
-## [207](https://github.com/Baganator/Syndicator/tree/207) (2025-06-05)
-[Full Changelog](https://github.com/Baganator/Syndicator/compare/206...207) 
+## [210](https://github.com/Baganator/Syndicator/tree/210) (2025-07-03)
+[Full Changelog](https://github.com/Baganator/Syndicator/compare/209...210) 
 
-- Tweak usage of ATT data for expansion detection  
+- Transmog Upgrade Master: Support checking current tier tokens for upgrade tmogs  
+- Mists: Fix errors caused by pet cages  
+- Group cloaks as miscellaneous (so that Baganator does too)  

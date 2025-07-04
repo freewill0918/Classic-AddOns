@@ -1447,7 +1447,7 @@ end
 
 	function ZGV_DefaultSkin_Frame_Mixin:OnShow()
 		ZGV:Frame_OnShow()
-		local flavour = (ZGV.IsRetail and " retail") or (ZGV.IsClassicTBC and " tbc") or (ZGV.IsClassic and " classic") or (ZGV.IsClassicWOTLK and " wotlk") or ""
+		local flavour = (ZGV.IsRetail and " retail") or (ZGV.IsClassicTBC and " tbc") or (ZGV.IsClassic and " classic") or (ZGV.IsClassicWOTLK and " wotlk") or (ZGV.IsClassicCATA and " cata") or (ZGV.IsClassicMOP and " mop") or ""
 		self.Controls.DevLabel:SetText(ZGV.name.." rev "..ZGV.revision..flavour)
 		self.Controls.DevLabel:SetShown(ZGV.db.profile.debug_display and not ZGV.db.profile.hide_dev_once)
 		ZGV:SendMessage("ZGV_FRAME_VISIBILITY", true)

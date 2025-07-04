@@ -216,9 +216,9 @@ function ItemScore:SetStatWeights(playerclass,playerspec,playerlevel)
 		self.active_set = ZGV.db.char.gear_active_build
 	end
 
-	if ZGV.IsRetail or ZGV.IsClassicCATA then
-		local GetSpecFunc = GetPrimaryTalentTree or GetSpecialization
-		local GetSpecInfoFunc = GetTalentTabInfo or GetSpecializationInfo
+	if ZGV.IsRetail or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
+		local GetSpecFunc = GetPrimaryTalentTree or GetSpecialization or (C_SpecializationInfo and C_SpecializationInfo.GetSpecialization)
+		local GetSpecInfoFunc = GetTalentTabInfo or GetSpecializationInfo or (C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo)
 		
 		self.playerspec = playerspec or GetSpecFunc() or 1
 
@@ -346,6 +346,11 @@ function ItemScore:GetItemDetailsQueued(itemlink,force)
 		local itemName,_,itemRarity,_,_,_,_,_,itemEquipLoc,texture,_,itemClassID,itemSubClassID = ZGV:GetItemInfo(itemlink) 
 		local itemlvl,_,baseitemlvl = C_Item.GetDetailedItemLevelInfo(itemlink) 
 		if not itemName then return false end
+
+		if itemEquipLoc=="INVTYPE_HOLDABLE" and itemClassID==Enum.ItemClass.Armor  and itemSubClassID==Enum.ItemArmorSubclass.Generic then
+			-- offhand holdables are not jewellery, they are... something. we use miscarm for them
+			itemSubClassID = 12 -- miscarm
+		end
 
 		if itemEquipLoc=="" then -- not equipment, don't bother parsing tooltip
 			ItemCache[itemlink] = { 
@@ -1280,8 +1285,11 @@ end
 local pattern = "Skill (%d+) increased from (%d+) to (%d+)"
 function ItemScore:UpdateEquipmentSkills(msg)
 	if ZGV.IsRetail then return end
-
 	local id,from,to = msg:match(pattern)
+	id = id and tonumber(id)
+	from = from and tonumber(from)
+	to = to and tonumber(to)
+
 	if id and ItemScore.SkillNamesByID[id] then
 		if from == 0 then
 			ItemScore:DelayedRefreshUserData()

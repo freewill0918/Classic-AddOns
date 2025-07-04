@@ -599,7 +599,7 @@ L["Total today"] = "Total hoy";
 L["Total Reals"] = "Reales totales";
 
 L["Reminder"] = "Recordatorio";
-L["missingArgentDawnTrinket"] = "Recordatorio: el abalorio %s no está equipado."; --Argent Dawn trinket reminder [Rune of the Dawn] isn't equipped.
+L["missingArgentDawnTrinket"] = "el abalorio %s no está equipado."; --Argent Dawn trinket reminder [Rune of the Dawn] isn't equipped.
 
 L["argentDawnTrinketReminderTitle"] = "Recordatorio de abalorio de El Alba Argenta";
 L["argentDawnTrinketReminderDesc"] = "Recordatorio del abalorio de El Alba Argenta en el chat si entras a Scholomance/Stratholme con el abalorio en bolsas y no estás exaltado.";
@@ -611,3 +611,6 @@ L["lootTheItem"] = "Despoja %s"; --Example: Loot the Tarnished Undermine Real
 L["Qiraji Lord's Insignia"] = "Insignia Qiraji de Lord";
 
 L["Remnants of Valor"] = "Remanentes de valor";
+
+L["Not Doused"] = "No extinguido";
+L["douseDisclaimer"] = "Nota: Este módulo de extinguir utiliza la mejor estimación basada en\nel último jefe derrotado y otros factores; podría ser inexacto.";

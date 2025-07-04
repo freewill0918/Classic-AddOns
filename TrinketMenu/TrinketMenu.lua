@@ -1,4 +1,4 @@
---[[ TrinketMenu 9.0.7 ]]--
+--[[ TrinketMenu 11.1.8 ]]--
 
 TrinketMenu = { }
 
@@ -18,45 +18,47 @@ TrinketMenu.REQUIRES_ENGINEERING = "Requires Engineering" -- from tooltip when G
 
 function TrinketMenu.LoadDefaults()
 	TrinketMenuOptions = TrinketMenuOptions or {
-		IconPos = - 100,			-- angle of initial minimap icon position
-		ShowIcon = "ON",			-- whether to show the minimap button
-		SquareMinimap = "OFF",		-- whether the minimap is square instead of circular
-		CooldownCount = "OFF",		-- whether to display numerical cooldown counters
-		LargeCooldown = "ON",		-- whether cooldown numbers are large or small
-		TooltipFollow = "OFF",		-- whether tooltips follow the mouse
-		KeepOpen = "OFF",			-- whether menu hides after use
-		KeepDocked = "ON",			-- whether to keep menu docked at all times
-		Notify = "OFF",				-- whether a message appears when a trinket is ready
-		DisableToggle = "OFF",		-- whether minimap button toggles trinkets
-		NotifyUsedOnly = "OFF",		-- whether notify happens only on trinkets used
-		NotifyChatAlso = "OFF",		-- whether to send notify to chat also
-		Locked = "OFF",				-- whether windows can be moved/scaled/rotated
-		ShowTooltips = "ON",		-- whether to display tooltips at all
-		NotifyThirty = "OFF",		-- whether to notify cooldowns at 30 seconds instead of 0
-		MenuOnShift = "OFF",		-- whether menu requires Shift to display
-		TinyTooltips = "OFF",		-- whether tooltips display only name and cooldown
-		SetColumns = "OFF",			-- whether number of columns in menu is chosen automatically
-		Columns = 4,				-- if SetColumns "ON", number of columns before menu wraps
-		ShowHotKeys = "OFF",		-- whether hotkeys show on trinkets
-		StopOnSwap = "OFF",			-- whether to stop auto queue on all manual swaps
-		RedRange = "OFF",			-- whether to monitor and red out out of range trinkets
-		HidePetBattle = "ON",		-- whether to hide the trinkets while in a pet battle
-		MenuOnRight = "OFF"			-- whether to open menu with right-click
+		IconPos = - 100,				-- angle of initial minimap icon position
+		ShowIcon = "ON",				-- whether to show the minimap button
+		SquareMinimap = "OFF",			-- whether the minimap is square instead of circular
+		CooldownCount = "OFF",			-- whether to display numerical cooldown counters
+		CooldownCountBlizzard = "ON",	-- whether to display numerical blizzard cooldown counters
+		CooldownCountOmniCC = "ON",		-- whether to display numerical omnicc cooldown counters
+		LargeCooldown = "ON",			-- whether cooldown numbers are large or small
+		TooltipFollow = "OFF",			-- whether tooltips follow the mouse
+		KeepOpen = "OFF",				-- whether menu hides after use
+		KeepDocked = "ON",				-- whether to keep menu docked at all times
+		Notify = "OFF",					-- whether a message appears when a trinket is ready
+		DisableToggle = "OFF",			-- whether minimap button toggles trinkets
+		NotifyUsedOnly = "OFF",			-- whether notify happens only on trinkets used
+		NotifyChatAlso = "OFF",			-- whether to send notify to chat also
+		Locked = "OFF",					-- whether windows can be moved/scaled/rotated
+		ShowTooltips = "ON",			-- whether to display tooltips at all
+		NotifyThirty = "OFF",			-- whether to notify cooldowns at 30 seconds instead of 0
+		MenuOnShift = "OFF",			-- whether menu requires Shift to display
+		TinyTooltips = "OFF",			-- whether tooltips display only name and cooldown
+		SetColumns = "OFF",				-- whether number of columns in menu is chosen automatically
+		Columns = 4,					-- if SetColumns "ON", number of columns before menu wraps
+		ShowHotKeys = "OFF",			-- whether hotkeys show on trinkets
+		StopOnSwap = "OFF",				-- whether to stop auto queue on all manual swaps
+		RedRange = "OFF",				-- whether to monitor and red out out of range trinkets
+		HidePetBattle = "ON",			-- whether to hide the trinkets while in a pet battle
+		MenuOnRight = "OFF"				-- whether to open menu with right-click
 	}
 	TrinketMenuPerOptions = TrinketMenuPerOptions or {
-		MainDock = "BOTTOMRIGHT",	-- corner of main window docked to
-		MenuDock = "BOTTOMLEFT",	-- corner menu window is docked from
-		MainOrient = "HORIZONTAL",	-- direction of main window
-		MenuOrient = "VERTICAL",	-- direction of menu window
-		XPos = 400,					-- left edge of main window
-		YPos = 400,					-- top edge of main window
-		MainScale = 1,				-- scaling of main window
-		MenuScale = 1,				-- scaling of menu window
-		Visible = "ON",				-- whether to display the trinkets
-		FirstUse = true,			-- whether this is the first time this user has used the mod
-		ItemsUsed = { },			-- table of trinkets used and their cooldown status
-		Alpha = 1,					-- alpha of both windows
-		Hidden = { }				-- table of trinkets hidden
+		MainDock = "BOTTOMRIGHT",		-- corner of main window docked to
+		MenuDock = "BOTTOMLEFT",		-- corner menu window is docked from
+		MainOrient = "HORIZONTAL",		-- direction of main window
+		MenuOrient = "VERTICAL",		-- direction of menu window
+		XPos = 400,						-- left edge of main window
+		YPos = 400,						-- top edge of main window
+		MainScale = 1,					-- scaling of main window
+		MenuScale = 1,					-- scaling of menu window
+		Visible = "ON",					-- whether to display the trinkets
+		FirstUse = true,				-- whether this is the first time this user has used the mod
+		ItemsUsed = { },				-- table of trinkets used and their cooldown status
+		Alpha = 1,						-- alpha of both windows
+		Hidden = { }					-- table of trinkets hidden
 	}
 end
 
@@ -324,6 +326,8 @@ function TrinketMenu.Initialize()
 	options.HideOnLoad = options.HideOnLoad or "OFF" -- 3.4
 	options.RedRange = options.RedRange or "OFF" -- 3.54
 	options.HidePetBattle = options.HidePetBattle or "ON" -- 6.0.3
+	options.CooldownCountBlizzard = options.CooldownCountBlizzard or "ON" -- 11.1.6
+	options.CooldownCountOmniCC = options.CooldownCountOmniCC or "ON" -- 11.1.6
 	TrinketMenuPerOptions.Alpha = TrinketMenuPerOptions.Alpha or 1 -- 3.5
 	TrinketMenuPerOptions.Hidden = TrinketMenuPerOptions.Hidden or { }
 	options.MenuOnRight = options.MenuOnRight or "OFF" -- 3.61
@@ -364,8 +368,48 @@ function TrinketMenu.Initialize()
 	TrinketMenu.UpdateWornTrinkets()
 	TrinketMenu.DockWindows()
 	TrinketMenu.OrientWindows()
-	if TrinketMenuOptions.CooldownCount == "ON" or TrinketMenuOptions.NotifyThirty == "ON" or TrinketMenuOptions.Notify == "ON" then
+	if options.CooldownCount == "ON" or options.NotifyThirty == "ON" or options.Notify == "ON" then
 		TrinketMenu.StartTimer("CooldownUpdate")
+	end
+	if TrinketMenu_Trinket0 and TrinketMenu_Trinket0.cooldown then
+		if options.CooldownCountBlizzard == "ON" then
+			TrinketMenu_Trinket0.cooldown:SetHideCountdownNumbers(false)
+		else
+			TrinketMenu_Trinket0.cooldown:SetHideCountdownNumbers(true)
+		end
+		if options.CooldownCountOmniCC == "ON" then
+			TrinketMenu_Trinket0.cooldown.noCooldownCount = false
+		else
+			TrinketMenu_Trinket0.cooldown.noCooldownCount = true
+
+		end
+	end
+	if TrinketMenu_Trinket1 and TrinketMenu_Trinket1.cooldown then
+		if options.CooldownCountBlizzard == "ON" then
+			TrinketMenu_Trinket1.cooldown:SetHideCountdownNumbers(false)
+		else
+			TrinketMenu_Trinket1.cooldown:SetHideCountdownNumbers(true)
+		end
+		if options.CooldownCountOmniCC == "ON" then
+			TrinketMenu_Trinket1.cooldown.noCooldownCount = false
+		else
+			TrinketMenu_Trinket1.cooldown.noCooldownCount = true
+		end
+	end
+	for i = 1, TrinketMenu.MaxTrinkets do
+		local menuButton = _G["TrinketMenu_Menu"..i]
+		if menuButton and menuButton.cooldown then
+			if options.CooldownCountBlizzard == "ON" then
+				menuButton.cooldown:SetHideCountdownNumbers(false)
+			else
+				menuButton.cooldown:SetHideCountdownNumbers(true)
+			end
+			if options.CooldownCountOmniCC == "ON" then
+				menuButton.cooldown.noCooldownCount = false
+			else
+				menuButton.cooldown.noCooldownCount = true
+			end
+		end
 	end
 	if TrinketMenu.PeriodicQueueCheck then
 		TrinketMenu.PeriodicQueueCheck()
@@ -375,12 +419,12 @@ function TrinketMenu.Initialize()
 	if TrinketMenuPerOptions.Visible == "ON" and (GetInventoryItemLink("player", 13) or GetInventoryItemLink("player", 14)) then
 		TrinketMenu_MainFrame:Show()
 	end
-	-- fix for OmniCC by N00bZXI
+	-- fix for OmniCC
 	TrinketMenu_MainFrame:SetFrameLevel(1)
 	TrinketMenu_MenuFrame:SetFrameLevel(1)
 	TrinketMenu_Trinket0:SetFrameLevel(2)
 	TrinketMenu_Trinket1:SetFrameLevel(2)
-	for i = 1, 30 do
+	for i = 1, TrinketMenu.MaxTrinkets do
 		_G["TrinketMenu_Menu"..i]:SetFrameLevel(2)
 	end
 
@@ -412,17 +456,23 @@ function TrinketMenu.ItemInfo(slot)
 	return texture, name, equipLoc
 end
 
-function TrinketMenu.FindItem(name, includeInventory)
+function TrinketMenu.FindItem(item, includeInventory)
 	if includeInventory then
 		for i = 13, 14 do
-			if string.find(GetInventoryItemLink("player", i) or "", name, 1, true) then
+			local itemLink = GetInventoryItemLink("player", i) or ""
+			local inventoryItemID = strmatch(itemLink, "item:(%d+)")
+			local itemName = GetItemInfo(itemLink)
+			if item == itemName or item == inventoryItemID then
 				return i
 			end
 		end
 	end
 	for i = 0, 4 do
 		for j = 1, TrinketMenu.GetContainerNumSlots(i) do
-			if string.find(TrinketMenu.GetContainerItemLink(i, j) or "", name, 1, true) then
+			local containerItemLink = TrinketMenu.GetContainerItemLink(i, j) or ""
+			local containerItemID = strmatch(containerItemLink, "item:(%d+)")
+			local containerItemName = GetItemInfo(containerItemLink)
+			if item == containerItemName or item == containerItemID then
 				return nil, i, j
 			end
 		end
@@ -453,13 +503,13 @@ function TrinketMenu.OnEvent(self, event, ...)
 		TrinketMenu.UpdateWornCooldowns(1)
 	elseif event == "PET_BATTLE_OPENING_START" then
 		if TrinketMenuOptions.HidePetBattle == "ON" then
-			if TrinketMenu_MainFrame:IsShown() then
+			TrinketMenu_MainFrame.WasShown = TrinketMenu_MainFrame:IsShown()
+			if TrinketMenu_MainFrame.WasShown then
 				TrinketMenu_MainFrame:Hide()
-				TrinketMenu_MainFrame.WasShown = true
 			end
-			if TrinketMenu_MenuFrame:IsShown() then
+			TrinketMenu_MenuFrame.WasShown = TrinketMenu_MenuFrame:IsShown()
+			if TrinketMenu_MenuFrame.WasShown then
 				TrinketMenu_MenuFrame:Hide()
-				TrinketMenu_MenuFrame.WasShown = true
 			end
 		end
 	elseif event == "PET_BATTLE_CLOSE" then
@@ -849,7 +899,7 @@ function TrinketMenu.UpdateWornCooldowns(maybeGlobal)
 end
 
 function TrinketMenu.UpdateMenuCooldowns()
-	local start,duration,enable
+	local start, duration, enable
 	for i = 1, TrinketMenu.NumberOfTrinkets do
 		start,duration,enable = TrinketMenu.GetContainerItemCooldown(TrinketMenu.BaggedTrinkets[i].bag, TrinketMenu.BaggedTrinkets[i].slot)
 		CooldownFrame_Set(_G["TrinketMenu_Menu"..i.."Cooldown"], start, duration, enable)
@@ -1231,18 +1281,13 @@ end
 
 function TrinketMenu.OnShow()
 	TrinketMenuPerOptions.Visible = "ON"
-	if TrinketMenuOptions.KeepOpen == "ON" and TrinketMenu_MenuFrame.WasShown then
+	if TrinketMenuOptions.KeepOpen == "ON" then
 		TrinketMenu.BuildMenu()
 	end
 end
 
 function TrinketMenu.OnHide()
-	if not UIParent:IsShown() or (IsRetail and C_PetBattles.IsInBattle() or false) then
-		TrinketMenu_MenuFrame.WasShown = false
-		return
-	end
 	TrinketMenu_MenuFrame:Hide()
-	TrinketMenu_MenuFrame.WasShown = true
 	TrinketMenuPerOptions.Visible = "OFF"
 end
 

@@ -1038,9 +1038,9 @@ function CurrentStepFrame.EventHandler(self, event, ...)
         addon.Call(self.element.tag,self.callback,self, event, ...)
         --self.callback(self, event, ...)
     else
-        if addon.settings.profile.debug then
+        --[[if addon.settings.profile.debug then
             print('!!!') -- ok
-        end
+        end]]
         self.callback = nil
         self:UnregisterEvent(event)
     end
@@ -1114,7 +1114,7 @@ function CurrentStepFrame.UpdateText()
 
                          -- Prevent text from overwritten with " ", could be stale text
                         if element.text ~= ' ' then
-                            elementFrame.text:SetText(L(element.text))
+                            elementFrame.text:SetText(addon.ReplaceNpcIds(L(element.text)))
                         else
                             element.requestFromServer = true
                         end
@@ -1453,7 +1453,9 @@ function addon.ProcessGuideTable(guide)
         end
         local newGuide = addon:FetchGuide(group,name)
         if not newGuide then
-            print(format("RXPGuides - Error trying to include guide: %s\\%s",group,name))
+            if name ~= "QuestDB" then
+                print(format(L"RXPGuides - Error trying to include guide: %s\\%s",group,name))
+            end
             return
         end
         if not guideRef[newGuide] and guide ~= newGuide then
@@ -1470,7 +1472,7 @@ function addon.ProcessGuideTable(guide)
                 startAt = nil
             end
             if isShown and not startAt then
-                if not(step.include and step.elements and #step.elements == 0 and not step.requires) then
+                if not(step.include and step.elements and #step.elements == 0 and not step.requires and not step.label) then
                     if step.tip then
                         tinsert(currentGuide.tips,step)
                         lastTip = step
@@ -1845,6 +1847,7 @@ function BottomFrame.UpdateFrame(self, stepn)
             end
 
             if rawtext and not element.hideTooltip then
+                rawtext = addon.ReplaceNpcIds(rawtext,element)
                 if not text then
                     text = "   " .. rawtext
                 else
@@ -1927,6 +1930,7 @@ function BottomFrame.UpdateFrame(self, stepn)
                 end
 
                 if rawtext and not element.hideTooltip and rawtext ~= "" then
+                    rawtext = addon.ReplaceNpcIds(rawtext,element)
                     if not text then
                         text = "   " .. rawtext
                     else

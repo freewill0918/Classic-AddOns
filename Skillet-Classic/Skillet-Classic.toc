@@ -1,11 +1,21 @@
-## Interface: 11507, 40402
+## Interface: 11507, 40402, 50500
 ## Title: Skillet-Classic |cff7fff7f -Ace3-|r
 ## Notes: A replacement tradeskill window
 ## Notes-esES: Una sustitucion de la ventana de Habilidades de Comercio
 ## Notes-ruRU: Заменяет окно профессий на более функциональное.
 ## Author: bsmorgan
-## Version: 2.12
-## X-Category: Tradeskill
+## Version: 2.14
+## Category-enUS: Professions
+## Category-deDE: Berufe
+## Category-esES: Profesiones
+## Category-esMX: Profesiones
+## Category-frFR: Métiers
+## Category-itIT: Professioni
+## Category-koKR: 전문 기술
+## Category-ptBR: Profissões
+## Category-ruRU: Профессии
+## Category-zhCN: 专业
+## Category-zhTW: 專業技能
 ## X-License GPL v3 or later
 ## X-Curse-Project-ID: 447401
 ## X-WoWI-ID: 25287
@@ -78,7 +88,6 @@ DebugAids.lua
 #### Plugins
 Plugins\BeanCounter.lua
 Plugins\Auctionator.lua
-Plugins\MissingTradeSkillsList.lua
 Plugins\AuctionDB.lua
 Plugins\Auctioneer.lua
 Plugins\AuctionLite.lua
@@ -86,6 +95,7 @@ Plugins\DataStoreAuctions.lua
 #### Obsolete or Unused Addons
 ## Plugins\CancelForm.lua
 ## Plugins\BootyBayGazette.lua
+## Plugins\MissingTradeSkillsList.lua
 #### Addons not ported to Classic
 ## Plugins\AckisRecipeList.lua
 ## Plugins\TradeSkillInfo.lua

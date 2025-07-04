@@ -56,6 +56,20 @@ local function goalValidAccept(goal)
 	end
 end
 
+local function getCurrentStepGoals()
+	local results = {}
+	for _,goal in ipairs(ZGV.CurrentStep.goals) do
+		table.insert(results,goal)
+	end
+	
+	for si,step in ipairs(ZGV:GetStickiesAt(ZGV.CurrentStep.num)) do
+		if not step:IsComplete() then
+			for gi,goal in ipairs(step.goals) do table.insert(results,goal) end
+		end
+	end
+	return results
+end
+
 function QuestAuto:Retry()
 	if not (ZGV.db.profile.autoacceptturnin or ZGV.db.profile.autoacceptturninall or ZGV.db.profile.questitemselector or ZGV.db.profile.autoselectitem) then return end
 
@@ -90,7 +104,7 @@ function QuestAuto:Gossip()
 
 	-- order matters, so lets check goals first to see if there is anything to accept or turn in
 	if ZGV.db.profile.autoacceptturnin and ZGV.CurrentStep then
-		for _,goal in ipairs(ZGV.CurrentStep.goals) do
+		for _,goal in ipairs(getCurrentStepGoals()) do
 			if goalValidAccept(goal) then
 				for qnum,questInfo in ipairs(questsaccept) do
 					if (goal.questid==questInfo.questID) or (goal.autoacceptany and goal.autoacceptany[questInfo.questID]) then
@@ -160,7 +174,7 @@ function QuestAuto:Detail()
 			return
 		end
 
-		for i,goal in ipairs(ZGV.CurrentStep.goals) do
+		for i,goal in ipairs(getCurrentStepGoals()) do
 			if goalValidAccept(goal) then
 				if (goal.questid==questID) or (goal.autoacceptany and goal.autoacceptany[questID]) then
 					-- normal quest
@@ -197,7 +211,7 @@ function QuestAuto:Progress()
 	local id = GetQuestID()
 
 	if ZGV.db.profile.autoacceptturnin or (GetNumQuestChoices() > 1 and ZGV.db.profile.autoselectitem) then
-		for i,goal in ipairs(ZGV.CurrentStep.goals) do
+		for i,goal in ipairs(getCurrentStepGoals()) do
 			if (goal.quest and goal.quest.id==id)  or (goal.autoturninany and goal.autoturninany[id]) then
 				self:Debug("Completing quest, because guide or autoselect.")
 				ZGV:ScheduleTimer(function() 
@@ -265,7 +279,7 @@ function QuestAuto:Complete()
 				GetQuestReward(reward)
 			elseif ZGV.CurrentStep then  -- let's be picky
 				local id = GetQuestID()
-				for i,goal in ipairs(ZGV.CurrentStep.goals) do
+				for i,goal in ipairs(getCurrentStepGoals()) do
 					if (goal.quest and goal.quest.id==id) or (goal.autoturninany and goal.autoturninany[id]) then
 						ZGV:Print(L['autocomplete_turnin'])
 						GetQuestReward(reward)
@@ -328,7 +342,7 @@ function QuestAuto:Greeting()
 
 	-- order matters, so lets check goals first to see if there is anything to accept or turn in
 	if ZGV.db.profile.autoacceptturnin and ZGV.CurrentStep then
-		for _,goal in ipairs(ZGV.CurrentStep.goals) do
+		for _,goal in ipairs(getCurrentStepGoals()) do
 			if goalValidAccept(goal) then
 				for qnum,questTitle in ipairs(questsaccept) do
 					local questID = questsacceptid[qnum]

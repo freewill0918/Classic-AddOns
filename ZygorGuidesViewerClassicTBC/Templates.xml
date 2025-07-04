@@ -235,6 +235,25 @@
 		</Scripts>
 	</Button>
 
+	<Button name="ZygorIndicatorButton" virtual="true" frameStrata="MEDIUM">
+		<Size x="25" y="25" />
+		<Scripts>
+			 <OnEnter>
+				GameTooltip:ClearAllPoints()
+				GameTooltip:ClearLines()
+				GameTooltip:SetOwner(self,"ANCHOR_TOPLEFT")
+				GameTooltip:AddLine(self.tooltiptext)
+				GameTooltip:Show()
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide()
+			</OnLeave>
+			<OnLoad>
+				ZGV.ButtonSets.Minimap.NORMAL:AssignToButton(self)
+			</OnLoad>
+		</Scripts>
+	</Button>
+
 	<Button name="ZygorTalentIconButton" virtual="true" frameStrata="MEDIUM" mixin="ZygorTalentIconButton_Mixin">
 		<Size x="32" y="32" />
 		<Scripts>

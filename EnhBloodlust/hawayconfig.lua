@@ -20,7 +20,8 @@ config.sound = {
 	"Interface\\AddOns\\EnhBloodlust\\105C.mp3",
 	"Interface\\AddOns\\EnhBloodlust\\alone.mp3",
 	"Interface\\AddOns\\EnhBloodlust\\STAY.mp3",
-	"Interface\\AddOns\\EnhBloodlust\\BuildaB.mp3"
+	"Interface\\AddOns\\EnhBloodlust\\BuildaB.mp3",
+  "Interface\\AddOns\\EnhBloodlust\\Music.mp3"
 }
 
 config.soundShort = {

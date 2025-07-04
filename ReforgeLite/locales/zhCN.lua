@@ -21,6 +21,8 @@ L["Crit block"] = "精确格挡"
 L["Debug"] = "调试"
 --[[Translation missing --]]
 --[[ L["Destination stat color"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Enable spec profiles"] = ""--]] 
 L["Enter pawn string"] = "输入Pawn字符串"
 L["Enter the preset name"] = "输入预设名称"
 L["Enter WoWSims JSON"] = "输入 WoWSims JSON"

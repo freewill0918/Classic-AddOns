@@ -64,7 +64,7 @@ local function poi_tooltip_show(pin)
 		for index,item in ipairs(poi.itemdata) do
 			local comment = item.comment and " "..item.comment or ""
 			
-			if index==1 and item.itemid then
+			if index==1 and item.itemid and GameTooltip.ItemTooltip then
 				EmbeddedItemTooltip_SetItemByID(GameTooltip.ItemTooltip,item.itemid)
 			elseif item.itemid then
 				local _, name, _, _, _, _, _, _, _, itemTexture = ZGV:GetItemInfo(item.itemid)
@@ -401,7 +401,9 @@ end
 local function UpdateHandler()
 	if GameTooltip:IsVisible() and (GameTooltip.ZygorRecalculatePadding or 0)>0 then
 		GameTooltip.ZygorRecalculatePadding = GameTooltip.ZygorRecalculatePadding - 1
-		GameTooltip_CalculatePadding(GameTooltip)
+		if GameTooltip.ItemTooltip then
+			GameTooltip_CalculatePadding(GameTooltip)
+		end
 	end
 end
 
@@ -411,7 +413,9 @@ tinsert(ZGV.startups,{"POI hooks",function(self)
 	ZGV:AddEventHandler("LOOT_READY",EventHandler)
 	ZGV:AddEventHandler("LOOT_CLOSED",EventHandler)
 	ZGV:AddEventHandler("CHAT_MSG_CURRENCY",EventHandler)
-	ZGV:AddEventHandler("ENCOUNTER_LOOT_RECEIVED",EventHandler)
+	if ZGV.IsRetail then
+		ZGV:AddEventHandler("ENCOUNTER_LOOT_RECEIVED",EventHandler)
+	end
 	--ZGV:AddEventHandler("WORLD_MAP_UPDATE",EventHandler)
 
 	ZGV.UpdateCentral:AddHandler(UpdateHandler)

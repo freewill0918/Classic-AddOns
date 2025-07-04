@@ -340,7 +340,7 @@ end,id="gold",after="guides_loaded"})
 
 function Gold:LastScan(min)	--in minutes
 	local ScanDataBase
-	if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA then 
+	if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then 
 		ScanDatabase = ZGV.db.factionrealm
 	else
 		ScanDatabase = ZGV.db.realm

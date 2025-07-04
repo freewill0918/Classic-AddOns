@@ -1,4 +1,4 @@
-## Interface: 40402
+## Interface: 50500
 ## Title: |cffffffffZygor Guide Viewer |r|cffec8000(Cataclysm)|r
 ## Notes: Free multi-purpose leveling guide viewer, Classic edition.
 ## Author: Zygor Guides

@@ -2,6 +2,7 @@ RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
 #cata
+#mop
 #group Mage AoE 68-80
 << Mage
 #name 68-80 Mage AoE
@@ -514,6 +515,7 @@ RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
 #cata
+#mop
 #group Completionist Guides
 #name Emblems of Heroism 1 - Dragonblight/Zul'Drak
 #next Emblems of Heroism 2 - The Storm Peaks
@@ -1990,6 +1992,7 @@ RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
 #cata
+#mop
 #group Completionist Guides
 #name Emblems of Heroism 2 - The Storm Peaks
 #next Emblems of Heroism 3 - Icecrown
@@ -4966,6 +4969,7 @@ RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
 #cata
+#mop
 #group Completionist Guides
 #name Emblems of Heroism 3 - Icecrown
 step

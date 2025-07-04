@@ -9,7 +9,7 @@ local format = string.format
 -- WoW
 local function C_Map_GetAreaInfo(id)
     local d = C_Map.GetAreaInfo(id)
-    return d or "GetAreaInfo" .. id
+    return d or ("GetAreaInfo" .. id)
 end
 
 -- ----------------------------------------------------------------------------
@@ -394,6 +394,7 @@ data["MountsBC"] = {
     ContentType = COLLECTIONS_CONTENT,
     LoadDifficulty = LOAD_DIFF,
     TableType = NORMAL_ITTYPE,
+    gameVersion = AtlasLoot.BC_VERSION_NUM,
     CorrespondingFields = private.MOUNTS,
     items = {{
         name = AL["Faction Mounts"],
@@ -580,6 +581,7 @@ data["TabardsBC"] = {
     ContentType = COLLECTIONS_CONTENT,
     LoadDifficulty = LOAD_DIFF,
     TableType = NORMAL_ITTYPE,
+    gameVersion = AtlasLoot.BC_VERSION_NUM,
     CorrespondingFields = private.TABARDS,
     items = {{
         name = AL["Factions"],

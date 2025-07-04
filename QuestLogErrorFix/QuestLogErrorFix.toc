@@ -1,0 +1,14 @@
+## Interface: 11507, 30404, 50500, 110100, 110105
+## Title: QuestLogErrorFix
+## Notes: 修復 Blizzard 本地化回調錯誤的插件
+## Notes-zhTW: 修復 Blizzard 本地化回調錯誤的插件
+## Author: Freewill
+## Version: 1.0.6
+## SavedVariables: QuestLogErrorFixDB
+## OptionalDeps: !BugGrabber, BugSack
+
+## Title-zhTW: |cffffffee[修復]|r Blizzard 本地化錯誤修復
+## Notes-zhTW: QuestLogErrorFix |n|n修復 Blizzard_FrameXMLBase 本地化回調中的各種錯誤，包括 QuestLogDailyQuestCount 和 SetPoint 錯誤。|n|n|cffffd200使用方法: |r插件會自動啟用，也可以使用 /questlogfix 指令進行控制。
+## Category-zhTW: 修復
+
+QuestLogErrorFix.lua

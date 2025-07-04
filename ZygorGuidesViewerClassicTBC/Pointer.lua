@@ -981,9 +981,9 @@ function Pointer:ShowArrow(waypoint)
 	--if waypoint.type~="manual" then self:ClearWaypoints("manual") end
 
 	-- fix for "arrow stuck to cursor", probably
-	if not IsMouseButtonDown()  then
-	ZygorGuidesViewerPointer_ArrowCtrl:StopMovingOrSizing()
-	self.ArrowFrame.dragging=nil
+	if not IsMouseButtonDown() and self.ArrowFrame.dragging then
+		ZygorGuidesViewerPointer_ArrowCtrl:StopMovingOrSizing()
+		self.ArrowFrame.dragging=nil
 	end
 
 	-- bandaid: prevent showing if coords are missing

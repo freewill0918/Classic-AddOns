@@ -29,7 +29,7 @@ local API_VERSION = 110000
 
 -- Skin Info
 local Authors = {"StormFX", "Tuller"}
-local Version = "11.1.0"
+local Version = "11.1.5"
 local Websites = {
 	"https://github.com/SFX-WoW/Masque_Dominos",
 	"https://www.curseforge.com/wow/addons/masque-dominos",

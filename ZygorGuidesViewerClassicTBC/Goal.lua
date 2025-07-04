@@ -514,7 +514,7 @@ GOALTYPES['_item'] = {
 					-- Check if this sequence is common to all strings (test ends with space, so add space to existing string)
 					local is_common = true
 					for _,target in pairs(self.targets) do
-						if target[1] and not (target[1].." "):find(test_sequence) then
+						if target[1] and not (target[1].." "):find(test_sequence, 1, true) then
 							is_common = false
 							break
 						end
@@ -1179,21 +1179,17 @@ GOALTYPES['noquest'] = {
 		if ZGV.GetTargetId()==self.npcid then
 			if GossipFrame:IsShown() then
 				local noquests=true
-				local DATA_IN_GOSSIP=7  -- 7.2.5: title, level, isTrivial, frequency, isRepeatable, isLegendary, isIgnored
-				for qnum=1,GetNumGossipAvailableQuests() do
-					local name,level,isTrivial,frequency,isRepeatable,isLegendary = select((qnum-1)*DATA_IN_GOSSIP+1,GetGossipAvailableQuests())
-					if frequency==FREQ_DAILY then noquests=nil break end  -- one daily breaks it
+				for qnum,questInfo in ipairs(C_GossipInfo.GetAvailableQuests()) do
+					if questInfo.frequency==FREQ_DAILY then noquests=nil break end
 				end
-				local DATA_IN_GOSSIP=6  -- 7.2.5: title, level, isLowLevel, isComplete, isLegendary, isIgnored
-				for qnum=1,GetNumGossipActiveQuests() do
-					local name,level,isTrivial,isComplete,isLegendary = select((qnum-1)*DATA_IN_GOSSIP+1,GetGossipActiveQuests())
-					if isComplete then noquests=nil break end  -- one complete breaks it
+				for qnum,questInfo in ipairs(C_GossipInfo.GetActiveQuests()) do
+					if questInfo.frequency==FREQ_DAILY then noquests=nil break end
 				end
-				if noquests then CloseGossip() end
+				if noquests then C_GossipInfo.CloseGossip() end
 				return noquests, true
 			elseif QuestFrameGreetingPanel:IsShown() then
 				local noquests=true
-				for qnum=1,GetNumAvailableQuests() do
+				for qnum=1,C_GossipInfo.GetNumAvailableQuests() do
 					local isTrivial,isDaily,isRepeatable = GetAvailableQuestInfo(qnum)
 					if isDaily then noquests=nil break end
 				end
@@ -1703,7 +1699,7 @@ GOALTYPES['loadguide'] = {
 }
 
 local invslots = {'AmmoSlot','BackSlot','Bag0Slot','Bag1Slot','Bag2Slot','Bag3Slot','ChestSlot','FeetSlot','Finger0Slot','Finger1Slot','HandsSlot','HeadSlot','LegsSlot','MainHandSlot','NeckSlot','SecondaryHandSlot','ShirtSlot','ShoulderSlot','TabardSlot','Trinket0Slot','Trinket1Slot','WaistSlot','WristSlot'}
-if not ZGV.IsRetail then table.insert(invslots,'RangedSlot') end
+if not (ZGV.IsRetail or ZGV.IsClassicMOP) then table.insert(invslots,'RangedSlot') end
 GOALTYPES['equipped'] = {
 	parse = function(self,params)
 		self.target,self.targetid = ParseID(params)
@@ -2048,7 +2044,7 @@ GOALTYPES['earn'] = {
 	end,
 	iscomplete = function(self)
 		local cinfo = C_CurrencyInfo.GetCurrencyInfo(self.targetid)
-		local name,got = cinfo.name, cinfo.quantity
+		local name,got = cinfo and cinfo.name, cinfo and cinfo.quantity
 		if not name then return end
 		return got>=self.count, true, norm_nums(got,self.count)
 	end,

@@ -608,3 +608,6 @@ L["lootTheItem"] = "Saquea %s"; --Example: Loot the Tarnished Undermine Real
 L["Qiraji Lord's Insignia"] = "Insígnia do Lorde Qiraji";
 
 L["Remnants of Valor"] = "Vestígio de Bravura";
+
+L["Not Doused"] = "Não apagado";
+L["douseDisclaimer"] = "Nota: Este módulo Apaga usa a melhor estimativa com base no\núltimo chefe derrotado e outros fatores; pode estar impreciso.";

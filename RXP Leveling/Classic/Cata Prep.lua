@@ -2,7 +2,8 @@ RXPGuides.RegisterGuide([[
 #version 9
 #wotlk
 #cata
-#group Cataclysm Preparation
+#mop
+#group RXP Cataclysm 1-80
 #name QuestDB
 #internal
 step
@@ -12,8 +13,9 @@ RXPGuides.RegisterGuide([[
 #version 9
 #wotlk
 #cata
+#mop
 #include QuestDB
-#group Cataclysm Preparation
+#group RXP Cataclysm 1-80
 #name !How to Use This Guide
 #hidewindow
 step
@@ -32,8 +34,9 @@ RXPGuides.RegisterGuide([[
 #version 9
 #wotlk
 #cata
+#mop
 #include QuestDB
-#group Cataclysm Preparation
+#group RXP Cataclysm 1-80
 #name Turn In Day Speed Assistant
 step
 +Some items of note that you can collect to navigate through the turn-in guide faster are the following:
@@ -51,8 +54,9 @@ RXPGuides.RegisterGuide([[
 #version 9
 #wotlk
 #cata
+#mop
 #include QuestDB
-#group Cataclysm Preparation
+#group RXP Cataclysm 1-80
 #subgroup Preparation guide
 #title 1.1 - Instant quest turn ins\nRXP Cataclysm Prep Guide
 #name 1.1 - Instant quest turn ins - Dragonblight & The Storm Peaks
@@ -1613,8 +1617,9 @@ RXPGuides.RegisterGuide([[
 #version 9
 #wotlk
 #cata
+#mop
 #include QuestDB
-#group Cataclysm Preparation
+#group RXP Cataclysm 1-80
 #subgroup Preparation guide
 #title 1.2 - Instant quest turn ins\nRXP Cataclysm Prep Guide
 #name 1.2 - Instant quest turn ins - Icecrown & Sholazar Basin
@@ -2626,8 +2631,9 @@ RXPGuides.RegisterGuide([[
 #version 9
 #wotlk
 #cata
+#mop
 #include QuestDB
-#group Cataclysm Preparation
+#group RXP Cataclysm 1-80
 #subgroup Preparation guide
 #title 3.1 - Collectable Items\nRXP Cataclysm Prep Guide
 #name 3.1 - Collectable Items
@@ -3397,8 +3403,9 @@ RXPGuides.RegisterGuide([[
 #version 9
 #wotlk
 #cata
+#mop
 #include QuestDB
-#group Cataclysm Preparation
+#group RXP Cataclysm 1-80
 #name Total XP prepared
 #hidewindow
 step
@@ -3414,8 +3421,9 @@ RXPGuides.RegisterGuide([[
 #version 9
 #wotlk
 #cata
+#mop
 #include QuestDB
-#group Cataclysm Preparation
+#group RXP Cataclysm 1-80
 #subgroup Preparation guide
 #title 2.1 - 25 Questlog prep\nRXP Cataclysm Prep Guide
 #name 2.1 - 25 Questlog prep - Dragonblight & Grizzly Hills
@@ -4395,8 +4403,9 @@ RXPGuides.RegisterGuide([[
 #version 9
 #wotlk
 #cata
+#mop
 #include QuestDB
-#group Cataclysm Preparation
+#group RXP Cataclysm 1-80
 #subgroup Preparation guide
 #title 2.2 - 25 Questlog prep\nRXP Cataclysm Prep Guide
 #name 2.2 - 25 Questlog prep - Zul'Drak & The Storm Peaks
@@ -6151,8 +6160,9 @@ RXPGuides.RegisterGuide([[
 #version 9
 #wotlk
 #cata
+#mop
 #include QuestDB
-#group Cataclysm Preparation
+#group RXP Cataclysm 1-80
 #subgroup Preparation guide
 #title 2.3 - 25 Questlog prep - Icecrown\nRXP Cataclysm Prep Guide
 #name 2.3 - 25 Questlog prep - Icecrown
@@ -9546,8 +9556,9 @@ RXPGuides.RegisterGuide([[
 #version 9
 #wotlk
 #cata
+#mop
 #include QuestDB
-#group Cataclysm Preparation
+#group RXP Cataclysm 1-80
 #subgroup Preparation guide
 #title 4.1 - 25 Questlog prep\nRXP Cataclysm Prep Guide
 #name 4.1 - 25 Questlog prep - Dungeons and Raids
@@ -9921,8 +9932,9 @@ RXPGuides.RegisterGuide([[
 #version 9
 #wotlk
 #cata
+#mop
 #include QuestDB
-#group Cataclysm Preparation
+#group RXP Cataclysm 1-80
 #name Launch Turn in Guide
 step
 >>Welcome to the launch day turn in guide, DO NOT do this guide on official server until the release day. If you wish to run a test, copy your character with prepared quests on to the beta testing server and do it there.

@@ -38,8 +38,8 @@ L["alts"] = "Materialien bei Twinks"
 L["Appearance"] = "Aussehen"
 L["APPEARANCEDESC"] = "Einstellungen, die das Aussehen von Skillet ändern"
 L["Auction"] = "Auktion"
-L["Bank"] = "Bank"
 L["bank"] = "Bank"
+L["Bank"] = "Bank"
 L["Blizzard"] = "Blizzard"
 L["Buy Reagents"] = "Materialien kaufen"
 L["buyable"] = "Kaufbar"
@@ -109,6 +109,14 @@ L["FEATURESDESC"] = "Optionale Funktionen die ein- oder ausgeschaltet werden kö
 L["Filter"] = "Filter"
 --[[Translation missing --]]
 L["Filter recipes by source"] = "Filter recipes by source"
+--[[Translation missing --]]
+L["FLASHONEMPTYQUEUEDESC"] = "Flash icon when the queue is empty"
+--[[Translation missing --]]
+L["FLASHONEMPTYQUEUENAME"] = "Flash on Empty Queue"
+--[[Translation missing --]]
+L["FLASHONREMOVEQUEUEDESC"] = "Flash icon when an entry is removed from the queue"
+--[[Translation missing --]]
+L["FLASHONREMOVEQUEUENAME"] = "Flash on Remove Queue Entry"
 L["Flat"] = "Einfach"
 L["Flush All Data"] = "Alle Daten erneut initialisieren"
 L["Flush Player Data"] = "Spielerdaten bereinigen"
@@ -306,6 +314,10 @@ L["Sorting"] = "Sortierung"
 L["SOUNDONEMPTYQUEUEDESC"] = "Play a sound when the queue is empty"
 --[[Translation missing --]]
 L["SOUNDONEMPTYQUEUENAME"] = "Sound on Empty Queue"
+--[[Translation missing --]]
+L["SOUNDONREMOVEQUEUEDESC"] = "Play a sound when an entry is removed from the queue"
+--[[Translation missing --]]
+L["SOUNDONREMOVEQUEUENAME"] = "Sound on Remove Queue Entry"
 L["Source:"] = "Quelle:"
 L["STANDBYDESC"] = "Standby-Modus ein-/ausschalten"
 L["STANDBYNAME"] = "standby"

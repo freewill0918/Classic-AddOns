@@ -148,7 +148,7 @@ local function GetStats(text, r, g, b, stats, link)
         end
 	end
     --常规属性 +xx
-    if strfind(text, "%+(%d+)") then		
+    if strfind(text, "%+(%d+)") then
 		v = strmatch(text, "%+(%d+)")
 		for _, p in ipairs(patterns.general) do
 			if strfind(text, p.pattern) then
@@ -222,7 +222,7 @@ end
 
 --天赋解析 @todo
 local function GetTalentEffect(rank, nameTalent, stats, class, race, level)
-    
+
 end
 
 --读取UNIT的Buff加成
@@ -237,18 +237,18 @@ function lib:GetUnitBuffStats(unit, stats)
 		tooltip:SetOwner(UIParent, "ANCHOR_NONE")
 		tooltip:ClearLines()
 		tooltip:SetUnitBuff(unit, i)
-		for j = 2, tooltip:NumLines() do			
+		for j = 2, tooltip:NumLines() do
 			text = _G[tooltip:GetName() .."TextLeft" .. j]:GetText()
 			GetBuffStats(text, stats)
 		end
 		i = i + 1;
 	end
-    --德鲁伊印记抗性和牧师暗抗(取牧师的:牧min^30>德max^25): 野性印记 图标136078 暗影防护 图标136121 
+    --德鲁伊印记抗性和牧师暗抗(取牧师的:牧min^30>德max^25): 野性印记 图标136078 暗影防护 图标136121
     if (textures[136121] and textures[136078]) then
         tooltip:SetOwner(UIParent, "ANCHOR_NONE")
 		tooltip:ClearLines()
 		tooltip:SetUnitBuff(unit, textures[136078])
-		for j = 2, tooltip:NumLines() do			
+		for j = 2, tooltip:NumLines() do
 			text = _G[tooltip:GetName() .."TextLeft" .. j]:GetText()
 			for _, p in ipairs(patterns.buff) do
                 if p.conflict and strfind(text, p.pattern) then
@@ -264,17 +264,9 @@ end
 
 --读取天赋加成 @todo
 function lib:GetUnitTalentStats(unit, stats, class, race, level)
-    local inspect = (unit ~= "player")
-    local numTabs = GetNumTalentTabs(inspect)
-	for i = 1, numTabs do
-		local numTalents = GetNumTalents(i,inspect)
-		for j = 1, numTalents do
-			nameTalent, _, _, _, currRank, maxRank = GetTalentInfo(i,j,inspect)
-			if currRank > 0 then
-				GetTalentEffect(currRank, nameTalent, stats, class, race, level)
-			end
-		end
-	end
+    -- 禁用天賦統計功能，因為 GetNumTalentTabs API 在當前版本不支持
+    -- 此功能已被禁用以防止 "API unsupported" 錯誤
+    return
 end
 
 --读取种族及初始属性加成
@@ -290,7 +282,7 @@ function lib:GetUnitRaceStats(unit, stats, class, race, level)
         SetStaticValueAndFinal(stats, 10, "ResistanceArcane")
     elseif (race == "NightElf" or race == "Tauren") then
         SetStaticValueAndFinal(stats, 10, "ResistanceNature")
-    elseif (race == "Dwarf") then    
+    elseif (race == "Dwarf") then
         SetStaticValueAndFinal(stats, 10, "ResistanceFrost")
     elseif (race == "Scourge" or race == "Draenei") then
         SetStaticValueAndFinal(stats, 10, "ResistanceShadow")
@@ -302,9 +294,9 @@ function lib:GetUnitRaceStats(unit, stats, class, race, level)
         SetStaticValueAndFinal(stats, 5, "ResistanceShadow")
     end
     --HPMP @todo
-    
+
     --原始属性 @todo
-    
+
 end
 
 --读取UNIT的全身装备属性
@@ -332,7 +324,7 @@ function lib:GetUnitStats(unit, stats)
     if (type(stats) ~= "table") then stats = {} end
     local level = UnitLevel(unit)
     local _, race = UnitRace(unit)
-    local _, class = UnitClass(unit) 
+    local _, class = UnitClass(unit)
     stats.unit = unit
     self:GetUnitItemStats(unit, stats)
     self:GetUnitBuffStats(unit, stats)

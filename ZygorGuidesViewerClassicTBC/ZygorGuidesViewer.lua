@@ -49,6 +49,7 @@ ZGV.IsClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 ZGV.IsClassicTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 ZGV.IsClassicWOTLK = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 ZGV.IsClassicCATA = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
+ZGV.IsClassicMOP = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 ZGV.IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 ZGV.IsClassicSoM =  C_Seasons and (ZGV.IsClassic and C_Seasons.HasActiveSeason() and C_Seasons.GetActiveSeason()==Enum.SeasonID.SeasonOfMastery)
 ZGV.IsClassicSoD =  C_Seasons and (ZGV.IsClassic and C_Seasons.HasActiveSeason() and C_Seasons.GetActiveSeason()==(Enum.SeasonID.SeasonOfDiscovery or 2))
@@ -70,6 +71,7 @@ if ZGV.IsClassicTBC then ZGV.IMAGESDIR = ZGV.DIR .. "\\Guides-TBC\\Images\\" end
 if ZGV.IsClassicWOTLK then ZGV.IMAGESDIR = ZGV.DIR .. "\\Guides-WOTLK\\Images\\" end
 if ZGV.IsClassicCATA then ZGV.IMAGESDIR = ZGV.DIR .. "\\Guides-CATA\\Images\\" end
 if ZGV.IsClassic    then ZGV.IMAGESDIR = ZGV.DIR .. "\\Guides-Classic\\Images\\" end
+if ZGV.IsClassicMOP    then ZGV.IMAGESDIR = ZGV.DIR .. "\\Guides-MOP\\Images\\" end
 
 ZYGORGUIDESVIEWER_COMMAND = "zygor"
 ZYGORGUIDESVIEWERFRAME_TITLE = "ZygorGuidesViewer"
@@ -1449,7 +1451,7 @@ end
 
 
 
-function ZGV:SetGuide(name,step,hack,silent,source) --hack used for testing
+function ZGV:SetGuide(name,step,source,silent,prevguide)
 	if not name then return end
 
 	step=step or 1
@@ -1493,10 +1495,10 @@ function ZGV:SetGuide(name,step,hack,silent,source) --hack used for testing
 	self:Debug("&startup SetGuide to %s",guide.title)
 
 	if guide then
-		if source ~= nil then
-			if not ZGV.GuideFuncs:IsValid(guide,nil,"rating",nil,nil,source) then return end
+		if prevguide ~= nil then
+			if not ZGV.GuideFuncs:IsValid(guide,step,"rating",nil,nil,prevguide) then return end
 		else
-		if not ZGV.GuideFuncs:IsValid(guide,nil,"setguide") then return end
+			if not ZGV.GuideFuncs:IsValid(guide,step,source or "setguide") then return end
 		end
 
 		-- unload guides
@@ -1778,7 +1780,7 @@ function ZGV:FocusStep(num,forcefocus)
 	local reportlabel = self.CurrentStep and ZGV.QuestDB.GetStepTag and (ZGV.QuestDB:GetStepTag(self.CurrentStep) or "").." " or ""
 	reportlabel = reportlabel .. ("(From %s step %s, fast forward %s, skipping %s"):format(tostring(prevguide),tostring(prevnum),tostring(self.fastforward),tostring(self.skipping))
 
-	if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA then
+	if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
 		if ZGV.CurrentGuide and (ZGV.db.char.guideTurnInsOnly == ZGV.CurrentGuide.title) then
 			reportlabel = reportlabel .. ", guide in turnins only mode"
 		end
@@ -2175,7 +2177,7 @@ function ZGV:ReloadStep(fast)
 	self:FocusStep(self.CurrentStepNum)
 end
 
---- A quest is 'interesting' if any follow-ups to it appear anywhere in the guides and they're not gray.
+--- A quest is 'interesting' if any follow-ups to it appear anywhere in the guides and they're not grey.
 -- As of 3.1, no follow-ups are tracked.
 
 --[[
@@ -5642,6 +5644,8 @@ function ZGV:SuggestGuideFromBlizzardIcon(object)
 			end
 		end
 	end
+
+	if not guide or not guide.steplabels then return end	  --Clickable PoI that are not quest related, like PvP towers in Outland
 
 	if not step_label and poiID then
 		for guidetitle,guidedata in pairs(guidetitles) do

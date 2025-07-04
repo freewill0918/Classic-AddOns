@@ -1,10 +1,10 @@
-## Interface: 30403, 40402
+## Interface: 50500
 ## Author: Snowflame0
-## Version: v4.3.0-Rainbow
+## Version: v5.0.0-beta1
 ## Dependencies: AtlasLootClassic
 ## LoadOnDemand: 1
 
-## Title: AtlasLootClassic |cFFFF5733Cata|r |cFF0099FF[Factions]|r
+## Title: AtlasLootClassic |cFF33FFBDMoP|r |cFF0099FF[Factions]|r
 ## Notes: AtlasLoot Faction loot tables
 
 ## Title-deDE: AtlasLootClassic |cFFFF5733Cata|r |cFF0099FF[Fraktionen]|r
@@ -43,3 +43,4 @@ data.lua
 data-tbc.lua
 data-wrath.lua
 data-cata.lua
+data-mop.lua

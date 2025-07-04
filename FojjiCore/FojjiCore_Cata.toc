@@ -2,7 +2,7 @@
 ## Title: Fojji Core
 ## RequiredDeps: WeakAuras
 ## SavedVariables: FTSavedVars
-## Version: 1.5.0
+## Version: 1.5.7
 embeds.xml
 
 # Libs

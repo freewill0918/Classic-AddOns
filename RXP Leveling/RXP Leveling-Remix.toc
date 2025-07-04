@@ -1,0 +1,7 @@
+## Interface: 100207
+## Title: RXP Leveling
+## Notes: In-game quest stacking
+## Author: The Curator
+## Version: 1.0.0
+## Dependencies: RXPGuides
+MOP/Alliance-31-85.lua

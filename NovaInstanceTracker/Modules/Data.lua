@@ -1300,10 +1300,13 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 		if (difficultyID == 208) then
 			instanceType = "party";
 			type = "delve";
-		end
+		else
+		  instanceType = "party";
+      type = "scenario";
+    end
 	end
-	if (instance == true and ((instanceType == "party") or (instanceType == "raid")
-			or (type == "bg") or (type == "arena"))) then
+	if (instance == true and (instanceType == "party" or instanceType == "raid"
+			or type == "bg" or type == "arena")) then
 		local instanceName, instanceType, difficultyID, difficultyName, maxPlayers, dynamicDifficulty,
 				isDynamic, instanceID, instanceGroupSize, LfgDungeonID = GetInstanceInfo();
 		if (NIT.inInstance and NIT.lastInstanceName ~= instanceName) then
@@ -1324,6 +1327,8 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 			instanceNameMsg = instanceNameMsg .. " |cFF9CD6DE(|r|cFFa335eeM|r|cFF9CD6DE)|r";
 		elseif (type == "delve") then
 			instanceNameMsg = instanceNameMsg .. " |cFF9CD6DE(|r|cFF00C800D|r|cFF9CD6DE)|r";
+		elseif (type == "scenario") then
+      instanceNameMsg = instanceNameMsg .. " |cFF9CD6DE(|r|cFFFF2222H|r|cFF9CD6DE)|r";
 		end
 		if (isGhost) then
 			--This never worked and doesn't need to anyway.
@@ -2123,7 +2128,7 @@ function NIT:getInstanceLockoutInfo(char)
 	end
 	for k, v in ipairs(NIT.data.instances) do
 		if (not NIT.perCharOnly or target == v.playerName) then
-			if (v.isPvp or v.type == "delve" or (NIT.noRaidLockouts and v.instanceID and NIT.zones[v.instanceID] and NIT.zones[v.instanceID].noLockout)) then
+			if (v.isPvp or v.type == "delve" or v.type == "scenario" or (NIT.noRaidLockouts and v.instanceID and NIT.zones[v.instanceID] and NIT.zones[v.instanceID].noLockout)) then
 				--NIT:debug("skipping raid", v.instanceID);
 			else
 				count = count + 1;

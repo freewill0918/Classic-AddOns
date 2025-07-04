@@ -1,18 +1,10 @@
-# v4.3.0-beta (Feb 18, 2025)
-- THIS RELEASE IS A WORK IN PROGRESS, things still need to be added and organized/simplified
-- Added Procotol Twilight items, still missing Firelands items and costs
-- Added Phase 4 VP/JP items
-- Shoutout to @Firsthunterz for help adding lots of items manually in this release
+# v5.0.0-beta1 (July 1, 2025)
+- Initial MoP Pre-patch Support
+- Lots of things still broken or not populated
+- Dungeons and Raids mostly there
 
-# v4.2.1 (Nov 4, 2024)
-- Added missing trinkets to Fissure Stone vendor
-- Fixed dungeon sets not showing under classic collections
-
-# v4.2.0 (Oct 29, 2024)
-- Fixed model display, shows models again (some models buggy)
-- Added Phase 3 VP/JP items
-- Added Protocol Inferno items & currency
-- Added currency drops to boss tables (VP/JP/Stones)
-- Some cleanup and beautifying
-- Removed all references to Atlas Maps, can't support it anymore
-- Many small fixes and code cleanup
+# 4.3.2 (May 13, 2025)
+- Add rest of S11 PvP gear
+- Noblegarden items added
+- Several small fixes to old world loot
+- Change order of expansions to put newest one on top first

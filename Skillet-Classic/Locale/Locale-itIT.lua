@@ -28,9 +28,9 @@ L["Appearance"] = "Aspetto"
 L["APPEARANCEDESC"] = "Le opzioni che controllano come Skillet viene mostrato"
 --[[Translation missing --]]
 L["Auction"] = "Auction"
+L["bank"] = "banca"
 --[[Translation missing --]]
 L["Bank"] = "Bank"
-L["bank"] = "banca"
 L["Blizzard"] = "Tempesta"
 L["Buy Reagents"] = "Compra Reagenti"
 L["buyable"] = "comprabile"
@@ -104,6 +104,14 @@ L["FEATURESDESC"] = "Comportamenti opzionali che possono essere attivati o disat
 L["Filter"] = "Filtro"
 --[[Translation missing --]]
 L["Filter recipes by source"] = "Filter recipes by source"
+--[[Translation missing --]]
+L["FLASHONEMPTYQUEUEDESC"] = "Flash icon when the queue is empty"
+--[[Translation missing --]]
+L["FLASHONEMPTYQUEUENAME"] = "Flash on Empty Queue"
+--[[Translation missing --]]
+L["FLASHONREMOVEQUEUEDESC"] = "Flash icon when an entry is removed from the queue"
+--[[Translation missing --]]
+L["FLASHONREMOVEQUEUENAME"] = "Flash on Remove Queue Entry"
 L["Flat"] = "Flat"
 L["Flush All Data"] = "Flush All Data"
 L["Flush Player Data"] = "Flush Player Data"
@@ -311,6 +319,10 @@ L["Sorting"] = "Riordinango"
 L["SOUNDONEMPTYQUEUEDESC"] = "Play a sound when the queue is empty"
 --[[Translation missing --]]
 L["SOUNDONEMPTYQUEUENAME"] = "Sound on Empty Queue"
+--[[Translation missing --]]
+L["SOUNDONREMOVEQUEUEDESC"] = "Play a sound when an entry is removed from the queue"
+--[[Translation missing --]]
+L["SOUNDONREMOVEQUEUENAME"] = "Sound on Remove Queue Entry"
 L["Source:"] = "Sorgente:"
 L["STANDBYDESC"] = "Scambia stato di attesa acceso/spento"
 L["STANDBYNAME"] = "attesa"

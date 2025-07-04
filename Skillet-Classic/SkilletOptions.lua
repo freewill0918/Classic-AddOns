@@ -24,6 +24,9 @@ local isBCC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 local isWrath = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 local isCata = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
 
+local GetItemInfo = C_Item and C_Item.GetItemInfo or GetItemInfo
+local GetItemInfoInstant = C_Item and C_Item.GetItemInfoInstant or GetItemInfoInstant
+
 --
 -- All the options that we allow the user to control.
 --
@@ -559,8 +562,51 @@ Skillet.options =
 					set = function(self,value)
 						Skillet.db.profile.sound_on_empty_queue = value
 					end,
-					width = "full",
+--					width = "full",
+					width = 1.5,
 					order = 6,
+				},
+				flash_on_empty_queue = {
+					type = "toggle",
+					name = L["FLASHONEMPTYQUEUENAME"],
+					desc = L["FLASHONEMPTYQUEUEDESC"],
+					get = function()
+						return Skillet.db.profile.flash_on_empty_queue
+					end,
+					set = function(self,value)
+						Skillet.db.profile.flash_on_empty_queue = value
+					end,
+--					width = "full",
+					width = 1.5,
+					order = 7,
+				},
+				sound_on_remove_queue = {
+					type = "toggle",
+					name = L["SOUNDONREMOVEQUEUENAME"],
+					desc = L["SOUNDONREMOVEQUEUEDESC"],
+					get = function()
+						return Skillet.db.profile.sound_on_remove_queue
+					end,
+					set = function(self,value)
+						Skillet.db.profile.sound_on_remove_queue = value
+					end,
+--					width = "full",
+					width = 1.5,
+					order = 8,
+				},
+				flash_on_remove_queue = {
+					type = "toggle",
+					name = L["FLASHONREMOVEQUEUENAME"],
+					desc = L["FLASHONREMOVEQUEUEDESC"],
+					get = function()
+						return Skillet.db.profile.flash_on_remove_queue
+					end,
+					set = function(self,value)
+						Skillet.db.profile.flash_on_remove_queue = value
+					end,
+--					width = "full",
+					width = 1.5,
+					order = 9,
 				},
 				clamp_to_screen = {
 					type = "toggle",
@@ -575,7 +621,7 @@ Skillet.options =
 						if SkilletStandaloneQueue then SkilletStandaloneQueue:SetClampedToScreen(value) end
 					end,
 					width = "full",
-					order = 9,
+					order = 10,
 				},
 				scale_tooltip = {
 					type = "toggle",
@@ -588,7 +634,7 @@ Skillet.options =
 						Skillet.db.profile.scale_tooltip = value
 					end,
 					width = "full",
-					order = 10,
+					order = 11,
 				},
 				transparency = {
 					type = "range",
@@ -605,7 +651,7 @@ Skillet.options =
 						Skillet:UpdateStandaloneQueueWindow()
 					end,
 					width = "full",
-					order = 11,
+					order = 20,
 				},
 				scale = {
 					type = "range",
@@ -622,7 +668,7 @@ Skillet.options =
 						Skillet:UpdateStandaloneQueueWindow()
 					end,
 					width = "full",
-					order = 12,
+					order = 21,
 				},
 				ttscale = {
 					type = "range",
@@ -639,7 +685,7 @@ Skillet.options =
 						Skillet:UpdateStandaloneQueueWindow()
 					end,
 					width = "full",
-					order = 13,
+					order = 22,
 				},
 			},
 		},
@@ -728,6 +774,61 @@ Skillet.options =
 			end,
 			order = 56
 		},
+		flushcustomdata = {
+			type = 'execute',
+			name = "Flush Custom Data",
+			desc = "Flush Custom Group Data",
+			func = function()
+				if not (UnitAffectingCombat("player")) then
+					Skillet:FlushCustomData()
+					Skillet:InitializeDatabase(UnitName("player"))
+				else
+					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
+				end
+			end,
+			order = 57
+		},
+		flushqueuedata = {
+			type = 'execute',
+			name = "Flush Queue Data",
+			desc = "Flush Queue Data",
+			func = function()
+				if not (UnitAffectingCombat("player")) then
+					Skillet:FlushQueueData()
+					Skillet:InitializeDatabase(UnitName("player"))
+				else
+					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
+				end
+			end,
+			order = 58
+		},
+		flushdetaildata = {
+			type = 'execute',
+			name = "Flush Detail Data",
+			desc = "Clear the collected bag, bank, guildbank details",
+			func = function()
+				if not (UnitAffectingCombat("player")) then
+					Skillet:FlushDetailData()
+					Skillet:InitializeDatabase(UnitName("player"))
+				else
+					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
+				end
+			end,
+			order = 59
+		},
+		collectdetails = {
+			type = "toggle",
+			name = "Collect details",
+			desc = "Disable/Enable collecting bag, bank, guildbank details",
+			get = function()
+				return Skillet.db.profile.collect_details
+			end,
+			set = function(self,value)
+				Skillet.db.profile.collect_details = value
+				Skillet:Print("collect_details= "..tostring(value))
+			end,
+			order = 60
+		},
 		standby = {
 			type = 'execute',
 			name = L["STANDBYNAME"],
@@ -742,7 +843,7 @@ Skillet.options =
 				end
 			end,
 			guiHidden = true,
-			order = 57
+			order = 61
 		},
 		ignorelist = {
 			type = 'execute',
@@ -755,7 +856,7 @@ Skillet.options =
 					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
 				end
 			end,
-			order = 58
+			order = 62
 		},
 		ignoreclear = {
 			type = 'execute',
@@ -768,7 +869,7 @@ Skillet.options =
 					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
 				end
 			end,
-			order = 59
+			order = 63
 		},
 		ignoreadd = {
 			type = "input",
@@ -782,7 +883,7 @@ Skillet.options =
 				local value = tonumber(value)
 				Skillet.db.realm.userIgnoredMats[UnitName("player")][value] = 1
 			end,
-			order = 60
+			order = 64
 		},
 		ignoredel = {
 			type = "input",
@@ -796,7 +897,7 @@ Skillet.options =
 				local value = tonumber(value)
 				Skillet.db.realm.userIgnoredMats[UnitName("player")][value] = nil
 			end,
-			order = 61
+			order = 65
 		},
 --[[
 		resetrecipefilter = {
@@ -810,7 +911,7 @@ Skillet.options =
 					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
 				end
 			end,
-			order = 62
+			order = 66
 		},
 ]]--
 		printsaved = {
@@ -824,7 +925,7 @@ Skillet.options =
 					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
 				end
 			end,
-			order = 63
+			order = 67
 		},
 		printqueue = {
 			type = 'execute',
@@ -837,7 +938,7 @@ Skillet.options =
 					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
 				end
 			end,
-			order = 64
+			order = 68
 		},
 		printsavedqueue = {
 			type = 'input',
@@ -853,7 +954,7 @@ Skillet.options =
 					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
 				end
 			end,
-			order = 65
+			order = 69
 		},
 		clearqueue = {
 			type = 'execute',
@@ -866,7 +967,7 @@ Skillet.options =
 					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
 				end
 			end,
-			order = 66
+			order = 70
 		},
 		printauction = {
 			type = 'execute',
@@ -879,7 +980,7 @@ Skillet.options =
 					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
 				end
 			end,
-			order = 67
+			order = 71
 		},
 		enchanting = {
 			type = "toggle",
@@ -893,7 +994,7 @@ Skillet.options =
 				Skillet:ConfigureRecipeControls()
 				Skillet:UpdateTradeSkillWindow()
 			end,
-			order = 68,
+			order = 72
 		},
 --
 -- commands to toggle Blizzard's frames (beats using "/run")
@@ -915,7 +1016,7 @@ Skillet.options =
 					Skillet.BlizzardUIshowing = false
 				end
 			end,
-			order = 69
+			order = 73
 		},
 		bcui = {
 			type = "toggle",
@@ -932,7 +1033,7 @@ Skillet.options =
 					HideUIPanel(CraftFrame)
 				end
 			end,
-			order = 70
+			order = 74
 		},
 --
 -- commands to update Skillet's main windows
@@ -944,7 +1045,7 @@ Skillet.options =
 			func = function()
 				Skillet:UpdateShoppingListWindow(false)
 			end,
-			order = 71
+			order = 75
 		},
 		utsw = {
 			type = 'execute',
@@ -953,7 +1054,7 @@ Skillet.options =
 			func = function()
 				Skillet:UpdateTradeSkillWindow()
 			end,
-			order = 72
+			order = 76
 		},
 --
 -- command to turn on/off custom groups 
@@ -974,38 +1075,7 @@ Skillet.options =
 					SkilletRecipeGroupOperations:Disable()
 				end
 			end,
-			order = 73
-		},
---
--- additional database flush commands
---
-		flushcustomdata = {
-			type = 'execute',
-			name = "Flush Custom Data",
-			desc = "Flush Custom Group Data",
-			func = function()
-				if not (UnitAffectingCombat("player")) then
-					Skillet:FlushCustomData()
-					Skillet:InitializeDatabase(UnitName("player"))
-				else
-					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
-				end
-			end,
-			order = 74
-		},
-		flushqueuedata = {
-			type = 'execute',
-			name = "Flush Queue Data",
-			desc = "Flush Queue Data",
-			func = function()
-				if not (UnitAffectingCombat("player")) then
-					Skillet:FlushQueueData()
-					Skillet:InitializeDatabase(UnitName("player"))
-				else
-					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
-				end
-			end,
-			order = 75
+			order = 78
 		},
 		nomodkeys = {
 			type = "toggle",
@@ -1017,7 +1087,7 @@ Skillet.options =
 			set = function(self,value)
 				Skillet.db.profile.nomodkeys = value
 			end,
-			order = 76
+			order = 78
 		},
 		invertshiftkey = {
 			type = "toggle",
@@ -1029,7 +1099,7 @@ Skillet.options =
 			set = function(self,value)
 				Skillet.db.profile.invertshiftkey = value
 			end,
-			order = 76
+			order = 79
 		},
 --
 -- commands to print and initialize skill data (SkillLevelData.lua)
@@ -1055,7 +1125,7 @@ Skillet.options =
 					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
 				end
 			end,
-			order = 77
+			order = 80
 		},
 		initskilllevels = {
 			type = 'execute',
@@ -1068,7 +1138,7 @@ Skillet.options =
 					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
 				end
 			end,
-			order = 78
+			order = 81
 		},
 		altskilllevels = {
 			type = "toggle",
@@ -1080,7 +1150,7 @@ Skillet.options =
 			set = function(self,value)
 				Skillet.db.profile.altskilllevels = value
 			end,
-			order = 78
+			order = 82
 		},
 		baseskilllevel = {
 			type = "toggle",
@@ -1092,7 +1162,7 @@ Skillet.options =
 			set = function(self,value)
 				Skillet.db.profile.baseskilllevel = value
 			end,
-			order = 78
+			order = 83
 		},
 		news = {
 			type = 'execute',
@@ -1105,7 +1175,7 @@ Skillet.options =
 					DA.DEBUG(0,"|cff8888ffSkillet|r: Combat lockdown restriction. Leave combat and try again.")
 				end
 			end,
-			order = 79
+			order = 84
 		},
 		AJ = {
 			type = "input",
@@ -1131,7 +1201,7 @@ Skillet.options =
 					end
 				end
 			end,
-			order = 80
+			order = 85
 		},
 
 --
@@ -1271,6 +1341,19 @@ Skillet.options =
 			end,
 			order = 88
 		},
+		TraceLog3 = {
+			type = "toggle",
+			name = "TraceLog3",
+			desc = "Option for debugging",
+			get = function()
+				return Skillet.db.profile.TraceLog3
+			end,
+			set = function(self,value)
+				Skillet.db.profile.TraceLog3 = value
+				Skillet.TraceLog3 = value
+			end,
+			order = 88
+		},
 		ProfileShow = {
 			type = "toggle",
 			name = "ProfileShow",
@@ -1350,6 +1433,14 @@ Skillet.options =
 				if Skillet.db.profile.TraceLog then
 					Skillet.db.profile.TraceLog = false
 					Skillet.TraceLog = false
+				end
+				if Skillet.db.profile.TraceLog2 then
+					Skillet.db.profile.TraceLog2 = false
+					Skillet.TraceLog2 = false
+				end
+				if Skillet.db.profile.TraceLog3 then
+					Skillet.db.profile.TraceLog3 = false
+					Skillet.TraceLog3 = false
 				end
 				if Skillet.db.profile.ProfileShow then
 					Skillet.db.profile.ProfileShow = false

@@ -2484,11 +2484,7 @@ function ZGV.Replacements:Startup()
 		ZGV.Replacements.ObjectiveTracker = QuestWatchFrame
 		ZGV.Replacements.ExpBar = MainMenuExpBar
 	end
-	if ZGV.IsClassicWOTLK then
-		ZGV.Replacements.ObjectiveTracker = WatchFrame
-		ZGV.Replacements.ExpBar = MainMenuExpBar
-	end
-	if ZGV.IsClassicCATA then
+	if ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
 		ZGV.Replacements.ObjectiveTracker = WatchFrame
 		ZGV.Replacements.ExpBar = MainMenuExpBar
 	end

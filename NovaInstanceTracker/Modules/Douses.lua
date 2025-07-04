@@ -133,7 +133,7 @@ function NIT:getDousesMinimapString()
 			lootedString = "|cFF9CD6DE " .. dousedCount .. "/7|r";
 		end
 		local header = "|cFFFFFF00" .. L["Aqual Quintessence"] .. "|r - " .. lootedString .. "\n";
-		local disclaimer = "\n|cFF9CD6DENote: This douses module uses best guess based on\nlast boss killed and other factors, could be inaccurate.";
+		local disclaimer = "\n|cFF9CD6DE" .. L["douseDisclaimer"];
 		if (text ~= "") then
 			return header .. text .. disclaimer;
 		end

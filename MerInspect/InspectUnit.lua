@@ -47,7 +47,7 @@ local function GetInspectItemListFrame(parent)
         local height = 424
         frame:SetSize(160, height)
         --frame:SetFrameLevel(0)
-        frame:SetPoint("TOPLEFT", parent, "TOPRIGHT", 0, 0)
+        frame:SetPoint("TOPLEFT", parent, "TOPRIGHT", 0, 20)
         frame:SetBackdrop(frame.backdrop)
         frame:SetBackdropColor(0, 0, 0, 0.8)
         frame:SetBackdropBorderColor(0.6, 0.6, 0.6)
@@ -213,7 +213,7 @@ LibEvent:attachEvent("UNIT_INVENTORY_CHANGED", function(self, unit)
     end
 end)
 
---@see InspectCore.lua 
+--@see InspectCore.lua
 LibEvent:attachTrigger("UNIT_INSPECT_READY, UNIT_REINSPECT_READY", function(self, data)
     if (MerInspectDB and not MerInspectDB.ShowInspectItemSheet) then return end
     if (InspectFrame and InspectFrame.unit and UnitGUID(InspectFrame.unit) == data.guid) then
@@ -259,7 +259,7 @@ LibEvent:attachTrigger("INSPECT_FRAME_SHOWN", function(self, frame, parent, ilev
         backdrop.insets.right = 1
         backdrop.insets.bottom = 1
         frame.backdrop = backdrop
-        frame:SetPoint("TOPLEFT", parent, "TOPRIGHT", 2-x, 0-y)
+        frame:SetPoint("TOPLEFT", parent, "TOPRIGHT", 32-x, 15-y)
     else
         backdrop.edgeSize = 16
         backdrop.edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border"
@@ -268,7 +268,7 @@ LibEvent:attachTrigger("INSPECT_FRAME_SHOWN", function(self, frame, parent, ilev
         backdrop.insets.right = 4
         backdrop.insets.bottom = 4
         frame.backdrop = backdrop
-        frame:SetPoint("TOPLEFT", parent, "TOPRIGHT", 0-x, 0-y)
+        frame:SetPoint("TOPLEFT", parent, "TOPRIGHT", 30-x, 15-y)
     end
 end)
 
@@ -302,7 +302,7 @@ LibEvent:attachTrigger("INSPECT_FRAME_COMPARE", function(self, frame)
         frame.statsFrame:SetParent(frame)
     end
     if (frame.statsFrame) then
-        frame.statsFrame:SetPoint("TOPLEFT", frame.statsFrame:GetParent(), "TOPRIGHT", 1, 0)
+        frame.statsFrame:SetPoint("TOPLEFT", frame.statsFrame:GetParent(), "TOPRIGHT", 4, 15)
     end
 end)
 
@@ -329,11 +329,11 @@ LibEvent:attachTrigger("TogglePlayerStatsFrame", function(self, frame, bool, for
             stats.ilevel = LibItemInfo:GetUnitItemLevel("player")
             PlayerStatsFrame:SetStats(stats):Show()
             if (frame.inspectFrame and frame.inspectFrame:IsShown()) then
-                PlayerStatsFrame:SetPoint("TOPLEFT", frame.inspectFrame, "TOPRIGHT", 1, 0)
+                PlayerStatsFrame:SetPoint("TOPLEFT", frame.inspectFrame, "TOPRIGHT", 4, 15)
             elseif (not frame:GetName()) then
-                PlayerStatsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", 1, 0)
+                PlayerStatsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", 4, 15)
             else
-                PlayerStatsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", -32, -14)
+                PlayerStatsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", -2, 1)
             end
         end
     end
