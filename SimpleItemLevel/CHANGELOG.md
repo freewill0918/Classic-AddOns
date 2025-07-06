@@ -1,6 +1,8 @@
 # Simple Item Level
 
-## [v49](https://github.com/kemayo/wow-simpleitemlevel/tree/v49) (2025-07-02)
-[Full Changelog](https://github.com/kemayo/wow-simpleitemlevel/compare/v48...v49) [Previous Releases](https://github.com/kemayo/wow-simpleitemlevel/releases)
+## [v50](https://github.com/kemayo/wow-simpleitemlevel/tree/v50) (2025-07-05)
+[Full Changelog](https://github.com/kemayo/wow-simpleitemlevel/compare/v49...v50) [Previous Releases](https://github.com/kemayo/wow-simpleitemlevel/releases)
 
-- TOC for 11.1.7, 5.5.0, 3.4.4  
+- Add support for Bagnonium  
+- Stop assuming Classic means a ranged slot exists and just test for it  
+    Pandaria removed the ranged slot.  
