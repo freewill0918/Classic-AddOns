@@ -70,7 +70,7 @@ function UIManager:OnEnable()
   ChatAlertFrame:SetPoint("BOTTOMLEFT", self.container, "TOPLEFT", 15, 10)
 
   local isTinyChatEnabled = IsAddOnLoaded("TinyChat") -- TinyChat 相容性修正
-  
+
   -- Hide other chat elements
   if Constants.ENV == "retail" and not isTinyChatEnabled then -- TinyChat 相容性修正
     QuickJoinToastButton:Hide()
@@ -114,7 +114,10 @@ function UIManager:OnEnable()
   self:RawHook("FCF_Close", function (chatFrame)
     self.hooks["FCF_Close"](chatFrame)
 
-    self.slidingMessageFramePool:Release(self.state.temporaryFrames[chatFrame:GetName()])
+    local temporaryFrame = self.state.temporaryFrames[chatFrame:GetName()]
+    if temporaryFrame then
+      self.slidingMessageFramePool:Release(temporaryFrame)
+    end
     self.state.temporaryFrames[chatFrame:GetName()] = nil
     self.state.temporaryTabs[chatFrame:GetName()] = nil
   end, true)

@@ -264,9 +264,18 @@ end
 
 --读取天赋加成 @todo
 function lib:GetUnitTalentStats(unit, stats, class, race, level)
-    -- 禁用天賦統計功能，因為 GetNumTalentTabs API 在當前版本不支持
-    -- 此功能已被禁用以防止 "API unsupported" 錯誤
-    return
+  -- local inspect = (unit ~= "player")
+  -- local numTabs = GetNumTalentTabs(inspect)
+  -- for i = 1, numTabs do
+  --   local numTalents = GetNumTalents(i,inspect)
+  --   for j = 1, numTalents do
+  --     nameTalent, _, _, _, currRank, maxRank = GetTalentInfo(i,j,inspect)
+  --     if currRank > 0 then
+  --       GetTalentEffect(currRank, nameTalent, stats, class, race, level)
+  --     end
+  --   end
+  -- end
+  return
 end
 
 --读取种族及初始属性加成

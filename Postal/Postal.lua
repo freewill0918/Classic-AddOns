@@ -123,7 +123,7 @@ function Postal:OnInitialize()
 	if _G.WOW_PROJECT_ID == _G.WOW_PROJECT_CLASSIC then Postal.WOWClassic = true end
 	if _G.WOW_PROJECT_ID == _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC then Postal.WOWBCClassic = true end
 	if _G.WOW_PROJECT_ID == _G.WOW_PROJECT_WRATH_CLASSIC then Postal.WOWWotLKClassic = true end
-	if _G.WOW_PROJECT_ID == _G.WOW_PROJECT_CATACLYSM_CLASSIC then Postal.WOWCataClassic = true end
+	if _G.WOW_PROJECT_ID == _G.WOW_PROJECT_MISTS_CLASSIC then Postal.WOWCataClassic = true end
 	if _G.WOW_PROJECT_ID == _G.WOW_PROJECT_MAINLINE then Postal.WOWRetail = true end
 	if _G.WOW_PROJECT_ID == _G.LE_EXPANSION_11_0 then Postal.WOWRetail = true end
 --	if Postal.WOWClassic then DEFAULT_CHAT_FRAME:AddMessage("Postal WOW Classic", 0.0, 0.69, 0.94) end
