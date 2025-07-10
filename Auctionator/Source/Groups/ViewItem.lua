@@ -47,7 +47,7 @@ function AuctionatorGroupsViewItemMixin:SetItemInfo(info)
 end
 
 function AuctionatorGroupsViewItemMixin:OnEnter()
-  if GetTime() - self.initializationTime > 0 then
+  if self.initializationTime and GetTime() - self.initializationTime > 0 then
     self:UpdateTooltip()
   end
 end

@@ -1,52 +1,10 @@
-tag a8673afbbc1d26cba73788bfbe47f5d090b64f45 v2.0.1
+tag 17ecd36b67a696921ed97a06ced32f3cd3a04b31 v2.0.3a
 Author:	skyler-code <skylerh15@github.com>
-Date:	Thu Jul 3 17:14:21 2025 -0500
+Date:	Tue Jul 8 21:28:20 2025 -0500
 
-commit cfa0c08bf13da952efb6d8af8d980ccb2f230536
+commit 725642f8f4da03555f94f20a4f80aea2bfa80013
 Author: skyler-code <skylerh15@github.com>
-Date:   Thu Jul 3 17:13:24 2025 -0500
+Date:   Tue Jul 8 21:26:18 2025 -0500
 
-    restructured conversion to be more readable
-
-commit 3fd3f640220245a562c5167d6f71367a99851087
-Author: skyler-code <skylerh15@github.com>
-Date:   Thu Jul 3 15:46:15 2025 -0500
-
-    forgot to commit this
-
-commit a55c42fd8ef3832c4ee5ab0e01aa9584a4330286
-Author: skyler-code <skylerh15@github.com>
-Date:   Thu Jul 3 15:45:52 2025 -0500
-
-    dont need isplayerspell checks
-
-commit 34f4eebe3346b049a84596d867f64846e6f8a27d
-Author: skyler-code <skylerh15@github.com>
-Date:   Thu Jul 3 15:20:30 2025 -0500
-
-    small cleanup
-
-commit b5b5efc50b21de2cd541e5c0c9d723effe6e50ed
-Author: skyler-code <skylerh15@github.com>
-Date:   Thu Jul 3 15:15:02 2025 -0500
-
-    Reforge IDs!!! Thank you Blizzard!!!
-
-commit 05f0aa2237076156fa7c6e8b9306ee167448fdb5
-Author: skyler-code <skylerh15@github.com>
-Date:   Thu Jul 3 14:49:30 2025 -0500
-
-    cache conversion
-
-commit 42e5659348e3f9df91ed60035da79895a23f9750
-Author: skyler-code <skylerh15@github.com>
-Date:   Thu Jul 3 13:11:27 2025 -0500
-
-    dont need equippredicate anymore
-
-commit 33793506e9d297fffce5b440bb28d7c50212313d
-Author: skyler-code <skylerh15@github.com>
-Date:   Thu Jul 3 13:03:45 2025 -0500
-
-    latest MF preset
+    melee hit fix
 

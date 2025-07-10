@@ -362,7 +362,12 @@ local function UpdateButtonFromItem(button, item, variant, suppress, extradetail
         if not suppress.upgrade then AddUpgradeToButton(button, details) end
         if not suppress.bound then AddBoundToButton(button, details) end
         if (variant == "character" or variant == "inspect" or not db.missingcharacter) then
-            if not suppress.missing then AddMissingToButton(button, details) end
+            -- if item.itemID then print("Skipping missing on", item:GetItemLink()) end
+            if not (suppress.missing or item.itemID) then
+                -- If an item was built from just an itemID it cannot know this
+                -- (And in the inspect case, it's going to get refreshed shortly)
+                AddMissingToButton(button, details)
+            end
         end
     end)
     return true
@@ -419,8 +424,12 @@ local function AddAverageLevelToFontString(unit, fontstring)
     end
     if pcall(GetInventorySlotInfo, "RANGEDSLOT") then
          -- ranged slot exists until Pandaria
+         -- C_PaperDollInfo.IsRangedSlotShown(), but that doesn't actually exist in classic...
         numSlots = numSlots + 1
     end
+    -- if UnitHasRelicSlot("target") then
+    --     numSlots = numSlots + 1
+    -- end
     continuableContainer:ContinueOnLoad(function()
         local totalLevel = 0
         for _, item in ipairs(items) do
@@ -453,6 +462,7 @@ local function UpdateItemSlotButton(button, unit)
             end
         end
         UpdateButtonFromItem(button, item, key)
+        return item
     end
 end
 
@@ -484,17 +494,44 @@ end
 
 -- and the inspect frame
 ns:RegisterAddonHook("Blizzard_InspectUI", function()
+    local refresh = CreateFrame("Frame")
+    refresh.elapsed = 0
+    refresh:SetScript("OnUpdate", function(self, elapsed)
+        self.elapsed = self.elapsed + elapsed
+        if self.elapsed > 1.5 then
+            self.elapsed = 0
+            self:Hide()
+            local unit = InspectFrame.unit
+            if unit and UnitExists(unit) then
+                InspectPaperDollFrame_UpdateButtons()
+            end
+        end
+    end)
+
     hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
-        UpdateItemSlotButton(button, InspectFrame.unit or "target")
+        local unit = InspectFrame.unit
+        if not unit or not UnitExists(unit) then
+            return
+        end
+        local item = UpdateItemSlotButton(button, unit)
+        if item and item.itemID then
+            -- the data was incompletely available, so queue a repeat
+            refresh:Show()
+        end
+        -- print("updating button", button:GetName(), item and not item.itemLink and "incomplete" or item.itemLink or "X")
     end)
     local avglevel
     hooksecurefunc("InspectPaperDollFrame_UpdateButtons", function()
+        local unit = InspectFrame.unit
+        if not unit or not UnitExists(unit) then
+            return
+        end
         if not avglevel then
             avglevel = InspectModelFrame:CreateFontString(nil, "OVERLAY")
             avglevel:SetFontObject(NumberFontNormal)
             avglevel:SetPoint("BOTTOM", 0, isClassic and 0 or 20)
         end
-        AddAverageLevelToFontString(InspectFrame.unit or "target", avglevel)
+        AddAverageLevelToFontString(unit, avglevel)
     end)
 end)
 

@@ -151,7 +151,7 @@ ReforgeLite.capPresets = {
     value = CAPS.MeleeHitCap,
     name = L["Melee hit cap"],
     getter = function ()
-      return ReforgeLite:RatingPerPoint (StatHit) * (ReforgeLite:GetNeededMeleeHit () - ReforgeLite:GetMeleeHitBonus ())
+      return floor(ReforgeLite:RatingPerPoint (StatHit) * (ReforgeLite:GetNeededMeleeHit () - ReforgeLite:GetMeleeHitBonus ()))
     end,
     category = StatHit
   },
@@ -163,7 +163,7 @@ ReforgeLite.capPresets = {
       if ReforgeLite.conversion[StatExp] and ReforgeLite.conversion[StatExp][StatHit] then
         result = result + math.floor(GetCombatRating(CR_EXPERTISE) * ReforgeLite.conversion[StatExp][StatHit])
       end
-      return result
+      return floor(result)
     end,
     category = StatHit
   },
@@ -342,8 +342,6 @@ local TankCaps = {
   HitCap,
   HardExpCap
 }
-
-local RangedCaps = { HitCap }
 
 local CasterCaps = { HitCapSpell }
 
@@ -640,23 +638,12 @@ do
     ["PRIEST"] = {
       [specs.priest.discipline] = {
         weights = {
-          120, 0, 0, 0, 80, 120, 0, 40
+          120, 0, 0, 0, 120, 40, 0, 80
         },
       },
       [specs.priest.holy] = {
         weights = {
-          150, 0, 0, 0, 80, 120, 0, 40
-        },
-        caps = {
-          {
-            stat = StatHaste,
-            points = {
-              {
-                method = AtLeast,
-                preset = CAPS.FirstHasteBreak,
-              }
-            }
-          }
+          150, 0, 0, 0, 120, 40, 0, 80
         },
       },
       [specs.priest.shadow] = {
@@ -714,7 +701,7 @@ do
       },
       [specs.warlock.destruction] = {
         weights = {
-          0, 0, 0, 150, 50, 120, 0, 100
+          0, 0, 0, 83, 59, 57, 0, 61
         },
         caps = CasterCaps,
       },
