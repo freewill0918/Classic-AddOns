@@ -1077,6 +1077,13 @@ local function updateLog()
 			if (logmode == "PrvWeek" or logmode == "PrvMonth" or logmode == "PrvDay" or logmode == "PrvYear") then
 				-- do nothing. data in previous time period should not be touched
 			else
+				-- Ensure AC_DATA structure exists for this logtype
+				if (AC_DATA[logtype] == nil) then
+					AC_DATA[logtype] = {};
+					for modekey,mode in pairs(private.constants.logmodes) do
+						AC_DATA[logtype][mode] = {In=0,Out=0};
+					end
+				end
 				-- Ensure the specific logmode exists
 				if (AC_DATA[logtype][logmode] == nil) then
 					AC_DATA[logtype][logmode] = {In=0,Out=0};
@@ -1107,6 +1114,13 @@ local function updateLog()
 			if (logmode == "PrvWeek" or logmode == "PrvMonth" or logmode == "PrvDay" or logmode == "PrvYear") then
 				-- do nothing
 			else
+				-- Ensure AC_DATA structure exists for this logtype
+				if (AC_DATA[logtype] == nil) then
+					AC_DATA[logtype] = {};
+					for modekey,mode in pairs(private.constants.logmodes) do
+						AC_DATA[logtype][mode] = {In=0,Out=0};
+					end
+				end
 				-- Ensure the specific logmode exists
 				if (AC_DATA[logtype][logmode] == nil) then
 					AC_DATA[logtype][logmode] = {In=0,Out=0};

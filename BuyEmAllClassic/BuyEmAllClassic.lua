@@ -300,23 +300,25 @@ function BuyEmAll:AltCurrencyHandling(itemIndex, frame)
     self.AltCurrAfford = {};
 
     for i = 1, self.NumAltCurrency do
-        self.AltCurrPrice[i] = select(2, GetMerchantItemCostItem(itemIndex, i));
-        local Link = select(3, GetMerchantItemCostItem(itemIndex, i));
-        if (strmatch(Link, "currency")) then -- Item/Currency link check
-            self.AltCurrTex[i] = select(1, GetMerchantItemCostItem(itemIndex, i)); -- Get the currency texture for later display.
-            local currencyID = tonumber(strmatch(Link, "currency:(%d+):"));
+        local itemTexture, itemValue, itemLink, currencyName = GetMerchantItemCostItem(itemIndex, i);
+        self.AltCurrPrice[i] = itemValue;
+        self.AltCurrTex[i] = itemTexture;
+
+        if (strmatch(itemLink, "currency")) then -- Item/Currency link check
+            local currencyID = tonumber(strmatch(itemLink, "currency:(%d+):"));
             if currencyID then
-                self.AltCurrAfford[i] = floor(select(2, GetCurrencyInfo(currencyID)) / self.AltCurrPrice[i]) * self.preset; -- Calculate how many can be purchased.
+                local currencyData = GetCurrencyInfo(currencyID);
+                local currencyAmount = type(currencyData) == "table" and currencyData.quantity or select(2, GetCurrencyInfo(currencyID));
+                self.AltCurrAfford[i] = floor(currencyAmount / self.AltCurrPrice[i]) * self.preset; -- Calculate how many can be purchased.
             else
                 self.AltCurrAfford[i] = 0; -- Fallback if currency ID extraction fails
             end
         else
-            self.AltCurrTex[i] = select(1, GetMerchantItemCostItem(itemIndex, i)); -- Get the currency texture for later display.
-            self.AltCurrAfford[i] = floor((GetItemCount(tonumber(strmatch(Link, "item:(%d+):")), true)) / self.AltCurrPrice[i]) * self.preset; -- Calculate how many can be purchased.
+            self.AltCurrAfford[i] = floor((GetItemCount(tonumber(strmatch(itemLink, "item:(%d+):")), true)) / self.AltCurrPrice[i]) * self.preset; -- Calculate how many can be purchased.
         end
     end
 
-    if (NumAltCurrency == 1) then
+    if (self.NumAltCurrency == 1) then
         self.afford = self.AltCurrAfford[1];
     else
         self.afford = min(self.AltCurrAfford[1], self.AltCurrAfford[2] or 999999, self.AltCurrAfford[3] or 999999); -- Used Min so if there's not 3 currencies, the others won't be called on.
@@ -330,10 +332,13 @@ function BuyEmAll:AltCurrencyHandling(itemIndex, frame)
 
     if (self.max == 0) then
         return
-    elseif (self.max == 1) then
-        MerchantItemButton_OnClick(frame, "LeftButton");
-        return
     end
+
+    -- 移除自動購買單個物品的邏輯，總是顯示購買界面
+    -- elseif (self.max == 1) then
+    --     MerchantItemButton_OnClick(frame, "LeftButton");
+    --     return
+    -- end
 
     self.defaultStack = self.preset;
     self.split = self.defaultStack;
