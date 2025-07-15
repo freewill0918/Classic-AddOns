@@ -83,4 +83,9 @@ No centralized build system found. Individual addons may have:
 - Mixed development stages across different addons
 - Some addons have active changelog maintenance
 
+### Git Commit Guidelines
+- **NEVER** include "Generated with [Claude Code]" footer in commit messages
+- **NEVER** include "Co-Authored-By: Claude" attribution in commit messages
+- Use clean, descriptive commit messages without Claude-specific signatures
+
 When working with this codebase, treat each addon as an independent project while respecting the shared repository structure and cross-addon dependencies.
