@@ -34,8 +34,6 @@ function AuctionatorGroupsViewItemMixin:SetItemInfo(info)
 
     self:ApplyQualityIcon(info.itemLink)
 
-    self.initializationTime = GetTime()
-
   else
     self.IconBorder:Hide()
     self.Icon:Hide()
@@ -44,10 +42,12 @@ function AuctionatorGroupsViewItemMixin:SetItemInfo(info)
 
     self:HideQualityIcon()
   end
+
+  self.initializationTime = GetTime()
 end
 
 function AuctionatorGroupsViewItemMixin:OnEnter()
-  if self.initializationTime and GetTime() - self.initializationTime > 0 then
+  if GetTime() - self.initializationTime > 0 then
     self:UpdateTooltip()
   end
 end
