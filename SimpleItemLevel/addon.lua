@@ -501,19 +501,15 @@ ns:RegisterAddonHook("Blizzard_InspectUI", function()
         if self.elapsed > 1.5 then
             self.elapsed = 0
             self:Hide()
-            local unit = InspectFrame.unit
-            if unit and UnitExists(unit) then
+            if InspectFrame.unit then
+                -- Classic Era Anniversary specifically seems to trigger this with timings that cause an error here
                 InspectPaperDollFrame_UpdateButtons()
             end
         end
     end)
 
     hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
-        local unit = InspectFrame.unit
-        if not unit or not UnitExists(unit) then
-            return
-        end
-        local item = UpdateItemSlotButton(button, unit)
+        local item = UpdateItemSlotButton(button, InspectFrame.unit or "target")
         if item and item.itemID then
             -- the data was incompletely available, so queue a repeat
             refresh:Show()
@@ -522,16 +518,12 @@ ns:RegisterAddonHook("Blizzard_InspectUI", function()
     end)
     local avglevel
     hooksecurefunc("InspectPaperDollFrame_UpdateButtons", function()
-        local unit = InspectFrame.unit
-        if not unit or not UnitExists(unit) then
-            return
-        end
         if not avglevel then
             avglevel = InspectModelFrame:CreateFontString(nil, "OVERLAY")
             avglevel:SetFontObject(NumberFontNormal)
             avglevel:SetPoint("BOTTOM", 0, isClassic and 0 or 20)
         end
-        AddAverageLevelToFontString(unit, avglevel)
+        AddAverageLevelToFontString(InspectFrame.unit or "target", avglevel)
     end)
 end)
 
