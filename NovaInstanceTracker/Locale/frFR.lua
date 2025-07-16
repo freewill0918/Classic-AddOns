@@ -608,3 +608,15 @@ L["Remnants of Valor"] = "Vestiges de valeur";
 
 L["Not Doused"] = "Pas éteint";
 L["douseDisclaimer"] = "Remarque : Ce module Éteint utilise une estimation basée sur\nle dernier boss vaincu et d'autres facteurs, il pourrait être inexact.";
+L["Doused"] = "Éteint";
+L["Aqual Quintessence"] = "Quintessence aquatique";
+
+L["Magmadar"] = "Magmadar";
+L["Gehennas"] = "Gehennas";
+L["Garr"] = "Garr";
+L["Baron Geddon"] = "Baron Geddon";
+L["Shazzrah"] = "Shazzrah";
+L["Sulfuron Harbinger"] = "Messager de Sulfuron";
+L["Golemagg the Incinerator"] = "Golemagg l'Incinérateur";
+
+L["of level"] = "de niveau";

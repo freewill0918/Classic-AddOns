@@ -614,3 +614,15 @@ L["Remnants of Valor"] = "Remanentes de valor";
 
 L["Not Doused"] = "No extinguido";
 L["douseDisclaimer"] = "Nota: Este módulo de extinguir utiliza la mejor estimación basada en\nel último jefe derrotado y otros factores; podría ser inexacto.";
+L["Doused"] = "Extinguido";
+L["Aqual Quintessence"] = "Quintaesencia de agua";
+
+L["Magmadar"] = "Magmadar";
+L["Gehennas"] = "Gehennas";
+L["Garr"] = "Garr";
+L["Baron Geddon"] = "Barón Geddon";
+L["Shazzrah"] = "Shazzrah";
+L["Sulfuron Harbinger"] = "Sulfuron Presagista";
+L["Golemagg the Incinerator"] = "Golemagg el Incinerador";
+
+L["of level"] = "de nivel";

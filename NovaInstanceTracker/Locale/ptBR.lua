@@ -611,3 +611,15 @@ L["Remnants of Valor"] = "Vestígio de Bravura";
 
 L["Not Doused"] = "Não apagado";
 L["douseDisclaimer"] = "Nota: Este módulo Apaga usa a melhor estimativa com base no\núltimo chefe derrotado e outros fatores; pode estar impreciso.";
+L["Doused"] = "Apagado";
+L["Aqual Quintessence"] = "Quintessência Aquática";
+
+L["Magmadar"] = "Magmadar";
+L["Gehennas"] = "Geena";
+L["Garr"] = "Garr";
+L["Baron Geddon"] = "Barão Geddon";
+L["Shazzrah"] = "Shazzrah";
+L["Sulfuron Harbinger"] = "Emissário de Sulfuron";
+L["Golemagg the Incinerator"] = "Golemagg, o Incinerador";
+
+L["of level"] = "de nível";
