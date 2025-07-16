@@ -11,7 +11,7 @@ description="This guide will walk you through the Wailing Caverns dungeon.",
 lfgid=718,
 },[[
 step
-Enter the Wailing Caverns Dungeon with Your Group |goto Wailing Caverns/0 0.00,0.00 < 500 |c
+Enter the Wailing Caverns Dungeon with Your Group |goto Wailing Caverns/1 0.00,0.00 < 500 |c
 step
 kill Kresh##3653
 |tip Kresh has no abilities, it is a simple tank and spank fight.
@@ -69,7 +69,7 @@ Jump down here |goto Westfall/0 43.42,72.89 < 5 |walk
 Follow the path |goto Westfall/0 42.40,75.87 < 10 |walk
 Follow the path |goto Westfall/0 41.79,78.54 < 10 |walk
 Jump down here |goto Westfall/0 39.64,78.12 < 10 |walk
-Enter the Deadmines Dungeon with Your Group |goto The Deadmines/0 0.00,0.00 < 500 |c
+Enter the Deadmines Dungeon with Your Group |goto The Deadmines/1 0.00,0.00 < 500 |c
 step
 kill Rhahk'Zor##644
 |tip Before the encounter, you can pull the 2 Defias Watchman without drawing aggro from the boss.
@@ -132,7 +132,7 @@ description="This guide will walk you through the Shadowfang Keep dungeon.",
 lfgid=209,
 },[[
 step
-Enter the Shadowfang Keep Dungeon with Your Group |goto Shadowfang Keep/0 0.00,0.00 < 500 |c
+Enter the Shadowfang Keep Dungeon with Your Group |goto Shadowfang Keep/1 0.00,0.00 < 500 |c
 step
 kill Rethilgore##3914
 |tip This is a straight forward encounter, with his only ability being "Soul Drain"
@@ -295,7 +295,7 @@ description="This guide will walk you through the Hellfire Ramparts dungeon.",
 step
 Follow the path |goto Hellfire Peninsula/0 48.85,55.53 < 15 |only if walking
 Run into the portal |goto Hellfire Peninsula/0 47.60,53.59
-Enter the Hellfire Ramparts Dungeon |goto Hellfire Ramparts/0 0.00,0.00 |c |noway
+Enter the Hellfire Ramparts Dungeon |goto Hellfire Ramparts/1 0.00,0.00 |c |noway
 step
 kill Watchkeeper Gargolmar##17306
 |tip Either CC the Hellfire Watchers or kill them first.
@@ -474,7 +474,7 @@ description="This guide will walk you through the Blackrock Caverns dungeon.",
 },[[
 step
 label "lfg"
-Press _I_ and queue for Blackrock Caverns or enter the dungeon with your group |goto Blackrock Caverns/0 32.40,69.90 < 100 |c
+Press _I_ and queue for Blackrock Caverns or enter the dungeon with your group |goto Blackrock Caverns/1 32.40,69.90 < 100 |c
 step
 talk Finkle Einhorn##49476
 accept To the Chamber of Incineration!##28735 |goto Blackrock Caverns 33.10,66.00
@@ -505,7 +505,7 @@ step
 _Click the Quest Complete Box:_
 turnin To the Chamber of Incineration!##28735
 step
-map Blackrock Caverns/0
+map Blackrock Caverns/1
 path follow strict;loop off;ants straight
 path	50.10,55.20	50.10,39.20	53.90,21.50
 Follow the path
@@ -513,15 +513,15 @@ Follow the path
 |tip
 Click Here to Continue |confirm
 step
-accept What Is This Place?##28737 |goto Blackrock Caverns/0 53.90,21.50
+accept What Is This Place?##28737 |goto Blackrock Caverns/1 53.90,21.50
 step
 kill Evolved Twilight Zealot##39987
 |tip They patrol around this area.
 |tip Interrupt "Shadow Stike" when possible.
 |tip
-Click Here to Continue |confirm |goto Blackrock Caverns/0 54.00,20.40
+Click Here to Continue |confirm |goto Blackrock Caverns/1 54.00,20.40
 step
-Jump Down the Ledge Here |goto Blackrock Caverns/0 51.90,20.00 < 5
+Jump Down the Ledge Here |goto Blackrock Caverns/1 51.90,20.00 < 5
 |tip
 Click Here to Continue |confirm
 step
@@ -534,8 +534,8 @@ kill Evolved Twilight Zealot##39987
 |tip
 Click Here to Continue |confirm
 step
-kill Corla, Herald of Twilight##39679 |goto Blackrock Caverns/0 27.40,16.60 |only if not haveq(28737)
-kill Corla, Herald of Twilight##39679 |goto Blackrock Caverns/0 27.40,16.60 |q 28737/1 |or |only if haveq(28737)
+kill Corla, Herald of Twilight##39679 |goto Blackrock Caverns/1 27.40,16.60 |only if not haveq(28737)
+kill Corla, Herald of Twilight##39679 |goto Blackrock Caverns/1 27.40,16.60 |q 28737/1 |or |only if haveq(28737)
 _EVERYONE:_ |grouprole EVERYONE
 |tip Have healers and Ranged DPS interrupt the 2 beams Corla channels to the Twilight Zealots. |grouprole EVERYONE
 |tip This is accomplished by standing between Corla and her target, absorbing the beam yoruself. |grouprole EVERYONE
@@ -692,12 +692,12 @@ description="This guide will walk you through the Stonecore dungeon.",
 },[[
 step
 label "start"
-Press _I_ and queue for The Stonecore or enter the dungeon with your group |goto The Stonecore/0 54.50,94.50 < 100 |c
+Press _I_ and queue for The Stonecore or enter the dungeon with your group |goto The Stonecore/1 54.50,94.50 < 100 |c
 step
 talk Earthwarden Yrsa##50048
 accept Twilight Documents##28815 |goto The Stonecore 53.70,94.90
 step
-map The Stonecore/0
+map The Stonecore/1
 path follow strict;loop off;ants straight
 path	54.60,88.40	61.40,79.20	63.30,70.90
 kill Stonecore Earthshaper##43537+
@@ -708,7 +708,7 @@ kill Stonecore Earthshaper##43537+
 Click Here to Continue |confirm
 step
 click Twilight Documents##207415
-collect Twilight Documents##65734 |q 28815/1 |goto The Stonecore/0 63.50,65.20
+collect Twilight Documents##65734 |q 28815/1 |goto The Stonecore/1 63.50,65.20
 |only if haveq(28815)
 step
 _Click the Quest Complete Box:_
@@ -737,7 +737,7 @@ _DAMAGE:_ |grouprole DAMAGE
 |tip
 Click here to Continue |confirm
 step
-map The Stonecore/0
+map The Stonecore/1
 path follow strict;loop off;ants straight
 path	59.60,59.80	54.90,58.40	50.00,59.70	46.10,55.70	43.40,52.20
 path	38.80,49.60
@@ -746,7 +746,7 @@ Follow the path
 |tip
 Click Here to Continue |confirm
 step
-kill Slabhide##43214 |goto The Stonecore/0 37.70,44.90
+kill Slabhide##43214 |goto The Stonecore/1 37.70,44.90
 _EVERYONE:_ |grouprole EVERYONE
 |tip He casts "Lava Fissures" at random players which need to be moved out of. |grouprole EVERYONE
 |tip Be mindful of "Stalacite" which fall from the ceiling. |grouprole EVERYONE
@@ -760,7 +760,7 @@ _DAMAGE:_ |grouprole DAMAGE
 |tip
 Click Here to Confirm |confirm
 step
-map The Stonecore/0
+map The Stonecore/1
 path follow strict;loop off;ants straight
 path	37.70,39.50	39.80,32.20	38.60,20.80	42.70,16.70	45.40,19.00
 Follow the path
@@ -772,7 +772,7 @@ Follow the path
 |tip
 Click Here to Continue |confirm
 step
-kill Ozruk##42188 |goto The Stonecore/0 47.70,20.00
+kill Ozruk##42188 |goto The Stonecore/1 47.70,20.00
 _EVERYONE:_ |grouprole EVERYONE
 |tip Move out of "Ground Slam". |grouprole EVERYONE
 |tip Move 15 yards away from him after each ground slam as he will use "Shatter" immediately after. |grouprole EVERYONE
@@ -787,7 +787,7 @@ _TANK:_ |grouprole TANK
 |tip
 Click Here to Continue |confirm
 step
-map The Stonecore/0
+map The Stonecore/1
 path follow strict;loop off;ants straight
 path	48.50,27.20	48.00,35.60	48.40,45.20	53.50,40.50
 Follow the path
@@ -795,9 +795,9 @@ Follow the path
 |tip
 Click Here to Continue |confirm
 step
-kill High Priestess Azil##42333 |goto The Stonecore/0 57.64,38.24 |only if not haveq(28814)
-kill High Priestess Azil##42333  |q 28814/1 |goto The Stonecore/0 57.64,38.24 |only if haveq(28814)
-kill 101 Devout Follower##42428 |q 28814/2 |goto The Stonecore/0 57.64,38.24 |only if haveq(28814)
+kill High Priestess Azil##42333 |goto The Stonecore/1 57.64,38.24 |only if not haveq(28814)
+kill High Priestess Azil##42333  |q 28814/1 |goto The Stonecore/1 57.64,38.24 |only if haveq(28814)
+kill 101 Devout Follower##42428 |q 28814/2 |goto The Stonecore/1 57.64,38.24 |only if haveq(28814)
 _Phase 1:_
 _TANK:_ |grouprole TANK
 |tip Move her out of "Gravity Wells" as they appear, indicated by purple circles on the ground. |grouprole TANK
@@ -823,7 +823,7 @@ You can Right Click the dungeon finder icon on your mini map, teleport out of th
 Click Here to Continue |confirm
 step
 talk Earthwarden Yrsa##50048
-turnin Followers and Leaders##28814 |goto The Stonecore/0 53.60,95.00
+turnin Followers and Leaders##28814 |goto The Stonecore/1 53.60,95.00
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Cataclysm Dungeons\\Throne of the Tides")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Cataclysm Dungeons\\Vortex Pinnacle")

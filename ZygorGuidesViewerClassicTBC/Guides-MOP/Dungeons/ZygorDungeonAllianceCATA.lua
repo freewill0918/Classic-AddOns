@@ -11,7 +11,7 @@ description="This guide will walk you through the Wailing Caverns dungeon.",
 lfgid=718,
 },[[
 step
-Enter the Wailing Caverns Dungeon with Your Group |goto Wailing Caverns/0 0.00,0.00 < 500 |c
+Enter the Wailing Caverns Dungeon with Your Group |goto Wailing Caverns/1 0.00,0.00 < 500 |c
 step
 kill Kresh##3653
 |tip Kresh has no abilities, it is a simple tank and spank fight.
@@ -69,7 +69,7 @@ Jump down here |goto Westfall/0 43.42,72.89 < 5 |walk
 Follow the path |goto Westfall/0 42.40,75.87 < 10 |walk
 Follow the path |goto Westfall/0 41.79,78.54 < 10 |walk
 Jump down here |goto Westfall/0 39.64,78.12 < 10 |walk
-Enter the Deadmines Dungeon with Your Group |goto The Deadmines/0 0.00,0.00 < 500 |c
+Enter the Deadmines Dungeon with Your Group |goto The Deadmines/1 0.00,0.00 < 500 |c
 step
 kill Rhahk'Zor##644
 |tip Before the encounter, you can pull the 2 Defias Watchman without drawing aggro from the boss.
@@ -132,7 +132,7 @@ description="This guide will walk you through the Shadowfang Keep dungeon.",
 lfgid=209,
 },[[
 step
-Enter the Shadowfang Keep Dungeon with Your Group |goto Shadowfang Keep/0 0.00,0.00 < 500 |c
+Enter the Shadowfang Keep Dungeon with Your Group |goto Shadowfang Keep/1 0.00,0.00 < 500 |c
 step
 kill Rethilgore##3914
 |tip This is a straight forward encounter, with his only ability being "Soul Drain"
@@ -250,7 +250,7 @@ Follow the path |goto Ashenvale/0 13.90,10.92 < 10 |walk
 Follow the path |goto Ashenvale/0 13.74,9.38 < 10 |walk
 Follow the path |goto Ashenvale/0 14.37,9.20 < 10 |walk
 Follow the path |goto Ashenvale/0 16.50,11.61 < 10 |walk
-Enter the Blackfathom Deeps Dungeon with Your Group |goto Blackfathom Deeps/0 0.00,0.00 < 500 |c
+Enter the Blackfathom Deeps Dungeon with Your Group |goto Blackfathom Deeps/1 0.00,0.00 < 500 |c
 step
 kill Ghamoo-ra##4887
 |tip Ghamoo-ra has high armor so melee damage will be significantly reduced.
@@ -300,7 +300,7 @@ Enter the building |goto Dun Morogh/0 24.29,39.77 < 7 |walk
 Ride the elevator down |goto Dun Morogh/0 23.41,39.21 < 10 |walk
 Follow the path |goto Dun Morogh/0 21.98,36.73 < 10 |walk
 Follow the path |goto Dun Morogh/0 19.93,36.02 < 10 |walk
-Enter the Gnomeregan Dungeon with Your Group |goto Gnomeregan/0 0.00,0.00 < 500 |c
+Enter the Gnomeregan Dungeon with Your Group |goto Gnomeregan/1 0.00,0.00 < 500 |c
 step
 kill Grubbis##7361
 |tip This boss spawns from an event started by "Blastmaster Emi Shortfuse".
@@ -339,7 +339,7 @@ description="This guide will walk you through the Razorfen Kraul dungeon.",
 lfgid=491,
 },[[
 step
-Enter the Razorfen Kraul Dungeon with Your Group |goto Razorfen Kraul/0 0.00,0.00 < 500 |c
+Enter the Razorfen Kraul Dungeon with Your Group |goto Razorfen Kraul/1 0.00,0.00 < 500 |c
 step
 kill Roogug##6168
 |tip Clear the area before engaging Roogug.
@@ -399,7 +399,7 @@ lfgid=798,
 step
 Enter the building |goto Tirisfal Glades/0 82.65,32.88 < 7 |walk
 Enter the Portal |goto Tirisfal Glades/0 84.84,30.51 < 7 |walk
-Enter the Scarlet Monastery - Graveyard Dungeon with Your Group |goto Scarlet Monastery/0 0.00,0.00 < 500 |c |noway
+Enter the Scarlet Monastery - Graveyard Dungeon with Your Group |goto Scarlet Monastery/1 0.00,0.00 < 500 |c |noway
 step
 kill Interrogator Vishas##3983
 |tip Clear the area before engaging Interrogator Vishas.
@@ -444,7 +444,7 @@ lfgid=799,
 step
 Enter the building |goto Tirisfal Glades/0 82.65,32.88 < 7 |walk
 Enter the Portal |goto Tirisfal Glades/0 85.33,32.27 < 7 |walk
-Enter the Scarlet Monastery - Library Dungeon with Your Group |goto Scarlet Monastery/0 0.00,0.00 < 500 |c |noway
+Enter the Scarlet Monastery - Library Dungeon with Your Group |goto Scarlet Monastery/1 0.00,0.00 < 500 |c |noway
 step
 kill Houndmaster Loksey##3974
 |tip For this encounter, Loksey will be accompanied by 3 elite Scarlet Tracking Hounds.
@@ -472,7 +472,7 @@ click Armory Door |goto Tirisfal Glades/0 85.41,31.59 < 7 |walk
 |tip A rogue with 175 Lockpicking skill can pick it and a Truesilver Key opens it too.
 |tip Engineers can also blast the door open.
 Enter the Portal |goto Tirisfal Glades/0 85.67,31.76 < 7 |walk
-Enter the Scarlet Monastery - Armory Dungeon with Your Group |goto Scarlet Monastery/0 0.00,0.00 < 500 |c |noway
+Enter the Scarlet Monastery - Armory Dungeon with Your Group |goto Scarlet Monastery/1 0.00,0.00 < 500 |c |noway
 step
 kill Herod##3975
 |tip The tank should keep Herod at the center of the room.
@@ -495,7 +495,7 @@ click Cathedral Door |goto Tirisfal Glades/0 85.21,30.86 < 7 |walk
 |tip A rogue with 175 Lockpicking skill can pick it and a Truesilver Key opens it too.
 |tip Engineers can also blast the door open.
 Enter the Portal |goto Tirisfal Glades/0 85.32,30.48 < 7 |walk
-Enter the Scarlet Monastery - Cathedral Dungeon with Your Group |goto Scarlet Monastery/0 0.00,0.00 < 500 |c |noway
+Enter the Scarlet Monastery - Cathedral Dungeon with Your Group |goto Scarlet Monastery/1 0.00,0.00 < 500 |c |noway
 step
 kill Scarlet Commander Mograine##3976
 |tip Clear the Cathedral before starting this encounter.
@@ -571,7 +571,7 @@ description="This guide will walk you through the Uldaman dungeon.",
 lfgid=1337,
 },[[
 step
-Enter the Uldaman Dungeon with Your Group |goto Uldaman/0 0.00,0.00 < 500 |c
+Enter the Uldaman Dungeon with Your Group |goto Uldaman/1 0.00,0.00 < 500 |c
 step
 kill Revelosh##6910
 |tip Use Crowd Control abilities on the 2 Stonevault Rockcheres if possible.
@@ -704,7 +704,7 @@ step
 Jump down here |goto Desolace/0 27.84,62.83 < 10
 Follow the path |goto Desolace/0 29.32,61.24 < 7 |walk
 Follow the path |goto Desolace/0 29.67,58.58 < 7 |walk
-Enter the Maraudon - Purple Dungeon with Your Group |goto Maraudon/0 0.00,0.00 < 500 |c
+Enter the Maraudon - Purple Dungeon with Your Group |goto Maraudon/1 0.00,0.00 < 500 |c
 step
 kill Lord Vyletongue##12236
 |tip Have the entire group stack on top of each other to avoid the bosses ranged abilities.
@@ -730,7 +730,7 @@ Follow the path |goto Desolace/0 29.39,64.03 < 7 |walk
 Run up the stairs |goto Desolace/0 31.30,64.06 < 10 |walk
 Follow the path |goto Desolace/0 34.29,65.57 < 10 |walk
 Follow the path |goto Desolace/0 35.14,62.71 < 7 |walk
-Enter the Maraudon (Foulspore Cavern - Orange) Dungeon with Your Group |goto Maraudon/0 0.00,0.00 < 500 |c
+Enter the Maraudon (Foulspore Cavern - Orange) Dungeon with Your Group |goto Maraudon/1 0.00,0.00 < 500 |c
 step
 kill Noxxion##13282
 |tip Noxxion will use "Toxic Volley" which will deal damage to the entire group.
@@ -755,7 +755,7 @@ step
 Jump down here |goto Desolace/0 27.84,62.83 < 10
 Follow the path |goto Desolace/0 29.32,61.24 < 7 |walk
 Follow the path |goto Desolace/0 29.67,58.58 < 7 |walk
-Enter the Maraudon - Purple Dungeon with Your Group |goto Maraudon/0 0.00,0.00 < 500 |c
+Enter the Maraudon - Purple Dungeon with Your Group |goto Maraudon/1 0.00,0.00 < 500 |c
 step
 kill Meshlok the Harvester##12237
 |tip Meshlock patrols the waters near the start.
@@ -786,7 +786,7 @@ Jump down here |goto Desolace/0 29.81,60.75 < 7 |walk
 use Scepter of Celebras##17191
 |tip This is a reward from a short quest chain given by Cavindra outside the Foulspore Cavern - Orange dungeon.
 click Portal to Inner Maraudon |goto Desolace/0 29.24,61.18
-Enter the Maraudon (Earth Song Falls - Inner) Dungeon with Your Group |goto Maraudon/0 0.00,0.00 < 500 |noway |c
+Enter the Maraudon (Earth Song Falls - Inner) Dungeon with Your Group |goto Maraudon/1 0.00,0.00 < 500 |noway |c
 step
 kill Landslide##12203
 |tip The tank should keep him where he spawns.
@@ -831,7 +831,7 @@ Follow the path |goto Swamp of Sorrows/0 80.22,49.62 < 7 |walk
 Follow the path |goto Swamp of Sorrows/0 81.33,42.38 < 7 |walk
 Run down the stairs |goto Swamp of Sorrows/0 78.86,40.74 < 7 |walk
 Run down the ramp |goto Swamp of Sorrows/0 76.85,38.82 < 7 |walk
-Enter The Temple of Atal'Hakkar Dungeon with Your Group |goto The Temple of Atal'Hakkar/0 0.00,0.00 < 500 |c
+Enter The Temple of Atal'Hakkar Dungeon with Your Group |goto The Temple of Atal'Hakkar/1 0.00,0.00 < 500 |c
 step
 kill Atal'alarion##8580
 |tip Clear the trash in the area as you travel around the platform.
@@ -909,7 +909,7 @@ step
 Continue down and run down the chain |goto Searing Gorge/0 34.86,99.20 < 5 |walk
 Enter the building |goto Searing Gorge/0 32.55,94.94 < 5 |walk
 Follow the path |goto Searing Gorge/0 26.88,83.87 < 30 |walk
-Enter the Blackrock Depths Dungeon with Your Group |goto Blackrock Depths/0 0.00,0.00 < 500 |c
+Enter the Blackrock Depths Dungeon with Your Group |goto Blackrock Depths/1 0.00,0.00 < 500 |c
 step
 kill High Interrogator Gerstahn##9018
 |tip Her most dangerous ability is "Psychic Scream" which will fear the entire group, possibly leading to adds being pulled.
@@ -1019,7 +1019,7 @@ description="This guide will walk you through the Scholomance dungeon.",
 lfgid=2057,
 },[[
 step
-Enter the Scholomance Dungeon with Your Group |goto Scholomance/0 0.00,0.00 < 500 |c
+Enter the Scholomance Dungeon with Your Group |goto Scholomance/1 0.00,0.00 < 500 |c
 |tip This requires the Skeleton Key from the quest "The Key to Scholomance".
 step
 kill Blood Steward of Kirtonos##14861
@@ -1118,7 +1118,7 @@ description="This guide will walk you through the Stratholme - Live dungeon.",
 lfgid=2017,
 },[[
 step
-Enter the Stratholme - Live Dungeon with Your Group |goto Stratholme/0 0.00,0.00 < 500 |c
+Enter the Stratholme - Live Dungeon with Your Group |goto Stratholme/1 0.00,0.00 < 500 |c
 stickystart "Kill_Postmaster_Malown"
 step
 click Premium Siabi Tobacco
@@ -1198,7 +1198,7 @@ lfgid=2018,
 step
 click Elders' Square Service Gate |goto Eastern Plaguelands/0 47.88,23.87 < 10 |walk
 |tip This requires the Key to the City, which drops from Magistrate barthilas in Stratholme - Live.
-Enter the Stratholme - Undead Dungeon with Your Group |goto Stratholme/0 0.00,0.00 < 500 |c
+Enter the Stratholme - Undead Dungeon with Your Group |goto Stratholme/1 0.00,0.00 < 500 |c
 step
 kill Magistrate Barthilas##10435
 |tip The tank should keep their back to the wall.
@@ -1459,7 +1459,7 @@ step
 Run up the chain |goto Searing Gorge/0 37.25,94.29 < 5 |walk
 Jump down here |goto Searing Gorge/0 37.79,92.44 < 5 |walk
 Jump to the balcony |goto Searing Gorge/0 39.72,95.58 < 5 |walk
-Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/0 0.00,0.00 < 500 |c
+Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/1 0.00,0.00 < 500 |c
 step
 kill Spirestone Butcher##9219
 |tip This is a rare mob that may not be available.
@@ -1555,7 +1555,7 @@ step
 Run up the chain |goto Searing Gorge/0 37.25,94.29 < 5 |walk
 Jump down here |goto Searing Gorge/0 37.79,92.44 < 5 |walk
 Jump to the balcony |goto Searing Gorge/0 39.72,95.58 < 5 |walk
-Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/0 0.00,0.00 < 500 |c
+Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/1 0.00,0.00 < 500 |c
 step
 click Blackrock Altar
 |tip This will start the fight.
@@ -1668,7 +1668,7 @@ You can also find him around: |notinsticky
 [46.84,34.63]
 [46.47,35.50]
 step
-Enter the Wailing Caverns Dungeon with Your Group |goto Wailing Caverns/0 0.00,0.00 < 500 |c |q 3370 |future
+Enter the Wailing Caverns Dungeon with Your Group |goto Wailing Caverns/1 0.00,0.00 < 500 |c |q 3370 |future
 stickystart "Collect_6_Wailing_Essence"
 stickystart "Collect_20_Deviate_Hide"
 stickystart "Slay_7_Deviate_Ravager"
@@ -1761,19 +1761,19 @@ step
 Leave the Wailing Caverns Dungeon
 Click Here to Continue |confirm |q 3370 |future
 step
-Follow the path up |goto Wailing Caverns/0 47.59,34.46 < 7 |only if walking
-Cross the bridge |goto Wailing Caverns/0 47.52,33.91 < 7 |only if walking
-Continue following the path |goto Wailing Caverns/0 47.41,32.89 < 7 |only if walking
-Cross the water |goto Wailing Caverns/0 46.91,32.63 < 10 |only if walking
-Continue following the path |goto Wailing Caverns/0 45.86,33.34 < 10 |only if walking
-Leave the cave |goto Wailing Caverns/0 45.95,36.21 < 7 |c |q 3370 |future
+Follow the path up |goto Wailing Caverns/1 47.59,34.46 < 7 |only if walking
+Cross the bridge |goto Wailing Caverns/1 47.52,33.91 < 7 |only if walking
+Continue following the path |goto Wailing Caverns/1 47.41,32.89 < 7 |only if walking
+Cross the water |goto Wailing Caverns/1 46.91,32.63 < 10 |only if walking
+Continue following the path |goto Wailing Caverns/1 45.86,33.34 < 10 |only if walking
+Leave the cave |goto Wailing Caverns/1 45.95,36.21 < 7 |c |q 3370 |future
 step
-Follow the path up |goto Wailing Caverns/0 50.32,35.44 < 10 |only if walking
-Continue up the path |goto Wailing Caverns/0 49.17,34.09 < 10 |only if walking
-Follow the path |goto Wailing Caverns/0 48.09,32.95 < 10 |only if walking
-Follow the path down |goto Wailing Caverns/0 47.28,33.56 < 10 |only if walking
-Jump down here |goto Wailing Caverns/0 45.86,35.86 < 10 |only if walking
-Jump down carefully here |goto Wailing Caverns/0 45.77,36.16 < 5 |c |q 3370 |future |or
+Follow the path up |goto Wailing Caverns/1 50.32,35.44 < 10 |only if walking
+Continue up the path |goto Wailing Caverns/1 49.17,34.09 < 10 |only if walking
+Follow the path |goto Wailing Caverns/1 48.09,32.95 < 10 |only if walking
+Follow the path down |goto Wailing Caverns/1 47.28,33.56 < 10 |only if walking
+Jump down here |goto Wailing Caverns/1 45.86,35.86 < 10 |only if walking
+Jump down carefully here |goto Wailing Caverns/1 45.77,36.16 < 5 |c |q 3370 |future |or
 |tip Aim for the stone.
 '|complete completedq(1486) and completedq(1487) |or
 step
@@ -1907,7 +1907,7 @@ label "Collect_Miners_Union_Cards"
 Kill Undead enemies around this area
 collect 4 Miners' Union Card##1894 |q 168/1 |goto Westfall 40.96,80.12
 step
-Enter the Deadmines Dungeon with Your Group |goto The Deadmines/0 0.00,0.00 < 500 |c |q 168
+Enter the Deadmines Dungeon with Your Group |goto The Deadmines/1 0.00,0.00 < 500 |c |q 168
 stickystart "Collect_10_Red_Silk_Bandanas"
 step
 _Inside The Deadmines Dungeon:_
@@ -1997,7 +1997,7 @@ Follow the path |goto Ashenvale/0 13.90,10.92 < 10 |walk
 Follow the path |goto Ashenvale/0 13.74,9.38 < 10 |walk
 Follow the path |goto Ashenvale/0 14.37,9.20 < 10 |walk
 Follow the path |goto Ashenvale/0 16.50,11.61 < 10 |walk
-Enter the Blackfathom Deeps Dungeon with Your Group |goto Blackfathom Deeps/0 0.00,0.00 < 500 |c |q 971
+Enter the Blackfathom Deeps Dungeon with Your Group |goto Blackfathom Deeps/1 0.00,0.00 < 500 |c |q 971
 stickystart "Collect_10_Twilight_Pendants"
 stickystart "Collect_8_Corrupted_Brain_Stems"
 step
@@ -2241,7 +2241,7 @@ Enter the building |goto Dun Morogh/0 24.29,39.77 < 7 |walk
 Ride the elevator down |goto Dun Morogh/0 23.41,39.21 < 10 |walk
 Follow the path |goto Dun Morogh/0 21.98,36.73 < 10 |walk
 Follow the path |goto Dun Morogh/0 19.93,36.02 < 10 |walk
-Enter the Gnomeregan Dungeon with Your Group |goto Gnomeregan/0 0.00,0.00 < 500 |c |q 2928
+Enter the Gnomeregan Dungeon with Your Group |goto Gnomeregan/1 0.00,0.00 < 500 |c |q 2928
 step
 Kill Addled enemies around this area
 collect White Punch Card##9279 |goto Gnomeregan/0 43.27,52.87 |q 2930 |future
@@ -2271,7 +2271,7 @@ Enter the building |goto Dun Morogh/0 24.29,39.77 < 7 |walk
 Ride the elevator down |goto Dun Morogh/0 23.41,39.21 < 10 |walk
 Follow the path |goto Dun Morogh/0 21.98,36.73 < 10 |walk
 Follow the path |goto Dun Morogh/0 19.93,36.02 < 10 |walk
-Enter the Gnomeregan Dungeon with Your Group |goto Gnomeregan/0 0.00,0.00 < 500 |c |q 2928
+Enter the Gnomeregan Dungeon with Your Group |goto Gnomeregan/1 0.00,0.00 < 500 |c |q 2928
 stickystart "Collect_24_Robo-Mechanical_Guts"
 stickystart "Collect_12_Essential_Artificial"
 step
@@ -2387,7 +2387,7 @@ talk Falfindel Waywarder##4048
 turnin Longbrow's Jounral##1100 |goto Feralas 89.63,46.57
 accept The Crone of the Kraul##1101 |goto Feralas 89.63,46.57
 step
-Enter the Razorfen Kraul Dungeon with Your Group |goto Razorfen Kraul/0 0.00,0.00 < 500 |c |q 1142 |future
+Enter the Razorfen Kraul Dungeon with Your Group |goto Razorfen Kraul/1 0.00,0.00 < 500 |c |q 1142 |future
 step
 _Inside the Razorfen Kraul Dungeon:_
 use the Crate With Holes##5880
@@ -2477,7 +2477,7 @@ accept Mythology of the Titans##1050 |goto Ironforge 74.97,12.46
 step
 Enter the building |goto Tirisfal Glades/0 82.65,32.88 < 7 |walk
 Enter the Portal |goto Tirisfal Glades/0 85.33,32.27 < 7 |walk
-Enter the Scarlet Monastery - Library Dungeon with Your Group |goto Scarlet Monastery/0 0.00,0.00 < 500 |c |noway |q 1053
+Enter the Scarlet Monastery - Library Dungeon with Your Group |goto Scarlet Monastery/1 0.00,0.00 < 500 |c |noway |q 1053
 step
 Inside the Scarlet Monastery Library Dungeon:
 kill Houndmaster Loksey##3974 |q 1053/4
@@ -2545,7 +2545,7 @@ click Armory Door |goto Tirisfal Glades/0 85.41,31.59 < 7 |walk
 |tip A rogue with 175 Lockpicking skill can pick it and a Truesilver Key opens it too.
 |tip Engineers can also blast the door open.
 Enter the Portal |goto Tirisfal Glades/0 85.67,31.76 < 7 |walk
-Enter the Scarlet Monastery - Armory Dungeon with Your Group |goto Scarlet Monastery/0 0.00,0.00 < 500 |c |noway |q 1053
+Enter the Scarlet Monastery - Armory Dungeon with Your Group |goto Scarlet Monastery/1 0.00,0.00 < 500 |c |noway |q 1053
 step
 Inside the Scarlet Monastery Armory Dungeon:
 kill Herod##3975 |q 1053/3
@@ -2601,7 +2601,7 @@ click Cathedral Door |goto Tirisfal Glades/0 85.21,30.86 < 7 |walk
 |tip A rogue with 175 Lockpicking skill can pick it and a Truesilver Key opens it too.
 |tip Engineers can also blast the door open.
 Enter the Portal |goto Tirisfal Glades/0 85.32,30.48 < 7 |walk
-Enter the Scarlet Monastery - Cathedral Dungeon with Your Group |goto Scarlet Monastery/0 0.00,0.00 < 500 |c |noway |q 1053
+Enter the Scarlet Monastery - Cathedral Dungeon with Your Group |goto Scarlet Monastery/1 0.00,0.00 < 500 |c |noway |q 1053
 step
 Inside the Scarlet Monastery Library Dungeon:
 kill Houndmaster Loksey##3974 |q 1053/4
@@ -2624,7 +2624,7 @@ click Armory Door |goto Tirisfal Glades/0 85.41,31.59 < 7 |walk
 |tip A rogue with 175 Lockpicking skill can pick it and a Truesilver Key opens it too.
 |tip Engineers can also blast the door open.
 Enter the Portal |goto Tirisfal Glades/0 85.67,31.76 < 7 |walk
-Enter the Scarlet Monastery - Armory Dungeon with Your Group |goto Scarlet Monastery/0 0.00,0.00 < 500 |c |noway |q 1053
+Enter the Scarlet Monastery - Armory Dungeon with Your Group |goto Scarlet Monastery/1 0.00,0.00 < 500 |c |noway |q 1053
 step
 Inside the Scarlet Monastery Armory Dungeon:
 kill Herod##3975 |q 1053/3
@@ -2633,12 +2633,12 @@ step
 Leave the Scarlet Monastery Armory Dungeon
 Click Here to Continue |confirm |q 1053
 step
-click Cathedral Door |goto Scarlet Monastery/0 85.21,30.86 < 7 |walk
+click Cathedral Door |goto Scarlet Monastery/1 85.21,30.86 < 7 |walk
 |tip You will need The Scarlet Key from the chest behind Arcanist Doan in the Library to open this.
 |tip A rogue with 175 Lockpicking skill can pick it and a Truesilver Key opens it too.
 |tip Engineers can also blast the door open.
-Enter the Portal |goto Scarlet Monastery/0 85.32,30.48 < 7 |walk
-Enter the Scarlet Monastery - Cathedral Dungeon with Your Group |goto Scarlet Monastery/0 0.00,0.00 < 500 |c |noway |q 1053
+Enter the Portal |goto Scarlet Monastery/1 85.32,30.48 < 7 |walk
+Enter the Scarlet Monastery - Cathedral Dungeon with Your Group |goto Scarlet Monastery/1 0.00,0.00 < 500 |c |noway |q 1053
 step
 Inside the Scarlet Monastery Cathedral Dungeon:
 kill Scarlet Commander Mograine##3976 |q 1053/2
@@ -2886,7 +2886,7 @@ talk Advisor Belgrum##2918
 turnin An Ambassador of Evil##762 |goto Ironforge 77.32,9.75
 accept The Lost Tablets of Will##1139 |goto Ironforge 77.32,9.75
 step
-Enter the Uldaman Dungeon with Your Group |goto Uldaman/0 0.00,0.00 < 500 |c |q 2279 |future
+Enter the Uldaman Dungeon with Your Group |goto Uldaman/1 0.00,0.00 < 500 |c |q 2279 |future
 stickystart "Collect_4_Carved_Stone_Urn"
 stickystart "Collect_12_Magenta_Cap_Cluster"
 step
@@ -3309,7 +3309,7 @@ collect Gem of the Third Khan##17763 |goto Desolace 39.20,57.68 |q 7067
 step
 Follow the path |goto Desolace 39.21,57.84 < 10 |only if walking
 Continue following the path |goto Desolace 39.35,58.04 < 10 |only if walking
-Enter the Maraudon (Foulspore Cavern - Orange) Dungeon with Your Group |goto Maraudon/0 0.00,0.00 < 500 |c |q 7046 |future
+Enter the Maraudon (Foulspore Cavern - Orange) Dungeon with Your Group |goto Maraudon/1 0.00,0.00 < 500 |c |q 7046 |future
 stickystart "Collect_Gem_of_the_Fifth_Khan"
 stickystart "Heal_Vylestem_Vines"
 stickystart "Collect_15_Theradric_Crystal_Carving"
@@ -3351,7 +3351,7 @@ step
 Jump down here |goto Desolace 27.84,62.83 < 10
 Follow the path |goto Desolace 29.32,61.24 < 7 |walk
 Follow the path |goto Desolace 29.67,58.58 < 7 |walk
-Enter the Maraudon - Purple Dungeon with Your Group |goto Maraudon/0 0.00,0.00 < 500 |c |q 7066 |future
+Enter the Maraudon - Purple Dungeon with Your Group |goto Maraudon/1 0.00,0.00 < 500 |c |q 7066 |future
 stickystart "Collect_15_Theradric_Crystal_Carving"
 step
 Inside the Maraudon Dungeon:
@@ -3643,7 +3643,7 @@ Follow the path |goto Swamp of Sorrows/0 80.22,49.62 < 7 |walk
 Follow the path |goto Swamp of Sorrows/0 81.33,42.38 < 7 |walk
 Run down the stairs |goto Swamp of Sorrows/0 78.86,40.74 < 7 |walk
 Run down the ramp |goto Swamp of Sorrows/0 76.85,38.82 < 7 |walk
-Enter The Temple of Atal'Hakkar Dungeon with Your Group |goto The Temple of Atal'Hakkar/0 0.00,0.00 < 500 |c |q 3528
+Enter The Temple of Atal'Hakkar Dungeon with Your Group |goto The Temple of Atal'Hakkar/1 0.00,0.00 < 500 |c |q 3528
 stickystart "Collect_20_Fetish_of_Hakkar"
 stickystart "Collect_5_Atal'ai_Haze"
 step
@@ -3974,7 +3974,7 @@ kill Overmaster Pyron##9026 |q 4262/1 |goto Searing Gorge/0 48.03,62.55
 |tip He patrols around this area.
 |tip You may need help with this.
 step
-Enter the Blackrock Depths Dungeon with Your Group |goto Blackrock Depths/0 0.00,0.00 < 500 |c |q 4123
+Enter the Blackrock Depths Dungeon with Your Group |goto Blackrock Depths/1 0.00,0.00 < 500 |c |q 4123
 stickystart "Collect_Dark_Keeper_Key"
 stickystart "Collect_Dark_Iron_Fanny_Packs"
 step
@@ -4096,11 +4096,11 @@ Leave the Blackrock Depths Dungeon
 Click Here to Continue |confirm |q 4123
 step
 talk Oralius##9177
-turnin The Good Stuff##4286 |goto Blackrock Depths/0 84.56,68.69
+turnin The Good Stuff##4286 |goto Blackrock Depths/1 84.56,68.69
 step
 talk Jalinda Sprig##9561
-turnin Overmaster Pyron##4262 |goto Blackrock Depths/0 85.41,70.06
-accept Incendius!##4263 |goto Blackrock Depths/0 85.41,70.06
+turnin Overmaster Pyron##4262 |goto Blackrock Depths/1 85.41,70.06
+accept Incendius!##4263 |goto Blackrock Depths/1 85.41,70.06
 step
 Enter the building |goto Ironforge 44.12,50.01 < 8 |walk
 talk King Magni Bronzebeard##2784
@@ -4149,7 +4149,7 @@ step
 Continue down and run down the chain |goto Un'Goro Crater 34.86,99.20 < 5 |walk
 Enter the building |goto Un'Goro Crater 32.55,94.94 < 5 |walk
 Follow the path |goto Un'Goro Crater 26.88,83.87 < 30 |walk
-Enter the Blackrock Depths Dungeon with Your Group |goto Blackrock Depths/0 0.00,0.00 < 500 |c |q 4363 |future
+Enter the Blackrock Depths Dungeon with Your Group |goto Blackrock Depths/1 0.00,0.00 < 500 |c |q 4363 |future
 step
 Inside the Blackrock Depths Dungeon:
 kill Lord Incendius##9017 |q 4263/1
@@ -4624,7 +4624,7 @@ Follow the path |goto Swamp of Sorrows/0 80.22,49.62 < 7 |walk
 Follow the path |goto Swamp of Sorrows/0 81.33,42.38 < 7 |walk
 Run down the stairs |goto Swamp of Sorrows/0 78.86,40.74 < 7 |walk
 Run down the ramp |goto Swamp of Sorrows/0 76.85,38.82 < 7 |walk
-Enter The Temple of Atal'Hakkar Dungeon with Your Group |goto The Temple of Atal'Hakkar/0 0.00,0.00 < 500 |c |q 3528
+Enter The Temple of Atal'Hakkar Dungeon with Your Group |goto The Temple of Atal'Hakkar/1 0.00,0.00 < 500 |c |q 3528
 step
 Inside the Temple of Atal'Hakkar Dungeon:
 use the Egg of Hakkar##10465
@@ -4679,7 +4679,7 @@ step
 Run up the chain |goto Searing Gorge/0 37.25,94.29 < 5 |walk
 Jump down here |goto Searing Gorge/0 37.79,92.44 < 5 |walk
 Jump to the balcony |goto Searing Gorge/0 39.72,95.58 < 5 |walk
-Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/0 0.00,0.00 < 500 |c |q 5002 |future
+Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/1 0.00,0.00 < 500 |c |q 5002 |future
 stickystart "Collect_Unadorned_Seal_of_Ascension"
 step
 Inside the Lower Blackrock Spire Dungeon:
@@ -4724,7 +4724,7 @@ step
 Run up the chain |goto Searing Gorge/0 37.25,94.29 < 5 |walk
 Jump down here |goto Searing Gorge/0 37.79,92.44 < 5 |walk
 Jump to the balcony |goto Searing Gorge/0 39.72,95.58 < 5 |walk
-Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/0 0.00,0.00 < 500 |c |q 4788
+Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/1 0.00,0.00 < 500 |c |q 4788
 step
 label "Collect_Unadorned_Seal_of_Ascension"
 Inside the Lower Blackrock Spire Dungeon: |notinsticky
@@ -4938,7 +4938,7 @@ step
 Run up the chain |goto Searing Gorge/0 37.25,94.29 < 5 |walk
 Jump down here |goto Searing Gorge/0 37.79,92.44 < 5 |walk
 Jump to the balcony |goto Searing Gorge/0 39.72,95.58 < 5 |walk
-Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/0 0.00,0.00 < 500 |c |q 4734
+Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/1 0.00,0.00 < 500 |c |q 4734
 |tip This quest requires you to progress through the Upper Blackrock Spire dungeon.
 |tip You will likely need a 10 person raid group to complete the quest.
 step
@@ -4958,7 +4958,7 @@ step
 Run up the chain |goto Searing Gorge/0 37.25,94.29 < 5 |walk
 Jump down here |goto Searing Gorge/0 37.79,92.44 < 5 |walk
 Jump to the balcony |goto Searing Gorge/0 39.72,95.58 < 5 |walk
-Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/0 0.00,0.00 < 500 |c |q 4735
+Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/1 0.00,0.00 < 500 |c |q 4735
 |tip This quest requires you to progress through the Upper Blackrock Spire dungeon.
 |tip You will likely need a 10 person raid group to complete the quest.
 step
@@ -5094,7 +5094,7 @@ Select _"The pleasure is mine madam. Might I ask what it is that you are doing h
 |tip Click through the dialogue.
 accept Doctor Theolen Krastinov, the Butcher##5382 |goto Western Plaguelands 70.22,73.72
 step
-Enter the Scholomance Dungeon with Your Group |goto Scholomance/0 0.00,0.00 < 500 |c |q 5343
+Enter the Scholomance Dungeon with Your Group |goto Scholomance/1 0.00,0.00 < 500 |c |q 5343
 |tip This requires the Skeleton Key from the quest "The Key to Scholomance".
 step
 Inside the Scholomance Dungeon:
@@ -5180,7 +5180,7 @@ turnin Plagued Hatchlings##5529 |goto Eastern Plaguelands/0 75.69,53.74
 |tip This will unlock the next quest, which drops from inside Scholomance.
 turnin Dawn's Gambit##4771 |goto Eastern Plaguelands/0 75.69,53.74
 step
-Enter the Scholomance Dungeon with Your Group |goto Scholomance/0 0.00,0.00 < 500 |c |q 5515
+Enter the Scholomance Dungeon with Your Group |goto Scholomance/1 0.00,0.00 < 500 |c |q 5515
 |tip This requires the Skeleton Key from the quest "The Key to Scholomance".
 step
 Inside the Scholomance Dungeon:
@@ -5208,7 +5208,7 @@ step
 talk Betina Bigglezink##11035
 turnin Healthy Dragon Scale##5582 |goto Eastern Plaguelands/0 75.69,53.74
 step
-Enter the Scholomance Dungeon with Your Group |goto Scholomance/0 0.00,0.00 < 500 |c |q 5384
+Enter the Scholomance Dungeon with Your Group |goto Scholomance/1 0.00,0.00 < 500 |c |q 5384
 |tip This requires the Skeleton Key from the quest "The Key to Scholomance".
 step
 Inside the Scholomance Dungeon:
@@ -5254,7 +5254,7 @@ accept Menethil's Gift##5463 |goto Eastern Plaguelands/0 75.95,51.97
 step
 click Elders' Square Service Gate |goto Eastern Plaguelands/0 47.88,23.87 < 10 |walk
 |tip This requires the Key to the City, which drops from Magistrate barthilas in Stratholme - Live.
-Enter the Stratholme - Undead Dungeon with Your Group |goto Stratholme/0 0.00,0.00 < 500 |c |q 5464 |future
+Enter the Stratholme - Undead Dungeon with Your Group |goto Stratholme/1 0.00,0.00 < 500 |c |q 5464 |future
 step
 Inside the Stratholme - Undead Dungeon:
 click Menethil's Gift##176631
@@ -5281,7 +5281,7 @@ talk Magistrate Marduke##11286
 turnin Soulbound Keepsake##5465 |goto Western Plaguelands 70.57,74.11
 accept The Lich, Ras Frostwhisper##5466 |goto Western Plaguelands 70.57,74.11
 step
-Enter the Scholomance Dungeon with Your Group |goto Scholomance/0 0.00,0.00 < 500 |c |q 5466
+Enter the Scholomance Dungeon with Your Group |goto Scholomance/1 0.00,0.00 < 500 |c |q 5466
 |tip This requires the Skeleton Key from the quest "The Key to Scholomance".
 step
 Inside the Scholomance Dungeon:
@@ -5435,7 +5435,7 @@ talk Artist Renfray##11936
 turnin Of Love and Family##5846 |goto Western Plaguelands 65.77,75.37
 accept Of Love and Family##5848 |goto Western Plaguelands 65.77,75.37
 step
-Enter the Stratholme - Live Dungeon with Your Group |goto Stratholme/0 0.00,0.00 < 500 |c |q 5282
+Enter the Stratholme - Live Dungeon with Your Group |goto Stratholme/1 0.00,0.00 < 500 |c |q 5282
 stickystart "Free_15_Souls"
 step
 Inside the Stratholme - Live Dungeon:
@@ -5518,7 +5518,7 @@ step
 talk Duke Nicholas Zverenhoff##11039
 turnin The Archivist##5251 |goto Eastern Plaguelands 81.44,59.82
 step
-Enter the Stratholme - Live Dungeon with Your Group |goto Stratholme/0 0.00,0.00 < 500 |c |q 5282
+Enter the Stratholme - Live Dungeon with Your Group |goto Stratholme/1 0.00,0.00 < 500 |c |q 5282
 step
 Inside the Scholomance - Live Dungeon:
 kill Balnazzar##10813
@@ -5549,7 +5549,7 @@ Select _"The pleasure is mine madam. Might I ask what it is that you are doing h
 |tip Click through the dialogue.
 accept Doctor Theolen Krastinov, the Butcher##5382 |goto Western Plaguelands 70.22,73.72
 step
-Enter the Scholomance Dungeon with Your Group |goto Scholomance/0 0.00,0.00 < 500 |c |q 5382
+Enter the Scholomance Dungeon with Your Group |goto Scholomance/1 0.00,0.00 < 500 |c |q 5382
 |tip This requires the Skeleton Key from the quest "The Key to Scholomance".
 step
 Inside the Scholomance Dungeon:
@@ -5586,7 +5586,7 @@ talk Eva Sarkhoff##11216
 turnin Doctor Theolen Krastinov, the Butcher##5382 |goto Western Plaguelands 70.22,73.72
 accept Krastinov's Bag of Horrors##5515 |goto Western Plaguelands 70.22,73.72
 step
-Enter the Scholomance Dungeon with Your Group |goto Scholomance/0 0.00,0.00 < 500 |c |q 5515
+Enter the Scholomance Dungeon with Your Group |goto Scholomance/1 0.00,0.00 < 500 |c |q 5515
 |tip This requires the Skeleton Key from the quest "The Key to Scholomance".
 step
 Inside the Scholomance Dungeon:
@@ -5604,7 +5604,7 @@ talk Eva Sarkhoff##11216
 turnin Krastinov's Bag of Horrors##5515 |goto Western Plaguelands 70.22,73.72
 accept Kirtonos the Herald##5384 |goto Western Plaguelands 70.22,73.72
 step
-Enter the Scholomance Dungeon with Your Group |goto Scholomance/0 0.00,0.00 < 500 |c |q 5515
+Enter the Scholomance Dungeon with Your Group |goto Scholomance/1 0.00,0.00 < 500 |c |q 5515
 |tip This requires the Skeleton Key from the quest "The Key to Scholomance".
 step
 Inside the Scholomance Dungeon:
@@ -5651,7 +5651,7 @@ step
 talk Duke Nicholas Zverenhoff##11039
 accept The Archivist##5251 |goto Eastern Plaguelands/0 81.44,59.82
 step
-Enter the Stratholme - Live Dungeon with Your Group |goto Stratholme/0 0.00,0.00 < 500 |c |q 5251
+Enter the Stratholme - Live Dungeon with Your Group |goto Stratholme/1 0.00,0.00 < 500 |c |q 5251
 step
 Inside the Stratholme - Live Dungeon:
 click The Bastion Door
@@ -5682,7 +5682,7 @@ step
 talk Duke Nicholas Zverenhoff##11039
 turnin The Archivist##5251 |goto Eastern Plaguelands 81.44,59.82
 step
-Enter the Stratholme - Live Dungeon with Your Group |goto Stratholme/0 0.00,0.00 < 500 |c |q 5262 |future
+Enter the Stratholme - Live Dungeon with Your Group |goto Stratholme/1 0.00,0.00 < 500 |c |q 5262 |future
 step
 Inside the Scholomance - Live Dungeon:
 kill Balnazzar##10813
@@ -5709,7 +5709,7 @@ accept Houses of the Holy##5243 |goto Eastern Plaguelands/0 75.95,51.97
 step
 click Elders' Square Service Gate |goto Eastern Plaguelands/0 47.88,23.87 < 10 |walk
 |tip This requires the Key to the City, which drops from Magistrate barthilas in Stratholme - Live.
-Enter the Stratholme - Undead Dungeon with Your Group |goto Stratholme/0 0.00,0.00 < 500 |c |q 5263
+Enter the Stratholme - Undead Dungeon with Your Group |goto Stratholme/1 0.00,0.00 < 500 |c |q 5263
 stickystart "Collect_20_Plagued_Flesh_Sample"
 stickystart "Collect_5_Stratholme_Holy_Water"
 step
@@ -5767,7 +5767,7 @@ turnin Houses of the Holy##5243 |goto Eastern Plaguelands/0 75.95,51.97
 step
 click Elders' Square Service Gate |goto Eastern Plaguelands/0 47.88,23.87 < 10 |walk
 |tip This requires the Key to the City, which drops from Magistrate barthilas in Stratholme - Live.
-Enter the Stratholme - Undead Dungeon with Your Group |goto Stratholme/0 0.00,0.00 < 500 |c |q 5213
+Enter the Stratholme - Undead Dungeon with Your Group |goto Stratholme/1 0.00,0.00 < 500 |c |q 5213
 step
 Inside the Stratholme - Undead Dungeon:
 click Scourge Data##176249
@@ -5852,7 +5852,7 @@ step
 Run up the chain |goto Searing Gorge/0 37.25,94.29 < 5 |walk
 Jump down here |goto Searing Gorge/0 37.79,92.44 < 5 |walk
 Jump to the balcony |goto Searing Gorge/0 39.72,95.58 < 5 |walk
-Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/0 0.00,0.00 < 500 |c
+Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/1 0.00,0.00 < 500 |c
 |tip This quest requires you to progress through the Upper Blackrock Spire dungeon.
 |tip You will likely need a 10 person raid group to complete the quest.
 step
@@ -5880,7 +5880,7 @@ step
 Run up the chain |goto Searing Gorge/0 37.25,94.29 < 5 |walk
 Jump down here |goto Searing Gorge/0 37.79,92.44 < 5 |walk
 Jump to the balcony |goto Searing Gorge/0 39.72,95.58 < 5 |walk
-Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/0 0.00,0.00 < 500 |c
+Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/1 0.00,0.00 < 500 |c
 |tip This quest requires you to progress through the Upper Blackrock Spire dungeon.
 |tip You will likely need a 10 person raid group to complete the quest.
 step
@@ -5950,7 +5950,7 @@ step
 Run up the chain |goto Searing Gorge/0 37.25,94.29 < 5 |walk
 Jump down here |goto Searing Gorge/0 37.79,92.44 < 5 |walk
 Jump to the balcony |goto Searing Gorge/0 39.72,95.58 < 5 |walk
-Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/0 0.00,0.00 < 500 |c
+Enter the Blackrock Spire Dungeon with Your Group |goto Blackrock Spire/1 0.00,0.00 < 500 |c
 |tip This quest requires you to progress through the Upper Blackrock Spire dungeon.
 |tip You will likely need a 10 person raid group to complete the quest.
 step
@@ -6092,7 +6092,7 @@ description="This guide will walk you through the Hellfire Ramparts dungeon.",
 step
 Follow the path |goto Hellfire Peninsula/0 48.85,55.53 < 15 |only if walking
 Run into the portal |goto Hellfire Peninsula/0 47.60,53.59
-Enter the Hellfire Ramparts Dungeon |goto Hellfire Ramparts/0 0.00,0.00 |c |noway
+Enter the Hellfire Ramparts Dungeon |goto Hellfire Ramparts/1 0.00,0.00 |c |noway
 step
 kill Watchkeeper Gargolmar##17306
 |tip Either CC the Hellfire Watchers or kill them first.
@@ -6126,7 +6126,7 @@ step
 Run up the stairs |goto Hellfire Peninsula/0 46.43,59.08 < 15 |only if walking
 Follow the path |goto Hellfire Peninsula/0 47.30,55.65 < 15 |only if walking
 Run into the portal |goto Hellfire Peninsula/0 45.97,51.86
-Enter The Blood Furnace Dungeon |goto The Blood Furnace/0 0.00,0.00 |c |noway
+Enter The Blood Furnace Dungeon |goto The Blood Furnace/1 0.00,0.00 |c |noway
 step
 kill The Maker##17381
 |tip CC players mind controlled by "Domination."
@@ -6160,7 +6160,7 @@ Swim into the underwater pipe |goto Zangarmarsh/0 50.39,40.84 < 15 |walk
 Swim through the pipe |goto Zangarmarsh/0 51.41,39.40 < 10 |walk
 Exit the pipe |goto Zangarmarsh/0 51.91,38.19 < 10 |walk
 Run into the portal |goto Zangarmarsh/0 48.92,35.54
-Enter The Slave Pens Dungeon |goto The Slave Pens/0 0.00,0.00 |c |noway
+Enter The Slave Pens Dungeon |goto The Slave Pens/1 0.00,0.00 |c |noway
 step
 kill Mennu the Betrayer##17941
 |tip Interrupt Mennu's "Lightning Bolt" whenever possible.
@@ -6197,7 +6197,7 @@ Swim into the underwater pipe |goto Zangarmarsh/0 50.39,40.84 < 15 |walk
 Swim through the pipe |goto Zangarmarsh/0 51.41,39.40 < 10 |walk
 Exit the pipe |goto Zangarmarsh/0 51.91,38.19 < 10 |walk
 Run into the portal |goto Zangarmarsh/0 54.31,34.41
-Enter The Underbog Dungeon |goto The Underbog/0 0.00,0.00 |c |noway
+Enter The Underbog Dungeon |goto The Underbog/1 0.00,0.00 |c |noway
 step
 kill Hungarfen##17770
 |tip Low DPS melee players should move away from Hungarfen when he casts "Foul Spores."
@@ -6231,7 +6231,7 @@ description="This guide will walk you through the Mana-Tombs dungeon.",
 step
 Enter the building |goto Terokkar Forest/0 39.63,60.10 < 20 |walk
 Run into the portal |goto Terokkar Forest/0 39.64,57.58
-Enter the Mana-Tombs Dungeon |goto Mana-Tombs/0 0.00,0.00 |c |noway
+Enter the Mana-Tombs Dungeon |goto Mana-Tombs/1 0.00,0.00 |c |noway
 step
 kill Pandemonius##18341
 |tip Shadow resistance helps with this fights.
@@ -6261,7 +6261,7 @@ description="This guide will walk you through the Auchenai Crypts dungeon.",
 step
 Enter the building |goto Terokkar Forest/0 36.01,65.62 < 20 |walk
 Run into the portal |goto Terokkar Forest/0 34.25,65.60
-Enter the Auchenai Crypts Dungeon |goto Auchenai Crypts/0 0.00,0.00 |c |noway
+Enter the Auchenai Crypts Dungeon |goto Auchenai Crypts/1 0.00,0.00 |c |noway
 step
 kill Shirrak the Dead Watcher##18371
 |tip If you are targeted by "Focus Fire," move out of it immediately or you will die.
@@ -6285,7 +6285,7 @@ description="This guide will walk you through the Sethekk Halls dungeon.",
 step
 Enter the building |goto Terokkar Forest/0 43.27,65.59 < 20 |walk
 Run into the portal |goto Terokkar Forest/0 44.98,65.61
-Enter the Sethekk Halls Dungeon |goto Sethekk Halls/0 0.00,0.00 |c |noway
+Enter the Sethekk Halls Dungeon |goto Sethekk Halls/1 0.00,0.00 |c |noway
 step
 kill Darkweaver Syth##18472
 |tip The best way to kill Syth is to CC any adds that spawn and nuke him down quickly.
@@ -6371,7 +6371,7 @@ description="This guide will walk you through the The Mechanar dungeon.",
 step
 Run into the portal |goto Netherstorm/0 70.66,69.84
 |tip On the floating island.
-Enter The Mechanar Dungeon |goto The Mechanar/0 0.00,0.00 |c |noway
+Enter The Mechanar Dungeon |goto The Mechanar/1 0.00,0.00 |c |noway
 step
 kill Mechano-Lord Capacitus##19219
 |tip Kill the Gatewatchers before engaging Capacitus.
@@ -6410,7 +6410,7 @@ Follow the path |goto Hellfire Peninsula/0 48.85,55.53 < 15 |only if walking
 Rup up the ramp |goto Hellfire Peninsula/0 48.56,52.01 < 15 |only if walking
 Run into the portal |goto Hellfire Peninsula/0 47.48,52.02
 |tip You will need the Shattered Halls Key to enter this dungeon.
-Enter The Shattered Halls Dungeon |goto The Shattered Halls/0 0.00,0.00 |c |noway
+Enter The Shattered Halls Dungeon |goto The Shattered Halls/1 0.00,0.00 |c |noway
 step
 kill Grand Warlock Nethekurse##16807
 |tip Move out of fissures on the ground quickly to avoid damage.
@@ -6454,7 +6454,7 @@ Swim into the underwater pipe |goto Zangarmarsh/0 50.39,40.84 < 15 |walk
 Swim through the pipe |goto Zangarmarsh/0 51.41,39.40 < 10 |walk
 Exit the pipe |goto Zangarmarsh/0 51.91,38.19 < 10 |walk
 Run into the portal |goto Zangarmarsh/0 50.28,33.32
-Enter The Steamvault Dungeon |goto The Steamvault/0 0.00,0.00 |c |noway
+Enter The Steamvault Dungeon |goto The Steamvault/1 0.00,0.00 |c |noway
 step
 kill Hydromancer Thespia##17797
 |tip Move out of "Lightning Cloud" quickly.
@@ -6486,7 +6486,7 @@ step
 Enter the building |goto Terokkar Forest/0 39.64,70.98 < 20 |walk
 |tip You need the Shadow Labyrinth Key to open the door.
 Run into the portal |goto Terokkar Forest/0 39.63,73.60
-Enter the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/0 0.00,0.00 |c |noway
+Enter the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/1 0.00,0.00 |c |noway
 step
 kill Ambassador Hellmaw##18731
 |tip Face Hellmaw away from the group.
@@ -6523,7 +6523,7 @@ description="This guide will walk you through the The Arcatraz dungeon.",
 step
 Run into the portal |goto Netherstorm/0 74.49,57.68
 |tip On the floating island.
-Enter The Arcatraz Dungeon |goto The Arcatraz/0 0.00,0.00 |c |noway
+Enter The Arcatraz Dungeon |goto The Arcatraz/1 0.00,0.00 |c |noway
 step
 kill Zereketh the Unbound##20870
 |tip Spread out to avoid "Seed of Corruption" AoE damage.
@@ -6565,7 +6565,7 @@ description="This guide will walk you through the The Botanica dungeon.",
 step
 Run into the portal |goto Netherstorm/0 71.77,54.92
 |tip On the floating island.
-Enter The Botanica Dungeon |goto The Botanica/0 0.00,0.00 |c |noway
+Enter The Botanica Dungeon |goto The Botanica/1 0.00,0.00 |c |noway
 step
 kill Commander Sarannis##17976
 |tip Dispel "Arcane Resonance" from the tank whenever possible.
@@ -6662,7 +6662,7 @@ talk Watcher Jhang##17884
 accept Lost in Action##9738 |goto Zangarmarsh/0 52.28,35.98
 step
 Run into the portal |goto Zangarmarsh/0 48.92,35.54
-Enter The Slave Pens Dungeon |goto The Slave Pens/0 0.00,0.00 |c |noway |q 9738
+Enter The Slave Pens Dungeon |goto The Slave Pens/1 0.00,0.00 |c |noway |q 9738
 step
 Inside The Slave Pens Dungeon:
 talk Naturalist Bite##17893
@@ -6675,10 +6675,10 @@ talk Weeder Greenthumb##17890
 |tip Quagmirran is the last boss of the instance.
 Discover Weeder Greenthumb |q 9738/3
 step
-Leave The Slave Pens Dungeon |goto The Slave Pens/0 0.00,0.00 > 10 |c |noway |q 9738
+Leave The Slave Pens Dungeon |goto The Slave Pens/1 0.00,0.00 > 10 |c |noway |q 9738
 step
 Run into the portal |goto Zangarmarsh/0 54.31,34.41
-Enter The Underbog Dungeon |goto The Underbog/0 0.00,0.00 |c |noway |q 9738
+Enter The Underbog Dungeon |goto The Underbog/1 0.00,0.00 |c |noway |q 9738
 step
 Inside The Underbog Dungeon:
 kill Ghaz'an##18105
@@ -6696,7 +6696,7 @@ talk Windcaller Claw##17894
 |tip He is inside a cage near Swamplord Musel'ek.
 Discover Windcaller Claw |q 9738/4
 step
-Leave The Underbog Dungeon |goto The Underbog/0 0.00,0.00 > 10 |c |noway |q 9738
+Leave The Underbog Dungeon |goto The Underbog/1 0.00,0.00 > 10 |c |noway |q 9738
 step
 Swim down into the pipe |goto Zangarmarsh/0 50.37,40.92 < 7 |walk
 Swim through the pipe |goto Zangarmarsh/0 51.26,39.56 < 10 |walk
@@ -6730,7 +6730,7 @@ talk Watcher Jhang##17884
 accept Lost in Action##9738 |goto Zangarmarsh/0 52.28,35.98
 step
 Run into the portal |goto Zangarmarsh/0 54.31,34.41
-Enter The Underbog Dungeon |goto The Underbog/0 0.00,0.00 |c |noway |q 9738
+Enter The Underbog Dungeon |goto The Underbog/1 0.00,0.00 |c |noway |q 9738
 stickystart "Collect_Sanguine_Hibiscus"
 step
 Inside The Underbog Dungeon:
@@ -6766,7 +6766,7 @@ Inside The Underbog Dungeon:
 Kill enemies throughout the dungeon
 collect 5 Sanguine Hibiscus##24246 |q 9715/1
 step
-Leave The Underbog Dungeon |goto The Underbog/0 0.00,0.00 > 10 |c |noway |q 9738
+Leave The Underbog Dungeon |goto The Underbog/1 0.00,0.00 > 10 |c |noway |q 9738
 step
 talk Gzhun'tt##17856
 turnin Bring Me A Shrubbery!##9715 |goto Zangarmarsh/0 19.54,50.04
@@ -6782,7 +6782,7 @@ Swim into the underwater pipe |goto Zangarmarsh/0 50.39,40.84 < 15 |walk
 Swim through the pipe |goto Zangarmarsh/0 51.41,39.40 < 10 |walk
 Exit the pipe |goto Zangarmarsh/0 51.91,38.19 < 10 |walk
 Run into the portal |goto Zangarmarsh/0 48.92,35.54 < 10 |walk
-Enter The Slave Pens Dungeon |goto The Slave Pens/0 0.00,0.00 |c |noway |q 9738
+Enter The Slave Pens Dungeon |goto The Slave Pens/1 0.00,0.00 |c |noway |q 9738
 step
 Inside The Slave Pens Dungeon:
 talk Naturalist Bite##17893
@@ -6797,7 +6797,7 @@ talk Weeder Greenthumb##17890
 |tip Use "The Slave Pens" dungeon guide to accomplish this.
 Discover Weeder Greenthumb |q 9738/3
 step
-Leave The Slave Pens Dungeon |goto The Slave Pens/0 0.00,0.00 > 10 |c |noway |q 9738
+Leave The Slave Pens Dungeon |goto The Slave Pens/1 0.00,0.00 > 10 |c |noway |q 9738
 step
 Swim down into the pipe |goto Zangarmarsh/0 50.37,40.92 < 7 |walk
 Swim through the pipe |goto Zangarmarsh/0 51.26,39.56 < 10 |walk
@@ -6822,7 +6822,7 @@ talk Nexus-Prince Haramad##19674
 accept Undercutting the Competition##10165 |goto Terokkar Forest/0 39.37,58.48
 step
 Run into the portal |goto Terokkar Forest/0 39.64,57.58 < 10 |walk
-Enter the Mana-Tombs Dungeon |goto Mana-Tombs/0 0.00,0.00 |c |noway |q 10165
+Enter the Mana-Tombs Dungeon |goto Mana-Tombs/1 0.00,0.00 |c |noway |q 10165
 stickystart "Kill_Ethereal_Crypt_Raiders"
 stickystart "Kill_Nexus_Stalkers"
 stickystart "Kill_Ethereal Sorcerers"
@@ -6867,7 +6867,7 @@ click Ethereal Transporter Control Panel##183877
 |tip It is found in he northwestern corner the first circular room.
 turnin Safety Is Job One##10216
 step
-Leave the Mana-Tombs Dungeon |goto Mana-Tombs/0 0.00,0.00 > 10 |c |noway |q 10165
+Leave the Mana-Tombs Dungeon |goto Mana-Tombs/1 0.00,0.00 > 10 |c |noway |q 10165
 step
 talk Nexus-Prince Haramad##19674
 |tip Inside the building on the lower level of the Ring of Observance.
@@ -6970,7 +6970,7 @@ accept Stasis Chambers of the Mana-Tombs##10977 |goto Blade's Edge Mountains/0 5
 step
 Enter the building |goto Terokkar Forest/0 39.63,60.10 < 20 |walk
 Run into the portal |goto Terokkar Forest/0 39.64,57.58
-Enter the Mana-Tombs Dungeon |goto Mana-Tombs/0 0.00,0.00 |c |noway |q 10977
+Enter the Mana-Tombs Dungeon |goto Mana-Tombs/1 0.00,0.00 |c |noway |q 10977
 step
 Inside the Mana-Tombs Dungeon:
 |tip You must be in heroic difficulty for this quest.
@@ -6978,7 +6978,7 @@ Inside the Mana-Tombs Dungeon:
 click Mana-Tombs Stasis Chamber
 Investigate the Mana-Tombs Stasis Chamber |q 10977/1
 step
-Leave the Mana-Tombs Dungeon |goto Mana-Tombs/0 0.00,0.00 > 10 |c |noway |q 10977
+Leave the Mana-Tombs Dungeon |goto Mana-Tombs/1 0.00,0.00 > 10 |c |noway |q 10977
 step
 talk Image of Commander Ameer##22919
 turnin Stasis Chambers of the Mana-Tombs##10977 |goto Blade's Edge Mountains/0 52.85,14.97
@@ -7279,7 +7279,7 @@ accept Fresh from the Mechanar##10665 |goto Terokkar Forest/0 77.57,38.72
 step
 Run into the portal |goto Netherstorm/0 70.66,69.84
 |tip On the floating island.
-Enter The Mechanar Dungeon |goto The Mechanar/0 0.00,0.00 |c |noway |q 10665
+Enter The Mechanar Dungeon |goto The Mechanar/1 0.00,0.00 |c |noway |q 10665
 step
 Inside The Mechanar Dungeon:
 click Overcharged Manacell##185015+
@@ -7287,7 +7287,7 @@ click Overcharged Manacell##185015+
 |tip Use "The Mechanar" dungeon guide to accomplish this.
 collect Overcharged Manacell##30824 |q 10665/1
 step
-Leave The Mechanar Dungeon |goto The Mechanar/0 0.00,0.00 > 10 |c |noway |q 10665
+Leave The Mechanar Dungeon |goto The Mechanar/1 0.00,0.00 > 10 |c |noway |q 10665
 step
 talk David Wayne##21465
 turnin Fresh from the Mechanar##10665 |goto Terokkar Forest/0 77.57,38.72
@@ -7349,13 +7349,13 @@ step
 Enter the building |goto Terokkar Forest/0 39.64,70.98 < 20 |walk
 |tip You need the Shadow Labyrinth Key to open the door.
 Run into the portal |goto Terokkar Forest/0 39.63,73.60 < 10 |walk
-Enter the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/0 0.00,0.00 |c |noway |q 10666
+Enter the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/1 0.00,0.00 |c |noway |q 10666
 step
 Inside the Shadow Labyrinth Dungeon:
 kill Grandmaster Vorpil##18732
 collect Lexicon Demonica##30827 |q 10666/1
 step
-Leave the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/0 0.00,0.00 > 10 |c |noway |q 10666
+Leave the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/1 0.00,0.00 > 10 |c |noway |q 10666
 step
 talk David Wayne##21465
 turnin The Lexicon Demonica##10666 |goto Terokkar Forest/0 77.57,38.72
@@ -7367,7 +7367,7 @@ talk Watcher Jhang##17884
 accept The Warlord's Hideout##9763 |goto Zangarmarsh/0 52.29,35.98
 step
 Run into the portal |goto Zangarmarsh/0 50.28,33.32 < 10 |walk
-Enter The Steamvault Dungeon |goto The Steamvault/0 0.00,0.00 |c |noway |q 9764 |future
+Enter The Steamvault Dungeon |goto The Steamvault/1 0.00,0.00 |c |noway |q 9764 |future
 stickystart "Accept_Orders_From_Lady_Vashj"
 step
 Inside The Steamvault Dungeon:
@@ -7385,7 +7385,7 @@ collect Orders from Lady Vashj##24367 |n
 use the Orders from Lady Vashj##24367
 accept Orders from Lady Vashj##9764
 step
-Leave The Steamvault Dungeon |goto The Steamvault/0 0.00,0.00 > 10 |c |noway |q 9764
+Leave The Steamvault Dungeon |goto The Steamvault/1 0.00,0.00 > 10 |c |noway |q 9764
 step
 talk Watcher Jhang##17884
 turnin The Warlord's Hideout##9763 |goto Zangarmarsh/0 52.29,35.98
@@ -7405,7 +7405,7 @@ Swim into the underwater pipe |goto Zangarmarsh/0 50.39,40.84 < 15 |walk
 Swim through the pipe |goto Zangarmarsh/0 51.41,39.40 < 10 |walk
 Exit the pipe |goto Zangarmarsh/0 51.91,38.19 < 10 |walk
 Run into the portal |goto Zangarmarsh/0 50.28,33.32 < 10 |walk
-Enter The Steamvault Dungeon |goto The Steamvault/0 0.00,0.00 |c |noway |q 10885
+Enter The Steamvault Dungeon |goto The Steamvault/1 0.00,0.00 |c |noway |q 10885
 step
 Inside The Steamvault Dungeon:
 |tip This quest must be completed in Heroic mode.
@@ -7418,7 +7418,7 @@ Inside the Shadow Labyrinth Dungeon:
 kill Murmur##18708
 collect 1 Murmur's Essence##31722 |q 10885/2
 step
-Leave The Steamvault Dungeon |goto The Steamvault/0 0.00,0.00 > 10 |c |noway |q 10885
+Leave The Steamvault Dungeon |goto The Steamvault/1 0.00,0.00 > 10 |c |noway |q 10885
 |tip It is the last boss of the instance.
 step
 talk A'dal##18481
@@ -7664,7 +7664,7 @@ accept Seer Udalo##10705 |goto Shadowmoon Valley/0 58.11,48.19
 step
 Run into the portal |goto Netherstorm/0 74.49,57.68 < 15 |walk
 |tip On the floating island.
-Enter The Arcatraz Dungeon |goto The Arcatraz/0 0.00,0.00 |c |noway |q 10706 |future
+Enter The Arcatraz Dungeon |goto The Arcatraz/1 0.00,0.00 |c |noway |q 10706 |future
 step
 Inside The Arcatraz Dungeon:
 talk Udalo##21962
@@ -7675,11 +7675,11 @@ talk Udalo##21962
 turnin Seer Udalo##10705
 accept A Mysterious Portent##10706
 step
-Leave The Arcatraz Dungeon |goto The Arcatraz/0 0.00,0.00 > 10 |c |noway |q 10706
+Leave The Arcatraz Dungeon |goto The Arcatraz/1 0.00,0.00 > 10 |c |noway |q 10706
 step
 Run into the portal |goto Netherstorm/0 70.66,69.84 < 15 |walk
 |tip On the floating island.
-Enter The Mechanar Dungeon |goto The Mechanar/0 0.00,0.00 |c |noway |q 10704
+Enter The Mechanar Dungeon |goto The Mechanar/1 0.00,0.00 |c |noway |q 10704
 step
 Inside The Mechanar Dungeon:
 kill Pathaleon the Calculator##19220
@@ -7693,7 +7693,7 @@ kill Warp Splinter##17977
 |tip Use "The Botanica" dungeon guide to accomplish this.
 collect 1 Top Shard of the Arcatraz Key##31085 |q 10704/1
 step
-Leave The Mechanar Dungeon |goto The Mechanar/0 0.00,0.00 > 10 |c |noway |q 10704
+Leave The Mechanar Dungeon |goto The Mechanar/1 0.00,0.00 > 10 |c |noway |q 10704
 step
 talk A'dal##18481
 turnin How to Break Into the Arcatraz##10704 |goto Shattrath City/0 53.98,44.73
@@ -7749,8 +7749,8 @@ turnin Restless Activity##9825 |goto Deadwind Pass/0 46.92,75.63
 accept Contact from Dalaran##9826 |goto Deadwind Pass/0 46.92,75.64
 step
 talk Archmage Cedric##18165
-turnin Contact from Dalaran##9826 |goto Alterac Mountains/0 15.60,54.58
-accept Khadgar##9829 |goto Alterac Mountains/0 15.60,54.58
+turnin Contact from Dalaran##9826 |goto Hillsbrad Foothills/0 30.92,30.85
+accept Khadgar##9829 |goto Hillsbrad Foothills/0 30.92,30.85
 step
 talk Khadgar##18166
 turnin Khadgar##9829 |goto Shattrath City/0 54.75,44.32
@@ -7759,7 +7759,7 @@ step
 Enter the building |goto Terokkar Forest/0 39.64,70.98 < 20 |walk
 |tip You need the Shadow Labyrinth Key to open the door.
 Run into the portal |goto Terokkar Forest/0 39.63,73.60 < 10 |walk
-Enter the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/0 0.00,0.00 |c |noway |q 9831
+Enter the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/1 0.00,0.00 |c |noway |q 9831
 step
 Inside the Shadow Labyrinth Dungeon:
 click Arcane Container
@@ -7768,7 +7768,7 @@ click Arcane Container
 kill First Fragment Guardian##22890
 collect First Key Fragment##24514 |q 9831/1
 step
-Leave the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/0 0.00,0.00 > 10 |c |noway |q 9831
+Leave the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/1 0.00,0.00 > 10 |c |noway |q 9831
 step
 talk Khadgar##18166
 turnin Entry Into Karazhan##9831 |goto Shattrath City/0 54.75,44.32
@@ -7778,7 +7778,7 @@ Swim into the underwater pipe |goto Zangarmarsh/0 50.39,40.84 < 15 |walk
 Swim through the pipe |goto Zangarmarsh/0 51.41,39.40 < 10 |walk
 Exit the pipe |goto Zangarmarsh/0 51.91,38.19 < 10 |walk
 Run into the portal |goto Zangarmarsh/0 50.28,33.32 < 10 |walk
-Enter The Steamvault Dungeon |goto The Steamvault/0 0.00,0.00 |c |noway |q 9832
+Enter The Steamvault Dungeon |goto The Steamvault/1 0.00,0.00 |c |noway |q 9832
 step
 Inside the Steamvault Dungeon:
 click Arcane Container
@@ -7789,11 +7789,11 @@ click Arcane Container
 kill Second Fragment Guardian##22891
 collect Second Key Fragment##24487 |q 9832/1
 step
-Leave The Steamvault Dungeon |goto The Steamvault/0 0.00,0.00 > 10 |c |noway |q 9832
+Leave The Steamvault Dungeon |goto The Steamvault/1 0.00,0.00 > 10 |c |noway |q 9832
 step
 Run into the portal |goto Netherstorm/0 74.49,57.68 < 10 |walk
 |tip On the floating island.
-Enter The Arcatraz Dungeon |goto The Arcatraz/0 0.00,0.00 |c |noway |q 9832
+Enter The Arcatraz Dungeon |goto The Arcatraz/1 0.00,0.00 |c |noway |q 9832
 step
 Inside The Arcatraz Dungeon:
 click Arcane Container
@@ -7803,7 +7803,7 @@ click Arcane Container
 kill Third Fragment Guardian##22892
 collect Third Key Fragment##24488 |q 9832/2
 step
-Leave The Arcatraz Dungeon |goto The Arcatraz/0 0.00,0.00 > 10 |c |noway |q 9832
+Leave The Arcatraz Dungeon |goto The Arcatraz/1 0.00,0.00 > 10 |c |noway |q 9832
 step
 talk Khadgar##18166
 turnin The Second and Third Fragments##9832 |goto Shattrath City/0 54.75,44.32
@@ -7911,7 +7911,7 @@ accept How to Break Into the Arcatraz##10704 |goto Shattrath City/0 53.98,44.73
 step
 Run into the portal |goto Netherstorm/0 70.66,69.84 < 10 |walk
 |tip On the floating island.
-Enter The Mechanar Dungeon |goto The Mechanar/0 0.00,0.00 |c |noway |q 10704
+Enter The Mechanar Dungeon |goto The Mechanar/1 0.00,0.00 |c |noway |q 10704
 step
 Inside The Mechanar Dungeon:
 kill Pathaleon the Calculator##19220
@@ -7919,11 +7919,11 @@ kill Pathaleon the Calculator##19220
 |tip Use "The Mechanar" dungeon guide to accomplish this.
 collect 1 Bottom Shard of the Arcatraz Key##31086 |q 10704/2
 step
-Leave The Mechanar Dungeon |goto The Mechanar/0 0.00,0.00 > 10 |c |noway |q 10704
+Leave The Mechanar Dungeon |goto The Mechanar/1 0.00,0.00 > 10 |c |noway |q 10704
 step
 Run into the portal |goto Netherstorm/0 71.77,54.92 < 10 |walk
 |tip On the floating island.
-Enter The Botanica Dungeon |goto The Botanica/0 0.00,0.00 |c |noway |q 10257
+Enter The Botanica Dungeon |goto The Botanica/1 0.00,0.00 |c |noway |q 10257
 step
 Inside The Botanica Dungeon:
 kill Commander Sarannis##17976
@@ -7944,7 +7944,7 @@ kill Warp Splinter##17977
 |tip Use "The Botanica" dungeon guide to accomplish this.
 collect 1 Top Shard of the Arcatraz Key##31085 |q 10704/1
 step
-Leave The Botanica Dungeon |goto The Botanica/0 0.00,0.00 > 10 |c |noway |q 10257
+Leave The Botanica Dungeon |goto The Botanica/1 0.00,0.00 > 10 |c |noway |q 10257
 step
 Enter the building |goto Netherstorm/0 57.85,86.16 < 7 |walk
 talk Archmage Vargoth##19481
@@ -7973,7 +7973,7 @@ step
 Follow the path |goto Hellfire Peninsula/0 48.85,55.53 < 15 |only if walking
 Run into the portal |goto Hellfire Peninsula/0 47.60,53.59 < 10 |walk
 |tip You will need the Shattered Halls Key to enter this dungeon.
-Enter the Hellfire Ramparts Dungeon |goto Hellfire Ramparts/0 0.00,0.00 |c |noway |q 9575
+Enter the Hellfire Ramparts Dungeon |goto Hellfire Ramparts/1 0.00,0.00 |c |noway |q 9575
 step
 Inside the Hellfire Ramparts Dungeon:
 kill Watchkeeper Gargolmar##17306
@@ -7993,7 +7993,7 @@ use the Ominous Letter##23891
 |tip Drops from Nazan.
 accept Dark Tidings##9587
 step
-Leave the Hellfire Ramparts Dungeon |goto Hellfire Ramparts/0 0.00,0.00 > 10 |c |noway |q 9575
+Leave the Hellfire Ramparts Dungeon |goto Hellfire Ramparts/1 0.00,0.00 > 10 |c |noway |q 9575
 step
 talk Gunny##17479
 turnin Weaken the Ramparts##9575 |goto Hellfire Peninsula 56.40,66.60
@@ -8018,7 +8018,7 @@ step
 Run up the stairs |goto Hellfire Peninsula/0 46.43,59.08 < 15 |only if walking
 Follow the path |goto Hellfire Peninsula/0 47.30,55.65 < 15 |only if walking
 Run into the portal |goto Hellfire Peninsula/0 45.97,51.86 < 10 |walk
-Enter The Blood Furnace Dungeon |goto The Blood Furnace/0 0.00,0.00 |c |noway |q 9607
+Enter The Blood Furnace Dungeon |goto The Blood Furnace/1 0.00,0.00 |c |noway |q 9607
 stickystart "Fel_Orc_Blood Vial"
 step
 Inside the Blood Furnace Dungeon:
@@ -8031,7 +8031,7 @@ label "Fel_Orc_Blood Vial"
 Inside the Blood Furnace Dungeon:
 collect 10 Fel Orc Blood Vial##23894 |q 9589/1
 step
-Leave The Blood Furnace Dungeon |goto The Blood Furnace/0 0.00,0.00 > 10 |c |noway |q 9607
+Leave The Blood Furnace Dungeon |goto The Blood Furnace/1 0.00,0.00 > 10 |c |noway |q 9607
 step
 talk Gunny##17479
 |tip Inside the building.
@@ -8056,13 +8056,13 @@ Follow the path |goto Hellfire Peninsula/0 48.85,55.53 < 15 |only if walking
 Rup up the ramp |goto Hellfire Peninsula/0 48.56,52.01 < 15 |only if walking
 Run into the portal |goto Hellfire Peninsula/0 47.48,52.02 < 10 |walk
 |tip You will need the Shattered Halls Key to enter this dungeon.
-Enter The Shattered Halls Dungeon |goto The Shattered Halls/0 0.00,0.00 |c |noway |q 9492
+Enter The Shattered Halls Dungeon |goto The Shattered Halls/1 0.00,0.00 |c |noway |q 9492
 step
 Inside the Shattered Halls Dungeon:
 kill Warchief Kargath Bladefist##16808
 collect Warchief Kargath's Fist##23723 |q 9492/1
 step
-Leave The Shattered Halls Dungeon |goto The Shattered Halls/0 0.00,0.00 > 10 |c |noway |q 9492
+Leave The Shattered Halls Dungeon |goto The Shattered Halls/1 0.00,0.00 > 10 |c |noway |q 9492
 step
 talk Force Commander Danath Trollbane##16819
 |tip Inside the building.
@@ -8084,7 +8084,7 @@ Follow the path |goto Hellfire Peninsula/0 48.85,55.53 < 15 |only if walking
 Rup up the ramp |goto Hellfire Peninsula/0 48.56,52.01 < 15 |only if walking
 Run into the portal |goto Hellfire Peninsula/0 47.48,52.02 < 10 |walk
 |tip You will need the Shattered Halls Key to enter this dungeon.
-Enter The Shattered Halls Dungeon |goto The Shattered Halls/0 0.00,0.00 |c |noway |q 10884
+Enter The Shattered Halls Dungeon |goto The Shattered Halls/1 0.00,0.00 |c |noway |q 10884
 step
 Inside the (Heroic) Shattered Halls Dungeon:
 kill Shattered Hand Executioner##17301
@@ -8092,7 +8092,7 @@ kill Shattered Hand Executioner##17301
 |tip You won't get the item for the quest if you are too slow.
 collect Unused Axe of the Executioner##31716 |q 10884/1
 step
-Leave The Shattered Halls Dungeon |goto The Shattered Halls/0 0.00,0.00 > 10 |c |noway |q 10884
+Leave The Shattered Halls Dungeon |goto The Shattered Halls/1 0.00,0.00 > 10 |c |noway |q 10884
 step
 talk A'dal##18481
 turnin Trial of the Naaru: Mercy##10884  |goto Shattrath City/0 54.00,44.60
@@ -8203,7 +8203,7 @@ turnin Body of Evidence##9932 |goto Nagrand/0 73.81,62.61
 step
 Enter the building |goto Terokkar Forest/0 36.01,65.62 < 20 |walk
 Run into the portal |goto Terokkar Forest/0 34.25,65.60 < 10 |walk
-Enter the Auchenai Crypts Dungeon |goto Auchenai Crypts/0 0.00,0.00 |c |noway |q 10164
+Enter the Auchenai Crypts Dungeon |goto Auchenai Crypts/1 0.00,0.00 |c |noway |q 10164
 step
 Inside the Auchenai Crypts Dungeon:
 kill Exarch Maladaar##18373 |q 10164/1
@@ -8259,7 +8259,7 @@ accept Terokk's Legacy##10098 |goto Terokkar Forest/0 44.07,64.97
 step
 Enter the building |goto Terokkar Forest/0 43.27,65.59 < 20 |walk
 Run into the portal |goto Terokkar Forest/0 44.98,65.61 < 10 |walk
-Enter the Sethekk Halls Dungeon |goto Sethekk Halls/0 0.00,0.00 |c |noway |q 10098
+Enter the Sethekk Halls Dungeon |goto Sethekk Halls/1 0.00,0.00 |c |noway |q 10098
 step
 Inside the Sethekk Halls Dungeon:
 kill Darkweaver Syth##18472 |q 10097/1
@@ -8279,7 +8279,7 @@ Inside the Sethekk Halls Dungeon:
 kill Talon King Ikiss##18473
 collect Terokk's Quill##27632 |q 10098/3
 step
-Leave the Sethekk Halls Dungeon |goto Sethekk Halls/0 0.00,0.00 > 10 |c |noway |q 10098
+Leave the Sethekk Halls Dungeon |goto Sethekk Halls/1 0.00,0.00 > 10 |c |noway |q 10098
 step
 talk Isfar##18933
 turnin Brother Against Brother##10097 |goto Terokkar Forest/0 44.07,64.97
@@ -8486,8 +8486,8 @@ turnin Restless Activity##9825 |goto Deadwind Pass/0 46.92,75.63
 accept Contact from Dalaran##9826 |goto Deadwind Pass/0 46.92,75.64
 step
 talk Archmage Cedric##18165
-turnin Contact from Dalaran##9826 |goto Alterac Mountains/0 15.60,54.58
-accept Khadgar##9829 |goto Alterac Mountains/0 15.60,54.58
+turnin Contact from Dalaran##9826 |goto Hillsbrad Foothills/0 30.92,30.85
+accept Khadgar##9829 |goto Hillsbrad Foothills/0 30.92,30.85
 step
 talk Khadgar##18166
 turnin Khadgar##9829 |goto Shattrath City/0 54.75,44.32
@@ -8513,7 +8513,7 @@ Swim into the underwater pipe |goto Zangarmarsh/0 50.39,40.84 < 15 |walk
 Swim through the pipe |goto Zangarmarsh/0 51.41,39.40 < 10 |walk
 Exit the pipe |goto Zangarmarsh/0 51.91,38.19 < 10 |walk
 Run into the portal |goto Zangarmarsh/0 50.28,33.32 < 10 |walk
-Enter The Steamvault Dungeon |goto The Steamvault/0 0.00,0.00 |c |noway
+Enter The Steamvault Dungeon |goto The Steamvault/1 0.00,0.00 |c |noway
 step
 Inside The Steamvault Dungeon:
 |tip This quest must be completed in Heroic mode.
@@ -8522,12 +8522,12 @@ collect 1 Kalithresh's Trident##31721 |q 10885/1
 |tip He is the last boss of the instance.
 |tip Use "The Steamvault" dungeon guide to accomplish this.
 step
-Leave The Steamvault Dungeon |goto The Steamvault/0 0.00,0.00 > 10 |c |noway
+Leave The Steamvault Dungeon |goto The Steamvault/1 0.00,0.00 > 10 |c |noway
 step
 Enter the building |goto Terokkar Forest/0 39.64,70.98 < 20 |walk
 |tip You need the Shadow Labyrinth Key to open the door.
 Run into the portal |goto Terokkar Forest/0 39.63,73.60 < 10 |walk
-Enter the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/0 0.00,0.00 |c |noway |q 10649
+Enter the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/1 0.00,0.00 |c |noway |q 10649
 step
 Inside the Shadow Labyrinth Dungeon:
 talk Spy To'gun##18891
@@ -8572,7 +8572,7 @@ click Soul Device
 |tip They are along the walls throughout the entire instance.
 collect 5 Soul Device##27480 |q 10091/1
 step
-Leave the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/0 0.00,0.00 > 10 |c |noway |q 10649
+Leave the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/1 0.00,0.00 > 10 |c |noway |q 10649
 step
 talk A'dal##18481
 |tip Inside the building.
@@ -8844,8 +8844,8 @@ turnin Restless Activity##9825 |goto Deadwind Pass/0 46.92,75.63
 accept Contact from Dalaran##9826 |goto Deadwind Pass/0 46.92,75.64
 step
 talk Archmage Cedric##18165
-turnin Contact from Dalaran##9826 |goto Alterac Mountains/0 15.60,54.58
-accept Khadgar##9829 |goto Alterac Mountains/0 15.60,54.58
+turnin Contact from Dalaran##9826 |goto Hillsbrad Foothills/0 30.92,30.85
+accept Khadgar##9829 |goto Hillsbrad Foothills/0 30.92,30.85
 step
 talk Khadgar##18166
 turnin Khadgar##9829 |goto Shattrath City/0 54.75,44.32
@@ -8854,7 +8854,7 @@ step
 Enter the building |goto Terokkar Forest/0 39.64,70.98 < 20 |walk
 |tip You need the Shadow Labyrinth Key to open the door.
 Run into the portal |goto Terokkar Forest/0 39.63,73.60
-Enter the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/0 0.00,0.00 |c |noway |q 9831
+Enter the Shadow Labyrinth Dungeon |goto Shadow Labyrinth/1 0.00,0.00 |c |noway |q 9831
 step
 _Inside the Shadow Labyrinth Dungeon:_
 click Arcane Container
@@ -8870,7 +8870,7 @@ Swim into the underwater pipe |goto Zangarmarsh/0 50.39,40.84 < 15 |walk
 Swim through the pipe |goto Zangarmarsh/0 51.41,39.40 < 10 |walk
 Exit the pipe |goto Zangarmarsh/0 51.91,38.19 < 10 |walk
 Run into the portal |goto Zangarmarsh/0 50.28,33.32
-Enter The Steamvault Dungeon |goto The Steamvault/0 0.00,0.00 |c |noway |q 9832
+Enter The Steamvault Dungeon |goto The Steamvault/1 0.00,0.00 |c |noway |q 9832
 step
 _Inside the Steamvault Dungeon:_
 click Arcane Container
@@ -8882,7 +8882,7 @@ collect Second Key Fragment##24487 |q 9832/1
 step
 Run into the portal |goto Netherstorm/0 74.49,57.68
 |tip On the floating island.
-Enter The Arcatraz Dungeon |goto The Arcatraz/0 0.00,0.00 |c |noway |q 9832
+Enter The Arcatraz Dungeon |goto The Arcatraz/1 0.00,0.00 |c |noway |q 9832
 step
 _Inside The Arcatraz Dungeon:_
 collect Third Key Fragment##24488 |q 9832/2
@@ -8976,7 +8976,7 @@ Swim into the underwater pipe |goto Zangarmarsh/0 50.39,40.84 < 15 |walk
 Swim through the pipe |goto Zangarmarsh/0 51.41,39.40 < 10 |walk
 Exit the pipe |goto Zangarmarsh/0 51.91,38.19 < 10 |walk
 Run into the portal |goto Zangarmarsh/0 48.92,35.54
-Enter The Slave Pens (Heroic) Dungeon |goto The Slave Pens/0 0.00,0.00 |c |noway |q 10901 |future
+Enter The Slave Pens (Heroic) Dungeon |goto The Slave Pens/1 0.00,0.00 |c |noway |q 10901 |future
 |tip You must complete this on Heroic difficulty.
 step
 _Inside the Slave Pens (Heroic) Dungeon:_
@@ -9061,7 +9061,7 @@ accept Kalynna's Request##9637 |goto Netherstorm/0 32.22,63.60
 step
 Enter the building |goto Terokkar Forest/0 43.27,65.59 < 20 |walk
 Run into the portal |goto Terokkar Forest/0 44.98,65.61
-Enter the Sethekk Halls (Heroic) Dungeon |goto Sethekk Halls/0 0.00,0.00 |c |noway |q 9637
+Enter the Sethekk Halls (Heroic) Dungeon |goto Sethekk Halls/1 0.00,0.00 |c |noway |q 9637
 step
 _Inside the Sethekk Halls (Heroic) Dungeon:_
 |tip You must complete this on Heroic difficulty.
@@ -9072,7 +9072,7 @@ Follow the path |goto Hellfire Peninsula/0 48.85,55.53 < 15 |only if walking
 Rup up the ramp |goto Hellfire Peninsula/0 48.56,52.01 < 15 |only if walking
 Run into the portal |goto Hellfire Peninsula/0 47.48,52.02
 |tip You will need the Shattered Halls Key to enter this dungeon.
-Enter The Shattered Halls (Heroic) Dungeon |goto The Shattered Halls/0 0.00,0.00 |c |noway |q 9637
+Enter The Shattered Halls (Heroic) Dungeon |goto The Shattered Halls/1 0.00,0.00 |c |noway |q 9637
 step
 _Inside the Shattered Halls (Heroic) Dungeon:_
 |tip You must complete this on Heroic difficulty.
@@ -9110,7 +9110,7 @@ Swim into the underwater pipe |goto Zangarmarsh/0 50.39,40.84 < 15 |walk
 Swim through the pipe |goto Zangarmarsh/0 51.41,39.40 < 10 |walk
 Exit the pipe |goto Zangarmarsh/0 51.91,38.19 < 10 |walk
 Run into the portal |goto Zangarmarsh/0 48.92,35.54
-Enter The Slave Pens (Heroic) Dungeon |goto The Slave Pens/0 0.00,0.00 |c |noway |q 10901
+Enter The Slave Pens (Heroic) Dungeon |goto The Slave Pens/1 0.00,0.00 |c |noway |q 10901
 |tip You must complete this on Heroic difficulty.
 step
 _Inside the Slave Pens (Heroic) Dungeon:_
@@ -9142,7 +9142,7 @@ Follow the path |goto Hellfire Peninsula/0 48.85,55.53 < 15 |only if walking
 Rup up the ramp |goto Hellfire Peninsula/0 48.56,52.01 < 15 |only if walking
 Run into the portal |goto Hellfire Peninsula/0 47.48,52.02
 |tip You will need the Shattered Halls Key to enter this dungeon.
-Enter The Shattered Halls (Heroic) Dungeon |goto The Shattered Halls/0 0.00,0.00 |c |noway |q 10884
+Enter The Shattered Halls (Heroic) Dungeon |goto The Shattered Halls/1 0.00,0.00 |c |noway |q 10884
 |tip You must complete this on Heroic difficulty.
 step
 _Inside the Shattered Halls (Heroic) Dungeon:_
@@ -9169,7 +9169,7 @@ step
 Enter the building |goto Terokkar Forest/0 39.64,70.98 < 20 |walk
 |tip You need the Shadow Labyrinth Key to open the door.
 Run into the portal |goto Terokkar Forest/0 39.63,73.60
-Enter the Shadow Labyrinth (Heroic) Dungeon |goto Shadow Labyrinth/0 0.00,0.00 |c |noway |q 10885
+Enter the Shadow Labyrinth (Heroic) Dungeon |goto Shadow Labyrinth/1 0.00,0.00 |c |noway |q 10885
 |tip You must complete this on Heroic difficulty.
 step
 _Inside the Shadow Labyrinth (Heroic) Dungeon:_
@@ -9184,7 +9184,7 @@ accept Trial of the Naaru: Tenacity##10886 |goto Shattrath City/0 54.00,44.60
 step
 Run into the portal |goto Netherstorm/0 74.49,57.68
 |tip On the floating island.
-Enter The Arcatraz (Heroic) Dungeon |goto The Arcatraz/0 0.00,0.00 |c |noway |q 10886
+Enter The Arcatraz (Heroic) Dungeon |goto The Arcatraz/1 0.00,0.00 |c |noway |q 10886
 |tip You must complete this on Heroic difficulty.
 step
 _Inside The Arcatraz (Heroic) Dungeon:_
@@ -11788,7 +11788,7 @@ Enter Onyxia's Lair |goto Dustwallow Marsh/0 52.13,75.78
 |tip Run inside the cave, click the gate, and zone in to the portal in front of you.
 confirm
 step
-map Onyxia's Lair/0
+map Onyxia's Lair/1
 path follow smart; loop off; ants curved; dist 15
 path	38.63,23.60	42.64,34.10	44.00,56.73	57.79,82.11	65.74,81.70
 path	67.43,59.38
@@ -11798,7 +11798,7 @@ kill Onyxian Warder##12129+
 |tip All 4 warders will respawn when engaging Onyxia to prevent your escape.
 confirm
 step
-kill Onyxia##10184 |goto Onyxia's Lair/0 67.23,23.72
+kill Onyxia##10184 |goto Onyxia's Lair/1 67.23,23.72
 _Phase 1 (100%-66% HP):_
 |tip Have the tank drag Onyxia to the north side of the cave.
 |tip While the tank positions her, have the raid move along her flank, avoiding her front and back.
@@ -11835,7 +11835,7 @@ Enter Onyxia's Lair |goto Dustwallow Marsh/0 52.13,75.78
 |tip Run inside the cave, click the gate, and zone in to the portal in front of you.
 confirm
 step
-map Onyxia's Lair/0
+map Onyxia's Lair/1
 path follow smart; loop off; ants curved; dist 15
 path	38.63,23.60	42.64,34.10	44.00,56.73	57.79,82.11	65.74,81.70
 path	67.43,59.38
@@ -11845,7 +11845,7 @@ kill Onyxian Warder##12129+
 |tip All 4 warders will respawn when engaging Onyxia to prevent your escape.
 confirm
 step
-kill Onyxia##10184 |goto Onyxia's Lair/0 67.23,23.72
+kill Onyxia##10184 |goto Onyxia's Lair/1 67.23,23.72
 _Phase 1 (100%-66% HP):_
 |tip Have the tank drag Onyxia to the north side of the cave.
 |tip While the tank positions her, have the raid move along her flank, avoiding her front and back.
@@ -11879,12 +11879,12 @@ step
 click Lance Rack##130
 |tip Run to the center of the room to spawn the NPCs.
 |tip Don't talk the NPC in the center or you will begin the event early.
-collect Argent Lance##46106 |goto Trial of the Champion/0 49.36,30.32
+collect Argent Lance##46106 |goto Trial of the Champion/1 49.36,30.32
 step
 Equip the Argent Lance |equipped Argent Lance##46106
 step
 clicknpc Argent Warhorse##36557
-Ride an Argent Warhorse |invehicle |goto Trial of the Champion/0 57.88,33.75
+Ride an Argent Warhorse |invehicle |goto Trial of the Champion/1 57.88,33.75
 step
 talk Arelas Brightstar##35005
 Tell him: _"I am ready."_
@@ -11893,7 +11893,7 @@ Tell him: _"I am ready."_
 |tip Maintaing 3 stacks of "Defend" at all times.
 |tip Use "Shield Break" several times to break the opponent's shield.
 |tip When shields are down, use "Charge," and fill with "Thrust" while waiting for other cooldowns.
-Click Here to Continue |confirm |goto Trial of the Champion/0 50.96,52.36
+Click Here to Continue |confirm |goto Trial of the Champion/1 50.96,52.36
 |tip Ensure you have 3 stacks of "Defend" before beginning and maintain it.
 step
 _Kill priority:_
@@ -11920,7 +11920,7 @@ Tell him: _"I am ready for the next challenge."_
 kill Argent Priestess##35307+
 |tip Always kill these first, interrupting heals and killing Fountains of Light.
 |tip Once they are dead, kill the remaining enemies in the group.
-Click Here to Continue |confirm |goto Trial of the Champion/0 50.96,52.36
+Click Here to Continue |confirm |goto Trial of the Champion/1 50.96,52.36
 step
 _Choose the boss that appears:_
 |tip There is a 50% chance of either boss spawning for the fight.
@@ -11947,7 +11947,7 @@ step
 label "Kill_The_Black_Knight"
 talk Arelas Brightstar##35005
 Tell him: _"I am ready."_
-Click Here to Continue |confirm |goto Trial of the Champion/0 50.96,52.36
+Click Here to Continue |confirm |goto Trial of the Champion/1 50.96,52.36
 step
 kill The Black Knight##35451
 |tip There are 3 phases to this fight.
@@ -12096,7 +12096,7 @@ Select _"Your words of praise are appreciated."_
 |tip The Lich King will appear and then destroy the floor, sending the raid falling down below.
 Click Here to Continue |confirm |goto Trial of the Crusader/1 64.26,53.65
 step
-kill Anub'arak##34564 |goto Trial of the Crusader/0 53.13,35.04
+kill Anub'arak##34564 |goto Trial of the Crusader/1 53.13,35.04
 _Phase 1 (Emerged):_
 |tip Anub'arak stays emerged for 80 second periods before burrowing underground.
 |tip Tank him where he stands with the raid loosly spread out.
@@ -12130,7 +12130,7 @@ keywords={"ICC","Icecrown"},
 description="This guide will walk you through the Forge of Souls dungeon.",
 },[[
 step
-Enter the Forge of Souls Dungeon |goto The Forge of Souls/0 0.00,0.00 < 500 |c
+Enter the Forge of Souls Dungeon |goto The Forge of Souls/1 0.00,0.00 < 500 |c
 step
 kill Bronjahm##36497
 |tip Prioritize destroying "Corrupted Soul Fragments" as they appear.
@@ -12139,7 +12139,7 @@ kill Bronjahm##36497
 |tip At 35% health, he will cast "Soulstorm".
 |tip Random players are feared during Soulstorm.
 |tip All players must be within 10 yards of him or suffer damage and reduced speed during Soulstorm.
-Click Here to Continue |confirm |goto The Forge of Souls/0 43.35,49.88
+Click Here to Continue |confirm |goto The Forge of Souls/1 43.35,49.88
 step
 kill Devourer of Souls##36502
 |tip "Mirrored Soul" casuses damage taken by the Devourer of Souls to split between the affected player.
@@ -12148,7 +12148,7 @@ kill Devourer of Souls##36502
 |tip "Well of Souls" leaves pools on the ground which should be avoided as you will take massive damage while standing in them.
 |tip If targeted by "Unleashed Souls" run away from during their duration.
 |tip Avoid standing in front of her to avoid damage from "Wailing Souls".
-Click Here to Continue |confirm |goto The Forge of Souls/0 43.67,12.36
+Click Here to Continue |confirm |goto The Forge of Souls/1 43.67,12.36
 ]])
 ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Northrend Dungeons\\Forge of Souls Quests",{
 cataready=true,
@@ -12164,15 +12164,15 @@ talk Apprentice Nelphi##37776
 |tip She walks inside the building occasionally.
 accept Inside the Frozen Citadel##24510 |goto Dalaran/1 44.65,71.95
 step
-Enter the Forge of Souls Dungeon |goto The Forge of Souls/0 0.00,0.00 < 500 |c |q 24683 |future
+Enter the Forge of Souls Dungeon |goto The Forge of Souls/1 0.00,0.00 < 500 |c |q 24683 |future
 step
 talk Lady Jaina Proudmoore##37597
-turnin Inside the Frozen Citadel##24510 |goto The Forge of Souls/0 64.00,91.20
-accept Echoes of Tortured Souls##24499 |goto The Forge of Souls/0 64.00,91.20
+turnin Inside the Frozen Citadel##24510 |goto The Forge of Souls/1 64.00,91.20
+accept Echoes of Tortured Souls##24499 |goto The Forge of Souls/1 64.00,91.20
 step
 kill Spiteful Apparition##36551
 |tip Be wary of these ghostly skulls. They are invisible.
-map The Forge of Souls/0
+map The Forge of Souls/1
 path follow smart; loop off; ants curved; dist 15
 path	63.90,90.10	61.70,83.90	67.30,79.30	69.30,74.20	70.00,68.00
 path	69.30,63.20	66.70,58.40	59.40,60.50	58.50,65.30	54.50,67.10
@@ -12187,11 +12187,11 @@ kill Bronjahm##36497
 |tip At 35% health, he will cast "Soulstorm".
 |tip Random players are feared during Soulstorm.
 |tip All players must be within 10 yards of him or suffer damage and reduced speed during Soulstorm.
-Click Here to Continue |q 24499/1 |goto The Forge of Souls/0 43.35,49.88
+Click Here to Continue |q 24499/1 |goto The Forge of Souls/1 43.35,49.88
 step
 kill Spiteful Apparition##36551
 |tip Be wary of these ghostly skulls. They are invisible.
-map The Forge of Souls/0
+map The Forge of Souls/1
 path follow smart; loop off; ants curved; dist 15
 path	43.30,50.00	42.90,45.20	46.70,45.60	48.10,40.70	46.30,35.60
 path	44.10,30.30	47.00,24.80	49.40,19.60	47.10,16.70
@@ -12205,11 +12205,11 @@ kill Devourer of Souls##36502
 |tip "Well of Souls" leaves pools on the ground which should be avoided as you will take massive damage while standing in them.
 |tip If targeted by "Unleashed Souls" run away from during their duration.
 |tip Avoid standing in front of her to avoid damage from "Wailing Souls".
-Click Here to Continue |q 24499/2 |goto The Forge of Souls/0 43.67,12.36
+Click Here to Continue |q 24499/2 |goto The Forge of Souls/1 43.67,12.36
 step
 talk Lady Jaina Proudmoore##38160
-turnin Echoes of Tortured Souls##24499 |goto The Forge of Souls/0 44.00,13.10
-accept The Pit of Saron##24683 |goto The Forge of Souls/0 44.00,13.10
+turnin Echoes of Tortured Souls##24499 |goto The Forge of Souls/1 44.00,13.10
+accept The Pit of Saron##24683 |goto The Forge of Souls/1 44.00,13.10
 ]])
 ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Northrend Dungeons\\Pit of Saron",{
 cataready=true,
@@ -12367,13 +12367,13 @@ description="This guide will walk you through the Halls of Reflection dungeon.",
 step
 Complete the "Pit of Saron Quests" Guide Before Continuing |complete haveq(24711) or completedq(24711)
 step
-Enter the Halls of Reflection Dungeon |goto Halls of Reflection/0 0.00,0.00 < 500 |c
+Enter the Halls of Reflection Dungeon |goto Halls of Reflection/1 0.00,0.00 < 500 |c
 step
 talk Lady Jaina Proudmoore##38160
 Select _"Can you remove the sword?"_
 |tip Watch the dialogue that follows.
 |tip When your group is ready, choose "I think I hear Arthas coming."
-Click Here to Continue |confirm |goto Halls of Reflection/0 44.52,75.51
+Click Here to Continue |confirm |goto Halls of Reflection/1 44.52,75.51
 step
 Incoming Waves of Enemies
 |tip You will need to survive 5 waves of enemies to reach the first boss.
@@ -12393,7 +12393,7 @@ kill Tortured Rifleman##38176
 kill Spectral Footman##38173
 |tip Casters avoid standing near these as they interrupt spellcasting.
 At wave 5, you will face Falric
-Click Here to Continue |confirm |goto Halls of Reflection/0 42.81,62.65
+Click Here to Continue |confirm |goto Halls of Reflection/1 42.81,62.65
 step
 kill Falric##38112
 |tip "Quivering Strike" deals damage and reduces dodge chance by 20% for 5 seconds and should be dispelled.
@@ -12402,7 +12402,7 @@ kill Falric##38112
 |tip "Hopelessness" reduces damage and healing done by the entire party by 20% per cast. |only if not heroic_dung()
 |tip "Hopelessness" reduces damage and healing done by the entire party by 25% per cast. |only if heroic_dung()
 |tip The effect becomes stronger the less health he has.
-Click Here to Continue |confirm |goto Halls of Reflection/0 42.81,62.65
+Click Here to Continue |confirm |goto Halls of Reflection/1 42.81,62.65
 step
 Incoming Waves of Enemies
 |tip You will need to survive another 5 waves of enemies to reach the second boss.
@@ -12422,19 +12422,19 @@ kill Tortured Rifleman##38176
 kill Spectral Footman##38173
 |tip Casters avoid standing near these as they interrupt spellcasting.
 At wave 10, you will face Marwyn
-Click Here to Continue |confirm |goto Halls of Reflection/0 34.94,74.95
+Click Here to Continue |confirm |goto Halls of Reflection/1 34.94,74.95
 step
 kill Marwyn##38113
 |tip "Obliterate" deals heavy damage to Marwyn's current target.
 |tip Move out of "Well of Corruption" which increases shadow damage taken by 75% and stacks 4 times.
 |tip "Corrupted Flesh" reduces the maximum health of all nearby players by 50% for 8 seconds.
 |tip Dispel "Shared Suffering" as it will deal damage over 12 seconds to a player, then splits damage to the party.
-Click Here to Continue |confirm |goto Halls of Reflection/0 34.94,74.95
+Click Here to Continue |confirm |goto Halls of Reflection/1 34.94,74.95
 step
 kill Frostsworn General##36723
 |tip The General will spawn images of your group.
 |tip They explode upon death, so try to kill them at range.
-map Halls of Reflection/0
+map Halls of Reflection/1
 path follow smart; loop off; ants curved; dist 12
 path	34.35,62.10	29.45,55.23	23.92,47.09	14.98,34.55	12.21,30.72
 Follow the path to Jaina, killing the General along the way
@@ -12443,7 +12443,7 @@ Click Here to Continue |confirm
 step
 talk Lady Jaina Proudmoore##36955
 Tell her: "_We're ready! Let's go!_"
-Click Here to Continue |confirm |goto Halls of Reflection/0 13.54,21.62
+Click Here to Continue |confirm |goto Halls of Reflection/1 13.54,21.62
 step
 _Kill Priority_:
 kill Risen Witch Doctor##36941
@@ -12466,16 +12466,16 @@ description="This guide will walk you through the Halls of Reflection dungeon qu
 step
 Complete the "Pit of Saron Quests" Guide Before Continuing |complete haveq(24711) or completedq(24711)
 step
-Enter the Halls of Reflection Dungeon |goto Halls of Reflection/0 0.00,0.00 < 500 |c |q 24500 |future
+Enter the Halls of Reflection Dungeon |goto Halls of Reflection/1 0.00,0.00 < 500 |c |q 24500 |future
 step
 talk Lady Jaina Proudmoore##38160
-turnin Frostmourne##24711 |goto Halls of Reflection/0 44.52,75.51
+turnin Frostmourne##24711 |goto Halls of Reflection/1 44.52,75.51
 step
 talk Lady Jaina Proudmoore##38160
 Select _"Can you remove the sword?"_
 |tip Watch the dialogue that follows.
 |tip When your group is ready, choose "I think I hear Arthas coming."
-Click Here to Continue |confirm |goto Halls of Reflection/0 44.52,75.51 |q 24500 |future
+Click Here to Continue |confirm |goto Halls of Reflection/1 44.52,75.51 |q 24500 |future
 step
 Incoming Waves of Enemies
 |tip You will need to survive 5 waves of enemies to reach the first boss.
@@ -12495,7 +12495,7 @@ kill Tortured Rifleman##38176
 kill Spectral Footman##38173
 |tip Casters avoid standing near these as they interrupt spellcasting.
 At wave 5, you will face Falric
-Click Here to Continue |confirm |goto Halls of Reflection/0 42.81,62.65 |q 24500 |future
+Click Here to Continue |confirm |goto Halls of Reflection/1 42.81,62.65 |q 24500 |future
 step
 kill Falric##38112
 |tip "Quivering Strike" deals damage and reduces dodge chance by 20% for 5 seconds and should be dispelled.
@@ -12504,7 +12504,7 @@ kill Falric##38112
 |tip "Hopelessness" reduces damage and healing done by the entire party by 20% per cast. |only if not heroic_dung()
 |tip "Hopelessness" reduces damage and healing done by the entire party by 25% per cast. |only if heroic_dung()
 |tip The effect becomes stronger the less health he has.
-Click Here to Continue |confirm |goto Halls of Reflection/0 42.81,62.65 |q 24500 |future
+Click Here to Continue |confirm |goto Halls of Reflection/1 42.81,62.65 |q 24500 |future
 step
 Incoming Waves of Enemies
 |tip You will need to survive another 5 waves of enemies to reach the second boss.
@@ -12524,14 +12524,14 @@ kill Tortured Rifleman##38176
 kill Spectral Footman##38173
 |tip Casters avoid standing near these as they interrupt spellcasting.
 At wave 10, you will face Marwyn
-Click Here to Continue |confirm |goto Halls of Reflection/0 34.94,74.95 |q 24500 |future
+Click Here to Continue |confirm |goto Halls of Reflection/1 34.94,74.95 |q 24500 |future
 step
 kill Marwyn##38113
 |tip "Obliterate" deals heavy damage to Marwyn's current target.
 |tip Move out of "Well of Corruption" which increases shadow damage taken by 75% and stacks 4 times.
 |tip "Corrupted Flesh" reduces the maximum health of all nearby players by 50% for 8 seconds.
 |tip Dispel "Shared Suffering" as it will deal damage over 12 seconds to a player, then splits damage to the party.
-Click Here to Continue |confirm |goto Halls of Reflection/0 34.94,74.95 |q 24500 |future
+Click Here to Continue |confirm |goto Halls of Reflection/1 34.94,74.95 |q 24500 |future
 step
 Click the Quest Discovered Box
 accept Wrath of the Lich King##24500
@@ -12539,7 +12539,7 @@ step
 kill Frostsworn General##36723
 |tip The General will spawn images of your group.
 |tip They explode upon death, so try to kill them at range.
-map Halls of Reflection/0
+map Halls of Reflection/1
 path follow smart; loop off; ants curved; dist 12
 path	34.35,62.10	29.45,55.23	23.92,47.09	14.98,34.55	12.21,30.72
 Follow the path to Jaina, killing the General along the way
@@ -12547,11 +12547,11 @@ Follow the path to Jaina, killing the General along the way
 Click Here to Continue |confirm
 step
 talk Lady Jaina Proudmoore##36955
-Find Lady Jaina Proudmoore |q 24500/1 |goto Halls of Reflection/0 13.54,21.62
+Find Lady Jaina Proudmoore |q 24500/1 |goto Halls of Reflection/1 13.54,21.62
 step
 talk Lady Jaina Proudmoore##36955
 Tell her: "_We're ready! Let's go!_"
-Click Here to Continue |confirm |goto Halls of Reflection/0 13.54,21.62
+Click Here to Continue |confirm |goto Halls of Reflection/1 13.54,21.62
 step
 _Kill Priority_:
 kill Risen Witch Doctor##36941
@@ -12563,7 +12563,7 @@ kill Lumbering Abomination##37069
 Escape from the Lich King |q 24500/2
 step
 talk Lady Jaina Proudmoore##38160
-turnin Wrath of the Lich King##24500 |goto Halls of Reflection/0 75.82,76.23
+turnin Wrath of the Lich King##24500 |goto Halls of Reflection/1 75.82,76.23
 ]])
 ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Northrend Raids\\Icecrown Citadel (10)",{
 cataready=true,
@@ -12574,7 +12574,7 @@ keywords={"ICC","Icecrown"},
 description="This guide will walk you through the Icecrown Citadel raid.",
 },[[
 step
-Enter the Icecrown Citadel |goto Icecrown Citadel/0 0.00,0.00 < 500 |c
+Enter the Icecrown Citadel |goto Icecrown Citadel/1 0.00,0.00 < 500 |c
 step
 kill Lord Marrowgar##36612
 _Everyone_
@@ -12600,7 +12600,7 @@ _HEALS_
 |tip It increases his damage by 500% and attack speed by 150%.
 |tip This is designed to wipe the raid.
 |tip Kill him before he reaches this stage to avoid death.
-Click Here to Continue |confirm |goto Icecrown Citadel/0 38.98,59.62
+Click Here to Continue |confirm |goto Icecrown Citadel/1 38.98,59.62
 step
 kill Lady Deathwhisper##36855
 |tip Move out of "Death and Decay" as it appears.
@@ -12616,7 +12616,7 @@ _HEALS_
 |tip During "Dark Empowerment", Lady Deathwhisper's allies will deal more damage.
 |tip Enemies under Dark Empowerment will not be interruptable.
 |tip Tanks will take heavy damage at the start of each wave of adds.
-Click Here to Continue |confirm |goto Icecrown Citadel/0 38.93,86.53
+Click Here to Continue |confirm |goto Icecrown Citadel/1 38.93,86.53
 step
 kill Lady Deathwhisper##36855
 _PHASE 2_
@@ -12631,7 +12631,7 @@ _DPS_
 _HEALS_
 |tip Clear "Curse of Torpor" as it appears.
 |tip "Frostbolt Volley" deals raidwide frost damage.
-Click Here to Continue |confirm |goto Icecrown Citadel/0 38.93,86.53
+Click Here to Continue |confirm |goto Icecrown Citadel/1 38.93,86.53
 step
 _ICECROWN GUNSHIP BATTLE_
 _OFFENSE TEAM_
@@ -12987,7 +12987,7 @@ keywords={"ICC","Icecrown"},
 description="This guide will walk you through the Icecrown Citadel raid.",
 },[[
 step
-Enter the Icecrown Citadel |goto Icecrown Citadel/0 0.00,0.00 < 500 |c
+Enter the Icecrown Citadel |goto Icecrown Citadel/1 0.00,0.00 < 500 |c
 step
 kill Lord Marrowgar##36612
 _Everyone_
@@ -13013,7 +13013,7 @@ _HEALS_
 |tip It increases his damage by 500% and attack speed by 150%.
 |tip This is designed to wipe the raid.
 |tip Kill him before he reaches this stage to avoid death.
-Click Here to Continue |confirm |goto Icecrown Citadel/0 38.98,59.62
+Click Here to Continue |confirm |goto Icecrown Citadel/1 38.98,59.62
 step
 kill Lady Deathwhisper##36855
 |tip Move out of "Death and Decay" as it appears.
@@ -13029,7 +13029,7 @@ _HEALS_
 |tip During "Dark Empowerment", Lady Deathwhisper's allies will deal more damage.
 |tip Enemies under Dark Empowerment will not be interruptable.
 |tip Tanks will take heavy damage at the start of each wave of adds.
-Click Here to Continue |confirm |goto Icecrown Citadel/0 38.93,86.53
+Click Here to Continue |confirm |goto Icecrown Citadel/1 38.93,86.53
 step
 kill Lady Deathwhisper##36855
 _PHASE 2_
@@ -13044,7 +13044,7 @@ _DPS_
 _HEALS_
 |tip Clear "Curse of Torpor" as it appears.
 |tip "Frostbolt Volley" deals raidwide frost damage.
-Click Here to Continue |confirm |goto Icecrown Citadel/0 38.93,86.53
+Click Here to Continue |confirm |goto Icecrown Citadel/1 38.93,86.53
 step
 _ICECROWN GUNSHIP BATTLE_
 _OFFENSE TEAM_
@@ -13473,7 +13473,7 @@ description="This guide will walk you through the Blackrock Caverns dungeon.",
 },[[
 step
 label "lfg"
-Press _I_ and queue for Blackrock Caverns or enter the dungeon with your group |goto Blackrock Caverns/0 32.40,69.90 < 100 |c
+Press _I_ and queue for Blackrock Caverns or enter the dungeon with your group |goto Blackrock Caverns/1 32.40,69.90 < 100 |c
 step
 talk Finkle Einhorn##49476
 accept To the Chamber of Incineration!##28735 |goto Blackrock Caverns 33.10,66.00
@@ -13504,7 +13504,7 @@ step
 _Click the Quest Complete Box:_
 turnin To the Chamber of Incineration!##28735
 step
-map Blackrock Caverns/0
+map Blackrock Caverns/1
 path follow strict;loop off;ants straight
 path	50.10,55.20	50.10,39.20	53.90,21.50
 Follow the path
@@ -13512,15 +13512,15 @@ Follow the path
 |tip
 Click Here to Continue |confirm
 step
-accept What Is This Place?##28737 |goto Blackrock Caverns/0 53.90,21.50
+accept What Is This Place?##28737 |goto Blackrock Caverns/1 53.90,21.50
 step
 kill Evolved Twilight Zealot##39987
 |tip They patrol around this area.
 |tip Interrupt "Shadow Stike" when possible.
 |tip
-Click Here to Continue |confirm |goto Blackrock Caverns/0 54.00,20.40
+Click Here to Continue |confirm |goto Blackrock Caverns/1 54.00,20.40
 step
-Jump Down the Ledge Here |goto Blackrock Caverns/0 51.90,20.00 < 5
+Jump Down the Ledge Here |goto Blackrock Caverns/1 51.90,20.00 < 5
 |tip
 Click Here to Continue |confirm
 step
@@ -13533,8 +13533,8 @@ kill Evolved Twilight Zealot##39987
 |tip
 Click Here to Continue |confirm
 step
-kill Corla, Herald of Twilight##39679 |goto Blackrock Caverns/0 27.40,16.60 |only if not haveq(28737)
-kill Corla, Herald of Twilight##39679 |goto Blackrock Caverns/0 27.40,16.60 |q 28737/1 |or |only if haveq(28737)
+kill Corla, Herald of Twilight##39679 |goto Blackrock Caverns/1 27.40,16.60 |only if not haveq(28737)
+kill Corla, Herald of Twilight##39679 |goto Blackrock Caverns/1 27.40,16.60 |q 28737/1 |or |only if haveq(28737)
 _EVERYONE:_ |grouprole EVERYONE
 |tip Have healers and Ranged DPS interrupt the 2 beams Corla channels to the Twilight Zealots. |grouprole EVERYONE
 |tip This is accomplished by standing between Corla and her target, absorbing the beam yoruself. |grouprole EVERYONE
@@ -13688,7 +13688,7 @@ description="This guide will walk you through the Grim Batol dungeon.",
 },[[
 step
 label "lfg"
-Press _I_ and queue for Grim Batol or enter the dungeon with your group |goto Grim Batol/0 12.20,56.10 < 100 |c
+Press _I_ and queue for Grim Batol or enter the dungeon with your group |goto Grim Batol/1 12.20,56.10 < 100 |c
 step
 talk Farseer Tooranu##50385
 accept Kill the Courier##28853 |goto Grim Batol 18.40,55.20
@@ -14212,12 +14212,12 @@ description="This guide will walk you through the Stonecore dungeon.",
 },[[
 step
 label "start"
-Press _I_ and queue for The Stonecore or enter the dungeon with your group |goto The Stonecore/0 54.50,94.50 < 100 |c
+Press _I_ and queue for The Stonecore or enter the dungeon with your group |goto The Stonecore/1 54.50,94.50 < 100 |c
 step
 talk Earthwarden Yrsa##50048
 accept Twilight Documents##28815 |goto The Stonecore 53.70,94.90
 step
-map The Stonecore/0
+map The Stonecore/1
 path follow strict;loop off;ants straight
 path	54.60,88.40	61.40,79.20	63.30,70.90
 kill Stonecore Earthshaper##43537+
@@ -14228,7 +14228,7 @@ kill Stonecore Earthshaper##43537+
 Click Here to Continue |confirm
 step
 click Twilight Documents##207415
-collect Twilight Documents##65734 |q 28815/1 |goto The Stonecore/0 63.50,65.20
+collect Twilight Documents##65734 |q 28815/1 |goto The Stonecore/1 63.50,65.20
 |only if haveq(28815)
 step
 _Click the Quest Complete Box:_
@@ -14257,7 +14257,7 @@ _DAMAGE:_ |grouprole DAMAGE
 |tip
 Click here to Continue |confirm
 step
-map The Stonecore/0
+map The Stonecore/1
 path follow strict;loop off;ants straight
 path	59.60,59.80	54.90,58.40	50.00,59.70	46.10,55.70	43.40,52.20
 path	38.80,49.60
@@ -14266,7 +14266,7 @@ Follow the path
 |tip
 Click Here to Continue |confirm
 step
-kill Slabhide##43214 |goto The Stonecore/0 37.70,44.90
+kill Slabhide##43214 |goto The Stonecore/1 37.70,44.90
 _EVERYONE:_ |grouprole EVERYONE
 |tip He casts "Lava Fissures" at random players which need to be moved out of. |grouprole EVERYONE
 |tip Be mindful of "Stalacite" which fall from the ceiling. |grouprole EVERYONE
@@ -14280,7 +14280,7 @@ _DAMAGE:_ |grouprole DAMAGE
 |tip
 Click Here to Confirm |confirm
 step
-map The Stonecore/0
+map The Stonecore/1
 path follow strict;loop off;ants straight
 path	37.70,39.50	39.80,32.20	38.60,20.80	42.70,16.70	45.40,19.00
 Follow the path
@@ -14292,7 +14292,7 @@ Follow the path
 |tip
 Click Here to Continue |confirm
 step
-kill Ozruk##42188 |goto The Stonecore/0 47.70,20.00
+kill Ozruk##42188 |goto The Stonecore/1 47.70,20.00
 _EVERYONE:_ |grouprole EVERYONE
 |tip Move out of "Ground Slam". |grouprole EVERYONE
 |tip Move 15 yards away from him after each ground slam as he will use "Shatter" immediately after. |grouprole EVERYONE
@@ -14307,7 +14307,7 @@ _TANK:_ |grouprole TANK
 |tip
 Click Here to Continue |confirm
 step
-map The Stonecore/0
+map The Stonecore/1
 path follow strict;loop off;ants straight
 path	48.50,27.20	48.00,35.60	48.40,45.20	53.50,40.50
 Follow the path
@@ -14315,9 +14315,9 @@ Follow the path
 |tip
 Click Here to Continue |confirm
 step
-kill High Priestess Azil##42333 |goto The Stonecore/0 57.64,38.24 |only if not haveq(28814)
-kill High Priestess Azil##42333  |q 28814/1 |goto The Stonecore/0 57.64,38.24 |only if haveq(28814)
-kill 101 Devout Follower##42428 |q 28814/2 |goto The Stonecore/0 57.64,38.24 |only if haveq(28814)
+kill High Priestess Azil##42333 |goto The Stonecore/1 57.64,38.24 |only if not haveq(28814)
+kill High Priestess Azil##42333  |q 28814/1 |goto The Stonecore/1 57.64,38.24 |only if haveq(28814)
+kill 101 Devout Follower##42428 |q 28814/2 |goto The Stonecore/1 57.64,38.24 |only if haveq(28814)
 _Phase 1:_
 _TANK:_ |grouprole TANK
 |tip Move her out of "Gravity Wells" as they appear, indicated by purple circles on the ground. |grouprole TANK
@@ -14343,7 +14343,7 @@ You can Right Click the dungeon finder icon on your mini map, teleport out of th
 Click Here to Continue |confirm
 step
 talk Earthwarden Yrsa##50048
-turnin Followers and Leaders##28814 |goto The Stonecore/0 53.60,95.00
+turnin Followers and Leaders##28814 |goto The Stonecore/1 53.60,95.00
 ]])
 ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Cataclysm Dungeons\\Throne of the Tides",{
 cataready=true,
@@ -14356,7 +14356,7 @@ description="This guide will walk you through the Abyssal Maw: Throne of the Tid
 },[[
 step
 label "lfg"
-Press _I_ and queue for Throne of the Tides or enter the dungeon with your group |goto Throne of the Tides/0 49.90,88.20 < 100 |c
+Press _I_ and queue for Throne of the Tides or enter the dungeon with your group |goto Throne of the Tides/1 49.90,88.20 < 100 |c
 step
 talk Captain Taylor##50270
 accept Rescue the Earthspeaker!##28834 |goto Throne of the Tides,49.90,90.60
@@ -14365,7 +14365,7 @@ accept Sins of the Sea Witch##28836 |goto Throne of the Tides,49.90,90.60
 |tip
 Click Here to Continue |confirm
 step
-map Throne of the Tides/0
+map Throne of the Tides/1
 path follow smart; loop off; ants curved; dist 12
 path	49.90,88.20	50.20,74.80	50.50,64.70	49.90,49.70
 map Throne of the Tides/1
@@ -14439,7 +14439,7 @@ Click the Throne of the Tides Teleporter |goto Throne of the Tides/1 51.20,52.70
 |tip
 Click Here to Continue |confirm
 step
-map Throne of the Tides/0
+map Throne of the Tides/1
 path follow strict;loop off;ants straight
 path	49.90,88.20	50.20,74.80	50.50,64.70	49.90,49.70	57.30,44.60
 path	61.90,43.70	66.20,38.60	67.20,30.40
@@ -14449,7 +14449,7 @@ Follow the path
 Click Here to Continue |confirm
 step
 _Phase 1:_
-kill Erunak Stonespeaker##40825 |goto Throne of the Tides/0 67.20,20.40
+kill Erunak Stonespeaker##40825 |goto Throne of the Tides/1 67.20,20.40
 _EVERYONE:_ |grouprole EVERYONE
 |tip The fight starts out with Erunak, who casts "Earth Shard" at random party members. |grouprole EVERYONE
 |tip Move out of the line to avoid the damage from this. |grouprole EVERYONE
@@ -14459,7 +14459,7 @@ _DAMAGE:_ |grouprole DAMAGE
 |tip Avoid being in front of him. |grouprole DAMAGE
 |tip
 _Phase 2:_
-kill Mindbender Ghur'sha##40788 |goto Throne of the Tides/0 67.20,20.40
+kill Mindbender Ghur'sha##40788 |goto Throne of the Tides/1 67.20,20.40
 _EVERYONE:_ |grouprole EVERYONE
 |tip At 50%, Ghur'sha "Enslaves" a random party member. |grouprole EVERYONE
 |tip Enslaved party members must be dps'd down quickly or they will die. |grouprole EVERYONE |only if heroic_dung()
@@ -14475,9 +14475,9 @@ Rescue Erunak Stonespeaker |q 28834/1 |only if haveq(28834) |or
 Click Here to Continue |confirm |or
 step
 talk Erunak Stonespeaker##36915
-turnin Rescue the Earthspeaker!##28834 |goto Throne of the Tides/0 67.20,20.40
+turnin Rescue the Earthspeaker!##28834 |goto Throne of the Tides/1 67.20,20.40
 step
-map Throne of the Tides/0
+map Throne of the Tides/1
 path follow strict;loop off;ants straight
 path	67.20,30.40	66.20,38.60	61.90,43.70	57.30,44.60	50.00,44.70
 path	42.60,44.10	34.60,41.80	32.40,30.00
@@ -14486,13 +14486,13 @@ Follow the path
 |tip
 Click Here to Continue |confirm
 step
-talk Neptulon##40792 |goto Throne of the Tides/0 32.50,22.50
+talk Neptulon##40792 |goto Throne of the Tides/1 32.50,22.50
 |tip Let him know you're ready.
 |tip
 Click Here to Continue |confirm
 step
 kill Faceless Sapper##44752+, Vicious Mindlasher##44715+, Unyielding Behemoth##44648+
-kill Ozumat##44566 |goto Throne of the Tides/0 36.40,17.40
+kill Ozumat##44566 |goto Throne of the Tides/1 36.40,17.40
 _Phase 1:_
 _EVERYONE:_ |grouprole EVERYONE
 |tip 3 Vicious Mindlashers and 1 Unyiedling Behemoth will spawn. |grouprole EVERYONE
@@ -14536,7 +14536,7 @@ description="This guide will walk you through the Vortex Pinnacle dungeon.",
 },[[
 step
 label "lfg"
-Press _I_ and queue for Vortex Pinnacle or enter the dungeon with your group |goto The Vortex Pinnacle/0 54.10,16.70 < 100 |c
+Press _I_ and queue for Vortex Pinnacle or enter the dungeon with your group |goto The Vortex Pinnacle/1 54.10,16.70 < 100 |c
 step
 talk Itesh##49943
 accept A Long Way from Home##28779
@@ -15889,14 +15889,14 @@ step
 Enter Blackwing Descent |goto Burning Steppes/0 23.17,26.40 < 5
 confirm
 step
-map Blackwing Descent/0
+map Blackwing Descent/1
 path loop off
 path	42.60,59.90	36.10,59.70	31.50,56.90
-Follow the path, clearing trash as you make your way to the first boss, Magmaw. |goto Blackwing Descent/0 31.50,56.90 < 5
+Follow the path, clearing trash as you make your way to the first boss, Magmaw. |goto Blackwing Descent/1 31.50,56.90 < 5
 |tip Opening the world map will display an ant trail guiding you through the current floor.
 confirm
 step
-kill Magmaw##41570 |goto Blackwing Descent/0 27.50,53.10
+kill Magmaw##41570 |goto Blackwing Descent/1 27.50,53.10
 |tip Mangle deals 110,000-128,400 damage every 5 seconds. Usually used on tanks.
 |tip Sweltering Armor Magmaw melts the taget's armor, reducing it by 50%.
 |tip Magma Spit inflicts 39,300-50,600 Fire damage to the targeted player when no player is in melee range. Triggers Molten Tantrum.
@@ -15909,14 +15909,14 @@ kill Magmaw##41570 |goto Blackwing Descent/0 27.50,53.10
 |tip When Magmaw slumps forward players can jump on his head and use constricting chains to impale him on the spike in the room, increasing his vulnerability.
 |confirm
 step
-map Blackwing Descent/0
+map Blackwing Descent/1
 path loop off
 path	51.20,59.90	58.30,59.70	61.00,57.30
-Follow the path, clearing trash as you make your way to the next boss, the Omnotron Defense System. |goto Blackwing Descent/0 61.00,57.30 < 5
+Follow the path, clearing trash as you make your way to the next boss, the Omnotron Defense System. |goto Blackwing Descent/1 61.00,57.30 < 5
 |tip Opening the world map will display an ant trail guiding you through the current floor.
 confirm
 step
-_Omnotron Defense System_ |goto Blackwing Descent/0 65.40,57.40
+_Omnotron Defense System_ |goto Blackwing Descent/1 65.40,57.40
 kill Arcanotron##42166
 |tip Power Generator is a large vortex on the ground, buffing any who stand in it with increased damage and mana regeneration. Try to keep the boss out of it.
 |tip Arcane Annihilator is interruptable and deals massive damage to a single target.
@@ -15936,7 +15936,7 @@ kill Toxitron##42180
 |tip Poison Soaked Shell occurs when Toxitron is attacked, it applies a stacking DoT to the attacker but also applies a buff that makes your attacks deal an additional 10,000 Nature damage.
 |confirm
 step
-map Blackwing Descent/0
+map Blackwing Descent/1
 path	58.80,54.70	47.10,53.30	Blackwing Descent/1 47.40,88.10
 path	Blackwing Descent/1 57.60,69.50	Blackwing Descent/1 65.50,69.70
 Follow the path, clearing trash as you make your way to the next boss, Maloriak. |goto Blackwing Descent/1 65.50,69.70 < 10
@@ -16061,28 +16061,28 @@ step
 Enter Baradin Hold |goto Tol Barad/0 47.69,52.58 < 5
 confirm
 step
-map Baradin Hold/0
+map Baradin Hold/1
 path loop off
 path	48.00,72.50	54.60,62.90	70.80,62.90
-Follow the path, clearing trash as you make your way to the first boss, Argaloth. |goto Baradin Hold/0 70.80,62.90 < 5
+Follow the path, clearing trash as you make your way to the first boss, Argaloth. |goto Baradin Hold/1 70.80,62.90 < 5
 |tip Opening the world map will display an ant trail guiding you through the current floor.
 confirm
 step
-kill Argaloth##47120 |goto Baradin Hold/0 80.40,63.40
+kill Argaloth##47120 |goto Baradin Hold/1 80.40,63.40
 |tip Meteor Slash deals 200,000 Fire damage, split between players within 65 yards in front of Argaloth, also increasing their fire damage taken by 100%.
 |tip Consuming Darkness the Shambling Doom inflicts 3000 Shadow damage and applies a DoT that deals additional Shadow damage every 0.50 seconds for 15 seconds. Should be dispelled immediately.
 |tip Fel Firestorm occurs when Argaloth is at 66% and 33% health. He rains fireballs down on the raid, leaving scorch marks on the ground upon impact. These marks deal 8500 Fire damage when standing in them.
 |tip Berserk is an enrage, occuring after 5 minutes of combat. It increases his damage by 900% and attack speed by 150%. This is designed to wipe the raid. Kill him before he reaches this stage to avoid death.
 |confirm
 step
-kill Occu'thar##52363 |goto Baradin Hold/0 15.50,63.10
+kill Occu'thar##52363 |goto Baradin Hold/1 15.50,63.10
 |tip Eyes of Occu'thar spawns a swarm of eyes that attach to players, inflicting 8700-9200 Shadow damage every second. After 10 seconds they explode, dealing 25,000 Shadow damage to the raid.
 |tip Focused Fire Occu'thar targets a player, then inflicts 25,000 Fire damage every second to players within 12 yards of the targeted location.
 |tip Searing Shadows deals 105,000 Shadow damage to players in a cone in front of Occu'thar, also increasing Shadow damage they take by 100% for 30 seconds.
 |tip Berserk is an enrage, occuring after 8 minutes of combat. It increases her damage by 900% and attack speed by 150%. This is designed to wipe the raid. Kill her before she reaches this stage to avoid death.
 |confirm
 step
-kill Alizabal##55869 |goto Baradin Hold/0 47.90,17.90
+kill Alizabal##55869 |goto Baradin Hold/1 47.90,17.90
 |tip Skewer skewers and stuns Alizabal's target for 8 seconds, dealing 10,000 Physical damage every 2 seconds and increasing the target's damage taken by 150%.
 |tip Seething Hate affects a random player, dealing 200,000 total Fire damage, split between all players within 6 yards of the target.
 |tip Blade Dance Alizabal enters a blade dance, dealing 12,500 Physical damage every second to all players within 13 yards of her and deflecting all incoming attacks.
@@ -16197,12 +16197,12 @@ confirm
 step
 map Firelands/0
 path loop off
-path	49.30,17.20	Firelands/2 51.00,90.00
-Follow the path, clearing trash as you make your way to the next boss, Majordomo Staghelm. |goto Firelands/2 51.00,90.00 < 5
+path	49.30,17.20	Firelands/1 51.00,90.00
+Follow the path, clearing trash as you make your way to the next boss, Majordomo Staghelm. |goto Firelands/1 51.00,90.00 < 5
 |tip Opening the world map will display an ant trail guiding you through the current floor.
 confirm
 step
-kill Majordomo Staghelm##52571 |goto Firelands/2 50.90,72.40
+kill Majordomo Staghelm##52571 |goto Firelands/1 50.90,72.40
 |tip Fury increases Staghelm's damage by 8% per stack. He gains a stack of this every time he switches between scorpion and cat forms.
 |tip Searing Seeds plants fiery seeds into all raid members. Each seed grows at a different rate and explodes when fully grown, dealing 45,000 Fire damage to players within 12 yards.
 |tip Fiery Cyclone tosses all raid members into the air, preventing any action but making them invulnerable.
@@ -16212,14 +16212,14 @@ _Cat Form_
 |tip Leaping Flames leaps at a player, leaving behind a Spirit of the Flame and landing in a blaze, igniting the ground and causing it to deal 19,000 Fire damage every 0.50 seconds for 1 minute.
 confirm
 step
-map Firelands/2
+map Firelands/1
 path loop off
 path	51.00,90.00	50.60,30.20
-Follow the path, clearing trash as you make your way to the next boss, _Ragnaros_. |goto Firelands/2 50.60,30.20 < 5
+Follow the path, clearing trash as you make your way to the next boss, _Ragnaros_. |goto Firelands/1 50.60,30.20 < 5
 |tip Opening the world map will display an ant trail guiding you through the current floor.
 confirm
 step
-kill Ragnaros##52409 |goto Firelands/2 50.70,15.30
+kill Ragnaros##52409 |goto Firelands/1 50.70,15.30
 |tip Sulfuras Smash Ragnaros strikes the ground, sending out waves of lava from the impact point.
 |tip Magma Trap creates a trap that deals 60,000 Fire damage to all players and knocking back the player that triggered it.
 |tip Hand of Ragnaros deals 23,000 Fire damage to all players within 55 yards and knocking them back.

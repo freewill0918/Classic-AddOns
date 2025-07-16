@@ -41,6 +41,8 @@ function WW:SetupMenuArray()
 
 	if ZGV.IsRetail then
 		table.remove(Tradeskills,8) -- first aid
+	elseif ZGV.IsClassicMOP then
+		table.remove(Tradeskills,3) -- bandages
 	elseif ZGV.IsClassicTBC then
 		table.remove(Tradeskills,11) -- inscription
 		table.remove(Tradeskills,3) -- bandages
@@ -128,9 +130,14 @@ function WW:SetupMenuArray()
 		table.remove(WW.Types ,9) -- prof. workshop
 		table.remove(WW.Types ,3) -- barber
 	elseif ZGV.IsClassicCATA then
+		table.remove(WW.Types ,15) -- void storage
 		table.remove(WW.Types ,11) -- riding
 		table.remove(WW.Types ,9) -- prof. workshop
 		table.remove(WW.Types ,3) -- barber
+	elseif ZGV.IsClassicMOP then
+		table.remove(WW.Types ,15) -- void storage
+		table.remove(WW.Types ,11) -- riding
+		table.remove(WW.Types ,9) -- prof. workshop
 	end
 
 	for i,v in ipairs(WW.Types) do

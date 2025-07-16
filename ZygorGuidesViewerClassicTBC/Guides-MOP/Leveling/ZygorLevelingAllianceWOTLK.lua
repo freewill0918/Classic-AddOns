@@ -40417,8 +40417,7 @@ turnin Lost Necklace##85 |goto Elwynn Forest 43.13,85.72 |only if haveq(85)
 accept Pie for Billy##86 |goto Elwynn Forest 43.13,85.72 |only if level < 11
 |only if level < 11 or haveq(85)
 stickystart "Collect_Tender_Boar_Meat"
-stickystart "Collect_Gold_Dust"
-stickystart "Collect_Large_Candles"
+stickystart "Collect_Gold_Dust_And_Large_Candles"
 step
 talk Maybell Maclure##251
 |tip Inside the building.
@@ -40429,8 +40428,7 @@ talk Tommy Joe Stonefield##252
 turnin Young Lovers##106 |goto Elwynn Forest 29.84,85.99 |only if haveq(106)
 accept Speak with Gramma##111 |goto Elwynn Forest 29.84,85.99 |only if level < 11
 |only if level < 11 or haveq(106)
-stickystop "Collect_Gold_Dust"
-stickystop "Collect_Large_Candles"
+stickystop "Collect_Gold_Dust_And_Large_Candles"
 step
 label "Collect_Tender_Boar_Meat"
 kill Stonetusk Boar##113+
@@ -44873,7 +44871,7 @@ stickystart "Collect_Brownfeather_Quill"
 step
 kill Shaggy Black Bear##44473+
 collect 5 Side of Bear Meat##60851 |q 27167/1 |goto Western Plaguelands 40.12,79.95
-|only if haveq(27165) and level < 41
+|only if haveq(27167) and level < 41
 step
 label "Collect_Brownfeather_Quill"
 click Brownfeather Quill##205246+

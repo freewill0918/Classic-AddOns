@@ -6,11 +6,3 @@
 ## Dependencies: RXPGuides
 Classic/Alliance-31-85.lua
 Classic/Horde-31-85.lua
-Classic/1-70-Alliance.lua
-Classic/1-70-Horde.lua
-Classic/1-80-Alliance.lua
-Classic/1-80-Custom.lua
-Classic/1-80-Horde.lua
-Classic/Alliance-31-85.lua
-Classic/Cata Prep.lua
-Classic/Horde-31-85.lua

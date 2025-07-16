@@ -9,11 +9,20 @@ RXPGuides.RegisterGuide([[
 #next 27-31 Northern Stranglethorn
 #version 1
 --#group RXP Cataclysm (H) << cata
-#group RXP MoP (H) << mop
+
 #group RXP Cataclysm 1-80 (H) << cata
-#group RXP MoP 1-80 (H) << mop
+#group RXP MoP 1-60 (H) << mop
 #subweight 10000
 
+step
+    #optional
+    .goto 63,94.410,46.819
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Kulg Gorespatter|r
+    .gossipoption 111683 >>Fly to The Mor'Shan Ramparts
+    .target Kulg Gorespatter
+    .subzoneskip 2457,1
+    .subzoneskip 1703
+    .isOnQuest 13866
 step
     .goto 1413/1,-2251.30005,1236.80005
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Kadrak|r

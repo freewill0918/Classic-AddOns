@@ -9577,8 +9577,8 @@ step
 talk Lethyn Moonfire##17834
 |tip Inside the building.
 turnin The Dying Balance##9895 |goto Zangarmarsh/0 78.53,63.15
-accept Watcher Leesa'oh##9697 |goto Zangarmarsh/0 78.53,63.15 |only if (rep('Cenarion Expedition') >= Friendly) and not completedq(9701)
-accept What's Wrong at Cenarion Thicket?##9957 |goto Zangarmarsh/0 78.53,63.15 |only if (rep('Cenarion Expedition') >= Friendly) and not completedq(9968)
+accept Watcher Leesa'oh##9697 |goto Zangarmarsh/0 78.53,63.15 |only if rep("Cenarion Expedition") >= Friendly and not completedq(9701)
+accept What's Wrong at Cenarion Thicket?##9957 |goto Zangarmarsh/0 78.53,63.15 |only if rep("Cenarion Expedition") >= Friendly and not completedq(9968)
 step
 talk Ysiel Windsinger##17841
 |tip On the balcony of the building.
@@ -21211,11 +21211,11 @@ turnin A Warm Welcome##9728 |goto Zangarmarsh/0 79.09,65.27
 step
 Enter the building |goto Zangarmarsh/0 78.69,63.34 < 7 |walk
 talk Lethyn Moonfire##17834
-|tip Inside the building.
+|tip Inside the building
 turnin The Dying Balance##9895 |goto Zangarmarsh/0 78.53,63.15 |only if readyq(9895)
-accept Watcher Leesa'oh##9697 |goto Zangarmarsh/0 78.53,63.15 |only if (rep('Cenarion Expedition') >= Friendly) and not completedq(9701) |only if level < 64
-accept What's Wrong at Cenarion Thicket?##9957 |goto Zangarmarsh/0 78.53,63.15 |only if (rep('Cenarion Expedition') >= Friendly) and not completedq(9968) |only if level < 64
-|only if level < 64 or readyq(9895)
+accept Watcher Leesa'oh##9697 |goto Zangarmarsh/0 78.53,63.15 |only if rep("Cenarion Expedition") >= Friendly and not completedq(9701) and level < 64
+accept What's Wrong at Cenarion Thicket?##9957 |goto Zangarmarsh/0 78.53,63.15 |only if rep('Cenarion Expedition') >= Friendly and not completedq(9968) and level < 64
+|only if (rep("Cenarion Expedition") >= Friendly and level < 64  and (not completedq(9701) or not completedq(9968))) or readyq(9895)
 step
 talk Ysiel Windsinger##17841
 |tip On the balcony of the building.
@@ -21227,13 +21227,13 @@ step
 use the Stormcrow Amulet##25465
 Watch the dialogue
 Explore the Lakes of Zangarmarsh |q 9718/1 |goto Zangarmarsh/0 78.40,62.02
-|only if haveq(9752)
+|only if haveq(9718)
 step
 talk Ysiel Windsinger##17841
 |tip Outside on the balcony of the building.
 turnin As the Crow Flies##9718 |goto Zangarmarsh/0 78.40,62.02 |only if haveq(9718)
-accept Balance Must Be Preserved##9720 |goto Zangarmarsh/0 78.40,62.02 |only if level < 64 and (completedq(9718) or haveq(9718))
-|only if level < 64 and (completedq(9718) or haveq(9718)) or haveq(9718)
+accept Balance Must Be Preserved##9720 |goto Zangarmarsh/0 78.40,62.02 |only if level < 64 and (completedq(9718))
+|only if level < 64 and (completedq(9718) or haveq(9718))
 step
 talk Zurai##18011
 turnin Thick Hydra Scales##9774 |goto Zangarmarsh/0 85.28,54.75 |only if readyq(9774)

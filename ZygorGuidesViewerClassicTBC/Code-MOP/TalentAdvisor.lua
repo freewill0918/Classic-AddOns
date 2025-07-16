@@ -13,7 +13,7 @@ local glyphlevels = {25,50,75}
 function TA:RegisterBuild(class,name,ident,recommended,spec,talents,glyps)
 	if class~=TA.playerClass then return end
 	if not TA.TalentsToNumbers[class][spec] then 
-		print("unknown spec for",class,name,"-",spec)
+		ZGV:Debug("unknown spec for %s %s - %s",class,name,spec)
 		return
 	end
 
@@ -31,7 +31,7 @@ function TA:RegisterBuild(class,name,ident,recommended,spec,talents,glyps)
 		line = line:gsub('^%s*(.-)%s*$', '%1')
 
 		if not spells[line] then 
-			print("Unknown talent",line)
+			ZGV:Debug("Unknown talent %s",line)
 			return
 		end
 
@@ -43,7 +43,7 @@ function TA:RegisterBuild(class,name,ident,recommended,spec,talents,glyps)
 		line=line:match("lyph of (.*)") or gn
 
 		if not glyphids[line] then 
-			print("Unknown glyph",line)
+			ZGV:Debug("Unknown glyph %s",line)
 			return
 		end
 		table.insert(build.glyphs,glyphids[line])
@@ -64,6 +64,10 @@ end
 function TA:Startup()
 	-- hook functions
 	hooksecurefunc("PlayerTalentTab_OnClick",function(button)
+		if not ZGV.db.profile.talenton then 
+			TA.MenuButton:Hide()
+		return end
+
 		if PlayerTalentFrameSpecialization:IsVisible() then
 			TA.MenuButton:Hide()
 		else
@@ -109,10 +113,13 @@ function TA:Startup()
 			end
 		end
 	end
+	TA:ShowSpecs()
 	TA:PickBuild(ident or recommended or any)
 end
 
 function TA:ShowSpecs()
+	if not ZGV.db.profile.talenton then return end
+
 	local specname = TA.RecommendedSpecs[TA.playerClass]
 	local specnum = TA.TalentsToNumbers[TA.playerClass][specname]
 
@@ -125,6 +132,8 @@ function TA:ShowSpecs()
 end
 
 function TA:ShowTalents()
+	if not ZGV.db.profile.talenton then return end
+
 	if not ZGV.db.profile.ta_toggle_icons then 
 		for _,icon in ipairs(TA.TalentIcons) do icon:Hide() end
 		return 
@@ -158,6 +167,8 @@ function TA:RecommendTalents()
 end
 
 function TA:ShowGlyphs()
+	if not ZGV.db.profile.talenton then return end
+
 	local build = TA.ActiveBuild
 	if not build then return end
 
@@ -293,9 +304,39 @@ function TA.UpdateGlyphIcons()
 			button:SetFrameStrata("DIALOG")
 			button:SetPoint("TOPRIGHT",blizzbutton,"TOPRIGHT",0,-3)
 			button.tooltiptext = "Zygor recommends this glyph at level "..level
-			--button:SetScript("OnClick", function(...) Record:Mount(mountID) end)
 			button:Show()
 		end
 	end
 end
---]]
+
+function TA:Toggle()
+	if not TA.MenuButton then return end -- called before startup
+
+	if ZGV.db.profile.talenton then
+		TA:ShowSpecs()
+		TA:ShowTalents()
+
+		if PlayerTalentFrameTalents:IsVisible() then
+			TA.MenuButton:SetPoint("BOTTOMLEFT",PlayerTalentFrame,"BOTTOMLEFT", 221,-1)
+			TA.MenuButton:Show()
+		end
+		if GlyphFrame and GlyphFrame:IsVisible() then
+			TA.MenuButton:SetPoint("BOTTOMLEFT",PlayerTalentFrame,"BOTTOMLEFT", 451,-1)
+			TA.MenuButton:Show()
+			TA.UpdateGlyphIcons()
+			TA:ShowGlyphs() 
+		end
+		if PlayerTalentFrameSpecialization:IsVisible() then
+			TA.MenuButton:Hide()
+		end
+			
+
+	else
+		TA.MenuButton:Hide()
+		TA.SpecIcon:Hide()
+
+		for _,button in pairs(TA.TalentIcons) do button:Hide() end
+		TA.GlyphIconPool:ReleaseAll()	
+		TA.GlyphIconListPool:ReleaseAll()
+	end
+end

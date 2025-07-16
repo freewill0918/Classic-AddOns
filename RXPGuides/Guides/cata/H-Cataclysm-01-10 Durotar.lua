@@ -11,10 +11,9 @@ RXPGuides.RegisterGuide([[
 #next 6-10 Durotar
 #version 1
 --#group RXP Cataclysm (H) << cata
-#group RXP MoP (H) << mop
 #defaultfor Orc
 #group RXP Cataclysm 1-80 (H) << cata
-#group RXP MoP 1-80 (H) << mop
+#group RXP MoP 1-60 (H) << mop
 #subweight 10000
 
 
@@ -124,12 +123,18 @@ step << Hunter
     .accept 25139 >>Accept Steady Shot
     .train 56641 >> Train |T132213:0|t[Steady Shot] << Cata
     .target Karranisha
-step << Mage
+step << Mage cata
     .goto 1411,42.52,69.03
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Acrypha|r
     .turnin 25138 >>Turn in Glyphic Parchment
     .accept 25149 >>Accept Arcane Missiles
     .train 5143 >> Train |T136096:0|t[Arcane Missiles] << Cata
+    .target Acrypha
+step << Mage !cata
+    .goto 1411,42.52,69.03
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Acrypha|r
+    .turnin 25138 >>Turn in Glyphic Parchment
+    .accept 25149 >>Accept Frost Nova
     .target Acrypha
 step << Shaman
     .goto 1411,42.39,68.99
@@ -145,12 +150,18 @@ step << Warrior
     .accept 25147 >>Accept Charge
     .train 100 >> Train |T132337:0|t[Charge] << Cata
     .target Frang
-step << Warlock
+step << Warlock cata
     .goto 1411,42.38,68.06
     .>>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Nartok|r
     .turnin 3090 >>Turn in Tainted Parchment
     .accept 25145 >>Accept Immolate
     .train 348 >> Train |T135817:0|t[Immolate] << Cata
+    .target Nartok
+step << Warlock !cata
+    .goto 1411,42.38,68.06
+    .>>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Nartok|r
+    .turnin 3090 >>Turn in Tainted Parchment
+    .accept 25145 >>Accept Corruption
     .target Nartok
 step << Monk
     .goto 1411,43.18,69.47
@@ -169,11 +180,15 @@ step << Hunter
 	.complete 25139,2 << !Cata --Cast Steady Shot (x5)
 	.complete 25139,1 << Cata --Cast Steady Shot (x5)
 	.mob Training Dummy
-step << Mage
+step << Mage cata
     .goto 1411,43.18,69.47
 	>>Cast |T136096:0|t[Arcane Missiles] on a |cRXP_ENEMY_Training Dummy|r
-	.complete 25149,2 << !Cata--Arcane Missiles (x2)
-	.complete 25149,1 << Cata--Arcane Missiles (x2)
+	.complete 25149,1 --Arcane Missiles (x2)
+	.mob Training Dummy
+step << Mage !cata
+    .goto 1411,43.18,69.47
+	>>Cast |T135848:0|t[Frost Nova] on a |cRXP_ENEMY_Training Dummy|r
+	.complete 25149,2 --Cast Frost Nova
 	.mob Training Dummy
 step << Shaman
     .goto 1411,43.18,69.47
@@ -187,10 +202,15 @@ step << Warrior
 	.complete 25147,2 << !Cata--Cast Charge (x1)
 	.complete 25147,1 << Cata --Cast Charge (x1)
 	.mob Training Dummy
-step << Warlock
+step << Warlock cata
     .goto 1411,43.18,69.47
 	>>Cast |T135817:0|t[Immolate] on a |cRXP_ENEMY_Training Dummy|r
-	.complete 25145,2 --Cast Immolate (x5)
+	.complete 25145,2,1 --Cast Immolate (x5)
+	.mob Training Dummy
+step << Warlock !cata
+    .goto 1411,43.18,69.47
+	>>Cast |T136118:0|t[Corruption] on a |cRXP_ENEMY_Training Dummy|r
+	.complete 25145,2 --Cast Corruption (x5)
 	.mob Training Dummy
 step << Monk
     .goto 461/1,-4209.500,-618.300
@@ -207,10 +227,15 @@ step << Hunter
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Karranisha|r
     .turnin 25139 >>Turn in Steady Shot
     .target Karranisha
-step << Mage
+step << Mage cata
     .goto 1411,42.52,69.03
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Acrypha|r
     .turnin 25149 >>Turn in Arcane Missiles
+    .target Acrypha
+step << Mage !cata
+    .goto 1411,42.52,69.03
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Acrypha|r
+    .turnin 25149 >>Turn in Frost Nova
     .target Acrypha
 step << Shaman
     .goto 1411,42.39,68.99
@@ -222,10 +247,15 @@ step << Warrior
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Frang|r
     .turnin 25147 >>Turn in Charge
     .target Frang
-step << Warlock
+step << Warlock cata
     .goto 1411,42.38,68.06
     .>>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Nartok|r
     .turnin 25145 >>Turn in Immolate
+    .target Nartok
+step << Warlock !cata
+    .goto 1411,42.38,68.06
+    .>>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Nartok|r
+    .turnin 25145 >>Turn in Corruption
     .target Nartok
 step
     .goto 1411,42.67,67.31
@@ -475,10 +505,9 @@ RXPGuides.RegisterGuide([[
 #next 6-10 Durotar
 #version 1
 --#group RXP Cataclysm (H) << cata
-#group RXP MoP (H) << mop
 #defaultfor Troll
 #group RXP Cataclysm 1-80 (H) << cata
-#group RXP MoP 1-80 (H) << mop
+#group RXP MoP 1-60 (H) << mop
 #subweight 10000
 
 step << !Troll
@@ -531,7 +560,7 @@ step << Druid
     .goto 1411,67.67,84.65
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Zen'tabra|r
     .turnin 24764 >> Turn in The Rise of the Darkspear
-    .accept 24751 >> Accept The Basics: Hitting Things
+    .accept 24765 >> Accept The Basics: Hitting Things
     .target Zen'tabra
 step << Hunter
     .goto 1411,67.09,83.31
@@ -566,7 +595,7 @@ step
 	.complete 24639,1 << Warrior --Kill Tiki Target (x6)
 	.complete 24751,1 << Mage --Kill Tiki Target (x6)
 	.complete 24759,1 << Shaman --Kill Tiki Target (x6)
-	.complete 24751,1 << Druid --Kill Tiki Target (x6)
+	.complete 24765,1 << Druid --Kill Tiki Target (x6)
 	.complete 24777,1 << Hunter --Kill Tiki Target (x6)
 	.complete 24783,1 << Priest --Kill Tiki Target (x6)
 	.complete 26273,1 << Warlock --Kill Tiki Target (x6)
@@ -937,12 +966,18 @@ step << Hunter
     .accept 24778 >>Accept The Arts of a Hunter
     .train 56641 >>Train |T132213:0|t[Steady Shot] << Cata
     .target Ortezza
-step << Priest
+step << Priest cata
     .goto 1411,67.59,83.18
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Tunari|r
     .turnin 24786 >>Turn in Proving Pit
     .accept 24784 >>Accept The Arts of a Priest
     .train 2061 >>Train |T135907:0|t[Flash Heal] << Cata
+    .target Tunari
+step << Priest !cata
+    .goto 1411,67.59,83.18
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Tunari|r
+    .turnin 24786 >>Turn in Proving Pit
+    .accept 24784 >>Accept Learnin' tha Word
     .target Tunari
 step << Warlock
     .goto 1411,64.92,83.27
@@ -968,11 +1003,16 @@ step << Warrior
 	.complete 24640,2 << !Cata --Cast Charge (x3)
 	.complete 24640,1 << Cata --Cast Charge (x3)
 	.mob Tiki Target
-step << Mage
+step << Mage cata
 	.goto 1411,68.91,84.31
 	>>Cast |T136096:0|t[Arcane Missiles] on a |cRXP_ENEMY_Tiki Target|r
 	.complete 24752,2 << !Cata --Cast Arcane Missiles (x3)
 	.complete 24752,1 << Cata --Cast Arcane Missiles (x3)
+	.mob Tiki Target
+step << Mage !cata
+	.goto 1411,68.91,84.31
+	>>Cast |T135848:0|t[Frost Nova] on a |cRXP_ENEMY_Tiki Target|r
+	.complete 24752,2 --Cast Frost Nova
 	.mob Tiki Target
 step << Shaman
 	.goto 1411,64.86,84.69
@@ -980,11 +1020,15 @@ step << Shaman
 	.complete 24760,2 << !Cata --Cast Primal Strike (x3)
 	.complete 24760,1 << Cata --Cast Primal Strike (x3)
 	.mob Tiki Target
-step << Druid
+step << Druid cata
 	.goto 1411,67.91,84.60
 	>>Cast |T136081:0|t[Rejuvenation] on a |cRXP_FRIENDLY_Wounded Darkspear Watcher|r
-	.complete 24766,2 << !Cata --Cast Rejuvenation (x1)
-	.complete 24766,1 << Cata --Cast Rejuvenation (x1)
+	.complete 24766,1 --Cast Rejuvenation (x1)
+	.target Wounded Darkspear Watcher
+step << Druid !cata
+	.goto 1411,67.91,84.60
+	>>Cast |T136096:0|t[Moonfire] on a |cRXP_FRIENDLY_Wounded Darkspear Watcher|r
+	.complete 24766,2 --Cast Moonfire
 	.target Wounded Darkspear Watcher
 step << Hunter
 	.goto 1411,67.18,83.12
@@ -992,17 +1036,25 @@ step << Hunter
 	.complete 24778,2 << !Cata --Steady Shot (x3)
 	.complete 24778,1 << Cata --Steady Shot (x3)
 	.mob Tiki Target
-step << Priest
+step << Priest cata
 	.goto 1411,67.35,83.24
 	>>Cast |T135907:0|t[Flash Heal] on a |cRXP_FRIENDLY_Wounded Darkspear Watcher|r
-	.complete 24784,2 << !Cata --Cast Flash Heal (x5)
-	.complete 24784,1 << Cata --Cast Flash Heal (x5)
+	.complete 24784,1 --Cast Flash Heal (x5)
 	.target Wounded Darkspear Watcher
-step << Warlock
+step << Priest !cata
+	.goto 1411,65.07,82.88
+	>>Cast |T136207:0|t[Shadow Word: Pain] on a |cRXP_ENEMY_Tiki Target|r
+	.complete 24784,2 --Cast Shadow Word: Pain
+	.mob Tiki Target
+step << Warlock cata
 	.goto 1411,65.07,82.88
 	>>Cast |T135817:0|t[Immolate] on a |cRXP_ENEMY_Tiki Target|r
-	.complete 26274,2 << !Cata --Cast Immolate (x3)
-	.complete 26274,1 << Cata --Cast Immolate (x3)
+	.complete 26274,1 --Cast Immolate (x3)
+	.mob Tiki Target
+step << Warlock !cata
+	.goto 1411,65.07,82.88
+	>>Cast |T136118:0|t[Corruption] on a |cRXP_ENEMY_Tiki Target|r
+	.complete 26274,2 --Cast Corruption
 	.mob Tiki Target
 step << Monk
     .goto 463/1,-5430.300,-1151.600
@@ -1046,10 +1098,16 @@ step << Hunter
     .turnin 24778 >>Turn in The Arts of a Hunter
     .accept 24781 >>Accept More Than Expected
     .target Ortezza
-step << Priest
+step << Priest cata
     .goto 1411,67.59,83.18
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Tunari|r
     .turnin 24784 >>Turn in The Arts of a Priest
+    .accept 24787 >>Accept More Than Expected
+    .target Tunari
+step << Priest !cata
+    .goto 1411,67.59,83.18
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Tunari|r
+    .turnin 24784 >>Turn in Learnin' tha Word
     .accept 24787 >>Accept More Than Expected
     .target Tunari
 step << Warlock
@@ -1342,18 +1400,17 @@ RXPGuides.RegisterGuide([[
 #next 10-22 Azshara
 #version 1
 --#group RXP Cataclysm (H) << cata
-#group RXP MoP (H) << mop
 #defaultfor Orc/Troll
 #group RXP Cataclysm 1-80 (H) << cata
-#group RXP MoP 1-80 (H) << mop
+#group RXP MoP 1-60 (H) << mop
 #subweight 10000
 
 step << skip
     #completewith BreakingtheChain
-    .goto 1411,67.21,86.10,40,0
-    .goto 1411,63.67,82.61,40,0
-    .goto 1411,60.48,81.45,40,0
-    .goto 1411,60.09,79.68,40,0
+    .goto 1411,67.21,86.10,60,0
+    .goto 1411,63.67,82.61,60,0
+    .goto 1411,60.48,81.45,60,0
+    .goto 1411,60.09,79.68,60,0
     .subzone 367 >> Travel to Sen'Jin Village
 step << Troll
     #completewith BreakingtheChain
@@ -1361,8 +1418,8 @@ step << Troll
     .subzone 367 >> Travel to Sen'Jin Village
 step << Orc
     #completewith BreakingtheChain
-    .goto 1411,48.47,67.93,40,0
-    .goto 1411,50.44,68.39,40,0
+    .goto 1411,48.47,67.93,60,0
+    .goto 1411,50.44,68.39,60,0
     .subzone 367 >> Travel to Sen'Jin Village
 step
     #optional << Troll
@@ -1518,9 +1575,9 @@ step
     >>Kill |cRXP_ENEMY_Northwatch Supply Crates|r and |cRXP_ENEMY_Northwatch Lugs|r
     >>|cRXP_WARN_You may have to wait for more to respawn|r
     .complete 25167,1 --Northwatch Supply Crates destroyed (3)
+    .mob +Northwatch Supply Crate
     .complete 25167,2 --Northwatch Lug (10)
-    .mob Northwatch Lug
-    .mob Northwatch Supply Crate
+    .mob +Northwatch Lug
 step
     #loop
     .goto 1411,55.68,78.92,0
@@ -1539,18 +1596,32 @@ step
     .complete 25170,1 --Collect Crawler Mucus (5)
     .mob Surf Crawler
 step
+    #xprate <1.1
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Bom'bay|r, |cRXP_FRIENDLY_Gadrin|r and |cRXP_FRIENDLY_Lar|r
     .turnin 25170 >>Turn in Cleaning Up the Coastline
     .accept 25165 >>Accept Never Trust a Big Barb and a Smile
+    .target +Bom'bay
     .goto 1411,55.78,75.36
     .turnin 25167 >>Turn in Breaking the Chain
     .accept 25168 >>Accept Purge the Valley
+    .target +Master Gadrin
     .goto 1411,55.91,74.72
     .accept 25169 >>Accept The War of Northwatch Aggression
     .goto 1411,55.47,75.06
-    .target Bom'bay
-    .target Master Gadrin
-    .target Lar Prowltusk
+    .target +Lar Prowltusk
+step
+    #xprate >1.09
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Bom'bay|r, |cRXP_FRIENDLY_Gadrin|r and |cRXP_FRIENDLY_Lar|r
+    .turnin 25170 >>Turn in Cleaning Up the Coastline
+    .target +Bom'bay
+    .goto 1411,55.78,75.36
+    .turnin 25167 >>Turn in Breaking the Chain
+    .accept 25168 >>Accept Purge the Valley
+    .target +Master Gadrin
+    .goto 1411,55.91,74.72
+    .accept 25169 >>Accept The War of Northwatch Aggression
+    .target +Lar Prowltusk
+    .goto 1411,55.47,75.06
 step << Shaman Cata
     .goto 1411,56.27,75.17
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Cona|r
@@ -1649,6 +1720,7 @@ step << Warlock Cata
     .train 87389 >> Train your class spells
     .target Gusini
 step
+    #xprate <1.1
     #loop
     .goto 1411,52.72,75.35,0
     .waypoint 1411,54.15,74.77,40,0
@@ -1703,17 +1775,28 @@ step
     .deathskip >> Die and respawn at the |cRXP_FRIENDLY_Spirit Healer|r
     --VV Beta test needed
 step
+    #xprate <1.1
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Bom'bay|r, |cRXP_FRIENDLY_Lar|r and |cRXP_FRIENDLY_Master Gadrin|r
     .turnin 25165 >>Turn in Never Trust a Big Barb and a Smile
+    .target +Bom'bay
     .goto 1411,55.74,75.42
     .turnin 25169 >>Turn in The War of Northwatch Aggression
+    .target +Lar Prowltusk
     .goto 1411,55.42,75.11
     .turnin 25168 >>Turn in Purge the Valley
     .accept 25171 >>Accept Riding On
+    .target +Master Gadrin
     .goto 1411,55.91,74.78
-    .target Bom'bay
-    .target Lar Prowltusk
-    .target Master Gadrin
+step
+    #xprate >1.09
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Lar|r and |cRXP_FRIENDLY_Master Gadrin|r
+    .turnin 25169 >>Turn in The War of Northwatch Aggression
+    .target +Lar Prowltusk
+    .goto 1411,55.42,75.11
+    .turnin 25168 >>Turn in Purge the Valley
+    .accept 25171 >>Accept Riding On
+    .target +Master Gadrin
+    .goto 1411,55.91,74.78
 step
     .goto 1411,56.47,73.12
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Trayexir|r
@@ -1774,13 +1857,20 @@ step << Warlock Cata
     .train 687 >> Train your class spells
     .target Gusini
     .xp <8,1
-step
+step << cata
+    #completewith RazorVisit1
     .goto 1411,55.26,74.66
     .gossipoption 112084 >> Talk to |cRXP_FRIENDLY_Jhash|r
     >>|cRXP_WARN_Take the ride to Razor Hill|r
     .timer 67, Riding on RP
     .target Raider Jhash
     .isOnQuest 25171
+step << !cata
+    #completewith RazorVisit1
+    .goto Durotar,55.38,73.31
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Handler Marnlek|r
+    .fly Razor Hill >>Fly to Razor Hill
+    .target Handler Marnlek
 step
     .goto 1411,51.51,41.65
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Grosk|r
@@ -1794,6 +1884,7 @@ step
     .accept 25173 >>Accept From Bad to Worse
     .target Gar'Thok
 step
+    #label RazorVisit1
     .goto 1411,53.03,43.14
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Gail|r
     .accept 25176 >>Accept Exploiting the Situation
@@ -2190,7 +2281,7 @@ step
     .goto 1411,42.70,49.90
     >>Escort |cRXP_FRIENDLY_Tekla|r to |cRXP_FRIENDLY_Raggaran|r
     .complete 25189,1 --Escort Grandmatron Tekla to Raggaran
-    .complete 25188,1 --Help Grandmatron Tekla (1)
+    --.complete 25188,1 --Help Grandmatron Tekla (1) --completes once quest 25189 is turned in
     .target Grandmatron Tekla
 step
     .goto 1411,42.66,49.89

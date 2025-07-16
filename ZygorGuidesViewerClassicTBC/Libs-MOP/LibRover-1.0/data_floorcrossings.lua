@@ -46,8 +46,8 @@ data.basenodes.FloorCrossings = --[[LIBROVER]] {
 		},
 		["Durotar"] = {
 			"Durotar/0 54.99,9.67 <radius:8> -x- Durotar/12 84.13,53.61 <radius:8> {template:cave}", -- Skull Rock, Durotar
-			"Valley of Trials/0 52.87,21.89 <radius:8> -x- Durotar/0 45.35,56.32 <radius:8> {template:cave}", -- Valley of Trials to Durotar buffer map for Burning Blade Coven, Valley of Trials (Durotar)
-			"Durotar/0 45.40,56.21 <radius:8> -x- Durotar/8 72.48,89.43 <radius:8> {template:cave}", -- Buffer map to Burning Blade Coven, Valley of Trials (Durotar)
+			"Valley of Trials/0 52.87,21.89 <radius:8> -x- Durotar/0 45.35,56.32 <radius:8> {template:cave} <region:durotar_burningbladecoven_entry>", -- Valley of Trials to Durotar buffer map for Burning Blade Coven, Valley of Trials (Durotar)
+			"Durotar/0 45.40,56.21 <radius:8> <region:durotar_burningbladecoven_entry> -x- Durotar/8 72.48,89.43 <radius:8> {template:cave}", -- Buffer map to Burning Blade Coven, Valley of Trials (Durotar)
 			"Durotar/0 52.83,28.69 <radius:6> -x- Durotar/19 49.95,91.36 <radius:6> {template:cave}", -- Dustwind Cave, Durotar
 		},
 		["Echo Isles"] = {

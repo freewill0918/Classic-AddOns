@@ -9,10 +9,10 @@ RXPGuides.RegisterGuide([[
 #next 6-10 Eversong Woods
 #version 1
 --#group RXP Cataclysm (H) << cata
-#group RXP MoP (H) << mop
+
 #defaultfor Undead
 #group RXP Cataclysm 1-80 (H) << cata
-#group RXP MoP 1-80 (H) << mop
+#group RXP MoP 1-60 (H) << mop
 #subweight 10000
 
 step << !Undead
@@ -204,18 +204,26 @@ step << Warlock
     .accept 24968 >>Accept Dark Deeds
     .train 348 >>Train |T135817:0|t[Immolate] << Cata
     .target Maximillion
-step << Mage
+step << Mage cata
     .goto 18,31.64,66.91
 	>>Cast |T136096:0|t[Arcane Missiles] on a |cRXP_ENEMY_Training Dummy|r
-	.complete 24965,2 << !Cata --Cast Arcane Missiles (x3)
-	.complete 24965,1 << Cata --Cast Arcane Missiles (x3)
+	.complete 24965,1 --Cast Arcane Missiles (x3)
 	.mob Training Dummy
-step << Priest
+step << Mage !cata
+    .goto 18,31.64,66.91
+	>>Cast |T135848:0|t[Frost Nova] on a |cRXP_ENEMY_Training Dummy|r
+	.complete 24965,2 --Cast Frost Nova
+	.mob Training Dummy
+step << Priest cata
     .goto 18,31.20,66.02
 	>>Cast |T135907:0|t[Flash Heal] on a |cRXP_FRIENDLY_Wounded Deathguard|r
-	.complete 24966,2 << !Cata --Cast Flash Heal (x5)
-	.complete 24966,1 << Cata --Cast Flash Heal (x5)
+	.complete 24966,1 --Cast Flash Heal (x5)
 	.target Wounded Deathguard
+step << Priest !cata
+    .goto 18,31.64,66.91
+	>>Cast |T136207:0|t[Shadow Word: Pain] on a |cRXP_ENEMY_Training Dummy|r
+	.complete 24966,2 --Cast Shadow Word: Pain
+	.mob Training Dummy
 step << Warlock
     .goto 18,31.64,66.91
 	>>Cast |T135817:0|t[Immolate] on a |cRXP_ENEMY_Training Dummy|r

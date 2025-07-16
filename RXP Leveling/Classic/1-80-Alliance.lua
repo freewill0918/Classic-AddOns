@@ -1,10 +1,8 @@
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 #subgroup Alliance 60-70 Dungeon Cleave
 << Alliance
 #name 060-70 Alliance Dungeon Cleave
@@ -1492,9 +1490,7 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
-#group RXP Wrath Of The Lich King  
+#group Dungeon Cleave 70-80
 << Alliance
 #name 070-80 Alliance Dungeon Cleave
 #displayname 70-80 Alliance Dungeon Cleave
@@ -3207,10 +3203,8 @@ step << skip
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #name 32-33 Shimmering Flats
 #next 33-35 Hillsbrad/Arathi/Alterac;35-37 STV
@@ -3499,10 +3493,8 @@ step << Warrior
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #name 33-35 Hillsbrad/Arathi/Alterac
 #next 35-37 STV
@@ -3933,10 +3925,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #name 35-37 STV
 #next 37-39 Dustwallow
@@ -4730,10 +4720,8 @@ step << !Mage
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #name 37-39 Dustwallow
 #next 39-41 Arathi/Alterac;39-42 Arathi Highlands
@@ -5800,10 +5788,8 @@ step << wotlk !Mage
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #name 39-41 Arathi/Alterac
 #next 41-43 Badlands
@@ -6355,10 +6341,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #name 39-42 Arathi Highlands
 #next 42-43 Badlands;43-46 STV part 2
@@ -6609,10 +6593,8 @@ step << Gnome !Warlock tbc
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #name 41-43 Badlands
 #next 42-44 STV;43-46 STV part 2
@@ -7425,10 +7407,8 @@ step << wotlk
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #xprate <1.5
 #name 42-44 STV
@@ -7686,10 +7666,8 @@ step << !Mage
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #name 42-43 Badlands
 #next 42-44 STV;43-46 STV part 2
@@ -8350,10 +8328,8 @@ step << wotlk
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #xprate >1.3
 #name 43-46 STV part 2
@@ -8667,10 +8643,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #xprate <1.5
 #name 44-45 Dustwallow/Tanaris
@@ -8886,10 +8860,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #name 44-46 Tanaris part 1
 #next 45-46 Badlands/Searing Gorge; Alliance 47-60\47-49 Tanaris
@@ -9091,10 +9063,8 @@ step << wotlk !Mage
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 << Alliance
 #xprate <1.5
 #name 45-46 Badlands/Searing Gorge
@@ -9303,10 +9273,8 @@ step << tbc/Mage
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 32-47
 #xprate <1.5
 << Alliance
 #name 46-47 STV/Swamp of Sorrows
@@ -9684,10 +9652,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 47-60
 << Alliance
 #name 47-49 Tanaris
 #next 49-50 The Hinterlands;49-51 Searing Gorge
@@ -10219,10 +10185,8 @@ step << Warlock
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 47-60
 << Alliance
 #name 49-50 The Hinterlands
 #next 49-51 Searing Gorge
@@ -10447,10 +10411,8 @@ step << skip
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 47-60
 << Alliance
 #name 49-51 Searing Gorge
 #next 51-52 Burning Steppes;53-55 Un'Goro Crater
@@ -11106,11 +11068,9 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
 #xprate <1.5
-#group RXP Wrath Of the Lich King
+#group Alliance 47-60
 << Alliance
 #name 51-52 Burning Steppes
 #next 52-53 Felwood
@@ -11346,11 +11306,9 @@ step << Warlock
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
 #xprate <1.5
-#group RXP Wrath Of the Lich King
+#group Alliance 47-60
 << Alliance
 #name 52-53 Felwood
 #next 53-55 Un'Goro Crater
@@ -11667,10 +11625,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 47-60
 << Alliance
 #name 53-55 Un'Goro Crater
 #next 54-56 Felwood/Winterspring;56-59 Plaguelands
@@ -12253,10 +12209,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 47-60
 << Alliance
 #xprate <1.5
 #name 54-56 Felwood/Winterspring
@@ -12813,10 +12767,8 @@ step << tbc
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 47-60
 << Alliance
 #name 56-59 Plaguelands
 #next Alliance 60-70\59-61 Hellfire Peninsula
@@ -13786,10 +13738,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 47-60
 << Alliance
 #name 59-60 Silithus (Optional)
 #next 59-61 Hellfire Peninsula
@@ -14057,10 +14007,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 60-70
 << Alliance
 #name 59-61 Hellfire Peninsula
 #next 61-63 Zangarmarsh
@@ -15791,10 +15739,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 60-70
 << Alliance
 #name 61-63 Zangarmarsh
 #next 63-65 Terokkar Forest;65-67 Blade's Edge
@@ -17647,10 +17593,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 60-70
 << Alliance
 #name 63-65 Terokkar Forest
 #next 65-67 Nagrand
@@ -19583,10 +19527,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 60-70
 << Alliance
 #name 65-67 Nagrand
 #next 65-67 Blade's Edge
@@ -21664,10 +21606,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 60-70
 << Alliance
 #name 65-67 Blade's Edge
 #next 67-68 Netherstorm << WOTLK
@@ -23546,9 +23486,7 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
-#group RXP Wrath Of the Lich King
+#group Alliance 60-70
 << Alliance
 #name 67-68 Netherstorm
 #next 69-70 Shadowmoon Valley (Aldor) << TBC
@@ -24543,7 +24481,7 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 60-70
 << Alliance
 #name 67-67 Blade's Edge Turnins
 #next 67-69 Netherstorm
@@ -25389,7 +25327,7 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 60-70
 << Alliance
 #name 67-69 Netherstorm
 #next 69-70 Shadowmoon Valley (Aldor) << TBC
@@ -29232,9 +29170,7 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
-#group RXP Wrath Of the Lich King
+#group Alliance 70-80
 << Alliance
 #name 68-71 Howling Fjord
 #next 71-73 Borean Tundra
@@ -32461,10 +32397,8 @@ step << Warrior
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 60-70
 << Alliance
 #name 69-70 Shadowmoon Valley (Aldor)
 #aldor
@@ -33335,10 +33269,8 @@ step << Druid/70
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #tbc
-#group RXP Wrath Of the Lich King
+#group Alliance 60-70
 << Alliance
 #name 69-70 Shadowmoon Valley (Scryer)
 #scryer
@@ -34156,9 +34088,7 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
-#group RXP Wrath Of the Lich King
+#group Alliance 70-80
 #defaultfor None
 << Alliance
 #name 70.5-71.5 Borean Tundra Prequest Start
@@ -35946,9 +35876,7 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
-#group RXP Wrath Of The Lich King  
+#group Dungeon Cleave 70-80
 << Alliance
 #name 70-73 Nexus Lockout - Coldarra
 #next 70-80 Alliance Dungeon Cleave
@@ -36469,9 +36397,7 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
-#group RXP Wrath Of the Lich King
+#group Alliance 70-80
 << Alliance
 #name 71-73 Borean Tundra
 #next 72-74 Dragonblight; 73-75 Grizzly Hills
@@ -39728,10 +39654,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #xprate <1.5
-#group RXP Wrath Of the Lich King
+#group Alliance 70-80
 << Alliance
 #name 72-74 Dragonblight
 #next 73-75 Grizzly Hills
@@ -42797,9 +42721,7 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
-#group RXP Wrath Of the Lich King
+#group Alliance 70-80
 << Alliance
 #name 73-75 Grizzly Hills
 #next 75-77 Zul'Drak
@@ -45317,10 +45239,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 << Alliance
-#group RXP Wrath Of the Lich King
+#group Alliance 70-80
 #name 75-77 Zul'Drak
 #next 77-78 Sholazar Basin
 step
@@ -49279,9 +49199,7 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
-#group RXP Wrath Of The Lich King  
+#group Dungeon Cleave 70-80
 << Alliance
 #name 75-77 Gundrak Lockout
 #next 70-80 Alliance Dungeon Cleave
@@ -49300,10 +49218,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 << Alliance
-#group RXP Wrath Of the Lich King
+#group Alliance 70-80
 #name 77-78 Sholazar Basin
 #next 78-79 The Storm Peaks
 step
@@ -51192,10 +51108,8 @@ step << !Druid !DK !Mage
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 << Alliance
-#group RXP Wrath Of the Lich King
+#group Alliance 70-80
 #name 78-79 The Storm Peaks
 #next 79-80 Icecrown
 step << skip
@@ -54121,10 +54035,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 #group Horde 70-80 << Horde
-#group RXP Wrath Of the Lich King << Alliance
+#group Alliance 70-80 << Alliance
 #name 79-80 Icecrown
 step
 #completewith next
@@ -63099,10 +63011,8 @@ step
 RXPGuides.RegisterGuide([[
 #version 26
 #wotlk
-#cata
-#mop
 << Alliance
-#group RXP Wrath Of the Lich King
+#group Alliance 70-80
 #name 79-80 Icecrown
 step
 #completewith next

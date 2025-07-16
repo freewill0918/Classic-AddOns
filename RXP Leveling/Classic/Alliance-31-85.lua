@@ -1,6 +1,5 @@
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #group RXP Cataclysm 1-80 (A)
@@ -1777,7 +1776,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #group RXP Cataclysm 1-80 (A)
@@ -3638,7 +3636,6 @@ step << !tbc !wotlk
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #group RXP Cataclysm 1-80 (A)
@@ -5521,7 +5518,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #group RXP Cataclysm 1-80 (A)
@@ -7770,7 +7766,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #group RXP Cataclysm 1-80 (A)
@@ -9709,7 +9704,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #group RXP Cataclysm 1-80 (A)
@@ -9724,7 +9718,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #questguide << !tbc
@@ -9739,7 +9732,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #group RXP Cataclysm 1-80 (A)
@@ -10329,7 +10321,6 @@ step
 .abandon 10912 >> Abandon The Hound-Master
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 #group RXP Cataclysm 1-80 (A)
@@ -13560,7 +13551,6 @@ step << Warrior
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #questguide << !tbc
@@ -14435,7 +14425,6 @@ step << Druid/70
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #questguide << !tbc
@@ -15257,7 +15246,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #group RXP Cataclysm 1-80 (A)
@@ -18642,7 +18630,6 @@ step << wotlk
 .zone Grizzly Hills >> Travel to Grizzly Hills
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 #xprate <1.5 << wotlk
@@ -21676,7 +21663,6 @@ step
 .zone Grizzly Hills >> Travel to Grizzly Hills
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 #speedrunguide
@@ -21779,7 +21765,6 @@ step
 .xp <76,1
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 #group RXP Cataclysm 1-80 (A)
@@ -24305,7 +24290,6 @@ step
 .target Samuel Clearbook
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 #speedrunguide

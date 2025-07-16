@@ -1246,8 +1246,6 @@ function GuideMenu:UpdateHomeWidgets()
 end
 
 function GuideMenu:StartFeatured()
-	ZGV.db.profile.featuredhide = ZGV.db.profile.featuredhide or {}
-
 	GuideMenu.FeaturedThread = coroutine.create(GuideMenu.ParseFeatured)
 	GuideMenu.FeaturedThreadTimer = ZGV:ScheduleRepeatingTimer(function()
 		local ok,ret = coroutine.resume(GuideMenu.FeaturedThread)

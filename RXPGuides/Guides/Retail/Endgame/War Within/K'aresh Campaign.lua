@@ -32,11 +32,11 @@ step
     #title |cFFFCDC00Follow the Arrow|r
     .complete 84957,1 --1/1 Follow Locus-Walker
 step
-    .goto 2339,40.41,22.89
+    .goto 2339,40.30,22.71
     >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Portal|r
     .complete 84957,2 --1/1 Take the Spatial Rift to Tazavesh
 step
-    .goto 2472,59.55,83.46
+    .goto 2472,59.75,83.38
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
     .turnin 84957 >>Turn in Return to the Veiled Market
     .target Locus-Walker
@@ -52,150 +52,297 @@ step
     .target Om'en
 step
     #requires Restoring Operational Efficiency
-    .accept 85003 >>Accept Restoring Operational Efficiency
-step
     .goto 2472,59.55,83.46
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'en|r
     .accept 85003 >>Accept Restoring Operational Efficiency
     .target Om'en
 step
-    .goto 2472,56.83,73.02
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ta'ka|r
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ta'ka|r and |cRXP_FRIENDLY_Xy'bin|r
     .accept 84958 >>Accept Beasts Unbound
-    .target Ta'ka
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xy'bin|r
+    .goto 2472,56.86,73.02
+    .target +Ta'ka
     .accept 85039 >>Accept Compromised Containment
-    .target Xy'bin
+    .goto 2472,56.64,72.88
+    .target +Xy'bin
 step
     .goto 2472,53.15,64.51
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ba'ver|r
     .accept 84959 >>Accept Lost Lines of Defense
     .target Ba'ver
 step
-    .goto 2472,60.51,65.54
-    .complete 84958,1 --1/1 Take the access to the overlook (Optional)
+    #completewith UnstableArtifactSealedB
+    >>Kill |cRXP_ENEMY_Unstable Motes|r, |cRXP_ENEMY_Enchanted Ledgers|r, and |cRXP_ENEMY_Unstable Manifestations|r
+    .complete 85039,1 --Arcane entities destroyed (100%)
+    .mob Unstable Mote
+    .mob Enchanted Ledger
+    .mob Unstable Manifestation
 step
-    .goto 2472,66.89,75.25
-    .complete 84958,2 --8/8 Escaped creatures recovered
-step
-    .goto 2472,56.87,73.02
-    .complete 85003,3 --1/1 Ta'ka assisted
-step
-    .goto 2472,56.87,73.02
-    .turnin 84958 >>Turn in Beasts Unbound
-
-step
-    .goto 2472,59.55,46.95
-    .complete 85039,2 --1/1 Unstable Artifact sealed
-step
-    .goto 2472,51.96,50.24
+    #completewith UnstableArtifactSealedB
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Stolen Barrier Projectors|r
     .complete 84959,1 --8/8 Stolen Barrier Projector
 step
-    .goto 2472,51.88,49.89
+    #completewith next
+    #label UnstableArtifactSealedA
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Unstable Artifact|r
+    .complete 85039,2 --1/1 Unstable Artifact sealed
+step
+    #title |cFFFCDC00Enter the chamber|r
+    #completewith UnstableArtifactSealedA
+    .goto 2472,56.50,52.65,12 >>Enter the chamber
+step
+    #requires UnstableArtifactSealedA
+    #label UnstableArtifactSealedB
+    .goto 2472,59.59,46.81
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Unstable Artifact|r
+    .complete 85039,2 --1/1 Unstable Artifact sealed
+step
+    #completewith next
+    >>Kill |cRXP_ENEMY_Unstable Motes|r, |cRXP_ENEMY_Enchanted Ledgers|r, and |cRXP_ENEMY_Unstable Manifestations|r
     .complete 85039,1 --Arcane entities destroyed (100%)
+    .mob Unstable Mote
+    .mob Enchanted Ledger
+    .mob Unstable Manifestation
+step
+    #completewith next
+    #label StolenBarrierProjectorA
+    .goto 2472,61.74,48.11,12,0
+    .goto 2472,60.03,44.92,12,0
+    .goto 2472,55.60,44.03,12,0
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Stolen Barrier Projectors|r
+    .complete 84959,1 --8/8 Stolen Barrier Projector
+step
+    #hidewindow
+    #completewith StolenBarrierProjectorA
+    .goto 2472,53.43,44.91,15 >>1
+step
+    #requires StolenBarrierProjectorA
+    #hidewindow
+    #completewith ArcaneEntitiesA
+    #loop
+    .goto 2472,52.87,51.01,18,0
+    .goto 2472,53.80,54.57,18,0
+    .goto 2472,56.46,54.52,18,0
+    .goto 2472,57.58,56.78,18,0
+    .goto 2472,53.04,57.61,18,0
+    .goto 2472,50.78,54.68,18,0
+    +1
+step
+    #requires StolenBarrierProjectorA
+    #completewith next
+    >>Kill |cRXP_ENEMY_Unstable Motes|r, |cRXP_ENEMY_Enchanted Ledgers|r, and |cRXP_ENEMY_Unstable Manifestations|r
+    .complete 85039,1 --Arcane entities destroyed (100%)
+    .mob Unstable Mote
+    .mob Enchanted Ledger
+    .mob Unstable Manifestation
+step
+    #requires StolenBarrierProjectorA
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Stolen Barrier Projectors|r
+    .complete 84959,1 --8/8 Stolen Barrier Projector
+step
+    #label ArcaneEntitiesA
+    >>Kill |cRXP_ENEMY_Unstable Motes|r, |cRXP_ENEMY_Enchanted Ledgers|r, and |cRXP_ENEMY_Unstable Manifestations|r
+    .complete 85039,1 --Arcane entities destroyed (100%)
+    .mob Unstable Mote
+    .mob Enchanted Ledger
+    .mob Unstable Manifestation
+step
+    #completewith next
+    .goto 2472,53.42,61.39,0,0
+    +|cRXP_WARN_You can fly here|r. If not then take the portal.
 step
     .goto 2472,53.08,64.42
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ba'ver|r
     .turnin 84959 >>Turn in Lost Lines of Defense
-    .target Ba'ver
     .complete 85003,2 --1/1 Ba'ver assisted
+    .target Ba'ver
 step
-    .goto 2472,56.63,72.85
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xy'bin|r
+    #completewith next
+    .goto 2472,57.60,72.84,0,0
+    >>|cRXP_WARN_You can fly here|r. If not then take the portal.
+    .complete 84958,1 --1/1 Take the access to the overlook (Optional)
+step
+    #loop
+    .goto 2472,62.71,59.51,30,0
+    .goto 2472,66.38,77.05,40,0
+    .goto 2472,51.43,86.23,40,0
+    .goto 2472,42.70,70.01,40,0
+    >>Kill the |cRXP_ENEMY_Escaped Creatures|r
+    .complete 84958,2 --8/8 Escaped creatures recovered
+    .mob Escaped Creature
+step
+    #completewith next
+    #label CompromisedUnboundA
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xy'bin|r and |cRXP_FRIENDLY_Ta'ka|r
     .turnin 85039 >>Turn in Compromised Containment
-    .target Xy'bin
     .complete 85003,1 --1/1 Xy'bin assisted
+    .target +Xy'bin
+    .turnin 84958 >>Turn in Beasts Unbound
+    .complete 85003,3 --1/1 Ta'ka assisted
+    .target +Ta'ka
 step
-    .goto 2472,59.42,83.00
+    #completewith next
+    +Enter the room
+    .goto 2472,57.37,75.58,-1
+    .goto 2472,56.14,71.13,-1
+step
+    #completewith CompromisedUnboundA
+    #hidewindow
+    .goto 2472,56.74,72.97,30 >>1
+step
+    #requires CompromisedUnboundA
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xy'bin|r and |cRXP_FRIENDLY_Ta'ka|r
+    .turnin 85039 >>Turn in Compromised Containment
+    .complete 85003,1 --1/1 Xy'bin assisted
+    .goto 2472,56.65,72.84,-1
+    .target +Xy'bin
+    .turnin 84958 >>Turn in Beasts Unbound
+    .complete 85003,3 --1/1 Ta'ka assisted
+    .goto 2472,56.86,72.99,-1
+    .target +Ta'ka
+step
+    .goto 2472,59.45,83.13
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'en|r
     .turnin 85003 >>Turn in Restoring Operational Efficiency
     .target Om'en
 step
-    .goto 2472,59.51,83.24
+    .goto 2472,59.74,83.36
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
     .accept 84960 >>Accept The Darkness Among Us
     .target Locus-Walker
 step
-    .goto 2472,54.75,66.30
+    .goto 2472,54.81,66.26
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Void Presence|r
     .complete 84960,1 --1/1 Investigate the Void Presence
 step
     .goto 2472,47.81,63.46
+    #title |cFFFCDC00Follow the Arrow|r
     .complete 84960,2 --1/1 Locate the source
 step
-    .goto 2472,47.52,65.22
+    .goto 2472,47.43,65.77
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
     .complete 84960,3 --1/1 Speak to Locus-Walker
     .target Locus-Walker
+    .skipgossipid 131268
 step
-    .goto 2472,47.51,65.68
+    .goto 2472,47.43,65.77
+    >>Kill 3 waves of |cRXP_ENEMY_Shadowguard Infiltrators|r and |cRXP_ENEMY_Nyz'raal the Umbral Blade|r
     .complete 84960,4 --1/1 Infiltrator's defeated
+    .mob Shadowguard Infiltrator
+    .mob Nyz'rall the Umbral Blade
 step
-    .goto 2472,54.18,63.80
+    #completewith next
+    #label DarknessAmongUsA
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'en|r
     .turnin 84960 >>Turn in The Darkness Among Us
-    .target Om'en
     .accept 84966 >>Accept Break the Assault
-step
-    .goto 2472,54.12,63.62
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'en|r
-    .accept 84963 >>Accept Sealing the Shadows
     .target Om'en
 step
-    .goto 2472,53.95,63.26
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
+    #title |cFFFCDC00Leave the chamber|r
+    #completewith DarknessAmongUsA
+    .goto 2472,48.05,62.88,10 >>Leave the chamber
+step
+    #requires DarknessAmongUsA
+    .goto 2472,54.06,63.67
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'en|r
+    .turnin 84960 >>Turn in The Darkness Among Us
+    .accept 84966 >>Accept Break the Assault
+    .target Om'en
+step
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'en|r, |cRXP_FRIENDLY_Alleria Windrunner|r, and |cRXP_FRIENDLY_Locus-Walker|r
+    .accept 84963 >>Accept Sealing the Shadows
+    .goto 2472,54.08,63.68,-1
+    .target +Om'en
     .accept 84964 >>Accept Heroes Among Shadow
-    .target Alleria Windrunner
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
+    .goto 2472,53.76,63.24,-1
+    .target +Alleria Windrunner
     .accept 84961 >>Accept Barriers to Entry
-    .target Locus-Walker
+    .goto 2472,54.17,63.09,-1
+    .target +1Locus-Walker
 step
-    .goto 2472,52.34,47.53
-    >>Kill |cRXP_ENEMY_Shadowguard|r
-    .complete 84966,1 --30/30 Shadowguard slain
-    .mob Shadowguard
+    -- https://i.imgur.com/sYulo55.png (Minimap screenshot of Citizens (green), Projectors (blue))
+    #completewith SaturatedEntropicCores
+    #hidewindow
+    #loop
+    .goto 2472,49.92,57.97,15,0
+    .goto 2472,46.03,51.34,15,0
+    .goto 2472,41.39,49.02,15,0
+    .goto 2472,40.09,51.51,15,0
+    .goto 2472,39.47,41.84,15,0
+    .goto 2472,44.43,40.35,18,0
+    .goto 2472,44.44,36.23,15,0
+    .goto 2472,58.33,32.69,15,0
+    .goto 2472,55.74,38.38,18,0
+    .goto 2472,51.36,41.17,15,0
+    .goto 2472,53.59,40.69,18,0
+    .goto 2472,53.23,44.12,18,0
+    .goto 2472,52.49,46.77,15,0
+    .goto 2472,49.85,58.03,15,0
+    +1
 step
-    .goto 2472,52.34,47.53
-    .turnin 84966 >>Turn in *undefined*
-
-step
-    .goto 2472,55.58,38.04
-    .complete 84964,1 --8/8 Tazavesh Civilians rescued
-step
-    .goto 2472,58.38,32.76
-    .complete 84961,1 --8/8 Barrier Projector placed
-step
-    .goto 2472,58.38,32.76
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
-    .turnin 84964 >>Turn in Heroes Among Shadow
-    .target Alleria Windrunner
-    .turnin 84961 >>Turn in Barriers to Entry
-
-step
-    .goto 2472,56.43,34.03
+    #completewith next
+    >>Kill the |cRXP_ENEMY_Shadowguard forces|r. Loot them for the |T4037125:0|t[|cRXP_LOOT_Saturated Entropic Cores|r]
     .complete 84963,1 --5/5 Saturated Entropic Core
+    .mob Shadowguard Duskwalker
+    .mob Shadowguard Darkweaver
+    .mob Shadowguard Voidripper
 step
-    .goto 2472,56.43,34.03
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
+    -- There are exactly 8 projectors and there are enough citizens on the loop
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on |cRXP_PICK_Barrier Projectors|r and |cRXP_FRIENDLY_Tazavesh Citizens|r
+    .complete 84964,1 --8/8 Tazavesh Civilians rescued
+    .complete 84961,1 --8/8 Barrier Projector placed
+    .target Tazavesh Citizen
+step
+    #label SaturatedEntropicCores
+    >>Kill the |cRXP_ENEMY_Shadowguard forces|r. Loot them for the |T4037125:0|t[|cRXP_LOOT_Saturated Entropic Cores|r]
+    .complete 84963,1 --5/5 Saturated Entropic Core
+    .mob Shadowguard Duskwalker
+    .mob Shadowguard Darkweaver
+    .mob Shadowguard Voidripper
+step
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r |cRXP_WARN_next to you|r.
+    .turnin 84964 >>Turn in Heroes Among Shadow
+    .turnin 84961 >>Turn in Barriers to Entry
     .turnin 84963 >>Turn in Sealing the Shadows
-    .target Alleria Windrunner
     .accept 84965 >>Accept Core Contributions
+    .target Alleria Windrunner
 step
-    .goto 2472,38.42,54.30
+    -- https://i.imgur.com/t9Ek1fB.png (Guardian position + loop, maybe change loop to only go to guardians on the roof)
+    #loop
+    .goto 2472,48.91,51.99,12,0
+    .goto 2472,47.48,57.16,12,0
+    .goto 2472,44.02,56.05,12,0
+    .goto 2472,39.10,54.79,12,0
+    .goto 2472,38.44,54.12,12,0
+    .goto 2472,39.43,49.49,12,0
+    .goto 2472,42.79,45.97,12,0
+    .goto 2472,44.61,47.68,12,0
+    .goto 2472,51.25,50.05,12,0
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_FRIENDLY_Market Guardians|r
     .complete 84965,1 --5/5 Guardians activated
 step
-    .goto 2472,38.42,54.30
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r |cRXP_WARN_next to you|r.
     .turnin 84965 >>Turn in Core Contributions
-    .target Alleria Windrunner
     .accept 86835 >>Accept Regroup!
+    .target Alleria Windrunner
 step
     .goto 2472,40.53,67.81
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
     .turnin 86835 >>Turn in Regroup!
-    .target Locus-Walker
     .accept 84967 >>Accept The Shadowguard Shattered
+    .target Locus-Walker
 step
-    .goto 2472,36.46,74.38
+    #completewith next
+    #label ShadowlordAlzarA
+    >>Kill |cRXP_ENEMY_Shadowlord Al'zar|r
+    .complete 84967,1 --1/1 Shadowlord Al'zar slain
+    .mob Shadowlord Al'zar
+step
+    #completewith ShadowlordAlzarA
+    #title |cFFFCDC00Enter the boss room|r
+    .goto 2472,39.03,67.82,8 >>Enter the boss room
+step
+    #requires ShadowlordAlzarA
+    .goto 2472,36.34,74.69
     >>Kill |cRXP_ENEMY_Shadowlord Al'zar|r
     .complete 84967,1 --1/1 Shadowlord Al'zar slain
     .mob Shadowlord Al'zar
@@ -204,317 +351,519 @@ step
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
     .turnin 84967 >>Turn in The Shadowguard Shattered
     .target Locus-Walker
+]])
+
+RXPGuides.RegisterGuide([[
+#retail
+#version 1
+#group RestedXP War Within Endgame
+#subgroup |cFFFCDC00(80)|r 11.2 The Knife's Edge
+#name ao) Chapter 2 - Void Alliance
+#displayname |cFF00CCFF2|r - Void Alliance
+#next ap) Chapter 3 - Desert Power
+
 step
-    .goto 2472,37.75,74.65
+    .goto 2472,37.68,74.79
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r.
     .accept 85032 >>Accept What Is Left of Home
+    .target Locus-Walker
 step
-    .goto 2472,37.46,74.75
-    .complete 85032,2 --1/1 Stay a while and listen to Xal'atath in the inn (Optional)
-step
-    .goto 2472,41.12,25.09
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_the Innkeeper|r
+    #completewith next
+    #label TalkToInkeeperA
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_the Innkeeper|r.
     .complete 85032,1 --1/1 Talk to the Innkeeper
     .target the Innkeeper
 step
-    .goto 2472,41.12,25.09
-    .home >>Set your Hearthstone to Tazavesh, the Veiled Market
+    #completewith next
+    #title |cFFFCDC00Leave the house|r
+    .goto 2472,38.80,69.82,10,0
+    .goto 2472,40.66,70.56,10,0
+    .goto 2472,39.12,67.59,10,0
+    .goto 2472,40.82,65.83,10 >>Leave the house
 step
-    .goto 2472,40.62,29.24
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_the Quartermaster|r
-    .complete 85032,3 --1/1 Talk to the Quartermaster
-    .target the Quartermaster
+    #hidewindow
+    #completewith next
+    .goto 2472,40.82,65.83,10 >>1
 step
-    .goto 379,48.61,42.80
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Master Hight|r
-    .accept 31840 >>Accept Practice Makes Perfect: Master Cheng
-    .target Master Hight
+    #hidewindow
+    #completewith TalkToInkeeperA
+    .goto 2472,41.12,25.09,120 >>1
 step
-    .goto 84,64.08,16.15
-    .accept 84371 >>Accept Lorewalking: The Blade and the High Priest
-    .complete 84371,1 --1/1 Listen to Lorewalker Cho to learn about the Legion invasion
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Lorewalker Cho to learn of the High Priest's journey|r
-    .complete 84371,2 --1/1 Talk to Lorewalker Cho to learn of the High Priest's journey
-    .target Lorewalker Cho to learn of the High Priest's journey
-step
-    .goto 18,12.82,59.07
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alonsus Faol|r
-    .accept 40710 >>Accept Blade in Twilight
-    .target Alonsus Faol
-step
-    .goto 18,13.10,58.21
-    .complete 40710,1 --1/1 Go to the marked location in Tirisfal Glades
-step
-    .goto 20,58.51,76.99
-    .complete 40710,2 --1/1 Stop the Ritual and acquire the Blade
-step
-    .goto 20,58.51,76.99
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Lorewalker Cho|r
-    .turnin 40710 >>Turn in Blade in Twilight
-    .target Lorewalker Cho
-    .complete 84371,3 --Follow the High Priest's journey and acquire Xal'atath
-step
-    .goto 20,58.51,76.99
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Lorewalker Cho|r
-    .turnin 84371 >>Turn in Lorewalking: The Blade and the High Priest
-    .target Lorewalker Cho
-    .accept 84779 >>Accept Lorewalking: The Blade's Gambit
-    .complete 84779,1 --1/1 Listen to Lorewalker Cho to learn of Xal'atath's gambit
-step
-    .goto 379,48.10,40.35
-    .complete 31840,1 --1/1 Master Cheng's Training Completed
-step
-    .goto 379,48.57,42.77
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Master Hight|r
-    .turnin 31840 >>Turn in Practice Makes Perfect: Master Cheng
-    .target Master Hight
+    #requires TalkToInkeeperA
+    #completewith next
+    #label TalkToInkeeperB
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_the Innkeeper|r.
+    .complete 85032,1 --1/1 Talk to the Innkeeper
+    .target the Innkeeper
 step
     #completewith next
-    .hs >>Hearth to Tazavesh, the Veiled Market
+    #title |cFFFCDC00Enter the house|r
+    .goto 2472,42.71,31.57,10 >>Enter the house
 step
-    .goto 2472,34.29,10.80
-    .complete 85032,5 --1/1 Stay a while and listen to Alleria at the docks (Optional)
+    #hidewindow
+    #completewith TalkToInkeeperB
+    .goto 2472,41.12,25.09,50 >>1
 step
-    .goto 2472,34.76,9.96
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_the Flight Master|r
+    #requires TalkToInkeeperB
+    .goto 2472,41.12,25.09
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ba'orr|r.
+    .complete 85032,1 --1/1 Talk to the Innkeeper
+    .target Ba'orr
+    .skipgossipid 133203
+    .skipgossipid 133205
+    .skipgossipid 133223
+step
+    .goto 2472,40.62,29.24
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'sirik|r.
+    .complete 85032,3 --1/1 Talk to the Quartermaster
+    .target Om'sirik
+    .skipgossipid 133225
+step
+    #completewith next
+    #label TalkToFlightMasterA
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to the |cRXP_FRIENDLY_Flight Master|r.
     .complete 85032,4 --1/1 Talk to the Flight Master
     .target the Flight Master
 step
-    .goto 2472,34.19,10.73
+    #completewith next
+    #title |cFFFCDC00Leave the hall|r
+    .goto 2472,39.10,18.53,10 >>Leave the hall
+step
+    #completewith TalkToInkeeperA
+    #hidewindow
+    .goto 2472,34.76,9.96,50 >>1
+step
+    #requires TalkToFlightMasterA
+    .goto 2472,34.75,10.05
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Flight Master|r.
+    .complete 85032,4 --1/1 Talk to the Flight Master
+    .target the Flight Master
+    .skipgossipid 133617
+step
+    .goto 2472,33.97,10.86
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
     .turnin 85032 >>Turn in What Is Left of Home
-    .target Locus-Walker
     .accept 85961 >>Accept Moving the Pawns
-step
-    .goto 2371,63.26,69.91
-    .accept 83492 >>Accept Warbands: Warbanding Together
-    .accept 85005 >>Accept A Radiant Call
-    .complete 66858,1 --1/1 Collect Trader's Tender from the Collector's Cache
+    .target Locus-Walker
 step
     .goto 2371,48.23,36.67
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
     .turnin 85961 >>Turn in Moving the Pawns
-    .target Locus-Walker
     .accept 84855 >>Accept Dead Silence
+    .target Locus-Walker
 step
     .goto 2371,48.28,39.21
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Lo'shah|r
     .complete 84855,1 --1/1 Scout Lo'shah found
+    .target Lo'shah
 step
-    .goto 2371,49.42,36.76
+    .goto 2371,49.43,36.78
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Yanhal|r
     .complete 84855,2 --1/1 Scout Yanhal found
+    .target Yanhal
 step
-    .goto 2371,50.65,35.13
+    .goto 2371,50.68,35.14
+    >>Kill |cRXP_ENEMY_Raz'ida|r
     .complete 84855,3 --1/1 Scout Raz'ida found
+    .mob Raz'ida
 step
     .goto 2371,48.19,36.55
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
     .turnin 84855 >>Turn in Dead Silence
-    .target Locus-Walker
     .accept 86495 >>Accept The Reshii Ribbon
+    .target Locus-Walker
+step
+    .goto 2371,48.25,36.63
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
     .complete 86495,2 --1/1 Alleria convinced
+    .target Alleria Windrunner
+    .skipgossipid 132007
+    .skipgossip 233945,1
+step
+    .goto 2371,48.20,36.58
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on |cRXP_PICK_Locus-Walker's Reshii Ribbon|r
     .complete 86495,3 --1/1 Locus-Walker's Reshii Ribbon acquired
 step
     .goto 2371,48.18,36.66
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
     .turnin 86495 >>Turn in The Reshii Ribbon
-    .target Xal'atath
     .accept 84856 >>Accept Where the Void Gathers
+    .target Xal'atath
+step
+    .goto 2371,48.18,36.66
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
     .complete 84856,1 --1/1 Talk to Xal'atath
     .target Xal'atath
+    .skipgossipid 131527
 step
+    #title |cFFFCDC00Avoid the Void Revealer|r
+    .goto 2371,47.21,21.03,15,0
+    .goto 2371,46.20,20.73,12,0
+    .goto 2371,45.89,20.06,15,0
     .goto 2371,45.24,19.92
+    >>Use the |T6654410:0|t[|cRXP_WARN_ExtraActionButton|r]
     .complete 84856,2 --1/1 Conduit examined
 step
-    .goto 2371,42.65,22.64
+    #title |cFFFCDC00Avoid the Void Revealer|r
+    .goto 2371,44.12,21.60,20,0
+    .goto 2371,42.74,22.15,20,0
+    .goto 2371,42.62,22.63
+    >>Use the |T6654410:0|t[|cRXP_WARN_ExtraActionButton|r]
     .complete 84856,3 --1/1 Manaforge entrance examined
+    .timer 30,RP
+    -- Fix RP Duration
 step
-    .goto 2371,48.17,36.64
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r and |cRXP_FRIENDLY_Locus-Walker|r
     .turnin 84856 >>Turn in Where the Void Gathers
-    .target Xal'atath
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
+    .goto 2371,48.17,36.64
+    .target +Xal'atath
     .accept 84857 >>Accept Eco-Dome: Primus
-    .target Locus-Walker
+    .goto 2371,48.19,36.55
+    .target +Locus-Walker
 step
     .goto 2371,47.08,54.53
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
     .turnin 84857 >>Turn in Eco-Dome: Primus
-
+    .target Locus-Walker
+step
+    .goto 2371,47.13,54.56
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ve'nari|r
     .accept 84858 >>Accept System Restart
     .target Ve'nari
 step
-    .goto 2371,46.20,57.12
+    .goto 2371,46.20,57.10
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Engineer Om'loof|r
     .complete 84858,1 --1/1 Speak to Engineer Om'loof
     .target Engineer Om'loof
+    .skipgossipid 125374
+step
+    .goto 2371,46.23,57.30
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Rod of Parameters|r
     .complete 84858,2 --1/1 Rod of Parameters used
+step
+    .goto 2371,46.25,57.29
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Rod of Analysis|r
     .complete 84858,3 --1/1 Rod of Analysis used
 step
-    .goto 2371,47.14,58.59
+    .goto 2371,47.18,58.59
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Rod of Analysis|r
     .complete 84858,4 --1/1 Rod of Analysis acquired
 step
-    .goto 2371,46.25,57.26
+    .goto 2371,46.26,57.29
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Rod of Analysis|r
     .complete 84858,5 --1/1 Rod of Analysis replaced
 step
-    .goto 2371,46.26,56.94
+    .goto 2371,46.26,56.91
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Rod of Restart|r
     .complete 84858,6 --1/1 Rod of Restart used
 step
-    .goto 2371,47.10,54.55
+    .goto 2371,47.13,54.56
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ve'nari|r
     .turnin 84858 >>Turn in System Restart
-    .target Ve'nari
-    .accept 84860 >>Accept Eco-Stabilizing
     .accept 84859 >>Accept Damage Report 101
+    .accept 84860 >>Accept Eco-Stabilizing
+    .target Ve'nari
+step
+    .goto 2371,48.42,53.35
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'nittar|r
+    .complete 84859,1 --1/1 Botanist Om'nittar found
+    .target Om'nittar
+step
+    #loop
+    .goto 2371,48.74,53.14,12,0
+    .goto 2371,48.68,53.90,15,0
+    .goto 2371,48.74,53.14,12,0
+    .goto 2371,48.21,52.98,12,0
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_FRIENDLY_Void Creeper|r
+    .complete 84859,2 --6/6 Void Creepers dealt with
+    .target Void Creeper
+step
+    .goto 2371,48.42,53.34
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'nittar|r
+    .complete 84859,3 --1/1 Botanic report received
+    .target Om'nittar
+    .skipgossipid 125356
 step
     .goto 2371,49.19,54.48
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Shadowguard Device|r
     .complete 84860,1 --1/1 Biome Z-22 stabilized
 step
-    .goto 2371,48.43,53.36
-    .complete 84859,1 --1/1 Botanist Om'nittar found
-step
-    .goto 2371,49.96,56.55
+    .goto 2371,50.01,56.50
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Control Console V-37|r
     .complete 84860,2 --1/1 Biome V-37 stabilized
+    .skipgossipid 131301
 step
-    .goto 2371,48.79,53.78
-    .complete 84859,2 --6/6 Void Creepers dealt with
-step
-    .goto 2371,48.41,53.38
-    .complete 84859,3 --1/1 Botanic report received
-step
-    .goto 2371,46.08,58.61
-    .complete 84859,4 --1/1 Technician Om'door found
-step
-    .goto 2371,45.87,57.95
-    .complete 84859,5 --8/8 Void Spores collected
-step
-    .goto 2371,46.06,58.61
-    .complete 84859,6 --1/1 Technician report received
-step
-    .goto 2371,48.78,59.05
+    #completewith next
+    #label BiomeD28A
+    #hidewindow
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Rod of Activation|r
     .complete 84860,3 --1/1 Biome D-28 stabilized
+step
+    .isOnQuest 84860
+    #completewith BiomeD28A
+    .goto 2371,48.84,59.03
+    .cast 1233199 >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Rod of Activation|r
+step
+    #requires BiomeD28A
+    .goto 2371,48.80,59.08
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Rod of Activation|r
+    .complete 84860,3 --1/1 Biome D-28 stabilized
+step
+    .goto 2371,46.05,58.63
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'door|r
+    .complete 84859,4 --1/1 Technician Om'door found
+    .target Om'door
+    .skipgossipid 131437
+step
+    #loop
+    .goto 2371,45.88,57.84,18,0
+    .goto 2371,46.66,59.21,18,0
+    >>Use the |T4914669:0|t[|cRXP_WARN_ExtraActionButton|r] and aim at the |cRXP_PICK_Void Spores|r
+    *|cRXP_WARN_If you don't have the ExtraActionButton then talk to |cRXP_FRIENDLY_Om'door|r again|r
+    .complete 84859,5 --8/8 Void Spores collected
+    .skipgossipid 131437
+step
+    .goto 2371,46.05,58.63
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'door|r
+    .complete 84859,6 --1/1 Technician report received
+    .target Om'door
+    .skipgossipid 125353
 step
     .goto 2371,47.11,54.56
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ve'nari|r
-    .turnin 84860 >>Turn in Damage Report 101
-    .target Ve'nari
+    .turnin 84860 >>Turn in Eco-Stabilizing 101
     .turnin 84859 >>Turn in Damage Report 101
-
     .accept 84861 >>Accept This Is Our Dome!
+    .target Ve'nari
+step
+    .goto 2371,47.09,54.60
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
     .accept 84862 >>Accept Void Alliance
     .target Xal'atath
 step
-    .goto 2371,49.28,60.58
-    .complete 84862,1 --4/4 Defense Matrices placed
-step
-    .goto 2371,49.38,59.98
-    >>Kill |cRXP_ENEMY_Shadowguard forces|r
+    #completewith DefenseMatricesPlacedA
+    >>Kill the |cRXP_ENEMY_Shadowguard forces|r
     .complete 84861,1 --7/7 Shadowguard forces slain
     .mob Shadowguard forces
 step
-    .goto 2371,47.13,54.56
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ve'nari|r
+    .goto 2371,50.45,54.15
+    #title Matrix placed (1/4)
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Defense Matrix|r
+    .complete 84862,1,1 --1/4 Defense Matrices placed
+step
+    .goto 2371,51.00,56.34
+    #title Matrix placed (2/4)
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Defense Matrix|r
+    .complete 84862,1,2 --2/4 Defense Matrices placed
+step
+    .goto 2371,50.29,58.83
+    #title Matrix placed (3/4)
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Defense Matrix|r
+    .complete 84862,1,3 --3/4 Defense Matrices placed
+step
+    #label DefenseMatricesPlacedA
+    .goto 2371,49.29,60.53
+    #title Matrix placed (4/4)
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Defense Matrix|r
+    .complete 84862,1 --4/4 Defense Matrices placed
+step
+    #loop
+    .goto 2371,50.20,61.98,35,0
+    .goto 2371,51.31,55.93,35,0
+    .goto 2371,50.50,53.12,35,0
+    .goto 2371,51.31,55.93,35,0
+    >>Kill |cRXP_ENEMY_Shadowguard forces|r. |cRXP_WARN_A lot of them are invisible|r
+    .complete 84861,1 --7/7 Shadowguard forces slain
+    .mob Shadowguard Saboteur
+    .mob Shadowguard Scout
+step
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ve'nari|r and |cRXP_FRIENDLY_Xal'atath|r
     .turnin 84861 >>Turn in This Is Our Dome!
-    .target Ve'nari
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
+    .goto 2371,47.13,54.56
+    .target +Ve'nari
     .turnin 84862 >>Turn in Void Alliance
-    .target Xal'atath
     .accept 84865 >>Accept Divide and Conquer
     .accept 84864 >>Accept Her Dark Side
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ve'nari|r
+    .goto 2371,47.09,54.60
+    .target +Xal'atath
     .accept 84863 >>Accept Counter Measures
-    .target Ve'nari
+    .goto 2371,47.13,54.56
+    .target +Ve'nari
 step
-    .goto 2371,52.25,47.91
+    #completewith EtherealConsoleOverloadedA
+    >>Kill the |cRXP_ENEMY_Shadowguard forces|r
+    .complete 84863,1 --12/12 Shadowguard forces eliminated
+    .mob Shadowguard Speardancer
+    .mob Shadowguard Voidblade
+    .mob Shadowguard Riftcaller
+step
+    #completewith EtherealConsoleOverloadedA
+    >>Use the |T5976941:0|t[|cRXP_WARN_ExtraActionButton|r] and aim it at the |cRXP_PICK_Shadowguard Cannons|r
     .complete 84865,1 --3/3 Shadowguard Cannons destroyed
 step
-    .goto 2371,52.25,47.91
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
-    .turnin 84865 >>Turn in Divide and Conquer
-    .target Alleria Windrunner
-step
-    .goto 2371,52.55,48.63
-    .complete 84863,1 --12/12 Shadowguard forces eliminated
-step
-    .goto 2371,54.12,48.09
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
-    .turnin 84863 >>Turn in Counter Measures
-    .target Alleria Windrunner
+    .goto 2371,54.10,48.13
+    >>Use the |T4913234:0|t[|cRXP_WARN_ExtraActionButton|r] at the waypoint location
     .complete 84864,1 --1/1 Ethereal Siphon Barrier removed
+    -- TODO: Add RP timer
+step
+    #label EtherealConsoleOverloadedA
+    .goto 2371,54.10,48.13
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Ethereal Siphon Console|r
     .complete 84864,2 --1/1 Ethereal Siphon Console overloaded
 step
-    .goto 2371,54.11,48.04
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
-    .turnin 84864 >>Turn in Her Dark Side
-    .target Alleria Windrunner
-    .accept 84866 >>Accept To Purchase Safety
+    #completewith next
+    >>Kill the |cRXP_ENEMY_Shadowguard forces|r
+    .complete 84863,1 --12/12 Shadowguard forces eliminated
+    .mob Shadowguard Speardancer
+    .mob Shadowguard Voidblade
+    .mob Shadowguard Riftcaller
 step
-    .goto 2371,54.47,46.95
+    #loop
+    .goto 2371,54.52,50.42,25,0
+    .goto 2371,52.53,49.75,25,0
+    .goto 2371,52.30,48.08,25,0
+    >>Use the |T5976941:0|t[|cRXP_WARN_ExtraActionButton|r] and aim it at the |cRXP_PICK_Shadowguard Cannons|r
+    .complete 84865,1 --3/3 Shadowguard Cannons destroyed
+step
+    #loop
+    .goto 2371,53.67,45.18,35,0
+    .goto 2371,54.44,50.84,35,0
+    .goto 2371,52.58,50.18,35,0
+    .goto 2371,52.12,47.58,35,0
+    >>Kill the |cRXP_ENEMY_Shadowguard forces|r
+    .complete 84863,1 --12/12 Shadowguard forces eliminated
+    .mob Shadowguard Speardancer
+    .mob Shadowguard Voidblade
+    .mob Shadowguard Riftcaller
+
+step
+    .goto 2371,54.47,46.95,0,0
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r |cRXP_WARN_next to you|r
+    .turnin 84863 >>Turn in Counter Measures
+    .turnin 84865 >>Turn in Divide and Conquer
+    .turnin 84864 >>Turn in Her Dark Side
+    .accept 84866 >>Accept To Purchase Safety
+    .target Alleria Windrunner
+step
+    .goto 2371,54.48,46.63
     >>Kill |cRXP_ENEMY_Shadow-Captain Lakheesh|r
     .complete 84866,1 --1/1 Shadow-Captain Lakheesh slain
     .mob Shadow-Captain Lakheesh
 step
-    .goto 2371,54.25,45.45
+    .goto 2371,54.27,45.48
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
     .turnin 84866 >>Turn in To Purchase Safety
-    .target Xal'atath
     .accept 86946 >>Accept Unwrapped and Unraveled
+    .target Xal'atath
 step
     .goto 2371,47.07,54.45
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
     .complete 86946,1 --1/1 Find Alleria in Eco-Dome Primus
+    .skipgossipid 132658
 step
-    .goto 2371,47.11,54.55
+    .goto 2371,47.12,54.54
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ve'nari|r
     .turnin 86946 >>Turn in Unwrapped and Unraveled
-    .target Ve'nari
     .accept 90517 >>Accept My Part of the Deal
+    .target Ve'nari
+step
+    .goto 2371,47.12,54.53
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Ve'nari's Reshii Ribbon|r
     .complete 90517,1 --1/1 Ve'nari's Reshii Ribbon acquired
 step
-    .goto 2371,47.11,54.52
+    .goto 2371,47.12,54.54
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ve'nari|r
     .turnin 90517 >>Turn in My Part of the Deal
     .target Ve'nari
+]])
+
+RXPGuides.RegisterGuide([[
+#retail
+#version 1
+#group RestedXP War Within Endgame
+#subgroup |cFFFCDC00(80)|r 11.2 The Knife's Edge
+#name ap) Chapter 3 - Desert Power
+#displayname |cFF00CCFF3|r - Desert Power
+#next aq) Chapter 4 - Shadows En Garde
+
+step
+    .goto 2371,47.08,54.52
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
     .accept 84826 >>Accept Eco-Dome: Rhovan
     .target Locus-Walker
 step
-    .goto 2371,70.95,58.10
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r and |cRXP_FRIENDLY_Om'resh|r
     .turnin 84826 >>Turn in Eco-Dome: Rhovan
-    .target Locus-Walker
     .accept 84827 >>Accept The Shattered Dome
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'resh|r
+    .goto 2371,70.94,58.11
+    .target +Locus-Walker
     .accept 84831 >>Accept The Rhovan Infestation
-    .target Om'resh
+    .goto 2371,70.98,58.04
+    .target +Om'resh
+step
+    #completewith DaggerCollectedA
+    >>Kill the |cRXP_ENEMY_creatures|r in the area
+    .complete 84831,1 --10/10 Invasive creatures slain
+    .mob Void-touched Hoppling
+    .mob Void-touched Hopper
+    .mob Death Scavenger
 step
     .goto 2371,70.88,54.39
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on |cRXP_PICK_Om'Bera's Clipboard|r
     .complete 84827,1 --1/1 Clue found
 step
-    .goto 2371,70.05,53.13
+    .goto 2371,69.99,53.15
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on |cRXP_FRIENDLY_Om'bera|r
     .complete 84827,2 --1/1 Om'bera found
+step
+    #label DaggerCollectedA
+    .goto 2371,69.99,53.15
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Curved Dagger|r
     .complete 84827,3 --1/1 Dagger collected
 step
-    .goto 2371,69.77,52.44
-    >>Kill |cRXP_ENEMY_Invasive creatures|r
+    #loop
+    .goto 2371,70.60,51.67,24,0
+    .goto 2371,68.94,52.20,30,0
+    .goto 2371,69.20,55.04,35,0
+    .goto 2371,71.59,54.20,32,0
+    >>Kill the |cRXP_ENEMY_creatures|r in the area
     .complete 84831,1 --10/10 Invasive creatures slain
-    .mob Invasive creatures
+    .mob Void-touched Hoppling
+    .mob Void-touched Hopper
+    .mob Death Scavenger
 step
-    .goto 2371,70.98,58.05
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'resh|r
-    .turnin 84831 >>Turn in The Rhovan Infestation
-    .target Om'resh
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r and |cRXP_FRIENDLY_Om'resh|r
     .turnin 84827 >>Turn in The Shattered Dome
-    .target Locus-Walker
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'resh|r
+    .goto 2371,70.94,58.10
+    .target +Locus-Walker
+    .turnin 84831 >>Turn in The Rhovan Infestation
     .accept 85730 >>Accept Salvaging What's Left
-    .target Om'resh
+    .goto 2371,70.98,58.05
+    .target +Om'resh
 step
-    .goto 2371,65.25,56.98
+    #loop
+    .goto 2371,67.00,57.66,14,0
+    .goto 2371,66.39,58.17,14,0
+    .goto 2371,65.81,58.58,14,0
+    .goto 2371,65.69,57.09,14,0
+    .goto 2371,65.26,57.06,14,0
+    .goto 2371,65.22,56.16,14,0
+    .goto 2371,64.94,55.01,14,0
+    .goto 2371,64.98,52.10,14,0
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Stolen Research Crates|r
     .complete 85730,1 --5/5 Stolen Research Crate
 step
-    .goto 2371,68.53,53.96
+    .goto 2371,68.57,53.96
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Stolen Research Crates|r
+    *|cRXP_WARN_You will be attacked by 3 |cRXP_ENEMY_Wastelander Assassins|r
     .complete 85730,2 --1/1 Stolen Crates returned
+step
+    #completewith next
+    #hidewindow
+    .gossipoption 131611 >>1
+    .timer 29,RP
+step
+    .goto 2371,68.54,53.87
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
     .complete 85730,3 --1/1 Talk to Locus-Walker
     .target Locus-Walker
@@ -523,315 +872,518 @@ step
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'resh|r
     .turnin 85730 >>Turn in Salvaging What's Left
     .target Om'resh
+step
+    .goto 2371,68.41,51.92
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
     .accept 86327 >>Accept The Tempest Fields
     .target Xal'atath
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath (Optional)|r
-    .complete 86327,1 --1/1 Talk to Xal'atath (Optional)
-    .target Xal'atath (Optional)
 step
-    .goto 2371,64.18,47.19
+    .goto 2371,64.11,47.00
+    >>|cRXP_WARN_Follow the arrow|r
     .complete 86327,2 --Meet Xal'atath at the Tempest Fields
 step
-    .goto 2371,64.10,47.04
+    .goto 2371,64.11,47.00
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
     .turnin 86327 >>Turn in The Tempest Fields
-    .target Xal'atath
     .accept 84834 >>Accept Tempest Clefts
     .accept 84869 >>Accept Hunting on Glass
+    .target Xal'atath
 step
-    .goto 2371,67.05,41.09
+    #completewith next
     >>Kill |cRXP_ENEMY_Void Terror|r
     .complete 84869,1 --4/4 Void Terror slain
+    .complete 84869,2 --8/8 Unreal Observer slain
     .mob Void Terror
+    .mob Unreal Observer
 step
-    .goto 2371,63.34,47.07
+    #loop
+    .goto 2371,63.82,48.49,14,0
+    .goto 2371,63.03,47.47,14,0
+    .goto 2371,63.29,47.11,14,0
+    .goto 2371,64.29,45.75,14,0
+    .goto 2371,64.07,44.54,14,0
+    .goto 2371,64.86,44.89,14,0
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Void Clefts|r
     .complete 84834,1 --6/6 Void Cleft Essence
 step
-    .goto 2371,64.33,45.90
-    >>Kill |cRXP_ENEMY_Unreal Observer|r
+    #loop
+    .goto 2371,68.03,40.15,40,0
+    .goto 2371,64.49,44.76,40,0
+    .goto 2371,63.60,48.60,40,0
+    .goto 2371,63.72,43.52,40,0
+    .goto 2371,62.01,40.35,40,0
+    .goto 2371,64.49,44.76,40,0
+    >>Kill |cRXP_ENEMY_Void Terror|r
+    .complete 84869,1 --4/4 Void Terror slain
     .complete 84869,2 --8/8 Unreal Observer slain
+    .mob Void Terror
     .mob Unreal Observer
 step
     .goto 2371,64.12,47.01
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
     .turnin 84869 >>Turn in Tempest Clefts
-    .target Xal'atath
     .turnin 84834 >>Turn in Tempest Clefts
-
     .accept 84838 >>Accept Enemies of Enemies
+    .target Xal'atath
 step
-    .goto 2371,61.06,38.92
-    .complete 84838,1 --1/1 Coalesced void energy placed (Optional)
+    .goto 2371,61.02,38.90
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Void Clefts|r
     >>Kill |cRXP_ENEMY_Zagithav|r
+    .complete 84838,1 --1/1 Coalesced void energy placed (Optional)
     .complete 84838,2 --1/1 Zagithav slain
     .mob Zagithav
 step
     .goto 2371,61.25,39.31
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to the |cRXP_FRIENDLY_Soul-Scribe|r
     .complete 84838,3 --1/1 Talk to Soul-Scribe
     .target Soul-Scribe
+    .skipgossipid 132980
 step
-    .goto 2371,61.22,39.27
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to the |cRXP_FRIENDLY_Soul-Scribe|r and |cRXP_FRIENDLY_Xal'atath|r
     .turnin 84838 >>Turn in Enemies of Enemies
-    .target Soul-Scribe
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
+    .goto 2371,61.26,39.32
+    .target +Soul-Scribe
     .accept 84848 >>Accept Before the Void
-    .target Xal'atath
+    .goto 2371,61.28,39.28
+    .target +Xal'atath
+step
+    .goto 2371,61.26,39.32
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to the |cRXP_FRIENDLY_Soul-Scribe|r
     .complete 84848,1 --1/1 Dagger returned
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
+    .target Soul-Scribe
+step
+    .goto 2371,61.28,39.28
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to the |cRXP_FRIENDLY_Xal'atath|r
     .complete 84848,2 --1/1 Talk to Xal'atath
     .target Xal'atath
+    .skipgossipid 125430
 step
-    .goto 2371,63.13,38.97
+    .goto 2371,63.18,38.96
+    >>|cRXP_WARN_Follow the arrow|r
     .complete 84848,3 --Meet Xal'atath in the upper camp
 step
-    .goto 2371,63.16,38.97
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r and |cRXP_FRIENDLY_Xal'atath|r
     .turnin 84848 >>Turn in Before the Void
-    .target Soul-Scribe
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
+    .goto 2371,63.18,38.96
+    .target +Soul-Scribe
     .accept 84867 >>Accept Stalking Stalkers
-    .target Xal'atath
+    .goto 2371,63.13,39.01
+    .target +Xal'atath
 step
-    .goto 2371,61.03,39.95
+    .goto 2371,61.01,39.94
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Narathe|r
     .complete 84867,1 --1/1 Speak to Narathe
     .target Narathe
+    .skipgossipid 124848
 step
     .goto 2371,61.05,39.95
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Narathe|r
     .accept 86332 >>Accept Distribution of Power
     .target Narathe
 step
-    .goto 2371,63.11,39.01
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath (Optional)|r
-    .complete 84867,2 --1/1 Talk to Xal'atath (Optional)
-    .target Xal'atath (Optional)
+    #completewith next
+    .aura 467420,1 >>|TInterface/cursor/crosshair/interact.blp:20|tDefeat a |cRXP_ENEMY_Escaped Stalker|r and click on it afterwards.
+    .mob Escaped Stalker
 step
-    .goto 2371,59.29,42.65
+    #loop
+    .goto 2371,60.38,44.77,14,0
+    .goto 2371,59.55,45.43,14,0
+    .goto 2371,60.80,45.59,14,0
+    .goto 2371,61.97,46.41,14,0
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Power Harvester|r
     .complete 86332,1 --4/4 Energy collected
 step
-    .goto 2371,60.99,43.67
-
+    #completewith next
+    #hidewindow
+    #label BringStalkerToZabtaA
     .complete 84867,3 --1/1 Bring a stalker to Zabta
 step
-    .goto 2371,62.05,39.14
+    #completewith BringStalkerToZabtaA
+    .isOnQuest 84867
+    #loop
+    .goto 2371,59.92,44.82,35,0
+    .goto 2371,61.93,46.81,35,0
+    .goto 2371,67.21,36.89,35,0
+    .goto 2371,64.21,37.74,35,0
+    .aura 467420,1 >>|TInterface/cursor/crosshair/interact.blp:20|tDefeat a |cRXP_ENEMY_Escaped Stalker|r and click on it afterwards.
+    .mob Escaped Stalker
+step
+    #requires BringStalkerToZabtaA
+    .goto 2371,61.04,43.65
+    >>|cRXP_WARN_Follow the arrow|r
+    .complete 84867,3 --1/1 Bring a stalker to Zabta
+step
+    #loop
+    .goto 2371,60.70,42.97,12,0
+    .goto 2371,63.88,42.41,12,0
+    .goto 2371,61.57,40.57,12,0
+    .goto 2371,62.07,39.20,12,0
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Empty Crates|r
     .complete 86332,2 --4/4 Crates charged
 step
-    .goto 2371,63.15,38.97
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r and |cRXP_FRIENDLY_Xal'atath|r
     .turnin 84867 >>Turn in Distribution of Power
-    .target Soul-Scribe
     .turnin 86332 >>Turn in Distribution of Power
-
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
+    .goto 2371,63.18,38.96
+    .target +Soul-Scribe
     .accept 84876 >>Accept The Oasis
-    .target Xal'atath
+    .goto 2371,63.13,39.01
+    .target +Xal'atath
 step
     .goto 2371,73.67,38.23
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'rajula|r
     .complete 84876,1 --1/1 Report to Om'rajula at the Oasis
+    .target Om'rajula
+    .skipgossipid 131494
 step
     .goto 2371,75.81,34.19
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'talad|r
     .turnin 84876 >>Turn in The Oasis
     .target Om'talad
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
+step
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r and |cRXP_FRIENDLY_Soul-Scribe|r
     .accept 84879 >>Accept Restoring Hope
-    .target Xal'atath
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
+    .goto 2371,75.88,34.18,-1
+    .target +Xal'atath
     .accept 84883 >>Accept K'aresh That Was
-    .target Soul-Scribe
+    .goto 2371,75.83,34.29,-1
+    .target +Soul-Scribe
 step
-    .goto 2371,76.79,30.17
-    .complete 84883,2 --1/1 Heartspring Water
-step
-    .goto 2371,72.40,31.14
-    .complete 84883,1 --6/6 Zaranit Bud
-step
-    .goto 2371,75.96,29.52
+    #completewith HeartspringWaterA
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on |cRXP_PICK_Invasive Wurm Eggs|r and |cRXP_PICK_Void Rifts|r
     .complete 84879,1 --Dome cleansed (100%)
 step
-    .goto 2371,75.84,34.25
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
-    .turnin 84883 >>Turn in K'aresh That Was
-    .target Soul-Scribe
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
-    .turnin 84879 >>Turn in Restoring Hope
-    .target Xal'atath
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
-    .accept 84910 >>Accept The Tabiqa
-    .target Soul-Scribe
+    #completewith HeartspringWaterA
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Zaranit Buds|r
+    .complete 84883,1 --6/6 Zaranit Bud
 step
-    .goto 2371,74.41,30.41
+    #label HeartspringWaterA
+    .goto 2371,76.78,30.12
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Rippling Wellspring|r
+    .complete 84883,2 --1/1 Heartspring Water
+step
+    -- https://i.imgur.com/24Fjv7C.png
+    #completewith DomeCleansedA
+    #hidewindow
+    #loop
+    .goto 2371,76.27,30.25,25,0
+    .goto 2371,74.78,28.59,30,0
+    .goto 2371,73.69,28.88,30,0
+    .goto 2371,73.06,29.80,30,0
+    .goto 2371,71.82,31.21,30,0
+    .goto 2371,74.30,31.13,40,0
+    .goto 2371,73.03,32.49,30,0
+    .goto 2371,73.07,36.65,30,0
+    .goto 2371,75.50,36.19,40,0
+    .goto 2371,74.88,34.11,30,0
+    .goto 2371,75.69,32.65,30,0
+    .goto 2371,77.07,31.44,30,0
+    +1
+step
+    #completewith next
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on |cRXP_PICK_Invasive Wurm Eggs|r and |cRXP_PICK_Void Rifts|r
+    .complete 84879,1 --Dome cleansed (100%)
+step
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Zaranit Buds|r
+    .complete 84883,1 --6/6 Zaranit Bud
+step
+    #label DomeCleansedA
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on |cRXP_PICK_Invasive Wurm Eggs|r and |cRXP_PICK_Void Rifts|r
+    *|cRXP_WARN_Don't mount up until the portal is destroyed|r
+    .complete 84879,1 --Dome cleansed (100%)
+step
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r and |cRXP_FRIENDLY_Soul-Scribe|r
+    .turnin 84879 >>Turn in Restoring Hope
+    .goto 2371,75.88,34.18
+    .target +Xal'atath
+    .turnin 84883 >>Turn in K'aresh That Was
+    .accept 84910 >>Accept The Tabiqa
+    .goto 2371,75.83,34.29
+    .target +Soul-Scribe
+step
+    .goto 2371,74.39,30.43
+    >>|cRXP_WARN_Follow the arrow|r
     .complete 84910,1 --Meet Soul-Scribe by the water
+step
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Petals and Pollen|r, |cRXP_PICK_Vial|r, and |cRXP_PICK_Tabiqa Dagger|r on the table
     .complete 84910,2 --1/1 Pollen and petals placed
+    .goto 2371,74.40,30.51,-1
     .complete 84910,3 --1/1 Vial of water placed
+    .goto 2371,74.38,30.50,-1
     .complete 84910,4 --1/1 Ritual dagger placed
+    .goto 2371,74.37,30.51,-1
+step
+    .goto 2371,74.39,30.43
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
     .complete 84910,5 --1/1 Talk to Soul-Scribe
     .target Soul-Scribe
+    .skipgossipid 125067
 step
-    .goto 2371,74.38,30.48
+    .goto 2371,74.39,30.43
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
     .turnin 84910 >>Turn in The Tabiqa
     .target Soul-Scribe
+]])
+
+RXPGuides.RegisterGuide([[
+#retail
+#version 1
+#group RestedXP War Within Endgame
+#subgroup |cFFFCDC00(80)|r 11.2 The Knife's Edge
+#name aq) Chapter 4 - Shadows En Garde
+#displayname |cFF00CCFF4|r - Shadows En Garde
+#next ar) Chapter 5 - The Light of K'aresh
+#internal
+
+step
+    .goto 2371,74.39,30.43
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
     .accept 84896 >>Accept The Next Dimension
+    .target Soul-Scribe
 step
     .goto 2371,75.88,33.04
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Shad'anis|r
     .accept 89380 >>Accept Another World
     .target Shad'anis
 step
-    .goto 2371,60.24,29.14
+    .goto 2371,60.24,29.16
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
     .turnin 84896 >>Turn in The Next Dimension
-    .target Soul-Scribe
     .accept 84897 >>Accept The Calm Before we Storm
+    .target Soul-Scribe
 step
-    .goto 2371,60.64,28.18
+    .goto 2371,60.74,27.94
+    >>|cRXP_WARN_Follow the arrow|r
     .complete 84897,1 --Approach Alleria
 step
     .goto 2371,60.74,27.94
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria|r
     .complete 84897,2 --1/1 Speak with Alleria
     .target Alleria
+    .skipgossipid 133244
+step
+    .goto 2371,60.61,27.70
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_FRIENDLY_Wounded Riftwalker|r
     .complete 84897,4 --1/1 Heal the Wounded Riftwalker
+    .skipgossipid 132242
 step
-    .goto 2371,60.67,27.97
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r and |cRXP_FRIENDLY_Alleria Windrunner|r
     .turnin 84897 >>Turn in The Calm Before we Storm
-    .target Soul-Scribe
     .accept 84898 >>Accept The Sands of K'aresh
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
+    .goto 2371,60.68,28.00
+    .target +Soul-Scribe
     .accept 84899 >>Accept Shadowguard Diffusion
-    .target Alleria Windrunner
+    .goto 2371,60.74,27.94
+    .target +Alleria Windrunner
 step
-    .goto 2371,59.57,27.63
-    >>Kill |cRXP_ENEMY_Shadowguard Phaseblade|r
+    #completewith next
+    >>Kill |cRXP_ENEMY_Shadowguard Phaseblade|r, |cRXP_ENEMY_Shadowguard Adept|r, and |cRXP_ENEMY_Shadowguard Voidtamer|r
     .complete 84899,1 --6/6 Shadowguard Phaseblade slain
-    .mob Shadowguard Phaseblade
-step
-    .goto 2371,58.59,29.51
-    >>Kill |cRXP_ENEMY_Shadowguard Adept|r
+    .mob +Shadowguard Phaseblade
     .complete 84899,2 --6/6 Shadowguard Adept slain
-    .mob Shadowguard Adept
-step
-    .goto 2371,57.72,28.23
-    >>Kill |cRXP_ENEMY_Shadowguard Voidtamer|r
+    .mob +Shadowguard Adept
     .complete 84899,3 --3/3 Shadowguard Voidtamer slain
-    .mob Shadowguard Voidtamer
+    .mob +Shadowguard Voidtamer
 step
-    .goto 2371,58.34,26.30
+    #loop
+    .goto 2371,59.12,28.51,6,0
+    .goto 2371,58.68,29.54,6,0
+    .goto 2371,58.34,26.30,6,0
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on |cRXP_PICK_Sand Piles|r appearing after you are close enough to their position
     .complete 84898,1 --3/3 Shadowguard Weapons
 step
-    .goto 2371,55.19,30.27
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
-    .turnin 84898 >>Turn in The Sands of K'aresh
-    .target Soul-Scribe
+    #loop
+    .goto 2371,57.74,31.33,35,0
+    .goto 2371,61.50,26.58,40,0
+    .goto 2371,58.54,25.69,40,0
+    >>Kill |cRXP_ENEMY_Shadowguard Phaseblade|r, |cRXP_ENEMY_Shadowguard Adept|r, and |cRXP_ENEMY_Shadowguard Voidtamer|r
+    .complete 84899,1 --6/6 Shadowguard Phaseblade slain
+    .mob +Shadowguard Phaseblade
+    .complete 84899,2 --6/6 Shadowguard Adept slain
+    .mob +Shadowguard Adept
+    .complete 84899,3 --3/3 Shadowguard Voidtamer slain
+    .mob +Shadowguard Voidtamer
 step
-    .goto 2371,55.10,30.45
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r and |cRXP_FRIENDLY_Alleria Windrunner|r
+    .turnin 84898 >>Turn in The Sands of K'aresh
+    .goto 2371,55.19,30.28
+    .target +Soul-Scribe
     .turnin 84899 >>Turn in Shadowguard Diffusion
-    .target Alleria Windrunner
+    .goto 2371,55.11,30.45
+    .target +Alleria Windrunner
+step
+    .goto 2371,55.12,30.37
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
     .accept 84900 >>Accept Like a Knife Through Aether
     .target Xal'atath
 step
-    .goto 2371,49.95,26.68
+    .goto 2371,49.95,26.80
+    >>|cRXP_WARN_Follow the arrow|r
     .complete 84900,1 --Approach Xal'atath at Shadow Point: Darkmend
 step
-    .goto 2371,49.59,26.14
+    #loop
+    .goto 2371,49.51,26.81,22,0
+    .goto 2371,49.53,28.22,30,0
+    .goto 2371,49.62,25.17,30,0
+    >>Kill the |cRXP_ENEMY_Shadowguard Forgecasters|r. Loot them for the |T4549241:0|t[|cRXP_LOOT_Forgecaster Wraps|r]
     .complete 84900,2 --4/4 Forgecaster Wraps
 step
-    .goto 2371,49.63,26.79
+    .goto 2371,49.54,26.71
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Unwieldy Energies|r
     .complete 84900,3 --4/4 Unwieldy Energy disrupted
 step
     .goto 2371,48.65,26.60
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
     .turnin 84900 >>Turn in Like a Knife Through Aether
     .target Xal'atath
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
+step
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r, |cRXP_FRIENDLY_Locus-Walker|r, and |cRXP_FRIENDLY_Soul-Scribe|r
     .accept 84903 >>Accept Until the Sands Bleed Void
-    .target Alleria Windrunner
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
-    .accept 84904 >>Accept And We Will Answer
-    .target Soul-Scribe
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
+    .goto 2371,48.58,26.63,-1
+    .target +Alleria Windrunner
     .accept 84902 >>Accept Adverse Instantiation
-    .target Locus-Walker
+    .goto 2371,48.58,26.70,-1
+    .target +Locus-Walker
+    .accept 84904 >>Accept And We Will Answer
+    .goto 2371,48.60,26.78,-1
+    .target +Soul-Scribe
 step
-    .goto 2371,46.20,21.42
+    -- https://i.imgur.com/sAyKt6T.png
+    #completewith PowerPylonDisabledA
+    #hidewindow
+    #loop
+    .goto 2371,47.25,21.58,25,0
+    .goto 2371,44.12,23.21,30,0
+    .goto 2371,44.31,21.07,25,0
+    .goto 2371,45.09,21.06,22,0
+    .goto 2371,45.95,19.20,25,0
+    +1
+step
+    #completewith PowerPylonDisabledA
+    >>Kill the |cRXP_ENEMY_Shadowguard forces|r
     .complete 84903,1 --Shadowguard extinguished (100%)
+    .mob Shadowguard Adept
+    .mob Shadowguard Voidcaller
+    .mob Shadowguard Colossus
+    .mob Shadowguard Bulwark
+    .mob Shadowguard Phaseblade
 step
-    .goto 2371,45.86,19.81
+    #completewith TrappedWastelandersRescuedA
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Shadowguard Power Pylons|r
     .complete 84902,1 --6/6 Power Pylon disabled
 step
-    .goto 2371,44.01,22.50
+    #label TrappedWastelandersRescuedA
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_FRIENDLY_Captured Wastelanders|r
     .complete 84904,1 --6/6 Trapped Wastelanders rescued
 step
-    .goto 2371,48.16,19.47
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
-    .turnin 84903 >>Turn in Until the Sands Bleed Void
-    .target Alleria Windrunner
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Soul-Scribe|r
-    .turnin 84904 >>Turn in And We Will Answer
-    .target Soul-Scribe
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
-    .turnin 84902 >>Turn in Adverse Instantiation
-    .target Locus-Walker
-    .accept 84905 >>Accept To Walk Among Shadow
+    #label PowerPylonDisabledA
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Shadowguard Power Pylons|r
+    .complete 84902,1 --6/6 Power Pylon disabled
 step
-    .goto 2371,48.75,18.80
+    #loop
+    .goto 2371,46.89,16.87,40,0
+    .goto 2371,43.25,19.48,45,0
+    .goto 2371,43.41,23.74,45,0
+    .goto 2371,46.15,21.23,40,0
+    >>Kill the |cRXP_ENEMY_Shadowguard forces|r
+    .complete 84903,1 --Shadowguard extinguished (100%)
+    .mob Shadowguard Adept
+    .mob Shadowguard Voidcaller
+    .mob Shadowguard Colossus
+    .mob Shadowguard Bulwark
+    .mob Shadowguard Phaseblade
+step
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r, |cRXP_FRIENDLY_Soul-Scribe|r, and |cRXP_FRIENDLY_Locus-Walker|r
+    .turnin 84903 >>Turn in Until the Sands Bleed Void
+    .goto 2371,48.16,19.43
+    .target +Alleria Windrunner
+    .turnin 84904 >>Turn in And We Will Answer
+    .goto 2371,48.20,19.52
+    .target +Soul-Scribe
+    .turnin 84902 >>Turn in Adverse Instantiation
+    .accept 84905 >>Accept To Walk Among Shadow
+    .goto 2371,48.23,19.43
+    .target +Locus-Walker
+step
+    .goto 2371,48.90,18.68
+    >>|cRXP_WARN_Follow the arrow|r
     .complete 84905,1 --Follow Locus-Walker
 step
-    .goto 2371,49.12,18.35
+    .goto 2371,49.08,18.48
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the |cRXP_PICK_Unstable Energy Matrices|r
     .complete 84905,2 --4/4 Unstable Energy Matrix overloaded
 step
-    .goto 2371,49.24,17.89
+    #loop
+    .goto 2371,48.70,18.32,11,0
+    .goto 2371,49.24,17.83,11,0
+    .goto 2371,49.45,18.48,11,0
+    .goto 2371,49.08,19.15,11,0
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the the |cRXP_PICK_Shadowguard Energy Reserves|r
+    *|cRXP_WARN_Avoid the |cRXP_PICK_Tripwires|r, stay on the wall to avoid the lasers and doge the void zones|r
     .complete 84905,3 --4/4 Shadowguard Energy Reserves destroyed
 step
     .goto 2371,48.25,19.15
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus-Walker|r
     .turnin 84905 >>Turn in To Walk Among Shadow
     .target Locus-Walker
+step
+    .goto 2371,48.17,19.10
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
     .accept 84906 >>Accept Nexus Regicide
     .target Alleria Windrunner
 step
-    .goto 2371,44.41,16.70
+    .goto 2371,44.20,16.79
+    >>|cRXP_WARN_Follow the arrow|r
     .complete 84906,1 --Follow Alleria to Umbral Garrison: Apotheosis
 step
-    .goto 2371,43.77,16.94
+    .goto 2371,43.80,17.11
     >>Kill |cRXP_ENEMY_Nexus-Prince Azir|r
+    *|cRXP_WARN_Drag him to the friendly NPCs to make the help you|r
     .complete 84906,2 --1/1 Nexus-Prince Azir slain
     .mob Nexus-Prince Azir
 step
     .goto 2371,44.16,16.86
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the the |cRXP_PICK_Nexus-Prince Azir's Reshii Ribbon|r
     .complete 84906,3 --1/1 Nexus-Prince Azir's Reshii Ribbon
 step
     .goto 2371,44.24,18.35
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
     .turnin 84906 >>Turn in Nexus Regicide
     .target Alleria Windrunner
+step
+    .goto 2371,44.24,18.49
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
     .accept 85037 >>Accept That's a Wrap
     .target Xal'atath
 step
-    .goto 2371,42.89,21.62
-    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Locus Walker (Optional)|r
-    .complete 85037,1 --1/1 Speak with Locus Walker (Optional)
-    .target Locus Walker (Optional)
+    .goto 2371,42.85,21.56
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Xal'atath|r
     .complete 85037,2 --1/1 Speak to Xal'atath
     .target Xal'atath
+    .skipgossipid 131307
+step
+    .goto 2371,42.82,21.56
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the the |cRXP_PICK_Reshii Ribbons|r
     .complete 85037,3 --1/1 K'areshi Wraps
 step
-    .goto 2371,42.90,21.50
+    .goto 2371,42.89,21.51
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alleria Windrunner|r
     .turnin 85037 >>Turn in That's a Wrap
     .target Alleria Windrunner
+]])
+
+RXPGuides.RegisterGuide([[
+#retail
+#version 1
+#group RestedXP War Within Endgame
+#subgroup |cFFFCDC00(80)|r 11.2 The Knife's Edge
+#name ar) Chapter 5 - The Light of K'aresh
+#displayname |cFF00CCFF5|r - The Light of K'aresh
+#internal
+
+step
+    #completewith next
+    .hs >>Hearth to Tazavesh, the Veiled Market
 step
     .goto 2472,39.44,24.03
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Om'talad|r
@@ -844,42 +1396,60 @@ step
     .target Cartel Om Custodian
     .accept 87337 >>Accept Custodian Duties
 step
-    .goto 2371,74.27,34.07
+    .goto 2371,74.31,34.02
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the the |cRXP_PICK_Oasis Animal Leavings|r
     .complete 87337,1 --Clean up Hope's Oasis (100%)
 step
     .goto 2371,75.89,34.18
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ve'nari|r
     .turnin 87337 >>Turn in Custodian Duties
-    .target Ve'nari
     .accept 87339 >>Accept Ongoing Activities
     .accept 87338 >>Accept Day One Orientation
+    .target Ve'nari
+step
+    .goto 2371,75.74,34.09
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the the |cRXP_PICK_The Oasis Console|r
     .complete 87338,3 --1/1 The Oasis Console
 step
-    .goto 2371,72.53,34.78
+    #loop
+    .goto 2371,74.22,34.85,15,0
+    .goto 2371,73.84,34.59,15,0
+    .goto 2371,73.60,34.40,15,0
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the the |cRXP_FRIENDLY_Data Collection Drone|r
+    .complete 87339,2 --1/1 Collect Data
+    .target Data Collection Drone
+step
+    .goto 2371,72.49,34.77
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the the |cRXP_PICK_Torn-up Earth|r
     .complete 87339,1 --1/1 Torn-up Earth
 step
-    .goto 2371,72.99,33.00
+    .goto 2371,73.01,33.00
+    >>|TInterface/cursor/crosshair/interact.blp:20|tClick on the the |cRXP_PICK_Watering Jug|r
     .complete 87339,3 --1/1 Watering Jug
 step
-    .goto 2371,73.09,32.78
+    .goto 2371,72.92,32.77
+    >>Use the |T968261:0|t[Watering Jug]
     .complete 87339,4 --1/1 Use Watering Jug to water plants
+    .use 236641
 step
-    .goto 2371,73.63,34.37
-    .complete 87339,2 --1/1 Collect Data
-step
-    .goto 2371,73.10,32.64
+    .goto 2371,73.07,32.64
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Slateback Alpha|r
     .complete 87338,2 --1/1 Meet the Slateback Alpha
+    .target Slateback Alpha
+    .skipgossipid 132138
 step
-    .goto 2371,72.07,30.84
+    .goto 2371,72.07,30.85
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Thorntail Matriarch|r
     .complete 87338,1 --1/1 Meet the Thorntail Matriarch
+    .target Thorntail Matriarch
+    .skipgossipid 132139
 step
-    .goto 2371,75.89,34.18
+    .goto 2371,75.90,34.17
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Ve'nari|r
     .turnin 87338 >>Turn in Ongoing Activities
-    .target Ve'nari
     .turnin 87339 >>Turn in Ongoing Activities
-
     .accept 87340 >>Accept Junk Mail
+    .target Ve'nari
 step
     .goto 2472,64.24,26.94
     .complete 87340,1 --Distribute advertising in Tazavesh (100%)
@@ -1052,55 +1622,4 @@ step
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Botanist Alaenra|r
     .accept 85260 >>Accept Hiving a Hard Day
     .target Botanist Alaenra
-
-]])
-
-RXPGuides.RegisterGuide([[
-#retail
-#version 1
-#group RestedXP War Within Endgame
-#subgroup |cFFFCDC00(80)|r 11.2 The Knife's Edge
-#name ao) Chapter 2 - Void Alliance
-#displayname |cFF00CCFF2|r - Void Alliance
-#next ap) Chapter 3 - Desert Power
-
-
-
-]])
-
-RXPGuides.RegisterGuide([[
-#retail
-#version 1
-#group RestedXP War Within Endgame
-#subgroup |cFFFCDC00(80)|r 11.2 The Knife's Edge
-#name ap) Chapter 3 - Desert Power
-#displayname |cFF00CCFF3|r - Desert Power
-#next aq) Chapter 4 - Shadows En Garde
-
-
-
-]])
-
-RXPGuides.RegisterGuide([[
-#retail
-#version 1
-#group RestedXP War Within Endgame
-#subgroup |cFFFCDC00(80)|r 11.2 The Knife's Edge
-#name aq) Chapter 4 - Shadows En Garde
-#displayname |cFF00CCFF4|r - Shadows En Garde
-#next ar) Chapter 5 - The Light of K'aresh
-
-
-
-]])
-
-RXPGuides.RegisterGuide([[
-#retail
-#version 1
-#group RestedXP War Within Endgame
-#subgroup |cFFFCDC00(80)|r 11.2 The Knife's Edge
-#name ar) Chapter 5 - The Light of K'aresh
-#displayname |cFF00CCFF5|r - The Light of K'aresh
-
-
 ]])

@@ -2195,6 +2195,12 @@ function ZGV:Options_DefineOptionTables()
 			AddOption('petbattleframe',{ type = 'toggle', width = "full", set = function(i,v) Setter_Simple(i,v) end, _default = true, })
 			AddOption('talenton',{ type = 'toggle', width="full", set = function(i,v)   Setter_Simple(i,v)  ZGV.TalentAdvisor:Toggle(v)  end, _default=true})
 		end
+		if ZGV.IsClassicMOP then
+			AddOption('petbattleframe',{ type = 'toggle', width = "full", set = function(i,v) Setter_Simple(i,v) end, _default = true, })
+			AddOption('talenton',{ type = 'toggle', width="full", set = function(i,v)   Setter_Simple(i,v)  ZGV.TalentAdvisor:Toggle(v)  end, _default=true})
+		end
+
+
 
 		if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK then
 			AddOption('beta_use_chains',{ 
@@ -2270,7 +2276,7 @@ function ZGV:Options_DefineOptionTables()
 				})
 	end
 
-	if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP  then
+	if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA then
 		local options = ZGV.ZTA:SetupConfig()
 
 		AddOptionGroup("zta","ZygorTalentAdvisor","zgtalent",options)
@@ -4634,6 +4640,8 @@ local defaults = {
 		WQmode = {},
 		WQreward = {},
 		WQreputation = {},
+
+		featuredhide = {},
 	},
 }
 

@@ -1,10 +1,8 @@
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 << Horde
 #name 1-10 Durotar
 #version 7
@@ -1119,10 +1117,8 @@ step << Paladin
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 #subgroup Horde 60-70 Dungeon Cleave
 << Horde
 #name 060-70 Horde Dungeon Cleave
@@ -2381,10 +2377,8 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 << Horde
 #name 10-13 Durotar
 #version 7
@@ -2806,9 +2800,7 @@ step << Warrior
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
-#group RXP The Burning Crusade
+#group The Burning Crusade
 << Horde
 #name 1-6 Tirisfal Glades
 #version 7
@@ -3136,10 +3128,8 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 << Horde
 #name 1-6 Eversong Woods
 #version 7
@@ -3466,10 +3456,8 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 << Horde
 #name 6-10 Eversong Woods
 #version 7
@@ -4101,10 +4089,8 @@ step << Warrior
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 << Horde
 #name 10-20 Eversong Woods / Ghostlands
 #version 7
@@ -5863,10 +5849,8 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 << Horde
 #name 1-10 Mulgore
 #version 7
@@ -6771,10 +6755,8 @@ step << Druid/Hunter
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 << Horde
 #name 10-13 Mulgore
 #version 7
@@ -6936,7 +6918,7 @@ step << Warrior
 RXPGuides.RegisterGuide([[
 #tbc
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 << Horde
 #name 13-23 The Barrens
 #subgroup Horde 1-30
@@ -8190,10 +8172,8 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 << Horde !Warrior !Shaman
 #name 20-23 Stonetalon / The Barrens
 #version 7
@@ -8964,10 +8944,8 @@ step
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 << Horde
 #name 23-27 Hillsbrad / Ashenvale
 #version 7
@@ -9537,10 +9515,8 @@ step << !Rogue !Paladin !Warlock
 RXPGuides.RegisterGuide([[
 #tbc
 #wotlk
-#cata
-#mop
 #version 7
-#group RXP The Burning Crusade
+#group The Burning Crusade
 << Horde
 #name 27-30 Lower Barrens / Thousand Needles
 #version 7
@@ -10265,8 +10241,6 @@ step << Shaman
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 30-45
 << Horde
@@ -10953,8 +10927,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 30-45
 << Horde
@@ -11800,8 +11772,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 30-45
 << Horde
@@ -12484,8 +12454,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 30-45
 << Horde
@@ -13129,8 +13097,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 30-45
 << Horde
@@ -13751,8 +13717,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 45-60
 << Horde
@@ -14396,8 +14360,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 45-60
 << Horde
@@ -14939,8 +14901,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 45-60
 << Horde
@@ -15365,8 +15325,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 45-60
 << Horde
@@ -15776,8 +15734,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 45-60
 << Horde
@@ -16472,8 +16428,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 45-60
 << Horde
@@ -17381,8 +17335,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 60-70
 << Horde
@@ -18630,8 +18582,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 60-70
 << Horde
@@ -19823,8 +19773,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 60-70
 << Horde
@@ -21411,8 +21359,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 60-70
 << Horde
@@ -22861,8 +22807,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 60-70
 <<Horde
@@ -24556,8 +24500,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 60-70
 << Horde
@@ -24888,8 +24830,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 60-70
 << Horde
@@ -27963,8 +27903,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 60-70
 <<Horde
@@ -28383,8 +28321,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 7
 #wotlk
-#cata
-#mop
 #tbc
 #group Horde 60-70
 << Horde

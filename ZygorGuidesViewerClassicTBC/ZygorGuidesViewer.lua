@@ -1948,7 +1948,7 @@ function ZGV:FocusStepUnquiet()
 end
 
 function ZGV:TrackQuest(id)
-	if GetCVar("autoQuestWatch")==0 then return end
+	if tonumber(GetCVar("autoQuestWatch"))==0 then return end
 	if ZGV.IsClassicCATA then return end -- SetSuperTrackedQuestID on cata crashes game
 
 	local q = ZGV.questsbyid[id]
@@ -1956,17 +1956,13 @@ function ZGV:TrackQuest(id)
 	if ZGV.IsRetail then
 		if not C_QuestLog.GetQuestWatchType(id) then
 			C_QuestLog.AddQuestWatch(id, Enum.QuestWatchType.Manual)
-			--WatchFrame_Update(self)
 		end
 		C_SuperTrack.SetSuperTrackedQuestID(q.id)
-		-- WORLDMAP_SETTINGS.selectedQuestId = q.id -- TODO Reimplement
 		QuestPOIUpdateIcons()
-		--QuestPOI_SelectButtonByQuestId("WatchFrameLines", WORLDMAP_SETTINGS.selectedQuestId, true)
-		--WorldMapFrame_SelectQuestById(q.id)
 	else
 		if not IsQuestWatched(q.index) then
 			AddQuestWatch(q.index)
-			--WatchFrame_Update(self)
+			if WatchFrame_Update then WatchFrame_Update() end
 		end
 		SetSuperTrackedQuestID(q.id)
 	end

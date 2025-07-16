@@ -141,6 +141,7 @@ data.basenodes.advanced = {
 	{"REGION",name="magetower",mapzone="Stormwind City",zonematch="*/*/*/Wizard's Sanctum",nofly=1,indoors=true},
 	"Stormwind City/0 49.44,86.79 -x- Stormwind City/0 49.21,87.09 <region:magetower> {title_atob:Enter the Mage Tower} {title_btoa:Exit the Mage Tower}",
 
+	{"REGION",name="durotar_burningbladecoven_entry",mapzone="Durotar/0",zonematch="*/*/*/Burning Blade Coven",nofly=1},
 
 
 }

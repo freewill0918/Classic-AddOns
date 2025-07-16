@@ -60,7 +60,7 @@ if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA 
 	classspecs["HUNTER"]		= { "BeastMastery","Marksmanship","Survival" }
 	classspecs["ROGUE"]		= { "Assassination","Combat","Subtlety" }
 	classspecs["DRUID"]		= { "Balance","Feral","Restoration" }
-	classspecs["DEMONHUNTER"]	= nil
+	classspecs["DEMONHUNTER"]	= { "_DH1","_DH2","_DH3" }
 end
 
 Parser.classspecs = classspecs
@@ -1362,7 +1362,10 @@ setmetatable(ConditionEnv,{__index=function(t,k) local lower=rawget(t,k:lower())
 
 Parser.ConditionEnv=ConditionEnv  --DEBUG
 
-local function MakeCondition(cond,forcebool)
+local ConditionCache = {}
+
+local function MakeCondition(cond,forcebool,usecache)
+	if usecache and ConditionCache[cond] then return ConditionCache[cond],nil,cond end
 	local s
 	if type(cond)=="function" then
 		local prevcond=cond
@@ -1376,6 +1379,8 @@ local function MakeCondition(cond,forcebool)
 		return cond,nil,nil
 	end
 
+	local orig_cond = cond
+
 	if type(rawget(ConditionEnv,cond))=="function" then cond=cond.."()"  -- shorthand enabling "|only if function" to be used, without having to be "|only if function()"
 	else  -- "|only if not function" too
 		local notfunc = cond:match("not (.*)")
@@ -1386,6 +1391,7 @@ local function MakeCondition(cond,forcebool)
 	-- don't try to optimize too much. Race-spec-class and race-class checks must all run before spec-class checks are attempted.
 	for i,ra in ipairs(ConditionEnv.races) do
 		for j,cl in ipairs(ConditionEnv.classes) do
+			if not classspecs[cl:upper()] then error("No classspecs for "..cl:upper()) end
 			for k,sp in ipairs(classspecs[cl:upper()]) do
 				cond = cond:gsub("("..ra..") ("..sp..") ("..cl..")","(%1 and %2 and %3)")
 			end
@@ -1409,10 +1415,14 @@ local function MakeCondition(cond,forcebool)
 		cond = ("_SelfUpdate()  return (%s)"):format(cond)
 	end
 	local fun,err = loadstring(cond)
-	if fun then setfenv(fun,ConditionEnv) end
+	if fun then
+		setfenv(fun,ConditionEnv)
+		if usecache then ConditionCache[orig_cond] = fun end
+	end
 	return fun,err,cond_procd
 end
 Parser.MakeCondition=MakeCondition
+Parser.FakeMakeCondition=function(f) MakeCondition=f end
 
 
 local apply_colours_patterns = {

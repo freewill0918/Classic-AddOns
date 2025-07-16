@@ -1,5 +1,4 @@
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 << Horde
 #name 27-31 Northern Stranglethorn
@@ -1155,7 +1154,6 @@ step
 .target Raskha
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 << Horde
 #name 31-35 Cape of Stranglethorn
@@ -2400,7 +2398,6 @@ step
 .target Arcanist Arman
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 << Horde
 #name 35-40 Western Plaguelands
@@ -3611,7 +3608,6 @@ step
 .subzoneskip 5367,1
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 << Horde
 #name 40-45 Eastern Plaguelands
@@ -3623,7 +3619,6 @@ step
 #include RXPGuides\40-45 Eastern Plaguelands
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 << Horde
 #name 45-48 Badlands
@@ -4211,7 +4206,6 @@ step
 .zone Searing Gorge >>Travel to Searing Gorge
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 << Horde
 #name 48-50 Searing Gorge
@@ -4223,7 +4217,6 @@ step
 #include RXPGuides\47-50 Searing Gorge
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 << Horde
 #name 50-52 Burning Steppes
@@ -5148,7 +5141,6 @@ step
 .timer 59,Bogpaddle Ride
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 << Horde
 #name 52-55 Swamp of Sorrows
@@ -5765,7 +5757,6 @@ step
 .zone Blasted Lands >>Travel to the Blasted Lands
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 << Horde
 #name 55-58 Blasted Lands
@@ -6527,7 +6518,6 @@ RXPGuides.RegisterGuide([[
 << Horde
 #version 8
 #group RXP Cataclysm 1-80 (H)
-#cata
 #mop
 #name 80-82 Mount Hyjal
 #next 82-83 Deepholm
@@ -6538,7 +6528,6 @@ RXPGuides.RegisterGuide([[
 << Horde
 #version 8
 #group RXP Cataclysm 1-80 (H)
-#cata
 #mop
 #name 80-82 Vashj'ir (Optional)
 #next 82-83 Deepholm
@@ -6549,7 +6538,6 @@ RXPGuides.RegisterGuide([[
 << Horde
 #version 8
 #group RXP Cataclysm 1-80 (H)
-#cata
 #mop
 #name 82-83 Deepholm
 #next 83-84 Uldum
@@ -6560,7 +6548,6 @@ RXPGuides.RegisterGuide([[
 << Horde
 #version 8
 #group RXP Cataclysm 1-80 (H)
-#cata
 #mop
 #name 83-84 Uldum
 #next 84-85 Twilight Highlands
@@ -6571,7 +6558,6 @@ RXPGuides.RegisterGuide([[
 << Horde
 #version 8
 #group RXP Cataclysm 1-80 (H)
-#cata
 #mop
 #name 84-85 Twilight Highlands
 step
@@ -6581,7 +6567,6 @@ RXPGuides.RegisterGuide([[
 << Alliance
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #name 82-83 Deepholm
 #next 83-84 Uldum
@@ -6592,7 +6577,6 @@ RXPGuides.RegisterGuide([[
 << Alliance
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #name 80-82 Mount Hyjal
 #next 82-83 Deepholm
@@ -6603,7 +6587,6 @@ RXPGuides.RegisterGuide([[
 << Alliance
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #name 84-85 Twilight Highlands
 step
@@ -6613,7 +6596,6 @@ RXPGuides.RegisterGuide([[
 << Alliance
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #name 83-84 Uldum
 #next 84-85 Twilight Highlands
@@ -6624,7 +6606,6 @@ RXPGuides.RegisterGuide([[
 << Alliance
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #name 80-82 Vashj'ir (Optional)
 #next 82-83 Deepholm
@@ -6636,7 +6617,6 @@ RXPGuides.RegisterGuide([[
 #name 45-47 Badlands
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #next 47-50 Searing Gorge
 step
@@ -7210,7 +7190,6 @@ RXPGuides.RegisterGuide([[
 #name 55-58 Blasted Lands
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #next RXP Cataclysm 60-80 (A)\59-61 Hellfire Peninsula
 step
@@ -8063,7 +8042,6 @@ RXPGuides.RegisterGuide([[
 #name 50-52 Burning Steppes
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #next 52-55 Swamp of Sorrows
 <<Alliance
@@ -9064,7 +9042,6 @@ RXPGuides.RegisterGuide([[
 #name 40-45 Eastern Plaguelands
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #next 45-47 Badlands
 step
@@ -9073,7 +9050,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #name 33-35 Southern Barrens
 #defaultfor None
@@ -9711,7 +9687,6 @@ RXPGuides.RegisterGuide([[
 #name 47-50 Searing Gorge
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #next 50-52 Burning Steppes
 step
@@ -9720,7 +9695,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #name 25-30 Northern Stranglethorn
 #next 30-35 Southern Stranglethorn
@@ -10963,7 +10937,6 @@ step
 RXPGuides.RegisterGuide([[
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #name 30-35 Southern Stranglethorn
 #displayname 31-35 Southern Stranglethorn
@@ -11745,7 +11718,6 @@ RXPGuides.RegisterGuide([[
 #name 52-55 Swamp of Sorrows
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #next 55-58 Blasted Lands
 step << Alliance
@@ -12423,7 +12395,6 @@ RXPGuides.RegisterGuide([[
 #name 35-40 Western Plaguelands
 #version 8
 #group RXP Cataclysm 1-80 (A)
-#cata
 #mop
 #next 40-45 Eastern Plaguelands
 step
@@ -13817,7 +13788,6 @@ RXPGuides.RegisterGuide([[
 #version 8
 #group RXPGuides
 #internal
-#cata
 #mop
 #name 82-83 Deepholm
 step << Horde
@@ -15840,7 +15810,6 @@ RXPGuides.RegisterGuide([[
 #name 40-45 Eastern Plaguelands
 #version 8
 #group RXPGuides
-#cata
 #mop
 #internal
 step
@@ -17183,7 +17152,6 @@ RXPGuides.RegisterGuide([[
 #version 8
 #group RXPGuides
 #internal
-#cata
 #mop
 #name 80-82 Mount Hyjal
 step << Alliance
@@ -19644,7 +19612,6 @@ RXPGuides.RegisterGuide([[
 #name 47-50 Searing Gorge
 #version 8
 #group RXPGuides
-#cata
 #mop
 #internal
 step
@@ -20575,7 +20542,6 @@ RXPGuides.RegisterGuide([[
 #version 8
 #group RXPGuides
 #internal
-#cata
 #mop
 #name 84-85 Twilight Highlands
 step << Horde
@@ -24646,7 +24612,6 @@ RXPGuides.RegisterGuide([[
 #version 8
 #group RXPGuides
 #internal
-#cata
 #mop
 #name 83-84 Uldum
 #next 84-85 Twilight Highlands
@@ -27440,7 +27405,6 @@ RXPGuides.RegisterGuide([[
 #version 8
 #group RXPGuides
 #internal
-#cata
 #mop
 #name 80-82 Vashj'ir
 step << Horde
@@ -31915,7 +31879,6 @@ step << Horde Rogue
 .target Gordul
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 << Alliance
@@ -31927,7 +31890,6 @@ step
 #include RXPGuides\79-80 Icecrown
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 << Alliance
@@ -31940,7 +31902,6 @@ step
 #include RXPGuides\77-78 Sholazar Basin
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 << Alliance
@@ -34901,7 +34862,6 @@ step << !wotlk Mage
 ]])
 RXPGuides.RegisterGuide([[
 << Alliance
-#cata
 #mop
 #wotlk
 #group RXP Cataclysm 1-80 (A)
@@ -34916,7 +34876,6 @@ step
 RXPGuides.RegisterGuide([[
 #speedrunguide
 #xprate >1.49 << wotlk
-#cata
 #mop
 #wotlk
 << Alliance
@@ -35032,7 +34991,6 @@ step
 .zoneskip ZulDrak,1
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 << Horde
@@ -39093,7 +39051,6 @@ step
 .zone Dragonblight >> Travel to Dragonblight
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 #xprate <1.5 << wotlk
@@ -42737,7 +42694,6 @@ step
 .zone Grizzly Hills >> Travel to Grizzly Hills
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 << Horde
@@ -42840,7 +42796,6 @@ step
 #requires abandon1
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 << Horde
@@ -45635,7 +45590,6 @@ step
 .target Makki Wintergale
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 #name 68-71 Howling Fjord
@@ -49114,7 +49068,6 @@ step << Warrior
 .target Zel'mak
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 << Horde
@@ -49126,7 +49079,6 @@ step
 #include RXPGuides\79-80 Icecrown
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 << Horde
@@ -49139,7 +49091,6 @@ step
 #include RXPGuides\77-78 Sholazar Basin
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 << Horde
@@ -51986,7 +51937,6 @@ step << Warrior !wotlk
 .target Nahu Ragehoof
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 << Horde
@@ -51999,7 +51949,6 @@ step
 #include RXPGuides\i75-77 Zul'Drak
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 #group Mage AoE 68-80
@@ -52515,7 +52464,6 @@ step
 .xp 80 >> AoE the Undead to 80
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 #group RXPGuides
@@ -61495,7 +61443,6 @@ step << wotlk
 .link https://discord.gg/restedxp >> As this was tested on Beta, the guide may have had some bugs. If you encountered any while playing through, report them here!
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 #name 77-78 Sholazar Basin
@@ -63463,7 +63410,6 @@ step << !wotlk !Mage/!Druid !DK !Mage wotlk
 .zoneskip Dalaran
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 #name i75-77 Zul'Drak
@@ -67386,7 +67332,6 @@ step
 .xp <77,1
 ]])
 RXPGuides.RegisterGuide([[
-#cata
 #mop
 #wotlk
 << Horde
@@ -69333,7 +69278,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 << Horde
@@ -69349,7 +69293,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #questguide << !tbc
@@ -69366,7 +69309,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 << Horde
@@ -71017,7 +70959,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 << Horde
@@ -73060,7 +73001,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 << Horde
@@ -75111,7 +75051,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 << Horde
@@ -77437,7 +77376,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 << Horde
-#cata
 #mop
 #wotlk
 #version 8
@@ -77951,7 +77889,6 @@ step << tbc
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #questguide << !tbc
@@ -78536,7 +78473,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #questguide << !tbc
@@ -79109,7 +79045,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #group RXPGuides
@@ -80032,7 +79967,6 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #version 8
-#cata
 #mop
 #wotlk
 #group RXPGuides
