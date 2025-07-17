@@ -56,6 +56,7 @@ Left-click and drag to move this button.]=] ] = [=[左鍵開啟個人會計
 L["LFD, LFR and Scen."] = "隨機地城、團隊與事件"
 L["Loaded Accountant Classic Profile for %s"] = "%s的個人會計資料已載入"
 L["Mail"] = "郵寄"
+L["Guild Bank"] = "公會銀行"
 L["Main Frame's Scale and Alpha Settings"] = "主視窗的大小與透明度"
 L["Merchants"] = "商人"
 L["Minimap Button Position"] = "小地圖按鈕位置"

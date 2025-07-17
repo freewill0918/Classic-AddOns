@@ -111,7 +111,7 @@ if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC or WoWCATAC) then
 		"PLAYER_MONEY",
 	}
 	constants.logtypes = {
-		"TRAIN", "TAXI", "TRADE", "AH", "MERCH", "REPAIRS", "MAIL", "QUEST", "LOOT", "OTHER" 
+		"TRAIN", "TAXI", "TRADE", "AH", "MERCH", "REPAIRS", "MAIL", "QUEST", "LOOT", "GUILD", "OTHER" 
 	}
 	constants.onlineData = {
 		["TRAIN"] = 	{ Title = L["Training Costs"]};
@@ -123,6 +123,7 @@ if (WoWClassicEra or WoWClassicTBC or WoWWOTLKC or WoWCATAC) then
 		["MAIL"] = 	{ Title = L["Mail"]};
 		["QUEST"] = 	{ Title = QUESTS_LABEL};
 		["LOOT"] = 	{ Title = LOOT};
+		["GUILD"] = 	{ Title = L["Guild Bank"]};
 		["OTHER"] = 	{ Title = L["Unknown"]};
 	}
 	if WoWCATAC then

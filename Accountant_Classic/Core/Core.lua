@@ -1100,6 +1100,13 @@ local function updateLog()
 				end
 				-- ZoneDB
 				if (profile.trackzone == true) then
+					-- Ensure the nested structure exists
+					if (Accountant_ClassicZoneDB[AC_SERVER][AC_PLAYER]["data"][logmode] == nil) then
+						Accountant_ClassicZoneDB[AC_SERVER][AC_PLAYER]["data"][logmode] = { };
+					end
+					if (Accountant_ClassicZoneDB[AC_SERVER][AC_PLAYER]["data"][logmode][logtype] == nil) then
+						Accountant_ClassicZoneDB[AC_SERVER][AC_PLAYER]["data"][logmode][logtype] = { };
+					end
 					if (Accountant_ClassicZoneDB[AC_SERVER][AC_PLAYER]["data"][logmode][logtype][zoneText] == nil) then
 						Accountant_ClassicZoneDB[AC_SERVER][AC_PLAYER]["data"][logmode][logtype][zoneText] = { In = 0, Out = 0 };
 					end
@@ -1137,6 +1144,13 @@ local function updateLog()
 				end
 				-- ZoneDB
 				if (profile.trackzone == true) then
+					-- Ensure the nested structure exists
+					if (Accountant_ClassicZoneDB[AC_SERVER][AC_PLAYER]["data"][logmode] == nil) then
+						Accountant_ClassicZoneDB[AC_SERVER][AC_PLAYER]["data"][logmode] = { };
+					end
+					if (Accountant_ClassicZoneDB[AC_SERVER][AC_PLAYER]["data"][logmode][logtype] == nil) then
+						Accountant_ClassicZoneDB[AC_SERVER][AC_PLAYER]["data"][logmode][logtype] = { };
+					end
 					if (Accountant_ClassicZoneDB[AC_SERVER][AC_PLAYER]["data"][logmode][logtype][zoneText] == nil) then
 						Accountant_ClassicZoneDB[AC_SERVER][AC_PLAYER]["data"][logmode][logtype][zoneText] = { In = 0, Out = 0 };
 					end

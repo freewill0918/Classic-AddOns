@@ -56,6 +56,7 @@ Left-click and drag to move this button.]=] ] = [=[单击打开 Accountant Class
 L["LFD, LFR and Scen."] = "随机地城、团队与事件"
 L["Loaded Accountant Classic Profile for %s"] = "%s的 Accountant Classic 数据已加载"
 L["Mail"] = "邮寄"
+L["Guild Bank"] = "公会银行"
 L["Main Frame's Scale and Alpha Settings"] = "主框架尺寸及透明度设置"
 L["Merchants"] = "商人"
 L["Minimap Button Position"] = "小地图按钮位置"
