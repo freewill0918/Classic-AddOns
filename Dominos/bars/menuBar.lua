@@ -331,7 +331,7 @@ function MenuBarModule:OnFirstLoad()
 
     local layout = Addon:Debounce(function()
         local frame = self.frame
-        if frame then
+        if frame and frame:IsVisible() then
             self.frame:Layout()
         end
     end)
