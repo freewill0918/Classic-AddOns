@@ -4,5 +4,5 @@
 ## Author: The Curator
 ## Version: 1.0.0
 ## Dependencies: RXPGuides
-Classic/Alliance-31-85.lua
-Classic/Horde-31-85.lua
+Classic/Custom (1).lua
+Classic/Custom (2).lua
