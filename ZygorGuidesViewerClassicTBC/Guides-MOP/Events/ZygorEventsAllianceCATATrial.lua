@@ -812,7 +812,7 @@ kill Grand Magus Telestra##26731
 |tip Inside "The Nexus" dungeon.
 |tip It's the bottom portal.
 |tip The hat will only drop on Heroic difficulty.
-Collect a Winter Hat |complete itemcount(21525) >=1 or itemcount(21524) >= 1 |goto The Nexus/0 |achieve 277 |future
+Collect a Winter Hat |complete itemcount(21525) >=1 or itemcount(21524) >= 1 |goto The Nexus/1 |achieve 277 |future
 step
 collect Smokywood Pastures Sampler##17685 |or
 |tip You should have this from completing "Treats for Greatfather Winter" in the quest guide.

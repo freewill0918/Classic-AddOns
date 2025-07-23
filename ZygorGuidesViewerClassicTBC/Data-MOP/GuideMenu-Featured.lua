@@ -7,6 +7,208 @@ local GuideMenu = ZGV.GuideMenu
 GuideMenu.Featured={}
 
 table.insert(GuideMenu.Featured,{
+title="Mists of Pandaria", group="mop",
+
+{"section", text=[[LEVELING]]},
+{"banner", image=ZGV.IMAGESDIR.."MoPLeveling",showcaseonly=true},
+
+	{"content", text=[[Create a New Playable Race and Class]]},
+	{"text", text=[[Choose a Pandaren to begin your adventures.]]},
+	{"columns",
+	{"item", text="**Pandaren (1-12)**", guide="Leveling Guides\\Starter Guides\\Pandaren (1-12)"},
+	}, --columnsend
+
+	{"content", text=[[Go to Pandaria zones and Level to 90]]},
+	{"text", text=[[Once you've reached level 85 you're ready to go to Pandaria zones.]]},
+	{"columns",
+	{"item", text="**The Jade Forest (85-86)**", guide="Leveling Guides\\Pandaria (85-90)\\The Jade Forest (85-86)"},
+	{"item", text="**Valley of the Four Winds (86-87)**", guide="Leveling Guides\\Pandaria (85-90)\\Valley of the Four Winds (86-87)"},
+	{"item", text="**Krasarang Wilds (87)**", guide="Leveling Guides\\Pandaria (85-90)\\Krasarang Wilds (87)"},
+	{"item", text="**Kun-Lai Summit (87-88)**", guide="Leveling Guides\\Pandaria (85-90)\\Kun-Lai Summit (87-88)"},
+	{"item", text="**Townlong Steppes (88-89)**", guide="Leveling Guides\\Pandaria (85-90)\\Townlong Steppes (88-89)"},
+	{"item", text="**Dread Wastes (89-90)**", guide="Leveling Guides\\Pandaria (85-90)\\Dread Wastes (89-90)"},
+	}, --columnsend
+
+
+
+{"section", text=[[DUNGEONS]]},
+{"banner", image=ZGV.IMAGESDIR.."MoPDungeons",showcaseonly=true},
+
+	{"content", text=[[Dungeon Boss Strategy Guides]]},
+	{"text", text=[[These guides will walk you through defeating the bosses in Pandaria dungeons.]]},
+	{"columns",
+	{"item", text="**Gate of the Setting Sun**", guide="Dungeon Guides\\Pandaria Dungeons\\Gate of the Setting Sun"},
+	{"item", text="**Mogu'shan Palace**", guide="Dungeon Guides\\Pandaria Dungeons\\Mogu'shan Palace"},
+	{"item", text="**Scarlet Halls**", guide="Dungeon Guides\\Pandaria Dungeons\\Scarlet Halls (MOP)"},
+	{"item", text="**Scarlet Monastery**", guide="Dungeon Guides\\Pandaria Dungeons\\Scarlet Monastery (MOP)"},
+	{"item", text="**Scholomance (MOP)**", guide="Dungeon Guides\\Pandaria Dungeons\\Scholomance (MOP)"},
+	{"item", text="**Shado-Pan Monastery**", guide="Dungeon Guides\\Pandaria Dungeons\\Shado-Pan Monastery"},
+	{"item", text="**Siege of Niuzao Temple**", guide="Dungeon Guides\\Pandaria Dungeons\\Siege of Niuzao Temple"},
+	{"item", text="**Stormstout Brewery**", guide="Dungeon Guides\\Pandaria Dungeons\\Stormstout Brewery"},
+	{"item", text="**Temple of the Jade Serpent**", guide="Dungeon Guides\\Pandaria Dungeons\\Temple of the Jade Serpent"},
+	}, --columnsend
+
+	{"content", text=[[Raid Boss Strategy Guides]]},
+	{"text", text=[[These guides will walk you through defeating the bosses in Pandaria raids.]]},
+	{"columns",
+	{"item", text="**Heart of Fear**", guide="Dungeon Guides\\Pandaria Raids\\Heart of Fear"},
+	{"item", text="**Mogu'shan Vaults**", guide="Dungeon Guides\\Pandaria Raids\\Mogu'shan Vaults"},
+	{"item", text="**Terrace of Endless Spring**", guide="Dungeon Guides\\Pandaria Raids\\Terrace of Endless Spring"},
+	}, --columnsend
+
+
+
+{"section", text=[[SCENARIOS]]},
+{"banner", image=ZGV.IMAGESDIR.."MoPScenarios",showcaseonly=true},
+
+	{"content", text=[[Scenario Strategy Guides]]},
+	{"text", text=[[These guides will walk you through completing the objectives in Pandaria scenarios.]]},
+	{"columns",
+	{"item", text="**Arena of Annihilation**", guide="Dungeon Guides\\Pandaria Scenarios\\Arena of Annihilation"},
+	{"item", text="**A Brewing Storm**", guide="Dungeon Guides\\Pandaria Scenarios\\A Brewing Storm"},
+	{"item", text="**A Brewing Storm (Heroic)**", guide="Dungeon Guides\\Pandaria Scenarios\\A Brewing Storm (Heroic)"},
+	{"item", text="**Brewmoon Festival**", guide="Dungeon Guides\\Pandaria Scenarios\\Brewmoon Festival"},
+	{"item", text="**Crypt of Forgotten Kings**", guide="Dungeon Guides\\Pandaria Scenarios\\Crypt of Forgotten Kings"},
+	{"item", text="**Crypt of Forgotten Kings (Heroic)**", guide="Dungeon Guides\\Pandaria Scenarios\\Crypt of Forgotten Kings (Heroic)"},
+	{"item", text="**Greenstone Village**", guide="Dungeon Guides\\Pandaria Scenarios\\Greenstone Village"},
+	{"item", text="**Theramore's Fall**", guide="Dungeon Guides\\Pandaria Scenarios\\Theramore's Fall"},
+	{"item", text="**Unga Ingoo**", guide="Dungeon Guides\\Pandaria Scenarios\\Unga Ingoo"},
+	}, --columnsend
+
+{"section", text=[[DAILIES]]},
+{"banner", image=ZGV.IMAGESDIR.."MoPDailies",showcaseonly=true},
+
+	{"content", text=[[Daily Quest Guides]]},
+
+	{"item", text="**The Anglers Dailies**", guide="Daily Guides\\Mists of Pandaria Dailies\\The Anglers Dailies"},
+	{"item", text="**The August Celestials Dailies**", guide="Daily Guides\\Mists of Pandaria Dailies\\The August Celestials Dailies"},
+	{"item", text="**The Order of the Cloud Serpent Dailies**", guide="Daily Guides\\Mists of Pandaria Dailies\\The Order of the Cloud Serpent Dailies"},
+	{"item", text="**The Shado-Pan Dailies**", guide="Daily Guides\\Mists of Pandaria Dailies\\The Shado-Pan Dailies"},
+	{"item", text="**The Tillers Dailies**", guide="Daily Guides\\Mists of Pandaria Dailies\\The Tillers Dailies"},
+	{"item", text="**The Golden Lotus Dailies**", guide="Daily Guides\\Mists of Pandaria Dailies\\The Golden Lotus Dailies"},
+	{"item", text="**The Klaxxi Dailies**", guide="Daily Guides\\Mists of Pandaria Dailies\\The Klaxxi Dailies"},
+
+
+{"section", text=[[PROFESSIONS]]},
+{"banner", image=ZGV.IMAGESDIR.."MoPProfessions",showcaseonly=true},
+
+	{"content", text=[[Profession Leveling Guides]]},
+	{"text", text=[[These guides will walk you through leveling up your professions to the new max skill level of 600.]]},
+	{"columns",
+	--{"item", text=[[**Alchemy (1-600)**]], guide="Profession Guides\\Alchemy\\Leveling Guides\\Alchemy (1-600)"},
+	--{"item", text=[[**Archaeology 1-600**]], guide="Profession Guides\\Archaeology\\Leveling Guides\\Archaeology (1-600)"},
+	--{"item", text=[[**Blacksmithing (1-600)**]], guide="Profession Guides\\Blacksmithing\\Leveling Guides\\Blacksmithing (1-600)"},
+	{"item", text=[[**Cooking (1-600)**]], guide="Profession Guides\\Cooking\\Leveling Guides\\Cooking (1-600)"},
+	--{"item", text=[[**Cooking + Fishing (1-600)**]], guide="Profession Guides\\Cooking\\Leveling Guides\\Cooking + Fishing (1-600)"},
+	{"item", text=[[**Enchanting (1-600)**]], guide="Profession Guides\\Enchanting\\Leveling Guides\\Enchanting (1-600)"},
+	--{"item", text=[[**Engineering (1-600)**]], guide="Profession Guides\\Engineering\\Leveling Guides\\Engineering (1-600)"},
+	--{"item", text=[[**First Aid (1-600)**]], guide="Profession Guides\\First Aid\\Leveling Guides\\First Aid (1-600)"},
+	--{"item", text=[[**Fishing (1-600)**]], guide="Profession Guides\\Fishing\\Leveling Guides\\Fishing (1-600)"},
+	--{"item", text=[[**Herbalism (1-600)**]], guide="Profession Guides\\Herbalism\\Leveling Guides\\Herbalism (1-600)"},
+	--{"item", text=[[**Inscription (1-600)**]], guide="Profession Guides\\Inscription\\Leveling Guides\\Inscription (1-600)"},
+	--{"item", text=[[**Jewelcrafting (1-600)**]], guide="Profession Guides\\Jewelcrafting\\Leveling Guides\\Jewelcrafting (1-600)"},
+	--{"item", text=[[**Leatherworking (1-600)**]], guide="Profession Guides\\Leatherworking\\Leveling Guides\\Leatherworking (1-600)"},
+	--{"item", text=[[**Mining (1-600)**]], guide="Profession Guides\\Mining\\Leveling Guides\\Mining (1-600)"},
+	--{"item", text=[[**Skinning (1-600)**]], guide="Profession Guides\\Skinning\\Leveling Guides\\Skinning (1-600)"},
+	--{"item", text=[[**Tailoring (1-600)**]], guide="Profession Guides\\Tailoring\\Leveling Guides\\Tailoring (1-600)"},
+	}, --columnsend
+
+	--{"content", text=[[Fishing Farming Guides]]},
+	--{"columns",
+	--{"item", text=[[**Emperor Salmon**]], guide="Profession Guides\\Fishing\\Farming Guides\\Emperor Salmon"},
+	--{"item", text=[[**Giant Mantis Shrimp**]], guide="Profession Guides\\Fishing\\Farming Guides\\Giant Mantis Shrimp"},
+	--{"item", text=[[**Jade Lungfish**]], guide="Profession Guides\\Fishing\\Farming Guides\\Jade Lungfish"},
+	--{"item", text=[[**Jewel Danio**]], guide="Profession Guides\\Fishing\\Farming Guides\\Jewel Danio"},
+	--{"item", text=[[**Krasarang Paddlefish**]], guide="Profession Guides\\Fishing\\Farming Guides\\Krasarang Paddlefish"},
+	--{"item", text=[[**Redbelly Mandarin**]], guide="Profession Guides\\Fishing\\Farming Guides\\Redbelly Mandarin"},
+	--{"item", text=[[**Reef Octopus**]], guide="Profession Guides\\Fishing\\Farming Guides\\Reef Octopus"},
+	--}, --columnsend
+
+	--{"content", text=[[Herbalism Farming Guides]]},
+	--{"columns",
+	--{"item", text=[[**Green Tea Leaf**]], guide="Profession Guides\\Herbalism\\Farming Guides\\Green Tea Leaf"},
+	--{"item", text=[[**Rain Poppy**]], guide="Profession Guides\\Herbalism\\Farming Guides\\Rain Poppy"},
+	--{"item", text=[[**Silkweed**]], guide="Profession Guides\\Herbalism\\Farming Guides\\Silkweed"},
+	--{"item", text=[[**Snow Lily**]], guide="Profession Guides\\Herbalism\\Farming Guides\\Snow Lily"},
+	--{"item", text=[[**Fool's Cap**]], guide="Profession Guides\\Herbalism\\Farming Guides\\Fool's Cap"},
+	--}, --columnsend
+
+	--{"content", text=[[Mining Farming Guides]]},
+	--{"columns",
+	--{"item", text=[[**Ghost Iron Ore**]], guide="Profession Guides\\Mining\\Farming Guides\\Ghost Iron Ore"},
+	--}, --columnsend
+
+	--{"content", text=[[Skinning Farming Guides]]},
+	--{"columns",
+	--{"item", text=[[**Mist-Touched Leather**]], guide="Profession Guides\\Skinning\\Farming Guides\\Mist-Touched Leather"},
+	--{"item", text=[[**Sha-Touched Leather**]], guide="Profession Guides\\Skinning\\Farming Guides\\Sha-Touched Leather"},
+	--{"item", text=[[**Prismatic Scale**]], guide="Profession Guides\\Skinning\\Farming Guides\\Prismatic Scale"},
+	--}, --columnsend
+
+	--{"content", text=[[Cooking Farming Guides]]},
+	--{"columns",
+	--{"item", text=[[**Mushan Ribs**]], guide="Profession Guides\\Cooking\\Farming Guides\\Mushan Ribs"},
+	--{"item", text=[[**Raw Crab Meat**]], guide="Profession Guides\\Cooking\\Farming Guides\\Raw Crab Meat"},
+	--{"item", text=[[**Raw Crocolisk Belly**]], guide="Profession Guides\\Cooking\\Farming Guides\\Raw Crocolisk Belly"},
+	--{"item", text=[[**Raw Tiger Steak**]], guide="Profession Guides\\Cooking\\Farming Guides\\Raw Tiger Steak"},
+	--{"item", text=[[**Raw Turtle Meat**]], guide="Profession Guides\\Cooking\\Farming Guides\\Raw Turtle Meat"},
+	--{"item", text=[[**Wildfowl Breast**]], guide="Profession Guides\\Cooking\\Farming Guides\\Wildfowl Breast"},
+	--{"item", text=[[**Green Cabbage**]], guide="Profession Guides\\Cooking\\Farming Guides\\Green Cabbage"},
+	--{"item", text=[[**Jade Squash**]], guide="Profession Guides\\Cooking\\Farming Guides\\Jade Squash"},
+	--{"item", text=[[**Juicycrunch Carrot**]], guide="Profession Guides\\Cooking\\Farming Guides\\Juicycrunch Carrot"},
+	--{"item", text=[[**Mogu Pumpkin**]], guide="Profession Guides\\Cooking\\Farming Guides\\Mogu Pumpkin"},
+	--{"item", text=[[**Pink Turnip**]], guide="Profession Guides\\Cooking\\Farming Guides\\Pink Turnip"},
+	--{"item", text=[[**Red Blossom Leek**]], guide="Profession Guides\\Cooking\\Farming Guides\\Red Blossom Leek"},
+	--{"item", text=[[**Scallions**]], guide="Profession Guides\\Cooking\\Farming Guides\\Scallions"},
+	--{"item", text=[[**Striped Melon**]], guide="Profession Guides\\Cooking\\Farming Guides\\Striped Melon"},
+	--{"item", text=[[**White Turnip**]], guide="Profession Guides\\Cooking\\Farming Guides\\White Turnip"},
+	--{"item", text=[[**Witchberries**]], guide="Profession Guides\\Cooking\\Farming Guides\\Witchberries"},
+	--}, --columnsend
+
+	--{"content", text=[[Elements Farming Guides]]},
+	--{"columns",
+	--{"item", text=[[**Volatile Air**]], guide="Professions\\Elements\\Farming Guides\\Spirit of Harmony"},
+	--}, --columnsend
+
+	--{"content", text=[[Tailoring Farming Guides]]},
+	--{"columns",
+	--{"item", text=[[**Windwool Cloth**]], guide="Profession Guides\\Tailoring\\Farming Guides\\Windwool Cloth"},
+	--}, --columnsend
+
+{"section", text=[[PETSMOUNTS]]},
+	{"banner", image=ZGV.IMAGESDIR.."MoPPetsMounts",showcaseonly=true},
+
+	{"guideslist", content=[[Ground Mounts]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, mounts="*", mounttype={"Ground"}},columns=4},
+	{"guideslist", content=[[Flying Mounts]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, mounts="*", mounttype={"Flying"}},columns=4},
+	{"guideslist", content=[[Aquatic Mounts]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, mounts="*", mounttype={"Aquatic"}},columns=4},
+
+	{"guideslist", content=[[Battle Pets - Source: Achievement]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, source="Achievement"},columns=4},
+	{"guideslist", content=[[Battle Pets - Source: Black Market]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, source="BlackMarket"},columns=4},
+	{"guideslist", content=[[Battle Pets - Source: Drop]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, source="Drop"},columns=4},
+	{"guideslist", content=[[Battle Pets - Source: In-Game Shop]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, source="In-GameShop"},columns=4},
+	{"guideslist", content=[[Battle Pets - Source: Pet Battles]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, source="PetBattle"},columns=4},
+	{"guideslist", content=[[Battle Pets - Source: Professions]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, source="Profession"},columns=4},
+	{"guideslist", content=[[Battle Pets - Source: Promotions]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, source="Promotion"},columns=4},
+	{"guideslist", content=[[Battle Pets - Source: Quest]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, source="Quest"},columns=4},
+	{"guideslist", content=[[Battle Pets - Source: Trading Card Game]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, source="TradingCardGame"},columns=4},
+	{"guideslist", content=[[Battle Pets - Source: Unknown]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, source="unknown"},columns=4},
+	{"guideslist", content=[[Battle Pets - Source: Vendor]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, source="Vendor"},columns=4},
+	{"guideslist", content=[[Battle Pets - Source: World Events]],filters={patch={"50100","50200","50300","50400","51000","52000","53000","54000"}, source="WorldEvent"},columns=4},
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+table.insert(GuideMenu.Featured,{
 title="Cataclysm", group="cata",
 
 {"section", text=[[LEVELING]]},

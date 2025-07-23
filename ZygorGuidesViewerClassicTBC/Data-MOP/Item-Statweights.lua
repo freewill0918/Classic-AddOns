@@ -36,16 +36,16 @@ ItemScore.rules = {
 
 		},
 		[3] = {
-			name = "Restoration",
-			itemtypes={ DAGGER=1,MACE=1,MISCWEAP=1, TH_STAFF=1, RELIC=1, LEATHER=1 },
-			stats = { INTELLECT=6.34, HASTE=2.35, SPELL_POWER=4.88, HIT=0.54, MASTERY=2.97, CRIT=3.56 },
-			caps = { HIT=15 },
-		},
-		[4] = {
 			name = "Guardian",
 			itemtypes={ TH_POLE=1,TH_STAFF=1,TH_MACE=1, RELIC=1, LEATHER=1 },
 			stats = { DPS=8.57, STAMINA=2.17, MASTERY=2.48, STRENGTH=5.57, HASTE=1.51, PARRY=1.56, DODGE=1.04, HIT=1.50, EXPERTISE=0.41, ATTACK_POWER=2.12 },
 			caps = { HIT=7.5, EXPERTISE=7.5 },
+		},
+		[4] = {
+			name = "Restoration",
+			itemtypes={ DAGGER=1,MACE=1,MISCWEAP=1, TH_STAFF=1, RELIC=1, LEATHER=1 },
+			stats = { INTELLECT=6.34, HASTE=2.35, SPELL_POWER=4.88, HIT=0.54, MASTERY=2.97, CRIT=3.56 },
+			caps = { HIT=15 },
 		},
 	},
 	["HUNTER"] = {

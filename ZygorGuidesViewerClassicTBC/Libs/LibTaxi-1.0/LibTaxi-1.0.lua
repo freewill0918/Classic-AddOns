@@ -897,7 +897,7 @@ do
 	end
 
 	function Lib:ImportTaxiDataFromGame()
-		if not (Lib.IsRetail or Lib.IsClassicMop) then return end
+		if not (Lib.IsRetail or Lib.IsClassicMOP) then return end
 		local LOCALE = GetLocale()
 		Lib.master.translation = Lib.master.translation or {}
 		Lib.master.translation[LOCALE] = Lib.master.translation[LOCALE] or {}

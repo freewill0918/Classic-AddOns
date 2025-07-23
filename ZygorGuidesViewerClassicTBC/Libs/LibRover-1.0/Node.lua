@@ -1,8 +1,19 @@
 -- GLOBAL DEBUG_DOLINKAGE,LibRover,LibRover_Node,ZygorGuidesViewer
 
+---@class LibRover_Node
+---@field type string
+---@field m number
+---@field x number
+---@field y	number
+---@field f number?
+---@field n table
+---@field n_iftype table
+---@field border table|"multi"
+---@field borders table?
+---@field bordermeta table?
+---@field arrivaltoy number?
+---@field arrivaltoytext string?
 LibRover_Node = {}
-
-local Node=LibRover_Node
 
 local
 	setmetatable,ipairs,pairs,table,tremove,next,type,assert,error,tonumber,unpack
@@ -13,10 +24,12 @@ local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
 -- IMPORTANT OBSERVATION.
 -- Nodes are (almost) ALWAYS separated by "walk"/"fly"
 
-local Node_meta={__index=Node}
+local Node_meta={__index=LibRover_Node}
 local Node_n_meta={__mode="k"}
-function Node:New(data)
-	local new=data or {}
+---@return LibRover_Node
+function LibRover_Node:New(data)
+	---@type LibRover_Node
+	local new=(data or {})
 	setmetatable(new,Node_meta)
 	new.n={}  -- prepare neighbours
 	new.n_iftype={}
@@ -50,7 +63,7 @@ end
 --]]
 
 local Node_n_itemmeta = {__tostring=function(t) return ("%s %s -> %s"):format(t[2] and t[2].cost or "cost?", t[2] and t[2].mode or "mode?",t[1] and t[1]:tostring() or "node?") end}
-function Node:AddNeigh(node,meta)
+function LibRover_Node:AddNeigh(node,meta)
 	self.n[#self.n+1]=setmetatable({node,meta},Node_n_itemmeta)
 	assert(node.type,"Node "..(node.num or "<no num>").." has no type? wtf?")
 	self.n_iftype[node.type]=1
@@ -69,7 +82,7 @@ function Node:RemoveNeigh(node_or_type,type2,type3)
 end
 --]]
 
-function Node:RemoveNeighType(type1,type2,type3)
+function LibRover_Node:RemoveNeighType(type1,type2,type3)
 	if not self.n_iftype[type1] and not self.n_iftype[type2] and not self.n_iftype[type3] then return end
 	local neighs=self.n
 	local i=1
@@ -84,7 +97,7 @@ function Node:RemoveNeighType(type1,type2,type3)
 	if type3 then self.n_iftype[type3]=nil end
 end
 
-function Node:IterNeighs()  -- no, no. Nice but wasteful.
+function LibRover_Node:IterNeighs()  -- no, no. Nice but wasteful.
 	local k=0
 	local n=self.n
 	return function()
@@ -94,7 +107,7 @@ function Node:IterNeighs()  -- no, no. Nice but wasteful.
 	end
 end
 
-function Node:GetNeigh(node,num)
+function LibRover_Node:GetNeigh(node,num)
 	if type(node)=="number" then node=Lib.nodes.all[node] end
 	local mynum=0
 	for n,meta in self:IterNeighs() do
@@ -119,7 +132,7 @@ local flightinzone
 -- node.c = cont id
 
 -- This is called about 400000 times during Travel startup.
-function Node:DoLinkage(n2,dryrun)
+function LibRover_Node:DoLinkage(n2,dryrun)
 	local n1=self
 
 	local D_DL = DEBUG_DOLINKAGE
@@ -219,7 +232,7 @@ end
 --DNL=DoNodeLinkage  --global
 
 
-function Node:GetActionTitle(prevnode,nextnode)
+function LibRover_Node:GetActionTitle(prevnode,nextnode)
 	--if self.title_a and prevnode=self and nextnode=self.border then return self.title_a end
 	--if self.title_b and prevnode=self and nextnode=self.border then return self.title_a end
 	local atitle = self.actiontitle
@@ -227,14 +240,14 @@ function Node:GetActionTitle(prevnode,nextnode)
 	if atitle then return Lib.L[atitle] end
 end
 
-function Node:GetActionIcon(prevnode,nextnode)
+function LibRover_Node:GetActionIcon(prevnode,nextnode)
 	local icon = self.actionicon
 	if type(icon)=="function" then icon=icon(self,prevnode,nextnode) end
 	return icon
 end
 
 
-function Node:GetTextAsItinerary()
+function LibRover_Node:GetTextAsItinerary()
 	if self.waypoint and self.waypoint.goal then return self.waypoint:GetTitle() end  -- DISPLAY WAYPOINT TEXT AT FINAL NODE when it's goal-bound.
 	return self.text  -- baked itinerary form
 		or self:GetText()
@@ -253,7 +266,7 @@ setmetatable(taxitypes,{__index=function(i) return "%s flight point" end })
 
 -- Run as node:GetText().
 -- Additional params allow for contextualization - give a node its predecessor and successor, and get proper "ship from..." display.
-function Node:GetText(prevnode,nextnode,dir)
+function LibRover_Node:GetText(prevnode,nextnode,dir)
 	local MapName = Lib.MapName
 	local prevstep,nextstep
 	if prevnode and prevnode.node then prevstep,prevnode = prevnode,prevnode.node end
@@ -325,7 +338,7 @@ local modecolors = {
 	ship = "|cffaabbcc",
 	["?"] = "|cff888888",
 }
-function Node:IsTaxiKnown()
+function LibRover_Node:IsTaxiKnown()
 	if self.known_fun then self.known=not not self.known_fun()  return self.known,(self.known and "|cff00ff00known (func)|r" or "|cffff0000unavailable (func)|r"),self.known  end
 
 	    if self.known==true then return true,"|cff00ff00known|r",true
@@ -339,7 +352,7 @@ function Node:IsTaxiKnown()
 	end
 end
 
-function Node:tostring(withneighs)
+function LibRover_Node:tostring(withneighs)
 	local stype=self.type or "type?"
 	if self.type=="taxi" then
 		if self.taxioperator then stype=stype.."-"..self.taxioperator end
@@ -380,7 +393,7 @@ function Node:tostring(withneighs)
 end
 
 local atan2=atan2
-function Node:GetAngleTo(node2)
+function LibRover_Node:GetAngleTo(node2)
 	local dist,xd,yd = Lib_GetDist(self,node2)
 	if not xd then return end
 	local dir = atan2(xd, -yd)
@@ -392,7 +405,7 @@ local ZGV_Pointer_phasedMaps
 local Lib_data_basenodes_FloorCrossings
 local Lib_greenborders
 local neighbourhood_cache
-function Node:CanWalkTo(dest,debug)
+function LibRover_Node:CanWalkTo(dest,debug)
 	--if type(dest)=="number" then dest=Lib.nodes.all[dest] end
 
 	local n1=self
@@ -483,7 +496,7 @@ local MAPENUM_VALE_NEW = 1530
 
 local ZoneIsOutdoor
 
-function Node:CanFlyTo(dest,debug)
+function LibRover_Node:CanFlyTo(dest,debug)
 	local m=self.m
 	local c=self.c
 	local Lib=Lib
@@ -582,14 +595,14 @@ function Node:CanFlyTo(dest,debug)
 	return true
 end
 
-function Node:CanConnectTo(dest)
+function LibRover_Node:CanConnectTo(dest)
 	if type(dest)=="number" then dest=Lib.nodes.all[dest] end
 	for neigh,neighmeta in self:IterNeighs() do
 		if neigh==dest then return neighmeta end
 	end
 end
 
-function Node:AssignRegion(regionobj)
+function LibRover_Node:AssignRegion(regionobj)
 	-- handle {indoors}
 	if type(self.indoors)=="string"
 	and self.type~="start" -- don't add new regions for every subzone the player walks into...
@@ -615,11 +628,11 @@ function Node:AssignRegion(regionobj)
 	end
 end
 
-function Node:AssignSpecialMap()
+function LibRover_Node:AssignSpecialMap()
 	Lib.SpecialMapNodeData:Assign(self)
 end
 
-function Node:Parse(text)
+function LibRover_Node:Parse(text)
 	local _
 	if not text then return end
 	local dat
@@ -672,7 +685,7 @@ function Node:Parse(text)
 	return m,tonumber(f) or 0,x and tonumber(x)/100,y and tonumber(y)/100,id,dat
 end
 
-function Node:GetDebugNeighs()
+function LibRover_Node:GetDebugNeighs()
 	local t={}
 	for neigh,meta in self:IterNeighs() do t[meta]=neigh end
 	return t
@@ -680,7 +693,7 @@ end
 
 
 
-function Node:InterfaceWithLib(lib)
+function LibRover_Node:InterfaceWithLib(lib)
 	Lib=lib
 	Lib_GetDist = Lib.GetDist
 	Lib_IsSegmentWalled=Lib.IsSegmentWalled
@@ -690,13 +703,15 @@ function Node:InterfaceWithLib(lib)
 	Lib_data_basenodes_FloorCrossings=Lib.data.basenodes.FloorCrossings
 	ZoneIsOutdoor=LibRover.ZoneIsOutdoor
 end
-function Node:CacheMaxSpeeds()
+function LibRover_Node:CacheMaxSpeeds()
 	flightinzone={}
 	for z,zd in pairs(Lib.maxspeedinzone) do flightinzone[z] = zd[3] end
 end
-function Node:NeighbourhoodCache_Localize()
+function LibRover_Node:NeighbourhoodCache_Localize()
 	neighbourhood_cache = Lib.data.neighbourhood
 end
-function Node:NeighbourhoodCache_Kill()
+function LibRover_Node:NeighbourhoodCache_Kill()
 	neighbourhood_cache = nil
 end
+
+return LibRover_Node

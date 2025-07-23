@@ -3,7 +3,6 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Alliance" then return end
 if ZGV:DoMutex("DungeonA") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
-ZGV.BETASTART()
 ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Classic\\Wailing Caverns (15-25)",{
 cataready=true,
 image=ZGV.IMAGESDIR.."Wailing Caverns",
@@ -5080,7 +5079,7 @@ kill Araj the Summoner##1852
 click Araj's Phylactery##177241
 collect Araj's Scarab##14610 |q 5803/1 |goto Western Plaguelands 45.27,69.21
 step
-talk talk 11056
+talk talk Alchemist Arbington##11056
 turnin Araj's Scarab##5803 |goto Western Plaguelands 42.67,83.77
 step
 talk Commander Ashlam Valorfist##10838
@@ -16229,7 +16228,6 @@ kill Ragnaros##52409 |goto Firelands/1 50.70,15.30
 |tip Living Meteors rains meteors down on targeted players. Damaging the meteors will cause it to roll away and change its path. Anyone struck by one of these will be killed.
 confirm
 ]])
-ZGV.BETAEND()
 ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Cataclysm Raids\\Dragon Soul",{
 cataready=true,
 mapid=409,

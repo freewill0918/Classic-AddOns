@@ -841,10 +841,10 @@ collect 10 Terrorfish##45904 |q 13834/1 |goto Wintergrasp/0 79.87,41.80
 |only if haveq(13834) or completedq(13834)
 step
 Enter the tunnel |goto Dalaran/1 35.00,45.35 < 10 |walk
-Run down the ramp |goto Dalaran/0 34.20,43.14 < 10 |walk
+Run down the ramp |goto Dalaran/1 34.20,43.14 < 10 |walk
 cast Fishing##7620
 |tip A higher Fishing skill increases the chance of a drop.
-collect 1 Corroded Jewelry##45903 |q 13832/1 |goto Dalaran/0 44.38,66.57
+collect 1 Corroded Jewelry##45903 |q 13832/1 |goto Dalaran/1 44.38,66.57
 |only if haveq(13832) or completedq(13832)
 step
 cast Fishing##7620
@@ -961,7 +961,7 @@ step
 Enter the tunnel |goto Dalaran/1 60.20,47.64 < 7 |walk
 click Infused Mushroom##192818+
 |tip They look like grouped up blue mushrooms on the ground around this area.
-collect 4 Infused Mushroom##43100 |q 13112 |goto Dalaran/0 49.90,46.15
+collect 4 Infused Mushroom##43100 |q 13112 |goto Dalaran/1 49.90,46.15
 |only if haveq(13112) or completedq(13112)
 step
 cast Basic Campfire##818
@@ -1043,7 +1043,7 @@ turnin Mustard Dogs!##13116 |goto Dalaran/1 68.54,41.99
 step
 Enter the tunnel |goto Dalaran/1 35.13,45.23 < 5 |walk
 talk Ajay Green##29532
-turnin Sewer Stew##13114 |goto Dalaran/0 35.44,57.62
+turnin Sewer Stew##13114 |goto Dalaran/1 35.44,57.62
 |only if haveq(13114) or completedq(13114)
 step
 You have completed all available Dalaran Cooking dailies

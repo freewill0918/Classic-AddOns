@@ -245,14 +245,14 @@ label "darkmoon"
 This pet requires Darkmoon Island to be accessible.
 |confirm
 step
-|goto Darkmoon Island,56.00,52.90 |n
-Follow the Path to the Darkmoon Faire |goto Darkmoon Island,56.00,52.90,1 |noway |c
+|goto Darkmoon Island/0,56.00,52.90 |n
+Follow the Path to the Darkmoon Faire |goto Darkmoon Island/0,56.00,52.90,1 |noway |c
 step
 Complete daily quests on Darkmoon Island until you have 90 Darkmoon Prize Tickets
 earn 90 Darkmoon Prize Ticket##515
 step
 talk Lhara##14846
-buy 1 Darkmoon Cub##74981 |goto Darkmoon Island,48.20,69.60
+buy 1 Darkmoon Cub##74981 |goto Darkmoon Island/0,48.20,69.60
 step
 learnpet Darkmoon Cub##56031 |use Darkmoon Cub##74981
 |next "menu" |only if not achieved(8397)
@@ -4121,8 +4121,8 @@ Defeat Bordin Steadyfist |q 31973/1 |goto Deepholm 49.90,57.00
 |only if completedq(31970)
 step
 goto Deepholm 49.90,57.00
-.talk 66815
-..turnin 31973
+.talk Bordin Steadyfist##66815
+..turnin Bordin Steadyfist##31973
 |achieve 8348/14
 |only if completedq(31970)
 step
@@ -4336,8 +4336,8 @@ It uses level 25 pets.
 The pets are classified as Elemental, Critter and a Beast.
 step
 goto Kun-Lai Summit 64.80,93.60
-.talk 68465
-..turnin 32441
+.talk Thundering Pandaren Spirit##68465
+..turnin Thundering Pandaren Spirit##32441
 |achieve 8348/26
 step
 talk Courageous Yon##66738
@@ -7831,7 +7831,7 @@ description="This guide will walk you through completing the \"Upjade Complete\"
 step
 To earn this achievement, you will need to _complete the 12 storylines in the Jade Forest_
 |tip Refer to our leveling guides to achieve this.
-Click here to load the "Jade Forest (85-86)" guide |confirm |next "Leveling Guides\\Pandaria (10-70)\\The Jade Forest (10-70)"
+Click here to load the "Jade Forest (85-86)" guide |confirm |next "Leveling Guides\\Pandaria (85-90)\\The Jade Forest (85-86)"
 Here is a look at your current progress:
 The Remains of Hellscream's Flat |achieve 6534/1
 First Contact |achieve 6534/2
@@ -7945,7 +7945,7 @@ step
 Use the Pandaria Leveling Guides to complete Loremaster:
 |tip The Leveling guides cover all required questlines for Loremaster.
 |tip Click one of the lines below to load the Leveling guide for that zone.
-Jade Forest Quests |achieve 6534 |loadguide "Leveling Guides\\Pandaria (10-70)\\The Jade Forest (10-70)"
+Jade Forest Quests |achieve 6534 |loadguide "Leveling Guides\\Pandaria (85-90)\\The Jade Forest (85-86)"
 Valley of the Four Winds Quests |achieve 6301 |loadguide "Leveling Guides\\Pandaria (10-70)\\Valley of the Four Winds (15-70)"
 Townlong Steppes Quests |achieve 6539 |loadguide "Leveling Guides\\Pandaria (10-70)\\Townlong Steppes (25-70)"
 Dread Wastes Quests |achieve 6540 |loadguide "Leveling Guides\\Pandaria (10-70)\\Dread Wastes (30-70)"

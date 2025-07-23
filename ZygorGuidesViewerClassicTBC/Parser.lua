@@ -56,11 +56,12 @@ local classspecs=
 	["EVOKER"]		= { "Devastation", "Preservation", "Augmentation", nil, "Starter" },
 	["ADVENTURER"]		= { nil, nil, nil, nil, "Starter" },
 }
-if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
-	classspecs["HUNTER"]		= { "BeastMastery","Marksmanship","Survival" }
+if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA then
 	classspecs["ROGUE"]		= { "Assassination","Combat","Subtlety" }
 	classspecs["DRUID"]		= { "Balance","Feral","Restoration" }
-	classspecs["DEMONHUNTER"]	= { "_DH1","_DH2","_DH3" }
+end
+if ZGV.IsClassicMOP then
+	classspecs["ROGUE"]		= { "Assassination","Combat","Subtlety" }
 end
 
 Parser.classspecs = classspecs
@@ -227,7 +228,7 @@ local function ParseMapXYDist(text,insanefloor,returnmany)
 	end
 end
 Parser.ParseMapXYDist=ParseMapXYDist
-
+Parser.FakeParseMapXYDist=function(f) ParseMapXYDist=f end
 
 -- cache map IDs. Testing.
 function ZGV:DumpMapIDsByName()
@@ -484,9 +485,11 @@ local ConditionEnv = {
 		if ZGV.db.char.fakelevel and ZGV.db.char.fakelevel>0 then self.level=ZGV.db.char.fakelevel end
 		self.intlevel = floor(self.level)
 		self.walking = self.iswalking() or ZGV.db.profile.nohidegotosinflight
-		if ZGV.IsRetail then
+		if ZGV.IsRetail or ZGV.IsClassicMOP then
+			local GetSpecFunc = GetSpecialization or (C_SpecializationInfo and C_SpecializationInfo.GetSpecialization)
+
 			for si,sp in ipairs(classspecs[select(2,UnitClass("player"))]) do
-				self[sp] = (GetSpecialization()==si)
+				self[sp] = (GetSpecFunc()==si)
 			end
 		end
 	end,

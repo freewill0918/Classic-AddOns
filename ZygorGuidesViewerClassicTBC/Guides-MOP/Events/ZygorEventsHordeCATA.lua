@@ -449,7 +449,7 @@ step
 talk Brewfest Spy##26719
 |tip Inside the dungeon to the right of the entrance, a Mole Machine console will take you to the bar.
 |tip The Brewfewst Spy is located in the bar.
-accept Insult Coren Direbrew##12062 |goto Blackrock Depths/0 0.00,0.00 |or
+accept Insult Coren Direbrew##12062 |goto Blackrock Depths/1 0.00,0.00 |or
 '|complete achieved(295) |or
 step
 talk Coren Direbrew##23872
@@ -3156,7 +3156,7 @@ click Candy Bucket##208144
 |tip It's in the side room on the left.
 '|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
 |tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
-accept Candy Bucket##13472 |goto Dalaran/0 38.20,59.61
+accept Candy Bucket##13472 |goto Dalaran/1 38.20,59.61
 step
 click Candy Bucket##208144
 |tip Inside the building.
@@ -3820,7 +3820,7 @@ kill Grand Magus Telestra##26731
 |tip Inside "The Nexus" dungeon.
 |tip It's the bottom portal.
 |tip The hat will only drop on Heroic difficulty.
-Collect a Winter Hat |complete itemcount(21525) >=1 or itemcount(21524) >= 1 |goto The Nexus/0 |or
+Collect a Winter Hat |complete itemcount(21525) >=1 or itemcount(21524) >= 1 |goto The Nexus/1 |or
 '|complete achieved(277) |or
 step
 collect Smokywood Pastures Sampler##17685 |or
@@ -4959,7 +4959,7 @@ use the Love Fool##22261
 |tip You can use your Love Fool anywhere inside the Culling of Stratholme Dungeon.
 clicknpc Love Fool##16111
 "Pity" the Love Fool |script DoEmote("PITY")
-Target and Pity the Love Fool in The Culling of Stratholme Dungeon |achieve 1704/1 |goto The Culling of Stratholme/0 0.00,0.00
+Target and Pity the Love Fool in The Culling of Stratholme Dungeon |achieve 1704/1 |goto The Culling of Stratholme/1 0.00,0.00
 step
 use the Love Fool##22261
 |tip You need to be inside the actual raid before you use this.
@@ -5391,7 +5391,7 @@ talk Elder Splitrock##15556
 |tip You may need to run this dungeon with a group.
 accept Splitrock the Elder##8635 |or
 |tip
-Click Here to Skip This Elder |confirm |goto Maraudon/0 0.00,0.00 |or
+Click Here to Skip This Elder |confirm |goto Maraudon/1 0.00,0.00 |or
 step
 talk Elder Grimtotem##15581
 accept Grimtotem the Elder##8679 |goto Feralas/0 76.71,37.89
@@ -5488,13 +5488,13 @@ step
 talk Elder Northal##30360
 accept Northal the Elder##13016 |goto Borean Tundra/0 33.80,34.36
 step
-map The Nexus/0
+map The Nexus/1
 path follow smart; loop off; ants curved; dist 20
 path	36.59,81.29	45.91,68.17	48.92,67.10	51.51,62.58	53.52,53.76
 path	64.56,53.33	64.99,61.08	55.38,64.73
 talk Elder Igasho##30536
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Igasho the Elder##13021 |goto The Nexus/0 55.38,64.73 |or
+accept Igasho the Elder##13021 |goto The Nexus/1 55.38,64.73 |or
 |tip
 Click Here to Skip This Elder |confirm |or
 step
@@ -5517,11 +5517,11 @@ map Azjol-Nerub/1
 path follow smart; loop off; ants curved; dist 20
 path	13.06,86.67	19.23,71.83	25.68,35.49	53.80,44.73	64.13,44.52
 path	74.03,44.30	82.50,44.52	88.95,44.73	80.78,40.22	70.59,33.55
-map Azjol-Nerub/0
+map Azjol-Nerub/1
 path	39.17,28.82	53.09,15.91	60.98,32.04	49.21,62.58
 talk Elder Nurgen##30533
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Nurgen the Elder##13022 |goto Azjol-Nerub/0 21.81,43.23 |or
+accept Nurgen the Elder##13022 |goto Azjol-Nerub/1 21.81,43.23 |or
 |tip
 Click Here to Skip This Elder |confirm |or
 step
@@ -5542,13 +5542,13 @@ talk Elder Stonebeard##30375
 |tip Inside the building.
 accept Stonebeard the Elder##13020 |goto The Storm Peaks/0 31.26,37.61
 step
-map Halls of Stone/0
+map Halls of Stone/1
 path follow smart; loop off; ants curved; dist 20
 path	36.16,36.13	45.05,35.92	50.22,45.16	48.49,53.33
 path	39.60,54.20	34.15,50.32	29.27,61.72
 talk Elder Yurauk##30535
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Yurauk the Elder##13066 |goto Halls of Stone/0 29.27,61.72 |or
+accept Yurauk the Elder##13066 |goto Halls of Stone/1 29.27,61.72 |or
 |tip
 Click Here to Skip This Elder |confirm |or
 step
@@ -5558,24 +5558,24 @@ step
 talk Elder Tauros##30369
 accept Tauros the Elder##13027 |goto Zul'Drak/0 58.91,55.97
 step
-map Drak'Tharon Keep/0
+map Drak'Tharon Keep/1
 path follow smart; loop off; ants curved; dist 20
 path	33.14,78.28	40.89,86.67	47.35,79.14	47.78,45.16	56.67,30.97
 path	56.82,18.28	67.00,17.85	63.42,31.83	68.01,40.00	67.72,54.63
 path	60.40,57.64	55.96,59.14	55.52,77.42	63.70,76.99	68.87,78.93
 talk Elder Kilias##30534
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Kilias the Elder##13023 |goto Drak'Tharon Keep/0 68.87,78.93 |or
+accept Kilias the Elder##13023 |goto Drak'Tharon Keep/1 68.87,78.93 |or
 |tip
 Click Here to Skip This Elder |confirm |or
 step
-map Gundrak/0
+map Gundrak/1
 path follow smart; loop off; ants curved; dist 20
 path	58.68,37.21	59.25,48.82	57.96,67.96	51.08,73.55	46.34,70.97
 path	45.34,61.08
 talk Elder Ohanzee##30537
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Ohanzee the Elder##13065 |goto Gundrak/0 45.34,61.08 |or
+accept Ohanzee the Elder##13065 |goto Gundrak/1 45.34,61.08 |or
 |tip
 Click Here to Skip This Elder |confirm |or
 step
@@ -5604,16 +5604,16 @@ map Utgarde Pinnacle/1
 path follow smart; loop off; ants curved; dist 20
 path	44.48,17.85	44.19,35.70	33.86,36.13	33.72,50.97	34.43,68.39
 path	39.60,68.60	39.31,76.35
-map Utgarde Pinnacle/0
+map Utgarde Pinnacle/1
 path	30.99,74.41	35.87,76.35	36.01,85.16	45.62,85.81
 map Utgarde Pinnacle/1
 path	52.51,73.98	51.65,83.66	60.55,83.87	60.83,69.89	68.15,69.25
 path	68.44,52.04	68.15,36.35	60.98,37.42	56.24,37.42
-map Utgarde Pinnacle/0
+map Utgarde Pinnacle/1
 path	48.49,23.01
 talk Elder Chogan'gada##30538
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Chogan'gada the Elder##13067 |goto Utgarde Pinnacle/0 48.71,23.12 |or
+accept Chogan'gada the Elder##13067 |goto Utgarde Pinnacle/1 48.71,23.12 |or
 |tip
 Click Here to Skip This Elder |confirm |or
 step
@@ -5622,48 +5622,48 @@ talk Elder Bluewolf##30368
 |tip Your faction must control Wintergrasp to reach this Elder.
 accept Bluewolf the Elder##13026 |goto Wintergrasp/0 49.03,13.94 |or
 step
-map The Nexus/0
+map The Nexus/1
 path follow smart; loop off; ants curved; dist 20
 path	36.59,81.29	45.91,68.17	48.92,67.10	51.51,62.58	53.52,53.76
 path	64.56,53.33	64.99,61.08	55.38,64.73
 talk Elder Igasho##30536
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Igasho the Elder##13021 |goto The Nexus/0 55.38,64.73
+accept Igasho the Elder##13021 |goto The Nexus/1 55.38,64.73
 step
 map Azjol-Nerub/1
 path follow smart; loop off; ants curved; dist 20
 path	13.06,86.67	19.23,71.83	25.68,35.49	53.80,44.73	64.13,44.52
 path	74.03,44.30	82.50,44.52	88.95,44.73	80.78,40.22	70.59,33.55
-map Azjol-Nerub/0
+map Azjol-Nerub/1
 path	39.17,28.82	53.09,15.91	60.98,32.04	49.21,62.58
 talk Elder Nurgen##30533
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Nurgen the Elder##13022 |goto Azjol-Nerub/0 21.81,43.23
+accept Nurgen the Elder##13022 |goto Azjol-Nerub/1 21.81,43.23
 step
-map Drak'Tharon Keep/0
+map Drak'Tharon Keep/1
 path follow smart; loop off; ants curved; dist 20
 path	33.14,78.28	40.89,86.67	47.35,79.14	47.78,45.16	56.67,30.97
 path	56.82,18.28	67.00,17.85	63.42,31.83	68.01,40.00	67.72,54.63
 path	60.40,57.64	55.96,59.14	55.52,77.42	63.70,76.99	68.87,78.93
 talk Elder Kilias##30534
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Kilias the Elder##13023 |goto Drak'Tharon Keep/0 68.87,78.93
+accept Kilias the Elder##13023 |goto Drak'Tharon Keep/1 68.87,78.93
 step
-map Halls of Stone/0
+map Halls of Stone/1
 path follow smart; loop off; ants curved; dist 20
 path	36.16,36.13	45.05,35.92	50.22,45.16	48.49,53.33
 path	39.60,54.20	34.15,50.32	29.27,61.72
 talk Elder Yurauk##30535
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Yurauk the Elder##13066 |goto Halls of Stone/0 29.27,61.72
+accept Yurauk the Elder##13066 |goto Halls of Stone/1 29.27,61.72
 step
-map Gundrak/0
+map Gundrak/1
 path follow smart; loop off; ants curved; dist 20
 path	58.68,37.21	59.25,48.82	57.96,67.96	51.08,73.55	46.34,70.97
 path	45.34,61.08
 talk Elder Ohanzee##30537
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Ohanzee the Elder##13065 |goto Gundrak/0 45.34,61.08
+accept Ohanzee the Elder##13065 |goto Gundrak/1 45.34,61.08
 step
 map Utgarde Keep/1
 path follow smart; loop off; ants curved; dist 20
@@ -5679,16 +5679,16 @@ map Utgarde Pinnacle/1
 path follow smart; loop off; ants curved; dist 20
 path	44.48,17.85	44.19,35.70	33.86,36.13	33.72,50.97	34.43,68.39
 path	39.60,68.60	39.31,76.35
-map Utgarde Pinnacle/0
+map Utgarde Pinnacle/1
 path	30.99,74.41	35.87,76.35	36.01,85.16	45.62,85.81
 map Utgarde Pinnacle/1
 path	52.51,73.98	51.65,83.66	60.55,83.87	60.83,69.89	68.15,69.25
 path	68.44,52.04	68.15,36.35	60.98,37.42	56.24,37.42
-map Utgarde Pinnacle/0
+map Utgarde Pinnacle/1
 path	48.49,23.01
 talk Elder Chogan'gada##30538
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Chogan'gada the Elder##13067 |goto Utgarde Pinnacle/0 48.71,23.12
+accept Chogan'gada the Elder##13067 |goto Utgarde Pinnacle/1 48.71,23.12
 step
 talk Commander Thorak##41621
 |tip Inside the building.
@@ -5957,7 +5957,7 @@ talk Elder Splitrock##15556
 |tip You may need to run this dungeon with a group.
 accept Splitrock the Elder##8635 |or
 |tip
-Click Here to Skip This Elder |confirm |goto Maraudon/0 0.00,0.00 |or
+Click Here to Skip This Elder |confirm |goto Maraudon/1 0.00,0.00 |or
 step
 talk Elder Grimtotem##15581
 accept Grimtotem the Elder##8679 |goto Feralas/0 76.71,37.89
@@ -6174,13 +6174,13 @@ talk Elder Farwhisper##15607
 |tip You may need to run this dungeon with a group.
 accept Farwhisper the Elder##8727
 step
-map The Nexus/0
+map The Nexus/1
 path follow smart; loop off; ants curved; dist 20
 path	36.59,81.29	45.91,68.17	48.92,67.10	51.51,62.58	53.52,53.76
 path	64.56,53.33	64.99,61.08	55.38,64.73
 talk Elder Igasho##30536
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Igasho the Elder##13021 |goto The Nexus/0 55.38,64.73
+accept Igasho the Elder##13021 |goto The Nexus/1 55.38,64.73
 step
 map Azjol-Nerub/2
 path follow smart; loop off; ants curved; dist 20
@@ -6192,30 +6192,30 @@ talk Elder Nurgen##30533
 |tip Open the world map to see an ant trail guiding you to your destination.
 accept Nurgen the Elder##13022 |goto Azjol-Nerub/1 21.81,43.23
 step
-map Drak'Tharon Keep/0
+map Drak'Tharon Keep/1
 path follow smart; loop off; ants curved; dist 20
 path	33.14,78.28	40.89,86.67	47.35,79.14	47.78,45.16	56.67,30.97
 path	56.82,18.28	67.00,17.85	63.42,31.83	68.01,40.00	67.72,54.63
 path	60.40,57.64	55.96,59.14	55.52,77.42	63.70,76.99	68.87,78.93
 talk Elder Kilias##30534
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Kilias the Elder##13023 |goto Drak'Tharon Keep/0 68.87,78.93
+accept Kilias the Elder##13023 |goto Drak'Tharon Keep/1 68.87,78.93
 step
-map Halls of Stone/0
+map Halls of Stone/1
 path follow smart; loop off; ants curved; dist 20
 path	36.16,36.13	45.05,35.92	50.22,45.16	48.49,53.33
 path	39.60,54.20	34.15,50.32	29.27,61.72
 talk Elder Yurauk##30535
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Yurauk the Elder##13066 |goto Halls of Stone/0 29.27,61.72
+accept Yurauk the Elder##13066 |goto Halls of Stone/1 29.27,61.72
 step
-map Gundrak/0
+map Gundrak/1
 path follow smart; loop off; ants curved; dist 20
 path	58.68,37.21	59.25,48.82	57.96,67.96	51.08,73.55	46.34,70.97
 path	45.34,61.08
 talk Elder Ohanzee##30537
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Ohanzee the Elder##13065 |goto Gundrak/0 45.34,61.08
+accept Ohanzee the Elder##13065 |goto Gundrak/1 45.34,61.08
 step
 map Utgarde Keep/1
 path follow smart; loop off; ants curved; dist 20
@@ -6231,16 +6231,16 @@ map Utgarde Pinnacle/1
 path follow smart; loop off; ants curved; dist 20
 path	44.48,17.85	44.19,35.70	33.86,36.13	33.72,50.97	34.43,68.39
 path	39.60,68.60	39.31,76.35
-map Utgarde Pinnacle/0
+map Utgarde Pinnacle/1
 path	30.99,74.41	35.87,76.35	36.01,85.16	45.62,85.81
 map Utgarde Pinnacle/1
 path	52.51,73.98	51.65,83.66	60.55,83.87	60.83,69.89	68.15,69.25
 path	68.44,52.04	68.15,36.35	60.98,37.42	56.24,37.42
-map Utgarde Pinnacle/0
+map Utgarde Pinnacle/1
 path	48.49,23.01
 talk Elder Chogan'gada##30538
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Chogan'gada the Elder##13067 |goto Utgarde Pinnacle/0 48.71,23.12
+accept Chogan'gada the Elder##13067 |goto Utgarde Pinnacle/1 48.71,23.12
 step
 |achieve 910
 ]])

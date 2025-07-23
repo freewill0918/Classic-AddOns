@@ -36,6 +36,13 @@ ZGVP.tradeskills = {
 	[773] = {name="Inscription",crafting=true, skill=773, icon=237171},
 	[633] = {name="Lockpicking", skill=633, icon=136058},
 	[794] = {name="Archaeology", skill=794, icon=441139},
+
+	[975] = {name="Way of the Grill", skill=975},
+	[976] = {name="Way of the Wok", skill=976},
+	[977] = {name="Way of the Pot", skill=977},
+	[978] = {name="Way of the Steamer", skill=978},
+	[979] = {name="Way of the Oven", skill=979},
+	[980] = {name="Way of the Brew", skill=980},
 }
 
 
@@ -57,6 +64,13 @@ ZGVP.skillLocale = {
 	[773]={deDE="Inschriftenkunde",	esES="Inscripción",	frFR="Calligraphie",	ptBR="Escrivania",	ruRU="Начертание",	koKR="주문각인",	zhCN="铭文",	zhTW="銘文學",	esMX="Inscripción"},
 	[633]={deDE="Schlossknacken",	esES="Ganzúa",		frFR="Crochetage",	ptBR="Arrombamento",	ruRU="Вскрытие замков",	koKR="자물쇠 따기",zhCN="开锁",	zhTW="开锁",	esMX="Ganzúa"},
 	[794]={deDE="Archäologie",	esES="Arqueología",	frFR="Archéologie",	ptBR="Arqueologia",	ruRU="Археология",	koKR="고고학",	zhCN="考古学",	zhTW="考古學",	esMX="Arqueología"},
+
+	[975]={deDE="Weg des Grills",	esES="El arte de la parrilla",	esMX="El arte de la parrilla",	frFR="Voie du grill",		ptBR="Caminho da Grelha",	ruRU="Путь Гриля",		koKR="직화요리의 길",	zhCN="烧烤之道",	zhTW="燒烤之道",		ptPT="Caminho da Grelha",},
+	[976]={deDE="Weg des Woks",	esES="El arte del wok",		esMX="El arte del wok",		frFR="Voie du wok",		ptBR="Caminho da Wok",		ruRU="Путь Вок",		koKR="볶음의 길",		zhCN="烹炒之道",	zhTW="快炒之道",		ptPT="Caminho da Wok",},
+	[977]={deDE="Weg des Topfes",	esES="El arte del guiso",	esMX="El arte del guiso",	frFR="Voie de la marmite",	ptBR="Caminho da Panela",	ruRU="Путь Котелка",		koKR="국의 길",		zhCN="炖煮之道",	zhTW="燉煮之道",		ptPT="Caminho da Panela",},
+	[978]={deDE="Weg des Dämpfens",	esES="El arte de la vaporera",	esMX="El arte de la vaporera",	frFR="Voie du cuit-vapeur",	ptBR="Caminho da Vaporeira",	ruRU="Путь Пароварки",		koKR="찜의 길",		zhCN="蒸烧之道",	zhTW="蒸煮之道",		ptPT="Caminho da Vaporeira",},
+	[979]={deDE="Weg des Ofens",	esES="El arte del horno",	esMX="El arte del horno",	frFR="Voie du four",		ptBR="Caminho do Forno",	ruRU="Путь Печи",		koKR="구이의 길",		zhCN="烘培之道",	zhTW="烘烤之道",		ptPT="Caminho do Forno",},
+	[980]={deDE="Weg des Gebräus",	esES="El arte de la cerveza",	esMX="El arte de la cerveza",	frFR="Voie du brassage",	ptBR="Caminho da Infusão",	ruRU="Путь варения напитков",	koKR="양조의 길",		zhCN="酿造之道",	zhTW="釀酒之道",		ptPT="Caminho da Infusão",},
 } -- GETS TRIMMED.
 
 ZGV.Professions.LocaleSkills={}
@@ -169,27 +183,6 @@ function ZGV:CacheRecipes_Queued()
 				end
 
 				scanned=scanned+1
-				--]]
-			end
-		
-		elseif tradeName and tradeType=="subheader" then --Cooking Masteries
-			for UsName,id in pairs(CookingSkills) do
-				local name = GetSpellInfo(id) --local name
-
-				if tradeName == name then
-					self.db.char.cookingMasteries[id] = rank
-
-					local pro = self.skills[name]
-					if not pro then
-						pro={} self.skills[name]=pro
-					end
-					pro.level = rank pro.max = maxrank pro.active = true
-					pro.name = name --localized.. Does it matter?
-					pro.spell = id pro.skillID = id --this Id is not actually what we need. But we can use it to match properly.
-
-					self:Debug(tradeName.." has level "..rank)
-					break
-				end
 			end
 		end
 	end

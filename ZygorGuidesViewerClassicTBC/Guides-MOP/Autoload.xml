@@ -69,7 +69,6 @@
 		<Script file="Leveling\ZygorLevelingHordeMOP.lua"/>
 		<Script file="Leveling\ZygorLevelingHordeMOPTrial.lua"/>
 
-		<Script file="Leveling\ZygorLevelingPandaStarterMOP.lua"/>
 		<Script file="Leveling\ZygorLevelingPandaStarterMOPTrial.lua"/>
 
 	<!-- DAILIES -->
@@ -134,8 +133,12 @@
 
 		<Script file="Dungeons\ZygorDungeonHordeMOP.lua"/>
 		<Script file="Dungeons\ZygorDungeonHordeMOPTrial.lua"/>
+		
+
 
 	<!-- GEAR -->
+		<Script file="Dungeons\ZygorGearAllianceTrial.lua"/>
+		<Script file="Dungeons\ZygorGearHordeTrial.lua"/>
 		<Script file="Dungeons\ZygorGearCommonCLASSIC.lua"/>
 		<Script file="Dungeons\ZygorGearCommonCLASSICTrial.lua"/>
 		<Script file="Dungeons\ZygorGearCommonTBC.lua"/>
@@ -280,7 +283,27 @@
 		<Script file="Gold\ZygorGoldRunsCommonCATATrial.lua"/>
 		<Script file="Gold\ZygorGoldRunsHordeCATA.lua"/>
 		<Script file="Gold\ZygorGoldRunsHordeCATATrial.lua"/>
-	
+
+		<!-- MOP -->
+		<Script file="Gold\ZygorFarmingAllianceMOP.lua"/>
+		<Script file="Gold\ZygorFarmingAllianceMOPTrial.lua"/>
+		<Script file="Gold\ZygorFarmingCommonMOP.lua"/>
+		<Script file="Gold\ZygorFarmingCommonMOPTrial.lua"/>
+		<Script file="Gold\ZygorFarmingHordeMOP.lua"/>
+		<Script file="Gold\ZygorFarmingHordeMOPTrial.lua"/>
+		<Script file="Gold\ZygorGatheringAllianceMOP.lua"/>
+		<Script file="Gold\ZygorGatheringAllianceMOPTrial.lua"/>
+		<Script file="Gold\ZygorGatheringCommonMOP.lua"/>
+		<Script file="Gold\ZygorGatheringCommonMOPTrial.lua"/>
+		<Script file="Gold\ZygorGatheringHordeMOP.lua"/>
+		<Script file="Gold\ZygorGatheringHordeMOPTrial.lua"/>
+		<Script file="Gold\ZygorGoldRunsAllianceMOP.lua"/>
+		<Script file="Gold\ZygorGoldRunsAllianceMOPTrial.lua"/>
+		<Script file="Gold\ZygorGoldRunsCommonMOP.lua"/>
+		<Script file="Gold\ZygorGoldRunsCommonMOPTrial.lua"/>
+		<Script file="Gold\ZygorGoldRunsHordeMOP.lua"/>
+		<Script file="Gold\ZygorGoldRunsHordeMOPTrial.lua"/>
+
 	<!-- POINTS OF INTEREST -->
 		<!-- MOP -->
 		<Script file="Poi\Common.lua" />

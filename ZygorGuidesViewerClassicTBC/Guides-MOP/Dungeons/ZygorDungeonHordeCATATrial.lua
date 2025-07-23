@@ -3,7 +3,6 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Horde" then return end
 if ZGV:DoMutex("DungeonH") then return end
 ZygorGuidesViewer.GuideMenuTier = "TRI"
-ZGV.BETASTART()
 ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Classic\\Ragefire Chasm (13-18)",{
 cataready=true,
 image=ZGV.IMAGESDIR.."Ragefire Chasm",
@@ -820,6 +819,5 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Cataclysm Raids\\Bla
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Cataclysm Raids\\Throne of the Four Winds")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Cataclysm Raids\\Baradin Hold")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Cataclysm Raids\\Firelands")
-ZGV.BETAEND()
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Cataclysm Raids\\Dragon Soul")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Cataclysm Raids\\Dragonwrath, Tarecgosa's Rest")

@@ -4280,18 +4280,18 @@ patch='40003',
 description="Kill 12 Aberrations within 10 seconds on the Maloriak encounter in Blackwing Descent and then defeat Maloriak.",
 },[[
 step
-map Blackwing Descent/0
+map Blackwing Descent/1
 path loop off
 path	47.03,44.38
-map Blackwing Descent/0
+map Blackwing Descent/1
 path	47.40,88.10	57.60,69.50	65.50,69.70
-Follow the path to Maloriak |goto Blackwing Descent/0 65.50,69.70 < 20 |noway |c
+Follow the path to Maloriak |goto Blackwing Descent/1 65.50,69.70 < 20 |noway |c
 Note that you will have had to kill Magmaw and the Omnotron Defense System to reach this boss
 step
 For this achievement, you will need to DPS Maloriak down to 25% health
 Once you do that, enough Aberrations will should spawn to earn the achievement
 Gather all that have spawned, and AoE them down in _under 10 seconds_
-Earn the Aberrant Behavior Achievement |achieve 5310 |goto Blackwing Descent/0 71.40,70.20
+Earn the Aberrant Behavior Achievement |achieve 5310 |goto Blackwing Descent/1 71.40,70.20
 |tip Set the Raid Difficulty to Heroic to Earn the Heroic: Maloriak Achievement as well.
 step
 Congratulations, you have earned the Aberrant Behavior Achievement!
@@ -4302,7 +4302,7 @@ patch='40003',
 description="Defeat Cho'gall in the Bastion of Twilight before any raid member earns more than 30% Corrupted Blood.",
 },[[
 step
-map The Bastion of Twilight/0
+map The Bastion of Twilight/1
 path loop off
 path	39.60,42.70	39.60,19.80	46.60,19.40
 path	53.70,29.10	53.70,48.90	53.70,68.30
@@ -4325,10 +4325,10 @@ patch='40003',
 description="Defeat the Omnotron Defense System in Blackwing Descent while neutralizing the following attacks.",
 },[[
 step
-map Blackwing Descent/0
+map Blackwing Descent/1
 path loop off
 path	51.20,59.90	58.30,59.70	61.00,57.30
-Follow the path, clearing trash as you make your way to the next boss, the Omnotron Defense System |goto Blackwing Descent/0 61.00,57.30 < 5 |noway |c
+Follow the path, clearing trash as you make your way to the next boss, the Omnotron Defense System |goto Blackwing Descent/1 61.00,57.30 < 5 |noway |c
 step
 You will be able to earn this achievement over the course of multiple lock outs
 To earn the portion of the achievement needed, you will need to engage the boss that uses the ability that you are to avoid
@@ -4337,7 +4337,7 @@ No player hit by Static Shock (Electron) |achieve 5307/1
 No player hit by Arcane Annihilator (Arcanotron) |achieve 5307/2
 No player hit by Poison Bomb (Toxitron) |achieve 5307/3
 No more than one player hit by each Flamthrower (Magmatron) |achieve 5307/4
-Earn the Achieve-a-Tron Achievement |achieve 5307 |goto Blackwing Descent/0 65.40,57.40
+Earn the Achieve-a-Tron Achievement |achieve 5307 |goto Blackwing Descent/1 65.40,57.40
 |tip Set the Raid Difficulty to Heroic to Earn the Heroic: Omnotron Defense System Achievement as well.
 step
 Congratulations, you have earned the Achieve-a-tron Achievement!
@@ -4427,11 +4427,11 @@ patch='40300',
 description="Defeat Warmaster Blackhorn on Normal or Heroic Difficulty without allowing any Twilight Barrages to damage the Skyfire.",
 },[[
 step
-talk Nethestrasz##57287 |goto Dragon Soul/0 50.28,57.66
-Fly to the top of the temple |goto Dragon Soul/0 49.30,59.92 < 5 |noway |c
+talk Nethestrasz##57287 |goto Dragon Soul/1 50.28,57.66
+Fly to the top of the temple |goto Dragon Soul/1 49.30,59.92 < 5 |noway |c
 step
 Follow the path to the Battleship
-talk Sky Captain Swayze##55870 |goto Dragon Soul/0 48.94,54.79 < 20
+talk Sky Captain Swayze##55870 |goto Dragon Soul/1 48.94,54.79 < 20
 |tip You will have to have cleared the previous bosses in order to access the Battleship encounter.
 Board the ship
 |confirm
@@ -4479,7 +4479,7 @@ step
 If you go in solo on this encounter, you will earn the achievement upon killing the boss
 If you are playing with others, stand 6 yards apart
 If you kill the boss within a minute, you will be able to earn the achievement before he casts Black Blood of the Earth
-|achieve 6174 |goto Dragon Soul/0 50.69,69.90
+|achieve 6174 |goto Dragon Soul/1 50.69,69.90
 |tip Set the Raid Difficulty to Heroic to earn the Heroic: Morchok Achievement.
 step
 Congratulations, you have earned the Don't Stand So Close To Me Achievement!
@@ -4490,11 +4490,11 @@ patch='40003',
 description="Kill 6 Twilight Fiends in the Twilight Realm and then defeat Valiona and Theralion in the Bastion of Twilight.",
 },[[
 step
-map The Bastion of Twilight/0
+map The Bastion of Twilight/1
 path loop off
 path	39.60,42.70	39.60,19.80	46.60,19.40
 path	53.70,29.10	53.70,48.90	53.70,68.30
-Follow the path to Valiona and Theralion |goto The Bastion of Twilight/0 53.70,68.30 < 15 |noway |c
+Follow the path to Valiona and Theralion |goto The Bastion of Twilight/1 53.70,68.30 < 15 |noway |c
 Note that you will have to have defeated Halfus the Wyrmbreaker to reach this boss
 step
 For this achievement, you will have to defeat 6 Twilight Fiends within the Twilight Realm
@@ -4505,7 +4505,7 @@ After Dazzling Destruction, stand in the Shadow Pool that appears, as it will ta
 Kill 6 Twilight Fiends as the appear
 clicknpc Collapsing Twilight Portal##46301
 Kill Valiona and Theralion
-Earn the Double Dragon Achievement |achieve 4852 |goto The Bastion of Twilight/0 53.90,78.40
+Earn the Double Dragon Achievement |achieve 4852 |goto The Bastion of Twilight/1 53.90,78.40
 |tip Set the Raid Difficulty to Heroic to Earn the Heroic: Valiona and Theralion Achievement as well.
 step
 Congratulations, you have earned the Double Dragon Achievement!
@@ -4516,7 +4516,7 @@ patch='40003',
 description="Defeat the Elementium Monstrosity in the Bastion of Twilight while only allowing it to create a single Liquid Ice patch.",
 },[[
 step
-map The Bastion of Twilight/0
+map The Bastion of Twilight/1
 path loop off
 path	39.60,42.70	39.60,19.80	46.60,19.40
 path	53.70,29.10	53.70,48.90	53.70,68.30
@@ -4583,17 +4583,17 @@ patch='40003',
 description="Defeat Chimaeron in Blackwing Descent with no more than 2 raid member deaths.",
 },[[
 step
-map Blackwing Descent/0
+map Blackwing Descent/1
 path loop off
 path	47.03,44.38
-map Blackwing Descent/0
+map Blackwing Descent/1
 path	43.30,83.39	36.70,69.50	28.80,69.70
-Follow the path to Chimaeron |goto Blackwing Descent/0 28.80,69.70 < 15 |noway |c
+Follow the path to Chimaeron |goto Blackwing Descent/1 28.80,69.70 < 15 |noway |c
 Note that you will have had to kill Magmaw and the Omnotron Defense System to reach this boss
 step
 For this achievement, you will want to DPS Chimaeron as fast as possible
 If you  have a pet of any type, you _MUST_ resurrect it before defeating Chimaeron or you won't earn the achievement
-Earn the "Full of Sound and Fury" Achievement |achieve 5309 |goto Blackwing Descent/0 24.50,70.20
+Earn the "Full of Sound and Fury" Achievement |achieve 5309 |goto Blackwing Descent/1 24.50,70.20
 |tip Set the Raid Difficulty to Heroic to Earn the Heroic: Chimaeron Achievement as well.
 step
 _Congratulations!_
@@ -4645,7 +4645,7 @@ step
 This achievement is gained by defeating _Atramedes in Blackwing Descent on Heroic Difficulty_
 |tip Use our raid guides to accomplish this.
 kill Atramedes##41442
-Heroic: Atramedes |achieve 5109 |goto Blackwing Descent/0 47.50,32.70
+Heroic: Atramedes |achieve 5109 |goto Blackwing Descent/1 47.50,32.70
 step
 Congratulations, you have earned the Heroic: Atramedes achievement!
 ]])
@@ -4684,7 +4684,7 @@ step
 This achievement is gained by defeating _Chimaeron in Blackwing Descent on Heroic Difficulty_
 |tip Use our raid guides to accomplish this.
 kill Chimaeron##43296
-Heroic: Chimaeron |achieve 5115 |goto Blackwing Descent/0 24.50,70.20
+Heroic: Chimaeron |achieve 5115 |goto Blackwing Descent/1 24.50,70.20
 step
 Congratulations, you have earned the Heroic: Chimaeron achievement!
 ]])
@@ -4740,10 +4740,10 @@ description="Defeat Ultraxion in Dragon Soul on Normal or Heroic Difficulty with
 },[[
 step
 Set the Raid Difficulty to Heroic before entering the raid
-talk Nethestrasz##57287 |goto Dragon Soul/0 50.28,57.66
-Fly to the top of the temple |goto Dragon Soul/0 49.30,59.92 < 10 |noway |c
+talk Nethestrasz##57287 |goto Dragon Soul/1 50.28,57.66
+Fly to the top of the temple |goto Dragon Soul/1 49.30,59.92 < 10 |noway |c
 step
-clicknpc Travel to the Eye of Eternity##57377 |goto Dragon Soul/0 50.69,60.60 < 10
+clicknpc Travel to the Eye of Eternity##57377 |goto Dragon Soul/1 50.69,60.60 < 10
 Enter the Eye of Eternity |goto Dragon Soul/3 52.43,23.43 < 20 |noway |c
 step
 Defeat the waves of enemies that appear, then Hagara when She jumps off her disc
@@ -4828,7 +4828,7 @@ step
 This achievement is gained by defeating _Maloriak in Blackwing Descent on Heroic Difficulty_
 |tip Use our raid guides to accomplish this.
 kill Maloriak##41378
-Heroic: Maloriak |achieve 5108 |goto Blackwing Descent/0 71.40,70.20
+Heroic: Maloriak |achieve 5108 |goto Blackwing Descent/1 71.40,70.20
 step
 Congratulations, you have earned the Heroic: Maloriak achievement!
 ]])
@@ -4855,7 +4855,7 @@ step
 This achievement is gained by defeating _Nefarian in Blackwing Descent on Heroic Difficulty_
 |tip Use our raid guides to accomplish this.
 kill Nefarian##41376
-Heroic: Nefarian |achieve 5116 |goto Blackwing Descent/0 48.00,70.20
+Heroic: Nefarian |achieve 5116 |goto Blackwing Descent/1 48.00,70.20
 step
 Congratulations, you have earned the Heroic: Nefarian achievement!
 ]])
@@ -5017,13 +5017,13 @@ patch='40003',
 description="Damage Nefarian below 50% health before he lands for the final confrontation and then defeat Nefarian in Blackwing Descent.",
 },[[
 step
-map Blackwing Descent/0
+map Blackwing Descent/1
 path loop off
 path	47.03,44.38
-map Blackwing Descent/0
+map Blackwing Descent/1
 path	36.70,69.50	47.39,57.67
 click Orb of Culmination##203254
-Follow the path to Nefarian |goto Blackwing Descent/0 47.39,57.67 < 20 |noway |c
+Follow the path to Nefarian |goto Blackwing Descent/1 47.39,57.67 < 20 |noway |c
 Note that you will have to kill the other bosses before you can activate the Nefarian encounter
 step
 For the first part of this achievement, enter the arena and ignore Onyxia
@@ -5032,7 +5032,7 @@ Then, kill Onyxia
 When the magma rises, jump onto a column and kill the add that is there
 After that, attack Nefarian, bringing his health to 49% to 25%, but _DO NOT_ kill him or damage him further than 25% health
 Allow  him to finish his speech and land, then kill him
-Earn the Keeping it in the Family Achievement |achieve 4849 |goto Blackwing Descent/0 48,70.20
+Earn the Keeping it in the Family Achievement |achieve 4849 |goto Blackwing Descent/1 48,70.20
 |tip Set the Raid Difficulty to Heroic to Earn the Heroic: Nefarian Achievement as well.
 step
 Congratulations, you have earned the Keeping it in the Family Achievement!
@@ -5066,15 +5066,15 @@ patch='40300',
 description="Defeat Ultraxion in Dragon Soul on Normal or Heroic Difficulty without any raid member being hit by Hour of Twilight more than once.",
 },[[
 step
-talk Nethestrasz##57287 |goto Dragon Soul/0 50.28,57.66
-Fly to the top of the temple |goto Dragon Soul/0 49.30,59.92 < 5 |noway |c
+talk Nethestrasz##57287 |goto Dragon Soul/1 50.28,57.66
+Fly to the top of the temple |goto Dragon Soul/1 49.30,59.92 < 5 |noway |c
 step
-talk Kalecgos##56664 |goto Dragon Soul/0 50.41,59.47
+talk Kalecgos##56664 |goto Dragon Soul/1 50.41,59.47
 Talk to Kalecgos to start the encounter
 |tip You will have to have cleared the previous bosses in order to access this one.
 After a bit, talk to _Thrall_
 You should be able to kill Ultraxion before he even casts one Hour of Twilight
-|achieve 6084 |goto Dragon Soul/0 50.10,57.02
+|achieve 6084 |goto Dragon Soul/1 50.10,57.02
 |tip Set the Raid Difficulty to Heroic to earn the Heroic: Ultraxion Achievement.
 step
 Congratulations, you have earned the Minutes to Midnight Achievement!
@@ -5106,10 +5106,10 @@ patch='40003',
 description="Defeat Halfus Wyrmbreaker after defeating two drakes within 10 seconds of each other. The Emerald Whelp pack counts as one drake for this purpose.",
 },[[
 step
-map The Bastion of Twilight/0
+map The Bastion of Twilight/1
 path loop off
 path	39.60,42.70	39.60,19.80	46.60,19.40
-Follow the path to Halfus Wyrmbreaker |goto The Bastion of Twilight/0 46.60,19.40 < 15 |noway |c
+Follow the path to Halfus Wyrmbreaker |goto The Bastion of Twilight/1 46.60,19.40 < 15 |noway |c
 step
 For this achievement, you will need to kill two of the dragons that are in the room with Halfus before defeating Halfus himself
 To start, pull Halfus
@@ -5118,7 +5118,7 @@ Avoid choosing the Whelps if possible unless you have strong AoE!
 Release a second dragon of your choice
 Then, pull the two dragons together, killing both within 10 seconds of the other
 Finally, defeat Halfus
-Earn The Only Escape Achievement |achieve 5300 |goto The Bastion of Twilight/0 53.40,19.30
+Earn The Only Escape Achievement |achieve 5300 |goto The Bastion of Twilight/1 53.40,19.30
 |tip Set the Raid Difficulty to Heroic to Earn the Heroic: Halfus Wyrmbreaker Achievement as well.
 step
 Congratulations, you have earned The Only Escape Achievement!
@@ -5156,14 +5156,14 @@ patch='40003',
 description="Defeat Magmaw in Blackwing Descent without anyone in the raid becoming infected with a parasite.",
 },[[
 step
-map Blackwing Descent/0
+map Blackwing Descent/1
 path loop off
 path	42.60,59.90	31.50,56.90
-Follow the path to Magmaw |goto Blackwing Descent/0 31.50,56.90 < 10 |noway |c
+Follow the path to Magmaw |goto Blackwing Descent/1 31.50,56.90 < 10 |noway |c
 step
 The best way to earn this achievement will be to DPS it down quickly
 Magmaw uses _Pillar of Flame_ which spawns the parasites, if you can't kill it fast enough, you will need to avoid them and DPS them down at range
-Earn the Parasite Evening Achievement |achieve 5306 |goto Blackwing Descent/0 27.50,53.10
+Earn the Parasite Evening Achievement |achieve 5306 |goto Blackwing Descent/1 27.50,53.10
 |tip Set the Raid Difficulty to Heroic to Earn the Heroic: Magmaw Achievement as well.
 step
 Congratulations, you have earned the Parasite Evening Achievement!
@@ -5174,7 +5174,7 @@ patch='40300',
 description="Bounce the Void of the Unmaking 10 times off of players, and then defeat Warlord Zon'ozz on Normal or Heroic Difficulty.",
 },[[
 step
-talk Valeera##57289 |goto Dragon Soul/0 49.16,58.99
+talk Valeera##57289 |goto Dragon Soul/1 49.16,58.99
 Fly into the Maw Go'rath |goto Dragon Soul/1 32.66,45.49 < 10 |noway |c
 _You will need a tanking pet or another player in order to earn this achievement!_
 only if not achieved(6128)
@@ -5255,13 +5255,13 @@ patch='40003',
 description="Defeat Atramedes in Blackwing Descent without any raid member's sound bar going over 50%.",
 },[[
 step
-map Blackwing Descent/0
+map Blackwing Descent/1
 path loop off
 path	47.03,44.38
-map Blackwing Descent/0
+map Blackwing Descent/1
 path	47.44,84.71	57.60,69.50	47.40,53.00
 path	47.50,40.90
-Follow the path to Atramedes |goto Blackwing Descent/0 47.50,40.90 < 15 |noway |c
+Follow the path to Atramedes |goto Blackwing Descent/1 47.50,40.90 < 15 |noway |c
 Note that you will have had to kill Magmaw and the Omnotron Defense System to reach this boss
 step
 The best way to earn this achievement will be to DPS it down quickly
@@ -5269,7 +5269,7 @@ You can avoid getting sound by avoiding Atramedes' Area of Effect Abilities
 There are Gongs on the side of the room that serve to reset your "Sound" bar, as well as interrupt powerful AoE abilitis from the boss
 Use it as needed
 If you need more DPS, bring a friend to help
-Earn the Silence is Golden Achievement |achieve 5308 |goto Blackwing Descent/0 47.50,32.70
+Earn the Silence is Golden Achievement |achieve 5308 |goto Blackwing Descent/1 47.50,32.70
 |tip Set the Raid Difficulty to Heroic to Earn the Heroic: Atramedes Achievement as well.
 step
 Congratulations, you  have earned the Silence is Golden Achievement!
@@ -5299,7 +5299,7 @@ patch='40300',
 description="Experience the following color combinations, and then defeat Yor'sahj the Unsleeping on Normal or Heroic Difficulty.",
 },[[
 step
-talk Eiendormi##57288 |goto Dragon Soul/0 51.24,59.28
+talk Eiendormi##57288 |goto Dragon Soul/1 51.24,59.28
 Fly into the Maw of Shu'ma |goto Dragon Soul/2 55.38,79.72 < 10 |noway |c
 only if not achieved(6129)
 step

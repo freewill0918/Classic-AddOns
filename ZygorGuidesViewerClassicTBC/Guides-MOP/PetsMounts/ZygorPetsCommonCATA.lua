@@ -523,7 +523,7 @@ collect Albino Snake##44822 |n
 |tip This pet is cageable, meaning it can be purchased from the Auction House.
 use the Albino Snake##44822
 |tip It is in your inventory.
-Learn the "Albino Snake" Battle Pet |learnpet Albino Snake##74 |goto Dalaran/0 58.47,39.12
+Learn the "Albino Snake" Battle Pet |learnpet Albino Snake##74 |goto Dalaran/1 58.47,39.12
 step
 _Congratulations!_
 You Collected the "Albino Snake" Battle Pet.
@@ -697,7 +697,7 @@ collect Cat Carrier (Calico Cat)##46398 |n
 |tip this pet is cageable, meaning you can purchase it from the Auction House.
 use the Cat Carrier (Calico Cat)##46398
 |tip It is in your inventory.
-Learn the "Calico Cat" Battle Pet |learnpet Calico Cat##224 |goto Dalaran/0 58.47,39.12
+Learn the "Calico Cat" Battle Pet |learnpet Calico Cat##224 |goto Dalaran/1 58.47,39.12
 step
 _Congratulations!_
 You Collected the "Calico Cat" Battle Pet.
@@ -942,7 +942,7 @@ keywords={"Beast","The","Wailing","Caverns"},
 pet=233,
 },[[
 step
-Enter The Wailing Caverns dungeon|goto Wailing Caverns/0 0.00,0.00 |c |or
+Enter The Wailing Caverns dungeon|goto Wailing Caverns/1 0.00,0.00 |c |or
 |tip You can use The Wailing Caverns guide if you need help getting through the dungeon.
 '|learnpet Deviate Hatchling##233 |or
 step
@@ -1418,7 +1418,7 @@ collect Obsidian Hatchling##48120 |n
 |tip This pet is cageable, meaning you can purchase it from the Auction House.
 use the Obsidian Hatchling##48120
 |tip It is inside your inventory.
-Learn the "Obsidian Hatchling" Battle Pet |learnpet Obsidian Hatchling##236 |goto Dalaran/0 58.47,39.12
+Learn the "Obsidian Hatchling" Battle Pet |learnpet Obsidian Hatchling##236 |goto Dalaran/1 58.47,39.12
 step
 _Congratulations!_
 You Collected the "Obsidian Hatchling" Battle Pet.
@@ -2481,7 +2481,7 @@ collect Giant Sewer Rat##43698 |n
 |tip This pet is cageable, meaning you can purchase it from the Auction House.
 use the Giant Sewer Rat##43698
 |tip It is in your inventory.
-Learn the "Giant Sewer Rat" Battle Pet |learnpet Giant Sewer Rat##193 |goto Dalaran/0 44.38,66.17
+Learn the "Giant Sewer Rat" Battle Pet |learnpet Giant Sewer Rat##193 |goto Dalaran/1 44.38,66.17
 step
 _Congratulations!_
 You Collected the "Giant Sewer Rat" Battle Pet.
@@ -3778,7 +3778,7 @@ step
 talk Lothos Riftwaker##14387
 Select _"Transport me to the Molten Core, Lothos."_
 |tip You can use the Molten Core guide if you need help getting through the raid.
-Teleport to the Molten Core Raid |goto Molten Core/0 0.00,0.00  |c |or
+Teleport to the Molten Core Raid |goto Molten Core/1 0.00,0.00  |c |or
 '|learnpet Ashstone Core##1150 |or
 step
 kill Golemagg the Incinerator##11988
@@ -5207,7 +5207,7 @@ step
 talk Lothos Riftwaker##14387
 Select _"Transport me to the Molten Core, Lothos."_
 |tip You can use the Molten Core guide if you need help getting through the raid.
-Teleport to the Molten Core Raid |goto Molten Core/0 0.00,0.00  |c |or
+Teleport to the Molten Core Raid |goto Molten Core/1 0.00,0.00  |c |or
 '|learnpet Corefire Imp##1149 |or
 step
 kill Magmadar##11982
@@ -5360,7 +5360,7 @@ step
 talk Lothos Riftwaker##14387
 Select _"Transport me to the Molten Core, Lothos."_
 |tip You can use the Molten Core guide if you need help getting through the raid.
-Teleport to the Molten Core Raid |goto Molten Core/0 0.00,0.00  |c |or
+Teleport to the Molten Core Raid |goto Molten Core/1 0.00,0.00  |c |or
 '|learnpet Harbinger of Flame##1147 |or
 step
 kill Sulfuron Harbinger##12098
@@ -6574,7 +6574,7 @@ buy Ghostly Skull##39973 |n
 collect Ghostly Skull##39973 |n
 use the Ghostly Skull##39973
 |tip It is inside your inventory.
-Learn the "Ghostly Skull" Battle Pet |learnpet Ghostly Skull##190 |goto Dalaran/0 64.18,16.63
+Learn the "Ghostly Skull" Battle Pet |learnpet Ghostly Skull##190 |goto Dalaran/1 64.18,16.63
 step
 _Congratulations!_
 You Collected the "Ghostly Skull" Battle Pet.

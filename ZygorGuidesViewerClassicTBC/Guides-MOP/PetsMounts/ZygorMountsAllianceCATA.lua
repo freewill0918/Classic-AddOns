@@ -3842,15 +3842,15 @@ step
 _Extra Credit Bonus Stage_
 This achievement requires you to collect 5 _Golden Orbs_ in Vortex Pinnacle.
 Check the provided coordinates for orbs:
-[The Vortex Pinnacle/0 63.50,35.50]
-[The Vortex Pinnacle/0 51.60,47.10]
-[The Vortex Pinnacle/0 58.20,70.50]
-[The Vortex Pinnacle/0 56.40,70.60]
-This is only obtainable through the second boss using the tornados to jump up. [The Vortex Pinnacle/0 50.20,82.90]
-This is only obtainable through the second boss using the tornados to jump up. [The Vortex Pinnacle/0 51.10,80.20]
-[The Vortex Pinnacle/0 33.20,67.30]
-[The Vortex Pinnacle/0 33.20,69.90]
-[The Vortex Pinnacle/0 33.50,48.80]
+[The Vortex Pinnacle/1 63.50,35.50]
+[The Vortex Pinnacle/1 51.60,47.10]
+[The Vortex Pinnacle/1 58.20,70.50]
+[The Vortex Pinnacle/1 56.40,70.60]
+This is only obtainable through the second boss using the tornados to jump up. [The Vortex Pinnacle/1 50.20,82.90]
+This is only obtainable through the second boss using the tornados to jump up. [The Vortex Pinnacle/1 51.10,80.20]
+[The Vortex Pinnacle/1 33.20,67.30]
+[The Vortex Pinnacle/1 33.20,69.90]
+[The Vortex Pinnacle/1 33.50,48.80]
 achieve 4845/10
 step
 _Acrocalypse Now_

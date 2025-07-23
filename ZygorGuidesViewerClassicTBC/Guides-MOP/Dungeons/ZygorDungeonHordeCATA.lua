@@ -3,7 +3,6 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Horde" then return end
 if ZGV:DoMutex("DungeonH") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
-ZGV.BETASTART()
 ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Classic\\Ragefire Chasm (13-18)",{
 cataready=true,
 image=ZGV.IMAGESDIR.."Ragefire Chasm",
@@ -16978,7 +16977,6 @@ kill Ragnaros##52409 |goto Firelands/1 50.70,15.30
 |tip Living Meteors rains meteors down on targeted players. Damaging the meteors will cause it to roll away and change its path. Anyone struck by one of these will be killed.
 confirm
 ]])
-ZGV.BETAEND()
 ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Cataclysm Raids\\Dragon Soul",{
 cataready=true,
 mapid=409,

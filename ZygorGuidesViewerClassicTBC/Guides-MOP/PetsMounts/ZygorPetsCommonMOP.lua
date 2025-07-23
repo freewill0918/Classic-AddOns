@@ -3,6 +3,60 @@ if not ZygorGuidesViewer then return end
 if ZGV:DoMutex("PetsCMOP") then return end
 if not ZGV.CommonPets then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Aqua Strider",{
+patch='50100',
+source='Drop',
+description="This guide will teach you how to acquire the Aqua Strider battle pet.",
+pet=836,
+},[[
+step
+kill Nalash Verdantis##50776+
+collect Hollow Reed##86563 |goto Dread Wastes/0 64.20,58.50
+step
+use Hollow Reed##86563
+learnpet Aqua Strider##836
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Dancing Water Skimmer",{
+patch='50100',
+source='PetBattle',
+description="This guide will teach you how to acquire the Dancing Water Skimmer battle pet.",
+pet=751,
+},[[
+step
+clicknpc Dancing Water Skimmer##65209
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Dancing Water Skimmer##751 |goto Vale of Eternal Blossoms/0 40.74,48.18
+You can also find them at: [Vale of Eternal Blossoms/0 62.37,51.68]
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Emperor Crab",{
+patch='50100',
+source='PetBattle',
+description="This guide will teach you how to acquire the Emperor Crab battle pet.",
+pet=746,
+},[[
+step
+clicknpc Emperor Crab##65203
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Emperor Crab##746 |goto Dread Wastes/0 27.95,71.17
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Eternal Strider",{
+patch='50100',
+source='PetBattle',
+description="This guide will teach you how to acquire the Eternal Strider battle pet.",
+pet=383,
+},[[
+step
+clicknpc Eternal Strider##61088
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Eternal Strider##383  |goto Vale of Eternal Blossoms/0 72.19,27.69
+You can also find them at:
+[Vale of Eternal Blossoms/0 69.30,44.21]
+[Vale of Eternal Blossoms/0 63.94,53.92]
+[Vale of Eternal Blossoms/0 82.07,45.84]
+]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Garden Frog",{
 patch='50100',
 source='PetBattle',
@@ -248,7 +302,7 @@ pet=1230,
 },[[
 step
 kill Morogrim Tidewalker##21213
-collect Shell of Tide-Calling##97552 |goto Serpentshrine Cavern/0 59.40,27.40
+collect Shell of Tide-Calling##97552 |goto Serpentshrine Cavern/1 59.40,27.40
 step
 use Shell of Tide-Calling##97552
 learnpet Tideskipper##1230
@@ -1922,6 +1976,24 @@ step
 use Ruby Droplet##104159
 learnpet Ruby Droplet##1328
 ]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Elemental Pets\\Sapphire Cub",{
+patch='50100',
+source='Profession',
+description="This guide will teach you how to acquire the Sapphire Cub battle pet.",
+pet=846,
+},[[
+step
+collect Sapphire Cub##82775 |or
+|tip This can be crafted with Pandaria Jewelcrafting at skill 75.
+|tip You obtain this jewelcrafting design from the Golden Lotus Daily Quest reward or by opening a Serpent's Heart. |only if hasprof("Pandaria Jewelcrafting",1,75)
+|tip Please open your Jewelcrafting Profession Interface. |only if hasprof("Pandaria Jewelcrafting",1,75)
+Click Here to Open the "Golden Lotus Dailies" Guide |confirm |loadguide "Daily Guides\\Mists of Pandaria Dailies\\The Golden Lotus Dailies" |only if hasprof("Pandaria Jewelcrafting",1,75)
+|tip You can also purchase the pet from the auction house.
+'|complete haspet(846) |or
+step
+use Sapphire Cub##82775
+learnpet Sapphire Cub##846
+]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Elemental Pets\\Skunky Alemental",{
 patch='54000',
 source='Drop',
@@ -1963,6 +2035,8 @@ pet=1231,
 step
 kill Hydross the Unstable##21216
 |tip Inside the Serpentshrine Cavern raid.
+|tip You may have to make this kill more than once to obtain the pet.
+|tip You can also purchase this pet from the auction house.
 collect Tainted Core##97553 |goto Serpentshrine Cavern/1 36.80,84.80
 step
 use Tainted Core##97553
@@ -1975,94 +2049,93 @@ description="This guide will teach you how to acquire the Terrible Turnip battle
 pet=650,
 },[[
 step
-Routing to pre quests. |next |only if not completedq(31945)
-|next "preqfin"
+Unlock Halfhill Dailies at your Farm
+|tip Accomplish this using the The Tillers Dailies Guide.
+|tip This guide includes a link to incomplete prerequisite quest guides as well.
+|tip The Terrible Turnip comes from planting and harvesting an Ominous Seed.
+|tip The Ominous Seed will rarely drop from harvesting fully grown crops from your farm.
+Click Here to Load the _Tillers Dailies_ Guide |confirm |loadguide "Daily Guides\\Mists of Pandaria Dailies\\The Tillers Dailies [NEW]"
+collect Terrible Turnip##85220 |or
+'|complete haspet(650) |or
 step
-In order to attain this pet, you will need to have the Farming Dailies in Halfhill unlocked.
-confirm
+use Terrible Turnip##85220
+learnpet Terrible Turnip##650
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Elemental Pets\\Thundertail Flapper",{
+patch='52000',
+source='PetBattle',
+description="This guide will teach you how to acquire the Thundertail Flapper battle pet.",
+pet=1175,
+},[[
 step
-label "preqfin"
-You will need to farm every day in order to have a chance at learning this pet.
-collect Terrible Turnip##85220
-learnpet Terrible Turnip##650 |use Terrible Turnip##85220
+clicknpc Thundertail Flapper##69648
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Thundertail Flapper##1175 |goto Isle of Thunder/0 45.30,64.70
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Amber Moth",{
 patch='50100',
 source='PetBattle',
-description="This guide will walk you through obtaining the Flying pet: Amber Moth",
+description="This guide will teach you how to acquire the Amber Moth battle pet.",
 pet=732,
 },[[
 step
-Challenge one to a pet battle and capture it
-|tip The Amber Moths in this area are around level 24.
-learnpet Amber Moth##732 |goto Townlong Steppes 47.30,78.70
+clicknpc Amber Moth##65187
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Amber Moth##732 |goto Townlong Steppes/0 47.30,78.70
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Amberglow Stinger",{
 patch='81500',
 source='Drop',
-description="This pet has a chance to drop from Blade Lord Ta'yak in the Heart of Fear raid.",
+description="This guide will teach you how to acquire the Amberglow Stinger battle pet.",
 pet=2586,
 },[[
 step
 kill Blade Lord Ta'yak##62543
+|tip You may have to make this kill more than once to obtain the pet.
+|tip You can also purchase this pet from the auction house.
 collect Tiny Amber Wings##167053 |goto Heart of Fear/1 59.91,19.37 |or
-|tip This pet is not a guaranteed drop.
-|tip It can be caged, meaning you can purchase it from the Auction House as well.
 '|complete haspet(2586) |or
 step
-use the Tiny Amber Wings##167053
-Learn the "Amberglow Stinger" Battle Pet |learnpet Amberglow Stinger##2586
-step
-_Congratulations!_
-You Collected the "Amberglow Stinger" Battle Pet.
-]])
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Amorous Rooster",{
-patch='50100',
-source='unknown',
-description="This guide will walk you through obtaining the Flying pet: Amorous Rooster",
-pet=705,
-},[[
-step
-Challenge one to a pet battle and capture it
-|tip The Amorous Roosters are around level 24.
-learnpet Amorous Rooster##705 |goto Valley of the Four Winds 32.20,52.30
+use Tiny Amber Wings##167053
+learnpet Amberglow Stinger##2586
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Ashwing Moth",{
 patch='54000',
 source='PetBattle',
-description="This guide will walk you through obtaining the Flying pet: Ashwing Moth",
+description="This guide will teach you how to acquire the Ashwing Moth battle pet.",
 pet=1324,
 },[[
 step
-Challenge one to a pet battle and capture it.
-|tip The Ashwing Moths in this area are level 25.
-learnpet Ashwing Moth##1324 |goto Townlong Steppes 47.30,78.70
+clicknpc Ashwing Moth##73542
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Ashwing Moth##1324 |goto Townlong Steppes/0 47.30,78.70
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Azure Crane Chick",{
 patch='54000',
 source='Drop',
-description="This guide will walk you through obtaining the Flying pet: Azure Crane Chick",
+description="This guide will teach you how to acquire the Azure Crane Chick battle pet.",
 pet=1321,
 },[[
 step
 This pet is looted from Crane Nests on the Timeless Isle.
 confirm
 step
-map Timeless Isle
+Loot the Crane Nests Along this Path:
+map Timeless Isle/0
 path	32.60,69.40	29.70,67.20	31.60,64.60
 path	33.10,66.20	43.20,66.00	41.40,69.60
-click Crane Nest##222685
 collect 1 Azure Crane Chick##104157
 step
-Use the _Azure Crane Chick_ in your bags. |use Azure Crane Chick##104157
+use Azure Crane Chick##104157
 learnpet Azure Crane Chick##1321
-step
-Congratulations, you have learned the _Azure Crane Chick_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Chi-Chi, Hatchling of Chi-Ji",{
 patch='54000',
 source='Vendor',
-description="This guide will walk you through obtaining the Flying pet: Chi-Chi, Hatchling of Chi-Ji",
+description="This guide will teach you how to acquire the Chi-Chi, Hatchling of Chi-Ji battle pet.",
 pet=1303,
 },[[
 step
@@ -2172,67 +2245,76 @@ Tell him, "Let's do this!"
 Defeat Chi-Chi, Hatchling of Chi-Ji in a pet battle |scenariogoal 2/23615 |goto Celestial Tournament/0 38.00,55.20
 step
 Complete The Celestial Tournament |q 33137/1
+|tip Right-click your portrait and choose 'Leave Scenario' to exit the tournament.
+step
+talk Master Li##73082
+turnin The Celestial Tournament##33137 |goto Timeless Isle/0 34.70,59.60
 step
 You will have to have 3 Celestial Coins in order to obtain this pet.
 collect 3 Celestial Coin##101529 |next
+|tip Each completion should earn you 1 Celestial Coin.
+|tip You can only complete this once a week per account.
 Click here to go back to the beginning of the guide to complete the weekly quest again. |confirm |next "start"
 step
 talk Master Li##73082
 buy 1 Chi-Chi, Hatchling of Chi-Ji##102145 |goto Timeless Isle/0 34.80,59.70
 step
-Use the _Chi-Chi, Hatchling of Chi-Ji_ in your bags. |use Chi-Chi, Hatchling of Chi-Ji##102145
+use Chi-Chi, Hatchling of Chi-Ji##102145
 learnpet Chi-Chi, Hatchling of Chi-Ji##1303
-step
-Congratulations, you have learned the _Chi-Chi, Hatchling of Chi-Ji_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Effervescent Glowfly",{
 patch='50100',
 source='PetBattle',
-description="This guide will walk you through obtaining the Flying pet: Effervescent Glowfly",
+description="This guide will teach you how to acquire the Effervescent Glowfly battle pet.",
 pet=747,
 },[[
 step
-Challenge one to a pet battle and capture it
-|tip The Effervescent Glowflies are around level 24.
-learnpet Effervescent Glowfly##747 |goto Vale of Eternal Blossoms 22.80,28.80
+clicknpc Effervescent Glowfly##63850
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Effervescent Glowfly##747 |goto Vale of Eternal Blossoms/0 22.80,28.80
+You can also find some at [Vale of Eternal Blossoms/0 11.84,33.88]
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Flamering Moth",{
 patch='54000',
 source='PetBattle',
-description="This guide will walk you through obtaining the Flying pet: Flamering Moth",
+description="This guide will teach you how to acquire the Flamering Moth battle pet.",
 pet=1325,
 },[[
 step
-Challenge one to a pet battle and capture it.
-|tip The Flamering Moths in this area are level 25.
+clicknpc Flamering Moth##73543
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
 learnpet Flamering Moth##1325 |goto Timeless Isle/0 55.70,60.80
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Garden Moth",{
 patch='50100',
 source='PetBattle',
-description="This guide will walk you through obtaining the Flying pet: Garden Moth",
+description="This guide will teach you how to acquire the Garden Moth battle pet.",
 pet=753,
 },[[
 step
-Challenge one to a pet battle and capture it
-|tip The Garden Moth is level 23 or 24.
-learnpet Garden Moth##753 |goto The Jade Forest 54.10,45.90
+clicknpc Garden Moth##65215
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Garden Moth##753 |goto The Jade Forest/0 54.10,45.90
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Gilded Moth",{
 patch='50100',
 source='PetBattle',
-description="This guide will walk you through obtaining the Flying pet: Gilded Moth",
+description="This guide will teach you how to acquire the Gilded Moth battle pet.",
 pet=748,
 },[[
 step
-Challenge one to a pet battle and capture it.
-|tip The Gilded Moths in this area are level 24.
-learnpet Gilded Moth##748 |goto Vale of Eternal Blossoms 33.20,65.10
+clicknpc Gilded Moth##63838
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Gilded Moth##748 |goto Vale of Eternal Blossoms/0 33.20,65.10
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Imperial Moth",{
 patch='51000',
 source='Profession',
-description="This guide will walk you through obtaining the Flying pet: Imperial Moth",
+description="This guide will teach you how to acquire the Imperial Moth battle pet.",
 pet=1039,
 },[[
 step
@@ -2243,7 +2325,7 @@ Click here to be taken to the Auctioneer to purchase it |confirm |next "buy"
 step
 label "create"
 kill Springtail Leaper##57415+, Springtail Gnasher##57413+
-collect 40 Windwool Cloth##72988 |goto Valley of the Four Winds 43.90,38.60
+collect 40 Windwool Cloth##72988 |goto Valley of the Four Winds/0 43.90,38.60
 step
 create 5 Bolt of Windwool Cloth##82441
 step
@@ -2271,458 +2353,457 @@ buy 1 Imperial Moth##90900
 |next "done"
 step
 label "done"
-learnpet Imperial Moth##1039 |use Imperial Moth##90900 |or
-learnpet Imperial Silkworm##1040 |use Imperial Silkworm##90902 |or
+use Imperial Moth##90900
+use Imperial Silkworm##9090
+learnpet Imperial Moth##1039 |or
+learnpet Imperial Silkworm##1040 |or
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Ji-Kun Hatchling",{
 patch='52000',
 source='Drop',
-description="This guide will walk you through obtaining the Flying pet: Ji-Kun Hatchling",
+description="This guide will teach you how to acquire the Ji-Kun Hatchling battle pet.",
 pet=1202,
 },[[
 step
-This pet drops in the raid Throne of Thudner, from the boss Ji-Kun.
-|tip Note that you will need a raid to reach and defeat him.
+kill Ji-Kun##69712
+|tip Inside the Throne of Thunder raid.
+|tip You will need a raid team to reach and defeat him.
+collect Ji-Kun Hatchling##94835
+step
+use Ji-Kun Hatchling##94835
 learnpet Ji-Kun Hatchling##1202
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Kor'thik Swarmling",{
 patch='81500',
 source='Drop',
-description="This pet has a chance to drop from Imperial Vizier Zor'lok in the Heart of Fear raid.",
+description="This guide will teach you how to acquire the Kor'thik Swarmling battle pet.",
 pet=2585,
 },[[
 step
 kill Imperial Vizier Zor'lok##62980
+|tip Inside the Heart of Fear raid.
+|tip You may have to kill this boss more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
 collect Kor'thik Swarmling##167058 |goto Heart of Fear/1 68.74,74.46 |or
-|tip This pet is not a guaranteed drop.
-|tip It can be caged, meaning you can purchase it from the Auction House as well.
 '|complete haspet(2585) |or
 step
 use Kor'thik Swarmling##167058
-Learn the "Kor'thik Swarmling" Battle Pet |learnpet Kor'thik Swarmling##2585
-step
-_Congratulations!_
-You Collected the "Kor'thik Swarmling" Battle Pet.
+learnpet Kor'thik Swarmling##2585
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Luyu Moth",{
 patch='50100',
 source='PetBattle',
-description="This guide will walk you through obtaining the Flying pet: Luyu Moth",
+description="This guide will teach you how to acquire the Luyu Moth battle pet.",
 pet=718,
 },[[
 step
-Challenge one to a pet battle and capture it.
-|tip The Luyu Moths are around level 24.
-learnpet Luyu Moth##718 |goto Krasarang Wilds 82.30,20.30
+clicknpc Luyu Moth##65124
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Luyu Moth##718 |goto Krasarang Wilds/0 82.30,20.30
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Mei Li Sparkler",{
 patch='50100',
 source='PetBattle',
-description="This guide will walk you through obtaining the Flying pet: Mei Li Sparkler",
+description="This guide will teach you how to acquire the Mei Li Sparkler battle pet.",
 pet=722,
 },[[
 step
-Challenge one to a pet battle and capture it.
-|tip The Mei Li Sparklers are around level 24.
-learnpet Mei Li Sparkler##722 |goto Krasarang Wilds 39.50,32.40
+clicknpc Mei Li Sparkler##65185
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Mei Li Sparkler##722 |goto Krasarang Wilds/0 39.50,32.40
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Sandy Petrel",{
 patch='50100',
 source='PetBattle',
-description="This guide will walk you through obtaining the Flying pet: Sandy Petrel",
+description="This guide will teach you how to acquire the Sandy Petrel battle pet.",
 pet=573,
 },[[
 step
-Challenge one to a pet battle and capture it.
-|tip Sandy Petrel are around level 24.
-learnpet Sandy Petrel##573 |goto The Jade Forest 66.20,25.30
+clicknpc Sandy Petrel##63006
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Sandy Petrel##573 |goto The Jade Forest/0 66.20,25.30
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Shrine Fly",{
 patch='50100',
 source='PetBattle',
-description="This guide will walk you through obtaining the Flying pet: Shrine Fly",
+description="This guide will teach you how to acquire the Shrine Fly battle pet.",
 pet=754,
 },[[
 step
-Challenge one to a pet battle and capture it.
-|tip The Shrine Flies in this area are around level 24.
-learnpet Shrine Fly##754 |goto The Jade Forest 33.40,50.60
+clicknpc Shrine Fly##65216
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Shrine Fly##754 |goto The Jade Forest/0 33.40,50.60
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Sky Lantern",{
 patch='54000',
 source='Vendor',
-description="This guide will walk you through obtaining the Flying pet: Sky Lantern",
+description="This guide will teach you how to acquire the Sky Lantern battle pet.",
 pet=1350,
 },[[
 step
-In order to earn this pet you will need to acquire 7500 Timeless Coin.
-|tip There are several caches found throughout the entire isle.
-|tip Each enemy drops between 1 and 80 Timeless Coins.
-|tip Rare spawns on the island drops more.
-earn 7500 Timeless Coin##777
+Kill enemies around the Timeless Isle
+|tip Timeless Coins also drop from caches on the Timeless Isle.
+earn 7500 Timeless Coin##777 |goto Timeless Isle/0 47.20,47.70
 step
 talk Ku-Mo##73819
-buy 1 Sky Lantern##104332 |goto Timeless Isle 41.20,63.60
+buy 1 Sky Lantern##104332 |goto Timeless Isle/0 41.20,63.60
 step
-learnpet Sky Lantern##1350 |use Sky Lantern##104332
+use Sky Lantern##104332
+learnpet Sky Lantern##1350
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Skywisp Moth",{
 patch='54000',
 source='PetBattle',
-description="This guide will walk you through obtaining the Flying pet: Skywisp Moth",
+description="This guide will teach you how to acquire the Skywisp Moth battle pet.",
 pet=1326,
 },[[
 step
-Challenge one to a pet battle and capture it.
-|tip The Skywisp Moths in this area are level 25.
+clicknpc Skywisp Moth##73368
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
 learnpet Skywisp Moth##1326 |goto Timeless Isle/0 65.30,23.30
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Szechuan Chicken",{
 patch='50100',
 source='PetBattle',
-description="This guide will walk you through obtaining the Flying pet: Szechuan Chicken",
+description="This guide will teach you how to acquire the Szechuan Chicken battle pet.",
 pet=728,
 },[[
 step
-Challenge one to a pet battle and capture it.
-|tip The Szechuan Chickens are around level 24.
-learnpet Szechuan Chicken##728 |goto Kun-Lai Summit 60.20,88.60
+clicknpc Szechuan Chicken##63585
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Szechuan Chicken##728 |goto Kun-Lai Summit/0 60.20,88.60
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Humanoid Pets\\Ashleaf Spriteling",{
 patch='54000',
 source='Drop',
-description="This guide will walk you through obtaining the Humanoid pet: Ashleaf Spriteling",
+description="This guide will teach you how to acquire the Ashleaf Spriteling battle pet.",
 pet=1323,
 },[[
 step
-This pet drops from a Rare Spawn on the Timeless Isle.
-confirm
-step
 kill Leafmender##73277
-collect 1 Ashleaf Spriteling##104156 |goto Timeless Isle 67.30,44.10
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
+collect 1 Ashleaf Spriteling##104156 |goto Timeless Isle/0 67.30,44.10
 step
-Use the _Ashleaf Spriteling_ in your bags. |use Ashleaf Spriteling##104156
+use Ashleaf Spriteling##104156
 learnpet Ashleaf Spriteling##1323
-step
-Congratulations, you have learned the _Ashleaf Spriteling_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Humanoid Pets\\Bonkers",{
 patch='54000',
 source='Drop',
-description="This guide will walk you through obtaining the Humanoid pet: Bonkers",
+description="This guide will teach you how to acquire the Bonkers battle pet.",
 pet=1343,
 },[[
 step
-This pet requires you to have a lot of Timeless coins, as it is a random drop from a chest.
-confirm
+Kill enemies around the Timeless Isle
+|tip Timeless Coins are also looted from caches on the Timeless Isle.
+earn 500 Timeless Coin##777 |goto Timeless Isle/0 47.20,47.70
 step
-Enter this cave here |goto Timeless Isle/0 58.50,42.80 < 5 |walk
+Enter the cave |goto Timeless Isle/0 58.50,42.80 < 10 |walk
 talk Master Kukuru##72007
 buy Kukuru's Cache Key##101538 |goto Timeless Isle/0 59.10,40.60
 step
-Pick one of the many chests in this room and use your key to open it.
 click Timeless Chest##221016
+|tip Pick one of the many chests in this room and use your key to open it.
+|tip Keep buying keys and opening chests until you loot the pet.
+|tip You can also purchase this battle pet in the Auction House.
 collect 1 Bonkers##104202
-|tip This will most likely not drop on your first try. You will need to keep buying keys and opening chests until this drops.
 step
-learnpet Bonkers##1343 |use Bonkers##104202
-step
-Congratulations, you have learned the _Bonkers_ companion!
+use Bonkers##104202
+learnpet Bonkers##1343
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Humanoid Pets\\Dandelion Frolicker",{
 patch='54000',
 source='Drop',
-description="This guide will walk you through obtaining the Humanoid pet: Dandelion Frolicker",
+description="This guide will teach you how to acquire the Dandelion Frolicker battle pet.",
 pet=1329,
 },[[
 step
-click Neverlasting Crystal |goto Timeless Isle 47.70,73.70
-This will provide a limited debuff that will turn all Nice Sprites into Angry Sprites.
+click Neverending Spritewood##220807 |goto Timeless Isle/0 47.70,73.70
+|tip This will provide a limited debuff that will turn all Nice Sprites into Angry Sprites.
 confirm
 step
 kill Nice Sprite##71823+, Angry Sprite##71824+
 |tip Kill enough of these in the time allotment and a Scary Sprite will spawn.
 kill Scary Sprite##71826
-collect 1 Dandelion Frolicker##104160 |goto Timeless Isle 45.50,73.40
+collect 1 Dandelion Frolicker##104160 |goto Timeless Isle/0 45.50,73.40
 step
-Use the _Dandelion Frolicker_ in your bags |use Dandelion Frolicker##104160
+use Dandelion Frolicker##104160
 learnpet Dandelion Frolicker##1329
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Humanoid Pets\\Fiendish Imp",{
 patch='53000',
 source='Drop',
-description="This guide will walk you through obtaining the Humanoid pet: Fiendish Imp",
+description="This guide will teach you how to acquire the Fiendish Imp battle pet.",
 pet=1229,
 },[[
 step
 kill Terestian Illhoof##15688
+|tip Inside the Karazhan raid.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
 collect Satyr Charm##97551 |goto Karazhan/11 55.80,76.60
 step
-Use the _Satyr Charm_. |use Satyr Charm##97551
+use Satyr Charm##97551
 learnpet Fiendish Imp##1229
-step
-Congratulations, you have learned the _Fiendish Imp_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Humanoid Pets\\Lil' Bad Wolf",{
 patch='53000',
 source='Drop',
-description="This guide will walk you through obtaining the Humanoid pet: Lil' Bad Wolf",
+description="This guide will teach you how to acquire the Lil' Bad Wolf battle pet.",
 pet=1226,
 },[[
 step
 kill The Big Bad Wolf##17521
 collect Spiky Collar##97548 |goto Karazhan/4 18.00,34.40
 step
-Use your Spiky Collar. |use Spiky Collar##97548
+use Spiky Collar##97548
 learnpet Lil' Bad Wolf##1226
-step
-Congratulations, you have learned the _Lil' Bad Wolf_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Baoh-Xi",{
 patch='81500',
 source='Drop',
-description="This pet has a chance to drop from Qin-xi and Jan-xi in the Mogu'shan Vaults raid.",
+description="This guide will teach you how to acquire the Baoh-Xi battle pet.",
 pet=2582,
 },[[
 step
 kill Qin-xi##60399
 kill Jan-xi##60400
+|tip Inside the Mogu'shan Vaults raid.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
 collect Mogu Statue##167050 |goto Mogu'shan Vaults/3 68.74,81.71 |or
-|tip This pet is not a guaranteed drop.
-|tip It can be caged, meaning you can purchase it from the Auction House as well.
 '|complete haspet(2582) |or
 step
 use the Mogu Statue##167050
-Learn the "Baoh-Xi" Battle Pet |learnpet Baoh-Xi##2582
-step
-_Congratulations!_
-You Collected the "Baoh-Xi" Battle Pet.
+learnpet Baoh-Xi##2582
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Coilfang Stalker",{
 patch='53000',
 source='Drop',
-description="This guide will walk you through obtaining the Magic pet: Coilfang Stalker",
+description="This guide will teach you how to acquire the Coilfang Stalker battle pet.",
 pet=1232,
 },[[
 step
 kill Lady Vashj##21212
-collect Dripping Strider Egg##97554 |n
-learnpet Coilfang Stalker##1232 |goto Serpentshrine Cavern 71.60,59.00
-|tip You will likely need a group for this boss, as the mechanics call for it.
+|tip Inside Serpenshrine Cavern raid.
+|tip You will likely need a group for this boss.
+collect Dripping Strider Egg##97554 |goto Serpentshrine Cavern/2 71.60,59.00
 step
-Congratulations, you have learned the _Coilfang Stalker_!
+use Dripping Strider Egg##97554
+learnpet Coilfang Stalker##1232
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Comet",{
 patch='81500',
 source='Drop',
-description="This pet has a chance to drop from Elegon's Cache of Pure Energy in the Mogu'shan Vaults raid.",
+description="This guide will teach you how to acquire the Comet battle pet.",
 pet=2581,
 },[[
 step
 kill Elegon##60410
+|tip Inside the Mogu'shan Vaults raid.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
 click Cache of Pure Energy##214386
 |tip It spawns after killing Elegon.
 collect Celestial Gift##167049 |goto Mogu'shan Vaults/3 20.69,51.17 |or
-|tip This pet is not a guaranteed drop.
-|tip It can be caged, meaning you can purchase it from the Auction House as well.
 '|complete haspet(2581) |or
 step
 use the Celestial Gift##167049
-Learn the "Comet" Battle Pet |learnpet Comet##2581
-step
-_Congratulations!_
-You Collected the "Comet" Battle Pet.
+learnpet Comet##2581
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Filthling",{
 patch='53000',
 source='Drop',
-description="This guide will walk you through obtaining the Magic pet: Filthling",
+description="This guide will teach you how to acquire the Filthling battle pet.",
 pet=1245,
 },[[
 step
 kill Quivering Filth##69251+
 |tip Fight them all around  this area.
-collect Half-Empty Food Container##97961 |goto Isle of Thunder 51.20,81.80
+collect Half-Empty Food Container##97961 |goto Isle of Thunder/0 51.20,81.80
 step
-Use the _Half-Empty Food Container_. |use Half-Empty Food Container##97961
+use Half-Empty Food Container##97961
 learnpet Filthling##1245
-step
-Congratulations, you have learned the _Filthling_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Gusting Grimoire",{
 patch='52000',
 source='TradingCardGame',
-description="This guide will walk you through obtaining the Magic pet: Gusting Grimoire",
+description="This guide will teach you how to acquire the Gusting Grimoire battle pet.",
 pet=1174,
 },[[
 step
-This pet can only be obtained through the World of Warcraft Trading Card Game Expansion: "Betrayal of the Guardian"..
-confirm
+Purchase this pet in the auction house
+|tip This was a reward from the Trading Card Game.
+collect Gusting Grimoire##93669
 step
+use Gusting Grimoire##93669
 learnpet Gusting Grimoire##1174
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Harmonious Porcupette",{
 patch='54000',
 source='Vendor',
-description="This guide will walk you through obtaining the Magic pet: Harmonious Porcupette",
+description="This guide will teach you how to acquire the Harmonious Porcupette battle pet.",
 pet=1346,
 },[[
 step
-kill Ordon Candlekeeper##72875+, Ordon Oathguard##72892+, Ordon Fire-Watcher##72894+ |goto Timeless Isle/0 53.70,79.90
-|tip Become Revered with the Shaohao
-earn 7500 Timeless Coin##777 |n
-confirm
+Reach Revered Reputation with Emperor Shaohao |complete rep("Emperor Shaohao") >= Revered
+|tip Use the _Emperor Shaohao Reputation_ guide to accomplish this.
+Click Here to Load the _Emperor Shaohao Reputation_ guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Emperor Shaohao"
+step
+earn 7500 Timeless Coin##777 |goto Timeless Isle/0 53.70,79.90
 step
 talk Mistweaver Ku##73306
 buy 1 Harmonious Porcupette##104295 |goto Timeless Isle/0 42.70,54.70
 step
-Use the _Harmonious Porcupette_ in your bags. |use Harmonious Porcupette##104295
+use Harmonious Porcupette##104295
 learnpet Harmonious Porcupette##1346
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Lesser Voidcaller",{
 patch='53000',
 source='Drop',
-description="This guide will walk you through obtaining the Magic pet: Lesser Voidcaller",
+description="This guide will teach you how to acquire the Lesser Voidcaller battle pet.",
 pet=1234,
 },[[
 step
 kill High Astromancer Solarian##18805
+|tip Inside The Eye raid in Netherstorm in Outland.
 collect Crystal of the Void##97556 |goto Tempest Keep/1 73.80,49.20
 step
-Use your _crystal of the Void_. |use Crystal of the Void##97556
+use Crystal of the Void##97556
 learnpet Lesser Voidcaller##1234
-step
-Congratulations, you have learned the _Lesser Voidcaller_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Living Amber",{
 patch='81500',
 source='Drop',
-description="This pet has a chance to drop from Amber-Shaper Un'sok in the Heart of Fear raid.",
+description="This guide will teach you how to acquire the Living Amber battle pet.",
 pet=2589,
 },[[
 step
 kill Amber-Shaper Un'sok##62511
+|tip Inside the Heart of Fear raid in the Dread Wastes in Pandaria.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
 collect Amber Goo Puddle##167055 |goto Heart of Fear/2 44.19,73.58 |or
-|tip This pet is not a guaranteed drop.
-|tip It can be caged, meaning you can purchase it from the Auction House as well.
 '|complete haspet(2589) |or
 step
 use Amber Goo Puddle##167055
-Learn the "Living Amber" Battle Pet |learnpet Living Amber##2589
-step
-_Congratulations!_
-You Collected the "Living Amber" Battle Pet.
+learnpet Living Amber##2589
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Living Fluid",{
 patch='53000',
 source='Drop',
-description="This guide will walk you through obtaining the Magic pet: Living Fluid",
+description="This guide will teach you how to acquire the Living Fluid battle pet.",
 pet=1243,
 },[[
 step
-In order to obtain this pet, you will need to defeat _Primordius_ in _Throne of Thunder_.
-confirm
-step
 kill Primordius##69017
-collect Quivering Blob##97959 |goto Throne of Thunder/5 57.10,77.60
+|tip Inside the Throne of Thunder raid on the Isle of Thunder in Pandaria.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
+collect Quivering Blob##97959 |goto Throne of Thunder/5 57.10,77.60 |or
+'|complete haspet(1243) |or
 step
-Use your Dark Quivering Blob. |use Dark Quivering Blob##97960
+use Dark Quivering Blob##97960
 learnpet Viscous Horror##71199
-step
-Congratulations, you have learned the _Viscous Horror_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Netherspace Abyssal",{
 patch='53000',
 source='Drop',
-description="This guide will walk you through obtaining the Magic pet: Netherspace Abyssal",
+description="This guide will teach you how to acquire the Netherspace Abyssal battle pet.",
 pet=1228,
 },[[
 step
 kill Prince Malchezaar##15690
-collect Netherspace Portal-Stone##97550 |goto Karazhan/17 48.60,53.60
+|tip Inside the Karazhan raid in Deadwind Pass on Eastern Kingdoms.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
+collect Netherspace Portal-Stone##97550 |goto Karazhan/17 48.60,53.60 |or
+'|complete haspet(1228) |or
 step
-Use your Netherspace Portal-Stone. |use Netherspace Portal-Stone##97550
+use Netherspace Portal-Stone##97550
 learnpet Netherspace Abyssal##1228
-step
-Congratulations, you have learned the _Netherspace Abyssal_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Spectral Cub",{
 patch='51000',
 source='Promotion',
-description="This guide will walk you through obtaining the Magic pet: Spectral Cub",
+description="This battle pet is no longer obtainable.",
 pet=1127,
 },[[
 step
-This pet was a reward for players who attended the Battle.net World Championships in Shanghai.
+This pet was a reward for players who attended the Battle.net World Championships in Shanghai in 2012.
+|tip This battle pet is no longer obtainable.
 confirm
-step
-Check your in-game mail for your Spectral Cub!
-collect 1 Spectral Cub##90953
-step
-learnpet Spectral Cub##1127 |use Spectral Cub##90953
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Spectral Porcupette",{
 patch='52000',
 source='Quest',
-description="This guide will walk you through obtaining the Magic pet: Spectral Porcupette",
+description="This guide will teach you how to acquire the Spectral Porcupette battle pet.",
 pet=1185,
 },[[
 step
-For this pet, you will likely need to have at least 2 people who have _Heroic Level Dungeon Gear_.
-|tip avoid Primal enemies, as they hit very hard.
-confirm
+Kill enemies around this area
+|tip Kill the primal dinomancers, dinosaurs, and skyscreamers around the Isle of Giants.
+|tip You can also fish these up on the Isle of Giants.
+collect 1000 Giant Dinosaur Bone##94288 |goto Isle of Giants/0 69.37,71.98  |or
+'|complete haspet(1185) |or
 step
-kill Primal Direhorn##70016+, Primal Direhorn Hatchling##70012+, Young Primal Devilsaur##69993+, Primal Devilsaur##70011+, Young Primal Devilsaur##69993+, Pterrorwing Skyscreamer##70020+
-collect 1000 Giant Dinosaur Bone##94288
-step
-Enter the cave here. |goto Isle of Giants/0 27.40,58.00 < 10 |walk
+Enter the cave |goto Isle of Giants/0 27.40,58.00 < 10 |walk
 talk Ku'ma##70022
-turnin A Large Pile of Giant Dinosaur Bones##32616 |goto Isle of Giants 32.70,53.90
+|tip Inside the cave.
+turnin A Large Pile of Giant Dinosaur Bones##32616 |n
+collect Spectral Porcupette##94190 |goto Isle of Giants/0 32.70,53.90 |or
+'|complete haspet(1185) |or
 step
-collect Spectral Porcupette##94190
-learnpet Spectral Porcupette##1185 |use Spectral Porcupette##94190
-step
-Congratulations, you have attained the _Spectral Porcupette_!
+use Spectral Porcupette##94190
+learnpet Spectral Porcupette##1185
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Magic Pets\\Viscous Horror",{
 patch='53000',
 source='Drop',
-description="This guide will walk you through obtaining the Magic pet: Viscous Horror",
+description="This guide will teach you how to acquire the Viscous Horror battle pet.",
 pet=1244,
 },[[
 step
-In order to obtain this pet, you will need to defeat _Primordius_ in _Heroic Throne of Thunder_.
-confirm
-step
 kill Primordius##69017
+|tip Inside the Heroic Throne of Thunder raid on the Isle of Thunder in Pandaria.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
 collect Dark Quivering Blob##97960 |goto Throne of Thunder/5 57.10,77.60
 step
-Use your Dark Quivering Blob. |use Dark Quivering Blob##97960
+use Dark Quivering Blob##97960
 learnpet Viscous Horror##1244
-step
-Congratulations, you have learned the _Viscous Horror_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Mechanical Pets\\Blackfuse Bombling",{
 patch='54000',
 source='Drop',
-description="This guide will walk you through obtaining the Mechanical pet: Blackfuse Bombling",
+description="This guide will teach you how to acquire the Blackfuse Bombling battle pet.",
 pet=1322,
 },[[
 step
 You can only obtain this pet from the Siege of Orgrimmar raid.
-|tip It can drop from any difficulty..
+|tip It can drop from any difficulty.
 confirm
 step
 kill Siegemaster Blackfuse##71504
+|tip Inside the Siege of Orgrimmar raid in the Vale of Eternal Blossoms on Pandaria.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
 collect Blackfuse Bombling##104158 |goto Siege of Orgrimmar/10 58.70,46.50
 step
-Use the _Blackfuse Bombling_ in your bags.|use Blackfuse Bombling##104158
+use Blackfuse Bombling##104158
 learnpet Blackfuse Bombling##1322
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Mechanical Pets\\Lil' Bling",{
 patch='54000',
 source='Drop',
-description="This guide will walk you through obtaining the Mechanical pet: Lil' Bling",
+description="This guide will teach you how to acquire the Lil' Bling battle pet.",
 pet=1320,
 },[[
 step
@@ -2744,44 +2825,44 @@ talk Blingtron 4000##43929
 accept Blingtron 4000##31752
 collect 1 Blingtron 4000 Gift Package##86623
 step
-Open the Blingtron 4000 Gift Package in your bags! |use Blingtron 4000 Gift Package##86623
+use Blingtron 4000 Gift Package##86623
 collect 1 Lil' Bling##103670 |next
 Click here if you didn't receive the Dusty Old Robot today. |confirm |next "gift"
 step
-Use the _Lil' Bling_ in your bags. |use Lil' Bling##103670
+use Lil' Bling##103670
 learnpet Lil'Bling##73011
-step
-Congratulations, you have learned the _Lil' Bling_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Mechanical Pets\\Menagerie Custodian",{
 patch='53000',
 source='Drop',
-description="This guide will walk you through obtaining the Mechanical pet: Menagerie Custodian",
+description="This guide will teach you how to acquire the Menagerie Custodian battle pet.",
 pet=1227,
 },[[
 step
 kill The Curator##15691
+|tip Inside the Karazhan raid in Deadwind Pass on Eastern Kingdoms.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
 collect Instant Arcane Sanctum Security Kit##97549 |goto Karazhan/9 41.00,22.00
 step
-Use your _Instant Arcane Sanctum Security Kit_. |use Instant Arcane Sanctum Security Kit##97549
+use Instant Arcane Sanctum Security Kit##97549
 learnpet Menagerie Custodian##1227
-step
-Congratulations, you have learned the _Menagerie Custodian_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Mechanical Pets\\Pierre",{
 patch='52000',
 source='Profession',
-description="This guide will walk you through obtaining the Mechanical pet: Pierre",
+description="This guide will teach you how to acquire the Pierre battle pet.",
 pet=1204,
 },[[
 step
-This pet requires you to have level 75 in Pandaria Engineering.
+Creating this pet requires you to have level 75 in Pandaria Engineering
+You can also purchase this in the auction house.
 confirm
 step
 Kill any mob in the _Vale of Eternal Blossoms_
 collect 1 Schematic: Chief Engineer Jard's Journal##100910
 step
-Use the _Schematic: Chief Engineer Jard's Journal_ in your bags. |use Schematic: Chief Engineer Jard's Journal##100910
+use Schematic: Chief Engineer Jard's Journal##100910
 accept Chief Engineer Jard's Journal##32630
 step
 label "a"
@@ -2823,43 +2904,44 @@ create 150 Ghost Iron Bar##102165
 step
 create 1 Pierre##139196,Engineering,1 total
 step
-learnpet Pierre##1204 |use Pierre##94903
-step
-Congratulations, you have learned the _Pierre_ companion!
+use Pierre##94903
+learnpet Pierre##1204
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Mechanical Pets\\Pocket Reaver",{
 patch='53000',
 source='Drop',
-description="This guide will walk you through obtaining the Mechanical pet: Pocket Reaver",
+description="This guide will teach you how to acquire the Pocket Reaver battle pet.",
 pet=1233,
 },[[
 step
 kill Void Reaver##19516
+|tip Inside the Tempest Keep raid in Netherstorm in Outland.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
 collect Tiny Fel Engine Key##97555 |goto Tempest Keep/1 25.30,49.50
 step
-Use your _Tiny Fel Engine Key_. |use Tiny Fel Engine Key##97555
+use Tiny Fel Engine Key##97555
 learnpet Pocket Reaver##1233
-step
-Congratulations, you have learned the _Pocket Reaver_ companion!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Mechanical Pets\\Rascal-Bot",{
 patch='54000',
 source='Profession',
-description="This guide will walk you through obtaining the Mechanical pet: Rascal-Bot",
+description="This guide will teach you how to acquire the Rascal-Bot battle pet.",
 pet=1256,
 },[[
 step
-This pet requires you to have level 75 in Pandaria Engineering.
+Creating this pet requires you to have level 75 in Pandaria Engineering.
+You can also purchase this in the auction house.
 confirm
 step
 Kill any mob in the _Vale of Eternal Blossoms_
 collect 1 Schematic: Chief Engineer Jard's Journal##100910
 step
-Use the _Schematic: Chief Engineer Jard's Journal_ in your bags. |use Schematic: Chief Engineer Jard's Journal##100910
+use Schematic: Chief Engineer Jard's Journal##100910
 accept Chief Engineer Jard's Journal##32630
 step
 label "a"
-You can either buy these materials from the Auction House or farm to obtain them:
+You can either buy these materials from the auction house or farm to obtain them:
 collect 30 Living Steel##72104
 collect 30 Jard's Peculiar Energy Source##94113
 |next "create"
@@ -2897,186 +2979,211 @@ create 300 Ghost Iron Bar##102165
 step
 create 1 Rascal-Bot##143714,Engineering,1 total
 step
-learnpet Rascal-Bot##1256 |use Rascal-Bot##100905
-step
-Congratulations, you have learned the _Rascal-Bot_ companion!
+use Rascal-Bot##100905
+learnpet Rascal-Bot##1256
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Mechanical Pets\\Son of Animus",{
 patch='52000',
 source='Drop',
-description="This guide will walk you through obtaining the Mechanical pet: Son of Animus",
+description="This guide will teach you how to acquire the Son of Animus battle pet.",
 pet=1183,
 },[[
 step
-This pet drops in the raid Throne of Thudner, from the boss Dark Animus.
-|tip He is located in the Halls of Flesh-Shaping.
-|tip Note that you will need a raid to reach and defeat him.
-learnpet Son of Animus##1183 |use Son of Animus##94152
+kill Dark Animus##69427
+|tip Inside The Throne of Thunder raid on The Isle of Thunder in Pandaria.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
+collect Son of Animus##94152
+step
+use Son of Animus##94152
+learnpet Son of Animus##1183
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Mechanical Pets\\Sunreaver Micro-Sentry",{
 patch='52000',
 source='Drop',
-description="This guide will walk you through obtaining the Mechanical pet: Sunreaver Micro-Sentry",
+description="This guide will teach you how to acquire the Sunreaver Micro-Sentry battle pet.",
 pet=1178,
 },[[
 step
 kill Haywire Sunreaver Construct##50358
-|tip He walks around this area.
+|tip Inside The Throne of Thunder raid on The Isle of Thunder in Pandaria.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
 collect Sunreaver Construct##94124 |goto Isle of Thunder/0 49.20,86.40 |or
-|tip You may have to kill him several times to collect the item.
-'|complete haspet(1183)
+'|complete haspet(1178)
 step
-|use Sunreaver Construct##94124
-Learn the "Sunreaver Micro-Sentry" Battle Pet |learnpet Sunreaver Micro-Sentry##1178
+use Sunreaver Construct##94124
+learnpet Sunreaver Micro-Sentry##1178
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Undead Pets\\Unborn Val'kyr",{
 patch='53000',
 source='PetBattle',
-description="This guide will walk you through obtaining the Undead pet: Unborn Val'kyr",
+description="This guide will teach you how to acquire the Unborn Val'kyr battle pet.",
 pet=1238,
 },[[
 step
-This pet is very rare, so you may be searching for a while.
-confirm
-step
 label "start"
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Borean Tundra 32.60,60.00 |next "end"
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Borean Tundra/0 32.60,60.00 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Borean Tundra/0 80.80,48.20 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Borean Tundra/0 47.80,8.00 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Sholazar Basin/0 44.60,69.20 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Sholazar Basin/0 36.80,19.40 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Sholazar Basin/0 58.50,22.00 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Icecrown/0 44.20,33.40 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Icecrown/0 47.90,86.60 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Icecrown/0 73.80,64.50 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest/0 17.60,57.20 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Dragonblight/0 26.80,54.00 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Dragonblight/0 82.20,65.80 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Dragonblight/0 65.60,35.80 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest/0 43.40,44.00 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest/0 68.20,49.60 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto The Storm Peaks/0 42.50,78.50 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto The Storm Peaks/0 29.00,51.40 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto The Storm Peaks/0 65.20,41.80 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Zul'Drak/0 75.00,22.80 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Zul'Drak/0 57.00,39.80 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Zul'Drak/0 24.60,64.00 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Grizzly Hills/0 25.80,56.80 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Grizzly Hills/0 61.40,18.20 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Grizzly Hills/0 79.60,51.80 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Howling Fjord/0 71.80,43.00 |next "end"
+Click here if the pet is not available at this location. |confirm
+step
+clicnpc Unborn Val'kyr##71163
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Howling Fjord/0 68.00,67.60 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
 Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Borean Tundra 80.80,48.20 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Borean Tundra 47.80,8.00 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Sholazar Basin 44.60,69.20 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Sholazar Basin 36.80,19.40 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Sholazar Basin 58.50,22.00 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Icecrown 44.20,33.40 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Icecrown 47.90,86.60 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Icecrown 73.80,64.50 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest 17.60,57.20 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Dragonblight 26.80,54.00 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Dragonblight 82.20,65.80 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Dragonblight 65.60,35.80 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest 43.40,44.00 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest 68.20,49.60 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto The Storm Peaks 42.50,78.50 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto The Storm Peaks 29.00,51.40 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto The Storm Peaks 65.20,41.80 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Zul'Drak 75.00,22.80 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Zul'Drak 57.00,39.80 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Zul'Drak 24.60,64.00 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Grizzly Hills 25.80,56.80 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Grizzly Hills 61.40,18.20 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Grizzly Hills 79.60,51.80 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Howling Fjord 71.80,43.00 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Howling Fjord 68.00,67.60 |next "end"
-Click here if the pet is not available at this location. |confirm
-step
-Challenge it to a pet battle and capture it
-|tip The Unborn Val'kyr is level 23.
-learnpet Unborn Val'kyr##1238 |goto Howling Fjord 46.00,43.00 |next "end"
+|tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
+|tip You may need to attempt the trap several times.
+learnpet Unborn Val'kyr##1238 |goto Howling Fjord/0 46.00,43.00 |next "end"
 Click here if the pet is not available at this location. |confirm |next "start"
-step
-label "end"
-Congratulations, you have obtained the _Unborn Val'kyr_ pet!
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Undead Pets\\Wayward Spirit",{
 patch='81500',
@@ -3086,14 +3193,12 @@ pet=2580,
 },[[
 step
 kill Gara'jal the Spiritbinder##60143
+|tip Inside the Mogushan Vaults raid in Kun-Lai Summit on Pandaria.
+|tip You may have to kill this more than once to obtain the pet.
+|tip You can also purchase this in the Auction House.
 collect Wayward Spirit##167048 |goto Mogu'shan Vaults/1 59.91,19.37 |or
-|tip This pet is not a guaranteed drop.
-|tip It can be caged, meaning you can purchase it from the Auction House as well.
 '|complete haspet(2580) |or
 step
 use the Wayward Spirit##167048
-Learn the "Wayward Spirit" Battle Pet |learnpet Wayward Spirit##2580
-step
-_Congratulations!_
-You Collected the "Wayward Spirit" Battle Pet.
+learnpet Wayward Spirit##2580
 ]])

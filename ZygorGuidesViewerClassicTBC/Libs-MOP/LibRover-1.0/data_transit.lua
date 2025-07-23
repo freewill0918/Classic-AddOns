@@ -171,6 +171,11 @@ data.basenodes.transit = --[[LIBROVER]] {
 		"Stormwind City,75.2,16.8 -x- Twilight Highlands,79.5,77.8 <template:cityportal> {fac:A} {mode:PORTAL} {cond:PlayerCompletedQuest(27537)}",
 		"Stormwind City,68.8,17.1 -x- The Jade Forest,46.23,85.17 <title:Paw'don Village> {fac:A} {mode:PORTAL} {cond:PlayerCompletedQuest(29548)}",
 
+		"Stormwind City/0 48.98,87.36 -to- Blasted Lands/0 53.90,46.08 {fac:A} {mode:PORTAL} {title:Click the Portal to Blasted Lands Inside the Tower} {cond:UnitLevel('player') >= 58}",
+		"Ironforge/0 27.23,7.01 -to- Blasted Lands/0 53.90,46.08 {fac:A} {mode:PORTAL} {cond:UnitLevel('player') >= 58}",
+		"The Exodar/0 48.15,63.00 -to- Blasted Lands/0 53.90,46.08 {fac:A} {mode:PORTAL} {cond:UnitLevel('player') >= 58}",
+		"Darnassus/0 43.98,78.15 -to- Blasted Lands/0 53.90,46.08 {fac:A} {mode:PORTAL} {cond:UnitLevel('player') >= 58}",
+
 
 	--## HORDE ##--
 
@@ -195,6 +200,9 @@ data.basenodes.transit = --[[LIBROVER]] {
 		-- Undercity - Tirisfal Glades, Eastern Kingdoms -to- The Stair of Destiny - Hellfire Peninsula, Outland (Portal Usable) --CHECKED
 		"Undercity/0 85.25,17.04 -to- Hellfire Peninsula/0 89.16,49.56 {fac:H} {mode:PORTAL}",
 
+		"Orgrimmar/1 35.47,69.14 -to- Blasted Lands/0 53.90,46.08 <tag:cityportal> {fac:H} {mode:PORTAL} {title:Click the Portal to Blasted Lands Upstairs Inside the Hut} {cond:UnitLevel('player') >= 58}",
+		"Orgrimmar/2 44.70,67.97 -to- Blasted Lands/0 53.90,46.08 <tag:cityportal> {fac:H} {mode:PORTAL} {cond:UnitLevel('player') >= 58}",
+		"Silvermoon City/0 58.42,21.03 -to- Blasted Lands/0 53.90,46.08 <tag:cityportal> {fac:H} {mode:PORTAL} {cond:UnitLevel('player') >= 58}",
 
 
 
