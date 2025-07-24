@@ -33,7 +33,9 @@ function BaganatorItemViewCommonBankViewWarbandViewMixin:OnLoad()
   addonTable.Utilities.AddScrollBar(self)
 
   addonTable.CallbackRegistry:RegisterCallback("SearchTextChanged",  function(_, text)
-    self:ApplySearch(text)
+    if self:IsVisible() then
+      self:ApplySearch(text)
+    end
   end)
 
   self.refreshState = {}
@@ -85,9 +87,14 @@ function BaganatorItemViewCommonBankViewWarbandViewMixin:OnLoad()
   addonTable.Skins.AddFrame("Button", self.WithdrawMoneyButton)
   addonTable.Skins.AddFrame("Button", self.DepositMoneyButton)
 
-  self.purchaseButton = CreateFrame("Button", nil, self, "BaganatorSecureRightSideTabButtonTemplate")
-  self.purchaseButton:SetAttribute("type", "click")
-  self.purchaseButton:SetAttribute("clickbutton", AccountBankPanel.PurchasePrompt.TabCostFrame.PurchaseButton)
+  if Syndicator.Constants.CharacterBankTabsActive then
+    self.purchaseButton = CreateFrame("Button", nil, self, "BaganatorRightSideTabButtonTemplate,BankPanelPurchaseButtonScriptTemplate")
+    self.purchaseButton:SetAttribute("overrideBankType", Enum.BankType.Account)
+  else
+    self.purchaseButton = CreateFrame("Button", nil, self, "BaganatorSecureRightSideTabButtonTemplate")
+    self.purchaseButton:SetAttribute("type", "click")
+    self.purchaseButton:SetAttribute("clickbutton", AccountBankPanel.PurchasePrompt.TabCostFrame.PurchaseButton)
+  end
   self.purchaseButton:HookScript("OnClick", function()
     PlaySound(SOUNDKIT.IG_MAINMENU_OPTION);
   end)
@@ -95,7 +102,12 @@ function BaganatorItemViewCommonBankViewWarbandViewMixin:OnLoad()
   self.purchaseButton:SetScript("OnEnter", function()
     GameTooltip:SetOwner(self.purchaseButton, "ANCHOR_RIGHT")
     GameTooltip:SetText(LINK_FONT_COLOR:WrapTextInColorCode(addonTable.Locales.BUY_WARBAND_BANK_TAB))
-    local cost = C_Bank.FetchNextPurchasableBankTabCost(Enum.BankType.Account)
+    local cost
+    if C_Bank.FetchNextPurchasableBankTabData then
+      cost = C_Bank.FetchNextPurchasableBankTabData(Enum.BankType.Account).tabCost
+    else
+      cost = C_Bank.FetchNextPurchasableBankTabCost(Enum.BankType.Account)
+    end
     if cost > GetMoney() then
       GameTooltip:AddLine(addonTable.Locales.COST_X:format(RED_FONT_COLOR:WrapTextInColorCode(addonTable.Utilities.GetMoneyString(cost, true))))
     else
@@ -288,15 +300,17 @@ end
 
 function BaganatorItemViewCommonBankViewWarbandViewMixin:SetupBlizzardFramesForTab()
   if self.isLive then
-
-    BankFrame.activeTabIndex = addonTable.Constants.BlizzardBankTabConstants.Warband
-    BankFrame.selectedTab = 1
-
     local tabInfo = Syndicator.API.GetWarband(1).bank[self.currentTab]
-    local bagID = Syndicator.Constants.AllWarbandIndexes[self.currentTab]
+    local bagID = Syndicator.Constants.AllWarbandIndexes[self.currentTab];
 
-    -- Ensure right-clicking a bag item puts the item into this tab
-    AccountBankPanel.selectedTabID = bagID
+    -- Ensure right-clicking a bag item puts the item into this bank
+    (AccountBankPanel or BankPanel).selectedTabID = bagID;
+    if Syndicator.Constants.CharacterBankTabsActive then
+      BankFrame.BankPanel.bankType = Enum.BankType.Account
+    else
+      BankFrame.activeTabIndex = addonTable.Constants.BlizzardBankTabConstants.Warband
+      BankFrame.selectedTab = 1
+    end
 
     -- Workaround so that the tab edit UI shows the details for the current tab
     self.TabSettingsMenu.GetBankFrame = function()
@@ -312,6 +326,7 @@ function BaganatorItemViewCommonBankViewWarbandViewMixin:SetupBlizzardFramesForT
         end
       }
     end
+    self.TabSettingsMenu.GetBankPanel = self.TabSettingsMenu.GetBankFrame
 
     if self.TabSettingsMenu:IsShown() then
       if bagID ~= nil then

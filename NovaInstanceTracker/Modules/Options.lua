@@ -16,7 +16,7 @@ NIT.options = {
 	args = {
 		titleText = {
 			type = "description",
-			name = "        " .. NIT.prefixColor .. "NovaInstanceTracker (v" .. NIT.version .. ")",
+			name = "        " .. NIT.prefixColor .. "NovaInstanceTracker (v" .. string.format("%.2f", NIT.version) .. ")",
 			fontSize = "large",
 			order = 1,
 		},

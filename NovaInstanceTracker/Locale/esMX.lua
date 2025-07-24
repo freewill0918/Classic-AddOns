@@ -252,7 +252,7 @@ L["ago"] = "atrás";
 L["stillInDungeon"] = "Todavía dentro del calabozo";
 L["leftOnLockout"] = "restantes en bloqueo";
 L["leftOnDailyLockout"] = "restante en bloqueo diario";
-L["noLockout"] = "Sin bloqueo para esta banda";
+L["noLockout"] = "Sin bloqueo";
 L["unknown"] = "Desconocido";
 L["instance"] = "Estancia";
 L["timeEntered"] = "Hora de entrada";
@@ -622,7 +622,7 @@ L["Gehennas"] = "Gehennas";
 L["Garr"] = "Garr";
 L["Baron Geddon"] = "Barón Geddon";
 L["Shazzrah"] = "Shazzrah";
-L["Sulfuron Harbinger"] = "Sulfuron Presagista";
+L["Sulfuron Harbinger"] = "Presagista de Sulfuron";
 L["Golemagg the Incinerator"] = "Golemagg el Incinerador";
 
 L["of level"] = "de nivel";
