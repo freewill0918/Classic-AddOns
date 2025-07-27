@@ -294,14 +294,14 @@ function MopItemFixes.Load()
         [80015] = { -- Shokia's Report
             [itemKeys.npcDrops] = {56838},
         },
-        [80230] = {  -- Cast Iron Pot
-            [itemKeys.objectDrops] = {211023},
-        },
         [80061] = { -- Riko's Report
             [itemKeys.npcDrops] = {56840},
         },
         [80074] = { -- Celestial Jade
             [itemKeys.objectDrops] = {210921},
+        },
+        [80122] = { -- Spideroot
+            [itemKeys.objectDrops] = {210945,211117},
         },
         [80213] = { -- Spicemaster Jin Jao\'s Payment
             [itemKeys.npcDrops] = {59581},
@@ -321,14 +321,23 @@ function MopItemFixes.Load()
         [80228] = { -- Enormous Cattail Grouper Tooth
             [itemKeys.npcDrops] = {59639},
         },
+        [80230] = {  -- Cast Iron Pot
+            [itemKeys.objectDrops] = {211023},
+        },
         [80241] = { -- Muskpaw's Keepsake
             [itemKeys.startQuest] = 30582,
+        },
+        [80277] = { -- Jagged Abalone Meat
+            [itemKeys.objectDrops] = {211118},
         },
         [80294] = { -- Mogu Relic
             [itemKeys.objectDrops] = {211143},
         },
         [80302] = { -- EZ-Gro Green Cabbage Seeds
             [itemKeys.class] = itemClasses.QUEST,
+        },
+        [80303] = { -- Pristine Crane Egg
+            [itemKeys.objectDrops] = {211160},
         },
         [80307] = { -- Grummlepack
             [itemKeys.npcDrops] = {59408,59896,59897,59898},
@@ -359,6 +368,9 @@ function MopItemFixes.Load()
         },
         [80430] = { -- Corpse of Tak Tak
             [itemKeys.npcDrops] = {59958},
+        },
+        [80511] = { -- Revelite Crystal
+            [itemKeys.objectDrops] = {211306},
         },
         [80528] = { -- Explosives Barrel
             [itemKeys.objectDrops] = {211312},
@@ -420,28 +432,6 @@ function MopItemFixes.Load()
         [81355] = { -- Palewind Totem
             [itemKeys.objectDrops] = {211566},
         },
-        [82342] = { -- Violet Citron
-            [itemKeys.objectDrops] = {211719,211721},
-        },
-        [82723] = { -- Volatile Dread Orb
-            [itemKeys.npcDrops] = {61302,61811},
-            [itemKeys.objectDrops] = {211871,211872,211873},
-        },
-        [82799] = { -- Yaungol Oil Barrel
-            [itemKeys.objectDrops] = {212003},
-        },
-        [82864] = { -- Living Amber
-            [itemKeys.objectDrops] = {212009,212012},
-        },
-        [82867] = { -- Mantid Relic
-            [itemKeys.objectDrops] = {212078,212079},
-        },
-        [82870] = { -- Strange Relic
-            [itemKeys.npcDrops] = {61970,63176},
-        },
-        [83075] = { -- Sapfly Bits
-            [itemKeys.npcDrops] = {62386},
-        },
         [81385] = { -- Stolen Inkgill Ritual Staff
             [itemKeys.npcDrops] = {59180},
         },
@@ -453,6 +443,9 @@ function MopItemFixes.Load()
         },
         [82332] = { -- Father's Crossbow
             [itemKeys.npcDrops] = {61540},
+        },
+        [82342] = { -- Violet Citron
+            [itemKeys.objectDrops] = {211719,211721},
         },
         [82389] = { -- Mao-Willow
             [itemKeys.objectDrops] = {211779},
@@ -466,14 +459,43 @@ function MopItemFixes.Load()
         [82395] = { -- Wai Dynasty Rubbing
             [itemKeys.objectDrops] = {211790},
         },
+        [82722] = { -- Krik'thik Limb
+            [itemKeys.objectDrops] = {211863},
+        },
+        [82723] = { -- Volatile Dread Orb
+            [itemKeys.npcDrops] = {61302,61811},
+            [itemKeys.objectDrops] = {211871,211872,211873},
+        },
         [82764] = { -- Bottom Fragment of Lei Shen\'s Tablet
             [itemKeys.objectDrops] = {211967},
+        },
+        [82799] = { -- Yaungol Oil Barrel
+            [itemKeys.objectDrops] = {212003},
+        },
+        [82864] = { -- Living Amber
+            [itemKeys.objectDrops] = {212009,212012},
+        },
+        [82867] = { -- Mantid Relic
+            [itemKeys.objectDrops] = {212078,212079},
+        },
+        [82870] = { -- Strange Relic
+            [itemKeys.startQuest] = 31023,
+            [itemKeys.npcDrops] = {61970,63176},
         },
         [83024] = { -- Shado-Pan Fire Arrows
             [itemKeys.objectDrops] = {212135,212136},
         },
+        [83075] = { -- Sapfly Bits
+            [itemKeys.npcDrops] = {62386},
+        },
         [83135] = { -- Amber Blade
             [itemKeys.npcDrops] = {62563,62749,65995},
+        },
+        [83771] = { -- Fish Tales
+            [itemKeys.startQuest] = 31094,
+        },
+        [83777] = { -- The Song of the Yaungol
+            [itemKeys.startQuest] = 31100,
         },
         [83780] = { -- The Ballad of Liu Lang
             [itemKeys.startQuest] = 31103,
@@ -487,11 +509,14 @@ function MopItemFixes.Load()
         [84118] = { -- Fragrant Corewood
             [itemKeys.npcDrops] = {62876},
         },
-        [85230] = { -- Sea Monarch Chunks
-            [itemKeys.class] = itemClasses.QUEST,
-        },
         [84239] = { -- Flitterling Dust
             [itemKeys.npcDrops] = {62764},
+        },
+        [84240] = { -- Fresh Whitepetal Worm
+            [itemKeys.objectDrops] = {212742},
+        },
+        [84656] = { -- Stunned Whitepetal Carp
+            [itemKeys.npcDrops] = {62984},
         },
         [84779] = { -- Chunk of Solidified Amber
             [itemKeys.objectDrops] = {212902},
@@ -499,7 +524,13 @@ function MopItemFixes.Load()
         [85159] = { -- Amber-Filled Jar
             [itemKeys.objectDrops] = {212923},
         },
-        [85783] = { -- Captain Jack\'s Head
+        [85230] = { -- Sea Monarch Chunks
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [85782] = { -- Mistfall Water Bucket
+            [itemKeys.objectDrops] = {213369},
+        },
+        [85783] = { -- Captain Jack's Head
             [itemKeys.npcDrops] = {63809},
             [itemKeys.startQuest] = 31261,
         },
@@ -553,6 +584,9 @@ function MopItemFixes.Load()
         },
         [87874] = { -- Kyparite Shards
             [itemKeys.npcDrops] = {65231},
+        },
+        [88538] = { -- Sha-Haunted Crystal
+            [itemKeys.startQuest] = 31661,
         },
         [89163] = { -- Requisitioned Firework Launcher
             [itemKeys.class] = itemClasses.QUEST,
