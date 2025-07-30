@@ -130,7 +130,6 @@ itemSlots["INVTYPE_WEAPON"] = LBIS.L["Main Hand"].."/"..LBIS.L["Off Hand"];
 itemSlots["INVTYPE_SHIELD"] = LBIS.L["Off Hand"];
 itemSlots["INVTYPE_RANGED"] = LBIS.L["Ranged/Relic"];
 itemSlots["INVTYPE_CLOAK"] = LBIS.L["Back"];
-itemSlots["INVTYPE_2HWEAPON"] = LBIS.L["Two Hand"];
 itemSlots["INVTYPE_BAG"] = LBIS.L["Bag"];
 itemSlots["INVTYPE_TABARD"] = LBIS.L["Tabard"];
 itemSlots["INVTYPE_ROBE"] = LBIS.L["Chest"];
@@ -144,7 +143,7 @@ itemSlots["INVTYPE_QUIVER"] = LBIS.L["Quiver"];
 itemSlots["INVTYPE_RELIC"] = LBIS.L["Ranged/Relic"];
 function LBIS:GetItemInfo(itemId, returnFunc)
 
-    if itemId == nil or not itemId or itemId <= 0 then
+    if itemId == nil or not itemId or itemId <= 0 or type(itemId) ~= "number" then
         returnFunc({ Name = nil, Link = nil, Quality = nil, Type = nil, SubType = nil, Texture = nil, Class = nil, Slot = nil });
         return;
     end
@@ -154,14 +153,18 @@ function LBIS:GetItemInfo(itemId, returnFunc)
     if cachedItem then
         returnFunc(cachedItem);
     else
+        if not itemId or type(itemId) ~= "number" or itemId <= 0 then
+            returnFunc({ Name = nil, Link = nil, Quality = nil, Type = nil, SubType = nil, Texture = nil, Class = nil, Slot = nil });
+            return;
+        end
         local itemCache = Item:CreateFromItemID(itemId)
 
         itemCache:ContinueOnItemLoad(function()
-            local itemId, itemType, subType, itemSlot, _, classId = C_Item.GetItemInfoInstant(itemId);
+            local itemIdResult, itemType, subType, itemSlot, _, classId = C_Item.GetItemInfoInstant(itemId);
             local name = itemCache:GetItemName();
 
             local newItem = {
-                Id = itemId,
+                Id = itemIdResult,
                 Name = name,
                 Link = itemCache:GetItemLink(),
                 Quality = itemCache:GetItemQuality(),
@@ -617,7 +620,7 @@ function LBIS.CreateItemRow(f, specItem, specItemSource)
                     LBIS:GetItemInfo(tonumber(tokenNumber2), function(tierToken2)
                         showSourceButton(tierToken, tierToken2, "Token:", false);
                     end);
-                else                    
+                else 
                     showSourceButton(tierToken, nil, "Token:", false);
                 end
             end);

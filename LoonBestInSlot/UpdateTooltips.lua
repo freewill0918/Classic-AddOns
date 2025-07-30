@@ -131,7 +131,11 @@ local function onTooltipSetItem(tooltip, ...)
 	local _, itemLink = tooltip:GetItem()
     if not itemLink then return end
 	local itemString = string.match(itemLink, "item[%-?%d:]+")
-	local itemId = tonumber(({ strsplit(":", itemString) })[2])
+	if not itemString then return end
+	local itemParts = { strsplit(":", itemString) }
+	if not itemParts[2] then return end
+	local itemId = tonumber(itemParts[2])
+	if not itemId or itemId <= 0 or type(itemId) ~= "number" then return end
 
 	LBIS:GetItemInfo(itemId, function(item)
 		local combinedTooltip = {};

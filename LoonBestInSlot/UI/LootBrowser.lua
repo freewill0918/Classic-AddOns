@@ -271,7 +271,7 @@ local function createDropDowns(window)
         ['title']='Slot:',
         ['items']= { LBIS.L["All"], LBIS.L["Head"], LBIS.L["Shoulder"], LBIS.L["Back"], LBIS.L["Chest"], LBIS.L["Wrist"], 
             LBIS.L["Hands"], LBIS.L["Waist"], LBIS.L["Legs"], LBIS.L["Feet"], LBIS.L["Neck"], LBIS.L["Ring"], LBIS.L["Trinket"], 
-            LBIS.L["Main Hand"], LBIS.L["Off Hand"], LBIS.L["Two Hand"], LBIS.L["Ranged/Relic"] },        
+            LBIS.L["Main Hand"], LBIS.L["Off Hand"], LBIS.L["Ranged/Relic"] },        
         ['defaultVal']=LBISSettings.SelectedSlot,
         ['changeFunc']=function(dropdown_frame, dropdown_val)
             LBISSettings.SelectedSlot = dropdown_val;
@@ -346,9 +346,9 @@ local function createDropDowns(window)
     window.SourceDropDown:SetPoint("TOPLEFT", window, 450, -28);
 
     local function getZoneItems()
-        local items = { LBIS.L["Temple of the Jade Serpent"], LBIS.L["Stormstout Brewery"], LBIS.L["Mogu'shan Palace"], 
+        local items = { LBIS.L["All"], LBIS.L["Temple of the Jade Serpent"], LBIS.L["Stormstout Brewery"], LBIS.L["Mogu'shan Palace"], 
             LBIS.L["Shado-Pan Monastery"], LBIS.L["Gate of the Setting Sun"], LBIS.L["Siege of Niuzao Temple"],
-            LBIS.L["Heroic: Scarlet Halls"], LBIS.L["Heroic: Scarlet Monestary"], LBIS.L["Heroic: Scholomance"]  }-- Phase 0
+            LBIS.L["Heroic: Scarlet Halls"], LBIS.L["Heroic: Scarlet Monastery"], LBIS.L["Heroic: Scholomance"]  }-- Phase 0
 
         if LBIS.CurrentPhase >= 1 then            
             table.insert(items, LBIS.L["Mogu'shan Vaults"]);
