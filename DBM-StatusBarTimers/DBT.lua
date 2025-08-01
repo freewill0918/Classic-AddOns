@@ -1,7 +1,9 @@
 ---@class DBT
 local DBT = {
 	bars = {},
-	numBars = 0
+	numBars = 0,
+	lastUpdateTime = 0,
+	updateThrottle = 0.05 -- Throttle updates to max 20 times per second
 }
 _G.DBT = DBT
 
@@ -744,7 +746,14 @@ function DBT:SetAnnounceHook(f)
 	self.announceHook = f
 end
 
-function DBT:UpdateBars(sortBars)
+function DBT:UpdateBars(sortBars, forceUpdate)
+	-- Throttle updates unless forced
+	local now = GetTime and GetTime() or 0
+	if not forceUpdate and (now - self.lastUpdateTime) < self.updateThrottle then
+		return
+	end
+	self.lastUpdateTime = now
+	
 	if sortBars and self.Options.Sort ~= "None" then
 		tsort(largeBars, function(x, y)
 			if self.Options.HugeSort == "Invert" then
@@ -818,12 +827,12 @@ function barPrototype:Pause()
 	self:Update(0)
 	self.paused = true
 	self:ResetAnimations() -- Forces paused bar into small bars so they don't clutter huge bars anchor
-	DBT:UpdateBars(true)
+	DBT:UpdateBars(true, true)
 end
 
 function barPrototype:Resume()
 	self.paused = nil
-	DBT:UpdateBars(true)
+	DBT:UpdateBars(true, true)
 end
 
 function barPrototype:SetElapsed(elapsed)
@@ -839,7 +848,7 @@ function barPrototype:SetElapsed(elapsed)
 		self:ResetAnimations(true)
 	end
 	self:Update(0)
-	DBT:UpdateBars(true)
+	DBT:UpdateBars(true, true)
 end
 
 function barPrototype:SetText(text, inlineIcon)
@@ -1090,7 +1099,7 @@ function barPrototype:Update(elapsed)
 		isEnlarged = true
 		tinsert(largeBars, self)
 		self:ApplyStyle()
-		DBT:UpdateBars(true)
+		DBT:UpdateBars(true, true)
 	elseif isMoving == "nextEnlarge" then
 		barIsAnimating = false
 		self.moving = nil
@@ -1099,13 +1108,13 @@ function barPrototype:Update(elapsed)
 		isEnlarged = true
 		tinsert(largeBars, self)
 		self:ApplyStyle()
-		DBT:UpdateBars(true)
+		DBT:UpdateBars(true, true)
 	end
 	if not paused and ((barOptions.VarianceEnabled and timerLowestValueFromVariance or timerValue) <= enlargeTime) and not self.small and not isEnlarged and isMoving ~= "enlarge" and enlargeEnabled then
 		self:RemoveFromList()
 		self:Enlarge()
+		DBT:UpdateBars(true, true)
 	end
-	DBT:UpdateBars()
 	if self.callback then
 		self:callback("OnUpdate", elapsed, timerValue, totaltimeValue)
 	end
@@ -1298,7 +1307,7 @@ function barPrototype:AnimateEnlarge(elapsed)
 		self.moving = nil
 		self.enlarged = true
 		tinsert(largeBars, self)
-		DBT:UpdateBars(true)
+		DBT:UpdateBars(true, true)
 		self:ApplyStyle()
 	end
 end

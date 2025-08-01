@@ -158,7 +158,7 @@ function addonTable.ItemButtonUtil.UpdateSettings()
                         cornerWidget:Hide()
                       end
                     end
-                    if itemButton.BGR.guid and itemButton.BGR.itemLocation and type(itemButton.BGR.itemLocation) == "table" and itemButton.BGR.itemLocation.bagID and itemButton.BGR.itemLocation.slotIndex and C_Item.DoesItemExist(itemButton.BGR.itemLocation) and itemButton.BGR.guid ~= C_Item.GetItemGUID(itemButton.BGR.itemLocation) then
+                    if itemButton.BGR.guid and itemButton.BGR.guid ~= C_Item.GetItemGUID(itemButton.BGR.itemLocation) then
                       QueueWidget(queueFunc)
                     else
                       Callback(itemButton)
