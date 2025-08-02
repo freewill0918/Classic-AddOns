@@ -11,13 +11,16 @@ local LibItemGem = LibStub:GetLibrary("LibItemGem.7000")
 local LibSchedule = LibStub:GetLibrary("LibSchedule.7000")
 local LibItemEnchant = LibStub:GetLibrary("LibItemEnchant.7000")
 
--- 熊貓人版本沒有頭部附魔，但有肩膀附魔
+-- 熊貓人版本沒有頭部附魔，但有肩膀、褲子和戒指附魔
 local EnchantParts = {
     [3]  = {1, SHOULDERSLOT},
     [5]  = {1, CHESTSLOT},
+    [7]  = {1, LEGSSLOT},
     [8]  = {1, FEETSLOT},
     [9]  = {1, WRISTSLOT},
     [10] = {1, HANDSSLOT},
+    [11] = {0, FINGER0SLOT}, -- 戒指1 (附魔專業限定)
+    [12] = {0, FINGER1SLOT}, -- 戒指2 (附魔專業限定)
     [15] = {1, BACKSLOT},
     [16] = {1, MAINHANDSLOT},
     [17] = {0, SECONDARYHANDSLOT},
@@ -184,9 +187,8 @@ local function ShowGemAndEnchant(frame, ItemLink, anchorFrame, itemframe, unit)
     end
     
     -- 附魔信息
-    if (itemframe.index ~= 4 and itemframe.index ~= 19) then
-        local enchantInfo = EnchantParts[itemframe.index]
-        if enchantInfo then
+    local enchantInfo = EnchantParts[itemframe.index]
+    if enchantInfo then
             local enchantItemID, enchantSpellID, enchantID = LibItemEnchant:GetEnchantInfo(ItemLink, itemframe.index)
             if (enchantItemID or enchantSpellID) then
                 icon = GetIconFrame(frame)
@@ -245,7 +247,6 @@ local function ShowGemAndEnchant(frame, ItemLink, anchorFrame, itemframe, unit)
                     totalIcons = totalIcons + 1
                 end
             end
-        end
     end
     
     return totalIcons == 0 and 0 or (totalIcons * 17)

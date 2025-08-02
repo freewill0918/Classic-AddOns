@@ -796,6 +796,17 @@ local EnchantSpellDB = {
     [5966] = 268913,
     [5970] = 271366,
     [5971] = 271433,
+    
+    -- 熊貓人刺繡附魔
+    [4892] = 125481, -- 光紋刺繡 (Lightweave Embroidery)
+    [4893] = 125482, -- 暗輝刺繡 (Darkglow Embroidery)
+    [4894] = 125483, -- 劍衛刺繡 (Swordguard Embroidery)
+    
+    -- 戒指附魔
+    [4359] = 103461, -- 強效敏捷 (Greater Agility)
+    [4360] = 103462, -- 強效智力 (Greater Intellect)
+    [4361] = 103463, -- 強效耐力 (Greater Stamina)
+    [4807] = 103465, -- 強效力量 (Greater Strength)
 
 }
 

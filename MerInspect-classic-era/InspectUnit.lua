@@ -181,7 +181,7 @@ function ShowInspectItemListFrame(unit, parent, ilevel, maxLevel)
     frame.level:SetTextColor(1, 0.82, 0)
     local _, name, level, link, quality
     local itemframe, mframe, oframe, itemwidth
-    local width = 160
+    local width = 210
     local formats = "%2s"
     if (maxLevel and maxLevel > 0) then
         formats = "%" .. string.len(floor(maxLevel)) .. "s"
@@ -204,8 +204,8 @@ function ShowInspectItemListFrame(unit, parent, ilevel, maxLevel)
             if (not link) then itemframe:SetAlpha(0.5) end
         end
         itemwidth = itemframe.itemString:GetWidth()
-        if (itemwidth > 208) then
-            itemwidth = 208
+        if (itemwidth > 260) then
+            itemwidth = 260
             itemframe.itemString:SetWidth(itemwidth)
         end
         itemframe.width = itemwidth + max(64, floor(itemframe.label:GetWidth() + itemframe.levelString:GetWidth()) + 4)
@@ -215,7 +215,7 @@ function ShowInspectItemListFrame(unit, parent, ilevel, maxLevel)
         end
         LibEvent:trigger("INSPECT_ITEMFRAME_UPDATED", itemframe)
     end
-    frame:SetWidth(width + 36)
+    frame:SetWidth(width + 60)
     frame:Show()
 
     LibEvent:trigger("INSPECT_FRAME_SHOWN", frame, parent, ilevel)
