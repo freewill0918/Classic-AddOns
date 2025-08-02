@@ -2084,8 +2084,8 @@ MovAny.lVirtualMovers = {
 			b:EnableDrawLayer("BACKGROUND")
 			b:EnableDrawLayer("BORDER")
 			b.ignoreFramePositionManager = nil
-			b:SetUserPlaced(nil)
-			b:SetMovable(nil)
+			b:SetUserPlaced(false)
+			b:SetMovable(false)
 			for i, v in pairs(self.attachedChildren) do
 				MovAny:UnlockScale(v)
 				v:SetScale(1)
