@@ -1,10 +1,10 @@
-## Interface: 40400
-## Title: MerInspect
-## Version: 1.1.7
-## Notes: Inspect Assiest
+## Interface: 110107
+## Title: MerInspect for classic era
+## Version: 1.2.0
+## Notes: Inspect Assist 
 ## Notes-zhCN: 观察助手
 ## Notes-zhTW: 觀察助手
-## Author: M(Mermaid)
+## Author: M(Mermaid) maintained by Timtam
 ## Thanks: Mermaid, 独孤傲雪, xLoki
 ## SavedVariables: MerInspectDB
 
@@ -19,5 +19,3 @@ InspectUnit.lua
 InspectUnitGemAndEnchant.lua
 InspectUnitSpecialization.lua
 InspectUnitStats.lua
-InspectUnitStatsHonor.lua
-Misc.lua

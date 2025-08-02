@@ -4,7 +4,6 @@
 -------------------------------------
 
 local LibEvent = LibStub:GetLibrary("LibEvent.7000")
-local LibItemGem = LibStub:GetLibrary("LibItemGem.7000")
 local LibSchedule = LibStub:GetLibrary("LibSchedule.7000")
 local LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
 
@@ -168,9 +167,19 @@ local function ChatItemSlot(Hyperlink)
     local slot
     local link = string.match(Hyperlink, "|H(.-)|h")
     local name, _, quality, level, _, class, subclass, _, equipSlot = GetItemInfo(link)
+
+    -- links need to be skipped
+    if (
+        equipSlot == "INVTYPE_NON_EQUIP_IGNORE" 
+        or equipSlot == "INVTYPE_NON_EQUIP"
+        or equipSlot == "INVTYPE_BAG"
+    ) then
+        return Hyperlink
+    end
+
     if (equipSlot == "INVTYPE_CLOAK" or equipSlot == "INVTYPE_TRINKET" or equipSlot == "INVTYPE_FINGER" or equipSlot == "INVTYPE_NECK") then
         slot = _G[equipSlot] or equipSlot
-    elseif (equipSlot == "INVTYPE_RANGEDRIGHT" or equipSlot == "INVTYPE_NON_EQUIP_IGNORE") then
+    elseif (equipSlot == "INVTYPE_RANGEDRIGHT") then
         slot = subclass
     elseif (equipSlot and string.find(equipSlot, "INVTYPE_")) then
         slot = format("%s-%s", subclass or "", _G[equipSlot] or equipSlot)
@@ -182,18 +191,7 @@ local function ChatItemSlot(Hyperlink)
         slot = MOUNTS
     end
     if (slot) then
-        local gem = ""
-        local n, info = LibItemGem:GetItemGemInfo(link)
-        if (n > 0) then
-            -- gem = string.rep("|TInterface\\ItemSocketingFrame\\UI-EmptySocket-Prismatic:0|t", n)
-            for _, v in pairs(info) do
-                if v.color then
-                    gem = gem .. "|TInterface\\ItemSocketingFrame\\UI-EmptySocket-" .. v.color .. ":0|t"
-                end
-            end
-        end
-        if (quality == 6 and class == WEAPON) then gem = "" end
-        Hyperlink = Hyperlink:gsub("|h%[(.-)%]|h", "|h[("..slot.."):"..name.."]|h"..gem)
+        Hyperlink = Hyperlink:gsub("|h%[(.-)%]|h", "|h[("..slot.."):"..name.."]|h")
         Caches[Hyperlink] = Hyperlink
     end
     return Hyperlink
