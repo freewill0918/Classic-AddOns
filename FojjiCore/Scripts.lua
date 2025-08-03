@@ -1,16 +1,6 @@
 local SharedMedia = LibStub("LibSharedMedia-3.0")
 FojjiCore = {}
-FojjiCore_Version = "1.5.7"
-
--- T13 Font
-function FojjiCore:GetDSFont()
-    return self:GetFontFromAura("[T13] Font")
-end
-
--- T14 Font
-function FojjiCore:GetT14Font()
-    return self:GetFontFromAura("[T14] Font")
-end
+FojjiCore_Version = "1.5.8"
 
 -- Get Font
 function FojjiCore:GetFontFromAura(auraName)
@@ -64,13 +54,18 @@ function FojjiCore:PatchFontForGroup(groupName, fontName, isRecursive)
             self:PatchFontForGroup(childName, fontName, true)
         else
             local saved = WeakAurasSaved and WeakAurasSaved.displays and WeakAurasSaved.displays[childName]
-            if saved and saved.subRegions then
-                for _, sub in ipairs(saved.subRegions) do
-                    if sub.type == "subtext" then
-                        sub.text_font = fontName
-                    end
-                end
-            end
+				if saved then
+					if saved.regionType == "text" then
+						saved.font = fontName
+					end
+				if saved.subRegions then
+					for _, sub in ipairs(saved.subRegions) do
+						if sub.type == "subtext" then
+							sub.text_font = fontName
+						end
+					end
+				end
+			end
         end
     end
 

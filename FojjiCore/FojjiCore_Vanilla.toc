@@ -1,8 +1,8 @@
-## Interface: 11506
+## Interface: 11507
 ## Title: Fojji Core
 ## RequiredDeps: WeakAuras
 ## SavedVariables: FTSavedVars
-## Version: 1.5.7
+## Version: 1.5.8
 embeds.xml
 
 # Libs
