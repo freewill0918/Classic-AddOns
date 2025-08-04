@@ -2056,12 +2056,28 @@ MovAny.lVirtualMovers = {
 		--dontLock = true,
 		OnMAHook = function(self)
 			local b = _G.StanceBarFrame
+			if not b then return end
+			
+			-- Check if frame is in combat or protected
+			if InCombatLockdown() then return end
+			
 			b:DisableDrawLayer("BACKGROUND")
 			b:DisableDrawLayer("BORDER")
-			MovAny:UnlockPoint(b)
-			b:ClearAllPoints()
-			b:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 0)
-			MovAny:LockPoint(b)
+			
+			-- Ensure we're not creating circular dependencies
+			if b:GetParent() ~= self then
+				MovAny:UnlockPoint(b)
+				b:ClearAllPoints()
+				-- Only set point if not creating a circular reference
+				if self:GetParent() ~= b then
+					b:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 0)
+				else
+					-- Fallback to UIParent if circular reference detected
+					b:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", self:GetLeft() or 0, self:GetBottom() or 0)
+				end
+				MovAny:LockPoint(b)
+			end
+			
 			b.ignoreFramePositionManager = true
 			b:SetMovable(true)
 			b:SetUserPlaced(true)
@@ -2112,6 +2128,11 @@ MovAny.lVirtualMovers = {
 		count = 10,
 		OnMAHook = function(self)
 			local b = _G.StanceBarFrame
+			if not b then return end
+			
+			-- Check if frame is in combat or protected
+			if InCombatLockdown() then return end
+			
 			b:DisableDrawLayer("BACKGROUND")
 			b:DisableDrawLayer("BORDER")
 			b.ignoreFramePositionManager = true
@@ -2142,25 +2163,52 @@ MovAny.lVirtualMovers = {
 			end
 		end,
 		OnMAFoundChild = function(self, index, child)
+			if not child or InCombatLockdown() then return end
+			
 			child.MAParent = self
 			child:ClearAllPoints()
+			
+			-- Prevent circular anchor references
 			if child == self.firstChild then
-				child:SetPoint("TOP", self, "TOP", 0, -7)
+				if self:GetParent() ~= child then
+					child:SetPoint("TOP", self, "TOP", 0, -7)
+				else
+					child:SetPoint("TOP", UIParent, "CENTER", 0, -7)
+				end
 			else
-				child:SetPoint("TOP", self.lastChild, "BOTTOM", 0, -7)
+				if self.lastChild and self.lastChild:GetParent() ~= child and child:GetParent() ~= self.lastChild then
+					child:SetPoint("TOP", self.lastChild, "BOTTOM", 0, -7)
+				else
+					child:SetPoint("TOP", self, "TOP", 0, -7 * index)
+				end
 			end
 		end,
 		OnMAReleaseChild = function(self, index, child)
+			if not child or InCombatLockdown() then return end
+			
 			child.MAParent = "StanceButtonsMover"
 			child:ClearAllPoints()
+			
+			-- Prevent circular anchor references
 			if child == self.firstChild then
-				child:SetPoint("BOTTOMLEFT", self.sbf, "BOTTOMLEFT", 11, 3)
+				if self.sbf and self.sbf:GetParent() ~= child then
+					child:SetPoint("BOTTOMLEFT", self.sbf, "BOTTOMLEFT", 11, 3)
+				else
+					child:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 11, 3)
+				end
 			else
-				child:SetPoint("LEFT", self.lastChild, "RIGHT", 8, 0)
+				if self.lastChild and self.lastChild:GetParent() ~= child and child:GetParent() ~= self.lastChild then
+					child:SetPoint("LEFT", self.lastChild, "RIGHT", 8, 0)
+				else
+					child:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 11 + (index * 40), 3)
+				end
 			end
-			for i, v in pairs(self.attachedChildren) do
-				MovAny:UnlockScale(v)
-				v:SetScale(1)
+			
+			if self.attachedChildren then
+				for i, v in pairs(self.attachedChildren) do
+					MovAny:UnlockScale(v)
+					v:SetScale(1)
+				end
 			end
 		end,
 		OnMAHide = function(self, hidden)
