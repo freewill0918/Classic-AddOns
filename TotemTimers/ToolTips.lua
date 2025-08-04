@@ -62,7 +62,7 @@ function XiTimersTooltip:SetSpell(spell)
     if not spellID then return end]]
     local spellID = select(7, GetSpellInfo(spell))
 
-    if spellID then GameTooltip:SetSpellByID(spellID) end -- 暫時修正
+    GameTooltip:SetSpellByID(spellID)
 end
 
 

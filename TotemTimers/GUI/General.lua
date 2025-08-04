@@ -12,11 +12,10 @@ local metadatafunc = GetAddOnMetadata or C_AddOns.GetAddOnMetadata
 
 TotemTimers.options = {
     type = "group",
-    name = L["Totem Timers"],
-	args = {
+    args = {
         general = {
             type = "group",
-            name = L["General"],
+            name = "General",
             args = {
                 version= {
                     order = 0,
@@ -257,7 +256,7 @@ TotemTimers.options = {
                 h2 = {
                     order = -10,
                     type = "header",
-                    name = L["Debug"],
+                    name = "Debug",
                 },
                 DebugDescription = {
                     type = "description",
@@ -291,7 +290,7 @@ TotemTimers.options = {
 local ACR =	LibStub("AceConfigRegistry-3.0")
 ACR:RegisterOptionsTable("TotemTimers", TotemTimers.options)
 local ACD = LibStub("AceConfigDialog-3.0")
-local frame, categoryID = ACD:AddToBlizOptions("TotemTimers", L["TotemTimers"], nil, "general")
+local frame, categoryID = ACD:AddToBlizOptions("TotemTimers", "TotemTimers", nil, "general")
 
 function TotemTimers.HookGUIFrame(frame, categoryID)
     frame:SetScript("OnEvent", function(self)

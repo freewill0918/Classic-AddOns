@@ -199,7 +199,7 @@ do
 		L.NONE = "無"
 		L.RW = "團隊警告"
 		L.BLIZZARD = "浮動戰鬥文字"
-		L.CHANNEL = "聊天頻道"
+		L.CHANNEL = "頻道"
 		L.SAY = "說"
 		L.PARTY = "隊伍"
 		L.INSTANCE_CHAT = "副本"
@@ -209,17 +209,21 @@ do
 		L.RAID = "團隊"
 		L.RAID_WARNING = "團隊警告"
 		L.GROUP = "小隊"
-		L.DEFAULT_DESC = "將插件訊息透過第一個可供使用的處理程式輸出，如果可以的話會優先使用捲動戰鬥文字。"
-		L.ROUTE = "將插件訊息透過%s輸出。"
-		L.UIERROR = "暴雪錯誤訊息文字"
-		L.OUTPUT = "輸出"
-		L.OUTPUT_DESC = "插件訊息要透過哪裡輸出。"
-		L.SCROLL = "選擇頻道"
-		L.SCROLL_DESC = "設定訊息出現的頻道。\n\n只有某些輸出能夠使用這個選項。"
-		L.STICKY = "和上次相同"
-		L.STICKY_DESC = "設定插件訊息出現的地方和上次相同。\n\n只有某些輸出能夠使用這個選項。"
-		L.NONE_DESC = "隱藏插件的所有訊息。"
-		L.NOTINCHANNEL = "LibSink: %s (傳送到頻道 '%s' 失敗，你不在這個頻道)"
+		L["DEFAULT_DESC"] = "從這個插件路由輸出到第一個可用的處理程式，傾向於可用的滾動戰鬥文本插件。"
+		L["NONE_DESC"] = "隱藏此插件全部訊息。"
+		L["NOTINCHANNEL"] = "LibSink：%s（發送到頻道“%s”失敗，不在此頻道）"
+		L["OUTPUT"] = "輸出"
+		L["OUTPUT_DESC"] = "從此插件路由輸出。"
+		L["ROUTE"] = "從此插件通過%s路由輸出。"
+		L["SCROLL"] = "子區段"
+		L["SCROLL_DESC"] = [=[設置子區段訊息出現狀態。
+
+		只在一些輸出可用。 ]=]
+		L["STICKY"] = "固定"
+		L["STICKY_DESC"] = [=[設置訊息從此插件出現狀態為固定。
+
+		只在一些輸出可用。 ]=]
+		L["UIERROR"] = "暴雪錯誤框體"
 	elseif l == "ruRU" then
 		L.DEFAULT = "По умолчанию"
 		L.CHAT = "Каналы"
