@@ -1,9 +1,7 @@
 ---@class DBT
 local DBT = {
 	bars = {},
-	numBars = 0,
-	lastUpdateTime = 0,
-	updateThrottle = 0.05 -- Throttle updates to max 20 times per second
+	numBars = 0
 }
 _G.DBT = DBT
 
@@ -746,14 +744,7 @@ function DBT:SetAnnounceHook(f)
 	self.announceHook = f
 end
 
-function DBT:UpdateBars(sortBars, forceUpdate)
-	-- Throttle updates unless forced
-	local now = GetTime and GetTime() or 0
-	if not forceUpdate and (now - self.lastUpdateTime) < self.updateThrottle then
-		return
-	end
-	self.lastUpdateTime = now
-	
+function DBT:UpdateBars(sortBars)
 	if sortBars and self.Options.Sort ~= "None" then
 		tsort(largeBars, function(x, y)
 			if self.Options.HugeSort == "Invert" then
@@ -827,12 +818,12 @@ function barPrototype:Pause()
 	self:Update(0)
 	self.paused = true
 	self:ResetAnimations() -- Forces paused bar into small bars so they don't clutter huge bars anchor
-	DBT:UpdateBars(true, true)
+	DBT:UpdateBars(true)
 end
 
 function barPrototype:Resume()
 	self.paused = nil
-	DBT:UpdateBars(true, true)
+	DBT:UpdateBars(true)
 end
 
 function barPrototype:SetElapsed(elapsed)
@@ -848,7 +839,7 @@ function barPrototype:SetElapsed(elapsed)
 		self:ResetAnimations(true)
 	end
 	self:Update(0)
-	DBT:UpdateBars(true, true)
+	DBT:UpdateBars(true)
 end
 
 function barPrototype:SetText(text, inlineIcon)
@@ -1099,7 +1090,7 @@ function barPrototype:Update(elapsed)
 		isEnlarged = true
 		tinsert(largeBars, self)
 		self:ApplyStyle()
-		DBT:UpdateBars(true, true)
+		DBT:UpdateBars(true)
 	elseif isMoving == "nextEnlarge" then
 		barIsAnimating = false
 		self.moving = nil
@@ -1108,13 +1099,13 @@ function barPrototype:Update(elapsed)
 		isEnlarged = true
 		tinsert(largeBars, self)
 		self:ApplyStyle()
-		DBT:UpdateBars(true, true)
+		DBT:UpdateBars(true)
 	end
 	if not paused and ((barOptions.VarianceEnabled and timerLowestValueFromVariance or timerValue) <= enlargeTime) and not self.small and not isEnlarged and isMoving ~= "enlarge" and enlargeEnabled then
 		self:RemoveFromList()
 		self:Enlarge()
-		DBT:UpdateBars(true, true)
 	end
+	DBT:UpdateBars()
 	if self.callback then
 		self:callback("OnUpdate", elapsed, timerValue, totaltimeValue)
 	end
@@ -1263,39 +1254,8 @@ function barPrototype:MoveToNextPosition()
 end
 
 function barPrototype:Enlarge()
-	local frameRight = self.frame:GetRight()
-	local frameWidth = self.frame:GetWidth()
-	local frameTop = self.frame:GetTop()
-	
-	-- If frame hasn't been rendered yet, use default positions
-	if not frameRight or not frameWidth or not frameTop then
-		-- Use the anchor point as fallback
-		local point, relativeTo, relativePoint, xOfs, yOfs = self.frame:GetPoint()
-		if point then
-			-- Set some default values or skip the animation
-			frameRight = frameRight or 0
-			frameWidth = frameWidth or DBT.Options.Width
-			frameTop = frameTop or 0
-		else
-			-- Frame has no position, skip animation
-			self.frame:ClearAllPoints()
-			local xOffset = DBT.Options.HugeBarXOffset
-			local yOffset = DBT.Options.HugeBarYOffset
-			if DBT.Options.ExpandUpwardsLarge then
-				self.movePoint = "BOTTOM"
-				self.frame:SetPoint("BOTTOM", largeBarsAnchor, "BOTTOM", xOffset, yOffset)
-			else
-				self.movePoint = "TOP"
-				self.frame:SetPoint("TOP", largeBarsAnchor, "TOP", xOffset, -yOffset)
-			end
-			self.moving = "nextEnlarge"
-			self.enlarged = true
-			return
-		end
-	end
-	
-	local oldX = frameRight - frameWidth/2
-	local oldY = frameTop
+	local oldX = self.frame:GetRight() - self.frame:GetWidth()/2
+	local oldY = self.frame:GetTop()
 	local Enlarged = self.enlarged
 	local ExpandUpwards = Enlarged and DBT.Options.ExpandUpwardsLarge or not Enlarged and DBT.Options.ExpandUpwards
 	self.frame:ClearAllPoints()
@@ -1308,22 +1268,8 @@ function barPrototype:Enlarge()
 		self.movePoint = "TOP"
 		self.frame:SetPoint("TOP", largeBarsAnchor, "TOP", xOffset, -yOffset)
 	end
-	local frameRight = self.frame:GetRight()
-	local frameWidth = self.frame:GetWidth()
-	local frameTop = self.frame:GetTop()
-	
-	-- If frame hasn't been rendered yet, can't calculate animation positions
-	if not frameRight or not frameWidth or not frameTop then
-		-- Just position without animation
-		self.frame:ClearAllPoints()
-		self.frame:SetPoint("TOP", largeBarsAnchor, "TOP", xOffset, -yOffset)
-		self.moving = "nextEnlarge"
-		self.enlarged = true
-		return
-	end
-	
-	local newX = frameRight - frameWidth/2
-	local newY = frameTop
+	local newX = self.frame:GetRight() - self.frame:GetWidth()/2
+	local newY = self.frame:GetTop()
 	self.frame:ClearAllPoints()
 	self.frame:SetPoint("TOP", largeBarsAnchor, "BOTTOM", -(newX - oldX), -(newY - oldY))
 	self.moving = DBT.Options.BarStyle == "NoAnim" and "nextEnlarge" or "enlarge"
@@ -1352,7 +1298,7 @@ function barPrototype:AnimateEnlarge(elapsed)
 		self.moving = nil
 		self.enlarged = true
 		tinsert(largeBars, self)
-		DBT:UpdateBars(true, true)
+		DBT:UpdateBars(true)
 		self:ApplyStyle()
 	end
 end

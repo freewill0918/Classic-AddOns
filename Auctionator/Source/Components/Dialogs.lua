@@ -1,12 +1,9 @@
----@class addonTableBaganator
-local addonTable = select(2, ...)
-
 local counter = 0
 local function GenerateDialog()
   counter = counter + 1
-  local dialog = CreateFrame("Frame", "BaganatorDialog" .. counter, UIParent)
+  local dialog = CreateFrame("Frame", "AuctionatorDialog" .. counter, UIParent)
   dialog:SetToplevel(true)
-  table.insert(UISpecialFrames, "BaganatorDialog" .. counter)
+  table.insert(UISpecialFrames, "AuctionatorDialog" .. counter)
   dialog:SetPoint("TOP", 0, -135)
   dialog:EnableMouse(true)
   dialog:SetFrameStrata("DIALOG")
@@ -27,51 +24,12 @@ local function GenerateDialog()
   dialog.text:SetPoint("RIGHT", -20, 0)
   dialog.text:SetJustifyH("CENTER")
 
-  addonTable.Skins.AddFrame("Dialog", dialog)
-
   return dialog
 end
 
-local copyDialogsBySkin = {}
-function addonTable.Dialogs.ShowCopy(text)
-  local currentSkinKey = addonTable.Config.Get(addonTable.Config.Options.CURRENT_SKIN)
-  if not copyDialogsBySkin[currentSkinKey] then
-    local dialog = GenerateDialog()
-    dialog:SetWidth(350)
-    dialog.text:SetText(addonTable.Locales.CTRL_C_TO_COPY)
-    dialog.editBox = CreateFrame("EditBox", nil, dialog, "InputBoxTemplate")
-    dialog.editBox:SetAutoFocus(false)
-    dialog.editBox:SetSize(200, 30)
-    dialog.editBox:SetPoint("CENTER")
-    dialog.editBox:SetScript("OnEnterPressed", function()
-      dialog:Hide()
-    end)
-
-    local okButton = CreateFrame("Button", nil, dialog, "UIPanelDynamicResizeButtonTemplate")
-    okButton:SetText(DONE)
-    DynamicResizeButton_Resize(okButton)
-    okButton:SetPoint("TOP", dialog, "CENTER", 0, -18)
-    okButton:SetScript("OnClick", function()
-      dialog:Hide()
-    end)
-
-    addonTable.Skins.AddFrame("EditBox", dialog.editBox)
-    addonTable.Skins.AddFrame("Button", okButton)
-
-    copyDialogsBySkin[currentSkinKey] = dialog
-  end
-
-  local dialog = copyDialogsBySkin[currentSkinKey]
-  dialog:Hide()
-  dialog:Show()
-  dialog.editBox:SetText(text)
-  dialog.editBox:SetFocus()
-  dialog.editBox:HighlightText()
-end
-
 local editBoxDialogsBySkin = {}
-function addonTable.Dialogs.ShowEditBox(text, acceptText, cancelText, confirmCallback)
-  local currentSkinKey = addonTable.Config.Get(addonTable.Config.Options.CURRENT_SKIN)
+function Auctionator.Dialogs.ShowEditBox(text, acceptText, cancelText, confirmCallback)
+  local currentSkinKey = ""
   if not editBoxDialogsBySkin[currentSkinKey] then
     local dialog = GenerateDialog()
     dialog:SetWidth(350)
@@ -88,10 +46,6 @@ function addonTable.Dialogs.ShowEditBox(text, acceptText, cancelText, confirmCal
     dialog.cancelButton:SetScript("OnClick", function()
       dialog:Hide()
     end)
-
-    addonTable.Skins.AddFrame("EditBox", dialog.editBox)
-    addonTable.Skins.AddFrame("Button", dialog.acceptButton)
-    addonTable.Skins.AddFrame("Button", dialog.cancelButton)
 
     editBoxDialogsBySkin[currentSkinKey] = dialog
   end
@@ -113,8 +67,8 @@ function addonTable.Dialogs.ShowEditBox(text, acceptText, cancelText, confirmCal
 end
 
 local confirmDialogsBySkin = {}
-function addonTable.Dialogs.ShowConfirm(text, yesText, noText, confirmCallback)
-  local currentSkinKey = addonTable.Config.Get(addonTable.Config.Options.CURRENT_SKIN)
+function Auctionator.Dialogs.ShowConfirm(text, yesText, noText, confirmCallback)
+  local currentSkinKey = ""
   if not confirmDialogsBySkin[currentSkinKey] then
     local dialog = GenerateDialog()
     dialog:SetSize(450, 100)
@@ -145,80 +99,47 @@ function addonTable.Dialogs.ShowConfirm(text, yesText, noText, confirmCallback)
   dialog:Show()
 end
 
-local acknowledgeDialogsBySkin = {}
-function addonTable.Dialogs.ShowAcknowledge(text)
-  local currentSkinKey = addonTable.Config.Get(addonTable.Config.Options.CURRENT_SKIN)
-  if not acknowledgeDialogsBySkin[currentSkinKey] then
+local confirmDialogsBySkin = {}
+function Auctionator.Dialogs.ShowConfirmAlt(text, yesText, altText, noText, confirmCallback, altCallback)
+  local currentSkinKey = ""
+  if not confirmDialogsBySkin[currentSkinKey] then
     local dialog = GenerateDialog()
-    dialog:SetSize(450, 90)
-
-    local okButton = CreateFrame("Button", nil, dialog, "UIPanelDynamicResizeButtonTemplate")
-    okButton:SetText(OKAY)
-    DynamicResizeButton_Resize(okButton)
-    okButton:SetPoint("TOP", dialog, "CENTER", 0, -8)
-    okButton:SetScript("OnClick", function()
-      dialog:Hide()
-    end)
-
-    acknowledgeDialogsBySkin[currentSkinKey] = dialog
-  end
-
-  local dialog = acknowledgeDialogsBySkin[currentSkinKey]
-  dialog:Hide()
-  dialog.text:SetText(text)
-  dialog:Show()
-end
-
-local moneyBoxDialogsBySkin = {}
-function addonTable.Dialogs.ShowMoneyBox(text, acceptText, cancelText, confirmCallback)
-  local currentSkinKey = addonTable.Config.Get(addonTable.Config.Options.CURRENT_SKIN)
-  if not moneyBoxDialogsBySkin[currentSkinKey] then
-    local dialog = GenerateDialog()
-    dialog:SetWidth(350)
-    dialog.moneyBox = CreateFrame("Frame", dialog:GetName() .. "MoneyBox", dialog, "MoneyInputFrameTemplate")
-    dialog.moneyBox:SetPoint("CENTER")
+    dialog:SetSize(450, 100)
+    dialog.text:SetPoint("TOP", 0, -30)
 
     dialog.acceptButton = CreateFrame("Button", nil, dialog, "UIPanelDynamicResizeButtonTemplate")
+    dialog.altButton = CreateFrame("Button", nil, dialog, "UIPanelDynamicResizeButtonTemplate")
     dialog.cancelButton = CreateFrame("Button", nil, dialog, "UIPanelDynamicResizeButtonTemplate")
 
-    dialog.acceptButton:SetPoint("TOPRIGHT", dialog, "CENTER", -5, -18)
-    dialog.cancelButton:SetPoint("TOPLEFT", dialog, "CENTER", 5, -18)
+    dialog.altButton:SetPoint("TOP", dialog, "CENTER", 0, -10)
+    dialog.acceptButton:SetPoint("RIGHT", dialog.altButton, "LEFT", -10, 0)
+    dialog.cancelButton:SetPoint("LEFT", dialog.altButton, "RIGHT", -10, 0)
     dialog.cancelButton:SetScript("OnClick", function()
       dialog:Hide()
     end)
 
-    addonTable.Skins.AddFrame("EditBox", dialog.moneyBox.copper)
-    addonTable.Skins.AddFrame("EditBox", dialog.moneyBox.silver)
-    addonTable.Skins.AddFrame("EditBox", dialog.moneyBox.gold)
-    addonTable.Skins.AddFrame("Button", dialog.acceptButton)
-    addonTable.Skins.AddFrame("Button", dialog.cancelButton)
-
-    moneyBoxDialogsBySkin[currentSkinKey] = dialog
+    confirmDialogsBySkin[currentSkinKey] = dialog
   end
 
-  local dialog = moneyBoxDialogsBySkin[currentSkinKey]
+  local dialog = confirmDialogsBySkin[currentSkinKey]
   dialog:Hide()
-  MoneyInputFrame_ResetMoney(dialog.moneyBox)
 
   dialog.text:SetText(text)
-  dialog.acceptButton:SetText(acceptText)
+  dialog.acceptButton:SetText(yesText)
   DynamicResizeButton_Resize(dialog.acceptButton)
-  dialog.cancelButton:SetText(cancelText)
+  dialog.altButton:SetText(altText)
+  DynamicResizeButton_Resize(dialog.altButton)
+  dialog.cancelButton:SetText(noText)
   DynamicResizeButton_Resize(dialog.cancelButton)
-
-  local callback = function() confirmCallback(MoneyInputFrame_GetCopper(dialog.moneyBox)); dialog:Hide() end
-  dialog.acceptButton:SetScript("OnClick", callback)
-  dialog.moneyBox.copper:SetScript("OnEnterPressed", callback)
-  dialog.moneyBox.silver:SetScript("OnEnterPressed", callback)
-  dialog.moneyBox.gold:SetScript("OnEnterPressed", callback)
+  dialog.acceptButton:SetScript("OnClick", function() confirmCallback(); dialog:Hide() end)
+  dialog.altButton:SetScript("OnClick", function() altCallback(); dialog:Hide() end)
 
   dialog:Show()
-  dialog.moneyBox.gold:SetFocus()
 end
 
 local moneyShowDialogsBySkin = {}
-function addonTable.Dialogs.ShowMoney(text, value, acceptText, cancelText, confirmCallback)
-  local currentSkinKey = addonTable.Config.Get(addonTable.Config.Options.CURRENT_SKIN)
+function Auctionator.Dialogs.ShowMoney(text, value, acceptText, cancelText, confirmCallback)
+  local currentSkinKey = ""
   if not moneyShowDialogsBySkin[currentSkinKey] then
     local dialog = GenerateDialog()
     dialog:SetWidth(400)
@@ -231,9 +152,6 @@ function addonTable.Dialogs.ShowMoney(text, value, acceptText, cancelText, confi
     dialog.cancelButton:SetScript("OnClick", function()
       dialog:Hide()
     end)
-
-    addonTable.Skins.AddFrame("Button", dialog.acceptButton)
-    addonTable.Skins.AddFrame("Button", dialog.cancelButton)
 
     moneyShowDialogsBySkin[currentSkinKey] = dialog
   end
