@@ -93,7 +93,7 @@ ItemScore.rules = {
 		[1] = {
 			name = "Brewmaster",
 			itemtypes={ TH_POLE=1, TH_STAFF=1, FIST=1, AXE=1, SWORD=1, MACE=1, LEATHER=1 },
-			stats = { DPS=8.57, STAMINA=2.17, MASTERY=2.48, STRENGTH=5.57, HASTE=1.51, PARRY=1.56, DODGE=1.04, HIT=1.50, EXPERTISE=0.41, ATTACK_POWER=2.12 },
+			stats = { DPS=8.57, STAMINA=2.17, MASTERY=2.48, AGILITY=5.57, HASTE=1.51, PARRY=1.56, DODGE=1.04, HIT=1.50, EXPERTISE=0.41, ATTACK_POWER=2.12 },
 			caps = { HIT=7.5, EXPERTISE=7.5 },
 		},
 		[2] = {

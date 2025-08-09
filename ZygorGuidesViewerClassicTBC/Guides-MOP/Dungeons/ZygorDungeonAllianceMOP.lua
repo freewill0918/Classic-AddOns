@@ -9,6 +9,7 @@ achieveid={10010, 6759},
 patch='50004',
 condition_suggested=function() return level>=25 and level<=35 end,
 description="This guide will walk you through the Gate of the Setting Sun dungeon.",
+mopready=true
 },[[
 step
 Press _I_ and queue for Gate of the Setting Sun or enter the dungeon with your group |goto Gate of the Setting Sun/1 61.30,88.00 < 100 |c
@@ -99,6 +100,7 @@ achieveid={6755, 6756},
 patch='50004',
 condition_suggested=function() return level>=20 and level<=35 end,
 description="This guide will walk you through the Mogu'shan Palace dungeon.",
+mopready=true
 },[[
 step
 Press _I_ and queue for Mogu'shan Palace or enter the dungeon with your group |goto Mogu'shan Palace/1 30.50,20.50 < 100 |c
@@ -205,6 +207,7 @@ achieveid={6760},
 patch='50004',
 condition_suggested=function() return level>=35 and level<=35 end,
 description="This guide will walk you through the Scarlet Halls dungeon.",
+mopready=true
 },[[
 step
 Press _I_ and queue for Scarlet Halls or enter the dungeon with your group |goto Scarlet Halls/1 34.20,90.00 < 100 |c
@@ -279,6 +282,7 @@ achieveid={6761},
 patch='50004',
 condition_suggested=function() return level>=35 and level<=35 end,
 description="This guide will walk you through the Scarlet Monastery dungeon.",
+mopready=true
 },[[
 step
 Press _I_ and queue for Scarlet Monastery or enter the dungeon with your group |goto Scarlet Monastery/1 74.20,46.20 < 100 |c
@@ -365,6 +369,7 @@ achieveid={6762},
 patch='50004',
 condition_suggested=function() return level>=35 and level<=35 end,
 description="This guide will walk you through the Scholomance dungeon.",
+mopready=true
 },[[
 step
 Press _I_ and queue for Scholomance or enter the dungeon with your group |goto Scholomance/1 18.20,61.10 < 100 |c
@@ -491,6 +496,7 @@ achieveid={6469},
 patch='50004',
 condition_suggested=function() return level>=20 and level<=35 end,
 description="This guide will walk you through the Shado-Pan Monastery dungeon.",
+mopready=true
 },[[
 step
 Press _I_ and queue for Shado-Pan Monastery or enter the dungeon with your group |goto Shado-Pan Monastery/2 85.00,56.50 < 100 |c
@@ -582,6 +588,7 @@ achieveid={6763},
 patch='50004',
 condition_suggested=function() return level>=25 and level<=35 end,
 description="This guide will walk you through the Siege of Niuzao Temple dungeon.",
+mopready=true
 },[[
 step
 Press _I_ and queue for Siege of Niuzao Temple or enter the dungeon with your group |goto Siege of Niuzao Temple/2 65.40,87.30 < 100 |c
@@ -669,6 +676,7 @@ achieveid={6457},
 patch='50004',
 condition_suggested=function() return level>=15 and level<=35 end,
 description="This guide will walk you through the Stormstout Brewery dungeon.",
+mopready=true
 },[[
 step
 Press _I_ and queue for Stormstout Brewery or enter the dungeon with your group |goto Stormstout Brewery/1 79.70,39.70 < 100 |c
@@ -755,6 +763,7 @@ achieveid={6757},
 patch='50004',
 condition_suggested=function() return level>=10 and level<=35 end,
 description="This guide will walk you through the Temple of the Jade Serpent dungeon.",
+mopready=true
 },[[
 step
 Press _I_ and queue for Temple of the Jade Serpent or enter the dungeon with your group |goto Temple of the Jade Serpent/1 31.30,45.00 < 100 |c
@@ -878,6 +887,7 @@ achieveid={6845, 6718},
 patch='50004',
 condition_suggested=function() return level>=35 and level<=37 end,
 description="This guide will walk you through the Heart of Fear raid.",
+mopready=true
 },[[
 step
 Click here if you are doing a normal clear of Heart of Fear |next "Normal HoF"
@@ -1027,6 +1037,7 @@ achieveid={6458, 6844},
 patch='50004',
 condition_suggested=function() return level>=35 and level<=37 end,
 description="This guide will walk you through the Mogu'shan Vaults raid.",
+mopready=true
 },[[
 step
 Click here if you are doing a normal clear of the instance |next "Normal MSV"
@@ -1193,6 +1204,7 @@ achieveid={6689},
 patch='50004',
 condition_suggested=function() return level>=35 and level<=37 end,
 description="This guide will walk you through the Terrace of Endless Spring raid.",
+mopready=true
 },[[
 step
 Click here if you are doing a normal clear of Terrace of Endless Spring |next "Normal ToES"

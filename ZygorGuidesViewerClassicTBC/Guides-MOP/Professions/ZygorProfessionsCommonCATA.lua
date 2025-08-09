@@ -3,7 +3,7 @@ if not ZygorGuidesViewer then return end
 if ZGV:DoMutex("ProfessionsC") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Air",{
-cataready=true,
+mopready=true,
 description="Primal Air can be gathered from Shadowmoon Valley, Outland.",
 },[[
 step
@@ -29,7 +29,7 @@ collect Mote of Air##22572 |n
 '|goto Shadowmoon Valley/0 55.35,71.72 < 30 |c |noway |next "Start"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Earth",{
-cataready=true,
+mopready=true,
 description="Primal Earth can be gathered from Nagrand.",
 },[[
 step
@@ -55,7 +55,7 @@ collect Mote of Earth##22573 |n
 '|goto Nagrand/0 46.19,77.20 < 30 |c |noway |next "Start"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Fire",{
-cataready=true,
+mopready=true,
 description="Primal Fire can be gathered from Hellfire Peninsula.",
 },[[
 step
@@ -78,7 +78,7 @@ collect Mote of Fire##22574 |n
 '|goto Shadowmoon Valley/0 49.04,34.47 |noway |c |next "Start"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Life",{
-cataready=true,
+mopready=true,
 description="Primal Life can be gathered from Zangarmarsh in Outland.",
 },[[
 step
@@ -94,7 +94,7 @@ collect Mote of Life##22575 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Mana",{
-cataready=true,
+mopready=true,
 description="Primal Mana can be gathered from the Netherstorm in Outland.",
 },[[
 step
@@ -108,7 +108,7 @@ collect Mote of Mana##22576 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Shadow",{
-cataready=true,
+mopready=true,
 description="Primal Shadow can be gathered from Hellfire Peninsula.",
 },[[
 step
@@ -132,7 +132,7 @@ collect Mote of Shadow##22577 |n
 '|goto Hellfire Peninsula/0 76.12,63.56 < 30 |c |noway |next "Start"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Water",{
-cataready=true,
+mopready=true,
 description="Primal Water can be gathered from Black Temple or Skettis, Terrokar Forest.",
 },[[
 step
@@ -146,7 +146,7 @@ collect Mote of Water##22578 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Professions Guides\\General Farming Guides\\Volatile Life",{
-cataready=true,
+mopready=true,
 description="Volatile Life can be gathered from Herbs.",
 },[[
 step
@@ -231,7 +231,7 @@ Click Here To Change Your Herb Route |confirm |next "Volatile_Life_Main_Menu"
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Volatile Fire",{
-cataready=true,
+mopready=true,
 description="Volatile Fire can be gathered from Twilight Highlands in the Eastern Kingdoms.",
 },[[
 step
@@ -243,7 +243,7 @@ collect Volatile Fire##52325 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Volatile Earth",{
-cataready=true,
+mopready=true,
 description="Volatile Earth can be gathered from Mount Hyjal in Kalimdor.",
 },[[
 step
@@ -256,7 +256,7 @@ collect Volatile Earth##52327 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Volatile Water",{
-cataready=true,
+mopready=true,
 description="Volatile Water can be gathered from Twilight Highlands in the Eastern Kingdoms.",
 },[[
 step
@@ -270,7 +270,7 @@ collect Volatile Water##52326 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Volatile Air",{
-cataready=true,
+mopready=true,
 description="Volatile Air can be gathered from Twilight Highlands in the Eastern Kingdoms.",
 },[[
 step
@@ -282,7 +282,7 @@ collect Volatile Air##52328 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Air",{
-cataready=true,
+mopready=true,
 description="Eternal Air can be gathered from Borean Tundra in Northrend.",
 },[[
 step
@@ -294,7 +294,7 @@ You can find more around here [42.86,10.29]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Earth",{
-cataready=true,
+mopready=true,
 description="Eternal Earth can be gathered from Howling Fjord in Northrend.",
 },[[
 step
@@ -305,7 +305,7 @@ collect Eternal Earth##35624 |n |goto Howling Fjord/0 73.29,73.38
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Fire",{
-cataready=true,
+mopready=true,
 description="Eternal Fire can be gathered from The Storm Peaks in Northrend.",
 },[[
 step
@@ -316,7 +316,7 @@ collect Eternal Fire##36860 |goto The Storm Peaks/0 61.34,39.39 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Life",{
-cataready=true,
+mopready=true,
 description="Eternal Life can be gathered from the Howling Fjord in Northrend.",
 },[[
 step
@@ -329,7 +329,7 @@ You can find more around here [55.22,16.30]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Shadow",{
-cataready=true,
+mopready=true,
 description="Eternal shadow can be gathered from Dragonblight in Northrend.",
 },[[
 step
@@ -340,7 +340,7 @@ collect Eternal Shadow##35627 |n |goto Dragonblight/0 75.06,20.80
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Water",{
-cataready=true,
+mopready=true,
 description="Eternal Water can be gathered from Dragonblight in Northrend.",
 },[[
 step
@@ -350,7 +350,7 @@ collect Eternal Water##35622 |n |goto Dragonblight/0 67.43,52.76
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Knothide Leather",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Skinning') >= 335 end,
 condition_valid=function() return skill('Skinning') >= 335 end,
 condition_valid_msg="Your Skinning skill must be at least 335 to gather Knothide Leather.",
@@ -369,7 +369,7 @@ collect Knothide Leather##21887 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Thick Clefthoof Leather",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Skinning') >= 310 end,
 condition_valid=function() return skill('Skinning') >= 310 end,
 condition_valid_msg="Your Skinning skill must be at least 335 to gather Thick Clefthoof Leather.",
@@ -387,7 +387,7 @@ collect Thick Clefthoof Leather##25708 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Fel Hide",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Skinning') >= 335 end,
 condition_valid=function() return skill('Skinning') >= 335 end,
 condition_valid_msg="Your Skinning skill must be at least 335 to gather Fel Hide.",
@@ -405,7 +405,7 @@ collect Fel Hide##25707 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Fel Scales",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Skinning') >= 295 end,
 condition_valid=function() return skill('Skinning') >= 295 end,
 condition_valid_msg="Your Skinning skill must be at least 295 to gather Fel Scales.",
@@ -445,7 +445,7 @@ collect Fel Scales##25700 |n
 '|goto Hellfire Peninsula/0 42.22,83.00 < 25 |c |noway |next "Begin_Farming_Fel_Scales"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Nether Dragonscale",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Skinning') >= 330 end,
 condition_valid=function() return skill('Skinning') >= 330 end,
 condition_valid_msg="Your Skinning skill must be at least 330 to gather Nether Dragonscales.",
@@ -468,7 +468,7 @@ collect Nether Dragonscale##29548 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Wind Scales",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Skinning') >= 335 end,
 condition_valid=function() return skill('Skinning') >= 335 end,
 condition_valid_msg="Your Skinning skill must be at least 335 to gather Wind Scales.",
@@ -489,7 +489,7 @@ collect Wind Scales##29547 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Cobra Scales",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Skinning') >= 345 end,
 condition_valid=function() return skill('Skinning') >= 345 end,
 condition_valid_msg="Your Skinning skill must be at least 345 to gather Cobra Scales.",
@@ -526,7 +526,7 @@ collect Cobra Scales##29539 |n
 '|goto Nagrand/0 18.01,38.64 < 30 |c |noway |next "Start_Farming_Cobra_Scales"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Blackened Dragonscale",{
-cataready=true,
+mopready=true,
 description="Blackened Dragonscale can be gathered from Twilight Highlands in Eastern Kingdoms.",
 },[[
 step
@@ -537,7 +537,7 @@ collect Blackened Dragonscale##52979 |n |goto Twilight Highlands/0 65.48,74.22
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Borean Leather",{
-cataready=true,
+mopready=true,
 description="Borean Leather can be gathered from Sholazar Basin.",
 },[[
 step
@@ -551,7 +551,7 @@ collect Borean Leather##33568 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Nerubian Chitin",{
-cataready=true,
+mopready=true,
 description="Shal'dorei Silk can be gathered from Icecrown.",
 },[[
 step
@@ -564,7 +564,7 @@ collect Nerubian Chitin##38558 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Savage Leather",{
-cataready=true,
+mopready=true,
 description="Savage Leather can be gathered from Twilight Highlands.",
 },[[
 step
@@ -579,7 +579,7 @@ collect Savage Leather##52976 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Deepsea Scale",{
-cataready=true,
+mopready=true,
 description="Deepsea Scale can be gathered from King Crawlers in Kalimdor.",
 },[[
 step
@@ -589,7 +589,7 @@ collect Deepsea Scale##52982 |n |goto Feralas/0 68.99,75.51
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Felweed",{
-cataready=true,
+mopready=true,
 description="Felweed can be gathered from Terokkar Forest.",
 condition_suggested=function() return skill('Herbalism') >= 300 end,
 condition_valid=function() return skill('Herbalism') >= 300 end,
@@ -616,7 +616,7 @@ collect Felweed##22785 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Ancient Lichen",{
-cataready=true,
+mopready=true,
 description="Ancient Lichen can be gathered from mobs in Zangarmarsh or from various dungeons.",
 condition_suggested=function() return skill('Herbalism') >= 340 end,
 condition_valid=function() return skill('Herbalism') >= 340 end,
@@ -634,7 +634,7 @@ collect Ancient Lichen##22790 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Dreaming Glory",{
-cataready=true,
+mopready=true,
 description="Dreaming Glory can be gathered from Terokkar Forest.",
 condition_suggested=function() return skill('Herbalism') >= 315 end,
 condition_valid=function() return skill('Herbalism') >= 315 end,
@@ -661,7 +661,7 @@ collect Dreaming Glory##22786 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Fel Lotus",{
-cataready=true,
+mopready=true,
 description="Fel Lotus can be gathered from Nightmare Vine in Shadowmoon Valley or any other Outland herb.",
 condition_suggested=function() return skill('Herbalism') >= 300 end,
 condition_valid=function() return skill('Herbalism') >= 300 end,
@@ -685,7 +685,7 @@ collect Fel Lotus##22794 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Mana Thistle",{
-cataready=true,
+mopready=true,
 description="Mana Thistle can be gathered from Terokkar Forest and Shadowmoon Valley.",
 condition_suggested=function() return skill('Herbalism') >= 375 end,
 condition_valid=function() return skill('Herbalism') >= 375 end,
@@ -724,7 +724,7 @@ collect Mana Thistle##22793 |n
 Farm Along the Path |goto Shadowmoon Valley/0 74.60,86.41 < 30 |noway |c |next "Start_Path"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Netherbloom",{
-cataready=true,
+mopready=true,
 description="Netherbloom can be gathered from Netherstorm.",
 condition_suggested=function() return skill('Herbalism') >= 350 end,
 condition_valid=function() return skill('Herbalism') >= 350 end,
@@ -764,7 +764,7 @@ collect Netherbloom##22791 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Nightmare Vine",{
-cataready=true,
+mopready=true,
 description="Nightmare Vine can be gathered from Shadowmoon Valley.",
 condition_suggested=function() return skill('Herbalism') >= 365 end,
 condition_valid=function() return skill('Herbalism') >= 365 end,
@@ -787,7 +787,7 @@ collect Nightmare Vine##22792 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Ragveil",{
-cataready=true,
+mopready=true,
 description="Ragveil can be gathered from Zangarmarsh.",
 condition_suggested=function() return skill('Herbalism') >= 325 end,
 condition_valid=function() return skill('Herbalism') >= 325 end,
@@ -820,7 +820,7 @@ collect Ragveil##22787 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Terocone",{
-cataready=true,
+mopready=true,
 description="Terocone can be gathered from Terokkar Forest.",
 condition_suggested=function() return skill('Herbalism') >= 325 end,
 condition_valid=function() return skill('Herbalism') >= 325 end,
@@ -879,7 +879,7 @@ collect Frost Lotus##36906 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Goldclover",{
-cataready=true,
+mopready=true,
 description="Goldclover can be gathered from Borean Tundra.",
 },[[
 step
@@ -894,7 +894,7 @@ collect Goldclover##36901 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Icethorn",{
-cataready=true,
+mopready=true,
 description="Icethorn can be gathered from The Storm Peaks.",
 },[[
 step
@@ -926,7 +926,7 @@ collect Icethorn##36906 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Lichbloom",{
-cataready=true,
+mopready=true,
 description="Lichbloom can be gathered from The Storm Peaks.",
 },[[
 step
@@ -958,7 +958,7 @@ collect Lichbloom##36905 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Talandra's Rose",{
-cataready=true,
+mopready=true,
 description="Talandra's Rose can be gathered from Zul'Drak.",
 },[[
 step
@@ -986,7 +986,7 @@ collect Talandra's Rose##36907 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Adder's Tongue",{
-cataready=true,
+mopready=true,
 description="Adder's Tongue can be gathered from Sholazar Basin.",
 },[[
 step
@@ -1008,7 +1008,7 @@ collect Adder's Tongue##36903 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Tiger Lily",{
-cataready=true,
+mopready=true,
 description="Tiger Lily can be gathered from Sholazar Basin.",
 },[[
 step
@@ -1025,7 +1025,7 @@ collect Tiger Lily##36904 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Azshara's Veil",{
-cataready=true,
+mopready=true,
 description="Azshara's Veil can be gathered from the Shimmering Expanse.",
 },[[
 step
@@ -1049,7 +1049,7 @@ collect Azshara's Veil##52985 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Azshara's Veil",{
-cataready=true,
+mopready=true,
 description="Azshara's Veil can be gathered from the Shimmering Expanse.",
 },[[
 step
@@ -1077,7 +1077,7 @@ collect Azshara's Veil##52985 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Cinderbloom",{
-cataready=true,
+mopready=true,
 description="Cinderbloom can be gathered from Mount Hyjal.",
 },[[
 step
@@ -1102,7 +1102,7 @@ collect Cinderbloom##52983 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Heartblossom",{
-cataready=true,
+mopready=true,
 description="Heartblossom can be gathered from Deepholm.",
 },[[
 step
@@ -1124,7 +1124,7 @@ collect Heartblossom##52986 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Stormvine",{
-cataready=true,
+mopready=true,
 description="Stormvine can be gathered from the Shimmering Expanse.",
 },[[
 step
@@ -1152,7 +1152,7 @@ collect Stormvine##52984 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Twilight Jasmine",{
-cataready=true,
+mopready=true,
 description="Twilight Jasmine can be gathered from Twilight Highlands.",
 },[[
 step
@@ -1190,7 +1190,7 @@ collect Twilight Jasmine##52987 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Whiptail",{
-cataready=true,
+mopready=true,
 description="Whiptail can be gathered from Uldum.",
 },[[
 step
@@ -1209,7 +1209,7 @@ collect Whiptail##52988 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Arcane Dust",{
-cataready=true,
+mopready=true,
 description="Disenchant items to gather Enchanting materials.",
 },[[
 step
@@ -1220,7 +1220,7 @@ collect Arcane Dust##22445 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Planar Essence",{
-cataready=true,
+mopready=true,
 description="Disenchant items to gather Enchanting materials.",
 },[[
 step
@@ -1233,7 +1233,7 @@ collect Lesser Planar Essence##22447 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Planar Essence",{
-cataready=true,
+mopready=true,
 description="Disenchant items to gather Enchanting materials.",
 },[[
 step
@@ -1246,7 +1246,7 @@ collect Greater Planar Essence##22446 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Large Prismatic Shard",{
-cataready=true,
+mopready=true,
 description="Disenchant items to gather Enchanting materials.",
 },[[
 step
@@ -1256,7 +1256,7 @@ collect Large Prismatic Shard##22449 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Small Prismatic Shard",{
-cataready=true,
+mopready=true,
 description="Disenchant items to gather Enchanting materials.",
 },[[
 step
@@ -1268,7 +1268,7 @@ collect Small Prismatic Shard##22448 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Hypnotic Dust",{
-cataready=true,
+mopready=true,
 description="Hypnotic Dust can be gathered from Uncommon item level 272 to 333 items.",
 },[[
 step
@@ -1278,7 +1278,7 @@ collect Hypnotic Dust##52555 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Celestial Essence",{
-cataready=true,
+mopready=true,
 description="Lesser Celestial Essence can be gathered from Uncommon item level 272 to 333 items.",
 },[[
 step
@@ -1288,7 +1288,7 @@ collect Lesser Celestial Essence##52718 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Celestial Essence",{
-cataready=true,
+mopready=true,
 description="Greater Celestial Essence can be gathered from Uncommon item level 300 to 333 items.",
 },[[
 step
@@ -1298,7 +1298,7 @@ collect Greater Celestial Essence##52719 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Maelstrom Crystal",{
-cataready=true,
+mopready=true,
 description="Maelstrom Crystal can be gathered from Epic item level 318 to 333 items.",
 },[[
 step
@@ -1307,7 +1307,7 @@ collect Maelstrom Crystal##52722 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Heavenly Shard",{
-cataready=true,
+mopready=true,
 description="Heavenly Shard can be gathered from Rare item level 318 to 333 items.",
 },[[
 step
@@ -1316,7 +1316,7 @@ collect Heavenly Shard##52722 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Inscription\\Farming Guides\\Ashen Pigment",{
-cataready=true,
+mopready=true,
 description="Whiptail can be gathered from Uldum.",
 },[[
 step
@@ -1331,7 +1331,7 @@ collect Ashen Pigment##61979 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Inscription\\Farming Guides\\Burning Embers",{
-cataready=true,
+mopready=true,
 description="Whiptail can be gathered from Uldum.",
 },[[
 step
@@ -1346,7 +1346,7 @@ collect Burning Embers##61980 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Adamantite Ore",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Mining') >= 325 end,
 condition_valid=function() return skill('Mining') >= 325 end,
 condition_valid_msg="Your Mining skill must be at least 325 to gather Adamantite Ore.",
@@ -1378,7 +1378,7 @@ collect Adamantite Ore##23425 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Fel Iron Ore",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Mining') >= 300 end,
 condition_valid=function() return skill('Mining') >= 300 end,
 condition_valid_msg="Your Mining skill must be at least 300 to gather Fel Iron Ore.",
@@ -1404,7 +1404,7 @@ collect Fel Iron Ore##23424 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Khorium Ore",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Mining') >= 375 end,
 condition_valid=function() return skill('Mining') >= 375 end,
 condition_valid_msg="Your Mining skill must be at least 375 to gather Khorium Ore.",
@@ -1434,7 +1434,7 @@ collect Khorium Ore##23426 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Cobalt Ore",{
-cataready=true,
+mopready=true,
 description="Cobalt can be gathered from Howling Fjord.",
 },[[
 step
@@ -1471,7 +1471,7 @@ collect Cobalt Ore##36909 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Saronite Ore",{
-cataready=true,
+mopready=true,
 description="Saronite can be gathered from Sholazar Basin.",
 },[[
 step
@@ -1504,7 +1504,7 @@ collect Saronite Ore##36912 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Titanium Ore",{
-cataready=true,
+mopready=true,
 description="Titanium can be gathered from Icecrown.",
 },[[
 step
@@ -1530,7 +1530,7 @@ collect Titanium Ore##36910 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Elementium (Twilight Highlands)",{
-cataready=true,
+mopready=true,
 description="Elementium can be gathered from Twilight Highlands. This route is less effecient than Uldum but often has less competition.",
 },[[
 step
@@ -1562,7 +1562,7 @@ collect Elementium Ore##52185 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Elementium (Uldum)",{
-cataready=true,
+mopready=true,
 description="Elementium can be gathered from Uldum. This has the most potential Elementium per hour but is often more contested.",
 },[[
 step
@@ -1600,7 +1600,7 @@ collect Elementium Ore##52185 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Obsidium",{
-cataready=true,
+mopready=true,
 description="Obsidium can be gathered from Mount Hyjal.",
 },[[
 step
@@ -1626,7 +1626,7 @@ collect Obsidium Ore##53038 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Pyrite",{
-cataready=true,
+mopready=true,
 description="Pyrite can be gathered from Uldum.",
 },[[
 step
@@ -1665,7 +1665,7 @@ collect Pyrite Ore##52183 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Shadow Pearl",{
-cataready=true,
+mopready=true,
 description="Shadow Pearls can be gathered in Shadowmoon Valley.",
 },[[
 step
@@ -1680,7 +1680,7 @@ You can find more around: |notinsticky
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Carnelian",{
-cataready=true,
+mopready=true,
 description="Carnelian can be prospected from ore.",
 },[[
 step
@@ -1695,7 +1695,7 @@ collect Carnelian##61980 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Nightstone",{
-cataready=true,
+mopready=true,
 description="Nightstone can be prospected from ore.",
 },[[
 step
@@ -1710,7 +1710,7 @@ collect Nightstone##52180 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Hessonite",{
-cataready=true,
+mopready=true,
 description="Hessonite can be prospected from ore.",
 },[[
 step
@@ -1725,7 +1725,7 @@ collect Hessonite##52181 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Zephyrite",{
-cataready=true,
+mopready=true,
 description="Zephyrite can be prospected from ore.",
 },[[
 step
@@ -1740,7 +1740,7 @@ collect Zephyrite##52178 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Alicite",{
-cataready=true,
+mopready=true,
 description="Zephyrite can be prospected from ore.",
 },[[
 step
@@ -1755,7 +1755,7 @@ collect Alicite##52179 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Jasper",{
-cataready=true,
+mopready=true,
 description="Jasper can be prospected from ore.",
 },[[
 step
@@ -1770,7 +1770,7 @@ collect Jasper##52182 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Inferno Ruby",{
-cataready=true,
+mopready=true,
 description="Inferno Ruby can be prospected from ore.",
 },[[
 step
@@ -1785,7 +1785,7 @@ collect Inferno Ruby##52190 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Dream Emerald",{
-cataready=true,
+mopready=true,
 description="Dream Emerald can be prospected from ore.",
 },[[
 step
@@ -1800,7 +1800,7 @@ collect Dream Emerald##52192 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Demonseye",{
-cataready=true,
+mopready=true,
 description="Demonseye can be prospected from ore.",
 },[[
 step
@@ -1815,7 +1815,7 @@ collect Demonseye##52194 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Amberjewel",{
-cataready=true,
+mopready=true,
 description="Amberjewel can be prospected from ore.",
 },[[
 step
@@ -1830,7 +1830,7 @@ collect Amberjewel##52195 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Ocean Sapphire",{
-cataready=true,
+mopready=true,
 description="Ocean Sapphire can be prospected from ore.",
 },[[
 step
@@ -1845,7 +1845,7 @@ collect Ocean Sapphire##52191 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Ember Topaz",{
-cataready=true,
+mopready=true,
 description="Ember Topaz can be prospected from ore.",
 },[[
 step
@@ -1860,7 +1860,7 @@ collect Ember Topaz##52191 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Jaggal Pearl",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Jewelcrafting') >= 325 end,
 description="Jaggal Pearls can be farmed in Nagrand.",
 },[[
@@ -1874,7 +1874,7 @@ collect Jaggal Pearl##24478 |goto Zangarmarsh/0 26.92,39.35 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Barbed Gill Trout",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Fishing') >= 305 end,
 condition_valid=function() return skill('Fishing') >= 305 end,
 condition_valid_msg="Your Fishing skill must be at least 305 to fish Barbed Gill Trout.",
@@ -1899,7 +1899,7 @@ collect Barbed Gill Trout##27422 |goto Zangarmarsh/0 78.95,71.48 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Spotted Feltail",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Fishing') >= 305 end,
 condition_valid=function() return skill('Fishing') >= 305 end,
 condition_valid_msg="Your Fishing skill must be at least 305 to fish Spotted Feltail.",
@@ -1924,7 +1924,7 @@ collect Spotted Feltail##27425 |goto Zangarmarsh/0 78.95,71.48 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Zangarian Sporefish",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Fishing') >= 305 end,
 condition_valid=function() return skill('Fishing') >= 305 end,
 condition_valid_msg="Your Fishing skill must be at least 305 to fish Zangarian Sporefish.",
@@ -1949,7 +1949,7 @@ collect Zangarian Sporefish##27429 |goto Zangarmarsh/0 78.95,71.48 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Furious Crawdad",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Fishing') >= 430 end,
 condition_valid=function() return skill('Fishing') >= 430 end,
 condition_valid_msg="Your Fishing skill must be at least 430 to fish Furious Crawdad.",
@@ -2000,7 +2000,7 @@ collect Furious Crawdad##27439 |n
 '|goto Terokkar Forest/0 45.14,40.51 < 30 |c |noway |next "Start_Farming_Furious_Crawdad"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Bloodfin Catfish",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Fishing') >= 300 end,
 condition_valid=function() return skill('Fishing') >= 300 end,
 condition_valid_msg="Your Fishing skill must be at least 300 to fish Bloodfin Catfish.",
@@ -2025,7 +2025,7 @@ collect Bloodfin Catfish##33823 |goto Deadwind Pass/0 52.79,73.82 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Crescent-Tail Skullfish",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Fishing') >= 300 end,
 condition_valid=function() return skill('Fishing') >= 300 end,
 condition_valid_msg="Your Fishing skill must be at least 300 to fish Crescent-Tail Skullfish.",
@@ -2050,7 +2050,7 @@ collect Crescent-Tail Skullfish##33824 |goto Deadwind Pass/0 52.79,73.82 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Albino Cavefish",{
-cataready=true,
+mopready=true,
 description="Albino Cavefish can be fished from Deepholm.",
 },[[
 step
@@ -2079,7 +2079,7 @@ collect Albino Cavefish##53065 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Algaefin Rockfish",{
-cataready=true,
+mopready=true,
 description="Algaefin Rockfish can be fished from open coastal water.",
 },[[
 step
@@ -2088,7 +2088,7 @@ collect Algaefin Rockfish##53071 |n |goto Twilight Highlands/0 73.80,43.90
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Striped Lurker",{
-cataready=true,
+mopready=true,
 description="Striped Lurker can be fished from open water.",
 },[[
 step
@@ -2097,7 +2097,7 @@ collect Striped Lurker##53067 |n |goto Twilight Highlands/0 65.80,43.30
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Blackbelly Mudfish",{
-cataready=true,
+mopready=true,
 description="Blackbelly Mudfish can be fished from schools in Uldum.",
 },[[
 step
@@ -2111,7 +2111,7 @@ collect Blackbelly Mudfish##53065 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Sharptooth",{
-cataready=true,
+mopready=true,
 description="Sharptooth can be fished from open water.",
 },[[
 step
@@ -2120,7 +2120,7 @@ collect Sharptooth##53062 |n |goto Twilight Highlands/0 65.80,43.30
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Mountain Trout",{
-cataready=true,
+mopready=true,
 description="Mountain Trout can be fished from Hyjal.",
 },[[
 step
@@ -2145,7 +2145,7 @@ collect Mountain Trout##53063 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Lavascale Catfish",{
-cataready=true,
+mopready=true,
 description="Lavascale Catfish can be fished from open water in Uldum or Deepholm.",
 },[[
 step
@@ -2154,7 +2154,7 @@ collect Lavascale Catfish##53068 |n |goto Uldum/0 54.36,37.70
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Fathom Eel",{
-cataready=true,
+mopready=true,
 description="Fathom Eel can be fished from Uldum.",
 },[[
 step
@@ -2171,7 +2171,7 @@ collect Fathom Eel##53070 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Deepsea Sagefish",{
-cataready=true,
+mopready=true,
 description="Deepsea Sagefish can be fished from schools in Twilight Highlands",
 },[[
 step
@@ -2187,7 +2187,7 @@ collect Deepsea Sagefish##53070 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Highland Guppy",{
-cataready=true,
+mopready=true,
 description="Highland Guppy can be fished from schools in Twilight Highlands",
 },[[
 step
@@ -2203,7 +2203,7 @@ collect Highland Guppy##53064 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Pygmy Suckerfish",{
-cataready=true,
+mopready=true,
 description="Pygmy Suckerfish can be fished from schools in Crystalsong Forest",
 },[[
 step
@@ -2234,7 +2234,7 @@ label "Sell"
 #include "auctioneer"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Bat Flesh",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Bat Flesh can be farmed in Ghostlands.",
 },[[
@@ -2255,7 +2255,7 @@ collect Bat Flesh##27669 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Bear Flank",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Bear Flank can be farmed in Nagrand.",
 },[[
@@ -2272,7 +2272,7 @@ collect Bear Flank##35562 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Buzzard Meat",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Buzzard Meat can be farmed in Nagrand.",
 },[[
@@ -2287,7 +2287,7 @@ You can find more around:
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Chunk o' Basilisk",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Chunk o' Basilisk can be farmed in Zangarmarsh.",
 },[[
@@ -2312,7 +2312,7 @@ collect Chunk o' Basilisk##27677 |n
 '|goto Zangarmarsh/0 74.34,28.90 < 30 |c |noway |next "Start_Farming_Chunk_o_Basilisk"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Clefthoof Meat",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Clefthoof Meat can be farmed in Nagrand.",
 },[[
@@ -2335,7 +2335,7 @@ collect Clefthoof Meat##27678 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Jaggal Clam Meat",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Jaggal Clam Meat can be farmed in Zangarmarsh.",
 },[[
@@ -2348,7 +2348,7 @@ collect Jaggal Clam Meat##24477 |goto Zangarmarsh/0 26.92,39.35 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Raptor Ribs",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Raptor Ribs can be farmed in Blade's Edge Mountains.",
 },[[
@@ -2379,7 +2379,7 @@ collect Raptor Ribs##31670 |n
 '|goto Blade's Edge Mountains/0 75.24,23.15 < 30 |c |noway |next "Start_Farming_Raptor_Ribs"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Serpent Flesh",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Serpent Flesh can be farmed in Blade's Edge Mountains.",
 },[[
@@ -2410,7 +2410,7 @@ collect Serpent Flesh##31671 |n
 '|goto Blade's Edge Mountains/0 75.24,23.15 < 30 |c |noway |next "Start_Farming_Serpent_Flesh"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Strange Spores",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Strange Spores can be farmed in Zangarmarsh.",
 },[[
@@ -2434,7 +2434,7 @@ collect Strange Spores##27676 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Talbuk Venison",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Talbuk Venison can be farmed in Nagrand.",
 },[[
@@ -2457,7 +2457,7 @@ collect Talbuk Venison##27682 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Warped Flesh",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Warped Flesh can be farmed in Terokkar Forest.",
 },[[
@@ -2478,7 +2478,7 @@ collect Warped Flesh##27681 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crunchy Spider Leg",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Crunchy Spider Legs can be farmed in Ghostlands.",
 },[[
@@ -2499,7 +2499,7 @@ collect Crunchy Spider Leg##22644 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Lynx Meat",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Lynx Meat can be farmed in Nagrand.",
 },[[
@@ -2519,7 +2519,7 @@ collect Lynx Meat##27668 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Moongraze Stag Tenderloin",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Moongraze Stag Tenderloins can be farmed on Azuremyst Isle.",
 },[[
@@ -2544,7 +2544,7 @@ collect Moongraze Stag Tenderloin##23676 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Jaggal Clam Meat",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Jaggal Clam Meat can be farmed in Zangarmarsh.",
 },[[
@@ -2557,7 +2557,7 @@ collect Jaggal Clam Meat##24477 |goto Zangarmarsh/0 26.92,39.35 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Ravager Flesh",{
-cataready=true,
+mopready=true,
 description="Ravager Flesh can be gathered from the western Hellfire Peninsula.",
 },[[
 step
@@ -2567,7 +2567,7 @@ collect Ravager Flesh##27674 |n |goto Hellfire Peninsula/0 10.26,51.72
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Talbuk Venison",{
-cataready=true,
+mopready=true,
 description="Talbuk Venison can be gathered from central Nagrand.",
 },[[
 step
@@ -2581,7 +2581,7 @@ collect Talbuk Venison##27682 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Raptor Ribs",{
-cataready=true,
+mopready=true,
 description="Raptor Ribs can be gathered from the eastern Blade's Edge Mountains.",
 },[[
 step
@@ -2595,7 +2595,7 @@ collect Raptor Ribs##31670 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Giant Turtle Tongue",{
-cataready=true,
+mopready=true,
 description="Giant Turtle Tongue can be farmed in Kelp'thar Forest",
 },[[
 step
@@ -2606,7 +2606,7 @@ You can find more here:
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Snake Eye",{
-cataready=true,
+mopready=true,
 description="Snake Eye can be farmed in Kelp'thar Forest",
 },[[
 step
@@ -2615,7 +2615,7 @@ collect Snake Eye##62780 |n |goto Kelp'thar Forest/0 56.28,37.89
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crocolisk Tail",{
-cataready=true,
+mopready=true,
 description="Crocolisk Tail can be farmed in Uldum",
 },[[
 step
@@ -2629,7 +2629,7 @@ collect Crocolisk Tail##62784 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Dragon Flank",{
-cataready=true,
+mopready=true,
 description="Dragon Flank can be farmed in Twilight Highlands",
 },[[
 step
@@ -2642,7 +2642,7 @@ collect Dragon Flank##62782 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Basilisk Liver",{
-cataready=true,
+mopready=true,
 description="Basilisk Liver can be farmed in Deepholm",
 },[[
 step
@@ -2655,7 +2655,7 @@ collect Basilisk Liver##62783 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Shoveltusk Flank",{
-cataready=true,
+mopready=true,
 description="Shoveltusk Flanks can be gathered from Howling Fjord.",
 },[[
 step
@@ -2669,7 +2669,7 @@ collect Shoveltusk Flank##43009 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Netherweave Cloth",{
-cataready=true,
+mopready=true,
 description="Gather Netherweave Cloth in Shadowmoon Valley.",
 },[[
 step
@@ -2693,7 +2693,7 @@ collect Netherweave Cloth##21877 |n
 Click Here to Continue |confirm |next "Legion_Hold"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Netherweb Spider Silk",{
-cataready=true,
+mopready=true,
 description="Gather Netherweave Cloth in Shadowmoon Valley.",
 },[[
 step
@@ -2702,7 +2702,7 @@ collect Netherweb Spider Silk##21881 |n |goto Terokkar Forest/0 53.64,57.86
 You can find more around here [52.22,78.65]
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Embersilk Cloth",{
-cataready=true,
+mopready=true,
 description="Embersilk Cloth can be gathered from humanoids in Deepholm.",
 },[[
 step

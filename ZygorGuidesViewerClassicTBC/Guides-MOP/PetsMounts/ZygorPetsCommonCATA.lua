@@ -9,6 +9,7 @@ source='PetBattle',
 description="This pet can be captured in the wild around River's Heart in Sholazar Basin.",
 keywords={"Aquatic","Sholazar","Basin"},
 pet=649,
+mopready=true,
 },[[
 step
 clicknpc Biletoad##62815
@@ -25,6 +26,7 @@ source='Profession',
 description="This battle pet is a reward for completing the quest Crocolisks in the City or can be purchased from the Auction House.",
 keywords={"Aquatic","Crocolisks","In","The","City"},
 pet=174,
+mopready=true,
 },[[
 step
 talk Old Man Barlo##25580
@@ -56,6 +58,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor at the Darkmoon Faire.",
 keywords={"Aquatic","Darkmoon","Faire"},
 pet=335,
+mopready=true,
 },[[
 step
 Wait for the Darkmoon Faire Event |complete isevent("Darkmoon Faire") |or
@@ -90,6 +93,7 @@ source='PetBattle',
 description="This Battle pet can be caught in the wild around Falfarren River in Ashenvale.",
 keywords={"Aquatic","Ashenvale"},
 pet=495,
+mopready=true,
 },[[
 step
 clicknpc Frog##62312
@@ -106,6 +110,7 @@ source='PetBattle',
 description="This Battle pet can be caught in the wild around Desolace.",
 keywords={"Aquatic","Desolace"},
 pet=483,
+mopready=true,
 },[[
 step
 clicknpc Horny Toad##62185
@@ -122,6 +127,7 @@ source='PetBattle',
 description="This Battle pet can be caught in the wild along the eastern river in Hillsbrad Foothills.",
 keywords={"Aquatic","Hillsbrad", "Foothills"},
 pet=648,
+mopready=true,
 },[[
 step
 clicknpc Huge Toad##61368
@@ -138,6 +144,7 @@ source='Vendor',
 description="This battle pet is rewarded to you after completing the Spawn of Morja quest at the Darkmoon Faire.",
 keywords={"Aquatic","Darkmoon","Faire"},
 pet=106,
+mopready=true,
 },[[
 step
 collect 2 Dark Iron Ale Mug##11325 |n
@@ -174,6 +181,7 @@ source='PetBattle',
 description="This Battle pet can be caught in the wild around Vir'naal Oasis in Uldum.",
 keywords={"Aquatic","Uldum"},
 pet=542,
+mopready=true,
 },[[
 step
 clicknpc Mac Frog##62892
@@ -190,6 +198,7 @@ source='Drop',
 description="This battle pet can be tamed in the wild inside the heroic dungeon Zul'Aman.",
 keywords={"Aquatic","Zul'Aman"},
 pet=165,
+mopready=true,
 },[[
 step
 Enter the Heroic dungeon Zul'Aman |goto Zul'Aman/0 0.00,0.00 |c |or
@@ -215,6 +224,7 @@ source='Promotion',
 description="This battle pet is available to all players who merge their World of Warcraft account with a Battle.net account.",
 keywords={"Aquatic","Merge","Account"},
 pet=192,
+mopready=true,
 },[[
 step
 collect Unhatched Mr. Chilly##41133 |n
@@ -231,6 +241,7 @@ source='Profession',
 description="This battle pet is a reward for completing the quest Crocolisks in the City or can be purchased from the Auction House.",
 keywords={"Aquatic","Crocolisks","In","The","City"},
 pet=164,
+mopready=true,
 },[[
 step
 talk Old Man Barlo##25580
@@ -262,6 +273,7 @@ source='TradingCardGame',
 description="This battle pet is obtained through the World of Warcraft Trading Card Game.",
 keywords={"Aquatic","Trading","Card","Game"},
 pet=328,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -284,6 +296,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around The Shattered Strand in Azshara.",
 keywords={"Aquatic","Azshara"},
 pet=388,
+mopready=true,
 },[[
 step
 clicknpc Shore Crab##61158
@@ -300,6 +313,7 @@ source='Profession',
 description="This battle pet is a reward for completing the quest Crocolisks in the City or can be purchased from the Auction House.",
 keywords={"Aquatic","Crocolisks","In","The","City"},
 pet=173,
+mopready=true,
 },[[
 step
 talk Old Man Barlo##25580
@@ -331,6 +345,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Un'Goro Crater.",
 keywords={"Aquatic","Un'Goro","Crater"},
 pet=502,
+mopready=true,
 },[[
 step
 clicknpc Spotted Bell Frog##62370
@@ -348,6 +363,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around The Cape of Stranglethorn.",
 keywords={"Aquatic","Cape","Of","Stranglethorn"},
 pet=401,
+mopready=true,
 },[[
 step
 clicknpc Strand Crab##61312
@@ -365,6 +381,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Southfury Watershed in Durotar.",
 keywords={"Aquatic","Durotar"},
 pet=420,
+mopready=true,
 },[[
 step
 clicknpc Toad##61369
@@ -381,6 +398,7 @@ source='Profession',
 description="This battle pet is a reward for completing the quest Crocolisks in the City or can be purchased from the Auction House.",
 keywords={"Aquatic","Crocolisks","In","The","City"},
 pet=163,
+mopready=true,
 },[[
 step
 talk Old Man Barlo##25580
@@ -412,6 +430,7 @@ source='Vendor',
 description="This battle pet can be purchased from Flik at the Darkmoon Faire.",
 keywords={"Aquatic","Darkmoon","Faire"},
 pet=65,
+mopready=true,
 },[[
 step
 Wait for the Darkmoon Faire Event |complete isevent("Darkmoon Faire") |or
@@ -439,6 +458,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Coldwind Pass in Borean Tundra.",
 keywords={"Aquatic","Borean","Tundra"},
 pet=536,
+mopready=true,
 },[[
 step
 clicknpc Tundra Penguin##62835
@@ -455,6 +475,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around The Shattered Strand in Azshara.",
 keywords={"Aquatic","Azshara"},
 pet=473,
+mopready=true,
 },[[
 step
 clicknpc Turquoise Turtle##62121
@@ -471,6 +492,7 @@ source='Vendor',
 description="This battle pet can be purchased from Flik at the Darkmoon Faire.",
 keywords={"Aquatic","Darkmoon","Faire"},
 pet=64,
+mopready=true,
 },[[
 step
 Wait for the Darkmoon Faire Event |complete isevent("Darkmoon Faire") |or
@@ -498,6 +520,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Durotar.",
 keywords={"Beast","Durotar"},
 pet=635,
+mopready=true,
 },[[
 step
 clicknpc Adder##61325
@@ -514,6 +537,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor in Dalaran.",
 keywords={"Beast","Dalaran"},
 pet=74,
+mopready=true,
 },[[
 step
 talk Breanni##96479
@@ -534,6 +558,7 @@ source='In-GameShop',
 description="This battle pet can be purchased from the Blizzard store.",
 keywords={"Beast","Blizzard","Store"},
 pet=1363,
+mopready=true,
 },[[
 step
 collect Alterac Brandy##106240 |n
@@ -550,6 +575,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Snowdrift Plains in The Storm Peaks.",
 keywords={"Beast","Storm","Peaks"},
 pet=558,
+mopready=true,
 },[[
 step
 clicknpc Arctic Fox Kit##62864
@@ -567,6 +593,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Fire Plume Ridge in Un'Goro Crater.",
 keywords={"Beast","Un'Goro","Crater"},
 pet=632,
+mopready=true,
 },[[
 step
 clicknpc Ash Lizard##62364
@@ -584,6 +611,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Searing Gorge.",
 keywords={"Beast","Searing","Gorge"},
 pet=427,
+mopready=true,
 },[[
 step
 clicknpc Ash Spiderling##61420
@@ -600,6 +628,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Burning Steppes.",
 keywords={"Beast","Burning","Steppes"},
 pet=425,
+mopready=true,
 },[[
 step
 clicknpc Ash Viper##61385
@@ -616,6 +645,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Jaguero Isle in The Cape of Stranglethorn.",
 keywords={"Beast","The","Cape","Of","Stranglethorn"},
 pet=411,
+mopready=true,
 },[[
 step
 clicknpc Baby Ape##61324
@@ -633,6 +663,7 @@ source='Achievement',
 description="This battle pet can be obtained by logging on during the World of Warcraft 4th year anniversary event.",
 keywords={"Beast","World","Of","Warcraft","Anniversary","Event"},
 pet=202,
+mopready=true,
 },[[
 step
 collect Baby Blizzard Bear##44819 |n
@@ -649,6 +680,7 @@ source='TradingCardGame',
 description="This battle pet can be obtained through the World of Warcraft Trading Card Game.",
 keywords={"Beast","Trading","Card","Game"},
 pet=156,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -671,6 +703,7 @@ source='Drop',
 description="This battle pet can be obtained from a random zone drop around Gavin's Naze in Hillsbrad Foothills.",
 keywords={"Beast","Hillsbrad","Foothills"},
 pet=42,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -688,6 +721,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor in Dalaran.",
 keywords={"Beast","Dalaran"},
 pet=224,
+mopready=true,
 },[[
 step
 talk Breanni##96479
@@ -708,6 +742,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Elwynn Forest.",
 keywords={"Beast","Elwynn","Forest"},
 pet=459,
+mopready=true,
 },[[
 step
 clicknpc Cat##62019
@@ -724,6 +759,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around The Barrens.",
 keywords={"Beast","The","Barrens"},
 pet=474,
+mopready=true,
 },[[
 step
 clicknpc Cheetah Cub##62129
@@ -741,6 +777,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Nagrand.",
 keywords={"Beast","Nagrand"},
 pet=518,
+mopready=true,
 },[[
 step
 clicknpc Clefthoof Runt##62620
@@ -757,6 +794,7 @@ source='Drop',
 description="This battle pet can be purchased from a vendor in Sholazar Basin after you reach revered reputation with The Oracles.",
 keywords={"Beast","The","Oracles"},
 pet=197,
+mopready=true,
 },[[
 step
 Reach Revered Status with The Oracles |complete rep('The Oracles') >= Revered
@@ -781,6 +819,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Stonetalon Mountains.",
 keywords={"Beast","Stonetalon","Mountains"},
 pet=488,
+mopready=true,
 },[[
 step
 clicknpc Coral Snake##62190
@@ -797,6 +836,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Lake Kel'Theril in Winterspring.",
 keywords={"Beast","Winterspring"},
 pet=634,
+mopready=true,
 },[[
 step
 clicknpc Crystal Spider##62435
@@ -813,6 +853,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor at the Darkmoon Faire.",
 keywords={"Beast","Darkmoon","Faire"},
 pet=343,
+mopready=true,
 },[[
 step
 Wait for the Darkmoon Faire Event |complete isevent("Darkmoon Faire") |or
@@ -847,6 +888,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor at the Darkmoon Faire.",
 keywords={"Beast","Darkmoon","Faire"},
 pet=330,
+mopready=true,
 },[[
 step
 Wait for the Darkmoon Faire Event |complete isevent("Darkmoon Faire") |or
@@ -881,6 +923,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Southern Darkshore.",
 keywords={"Beast","Darkshore"},
 pet=508,
+mopready=true,
 },[[
 step
 talk Zidormi##141489
@@ -901,6 +944,7 @@ source='Drop',
 description="This battle pet can be obtained by looting Dart's Nest in Dustwallow Marsh.",
 keywords={"Beast","Dustwallow","Marsh"},
 pet=232,
+mopready=true,
 },[[
 step
 click Dart's Nest##202080
@@ -924,6 +968,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Northeastern Desolace.",
 keywords={"Beast","Desolace"},
 pet=484,
+mopready=true,
 },[[
 step
 clicknpc Desert Spider##62186
@@ -940,6 +985,7 @@ source='Drop',
 description="This battle pet is a rare loot drop from enemies inside the Wailing Caverns dungeon.",
 keywords={"Beast","The","Wailing","Caverns"},
 pet=233,
+mopready=true,
 },[[
 step
 Enter The Wailing Caverns dungeon|goto Wailing Caverns/1 0.00,0.00 |c |or
@@ -965,6 +1011,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Urgarde Catacombs in the Howling Fjord.",
 keywords={"Beast","Howling","Fjord"},
 pet=523,
+mopready=true,
 },[[
 step
 Cross the bridge |goto Howling Fjord/0 57.07,53.19 < 30 |only if walking
@@ -988,6 +1035,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Golakka Hot Springs in Un'Goro Crater.",
 keywords={"Beast","Un'Goro","Crater"},
 pet=504,
+mopready=true,
 },[[
 step
 clicknpc Diemetradon Hatchling##62375
@@ -1004,6 +1052,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Duskwood.",
 keywords={"Beast","Duskwood"},
 pet=396,
+mopready=true,
 },[[
 step
 clicknpc Dusk Spiderling##61253
@@ -1020,6 +1069,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the rivers and lakes in Un'Goro Crater.",
 keywords={"Beast","Un'Goro","Crater"},
 pet=631,
+mopready=true,
 },[[
 step
 clicknpc Emerald Boa##62127
@@ -1036,6 +1086,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the Eastern Plaguelands.",
 keywords={"Beast","Eastern","Plaguelands"},
 pet=457,
+mopready=true,
 },[[
 step
 clicknpc Festering Maggot##61830
@@ -1052,6 +1103,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around The Isle of Spears in Howling Fjord.",
 keywords={"Beast","Howling","Fjord"},
 pet=529,
+mopready=true,
 },[[
 step
 clicknpc Fjord Worg Pup##62669
@@ -1068,6 +1120,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Gloomshade Grove in Shadowmoon Valley.",
 keywords={"Beast","Shadowmoon","Valley"},
 pet=407,
+mopready=true,
 },[[
 step
 clicknpc Forest Spiderling##61320
@@ -1084,6 +1137,7 @@ source='Drop',
 description="This battle pet can be looted from Baradin Foxes around Tol Barad Peninsula.",
 keywords={"Beast","Tol","Barad","Peninsula"},
 pet=278,
+mopready=true,
 },[[
 step
 click Portal to Tol Barad |goto Orgrimmar/1 47.40,39.31
@@ -1110,6 +1164,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Southern Barrens.",
 keywords={"Beast","Southern","Barrens"},
 pet=475,
+mopready=true,
 },[[
 step
 clicknpc Giraffe Calf##62130
@@ -1128,6 +1183,7 @@ source='Drop',
 description="This battle pet can be looted from Gundrak Raptors around Gundrak in Zul'Drak.",
 keywords={"Beast","Zul'Drak"},
 pet=234,
+mopready=true,
 },[[
 step
 kill Gundrak Raptor##29334+
@@ -1147,6 +1203,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Eastern Uldum.",
 keywords={"Beast","Uldum"},
 pet=851,
+mopready=true,
 },[[
 step
 clicknpc Horned Lizard##62894
@@ -1164,6 +1221,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Badlands.",
 keywords={"Beast","Badlands"},
 pet=438,
+mopready=true,
 },[[
 step
 clicknpc King Snake##61443
@@ -1181,6 +1239,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Ghostlands.",
 keywords={"Beast","Badlands"},
 pet=461,
+mopready=true,
 },[[
 step
 clicknpc Larva##62022
@@ -1198,6 +1257,7 @@ source='Drop',
 description="This battle pet can be obtained by looting Takk's Nest in The Barrens.",
 keywords={"Beast","Dustwallow","Marsh"},
 pet=232,
+mopready=true,
 },[[
 step
 click Takk's Nest##202081
@@ -1219,6 +1279,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Uldum.",
 keywords={"Beast","Uldum"},
 pet=545,
+mopready=true,
 },[[
 step
 clicknpc Leopard Scorpid##62896
@@ -1236,6 +1297,7 @@ source='PetBattle',
 description="This battle pet can only be tamed in the wild during the daytime in Loch Modan.",
 keywords={"Beast","Loch","Modan"},
 pet=437,
+mopready=true,
 },[[
 step
 clicknpc Little Black Ram##61459
@@ -1254,6 +1316,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Northern Stranglethorn.",
 keywords={"Beast","Northern","Stranglethorn"},
 pet=408,
+mopready=true,
 },[[
 step
 clicknpc Lizard Hatchling##61321
@@ -1270,6 +1333,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Felfire Hill in Ashenvale.",
 keywords={"Beast","Ashenvale"},
 pet=450,
+mopready=true,
 },[[
 step
 clicknpc Maggot##61753
@@ -1286,6 +1350,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the rivers in the Swamp of Sorrows.",
 keywords={"Beast","Swamp","Of","Sorrows"},
 pet=422,
+mopready=true,
 },[[
 step
 clicknpc Moccasin##61372
@@ -1303,6 +1368,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around pools of lava in the Searing Gorge.",
 keywords={"Beast","Searing","Gorge"},
 pet=428,
+mopready=true,
 },[[
 step
 clicknpc Molten Hatchling##61425
@@ -1320,6 +1386,7 @@ source='Drop',
 description="This battle pet is a world drop in the Eastern Plaguelands or it can be purchased from the Auction House.",
 keywords={"Beast","Eastern","Plaguelands"},
 pet=286,
+mopready=true,
 },[[
 step
 talk Fiona##45417
@@ -1387,6 +1454,7 @@ source='TradingCardGame',
 description="This battle pet is obtained through the World of Warcraft Trading Card Game.",
 keywords={"Beast","Trading","Card","Game"},
 pet=303,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -1409,6 +1477,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor in Dalaran.",
 keywords={"Beast","Dalaran"},
 pet=236,
+mopready=true,
 },[[
 step
 talk Breanni##96479
@@ -1429,6 +1498,7 @@ source='Promotion',
 description="This battle pet can be obtained by purchasing the World of Warcraft Collector's Edition.",
 keywords={"Beast","World","Of","Warcraft","Collector's","Edition"},
 pet=92,
+mopready=true,
 },[[
 step
 collect Panda Collar##13583 |n
@@ -1446,6 +1516,7 @@ source='Promotion',
 description="This battle pet was given out to players who participated in the iCoke promotional event in China.",
 keywords={"Beast","Special","Event"},
 pet=124,
+mopready=true,
 },[[
 step
 collect Polar Bear Collar##22781 |n
@@ -1463,6 +1534,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Duskwood.",
 keywords={"Beast","Duskwood"},
 pet=399,
+mopready=true,
 },[[
 step
 clicknpc Rat Snake##61258
@@ -1479,6 +1551,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the Northern parts of Twilight Highlands.",
 keywords={"Beast","Twilight","Highlands"},
 pet=431,
+mopready=true,
 },[[
 step
 clicknpc Rattlesnake##61439
@@ -1495,6 +1568,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Bloodmyst Isle.",
 keywords={"Beast","Bloodmyst","Isle"},
 pet=465,
+mopready=true,
 },[[
 step
 clicknpc Ravager Hatchling##62051
@@ -1511,6 +1585,7 @@ source='Drop',
 description="This battle pet can be obtained by looting Ravasaur Matriarch's Nest around The Marshlands in Un'Goro Crater.",
 keywords={"Beast","Un'Goro","Crater"},
 pet=237,
+mopready=true,
 },[[
 step
 click Ravasaur Matriarch's Nest##202082
@@ -1534,6 +1609,7 @@ source='Drop',
 description="This battle pet can be obtained by looting Razormaw Matriarch's Nest around Raptor Ridge in the Wetlands.",
 keywords={"Beast","Wetlands"},
 pet=238,
+mopready=true,
 },[[
 step
 Enter the cave |goto Wetlands/0 69.22,35.08 < 30 |walk
@@ -1558,6 +1634,7 @@ source='Drop',
 description="This battle pet is world zone drop for killing enemies in the Northern Stranglethorn and The Cape of Stranglethorn.",
 keywords={"Beast","Northern","Stranglethorn","The","Cape","Of"},
 pet=239,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -1578,6 +1655,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Desolace.",
 keywords={"Beast","Desolace"},
 pet=482,
+mopready=true,
 },[[
 step
 clicknpc Rock Viper##62184
@@ -1594,6 +1672,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the desert areas in Tanaris.",
 keywords={"Beast","Tanaris"},
 pet=491,
+mopready=true,
 },[[
 step
 clicknpc Sand Kitten##62257
@@ -1610,6 +1689,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Skald in Blade's Edge Mountains.",
 keywords={"Beast","Blade's","Edge","Mountains"},
 pet=528,
+mopready=true,
 },[[
 step
 clicknpc Scalded Basilisk Hatchling##62628
@@ -1626,6 +1706,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the Hellfire Peninsula.",
 keywords={"Beast","Hellfire","Peninsula"},
 pet=414,
+mopready=true,
 },[[
 step
 clicknpc Scorpid##61326
@@ -1642,6 +1723,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the hills near Dark Portal in the Blasted Lands.",
 keywords={"Beast","Blasted","Lands"},
 pet=416,
+mopready=true,
 },[[
 step
 talk Zidormi##141489
@@ -1662,6 +1744,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor in Netherstorm.",
 keywords={"Beast","Netherstorm"},
 pet=44,
+mopready=true,
 },[[
 step
 talk Dealer Rashaad##20980
@@ -1681,6 +1764,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around sandy areas in Uldum.",
 keywords={"Beast","Uldum"},
 pet=511,
+mopready=true,
 },[[
 step
 clicknpc Sidewinder##62523
@@ -1697,6 +1781,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild during sandstorms around the Gaping chasm in Tanaris.",
 keywords={"Beast","Tanaris"},
 pet=494,
+mopready=true,
 },[[
 step
 clicknpc Silithid Hatchling##62258
@@ -1714,6 +1799,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Southern caves of Blade's Edge Mountains.",
 keywords={"Beast","Blade's","Edge","Mountains"},
 pet=637,
+mopready=true,
 },[[
 step
 Enter the cave |goto Blade's Edge Mountains/0 37.14,81.34 < 30 |walk
@@ -1734,6 +1820,7 @@ source='Drop',
 description="This battle pet is a drop from Mother Smolderweb inside the Lower Blackrock Spire dungeon.",
 keywords={"Beast","Blackrock","Spire"},
 pet=90,
+mopready=true,
 },[[
 step
 Enter the Lower Blackrock Spire Dungeon |goto Blackrock Spire/3 0.00,0.00 |c |or
@@ -1756,6 +1843,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Feralas.",
 keywords={"Beast","Feralas"},
 pet=387,
+mopready=true,
 },[[
 step
 clicknpc Snake##61142
@@ -1772,6 +1860,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Central and Eastern Dun Morogh.",
 keywords={"Beast","Dun","Morogh"},
 pet=440,
+mopready=true,
 },[[
 step
 clicknpc Snow Cub##61689
@@ -1788,6 +1877,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Webwinder Hollow in Stonetalon Mountains.",
 keywords={"Beast","Stonetalon","Mountains"},
 pet=412,
+mopready=true,
 },[[
 step
 clicknpc Spider##61327
@@ -1804,6 +1894,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Northern Silithus.",
 keywords={"Beast","Silithus"},
 pet=433,
+mopready=true,
 },[[
 step
 talk Zidormi##141489
@@ -1824,6 +1915,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Deadeye Shore in Durotar.",
 keywords={"Beast","Durotar"},
 pet=466,
+mopready=true,
 },[[
 step
 clicknpc Spiny Lizard##62114
@@ -1840,6 +1932,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the sandy areas in Tanaris.",
 keywords={"Beast","Tanaris"},
 pet=432,
+mopready=true,
 },[[
 step
 clicknpc Striped-Tailed Scorpid##61440
@@ -1856,6 +1949,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Western parts of Sholazar Basin.",
 keywords={"Beast","Sholazar","Basin"},
 pet=532,
+mopready=true,
 },[[
 step
 clicknpc Stunted Shardhorn##62816
@@ -1872,6 +1966,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Northern Stranglethorn.",
 keywords={"Beast","Northern","Stranglethorn"},
 pet=405,
+mopready=true,
 },[[
 step
 clicknpc Tree Python##61318
@@ -1888,6 +1983,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Twilight Withering and Twilight Bulwark in Thousand Needles.",
 keywords={"Beast","Thousand","Needles"},
 pet=505,
+mopready=true,
 },[[
 step
 clicknpc Twilight Iguana##62255
@@ -1905,6 +2001,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around The Devouring Breach in Twilight Highlands.",
 keywords={"Beast","Twilight","Highlands"},
 pet=470,
+mopready=true,
 },[[
 step
 clicknpc Twilight Spider##62117
@@ -1921,6 +2018,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Webwinder Hollow in Stonetalon Mountains.",
 keywords={"Beast","Stonetalon","Mountains"},
 pet=506,
+mopready=true,
 },[[
 step
 clicknpc Venomspitter Hatchling##62191
@@ -1937,6 +2035,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Terokkar Forest.",
 keywords={"Beast","Terokkar","Forest"},
 pet=517,
+mopready=true,
 },[[
 step
 clicknpc Warpstalker Hatchling##62583
@@ -1953,6 +2052,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Southfury Watershed in Durotar.",
 keywords={"Beast","Durotar"},
 pet=418,
+mopready=true,
 },[[
 step
 clicknpc Water Snake##61367
@@ -1969,6 +2069,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild after nightfall in Duskwood.",
 keywords={"Beast","Duskwood"},
 pet=400,
+mopready=true,
 },[[
 step
 clicknpc Widow Spiderling##61259
@@ -1987,6 +2088,7 @@ source='In-GameShop',
 description="This battle pet was previously purchasable on the Blizzard store but is currently no longer available.",
 keywords={"Beast","Blizzard","Store"},
 pet=246,
+mopready=true,
 },[[
 step
 collect Wind Rider Cub##49663 |n
@@ -2005,6 +2107,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor in Winterspring.",
 keywords={"Beast","Winterspring"},
 pet=306,
+mopready=true,
 },[[
 step
 talk Michelle De Rum##52830
@@ -2025,6 +2128,7 @@ source='Drop',
 description="This battle pet is a drop from Mother Smolderweb inside the Lower Blackrock Spire dungeon.",
 keywords={"Beast","Blackrock","Spire"},
 pet=89,
+mopready=true,
 },[[
 step
 Enter the Lower Blackrock Spire Dungeon |goto Blackrock Spire/3 0.00,0.00 |c |or
@@ -2047,6 +2151,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Winterspring.",
 keywords={"Critter","Winterspring"},
 pet=487,
+mopready=true,
 },[[
 step
 clicknpc Alpine Chipmunk##62189
@@ -2064,6 +2169,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Winterspring.",
 keywords={"Critter","Winterspring"},
 pet=441,
+mopready=true,
 },[[
 step
 clicknpc Alpine Hare##61690
@@ -2080,6 +2186,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Transborea in the Borean Tundra.",
 keywords={"Critter","Borean","Tundra"},
 pet=641,
+mopready=true,
 },[[
 step
 clicknpc Arctic Hare##62693
@@ -2096,6 +2203,7 @@ source='unknown',
 description="This battle pet was given out to people who purchased the Starcraft II Heart of the Swarm Collector's Edition.",
 keywords={"Critter","Collector's","Edition"},
 pet=903,
+mopready=true,
 },[[
 step
 collect Baneling##90177 |n
@@ -2113,6 +2221,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the Northern Stranglethorn.",
 keywords={"Critter","Northern","Stranglethorn"},
 pet=406,
+mopready=true,
 },[[
 step
 clicknpc Beetle##61319
@@ -2129,6 +2238,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Elwynn Forest.",
 keywords={"Critter","Elwynn","Forest"},
 pet=374,
+mopready=true,
 },[[
 step
 clicknpc Black Lamb##60649
@@ -2145,6 +2255,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Thundermar Ruins in the Twilight Highlands.",
 keywords={"Critter","Twilight","Highlands"},
 pet=398,
+mopready=true,
 },[[
 step
 clicknpc Black Rat##61257
@@ -2161,6 +2272,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the plains areas in the Borean Tundra.",
 keywords={"Critter","Borean","Tundra"},
 pet=639,
+mopready=true,
 },[[
 step
 clicknpc Borean Marmot##62695
@@ -2177,6 +2289,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around The Hinterlands.",
 keywords={"Critter","The","Hinterlands"},
 pet=449,
+mopready=true,
 },[[
 step
 clicknpc Brown Marmot##61752
@@ -2193,6 +2306,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor in Netherstorm.",
 keywords={"Critter","Netherstorm"},
 pet=137,
+mopready=true,
 },[[
 step
 talk Dealer Rashaad##20980
@@ -2212,6 +2326,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Sethria's Roost in Mount Hyjal.",
 keywords={"Critter","Mount","Hyjal"},
 pet=540,
+mopready=true,
 },[[
 step
 clicknpc Carrion Rat##62885
@@ -2231,6 +2346,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Zun'watha in The Hinterlands.",
 keywords={"Critter","The","Hinterlands"},
 pet=393,
+mopready=true,
 },[[
 step
 clicknpc Cockroach##61384
@@ -2247,6 +2363,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Durotar.",
 keywords={"Critter","Durotar"},
 pet=468,
+mopready=true,
 },[[
 step
 clicknpc Creepy Crawly##62116
@@ -2263,6 +2380,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Deepholm.",
 keywords={"Critter","Deepholm"},
 pet=556,
+mopready=true,
 },[[
 step
 clicknpc Crystal Beetle##62925
@@ -2279,6 +2397,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor at the Darkmoon Faire.",
 keywords={"Critter","Darkmoon","Faire"},
 pet=1061,
+mopready=true,
 },[[
 step
 Wait for the Darkmoon Faire Event |complete isevent("Darkmoon Faire") |or
@@ -2313,6 +2432,7 @@ source='Drop',
 description="This battle pet is a drop from a elite raid boss at the Darkmoon Faire.",
 keywords={"Critter","Darkmoon","Faire"},
 pet=848,
+mopready=true,
 },[[
 step
 Wait for the Darkmoon Faire Event |complete isevent("Darkmoon Faire") |or
@@ -2342,6 +2462,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Lightning Ledge in Mount Hyjal.",
 keywords={"Critter","Mount","Hyjal"},
 pet=755,
+mopready=true,
 },[[
 step
 clicknpc Death's Head Cockroach##62887
@@ -2358,6 +2479,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Deepholm.",
 keywords={"Critter","Deepholm"},
 pet=555,
+mopready=true,
 },[[
 step
 clicknpc Deepholm Cockroach##62924
@@ -2374,6 +2496,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Northeast Mount Hyjal.",
 keywords={"Critter","Mount","Hyjal"},
 pet=479,
+mopready=true,
 },[[
 step
 clicknpc Elfin Rabbit##62178
@@ -2390,6 +2513,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Northwest areas of Elwynn Forest.",
 keywords={"Critter","Mount","Hyjal"},
 pet=447,
+mopready=true,
 },[[
 step
 clicknpc Fawn##61165
@@ -2406,6 +2530,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the Blasted Lands.",
 keywords={"Critter","Blasted","Lands"},
 pet=415,
+mopready=true,
 },[[
 step
 clicknpc Fire Beetle##61328
@@ -2422,6 +2547,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Southern Mount Hyjal.",
 keywords={"Critter","Mount","Hyjal"},
 pet=541,
+mopready=true,
 },[[
 step
 clicknpc Fire-Proof Roach##62886
@@ -2439,6 +2565,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Wyrmskull Village in the Howling Fjord.",
 keywords={"Critter","Howling","Fjord"},
 pet=644,
+mopready=true,
 },[[
 step
 clicknpc Fjord Rat##62641
@@ -2455,6 +2582,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Mulgore.",
 keywords={"Critter","Mulgore"},
 pet=477,
+mopready=true,
 },[[
 step
 clicknpc Gazelle Fawn##62176
@@ -2471,6 +2599,7 @@ source='Profession',
 description="This battle pet is a rare drop from a fishing spot located in the Underbelly in Dalaran (Northrend).",
 keywords={"Critter","Dalaran"},
 pet=193,
+mopready=true,
 },[[
 step
 Enter the Underbelly |goto Dalaran/1 35.44,45.19 < 30 |walk
@@ -2492,6 +2621,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Tanaris.",
 keywords={"Critter","Tanaris"},
 pet=430,
+mopready=true,
 },[[
 step
 clicknpc Gold Beetle##61438
@@ -2508,6 +2638,7 @@ source='Promotion',
 description="This battle pet was obtained through the recruit a friend program but is no longer available.",
 keywords={"Critter","Recruit","A","Friend"},
 pet=170,
+mopready=true,
 },[[
 step
 collect Golden Pig Coin##34518 |n
@@ -2524,6 +2655,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the Arathi Highlands.",
 keywords={"Critter","Arathi","Highlands"},
 pet=443,
+mopready=true,
 },[[
 step
 clicknpc Grasslands Cottontail##61704
@@ -2540,6 +2672,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the Grizzly Hills.",
 keywords={"Critter","Grizzly","Hills"},
 pet=647,
+mopready=true,
 },[[
 step
 clicknpc Grizzly Squirrel##62818
@@ -2556,6 +2689,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Hyjal Barrow Den in Mount Hyjal.",
 keywords={"Critter","Mount","Hyjal"},
 pet=539,
+mopready=true,
 },[[
 step
 Enter the cave |goto Mount Hyjal/0 52.45,17.33 < 30 |walk
@@ -2574,6 +2708,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Vermillion Redoubt in the Twilight Highlands.",
 keywords={"Critter","Twilight","Highlands"},
 pet=550,
+mopready=true,
 },[[
 step
 clicknpc Highlands Mouse##62905
@@ -2591,6 +2726,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Thundermar Ruins in the Twilight Highlands.",
 keywords={"Critter","Twilight","Highlands"},
 pet=823,
+mopready=true,
 },[[
 step
 clicknpc Highlands Skunk##62907
@@ -2607,6 +2743,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around The Toxic Airfield in New Tinkertown.",
 keywords={"Critter","New","Tinkertown"},
 pet=442,
+mopready=true,
 },[[
 step
 clicknpc Irradiated Roach##61691
@@ -2623,6 +2760,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around all around the Burning Steppes.",
 keywords={"Critter","Burning","Steppes"},
 pet=429,
+mopready=true,
 },[[
 step
 clicknpc Lava Beetle##61386
@@ -2640,6 +2778,7 @@ source='Achievement',
 description="This battle pet is rewarded to you after you have collected 75 unique battle pets.",
 keywords={"Critter","Lil'","Game","Hunter"},
 pet=203,
+mopready=true,
 },[[
 step
 collect Little Fawn's Salt Lick##44841 |n
@@ -2657,6 +2796,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around all around Vir'naal Oasis in Uldum.",
 keywords={"Critter","Uldum"},
 pet=543,
+mopready=true,
 },[[
 step
 clicknpc Locust##62893
@@ -2674,6 +2814,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Booty Bay in The Cape of Stranglethorn.",
 keywords={"Critter","The","Cape","Of","Stranglethorn"},
 pet=404,
+mopready=true,
 },[[
 step
 clicknpc Long-tailed Mole##61317
@@ -2691,6 +2832,7 @@ source='Promotion',
 description="This battle pet was gifted out to people who attended the 2007 Blizzard World Invitational.",
 keywords={"Critter","Blizzard","World","Invitational"},
 pet=155,
+mopready=true,
 },[[
 step
 collect Fortune Coin##32498 |n
@@ -2708,6 +2850,7 @@ source='Promotion',
 description="This battle pet can be purchased from the Blizzard store.",
 keywords={"Critter","Blizzard","Store"},
 pet=671,
+mopready=true,
 },[[
 step
 collect Lucky Quilen Cub##85871 |n
@@ -2724,6 +2867,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the Redridge Mountains.",
 keywords={"Critter","Redridge","Mountains"},
 pet=391,
+mopready=true,
 },[[
 step
 clicknpc Mountain Cottontail##61167
@@ -2740,6 +2884,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Wetlands.",
 keywords={"Critter","Wetlands"},
 pet=633,
+mopready=true,
 },[[
 step
 clicknpc Mountain Skunk##61677
@@ -2757,6 +2902,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around The Dragonmurk in Dustwallow Marsh.",
 keywords={"Critter","Dustwallow","Marsh"},
 pet=385,
+mopready=true,
 },[[
 step
 clicknpc Mouse##61143
@@ -2773,6 +2919,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the Netherstorm.",
 keywords={"Critter","Netherstorm"},
 pet=638,
+mopready=true,
 },[[
 step
 clicknpc Nether Roach##62625
@@ -2789,6 +2936,7 @@ source='Achievement',
 description="This battle pet is rewarded to you after you have collected 100 unique battle pets.",
 keywords={"Critter","Petting","Zoo"},
 pet=323,
+mopready=true,
 },[[
 step
 collect Nuts' Acorn##71140 |n
@@ -2806,6 +2954,7 @@ source='Achievement',
 description="This battle pet is rewarded to you after you complete the Looking For Multitudes achievement.",
 keywords={"Critter","Looking","For","Multitudes"},
 pet=250,
+mopready=true,
 },[[
 step
 collect Perky Pug##49912 |n
@@ -2824,6 +2973,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the Southern Barrens.",
 keywords={"Critter","Southern","Barrens"},
 pet=386,
+mopready=true,
 },[[
 step
 clicknpc Prairie Dog##61141
@@ -2840,6 +2990,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Northwest parts of Elwynn Forest.",
 keywords={"Critter","Elwynn","Forest"},
 pet=378,
+mopready=true,
 },[[
 step
 clicknpc Rabbit##61080
@@ -2856,6 +3007,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Dabyrie's Farmstead in the Arathi Highlands.",
 keywords={"Critter","Arathi","Highlands"},
 pet=417,
+mopready=true,
 },[[
 step
 clicknpc Rat##61366
@@ -2874,6 +3026,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the Hillsbrad Foothills.",
 keywords={"Critter","Hillsbrad","Foothills"},
 pet=452,
+mopready=true,
 },[[
 step
 clicknpc Red-Tailed Chipmunk##61757
@@ -2890,6 +3043,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Galardell Valley in the Redridge Mountains.",
 keywords={"Critter","Redridge","Mountains"},
 pet=392,
+mopready=true,
 },[[
 step
 clicknpc Redridge Rat##61168
@@ -2906,6 +3060,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Alther's Mill in the Redridge Mountains.",
 keywords={"Critter","Redridge","Mountains"},
 pet=424,
+mopready=true,
 },[[
 step
 clicknpc Roach##61169
@@ -2922,6 +3077,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around The Zoram Strand in Ashenvale.",
 keywords={"Critter","Ashenvale"},
 pet=496,
+mopready=true,
 },[[
 step
 clicknpc Rusty Snail##62313
@@ -2939,6 +3095,7 @@ source='TradingCardGame',
 description="This battle pet can be obtained through the World of Warcraft Trading Card Game.",
 keywords={"Critter","Trading","Card","Game"},
 pet=665,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -2961,6 +3118,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Ahn' Qiraj: The Fallen Kingdom.",
 keywords={"Critter","Ahn'Qiraj","The","Fallen","Kingdom"},
 pet=512,
+mopready=true,
 },[[
 step
 talk Rhonormu##133263
@@ -2981,6 +3139,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild along the west coast beaches in Darkshore.",
 keywords={"Critter","Darkshore"},
 pet=493,
+mopready=true,
 },[[
 step
 talk Zidormi##141489
@@ -3002,6 +3161,7 @@ source='Promotion',
 description="This battle pet was obtained through the recruit a friend program but is no longer available.",
 keywords={"Critter","Recruit","A","Friend"},
 pet=171,
+mopready=true,
 },[[
 step
 collect Silver Pig Coin##34519 |n
@@ -3018,6 +3178,7 @@ source='PetBattle',
 description="This battle pet is rewarded to you after you level 75 battle pets to level 25.",
 keywords={"Critter","Pro","Pet","Mob"},
 pet=820,
+mopready=true,
 },[[
 step
 collect Singing Cricket Cage##88147 |n
@@ -3034,6 +3195,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Azshara.",
 keywords={"Critter","Azshara"},
 pet=397,
+mopready=true,
 },[[
 step
 clicknpc Skunk##61255
@@ -3050,6 +3212,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Crushridge Hold in the Hillsbrad Foothills.",
 keywords={"Critter","Hillsbrad","Foothills"},
 pet=640,
+mopready=true,
 },[[
 step
 clicknpc Snowshoe Hare##61755
@@ -3073,6 +3236,7 @@ source='WorldEvent',
 description="This battle pet can be purchased from a vendor during the Noblegarden world event or purchased from the Auction House.",
 keywords={"Critter","Noblegarden"},
 pet=200,
+mopready=true,
 },[[
 step
 talk Noblegarden Merchant##32837
@@ -3096,6 +3260,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Northwest parts of Elwynn Forest.",
 keywords={"Critter","Elwynn","Forest"},
 pet=379,
+mopready=true,
 },[[
 step
 clicknpc Squirrel##61081
@@ -3112,6 +3277,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Tanaris.",
 keywords={"Critter","Tanaris"},
 pet=492,
+mopready=true,
 },[[
 step
 clicknpc Stinkbug##62256
@@ -3128,6 +3294,7 @@ source='Achievement',
 description="This battle pet is rewarded to you after you have collected 50 unique battle pets.",
 keywords={"Critter","Shop","Smart","Pet"},
 pet=160,
+mopready=true,
 },[[
 step
 collect Reeking Pet Carrier##40653 |n
@@ -3145,6 +3312,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild at night time around Eastern Desolace.",
 keywords={"Critter","Desolace"},
 pet=485,
+mopready=true,
 },[[
 step
 clicknpc Stone Armadillo##62187
@@ -3163,6 +3331,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Old Town in Stormwind City.",
 keywords={"Critter","Stormwind","City"},
 pet=675,
+mopready=true,
 },[[
 step
 clicknpc Stormwing Rat##62954
@@ -3179,6 +3348,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Storm's Fury Wreckage in Deepholm.",
 keywords={"Critter","Deepholm"},
 pet=553,
+mopready=true,
 },[[
 step
 clicknpc Stowaway Rat##62921
@@ -3196,6 +3366,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Felwood.",
 keywords={"Critter","Felwood"},
 pet=497,
+mopready=true,
 },[[
 step
 clicknpc Tainted Cockroach##62314
@@ -3212,6 +3383,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Felwood.",
 keywords={"Critter","Felwood"},
 pet=499,
+mopready=true,
 },[[
 step
 clicknpc Tainted Rat##62316
@@ -3228,6 +3400,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Northeast parts of Uldum.",
 keywords={"Critter","Uldum"},
 pet=546,
+mopready=true,
 },[[
 step
 talk Zidormi##141489
@@ -3248,6 +3421,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Gar'gol's Hovel in Mount Hyjal.",
 keywords={"Critter","Mount","Hyjal"},
 pet=469,
+mopready=true,
 },[[
 step
 clicknpc Twilight Beetle##62118
@@ -3264,6 +3438,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Booty Bay in The Cape of Stranglethorn.",
 keywords={"Critter","The","Cape","Of","Stranglethorn"},
 pet=410,
+mopready=true,
 },[[
 step
 clicknpc Wharf Rat##61323
@@ -3281,6 +3456,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Southern parts of the Twilight Highlands.",
 keywords={"Critter","Twilight","Highlands"},
 pet=549,
+mopready=true,
 },[[
 step
 clicknpc Yellow-Bellied Marmot##62904
@@ -3297,6 +3473,7 @@ source='unknown',
 description="This battle pet is obtained by purchasing the World of Warcraft Collector's Edition.",
 keywords={"Critter","Collector's","Edition"},
 pet=94,
+mopready=true,
 },[[
 step
 collect Zergling Leash##13582 |n
@@ -3314,6 +3491,7 @@ source='Drop',
 description="This battle pet is a zone drop in Winterspring.",
 keywords={"Dragonkin","Winterspring"},
 pet=57,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -3333,6 +3511,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in Netherstorm.",
 keywords={"Dragonkin","Netherstorm"},
 pet=145,
+mopready=true,
 },[[
 step
 talk Dealer Rashaad##20980
@@ -3352,6 +3531,7 @@ source='Achievement',
 description="This battle pet is rewarded to you after you have collected 150 unique battle pets.",
 keywords={"Dragonkin","Littlest","Pet","Shop"},
 pet=255,
+mopready=true,
 },[[
 step
 collect Celestial Dragon##54810 |n
@@ -3369,6 +3549,7 @@ source='Drop',
 description="This battle pet is a drop from the raid boss Chromaggus inside the Blackwing Lair raid.",
 keywords={"Dragonkin","Blackwing","Lair"},
 pet=1152,
+mopready=true,
 },[[
 step
 Enter The Molten Span and Fly or Climb to This Balcony |goto Burning Steppes/0 63.24,44.35 < 10 |c |or
@@ -3407,6 +3588,7 @@ source='Drop',
 description="This battle pet is a zone drop in the Wetlands.",
 keywords={"Dragonkin","Wetlands"},
 pet=58,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -3426,6 +3608,7 @@ source='unknown',
 description="This battle pet is a zone drop in the Badlands.",
 keywords={"Dragonkin","Badlands"},
 pet=56,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -3446,6 +3629,7 @@ source='unknown',
 description="This battle pet is a drop from the raid boss Broodlord Lashlayer inside the Blackwing Lair raid.",
 keywords={"Dragonkin","Blackwing","Lair"},
 pet=1153,
+mopready=true,
 },[[
 step
 click Orb of Command##179879
@@ -3471,6 +3655,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around The Savage Thicket in Sholazar Basin.",
 keywords={"Dragonkin","Sholazar","Basin"},
 pet=1167,
+mopready=true,
 },[[
 step
 clicknpc Emerald Proto-Whelp##68850
@@ -3487,6 +3672,7 @@ source='unknown',
 description="This battle pet is a zone drop in Feralas.",
 keywords={"Dragonkin","Feralas"},
 pet=59,
+mopready=true,
 },[[
 step
 kill Noxious Whelp##39384+
@@ -3506,6 +3692,7 @@ source='unknown',
 description="This battle pet was given out as a code to players on the Chinese server during the 2008 Olympics.",
 keywords={"Dragonkin","The","Spirit","Of","Competition"},
 pet=180,
+mopready=true,
 },[[
 step
 collect Competitor's Souvenir##37298 |n
@@ -3523,6 +3710,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Caverns of Times in Tanaris.",
 keywords={"Dragonkin","Tanaris"},
 pet=1161,
+mopready=true,
 },[[
 step
 clicknpc Infinite Whelpling##68820
@@ -3539,6 +3727,7 @@ source='unknown',
 description="This battle pet was given out to people who purchase the Cataclysm Collector's Edition.",
 keywords={"Dragonkin","Cataclysm","Collector's","Edition"},
 pet=268,
+mopready=true,
 },[[
 step
 collect Lil' Deathwing##62540 |n
@@ -3556,6 +3745,7 @@ source='unknown',
 description="This battle pet was given out to people who purchase the Burning Crusade Collector's Edition.",
 keywords={"Dragonkin","Burning","Crusade","Collector's","Edition"},
 pet=131,
+mopready=true,
 },[[
 step
 collect Netherwhelp's Collar##25535 |n
@@ -3573,6 +3763,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around Coldarra in the Borean Tundra.",
 keywords={"Dragonkin","Borean","Tundra"},
 pet=1165,
+mopready=true,
 },[[
 step
 clicknpc Nexus Whelpling##68845
@@ -3589,6 +3780,7 @@ source='unknown',
 description="This battle pet was given out to players who logged in during the WoW 5th Anniversary event.",
 keywords={"Dragonkin","Anniversary","Event"},
 pet=243,
+mopready=true,
 },[[
 step
 collect Onyxian Whelpling##49362 |n
@@ -3606,6 +3798,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in Sholazar Basin after you reach revered reputation with The Oracles.",
 keywords={"Dragonkin","The","Oracles"},
 pet=196,
+mopready=true,
 },[[
 step
 Reach Revered Status with The Oracles |complete rep('The Oracles') >= Revered
@@ -3630,6 +3823,7 @@ source='unknown',
 description="This battle pet can be purchased from the Blizzard store.",
 keywords={"Dragonkin","Blizzard","Store"},
 pet=347,
+mopready=true,
 },[[
 step
 collect Soul of the Aspects##78916 |n
@@ -3646,6 +3840,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Wyrmbog in Dustwallow Marsh.",
 keywords={"Dragonkin","Dustwallow","Marsh"},
 pet=489,
+mopready=true,
 },[[
 step
 clicknpc Spawn of Onyxia##62201
@@ -3662,6 +3857,7 @@ source='unknown',
 description="This battle pet was given out as a code to players on the Chinese server during the 2008 Olympics.",
 keywords={"Dragonkin","The","Spirit","Of","Competition"},
 pet=179,
+mopready=true,
 },[[
 step
 collect Gold Medallion##37297 |n
@@ -3679,6 +3875,7 @@ source='unknown',
 description="This battle pet is a zone drop in Feralas.",
 keywords={"Dragonkin","Feralas"},
 pet=87,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -3698,6 +3895,7 @@ source='unknown',
 description="This battle pet was given out to players who participated in the iCoke promotional event in China.",
 keywords={"Dragonkin","Special","Event"},
 pet=757,
+mopready=true,
 },[[
 step
 collect Green Dragon Orb##19055 |n
@@ -3715,6 +3913,7 @@ source='unknown',
 description="This battle pet was given out to players who participated in the iCoke promotional event in China.",
 keywords={"Dragonkin","Special","Event"},
 pet=758,
+mopready=true,
 },[[
 step
 collect Red Dragon Orb##19054 |n
@@ -3732,6 +3931,7 @@ source='unknown',
 description="This battle pet is a drop from the raid boss Razorgore the Untamed inside the Blackwing Lair raid.",
 keywords={"Dragonkin","Blackwing","Lair"},
 pet=1151,
+mopready=true,
 },[[
 step
 click Orb of Command##179879
@@ -3757,6 +3957,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Therazane's Throne in Deepholm.",
 keywords={"Elemental","Deepholm"},
 pet=838,
+mopready=true,
 },[[
 step
 clicknpc Amethyst Shale Hatchling##62182
@@ -3773,6 +3974,7 @@ source='unknown',
 description="This battle pet is a drop from the raid boss Golemagg the Incinerator inside the Molten Core raid.",
 keywords={"Elemental","Molten","Core"},
 pet=1150,
+mopready=true,
 },[[
 step
 talk Lothos Riftwaker##14387
@@ -3798,6 +4000,7 @@ source='unknown',
 description="This battle pet can be purchased from the Blizzard store.",
 keywords={"Elemental","Blizzard","Store"},
 pet=1248,
+mopready=true,
 },[[
 step
 collect Blossoming Ancient##98550 |n
@@ -3814,6 +4017,7 @@ source='unknown',
 description="This battle pet is given to players that have a Battle.net account linked to a Blizzard Authenticator.",
 keywords={"Elemental","Blizzard","Authenticator"},
 pet=244,
+mopready=true,
 },[[
 step
 collect Core Hound Pup##49646 |n
@@ -3831,6 +4035,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Crimson Expanse in Deepholm.",
 keywords={"Elemental","Deepholm"},
 pet=559,
+mopready=true,
 },[[
 step
 clicknpc Crimson Geode##62927
@@ -3847,6 +4052,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in the Molten Front.",
 keywords={"Elemental","Molten","Front"},
 pet=318,
+mopready=true,
 },[[
 step
 Complete the Quest _Filling the Moonwell_ |complete completedq(29279)
@@ -3871,6 +4077,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Crimson Expanse in Deepholm.",
 keywords={"Elemental","Deepholm"},
 pet=554,
+mopready=true,
 },[[
 step
 clicknpc Crimson Shale Hatchling##62922
@@ -3887,6 +4094,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around The Quaking Fields in Deepholm.",
 keywords={"Elemental","Deepholm"},
 pet=837,
+mopready=true,
 },[[
 step
 clicknpc Emerald Shale Hatchling##62915
@@ -3903,6 +4111,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around The Fel Pits in Shadowmoon Valley.",
 keywords={"Elemental","Shadowmoon","Valley"},
 pet=519,
+mopready=true,
 },[[
 step
 clicknpc Fel Flame##62621
@@ -3919,9 +4128,10 @@ source='unknown',
 description="This battle pet is a drop from a boss in The Slave Pens dungeon during the Midsummer Fire Festival.",
 keywords={"Elemental","Midsummer","Fire","Festival"},
 pet=253,
+mopready=true,
 },[[
 step
-Enter The Slave Pens dungeon |complete isevent("Midsummer Fire Festival") |goto The Slave Pens/0 0.00,0.00 |c |or
+Enter The Slave Pens dungeon |complete isevent("Midsummer Fire Festival") |goto The Slave Pens/1 0.00,0.00 |c |or
 |tip This pet can only be obtained during the Midsummer Fire Festival.
 |tip You can use The Slave Pens guide if you need help getting through the dungeon.
 |tip This pet is cageable, meaning you can purchase it from the Auction House.
@@ -3946,6 +4156,7 @@ source='unknown',
 description="This battle pet is rewarded to you after you have collected 400 pet battle achievement points.",
 keywords={"Elemental","Time","To","Open","A","Pet","Store"},
 pet=856,
+mopready=true,
 },[[
 step
 collect Jade Tentacle##89686 |n
@@ -3963,6 +4174,7 @@ source='unknown',
 description="This battle pet is rewarded to you after you have completed the Higher Learning achievement.",
 keywords={"Elemental","Higher","Learning"},
 pet=199,
+mopready=true,
 },[[
 step
 use The Schools of Arcane Magic - Mastery##43824
@@ -3988,6 +4200,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the lava pools in the Searing Gorge.",
 keywords={"Elemental","Searing","Gorge"},
 pet=423,
+mopready=true,
 },[[
 step
 clicknpc Lava Crab##61383
@@ -4005,6 +4218,7 @@ source='unknown',
 description="This battle pet can be purchased from the Blizzard store.",
 keywords={"Elemental","Blizzard","Store"},
 pet=297,
+mopready=true,
 },[[
 step
 collect Lil' Ragnaros##68385 |n
@@ -4021,6 +4235,7 @@ source='unknown',
 description="This battle pet is a drop from Kael'thas Sunstrider inside the Magisters' Terrace dungeon.",
 keywords={"Elemental","Magisters'","Terrace"},
 pet=175,
+mopready=true,
 },[[
 step
 Enter the Magisters' Terrace Dungeon |goto Magisters' Terrace/1 0.00,0.00 |c |or
@@ -4044,6 +4259,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around the Eversong Woods.",
 keywords={"Elemental","Eversong","Woods"},
 pet=460,
+mopready=true,
 },[[
 step
 clicknpc Ruby Sapling##62020
@@ -4061,6 +4277,7 @@ source='unknown',
 description="This battle pet is a reward for completing a quest chain for Brazie the Botanist in the Hillsbrad Foothills.",
 keywords={"Elemental","Hillsbrad","Foothills"},
 pet=291,
+mopready=true,
 },[[
 step
 talk Brazie the Botanist##49687
@@ -4149,6 +4366,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor during the Hollow's End world event or purchased from the Auction House.",
 keywords={"Elemental","Hollow's","End"},
 pet=162,
+mopready=true,
 },[[
 step
 talk Pippi##109685
@@ -4173,6 +4391,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor during the Midsummer Fire Festival world event or purchased from the Auction House.",
 keywords={"Elemental","Midsummer","Fire","Festival"},
 pet=128,
+mopready=true,
 },[[
 step
 talk Midsummer Merchant##26124
@@ -4195,6 +4414,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around The Green Belt in the Wetlands.",
 keywords={"Elemental","Wetlands"},
 pet=509,
+mopready=true,
 },[[
 step
 clicknpc Tiny Bog Beast##61686
@@ -4211,6 +4431,7 @@ source='unknown',
 description="This battle pet is a dropped from Jadefang in Deepholm.",
 keywords={"Elemental","Deepholm"},
 pet=279,
+mopready=true,
 },[[
 step
 Enter the cave |goto Deepholm/0 58.16,25.39 < 30 |walk
@@ -4245,6 +4466,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Circle of Outer Binding in the Arathi Highlands.",
 keywords={"Elemental","Arathi","Highlands"},
 pet=445,
+mopready=true,
 },[[
 step
 clicknpc Tiny Twister##61703
@@ -4261,6 +4483,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Upper Silvermarsh in Deepholm.",
 keywords={"Elemental","Deepholm"},
 pet=480,
+mopready=true,
 },[[
 step
 clicknpc Topaz Shale Hatchling##62181
@@ -4279,6 +4502,7 @@ source='unknown',
 description="This battle pet is rewarded to you after you have collected 400 unique battle pets.",
 keywords={"Elemental","Time","To","Open","A","Pet","Store"},
 pet=855,
+mopready=true,
 },[[
 step
 collect Venus##89736 |n
@@ -4296,6 +4520,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Drak'Sotra Fields in Zul'Drak.",
 keywords={"Elemental","Zul'Drak"},
 pet=535,
+mopready=true,
 },[[
 step
 clicknpc Water Waveling##62820
@@ -4312,6 +4537,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in Thousand Needles.",
 keywords={"Flying","Thousand","Needles"},
 pet=52,
+mopready=true,
 },[[
 step
 talk "Plucky" Johnson##41135
@@ -4333,6 +4559,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild in the Tirisfal Glades.",
 keywords={"Flying","Tirisfal","Glades"},
 pet=626,
+mopready=true,
 },[[
 step
 clicknpc Bat##61829
@@ -4349,6 +4576,7 @@ source='unknown',
 description="This battle pet is rewarded to you after you have collected 125 unique battle pets.",
 keywords={"Flying","Menagerie"},
 pet=325,
+mopready=true,
 },[[
 step
 collect Brilliant Kaliri##71387 |n
@@ -4366,6 +4594,7 @@ source='unknown',
 description="This battle pet used to be available to purchase from the Blizzard store.",
 keywords={"Flying","Blizzard","Store"},
 pet=316,
+mopready=true,
 },[[
 step
 collect Cenarion Hatchling##70099 |n
@@ -4384,6 +4613,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Eastvale Logging Camp in Elwynn Forest.",
 keywords={"Flying","Elwynn","Forest"},
 pet=646,
+mopready=true,
 },[[
 step
 clicknpc Chicken##62664
@@ -4400,6 +4630,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in Booty Bay.",
 keywords={"Flying","Booty","Bay"},
 pet=47,
+mopready=true,
 },[[
 step
 talk Narkk##2663
@@ -4420,6 +4651,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around Teldrassil.",
 keywords={"Flying","Teldrassil"},
 pet=507,
+mopready=true,
 },[[
 step
 talk Zidormi##141489
@@ -4440,6 +4672,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Kal'ai Ruins in Northern Stranglethorn.",
 keywords={"Flying","Northern","Stranglethorn"},
 pet=421,
+mopready=true,
 },[[
 step
 clicknpc Crimson Moth##61314
@@ -4456,6 +4689,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the forest areas in Darkmoon Island.",
 keywords={"Flying","Darkmoon","Faire"},
 pet=1068,
+mopready=true,
 },[[
 step
 Wait for the Darkmoon Faire Event |complete isevent("Darkmoon Faire") |or
@@ -4479,6 +4713,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the forest areas in Darkmoon Island.",
 keywords={"Flying","Darkmoon","Faire"},
 pet=1062,
+mopready=true,
 },[[
 step
 Wait for the Darkmoon Faire Event |complete isevent("Darkmoon Faire") |or
@@ -4501,6 +4736,7 @@ source='unknown',
 description="This battle pet can be obtained through the World of Warcraft Trading Card Game.",
 keywords={"Beast","Trading","Card","Game"},
 pet=169,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -4523,6 +4759,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around The Dragon Wastes in Dragonblight.",
 keywords={"Flying","Dragonblight"},
 pet=537,
+mopready=true,
 },[[
 step
 clicknpc Dragonbone Hatchling##62852
@@ -4539,6 +4776,7 @@ source='unknown',
 description="This battle pet is a zone drop in Zangarmarsh.",
 keywords={"Flying","Zangarmarsh"},
 pet=146,
+mopready=true,
 },[[
 step
 kill Bogflare Needler##20197+
@@ -4559,6 +4797,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the hills in northern Redridge Mountains.",
 keywords={"Flying","Redridge","Mountains"},
 pet=395,
+mopready=true,
 },[[
 step
 clicknpc Fledgling Buzzard##61171
@@ -4575,6 +4814,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around most Manaforges in Netherstorm.",
 keywords={"Flying","Netherstorm"},
 pet=521,
+mopready=true,
 },[[
 step
 clicknpc Fledgling Nether Ray##62627
@@ -4595,6 +4835,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around Ashenvale.",
 keywords={"Flying","Ashenvale"},
 pet=478,
+mopready=true,
 },[[
 step
 clicknpc Forest Moth##62177
@@ -4611,6 +4852,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Upper Silvermarsh in Deepholm.",
 keywords={"Flying","Deepholm"},
 pet=756,
+mopready=true,
 },[[
 step
 clicknpc Fungal Moth##62916
@@ -4627,6 +4869,7 @@ source='unknown',
 description="This battle pet has a chance to drop from Defias Pirates inside the Deadmines dungeon.",
 keywords={"Flying","Deadmines"},
 pet=50,
+mopready=true,
 },[[
 step
 Enter the Deadmines Dungeon |goto The Deadmines/1 0.00,0.00 |c |or
@@ -4650,6 +4893,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around Azuremyst Isle.",
 keywords={"Flying","Azuremyst","Isle"},
 pet=464,
+mopready=true,
 },[[
 step
 clicknpc Grey Moth##62050
@@ -4666,6 +4910,7 @@ source='unknown',
 description="This battle pet was previously purchasable on the Blizzard store but is currently no longer available.",
 keywords={"Flying","Blizzard","Store"},
 pet=245,
+mopready=true,
 },[[
 step
 collect Gryphon Hatchling##49662 |n
@@ -4684,6 +4929,7 @@ source='unknown',
 description="This battle pet used to be available to purchase on the Blizzard Store but is no longer available.",
 keywords={"Flying","Blizzard","Store"},
 pet=311,
+mopready=true,
 },[[
 step
 collect Guardian Cub##72068 |n
@@ -4702,6 +4948,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Vermillion Redoubt in the Twilight Highlands.",
 keywords={"Flying","Twilight","Highlands"},
 pet=645,
+mopready=true,
 },[[
 step
 clicknpc Highlands Turkey##62906
@@ -4718,6 +4965,7 @@ source='unknown',
 description="This battle pet can be obtained through the World of Warcraft Trading Card Game.",
 keywords={"Flying","Trading","Card","Game"},
 pet=130,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -4740,6 +4988,7 @@ source='Quest',
 description="This battle pet is given as a reward for completing the Horde quest Blown Away.",
 keywords={"Flying","Blown","Away"},
 pet=332,
+mopready=true,
 },[[
 step
 talk Jaga##54004
@@ -4767,6 +5016,7 @@ source='unknown',
 description="This battle pet is a zone drop in Northern Stranglethorn and The Cape of Stranglethorn.",
 keywords={"Flying","Northern","Stranglethorn"},
 pet=49,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -4787,6 +5037,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around the Grizzly Hills.",
 keywords={"Flying","Grizzly","Hills"},
 pet=534,
+mopready=true,
 },[[
 step
 clicknpc Imperial Eagle Chick##62819
@@ -4804,6 +5055,7 @@ source='unknown',
 description="This battle pet is given as a reward for completing the quest Skywing in Terokkar Forest.",
 keywords={"Flying","Terokkar","Forest"},
 pet=149,
+mopready=true,
 },[[
 step
 talk Skywing##22424
@@ -4833,6 +5085,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Dire Maul in Feralas.",
 keywords={"Flying","Feralas"},
 pet=557,
+mopready=true,
 },[[
 step
 clicknpc Nether Faerie Dragon##62395
@@ -4849,6 +5102,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in Terokkar Forest after you reach Exalted reputation with the Sha'tari Skyguard.",
 keywords={"Flying","Sha'tari","Skyguard"},
 pet=186,
+mopready=true,
 },[[
 step
 talk Grella##23367
@@ -4870,6 +5124,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around Uldum.",
 keywords={"Flying","Uldum"},
 pet=544,
+mopready=true,
 },[[
 step
 talk Zidormi##141489
@@ -4890,6 +5145,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Misty Reed Farm in the Swamp of Sorrows.",
 keywords={"Flying","Swamp","Of","Sorrows"},
 pet=403,
+mopready=true,
 },[[
 step
 clicknpc Parrot##61313
@@ -4909,6 +5165,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around Northern Stranglethorn.",
 keywords={"Flying","Northern","Stranglethorn"},
 pet=409,
+mopready=true,
 },[[
 step
 clicknpc Polly##61322
@@ -4925,6 +5182,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in Netherstorm.",
 keywords={"Flying","Netherstorm"},
 pet=139,
+mopready=true,
 },[[
 step
 talk Dealer Rashaad##20980
@@ -4944,6 +5202,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Northeast coast of Tanaris.",
 keywords={"Flying","Tanaris"},
 pet=560,
+mopready=true,
 },[[
 step
 clicknpc Sea Gull##62953
@@ -4960,6 +5219,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in Booty Bay.",
 keywords={"Flying","Booty","Bay"},
 pet=51,
+mopready=true,
 },[[
 step
 talk Narkk##2663
@@ -4980,6 +5240,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around The Verdant Thicket in Mount Hyjal.",
 keywords={"Flying","Mount","Hyjal"},
 pet=503,
+mopready=true,
 },[[
 step
 clicknpc Silky Moth##62373
@@ -4996,6 +5257,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild during the winter months in Winterspring.",
 keywords={"Flying","Winterspring"},
 pet=69,
+mopready=true,
 },[[
 step
 clicknpc Snowy Owl##7554
@@ -5015,6 +5277,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around the Swamp of Sarrows.",
 keywords={"Flying","Swamp","Of","Sorrows"},
 pet=402,
+mopready=true,
 },[[
 step
 clicknpc Swamp Moth##61370
@@ -5037,6 +5300,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around Felwood.",
 keywords={"Flying","Felwood"},
 pet=498,
+mopready=true,
 },[[
 step
 clicknpc Tainted Moth##62315
@@ -5053,6 +5317,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in Sholazar Basin after you reach revered reputation with The Oracles.",
 keywords={"Flying","The","Oracles"},
 pet=194,
+mopready=true,
 },[[
 step
 Reach Revered Status with The Oracles |complete rep('The Oracles') >= Revered
@@ -5077,6 +5342,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in Zangarmarsh after reaching Exalted reputation with Sporeggar.",
 keywords={"Flying","Sporeggar"},
 pet=167,
+mopready=true,
 },[[
 step
 Reach Exalted Status with the Sporeggar Faction |complete rep('Sporeggar') >= Exalted
@@ -5100,6 +5366,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Valgarde and Westguard Keep in the Howling Fjord.",
 keywords={"Flying","Howling","Fjord"},
 pet=525,
+mopready=true,
 },[[
 step
 clicknpc Turkey##62648
@@ -5117,6 +5384,7 @@ source='unknown',
 description="This battle pet can be obtained through the World of Warcraft Trading Card Game.",
 keywords={"Flying","Trading","Card","Game"},
 pet=241,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -5139,6 +5407,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in Sholazar Basin after you reach revered reputation with The Oracles.",
 keywords={"Flying","The","Oracles"},
 pet=195,
+mopready=true,
 },[[
 step
 Reach Revered Status with The Oracles |complete rep('The Oracles') >= Revered
@@ -5163,6 +5432,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Kirthaven and Thundermar in the Twilight Highlands.",
 keywords={"Flying","Twilight","Highlands"},
 pet=548,
+mopready=true,
 },[[
 step
 clicknpc Wildhammer Gryphon Hatchling##62900
@@ -5181,6 +5451,7 @@ source='unknown',
 description="This battle pet has a chance to drop from Emperor Vek'lor inside the Ahn'Qiraj raid.",
 keywords={"Humanoid","Ahn'Qiraj"},
 pet=1155,
+mopready=true,
 },[[
 step
 Enter the Ahn'Qiraj Raid |goto Ahn'Qiraj: The Fallen Kingdom/0 46.83,7.51 < 10 |c |or
@@ -5202,6 +5473,7 @@ source='unknown',
 description="This battle pet has a chance to drop from the raid boss Magmadar inside the Molten Core raid.",
 keywords={"Humanoid","Molten","Core"},
 pet=1149,
+mopready=true,
 },[[
 step
 talk Lothos Riftwaker##14387
@@ -5227,6 +5499,7 @@ source='unknown',
 description="This battle pet is given as a reward after completing Children's Week Quests.",
 keywords={"Humanoid","Children's","Week"},
 pet=226,
+mopready=true,
 },[[
 step
 collect Curious Wolvar Pup##46544 |n
@@ -5246,6 +5519,7 @@ source='unknown',
 description="This battle pet was given out to people who attended the 2010 Blizzcon Event.",
 keywords={"Humanoid","Blizzcon","Event"},
 pet=294,
+mopready=true,
 },[[
 step
 collect Smoldering Murloc Egg##67418 |n
@@ -5264,6 +5538,7 @@ source='unknown',
 description="This battle pet is rewarded to you after you have collected 250 unique battle pets.",
 keywords={"Humanoid","Going","To","Need","More","Leases"},
 pet=821,
+mopready=true,
 },[[
 step
 collect Feral Vermling##85578 |n
@@ -5281,6 +5556,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Razorthorn Rise in Terokkar Forest.",
 keywords={"Humanoid","Terokkar","Forest"},
 pet=514,
+mopready=true,
 },[[
 step
 clicknpc Flayer Youngling##62555
@@ -5297,6 +5573,7 @@ source='unknown',
 description="This battle pet can be obtained through the World of Warcraft Trading Card Game.",
 keywords={"Humanoid","Trading","Card","Game"},
 pet=333,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -5319,6 +5596,7 @@ source='unknown',
 description="This battle pet was given out to people who attended the 2009 Blizzcon Event.",
 keywords={"Humanoid","Blizzcon","Event"},
 pet=228,
+mopready=true,
 },[[
 step
 collect Heavy Murloc Egg##46802 |n
@@ -5337,6 +5615,7 @@ source='unknown',
 description="This battle pet was given out to people who participated in fansite contests on the European servers.",
 keywords={"Humanoid","Fansite","Contest"},
 pet=121,
+mopready=true,
 },[[
 step
 collect Pink Murloc Egg##22114 |n
@@ -5355,6 +5634,7 @@ source='unknown',
 description="This battle pet has a chance to drop from the raid boss Sulfuron Harbinger inside the Molten Core raid.",
 keywords={"Humanoid","Molten","Core"},
 pet=1147,
+mopready=true,
 },[[
 step
 talk Lothos Riftwaker##14387
@@ -5380,6 +5660,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around The Dry Hills in The Barrens.",
 keywords={"Humanoid","Northern","Barrens"},
 pet=1157,
+mopready=true,
 },[[
 step
 clicknpc Harpy Youngling##68804
@@ -5396,6 +5677,7 @@ source='unknown',
 description="This battle pet is a reward for completing the achievement Ling-Ting's Herbal Journey.",
 keywords={"Humanoid","Ling-Ting's","Herbal","Journey"},
 pet=835,
+mopready=true,
 },[[
 step
 Complete the Achievement Ling-Tings's Herbal Journey |complete achieved(6402)
@@ -5416,6 +5698,7 @@ source='unknown',
 description="This battle pet was given out to people who purchased the Burning Crusade Collector's Edition on the European servers.",
 keywords={"Humanoid","Collector's","Edition"},
 pet=111,
+mopready=true,
 },[[
 step
 collect Lurky's Egg##30360 |n
@@ -5433,6 +5716,7 @@ source='unknown',
 description="This battle pet was given out to people who attended the 2008 Blizzard World Wide Event.",
 keywords={"Humanoid","Blizzard","Event"},
 pet=189,
+mopready=true,
 },[[
 step
 collect Tyrael's Hilt##39656 |n
@@ -5451,6 +5735,7 @@ source='unknown',
 description="This battle pet was given out to people who attended the 2011 Blizzcon Event.",
 keywords={"Humanoid","Blizzcon","Event"},
 pet=329,
+mopready=true,
 },[[
 step
 collect Murky's Little Soulstone##71726 |n
@@ -5469,6 +5754,7 @@ source='unknown',
 description="This battle pet was given out to people who purchased a 2013 Blizzcon virtual ticket.",
 keywords={"Humanoid","Blizzcon","Event"},
 pet=1364,
+mopready=true,
 },[[
 step
 collect Murkalot's Flail##106244 |n
@@ -5487,6 +5773,7 @@ source='unknown',
 description="This battle pet was given out to people who participated in the World of Warcraft Arena Pass.",
 keywords={"Humanoid","Arena","Pass"},
 pet=217,
+mopready=true,
 },[[
 step
 collect Murkimus' Tiny Spear##46892 |n
@@ -5504,6 +5791,7 @@ source='unknown',
 description="This battle pet was given out to players who participated in a promotional event in Korea.",
 keywords={"Humanoid","Promotional","Event"},
 pet=1168,
+mopready=true,
 },[[
 step
 collect Orange Murloc Egg##20651 |n
@@ -5521,6 +5809,7 @@ source='unknown',
 description="This battle pet was given out to people who attended the 2005 Blizzcon Event.",
 keywords={"Humanoid","Blizzcon","Event"},
 pet=107,
+mopready=true,
 },[[
 step
 collect Blue Murloc Egg##20371 |n
@@ -5539,6 +5828,7 @@ source='unknown',
 description="This battle pet can be purchased from the Blizzard store.",
 keywords={"Humanoid","Blizzard","Store"},
 pet=248,
+mopready=true,
 },[[
 step
 collect Pandaren Monk##49665 |n
@@ -5555,6 +5845,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Scarab Wall in Silithus during the Summer.",
 keywords={"Humanoid","Silithus"},
 pet=513,
+mopready=true,
 },[[
 step
 talk Zidormi##141489
@@ -5577,6 +5868,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Sporeggar in Zangarmarsh.",
 keywords={"Humanoid","Zangarmarsh"},
 pet=515,
+mopready=true,
 },[[
 step
 clicknpc Sporeling Sprout##62564
@@ -5593,6 +5885,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Feral Scar Vale in Feralas.",
 keywords={"Humanoid","Feralas"},
 pet=1158,
+mopready=true,
 },[[
 step
 clicknpc Stunted Yeti##68805
@@ -5609,6 +5902,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Karazhan in Deadwind Pass.",
 keywords={"Magic","Deadwind","Pass"},
 pet=1160,
+mopready=true,
 },[[
 step
 clicknpc Arcane Eye##68819
@@ -5625,6 +5919,7 @@ source='unknown',
 description="This battle pet is a reward for defeating Jeremy Feasel in a pet battle at the Darkmoon Faire.",
 keywords={"Magic","Darkmoon","Faire"},
 pet=1063,
+mopready=true,
 },[[
 step
 click Portal to the Darkmoon Faire |goto Mulgore/0 36.85,35.84 |only if Horde
@@ -5664,6 +5959,7 @@ source='unknown',
 description="This battle pet is a zone drop in the Swamp of Sorrows.",
 keywords={"Magic","Swamp","Of","Sorrows"},
 pet=114,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -5687,6 +5983,7 @@ source='unknown',
 description="This battle pet can be obtained through the World of Warcraft Trading Card Game.",
 keywords={"Magic","Trading","Card","Game"},
 pet=183,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -5709,6 +6006,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Skull Rock The Hinterlands.",
 keywords={"Magic","The","Hinterlands"},
 pet=446,
+mopready=true,
 },[[
 step
 clicknpc Jade Oozeling##61718
@@ -5725,6 +6023,7 @@ source='unknown',
 description="This battle pet was obtained through the recruit a friend program but is no longer available.",
 keywords={"Magic","Recruit","A","Friend"},
 pet=231,
+mopready=true,
 },[[
 step
 collect Jade Tiger |n
@@ -5741,6 +6040,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Dalaran Crater in Hillsbrad Foothills.",
 keywords={"Magic","Hillsbrad","Foothills"},
 pet=1159,
+mopready=true,
 },[[
 step
 clicknpc Lofty Libram##68806
@@ -5757,6 +6057,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in Netherstorm.",
 keywords={"Magic","Netherstorm"},
 pet=136,
+mopready=true,
 },[[
 step
 talk Dealer Rashaad##20980
@@ -5776,6 +6077,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Shatter Scar Vale in Felwood.",
 keywords={"Magic","Felwood"},
 pet=500,
+mopready=true,
 },[[
 step
 clicknpc Minfernal##62317
@@ -5792,6 +6094,7 @@ source='unknown',
 description="This battle pet is obtained by purchasing the World of Warcraft Collector's Edition.",
 keywords={"Magic","Collector's","Edition"},
 pet=93,
+mopready=true,
 },[[
 step
 collect Diablo Stone##13584 |n
@@ -5809,6 +6112,7 @@ source='unknown',
 description="This battle pet has a chance to drop from The Prophet Skeram inside the Ahn'Qiraj raid.",
 keywords={"Magic","Ahn'Qiraj"},
 pet=1156,
+mopready=true,
 },[[
 step
 Enter the Ahn'Qiraj Raid |goto Ahn'Qiraj: The Fallen Kingdom/0 0.00,0.00 |c |or
@@ -5832,6 +6136,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Nordrassil in Mount Hyjal.",
 keywords={"Magic","Mount","Hyjal"},
 pet=547,
+mopready=true,
 },[[
 step
 clicknpc Nordrassil Wisp##62888
@@ -5848,6 +6153,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Scalding Pools in the Borean Tundra.",
 keywords={"Magic","Borean","Tundra"},
 pet=530,
+mopready=true,
 },[[
 step
 clicknpc Oily Slimeling##62697
@@ -5864,6 +6170,7 @@ source='unknown',
 description="This battle pet was given out to players who participated in a promotional event in Korea.",
 keywords={"Magic","Promotional","Event"},
 pet=240,
+mopready=true,
 },[[
 step
 collect Enchanted Onyx##48527 |n
@@ -5881,6 +6188,7 @@ source='unknown',
 description="This battle pet can be obtained through the World of Warcraft Trading Card Game.",
 keywords={"Magic","Trading","Card","Game"},
 pet=242,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -5903,6 +6211,7 @@ source='unknown',
 description="This battle pet is a drop from the boss Apothecary Hummel in the Shadowfang Keep dungeon during the Love is in the Air event.",
 keywords={"Magic","Love","Is","In","The","Air"},
 pet=251,
+mopready=true,
 },[[
 step
 Enter the Shadowfang Keep Dungeon |complete isevent("Love is in the Air") |goto Shadowfang Keep/1 0.00,0.00 |c |or
@@ -5929,6 +6238,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around corrupted areas in the Twilight Highlands.",
 keywords={"Magic","Twilight","Highlands"},
 pet=552,
+mopready=true,
 },[[
 step
 clicknpc Twilight Fiendling##62914
@@ -5947,6 +6257,7 @@ source='unknown',
 description="This battle pet has a chance to drop from Viscidus inside the Ahn'Qiraj raid.",
 keywords={"Magic","Ahn'Qiraj"},
 pet=1154,
+mopready=true,
 },[[
 step
 Enter the Ahn'Qiraj Raid |goto Ahn'Qiraj: The Fallen Kingdom/0 0.00,0.00 |c |or
@@ -5970,6 +6281,7 @@ source='unknown',
 description="This battle pet was obtained through the recruit a friend program but is no longer available.",
 keywords={"Magic","Recruit","A","Friend"},
 pet=247,
+mopready=true,
 },[[
 step
 collect Enchanted Purple Jade##49664 |n
@@ -5986,6 +6298,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Everlook in Winterspring.",
 keywords={"Mechanical","Winterspring"},
 pet=1163,
+mopready=true,
 },[[
 step
 clicknpc Anodized Robo Cub##68839
@@ -6002,6 +6315,7 @@ source='unknown',
 description="This battle pet can be purchased from a world vendor in Orgrimmar and Stormwind City.",
 keywords={"Mechanical","World","Vendor"},
 pet=254,
+mopready=true,
 },[[
 step
 talk Blax Bottlerocket##52809
@@ -6023,6 +6337,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Scalewing Shelf in Blade's Edge Mountains.",
 keywords={"Mechanical","Blade's","Edge","Mountains"},
 pet=1164,
+mopready=true,
 },[[
 step
 clicknpc Cogblade Raptor##68841
@@ -6039,6 +6354,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor at the Darkmoon Faire.",
 keywords={"Mechanical","Darkmoon","Faire"},
 pet=338,
+mopready=true,
 },[[
 step
 click Portal to the Darkmoon Faire |goto Mulgore/0 36.85,35.84
@@ -6065,6 +6381,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor at the Darkmoon Faire.",
 keywords={"Mechanical","Darkmoon","Faire"},
 pet=339,
+mopready=true,
 },[[
 step
 click Portal to the Darkmoon Faire |goto Mulgore/0 36.85,35.84
@@ -6091,6 +6408,7 @@ source='unknown',
 description="This battle pet can be created if your Engineering skill level is 475 or it can be purchased from the Auction House.",
 keywords={"Mechanical","Auction","House"},
 pet=262,
+mopready=true,
 },[[
 step
 collect De-Weaponized Mechanical Companion##60216 |n
@@ -6108,6 +6426,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Chill Breeze Valley in New Tinkertown.",
 keywords={"Mechanical","New","Tinkertown"},
 pet=1162,
+mopready=true,
 },[[
 step
 clicknpc Fluxfire Feline##68838
@@ -6124,6 +6443,7 @@ source='unknown',
 description="This battle pet can be obtained through the World of Warcraft Trading Card Game.",
 keywords={"Mechanical","Trading","Card","Game"},
 pet=285,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -6146,6 +6466,7 @@ source='unknown',
 description="This battle pet used to be available to purchase on the Blizzard store but is no longer available.",
 keywords={"Mechanical","Blizzard","Store"},
 pet=256,
+mopready=true,
 },[[
 step
 collect Lil' XT##54847 |n
@@ -6163,6 +6484,7 @@ source='unknown',
 description="This battle pet can be crafted if you have an engineering level of 265 or purchased from the Auction House.",
 keywords={"Mechanical","Auction","House"},
 pet=95,
+mopready=true,
 },[[
 step
 collect Lifelike Mechanical Toad##15996 |n
@@ -6180,6 +6502,7 @@ source='unknown',
 description="This battle pet can be crafted if you have an engineering level of 205 or purchased from the Auction House.",
 keywords={"Mechanical","Auction","House"},
 pet=86,
+mopready=true,
 },[[
 step
 collect Lil' Smoky##11826 |n
@@ -6197,6 +6520,7 @@ source='unknown',	author="support@zygorguides.com",
 description="This battle pet is a reward for completeing the quest An OOX of Your Own.",
 keywords={"Mechanical","An","OOX","Of","Your","Own"},
 pet=83,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -6265,6 +6589,7 @@ source='unknown',
 description="This battle pet can be crafted if you have a Pandaria engineering level of 50 or purchased from the Auction House.",
 keywords={"Mechanical","Auction","House"},
 pet=844,
+mopready=true,
 },[[
 step
 collect Mechanical Pandaren Dragonling##87526 |n
@@ -6282,6 +6607,7 @@ source='unknown',
 description="This battle pet can be crafted if you have an engineering level of 75 or purchased from the Auction House.",
 keywords={"Mechanical","Auction","House"},
 pet=39,
+mopready=true,
 },[[
 step
 collect Mechanical Squirrel Box##4401 |n
@@ -6299,6 +6625,7 @@ source='unknown',
 description="This battle pet is obtained by purchasing the Starcraft 2 Collector's Edition.",
 keywords={"Mechanical","Collector's","Edition"},
 pet=258,
+mopready=true,
 },[[
 step
 collect Mini Thor##56806 |n
@@ -6316,6 +6643,7 @@ source='unknown',
 description="This battle pet can be crafted if you have a Cataclysm engineering level of 25 or purchased from the Auction House.",
 keywords={"Mechanical","Auction","House"},
 pet=261,
+mopready=true,
 },[[
 step
 collect Personal World Destroyer##59597 |n
@@ -6333,6 +6661,7 @@ source='unknown',
 description="This battle pet can be crafted if you have an engineering level of 205 or purchased from the Auction House.",
 keywords={"Mechanical","Auction","House"},
 pet=85,
+mopready=true,
 },[[
 step
 collect Pet Bombling##11825 |n
@@ -6350,6 +6679,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Everlook in Winterspring.",
 keywords={"Mechanical","Winterspring"},
 pet=472,
+mopready=true,
 },[[
 step
 clicknpc Rabid Nut Varmint 5000##62120
@@ -6366,6 +6696,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Everlook in Winterspring.",
 keywords={"Mechanical","Winterspring"},
 pet=471,
+mopready=true,
 },[[
 step
 clicknpc Robo-Chick##62119
@@ -6382,6 +6713,7 @@ source='unknown',
 description="This battle pet can be obtained through the World of Warcraft Trading Card Game.",
 keywords={"Mechanical","Trading","Card","Game"},
 pet=168,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -6404,6 +6736,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around The Dead Acre in Westfall.",
 keywords={"Mechanical","Westfall"},
 pet=389,
+mopready=true,
 },[[
 step
 clicknpc Tiny Harvester##61160
@@ -6420,6 +6753,7 @@ source='unknown',
 description="This battle pet can be purchased from the Auction House.",
 keywords={"Mechanical","Auction","House"},
 pet=116,
+mopready=true,
 },[[
 step
 collect Tranquil Mechanical Yeti##21277 |n
@@ -6436,6 +6770,7 @@ source='unknown',
 description="This battle pet can be purchased from various world vendors.",
 keywords={"Mechanical","World","Vendor"},
 pet=227,
+mopready=true,
 },[[
 step
 talk Blax Bottlerocket##52809
@@ -6455,6 +6790,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Silverpine Forest.",
 keywords={"Undead","Silverpine","Forest"},
 pet=455,
+mopready=true,
 },[[
 step
 clicknpc Blighted Squirrel##61890
@@ -6471,6 +6807,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Andorhal in the Western Plaguelands.",
 keywords={"Undead","Western","Plaguelands"},
 pet=456,
+mopready=true,
 },[[
 step
 clicknpc Blighthawk##61826
@@ -6487,6 +6824,7 @@ source='unknown',
 description="This battle pet can be obtained through the World of Warcraft Trading Card Game.",
 keywords={"Undead","Trading","Card","Game"},
 pet=348,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -6509,6 +6847,7 @@ source='unknown',
 description="This battle pet is obtained by purchasing the Diablo 3 Collector's Edition.",
 keywords={"Undead","Collector's","Edition"},
 pet=346,
+mopready=true,
 },[[
 step
 collect Fetish Shaman's Spear##76062 |n
@@ -6526,6 +6865,7 @@ source='unknown',
 description="This battle pet is obtained by purchasing the Wrath of the Lich King Collector's Edition.",
 keywords={"Undead","Collector's","Edition"},
 pet=188,
+mopready=true,
 },[[
 step
 collect Frosty's Collar##39286 |n
@@ -6543,6 +6883,7 @@ source='unknown',
 description="This battle pet has a chance to drop from Loatheb inside the Naxxramas raid.",
 keywords={"Undead","Naxxramas"},
 pet=1144,
+mopready=true,
 },[[
 step
 Enter the Naxxramas Raid |goto Naxxramas/5 0.00,0.00 |c |or
@@ -6566,6 +6907,7 @@ source='unknown',
 description="This battle pet can be purchased from a vendor in The Black Market in Dalaran.",
 keywords={"Mechanical","Dalaran"},
 pet=190,
+mopready=true,
 },[[
 step
 talk Darahir##29537
@@ -6585,6 +6927,7 @@ source='unknown',
 description="This battle pet has a chance to drop from Maexxna inside the Naxxramas raid.",
 keywords={"Undead","Naxxramas"},
 pet=1143,
+mopready=true,
 },[[
 step
 Enter the Naxxramas Raid |goto Naxxramas/5 0.00,0.00 |c |or
@@ -6608,6 +6951,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around the Eastern Plaguelands.",
 keywords={"Undead","Eastern","Plaguelands"},
 pet=628,
+mopready=true,
 },[[
 step
 clicknpc Infected Fawn##61827
@@ -6624,6 +6968,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around the Eastern Plaguelands.",
 keywords={"Undead","Eastern","Plaguelands"},
 pet=627,
+mopready=true,
 },[[
 step
 clicknpc Infected Squirrel##61828
@@ -6640,6 +6985,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Southwest part of the Hillsbrad Foothills.",
 keywords={"Undead","Hillsbrad","Foothills"},
 pet=453,
+mopready=true,
 },[[
 step
 clicknpc Infested Bear Cub##61758
@@ -6656,6 +7002,7 @@ source='unknown',
 description="This battle pet can be obtained through the World of Warcraft Trading Card Game.",
 keywords={"Undead","Trading","Card","Game"},
 pet=302,
+mopready=true,
 },[[
 step
 talk Landro Longshot##17249
@@ -6678,6 +7025,7 @@ source='unknown',
 description="This battle pet can be purchased from the Blizzard store.",
 keywords={"Undead","Blizzard","Store"},
 pet=249,
+mopready=true,
 },[[
 step
 collect Lil' Phylactery##49693 |n
@@ -6694,6 +7042,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Ruins of Lordaeron in Tirisfal Glades.",
 keywords={"Undead","Tirisfal","Glades"},
 pet=458,
+mopready=true,
 },[[
 step
 talk Zidormi##141488
@@ -6714,6 +7063,7 @@ source='unknown',
 description="This battle pet is given to you after you get the achievement Raiding With Leashes.",
 keywords={"Undead","Raiding","With","Leashes"},
 pet=1145,
+mopready=true,
 },[[
 step
 collect Mr. Bigglesworth##93031 |n
@@ -6731,6 +7081,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Karazhan in Deadwind Pass during the hours of 12am-9am server time.",
 keywords={"Undead","Deadwind","Pass"},
 pet=439,
+mopready=true,
 },[[
 step
 clicknpc Restless Shadeling##61375
@@ -6749,6 +7100,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Sindragosa's Fall in Icecrown.",
 keywords={"Undead","Icecrown"},
 pet=538,
+mopready=true,
 },[[
 step
 clicknpc Scourged Whelpling##62854
@@ -6765,6 +7117,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the west coast beach in the Ghostlands.",
 keywords={"Undead","Ghostlands"},
 pet=463,
+mopready=true,
 },[[
 step
 clicknpc Spirit Crab##62034
@@ -6781,6 +7134,7 @@ source='unknown',
 description="This battle pet has a chance to drop from Gluth inside the Naxxramas raid.",
 keywords={"Undead","Naxxramas"},
 pet=1146,
+mopready=true,
 },[[
 step
 Enter the Naxxramas Raid |goto Naxxramas/5 0.00,0.00 |c |or
@@ -6804,6 +7158,7 @@ source='unknown',
 description="This battle pet was a drop from killing Tenris Mirkblood during The Scourge Invasion event.",
 keywords={"Undead","The","Scourge","Invasion"},
 pet=206,
+mopready=true,
 },[[
 step
 collect Vampiric Batling##38658 |n

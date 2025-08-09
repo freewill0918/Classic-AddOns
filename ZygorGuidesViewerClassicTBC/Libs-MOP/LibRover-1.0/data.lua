@@ -4,7 +4,7 @@ addon.LibRoverData = addon.LibRoverData or {}
 local data=addon.LibRoverData
 
 data.version={
-	nodes_version = 85,  -- Increase this when working on the nodes. Connections will be baked automatically when committing.
+	nodes_version = 87,  -- Increase this when working on the nodes. Connections will be baked automatically when committing.
 }
 
 -- These are kept strictly unique. Make up bogus names if you need to.
@@ -312,6 +312,8 @@ data.MapIDsByName = {
 ["Zul'Gurub"] = {[0]=233,},
 
 ["The Nexus Scenario"] = {[0] = 370},
+
+["Darkmoon Island"] = {[0]=407,[1]=408},
 }
 
 

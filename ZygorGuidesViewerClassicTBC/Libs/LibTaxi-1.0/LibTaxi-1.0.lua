@@ -196,6 +196,7 @@ do
 	end
 
 	local dragonisles_extra = {2175,2241}
+	local karesh_extra = {2398}
 	function Lib:GetMapContinent(mapID)
 		local cont = ZGV.GetMapContinent(mapID)
 		--if cont==ZONE_ARGUS_KROKUUN or cont==ZONE_ARGUS_MACAREE or cont==ZONE_ARGUS_ANTORAN then cont=ZONE_ARGUS end  -- Argus zones need to have a common continent (not so much for ants!).
@@ -204,8 +205,10 @@ do
 		if Lib.IsClassicMOP and cont==101 then cont_scan=102 end -- wotlk classic needs to be scanned via separate id
 		if cont==905 then cont_scan=994 end -- argus needs to be scanned via separate id
 		if mapID==2346 then cont_scan=2374 end -- undermine has own taxi map
+		--if mapID==2371 or map==2472 then cont=2398 cont_scan=2398 end -- k'aresh/tazavesh have own, completely separate, taxi map
 		local extracont
 		if cont==1978 then extracont=dragonisles_extra end -- dragonflight needs to have subcontinent scanned
+		if cont==2274 then extracont=karesh_extra end -- kazalgar needs to have subcontinent scanned
 		return cont,cont_scan,extracont
 	end		
 
@@ -918,7 +921,13 @@ do
 			2298, --nerubar palace raid
 			12,
 			13,
+
+			2175, -- dragonisles sub
+			2241, -- dragonisles sub
+			2374, -- undermine
+			2398, -- karesh
 		}
+
 		for cont,cd in pairs(self.taxipoints) do  conts[#conts+1]=cont  end
 
 		for _,cont in ipairs(conts) do
@@ -931,7 +940,9 @@ do
 							bliznode.name = bliznode.name:gsub(", .*","")  -- trim zone names (in european languages, at least)
 							taxinode.localname=bliznode.name
 						end
-						if not bliznode.isUndiscovered then
+						if bliznode.isUndiscovered then
+							self:LearnTaxi(taxinode,false) -- save that we know it to be unknown, so we don't have it as maybe
+						else
 							self:LearnTaxi(taxinode,not bliznode.isUndiscovered)
 							Lib.master["c_"..cont]=true  -- if wow says so, it must be true
 						end

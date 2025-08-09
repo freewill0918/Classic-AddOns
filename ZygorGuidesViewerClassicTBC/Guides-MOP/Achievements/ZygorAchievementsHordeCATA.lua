@@ -4561,22 +4561,6 @@ step
 step
 Congratulations, you have earned the Fall of Deathwing achievement!
 ]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Four Play",{
-achieveid={5305},
-patch='40003',
-description="Defeat Al'Akir in the Throne of the Four Winds while he is affected by Feedback.",
-},[[
-step
-To earn this achievement, defeat Al'Akir while he is affected by Feedback
-To start, DPS him down until he's at 80% health
-Then, wait for him to spawn Stormlings
-Drop the boss to 40% health, then kill the Stormling
-Kill the Al'Akir
-Earn the Four Play Achievement |achieve 5305 |goto Throne of the Four Winds/0 47.50,50
-|tip Set the Raid Difficulty to Heroic to Earn the Heroic: Al'Akir Achievement as well.
-step
-Congratulations, you have earned the Four Play Achievement!
-]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Full of Sound and Fury",{
 achieveid={5309},
 patch='40003',
@@ -4806,19 +4790,6 @@ Heroic: Magmaw |achieve 5094 |goto Blackwing Descent 27.50,57.40
 step
 Congratulations, you have earned the Heroic: Magmaw achievement!
 ]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Majordomo Fandral Staghelm",{
-achieveid={5804},
-patch='40200',
-description="This guide will walk you through how to get the Heroic: Majordomo Fandral Staghelm achievement.",
-},[[
-step
-This achievement is gained by defeating _Majordomo Fandral Staghelm in Firelands on Heroic Difficulty_
-|tip Use our raid guides to accomplish this.
-kill Majordomo Fandral Staghelm##52571
-Heroic: Majordomo Fandral Staghelm |achieve 5804 |goto Firelands/2 50.90,72.40
-step
-Congratulations, you have earned the Heroic: Majordomo Fandral Staghelm achievement!
-]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Maloriak",{
 achieveid={5108},
 patch='40003',
@@ -4871,19 +4842,6 @@ kill Arcanotron##42166, Electron##42179, Magmatron##42178, Toxitron##42180
 Heroic: Omnotron Defense System |achieve 5107 |goto Blackwing Descent 65.40,57.40
 step
 Congratulations, you have earned the Heroic: Omnotron Defense System achievement!
-]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Ragnaros",{
-achieveid={5803},
-patch='40200',
-description="This guide will walk you through how to get the Heroic: Ragnaros achievement.",
-},[[
-step
-This achievement is gained by defeating _Ragnaros in Firelands on Heroic Difficulty_
-|tip Use our raid guides to accomplish this.
-kill Ragnaros##52409
-Heroic: Ragnaros |achieve 5803 |goto Firelands/2 50.70,15.30
-step
-Congratulations, you have earned the Heroic: Ragnaros achievement!
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Shannox",{
 achieveid={5806},
@@ -5123,33 +5081,6 @@ Earn The Only Escape Achievement |achieve 5300 |goto The Bastion of Twilight/1 5
 step
 Congratulations, you have earned The Only Escape Achievement!
 ]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Only the Penitent...",{
-achieveid={5799},
-patch='40200',
-description="Activate both of Fandral's Flames at once in Firelands without any raid member getting hit by Kneel to the Flame!",
-},[[
-step
-map Firelands/0
-path loop off;dist 20
-path	31.27,77.70	40.77,69.89	48.84,69.53
-path	54.86,64.87	54.11,49.50	49.24,41.92
-path	49.18,26.74	49.51,7.53
-Cross the bridge to Fandral |goto Firelands/0 49.51,7.53 < 15 |noway |c
-only not achieved(5799)
-step
-To Earn this achievement, you need a group of 6
-There will be a Druid of Flame casting a spell called _Kneel to the Flame!_
-Set your focus on the Druid of Flame to watch the cast bar
-There will be 2 orbs on each side of the druid
-Approach it carefully, _stopping completely when Kneel to the Flame! is about to complete_
-Click Fandral's Flames at the following locations:
-clicknpc Fandral's Flames##53696
-Orb 1 |goto Firelands/2 48.38,75.06 < 10
-Orb 2 |goto Firelands/2 53.31,74.66 < 10
-|achieve 5799
-step
-Congratulations, you have earned the Only the Penitent Achievement!
-]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Parasite Evening",{
 achieveid={5306},
 patch='40003',
@@ -5190,20 +5121,6 @@ _If it hits the boss, it will disappear and you will have to try again!_
 |tip Set the Raid Difficulty to Heroic to earn the Heroic: Warlord Zon'ozz Achievement.
 step
 Congratulations, you have earned the Ping Pong Champ Achievement!
-]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Ragnar-O's",{
-achieveid={5855},
-patch='40200',
-description="This guide will walk you through how to get the Ragnar-O's achievement.",
-},[[
-step
-This achievement is gained by defeating Ragnaros in Firelands _while three Living Meteors are ignited by Lava Wave_
-|tip Weaken Ragnaros to 30% health. Living Meteors will spawn and follow you. You can attack them to knock them back and keep your distance. When there are three you must get them hit by the lava wave from Ragnaros' Sulfuras Smash.
-|tip Track the achievement. It will start out with red text. After the three meteors are hit by the lava wave the text will turn white and you can kill Ragnaros.
-kill Ragnaros##52409
-Ragnar-O's |achieve 5855 |goto Firelands/2 50.70,15.30
-step
-Congratulations, you have earned the Ragnar-O's achievement!
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Share the Pain",{
 achieveid={5830},
@@ -5273,25 +5190,6 @@ Earn the Silence is Golden Achievement |achieve 5308 |goto Blackwing Descent/1 4
 |tip Set the Raid Difficulty to Heroic to Earn the Heroic: Atramedes Achievement as well.
 step
 Congratulations, you  have earned the Silence is Golden Achievement!
-]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Stay Chill",{
-achieveid={5304},
-patch='40003',
-description="Defeat the Conclave of Wind in the Throne of the Four Winds while everyone in the raid has at least 7 stacks of Wind Chill.",
-},[[
-step
-To start, Kill Anshal
-Jump to the platform Nezir is on and wait until you have _3 stacks_ of the Wind Chill debuff
-_Do NOT attack Nezir yet!_
-Jump to the platform Rohash is on and kill hiim
-Jump back to Nezir's platform, gaining _6 stacks_ of Wind Chill
-_Do NOT attack Nezir yet!_
-Let Anshal finish casting Zephyr, then jump to his platform and kill him
-Jump Back to Nezir's platform and gain _7 stacks_ of Wind Chill before killing him
-Earn the Stay Chill Achievement |achieve 5304 |goto Throne of the Four Winds/0 47.50,26
-|tip Set the Raid Difficulty to Heroic to Earn the Heroic: Conclave of Wind Achievement as well.
-step
-Congratulations, you have earned the Stay Chill Achievement!
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Taste the Rainbow!",{
 achieveid={6129,6111},
@@ -10487,18 +10385,6 @@ Congratulations, you have _earned_ the _Silver in the City_ achievement! |only i
 Congratulations, you have _earned_ the _The Coin Master_ achievement! |only if achieved(2096)
 Congratulations, you have _earned_ the _There's Gold In That There Fountain_ achievement! |only if achieved(1957)
 ]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Expert Fisherman",{
-achieveid={127},
-patch='30003',
-description="Obtain 225 skill points in fishing.",
-},[[
-step
-|next "Profession Guides\\Fishing\\Fishing (1-525)"
-step
-Obtain 225 skill points in fishing |achieve 127
-step
-Congratulations, you have _earned_ the _Expert Fisherman_ achievement!
-]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\I Smell A Giant Rat",{
 achieveid={1958},
 patch='30003',
@@ -10511,18 +10397,6 @@ collect Giant Sewer Rat##43698
 use Giant Sewer Rat##43698 |achieve 1958 |goto Dalaran 44.10,66.40
 step
 Congratulations, you have _earned_ the _I Smell A Giant Rat achievement_ achievement!
-]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Journeyman Fisherman",{
-achieveid={126},
-patch='30003',
-description="Obtain 150 skill points in fishing.",
-},[[
-step
-|next "Profession Guides\\Fishing\\Fishing (1-525)"
-step
-Obtain 150 skill points in fishing |achieve 126
-step
-Congratulations, you have _earned_ the _Journeyman Fisherman_ achievement!
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\The Limnologist/The Oceanographer",{
 condition_end=function() return achieved(5478) end,
@@ -14847,41 +14721,5 @@ step
 Eat #91# Chocolate Cookies in a row to feel 1000% better |use Chocolate Cookie##62680 |achieve 5779
 step
 Congratulations, you have earned the You'll Feel Right as Rain achievement!
-]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Grand Master Fisherman",{
-achieveid={130},
-patch='30001',
-description="Obtain 450 skill points in fishing.",
-},[[
-step
-|next "Profession Guides\\Fishing\\Fishing (1-525)"
-step
-Obtain 450 skill points in fishing |achieve 130
-step
-Congratulations, you have _earned_ the _Grand Master Fisherman_ achievement!
-]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Cataclysmic Fisherman",{
-achieveid={4917},
-patch='40003',
-description="Obtain 75 skill points in Cataclysm Fishing.",
-},[[
-step
-|next "Profession Guides\\Fishing\\Fishing (1-525)"
-step
-Obtain 75 skill points in Cataclysm Fishing |achieve 4917
-step
-Congratulations, you have _earned_ the _Cataclysmic Fisherman_ achievement!
-]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Outland Fisherman",{
-achieveid={129},
-patch='30003',
-description="Obtain 75 skill points in Outland Fishing.",
-},[[
-step
-|next "Profession Guides\\Fishing\\Fishing (1-525)"
-step
-Obtain 75 skill points in Outland Fishing |achieve 129
-step
-Congratulations, you have _earned_ the _Outland Fisherman_ achievement!
 ]])
 ZGV.BETAEND()

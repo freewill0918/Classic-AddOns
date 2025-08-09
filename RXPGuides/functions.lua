@@ -245,6 +245,7 @@ local GetContainerItemInfo = C_Container and C_Container.GetContainerItemInfo or
 local GetItemCooldown = addon.GetItemCooldown
 
 addon.recentTurnIn = {}
+addon.recentAccept = {}
 
 function addon.ExpandQuestHeaders()
     for i = 1, GetNumQuests() do
@@ -297,10 +298,13 @@ local IsQuestTurnedIn = function(id,accountWide)
     else
         isQuestTurnedIn = IsTurnedIn(id)
     end
-    if isQuestTurnedIn then addon.recentTurnIn[id] = nil end
-    local recent = recentTurnIn and GetTime() - recentTurnIn < 2
+    if isQuestTurnedIn then
+        addon.recentTurnIn[id] = nil
+        return true
+    elseif recentTurnIn and GetTime() - recentTurnIn < 2 then
+        return true
+    end
     --if recent then print(7,recent,id) end
-    return isQuestTurnedIn or recent
 end
 --QT = IsQuestTurnedIn
 
@@ -322,7 +326,16 @@ function addon.IsQuestComplete(id)
 end
 local IsQuestComplete = addon.IsQuestComplete
 
-local function IsOnQuest(id) return C_QuestLog.IsOnQuest(id) end
+local function IsOnQuest(id)
+    local quest = C_QuestLog.IsOnQuest(id)
+    local recent = addon.recentAccept[id]
+    if quest then
+        addon.recentAccept[id] = nil
+    elseif recent and GetTime()-recent < 2 then
+        return true
+    end
+    return quest
+end
 
 local function GetLogIndexForQuestID(questID)
     if C_QuestLog.GetLogIndexForQuestID then
@@ -1011,6 +1024,9 @@ function addon.functions.accept(self, ...)
         if event == "QUEST_ACCEPTED" then
             questId = questId or arg1
             isQuestAccepted = questId == id or IsQuestTurnedIn(id) or IsOnQuest(id)
+            if questId == id then
+                addon.recentAccept[id] = GetTime()
+            end
         else
             isQuestAccepted = IsQuestTurnedIn(id) or IsOnQuest(id)
         end
@@ -2347,6 +2363,12 @@ function addon.functions.home(self, ...)
         return
     end
     local event = ...
+    if (event == nil and element.step.active) then
+        local g = GossipGetOptions()
+        if type(g) == "table" and #g > 0 then
+            event = "GOSSIP_SHOW"
+        end
+    end
     if event == "HEARTHSTONE_BOUND" or element.location and element.location == GetBindLocation() then
         addon.SetElementComplete(self)
         element.confirm = false
@@ -2445,6 +2467,12 @@ function addon.functions.fp(self, ...)
     local event, arg1, arg2 = ...
     local element = self.element
     local fpId = element.fpId
+    if (event == nil and element.step.active) then
+        local g = GossipGetOptions()
+        if type(g) == "table" and #g > 0 then
+            event = "GOSSIP_SHOW"
+        end
+    end
     --print('v',element.fpId,RXPCData.flightPaths[element.fpId])
     if self.element.step.active then
         --print(element.fpId,'-',RXPCData.flightPaths[element.fpId])
@@ -2517,10 +2545,11 @@ function addon.functions.fly(self, ...)
     elseif event == "TAXIMAP_OPENED" and addon.settings.profile.enableFPAutomation and
         element.location then
         addon:TAXIMAP_OPENED()
+        local loc = element.location:gsub("%-","%%-")
         for i = 1, NumTaxiNodes() do
             local id = addon.flightInfo[i]
             local name = id and addon.FPDB[addon.player.faction] and addon.FPDB[addon.player.faction][id] and addon.FPDB[addon.player.faction][id].name
-            if name and strupper(name):find(element.location) then
+            if name and strupper(name):find(loc) then
                 local button = getglobal("TaxiButton" .. i)
                 if button then
                     _G.TaxiNodeOnButtonEnter(button)
@@ -2594,7 +2623,7 @@ end
 addon.questItemList = {}
 function addon.functions.collect(self, ...)
     if type(self) == "string" then -- on parse
-        local text, id, qty, questId, objFlags, flags, arg1, arg2, arg3 = ...
+        local text, id, qty, questId, objFlags, flags, arg1, arg2, arg3, arg4 = ...
         local element = {ids = id}
         element.dynamicText = true
         id = tonumber(id:match('^%d+'))
@@ -2646,10 +2675,12 @@ if objFlags is omitted or set to 0, element will complete if you have the quest 
         if arg1 and element.subtract and element.multiplier == 1 then
             element.multiplier = tonumber(arg1) or 1
         end
+        element.totalMinimum = 0
         if bit.band(flags, 0x20) == 0x20 then
             element.profession = arg1
             element.multiplier = tonumber(arg2) or 1
             element.professionStart = tonumber(arg3) or 0
+            element.totalMinimum = tonumber(arg4) or 0
         end
 
         element.flags = flags
@@ -2732,7 +2763,7 @@ if objFlags is omitted or set to 0, element will complete if you have the quest 
         end
     end
 
-    numRequired = math.ceil(numRequired)
+    numRequired = math.max(math.ceil(numRequired),element.totalMinimum)
     --
     local function GetCount(itemId)
         local count = GetItemCount(itemId,element.includeBank)
@@ -3796,7 +3827,7 @@ function addon.functions.questcount(self, text, count, ...)
             end
         end
     else
-        count = GetNumQuests()
+        _,count = GetNumQuests()
     end
 
     local step = element.step
@@ -4947,7 +4978,7 @@ function addon.functions.skipgossip(self, text, ...)
     local nArgs = #args
     local event = text
     local id = tonumber(args[1])
-    if (element.step.active and event == nil) then
+    if (event == nil and element.step.active) then
         local g = GossipGetOptions()
         if type(g) == "table" and #g > 0 then
             event = "GOSSIP_SHOW"
@@ -5017,9 +5048,11 @@ function addon.functions.gossip(self, text, npc, length, flags)
     end
     local event = text
     local frame = _G.GossipFrame
-    if not event and _G.GossipFrame:IsShown() then
-        local options = GossipGetOptions()
-        event = next(options) and "GOSSIP_SHOW"
+    if (event == nil and element.step.active) then
+        local g = GossipGetOptions()
+        if type(g) == "table" and #g > 0 then
+            event = "GOSSIP_SHOW"
+        end
     end
     if event == "GOSSIP_SHOW" then
         if UnitExists('target') and not UnitIsPlayer('target') and not element.name then
@@ -5091,6 +5124,12 @@ function addon.functions.skipgossipid(self, text, ...)
     end
     --print('ok1')
     local event = text
+    if (event == nil and element.step.active) then
+        local g = GossipGetOptions()
+        if type(g) == "table" and #g > 0 then
+            event = "GOSSIP_SHOW"
+        end
+    end
     if event == "GOSSIP_SHOW" then
         local args = element.args or {}
         local gossipOptions = GossipGetOptions()
@@ -5208,11 +5247,12 @@ function addon.functions.maxlevel(self, ...)
     local step = element.step
     local ref = element.ref
     local guide = addon.currentGuide
+    local playerLevelMax = GetEffectivePlayerMaxLevel and GetEffectivePlayerMaxLevel() or 90
 
     if addon.isHidden or (ref and not guide.labels[ref]) then
         return
     elseif level > element.level and addon.settings.profile.enableXpStepSkipping then
-        if step.active and not step.completed and not LoremasterEnabled() then
+        if step.active and not step.completed and (not LoremasterEnabled() or element.level == playerLevelMax - 1) then
             addon.updateSteps = true
             step.completed = true
             if step.textOnly then

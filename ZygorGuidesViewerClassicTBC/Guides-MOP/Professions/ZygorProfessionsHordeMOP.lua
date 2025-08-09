@@ -4,7 +4,7 @@ if UnitFactionGroup("player")~="Horde" then return end
 if ZGV:DoMutex("ProfessionsHMoP") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Alchemy\\Leveling Guides\\Alchemy (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Alchemy') > 0 end,
 description="This guide will walk you through leveling your Alchemy skill from 1-600.",
@@ -14,10 +14,10 @@ Reach Level 5 |ding 5
 |tip You must be at least level 5 to train Apprentice professions.
 |tip Use the leveling guides to accomplish this.
 step
-Enter the building |goto Orgrimmar/0 56.48,35.25 < 7 |walk
+Enter the building |goto Orgrimmar/1 56.48,35.25 < 7 |walk
 talk Yelmak##3347
 |tip Inside the building.
-Train Apprentice Alchemy |skillmax Alchemy,75 |goto Orgrimmar/0 55.68,45.76
+Train Apprentice Alchemy |skillmax Alchemy,75 |goto Orgrimmar/1 55.68,45.76
 step
 Click Here if You Would Like to Collect All Materials First |confirm |next |or
 |tip This will have you collect all Classic-level materials before beginning.
@@ -356,7 +356,7 @@ collect 42 Mountain Silversage##13465 |or
 step
 talk Kor'geld##3348
 |tip Inside the building.
-buy 187 Crystal Vial##3371 |goto Orgrimmar/0 55.24,45.90 |or
+buy 187 Crystal Vial##3371 |goto Orgrimmar/1 55.24,45.90 |or
 '|complete skill("Alchemy") >= 350 |or
 step
 label "Begin_Profession_Leveling_Classic"
@@ -398,7 +398,7 @@ collect 65 Silverleaf##765 |or
 step
 talk Kor'geld##3348
 |tip Inside the building.
-buy 65 Crystal Vial##3371 |goto Orgrimmar/0 55.24,45.90 |or
+buy 65 Crystal Vial##3371 |goto Orgrimmar/1 55.24,45.90 |or
 '|complete skill("Alchemy") >= 60 |or
 step
 create 65 Minor Healing Potion##2330,Alchemy,65 total |or
@@ -416,11 +416,11 @@ Reach Level 10 |ding 10
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Journeyman Alchemy |skillmax Alchemy,150 |goto Orgrimmar/0 55.68,45.76
+Train Journeyman Alchemy |skillmax Alchemy,150 |goto Orgrimmar/1 55.68,45.76
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Lesser Healing Potion |learn Lesser Healing Potion##2337 |goto Orgrimmar/0 55.68,45.76
+Train Lesser Healing Potion |learn Lesser Healing Potion##2337 |goto Orgrimmar/1 55.68,45.76
 step
 label "Collect_Briarthorn_110"
 map Silverpine Forest
@@ -498,12 +498,12 @@ collect 35 Briarthorn##2450 |or
 step
 talk Kor'geld##3348
 |tip Inside the building.
-buy 35 Crystal Vial##3371 |goto Orgrimmar/0 55.24,45.90 |or
+buy 35 Crystal Vial##3371 |goto Orgrimmar/1 55.24,45.90 |or
 '|complete skill("Alchemy") >= 140 |or
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Healing Potion |learn Healing Potion##3447 |goto Orgrimmar/0 55.68,45.76
+Train Healing Potion |learn Healing Potion##3447 |goto Orgrimmar/1 55.68,45.76
 step
 create 35 Healing Potion##3447,Alchemy,140
 |tip You may need to create more or less of these.
@@ -515,11 +515,11 @@ Reach Level 20 |ding 20
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Expert Alchemy |skillmax Alchemy,225 |goto Orgrimmar/0 55.68,45.76
+Train Expert Alchemy |skillmax Alchemy,225 |goto Orgrimmar/1 55.68,45.76
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Lesser Mana Potion |learn Lesser Mana Potion##3173 |goto Orgrimmar/0 55.68,45.76
+Train Lesser Mana Potion |learn Lesser Mana Potion##3173 |goto Orgrimmar/1 55.68,45.76
 stickystart "Collect_Stranglekelp_155"
 step
 map The Barrens/0
@@ -564,7 +564,7 @@ collect 50 Stranglekelp##3820 |or
 step
 talk Kor'geld##3348
 |tip Inside the building.
-buy 20 Crystal Vial##3371 |goto Orgrimmar/0 55.24,45.90 |or
+buy 20 Crystal Vial##3371 |goto Orgrimmar/1 55.24,45.90 |or
 '|complete skill("Alchemy") >= 155 |or
 step
 create 20 Lesser Mana Potion##3173,Alchemy,155
@@ -623,12 +623,12 @@ collect 35 Kingsblood##3356 |or
 step
 talk Kor'geld##3348
 |tip Inside the building.
-buy 35 Crystal Vial##3371 |goto Orgrimmar/0 55.24,45.90 |or
+buy 35 Crystal Vial##3371 |goto Orgrimmar/1 55.24,45.90 |or
 '|complete skill("Alchemy") >= 185 |or
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Greater Healing Potion |learn Greater Healing Potion##7181 |goto Orgrimmar/0 55.68,45.76
+Train Greater Healing Potion |learn Greater Healing Potion##7181 |goto Orgrimmar/1 55.68,45.76
 step
 create 35 Greater Healing Potion##7181,Alchemy,185
 |tip You may need to create more or less of these.
@@ -663,12 +663,12 @@ collect 30 Stranglekelp##3820 |or
 step
 talk Kor'geld##3348
 |tip Inside the building.
-buy 30 Crystal Vial##3371 |goto Orgrimmar/0 55.24,45.90 |or
+buy 30 Crystal Vial##3371 |goto Orgrimmar/1 55.24,45.90 |or
 '|complete skill("Alchemy") >= 210 |or
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Elixir of Agility |learn Elixir of Agility##11449 |goto Orgrimmar/0 55.68,45.76
+Train Elixir of Agility |learn Elixir of Agility##11449 |goto Orgrimmar/1 55.68,45.76
 step
 create 30 Elixir of Agility##11449,skill Alchemy,210
 |tip You may need to create more or less of these.
@@ -698,12 +698,12 @@ collect 5 Goldthorn##3821 |or
 step
 talk Kor'geld##3348
 |tip Inside the building.
-buy 5 Crystal Vial##3371 |goto Orgrimmar/0 55.24,45.90 |or
+buy 5 Crystal Vial##3371 |goto Orgrimmar/1 55.24,45.90 |or
 '|complete skill("Alchemy") >= 215 |or
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Elixir of Greater Defense |learn Elixir of Greater Defense##11450 |goto Orgrimmar/0 55.68,45.76
+Train Elixir of Greater Defense |learn Elixir of Greater Defense##11450 |goto Orgrimmar/1 55.68,45.76
 step
 create 5 Elixir of Greater Defense##11450,Alchemy,215
 step
@@ -713,11 +713,11 @@ Reach Level 35 |ding 35
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Artisan Alchemy |skillmax Alchemy,300 |goto Orgrimmar/0 55.68,45.76
+Train Artisan Alchemy |skillmax Alchemy,300 |goto Orgrimmar/1 55.68,45.76
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Superior Healing Potion |learn Superior Healing Potion##11457 |goto Orgrimmar/0 55.68,45.76
+Train Superior Healing Potion |learn Superior Healing Potion##11457 |goto Orgrimmar/1 55.68,45.76
 stickystart "Collect_Khadgar's_Whisker_230"
 step
 map Searing Gorge/0
@@ -755,22 +755,22 @@ collect 15 Khadgar's Whisker##3358 |or
 step
 talk Kor'geld##3348
 |tip Inside the building.
-buy 15 Crystal Vial##3371 |goto Orgrimmar/0 55.24,45.90 |or
+buy 15 Crystal Vial##3371 |goto Orgrimmar/1 55.24,45.90 |or
 '|complete skill("Alchemy") >= 230 |or
 step
 create 15 Superior Healing Potion##11457,Alchemy,230
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Philosopher's Stone |learn Philosopher's Stone##11459 |goto Orgrimmar/0 55.68,45.76
+Train Philosopher's Stone |learn Philosopher's Stone##11459 |goto Orgrimmar/1 55.68,45.76
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Elixir of Detect Undead |learn Elixir of Detect Undead##11460 |goto Orgrimmar/0 55.68,45.76
+Train Elixir of Detect Undead |learn Elixir of Detect Undead##11460 |goto Orgrimmar/1 55.68,45.76
 step
 talk Kor'geld##3348
 |tip Inside the building.
-buy 45 Crystal Vial##3371 |goto Orgrimmar/0 55.24,45.90 |or
+buy 45 Crystal Vial##3371 |goto Orgrimmar/1 55.24,45.90 |or
 '|complete skill("Alchemy") >= 265 |or
 stickystart "Philosopher_Iron"
 stickystart "Philosopher_Firebloom"
@@ -896,12 +896,12 @@ collect 50 Sungrass##8838 |or
 step
 talk Kor'geld##3348
 |tip Inside the building.
-buy 25 Crystal Vial##3371 |goto Orgrimmar/0 55.24,45.90 |or
+buy 25 Crystal Vial##3371 |goto Orgrimmar/1 55.24,45.90 |or
 '|complete skill("Alchemy") >= 285 |or
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Superior Mana Potion |learn Superior Mana Potion##17553 |goto Orgrimmar/0 55.68,45.76
+Train Superior Mana Potion |learn Superior Mana Potion##17553 |goto Orgrimmar/1 55.68,45.76
 step
 create 25 Superior Mana Potion##17553,Alchemy,285
 |tip You may need to create more or less of these.
@@ -953,12 +953,12 @@ collect 37 Mountain Silversage##13465 |or
 step
 talk Kor'geld##3348
 |tip Inside the building.
-buy 22 Crystal Vial##3371 |goto Orgrimmar/0 55.24,45.90 |or
+buy 22 Crystal Vial##3371 |goto Orgrimmar/1 55.24,45.90 |or
 '|complete skill("Alchemy") >= 300 |or
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Major Healing Potion |learn Major Healing Potion##17556 |goto Orgrimmar/0 55.68,45.76
+Train Major Healing Potion |learn Major Healing Potion##17556 |goto Orgrimmar/1 55.68,45.76
 step
 create 22 Major Healing Potion##17556,Alchemy,300
 |tip You may need to create more or less of these.
@@ -2178,11 +2178,11 @@ step
 label "Begin_Alchemy_Leveling_Cataclysm"
 talk Yelmak##3347
 |tip Inside the building.
-Train Alchemy |skillmax Alchemy,525 |goto Orgrimmar/0 55.68,45.76
+Train Alchemy |skillmax Alchemy,525 |goto Orgrimmar/1 55.68,45.76
 |tip You must be at least level 75.
 step
 talk Kor'geld##3348
-buy 100 Crystal Vial##3371 |goto Orgrimmar/0 55.24,45.90
+buy 100 Crystal Vial##3371 |goto Orgrimmar/1 55.24,45.90
 |only if skill("Alchemy") < 525
 step
 map Mount Hyjal/0
@@ -2208,7 +2208,7 @@ Reach 455 Alchemy |skill Alchemy,455
 step
 talk Yelmak##3347
 |tip Inside the building.
-learn Ghost Elixir##80477 |goto Orgrimmar/0 55.68,45.76
+learn Ghost Elixir##80477 |goto Orgrimmar/1 55.68,45.76
 step
 map Mount Hyjal/0
 path follow smart; loop on; ants straight; dist 30
@@ -2268,7 +2268,7 @@ collect 5 Azshara's Veil##52985
 step
 talk Yelmak##3347
 |tip Inside the building.
-learn Volcanic Potion##80481 |goto Orgrimmar/0 55.68,45.76
+learn Volcanic Potion##80481 |goto Orgrimmar/1 55.68,45.76
 step
 Open Your Alchemy Crafting Panel:
 _<Create 5 Volcanic Potion>_
@@ -2276,7 +2276,7 @@ Reach 465 Alchemy |skill Alchemy,465
 step
 talk Yelmak##3347
 |tip Inside the building.
-learn Elixir of the Cobra##80484 |goto Orgrimmar/0 55.68,45.76
+learn Elixir of the Cobra##80484 |goto Orgrimmar/1 55.68,45.76
 stickystart "Azshara's_Veil_475"
 step
 map Mount Hyjal/0
@@ -2320,7 +2320,7 @@ Reach 475 Alchemy |skill Alchemy,475
 step
 talk Yelmak##3347
 |tip Inside the building.
-learn Elixir of Deep Earth##80488 |goto Orgrimmar/0 55.68,45.76
+learn Elixir of Deep Earth##80488 |goto Orgrimmar/1 55.68,45.76
 step
 map Deepholm/0
 path follow smart; loop on; ants curved; dist 60
@@ -2340,7 +2340,7 @@ Reach 480 Alchemy |skill Alchemy,480
 step
 talk Yelmak##3347
 |tip Inside the building.
-learn Elixir of Impossible Accuracy##80491 |goto Orgrimmar/0 55.68,45.76
+learn Elixir of Impossible Accuracy##80491 |goto Orgrimmar/1 55.68,45.76
 step
 map Mount Hyjal/0
 path follow smart; loop on; ants straight; dist 30
@@ -2376,7 +2376,7 @@ Reach 485 Alchemy |skill Alchemy,485
 step
 talk Yelmak##3347
 |tip Inside the building.
-learn Mythical Mana Potion##80494 |goto Orgrimmar/0 55.68,45.76
+learn Mythical Mana Potion##80494 |goto Orgrimmar/1 55.68,45.76
 step
 map Mount Hyjal/0
 path follow smart; loop on; ants straight; dist 30
@@ -2413,7 +2413,7 @@ Reach 490 Alchemy |skill Alchemy,490
 step
 talk Yelmak##3347
 |tip Inside the building.
-learn Golemblood Potion##80496 |goto Orgrimmar/0 55.68,45.76
+learn Golemblood Potion##80496 |goto Orgrimmar/1 55.68,45.76
 stickystart "Collect_Volatile_Life_495"
 step
 map Deepholm/0
@@ -2452,7 +2452,7 @@ Reach 495 Alchemy |skill Alchemy,495
 step
 talk Yelmak##3347
 |tip Inside the building.
-learn Mythical Healing Potion##80498 |goto Orgrimmar/0 55.68,45.76
+learn Mythical Healing Potion##80498 |goto Orgrimmar/1 55.68,45.76
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants curved
@@ -2488,7 +2488,7 @@ Reach 510 Alchemy |skill Alchemy,510
 step
 talk Yelmak##3347
 |tip Inside the building.
-learn Flask of Titanic Strength##80723 |goto Orgrimmar/0 55.68,45.76
+learn Flask of Titanic Strength##80723 |goto Orgrimmar/1 55.68,45.76
 stickystart "Collect_Volatile_Life_515"
 stickystart "Collect_Whiptail_515"
 step
@@ -2546,7 +2546,7 @@ Reach 515 Alchemy |skill Alchemy,515
 step
 talk Yelmak##3347
 |tip Inside the building.
-learn Transmute: Demonseye##80248 |goto Orgrimmar/0 55.68,45.76
+learn Transmute: Demonseye##80248 |goto Orgrimmar/1 55.68,45.76
 stickystart "Twilight_Jasmine_520"
 step
 collect 15 Nightstone##52180
@@ -2588,7 +2588,7 @@ Reach 520 Alchemy |skill Alchemy,520
 step
 talk Yelmak##3347
 |tip Inside the building.
-learn Transmute: Amberjewel##80247 |goto Orgrimmar/0 55.68,45.76
+learn Transmute: Amberjewel##80247 |goto Orgrimmar/1 55.68,45.76
 stickystart "Collect_Whiptail_525"
 step
 collect 15 Alicite##52179
@@ -2631,11 +2631,11 @@ step
 label "Begin_Profession_Leveling_Pandaria"
 talk Yelmak##3347
 |tip Inside the building.
-Train Zen Master Alchemy |skillmax Alchemy,600 |goto Orgrimmar/0 55.68,45.76
+Train Zen Master Alchemy |skillmax Alchemy,600 |goto Orgrimmar/1 55.68,45.76
 step
 talk Yelmak##3347
 |tip Inside the building.
-Train Master Healing Potion |learn Master Healing Potion##114752 |goto Orgrimmar/0 55.68,45.76
+Train Master Healing Potion |learn Master Healing Potion##114752 |goto Orgrimmar/1 55.68,45.76
 step
 collect 30 Green Tea Leaf##72234 |or |usebank
 |tip You can farm these with Herbalism or purchase them from the Auction House.
@@ -2676,7 +2676,7 @@ create 30 Master Mana Potion##114775,Alchemy,600
 '|complete skill("Alchemy") >= 600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Archaeology\\Leveling Guides\\Archaeology (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 description="This guide will walk you through leveling your Archaeology skill from 1-600.",
 condition_end=function() return skill('Archaeology') >= 600 end,
@@ -2694,10 +2694,10 @@ confirm
 |tip Tol'vir artifacts require at least 450 skill level and are only found in Uldum, Kalimdor.
 |tip Pandaren and Mogu artifacts require at least 500 skill and are only found in Pandaria.
 step
-Enter the building |goto Orgrimmar/0 49.91,75.62 < 15 |walk
+Enter the building |goto Orgrimmar/1 49.91,75.62 < 15 |walk
 talk Belloc Brightblade##47571
 |tip Inside the building.
-Train Apprentice Archaeology |skillmax Archaeology,75 |goto Orgrimmar/0 49.08,70.55
+Train Apprentice Archaeology |skillmax Archaeology,75 |goto Orgrimmar/1 49.08,70.55
 step
 Search for dig sites on your world map
 |tip You can earn points from any dig site in any zone.
@@ -2716,10 +2716,10 @@ click Archaeology Fragment+
 |tip You receive 5 skill points for normal solves and 15 skill points for rare solves.
 Reach 50 Archaeology Skill |skill Archaeology,50
 step
-Enter the building |goto Orgrimmar/0 49.91,75.62 < 15 |walk
+Enter the building |goto Orgrimmar/1 49.91,75.62 < 15 |walk
 talk Belloc Brightblade##47571
 |tip Inside the building.
-Train Journeyman Archaeology |skillmax Archaeology,150 |goto Orgrimmar/0 49.08,70.55
+Train Journeyman Archaeology |skillmax Archaeology,150 |goto Orgrimmar/1 49.08,70.55
 step
 Search for dig sites on your world map
 |tip You can earn points from any dig site in any zone.
@@ -2738,10 +2738,10 @@ click Archaeology Fragment+
 |tip You receive 5 skill points for normal solves and 15 skill points for rare solves.
 Reach 125 Archaeology Skill |skill Archaeology,125
 step
-Enter the building |goto Orgrimmar/0 49.92,75.63 < 15 |walk
+Enter the building |goto Orgrimmar/1 49.92,75.63 < 15 |walk
 talk Belloc Brightblade##47571
 |tip Inside the building.
-Train Expert Archaeology |skillmax Archaeology,225 |goto Orgrimmar/0 49.06,70.55
+Train Expert Archaeology |skillmax Archaeology,225 |goto Orgrimmar/1 49.06,70.55
 step
 Search for dig sites on your world map
 |tip You can earn points from any dig site in any zone.
@@ -2760,10 +2760,10 @@ click Archaeology Fragment+
 |tip You receive 5 skill points for normal solves and 15 skill points for rare solves.
 Reach 200 Archaeology Skill |skill Archaeology,200
 step
-Enter the building |goto Orgrimmar/0 49.92,75.63 < 15 |walk
+Enter the building |goto Orgrimmar/1 49.92,75.63 < 15 |walk
 talk Belloc Brightblade##47571
 |tip Inside the building.
-Train Artisan Archaeology |skillmax Archaeology,300 |goto Orgrimmar/0 49.06,70.55
+Train Artisan Archaeology |skillmax Archaeology,300 |goto Orgrimmar/1 49.06,70.55
 step
 Search for dig sites on your world map
 |tip You can earn points from any dig site in any zone.
@@ -2782,10 +2782,10 @@ click Archaeology Fragment+
 |tip You receive 5 skill points for normal solves and 15 skill points for rare solves.
 Reach 275 Archaeology Skill |skill Archaeology,275
 step
-Enter the building |goto Orgrimmar/0 49.92,75.63 < 15 |walk
+Enter the building |goto Orgrimmar/1 49.92,75.63 < 15 |walk
 talk Belloc Brightblade##47571
 |tip Inside the building.
-Train Master Archaeology |skillmax Archaeology,375 |goto Orgrimmar/0 49.06,70.55
+Train Master Archaeology |skillmax Archaeology,375 |goto Orgrimmar/1 49.06,70.55
 step
 Search for dig sites on your world map
 |tip You can earn points from any dig site in any zone.
@@ -2804,10 +2804,10 @@ click Archaeology Fragment+
 |tip You receive 5 skill points for normal solves and 15 skill points for rare solves.
 Reach 350 Archaeology Skill |skill Archaeology,350
 step
-Enter the building |goto Orgrimmar/0 49.92,75.63 < 15 |walk
+Enter the building |goto Orgrimmar/1 49.92,75.63 < 15 |walk
 talk Belloc Brightblade##47571
 |tip Inside the building.
-Train Grand Master Archaeology |skillmax Archaeology,450 |goto Orgrimmar/0 49.06,70.55
+Train Grand Master Archaeology |skillmax Archaeology,450 |goto Orgrimmar/1 49.06,70.55
 step
 Search for dig sites on your world map
 |tip You can earn points from any dig site in any zone.
@@ -2826,10 +2826,10 @@ click Archaeology Fragment+
 |tip You receive 5 skill points for normal solves and 15 skill points for rare solves.
 Reach 425 Archaeology Skill |skill Archaeology,425
 step
-Enter the building |goto Orgrimmar/0 49.92,75.63 < 15 |walk
+Enter the building |goto Orgrimmar/1 49.92,75.63 < 15 |walk
 talk Belloc Brightblade##47571
 |tip Inside the building.
-Train Illustrious Grand Master Archaeology |skillmax Archaeology,525 |goto Orgrimmar/0 49.06,70.55
+Train Illustrious Grand Master Archaeology |skillmax Archaeology,525 |goto Orgrimmar/1 49.06,70.55
 step
 Search for dig sites on your world map
 |tip You can earn points from any dig site in any zone.
@@ -2848,10 +2848,10 @@ click Archaeology Fragment+
 |tip You receive 5 skill points for normal solves and 15 skill points for rare solves.
 Reach 525 Archaeology Skill |skill Archaeology,525
 step
-Enter the building |goto Orgrimmar/0 49.91,75.62 < 15 |walk
+Enter the building |goto Orgrimmar/1 49.91,75.62 < 15 |walk
 talk Belloc Brightblade##47571
 |tip Inside the building.
-Train Zen Master Archaeology |skillmax Archaeology,600 |goto Orgrimmar/0 49.08,70.55
+Train Zen Master Archaeology |skillmax Archaeology,600 |goto Orgrimmar/1 49.08,70.55
 step
 Search for dig sites on your world map
 |tip You can earn points from any dig site in any zone.
@@ -2871,7 +2871,7 @@ click Archaeology Fragment+
 Reach 600 Archaeology Skill |skill Archaeology,600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Blacksmithing\\Leveling Guides\\Blacksmithing (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Blacksmithing') > 0 end,
 description="This guide will walk you through leveling your Blacksmithing skill from 1-600.",
@@ -2881,10 +2881,10 @@ Reach Level 5 |ding 5
 |tip You must be at least level 5 to train Apprentice professions.
 |tip Use the leveling guides to accomplish this.
 step
-Enter the building |goto Orgrimmar/0 81.56,22.74 < 7 |walk
+Enter the building |goto Orgrimmar/1 81.56,22.74 < 7 |walk
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Apprentice Blacksmithing |skillmax Blacksmithing,75 |goto Orgrimmar/0 76.49,34.50
+Train Apprentice Blacksmithing |skillmax Blacksmithing,75 |goto Orgrimmar/1 76.49,34.50
 step
 Click Here if You Would Like to Collect All Materials First |confirm |next |or
 _Or_
@@ -3242,13 +3242,13 @@ collect 462 Thorium Bar##12359 |or
 step
 Tamar##3366
 |tip Inside the building.
-buy 35 Green Dye##2605 |goto Orgrimmar/0 63.05,45.53 |or
+buy 35 Green Dye##2605 |goto Orgrimmar/1 63.05,45.53 |or
 '|complete skill("Blacksmithing") >= 165 |or
 step
 label "Begin_Profession_Leveling_Classic"
 talk Sumi##3356
 |tip Inside the building.
-buy Blacksmith Hammer##5956 |goto Orgrimmar/0 82.59,23.95 |or
+buy Blacksmith Hammer##5956 |goto Orgrimmar/1 82.59,23.95 |or
 |tip Save this, you will need it to create items.
 '|complete skill("Blacksmithing") >= 375 |or
 stickystart "Collect_Copper_Bars_30"
@@ -3293,7 +3293,7 @@ create 40 Rough Sharpening Stone##2660,Blacksmithing,30
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Rough Grinding Stone |learn Rough Grinding Stone##3320 |goto Orgrimmar/0 76.49,34.50
+Train Rough Grinding Stone |learn Rough Grinding Stone##3320 |goto Orgrimmar/1 76.49,34.50
 step
 collect 110 Rough Stone##2835 |or
 |tip You collected these in a previous step.
@@ -3330,7 +3330,7 @@ collect 85 Coarse Stone##2836 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Coarse Sharpening Stone |learn Coarse Sharpening Stone##2665 |goto Orgrimmar/0 76.49,34.50
+Train Coarse Sharpening Stone |learn Coarse Sharpening Stone##2665 |goto Orgrimmar/1 76.49,34.50
 step
 create 25 Coarse Sharpening Stone##2665,Blacksmithing,75
 |tip You may need to create more or less of these.
@@ -3342,11 +3342,11 @@ Reach Level 10 |ding 10
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Journeyman Blacksmithing |skillmax Blacksmithing,150 |goto Orgrimmar/0 76.49,34.50
+Train Journeyman Blacksmithing |skillmax Blacksmithing,150 |goto Orgrimmar/1 76.49,34.50
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Coarse Grinding Stone |learn Coarse Grinding Stone##3326 |goto Orgrimmar/0 76.49,34.50
+Train Coarse Grinding Stone |learn Coarse Grinding Stone##3326 |goto Orgrimmar/1 76.49,34.50
 step
 collect 60 Coarse Stone##2836 |or
 |tip You collected these in a previous step.
@@ -3362,13 +3362,13 @@ create 1 Coarse Grinding Stone##3326,Blacksmithing,90
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Runed Copper Belt |learn Runed Copper Belt##2666 |goto Orgrimmar/0 76.49,34.50
+Train Runed Copper Belt |learn Runed Copper Belt##2666 |goto Orgrimmar/1 76.49,34.50
 step
 collect 100 Copper Bar##2840 |or
 |tip You collected these in a previous step.
 '|complete skill("Blacksmithing") >= 100 |or
 step
-create 10 Runed Copper Belt##2666,Blacksmithing,100 |goto Orgrimmar/0 76.49,34.50
+create 10 Runed Copper Belt##2666,Blacksmithing,100 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip Inside the building.
 stickystart "Collect_Rough_Grinding_Stone_105"
@@ -3405,9 +3405,9 @@ collect 10 Rough Grinding Stone##3470 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Silver Rod |learn Silver Rod##7818 |goto Orgrimmar/0 76.49,34.50
+Train Silver Rod |learn Silver Rod##7818 |goto Orgrimmar/1 76.49,34.50
 step
-create 5 Silver Rod##7818,Blacksmithing,105 |goto Orgrimmar/0 76.49,34.50
+create 5 Silver Rod##7818,Blacksmithing,105 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip Inside the building.
 step
@@ -3415,8 +3415,8 @@ collect 50 Copper Bar##2840 |or
 |tip You collected these in a previous step.
 '|complete skill("Blacksmithing") >= 110 |or
 step
-Enter the building |goto Orgrimmar/0 81.62,22.79 < 7 |walk
-create 5 Runed Copper Belt##2666,Blacksmithing,110 |goto Orgrimmar/0 76.49,34.50
+Enter the building |goto Orgrimmar/1 81.62,22.79 < 7 |walk
+create 5 Runed Copper Belt##2666,Blacksmithing,110 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip Inside the building.
 step
@@ -3430,9 +3430,9 @@ collect 140 Bronze Bar##2841 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Rough Bronze Leggings |learn Rough Bronze Leggings##2668 |goto Orgrimmar/0 76.49,34.50
+Train Rough Bronze Leggings |learn Rough Bronze Leggings##2668 |goto Orgrimmar/1 76.49,34.50
 step
-create 15 Rough Bronze Leggings##2668,Blacksmithing,125 |goto Orgrimmar/0 76.49,34.50
+create 15 Rough Bronze Leggings##2668,Blacksmithing,125 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip Inside the building.
 stickystart "Collect_Iron_Bars_140"
@@ -3548,7 +3548,7 @@ collect 5 Gold Bar##3577 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Heavy Grinding Stone |learn Heavy Grinding Stone##3337 |goto Orgrimmar/0 76.49,34.50
+Train Heavy Grinding Stone |learn Heavy Grinding Stone##3337 |goto Orgrimmar/1 76.49,34.50
 step
 create 30 Heavy Grinding Stone##3337,Blacksmithing,30 total |or
 '|complete skill("Blacksmithing") >= 140 |or
@@ -3570,9 +3570,9 @@ collect 20 Coarse Grinding Stone##3478 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Patterned Bronze Bracers |learn Patterned Bronze Bracers##2672 |goto Orgrimmar/0 76.49,34.50
+Train Patterned Bronze Bracers |learn Patterned Bronze Bracers##2672 |goto Orgrimmar/1 76.49,34.50
 step
-create 10 Patterned Bronze Bracers##2672,Blacksmithing,150 |goto Orgrimmar/0 76.49,34.50
+create 10 Patterned Bronze Bracers##2672,Blacksmithing,150 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip Inside the building.
 step
@@ -3582,11 +3582,11 @@ Reach Level 20 |ding 20
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Expert Blacksmithing |skillmax Blacksmithing,225 |goto Orgrimmar/0 76.49,34.50
+Train Expert Blacksmithing |skillmax Blacksmithing,225 |goto Orgrimmar/1 76.49,34.50
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Golden Rod |learn Golden Rod##14379 |goto Orgrimmar/0 76.49,34.50
+Train Golden Rod |learn Golden Rod##14379 |goto Orgrimmar/1 76.49,34.50
 stickystart "Collect_Coarse_Grinding_Stone_155"
 step
 collect 5 Gold Bar##3577 |or
@@ -3598,7 +3598,7 @@ collect 10 Coarse Grinding Stone##3478 |or
 |tip You created these in a previous step.
 '|complete skill("Blacksmithing") >= 155 |or
 step
-create 5 Golden Rod##14379,Blacksmithing,155 |goto Orgrimmar/0 76.49,34.50
+create 5 Golden Rod##14379,Blacksmithing,155 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip Inside the building.
 stickystart "Collect_Heavy_Grinding_Stone_165"
@@ -3614,20 +3614,20 @@ collect 10 Heavy Grinding Stone##3486 |or
 step
 Tamar##3366
 |tip Inside the building.
-buy 35 Green Dye##2605 |goto Orgrimmar/0 63.05,45.53 |or
+buy 35 Green Dye##2605 |goto Orgrimmar/1 63.05,45.53 |or
 '|complete skill("Blacksmithing") >= 165 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Green Iron Leggings |learn Green Iron Leggings##3506 |goto Orgrimmar/0 76.49,34.50
+Train Green Iron Leggings |learn Green Iron Leggings##3506 |goto Orgrimmar/1 76.49,34.50
 step
-create 10 Green Iron Leggings##3506,Blacksmithing,165 |goto Orgrimmar/0 76.49,34.50
+create 10 Green Iron Leggings##3506,Blacksmithing,165 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip Inside the building.
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Green Iron Bracers |learn Green Iron Bracers##3501 |goto Orgrimmar/0 76.49,34.50
+Train Green Iron Bracers |learn Green Iron Bracers##3501 |goto Orgrimmar/1 76.49,34.50
 stickystart "Collect_Green_Dye_190"
 step
 collect 150 Iron Bar##3575 |or
@@ -3639,7 +3639,7 @@ collect 25 Green Dye##2605 |or
 |tip You purchased these in a previous step.
 '|complete skill("Blacksmithing") >= 190 |or
 step
-create 25 Green Iron Bracers##3501,Blacksmithing,190 |goto Orgrimmar/0 76.49,34.50
+create 25 Green Iron Bracers##3501,Blacksmithing,190 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip Inside the building.
 stickystart "Collect_Heavy_Grinding_Stone_200"
@@ -3659,9 +3659,9 @@ collect 20 Heavy Grinding Stone##3486 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Golden Scale Bracers |learn Golden Scale Bracers##7223 |goto Orgrimmar/0 76.49,34.50
+Train Golden Scale Bracers |learn Golden Scale Bracers##7223 |goto Orgrimmar/1 76.49,34.50
 step
-create 10 Golden Scale Bracers##7223,Blacksmithing,200 |goto Orgrimmar/0 76.49,34.50
+create 10 Golden Scale Bracers##7223,Blacksmithing,200 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip Inside the building.
 |tip If you intend to choose the Armorsmith specialization, keep 6 of these.
@@ -3689,7 +3689,7 @@ collect 520 Solid Stone##7912 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Solid Grinding Stone |learn Solid Grinding Stone##9920 |goto Orgrimmar/0 76.49,34.50
+Train Solid Grinding Stone |learn Solid Grinding Stone##9920 |goto Orgrimmar/1 76.49,34.50
 step
 create 130 Solid Grinding Stone##9920,Blacksmithing,130 total |or
 |tip Save these, you will need them for future steps.
@@ -3754,9 +3754,9 @@ collect 60 Mageweave Cloth##4338 |goto Tanaris/0 40.50,55.50 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Heavy Mithril Gauntlet |learn Heavy Mithril Gauntlet##9928 |goto Orgrimmar/0 76.49,34.50
+Train Heavy Mithril Gauntlet |learn Heavy Mithril Gauntlet##9928 |goto Orgrimmar/1 76.49,34.50
 step
-create 15 Heavy Mithril Gauntlet##9928,Blacksmithing,225 |goto Orgrimmar/0 76.49,34.50
+create 15 Heavy Mithril Gauntlet##9928,Blacksmithing,225 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip Inside the building.
 step
@@ -3766,11 +3766,11 @@ Reach Level 35 |ding 35
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Artisan Blacksmithing |skillmax Blacksmithing,300 |goto Orgrimmar/0 76.49,34.50
+Train Artisan Blacksmithing |skillmax Blacksmithing,300 |goto Orgrimmar/1 76.49,34.50
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Steel Plate Helm |learn Steel Plate Helm##9935 |goto Orgrimmar/0 76.49,34.50
+Train Steel Plate Helm |learn Steel Plate Helm##9935 |goto Orgrimmar/1 76.49,34.50
 stickystart "Collect_Steel_Bar_235"
 stickystart "Collect_Solid_Grinding_Stone_235"
 step
@@ -3788,7 +3788,7 @@ collect 10 Solid Grinding Stone##7966 |or
 |tip You created these in a previous step.
 '|complete skill("Blacksmithing") >= 235 |or
 step
-create 10 Steel Plate Helm##9935,Blacksmithing,235 |goto Orgrimmar/0 76.49,34.50
+create 10 Steel Plate Helm##9935,Blacksmithing,235 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip Inside the building.
 |tip If you intend to choose the Armorsmith specialization, keep 4 of these.
@@ -3817,7 +3817,7 @@ collect 60 Solid Grinding Stone##7966 |or
 |tip You do not need these if you make Mithril Coifs instead.
 '|complete skill("Blacksmithing") >= 250 |or
 step
-create 20 Mithril Spurs##9964,Blacksmithing,250 |goto Orgrimmar/0 76.49,34.50
+create 20 Mithril Spurs##9964,Blacksmithing,250 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip You may need to create more or less of these.
 |tip Each additional Mithril Spur requires 4 Mithril Bars and 3 Solid Grinding Stones.
@@ -3880,7 +3880,7 @@ collect 462 Thorium Bar##12359 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Dense Sharpening Stone |learn Dense Sharpening Stone##16641 |goto Orgrimmar/0 76.49,34.50
+Train Dense Sharpening Stone |learn Dense Sharpening Stone##16641 |goto Orgrimmar/1 76.49,34.50
 step
 create 20 Dense Sharpening Stone##16641,Blacksmithing,260
 |tip You may need to create more or less of these.
@@ -3902,7 +3902,7 @@ collect 60 Solid Grinding Stone##7966 |or
 |tip Imperial Plate Belt Plans can be obtained from Derotain in Gadgetzan for 10 Thorium Bars. |notinsticky
 '|complete skill("Blacksmithing") >= 270 |or
 step
-create 20 Mithril Spurs##9964,Blacksmithing,270 |goto Orgrimmar/0 76.49,34.50
+create 20 Mithril Spurs##9964,Blacksmithing,270 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip You may need to create more or less of these.
 |tip Each additional Mithril Spur requires 4 Mithril Bars and 3 Solid Grinding Stones.
@@ -3912,25 +3912,25 @@ create 20 Mithril Spurs##9964,Blacksmithing,270 |goto Orgrimmar/0 76.49,34.50
 |tip Imperial Plate Belt Plans can be obtained from Derotain in Gadgetzan for 10 Thorium Bars.
 step
 talk Saru Steelfury##3355
-Train Imperial Plate Bracers |learn Imperial Plate Bracers##16649 |goto Orgrimmar/0 76.49,34.50
+Train Imperial Plate Bracers |learn Imperial Plate Bracers##16649 |goto Orgrimmar/1 76.49,34.50
 step
 collect 312 Thorium Bar##12359 |or
 |tip You collected these in a previous step.
 '|complete skill("Blacksmithing") >= 295 |or
 step
-create 26 Imperial Plate Bracers##16649,Blacksmithing,295 |goto Orgrimmar/0 76.49,34.50
+create 26 Imperial Plate Bracers##16649,Blacksmithing,295 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip You may need to create more or less of these.
 |tip Each additional Imperial Plate Bracer requires 12 Thorium Bars.
 step
 talk Saru Steelfury##3355
-Train Imperial Plate Boots |learn Imperial Plate Boots##16657 |goto Orgrimmar/0 76.49,34.50
+Train Imperial Plate Boots |learn Imperial Plate Boots##16657 |goto Orgrimmar/1 76.49,34.50
 step
 collect 90 Thorium Bar##12359 |or
 |tip You collected these in a previous step.
 '|complete skill("Blacksmithing") >= 300 |or
 step
-create 5 Imperial Plate Boots##16657,Blacksmithing,300 |goto Orgrimmar/0 76.49,34.50
+create 5 Imperial Plate Boots##16657,Blacksmithing,300 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip You may need to create more or less of these.
 |tip Each additional Imperial Plate Boots requires 18 Thorium Bars.
@@ -4029,10 +4029,10 @@ collect 7 Netherweave Cloth##21877 |or
 step
 label "Begin_Profession_Leveling_Outland"
 talk Saru Steelfury##3355
-Train Master Blacksmithing |skillmax Blacksmithing,375 |goto Orgrimmar/0 76.49,34.50
+Train Master Blacksmithing |skillmax Blacksmithing,375 |goto Orgrimmar/1 76.49,34.50
 step
 talk Saru Steelfury##3355
-Train Fel Weightstone |learn Fel Weightstone##34607 |goto Orgrimmar/0 76.49,34.50
+Train Fel Weightstone |learn Fel Weightstone##34607 |goto Orgrimmar/1 76.49,34.50
 stickystart "Collect_Netherweave_Cloth_305"
 step
 map Hellfire Peninsula/0
@@ -4084,7 +4084,7 @@ collect 7 Netherweave Cloth##21877 |or
 |tip Farm them from humanoid mobs in Outland or purchase them from the auction house.
 '|complete skill("Blacksmithing") >= 305 |or
 step
-create 7 Fel Weightstone##34607,Blacksmithing,305 |goto Orgrimmar/0 76.49,34.50
+create 7 Fel Weightstone##34607,Blacksmithing,305 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip You may need to create more or less of these.
 |tip Each additional Fel Weightstone requires 1 Fel Iron Bar and 1 Netherweave Cloth.
@@ -4094,9 +4094,9 @@ collect 44 Fel Iron Bar##23445 |or
 '|complete skill("Blacksmithing") >= 316 |or
 step
 talk Saru Steelfury##3355
-Train Fel Iron Plate Belt |learn Fel Iron Plate Belt##29547 |goto Orgrimmar/0 76.49,34.50
+Train Fel Iron Plate Belt |learn Fel Iron Plate Belt##29547 |goto Orgrimmar/1 76.49,34.50
 step
-create 11 Fel Iron Plate Belt##29547,Blacksmithing,316 |goto Orgrimmar/0 76.49,34.50
+create 11 Fel Iron Plate Belt##29547,Blacksmithing,316 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 step
 collect 25 Fel Iron Bar##23445 |or
@@ -4104,9 +4104,9 @@ collect 25 Fel Iron Bar##23445 |or
 '|complete skill("Blacksmithing") >= 321 |or
 step
 talk Saru Steelfury##3355
-Train Fel Iron Chain Gloves |learn Fel Iron Chain Gloves##29552 |goto Orgrimmar/0 76.49,34.50
+Train Fel Iron Chain Gloves |learn Fel Iron Chain Gloves##29552 |goto Orgrimmar/1 76.49,34.50
 step
-create 5 Fel Iron Chain Gloves##29552,Blacksmithing,321 |goto Orgrimmar/0 76.49,34.50
+create 5 Fel Iron Chain Gloves##29552,Blacksmithing,321 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 step
 collect 24 Fel Iron Bar##23445 |or
@@ -4114,9 +4114,9 @@ collect 24 Fel Iron Bar##23445 |or
 '|complete skill("Blacksmithing") >= 325 |or
 step
 talk Saru Steelfury##3355
-Train Fel Iron Plate Boots |learn Fel Iron Plate Boots##29548 |goto Orgrimmar/0 76.49,34.50
+Train Fel Iron Plate Boots |learn Fel Iron Plate Boots##29548 |goto Orgrimmar/1 76.49,34.50
 step
-create 4 Fel Iron Plate Boots##29548,Blacksmithing,325 |goto Orgrimmar/0 76.49,34.50
+create 4 Fel Iron Plate Boots##29548,Blacksmithing,325 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 step
 map Nagrand/0
@@ -4150,7 +4150,7 @@ collect 90 Adamantite Bar##23446 |or
 '|complete skill("Blacksmithing") >= 335 |or
 step
 talk Saru Steelfury##3355
-Train Lesser Rune of Warding |learn Lesser Rune of Warding##32284 |goto Orgrimmar/0 76.49,34.50
+Train Lesser Rune of Warding |learn Lesser Rune of Warding##32284 |goto Orgrimmar/1 76.49,34.50
 step
 create 45 Lesser Rune of Warding##32284,Blacksmithing,335
 |tip You may need to create more or less of these.
@@ -4161,9 +4161,9 @@ collect 63 Fel Iron Bar##23445 |or
 '|complete skill("Blacksmithing") >= 340 |or
 step
 talk Saru Steelfury##3355
-Train Fel Iron Chain Tunic |learn Fel Iron Chain Tunic##29556 |goto Orgrimmar/0 76.49,34.50
+Train Fel Iron Chain Tunic |learn Fel Iron Chain Tunic##29556 |goto Orgrimmar/1 76.49,34.50
 step
-create 7 Fel Iron Chain Tunic##29556,Blacksmithing,340 |goto Orgrimmar/0 53.07,38.05
+create 7 Fel Iron Chain Tunic##29556,Blacksmithing,340 |goto Orgrimmar/1 53.07,38.05
 |tip Stand next to an anvil.
 |tip You may need to create more or less of these.
 |tip Each additional Fel Iron Chain Tunic requires 9 Fel Iron Bars.
@@ -4181,7 +4181,7 @@ collect 45 Adamantite Bar##23446 |or
 |tip You collected these in a previous step.
 '|complete skill("Blacksmithing") >= 350 |or
 step
-create 45 Lesser Ward of Shielding##29728,Blacksmithing,350 |goto Orgrimmar/0 76.49,34.50
+create 45 Lesser Ward of Shielding##29728,Blacksmithing,350 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil.
 |tip You may need to create more or less of these.
 |tip Each additional Lesser Ward of Shielding requires 1 Adamantite Bar.
@@ -4352,11 +4352,11 @@ step
 label "Begin_Profession_Leveling_Northrend"
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Grand Master Blacksmithing |skillmax Blacksmithing,450 |goto Orgrimmar/0 76.49,34.50
+Train Grand Master Blacksmithing |skillmax Blacksmithing,450 |goto Orgrimmar/1 76.49,34.50
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Cobalt Boots |learn Cobalt Boots##52569 |goto Orgrimmar/0 76.49,34.50
+Train Cobalt Boots |learn Cobalt Boots##52569 |goto Orgrimmar/1 76.49,34.50
 step
 map Howling Fjord/0
 path follow smart; loop on; ants curved; dist 30
@@ -4394,7 +4394,7 @@ collect 40 Cobalt Bar##36916 |or
 |tip Save at least 280 of these; you will need them for future steps.
 '|complete skill("Blacksmithing") >= 360 |or
 step
-create 10 Cobalt Boots##52569,Blacksmithing,360 |goto Orgrimmar/0 76.49,34.50
+create 10 Cobalt Boots##52569,Blacksmithing,360 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 step
 collect 40 Cobalt Bar##36916 |or
@@ -4403,9 +4403,9 @@ collect 40 Cobalt Bar##36916 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Cobalt Triangle Shield |learn Cobalt Triangle Shield##54550 |goto Orgrimmar/0 76.49,34.50
+Train Cobalt Triangle Shield |learn Cobalt Triangle Shield##54550 |goto Orgrimmar/1 76.49,34.50
 step
-create 10 Cobalt Triangle Shield##54550,Blacksmithing,370 |goto Orgrimmar/0 76.49,34.50
+create 10 Cobalt Triangle Shield##54550,Blacksmithing,370 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 step
 collect 25 Cobalt Bar##36916 |or
@@ -4414,9 +4414,9 @@ collect 25 Cobalt Bar##36916 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Cobalt Legplates |learn Cobalt Legplates##52567 |goto Orgrimmar/0 76.49,34.50
+Train Cobalt Legplates |learn Cobalt Legplates##52567 |goto Orgrimmar/1 76.49,34.50
 step
-create 5 Cobalt Legplates##52567,Blacksmithing,375 |goto Orgrimmar/0 76.49,34.50
+create 5 Cobalt Legplates##52567,Blacksmithing,375 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 step
 collect 25 Cobalt Bar##36916 |or
@@ -4425,9 +4425,9 @@ collect 25 Cobalt Bar##36916 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Cobalt Gauntlets |learn Cobalt Gauntlets##55835 |goto Orgrimmar/0 76.49,34.50
+Train Cobalt Gauntlets |learn Cobalt Gauntlets##55835 |goto Orgrimmar/1 76.49,34.50
 step
-create 5 Cobalt Gauntlets##55835,Blacksmithing,380 |goto Orgrimmar/0 76.49,34.50
+create 5 Cobalt Gauntlets##55835,Blacksmithing,380 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 step
 collect 35 Cobalt Bar##36916 |or
@@ -4436,9 +4436,9 @@ collect 35 Cobalt Bar##36916 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Spiked Cobalt Boots |learn Spiked Cobalt Boots##54918 |goto Orgrimmar/0 76.49,34.50
+Train Spiked Cobalt Boots |learn Spiked Cobalt Boots##54918 |goto Orgrimmar/1 76.49,34.50
 step
-create 5 Spiked Cobalt Boots##54918,Blacksmithing,385 |goto Orgrimmar/0 76.49,34.50
+create 5 Spiked Cobalt Boots##54918,Blacksmithing,385 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 step
 collect 35 Cobalt Bar##36916 |or
@@ -4447,9 +4447,9 @@ collect 35 Cobalt Bar##36916 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Spiked Cobalt Shoulders |learn Spiked Cobalt Shoulders##54941 |goto Orgrimmar/0 76.49,34.50
+Train Spiked Cobalt Shoulders |learn Spiked Cobalt Shoulders##54941 |goto Orgrimmar/1 76.49,34.50
 step
-create 5 Spiked Cobalt Shoulders##54941,Blacksmithing,390 |goto Orgrimmar/0 76.49,34.50
+create 5 Spiked Cobalt Shoulders##54941,Blacksmithing,390 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 step
 collect 50 Cobalt Bar##36916 |or
@@ -4458,9 +4458,9 @@ collect 50 Cobalt Bar##36916 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Notched Cobalt War Axe |learn Notched Cobalt War Axe##55204 |goto Orgrimmar/0 76.49,34.50
+Train Notched Cobalt War Axe |learn Notched Cobalt War Axe##55204 |goto Orgrimmar/1 76.49,34.50
 step
-create 5 Notched Cobalt War Axe##55204,Blacksmithing,395 |goto Orgrimmar/0 76.49,34.50
+create 5 Notched Cobalt War Axe##55204,Blacksmithing,395 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 stickystart "Collect_Cobalt_Bars_400"
 step
@@ -4503,9 +4503,9 @@ collect 30 Cobalt Bar##36916 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Brilliant Saronite Belt |learn Brilliant Saronite Belt##59436 |goto Orgrimmar/0 76.49,34.50
+Train Brilliant Saronite Belt |learn Brilliant Saronite Belt##59436 |goto Orgrimmar/1 76.49,34.50
 step
-create 5 Brilliant Saronite Belt##59436,Blacksmithing,400 |goto Orgrimmar/0 76.49,34.50
+create 5 Brilliant Saronite Belt##59436,Blacksmithing,400 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 step
 collect 40 Cobalt Bar##36916 |or
@@ -4514,9 +4514,9 @@ collect 40 Cobalt Bar##36916 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Horned Cobalt Helm |learn Horned Cobalt Helm##54949 |goto Orgrimmar/0 76.49,34.50
+Train Horned Cobalt Helm |learn Horned Cobalt Helm##54949 |goto Orgrimmar/1 76.49,34.50
 step
-create 5 Horned Cobalt Helm##54949,Blacksmithing,405 |goto Orgrimmar/0 76.49,34.50
+create 5 Horned Cobalt Helm##54949,Blacksmithing,405 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 stickystart "Collect_Saronite_Bar_416"
 step
@@ -4537,9 +4537,9 @@ collect 77 Saronite Bar##36913 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Deadly Saronite Dirk |learn Deadly Saronite Dirk##55206 |goto Orgrimmar/0 76.49,34.50
+Train Deadly Saronite Dirk |learn Deadly Saronite Dirk##55206 |goto Orgrimmar/1 76.49,34.50
 step
-create 11 Deadly Saronite Dirk##55206,Blacksmithing,416 |goto Orgrimmar/0 76.49,34.50
+create 11 Deadly Saronite Dirk##55206,Blacksmithing,416 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 |tip You may need to create more of these.
 |tip Each additional Deadly Saronite Dirk requires 7 Saronite Bars and 2 Crystallized Air.
@@ -4595,10 +4595,10 @@ collect 52 Saronite Bar##36913 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Eternal Belt Buckle |learn Eternal Belt Buckle##55656 |goto Orgrimmar/0 76.49,34.50
+Train Eternal Belt Buckle |learn Eternal Belt Buckle##55656 |goto Orgrimmar/1 76.49,34.50
 |tip There are cheaper alternatives, but this sells well.
 step
-create 13 Eternal Belt Buckle##55656,Blacksmithing,425 |goto Orgrimmar/0 76.49,34.50
+create 13 Eternal Belt Buckle##55656,Blacksmithing,425 |goto Orgrimmar/1 76.49,34.50
 |tip There are cheaper alternatives, but this sells well.
 |tip Stand next to an anvil inside the building.
 |tip You may need to create more or less of these.
@@ -4645,9 +4645,9 @@ collect 77 Saronite Bar##36913 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Titanium Weapon Chain |learn Titanium Weapon Chain##55839 |goto Orgrimmar/0 76.49,34.50
+Train Titanium Weapon Chain |learn Titanium Weapon Chain##55839 |goto Orgrimmar/1 76.49,34.50
 step
-create 7 Titanium Weapon Chain##55839,Blacksmithing,430 |goto Orgrimmar/0 76.49,34.50
+create 7 Titanium Weapon Chain##55839,Blacksmithing,430 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 |tip You may need to create more of these.
 |tip Each additional Titanium Weapon Chain requires 2 Saronite Bars and 1 Titanium Bar.
@@ -4676,9 +4676,9 @@ collect 60 Saronite Bar##36913 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Daunting Handguards |learn Daunting Handguards##55301 |goto Orgrimmar/0 76.49,34.50
+Train Daunting Handguards |learn Daunting Handguards##55301 |goto Orgrimmar/1 76.49,34.50
 step
-create 5 Daunting Handguards##55301,Blacksmithing,435 |goto Orgrimmar/0 76.49,34.50
+create 5 Daunting Handguards##55301,Blacksmithing,435 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 |tip You may need to create more of these.
 |tip Each additional Daunting Handguards requires 12 Saronite Bars and 1 Eternal Earth.
@@ -4707,14 +4707,14 @@ collect 238 Saronite Bar##36913 |or
 step
 talk Saru Steelfury##3355
 |tip Inside the building.
-Train Daunting Legplates |learn Daunting Legplates##55303 |goto Orgrimmar/0 76.49,34.50
+Train Daunting Legplates |learn Daunting Legplates##55303 |goto Orgrimmar/1 76.49,34.50
 step
-create 17 Daunting Legplates##55303,Blacksmithing,445 |goto Orgrimmar/0 76.49,34.50
+create 17 Daunting Legplates##55303,Blacksmithing,445 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 |tip You may need to create more or less of these.
 |tip Each additional Daunting Legplates requires 14 Saronite Bars and 1 Eternal Earth.
 step
-create Daunting Legplates##55303,Blacksmithing,450 |goto Orgrimmar/0 76.49,34.50
+create Daunting Legplates##55303,Blacksmithing,450 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 |tip From this point on, you can create any green recipe requiring 14 Saronite Bars.
 |tip Titansteel items are also an option, but are very expensive.
@@ -4798,7 +4798,7 @@ collect 2 Hardened Elementium Bar##53039 |or
 step
 label "Begin_Blacksmithing_Leveling_Cataclysm"
 talk Saru Steelfury##3355
-Train Illustrious Grand Master Blacksmithing |skillmax Blacksmithing,525 |goto Orgrimmar/0 76.49,34.50
+Train Illustrious Grand Master Blacksmithing |skillmax Blacksmithing,525 |goto Orgrimmar/1 76.49,34.50
 |tip You must be at least level 75.
 step
 map Mount Hyjal/0
@@ -4823,17 +4823,17 @@ step
 Open Your Blacksmithing Crafting Panel:
 _<Create 195 Folded Obsidium>_
 |tip Make all of these, you will need them later.
-Reach 455 Blacksmithing |skill Blacksmithing,455 |goto Orgrimmar/0 76.49,34.50
+Reach 455 Blacksmithing |skill Blacksmithing,455 |goto Orgrimmar/1 76.49,34.50
 step
 talk Saru Steelfury##3355
-learn Redsteel Bracers##76262 |goto Orgrimmar/0 76.49,34.50
+learn Redsteel Bracers##76262 |goto Orgrimmar/1 76.49,34.50
 step
 Open Your Blacksmithing Crafting Panel:
 _<Create 5 Redsteel Bracers>_
-Reach 460 Blacksmithing |skill Blacksmithing,460 |goto Orgrimmar/0 76.49,34.50
+Reach 460 Blacksmithing |skill Blacksmithing,460 |goto Orgrimmar/1 76.49,34.50
 step
 talk Saru Steelfury##3355
-learn Redsteel Belt##76264 |goto Orgrimmar/0 76.49,34.50
+learn Redsteel Belt##76264 |goto Orgrimmar/1 76.49,34.50
 step
 map Mount Hyjal/0
 path follow smart; loop on; ants curved
@@ -4845,25 +4845,25 @@ collect 10 Volatile Earth##52327 |or
 step
 Open Your Blacksmithing Crafting Panel:
 _<Create 10 Redsteel Belt>_
-Reach 470 Blacksmithing |skill Blacksmithing,470 |goto Orgrimmar/0 76.49,34.50
+Reach 470 Blacksmithing |skill Blacksmithing,470 |goto Orgrimmar/1 76.49,34.50
 step
 talk Saru Steelfury##3355
-learn Redsteel Boots##76265 |goto Orgrimmar/0 76.49,34.50
+learn Redsteel Boots##76265 |goto Orgrimmar/1 76.49,34.50
 step
 Open Your Blacksmithing Crafting Panel:
 _<Create 5 Redsteel Boots>_
-Reach 475 Blacksmithing |skill Blacksmithing,475 |goto Orgrimmar/0 76.49,34.50
+Reach 475 Blacksmithing |skill Blacksmithing,475 |goto Orgrimmar/1 76.49,34.50
 step
 talk Saru Steelfury##3355
-learn Obsidium Skeleton Key##76438 |goto Orgrimmar/0 76.49,34.50
+learn Obsidium Skeleton Key##76438 |goto Orgrimmar/1 76.49,34.50
 step
 Open Your Blacksmithing Crafting Panel:
 _<Create 10 Obsidium Skeleton Key>_
 |tip You may need to create a few more.
-Reach 485 Blacksmithing |skill Blacksmithing,485 |goto Orgrimmar/0 76.49,34.50
+Reach 485 Blacksmithing |skill Blacksmithing,485 |goto Orgrimmar/1 76.49,34.50
 step
 talk Saru Steelfury##3355
-learn Redsteel Shoulders##76266 |goto Orgrimmar/0 76.49,34.50
+learn Redsteel Shoulders##76266 |goto Orgrimmar/1 76.49,34.50
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants straight; dist 30
@@ -4888,10 +4888,10 @@ collect 30 Elementium Bar##52186 |or
 step
 Open Your Blacksmithing Crafting Panel:
 _<Create 5 Redsteel Shoulders>_
-Reach 490 Blacksmithing |skill Blacksmithing,490 |goto Orgrimmar/0 76.49,34.50
+Reach 490 Blacksmithing |skill Blacksmithing,490 |goto Orgrimmar/1 76.49,34.50
 step
 talk Saru Steelfury##3355
-learn Redsteel Legguards##76267 |goto Orgrimmar/0 76.49,34.50
+learn Redsteel Legguards##76267 |goto Orgrimmar/1 76.49,34.50
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants straight; dist 30
@@ -4916,10 +4916,10 @@ collect 70 Elementium Bar##52186 |or
 step
 Open Your Blacksmithing Crafting Panel:
 _<Create 10 Redsteel Legguards>_
-Reach 500 Blacksmithing |skill Blacksmithing,500 |goto Orgrimmar/0 76.49,34.50
+Reach 500 Blacksmithing |skill Blacksmithing,500 |goto Orgrimmar/1 76.49,34.50
 step
 talk Saru Steelfury##3355
-learn Hardened Obsidium Breastplate##76261 |goto Orgrimmar/0 76.49,34.50
+learn Hardened Obsidium Breastplate##76261 |goto Orgrimmar/1 76.49,34.50
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants straight; dist 30
@@ -4944,10 +4944,10 @@ collect 60 Elementium Bar##52186 |or
 step
 Open Your Blacksmithing Crafting Panel:
 _<Create 10 Hardened Obsidium Breastplate>_
-Reach 510 Blacksmithing |skill Blacksmithing,510 |goto Orgrimmar/0 76.49,34.50
+Reach 510 Blacksmithing |skill Blacksmithing,510 |goto Orgrimmar/1 76.49,34.50
 step
 talk Sumi##3356
-buy 1 Plans: Bloodied Pyrium Belt##66119 |goto Orgrimmar/0 82.59,23.95
+buy 1 Plans: Bloodied Pyrium Belt##66119 |goto Orgrimmar/1 82.59,23.95
 |tip This costs 20 Elementium Bars.
 step
 use the Plans: Bloodied Pyrium Belt##66119
@@ -4983,10 +4983,10 @@ collect 100 Volatile Fire##52325 |or
 step
 Open Your Blacksmithing Crafting Panel:
 _<Create 10 Bloodied Pyrium Belt>_
-Reach 520 Blacksmithing |skill Blacksmithing,520 |goto Orgrimmar/0 76.49,34.50
+Reach 520 Blacksmithing |skill Blacksmithing,520 |goto Orgrimmar/1 76.49,34.50
 step
 talk Sumi##3356
-buy 1 Plans: Bloodied Pyrium Boots##66120 |goto Orgrimmar/0 82.59,23.95
+buy 1 Plans: Bloodied Pyrium Boots##66120 |goto Orgrimmar/1 82.59,23.95
 |tip This costs 2 Hardened Elementium Bars.
 step
 use the Plans: Bloodied Pyrium Boots##66120
@@ -5022,7 +5022,7 @@ collect 50 Volatile Fire##52325 |or
 step
 Open Your Blacksmithing Crafting Panel:
 _<Create 5 Bloodied Pyrium Boots>_
-Reach 525 Blacksmithing |skill Blacksmithing,525 |goto Orgrimmar/0 76.49,34.50
+Reach 525 Blacksmithing |skill Blacksmithing,525 |goto Orgrimmar/1 76.49,34.50
 step
 Reach Level 80 |ding 80
 |tip You must be at least level 80 to train Zen Master professions.
@@ -5048,11 +5048,11 @@ collect 1 Spirit of Harmony##76061 |or |usebank
 step
 label "Begin_Profession_Leveling_Pandaria"
 talk Saru Steelfury##3355
-Train Zen Master Blacksmithing |skillmax Blacksmithing,600 |goto Orgrimmar/0 76.49,34.50
+Train Zen Master Blacksmithing |skillmax Blacksmithing,600 |goto Orgrimmar/1 76.49,34.50
 |tip You must be at least level 80.
 step
 talk Saru Steelfury##3355
-Train Ghostly Skeleton Key |learn Ghostly Skeleton Key##122633 |goto Orgrimmar/0 76.49,34.50
+Train Ghostly Skeleton Key |learn Ghostly Skeleton Key##122633 |goto Orgrimmar/1 76.49,34.50
 '|complete skill("Blacksmithing") >= 525 |or
 step
 collect 45 Ghost Iron Bar##72096 |or
@@ -5060,12 +5060,12 @@ collect 45 Ghost Iron Bar##72096 |or
 |loadguide "Profession Guides\\Mining\\Farming Guides\\Ghost Iron"
 '|complete skill("Blacksmithing") >= 525 |or
 step
-create 45 Ghostly Skeleton Key##122633,Blacksmithing,500 |goto Orgrimmar/0 76.49,34.50
+create 45 Ghostly Skeleton Key##122633,Blacksmithing,500 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 '|complete skill("Blacksmithing") >= 525 |or
 step
 talk Saru Steelfury##3355
-Train Spiritguard Belt |learn Spiritguard Belt##122575 |goto Orgrimmar/0 76.49,34.50
+Train Spiritguard Belt |learn Spiritguard Belt##122575 |goto Orgrimmar/1 76.49,34.50
 '|complete skill("Blacksmithing") >= 540 |or
 step
 collect 35 Ghost Iron Bar##72096 |or
@@ -5073,12 +5073,12 @@ collect 35 Ghost Iron Bar##72096 |or
 |loadguide "Profession Guides\\Mining\\Farming Guides\\Ghost Iron"
 '|complete skill("Blacksmithing") >= 540 |or
 step
-create 5 Spiritguard Belt##122575,Blacksmithing,525 |goto Orgrimmar/0 76.49,34.50
+create 5 Spiritguard Belt##122575,Blacksmithing,525 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 '|complete skill("Blacksmithing") >= 540 |or
 step
 talk Saru Steelfury##3355
-Train Ghost-Forged Shoulders |learn Ghost-Forged Shoulders##122577 |goto Orgrimmar/0 76.49,34.50
+Train Ghost-Forged Shoulders |learn Ghost-Forged Shoulders##122577 |goto Orgrimmar/1 76.49,34.50
 '|complete skill("Blacksmithing") >= 544 |or
 step
 collect 18 Ghost Iron Bar##72096 |or
@@ -5086,12 +5086,12 @@ collect 18 Ghost Iron Bar##72096 |or
 |loadguide "Profession Guides\\Mining\\Farming Guides\\Ghost Iron"
 '|complete skill("Blacksmithing") >= 544 |or
 step
-create 2 Ghost-Forged Shoulders##122577,Blacksmithing,540 |goto Orgrimmar/0 76.49,34.50
+create 2 Ghost-Forged Shoulders##122577,Blacksmithing,540 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 '|complete skill("Blacksmithing") >= 544 |or
 step
 talk Saru Steelfury##3355
-Train Spiritguard Shield |learn Spiritguard Shield##122636 |goto Orgrimmar/0 76.49,34.50
+Train Spiritguard Shield |learn Spiritguard Shield##122636 |goto Orgrimmar/1 76.49,34.50
 '|complete skill("Blacksmithing") >= 559 |or
 step
 collect 27 Ghost Iron Bar##72096 |or
@@ -5099,12 +5099,12 @@ collect 27 Ghost Iron Bar##72096 |or
 |loadguide "Profession Guides\\Mining\\Farming Guides\\Ghost Iron"
 '|complete skill("Blacksmithing") >= 559 |or
 step
-create 3 Spiritguard Shield##122636,Blacksmithing,544 |goto Orgrimmar/0 76.49,34.50
+create 3 Spiritguard Shield##122636,Blacksmithing,544 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 '|complete skill("Blacksmithing") >= 559 |or
 step
 talk Saru Steelfury##3355
-Train Lightsteel Breastplate |learn Lightsteel Breastplate##122586 |goto Orgrimmar/0 76.49,34.50
+Train Lightsteel Breastplate |learn Lightsteel Breastplate##122586 |goto Orgrimmar/1 76.49,34.50
 '|complete skill("Blacksmithing") >= 569 |or
 step
 collect 24 Ghost Iron Bar##72096 |or
@@ -5112,12 +5112,12 @@ collect 24 Ghost Iron Bar##72096 |or
 |loadguide "Profession Guides\\Mining\\Farming Guides\\Ghost Iron"
 '|complete skill("Blacksmithing") >= 569 |or
 step
-create 2 Lightsteel Breastplate##122586,Blacksmithing,544 |goto Orgrimmar/0 76.49,34.50
+create 2 Lightsteel Breastplate##122586,Blacksmithing,544 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 '|complete skill("Blacksmithing") >= 569 |or
 step
 talk Saru Steelfury##3355
-Train Masterwork Lightsteel Shoulders |learn Masterwork Lightsteel Shoulders##122609 |goto Orgrimmar/0 76.49,34.50
+Train Masterwork Lightsteel Shoulders |learn Masterwork Lightsteel Shoulders##122609 |goto Orgrimmar/1 76.49,34.50
 '|complete skill("Blacksmithing") >= 575 |or
 step
 collect 14 Ghost Iron Bar##72096 |or
@@ -5125,13 +5125,13 @@ collect 14 Ghost Iron Bar##72096 |or
 |loadguide "Profession Guides\\Mining\\Farming Guides\\Ghost Iron"
 '|complete skill("Blacksmithing") >= 575 |or
 step
-create 2 Masterwork Lightsteel Shoulders##122609,Blacksmithing,544 |goto Orgrimmar/0 76.49,34.50
+create 2 Masterwork Lightsteel Shoulders##122609,Blacksmithing,544 |goto Orgrimmar/1 76.49,34.50
 |tip Stand next to an anvil inside the building.
 '|complete skill("Blacksmithing") >= 575 |or
 step
 talk Jorunga Stonehoof##64058
 |tip Inside the building.
-Purchase and Learn Pattern: Contender's Revenant Belt |learn Contender's Revenant Belt##122623 |goto Shrine of Two Moons/0 26.27,45.1
+Purchase and Learn Pattern: Contender's Revenant Belt |learn Contender's Revenant Belt##122623 |goto Shrine of Two Moons/1 26.27,45.1
 |tip You can choose any of the PVP patterns you'd like.
 '|complete skill("Blacksmithing") >= 600 |or'
 step
@@ -5144,7 +5144,7 @@ create 10 Contender's Revenant Belt##122623,Blacksmithing,10 total |or |usebank
 '|complete skill("Blacksmithing") >= 600 |or
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Leveling Guides\\Enchanting (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Enchanting') > 0 end,
 description="This guide will walk you through leveling your Enchanting skill from 1-600.",
@@ -5154,10 +5154,10 @@ Reach Level 5 |ding 5
 |tip You must be at least level 5 to train Apprentice professions.
 |tip Use the leveling guides to accomplish this.
 step
-Enter the building |goto Orgrimmar/0 53.42,36.92 < 7 |walk
+Enter the building |goto Orgrimmar/1 53.42,36.92 < 7 |walk
 talk Godan##3345
 |tip Inside the building.
-Train Apprentice Enchanting |skillmax Enchanting,75 |goto Orgrimmar/0 53.33,49.20
+Train Apprentice Enchanting |skillmax Enchanting,75 |goto Orgrimmar/1 53.33,49.20
 step
 Click Here if You Would Like to Collect All Materials First |confirm |next |or
 |tip This will have you collect all Classic-level materials before beginning.
@@ -5279,9 +5279,9 @@ step
 label "Begin_Profession_Leveling_Classic"
 talk Kithas##3346
 |tip Inside the building.
-buy Copper Rod##6217 |goto Orgrimmar/0 53.33,49.20 |complete skill("Enchanting") >= 25
-buy Strange Dust##10940 |goto Orgrimmar/0 53.33,49.20 |complete skill("Enchanting") >= 25
-buy Lesser Magic Essence##10938 |goto Orgrimmar/0 53.33,49.20 |complete skill("Enchanting") >= 25
+buy Copper Rod##6217 |goto Orgrimmar/1 53.33,49.20 |complete skill("Enchanting") >= 25
+buy Strange Dust##10940 |goto Orgrimmar/1 53.33,49.20 |complete skill("Enchanting") >= 25
+buy Lesser Magic Essence##10938 |goto Orgrimmar/1 53.33,49.20 |complete skill("Enchanting") >= 25
 |tip These are limited supply items that can also be purchased from the auction house.
 step
 create 1 Runed Copper Rod##7421,Enchanting,2 |only if default |or
@@ -5305,11 +5305,11 @@ Reach Level 10 |ding 10
 step
 talk Godan##3345
 |tip Inside the building.
-Train Journeyman Enchanting |skillmax Enchanting,150 |goto Orgrimmar/0 53.33,49.20
+Train Journeyman Enchanting |skillmax Enchanting,150 |goto Orgrimmar/1 53.33,49.20
 step
 talk Godan##3345
 |tip Inside the building.
-Train Enchant Bracer - Minor Stamina |learn Enchant Bracer - Minor Stamina##7457 |goto Orgrimmar/0 53.33,49.20
+Train Enchant Bracer - Minor Stamina |learn Enchant Bracer - Minor Stamina##7457 |goto Orgrimmar/1 53.33,49.20
 step
 cast Disenchant##13262
 collect 25 Strange Dust##10940 |or
@@ -5337,7 +5337,7 @@ create 10 Enchant Bracer - Minor Stamina##7457,Enchanting,110 |only if BloodElf 
 step
 talk Godan##3345
 |tip Inside the building.
-Train Greater Magic Wand |learn Greater Magic Wand##14807 |goto Orgrimmar/0 53.33,49.20
+Train Greater Magic Wand |learn Greater Magic Wand##14807 |goto Orgrimmar/1 53.33,49.20
 step
 cast Disenchant##13262
 collect 10 Greater Magic Essence##10939 |or
@@ -5346,10 +5346,10 @@ collect 10 Greater Magic Essence##10939 |or
 |complete skill("Enchanting") >= 110 |only if default |or
 |complete skill("Enchanting") >= 120 |only if BloodElf |or
 step
-Enter the building |goto Orgrimmar/0 53.42,36.92 < 7 |walk
+Enter the building |goto Orgrimmar/1 53.42,36.92 < 7 |walk
 talk Kithas##3346
 |tip Inside the building.
-buy 10 Simple Wood##4470 |goto Orgrimmar/0 53.87,38.02 |or
+buy 10 Simple Wood##4470 |goto Orgrimmar/1 53.87,38.02 |or
 |complete skill("Enchanting") >= 110 |only if default |or
 |complete skill("Enchanting") >= 120 |only if BloodElf |or
 step
@@ -5386,11 +5386,11 @@ Reach Level 20 |ding 20
 step
 talk Godan##3345
 |tip Inside the building.
-Train Expert Enchanting |skillmax Enchanting,225 |goto Orgrimmar/0 53.33,49.20
+Train Expert Enchanting |skillmax Enchanting,225 |goto Orgrimmar/1 53.33,49.20
 step
 talk Godan##3345
 |tip Inside the building.
-Train Enchant Bracer - Lesser Stamina |learn Enchant Bracer - Lesser Stamina##13501 |goto Orgrimmar/0 53.33,49.20
+Train Enchant Bracer - Lesser Stamina |learn Enchant Bracer - Lesser Stamina##13501 |goto Orgrimmar/1 53.33,49.20
 step
 cast Disenchant##13262
 collect 40 Soul Dust##11083 |or
@@ -5430,7 +5430,7 @@ collect 15 Vision Dust##11137 |or
 step
 talk Godan##3345
 |tip Inside the building.
-Train Enchant Bracer - Strength |learn Enchant Bracer - Strength##13661 |goto Orgrimmar/0 53.33,49.20
+Train Enchant Bracer - Strength |learn Enchant Bracer - Strength##13661 |goto Orgrimmar/1 53.33,49.20
 step
 create 15 Enchant Bracer - Strength##13661,Enchanting,200 |only if default |or
 create 15 Enchant Bracer - Strength##13661,Enchanting,210 |only if BloodElf |or
@@ -5458,7 +5458,7 @@ collect 15 Vision Dust##11137 |or
 step
 talk Godan##3345
 |tip Inside the building.
-Train Enchant Cloak - Greater Defense |learn Enchant Cloak - Greater Defense##13746 |goto Orgrimmar/0 53.33,49.20
+Train Enchant Cloak - Greater Defense |learn Enchant Cloak - Greater Defense##13746 |goto Orgrimmar/1 53.33,49.20
 step
 create 5 Enchant Cloak - Greater Defense##13746,Enchanting,225 |only if default |or
 create 5 Enchant Cloak - Greater Defense##13746,Enchanting,235 |only if BloodElf |or
@@ -5471,11 +5471,11 @@ Reach Level 35 |ding 35
 step
 talk Godan##3345
 |tip Inside the building.
-Train Artisan Enchanting |skillmax Enchanting,300 |goto Orgrimmar/0 53.33,49.20
+Train Artisan Enchanting |skillmax Enchanting,300 |goto Orgrimmar/1 53.33,49.20
 step
 talk Godan##3345
 |tip Inside the building.
-Train Enchant Gloves - Agility |learn Enchant Gloves - Agility##13815 |goto Orgrimmar/0 53.33,49.20
+Train Enchant Gloves - Agility |learn Enchant Gloves - Agility##13815 |goto Orgrimmar/1 53.33,49.20
 stickystart "Collect_Vision_Dust_230"
 step
 cast Disenchant##13262
@@ -5504,7 +5504,7 @@ collect 25 Vision Dust##11137 |or
 step
 talk Godan##3345
 |tip Inside the building.
-Train Enchant Boots - Stamina |learn Enchant Boots - Stamina##13836 |goto Orgrimmar/0 53.33,49.20
+Train Enchant Boots - Stamina |learn Enchant Boots - Stamina##13836 |goto Orgrimmar/1 53.33,49.20
 step
 create 5 Enchant Boots - Stamina##13836,Enchanting,235 |only if default |or
 create 5 Enchant Boots - Stamina##13836,Enchanting,245 |only if BloodElf |or
@@ -5519,7 +5519,7 @@ collect 150 Vision Dust##11137 |or
 step
 talk Godan##3345
 |tip Inside the building.
-Train Enchant Chest - Superior Health |learn Enchant Chest - Superior Health##13858 |goto Orgrimmar/0 53.33,49.20
+Train Enchant Chest - Superior Health |learn Enchant Chest - Superior Health##13858 |goto Orgrimmar/1 53.33,49.20
 step
 create 25 Enchant Chest - Superior Health##13858,Enchanting,250 |only if default |or
 create 25 Enchant Chest - Superior Health##13858,Enchanting,260 |only if BloodElf |or
@@ -6216,12 +6216,12 @@ step
 label "Begin_Enchanting_Leveling_Cataclysm"
 talk Godan##3345
 |tip Inside the building.
-Train Illustrious Grand Master Enchanting |skillmax Enchanting,525 |goto Orgrimmar/0 53.33,49.20
+Train Illustrious Grand Master Enchanting |skillmax Enchanting,525 |goto Orgrimmar/1 53.33,49.20
 |tip You must be at least level 75.
 step
 talk Kithas##3346
 |tip Inside the building.
-buy 75 Enchanting Vellum##38682 |goto Orgrimmar/0 53.33,49.20
+buy 75 Enchanting Vellum##38682 |goto Orgrimmar/1 53.33,49.20
 |only if skill("Enchanting") < 525
 step
 collect 10 Hypnotic Dust##52555
@@ -6237,7 +6237,7 @@ Reach 455 Enchanting |skill Enchanting,455
 step
 talk Godan##3345
 |tip Inside the building.
-learn Enchant Cloak: Lesser Power##74192 |goto Orgrimmar/0 53.33,49.20
+learn Enchant Cloak: Lesser Power##74192 |goto Orgrimmar/1 53.33,49.20
 step
 collect 15 Hypnotic Dust##52555
 |tip You can get these by Disenchanting Uncommon (green) items from any Cataclysm zone.
@@ -6252,7 +6252,7 @@ Reach 460 Enchanting |skill Enchanting,460
 step
 talk Godan##3345
 |tip Inside the building.
-learn Enchant Gloves: Haste##74198 |goto Orgrimmar/0 53.33,49.20
+learn Enchant Gloves: Haste##74198 |goto Orgrimmar/1 53.33,49.20
 stickystart "Hypnotic_Dust_465"
 step
 collect 5 Lesser Celestial Essence##52718
@@ -6273,7 +6273,7 @@ Reach 465 Enchanting |skill Enchanting,465
 step
 talk Godan##3345
 |tip Inside the building.
-learn Enchant Cloak: Intellect##74202 |goto Orgrimmar/0 53.33,49.20
+learn Enchant Cloak: Intellect##74202 |goto Orgrimmar/1 53.33,49.20
 step
 collect 60 Hypnotic Dust##52555
 |tip You can get these by Disenchanting Uncommon (green) items from any Cataclysm zone.
@@ -6287,7 +6287,7 @@ Reach 475 Enchanting |skill Enchanting,475
 step
 talk Godan##3345
 |tip Inside the building.
-learn Enchant Gloves: Exceptional Strength##74212 |goto Orgrimmar/0 53.33,49.20
+learn Enchant Gloves: Exceptional Strength##74212 |goto Orgrimmar/1 53.33,49.20
 stickystart "Hypnotic_Dust_480"
 step
 collect 10 Greater Celestial Essence##52719
@@ -6309,7 +6309,7 @@ Reach 480 Enchanting |skill Enchanting,480
 step
 talk Godan##3345
 |tip Inside the building.
-learn Enchant Boots: Major Agility##74213 |goto Orgrimmar/0 53.33,49.20
+learn Enchant Boots: Major Agility##74213 |goto Orgrimmar/1 53.33,49.20
 stickystart "Hypnotic_Dust_485"
 step
 collect 10 Greater Celestial Essence##52719
@@ -6331,7 +6331,7 @@ Reach 485 Enchanting |skill Enchanting,485
 step
 talk Godan##3345
 |tip Inside the building.
-learn Enchant Gloves: Greater Expertise##74220 |goto Orgrimmar/0 53.33,49.20
+learn Enchant Gloves: Greater Expertise##74220 |goto Orgrimmar/1 53.33,49.20
 stickystart "Hypnotic_Dust_490"
 step
 collect 10 Greater Celestial Essence##52719
@@ -6353,7 +6353,7 @@ Reach 490 Enchanting |skill Enchanting,490
 step
 talk Godan##3345
 |tip Inside the building.
-learn Enchant Shield: Mastery##74226 |goto Orgrimmar/0 53.33,49.20
+learn Enchant Shield: Mastery##74226 |goto Orgrimmar/1 53.33,49.20
 step
 collect 60 Hypnotic Dust##52555
 |tip You can get these by Disenchanting Uncommon (green) items from any Cataclysm zone.
@@ -6367,7 +6367,7 @@ Reach 495 Enchanting |skill Enchanting,495
 step
 talk Godan##3345
 |tip Inside the building.
-learn Enchant Bracer: Precision##74232 |goto Orgrimmar/0 53.33,49.20
+learn Enchant Bracer: Precision##74232 |goto Orgrimmar/1 53.33,49.20
 stickystart "Hypnotic_Dust_505"
 step
 collect 10 Greater Celestial Essence##52719
@@ -6389,7 +6389,7 @@ Reach 505 Enchanting |skill Enchanting,505
 step
 talk Godan##3345
 |tip Inside the building.
-learn Enchant Shield: Superior Intellect##74235 |goto Orgrimmar/0 53.33,49.20
+learn Enchant Shield: Superior Intellect##74235 |goto Orgrimmar/1 53.33,49.20
 stickystart "Hypnotic_Dust_510"
 step
 collect 20 Greater Celestial Essence##52719
@@ -6411,7 +6411,7 @@ Reach 510 Enchanting |skill Enchanting,510
 step
 talk Godan##3345
 |tip Inside the building.
-learn Enchant Bracers: Exceptional Spirit##74237 |goto Orgrimmar/0 53.33,49.20
+learn Enchant Bracers: Exceptional Spirit##74237 |goto Orgrimmar/1 53.33,49.20
 stickystart "Hypnotic_Dust_515"
 step
 collect 15 Greater Celestial Essence##52719
@@ -6433,7 +6433,7 @@ Reach 515 Enchanting |skill Enchanting,515
 step
 talk Godan##3345
 |tip Inside the building.
-learn Enchant Boots: Mastery##74238 |goto Orgrimmar/0 53.33,49.20
+learn Enchant Boots: Mastery##74238 |goto Orgrimmar/1 53.33,49.20
 stickystart "Hypnotic_Dust_525"
 step
 collect 51 Greater Celestial Essence##52719
@@ -6476,14 +6476,14 @@ collect 30 Mysterious Essence##74250 |or
 |complete skill("Enchanting") >= 600 |or
 step
 label "Begin_Profession_Leveling_Pandaria"
-Enter the building |goto Orgrimmar/0 53.42,36.92 < 7 |walk
+Enter the building |goto Orgrimmar/1 53.42,36.92 < 7 |walk
 talk Godan##3345
 |tip Inside the building.
-Train Zen Master Enchanting |skillmax Enchanting,600 |goto Orgrimmar/0 53.42,36.92
+Train Zen Master Enchanting |skillmax Enchanting,600 |goto Orgrimmar/1 53.42,36.92
 step
 talk Godan##3345
 |tip Inside the building.
-Train Enchant Bracer - Mastery |learn Enchant Bracer - Mastery##141868 |goto Orgrimmar/0 53.42,36.92
+Train Enchant Bracer - Mastery |learn Enchant Bracer - Mastery##141868 |goto Orgrimmar/1 53.42,36.92
 step
 collect 52 Spirit Dust##74249 |or
 |tip Create it with Disenchanting or purchase it from the auction house.
@@ -6494,7 +6494,7 @@ create 13 Enchant Bracer - Mastery##141868,Enchanting,525
 step
 talk Godan##3345
 |tip Inside the building.
-Train Enchant Gloves - Greater Haste |learn Enchant Gloves - Greater Haste##104416 |goto Orgrimmar/0 53.42,36.92
+Train Enchant Gloves - Greater Haste |learn Enchant Gloves - Greater Haste##104416 |goto Orgrimmar/1 53.42,36.92
 step
 collect 48 Spirit Dust##74249 |or
 |tip Create it with Disenchanting or purchase it from the auction house.
@@ -6505,7 +6505,7 @@ create 12 Enchant Gloves - Greater Haste##104416,Enchanting,550
 step
 talk Godan##3345
 |tip Inside the building.
-Train Enchant Ring - Greater Strength |learn Enchant Ring - Greater Strength##103465 |goto Orgrimmar/0 53.42,36.92
+Train Enchant Ring - Greater Strength |learn Enchant Ring - Greater Strength##103465 |goto Orgrimmar/1 53.42,36.92
 step
 collect 4 Spirit Dust##74249 |or
 |tip Create it with Disenchanting or purchase it from the auction house.
@@ -6516,7 +6516,7 @@ create 2 Enchant Ring - Greater Strength##103465,Enchanting,556
 step
 talk Godan##3345
 |tip Inside the building.
-Train Enchant Gloves - Superior Expertise |learn Enchant Gloves - Superior Expertise##104417 |goto Orgrimmar/0 53.42,36.92
+Train Enchant Gloves - Superior Expertise |learn Enchant Gloves - Superior Expertise##104417 |goto Orgrimmar/1 53.42,36.92
 step
 collect 12 Mysterious Essence##74250 |or
 |tip Create it with Enchanting or purchase it from the auction house. |notinsticky
@@ -6528,7 +6528,7 @@ create 6 Enchant Gloves - Superior Expertise##104417,Enchanting,575
 step
 talk Godan##3345
 |tip Inside the building.
-Train Enchant Chest - Glorious Stats |learn Enchant Chest - Glorious Stats##104395 |goto Orgrimmar/0 53.42,36.92
+Train Enchant Chest - Glorious Stats |learn Enchant Chest - Glorious Stats##104395 |goto Orgrimmar/1 53.42,36.92
 step
 collect 18 Mysterious Essence##74250 |or
 |tip Create it with Enchanting or purchase it from the auction house. |notinsticky
@@ -6543,7 +6543,7 @@ create 6 Enchant Chest - Glorious Stats##104395,Enchanting,600
 Reach 600 Enchanting |skill Enchanting,600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Engineering\\Leveling Guides\\Engineering (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill("Engineering") > 0 end,
 description="This guide will walk you through leveling your Engineering skill from 1-600.",
@@ -6553,10 +6553,10 @@ Reach Level 5 |ding 5
 |tip You must be at least level 5 to train Apprentice professions.
 |tip Use the leveling guides to accomplish this.
 step
-Enter the building |goto Orgrimmar/0 75.19,24.59 < 5 |walk
+Enter the building |goto Orgrimmar/1 75.19,24.59 < 5 |walk
 talk Roxxik##11017
 |tip Inside the building.
-Train Apprentice Engineering |skillmax Engineering,75 |goto Orgrimmar/0 56.81,56.47
+Train Apprentice Engineering |skillmax Engineering,75 |goto Orgrimmar/1 56.81,56.47
 step
 Click Here if You Would Like to Collect All Materials First |confirm |next |or
 _Or_
@@ -6910,7 +6910,7 @@ step
 label "Begin_Profession_Leveling_Classic"
 talk Sovik##3413
 |tip Inside the building.
-buy Blacksmith Hammer##5956 |goto Orgrimmar/0 75.49,25.36 |or
+buy Blacksmith Hammer##5956 |goto Orgrimmar/1 75.49,25.36 |or
 |tip Save this, you will need it for future steps.
 '|complete skill("Engineering") >= 300 |or
 stickystart "Collect_Copper_Bars_50"
@@ -6961,44 +6961,44 @@ create 1 Rough Blasting Powder##3918,Engineering,30
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Handful of Copper Bolts |learn Handful of Copper Bolts##3922 |goto Orgrimmar/0 56.81,56.47
+Train Handful of Copper Bolts |learn Handful of Copper Bolts##3922 |goto Orgrimmar/1 56.81,56.47
 step
 collect 30 Copper Bar##2840 |or
 |tip You collected these in a previous step.
 '|complete skill("Engineering") >= 50 |or
 step
-create 30 Handful of Copper Bolts##3922,Engineering,30 total |goto Orgrimmar/0 56.50,56.53 |or
+create 30 Handful of Copper Bolts##3922,Engineering,30 total |goto Orgrimmar/1 56.50,56.53 |or
 |tip Stand next to an anvil.
 |tip Save these, you will need them for future steps.
 '|complete skill("Engineering") >= 75 |or
 step
-create 30 Handful of Copper Bolts##3922,Engineering,50 |goto Orgrimmar/0 56.50,56.53
+create 30 Handful of Copper Bolts##3922,Engineering,50 |goto Orgrimmar/1 56.50,56.53
 |tip Stand next to an anvil.
 |tip Save at least 30 of these; you will need them for future steps.
 |tip You may need to make a few more of these.
 |tip Each additional Handful of Copper Bolts requires 1 copper bar.
 step
-Enter the building |goto Orgrimmar/0 75.19,24.59 < 5 |walk
+Enter the building |goto Orgrimmar/1 75.19,24.59 < 5 |walk
 talk Roxxik##11017
 |tip Inside the building.
-Train Arclight Spanner |learn Arclight Spanner##7430 |goto Orgrimmar/0 56.81,56.47
+Train Arclight Spanner |learn Arclight Spanner##7430 |goto Orgrimmar/1 56.81,56.47
 step
 collect 6 Copper Bar##2840 |or
 |tip You collected these in a previous step.
 '|complete skill("Engineering") >= 51 or itemcount(6219) < 1 |or
 step
-create 1 Arclight Spanner##7430,Engineering,1 total |goto Orgrimmar/0 56.50,56.53
+create 1 Arclight Spanner##7430,Engineering,1 total |goto Orgrimmar/1 56.50,56.53
 |tip Stand next to an anvil.
 |tip Save this, you will need it for future steps.
 step
-create 1 Arclight Spanner##7430,Engineering,51 |goto Orgrimmar/0 56.50,56.53
+create 1 Arclight Spanner##7430,Engineering,51 |goto Orgrimmar/1 56.50,56.53
 |tip Stand next to an anvil.
 |tip Save this, you will need it for future steps.
 step
-Enter the building |goto Orgrimmar/0 75.19,24.59 < 5 |walk
+Enter the building |goto Orgrimmar/1 75.19,24.59 < 5 |walk
 talk Roxxik##11017
 |tip Inside the building.
-Train Rough Copper Bomb |learn Rough Copper Bomb##3923 |goto Orgrimmar/0 56.81,56.47
+Train Rough Copper Bomb |learn Rough Copper Bomb##3923 |goto Orgrimmar/1 56.81,56.47
 stickystart "Collect_Handful_of_Copper_Bolts_75"
 stickystart "Collect_Copper_Bar_75"
 stickystart "Collect_Linen_Cloth_75"
@@ -7024,7 +7024,7 @@ collect 50 Linen Cloth##2589 |or
 |tip You may need more or less of these.
 '|complete skill("Engineering") >= 75 |or
 step
-create 30 Rough Copper Bomb##3923,Engineering,75 |goto Orgrimmar/0 56.50,56.53
+create 30 Rough Copper Bomb##3923,Engineering,75 |goto Orgrimmar/1 56.50,56.53
 |tip Stand next to an anvil.
 |tip You may need to create more or less of these.
 |tip Each additional Rough Copper Bomb requires 2 Rough Blasting Powder, 1 Handful of Copper Bolts, 1 Copper Bar, and 1 Linen Cloth.
@@ -7033,14 +7033,14 @@ Reach Level 10 |ding 10
 |tip You must be at least level 10 to train Journeyman professions.
 |tip Use the leveling guides to accomplish this.
 step
-Enter the building |goto Orgrimmar/0 75.19,24.59 < 5 |walk
+Enter the building |goto Orgrimmar/1 75.19,24.59 < 5 |walk
 talk Roxxik##11017
 |tip Inside the building.
-Train Journeyman Engineering |skillmax Engineering,150 |goto Orgrimmar/0 56.81,56.47
+Train Journeyman Engineering |skillmax Engineering,150 |goto Orgrimmar/1 56.81,56.47
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Coarse Blasting Powder |learn Coarse Blasting Powder##3929 |goto Orgrimmar/0 56.81,56.47
+Train Coarse Blasting Powder |learn Coarse Blasting Powder##3929 |goto Orgrimmar/1 56.81,56.47
 stickystart "Collect_Silver_Bars_105"
 stickystart "Collect_Moss_Agate_135"
 step
@@ -7127,10 +7127,10 @@ step
 create 1 Coarse Blasting Powder##3929,Engineering,95
 |tip Save 60 of these, they will be used in a later schematic.
 step
-Enter the building |goto Orgrimmar/0 75.19,24.59 < 5 |walk
+Enter the building |goto Orgrimmar/1 75.19,24.59 < 5 |walk
 talk Roxxik##11017
 |tip Inside the building.
-Train Coarse Dynamite |learn Coarse Dynamite##3931 |goto Orgrimmar/0 56.81,56.47
+Train Coarse Dynamite |learn Coarse Dynamite##3931 |goto Orgrimmar/1 56.81,56.47
 stickystart "Collect_Linen_Cloth_100"
 step
 collect 60 Coarse Blasting Powder##4364 |or
@@ -7146,10 +7146,10 @@ create 20 Coarse Dynamite##3931,Engineering,100
 |tip You may need to create more or less of these.
 |tip Each additional Coarse Dynamite requires 3 Coarse Blasting Powder and 1 Linen Cloth.
 step
-Enter the building |goto Orgrimmar/0 75.19,24.59 < 5 |walk
+Enter the building |goto Orgrimmar/1 75.19,24.59 < 5 |walk
 talk Roxxik##11017
 |tip Inside the building.
-Train Silver Contact |learn Silver Contact##3973 |goto Orgrimmar/0 56.81,56.47
+Train Silver Contact |learn Silver Contact##3973 |goto Orgrimmar/1 56.81,56.47
 step
 collect 5 Silver Bar##2842 |or
 |tip You collected these in a previous step.
@@ -7159,7 +7159,7 @@ create 5 Silver Contact##3973,Engineering,105
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Bronze Tube |learn Bronze Tube##3938 |goto Orgrimmar/0 56.81,56.47
+Train Bronze Tube |learn Bronze Tube##3938 |goto Orgrimmar/1 56.81,56.47
 step
 label "Collect_Bronze_Bars_125"
 collect 120 Bronze Bar##2841 |or
@@ -7172,15 +7172,15 @@ collect 120 Bronze Bar##2841 |or
 step
 talk Sovik##3413
 |tip Inside the building.
-buy 25 Weak Flux##2880 |goto Orgrimmar/0 75.49,25.36 |or
+buy 25 Weak Flux##2880 |goto Orgrimmar/1 75.49,25.36 |or
 '|complete skill("Engineering") >= 125 |or
 step
-create 10 Bronze Tube##3938,Engineering,10 total |goto Orgrimmar/0 56.50,56.53 |or
+create 10 Bronze Tube##3938,Engineering,10 total |goto Orgrimmar/1 56.50,56.53 |or
 |tip Stand next to an anvil.
 |tip Save these, you will need them for future steps.
 '|complete skill("Engineering") >= 135 |or
 step
-create 15 Bronze Tube##3938,Engineering,125 |goto Orgrimmar/0 56.50,56.53
+create 15 Bronze Tube##3938,Engineering,125 |goto Orgrimmar/1 56.50,56.53
 |tip Stand next to an anvil.
 |tip Save at least 10 of these; you will need them for future steps.
 |tip You may need to create more or less of these.
@@ -7188,7 +7188,7 @@ create 15 Bronze Tube##3938,Engineering,125 |goto Orgrimmar/0 56.50,56.53
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Standard Scope |learn Standard Scope##3978 |goto Orgrimmar/0 56.81,56.47
+Train Standard Scope |learn Standard Scope##3978 |goto Orgrimmar/1 56.81,56.47
 stickystart "Collect_Bronze_Tube_135"
 step
 collect 10 Moss Agate##1206 |or
@@ -7208,15 +7208,15 @@ Reach Level 20 |ding 20
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Expert Engineering |skillmax Engineering,225 |goto Orgrimmar/0 56.81,56.47
+Train Expert Engineering |skillmax Engineering,225 |goto Orgrimmar/1 56.81,56.47
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Heavy Blasting Powder |learn Heavy Blasting Powder##3945 |goto Orgrimmar/0 56.81,56.47
+Train Heavy Blasting Powder |learn Heavy Blasting Powder##3945 |goto Orgrimmar/1 56.81,56.47
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Whirring Bronze Gizmo |learn Whirring Bronze Gizmo##3942 |goto Orgrimmar/0 56.81,56.47
+Train Whirring Bronze Gizmo |learn Whirring Bronze Gizmo##3942 |goto Orgrimmar/1 56.81,56.47
 stickystart "Collect_Steel_Bars_300"
 step
 map Feralas/0
@@ -7320,7 +7320,7 @@ create 15 Whirring Bronze Gizmo##3942,Engineering,150
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Bronze Framework |learn Bronze Framework##3953 |goto Orgrimmar/0 56.81,56.47
+Train Bronze Framework |learn Bronze Framework##3953 |goto Orgrimmar/1 56.81,56.47
 stickystart "Collect_Medium_Leather_Framework"
 stickystart "Collect_Wool_Cloth_Framework"
 step
@@ -7351,7 +7351,7 @@ create 1 Bronze Framework##3953,Engineering,160
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Explosive Sheep |learn Explosive Sheep##3955 |goto Orgrimmar/0 56.81,56.47
+Train Explosive Sheep |learn Explosive Sheep##3955 |goto Orgrimmar/1 56.81,56.47
 stickystart "Collect_Whirring_Bronze_Gizmo_175"
 stickystart "Collect_Bronze_Framework_175"
 stickystart "Collect_Wool_Cloth_175"
@@ -7375,26 +7375,26 @@ collect 30 Wool Cloth##2592 |or
 |tip You collected these in a previous step.
 '|complete skill("Engineering") >= 175 |or
 step
-create 15 Explosive Sheep##3955,Engineering,175 |goto Orgrimmar/0 56.50,56.53
+create 15 Explosive Sheep##3955,Engineering,175 |goto Orgrimmar/1 56.50,56.53
 |tip Stand next to an anvil.
 |tip Save 5 of these if you intend to specialize in Goblin Engineering later.
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Gyromatic Micro-Adjustor |learn Gyromatic Micro-Adjustor##12590 |goto Orgrimmar/0 56.81,56.47
+Train Gyromatic Micro-Adjustor |learn Gyromatic Micro-Adjustor##12590 |goto Orgrimmar/1 56.81,56.47
 step
 collect 4 Steel Bar##3859 |or
 |tip You collected these in a previous step.
 '|complete skill("Engineering") >= 300 or itemcount(10498) >= 1 |or
 step
-create 1 Gyromatic Micro-Adjustor##12590,Engineering,1 total |goto Orgrimmar/0 56.50,56.53 |or
+create 1 Gyromatic Micro-Adjustor##12590,Engineering,1 total |goto Orgrimmar/1 56.50,56.53 |or
 |tip Stand next to an anvil.
 |tip Save this, you will need it for future steps.
 '|complete skill("Engineering") >= 300 |or
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Solid Blasting Powder |learn Solid Blasting Powder##12585 |goto Orgrimmar/0 56.81,56.47
+Train Solid Blasting Powder |learn Solid Blasting Powder##12585 |goto Orgrimmar/1 56.81,56.47
 stickystart "Collect_Mithril_Bar_200"
 step
 label "Collect_Solid_Stone_195"
@@ -7451,13 +7451,13 @@ create 1 Solid Blasting Powder##12585,Engineering,195
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Mithril Tube |learn Mithril Tube##12589 |goto Orgrimmar/0 56.81,56.47
+Train Mithril Tube |learn Mithril Tube##12589 |goto Orgrimmar/1 56.81,56.47
 step
 collect 21 Mithril Bar##3860 |or
 |tip You collected these in a previous step.
 '|complete skill("Engineering") >= 200 |or
 step
-create 7 Mithril Tube##12589,Engineering,200 |goto Orgrimmar/0 56.50,56.53
+create 7 Mithril Tube##12589,Engineering,200 |goto Orgrimmar/1 56.50,56.53
 |tip Stand next to an anvil.
 |tip You  may need to create more or less of these.
 |tip Each additional Mithril Tube requires 3 Mithril Bars.
@@ -7465,7 +7465,7 @@ create 7 Mithril Tube##12589,Engineering,200 |goto Orgrimmar/0 56.50,56.53
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Unstable Trigger |learn Unstable Trigger##12591 |goto Orgrimmar/0 56.81,56.47
+Train Unstable Trigger |learn Unstable Trigger##12591 |goto Orgrimmar/1 56.81,56.47
 stickystart "Collect_Mithril_Bar_216"
 stickystart "Collect_Mageweave_Cloth_216"
 step
@@ -7484,12 +7484,12 @@ collect 20 Mageweave Cloth##4338 |or |goto Tanaris/0 40.50,55.50
 |tip Farm them from level 38-50 humanoid mobs or purchase them from the auction house.
 '|complete skill("Engineering") >= 216 |or
 step
-create 20 Unstable Trigger##12591,Engineering,20 total |goto Orgrimmar/0 56.50,56.53 |or
+create 20 Unstable Trigger##12591,Engineering,20 total |goto Orgrimmar/1 56.50,56.53 |or
 |tip Stand next to an anvil.
 |tip Save these, you will need them for future steps.
 '|complete skill("Engineering") >= 250 |or
 step
-create 1 Unstable Trigger##12591,Engineering,216 |goto Orgrimmar/0 56.50,56.53
+create 1 Unstable Trigger##12591,Engineering,216 |goto Orgrimmar/1 56.50,56.53
 |tip Stand next to an anvil.
 |tip Save at least 20 of these; you will need them for future steps.
 |tip You may need to create more or less of these.
@@ -7501,22 +7501,22 @@ Reach Level 35 |ding 35
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Artisan Engineering |skillmax Engineering,300 |goto Orgrimmar/0 56.81,56.47
+Train Artisan Engineering |skillmax Engineering,300 |goto Orgrimmar/1 56.81,56.47
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Mithril Casing |learn Mithril Casing##12599 |goto Orgrimmar/0 56.81,56.47
+Train Mithril Casing |learn Mithril Casing##12599 |goto Orgrimmar/1 56.81,56.47
 step
 collect 120 Mithril Bar##3860 |or
 |tip You collected these in a previous step.
 '|complete skill("Engineering") >= 238 |or
 step
-create 40 Mithril Casing##12599,Engineering,40 total |goto Orgrimmar/0 56.50,56.53 |or
+create 40 Mithril Casing##12599,Engineering,40 total |goto Orgrimmar/1 56.50,56.53 |or
 |tip Stand next to an anvil.
 |tip Save these, you will need them for future steps.
 '|complete skill("Engineering") >= 250 |or
 step
-create 1 Mithril Casing##12599,Engineering,238 |goto Orgrimmar/0 56.50,56.53
+create 1 Mithril Casing##12599,Engineering,238 |goto Orgrimmar/1 56.50,56.53
 |tip Stand next to an anvil.
 |tip Save at least 40 of these; you will need them for future steps.
 |tip You may need to create more or less of these.
@@ -7524,7 +7524,7 @@ create 1 Mithril Casing##12599,Engineering,238 |goto Orgrimmar/0 56.50,56.53
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Hi-Explosive Bomb |learn Hi-Explosive Bomb##12619 |goto Orgrimmar/0 56.81,56.47
+Train Hi-Explosive Bomb |learn Hi-Explosive Bomb##12619 |goto Orgrimmar/1 56.81,56.47
 stickystart "Collect_Unstable_Trigger_250"
 stickystart "Collect_Mithril_Casing_250"
 step
@@ -7542,14 +7542,14 @@ collect 40 Mithril Casing##10561 |or
 |tip You created these in a previous step.
 '|complete skill("Engineering") >= 250 |or
 step
-create 20 Hi-Explosive Bomb##12619,Engineering,250 |goto Orgrimmar/0 56.50,56.53
+create 20 Hi-Explosive Bomb##12619,Engineering,250 |goto Orgrimmar/1 56.50,56.53
 |tip Stand next to an anvil.
 |tip You may need to create more or less of these.
 |tip Each additional Hi-Explosive Bomb requires 2 Solid Blasting Powders, 1 Unstable Trigger, and 1 Mithril Casing.
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Dense Blasting Powder |learn Dense Blasting Powder##19788 |goto Orgrimmar/0 56.81,56.47
+Train Dense Blasting Powder |learn Dense Blasting Powder##19788 |goto Orgrimmar/1 56.81,56.47
 stickystart "Collect_Thorium_Bar_285"
 step
 map Un'Goro Crater
@@ -7613,7 +7613,7 @@ create 35 Dense Blasting Powder##19788,Engineering,260
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Thorium Widget |learn Thorium Widget##19791 |goto Orgrimmar/0 56.81,56.47
+Train Thorium Widget |learn Thorium Widget##19791 |goto Orgrimmar/1 56.81,56.47
 stickystart "Collect_Runecloth_285"
 step
 collect 105 Thorium Bar##12359 |or
@@ -7627,20 +7627,20 @@ collect 35 Runecloth###14047 |or |goto Burning Steppes 42.17,35.64
 |tip Farm them from level 50+ humanoid mobs or purchase them from the auction house.
 '|complete skill("Engineering") >= 285 |or
 step
-create 35 Thorium Widget##19791,Engineering,285 |goto Orgrimmar/0 56.50,56.53
+create 35 Thorium Widget##19791,Engineering,285 |goto Orgrimmar/1 56.50,56.53
 |tip Stand next to an anvil.
 |tip You may need to create more or less of these.
 |tip Each additional Thorium Widget requires 3 Thorium Bar and 2 Runecloth.
 step
 talk Roxxik##11017
 |tip Inside the building.
-Train Thorium Tube |learn Thorium Tube##19795 |goto Orgrimmar/0 56.81,56.47
+Train Thorium Tube |learn Thorium Tube##19795 |goto Orgrimmar/1 56.81,56.47
 step
 collect 90 Thorium Bar##12359 |or
 |tip You collected these in a previous step.
 '|complete skill("Engineering") >= 300 |or
 step
-create 15 Thorium Tube##19795,Engineering,300 |goto Orgrimmar/0 56.50,56.53
+create 15 Thorium Tube##19795,Engineering,300 |goto Orgrimmar/1 56.50,56.53
 |tip Stand next to an anvil.
 |tip You may need to create more of these.
 |tip Each additional Thorium Tube requires 2 Thorium Bar and 1 Dense Blasting Powder.
@@ -8638,7 +8638,7 @@ collect 6 Dream Emerald##52192
 step
 label "Begin_Engineering_Leveling_Cataclysm"
 talk Roxxik##11017
-Train Illustrious Grand Master Engineering |skillmax Engineering,525 |goto Orgrimmar/0 56.37,56.50
+Train Illustrious Grand Master Engineering |skillmax Engineering,525 |goto Orgrimmar/1 56.37,56.50
 |tip You must be at least level 75.
 step
 map Mount Hyjal/0
@@ -8666,7 +8666,7 @@ _<Create 27 Handful of Obsidium Bolts>_
 '|complete skill("Engineering") >= 465
 step
 talk Roxxik##11017
-learn Electrified Ether##94748 |goto Orgrimmar/0 56.37,56.50
+learn Electrified Ether##94748 |goto Orgrimmar/1 56.37,56.50
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants straight; dist 30
@@ -8679,10 +8679,10 @@ step
 Open Your Engineering Crafting Panel:
 _<Create 20 Electrified Ether>_
 |tip Save them for later.
-Reach 460 Engineering |skill Engineering,460 |goto Orgrimmar/0 56.37,56.50
+Reach 460 Engineering |skill Engineering,460 |goto Orgrimmar/1 56.37,56.50
 step
 talk Roxxik##11017
-learn R19 Threatfinder##84408 |goto Orgrimmar/0 56.37,56.50
+learn R19 Threatfinder##84408 |goto Orgrimmar/1 56.37,56.50
 stickystart "Alicite_470"
 step
 map Mount Hyjal/0
@@ -8712,10 +8712,10 @@ step
 Open Your Engineering Crafting Panel:
 _<Create 2 R19 Threatfinder>_
 |tip Each craft give 5 skill points
-Reach 470 Engineering |skill Engineering,470 |goto Orgrimmar/0 56.37,56.50
+Reach 470 Engineering |skill Engineering,470 |goto Orgrimmar/1 56.37,56.50
 step
 talk Roxxik##11017
-learn High-Powered Bolt Gun##84411 |goto Orgrimmar/0 56.37,56.50
+learn High-Powered Bolt Gun##84411 |goto Orgrimmar/1 56.37,56.50
 step
 map Mount Hyjal/0
 path follow smart; loop on; ants straight; dist 30
@@ -8739,10 +8739,10 @@ step
 Open Your Engineering Crafting Panel:
 _<Create 1 High-Powered Bolt Gun>_
 |tip Each craft gives 5 skill points.
-Reach 475 Engineering |skill Engineering,475 |goto Orgrimmar/0 56.37,56.50
+Reach 475 Engineering |skill Engineering,475 |goto Orgrimmar/1 56.37,56.50
 step
 talk Roxxik##11017
-learn Elementium Toolbox##84416 |goto Orgrimmar/0 56.37,56.50
+learn Elementium Toolbox##84416 |goto Orgrimmar/1 56.37,56.50
 stickystart "Volatile_Earth_495"
 step
 map Twilight Highlands/0
@@ -8778,10 +8778,10 @@ step
 Open Your Engineering Crafting Panel:
 _<Create 4 Elementium Toolbox>_
 |tip Each craft gives 5 skill points
-Reach 495 Engineering |skill Engineering,495 |goto Orgrimmar/0 56.37,56.50
+Reach 495 Engineering |skill Engineering,495 |goto Orgrimmar/1 56.37,56.50
 step
 talk Roxxik##11017
-learn Finely-Tuned Throat Needler##84420 |goto Orgrimmar/0 56.37,56.50
+learn Finely-Tuned Throat Needler##84420 |goto Orgrimmar/1 56.37,56.50
 stickystart "Hardened_Elementium_500"
 step
 map Mount Hyjal/0
@@ -8812,10 +8812,10 @@ step
 Open Your Engineering Crafting Panel:
 _<Create 1 Finely-Tuned Throat Needler>_
 |tip Each craft gives 5 skill points
-Reach 500 Engineering |skill Engineering,500 |goto Orgrimmar/0 56.37,56.50
+Reach 500 Engineering |skill Engineering,500 |goto Orgrimmar/1 56.37,56.50
 step
 talk Roxxik##11017
-learn Volatile Thunderstick##84417 |goto Orgrimmar/0 56.37,56.50
+learn Volatile Thunderstick##84417 |goto Orgrimmar/1 56.37,56.50
 stickystart "Collect_Volatile_Fire_510"
 step
 collect 10 Hardened Elementium Bar##53039
@@ -8835,10 +8835,10 @@ step
 Open Your Engineering Crafting Panel:
 _<Create 2 Volatile Thunderstick>_
 |tip Each craft gives 5 skill points
-Reach 510 Engineering |skill Engineering,510 |goto Orgrimmar/0 56.37,56.50
+Reach 510 Engineering |skill Engineering,510 |goto Orgrimmar/1 56.37,56.50
 step
 talk Roxxik##11017
-learn Heat-Treated Spinning Lure##84430 |goto Orgrimmar/0 56.37,56.50
+learn Heat-Treated Spinning Lure##84430 |goto Orgrimmar/1 56.37,56.50
 stickystart "Collect_Volatile_Fire_515"
 step
 map Twilight Highlands/0
@@ -8873,10 +8873,10 @@ collect 7 Volatile Fire##52325 |or
 step
 Open Your Engineering Crafting Panel:
 _<Create 7 Heat-Treated Spinning Lure>_
-Reach 515 Engineering |skill Engineering,515 |goto Orgrimmar/0 56.37,56.50
+Reach 515 Engineering |skill Engineering,515 |goto Orgrimmar/1 56.37,56.50
 step
 talk Roxxik##11017
-learn Gnomish X-Ray Scope##84428 |goto Orgrimmar/0 56.37,56.50
+learn Gnomish X-Ray Scope##84428 |goto Orgrimmar/1 56.37,56.50
 stickystart "Collect_Dream_Emerald_525"
 step
 collect 6 Hardened Elementium Bar##53039
@@ -8892,14 +8892,14 @@ step
 Open Your Engineering Crafting Panel:
 _<Create 3 Gnomish X-Ray Scope>_
 |tip Each craft gives 5 skill points
-Reach 525 Engineering |skill Engineering,525 |goto Orgrimmar/0 56.37,56.50
+Reach 525 Engineering |skill Engineering,525 |goto Orgrimmar/1 56.37,56.50
 step
 Reach Level 80 |ding 80
 |tip You must be at least level 80 to train Zen Master professions.
 |tip Use the leveling guides to accomplish this.
 step
 talk Roxxik##11017
-Train Zen Master Engineering |skillmax Engineering,600 |goto Orgrimmar/0 75.19,24.59
+Train Zen Master Engineering |skillmax Engineering,600 |goto Orgrimmar/1 75.19,24.59
 step
 Click Here if You Would Like to Collect All Materials First |confirm |next |or
 |tip This will have you collect all Pandaria materials before beginning.
@@ -8921,59 +8921,59 @@ collect 10 Spirit of Harmony##76061 |or |usebank
 step
 label "Begin_Profession_Leveling_Pandaria"
 talk Roxxik##11017
-Train Ghost Iron Bolts |learn Ghost Iron Bolts##127113 |goto Orgrimmar/0 75.19,24.59
+Train Ghost Iron Bolts |learn Ghost Iron Bolts##127113 |goto Orgrimmar/1 75.19,24.59
 step
 collect 141 Ghost Iron Bar##72096 |or |usebank
 |tip Ghost Iron Bars can be created with Mining or purchased from the auction house.
 |loadguide "Profession Guides\\Mining\\Farming Guides\\Ghost Iron"
 '|complete skill("Engineering") >= 600
 step
-create 47 Ghost Iron Bolts##127113,Blacksmithing,500 |goto Orgrimmar/0 75.19,24.59
+create 47 Ghost Iron Bolts##127113,Blacksmithing,500 |goto Orgrimmar/1 75.19,24.59
 |tip Stand next to an anvil inside the building.
 '|complete skill("Blacksmithing") >= 500 |or
 |tip You will need 94 Ghost Iron Bolts to reach 600 skill.
 step
 talk Roxxik##11017
-Train High-Explosive Gunpowder |learn High-Explosive Gunpowder##127114 |goto Orgrimmar/0 75.19,24.59
+Train High-Explosive Gunpowder |learn High-Explosive Gunpowder##127114 |goto Orgrimmar/1 75.19,24.59
 step
 collect 36 Ghost Iron Bar##72096 |or |usebank
 |tip Ghost Iron Bars can be created with Mining or purchased from the auction house.
 |loadguide "Profession Guides\\Mining\\Farming Guides\\Ghost Iron"
 '|complete skill("Engineering") >= 600
 step
-create 36 High-Explosive Gunpowder##127114,Blacksmithing,500 |goto Orgrimmar/0 75.19,24.59
+create 36 High-Explosive Gunpowder##127114,Blacksmithing,500 |goto Orgrimmar/1 75.19,24.59
 |tip Stand next to an anvil inside the building.
 '|complete skill("Blacksmithing") >= 550 |or
 |tip You will need 72 High-Explosive Gunpowder to reach 600 skill.
 step
 talk Roxxik##11017
-Train Thermal Anvil |learn Thermal Anvil##127131 |goto Orgrimmar/0 75.19,24.59
+Train Thermal Anvil |learn Thermal Anvil##127131 |goto Orgrimmar/1 75.19,24.59
 step
-create 9 Thermal Anvil##127131,Blacksmithing,500 |goto Orgrimmar/0 75.19,24.59
+create 9 Thermal Anvil##127131,Blacksmithing,500 |goto Orgrimmar/1 75.19,24.59
 |tip Stand next to an anvil inside the building.
 '|complete skill("Blacksmithing") >= 575 |or
 step
 talk Roxxik##11017
-Train Mist-Piercing Goggles |learn Mist-Piercing Goggles##127130 |goto Orgrimmar/0 75.19,24.59
+Train Mist-Piercing Goggles |learn Mist-Piercing Goggles##127130 |goto Orgrimmar/1 75.19,24.59
 step
 collect 10 Spirit of Harmony##76061 |or |usebank
 |tip Spirit of Harmony#76061 can be created by combining 10 Motes of Harmony#89112.
 |tip Mote of Harmony#89112 can drop from any mob in Pandaria at a low rate.
 '|complete skill("Engineering") >= 600
 step
-create 5 Mist-Piercing Goggles##127130,Blacksmithing,500 |goto Orgrimmar/0 75.19,24.59
+create 5 Mist-Piercing Goggles##127130,Blacksmithing,500 |goto Orgrimmar/1 75.19,24.59
 |tip Stand next to an anvil inside the building.
 '|complete skill("Blacksmithing") >= 600 |or
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\First Aid\\Leveling Guides\\First Aid (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('First Aid') > 0 end,
 description="This guide will walk you through leveling your First Aid skill from 1-600.",
 },[[
 step
 talk Krenk Choplimb##45540
-Train Apprentice First Aid |skillmax First Aid,75 |goto Orgrimmar/0 37.49,87.21
+Train Apprentice First Aid |skillmax First Aid,75 |goto Orgrimmar/1 37.49,87.21
 step
 Inside Ragefire Chasm:
 Kill Ragefire enemies throughout the dungeon
@@ -8985,7 +8985,7 @@ step
 create 50 Linen Bandage##3275,First Aid,40
 step
 talk Krenk Choplimb##45540
-Train Heavy Linen Bandage |learn Heavy Linen Bandage##3276 |goto Orgrimmar/0 37.49,87.21
+Train Heavy Linen Bandage |learn Heavy Linen Bandage##3276 |goto Orgrimmar/1 37.49,87.21
 step
 collect 90 Linen Cloth##2589 |or
 |tip You collected these in a previous step.
@@ -8994,7 +8994,7 @@ step
 create 45 Heavy Linen Bandage##3276,First Aid,75
 step
 talk Krenk Choplimb##45540
-Train Journeyman First Aid |skillmax First Aid,150 |goto Orgrimmar/0 37.49,87.21
+Train Journeyman First Aid |skillmax First Aid,150 |goto Orgrimmar/1 37.49,87.21
 step
 collect 30 Linen Cloth##2589 |or
 |tip You collected these in a previous step.
@@ -9003,7 +9003,7 @@ step
 create 15 Heavy Linen Bandage##3276,First Aid,80
 step
 talk Krenk Choplimb##45540
-Train Wool Bandage |learn Wool Bandage##3277 |goto Orgrimmar/0 37.49,87.21
+Train Wool Bandage |learn Wool Bandage##3277 |goto Orgrimmar/1 37.49,87.21
 step
 Kill Venture Co. enemies around this area
 |tip You can find more inside the mine.
@@ -9015,7 +9015,7 @@ step
 create 60 Wool Bandage##3277,First Aid,115
 step
 talk Krenk Choplimb##45540
-Train Heavy Wool Bandage |learn Heavy Wool Bandage##3278 |goto Orgrimmar/0 37.49,87.21
+Train Heavy Wool Bandage |learn Heavy Wool Bandage##3278 |goto Orgrimmar/1 37.49,87.21
 step
 collect 120 Wool Cloth##2592 |or
 |tip You collected these in a previous step.
@@ -9024,10 +9024,10 @@ step
 create 60 Heavy Wool Bandage##3278,First Aid,150
 step
 talk Krenk Choplimb##45540
-Train Expert First Aid |skillmax First Aid,225 |goto Orgrimmar/0 37.49,87.21
+Train Expert First Aid |skillmax First Aid,225 |goto Orgrimmar/1 37.49,87.21
 step
 talk Krenk Choplimb##45540
-Train Silk Bandage |learn Silk Bandage##7928 |goto Orgrimmar/0 37.49,87.21
+Train Silk Bandage |learn Silk Bandage##7928 |goto Orgrimmar/1 37.49,87.21
 step
 Kill Grimtotem enemies around this area
 |tip You can find more inside the cave.
@@ -9039,7 +9039,7 @@ step
 create 50 Silk Bandage##7928,First Aid,180
 step
 talk Krenk Choplimb##45540
-Train Heavy Silk Bandage |learn Heavy Silk Bandage##7929 |goto Orgrimmar/0 37.49,87.21
+Train Heavy Silk Bandage |learn Heavy Silk Bandage##7929 |goto Orgrimmar/1 37.49,87.21
 step
 collect 100 Silk Cloth##4306 |or
 |tip You collected these in a previous step.
@@ -9048,7 +9048,7 @@ step
 create 50 Heavy Silk Bandage##7929,First Aid,210
 step
 talk Krenk Choplimb##45540
-Train Mageweave Bandage |learn Mageweave Bandage##10840 |goto Orgrimmar/0 37.49,87.21
+Train Mageweave Bandage |learn Mageweave Bandage##10840 |goto Orgrimmar/1 37.49,87.21
 step
 Kill Dunemaul enemies around this area
 collect 120 Mageweave Cloth##4338 |goto Tanaris/0 40.50,55.50 |or
@@ -9059,10 +9059,10 @@ step
 create 60 Mageweave Bandage##10840,First Aid,240
 step
 talk Krenk Choplimb##45540
-Train Artisan First Aid |skillmax First Aid,300 |goto Orgrimmar/0 37.49,87.21
+Train Artisan First Aid |skillmax First Aid,300 |goto Orgrimmar/1 37.49,87.21
 step
 talk Krenk Choplimb##45540
-Train Heavy Mageweave Bandage |learn Heavy Mageweave Bandage##10841 |goto Orgrimmar/0 37.49,87.21
+Train Heavy Mageweave Bandage |learn Heavy Mageweave Bandage##10841 |goto Orgrimmar/1 37.49,87.21
 step
 collect 60 Mageweave Cloth##4338 |or
 |tip You collected these in a previous step.
@@ -9077,7 +9077,7 @@ You can find more around [25.57,33.48]
 '|complete skill("First Aid") >= 290 |or
 step
 talk Krenk Choplimb##45540
-Train Runecloth Bandage |learn Runecloth Bandage##18629 |goto Orgrimmar/0 37.49,87.21
+Train Runecloth Bandage |learn Runecloth Bandage##18629 |goto Orgrimmar/1 37.49,87.21
 step
 create 50 Runecloth Bandage##18629,First Aid,290
 step
@@ -9086,7 +9086,7 @@ collect 30 Runecloth###14047 |or
 '|complete skill("First Aid") >= 300 |or
 step
 talk Krenk Choplimb##45540
-Train Heavy Runecloth Bandage |learn Heavy Runecloth Bandage##18630 |goto Orgrimmar/0 37.49,87.21
+Train Heavy Runecloth Bandage |learn Heavy Runecloth Bandage##18630 |goto Orgrimmar/1 37.49,87.21
 step
 create 15 Heavy Runecloth Bandage##18630,First Aid,300
 step
@@ -9168,12 +9168,12 @@ create 90 Heavy Frostweave Bandage##45546,First Aid,450
 step
 talk Krenk Choplimb##45540
 |tip Inside the building.
-Train Illustrious Grand Master First Aid |skillmax First Aid,525 |goto Orgrimmar/0 37.49,87.21
+Train Illustrious Grand Master First Aid |skillmax First Aid,525 |goto Orgrimmar/1 37.49,87.21
 |tip You must be atleast level 75 to learn Cataclysm First Aid.
 step
 talk Krenk Choplimb##45540
 |tip Inside the building.
-Train Embersilk Bandage |learn Embersilk Bandage##74556 |goto Orgrimmar/0 37.49,87.21
+Train Embersilk Bandage |learn Embersilk Bandage##74556 |goto Orgrimmar/1 37.49,87.21
 step
 map Deepholm/0
 path follow loose; loop on; ants curved; dist 20
@@ -9189,7 +9189,7 @@ create 75 Embersilk Bandage##74556,First Aid,475
 step
 talk Krenk Choplimb##45540
 |tip Inside the building.
-Train Heavy Embersilk Bandage |learn Heavy Embersilk Bandage##74557 |goto Orgrimmar/0 37.49,87.21
+Train Heavy Embersilk Bandage |learn Heavy Embersilk Bandage##74557 |goto Orgrimmar/1 37.49,87.21
 step
 map Deepholm/0
 path follow loose; loop on; ants curved; dist 20
@@ -9209,11 +9209,11 @@ Reach Level 80 |ding 80
 step
 talk Krenk Choplimb##45540
 |tip Inside the building.
-Train Zen Master First Aid |skillmax First Aid,600 |goto Orgrimmar/0 37.49,87.21
+Train Zen Master First Aid |skillmax First Aid,600 |goto Orgrimmar/1 37.49,87.21
 step
 talk Krenk Choplimb##45540
 |tip Inside the building.
-Train Windwool Bandage |learn Windwool Bandage##102697 |goto Orgrimmar/0 37.49,87.21
+Train Windwool Bandage |learn Windwool Bandage##102697 |goto Orgrimmar/1 37.49,87.21
 step
 collect 124 Windwool Cloth##72162 |or |usebank
 |tip You can farm these from mobs in Pandaria or purchase them from the Auction House.
@@ -9225,44 +9225,44 @@ create 49 Windwool Bandage##102697,First Aid,500
 step
 talk Krenk Choplimb##45540
 |tip Inside the building.
-Train Heavy Windwool Bandage |learn Heavy Windwool Bandage##102698 |goto Orgrimmar/0 37.49,87.21
+Train Heavy Windwool Bandage |learn Heavy Windwool Bandage##102698 |goto Orgrimmar/1 37.49,87.21
 step
 create 25 Heavy Windwool Bandage##102698,First Aid,500
 '|complete skill("First Aid") >= 600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Leveling Guides\\Fishing (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Fishing') > 0 end,
 description="This guide will walk you through leveling your Fishing skill from 1-600.",
 },[[
 step
 talk Lumak##3332
-Train Apprentice Fishing |skillmax Fishing,75 |goto Orgrimmar/0 66.47,41.98
+Train Apprentice Fishing |skillmax Fishing,75 |goto Orgrimmar/1 66.47,41.98
 step
 talk Shankys##3333
-buy Fishing Pole##6256 |goto Orgrimmar/0 66.71,41.84 |or
+buy Fishing Pole##6256 |goto Orgrimmar/1 66.71,41.84 |or
 |tip You need to be able to equip a fishing pole in order to fish.
 '|complete skill("Fishing") >= 300 |or
 step
 talk Shankys##3333
-buy 5 Shiny Bauble##6529 |goto Orgrimmar/0 66.71,41.84 |or
+buy 5 Shiny Bauble##6529 |goto Orgrimmar/1 66.71,41.84 |or
 |tip These will allow you to catch fish easier.
 '|complete skill("Fishing") >= 50 |or
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Orgrimmar/0 66.71,41.84 |only if default |or
+Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Orgrimmar/1 66.71,41.84 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(12225) >= 1 |or
+Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete skill("Fishing") >= 50 |or
 step
 cast Fishing##33095
@@ -9274,36 +9274,36 @@ use the Shiny Bauble##6529
 |tip It will grant you +25 Fishing skill for 10 minutes.
 |tip Try to keep one of these active whenever you are fishing.
 |tip If you have a better bait, you can use that instead.
-Reach Skill 50 in Fishing |skill Fishing,50 |goto Orgrimmar/0 66.71,41.84
+Reach Skill 50 in Fishing |skill Fishing,50 |goto Orgrimmar/1 66.71,41.84
 step
 talk Lumak##3332
-Train Journeyman Fishing |skillmax Fishing,150 |goto Orgrimmar/0 66.47,41.98
+Train Journeyman Fishing |skillmax Fishing,150 |goto Orgrimmar/1 66.47,41.98
 step
 talk Shankys##3333
-buy 10 Nightcrawlers##6530 |goto Orgrimmar/0 66.71,41.84 |complete skill("Fishing") >= 125
-buy 10 Bright Baubles##6532 |goto Orgrimmar/0 66.71,41.84 |complete skill("Fishing") >= 125
+buy 10 Nightcrawlers##6530 |goto Orgrimmar/1 66.71,41.84 |complete skill("Fishing") >= 125
+buy 10 Bright Baubles##6532 |goto Orgrimmar/1 66.71,41.84 |complete skill("Fishing") >= 125
 |tip These will allow you to catch fish easier.
 step
 talk Shankys##3333
-buy Strong Fishing Pole##6365 |goto Orgrimmar/0 66.71,41.84 |or
+buy Strong Fishing Pole##6365 |goto Orgrimmar/1 66.71,41.84 |or
 |tip This is a limited supply item.
 |tip If she doesn't have it for sale, check the Auction House.
 |tip If you can't get one, you can skip this step.
 '|complete skill("Fishing") >= 300 |or
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Orgrimmar/0 66.71,41.84 |only if default |or
+Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Orgrimmar/1 66.71,41.84 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Orgrimmar/0 66.71,41.84 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Orgrimmar/0 68.09,29.54 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(12225) >= 1 |or
+Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Orgrimmar/1 66.71,41.84 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Orgrimmar/1 68.09,29.54 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete skill("Fishing") >= 125 |or
 step
 cast Fishing##33095
@@ -9317,13 +9317,13 @@ use the Bright Baubles##6532 |only if skill("Fishing") >= 100
 |tip It will grant you +75 Fishing skill for 10 minutes. |only if skill("Fishing") >= 100
 |tip Try to keep one of these active whenever you are fishing.
 |tip If you have a better bait, you can use that instead.
-Reach Skill 125 in Fishing |skill Fishing,125 |goto Orgrimmar/0 66.71,41.84
+Reach Skill 125 in Fishing |skill Fishing,125 |goto Orgrimmar/1 66.71,41.84
 step
 talk Lumak##3332
-Train Expert Fishing |skillmax Fishing,225 |goto Orgrimmar/0 66.47,41.98
+Train Expert Fishing |skillmax Fishing,225 |goto Orgrimmar/1 66.47,41.98
 step
 talk Shankys##3333
-buy 20 Bright Baubles##6532 |goto Orgrimmar/0 66.71,41.84 |or
+buy 20 Bright Baubles##6532 |goto Orgrimmar/1 66.71,41.84 |or
 |tip These will allow you to catch fish easier.
 '|complete skill("Fishing") >= 200 |or
 step
@@ -9354,10 +9354,10 @@ use the Bright Baubles##6532
 Reach Skill 200 in Fishing |skill Fishing,200 |goto The Barrens/0 37.44,45.74
 step
 talk Lumak##3332
-Train Artisan Fishing |skillmax Fishing,300 |goto Orgrimmar/0 66.47,41.98
+Train Artisan Fishing |skillmax Fishing,300 |goto Orgrimmar/1 66.47,41.98
 step
 talk Shankys##3333
-buy 20 Bright Baubles##6532 |goto Orgrimmar/0 66.71,41.84 |or
+buy 20 Bright Baubles##6532 |goto Orgrimmar/1 66.71,41.84 |or
 |tip These will allow you to catch fish easier.
 '|complete skill("Fishing") >= 300 |or
 step
@@ -9583,7 +9583,7 @@ use the Bright Baubles##6532
 Reach Skill 450 in Fishing |skill Fishing,450 |goto Wintergrasp/0 23.94,35.84
 step
 talk Lumak##3332
-Train Illustrious Grand Master Fishing |skillmax Fishing,525  |goto Orgrimmar/0 66.42,41.96
+Train Illustrious Grand Master Fishing |skillmax Fishing,525  |goto Orgrimmar/1 66.42,41.96
 |tip You must be level 75 to train Cataclysm professions.
 step
 cast Fishing##33095
@@ -9602,7 +9602,7 @@ Reach Level 80 |ding 80
 |tip Use the leveling guides to accomplish this.
 step
 talk Lumak##3332
-Train Zen Master Fishing |skillmax Fishing,600 |goto Orgrimmar/0 66.42,41.96
+Train Zen Master Fishing |skillmax Fishing,600 |goto Orgrimmar/1 66.42,41.96
 step
 cast Fishing##33095
 |tip Fish in the water.
@@ -9648,7 +9648,7 @@ _Congratulations!_
 You Reached 75 Pandaria Herbalism Skill.
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Inscription\\Leveling Guides\\Inscription (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Inscription') > 0 end,
 description="This guide will walk you through leveling your Inscription skill from 1-600.",
@@ -9660,7 +9660,7 @@ Reach Level 5 |ding 5
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Apprentice Inscription |skillmax Inscription,75 |goto Orgrimmar/0 55.24,55.80
+Train Apprentice Inscription |skillmax Inscription,75 |goto Orgrimmar/1 55.24,55.80
 step
 Click Here if You Would Like to Collect All Materials First |confirm |next |or
 |tip This will have you collect all Classic-level materials before beginning.
@@ -9826,12 +9826,12 @@ collect 62 Alabaster Pigment##39151 |or
 step
 talk Moraka##46718
 |tip Inside the building.
-buy 1 Virtuoso Inking Set##39505 |goto Orgrimmar/0 55.24,55.80 |or
+buy 1 Virtuoso Inking Set##39505 |goto Orgrimmar/1 55.24,55.80 |or
 '|complete skill("Inscription") >= 19 |or
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Ivory Ink |learn Ivory Ink##52738 |goto Orgrimmar/0 55.24,55.80
+Train Ivory Ink |learn Ivory Ink##52738 |goto Orgrimmar/1 55.24,55.80
 step
 create 18 Ivory Ink##52738,Inscription,18 total |or
 |tip Save these, you will need them for future steps.
@@ -9845,12 +9845,12 @@ collect 16 Ivory Ink##37101 |or
 '|complete skill("Inscription") >= 35 |or
 step
 talk Moraka##46718
-buy 16 Light Parchment##39354 |goto Orgrimmar/0 55.24,55.80 |or
+buy 16 Light Parchment##39354 |goto Orgrimmar/1 55.24,55.80 |or
 '|complete skill("Inscription") >= 35 |or
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Scroll of Stamina |learn Scroll of Stamina##45382 |goto Orgrimmar/0 55.24,55.80
+Train Scroll of Stamina |learn Scroll of Stamina##45382 |goto Orgrimmar/1 55.24,55.80
 step
 create 16 Scroll of Stamina##45382,Inscription,35
 |tip You may need to create more or less of these.
@@ -9862,7 +9862,7 @@ collect 44 Alabaster Pigment##39151 |or
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Moonglow Ink |learn Moonglow Ink##52843 |goto Orgrimmar/0 55.24,55.80
+Train Moonglow Ink |learn Moonglow Ink##52843 |goto Orgrimmar/1 55.24,55.80
 step
 create 22 Moonglow Ink##52843,Inscription,22 total
 |tip Save these, you will need them for future steps.
@@ -9875,12 +9875,12 @@ collect 22 Moonglow Ink##39469 |or
 '|complete skill("Inscription") >= 75 |or
 step
 talk Moraka##46718
-buy 44 Light Parchment##39354 |goto Orgrimmar/0 55.24,55.80 |or
+buy 44 Light Parchment##39354 |goto Orgrimmar/1 55.24,55.80 |or
 '|complete skill("Inscription") >= 75 |or
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Armor Vellum |learn Armor Vellum##52739 |goto Orgrimmar/0 55.24,55.80
+Train Armor Vellum |learn Armor Vellum##52739 |goto Orgrimmar/1 55.24,55.80
 step
 create 22 Armor Vellum##52739,Inscription,75
 |tip You may need to create more or less of these.
@@ -9893,11 +9893,11 @@ Reach Level 10 |ding 10
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Journeyman Inscription |skillmax Inscription,150 |goto Orgrimmar/0 55.24,55.80
+Train Journeyman Inscription |skillmax Inscription,150 |goto Orgrimmar/1 55.24,55.80
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Midnight Ink |learn Midnight Ink##53462 |goto Orgrimmar/0 55.24,55.80
+Train Midnight Ink |learn Midnight Ink##53462 |goto Orgrimmar/1 55.24,55.80
 step
 map The Barrens/0
 path follow smart; loop on; ants straight; dist 30
@@ -9931,7 +9931,7 @@ collect 20 Midnight Ink##53462 |or
 '|complete skill("Inscription") >= 100 |or
 step
 talk Moraka##46718
-buy 20 Light Parchment##39354 |goto Orgrimmar/0 55.24,55.80 |or
+buy 20 Light Parchment##39354 |goto Orgrimmar/1 55.24,55.80 |or
 '|complete skill("Inscription") >= 100 |or
 step
 _<Create any orange-difficulty glyphs>_
@@ -9959,7 +9959,7 @@ collect 80 Golden Pigment##39338 |or
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Lion's Ink |learn Lion's Ink##57704 |goto Orgrimmar/0 55.24,55.80
+Train Lion's Ink |learn Lion's Ink##57704 |goto Orgrimmar/1 55.24,55.80
 step
 create 40 Lion's Ink##57704,Inscription,40 total
 |tip Save these, you will need them for future steps.
@@ -9973,7 +9973,7 @@ collect 20 Lion's Ink##43116 |or
 '|complete skill("Inscription") >= 125 |or
 step
 talk Moraka##46718
-buy 20 Common Parchment##10648 |goto Orgrimmar/0 55.24,55.80 |or
+buy 20 Common Parchment##10648 |goto Orgrimmar/1 55.24,55.80 |or
 '|complete skill("Inscription") >= 125 |or
 step
 _<Create any orange-difficulty glyphs>_
@@ -9988,7 +9988,7 @@ Reach Level 20 |ding 20
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Expert Inscription |skillmax Inscription,225 |goto Orgrimmar/0 55.24,55.80
+Train Expert Inscription |skillmax Inscription,225 |goto Orgrimmar/1 55.24,55.80
 |tip Also train any orange-difficulty glyphs you would like to make.
 step
 _<Create any orange-difficulty glyphs>_
@@ -10003,7 +10003,7 @@ collect 17 Lion's Ink##43116 |or
 '|complete skill("Inscription") >= 147 |or
 step
 talk Moraka##46718
-buy 17 Common Parchment##10648 |goto Orgrimmar/0 55.24,55.80 |or
+buy 17 Common Parchment##10648 |goto Orgrimmar/1 55.24,55.80 |or
 '|complete skill("Inscription") >= 147 |or
 step
 _<Create any orange-difficulty glyphs>_
@@ -10038,7 +10038,7 @@ collect 94 Emerald Pigment##39339 |or
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Jadefire Ink |learn Jadefire Ink##57707 |goto Orgrimmar/0 55.24,55.80
+Train Jadefire Ink |learn Jadefire Ink##57707 |goto Orgrimmar/1 55.24,55.80
 step
 create 47 Jadefire Ink##57707,Inscription,47 total
 |tip Save these, you will need them for future steps.
@@ -10052,7 +10052,7 @@ collect 40 Jadefire Ink##43118 |or
 '|complete skill("Inscription") >= 195 |or
 step
 talk Moraka##46718
-buy 40 Common Parchment##10648 |goto Orgrimmar/0 55.24,55.80 |or
+buy 40 Common Parchment##10648 |goto Orgrimmar/1 55.24,55.80 |or
 '|complete skill("Inscription") >= 195 |or
 step
 _<Create any orange-difficulty glyphs>_
@@ -10075,11 +10075,11 @@ Reach Level 35 |ding 35
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Artisan Inscription |skillmax Inscription,300 |goto Orgrimmar/0 55.24,55.80
+Train Artisan Inscription |skillmax Inscription,300 |goto Orgrimmar/1 55.24,55.80
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Celestial Ink |learn Celestial Ink##57709 |goto Orgrimmar/0 55.24,55.80
+Train Celestial Ink |learn Celestial Ink##57709 |goto Orgrimmar/1 55.24,55.80
 step
 map Felwood/0
 path follow smart; loop on; ants curved; dist 30
@@ -10119,7 +10119,7 @@ collect 40 Celestial Ink##43120 |or
 '|complete skill("Inscription") >= 245 |or
 step
 talk Moraka##46718
-buy 40 Heavy Parchment##39501 |goto Orgrimmar/0 55.24,55.80 |or
+buy 40 Heavy Parchment##39501 |goto Orgrimmar/1 55.24,55.80 |or
 '|complete skill("Inscription") >= 245 |or
 step
 _<Create any orange-difficulty glyphs>_
@@ -10162,7 +10162,7 @@ collect 130 Silvery Pigment##39341 |or
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Shimmering Ink |learn Shimmering Ink##57711 |goto Orgrimmar/0 55.24,55.80
+Train Shimmering Ink |learn Shimmering Ink##57711 |goto Orgrimmar/1 55.24,55.80
 step
 create 65 Shimmering Ink##57711,Inscription,65 total
 |tip Save these, you will need them for future steps.
@@ -10178,12 +10178,12 @@ collect 5 Shimmering Ink##43122 |or
 '|complete skill("Inscription") >= 260 |or
 step
 talk Moraka##46718
-buy 10 Heavy Parchment##39501 |goto Orgrimmar/0 55.24,55.80 |or
+buy 10 Heavy Parchment##39501 |goto Orgrimmar/1 55.24,55.80 |or
 '|complete skill("Inscription") >= 260 |or
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Scroll of Spirit V |learn Scroll of Spirit V##50608 |goto Orgrimmar/0 55.24,55.80
+Train Scroll of Spirit V |learn Scroll of Spirit V##50608 |goto Orgrimmar/1 55.24,55.80
 step
 create 5 Scroll of Spirit V##50608,Inscription,265
 step
@@ -10193,7 +10193,7 @@ collect 60 Shimmering Ink##43122 |or
 '|complete skill("Inscription") >= 290 |or
 step
 talk Moraka##46718
-buy 60 Heavy Parchment##39501 |goto Orgrimmar/0 55.24,55.80 |or
+buy 60 Heavy Parchment##39501 |goto Orgrimmar/1 55.24,55.80 |or
 |tip If you receive Sapphire Pigment from Milling, you will around 15 fewer.
 '|complete skill("Inscription") >= 290 |or
 step
@@ -10617,20 +10617,20 @@ create 1 Northrend Inscription Research##61177,Inscription,450
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Illustrious Grand Master Inscription |skillmax Inscription,525 |goto Orgrimmar/0 55.24,55.80
+Train Illustrious Grand Master Inscription |skillmax Inscription,525 |goto Orgrimmar/1 55.24,55.80
 |tip You must be at least level 75.
 step
 talk Nerog##46716
 |tip Inside the building.
-learn Blackfallow Ink##86004 |goto Orgrimmar/0 55.24,55.80
+learn Blackfallow Ink##86004 |goto Orgrimmar/1 55.24,55.80
 step
 talk Nerog##46716
 |tip Inside the building.
-learn Mysterious Fortune Card##86609 |goto Orgrimmar/0 55.24,55.80
+learn Mysterious Fortune Card##86609 |goto Orgrimmar/1 55.24,55.80
 step
 talk Moraka##46718
 |tip Inside the building.
-buy 10 Resilient Parchment##39502 |goto Orgrimmar/0 55.24,55.80
+buy 10 Resilient Parchment##39502 |goto Orgrimmar/1 55.24,55.80
 |only if skill("Inscription") < 460
 step
 collect 10 Blackfallow Ink##61978
@@ -10643,11 +10643,11 @@ Reach 460 Inscription |skill Inscription,460
 step
 talk Nerog##46716
 |tip Inside the building.
-learn Scroll of Stamina IX##89372 |goto Orgrimmar/0 55.24,55.80
+learn Scroll of Stamina IX##89372 |goto Orgrimmar/1 55.24,55.80
 step
 talk Moraka##46718
 |tip Inside the building.
-buy 10 Resilient Parchment##39502 |goto Orgrimmar/0 55.24,55.80
+buy 10 Resilient Parchment##39502 |goto Orgrimmar/1 55.24,55.80
 |only if skill("Inscription") < 465
 step
 collect 5 Blackfallow Ink##61978
@@ -10660,11 +10660,11 @@ Reach 465 Inscription |skill Inscription,465
 step
 talk Nerog##46716
 |tip Inside the building.
-learn Glyph of Colossus Smash##89815 |goto Orgrimmar/0 55.24,55.80
+learn Glyph of Colossus Smash##89815 |goto Orgrimmar/1 55.24,55.80
 step
 talk Moraka##46718
 |tip Inside the building.
-buy 2 Common Parchment##10648 |goto Orgrimmar/0 55.24,55.80
+buy 2 Common Parchment##10648 |goto Orgrimmar/1 55.24,55.80
 |only if skill("Inscription") < 471
 step
 collect 6 Blackfallow Ink##61978
@@ -10678,11 +10678,11 @@ Reach 471 Inscription |skill Inscription,471
 step
 talk Nerog##46716
 |tip Inside the building.
-learn Scroll of Agility IX##89370 |goto Orgrimmar/0 55.24,55.80
+learn Scroll of Agility IX##89370 |goto Orgrimmar/1 55.24,55.80
 step
 talk Moraka##46718
 |tip Inside the building.
-buy 8 Resilient Parchment##39502 |goto Orgrimmar/0 55.24,55.80
+buy 8 Resilient Parchment##39502 |goto Orgrimmar/1 55.24,55.80
 |only if skill("Inscription") < 475
 step
 collect 4 Blackfallow Ink##61978
@@ -10695,7 +10695,7 @@ Reach 475 Inscription |skill Inscription,475
 step
 talk Nerog##46716
 |tip Inside the building.
-learn Inferno Ink##86005 |goto Orgrimmar/0 55.24,55.80
+learn Inferno Ink##86005 |goto Orgrimmar/1 55.24,55.80
 step
 collect 14 Burning Embers##61980
 |tip Burning Embers can be Milled from Azshara's Veil, Cinderbloom, Heartblossom, Stormvine, Twilight Jasmine, and Whiptail.
@@ -10707,7 +10707,7 @@ Reach 482 Inscription |skill Inscription,482
 step
 talk Nerog##46716
 |tip Inside the building.
-learn Dust of Disappearance##92027 |goto Orgrimmar/0 55.24,55.80
+learn Dust of Disappearance##92027 |goto Orgrimmar/1 55.24,55.80
 step
 collect 18 Blackfallow Ink##61978
 |tip Ashen Pigment can be Milled from Azshara's Veil, Cinderbloom, Heartblossom, Stormvine, Twilight Jasmine, and Whiptail.
@@ -10729,7 +10729,7 @@ learn Origami Rock##86645
 step
 talk Moraka##46718
 |tip Inside the building.
-buy 30 Resilient Parchment##39502 |goto Orgrimmar/0 55.24,55.80
+buy 30 Resilient Parchment##39502 |goto Orgrimmar/1 55.24,55.80
 |only if skill("Inscription") < 500
 step
 Open Your Inscription Crafting Panel:
@@ -10745,7 +10745,7 @@ learn Origami Beetle##86646
 step
 talk Moraka##46718
 |tip Inside the building.
-buy 30 Resilient Parchment##39502 |goto Orgrimmar/0 55.24,55.80
+buy 30 Resilient Parchment##39502 |goto Orgrimmar/1 55.24,55.80
 |only if skill("Inscription") < 510
 step
 Open Your Inscription Crafting Panel:
@@ -10755,11 +10755,11 @@ Reach 510 Inscription |skill Inscription,510
 step
 talk Nerog##46716
 |tip Inside the building.
-learn Dungeoneering Guide##86641 |goto Orgrimmar/0 55.24,55.80
+learn Dungeoneering Guide##86641 |goto Orgrimmar/1 55.24,55.80
 step
 talk Moraka##46718
 |tip Inside the building.
-buy 40 Resilient Parchment##39502 |goto Orgrimmar/0 55.24,55.80
+buy 40 Resilient Parchment##39502 |goto Orgrimmar/1 55.24,55.80
 |only if skill("Inscription") < 520
 stickystart "Volatile_Life_520"
 stickystart "Volatile_Water_520"
@@ -10806,7 +10806,7 @@ Reach 520 Inscription |skill Inscription,520
 step
 talk Nerog##46716
 |tip Inside the building.
-learn Silver Inlaid Leaf##86653 |goto Orgrimmar/0 55.24,55.80
+learn Silver Inlaid Leaf##86653 |goto Orgrimmar/1 55.24,55.80
 stickystart "Volatile_Life_525"
 stickystart "Volatile_Air_525"
 stickystart "Inferno_Ink_525"
@@ -10860,7 +10860,7 @@ Reach Level 80 |ding 80
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Zen Master Inscription |skillmax Inscription,600 |goto Orgrimmar/0 55.24,55.80
+Train Zen Master Inscription |skillmax Inscription,600 |goto Orgrimmar/1 55.24,55.80
 step
 Click Here if You Would Like to Collect All Materials First |confirm |next |or
 |tip This will have you collect all Pandaria materials before beginning.
@@ -10887,7 +10887,7 @@ collect 9 Misty Pigment##79253 |or |usebank
 '|complete skill("Inscription") >= 600
 step
 label "Begin_Profession_Leveling_Pandaria"
-Train Ink of Dreams |learn Ink of Dreams##111645 |goto Orgrimmar/0 55.24,55.80
+Train Ink of Dreams |learn Ink of Dreams##111645 |goto Orgrimmar/1 55.24,55.80
 step
 collect 130 Shadow Pigment##79251 |or |usebank
 |tip Mill them from herbs with Inscription or purchase them from the auction house.
@@ -10903,7 +10903,7 @@ create 65 Ink of Dreams##111645,Inscription,65 total
 step
 talk Nerog##46716
 |tip Inside the building.
-Train Scroll of Wisdom |learn Scroll of Wisdom##112996 |goto Orgrimmar/0 55.24,55.80
+Train Scroll of Wisdom |learn Scroll of Wisdom##112996 |goto Orgrimmar/1 55.24,55.80
 step
 create Scroll of Wisdom##112996,Inscription,546
 |tip You will discover a Glyph recipe when you create a Scroll of Wisdom.
@@ -10916,7 +10916,7 @@ Reach Skill Level 595 in Inscription |skill Inscription,595
 step
 talk Nerog##46716
 |tip You can choose any of the shoulder enchantments instead.
-Train Greater Tiger Fang Inscription |learn Greater Tiger Fang Inscription##126997 |goto Orgrimmar/0 55.24,55.80
+Train Greater Tiger Fang Inscription |learn Greater Tiger Fang Inscription##126997 |goto Orgrimmar/1 55.24,55.80
 '|complete skill("Inscription") >= 600
 step
 collect 9 Misty Pigment##79253 |or |usebank
@@ -10931,7 +10931,7 @@ create 5 Greater Tiger Fang Inscription##126997,Inscription,600
 '|complete skill("Inscription") >= 600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Leveling Guides\\Jewelcrafting (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Jewelcrafting') > 0 end,
 description="This guide will walk you through leveling your Jewelcrafting skill from 1-600.",
@@ -12780,14 +12780,14 @@ collect 20 Volatile Fire##52325
 step
 label "Begin_Jewelcrafting_Leveling_Cataclysm"
 talk Lugrah##46675
-Train Jewelcrafting |skillmax Jewelcrafting,525 |goto Orgrimmar/0 72.49,34.34
+Train Jewelcrafting |skillmax Jewelcrafting,525 |goto Orgrimmar/1 72.49,34.34
 |tip You must be at least level 75.
 step
 talk Lugrah##46675
-learn Jasper Ring##73494 |goto Orgrimmar/0 72.49,34.34
+learn Jasper Ring##73494 |goto Orgrimmar/1 72.49,34.34
 step
 talk Marith Lazuria##50482
-buy 70 Jeweler's Setting##52188 |goto Orgrimmar/0 72.59,34.44
+buy 70 Jeweler's Setting##52188 |goto Orgrimmar/1 72.59,34.44
 |only if skill("Jewelcrafting") < 525
 step
 collect 18 Jasper##52182
@@ -12802,7 +12802,7 @@ _<Create 18 Jasper Ring>_
 Reach 468 Jewelcrafting |skill Jewelcrafting,468
 step
 talk Lugrah##46675
-learn Hessonite Band##73495 |goto Orgrimmar/0 72.49,34.34
+learn Hessonite Band##73495 |goto Orgrimmar/1 72.49,34.34
 step
 collect 34 Hessonite##52181
 |tip Farm them with Mining or purchase them from the Auction House.
@@ -12815,7 +12815,7 @@ _<Create 17 Hessonite Band>_
 Reach 485 Jewelcrafting |skill Jewelcrafting,485
 step
 talk Lugrah##46675
-learn Nightstone Choker##73497 |goto Orgrimmar/0 72.49,34.34
+learn Nightstone Choker##73497 |goto Orgrimmar/1 72.49,34.34
 step
 collect 40 Nightstone##52180
 |tip Farm them with Mining or purchase them from the Auction House.
@@ -12834,7 +12834,7 @@ Collect #4# Illustrious Jewelcrafter's Token |complete curcount(361) >= 4
 |only if skill("Jewelcrafting") < 520
 step
 talk Taryssa Lazuria##57922
-buy 1 Design: Forlorn Shadowspirit Diamond##52445 |goto Orgrimmar/0 72.34,34.35
+buy 1 Design: Forlorn Shadowspirit Diamond##52445 |goto Orgrimmar/1 72.34,34.35
 |only if skill("Jewelcrafting") < 520
 step
 use the Design: Forlorn Shadowspirit Diamond##52445
@@ -12850,7 +12850,7 @@ _<Create 20 Forlorn Shadowspirit Diamond>_
 Reach 520 Jewelcrafting |skill Jewelcrafting,520
 step
 talk Lugrah##46675
-learn Vicious Sapphire Necklace##99542 |goto Orgrimmar/0 72.49,34.34
+learn Vicious Sapphire Necklace##99542 |goto Orgrimmar/1 72.49,34.34
 stickystart "Collect_Volatile_Air_525"
 stickystart "Collect_Volatile_Fire_525"
 step
@@ -12919,16 +12919,16 @@ Collect 79 more Uncommon gems through Prospecting or purchase from the Auction H
 step
 label "Begin_Profession_Leveling_Pandaria"
 talk Lugrah##46675
-Train Zen Master Jewelcrafting |skillmax Jewelcrafting,600 |goto Orgrimmar/0 72.49,34.34
+Train Zen Master Jewelcrafting |skillmax Jewelcrafting,600 |goto Orgrimmar/1 72.49,34.34
 step
 talk Lugrah##46675
-Train Ornate Band |learn Ornate Band##122661 |goto Orgrimmar/0 72.49,34.34
+Train Ornate Band |learn Ornate Band##122661 |goto Orgrimmar/1 72.49,34.34
 step
 create 9 Ornate Band##122661,Jewelcrafting,525
 'complete skill("Jewelcrafting") >= 525
 step
 talk Lugrah##46675
-Train Solid Lapis Lazuli |learn Solid Lapis Lazuli##107619 |goto Orgrimmar/0 72.49,34.34
+Train Solid Lapis Lazuli |learn Solid Lapis Lazuli##107619 |goto Orgrimmar/1 72.49,34.34
 |tip You can choose whichever uncommon gem you have available instead of Lapis Lazuli.
 step
 create 70 Solid Lapis Lazuli##76567,Jewelcrafting,585
@@ -12946,7 +12946,7 @@ Craft 6 of the gem you discovered from the daily research.
 '|complete skill("Jewelcrafting") >= 600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Leatherworking\\Leveling Guides\\Leatherworking (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Leatherworking') > 0 end,
 description="This guide will walk you through leveling your Leatherworking skill from 1-600.",
@@ -12956,10 +12956,10 @@ Reach Level 5 |ding 5
 |tip You must be at least level 5 to train Apprentice professions.
 |tip Use the leveling guides to accomplish this.
 step
-Enter the building |goto Orgrimmar/0 62.22,45.65 < 5 |walk
+Enter the building |goto Orgrimmar/1 62.22,45.65 < 5 |walk
 talk Karolek##3365
 |tip Inside the building.
-Train Apprentice Leatherworking |skillmax Leatherworking,75 |goto Orgrimmar/0 60.87,54.96
+Train Apprentice Leatherworking |skillmax Leatherworking,75 |goto Orgrimmar/1 60.87,54.96
 step
 Click Here if You Would Like to Collect All Materials First |confirm |next |or
 _Or_
@@ -13084,7 +13084,7 @@ You can find more around [39.47,17.22]
 step
 Tamar##3366
 |tip Inside the building.
-buy 21 Coarse Thread##2320 |goto Orgrimmar/0 60.36,54.38 |or
+buy 21 Coarse Thread##2320 |goto Orgrimmar/1 60.36,54.38 |or
 '|complete skill("Leatherworking") >= 55 |or
 step
 create 21 Handstitched Leather Cloak##9058,Leatherworking,55
@@ -13097,11 +13097,11 @@ Reach Level 10 |ding 10
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Journeyman Leatherworking |skillmax Leatherworking,150 |goto Orgrimmar/0 60.87,54.96
+Train Journeyman Leatherworking |skillmax Leatherworking,150 |goto Orgrimmar/1 60.87,54.96
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Embossed Leather Gloves |learn Embossed Leather Gloves##3756 |goto Orgrimmar/0 60.87,54.96
+Train Embossed Leather Gloves |learn Embossed Leather Gloves##3756 |goto Orgrimmar/1 60.87,54.96
 step
 Kill enemies around this area
 |tip Skin their corpses.
@@ -13112,7 +13112,7 @@ You can find more around [39.47,17.22]
 step
 Tamar##3366
 |tip Inside the building.
-buy 180 Coarse Thread##2320 |goto Orgrimmar/0 60.36,54.38 |or
+buy 180 Coarse Thread##2320 |goto Orgrimmar/1 60.36,54.38 |or
 |tip Save these, you will need them for future steps.
 '|complete skill("Leatherworking") >= 100 |or
 step
@@ -13122,7 +13122,7 @@ create 55 Embossed Leather Gloves##3756,Leatherworking,100
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Fine Leather Belt |learn Fine Leather Belt##3763 |goto Orgrimmar/0 60.87,54.96
+Train Fine Leather Belt |learn Fine Leather Belt##3763 |goto Orgrimmar/1 60.87,54.96
 step
 Kill enemies around this area
 |tip Skin their corpses.
@@ -13134,7 +13134,7 @@ You can find more around [39.47,17.22]
 step
 Tamar##3366
 |tip Inside the building.
-buy 70 Coarse Thread##2320 |goto Orgrimmar/0 60.36,54.38 |or
+buy 70 Coarse Thread##2320 |goto Orgrimmar/1 60.36,54.38 |or
 |tip You bought these in a previous step.
 '|complete skill("Leatherworking") >= 125 |or
 step
@@ -13144,7 +13144,7 @@ create 35 Fine Leather Belt##3763,Leatherworking,125
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Dark Leather Boots |learn Dark Leather Boots##2167 |goto Orgrimmar/0 60.87,54.96
+Train Dark Leather Boots |learn Dark Leather Boots##2167 |goto Orgrimmar/1 60.87,54.96
 step
 Kill Yeti enemies around this area
 |tip Skin their corpses.
@@ -13156,8 +13156,8 @@ collect 72 Medium Leather##2319 |or |goto Hillsbrad Foothills 46.64,54.41
 step
 Tamar##3366
 |tip Inside the building.
-buy 36 Fine Thread##2321 |goto Orgrimmar/0 60.36,54.38 |or 2
-buy 18 Gray Dye##4340 |goto Orgrimmar/0 60.36,54.38 |or 2
+buy 36 Fine Thread##2321 |goto Orgrimmar/1 60.36,54.38 |or 2
+buy 18 Gray Dye##4340 |goto Orgrimmar/1 60.36,54.38 |or 2
 '|complete skill("Leatherworking") >= 137 |or
 step
 create 18 Dark Leather Boots##2167,Leatherworking,137
@@ -13170,11 +13170,11 @@ Reach Level 20 |ding 20
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Expert Leatherworking |skillmax Leatherworking,225 |goto Orgrimmar/0 60.87,54.96
+Train Expert Leatherworking |skillmax Leatherworking,225 |goto Orgrimmar/1 60.87,54.96
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Dark Leather Pants |learn Dark Leather Pants##7135 |goto Orgrimmar/0 60.87,54.96
+Train Dark Leather Pants |learn Dark Leather Pants##7135 |goto Orgrimmar/1 60.87,54.96
 step
 Kill Yeti enemies around this area
 |tip Skin their corpses.
@@ -13186,8 +13186,8 @@ collect 240 Medium Leather##2319 |or |goto Hillsbrad Foothills 46.64,54.41
 step
 Tamar##3366
 |tip Inside the building.
-buy 20 Fine Thread##2321 |goto Orgrimmar/0 60.36,54.38 |or 2
-buy 20 Gray Dye##4340 |goto Orgrimmar/0 60.36,54.38 |or 2
+buy 20 Fine Thread##2321 |goto Orgrimmar/1 60.36,54.38 |or 2
+buy 20 Gray Dye##4340 |goto Orgrimmar/1 60.36,54.38 |or 2
 '|complete skill("Leatherworking") >= 150 |or
 step
 create 20 Dark Leather Pants##7135,Leatherworking,150
@@ -13196,7 +13196,7 @@ create 20 Dark Leather Pants##7135,Leatherworking,150
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Heavy Leather |learn Heavy Leather##20649 |goto Orgrimmar/0 60.87,54.96
+Train Heavy Leather |learn Heavy Leather##20649 |goto Orgrimmar/1 60.87,54.96
 step
 Kill Yeti enemies around this area
 |tip Skin their corpses.
@@ -13212,7 +13212,7 @@ create 8 Heavy Leather##20649,Leatherworking,155
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Cured Heavy Hide |learn Cured Heavy Hide##3818 |goto Orgrimmar/0 60.87,54.96
+Train Cured Heavy Hide |learn Cured Heavy Hide##3818 |goto Orgrimmar/1 60.87,54.96
 step
 Kill enemies around this area
 |tip Skin their corpses.
@@ -13223,7 +13223,7 @@ collect 20 Heavy Hide##4235 |or |goto The Hinterlands 16.19,50.97
 step
 Tamar##3366
 |tip Inside the building.
-buy 60 Salt##4289 |goto Orgrimmar/0 60.36,54.38 |or
+buy 60 Salt##4289 |goto Orgrimmar/1 60.36,54.38 |or
 '|complete skill("Leatherworking") >= 171 |or
 step
 create 20 Cured Heavy Hide##3818,Leatherworking,20 total |or
@@ -13237,7 +13237,7 @@ create 1 Cured Heavy Hide##3818,Leatherworking,165
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Heavy Armor Kit |learn Heavy Armor Kit##3780 |goto Orgrimmar/0 60.87,54.96
+Train Heavy Armor Kit |learn Heavy Armor Kit##3780 |goto Orgrimmar/1 60.87,54.96
 step
 Kill enemies around this area
 |tip Only beast enemies will be skinnable.
@@ -13252,7 +13252,7 @@ You can find more around: |notinsticky
 step
 Tamar##3366
 |tip Inside the building.
-buy 39 Fine Thread##2321 |goto Orgrimmar/0 60.36,54.38 |or
+buy 39 Fine Thread##2321 |goto Orgrimmar/1 60.36,54.38 |or
 |tip Save these, you will need them for future steps.
 '|complete skill("Leatherworking") >= 180 |or
 step
@@ -13262,7 +13262,7 @@ create 19 Heavy Armor Kit##3780,Leatherworking,180
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Barbaric Shoulders |learn Barbaric Shoulders##7151 |goto Orgrimmar/0 60.87,54.96
+Train Barbaric Shoulders |learn Barbaric Shoulders##7151 |goto Orgrimmar/1 60.87,54.96
 stickystart "Collect_Cured_Heavy_Hide_190"
 step
 Kill enemies around this area
@@ -13283,7 +13283,7 @@ collect 10 Cured Heavy Hide##4236 |or
 step
 Tamar##3366
 |tip Inside the building.
-buy 20 Fine Thread##2321 |goto Orgrimmar/0 60.36,54.38 |or
+buy 20 Fine Thread##2321 |goto Orgrimmar/1 60.36,54.38 |or
 |tip You purchased these in a previous step.
 '|complete skill("Leatherworking") >= 190 |or
 step
@@ -13291,7 +13291,7 @@ create 10 Barbaric Shoulders##7151,Leatherworking,190
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Guardian Gloves |learn Guardian Gloves##7156 |goto Orgrimmar/0 60.87,54.96
+Train Guardian Gloves |learn Guardian Gloves##7156 |goto Orgrimmar/1 60.87,54.96
 stickystart "Collect_Cured_Heavy_Hide_200"
 step
 Kill enemies around this area
@@ -13312,7 +13312,7 @@ collect 10 Cured Heavy Hide##4236 |or
 step
 Tamar##3366
 |tip Inside the building.
-buy 15 Silken Thread##4291 |goto Orgrimmar/0 60.36,54.38 |or
+buy 15 Silken Thread##4291 |goto Orgrimmar/1 60.36,54.38 |or
 |tip Save these, you will need them for future steps.
 '|complete skill("Leatherworking") >= 200 |or
 step
@@ -13320,7 +13320,7 @@ create 10 Guardian Gloves##7156,Leatherworking,200
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Thick Armor Kit |learn Thick Armor Kit##10487 |goto Orgrimmar/0 60.87,54.96
+Train Thick Armor Kit |learn Thick Armor Kit##10487 |goto Orgrimmar/1 60.87,54.96
 step
 Kill Ravasaur enemies around this area
 |tip Skin their corpses.
@@ -13334,7 +13334,7 @@ You can find more around: |notinsticky
 step
 Tamar##3366
 |tip Inside the building.
-buy 5 Silken Thread##4291 |goto Orgrimmar/0 60.36,54.38 |or
+buy 5 Silken Thread##4291 |goto Orgrimmar/1 60.36,54.38 |or
 |tip You purchased these in a previous step.
 '|complete skill("Leatherworking") >= 205 |or
 step
@@ -13346,11 +13346,11 @@ Reach Level 35 |ding 35
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Artisan Leatherworking |skillmax Leatherworking,300 |goto Orgrimmar/0 60.87,54.96
+Train Artisan Leatherworking |skillmax Leatherworking,300 |goto Orgrimmar/1 60.87,54.96
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Nightscape Headband |learn Nightscape Headband##10507 |goto Orgrimmar/0 60.87,54.96
+Train Nightscape Headband |learn Nightscape Headband##10507 |goto Orgrimmar/1 60.87,54.96
 step
 Kill Ravasaur enemies around this area
 |tip Skin their corpses.
@@ -13364,7 +13364,7 @@ You can find more around: |notinsticky
 step
 Tamar##3366
 |tip Inside the building.
-buy 166 Silken Thread##4291 |goto Orgrimmar/0 60.36,54.38 |or
+buy 166 Silken Thread##4291 |goto Orgrimmar/1 60.36,54.38 |or
 |tip Save these, you will need them for future steps.
 '|complete skill("Leatherworking") >= 235 |or
 step
@@ -13374,7 +13374,7 @@ create 40 Nightscape Headband##10507,Leatherworking,235
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Nightscape Pants |learn Nightscape Pants##10548 |goto Orgrimmar/0 60.87,54.96
+Train Nightscape Pants |learn Nightscape Pants##10548 |goto Orgrimmar/1 60.87,54.96
 step
 Kill Ravasaur enemies around this area
 |tip Skin their corpses.
@@ -13388,7 +13388,7 @@ You can find more around: |notinsticky
 step
 Tamar##3366
 |tip Inside the building.
-buy 60 Silken Thread##4291 |goto Orgrimmar/0 60.36,54.38 |or
+buy 60 Silken Thread##4291 |goto Orgrimmar/1 60.36,54.38 |or
 |tip You purchased these in a previous step.
 '|complete skill("Leatherworking") >= 250 |or
 step
@@ -13396,7 +13396,7 @@ create 15 Nightscape Pants##10548,Leatherworking,250
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Nightscape Boots |learn Nightscape Boots##10558 |goto Orgrimmar/0 60.87,54.96
+Train Nightscape Boots |learn Nightscape Boots##10558 |goto Orgrimmar/1 60.87,54.96
 step
 Kill Ravasaur enemies around this area
 |tip Skin their corpses.
@@ -13410,7 +13410,7 @@ You can find more around: |notinsticky
 step
 Tamar##3366
 |tip Inside the building.
-buy 38 Heavy Silken Thread##8343 |goto Orgrimmar/0 60.36,54.38 |or
+buy 38 Heavy Silken Thread##8343 |goto Orgrimmar/1 60.36,54.38 |or
 |tip You purchased these in a previous step.
 '|complete skill("Leatherworking") >= 260 |or
 step
@@ -13420,12 +13420,12 @@ create 19 Nightscape Boots##10558,Leatherworking,265
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Wicked Leather Bracers |learn Wicked Leather Bracers##19052 |goto Orgrimmar/0 60.87,54.96
+Train Wicked Leather Bracers |learn Wicked Leather Bracers##19052 |goto Orgrimmar/1 60.87,54.96
 step
 Tamar##3366
 |tip Inside the building.
-buy 28 Black Dye##2325 |goto Orgrimmar/0 60.36,54.38 |or 2
-buy 28 Rune Thread##14341 |goto Orgrimmar/0 60.36,54.38 |or 2
+buy 28 Black Dye##2325 |goto Orgrimmar/1 60.36,54.38 |or 2
+buy 28 Rune Thread##14341 |goto Orgrimmar/1 60.36,54.38 |or 2
 '|complete skill("Leatherworking") >= 290 |or
 step
 Kill Ice Thistle enemies around this area
@@ -13443,7 +13443,7 @@ create 28 Wicked Leather Bracers##19052,Leatherworking,290
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Wicked Leather Headband |learn Wicked Leather Headband##19071 |goto Orgrimmar/0 60.87,54.96
+Train Wicked Leather Headband |learn Wicked Leather Headband##19071 |goto Orgrimmar/1 60.87,54.96
 step
 Kill Ice Thistle enemies around this area
 |tip You can find more inside the cave.
@@ -13456,8 +13456,8 @@ You can find more inside the cave at [67.67,41.72]
 step
 Tamar##3366
 |tip Inside the building.
-buy 10 Black Dye##2325 |goto Orgrimmar/0 60.36,54.38 |or 2
-buy 10 Rune Thread##14341 |goto Orgrimmar/0 60.36,54.38 |or 2
+buy 10 Black Dye##2325 |goto Orgrimmar/1 60.36,54.38 |or 2
+buy 10 Rune Thread##14341 |goto Orgrimmar/1 60.36,54.38 |or 2
 '|complete skill("Leatherworking") >= 300 |or
 step
 create 10 Wicked Leather Headband##19071,Leatherworking,300
@@ -14035,12 +14035,12 @@ step
 label "Begin_Leatherworking_Leveling_Cataclysm"
 talk Karolek##3365
 |tip Inside the building.
-Train Illustrious Grand Master Leatherworking |skillmax Leatherworking,525 |goto Orgrimmar/0 60.87,54.96
+Train Illustrious Grand Master Leatherworking |skillmax Leatherworking,525 |goto Orgrimmar/1 60.87,54.96
 |tip You must be at least level 75.
 step
 talk Tamar##3366
 |tip Inside the building.
-buy 30 Eternium Thread##38426 |goto Orgrimmar/0 60.36,54.38
+buy 30 Eternium Thread##38426 |goto Orgrimmar/1 60.36,54.38
 |only if skill("Leatherworking") < 495
 step
 map Twilight Highlands/0
@@ -14059,7 +14059,7 @@ Reach 455 Leatherworking |skill Leatherworking,455
 step
 talk Karolek##3365
 |tip Inside the building.
-learn Tsunami Boots##78410 |goto Orgrimmar/0 60.87,54.96
+learn Tsunami Boots##78410 |goto Orgrimmar/1 60.87,54.96
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants curved
@@ -14076,7 +14076,7 @@ Reach 460 Leatherworking |skill Leatherworking,460
 step
 talk Karolek##3365
 |tip Inside the building.
-learn Savage Cloak##78380 |goto Orgrimmar/0 60.87,54.96
+learn Savage Cloak##78380 |goto Orgrimmar/1 60.87,54.96
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants curved
@@ -14093,7 +14093,7 @@ Reach 470 Leatherworking |skill Leatherworking,470
 step
 talk Karolek##3365
 |tip Inside the building.
-learn Darkbrand Boots##78407 |goto Orgrimmar/0 60.87,54.96
+learn Darkbrand Boots##78407 |goto Orgrimmar/1 60.87,54.96
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants curved
@@ -14110,7 +14110,7 @@ Reach 475 Leatherworking |skill Leatherworking,475
 step
 talk Karolek##3365
 |tip Inside the building.
-learn Darkbrand Shoulders##78411 |goto Orgrimmar/0 60.87,54.96
+learn Darkbrand Shoulders##78411 |goto Orgrimmar/1 60.87,54.96
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants curved
@@ -14127,7 +14127,7 @@ Reach 485 Leatherworking |skill Leatherworking,485
 step
 talk Karolek##3365
 |tip Inside the building.
-learn Heavy Savage Leather##78436 |goto Orgrimmar/0 60.87,54.96
+learn Heavy Savage Leather##78436 |goto Orgrimmar/1 60.87,54.96
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants curved
@@ -14145,7 +14145,7 @@ Reach 490 Leatherworking |skill Leatherworking,490
 step
 talk Karolek##3365
 |tip Inside the building.
-learn Darkbrand Chestguard##78428 |goto Orgrimmar/0 60.87,54.96
+learn Darkbrand Chestguard##78428 |goto Orgrimmar/1 60.87,54.96
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants curved
@@ -14166,7 +14166,7 @@ collect 60 Heavy Savage Leather##56516
 step
 talk Karolek##3365
 |tip Inside the building.
-learn Darkbrand Helm##78424 |goto Orgrimmar/0 60.87,54.96
+learn Darkbrand Helm##78424 |goto Orgrimmar/1 60.87,54.96
 step
 Open Your Leatherworking Crafting Panel:
 _<Create 12 Darkbrand Helm>_
@@ -14175,7 +14175,7 @@ Reach 507 Leatherworking |skill Leatherworking,507
 step
 talk Karolek##3365
 |tip Inside the building.
-learn Vicious Hide Cloak##99535 |goto Orgrimmar/0 60.87,54.96
+learn Vicious Hide Cloak##99535 |goto Orgrimmar/1 60.87,54.96
 step
 collect 30 Heavy Savage Leather##56516
 |tip You should have these from previous steps.
@@ -14183,7 +14183,7 @@ collect 30 Heavy Savage Leather##56516
 step
 talk Tamar##3366
 |tip Inside the building.
-buy 3 Pristine Hide##52980 |goto Orgrimmar/0 60.36,54.38
+buy 3 Pristine Hide##52980 |goto Orgrimmar/1 60.36,54.38
 |tip These will cost 10 Heavy Savage Leather each.
 |only if skill("Leatherworking") < 510
 step
@@ -14205,7 +14205,7 @@ collect 150 Heavy Savage Leather##56516
 step
 talk Tamar##3366
 |tip Inside the building.
-buy 1 Pattern: Bloodied Leather Bracers##67046 |goto Orgrimmar/0 60.36,54.38
+buy 1 Pattern: Bloodied Leather Bracers##67046 |goto Orgrimmar/1 60.36,54.38
 step
 use the Pattern: Bloodied Leather Bracers##67046
 learn Bloodied Leather Bracers##78446
@@ -14225,7 +14225,7 @@ Reach 515 Leatherworking |skill Leatherworking,515
 step
 talk Tamar##3366
 |tip Inside the building.
-buy 1 Pattern: Bloodied Leather Boots##67060 |goto Orgrimmar/0 60.36,54.38
+buy 1 Pattern: Bloodied Leather Boots##67060 |goto Orgrimmar/1 60.36,54.38
 |only if skill("Leatherworking") < 520
 step
 use the Pattern: Bloodied Leather Boots##67060
@@ -14254,7 +14254,7 @@ collect 50 Volatile Water##52326
 step
 talk Tamar##3366
 |tip Inside the building.
-buy 1 Pattern: Bloodied Leather Helm##67077 |goto Orgrimmar/0 60.36,54.38
+buy 1 Pattern: Bloodied Leather Helm##67077 |goto Orgrimmar/1 60.36,54.38
 |only if skill("Leatherworking") < 525
 step
 use the Pattern: Bloodied Leather Helm##67077
@@ -14289,11 +14289,11 @@ step
 label "Begin_Profession_Leveling_Pandaria"
 talk Karolek##3365
 |tip Inside the building.
-Train Zen Master Leatherworking |skillmax Leatherworking,600 |goto Orgrimmar/0 60.87,54.96
+Train Zen Master Leatherworking |skillmax Leatherworking,600 |goto Orgrimmar/1 60.87,54.96
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Mist-Touched Leather |learn Mist-Touched Leather##124627 |goto Orgrimmar/0 60.87,54.96
+Train Mist-Touched Leather |learn Mist-Touched Leather##124627 |goto Orgrimmar/1 60.87,54.96
 step
 collect 65 Sha-Touched Leather##72162 |or |usebank
 |tip You can farm these from mobs in Pandaria or purchase them from the Auction House.
@@ -14305,7 +14305,7 @@ create 13 Mist-Touched Leather##124627,Leatherworking,13 total |or |usebank
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Misthide Belt |learn Misthide Belt##124578 |goto Orgrimmar/0 60.87,54.96
+Train Misthide Belt |learn Misthide Belt##124578 |goto Orgrimmar/1 60.87,54.96
 step
 collect 96 Mist-Touched Leather##72120 |or |usebank
 |tip You can farm these from mobs in Pandaria or purchase them from the Auction House.
@@ -14317,7 +14317,7 @@ create 12 Misthide Belt##124578,Leatherworking,12 total |or |usebank
 step
 talk Karolek##3365
 |tip Inside the building.
-Train Misthide Chestguard |learn Misthide Chestguard##124573 |goto Orgrimmar/0 60.87,54.96
+Train Misthide Chestguard |learn Misthide Chestguard##124573 |goto Orgrimmar/1 60.87,54.96
 step
 collect 130 Mist-Touched Leather##72120 |or |usebank
 |tip You can farm these from mobs in Pandaria or purchase them from the Auction House.
@@ -14329,7 +14329,7 @@ create 13 Misthide Chestguard##124573,Leatherworking,13 total |or |usebank
 step
 talk Krogo Darkhide##64054
 |tip Inside the building.
-Purchase and Learn Pattern: Contender's Wyrmhide Bracers |learn Contender's Wyrmhide Bracers##124592 |goto Shrine of Two Moons/0 30.84,46.8
+Purchase and Learn Pattern: Contender's Wyrmhide Bracers |learn Contender's Wyrmhide Bracers##124592 |goto Shrine of Two Moons/1 30.84,46.8
 |tip You can choose any of the PVP patterns you'd like.
 |complete skill("Leatherworking") >= 600 |or'
 step
@@ -14369,7 +14369,7 @@ _Congratulations!_
 You Reached 75 Pandaria Mining Skill.
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Leveling Guides\\Tailoring (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Tailoring') > 0 end,
 description="This guide will walk you through leveling your Tailoring skill from 1-600.",
@@ -14379,10 +14379,10 @@ Reach Level 5 |ding 5
 |tip You must be at least level 5 to train professions.
 |tip Use the leveling guides to accomplish this.
 step
-Enter the building |goto Orgrimmar/0 61.38,50.37 < 7 |walk
+Enter the building |goto Orgrimmar/1 61.38,50.37 < 7 |walk
 talk Magar##3363
 |tip Inside the building.
-Train Apprentice Tailoring |skillmax Tailoring,75 |goto Orgrimmar/0 63.65,49.93
+Train Apprentice Tailoring |skillmax Tailoring,75 |goto Orgrimmar/1 63.65,49.93
 step
 Click Here if You Would Like to Collect All Materials First |confirm |next |or
 _Or_
@@ -14457,13 +14457,13 @@ collect 40 Bolt of Linen Cloth##2996 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 55 Coarse Thread##2320 |goto Orgrimmar/0 63.08,51.45 |or
+buy 55 Coarse Thread##2320 |goto Orgrimmar/1 63.08,51.45 |or
 |tip Save these, you will need them for future steps.
 '|complete skill("Tailoring") >= 70 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Linen Belt |learn Linen Belt##8776 |goto Orgrimmar/0 63.65,49.93
+Train Linen Belt |learn Linen Belt##8776 |goto Orgrimmar/1 63.65,49.93
 step
 create 40 Linen Belt##8776,Tailoring,70
 |tip You may need to make a few more of these.
@@ -14475,13 +14475,13 @@ collect 10 Bolt of Linen Cloth##2996 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 15 Coarse Thread##2320 |goto Orgrimmar/0 63.08,51.45 |or
+buy 15 Coarse Thread##2320 |goto Orgrimmar/1 63.08,51.45 |or
 |tip You purchased these in a previous step.
 '|complete skill("Tailoring") >= 75 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Reinforced Linen Cape |learn Reinforced Linen Cape##2397 |goto Orgrimmar/0 63.65,49.93
+Train Reinforced Linen Cape |learn Reinforced Linen Cape##2397 |goto Orgrimmar/1 63.65,49.93
 step
 create 5 Reinforced Linen Cape##2397,Tailoring,75
 step
@@ -14491,11 +14491,11 @@ Reach Level 10 |ding 10
 step
 talk Magar##3363
 |tip Inside the building.
-Train Journeyman Tailoring |skillmax Tailoring,150 |goto Orgrimmar/0 63.65,49.93
+Train Journeyman Tailoring |skillmax Tailoring,150 |goto Orgrimmar/1 63.65,49.93
 step
 talk Magar##3363
 |tip Inside the building.
-Train Bolt of Woolen Cloth |learn Bolt of Woolen Cloth##2964 |goto Orgrimmar/0 63.65,49.93
+Train Bolt of Woolen Cloth |learn Bolt of Woolen Cloth##2964 |goto Orgrimmar/1 63.65,49.93
 step
 Kill Venture Co. enemies around this area
 |tip You can find more inside the mine.
@@ -14518,13 +14518,13 @@ collect 52 Bolt of Linen Cloth##2996 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 43 Fine Thread##2321 |goto Orgrimmar/0 63.08,51.45 |or
+buy 43 Fine Thread##2321 |goto Orgrimmar/1 63.08,51.45 |or
 |tip Save these, you will need them for future steps.
 '|complete skill("Tailoring") >= 110 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Simple Kilt |learn Simple Kilt##12046 |goto Orgrimmar/0 63.65,49.93
+Train Simple Kilt |learn Simple Kilt##12046 |goto Orgrimmar/1 63.65,49.93
 step
 create 13 Simple Kilt##12046,Tailoring,110
 |tip You may need to make a few more of these.
@@ -14536,13 +14536,13 @@ collect 45 Bolt of Woolen Cloth##2997 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 30 Fine Thread##2321 |goto Orgrimmar/0 63.08,51.45 |or
+buy 30 Fine Thread##2321 |goto Orgrimmar/1 63.08,51.45 |or
 |tip You purchased these in a previous step.
 '|complete skill("Tailoring") >= 125 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Double-stitched Woolen Shoulders |learn Double-stitched Woolen Shoulders##3848 |goto Orgrimmar/0 63.65,49.93
+Train Double-stitched Woolen Shoulders |learn Double-stitched Woolen Shoulders##3848 |goto Orgrimmar/1 63.65,49.93
 step
 create 15 Double-stitched Woolen Shoulders##3848,Tailoring,125
 step
@@ -14552,11 +14552,11 @@ Reach Level 20 |ding 20
 step
 talk Magar##3363
 |tip Inside the building.
-Train Expert Tailoring |skillmax Tailoring,225 |goto Orgrimmar/0 63.65,49.93
+Train Expert Tailoring |skillmax Tailoring,225 |goto Orgrimmar/1 63.65,49.93
 step
 talk Magar##3363
 |tip Inside the building.
-Train Bolt of Silk Cloth |learn Bolt of Silk Cloth##3839 |goto Orgrimmar/0 63.65,49.93
+Train Bolt of Silk Cloth |learn Bolt of Silk Cloth##3839 |goto Orgrimmar/1 63.65,49.93
 step
 Kill Grimtotem enemies around this area
 collect 804 Silk Cloth##4306 |goto Thousand Needles 13.26,5.84 |or
@@ -14576,13 +14576,13 @@ collect 36 Bolt of Silk Cloth##4305 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 18 Fine Thread##2321 |goto Orgrimmar/0 63.08,51.45 |or 2
-buy 36 Blue Dye##6260 |goto Orgrimmar/0 63.08,51.45 |or 2
+buy 18 Fine Thread##2321 |goto Orgrimmar/1 63.08,51.45 |or 2
+buy 36 Blue Dye##6260 |goto Orgrimmar/1 63.08,51.45 |or 2
 '|complete skill("Tailoring") >= 160 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Azure Silk Hood |learn Azure Silk Hood##8760 |goto Orgrimmar/0 63.65,49.93
+Train Azure Silk Hood |learn Azure Silk Hood##8760 |goto Orgrimmar/1 63.65,49.93
 step
 create 18 Azure Silk Hood##8760,Tailoring,160
 |tip You may need to create more or less of these.
@@ -14594,12 +14594,12 @@ collect 30 Bolt of Silk Cloth##4305 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 20 Fine Thread##2321 |goto Orgrimmar/0 63.08,51.45 |or
+buy 20 Fine Thread##2321 |goto Orgrimmar/1 63.08,51.45 |or
 '|complete skill("Tailoring") >= 170 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Silk Headband |learn Silk Headband##8762 |goto Orgrimmar/0 63.65,49.93
+Train Silk Headband |learn Silk Headband##8762 |goto Orgrimmar/1 63.65,49.93
 step
 create 10 Silk Headband##8762,Tailoring,170
 step
@@ -14609,13 +14609,13 @@ collect 15 Bolt of Silk Cloth##4305 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 10 Bleach##2324 |goto Orgrimmar/0 63.08,51.45 |or 2
-buy 5 Fine Thread##2321 |goto Orgrimmar/0 63.08,51.45 |or 2
+buy 10 Bleach##2324 |goto Orgrimmar/1 63.08,51.45 |or 2
+buy 5 Fine Thread##2321 |goto Orgrimmar/1 63.08,51.45 |or 2
 '|complete skill("Tailoring") >= 175 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Formal White Shirt |learn Formal White Shirt##3871 |goto Orgrimmar/0 63.65,49.93
+Train Formal White Shirt |learn Formal White Shirt##3871 |goto Orgrimmar/1 63.65,49.93
 step
 create 5 Formal White Shirt##3871,Tailoring,175
 step
@@ -14626,7 +14626,7 @@ collect 500 Mageweave Cloth##4338 |or |goto Tanaris/0 40.50,55.50
 step
 talk Magar##3363
 |tip Inside the building.
-Train Bolt of Mageweave |learn Bolt of Mageweave##3865 |goto Orgrimmar/0 63.65,49.93
+Train Bolt of Mageweave |learn Bolt of Mageweave##3865 |goto Orgrimmar/1 63.65,49.93
 step
 create 100 Bolt of Mageweave##3865,Tailoring,100 total |or
 |tip Save these, you will need them for future steps.
@@ -14641,13 +14641,13 @@ collect 80 Bolt of Silk Cloth##4305 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 40 Fine Thread##2321 |goto Orgrimmar/0 63.08,51.45 |or 2
-buy 40 Red Dye##2604 |goto Orgrimmar/0 63.08,51.45 |or 2
+buy 40 Fine Thread##2321 |goto Orgrimmar/1 63.08,51.45 |or 2
+buy 40 Red Dye##2604 |goto Orgrimmar/1 63.08,51.45 |or 2
 '|complete skill("Tailoring") >= 205 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Crimson Silk Vest |learn Crimson Silk Vest##8791 |goto Orgrimmar/0 63.65,49.93
+Train Crimson Silk Vest |learn Crimson Silk Vest##8791 |goto Orgrimmar/1 63.65,49.93
 step
 create 20 Crimson Silk Vest##8791,Tailoring,205
 step
@@ -14657,11 +14657,11 @@ Reach Level 35 |ding 35
 step
 talk Magar##3363
 |tip Inside the building.
-Train Artisan Tailoring |skillmax Tailoring,300 |goto Orgrimmar/0 63.65,49.93
+Train Artisan Tailoring |skillmax Tailoring,300 |goto Orgrimmar/1 63.65,49.93
 step
 talk Magar##3363
 |tip Inside the building.
-Train Crimson Silk Pantaloons |learn Crimson Silk Pantaloons##8799 |goto Orgrimmar/0 63.65,49.93
+Train Crimson Silk Pantaloons |learn Crimson Silk Pantaloons##8799 |goto Orgrimmar/1 63.65,49.93
 step
 collect 40 Bolt of Silk Cloth##4305 |or
 |tip You created these in a previous step.
@@ -14669,8 +14669,8 @@ collect 40 Bolt of Silk Cloth##4305 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 20 Red Dye##2604 |goto Orgrimmar/0 63.08,51.45 |or 2
-buy 20 Silken Thread##4291 |goto Orgrimmar/0 63.08,51.45 |or 2
+buy 20 Red Dye##2604 |goto Orgrimmar/1 63.08,51.45 |or 2
+buy 20 Silken Thread##4291 |goto Orgrimmar/1 63.08,51.45 |or 2
 '|complete skill("Tailoring") >= 215 |or
 step
 create 10 Crimson Silk Pantaloons##8799,Tailoring,215
@@ -14681,13 +14681,13 @@ collect 5 Bolt of Mageweave##4339 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 5 Orange Dye##6261 |goto Orgrimmar/0 63.08,51.45 |or 2
-buy 5 Heavy Silken Thread##8343 |goto Orgrimmar/0 63.08,51.45 |or 2
+buy 5 Orange Dye##6261 |goto Orgrimmar/1 63.08,51.45 |or 2
+buy 5 Heavy Silken Thread##8343 |goto Orgrimmar/1 63.08,51.45 |or 2
 '|complete skill("Tailoring") >= 220 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Orange Mageweave Shirt |learn Orange Mageweave Shirt##12061 |goto Orgrimmar/0 63.65,49.93
+Train Orange Mageweave Shirt |learn Orange Mageweave Shirt##12061 |goto Orgrimmar/1 63.65,49.93
 step
 create 5 Orange Mageweave Shirt##12061,Tailoring,220
 step
@@ -14697,12 +14697,12 @@ collect 20 Bolt of Mageweave##4339 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 20 Heavy Silken Thread##8343 |goto Orgrimmar/0 63.08,51.45 |or
+buy 20 Heavy Silken Thread##8343 |goto Orgrimmar/1 63.08,51.45 |or
 '|complete skill("Tailoring") >= 230 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Black Mageweave Gloves |learn Black Mageweave Gloves##12053 |goto Orgrimmar/0 63.65,49.93
+Train Black Mageweave Gloves |learn Black Mageweave Gloves##12053 |goto Orgrimmar/1 63.65,49.93
 step
 create 10 Black Mageweave Gloves##12053,Tailoring,230
 step
@@ -14712,12 +14712,12 @@ collect 75 Bolt of Mageweave##4339 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 50 Heavy Silken Thread##8343 |goto Orgrimmar/0 63.08,51.45 |or
+buy 50 Heavy Silken Thread##8343 |goto Orgrimmar/1 63.08,51.45 |or
 '|complete skill("Tailoring") >= 250 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Black Mageweave Headband |learn Black Mageweave Headband##12072 |goto Orgrimmar/0 63.65,49.93
+Train Black Mageweave Headband |learn Black Mageweave Headband##12072 |goto Orgrimmar/1 63.65,49.93
 step
 create 25 Black Mageweave Headband##12072,Tailoring,250
 |tip You may need to create more or less of these.
@@ -14731,7 +14731,7 @@ You can find more around [33.53,34.87]
 step
 talk Magar##3363
 |tip Inside the building.
-Train Bolt of Runecloth |learn Bolt of Runecloth##18401 |goto Orgrimmar/0 63.65,49.93
+Train Bolt of Runecloth |learn Bolt of Runecloth##18401 |goto Orgrimmar/1 63.65,49.93
 step
 create 200 Bolt of Runecloth##18401,Tailoring,200 total |or
 |tip Save these, you will need them for future steps.
@@ -14746,13 +14746,13 @@ collect 75 Bolt of Runecloth##14048 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 25 Rune Thread##14341 |goto Orgrimmar/0 63.08,51.45 |or
+buy 25 Rune Thread##14341 |goto Orgrimmar/1 63.08,51.45 |or
 |tip Save these, you will need them for future steps.
 '|complete skill("Tailoring") >= 280 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Runecloth Belt |learn Runecloth Belt##18402 |goto Orgrimmar/0 63.65,49.93
+Train Runecloth Belt |learn Runecloth Belt##18402 |goto Orgrimmar/1 63.65,49.93
 step
 create 25 Runecloth Belt##18402,Tailoring,280
 |tip You may need to create more or less of these.
@@ -14764,12 +14764,12 @@ collect 125 Bolt of Runecloth##14048 |or
 step
 talk Borya##3364
 |tip Inside the building.
-buy 50 Rune Thread##14341 |goto Orgrimmar/0 63.08,51.45 |or
+buy 50 Rune Thread##14341 |goto Orgrimmar/1 63.08,51.45 |or
 '|complete skill("Tailoring") >= 300 |or
 step
 talk Magar##3363
 |tip Inside the building.
-Train Runecloth Gloves |learn Runecloth Gloves##18417 |goto Orgrimmar/0 63.65,49.93
+Train Runecloth Gloves |learn Runecloth Gloves##18417 |goto Orgrimmar/1 63.65,49.93
 step
 create 25 Runecloth Gloves##18417,Tailoring,300
 |tip You may need to create more or less of these.
@@ -15197,14 +15197,14 @@ collect 55 Volatile Water##52326
 step
 label "Begin_Tailoring_Leveling_Cataclysm"
 talk Magar##3363
-Train Illustrious Grand Master Tailoring |skillmax Tailoring,525 |goto Orgrimmar/0 63.65,49.93
+Train Illustrious Grand Master Tailoring |skillmax Tailoring,525 |goto Orgrimmar/1 63.65,49.93
 |tip You must be at least level 75.
 step
 talk Magar##3363
-learn Deathsilk Bracers##75249 |goto Orgrimmar/0 63.65,49.93
+learn Deathsilk Bracers##75249 |goto Orgrimmar/1 63.65,49.93
 step
 talk Borya##3364
-buy 100 Eternium Thread##38426 |goto Orgrimmar/0 63.08,51.45
+buy 100 Eternium Thread##38426 |goto Orgrimmar/1 63.08,51.45
 step
 map Deepholm/0
 path follow loose; loop on; ants curved; dist 20
@@ -15221,7 +15221,7 @@ _<Create 5 Deathsilk Bracers>_
 Reach 455 Tailoring |skill Tailoring,455
 step
 talk Magar##3363
-learn Deathsilk Boots##75252 |goto Orgrimmar/0 63.65,49.93
+learn Deathsilk Boots##75252 |goto Orgrimmar/1 63.65,49.93
 step
 map Deepholm/0
 path follow loose; loop on; ants curved; dist 20
@@ -15238,7 +15238,7 @@ _<Create 5 Deathsilk Boots>_
 Reach 460 Tailoring |skill Tailoring,460
 step
 talk Magar##3363
-learn Deathsilk Leggings##75254 |goto Orgrimmar/0 63.65,49.93
+learn Deathsilk Leggings##75254 |goto Orgrimmar/1 63.65,49.93
 step
 map Deepholm/0
 path follow loose; loop on; ants curved; dist 20
@@ -15255,7 +15255,7 @@ _<Create 5 Deathsilk Leggings>_
 Reach 465 Tailoring |skill Tailoring,465
 step
 talk Magar##3363
-learn Deathsilk Cowl##75256 |goto Orgrimmar/0 63.65,49.93
+learn Deathsilk Cowl##75256 |goto Orgrimmar/1 63.65,49.93
 map Deepholm/0
 path follow loose; loop on; ants curved; dist 20
 path	68.2,25.6	67.2,32.0	68.6,35.8	69.0,42.6	73.0,45.0
@@ -15270,10 +15270,10 @@ _<Create 5 Deathsilk Cowl>_
 Reach 470 Tailoring |skill Tailoring,470
 step
 talk Magar##3363
-learn Spiritmend Belt##75258 |goto Orgrimmar/0 63.65,49.93
+learn Spiritmend Belt##75258 |goto Orgrimmar/1 63.65,49.93
 step
 talk Magar##3363
-learn Deathsilk Cowl##75256 |goto Orgrimmar/0 63.65,49.93
+learn Deathsilk Cowl##75256 |goto Orgrimmar/1 63.65,49.93
 map Deepholm/0
 path follow loose; loop on; ants curved; dist 20
 path	68.2,25.6	67.2,32.0	68.6,35.8	69.0,42.6	73.0,45.0
@@ -15288,10 +15288,10 @@ _<Create 5 Spiritmend Belt>_
 Reach 475 Tailoring |skill Tailoring,475
 step
 talk Magar##3363
-learn Spiritmend Boots##75261 |goto Orgrimmar/0 63.65,49.93
+learn Spiritmend Boots##75261 |goto Orgrimmar/1 63.65,49.93
 step
 talk Magar##3363
-learn Deathsilk Cowl##75256 |goto Orgrimmar/0 63.65,49.93
+learn Deathsilk Cowl##75256 |goto Orgrimmar/1 63.65,49.93
 step
 map Deepholm/0
 path follow loose; loop on; ants curved; dist 20
@@ -15307,7 +15307,7 @@ _<Create 5 Spiritmend Boots>_
 Reach 480 Tailoring |skill Tailoring,480
 step
 talk Magar##3363
-learn Spiritmend Leggings##75263 |goto Orgrimmar/0 63.65,49.93
+learn Spiritmend Leggings##75263 |goto Orgrimmar/1 63.65,49.93
 step
 map Deepholm/0
 path follow loose; loop on; ants curved; dist 20
@@ -15323,7 +15323,7 @@ _<Create 5 Spiritmend Leggings>_
 Reach 485 Tailoring |skill Tailoring,485
 step
 talk Magar##3363
-learn Spiritmend Robe##75267 |goto Orgrimmar/0 63.65,49.93
+learn Spiritmend Robe##75267 |goto Orgrimmar/1 63.65,49.93
 step
 map Deepholm/0
 path follow loose; loop on; ants curved; dist 20
@@ -15339,7 +15339,7 @@ _<Create 15 Spiritmend Robe>_
 Reach 500 Tailoring |skill Tailoring,500
 step
 talk Magar##3363
-learn Fireweave Bracers##75290 |goto Orgrimmar/0 63.65,49.93
+learn Fireweave Bracers##75290 |goto Orgrimmar/1 63.65,49.93
 stickystart "Volatile_Air_505"
 stickystart "Volatile_Fire_505"
 step
@@ -15374,7 +15374,7 @@ _<Create 5 Fireweave Bracers>_
 Reach 505 Tailoring |skill Tailoring,505
 step
 talk Magar##3363
-learn Emberfire Shoulders##75291 |goto Orgrimmar/0 63.65,49.93
+learn Emberfire Shoulders##75291 |goto Orgrimmar/1 63.65,49.93
 stickystart "Volatile_Fire_510"
 stickystart "Volatile_Water_510"
 step
@@ -15409,7 +15409,7 @@ _<Create 5 Emberfire Shoulders>_
 Reach 510 Tailoring |skill Tailoring,510
 step
 talk Magar##3363
-learn Emberfire Belt##75293 |goto Orgrimmar/0 63.65,49.93
+learn Emberfire Belt##75293 |goto Orgrimmar/1 63.65,49.93
 stickystart "Volatile_Fire_516"
 stickystart "Volatile_Water_516"
 step
@@ -15445,7 +15445,7 @@ _<Create 3 Emberfire Belt##75293,Tailoring
 Reach 516 Tailoring |skill Tailoring,516
 step
 talk Magar##3363
-learn Emberfire Gloves##75295 |goto Orgrimmar/0 63.65,49.93
+learn Emberfire Gloves##75295 |goto Orgrimmar/1 63.65,49.93
 stickystart "Volatile_Fire_516"
 stickystart "Volatile_Water_516"
 step
@@ -15538,11 +15538,11 @@ step
 label "Begin_Profession_Leveling_Pandaria"
 talk Magar##3363
 |tip Inside the building.
-Train Zen Master Tailoring |skillmax Tailoring,600 |goto Orgrimmar/0 63.65,49.93
+Train Zen Master Tailoring |skillmax Tailoring,600 |goto Orgrimmar/1 63.65,49.93
 step
 talk Magar##3363
 |tip Inside the building.
-Train Bolt of Windwool Cloth |learn Bolt of Windwool Cloth##125551 |goto Orgrimmar/0 63.65,49.93
+Train Bolt of Windwool Cloth |learn Bolt of Windwool Cloth##125551 |goto Orgrimmar/1 63.65,49.93
 '|complete skill("Tailoring") >= 600 |or
 step
 collect 600 Windwool Cloth##72162 |or |usebank
@@ -15555,7 +15555,7 @@ create 60 Bolt of Windwool Cloth##125551,Tailoring,60 total |or |usebank
 step
 talk Magar##3363
 |tip Inside the building.
-Train Windwool Shoulders |learn Windwool Shoulders##125524 |goto Orgrimmar/0 63.65,49.93
+Train Windwool Shoulders |learn Windwool Shoulders##125524 |goto Orgrimmar/1 63.65,49.93
 step
 collect 28 Bolt of Windwool Cloth##82441 |or |usebank
 '|complete skill("Tailoring") >= 555 |or
@@ -15565,7 +15565,7 @@ create 7 Windwool Shoulders##125524,Tailoring,28 total |or |usebank
 step
 talk Esha the Loommaiden##64051
 |tip Inside the building.
-Purchase and Learn Pattern: Contender's Silk Cuffs |learn Contender's Silk Cuffs##125536 |goto Shrine of Two Moons/0 32.13,53.64
+Purchase and Learn Pattern: Contender's Silk Cuffs |learn Contender's Silk Cuffs##125536 |goto Shrine of Two Moons/1 32.13,53.64
 |tip You can choose any of the PVP patterns you'd like.
 '|complete skill("Leatherworking") >= 600 |or'
 step

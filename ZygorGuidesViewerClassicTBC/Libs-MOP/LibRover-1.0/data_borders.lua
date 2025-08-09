@@ -215,6 +215,8 @@ data.basenodes.borders = --[[LIBROVER]] {
 		--Shrine of 7 Stars is a  micro dungeon right now... Yes Shrine of 2 Moons is it's own map..
 		--Panda Land cities are all in micro dungeons to make them walk borders.
 
+	--Darkmoon Island
+		"Darkmoon Island/0 64.58,67.68 <radius:15> -x- Darkmoon Island/1 27.92,32.80 <radius:15> {title_atob:Enter the Cave} {title_btoa:Leave the Cave}",
 
 }
 

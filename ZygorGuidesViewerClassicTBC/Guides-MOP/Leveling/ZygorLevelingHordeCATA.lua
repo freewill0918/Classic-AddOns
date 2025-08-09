@@ -4,7 +4,7 @@ if UnitFactionGroup("player")~="Horde" then return end
 if ZGV:DoMutex("LevelingHCATA") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Startup Guide Wizard",{
-cataready=true,
+mopready=true,
 condition_visible=function() return false end,
 noscoring = true,
 orientation = true,
@@ -78,7 +78,7 @@ step
 You're all set!
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Cataclysm 80-85\\Mount Hyjal (80-82)",{
-cataready=true,
+mopready=true,
 next="Leveling Guides\\Cataclysm 80-85\\Deepholm (82-83)",
 startlevel=80.00,
 },[[
@@ -1422,7 +1422,7 @@ talk Farseer Krogar##45244
 turnin The Battle Is Won, The War Goes On##27399 |goto Orgrimmar/1 50.47,38.38
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Cataclysm 80-85\\Vashj'ir (80-82)",{
-cataready=true,
+mopready=true,
 next="Leveling Guides\\Cataclysm 80-85\\Deepholm (82-83)",
 startlevel=80.00,
 },[[
@@ -3172,7 +3172,7 @@ talk Legionnaire Nazgrim##44540
 turnin Defending the Rift##26194 |goto Abyssal Depths/0 69.76,34.41
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Cataclysm 80-85\\Deepholm (82-83)",{
-cataready=true,
+mopready=true,
 next="Leveling Guides\\Cataclysm 80-85\\Uldum (83-84)",
 startlevel=82.00,
 },[[
@@ -4305,7 +4305,7 @@ talk Examiner Rowe##44823
 accept That's No Pyramid!##28293 |goto Deepholm/0 51.29,50.05
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Cataclysm 80-85\\Uldum (83-84)",{
-cataready=true,
+mopready=true,
 next="Leveling Guides\\Cataclysm 80-85\\Twilight Highlands (84-85)",
 startlevel=83.00,
 },[[
@@ -5527,7 +5527,7 @@ turnin The Coffer of Promise##28633 |goto Uldum/0 44.86,67.32
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Cataclysm 80-85\\Twilight Highlands (84-85)",{
 next="Leveling Guides\\Pandaria (85-90)\\The Jade Forest (85-86)",
-cataready=true,
+mopready=true,
 startlevel=84.00,
 endlevel=85,
 },[[

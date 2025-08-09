@@ -10,6 +10,7 @@ mounts={127288},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Brown Dragon Turtle mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
@@ -32,6 +33,7 @@ mounts={127289},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Purple Dragon Turtle mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
@@ -54,6 +56,7 @@ mounts={127302},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Great Blue Dragon Turtle mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
@@ -63,7 +66,7 @@ Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "R
 only if not Pandaren
 step
 talk Old Whitenose##65068
-buy Reins of the Brown Dragon Turtle##91013 |goto Stormwind City/0 67.74,18.43 |or
+buy Reins of the Blue Dragon Turtle##91013 |goto Stormwind City/0 67.74,18.43 |or
 '|complete hasmount(127302) |or
 step
 use the Reins of the Great Blue Dragon Turtle##91013
@@ -76,6 +79,7 @@ mounts={127308},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Great Brown Dragon Turtle mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
@@ -98,6 +102,7 @@ mounts={120822},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Great Red Dragon Turtle mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
@@ -120,6 +125,7 @@ mounts={140249},
 patch='52000',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Golden Primal Direhorn mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Kirin Tor Offensive |complete rep('Kirin Tor Offensive') == Exalted |or
@@ -141,6 +147,7 @@ mounts={142478},
 patch='53000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Armored Blue Dragonhawk mount.",
+mopready=true,
 },[[
 step
 achieve 8304 |or
@@ -162,6 +169,7 @@ mounts={136163},
 patch='51000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Grand Gryphon mount.",
+mopready=true,
 },[[
 step
 achieve 7928 |or
@@ -183,6 +191,7 @@ mounts={135416},
 patch='51000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Grand Armored Gryphon mount.",
+mopready=true,
 },[[
 step
 talk Lyalia##64610
@@ -230,4 +239,35 @@ buy Grand Armored Gryphon##93168 |goto Krasarang Wilds/0 89.69,33.40 |or
 step
 use the Grand Armored Gryphon##93168
 learnmount Grand Armored Gryphon##135416
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Achievement Mounts\\Pandaren Kite",{
+keywords={"pandaren","kite","flying","mount"},
+model={41903},
+mounts={130985},
+patch='50400',
+mounttype='Flying',
+description="This guide will teach you how to acquire the Pandaren Kite mount.",
+mopready=true,
+},[[
+step
+achieve 6828 |or
+|tip Reach {y}Exalted{} Reputation with Golden Lotus, Shado-Pan, The Lorewalkers, The Tillers, Tushui Pandaren, The August Celestials, The Klaxxi, The Anglers, and Order of the Cloud Serpent.
+|tip Use these guides to accomplish this.
+Click Here to Load the Golden Lotus Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\The Golden Lotus" |only if rep("Golden Lotus") < Exalted
+Click Here to Load the Shado-Pan Dailies guide |confirm |loadguide "Daily Guides\\Mists of Pandaria Dailies\\The Shado-Pan Dailies" |only if rep("Shado-Pan") < Exalted
+Click Here to Load The Lorewalkers Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Lorewalkers" |only if rep("The Lorewalkers") < Exalted
+Click Here to Load The Tillers Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\The Tillers" |only if rep("The Tillers") < Exalted
+Click Here to Load the Tushui Pandaren Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren" |only if rep("Tushui Pandaren") < Exalted
+Click Here to Load The August Celestials Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\The August Celestials" |only if rep("The August Celestials") < Exalted
+Click Here to Load The Klaxxi Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\The Klaxxi" |only if rep("The Klaxxi") < Exalted
+Click Here to Load The Anglers Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\The Anglers" |only if rep("The Anglers") < Exalted
+Click Here to Load Order of the Cloud Serpent Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\The Order of the Cloud Serpent" |only if rep("Order of the Cloud Serpent") < Exalted
+'|complete hasmount(130985) |or
+step
+collect 1 Pandaren Kite String##89785 |or
+|tip You can find it in your mailbox.
+'|complete hasmount(130985) |or
+step
+use the Pandaren Kite String##89785
+learnmount Pandaren Kite##130985
 ]])

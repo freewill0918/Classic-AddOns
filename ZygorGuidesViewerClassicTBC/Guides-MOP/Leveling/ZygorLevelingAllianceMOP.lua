@@ -7,6 +7,7 @@ ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\The Jade For
 image=ZGV.IMAGESDIR.."JadeForest",
 next="Leveling Guides\\Pandaria (85-90)\\Valley of the Four Winds (86-87)",
 startlevel=85,
+mopready=true
 },[[
 step
 accept The King's Command##29547 |goto Stormwind City/0 65.35,75.54
@@ -330,7 +331,7 @@ Speak to Pearlkeeper Fujin |q 29883/1 |goto The Jade Forest/0 58.76,81.28
 step
 talk Elder Lusshan##54960
 Select _"I come from the Alliance. We wish to be allies, not enemies."_ |gossip 125741
-Speak to Elder Lusshan |q 29883/4 |goto The Jade Forest/0 58.04,80.56
+Speak to Elder Lusshan |q 29883/4 |goto The Jade Forest/0 58.04,80.55
 step
 talk Ot-Temmdo##56693
 Select _"What are you doing?"_ |gossip 125772
@@ -698,13 +699,13 @@ talk Admiral Taylor##60970
 turnin Anduin's Decision##29901 |goto The Jade Forest/0 58.87,81.68
 step
 talk Elder Lusshan##54960
-accept In Search of Wisdom##29922 |goto The Jade Forest/0 58.90,81.48
+accept In Search of Wisdom##29922 |goto The Jade Forest/0 58.04,80.55
 step
 talk Ut-Nam##56737
 Select _"I would like to travel to Dawn's Blossom."_ |gossip 125979
 Speak to Kitemaster Ot-Nam |q 29922/1 |goto The Jade Forest/0 57.95,82.52
 step
-Begin Flying to Dawn's Blossom |invehicle |goto The Jade Forest/0 57.95,82.52 |q 29922
+Begin Flying to Dawn's Blossom |invehicle |goto The Jade Forest/0 57.95,82.52
 step
 Fly to Dawn's Blossom |outvehicle |goto The Jade Forest/0 47.03,46.19 |q 29922 |notravel
 step
@@ -1571,6 +1572,7 @@ ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Valley of th
 image=ZGV.IMAGESDIR.."ValleyOfTheFourWinds",
 next="Leveling Guides\\Pandaria (85-90)\\Krasarang Wilds (87)",
 startlevel=86,
+mopready=true
 },[[
 step
 talk Chen Stormstout##56133
@@ -2581,6 +2583,7 @@ ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Krasarang Wi
 image=ZGV.IMAGESDIR.."KrasarangWilds",
 next="Leveling Guides\\Pandaria (85-90)\\Kun-Lai Summit (87-88)",
 startlevel=87,
+mopready=true
 },[[
 step
 talk Ken-Ken##56115
@@ -3313,6 +3316,7 @@ ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Kun-Lai Summ
 image=ZGV.IMAGESDIR.."KunLai",
 next="Leveling Guides\\Pandaria (85-90)\\Townlong Steppes (88-89)",
 startlevel=87,
+mopready=true
 },[[
 step
 talk Highroad Grummle##62738
@@ -4793,6 +4797,7 @@ ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Townlong Ste
 image=ZGV.IMAGESDIR.."TownlongSteppes",
 next="Leveling Guides\\Pandaria (85-90)\\Dread Wastes (89-90)",
 startlevel=88,
+mopready=true
 },[[
 step
 talk Taran Zhu##60688
@@ -5634,6 +5639,7 @@ turnin A Trail of Fear##30928 |goto Townlong Steppes/0 39.15,62.07
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Dread Wastes (89-90)",{
 image=ZGV.IMAGESDIR.."DreadWastes",
 startlevel=89,
+mopready=true
 },[[
 step
 _NOTE:_
@@ -6511,6 +6517,7 @@ condition_valid_msg="Monk only.",
 condition_suggested=function() return raceclass('Monk') and not completedq(31840) or not completedq(31841) or not completedq(31842) or not completedq(31843) or not completedq(31844) or not completedq(31845) or not completedq(31846) and level >= 20 end,
 condition_end=function() return completedq(31840) end,
 description="This guide will walk you through the Monk daily for extra experience.",
+mopready=true
 },[[
 step
 talk Master Hight##66260
@@ -6602,6 +6609,7 @@ condition_valid_msg="Monk only.",
 condition_suggested=function() return raceclass('Monk') and not completedq(31834) and level >= 10 end,
 condition_end=function() return completedq(31834) end,
 description="This guide will walk you through the Monk daily for extra experience.",
+mopready=true
 },[[
 step
 ding 20

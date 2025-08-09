@@ -221,6 +221,33 @@ data.basenodes.transit = --[[LIBROVER]] {
 		-- The Dark Portal - Blasted Lands, Eastern Kingdoms (Portal Usable) -to- The Stair of Destiny - Hellfire Penninsula, Outland
 		"Blasted Lands/0 55.01,54.27 -to- Hellfire Peninsula/0 89.56,50.22 {mode:PORTAL}",
 
+
+
+
+	----------------------
+	-- Darkmoon Island  --
+	----------------------
+
+	-- Thunder Bluff - Mulgore, Kalimdor -to- Darkmoon Island --CHECKED
+	"Mulgore/0 36.85,35.86 -to- Darkmoon Island/0 51.29,23.86 {mode:PORTAL} {cond:ZGV:FindEvent('DARKMOON FAIRE')} "..
+		"{title:Click the Portal to the Darkmoon Faire}",
+
+		-- Darkmoon Island -to- Thunder Bluff - Mulgore, Kalimdor --CHECKED
+		"Darkmoon Island/0 51.22,23.12 -to- Mulgore/0 36.49,35.11 {fac:H} {mode:PORTAL} {title:Click the Portal Back}",
+
+		-- Darkmoon Island -to- Thunder Bluff - Mulgore, Kalimdor --CHECKED
+		"Darkmoon Island/0 50.56,90.75 -to- Mulgore/0 36.49,35.11 {fac:H} {mode:PORTAL} {title:Click the Portal Back}",
+
+
+	-- Goldshire - Elynn Forest, Eastern Kingdoms -to- Darkmoon Island --CHECKED
+	"Elwynn Forest/0 41.79,69.48 -to- Darkmoon Island/0 51.29,23.86 {mode:PORTAL} {cond:ZGV:FindEvent('DARKMOON FAIRE')} "..
+		"{title:Click the Portal to the Darkmoon Faire}",
+		-- Darkmoon Island -to- Goldshire - Elynn Forest, Eastern Kingdoms --CHECKED
+		"Darkmoon Island/0 51.22,23.12 -to- Elwynn Forest/0 41.87,68.17 {fac:A} {mode:PORTAL} {title:Click the Portal Back}",
+
+		-- Darkmoon Island -to- Goldshire - Elynn Forest, Eastern Kingdoms --CHECKED
+		"Darkmoon Island/0 50.56,90.75 -to- Elwynn Forest/0 41.87,68.17 {fac:A} {mode:PORTAL} {title:Click the Portal Back}",
+
 	-------------
 	-- OUTLAND --
 	-------------

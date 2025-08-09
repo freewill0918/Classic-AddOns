@@ -227,7 +227,7 @@ learnpet Cat##62019 |goto Elwynn Forest 44.60,53.40
 step
 label "cheetah"
 The _Cheetah Cubs_ are level 3. Challenge one to a pet battle and capture it.
-learnpet Cheetah Cub##62129 |goto Northern Barrens 66.50,71.30
+learnpet Cheetah Cub##62129 |goto The Barrens/0 66.50,71.30
 |next "menu" |only if not achieved(8397)
 |next "end" |only if achieved(8397)
 step
@@ -3545,7 +3545,7 @@ step
 Battle in Ashenvale |achieve 6558/9 |goto Ashenvale 72.50,80.70
 There are level 5 roaches in the area.
 step
-Battle in the Northern Barrens |achieve 6558/6 |goto Northern Barrens 33.60,39.60
+Battle in the Northern Barrens |achieve 6558/6 |goto The Barrens/0 33.60,39.60
 There are level 3 adders in the area.
 step
 Battle in Stonetalon Mountains |achieve 6558/10 |goto Stonetalon Mountains 66.30,84.40
@@ -3751,9 +3751,9 @@ Challenge a _Cat_ and a _Black Lamb_, _Squirrel_ or _Fawn_ to battle and defeat 
 achieve 6851/2
 achieve 6851/3
 step
-Challenge a _Hapry Youngling_ to battle and defeat it |achieve 6851/7 |goto Northern Barrens 30.40,35.60
+Challenge a _Harpy Youngling_ to battle and defeat it |achieve 6851/7 |goto The Barrens/0 30.40,35.60
 step
-Challenge a _Small Frog_ to battle and defeat it |achieve 6851/1 |goto Northern Barrens 36.60,44.00
+Challenge a _Small Frog_ to battle and defeat it |achieve 6851/1 |goto The Barrens/0 36.60,44.00
 step
 Challenge a _Minfernal_ to battle and defeat it |achieve 6851/8 |goto Felwood 43.20,39.40
 step
@@ -3922,14 +3922,14 @@ turnin Zunta##31818 |goto Durotar 43.90,28.70
 step
 talk Dagra the Fierce##66135
 accept Dagra the Fierce##31819
-|goto Northern Barrens 58.60,53.00
+|goto The Barrens/0 58.60,53.00
 step
 talk Dagra the Fierce##66135
 Let's fight!
-Defeat Dagra the Fierce |q 31819/1 |goto Northern Barrens 58.60,53.00
+Defeat Dagra the Fierce |q 31819/1 |goto The Barrens/0 58.60,53.00
 step
 talk Dagra the Fierce##66135
-turnin Dagra the Fierce##31819 |goto Northern Barrens 58.60,53.00
+turnin Dagra the Fierce##31819 |goto The Barrens/0 58.60,53.00
 |achieve 8348/32
 step
 talk  Brok##66819
@@ -4686,7 +4686,7 @@ description="This guide will walk you through completing the \"Master of the Bre
 },[[
 step
 For this achievement, you will need to reach level 75 Way of the Brew cooking on a single character
-Click here to load the Way of the Brew guide |confirm |next "Profession Guides\\Cooking\\Leveling Guides\\Pandaria Way of the Brew 1-75"
+Click here to load the Way of the Brew guide |confirm |next "Profession Guides\\Cooking\\Leveling Guides\\Way of the Brew"
 Earn the Master of the Brew Achievement |achieve 7305
 step
 _Congratulations!_
@@ -4700,7 +4700,7 @@ description="This guide will walk you through completing the \"Master of the Gri
 },[[
 step
 For this achievement, you will need to reach level 75 Way of the Grill cooking on a single character
-Click here to load the Way of the Grill guide |confirm |next "Profession Guides\\Cooking\\Leveling Guides\\Pandaria Way of the Grill 1-75"
+Click here to load the Way of the Grill guide |confirm |next "Profession Guides\\Cooking\\Leveling Guides\\Way of the Grill"
 Earn the Master of the Grill Achievement |achieve 7300
 step
 _Congratulations!_
@@ -4714,7 +4714,7 @@ description="This guide will walk you through completing the \"Master of the Ove
 },[[
 step
 For this achievement, you will need to reach level 75 Way of the Oven cooking on a single character
-Click here to load the Way of the Oven guide |confirm |next "Profession Guides\\Cooking\\Leveling Guides\\Pandaria Way of the Oven 1-75"
+Click here to load the Way of the Oven guide |confirm |next "Profession Guides\\Cooking\\Leveling Guides\\Way of the Oven"
 Earn the Master of the Oven Achievement |achieve 7304
 step
 _Congratulations!_
@@ -4757,7 +4757,7 @@ description="This guide will walk you through completing the \"Master of the Pot
 },[[
 step
 For this achievement, you will need to reach level 75 Way of the Pot cooking on a single character
-Click here to load the Way of the Pot guide |confirm |next "Profession Guides\\Cooking\\Leveling Guides\\Pandaria Way of the Pot 1-75"
+Click here to load the Way of the Pot guide |confirm |next "Profession Guides\\Cooking\\Leveling Guides\\Way of the Pot"
 Earn the Master of the Pot Achievement |achieve 7302
 step
 _Congratulations!_
@@ -4771,7 +4771,7 @@ description="This guide will walk you through completing the \"Master of the Ste
 },[[
 step
 For this achievement, you will need to reach level 75 Way of the Steamer cooking on a single character
-Click here to load the Way of the Steamer guide |confirm |next "Profession Guides\\Cooking\\Leveling Guides\\Pandaria Way of the Steamer 1-75"
+Click here to load the Way of the Steamer guide |confirm |next "Profession Guides\\Cooking\\Leveling Guides\\Way of the Steamer"
 Earn the Master of the Steamer Achievement |achieve 7303
 step
 _Congratulations!_
@@ -4785,7 +4785,7 @@ description="This guide will walk you through completing the \"Master of the Wok
 },[[
 step
 For this achievement, you will need to reach level 75 Way of the Wok cooking on a single character
-Click here to load the Way of the Wok guide |confirm |next "Profession Guides\\Cooking\\Leveling Guides\\Pandaria Way of the Wok 1-75"
+Click here to load the Way of the Wok guide |confirm |next "Profession Guides\\Cooking\\Leveling Guides\\Way of the Wok"
 Earn the Master of the Wok Achievement |achieve 7301
 step
 _Congratulations!_
@@ -6013,7 +6013,7 @@ description="This guide will walk you through completing the \"Dread Haste Makes
 step
 To earn this achievement, you will need to _complete the 4 storylines in The Dread Wastes_
 |tip Refer to our leveling guides to achieve this.
-Click here to load the "Dread Wastes (89-90)" guide |confirm |next "Leveling Guides\\Pandaria (10-70)\\Dread Wastes (30-70)"
+Click here to load the "Dread Wastes (89-90)" guide |confirm |next "Leveling Guides\\Pandaria (85-90)\\Dread Wastes (89-90)"
 Here is a look at your current progress:
 The First Paragons |achieve 6540/1
 The Might of the Klaxxi |achieve 6540/2
@@ -6835,7 +6835,7 @@ description="This guide will walk you through completing the \"Mighty Roamin' Kr
 step
 To earn this achievement, you will need to _complete the 10 storylines in Kun-Lai Summit_
 |tip Refer to our leveling guides to achieve this.
-Click here to load the "Krasarang Wilds (87)" guide |confirm |next "Leveling Guides\\Pandaria (10-70)\\Krasarang Wilds (15-70)"
+Click here to load the "Krasarang Wilds (87)" guide |confirm |next "Leveling Guides\\Pandaria (85-90)\\Krasarang Wilds (87)"
 Here is a look at your current progress:
 Zhu's Watch |achieve 6536/1
 Thunder Cleft |achieve 6536/2
@@ -7062,7 +7062,7 @@ description="This guide will walk you through completing the \"One Steppe Forwar
 step
 To earn this achievement, you will need to _complete the 5 storylines in Townlong Steppes_
 |tip Refer to our leveling guides to achieve this.
-Click here to load the "Townlong Steppes (88-89)" guide |confirm |next "Leveling Guides\\Pandaria (10-70)\\Townlong Steppes (25-70)"
+Click here to load the "Townlong Steppes (88-89)" guide |confirm |next "Leveling Guides\\Pandaria (85-90)\\Townlong Steppes (88-89)"
 Here is a look at your current progress:
 Fire Camp Osul |achieve 6539/1
 Mistlurkers in the Sumprushes |achieve 6539/2
@@ -7321,7 +7321,7 @@ description="This guide will walk you through completing the \"Rally the Valley\
 step
 To earn this achievement, you will need to _complete the 10 storylines in Valley of the Four Winds_
 |tip Refer to our leveling guides to achieve this.
-Click here to load the "Krasarang Wilds (86-87)" guide |confirm |next "Leveling Guides\\Pandaria (10-70)\\Valley of the Four Winds (15-70)"
+Click here to load the "Krasarang Wilds (86-87)" guide |confirm |next "Leveling Guides\\Pandaria (85-90)\\Valley of the Four Winds (86-87)"
 Here is a look at your current progress:
 Thunderfoot Fields |achieve 6301/1
 Mudmug's Place |achieve 6301/2
@@ -7533,7 +7533,7 @@ description="This guide will walk you through completing the \"Slum It in the Su
 step
 To earn this achievement, you will need to _complete the 10 storylines in Kun-Lai Summit_
 |tip Refer to our leveling guides to achieve this.
-Click here to load the "Kun-Lai Summit (87-88)" guide |confirm |next "Leveling Guides\\Pandaria (10-70)\\Kun-Lai Summit (20-70)"
+Click here to load the "Kun-Lai Summit (87-88)" guide |confirm |next "Leveling Guides\\Pandaria (85-90)\\Kun-Lai Summit (87-88)"
 Here is a look at your current progress:
 Eastwind Rest |achieve 6538/1
 The Yaungol Invasion |achieve 6538/2
@@ -7734,7 +7734,7 @@ description="Grow a Kunchong to full size and take it on a rampage.",
 },[[
 step
 In order to unlock the dailies required for this achievement, you will need to complete the _Dread Wastes_ Leveling guide.
-Click here to be taken to the Dread Wastes leveling guide to work on this achievement. |confirm |next "Leveling Guides\\Pandaria (10-70)\\Dread Wastes (30-70)" |only if ZGV.guidesets['LevelingAMOP']
+Click here to be taken to the Dread Wastes leveling guide to work on this achievement. |confirm |next "Leveling Guides\\Pandaria (85-90)\\Dread Wastes (89-90)" |only if ZGV.guidesets['LevelingAMOP']
 |confirm
 |only if not completedq(31359)
 step
@@ -7946,11 +7946,11 @@ Use the Pandaria Leveling Guides to complete Loremaster:
 |tip The Leveling guides cover all required questlines for Loremaster.
 |tip Click one of the lines below to load the Leveling guide for that zone.
 Jade Forest Quests |achieve 6534 |loadguide "Leveling Guides\\Pandaria (85-90)\\The Jade Forest (85-86)"
-Valley of the Four Winds Quests |achieve 6301 |loadguide "Leveling Guides\\Pandaria (10-70)\\Valley of the Four Winds (15-70)"
-Townlong Steppes Quests |achieve 6539 |loadguide "Leveling Guides\\Pandaria (10-70)\\Townlong Steppes (25-70)"
-Dread Wastes Quests |achieve 6540 |loadguide "Leveling Guides\\Pandaria (10-70)\\Dread Wastes (30-70)"
-Krasarang Wilds Quests |achieve 6536 |loadguide "Leveling Guides\\Pandaria (10-70)\\Krasarang Wilds (15-70)"
-Kun-Lai Summit Quests |achieve 6538 |loadguide "Leveling Guides\\Pandaria (10-70)\\Kun-Lai Summit (20-70)"
+Valley of the Four Winds Quests |achieve 6301 |loadguide "Leveling Guides\\Pandaria (85-90)\\Valley of the Four Winds (86-87)"
+Townlong Steppes Quests |achieve 6539 |loadguide "Leveling Guides\\Pandaria (85-90)\\Townlong Steppes (88-89)"
+Dread Wastes Quests |achieve 6540 |loadguide "Leveling Guides\\Pandaria (85-90)\\Dread Wastes (89-90)"
+Krasarang Wilds Quests |achieve 6536 |loadguide "Leveling Guides\\Pandaria (85-90)\\Krasarang Wilds (87)"
+Kun-Lai Summit Quests |achieve 6538 |loadguide "Leveling Guides\\Pandaria (85-90)\\Kun-Lai Summit (87-88)"
 step
 Congratulations, you have _earned_ the _Loremaster of Pandaria_ achievement!
 ]])
@@ -9204,7 +9204,7 @@ only if skill("Archaeology")>=1
 step
 label "tythar"
 kill Kor'kron Butcher##71012+, Kor'kron Outrider##73590+
-collect 1 Raptorhide Boxing Gloves##97990 |goto Northern Barrens/0 44.50,47.50
+collect 1 Raptorhide Boxing Gloves##97990 |goto The Barrens/0/0 44.50,47.50
 |next "menu"
 step
 label "blind"

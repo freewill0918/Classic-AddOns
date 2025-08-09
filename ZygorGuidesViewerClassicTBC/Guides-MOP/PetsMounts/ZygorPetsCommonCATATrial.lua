@@ -31,6 +31,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Durotar.",
 keywords={"Beast","Durotar"},
 pet=635,
+mopready=true,
 },[[
 step
 clicknpc Adder##61325
@@ -56,6 +57,7 @@ source='Drop',
 description="This battle pet can be obtained from a random zone drop around Gavin's Naze in Hillsbrad Foothills.",
 keywords={"Beast","Hillsbrad","Foothills"},
 pet=42,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -74,6 +76,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Elwynn Forest.",
 keywords={"Beast","Elwynn","Forest"},
 pet=459,
+mopready=true,
 },[[
 step
 clicknpc Cat##62019
@@ -143,6 +146,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Central and Eastern Dun Morogh.",
 keywords={"Beast","Dun","Morogh"},
 pet=440,
+mopready=true,
 },[[
 step
 clicknpc Snow Cub##61689
@@ -161,6 +165,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Deadeye Shore in Durotar.",
 keywords={"Beast","Durotar"},
 pet=466,
+mopready=true,
 },[[
 step
 clicknpc Spiny Lizard##62114
@@ -184,6 +189,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Southfury Watershed in Durotar.",
 keywords={"Beast","Durotar"},
 pet=418,
+mopready=true,
 },[[
 step
 clicknpc Water Snake##61367
@@ -205,6 +211,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Winterspring.",
 keywords={"Critter","Winterspring"},
 pet=441,
+mopready=true,
 },[[
 step
 clicknpc Alpine Hare##61690
@@ -224,6 +231,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Elwynn Forest.",
 keywords={"Critter","Elwynn","Forest"},
 pet=374,
+mopready=true,
 },[[
 step
 clicknpc Black Lamb##60649
@@ -246,6 +254,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Durotar.",
 keywords={"Critter","Durotar"},
 pet=468,
+mopready=true,
 },[[
 step
 clicknpc Creepy Crawly##62116
@@ -267,6 +276,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Northeast Mount Hyjal.",
 keywords={"Critter","Mount","Hyjal"},
 pet=479,
+mopready=true,
 },[[
 step
 clicknpc Elfin Rabbit##62178
@@ -283,6 +293,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Northwest areas of Elwynn Forest.",
 keywords={"Critter","Mount","Hyjal"},
 pet=447,
+mopready=true,
 },[[
 step
 clicknpc Fawn##61165
@@ -302,6 +313,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Mulgore.",
 keywords={"Critter","Mulgore"},
 pet=477,
+mopready=true,
 },[[
 step
 clicknpc Gazelle Fawn##62176
@@ -326,6 +338,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around The Toxic Airfield in New Tinkertown.",
 keywords={"Critter","New","Tinkertown"},
 pet=442,
+mopready=true,
 },[[
 step
 clicknpc Irradiated Roach##61691
@@ -354,6 +367,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around the Southern Barrens.",
 keywords={"Critter","Southern","Barrens"},
 pet=386,
+mopready=true,
 },[[
 step
 clicknpc Prairie Dog##61141
@@ -370,6 +384,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Northwest parts of Elwynn Forest.",
 keywords={"Critter","Elwynn","Forest"},
 pet=378,
+mopready=true,
 },[[
 step
 clicknpc Rabbit##61080
@@ -399,6 +414,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Northwest parts of Elwynn Forest.",
 keywords={"Critter","Elwynn","Forest"},
 pet=379,
+mopready=true,
 },[[
 step
 clicknpc Squirrel##61081
@@ -465,6 +481,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around the Eversong Woods.",
 keywords={"Elemental","Eversong","Woods"},
 pet=460,
+mopready=true,
 },[[
 step
 clicknpc Ruby Sapling##62020
@@ -495,6 +512,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around Eastvale Logging Camp in Elwynn Forest.",
 keywords={"Flying","Elwynn","Forest"},
 pet=646,
+mopready=true,
 },[[
 step
 clicknpc Chicken##62664
@@ -512,6 +530,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around Teldrassil.",
 keywords={"Flying","Teldrassil"},
 pet=507,
+mopready=true,
 },[[
 step
 talk Zidormi##141489
@@ -543,6 +562,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild all around Azuremyst Isle.",
 keywords={"Flying","Azuremyst","Isle"},
 pet=464,
+mopready=true,
 },[[
 step
 clicknpc Grey Moth##62050
@@ -663,6 +683,7 @@ source='unknown',
 description="This battle pet can be tamed in the wild around the Ruins of Lordaeron in Tirisfal Glades.",
 keywords={"Undead","Tirisfal","Glades"},
 pet=458,
+mopready=true,
 },[[
 step
 talk Zidormi##141488

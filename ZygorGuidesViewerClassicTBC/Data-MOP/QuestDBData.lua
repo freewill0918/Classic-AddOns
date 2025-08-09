@@ -109,16 +109,6 @@ ZGV.Quest_Cache_Accept_Alliance = {
 	["DAILIES\\Cataclysm\\Twilight Highlands\\Twilight Highlands Dailies"] = {
 		{ids="28863,28860,28864,28861,28862"},
 	},
-	["DAILIES\\Mists of Pandaria Dailies\\Operation: Shieldwall"] = {
-		{ids="32145", cond_if=[[haveq(32143) or completedq(32143)]]},
-		{ids="32157", cond_if=[[haveq(32452) or completedq(32452)]]},
-		{ids="32156,32158,32433,32154,32446,32159,32155", cond_if=[[completedq(32452)]]},
-		{ids="32121,32115,32347,32346,32122,32119", cond_if=[[haveq(32116) or completedq(32116)]]},
-		{ids="32143,32144", cond_if=[[completedq(32451)]]},
-		{ids="32146,32142", cond_if=[[haveq(32451) or completedq(32451)]]},
-		{ids="32451,32452", cond_if=[[not haveq(32148,32151,32153,32152) and not completedq(32148,32151,32153,32152)]]},
-		{ids="32246,32247,32109,32116,32148,32151,32153,32152,32149,32150"},
-	},
 	["DAILIES\\The Burning Crusade\\Shattered Sun Offensive\\Shattered Sun Dailies"] = {
 		{ids="11515,11516", cond_if=[[completedq(11526)]]},
 		{ids="11875", cond_if=[[skill("Herbalism") >= 301 or skill("Mining") >= 301 or skill("Skinning") >= 301]]},
@@ -285,9 +275,9 @@ ZGV.Quest_Cache_Accept_Alliance = {
 	["DAILIES\\Mists of Pandaria Dailies\\The Golden Lotus Dailies"] = {
 		{ids="31392", cond_if=[[not completedq(31394) and Alliance]]},
 		{ids="31393", cond_if=[[not completedq(31393) and Horde]]},
-		{ids="31394,31512", cond_if=[[Alliance]]},
-		{ids="31395,31511", cond_if=[[Horde]]},
-		{ids="30243,30266,30280,30277,30306,30242,30240,30261"},
+		{ids="31394,31512,30631", cond_if=[[Alliance]]},
+		{ids="31395,31511,30649", cond_if=[[Horde]]},
+		{ids="30632,30633,30634,30635,30636,30637,30638,30307,31757,31762,31760,31758,31756,30312,31755,31131,31242,31243,30341,30284,30265,30340,30234,30195,30193,30190,30192,30235,30286,30288,30287,30290,30297,30243,30266,30280,30277,30306,30242,30240,30261"},
 	},
 	["DAILIES\\Mists of Pandaria Dailies\\The Klaxxi Dailies"] = {
 		{ids="31237,31510,31272,31504", cond_if=[[completedq(31439)]]},
@@ -305,12 +295,11 @@ ZGV.Quest_Cache_Accept_Alliance = {
 		{ids="30134,30135,30136,30137,30138,30139,30140,30141,30142,30151,31704,31716,30154,30150,30155,30158,31698,31706,31707,31712,30148,30149,30147,30146,31194,31703,31701,31702,31711,31721,31717,31720,31718,31715,31699,31700,30159,30157,31709,31708,31714,31713,30152,30143,30144,30145,30187,31811,31810"},
 	},
 	["DAILIES\\Mists of Pandaria Dailies\\The Shado-Pan Dailies"] = {
-		{ids="31220", cond_if=[[not completedq(31220) and rep('Shado-Pan')>=Honored]]},
-		{ids="30933", cond_if=[[not completedq(30933) and haveq(31201)]]},
-		{ids="31110", cond_if=[[not completedq(31110)]]},
-		{ids="31277", cond_if=[[rep('Shado-Pan')==Exalted and not completedq(31277)]]},
 		{ids="31127", cond_if=[[not completedq(31127) and rep('Shado-Pan')>=Honored]]},
+		{ids="31110", cond_if=[[not completedq(31110)]]},
 		{ids="31266", cond_if=[[rep('Shado-Pan')==Exalted and not completedq(31266)]]},
+		{ids="31220", cond_if=[[not completedq(31220) and rep('Shado-Pan')>=Honored]]},
+		{ids="31277", cond_if=[[rep('Shado-Pan')==Exalted and not completedq(31277)]]},
 		{ids="31038", cond_if=[[not completedq(31038) and rep('Shado-Pan')>=Honored]]},
 		{ids="31128,31104,31221", cond_if=[[rep('Shado-Pan')>=Revered]]},
 		{ids="31113,31114,31119,31116,31118,31117,31120,31047,31105,31106,31039,31044,31045,31048,31043,31042,31040,31041,31046,31062,31061,31049,31196,31197,31198,31199,31200,31201,31204,31203"},
@@ -382,210 +371,251 @@ ZGV.Quest_Cache_Accept_Alliance = {
 	["DUNGEONS\\Cataclysm Dungeons\\Zul'Aman"] = {
 		{ids="29186,11196"},
 	},
-	["DUNGEONS\\Classic\\Blackfathom Deeps Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Blackfathom Deeps Quests"] = {
 		{ids="3765,971,1275,1199,1198,1200"},
 	},
-	["DUNGEONS\\Classic\\Blackrock Depths Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Blackrock Depths Quests"] = {
 		{ids="4324,3702,3701,4128,4126,4286,4262,4341,3441,3442,3443,3452,3453,3454,3462,3463,3481,4123,4136,4022,4024,3801,3802,4342,4361,4201,4263,4362,4363"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul East Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul East Quests"] = {
 		{ids="5527,5526,7488,7441"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul North Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul North Quests"] = {
 		{ids="7482,5518,5528,7703"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul West Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul West Quests"] = {
 		{ids="7461,7462"},
 	},
-	["DUNGEONS\\Classic\\Gnomeregan Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Gnomeregan Quests"] = {
 		{ids="2923,2928,2925,2924,2922,2927,2930,2929,2926,2962"},
 	},
-	["DUNGEONS\\Classic\\Lower Blackrock Spire Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Lower Blackrock Spire Quests"] = {
 		{ids="3520,3527,4787,3528,5065,4788,4701,4866,4729,4862,4867,5001,5002,5081,4742"},
 	},
-	["DUNGEONS\\Classic\\Maraudon Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Maraudon Quests"] = {
 		{ids="7070,7041,7065,7028,7067,7044,7046,7066"},
 	},
-	["DUNGEONS\\Classic\\Raid Attunements\\Blackwing Lair Attunement"] = {
+	["DUNGEONS\\Classic Dungeons\\Razorfen Downs Quests"] = {
+		{ids="3636,6626,3523,3525"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Razorfen Kraul Quests"] = {
+		{ids="1221,1100,1101,1142,1144"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Armory Quests"] = {
+		{ids="6141,261,1052,1053"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Cathedral Quests"] = {
+		{ids="6141,261,1052,1053"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Library Quests"] = {
+		{ids="6141,261,1052,1053,1050"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Scholomance Quests"] = {
+		{ids="5091,4726,4808,4809,4810,4907,4734,4735,5522,5531,5529,4771,5092,5097,5533,5537,5538,5801,5803,5505,5343,5382,5515,5582,5384,5461,5462,5463,5464,5465,5466"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Stratholme - Live Side Quests"] = {
+		{ids="5214,5251,5281,5282,5542,5543,5544,5742,5781,5845,5846,5848,5122,5262"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Stratholme - Undead Side Quests"] = {
+		{ids="5382,5515,5384,5461,5462,5463,5251,5262,5263,5212,5243,5122,5125,5464,5213"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Temple of Atal'Hakkar Quests"] = {
+		{ids="1448,1449,1450,1451,1452,3445,1469,1475,3444,3446,3520,3527,4787,1446,3528,4141,4142,4143,3447,3373"},
+	},
+	["DUNGEONS\\Classic Dungeons\\The Deadmines Quests"] = {
+		{ids="167,168,2040,65,132,135,141,142,155,166,214,373"},
+	},
+	["DUNGEONS\\Classic Dungeons\\The Stockade Quests"] = {
+		{ids="303,378,386,377,388,373,389,391,387"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Uldaman Quests"] = {
+		{ids="2278,2279,2439", cond_if=[[level >=40]]},
+		{ids="2198,2199,2200,2398,720,721,722,723,724,707,725,726,762,2500,738,739,704,2202,1139,2201,2240,2204"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Upper Blackrock Spire Quests"] = {
+		{ids="4766,4764,4726,4808,4809,4810,4907,4734,5089,5102,5160,5047,4735,5164"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Wailing Caverns Quests"] = {
+		{ids="865,1491,959,1486,1487,3366,6981,3370"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Zul'Farrak Quests"] = {
+		{ids="2988,2989,2990,2991,2846,2770,3520,3527,2768,2865,3042"},
+	},
+	["DUNGEONS\\Classic Raids\\Blackwing Lair"] = {
+		{ids="7782", cond_if=[[completedq(7781)]]},
+		{ids="7781", cond_if=[[not completedq(7781)]]},
+	},
+	["DUNGEONS\\Classic Raids\\Raid Attunements\\Blackwing Lair Attunement"] = {
 		{ids="7761"},
 	},
-	["DUNGEONS\\Classic\\Raid Attunements\\Molten Core Attunement"] = {
+	["DUNGEONS\\Classic Raids\\Raid Attunements\\Molten Core Attunement"] = {
 		{ids="7848"},
 	},
-	["DUNGEONS\\Classic\\Raid Attunements\\Naxxramas Attunement"] = {
+	["DUNGEONS\\Classic Raids\\Raid Attunements\\Naxxramas Attunement"] = {
 		{ids="9123", cond_if=[[rep("Argent Dawn") == Exalted or completedq(9123)]]},
 		{ids="9122", cond_if=[[rep("Argent Dawn") == Revered or completedq(9122)]]},
 		{ids="9121", cond_if=[[rep("Argent Dawn") < Revered or completedq(9121)]]},
 	},
-	["DUNGEONS\\Classic\\Razorfen Downs Quests"] = {
-		{ids="3636,6626,3523,3525"},
+	["DUNGEONS\\Classic Raids\\Ruins of Ahn'Qiraj"] = {
+		{ids="8557,8558,8556", cond=[[Warrior]]},
+		{ids="8695,8711,8703", cond=[[Paladin]]},
+		{ids="8690,8706,8698", cond=[[Shaman]]},
+		{ids="8693,8709,8701", cond=[[Rogue]]},
+		{ids="8691,8707,8699", cond=[[Mage]]},
+		{ids="8692,8708,8700", cond=[[Druid]]},
+		{ids="8689,8705,8697", cond=[[Priest]]},
+		{ids="8696,8712,8704", cond=[[Hunter]]},
+		{ids="8791", cond_if=[[not completedq(8791)]]},
+		{ids="8694,8710,8702", cond=[[Warlock]]},
 	},
-	["DUNGEONS\\Classic\\Razorfen Kraul Quests"] = {
-		{ids="1221,1100,1101,1142,1144"},
+	["DUNGEONS\\Classic Raids\\Temple of Ahn'Qiraj"] = {
+		{ids="8560,8559,8562,8561,8544", cond=[[Warrior]]},
+		{ids="8629,8655,8627,8628,8630", cond=[[Paladin]]},
+		{ids="8624,8621,8622,8623,8602", cond=[[Shaman]]},
+		{ids="8640,8637,8638,8639,8641", cond=[[Rogue]]},
+		{ids="8631,8634,8633,8632,8625", cond=[[Mage]]},
+		{ids="8801", cond_if=[[not completedq(8801)]]},
+		{ids="8663,8660,8661,8662,8664", cond=[[Warlock]]},
+		{ids="8593,8596,8603,8592,8594", cond=[[Priest]]},
+		{ids="8658,8626,8656,8657,8659", cond=[[Hunter]]},
+		{ids="8668,8665,8666,8667,8669", cond=[[Druid]]},
+		{ids="8784"},
 	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Armory Quests"] = {
-		{ids="6141,261,1052,1053"},
-	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Cathedral Quests"] = {
-		{ids="6141,261,1052,1053"},
-	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Library Quests"] = {
-		{ids="6141,261,1052,1053,1050"},
-	},
-	["DUNGEONS\\Classic\\Scholomance Quests"] = {
-		{ids="5091,4726,4808,4809,4810,4907,4734,4735,5522,5531,5529,4771,5092,5097,5533,5537,5538,5801,5803,5505,5343,5382,5515,5582,5384,5461,5462,5463,5464,5465,5466"},
-	},
-	["DUNGEONS\\Classic\\Stratholme - Live Side Quests"] = {
-		{ids="5214,5251,5281,5282,5542,5543,5544,5742,5781,5845,5846,5848,5122,5262"},
-	},
-	["DUNGEONS\\Classic\\Stratholme - Undead Side Quests"] = {
-		{ids="5382,5515,5384,5461,5462,5463,5251,5262,5263,5212,5243,5122,5125,5464,5213"},
-	},
-	["DUNGEONS\\Classic\\Temple of Atal'Hakkar Quests"] = {
-		{ids="1448,1449,1450,1451,1452,3445,1469,1475,3444,3446,3520,3527,4787,1446,3528,4141,4142,4143,3447,3373"},
-	},
-	["DUNGEONS\\Classic\\The Deadmines Quests"] = {
-		{ids="167,168,2040,65,132,135,141,142,155,166,214,373"},
-	},
-	["DUNGEONS\\Classic\\The Stockade Quests"] = {
-		{ids="303,378,386,377,388,373,389,391,387"},
-	},
-	["DUNGEONS\\Classic\\Uldaman Quests"] = {
-		{ids="2278,2279,2439", cond_if=[[level >=40]]},
-		{ids="2198,2199,2200,2398,720,721,722,723,724,707,725,726,762,2500,738,739,704,2202,1139,2201,2240,2204"},
-	},
-	["DUNGEONS\\Classic\\Upper Blackrock Spire Quests"] = {
-		{ids="4766,4764,4726,4808,4809,4810,4907,4734,5089,5102,5160,5047,4735,5164"},
-	},
-	["DUNGEONS\\Classic\\Wailing Caverns Quests"] = {
-		{ids="865,1491,959,1486,1487,3366,6981,3370"},
-	},
-	["DUNGEONS\\Classic\\Zul'Farrak Quests"] = {
-		{ids="2988,2989,2990,2991,2846,2770,3520,3527,2768,2865,3042"},
-	},
-	["DUNGEONS\\Northrend Dungeons\\Forge of Souls Quests"] = {
-		{ids="24510,24499,24683"},
-	},
-	["DUNGEONS\\Northrend Dungeons\\Halls of Reflection Quests"] = {
-		{ids="24500"},
-	},
-	["DUNGEONS\\Northrend Dungeons\\Pit of Saron Quests"] = {
-		{ids="24498,24710,24711"},
-	},
-	["DUNGEONS\\The Burning Crusade\\Auchenai Crypts Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Auchenai Crypts Quests"] = {
 		{ids="10227,10228,10231,10251,10252,10253,10164,9928,9927,9931,9932,10168"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Black Temple Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Black Temple Attunement"] = {
 		{ids="10568", cond_if=[[rep ('The Aldor') >= Neutral]]},
 		{ids="10684,10685,10575", cond_if=[[rep ('The Scryers') >= Neutral]]},
 		{ids="10571,10574,10575", cond_if=[[rep('The Aldor') >= Neutral]]},
 		{ids="10683", cond_if=[[rep('The Scryers')>=Neutral]]},
 		{ids="10622,10628,10705,10706,10707,10708,10944,10946,10947,10948,10949,10985"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Blood Furnace Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Blood Furnace Quests"] = {
 		{ids="9607,9589"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Hellfire Citadel Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Hellfire Citadel Attunement"] = {
 		{ids="10754,10762,10763,10764"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Hellfire Ramparts Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Hellfire Ramparts Quests"] = {
 		{ids="9575,9587"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Karazhan Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Karazhan Attunement"] = {
 		{ids="11216,9824,9825,9826,9829,9831,9832,9836,9837,9838"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Mana-Tombs Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Mana-Tombs Quests"] = {
 		{ids="10216,10165,10218,10969,10970,10425,10971,10973,10974,10975,10975,10976,10977"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Mount Hyjal Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Mount Hyjal Attunement"] = {
 		{ids="10445"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Old Hillsbrad Foothills Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Old Hillsbrad Foothills Quests"] = {
 		{ids="12513,10279,10277,10282,10283,10284,10285"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Serpentshrine Cavern Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Serpentshrine Cavern Attunement"] = {
 		{ids="10901,9630,9638,9639,9640,9645,9680,9631,9637,9644"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Sethekk Halls Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Sethekk Halls Quests"] = {
 		{ids="10180,10097,10098"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Shadow Labyrinth Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Shadow Labyrinth Quests"] = {
 		{ids="10687", cond_if=[[rep('The Scryers')>=Neutral]]},
 		{ids="10587,10637,10640", cond_if=[[rep ('The Aldor') >= Neutral]]},
 		{ids="10688,10689", cond_if=[[rep('The Scryers') >= Neutral]]},
 		{ids="10641,10668,10669,10646,10649,10621,10626,10662,10664,10666,11216,9824,9825,9826,9829,9831,10177,10094,10178,10885,10091,10095"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Shattered Halls Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Shattered Halls Quests"] = {
 		{ids="9492,9492,10883,10884"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Tempest Keep Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Tempest Keep Attunement"] = {
 		{ids="10883,10884,10885,10886,10888"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Arcatraz Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Arcatraz Quests"] = {
 		{ids="10568", cond_if=[[rep ('The Aldor') >= Neutral]]},
 		{ids="10684,10685,10575", cond_if=[[rep ('The Scryers') >= Neutral]]},
 		{ids="10683", cond_if=[[rep('The Scryers')>=Neutral]]},
 		{ids="10571,10574,10575", cond_if=[[rep('The Aldor') >= Neutral]]},
 		{ids="10265,10262,10205,10266,10267,10268,10269,10275,10276,10280,10704,10622,10628,10705,10706,11216,9824,9825,9826,9829,9831,9832"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Black Morass Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Black Morass Quests"] = {
 		{ids="10902", cond_if=[[skill("Alchemy") < 0]]},
 		{ids="10279,10277,10282,10283,10284,10285,10296,10297,10298"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Botanica Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Botanica Quests"] = {
 		{ids="10897", cond_if=[[skill("Alchemy") < 0]]},
 		{ids="10257,10265,10262,10205,10266,10267,10268,10269,10275,10276,10280,10704"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Cipher of Damnation"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Cipher of Damnation"] = {
 		{ids="10680,10458,10480,10481,10513,10514,10515,10519,10521,10527,10546,10522,10523,10528,10537,10540,10541,10547,10550,10570,10576,10577,10578,10579,10588"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Mechanar Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Mechanar Quests"] = {
 		{ids="10621,10626,10662,10664,10665"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Slave Pens Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Slave Pens Quests"] = {
 		{ids="9738"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Steamvault Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Steamvault Quests"] = {
 		{ids="10621,10626,10662,10664,10666,10667,9763,9764,10885"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Underbog Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Underbog Quests"] = {
 		{ids="9715,9717,9719,9738"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Ahn'kahet: The Old Kingdom Quests"] = {
+	["DUNGEONS\\The Burning Crusade Raids\\Hyjal Summit (Battle for Mount Hyjal)"] = {
+		{ids="10277", cond_if=[[not completedq(10277)]]},
+	},
+	["DUNGEONS\\The Burning Crusade Raids\\Magtheridon's Lair"] = {
+		{ids="11002", cond_if=[[not completedq(11002)]]},
+	},
+	["DUNGEONS\\The Burning Crusade Raids\\The Eye"] = {
+		{ids="11007", cond_if=[[not completedq(11007)]]},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Ahn'kahet: The Old Kingdom Quests"] = {
 		{ids="13187,13204"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Azjol-Nerub Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Azjol-Nerub Quests"] = {
 		{ids="13167,13182"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Drak'Tharon Keep Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Drak'Tharon Keep Quests"] = {
 		{ids="12210,11984,11989,11990,11991,12007,12042,12802,12068,12238,12484,12029,12037"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Gundrak Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Forge of Souls Quests"] = {
+		{ids="24510,24499,24683"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Gundrak Quests"] = {
 		{ids="13111,13098"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Halls of Lightning Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Halls of Lightning Quests"] = {
 		{ids="12843,12846,12841,12905,12906,12907,12908,12921,12969,12970,12971,12972,12851,12856,13063,12900,12983,12996,12997,13061,13062,12886,13064,12915,12922,12956,12924,12966,12967,13009,13050,13051,13010,13011,12975,12976,13057,13005,13035,13047,13108,13109"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Halls of Stone Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Halls of Reflection Quests"] = {
+		{ids="24500"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Halls of Stone Quests"] = {
 		{ids="13207"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Culling of Stratholme Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Pit of Saron Quests"] = {
+		{ids="24498,24710,24711"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Culling of Stratholme Quests"] = {
 		{ids="13149,13151"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Nexus Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Nexus Quests"] = {
 		{ids="11733,11900,11910,11941,11943,11905,11911,13094,11946,11951,11957,11967,11969,11973"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Oculus Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Oculus Quests"] = {
 		{ids="13124,13126,13127,13128"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Violet Hold Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Violet Hold Quests"] = {
 		{ids="13158,13159"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Utgarde Keep Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Utgarde Keep Quests"] = {
 		{ids="11252,13205"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Utgarde Pinnacle Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Utgarde Pinnacle Quests"] = {
 		{ids="13131,13132"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Raids\\Naxxramas"] = {
+		{ids="13372,13375"},
 	},
 	["DUNGEONS\\Pandaria Dungeons\\Gate of the Setting Sun"] = {
 		{ids="31363,31364"},
@@ -719,7 +749,7 @@ ZGV.Quest_Cache_Accept_Alliance = {
 		{ids="7022,7025,7062,7063,7043,7045"},
 	},
 	["EVENTS\\Hallow's End\\Achievements\\Hallowed Be Thy Name"] = {
-		{ids="11356,11360,12133,11131,12135,12133,8373,1658,12336,12286,12342,28955,28956,28965,12332,12335,12339,28963,28980,28977,28979,28978,12343,28990,28991,28954,12351,28970,12402,28988,12340,12344,28968,28967,28960,28961,28964"},
+		{ids="11356,11360,12133,11131,12135,12133,8373,1658,12336,12286,12342,28955,28956,28965,12332,12335,12339,28963,28980,28977,28979,28978,12343,28990,28991,28954,12351,28970,12402,28988,12340,12344,28968,28967,28960,28961,28964,12397"},
 	},
 	["EVENTS\\Hallow's End\\Achievements\\Rotten Hallow"] = {
 		{ids="8373,1658"},
@@ -780,16 +810,16 @@ ZGV.Quest_Cache_Accept_Alliance = {
 		{ids="24655,24656,24848,24849,24657"},
 	},
 	["EVENTS\\Lunar Festival\\Achievements\\10 Coins of Ancestry"] = {
-		{ids="8866,8653,8642,29737,29736,8643,8688,8650,8727,8722,8714,8652"},
+		{ids="8866,8653,8642,29737,29736,8643,8688,8650,8727,8722,8714,8652,8648"},
 	},
 	["EVENTS\\Lunar Festival\\Achievements\\25 Coins of Ancestry"] = {
-		{ids="8866,8653,8642,29737,29736,8643,8688,8650,8727,8722,8714,8652,8648,8645,8683,8636,8651,8619,8644,8646,8649,8675,8713,8647,8716,8674,8680,8670,8677,8720,8672,8726"},
+		{ids="8866,8653,8642,29737,29736,8643,8688,8650,8727,8722,8714,8652,8648,8645,8683,8636,8651,8619,8644,8646,8649,8675,8713,8647,8716,8674,8680,8670,8677,8720,8672,8726,29740"},
 	},
 	["EVENTS\\Lunar Festival\\Achievements\\5 Coins of Ancestry"] = {
-		{ids="8866,8653,8642"},
+		{ids="8866,8653,8642,29737"},
 	},
 	["EVENTS\\Lunar Festival\\Achievements\\50 Coins of Ancestry"] = {
-		{ids="8866,8653,8642,29737,29736,8643,8688,8650,8727,8722,8714,8652,8648,8645,8683,8636,8651,8619,8644,8646,8649,8675,8713,8647,8716,8674,8680,8670,8677,8720,8672,8726,29740,29739,8725,8723,8721,8718,8715,8717,8686,8673,8678,8635,8685,8679,8654,8719,8681,29742,29741,8671,8676,8684,8724,8682,13012,13029,13033,13016,13021"},
+		{ids="8866,8653,8642,29737,29736,8643,8688,8650,8727,8722,8714,8652,8648,8645,8683,8636,8651,8619,8644,8646,8649,8675,8713,8647,8716,8674,8680,8670,8677,8720,8672,8726,29740,29739,8725,8723,8721,8718,8715,8717,8686,8673,8678,8635,8685,8679,8654,8719,8681,29742,29741,8671,8676,8684,8724,8682,13012,13029,13033,13016,13021,13018"},
 	},
 	["EVENTS\\Lunar Festival\\Achievements\\Elders of Cataclysm"] = {
 		{ids="27724,28825,28826,14482,24432", cond_if=[[level >= 80]]},
@@ -855,12 +885,20 @@ ZGV.Quest_Cache_Accept_Alliance = {
 	["EVENTS\\Pilgrim's Bounty\\Quests\\Pilgrim's Bounty Quests"] = {
 		{ids="14022,14064,14023,14024,14028,14030,14033,14035"},
 	},
+	["GOLD\\Farming\\Stringy Wolf Meat"] = {
+		{ids="51443", cond_if=[[Horde]]},
+		{ids="46727", cond_if=[[Alliance]]},
+	},
+	["GOLD\\Gathering\\Rugged Leather"] = {
+		{ids="25771", cond_if=[[itemcount(10593) > 0]]},
+		{ids="25772", cond_if=[[itemcount(8244) > 0]]},
+	},
 	["LEVELING\\Cataclysm 80-85\\Deepholm (82-83)"] = {
 		{ids="27727,27203,27123,26409,26245,27136,26244,26410,27135,26411,26413,26484,26246,27931,27932,27933,27934,27935,26499,26500,26502,26501,26537,26564,26591,26625,27126,26632,26755,26762,26770,26834,26791,26792,26835,26836,27937,27938,26247,26248,26249,26427,26251,26250,26254,26255,26258,26259,26256,26261,26260,27007,27010,27061,27100,27101,27102,26766,26768,26771,26857,26861,26876,26326,26312,26314,26313,26315,26328,26376,26377,26375,26426,26869,26871,26436,26438,26437,26439,28869,26440,26441,26507,26575,26576,26577,26656,26657,26658,26659,26578,26579,26580,26581,26582,26584,26585,26583,26750,26752,26827,26828,26829,26832,26831,26833,26875,26971,26709,27004,27006,27042,27040,27058,28292"},
 	},
 	["LEVELING\\Cataclysm 80-85\\Mount Hyjal (80-82)"] = {
 		{ids="27874", cond_if=[[not haveq(25985) or completedq(25985)]]},
-		{ids="27726,28825,28826,25316,25317,25460,25370,25574,25319,25472,25323,25464,25430,25320,25321,25424,25324,25325,25578,25584,25255,25233,25234,25268,25271,25273,25280,25278,25297,25300,25301,25298,25328,25303,25312,25332,25352,25353,25618,25575,25577,25576,25599,25600,25611,25630,25381,25382,25385,25404,25408,25411,25412,25392,25428,29066,25940,25462,25490,25491,25493,25492,25507,25502,25510,25514,25519,25520,25655,25656,25663,25665,25731,25664,25740,25746,25758,25763,25761,25764,25776,25795,25807,25810,25830,25523,25525,25544,25560,25832,25842,25372,25843,25904,25881,25899,25906,25886,25901,25910,25915,25923,25928,25653,25597,25274,25276,25223,25224,25330,25291,25509,25296,25294,25308,25499,25299,25309,25494,25496,25310,25311,25314,25601,25315,25531,25608,25548,25554,25644,25555,25549,25552,25550,25553,25551,27398"},
+		{ids="27726,28826,25316,25317,25460,25370,25574,25319,25472,25323,25464,25430,25320,25321,25424,25324,25325,25578,25584,25255,25233,25234,25268,25271,25273,25280,25278,25297,25300,25301,25298,25328,25303,25312,25332,25352,25353,25618,25575,25577,25576,25599,25600,25611,25630,25381,25382,25385,25404,25408,25411,25412,25392,25428,29066,25940,25462,25490,25491,25493,25492,25507,25502,25510,25514,25519,25520,25655,25656,25663,25665,25731,25664,25740,25746,25758,25763,25761,25764,25776,25795,25807,25810,25830,25523,25525,25544,25560,25832,25842,25372,25843,25904,25881,25899,25906,25886,25901,25910,25915,25923,25928,25653,25597,25274,25276,25223,25224,25330,25291,25509,25296,25294,25308,25499,25299,25309,25494,25496,25310,25311,25314,25601,25315,25531,25608,25548,25554,25644,25555,25549,25552,25550,25553,25551,27398"},
 	},
 	["LEVELING\\Cataclysm 80-85\\Twilight Highlands (84-85)"] = {
 		{ids="28716,26960,26975,26977,26997,27038,27044,27064,27060,28807,27072,27092,27106,28238,28832,28596,28597,28598,28599,27338,27177,27178,27200,27341,27366,27433,27514,27468,27515,27516,27537,27538,27545,27621,27803,27804,27805,27806,27807,27808,27809,27810,27811,27999,27812,27813,28233,27814,28234,27815,27816,27817,27640,28001,27643,27644,27645,27641,27642,27648,27647,27649,27646,27650,27651,27754,28369,27752,27753,28241,28211,28212,28215,28216,28242,28243,28244,28280,28281,28282,28294,28346,28377,28378,28379,28407,28413,28408,28409,28410,28411,28655,27374,27299,27300,27301,27302,27303,27376,27377,27378,27379,27380,27485,27504,27505,27506,27564,27507,27509,27508,28101,28103,28104,28108,28107,28109,28712,28758,28171,28191,28173,28175,28176,28247,28248,27492,27496,27490,27494,27498,27500,27502,27636,27652,27654,27657,27659,27660,27662,27661,27688,27695,27719,27700,27702,27711,27720,27742,27743,27744,27745,27782,27784,27787"},
@@ -871,7 +909,7 @@ ZGV.Quest_Cache_Accept_Alliance = {
 		{ids="28295", cond_if=[[haveq(28292) or completedq(28292)]]},
 	},
 	["LEVELING\\Cataclysm 80-85\\Vashj'ir (80-82)"] = {
-		{ids="27724,28825,28826,14482,24432,25281,25405,25357,25546,25545,25564,27729,25547,25558,25477,25371,27685,25587,25598,25388,25390,25389,25602,25377,25459,25358,25651,25657,25638,25794,25812,27699,25670,25824,25887,25732,25743,25885,25888,25884,25883,27708,25471,25334,25164,25221,25222,25215,25216,25219,25220,25218,25360,25217,25456,25359,25439,25441,25440,25442,25890,25900,25907,25908,25909,25916,25917,25919,25918,25920,25921,25922,25536,25535,25539,25537,25538,25540,25581,25580,25582,25579,25583,25760,25619,25620,25637,25658,25659,25747,25748,25749,25751,25752,25754,25753,25755,25858,25859,25862,25863,25861,26191,25892,25893,25895,25897,25894,25898,25911,25626,25896,25629,25860,25951,26005,26219,26103,26106,26014,26015,26017,26018,26019,26021,26080,25950,25977,25981,25975,25987,25983,26056,26070,26096,26072,26111,26065,26130,26132,26140,26141,26142,26144,26154,26143,26181,26193"},
+		{ids="27724,28826,14482,24432,25281,25405,25357,25546,25545,25564,27729,25547,25558,25477,25371,27685,25587,25598,25388,25390,25389,25602,25377,25459,25358,25651,25657,25638,25794,25812,27699,25670,25824,25887,25732,25743,25885,25888,25884,25883,27708,25471,25334,25164,25221,25222,25215,25216,25219,25220,25218,25360,25217,25456,25359,25439,25441,25440,25442,25890,25900,25907,25908,25909,25916,25917,25919,25918,25920,25921,25922,25536,25535,25539,25537,25538,25540,25581,25580,25582,25579,25583,25760,25619,25620,25637,25658,25659,25747,25748,25749,25751,25752,25754,25753,25755,25858,25859,25862,25863,25861,26191,25892,25893,25895,25897,25894,25898,25911,25626,25896,25629,25860,25951,26005,26219,26103,26106,26014,26015,26017,26018,26019,26021,26080,25950,25977,25981,25975,25987,25983,26056,26070,26096,26072,26111,26065,26130,26132,26140,26141,26142,26144,26154,26143,26181,26193"},
 	},
 	["LEVELING\\Pandaria (85-90)\\Dread Wastes (89-90)"] = {
 		{ids="31847,31001,31002,31003,31004,31005,31676,31006,31007,31660,31009,31008,31010,31661,31066,31108,31689,31107,31087,31019,31023,31020,31021,31022,31026,31088,31090,31089,31091,31359,31092,31398,31727,31730,31067,31068,31069,31070,31071,31072,31129,31077,31074,31073,31133,31078,31075,31080,31079,31081,31082,31084,31085,31086,31265,31181,31182,31183,31185,31184,31187,31188,31186,31189,31190,31354,32030,31782,31605,31175,31176,31177,31178,31179,31606"},
@@ -2805,17 +2843,8 @@ ZGV.Quest_Cache_Accept_Alliance = {
 	["PETSMOUNTS\\Mounts\\Ground Mounts\\Miscellaneous Mounts\\Bone-White Primal Raptor"] = {
 		{ids="32617"},
 	},
-	["PETSMOUNTS\\Battle Pets\\Aquatic Pets\\Strand Crawler"] = {
-		{ids="13833,13834,13832,13836,13830,26414,26420,26442,26488,26536"},
-	},
-	["PETSMOUNTS\\Battle Pets\\Beast Pets\\Dun Morogh Cub"] = {
-		{ids="13703,13714,13741,13742,13743,13744,13745,13851,13713"},
-	},
-	["PETSMOUNTS\\Battle Pets\\Beast Pets\\Hyjal Bear Cub"] = {
-		{ids="29283"},
-	},
 	["PETSMOUNTS\\Battle Pets\\Beast Pets\\Lashtail Hatchling"] = {
-		{ids="26732,26740,26735,583,194,26343,26763,190,26269,185,26344,186,191,26738,187,26733,26739,26736,26734,26744,26737,26742,26729,26345,188,192,195,26745,26730,26743,26746,26731,196,197,193,26782,26805,26781,26747,26751,26765,208,26748,26749,26772,26773,26774,26779,26780,26775,26776"},
+		{ids="26732,26735,26738,26739,26736,26745,26746,26747,26748,26749,26772,26773,26774,26775,26776,29208"},
 	},
 	["PETSMOUNTS\\Battle Pets\\Beast Pets\\Panther Cub"] = {
 		{ids="29100,29102,29103,29104,29105,29114,29115,29116,29120,29213,29121,29267"},
@@ -2832,12 +2861,6 @@ ZGV.Quest_Cache_Accept_Alliance = {
 	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Lumpy"] = {
 		{ids="7043"},
 	},
-	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Pebble"] = {
-		{ids="27727,27203,27123,26245,27136,26244,26409,26410,27135,26411,26413,26484,26246,26247,26248,26249,26427,26251,26250,26254,26255,26258,26259,26256,26261,26260,27007,27010,27100,27061,27101,27102,26766,26768,26771,26857,26861,26876,27931,27932,27933,27934,27935,26499,26500,26502,26501,26537,26564,26591,26625,27126,26632,26755,26762,26770,26834,26791,26792,26835,26836,27937,27938,26326,26312,26314,26313,26315,26328,26376,26377,26375,26426,26869,26871,26436,26438,26437,26439,26440,26441,26507,26575,26576,26577,26656,26657,26658,26659,26578,26579,26580,26581,26582,26584,26585,26583,26750,26752,26827,27004,27006,27042,27040,27058,28292,26828,26829,26832,26831,26833,26875,26971,26709,26710"},
-	},
-	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Searing Scorchling"] = {
-		{ids="27726,25316,25317,25460,25370,25574,25319,25472,25323,25464,25430,25320,25321,25424,25324,25325,25578,25584,25255,25233,25234,25268,25271,25273,25280,25278,25297,25300,25301,25298,25328,25303,25312,25332,25352,25353,25618,25575,25577,25576,25599,25600,25611,27874,25630,25381,25382,25385,25404,25408,25411,25412,25392,25428,25940,25462,25490,25491,25493,25492,25507,25502,25510,25514,25519,25520,25663,25655,25656,25665,25731,25664,25740,25746,25758,25763,25761,25764,25776,25795,25807,25810,25830,25523,25525,25544,25560,25832,25842,25372"},
-	},
 	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Teldrassil Sproutling"] = {
 		{ids="13706,13717,13757,13758,13759,13760,13761,13855,13725"},
 	},
@@ -2847,30 +2870,17 @@ ZGV.Quest_Cache_Accept_Alliance = {
 	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Alliance Balloon"] = {
 		{ids="29412,29412"},
 	},
-	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Blue Mini Jouster"] = {
-		{ids="27726,25316,25317,25460,25370,25574,25319,25472,25323,25464,25430,25320,25321,25424,25324,25325,25578,25584,25255,25233,25234,25268,25271,25273,25280,25278,25297,25300,25301,25298,25328,25303,25312,25332,25352,25353,25618,25575,25577,25576,25599,25600,25611,27874,25630,25381,25382,25385,25404,25408,25411,25412,25392,25428,25940,25462,25490,25491,25493,25492,25507,25502,25510,25514,25519,25520,25663,25655,25656,25665,25731,25664,25740,25746,25758,25763,25761,25764,25776,25795,25807,25810,25830,25523,25525,25544,25560,29177"},
-	},
 	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Gold Mini Jouster"] = {
 		{ids="27726,25316,25317,25460,25370,25574,25319,25472,25323,25464,25430,25320,25321,25424,25324,25325,25578,25584,25255,25233,25234,25268,25271,25273,25280,25278,25297,25300,25301,25298,25328,25303,25312,25332,25352,25353,25618,25575,25577,25576,25599,25600,25611,27874,25630,25381,25382,25385,25404,25408,25411,25412,25392,25428,25940,25462,25490,25491,25493,25492,25507,25502,25510,25514,25519,25520,25663,25655,25656,25665,25731,25664,25740,25746,25758,25763,25761,25764,25776,25795,25807,25810,25830,25523,25525,25544,25560,29177"},
 	},
 	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Plump Turkey"] = {
 		{ids="14022,14064,14023,14024,14028,14030,14033,14035,14055,14053,14051,14048,14054"},
 	},
-	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Rustberg Gull"] = {
-		{ids="28275,27987,27978,27991,27975,27973,28059,28063,28130,28137,28065,27948,27972,27970,27971,28050,27944,28046,27967,27992,27966,27949,28122,28162,28163,28165,28185,28186,28117,28120,28118,28232,28188,28223"},
-	},
 	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Tiny Flamefly"] = {
 		{ids="28416,28174,28172,28177,28178,28179,28180,28181,28182,28183,28184,28225,28226,28254,28202,28203,28204,28205,28239,28245,28246,28252,28253,28227,28265,28266,28278,28279,28286,28310,28415"},
 	},
 	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Westfall Chicken"] = {
 		{ids="3861"},
-	},
-	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Argent Squire"] = {
-		{ids="12740,12596,12557,12599,12597,12598"},
-	},
-	["PETSMOUNTS\\Battle Pets\\Magic Pets\\Festival Lantern"] = {
-		{ids="27724,28825,28826,14482,24432", cond_if=[[level >= 80]]},
-		{ids="8870,8867,8883,8868,8866,8653,8642,29737,29736,8643,8688,8650,8727,8722,8714,8652,8648,8645,8683,8636,8651,8619,8644,8646,8649,8675,8713,8647,8716,8674,8680,8670,8677,8720,8672,8726,29740,29739,8725,8723,8721,8718,8715,8717,8686,8673,8678,8635,8685,8679,8654,8719,8681,29742,29741,8671,8676,8684,8724,8682,13012,13029,13033,13016,13021,13018,13024,13026,13014,13022,13031,13019,13028,13015,13020,13066,13032,13027,13023,13065,13013,13030,13025,13017,13067,13026,13021,13022,13023,13066,13065,13017,13067,29738,27727,27203,27123,29735,29734"},
 	},
 	["PETSMOUNTS\\Battle Pets\\Magic Pets\\Lunar Lantern"] = {
 		{ids="27724,28825,28826,14482,24432", cond_if=[[level >= 80]]},
@@ -2881,10 +2891,6 @@ ZGV.Quest_Cache_Accept_Alliance = {
 	},
 	["PETSMOUNTS\\Battle Pets\\Mechanical Pets\\Mechanopeep"] = {
 		{ids="13704,13715,13746,13747,13748,13749,13750,13852,13723"},
-	},
-	["PETSMOUNTS\\Battle Pets\\Undead Pets\\Creepy Crate"] = {
-		{ids="12133", cond_if=[[not completedq(8311)]]},
-		{ids="29074,11356,8311,29430,12336,8356,29392,29398,29399,29402,29403,29411,29413,11360,12286,8353,12335,8355,8357,12334"},
 	},
 	["PETSMOUNTS\\Battle Pets\\Undead Pets\\Macabre Marionette"] = {
 		{ids="14166"},
@@ -2907,6 +2913,72 @@ ZGV.Quest_Cache_Accept_Alliance = {
 	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Pandaren Water Spirit"] = {
 		{ids="32428", cond_if=[[not completedq(32428)]]},
 		{ids="32439"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Mountain Panda"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="31932,31932,31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="32439,32434,32441,32440", cond_if=[[completedq(32428)]]},
+		{ids="31976", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31981", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="31951", cond_if=[[not completedq(31951)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31985", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31970", cond_if=[[not completedq(31970)]]},
+		{ids="31920", cond_if=[[not completedq(31920)]]},
+		{ids="31928", cond_if=[[not completedq(31928)]]},
+		{ids="31591,31592,31821,32008,31316,31724,31725,31726,31729,31728,31917,31902,31915,31889,31919,31927,31966,31930,32603,32604,32868,32869"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Red Panda"] = {
+		{ids="31932,31932,31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="31976", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31981", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="31951", cond_if=[[not completedq(31951)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31985", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31970", cond_if=[[not completedq(31970)]]},
+		{ids="31920", cond_if=[[not completedq(31920)]]},
+		{ids="31928", cond_if=[[not completedq(31928)]]},
+		{ids="31591,31592,31821,32008,31316,31724,31725,31726,31729,31728,31917,31902,31915,31889,31919,31927,31966,31930,32603"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Snowy Panda"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="31932,31932,31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="32439,32434,32441,32440", cond_if=[[completedq(32428)]]},
+		{ids="31976", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31981", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="31951", cond_if=[[not completedq(31951)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31985", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31970", cond_if=[[not completedq(31970)]]},
+		{ids="31920", cond_if=[[not completedq(31920)]]},
+		{ids="31928", cond_if=[[not completedq(31928)]]},
+		{ids="31591,31592,31821,32008,31316,31724,31725,31726,31729,31728,31917,31902,31915,31889,31919,31927,31966,31930,32603,32604,32868,32869"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Sunfur Panda"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="31932,31932,31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="32439,32434,32441,32440", cond_if=[[completedq(32428)]]},
+		{ids="31976", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31981", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="31951", cond_if=[[not completedq(31951)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31985", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31970", cond_if=[[not completedq(31970)]]},
+		{ids="31920", cond_if=[[not completedq(31920)]]},
+		{ids="31928", cond_if=[[not completedq(31928)]]},
+		{ids="31591,31592,31821,32008,31316,31724,31725,31726,31729,31728,31917,31902,31915,31889,31919,31927,31966,31930,32603,32604,32868,32869"},
 	},
 	["PETSMOUNTS\\Battle Pets\\Magic Pets\\Jade Owl"] = {
 		{ids="31394,31512,31511"},
@@ -3032,106 +3104,11 @@ ZGV.Quest_Cache_Accept_Alliance = {
 	["REPUTATIONS\\Wrath of the Lich King Reputations\\The Wyrmrest Accord"] = {
 		{ids="11918,11941,11936,11943,11919,11931,11946,11951,11957,11967,11969,11973,13124,13126,13127,13128,13412,13413,12000,12004,12055,12060,12065,12083,12098,12107,12119,12766,12460,12416,12417,12418,12419,12768,12123,12435,12372,12146,12148,12149,12150,12151,12470,12447,12262,12261,12263,12264,12265,12267,12266,12458,12454,12456,12459"},
 	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\Emperor Shaohao"] = {
-		{ids="33229,33231,33160,33161,33228,33336,33332,33335,33340,33341,33333"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\Kirin Tor Offensive"] = {
-		{ids="32733,32731,32574,32575,32571,32732,32572,32573", cond_if=[[completedq(32644)]]},
-		{ids="32549", cond_if=[[not completedq(32549)]]},
-		{ids="32547,32546,32548", cond_if=[[completedq(32732) and completedq(32644)]]},
-		{ids="32526,32527,32532,32525,32533,32528,32529,32530,32531", cond_if=[[haveq(32731) or completedq(32731)]]},
-		{ids="32578,32568,32581,32580,32567,32579", cond_if=[[haveq(32732) or completedq(32732)]]},
-		{ids="32578,32568,32580,32567", cond_if=[[haveq(32733) or completedq(32733)]]},
-		{ids="32545", cond_if=[[completedq(32732)]]},
-		{ids="32553,32552", cond_if=[[completedq(32567) or completedq(32567)]]},
-		{ids="32560,32557,32559", cond_if=[[haveq(32568) or completedq(32568)]]},
-		{ids="32607,32608", cond_if=[[completedq(32587) and thunderstage()>=5]]},
-		{ids="32567,32581,32577,32580,32568,32578,32579", cond_if=[[completedq(32572) or completedq(32573) or completedq(32571) or completedq(32574) or completedq(32575)]]},
-		{ids="32587,32587", cond_if=[[haveq(32586) or completedq(32586) or haveq(32588) or completedq(32588)]]},
-		{ids="32567,32581", cond_if=[[completedq(32731)]]},
-		{ids="32556,32555,32558,32582,32585", cond_if=[[completedq(32568)]]},
-		{ids="32550,32551,32554", cond_if=[[haveq(32567) or completedq(32567)]]},
-		{ids="32586,32588", cond_if=[[completedq(32560) or completedq(32557) or completedq(32559)]]},
-		{ids="32606,32537,32536,32535", cond_if=[[completedq(32644) and (haveq(32732) or completedq(32732))]]},
-		{ids="32586,32588", cond_if=[[haveq(32552) or haveq(32553) or completedq(32552) or completedq(32553)]]},
-		{ids="32539,32538,32544,32541", cond_if=[[completedq(32733)]]},
-		{ids="32540,32543,32542", cond_if=[[completedq(32644) and (haveq(32733) or completedq(32733))]]},
-		{ids="32578,32568,32584", cond_if=[[completedq(32567)]]},
-		{ids="32679,32681,32644,32654,32652,32655,32656"},
-	},
 	["REPUTATIONS\\Mists of Pandaria Reputations\\Lorewalkers"] = {
 		{ids="31103,31095,31100,31093,31097,31102,31096,31094,31055,31055"},
 	},
 	["REPUTATIONS\\Mists of Pandaria Reputations\\Nat Pagle"] = {
 		{ids="31443,31444,31446"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\Operation: Shieldwall\\Beastmaster Dailies"] = {
-		{ids="32247,32109,32164,32184,32165,32185,32166,32186,32170,32171,32172"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\Operation: Shieldwall\\Operation: Shieldwall"] = {
-		{ids="32377,32371", cond_if=[[not completedq(32371)]]},
-		{ids="32414", cond_if=[[repval('Operation: Shieldwall','Revered')>=8665 and not completedq(32423)]]},
-		{ids="32382", cond_if=[[repval('Operation: Shieldwall','Friendly')>=4500 and not completedq(32383)]]},
-		{ids="32355", cond_if=[[repval('Operation: Shieldwall','Revered')>=15500 and not completedq(32335)]]},
-		{ids="32145", cond_if=[[haveq(32143) or completedq(32143)]]},
-		{ids="32362", cond_if=[[not completedq(32362)]]},
-		{ids="32383,32397", cond_if=[[not completedq(32383) or not completedq(32397)]]},
-		{ids="32416", cond_if=[[haveq(32460) or not completedq(32416)]]},
-		{ids="32381,32426", cond_if=[[not completedq(32426)]]},
-		{ids="32455", cond_if=[[not completedq(32455)]]},
-		{ids="32401", cond_if=[[haveq(32400) and not completedq(32401) and not completedq(32455)]]},
-		{ids="32400", cond_if=[[repval('Operation: Shieldwall','Exalted')>=1 and not completedq(32455)]]},
-		{ids="32315", cond_if=[[repval('Operation: Shieldwall','Honored')>=10750 and not completedq(32316)]]},
-		{ids="32316", cond_if=[[not completedq(32316)]]},
-		{ids="32336,32337,32338", cond_if=[[repval('Operation: Shieldwall','Revered')>=18500 and not completedq(32338)]]},
-		{ids="32321,32332,32333,32334,32335", cond_if=[[not completedq(32335)]]},
-		{ids="32243,32194", cond_if=[[not completedq(32243)]]},
-		{ids="32460,32421,32419,32417,32418,32420,32423", cond_if=[[not completedq(32423)]]},
-		{ids="32380", cond_if=[[repval('Operation: Shieldwall','Friendly')>=950 and not completedq(32426)]]},
-		{ids="32393", cond_if=[[repval('Operation: Shieldwall','Revered')>=6650 and not completedq(32393)]]},
-		{ids="32331", cond_if=[[repval('Operation: Shieldwall','Honored')>=2850 and not completedq(32362)]]},
-		{ids="32121,32115,32347,32346,32122,32119", cond_if=[[haveq(32116) or completedq(32116)]]},
-		{ids="32394", cond_if=[[haveq(32393) or not completedq(32394)]]},
-		{ids="32370", cond_if=[[repval('Operation: Shieldwall','Revered')>=2700 and not completedq(32371)]]},
-		{ids="32193", cond_if=[[repval('Operation: Shieldwall','Honored')>=6800 and not completedq(32243)]]},
-		{ids="32246,32247,32109,32116,32451,32452,32149,32150,32148,32151,32153,32152,32146,32142,32157,32143,32144,32156,32158,32433,32154,32446,32159"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\Shado-Pan Assault"] = {
-		{ids="31127,31038,31220", cond_if=[[rep('Shado-Pan')>=Honored]]},
-		{ids="31277", cond_if=[[rep('Shado-Pan')==Exalted and not completedq(31277)]]},
-		{ids="31110", cond_if=[[not completedq(31110)]]},
-		{ids="30933", cond_if=[[not completedq(30933)]]},
-		{ids="31266", cond_if=[[rep('Shado-Pan')==Exalted and not completedq(31266)]]},
-		{ids="31062,31061,31049", cond_if=[[completedq(31104)]]},
-		{ids="31062,31061,31049", cond_if=[[not completedq(31104)]]},
-		{ids="31128,31104,31221", cond_if=[[rep('Shado-Pan')>=Revered]]},
-		{ids="31113,31114,31119,31116,31118,31117,31120,31047,31105,31106,31039,31044,31045,31048,31043,31042,31040,31041,31046,31196,31197,31198,31199,31200,31201,31204,31203"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\The Anglers"] = {
-		{ids="30584,30586,30700,30588,30754,30753,30613,30658,30585,30598,30763,30701,30678,30698"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\The August Celestials"] = {
-		{ids="31376", cond_if=[[not completedq(31377)]]},
-		{ids="31378", cond_if=[[not completedq(31378)]]},
-		{ids="30725,30726,30727,30728,30729,30730,30731,30732,30733,30734,30735,30736,30737,30738,30739", cond_if=[[not achieved(7287)]]},
-		{ids="31380", cond_if=[[not completedq(31380)]]},
-		{ids="31382", cond_if=[[not completedq(31382)]]},
-		{ids="30740", cond_if=[[achieved(7287)]]},
-		{ids="30718,30717,30716,30065,30066,30006,30063,30064,30068,30067,30879,30880,31517,30881,30882,30883,30885,30907,30902,31492,30956,30952,30959,30954,30953,30957,30958,30955"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\The Golden Lotus"] = {
-		{ids="31394,31512,31511,30243,30266,30280,30277,30306,30242,30240,30261"},
-		{ids="31392", cond_if=[[not completedq(31394)]]},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\The Klaxxi"] = {
-		{ids="31271,31502,31503,31234,31508,31509", cond_if=[[completedq(31606)]]},
-		{ids="31599", cond_if=[[haveq(31109)]]},
-		{ids="31677", cond_if=[[haveq(31237) or haveq(31677)]]},
-		{ids="31598", cond_if=[[haveq(31111) or haveq(31508) or haveq(31506) or haveq(31111) or haveq(31510)]]},
-		{ids="31237,31510,31272,31504", cond_if=[[completedq(31439)]]},
-		{ids="31216", cond_if=[[completedq(31211)]]},
-		{ids="31959", cond_if=[[rep("The Klaxxi")>=Exalted]]},
-		{ids="31231,31235,31109,31267,31111,31505,31232,31233,31496,31270,31269,31507,31238,31487,31494,31268,31024,31808,31506,31018,31208,31209,31210,31211,31439,31441,31458,31465,31609,31612"},
 	},
 	["REPUTATIONS\\Mists of Pandaria Reputations\\Tiller's Union\\Chee Chee"] = {
 		{ids="31372,30252,30535,30254,30255,30256,30257,31338,31339,31340,31341"},
@@ -3177,6 +3154,34 @@ ZGV.Quest_Cache_Accept_Alliance = {
 	["REPUTATIONS\\Cataclysm Reputations\\Therazane"] = {
 		{ids="28391,28390", cond_if=[[rep ('Therazane') >= Revered]]},
 		{ids="27046,27047,28488,26710,27049,27050,27051,27048"},
+	},
+	["ACHIEVEMENTS\\Professions\\Cooking\\Sous Chef"] = {
+		{ids="26860,6610,8307,8313,9454,9349,9361,9356,13088"},
+	},
+	["ACHIEVEMENTS\\Professions\\Cooking\\The Northrend Gourmet"] = {
+		{ids="12634,12644,12645,13571"},
+		{ids="1308", cond_if=[[Alliance]]},
+	},
+	["ACHIEVEMENTS\\Professions\\Cooking\\The Outland Gourmet"] = {
+		{ids="9349,9361,9356"},
+	},
+	["REPUTATIONS\\Classic Reputations\\Argent Dawn"] = {
+		{ids="27367,27370,27368,27369,27371,27372,27373,27432,27381,27383,27382,27384,27392,27385,27386,27387,27388,27389,27544,27420,27421,27390,27391,27448,27455,27451,27452,27450,27449,27453,27454,27463,27456,27458,27459,27464,27465,27467,27460,27461,27462,27614,27615,27616,27619,27618,27612,27613,27617,27620,27466,27457,27481,27479,27477,27487,27482,27488,27489,27522,27521,27523,27524,27532,27525,27528,27529,27539,27551,27526,27527,27530,27531,27535,27533,27534,28755"},
+	},
+	["REPUTATIONS\\Wrath of the Lich King Reputations\\Argent Crusade"] = {
+		{ids="13105", cond=[[DeathKnight]]},
+		{ids="13104", cond_if=[[not DeathKnight]]},
+		{ids="13036,13008,13040,13039,13044,13045,13070,13086,13118,13122,13130,13135,13110,13125,13139,13141,13157,13068,13225,13072,13073,13074,13075,13076,13077,13078,13079,13080,13081,13082"},
+	},
+	["TITLES\\Burning Crusade Titles\\Reputations\\Of the Shattered Sun"] = {
+		{ids="11514,11877,11875,11880,11547,11533,11537,11548,11543,11540,11536,11544,11521,11546,11541,11523,11526,11525,11515,11516"},
+	},
+	["TITLES\\Cataclysm Titles\\Quests\\The Flamebreaker"] = {
+		{ids="27874", cond_if=[[not haveq(25985) or completedq(25985)]]},
+		{ids="27726,25316,25317,25460,25370,25574,25319,25472,25323,25464,25430,25320,25321,25424,25324,25325,25578,25584,25255,25233,25234,25268,25271,25273,25280,25278,25297,25300,25301,25298,25328,25303,25312,25332,25352,25353,25618,25575,25577,25576,25599,25600,25611,25630,25381,25382,25385,25404,25408,25411,25412,25392,25428,25940,25462,25490,25491,25493,25492,25507,25502,25510,25514,25519,25520,25663,25655,25656,25665,25731,25664,25740,25746,25758,25763,25761,25764,25776,25795,25807,25810,25830,25523,25525,25544,25560,25832,25842,25372"},
+	},
+	["TITLES\\Wrath of the Lich King Titles\\Professions\\Fishing\\Salty"] = {
+		{ids="11665,11666,11669,11667,11668"},
 	},
 }
 ZGV.Quest_Cache_Turnin_Alliance = {
@@ -3375,23 +3380,6 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 	},
 	["DAILIES\\Jewelcrafting\\Stormwind Jewelcrafting Dailies"] = {
 		{ids="25154,25156,25105,25155,25157", cond_if=[[haveq(25154,25156,25105,25155,25157) or completedq(25154,25156,25105,25155,25157)]]},
-	},
-	["DAILIES\\Mists of Pandaria Dailies\\Operation: Shieldwall"] = {
-		{ids="32156", cond_if=[[haveq(32156) or completedq(32156)]]},
-		{ids="32145", cond_if=[[haveq(32145) or completedq(32145)]]},
-		{ids="32451", cond_if=[[haveq(32451) or completedq(32451)]]},
-		{ids="32157", cond_if=[[haveq(32157) or completedq(32157)]]},
-		{ids="32148,32151,32153,32152", cond_if=[[haveq(32148,32151,32153,32152) or completedq(32148,32151,32153,32152)]]},
-		{ids="32154,32446", cond_if=[[haveq(32154,32446) or completedq(32154,32446)]]},
-		{ids="32143", cond_if=[[haveq(32143) or completedq(32143)]]},
-		{ids="32146,32142", cond_if=[[haveq(32146,32142) or completedq(32146,32142)]]},
-		{ids="32452", cond_if=[[haveq(32452) or completedq(32452)]]},
-		{ids="32121,32115,32347,32346,32122,32119", cond_if=[[haveq(32121,32115,32347,32346,32122,32119) or completedq(32121,32115,32347,32346,32122,32119)]]},
-		{ids="32158,32433", cond_if=[[haveq(32158,32433) or completedq(32158,32433)]]},
-		{ids="32116", cond_if=[[haveq(32116) or completedq(32116)]]},
-		{ids="32144", cond_if=[[haveq(32144) or completedq(32144)]]},
-		{ids="32149,32150", cond_if=[[haveq(32149,32150) or completedq(32149,32150)]]},
-		{ids="32246,32247,32109"},
 	},
 	["DAILIES\\The Burning Crusade\\Shattered Sun Offensive\\Shattered Sun Dailies"] = {
 		{ids="11543", cond_if=[[haveq(11543) or completedq(11543)]]},
@@ -3656,13 +3644,26 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 		{ids="30716,30717"},
 	},
 	["DAILIES\\Mists of Pandaria Dailies\\The Golden Lotus Dailies"] = {
+		{ids="30284,30265", cond_if=[[haveq(30284,30265) or completedq(30284,30265)]]},
+		{ids="31392,31394,31512,30631", cond_if=[[Alliance]]},
 		{ids="30280,30277", cond_if=[[haveq(30280,30277)]]},
 		{ids="30243,30266", cond_if=[[haveq(30243,30266)]]},
+		{ids="31757,31762,31760", cond_if=[[haveq(31757,31762,31760) or completedq(31757,31762,31760)]]},
+		{ids="30341", cond_if=[[haveq(30341) or completedq(30341)]]},
+		{ids="30307", cond_if=[[haveq(30307) or completedq(30307)]]},
+		{ids="30234", cond_if=[[haveq(30234) or completedq(30234)]]},
+		{ids="30290", cond_if=[[haveq(30290) or completedq(30290)]]},
 		{ids="30306", cond_if=[[haveq(30306)]]},
+		{ids="31393,31395,31511,30649", cond_if=[[Horde]]},
+		{ids="31758,31756", cond_if=[[haveq(31758,31756) or completedq(31758,31756)]]},
 		{ids="30242,30240", cond_if=[[haveq(30242,30240)]]},
-		{ids="31393,31395,31511", cond_if=[[Horde]]},
-		{ids="31392,31394,31512", cond_if=[[Alliance]]},
+		{ids="30340", cond_if=[[haveq(30340) or completedq(30340)]]},
 		{ids="30261", cond_if=[[haveq(30261) or completedq(30261)]]},
+		{ids="30286", cond_if=[[haveq(30286) or completedq(30286)]]},
+		{ids="30288", cond_if=[[haveq(30288) or completedq(30288)]]},
+		{ids="30287", cond_if=[[haveq(30287) or completedq(30287)]]},
+		{ids="30312,31755", cond_if=[[haveq(30312,31755) or completedq(30312,31755)]]},
+		{ids="30632,30634,30633,30637,30635,30636,30638,31131,31242,30195,30193,30190,30192,30235,31243,30297"},
 	},
 	["DAILIES\\Mists of Pandaria Dailies\\The Klaxxi Dailies"] = {
 		{ids="31506", cond_if=[[haveq(31506) or completedq(31506)]]},
@@ -3803,212 +3804,273 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 	["DUNGEONS\\Cataclysm Dungeons\\Zul'Aman"] = {
 		{ids="29186,11196"},
 	},
-	["DUNGEONS\\Classic\\Blackfathom Deeps Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Blackfathom Deeps Quests"] = {
 		{ids="3765,1198,1275,1199,1200,971"},
 	},
-	["DUNGEONS\\Classic\\Blackrock Depths Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Blackrock Depths Quests"] = {
 		{ids="3702,4128,3701,3441,3442,3443,3452,3453,3454,3462,3463,3481,4324,4022,3801,4341,4342,3802,4286,4262,4361,4126,4123,4136,4024,4201,4362,4263,4363"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul East Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul East Quests"] = {
 		{ids="5527,7488,7441,5526"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul North Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul North Quests"] = {
 		{ids="5518,7429,7703,7482"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul North Tribute (58-60)"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul North Tribute (58-60)"] = {
 		{ids="1193"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul West Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul West Quests"] = {
 		{ids="7461,7462"},
 	},
-	["DUNGEONS\\Classic\\Gnomeregan Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Gnomeregan Quests"] = {
 		{ids="2925,2923,2927,2926,2924,2922,2930,2929,2962,2928"},
 	},
-	["DUNGEONS\\Classic\\Lower Blackrock Spire Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Lower Blackrock Spire Quests"] = {
 		{ids="3520,3527,4787,3528,5065,5001,5002,4867,4742,5081,4701,4866,4729,4862,4788"},
 	},
-	["DUNGEONS\\Classic\\Maraudon Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Maraudon Quests"] = {
 		{ids="7044,7046,7067,7028,7041,7065,7070,7066"},
 	},
-	["DUNGEONS\\Classic\\Raid Attunements\\Blackwing Lair Attunement"] = {
-		{ids="7761"},
-	},
-	["DUNGEONS\\Classic\\Raid Attunements\\Molten Core Attunement"] = {
-		{ids="7848"},
-	},
-	["DUNGEONS\\Classic\\Raid Attunements\\Naxxramas Attunement"] = {
-		{ids="9123", cond_if=[[haveq(9123) or completedq(9123)]]},
-		{ids="9122", cond_if=[[haveq(9122) or completedq(9122)]]},
-		{ids="9121", cond_if=[[haveq(9121) or completedq(9121)]]},
-	},
-	["DUNGEONS\\Classic\\Razorfen Downs Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Razorfen Downs Quests"] = {
 		{ids="6626,3523,3525,3636"},
 	},
-	["DUNGEONS\\Classic\\Razorfen Kraul Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Razorfen Kraul Quests"] = {
 		{ids="1100,1144,1221,1101,1142"},
 	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Armory Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Armory Quests"] = {
 		{ids="6141,261,1052,1053"},
 	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Cathedral Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Cathedral Quests"] = {
 		{ids="6141,261,1052,1053"},
 	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Library Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Library Quests"] = {
 		{ids="6141,261,1052,1053,1050"},
 	},
-	["DUNGEONS\\Classic\\Scholomance Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Scholomance Quests"] = {
 		{ids="4726,4808,4809,4810,4907,4734,4735,5522,5531,5091,5092,5097,5533,5537,5538,5801,5803,5382,5343,5529,4771,5515,5582,5384,5461,5462,5463,5463,5465,5466"},
 	},
-	["DUNGEONS\\Classic\\Stratholme - Live Side Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Stratholme - Live Side Quests"] = {
 		{ids="5281,5542,5543,5544,5742,5781,5845,5846,5282,5848,5214,5251,5262"},
 	},
-	["DUNGEONS\\Classic\\Stratholme - Undead Side Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Stratholme - Undead Side Quests"] = {
 		{ids="5382,5515,5384,5461,5462,5251,5262,5463,5263,5212,5464,5243,5213"},
 	},
-	["DUNGEONS\\Classic\\Temple of Atal'Hakkar Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Temple of Atal'Hakkar Quests"] = {
 		{ids="1448,1449,1450,1451,1452,1469,3445,3444,3520,3527,4787,4141,4142,3446,3447,3373,1475,1446,4143,3528"},
 	},
-	["DUNGEONS\\Classic\\The Deadmines Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\The Deadmines Quests"] = {
 		{ids="65,132,135,141,142,155,166,214,373,2040,167,168"},
 	},
-	["DUNGEONS\\Classic\\The Stockade Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\The Stockade Quests"] = {
 		{ids="303,373,389,391,387,388,377,386,378"},
 	},
-	["DUNGEONS\\Classic\\Uldaman Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Uldaman Quests"] = {
 		{ids="2278,2279", cond_if=[[level >=40]]},
 		{ids="2198,2199,720,721,722,723,724,725,726,707,738,738,2500,762,2200,2398,2201,704,17,3448,2439,2204,2240,1139"},
 	},
-	["DUNGEONS\\Classic\\Upper Blackrock Spire Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Upper Blackrock Spire Quests"] = {
 		{ids="4766,4726,4808,4809,4810,4907,5089,4734,4764,5102,5047,5162,5164,4735"},
 	},
-	["DUNGEONS\\Classic\\Wailing Caverns Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Wailing Caverns Quests"] = {
 		{ids="6981", cond_if=[[haveq(6981) or completedq(6981)]]},
 		{ids="3366", cond_if=[[haveq(3366) or completedq(3366)]]},
 		{ids="865,1486,1487,1491,959,3370"},
 	},
-	["DUNGEONS\\Classic\\Zul'Farrak Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Zul'Farrak Quests"] = {
 		{ids="2988,2989,2990,3520,3527,2768,2865,3042,2770,2846,2991"},
 	},
-	["DUNGEONS\\Northrend Dungeons\\Forge of Souls Quests"] = {
-		{ids="24510,24499"},
+	["DUNGEONS\\Classic Raids\\Blackwing Lair"] = {
+		{ids="7782", cond_if=[[completedq(7781)]]},
+		{ids="7781", cond_if=[[not completedq(7781)]]},
 	},
-	["DUNGEONS\\Northrend Dungeons\\Halls of Reflection Quests"] = {
-		{ids="24711,24500"},
+	["DUNGEONS\\Classic Raids\\Raid Attunements\\Blackwing Lair Attunement"] = {
+		{ids="7761"},
 	},
-	["DUNGEONS\\Northrend Dungeons\\Pit of Saron Quests"] = {
-		{ids="24683,24498,24710"},
+	["DUNGEONS\\Classic Raids\\Raid Attunements\\Molten Core Attunement"] = {
+		{ids="7848"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Auchenai Crypts Quests"] = {
+	["DUNGEONS\\Classic Raids\\Raid Attunements\\Naxxramas Attunement"] = {
+		{ids="9123", cond_if=[[haveq(9123) or completedq(9123)]]},
+		{ids="9122", cond_if=[[haveq(9122) or completedq(9122)]]},
+		{ids="9121", cond_if=[[haveq(9121) or completedq(9121)]]},
+	},
+	["DUNGEONS\\Classic Raids\\Ruins of Ahn'Qiraj"] = {
+		{ids="8689", cond_if=[[haveq(8689)]]},
+		{ids="8709", cond_if=[[haveq(8709)]]},
+		{ids="8698", cond_if=[[haveq(8698)]]},
+		{ids="8701", cond_if=[[haveq(8701)]]},
+		{ids="8702", cond_if=[[haveq(8702)]]},
+		{ids="8690", cond_if=[[haveq(8690)]]},
+		{ids="8699", cond_if=[[haveq(8699)]]},
+		{ids="8707", cond_if=[[haveq(8707)]]},
+		{ids="8710", cond_if=[[haveq(8710)]]},
+		{ids="8695", cond_if=[[haveq(8695)]]},
+		{ids="8708", cond_if=[[haveq(8708)]]},
+		{ids="8691", cond_if=[[haveq(8691)]]},
+		{ids="8556", cond_if=[[haveq(8556)]]},
+		{ids="8692", cond_if=[[haveq(8692)]]},
+		{ids="8706", cond_if=[[haveq(8706)]]},
+		{ids="8712", cond_if=[[haveq(8712)]]},
+		{ids="8696", cond_if=[[haveq(8696)]]},
+		{ids="8700", cond_if=[[haveq(8700)]]},
+		{ids="8697", cond_if=[[haveq(8697)]]},
+		{ids="8705", cond_if=[[haveq(8705)]]},
+		{ids="8704", cond_if=[[haveq(8704)]]},
+		{ids="8703", cond_if=[[haveq(8703)]]},
+		{ids="8558", cond_if=[[haveq(8558)]]},
+		{ids="8557", cond_if=[[haveq(8557)]]},
+		{ids="8693", cond_if=[[haveq(8693)]]},
+		{ids="8791", cond_if=[[haveq(8791)]]},
+		{ids="8711", cond_if=[[haveq(8711)]]},
+		{ids="8694", cond_if=[[haveq(8694)]]},
+	},
+	["DUNGEONS\\Classic Raids\\Temple of Ahn'Qiraj"] = {
+		{ids="8560,8559,8562,8561,8544", cond=[[Warrior]]},
+		{ids="8629,8655,8627,8628,8630", cond=[[Paladin]]},
+		{ids="8624,8621,8622,8623,8602", cond=[[Shaman]]},
+		{ids="8640,8637,8638,8639,8641", cond=[[Rogue]]},
+		{ids="8631,8634,8633,8632,8625", cond=[[Mage]]},
+		{ids="8801", cond_if=[[not completedq(8801)]]},
+		{ids="8663,8660,8661,8662,8664", cond=[[Warlock]]},
+		{ids="8784", cond_if=[[haveq(8784)]]},
+		{ids="8593,8596,8603,8592,8594", cond=[[Priest]]},
+		{ids="8658,8626,8656,8657,8659", cond=[[Hunter]]},
+		{ids="8668,8665,8666,8667,8669", cond=[[Druid]]},
+		{ids="8595,8579,8595,8579"},
+	},
+	["DUNGEONS\\The Burning Crusade Dungeons\\Auchenai Crypts Quests"] = {
 		{ids="10227,10228,10231,10251,10252,10253,10107,9928,9927,9931,9932,10167,10168,10164"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Black Temple Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Black Temple Attunement"] = {
 		{ids="10568,10571,10574", cond_if=[[rep('The Aldor') >= Neutral]]},
 		{ids="10575,10622,10628,10705,10706,10707,10708,10944,10946,10947,10948,10949,10985"},
 		{ids="10683,10684,10685", cond_if=[[rep ('The Scryers') >= Neutral]]},
 	},
-	["DUNGEONS\\The Burning Crusade\\Blood Furnace Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Blood Furnace Quests"] = {
 		{ids="9589,9607"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Hellfire Citadel Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Hellfire Citadel Attunement"] = {
 		{ids="10754,10762,10763,10764"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Hellfire Ramparts Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Hellfire Ramparts Quests"] = {
 		{ids="9575,9587"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Karazhan Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Karazhan Attunement"] = {
 		{ids="11216,9824,9825,9826,9829,9831,9832,9836,9837,9838"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Mana-Tombs Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Mana-Tombs Quests"] = {
 		{ids="10216,10165,10218,10969,10970,10425,10971,10973,10974,10976,10977"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Mount Hyjal Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Mount Hyjal Attunement"] = {
 		{ids="10445"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Old Hillsbrad Foothills Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Old Hillsbrad Foothills Quests"] = {
 		{ids="10279,10277,10282,10283,10284,10285,12513"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Serpentshrine Cavern Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Serpentshrine Cavern Attunement"] = {
 		{ids="9644", cond_if=[[haveq(9644) or completedq(9644)]]},
 		{ids="9630,9638,9639,9640,9645,9680,9631,9637,10901"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Sethekk Halls Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Sethekk Halls Quests"] = {
 		{ids="10180,10097,10098"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Shadow Labyrinth Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Shadow Labyrinth Quests"] = {
 		{ids="10641,10668,10669,10646,10621,10626,10662,10664,11216,9824,9825,9826,9829,10177,10178,10094,10885,10666,10091,10095,9831,10649"},
 		{ids="10587,10637,10640", cond_if=[[rep ('The Aldor') >= Neutral]]},
 		{ids="10687,10688", cond_if=[[rep('The Scryers') >= Neutral]]},
 		{ids="10689", cond_if=[[rep ('The Scryers') >= Neutral]]},
 	},
-	["DUNGEONS\\The Burning Crusade\\Shattered Halls Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Shattered Halls Quests"] = {
 		{ids="10883,10884"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Tempest Keep Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Tempest Keep Attunement"] = {
 		{ids="10883,10884,10885,10886,10888"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Arcatraz Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Arcatraz Quests"] = {
 		{ids="10568,10571,10574", cond_if=[[rep('The Aldor') >= Neutral]]},
 		{ids="10683,10684,10685", cond_if=[[rep ('The Scryers') >= Neutral]]},
 		{ids="10265,10262,10205,10266,10267,10268,10269,10275,10276,10280,10575,10622,10628,10705,10704,10706,11216,9824,9825,9826,9829,9831,9832"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Black Morass Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Black Morass Quests"] = {
 		{ids="10902", cond_if=[[skill("Alchemy") < 0]]},
 		{ids="10279,10277,10282,10283,10284,10285,10296,10297,10298"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Botanica Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Botanica Quests"] = {
 		{ids="10897", cond_if=[[skill("Alchemy") < 0]]},
 		{ids="10265,10262,10205,10266,10267,10268,10269,10275,10276,10280,10257,10704"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Cipher of Damnation"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Cipher of Damnation"] = {
 		{ids="10680,10458,10480,10481,10513,10514,10515,10519,10521,10522,10523,10527,10528,10537,10540,10546,10541,10547,10550,10570,10576,10577,10578,10579,10588"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Mechanar Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Mechanar Quests"] = {
 		{ids="10621,10626,10662,10664,10665"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Slave Pens Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Slave Pens Quests"] = {
 		{ids="9738"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Steamvault Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Steamvault Quests"] = {
 		{ids="10621,10626,10662,10664,10666,9763,9764,10885,10667"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Underbog Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Underbog Quests"] = {
 		{ids="9715,9717,9719,9738"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Ahn'kahet: The Old Kingdom Quests"] = {
+	["DUNGEONS\\The Burning Crusade Raids\\Hyjal Summit (Battle for Mount Hyjal)"] = {
+		{ids="10277", cond_if=[[haveq(10277)]]},
+	},
+	["DUNGEONS\\The Burning Crusade Raids\\Magtheridon's Lair"] = {
+		{ids="11002", cond_if=[[not completedq(11002)]]},
+	},
+	["DUNGEONS\\The Burning Crusade Raids\\The Eye"] = {
+		{ids="11007", cond_if=[[haveq(11007)]]},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Ahn'kahet: The Old Kingdom Quests"] = {
 		{ids="13187,13204"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Azjol-Nerub Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Azjol-Nerub Quests"] = {
 		{ids="13167,13182"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Drak'Tharon Keep Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Drak'Tharon Keep Quests"] = {
 		{ids="12210,11984,11989,11990,11991,12007,12042,12802,12068,12484,12029,12238,12037"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Gundrak Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Forge of Souls Quests"] = {
+		{ids="24510,24499"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Gundrak Quests"] = {
 		{ids="13111,13098"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Halls of Lightning Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Halls of Lightning Quests"] = {
 		{ids="12843,12846,12841,12905,12906,12907,12908,12921,12969,12970,12971,12972,12851,12856,13063,12900,12983,12996,12997,13061,13062,12886,13064,12922,12915,12956,12966,12967,12967,12924,13009,13050,13051,12975,12976,13010,13057,13005,13035,13047,13108,13109"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Halls of Stone Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Halls of Reflection Quests"] = {
+		{ids="24711,24500"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Halls of Stone Quests"] = {
 		{ids="13207"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Culling of Stratholme Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Pit of Saron Quests"] = {
+		{ids="24683,24498,24710"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Culling of Stratholme Quests"] = {
 		{ids="13149,13151"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Nexus Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Nexus Quests"] = {
 		{ids="11733,11941,11900,11910,11943,11946,11951,11957,11967,11969,13094,11973,11905,11911"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Oculus Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Oculus Quests"] = {
 		{ids="13124,13126,13127,13128"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Violet Hold Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Violet Hold Quests"] = {
 		{ids="13158,13159"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Utgarde Keep Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Utgarde Keep Quests"] = {
 		{ids="13205,11252"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Utgarde Pinnacle Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Utgarde Pinnacle Quests"] = {
 		{ids="13131,13132"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Raids\\Naxxramas"] = {
+		{ids="13372", cond_if=[[haveq(13372)]]},
+		{ids="13375", cond_if=[[haveq(13375)]]},
 	},
 	["DUNGEONS\\Pandaria Dungeons\\Gate of the Setting Sun"] = {
 		{ids="31363,31364"},
@@ -4077,10 +4139,10 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 		{ids="11441,12022,11318,11122,11117,29397,11118,12318,12062"},
 	},
 	["EVENTS\\Children's Week\\Achievements\\Aw, Isn't It Cute?"] = {
-		{ids="10943,10954,10950,10952,10962,10956,10968"},
+		{ids="10943,10954,10950,10952,10962,10956,10968,10966"},
 	},
 	["EVENTS\\Children's Week\\Achievements\\Veteran Nanny"] = {
-		{ids="10943,10954,10950,10952,10962,10956,10968"},
+		{ids="10943,10954,10950,10952,10962,10956,10968,10966"},
 	},
 	["EVENTS\\Children's Week\\Children's Week Dalaran Quests"] = {
 		{ids="13929,13933,13950,13956,13954,13937,28879,13959", cond_if=[[completedq(13926)]]},
@@ -4227,10 +4289,10 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 	},
 	["EVENTS\\Pilgrim's Bounty\\Achievements\\Pilgrim"] = {
 		{ids="14022", cond_if=[[haveq(14022) or completedq(14022)]]},
-		{ids="14064,14023,14024,14028,14030,14033,14035,14054,14048,14051,14053"},
+		{ids="14064,14023,14024,14028,14030,14033,14035,14054,14048,14051,14053,14055"},
 	},
 	["EVENTS\\Pilgrim's Bounty\\Achievements\\Pilgrim's Progress"] = {
-		{ids="14054,14048,14051,14053"},
+		{ids="14054,14048,14051,14053,14055"},
 	},
 	["EVENTS\\Pilgrim's Bounty\\Quests\\Pilgrim's Bounty Daily Quests"] = {
 		{ids="14054,14048,14051,14053,14055"},
@@ -4239,6 +4301,14 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 		{ids="14022", cond_if=[[haveq(14022) or completedq(14022)]]},
 		{ids="14064,14023,14024,14028,14030,14033,14035"},
 	},
+	["GOLD\\Farming\\Stringy Wolf Meat"] = {
+		{ids="51443", cond_if=[[Horde]]},
+		{ids="46727", cond_if=[[Alliance]]},
+	},
+	["GOLD\\Gathering\\Rugged Leather"] = {
+		{ids="25772", cond_if=[[haveq(25772)]]},
+		{ids="25771", cond_if=[[haveq(25771)]]},
+	},
 	["LEVELING\\Cataclysm 80-85\\Deepholm (82-83)"] = {
 		{ids="27058", cond_if=[[completedq(27006)]]},
 		{ids="27203,27123,26409,27136,26410,27135,26411,26413,26484,27931,27932,27933,27934,27935,26500,26499,26501,26502,26537,26591,26564,26625,27126,26632,26755,26770,26762,26834,26791,26792,26835,26836,27937,26245,26246,26244,27938,26247,26249,26427,26248,26251,26250,26254,26255,26258,26256,26261,26260,27007,27010,27100,27101,27102,27061,26766,26768,26771,26861,26857,26876,26259,26326,26313,26312,26314,26315,26328,26375,26376,26377,26426,26869,26871,26436,26438,26437,26439,28869,26440,26441,26507,26575,26576,26656,26657,26658,26659,26577,26580,26581,26578,26579,26582,26583,26584,26585,26750,26752,26827,26828,26831,26829,26832,26833,26875,26971,26709,27004,27006,27040,27042"},
@@ -4246,7 +4316,7 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 	},
 	["LEVELING\\Cataclysm 80-85\\Mount Hyjal (80-82)"] = {
 		{ids="25316", cond_if=[[haveq(25316) or completedq(25316)]]},
-		{ids="28825,28826,27726,25370,25460,25574,25317,25319,25472,25323,25464,25430,25320,25321,25424,25324,25325,25578,25584,25233,25234,25255,25268,25271,25273,25280,25300,25297,25301,25303,25328,25312,25332,25278,25298,25353,25618,25576,25575,25577,25599,25600,25352,25611,25630,25404,25408,25411,25381,25382,25385,25412,25392,25428,29066,25940,25462,25490,25491,25493,25492,25507,25502,25510,25514,25519,25520,27874,25663,25655,25656,25665,25731,25664,25740,25758,25763,25746,25761,25764,25776,25795,25807,25810,25523,25525,25544,25560,25830,25842,25372,25832,25843,25904,25881,25899,25886,25901,25906,25910,25915,25923,25928,25653,25597,25274,25276,25330,25223,25224,25291,25296,25509,25499,25299,25294,25308,25309,25494,25496,25310,25311,25314,25601,25315,25531,25608,25554,25548,25644,25555,25549,25552,25550,25553,25551,27398"},
+		{ids="28826,27726,25370,25460,25574,25317,25319,25472,25323,25464,25430,25320,25321,25424,25324,25325,25578,25584,25233,25234,25255,25268,25271,25273,25280,25300,25297,25301,25303,25328,25312,25332,25278,25298,25353,25618,25576,25575,25577,25599,25600,25352,25611,25630,25404,25408,25411,25381,25382,25385,25412,25392,25428,29066,25940,25462,25490,25491,25493,25492,25507,25502,25510,25514,25519,25520,27874,25663,25655,25656,25665,25731,25664,25740,25758,25763,25746,25761,25764,25776,25795,25807,25810,25523,25525,25544,25560,25830,25842,25372,25832,25843,25904,25881,25899,25886,25901,25906,25910,25915,25923,25928,25653,25597,25274,25276,25330,25223,25224,25291,25296,25509,25499,25299,25294,25308,25309,25494,25496,25310,25311,25314,25601,25315,25531,25608,25554,25548,25644,25555,25549,25552,25550,25553,25551,27398"},
 	},
 	["LEVELING\\Cataclysm 80-85\\Twilight Highlands (84-85)"] = {
 		{ids="26960,26977,26997,26975,27038,27044,27060,27064,28807,27072,27092,27106,28238,28832,28596,28597,28598,28599,27200,27177,27178,27338,27341,27366,27433,27468,27514,27515,27516,27537,27538,27545,27621,27803,27804,27805,27806,27807,27810,27808,27811,27999,27812,27809,28233,28234,27813,27814,27815,27816,27817,27640,27645,27648,27644,27647,27643,27646,27650,27649,27641,27642,27651,28001,28369,27754,27752,27753,28241,28242,28215,28243,28244,28216,28211,28212,28280,28281,28282,28294,28346,28377,28378,28379,28407,28413,28408,28409,28410,28411,28655,27374,27299,27301,27302,27303,27300,27376,27377,27378,27379,27380,27485,27504,27505,27506,27564,27507,27509,27508,28101,28103,28104,28108,28107,28109,28712,28758,28171,28191,28173,28175,28176,28247,28248,27496,27490,27492,27494,27498,27500,27502,27636,27657,27660,27662,27659,27652,27654,27661,27719,27688,27695,27700,27702,27711,27720,27742,27743,27744,27745,27782,27784,27787"},
@@ -4262,7 +4332,7 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 	},
 	["LEVELING\\Cataclysm 80-85\\Vashj'ir (80-82)"] = {
 		{ids="27724", cond_if=[[haveq(27724) or completedq(27724)]]},
-		{ids="28825,28826,14482,24432,25281,25405,25357,25546,27729,25545,25564,25547,25558,25477,25371,27685,25587,25598,25388,25390,25389,25602,25377,25651,25358,25459,25638,25794,25657,27699,25812,25824,25670,25732,25743,25887,25883,25884,27708,25885,25888,25471,25334,25164,25221,25222,25215,25219,25220,25216,25218,25360,25217,25456,25359,25439,25441,25440,25442,25890,25900,25907,25908,25909,25916,25917,25920,25918,25919,25921,25922,25535,25539,25537,25538,25540,25536,25580,25582,25579,25583,25581,25619,25620,25658,25637,25659,25760,25747,25751,25749,25748,25752,25754,25753,25858,25862,25861,25863,25859,25755,25892,25893,25895,25897,25894,25898,25911,25629,25896,25860,25951,25626,26005,26219,26103,26106,26014,26015,26017,26018,26019,26021,26080,25975,25981,25987,25950,25977,25983,26070,26096,26072,26056,26065,26111,26132,26130,26140,26144,26141,26142,26154,26143,26181,26193"},
+		{ids="28826,14482,24432,25281,25405,25357,25546,27729,25545,25564,25547,25558,25477,25371,27685,25587,25598,25388,25390,25389,25602,25377,25651,25358,25459,25638,25794,25657,27699,25812,25824,25670,25732,25743,25887,25883,25884,27708,25885,25888,25471,25334,25164,25221,25222,25215,25219,25220,25216,25218,25360,25217,25456,25359,25439,25441,25440,25442,25890,25900,25907,25908,25909,25916,25917,25920,25918,25919,25921,25922,25535,25539,25537,25538,25540,25536,25580,25582,25579,25583,25581,25619,25620,25658,25637,25659,25760,25747,25751,25749,25748,25752,25754,25753,25858,25862,25861,25863,25859,25755,25892,25893,25895,25897,25894,25898,25911,25629,25896,25860,25951,25626,26005,26219,26103,26106,26014,26015,26017,26018,26019,26021,26080,25975,25981,25987,25950,25977,25983,26070,26096,26072,26056,26065,26111,26132,26130,26140,26144,26141,26142,26154,26143,26181,26193"},
 	},
 	["LEVELING\\Mists of Pandaria Quest Stacking\\Launch Turnin Guide"] = {
 		{ids="27970", cond_if=[[haveq(27970) or completedq(27970)]]},
@@ -6666,17 +6736,8 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 	["PETSMOUNTS\\Mounts\\Flying Mounts\\Miscellaneous Mounts\\Onyx Cloud Serpent"] = {
 		{ids="31266,31277"},
 	},
-	["PETSMOUNTS\\Battle Pets\\Aquatic Pets\\Strand Crawler"] = {
-		{ids="13833,13834,13832,13830,13836,26414,26420,26442,26488,26536"},
-	},
-	["PETSMOUNTS\\Battle Pets\\Beast Pets\\Dun Morogh Cub"] = {
-		{ids="13703,13741,13742,13743,13744,13745,13851,13714,13713"},
-	},
-	["PETSMOUNTS\\Battle Pets\\Beast Pets\\Hyjal Bear Cub"] = {
-		{ids="29283"},
-	},
 	["PETSMOUNTS\\Battle Pets\\Beast Pets\\Lashtail Hatchling"] = {
-		{ids="26838,583,26740,26269,26343,185,190,186,26732,26738,26735,26733,26739,26736,26734,26737,26344,187,191,194,26729,26742,26744,26745,188,26730,195,196,192,26743,26746,197,26345,26763,193,26731,26765,26747,26748,26751,26749,26782,26772,26773,26781,26774,26775,26776,26779,29208"},
+		{ids="26732,26738,26735,26739,26736,26745,26746,26747,26748,26749,26772,26773,26774,26775,26776,29208"},
 	},
 	["PETSMOUNTS\\Battle Pets\\Beast Pets\\Panther Cub"] = {
 		{ids="29102,29103,29104,29105,29114,29115,29116,29120,29213,29121"},
@@ -6696,12 +6757,6 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Lumpy"] = {
 		{ids="7043"},
 	},
-	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Pebble"] = {
-		{ids="27727,27203,27123,26409,26410,27135,26411,26413,27136,26245,26246,26244,26247,26249,26427,26248,26251,26250,26254,26255,26258,26256,26261,26260,27007,27010,27100,27101,27102,27061,26766,26768,26771,26861,26857,26876,26259,26484,27931,27932,27933,27934,27935,26500,26499,26501,26502,26537,26591,26564,26625,27126,26632,26755,26770,26762,26834,26791,26792,26835,26836,27937,27938,26326,26313,26312,26314,26315,26328,26375,26376,26377,26426,26869,26871,26436,26438,26437,26439,26440,26441,26507,26575,26576,26656,26657,26658,26659,26577,26580,26581,26578,26579,26582,26583,26584,26585,26750,26752,27004,27006,27040,27058,27042,26827,26828,26831,26829,26832,26833,26875,26971,26709,26710"},
-	},
-	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Searing Scorchling"] = {
-		{ids="27726,25316,25370,25460,25574,25317,25319,25472,25323,25464,25430,25320,25321,25424,25324,25325,25578,25584,25233,25234,25255,25268,25271,25273,25280,25300,25297,25301,25303,25328,25312,25332,25278,25298,25353,25618,25576,25575,25577,25599,25600,25352,25611,25630,25404,25408,25411,25381,25382,25385,25412,25392,25428,25940,25462,25490,25491,25493,25492,25507,25502,25510,25514,25519,25520,27874,25663,25655,25656,25665,25731,25664,25740,25746,25758,25763,25761,25764,25776,25795,25807,25810,25523,25525,25544,25560,25832,25830,25842,25372"},
-	},
 	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Teldrassil Sproutling"] = {
 		{ids="13706,13757,13758,13759,13760,13761,13855,13717,13725"},
 	},
@@ -6711,27 +6766,18 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 		{ids="28490", cond=[[Dwarf,Gnome,Human]]},
 		{ids="26383", cond=[[NightElf,Draenei]]},
 	},
-	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Blue Mini Jouster"] = {
-		{ids="27726,25316,25370,25460,25574,25317,25319,25472,25323,25464,25430,25320,25321,25424,25324,25325,25578,25584,25233,25234,25255,25268,25271,25273,25280,25300,25297,25301,25303,25328,25312,25332,25278,25298,25353,25618,25576,25575,25577,25599,25600,25352,25611,25630,25404,25408,25411,25381,25382,25385,25412,25392,25428,25940,25462,25490,25491,25493,25492,25507,25502,25510,25514,25519,25520,27874,25663,25655,25656,25665,25731,25664,25740,25746,25758,25763,25761,25764,25776,25795,25807,25810,25523,25525,25544,25560,29177"},
-	},
 	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Gold Mini Jouster"] = {
 		{ids="27726,25316,25370,25460,25574,25317,25319,25472,25323,25464,25430,25320,25321,25424,25324,25325,25578,25584,25233,25234,25255,25268,25271,25273,25280,25300,25297,25301,25303,25328,25312,25332,25278,25298,25353,25618,25576,25575,25577,25599,25600,25352,25611,25630,25404,25408,25411,25381,25382,25385,25412,25392,25428,25940,25462,25490,25491,25493,25492,25507,25502,25510,25514,25519,25520,27874,25663,25655,25656,25665,25731,25664,25740,25746,25758,25763,25761,25764,25776,25795,25807,25810,25523,25525,25544,25560,29177"},
 	},
 	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Plump Turkey"] = {
 		{ids="14022", cond_if=[[haveq(14022) or completedq(14022)]]},
-		{ids="14064,14023,14024,14028,14030,14033,14035,14054,14048,14051,14053"},
-	},
-	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Rustberg Gull"] = {
-		{ids="28275,27987,27978,27991,27975,27973,28059,28063,28130,28137,28065,27948,27972,27970,27971,28050,27944,28046,27967,27992,27966,27949,28122,28162,28163,28165,28185,28186,28117,28120,28118,28232,28188,28223"},
+		{ids="14064,14023,14024,14028,14030,14033,14035,14054,14048,14051,14053,14055"},
 	},
 	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Tiny Flamefly"] = {
 		{ids="28514,28416,28174,28172,28177,28178,28179,28180,28181,28182,28183,28184,28254,28202,28203,28204,28205,28239,28246,28245,28252,28253,28225,28226,28227,28265,28266,28279,28278,28286,28310"},
 	},
 	["PETSMOUNTS\\Battle Pets\\Flying Pets\\Westfall Chicken"] = {
 		{ids="3861"},
-	},
-	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Argent Squire"] = {
-		{ids="12740,12557,12599,12597,12598,12596"},
 	},
 	["PETSMOUNTS\\Battle Pets\\Magic Pets\\Lunar Lantern"] = {
 		{ids="28825,28826,27724,14482,24432", cond_if=[[level >= 80]]},
@@ -6765,6 +6811,65 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Pandaren Water Spirit"] = {
 		{ids="32428", cond_if=[[not completedq(32428)]]},
 		{ids="32439"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Mountain Panda"] = {
+		{ids="32441", cond_if=[[haveq(32441)]]},
+		{ids="31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="31976", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31981", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32440", cond_if=[[haveq(32440)]]},
+		{ids="32434", cond_if=[[haveq(32434)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="32439", cond_if=[[haveq(32439)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31985", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31591,31592,32008,31316,31724,31725,31726,31729,31728,31917,31902,31915,31889,31919,31920,31927,31928,31966,31970,31930,31951,32603,32604,32868,32869"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Red Panda"] = {
+		{ids="31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="31976", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31981", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31985", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31591,31592,32008,31316,31724,31725,31726,31729,31728,31917,31902,31915,31889,31919,31920,31927,31928,31966,31970,31930,31951,32603"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Snowy Panda"] = {
+		{ids="32441", cond_if=[[haveq(32441)]]},
+		{ids="31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="31976", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31981", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32440", cond_if=[[haveq(32440)]]},
+		{ids="32434", cond_if=[[haveq(32434)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="32439", cond_if=[[haveq(32439)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31985", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31591,31592,32008,31316,31724,31725,31726,31729,31728,31917,31902,31915,31889,31919,31920,31927,31928,31966,31970,31930,31951,32603,32604,32868,32869"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Sunfur Panda"] = {
+		{ids="32441", cond_if=[[haveq(32441)]]},
+		{ids="31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="31976", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31981", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32440", cond_if=[[haveq(32440)]]},
+		{ids="32434", cond_if=[[haveq(32434)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="32439", cond_if=[[haveq(32439)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31985", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31591,31592,32008,31316,31724,31725,31726,31729,31728,31917,31902,31915,31889,31919,31920,31927,31928,31966,31970,31930,31951,32603,32604,32868,32869"},
 	},
 	["PETSMOUNTS\\Battle Pets\\Magic Pets\\Jade Owl"] = {
 		{ids="31394,31511,31512"},
@@ -6906,126 +7011,11 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 	["REPUTATIONS\\Wrath of the Lich King Reputations\\The Wyrmrest Accord"] = {
 		{ids="11918,11941,11936,11943,11919,11946,11951,11957,11931,11967,11969,11973,13124,13126,13127,13128,13412,13413,12000,12055,12060,12065,12083,12098,12107,12119,12766,12460,12416,12417,12418,12768,12123,12435,12372,12146,12148,12149,12150,12151,12447,12262,12261,12263,12264,12265,12267,12266,12470,12454,12456,12458,12459,12419"},
 	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\Emperor Shaohao"] = {
-		{ids="33231,33160,33161,33336,33228,33335,33340,33341,33332,33333"},
-		{ids="33229", cond_if=[[haveq(33229)]]},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\Kirin Tor Offensive"] = {
-		{ids="32556,32558,32555", cond_if=[[completedq(32560) or completedq(32557) or completedq(32559)]]},
-		{ids="32568", cond_if=[[haveq(32568) or completedq(32568)]]},
-		{ids="32560,32557,32559,32585,32582", cond_if=[[completedq(32568)]]},
-		{ids="32586,32588,32586,32588", cond_if=[[haveq(32586) or completedq(32586) or haveq(32588) or completedq(32588)]]},
-		{ids="32553,32552", cond_if=[[haveq(32552) or haveq(32553) or completedq(32552) or completedq(32553)]]},
-		{ids="32732", cond_if=[[completedq(32644) and (haveq(32732) or completedq(32732))]]},
-		{ids="32731", cond_if=[[haveq(32731) or completedq(32731)]]},
-		{ids="32567", cond_if=[[haveq(32567) or completedq(32567)]]},
-		{ids="32606,32535,32537,32536", cond_if=[[haveq(32732) or completedq(32732)]]},
-		{ids="32540,32543,32542", cond_if=[[haveq(32733) or completedq(32733)]]},
-		{ids="32551,32550,32554", cond_if=[[haveq(32551) or completedq(32551) or haveq(32550) or completedq(32550)]]},
-		{ids="32549", cond_if=[[haveq(32549)]]},
-		{ids="32733", cond_if=[[completedq(32644) and (haveq(32733) or completedq(32733))]]},
-		{ids="32547,32546,32548,32545", cond_if=[[completedq(32732)]]},
-		{ids="32679,32681,32644,32654,32652,32655,32656,32529,32530,32531,32532,32528,32525,32533,32526,32527,32544,32541,32539,32538,32572,32573,32571,32574,32575,32587,32578,32580,32584,32608,32581,32607,32576,32579"},
-	},
 	["REPUTATIONS\\Mists of Pandaria Reputations\\Lorewalkers"] = {
 		{ids="31096,31100,31102,31095,31103,31093,31097,31094,31055"},
 	},
 	["REPUTATIONS\\Mists of Pandaria Reputations\\Nat Pagle"] = {
 		{ids="31444,31446,31443"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\Operation: Shieldwall\\Beastmaster Dailies"] = {
-		{ids="32246,32247,32109,32164,32184,32165,32185,32166,32186,32170,32171,32172"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\Operation: Shieldwall\\Operation: Shieldwall"] = {
-		{ids="32370,32377", cond_if=[[not completedq(32371)]]},
-		{ids="32194", cond_if=[[haveq(32194)]]},
-		{ids="32143", cond_if=[[haveq(32143) or completedq(32143)]]},
-		{ids="32394", cond_if=[[haveq(32394)]]},
-		{ids="32401", cond_if=[[not completedq(32455)]]},
-		{ids="32331", cond_if=[[not completedq(32362)]]},
-		{ids="32243", cond_if=[[haveq(32243)]]},
-		{ids="32382", cond_if=[[not completedq(32383) or not completedq(32397)]]},
-		{ids="32383,32397", cond_if=[[haveq(32383) or haveq(32397)]]},
-		{ids="32400", cond_if=[[haveq(32400) and not completedq(32401) and not completedq(32455)]]},
-		{ids="32380,32381", cond_if=[[not completedq(32426)]]},
-		{ids="32337,32338", cond_if=[[haveq(32337) or haveq(32338)]]},
-		{ids="32336", cond_if=[[not completedq(32337) and not completedq(32338) and not completedq(32336)]]},
-		{ids="32335", cond_if=[[haveq(32335)]]},
-		{ids="32193", cond_if=[[haveq(32193)]]},
-		{ids="32315", cond_if=[[not completedq(32316)]]},
-		{ids="32355,32321,32332,32333,32334", cond_if=[[not completedq(32335)]]},
-		{ids="32423", cond_if=[[haveq(32423)]]},
-		{ids="32460", cond_if=[[haveq(32460) or not completedq(32416)]]},
-		{ids="32414,32416,32421,32419,32417,32418,32420", cond_if=[[not completedq(32423)]]},
-		{ids="32455", cond_if=[[haveq(32455)]]},
-		{ids="32371", cond_if=[[haveq(32371)]]},
-		{ids="32362", cond_if=[[haveq(32362)]]},
-		{ids="32116", cond_if=[[haveq(32116) or completedq(32116)]]},
-		{ids="32393", cond_if=[[haveq(32393) or not completedq(32394)]]},
-		{ids="32426", cond_if=[[haveq(32426)]]},
-		{ids="32316", cond_if=[[haveq(32316)]]},
-		{ids="32246,32247,32109,32149,32150,32148,32151,32153,32152,32451,32452,32144,32156,32158,32433,32154,32446,32146,32142,32157,32143,32145,32121,32115,32347,32346,32122,32119"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\Shado-Pan Assault"] = {
-		{ids="31266", cond_if=[[rep('Shado-Pan')==Exalted and not completedq(31277)]]},
-		{ids="31221", cond_if=[[haveq(31221)]]},
-		{ids="31113,31114,31119,31116,31118", cond_if=[[not completedq(31128)]]},
-		{ids="31127", cond_if=[[haveq(31127)]]},
-		{ids="31220", cond_if=[[haveq(31220)]]},
-		{ids="31105,31106,31039,31044,31045,31048,31043,31042,31047,31040,31041,31046", cond_if=[[completedq(31104)]]},
-		{ids="31128", cond_if=[[haveq(31128)]]},
-		{ids="31113,31114,31119,31116,31118", cond_if=[[completedq(31128)]]},
-		{ids="31277", cond_if=[[haveq(31277)]]},
-		{ids="31110", cond_if=[[haveq(31110)]]},
-		{ids="31038", cond_if=[[haveq(31038)]]},
-		{ids="31105,31106,31039,31044,31045,31048,31043,31042,31047,31040,31041,31046", cond_if=[[not completedq(31104)]]},
-		{ids="31196,31197,31198,31199,31200,31201", cond_if=[[completedq(31221)]]},
-		{ids="31196,31197,31198,31199,31200,31201", cond_if=[[not completedq(31221)]]},
-		{ids="31104", cond_if=[[haveq(31104)]]},
-		{ids="30933", cond_if=[[haveq(30933)]]},
-		{ids="31117,31120,31062,31061,31049,31204,31203"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\The Anglers"] = {
-		{ids="30585,30598,30678,30698,30700,30588,30613,30658,30584,30586,30754,30753,30763,30701"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\The August Celestials"] = {
-		{ids="30959", cond_if=[[haveq(30959)]]},
-		{ids="30881", cond_if=[[haveq(30881)]]},
-		{ids="30064", cond_if=[[haveq(30064)]]},
-		{ids="31380", cond_if=[[haveq(31380)]]},
-		{ids="30879", cond_if=[[haveq(30879)]]},
-		{ids="30718,30740", cond_if=[[achieved(7287)]]},
-		{ids="31382", cond_if=[[haveq(31382)]]},
-		{ids="30718,30725,30726,30727,30728,30729,30730,30731,30732,30733,30734,30735,30736,30737,30738,30739", cond_if=[[not achieved(7287)]]},
-		{ids="30957", cond_if=[[haveq(30957)]]},
-		{ids="30955", cond_if=[[haveq(30955)]]},
-		{ids="30883", cond_if=[[haveq(30883)]]},
-		{ids="30953", cond_if=[[haveq(30953)]]},
-		{ids="30954", cond_if=[[haveq(30954)]]},
-		{ids="30952", cond_if=[[haveq(30952)]]},
-		{ids="30956", cond_if=[[haveq(30956)]]},
-		{ids="30066", cond_if=[[haveq(30066)]]},
-		{ids="31492", cond_if=[[haveq(31492)]]},
-		{ids="31376", cond_if=[[haveq(31376)]]},
-		{ids="30958", cond_if=[[haveq(30958)]]},
-		{ids="30065", cond_if=[[haveq(30065)]]},
-		{ids="30885", cond_if=[[haveq(30885)]]},
-		{ids="30880", cond_if=[[haveq(30880)]]},
-		{ids="31378", cond_if=[[not completedq(31378)]]},
-		{ids="31517", cond_if=[[haveq(31517)]]},
-		{ids="30882", cond_if=[[haveq(30882)]]},
-		{ids="30006", cond_if=[[haveq(30006)]]},
-		{ids="30063", cond_if=[[haveq(30063)]]},
-		{ids="30716,30717,30067,30068,30907,30902"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\The Golden Lotus"] = {
-		{ids="31392", cond_if=[[not completedq(31394)]]},
-		{ids="30261", cond_if=[[haveq(30261)]]},
-		{ids="31394,31511,31512,30242,30240,30306,30280,30277,30243,30266"},
-	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\The Klaxxi"] = {
-		{ids="31598,31599", cond_if=[[haveq(31598) or haveq(31599)]]},
-		{ids="31231,31235,31109,31267,31111,31505,31677,31216,31237,31510,31272,31504,31232,31233,31496,31270,31269,31507,31271,31502,31503,31234,31508,31509,31238,31487,31494,31268,31024,31808,31506,31018,31208,31209,31210,31211,31439,31441,31458,31465,31959,31609,31612"},
 	},
 	["REPUTATIONS\\Mists of Pandaria Reputations\\Tiller's Union\\Chee Chee"] = {
 		{ids="31372,30252,30535,30254,30255,30256,30257,30402,30400"},
@@ -7079,6 +7069,36 @@ ZGV.Quest_Cache_Turnin_Alliance = {
 		{ids="26710", cond_if=[[haveq(26710) or completedq(26710)]]},
 		{ids="27048", cond_if=[[haveq(27048) or completedq(27048)]]},
 		{ids="28391", cond_if=[[rep ('Therazane') >= Revered]]},
+	},
+	["ACHIEVEMENTS\\Professions\\Cooking\\Sous Chef"] = {
+		{ids="26860,6610,8307,8313,9454,9349,9361,9356,13088"},
+	},
+	["ACHIEVEMENTS\\Professions\\Cooking\\The Northrend Gourmet"] = {
+		{ids="13088,12634,12644,12645"},
+	},
+	["ACHIEVEMENTS\\Professions\\Cooking\\The Outland Gourmet"] = {
+		{ids="9349,9361,9356"},
+	},
+	["REPUTATIONS\\Classic Reputations\\Argent Dawn"] = {
+		{ids="27683,27367,27368,27369,27370,27371,27372,27373,27381,27383,27384,27392,27385,27386,27382,27432,27388,27544,27420,27421,27387,27389,27390,27391,27448,27449,27451,27452,27453,27454,27450,27455,27463,27464,27467,27465,27458,27459,27460,27462,27614,27615,27616,27619,27618,27461,27612,27613,27617,27620,27456,27457,27466,27481,27482,27479,27477,27487,27488,27489,27523,27522,27521,27524,27551,27526,27525,27528,27529,27539,27530,27532,27531,27535,27533,27534,27527,28755"},
+	},
+	["REPUTATIONS\\Wrath of the Lich King Reputations\\Argent Crusade"] = {
+		{ids="13105", cond=[[DeathKnight]]},
+		{ids="13104", cond_if=[[not DeathKnight]]},
+		{ids="13036,13039,13040,13008,13044,13045,13070,13086,13130,13135,13118,13122,13110,13125,13139,13141,13157,13068,13072,13073,13074,13075,13076,13077,13078,13079,13080,13081,13082"},
+	},
+	["TITLES\\Burning Crusade Titles\\Reputations\\Of the Shattered Sun"] = {
+		{ids="11877,11875,11880,11514,11548,11546,11541,11536,11543,11540,11547,11533,11537,11523,11525,11526,11516,11515,11521,11544"},
+	},
+	["TITLES\\Cataclysm Titles\\Quests\\The Flamebreaker"] = {
+		{ids="27726,25316,25370,25460,25574,25317,25319,25472,25323,25464,25430,25320,25321,25424,25324,25325,25578,25584,25233,25234,25255,25268,25271,25273,25280,25300,25297,25301,25303,25328,25312,25332,25278,25298,25353,25618,25576,25575,25577,25599,25600,25352,25611,25630,25404,25408,25411,25381,25382,25385,25412,25392,25428,25940,25462,25490,25491,25493,25492,25507,25502,25510,25514,25519,25520,27874,25663,25655,25656,25665,25731,25664,25740,25746,25758,25763,25761,25764,25776,25795,25807,25810,25523,25525,25544,25560,25830,25842,25372,25832"},
+	},
+	["TITLES\\Wrath of the Lich King Titles\\Professions\\Fishing\\Salty"] = {
+		{ids="11668", cond_if=[[haveq(11668)]]},
+		{ids="11669", cond_if=[[haveq(11669)]]},
+		{ids="11665", cond_if=[[haveq(11665)]]},
+		{ids="11667", cond_if=[[haveq(11667)]]},
+		{ids="11666", cond_if=[[haveq(11666)]]},
 	},
 }
 ZGV.Quest_Cache_Accept_Horde = {
@@ -7327,9 +7347,9 @@ ZGV.Quest_Cache_Accept_Horde = {
 	["DAILIES\\Mists of Pandaria Dailies\\The Golden Lotus Dailies"] = {
 		{ids="31392", cond_if=[[not completedq(31394) and Alliance]]},
 		{ids="31393", cond_if=[[not completedq(31393) and Horde]]},
-		{ids="31394,31512", cond_if=[[Alliance]]},
-		{ids="31395,31511", cond_if=[[Horde]]},
-		{ids="30243,30266,30280,30277,30306,30242,30240,30261"},
+		{ids="31394,31512,30631", cond_if=[[Alliance]]},
+		{ids="31395,31511,30649", cond_if=[[Horde]]},
+		{ids="30632,30633,30634,30635,30636,30637,30638,30307,31757,31762,31760,31758,31756,30312,31755,31131,31242,31243,30341,30284,30265,30340,30234,30195,30193,30190,30192,30235,30286,30288,30287,30290,30297,30243,30266,30280,30277,30306,30242,30240,30261"},
 	},
 	["DAILIES\\Mists of Pandaria Dailies\\The Klaxxi Dailies"] = {
 		{ids="31237,31510,31272,31504", cond_if=[[completedq(31439)]]},
@@ -7347,12 +7367,11 @@ ZGV.Quest_Cache_Accept_Horde = {
 		{ids="30134,30135,30136,30137,30138,30139,30140,30141,30142,30151,31704,31716,30154,30150,30155,30158,31698,31706,31707,31712,30148,30149,30147,30146,31194,31703,31701,31702,31711,31721,31717,31720,31718,31715,31699,31700,30159,30157,31709,31708,31714,31713,30152,30143,30144,30145,30187,31811,31810"},
 	},
 	["DAILIES\\Mists of Pandaria Dailies\\The Shado-Pan Dailies"] = {
-		{ids="31220", cond_if=[[not completedq(31220) and rep('Shado-Pan')>=Honored]]},
-		{ids="30933", cond_if=[[not completedq(30933) and haveq(31201)]]},
-		{ids="31110", cond_if=[[not completedq(31110)]]},
-		{ids="31277", cond_if=[[rep('Shado-Pan')==Exalted and not completedq(31277)]]},
 		{ids="31127", cond_if=[[not completedq(31127) and rep('Shado-Pan')>=Honored]]},
+		{ids="31110", cond_if=[[not completedq(31110)]]},
 		{ids="31266", cond_if=[[rep('Shado-Pan')==Exalted and not completedq(31266)]]},
+		{ids="31220", cond_if=[[not completedq(31220) and rep('Shado-Pan')>=Honored]]},
+		{ids="31277", cond_if=[[rep('Shado-Pan')==Exalted and not completedq(31277)]]},
 		{ids="31038", cond_if=[[not completedq(31038) and rep('Shado-Pan')>=Honored]]},
 		{ids="31128,31104,31221", cond_if=[[rep('Shado-Pan')>=Revered]]},
 		{ids="31113,31114,31119,31116,31118,31117,31120,31047,31105,31106,31039,31044,31045,31048,31043,31042,31040,31041,31046,31062,31061,31049,31196,31197,31198,31199,31200,31201,31204,31203"},
@@ -7415,21 +7434,6 @@ ZGV.Quest_Cache_Accept_Horde = {
 	},
 	["DAILIES\\Cataclysm\\Twilight Highlands\\Twilight Highlands Dailies"] = {
 		{ids="28872,28874,28873,28875,28871"},
-	},
-	["DAILIES\\Mists of Pandaria Dailies\\Dominance Offensive Dailies"] = {
-		{ids="32237", cond_if=[[completedq(32136)]]},
-		{ids="32135,32132,32133", cond_if=[[haveq(32450) or completedq(32450)]]},
-		{ids="32127", cond_if=[[completedq(32126)]]},
-		{ids="32238", cond_if=[[completedq(32138)]]},
-		{ids="32342,32344,32345,32120,32343,32348", cond_if=[[haveq(32118) or completedq(32118)]]},
-		{ids="32118", cond_if=[[haveq(32449) or completedq(32449)]]},
-		{ids="32130,32131,32134", cond_if=[[completedq(32450)]]},
-		{ids="32236", cond_if=[[completedq(32140)]]},
-		{ids="32141", cond_if=[[haveq(32140) or completedq(32140)]]},
-		{ids="32139", cond_if=[[haveq(32138) or completedq(32138)]]},
-		{ids="32128", cond_if=[[haveq(32235) or completedq(32235)]]},
-		{ids="32137", cond_if=[[haveq(32136) or completedq(32136)]]},
-		{ids="32249,32250,32108,32449,32450,32235,32126,32123,32223,32222,32221,32214,32199,32197,32140,32136,32138"},
 	},
 	["DAILIES\\The Burning Crusade\\Shattered Sun Offensive\\Shattered Sun Dailies"] = {
 		{ids="11515,11516", cond_if=[[completedq(11526)]]},
@@ -7594,219 +7598,255 @@ ZGV.Quest_Cache_Accept_Horde = {
 	["DUNGEONS\\Cataclysm Dungeons\\Zul'Aman"] = {
 		{ids="29186,11196"},
 	},
-	["DUNGEONS\\Cataclysm Raids\\Dragonwrath, Tarecgosa's Rest"] = {
-		{ids="29129,29308,29309", cond_if=[[Horde]]},
-		{ids="29132,29307,29312", cond_if=[[Alliance]]},
-		{ids="29134,29135,29193,29194,29225,29234,29239,29240,29269,29270,29285"},
-	},
-	["DUNGEONS\\Classic\\Blackfathom Deeps Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Blackfathom Deeps Quests"] = {
 		{ids="6563,6921,6564,6565,6561,6922"},
 	},
-	["DUNGEONS\\Classic\\Blackrock Depths Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Blackrock Depths Quests"] = {
 		{ids="4324,4133,4134,3906,4081,4061,3441,3442,3443,3452,3453,3454,3462,3463,3481,4123,4136,4022,4024,4062,4063,3801,3802,4201,3907,4082,3981,3982,4001,4002,4003,4004"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul East Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul East Quests"] = {
 		{ids="5527,5526,7489,7441"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul North Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul North Quests"] = {
 		{ids="7481,5518,5528,7703"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul West Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul West Quests"] = {
 		{ids="7461,7462"},
 	},
-	["DUNGEONS\\Classic\\Gnomeregan Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Gnomeregan Quests"] = {
 		{ids="2841,2842,2843"},
 	},
-	["DUNGEONS\\Classic\\Lower Blackrock Spire Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Lower Blackrock Spire Quests"] = {
 		{ids="3520,3527,4787,3528,5065,4788,4866,4729,4862,4981,4724,4867,4982,4983,4742"},
 	},
-	["DUNGEONS\\Classic\\Maraudon Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Maraudon Quests"] = {
 		{ids="7068,7029,7064,7028,7067,7044,7046,7066"},
 	},
-	["DUNGEONS\\Classic\\Ragefire Chasm Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Ragefire Chasm Quests"] = {
 		{ids="5723,5722,5725,5726,5727,5728,5761,5724"},
 	},
-	["DUNGEONS\\Classic\\Raid Attunements\\Blackwing Lair Attunement"] = {
+	["DUNGEONS\\Classic Dungeons\\Razorfen Downs Quests"] = {
+		{ids="6522,14352,6521,14353,3341,6626,3523,3525"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Razorfen Kraul Quests"] = {
+		{ids="1109,1221,1102,6522,1144"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Armory Quests"] = {
+		{ids="1048"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Cathedral Quests"] = {
+		{ids="1048"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Graveyard Quests"] = {
+		{ids="1109,1113,1051"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Library Quests"] = {
+		{ids="1149,1150,1151,1152,1154,6627,1159,1160,1048"},
+		{ids="1049", cond=[[Orc]]},
+	},
+	["DUNGEONS\\Classic Dungeons\\Scholomance Quests"] = {
+		{ids="5094,4726,4808,4809,4810,4907,4734,4735,5522,5531,5529,4771,5096,5098,838,964,5514,5802,5803,5511,5341,5382,5515,5582,5384,5461,5462,5463,5464,5465,5466"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Shadowfang Keep Quests"] = {
+		{ids="1013,1014,1098"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Stratholme - Live Side Quests"] = {
+		{ids="5214,5251,5281,5282,5542,5543,5544,5742,5781,5845,5846,5848,5122,5262"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Stratholme - Undead Side Quests"] = {
+		{ids="5382,5515,5384,5461,5462,5463,5251,5262,5263,6022,6133,6042,6135,6136,6163,5212,5243,5122,5125,5464,5213"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Temple of Atal'Hakkar Quests"] = {
+		{ids="3380,3444,3446,3520,3527,4787,1424,1429,1444,1446,3528,1445,4145,4147,4146,3447,3373"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Uldaman Quests"] = {
+		{ids="2278,2280", cond_if=[[level >=40]]},
+		{ids="2342,2418,709,2258,2202,2283,2284,2318,2338,2339,2340,2341"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Upper Blackrock Spire Quests"] = {
+		{ids="4769,4768,4726,4808,4809,4810,4907,4734,5160,5047,4735,5161,5162,5164"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Wailing Caverns Quests"] = {
+		{ids="886,962,870,877,880,1489,1490,914,865,1491,959,1486,1487,6981,3366,3369"},
+	},
+	["DUNGEONS\\Classic Dungeons\\Zul'Farrak Quests"] = {
+		{ids="2933,2934,2935,2936,2846,2770,3520,3527,2768,2865,3042"},
+	},
+	["DUNGEONS\\Classic Raids\\Blackwing Lair"] = {
+		{ids="7783", cond_if=[[not completedq(7783)]]},
+		{ids="7784", cond_if=[[completedq(7784)]]},
+	},
+	["DUNGEONS\\Classic Raids\\Raid Attunements\\Blackwing Lair Attunement"] = {
 		{ids="7761"},
 	},
-	["DUNGEONS\\Classic\\Raid Attunements\\Molten Core Attunement"] = {
+	["DUNGEONS\\Classic Raids\\Raid Attunements\\Molten Core Attunement"] = {
 		{ids="7848"},
 	},
-	["DUNGEONS\\Classic\\Raid Attunements\\Naxxramas Attunement"] = {
+	["DUNGEONS\\Classic Raids\\Raid Attunements\\Naxxramas Attunement"] = {
 		{ids="9123", cond_if=[[rep("Argent Dawn") == Exalted or completedq(9123)]]},
 		{ids="9122", cond_if=[[rep("Argent Dawn") == Revered or completedq(9122)]]},
 		{ids="9121", cond_if=[[rep("Argent Dawn") == Honored or completedq(9121)]]},
 	},
-	["DUNGEONS\\Classic\\Razorfen Downs Quests"] = {
-		{ids="6522,14352,6521,14353,3341,6626,3523,3525"},
+	["DUNGEONS\\Classic Raids\\Ruins of Ahn'Qiraj"] = {
+		{ids="8557,8558,8556", cond=[[Warrior]]},
+		{ids="8695,8711,8703", cond=[[Paladin]]},
+		{ids="8690,8706,8698", cond=[[Shaman]]},
+		{ids="8693,8709,8701", cond=[[Rogue]]},
+		{ids="8691,8707,8699", cond=[[Mage]]},
+		{ids="8692,8708,8700", cond=[[Druid]]},
+		{ids="8689,8705,8697", cond=[[Priest]]},
+		{ids="8696,8712,8704", cond=[[Hunter]]},
+		{ids="8791", cond_if=[[not completedq(8791)]]},
+		{ids="8694,8710,8702", cond=[[Warlock]]},
 	},
-	["DUNGEONS\\Classic\\Razorfen Kraul Quests"] = {
-		{ids="1109,1221,1102,6522,1144"},
+	["DUNGEONS\\Classic Raids\\Temple of Ahn'Qiraj"] = {
+		{ids="8560,8559,8562,8561,8544", cond=[[Warrior]]},
+		{ids="8629,8655,8627,8628,8630", cond=[[Paladin]]},
+		{ids="8624,8621,8622,8623,8602", cond=[[Shaman]]},
+		{ids="8640,8637,8638,8639,8641", cond=[[Rogue]]},
+		{ids="8631,8634,8633,8632,8625", cond=[[Mage]]},
+		{ids="8801", cond_if=[[not completedq(8801)]]},
+		{ids="8663,8660,8661,8662,8664", cond=[[Warlock]]},
+		{ids="8593,8596,8603,8592,8594", cond=[[Priest]]},
+		{ids="8658,8626,8656,8657,8659", cond=[[Hunter]]},
+		{ids="8668,8665,8666,8667,8669", cond=[[Druid]]},
+		{ids="8784"},
 	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Armory Quests"] = {
-		{ids="1048"},
-	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Cathedral Quests"] = {
-		{ids="1048"},
-	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Graveyard Quests"] = {
-		{ids="1109,1113,1051"},
-	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Library Quests"] = {
-		{ids="1149,1150,1151,1152,1154,6627,1159,1160,1048"},
-		{ids="1049", cond=[[Orc]]},
-	},
-	["DUNGEONS\\Classic\\Scholomance Quests"] = {
-		{ids="5094,4726,4808,4809,4810,4907,4734,4735,5522,5531,5529,4771,5096,5098,838,964,5514,5802,5803,5511,5341,5382,5515,5582,5384,5461,5462,5463,5464,5465,5466"},
-	},
-	["DUNGEONS\\Classic\\Shadowfang Keep Quests"] = {
-		{ids="1013,1014,1098"},
-	},
-	["DUNGEONS\\Classic\\Stratholme - Live Side Quests"] = {
-		{ids="5214,5251,5281,5282,5542,5543,5544,5742,5781,5845,5846,5848,5122,5262"},
-	},
-	["DUNGEONS\\Classic\\Stratholme - Undead Side Quests"] = {
-		{ids="5382,5515,5384,5461,5462,5463,5251,5262,5263,6022,6133,6042,6135,6136,6163,5212,5243,5122,5125,5464,5213"},
-	},
-	["DUNGEONS\\Classic\\Temple of Atal'Hakkar Quests"] = {
-		{ids="3380,3444,3446,3520,3527,4787,1424,1429,1444,1446,3528,1445,4145,4147,4146,3447,3373"},
-	},
-	["DUNGEONS\\Classic\\Uldaman Quests"] = {
-		{ids="2278,2280", cond_if=[[level >=40]]},
-		{ids="2342,2418,709,2258,2202,2283,2284,2318,2338,2339,2340,2341"},
-	},
-	["DUNGEONS\\Classic\\Upper Blackrock Spire Quests"] = {
-		{ids="4769,4768,4726,4808,4809,4810,4907,4734,5160,5047,4735,5161,5162,5164"},
-	},
-	["DUNGEONS\\Classic\\Wailing Caverns Quests"] = {
-		{ids="886,962,870,877,880,1489,1490,914,865,1491,959,1486,1487,6981,3366,3369"},
-	},
-	["DUNGEONS\\Classic\\Zul'Farrak Quests"] = {
-		{ids="2933,2934,2935,2936,2846,2770,3520,3527,2768,2865,3042"},
-	},
-	["DUNGEONS\\Northrend Dungeons\\Forge of Souls Quests"] = {
-		{ids="24510,24511,24682"},
-	},
-	["DUNGEONS\\Northrend Dungeons\\Halls of Reflection Quests"] = {
-		{ids="24802"},
-	},
-	["DUNGEONS\\Northrend Dungeons\\Pit of Saron Quests"] = {
-		{ids="24507,24712,24713"},
-	},
-	["DUNGEONS\\The Burning Crusade\\Auchenai Crypts Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Auchenai Crypts Quests"] = {
 		{ids="9400,9401,9405,9410,9406,9438,9441,10227,10228,10231,10251,10252,10253,10164,9888,9983,9889,9890,9891,9906,9907,9872,9868,9991,9999,10001,10004,10009,10010,10011,10107,9928,9927,9931,9932,9934,10044,10045,10081,10082,10085,10101,10102,10167,10168"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Black Temple Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Black Temple Attunement"] = {
 		{ids="10568", cond_if=[[rep ('The Aldor') >= Neutral]]},
 		{ids="10684,10685,10575", cond_if=[[rep ('The Scryers') >= Neutral]]},
 		{ids="10571,10574,10575", cond_if=[[rep('The Aldor') >= Neutral]]},
 		{ids="10683", cond_if=[[rep('The Scryers')>=Neutral]]},
 		{ids="10622,10628,10705,10706,10707,10708,10944,10946,10947,10948,10949,10985"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Blood Furnace Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Blood Furnace Quests"] = {
 		{ids="9608,9590"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Hellfire Citadel Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Hellfire Citadel Attunement"] = {
 		{ids="10755,10756,10757,10758"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Hellfire Ramparts Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Hellfire Ramparts Quests"] = {
 		{ids="9407,10120,10289,10291,10121,10123,10124,9572,9588"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Karazhan Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Karazhan Attunement"] = {
 		{ids="11216,9824,9825,9826,9829,9831,9832,9836,9837,9838"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Mana-Tombs Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Mana-Tombs Quests"] = {
 		{ids="10216,10165,10218,10969,10970,10425,10971,10973,10974,10975,10975,10976,10977"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Mount Hyjal Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Mount Hyjal Attunement"] = {
 		{ids="10445"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Old Hillsbrad Foothills Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Old Hillsbrad Foothills Quests"] = {
 		{ids="12513,10279,10277,10282,10283,10284,10285"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Serpentshrine Cavern Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Serpentshrine Cavern Attunement"] = {
 		{ids="10901,9630,9638,9639,9640,9645,9680,9631,9637,9644"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Sethekk Halls Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Sethekk Halls Quests"] = {
 		{ids="10180,10097,10098"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Shadow Labyrinth Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Shadow Labyrinth Quests"] = {
 		{ids="10687", cond_if=[[rep('The Scryers')>=Neutral]]},
 		{ids="10587,10637,10640", cond_if=[[rep ('The Aldor') >= Neutral]]},
 		{ids="10688,10689", cond_if=[[rep('The Scryers') >= Neutral]]},
 		{ids="10641,10668,10669,10646,10649,10623,10627,10663,10664,10666,11216,9824,9825,9826,9829,9831,10177,10094,10178,10885,10091,10095"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Shattered Halls Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Shattered Halls Quests"] = {
 		{ids="9495"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Tempest Keep Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Tempest Keep Attunement"] = {
 		{ids="10883,10884,10885,10886,10888"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Arcatraz Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Arcatraz Quests"] = {
 		{ids="10568", cond_if=[[rep ('The Aldor') >= Neutral]]},
 		{ids="10684,10685,10575", cond_if=[[rep ('The Scryers') >= Neutral]]},
 		{ids="10683", cond_if=[[rep('The Scryers')>=Neutral]]},
 		{ids="10571,10574,10575", cond_if=[[rep('The Aldor') >= Neutral]]},
 		{ids="10265,10262,10205,10266,10267,10268,10269,10275,10276,10280,10704,10622,10628,10705,10706,11216,9824,9825,9826,9829,9831,9832"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Black Morass Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Black Morass Quests"] = {
 		{ids="10902", cond_if=[[skill("Alchemy") < 0]]},
 		{ids="10279,10277,10282,10283,10284,10285,10296,10297,10298"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Botanica Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Botanica Quests"] = {
 		{ids="10897", cond_if=[[skill("Alchemy") < 0]]},
 		{ids="10257,10265,10262,10205,10266,10267,10268,10269,10275,10276,10280,10704"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Cipher of Damnation"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Cipher of Damnation"] = {
 		{ids="10681,10458,10480,10481,10513,10514,10515,10519,10521,10527,10546,10522,10523,10528,10537,10540,10541,10547,10550,10570,10576,10577,10578,10579,10588"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Mechanar Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Mechanar Quests"] = {
 		{ids="10623,10627,10663,10664,10665"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Slave Pens Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Slave Pens Quests"] = {
 		{ids="9738"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Steamvault Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Steamvault Quests"] = {
 		{ids="10623,10627,10663,10664,10666,10667,9763,9764,10885,11216,9824,9825,9826,9829,9831,9832"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Underbog Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Underbog Quests"] = {
 		{ids="9715,9717,9719,9738"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Ahn'kahet: The Old Kingdom Quests"] = {
+	["DUNGEONS\\The Burning Crusade Raids\\Hyjal Summit (Battle for Mount Hyjal)"] = {
+		{ids="10277", cond_if=[[not completedq(10277)]]},
+	},
+	["DUNGEONS\\The Burning Crusade Raids\\Magtheridon's Lair"] = {
+		{ids="11003", cond_if=[[not completedq(11003)]]},
+	},
+	["DUNGEONS\\The Burning Crusade Raids\\The Eye"] = {
+		{ids="11007", cond_if=[[not completedq(11007)]]},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Ahn'kahet: The Old Kingdom Quests"] = {
 		{ids="13187,13204"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Azjol-Nerub Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Azjol-Nerub Quests"] = {
 		{ids="13167,13182"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Drak'Tharon Keep Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Drak'Tharon Keep Quests"] = {
 		{ids="12208,11984,11989,11990,11991,12007,12042,12802,12068,12238,12484,12029,12037,13129"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Gundrak Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Forge of Souls Quests"] = {
+		{ids="24510,24511,24682"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Gundrak Quests"] = {
 		{ids="12507,12510,12514,12516,12623,12627,12628,12632,12642,12646,12647,12653,12665,12666,12667,12672,12668,12674,12675,12684,12685,12712,12721,12729,12730,13097,13099,13111,13098,13096"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Halls of Lightning Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Halls of Lightning Quests"] = {
 		{ids="12843,12846,12841,12905,12906,12907,12908,12921,12969,12970,12971,12972,12851,12856,13063,12900,12983,12996,12997,13061,13062,12886,13064,12915,12922,12956,12924,12966,12967,13009,13050,13051,13010,13011,12975,12976,13057,13005,13035,13047,13108,13109"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Halls of Stone Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Halls of Reflection Quests"] = {
+		{ids="24802"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Halls of Stone Quests"] = {
 		{ids="13207"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Culling of Stratholme Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Pit of Saron Quests"] = {
+		{ids="24507,24712,24713"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Culling of Stratholme Quests"] = {
 		{ids="13149,13151"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Nexus Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Nexus Quests"] = {
 		{ids="11733,11900,11910,11941,11943,11905,11911,13095,11946,11951,11957,11967,11969,11973,11973"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Oculus Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Oculus Quests"] = {
 		{ids="13124,13126,13127,13128"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Violet Hold Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Violet Hold Quests"] = {
 		{ids="13158,13159"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Utgarde Keep Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Utgarde Keep Quests"] = {
 		{ids="11272,13206,11262"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Utgarde Pinnacle Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Utgarde Pinnacle Quests"] = {
 		{ids="13131,13132"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Raids\\Naxxramas"] = {
+		{ids="13372,13375"},
 	},
 	["DUNGEONS\\Pandaria Dungeons\\Gate of the Setting Sun"] = {
 		{ids="31363,31364"},
@@ -7940,7 +7980,7 @@ ZGV.Quest_Cache_Accept_Horde = {
 		{ids="6961,6962,6964,7061,6983,6984"},
 	},
 	["EVENTS\\Hallow's End\\Achievements\\Hallowed Be Thy Name"] = {
-		{ids="11357,11361,12155,11219,12139,12155,1657,8322,8409,12396,12397,28969,12382,28959,12384,28967,28965,28957,28955,28974,28973,28976,12380,12387,28971,28987,12402,12373,12365,12364,12370,12369,12368,28966,12371,12363,28972,12376"},
+		{ids="11357,11361,12155,11219,12139,12155,1657,8322,8409,12397,28969,12382,28959,12384,28967,28965,28957,28955,28974,28973,28976,12380,12387,28971,28987,12402,12373,12365,12364,12370,12369,12368,28966,12371,12363,28972,12376,28962"},
 	},
 	["EVENTS\\Hallow's End\\Achievements\\Rotten Hallow"] = {
 		{ids="1657,8322,8409"},
@@ -8004,19 +8044,19 @@ ZGV.Quest_Cache_Accept_Horde = {
 		{ids="24536,24541,24850,24851,24576"},
 	},
 	["EVENTS\\Lunar Festival\\Achievements\\10 Coins of Ancestry"] = {
-		{ids="8648,8652,8645,8650,8688,8727,8722,8714,8643,29736"},
+		{ids="8648,8652,8645,8650,8688,8727,8722,8714,8643,29736,29737"},
 	},
 	["EVENTS\\Lunar Festival\\Achievements\\25 Coins of Ancestry"] = {
-		{ids="8648,8652,8645,8650,8688,8727,8722,8714,8643,29736,29737,8642,8866,8653,8651,8683,8636,8619,8644,8649,8646,8675,8716,8674,29740,29739,8680,8686,8673,8678,8635,8679,8685"},
+		{ids="8648,8652,8645,8650,8688,8727,8722,8714,8643,29736,29737,8642,8866,8653,8651,8683,8636,8619,8644,8649,8646,8675,8716,8674,29740,29739,8680,8686,8673,8678,8635,8679,8685,8713"},
 	},
 	["EVENTS\\Lunar Festival\\Achievements\\5 Coins of Ancestry"] = {
-		{ids="8648,8652,8645,8650,8688"},
+		{ids="8648,8652,8645,8650,8688,8727"},
 	},
 	["EVENTS\\Lunar Festival\\Achievements\\50 Coins of Ancestry"] = {
-		{ids="8648,8652,8645,8650,8688,8727,8722,8714,8643,29736,29737,8642,8866,8653,8651,8683,8636,8619,8644,8649,8646,8675,8716,8674,29740,29739,8680,8686,8673,8678,8635,8679,8685,8713,8719,8654,8681,29742,29741,8676,8671,8684,8724,8682,8677,8670,8720,8672,8726,8723,8725,8721,8718,8715,8647,13029,13012,13033,13016,13021,13018"},
+		{ids="8648,8652,8645,8650,8688,8727,8722,8714,8643,29736,29737,8642,8866,8653,8651,8683,8636,8619,8644,8649,8646,8675,8716,8674,29740,29739,8680,8686,8673,8678,8635,8679,8685,8713,8719,8654,8681,29742,29741,8676,8671,8684,8724,8682,8677,8670,8720,8672,8726,8723,8725,8721,8718,8715,8647,13029,13012,13033,13016,13021,13018,13024"},
 	},
 	["EVENTS\\Lunar Festival\\Achievements\\A Coin of Ancestry"] = {
-		{ids="8648"},
+		{ids="8648,8652"},
 	},
 	["EVENTS\\Lunar Festival\\Achievements\\Elders of Eastern Kingdoms"] = {
 		{ids="8648,8652,8645,8650,8688,8727,8722,8714,8643,29736,29737,8642,8866,8653,8651,8683,8636,8619,8644,8649,8646,8675,8716,8674"},
@@ -8076,6 +8116,14 @@ ZGV.Quest_Cache_Accept_Horde = {
 	},
 	["EVENTS\\Pilgrim's Bounty\\Quests\\Pilgrim's Bounty Quests"] = {
 		{ids="14036,14065,14037,14040,14041,14043,14044,14047"},
+	},
+	["GOLD\\Farming\\Stringy Wolf Meat"] = {
+		{ids="51443", cond_if=[[Horde]]},
+		{ids="46727", cond_if=[[Alliance]]},
+	},
+	["GOLD\\Gathering\\Rugged Leather"] = {
+		{ids="25771", cond_if=[[itemcount(10593) > 0]]},
+		{ids="25772", cond_if=[[itemcount(8244) > 0]]},
 	},
 	["LEVELING\\Cataclysm 80-85\\Deepholm (82-83)"] = {
 		{ids="27203,27123,26409,26245,27136,26244,26410,27135,26411,26413,26484,26246,27931,27932,27933,27934,27935,26499,26500,26502,26501,26537,26564,26591,26625,27126,26632,26755,26762,26770,26834,26791,26792,26835,26836,27937,27938,26247,26248,26249,26427,26251,26250,26254,26255,26258,26259,26256,26261,26260,27007,27010,27061,27100,27101,27102,26766,26768,26771,26857,26861,26876,26326,26312,26314,26313,26315,26328,26376,26377,26375,26426,26869,26871,26436,26438,26437,26439,28869,26440,26441,26507,26575,26576,26577,26656,26657,26658,26659,26578,26579,26580,26581,26582,26584,26585,26583,26750,26752,26827,26828,26829,26832,26831,26833,26875,26971,26709,27005,27008,27043,27041,27059,28293"},
@@ -9982,6 +10030,92 @@ ZGV.Quest_Cache_Accept_Horde = {
 	["PETSMOUNTS\\Battle Pets\\Undead Pets\\Macabre Marionette"] = {
 		{ids="14166"},
 	},
+	["PETSMOUNTS\\Battle Pets\\Aquatic Pets\\Fishy"] = {
+		{ids="31239"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Pandaren Air Spirit"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32440"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Pandaren Earth Spirit"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32441"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Pandaren Fire Spirit"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32434"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Pandaren Water Spirit"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32439"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Mountain Panda"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="31932,31932,31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="32439,32434,32441,32440", cond_if=[[completedq(32428)]]},
+		{ids="31951", cond_if=[[not completedq(31951)]]},
+		{ids="31977", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31982", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31986", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31588", cond_if=[[not completedq(31588)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31970", cond_if=[[not completedq(31970)]]},
+		{ids="31920", cond_if=[[not completedq(31920)]]},
+		{ids="31928", cond_if=[[not completedq(31928)]]},
+		{ids="31589,31827,32009,31812,31590,31813,31814,31815,31817,31870,31918,31891,31897,31902,31921,31929,31967,31952,32603,32604,32868,32869"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Red Panda"] = {
+		{ids="31932,31932,31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="31977", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31982", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="31951", cond_if=[[not completedq(31951)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31986", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31970", cond_if=[[not completedq(31970)]]},
+		{ids="31920", cond_if=[[not completedq(31920)]]},
+		{ids="31928", cond_if=[[not completedq(31928)]]},
+		{ids="31588,31589,31827,32009,31812,31590,31813,31814,31815,31817,31870,31918,31891,31897,31902,31921,31929,31967,31952,32603"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Snowy Panda"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="31932,31932,31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="32439,32434,32441,32440", cond_if=[[completedq(32428)]]},
+		{ids="31977", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31982", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="31951", cond_if=[[not completedq(31951)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31986", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31970", cond_if=[[not completedq(31970)]]},
+		{ids="31920", cond_if=[[not completedq(31920)]]},
+		{ids="31928", cond_if=[[not completedq(31928)]]},
+		{ids="31588,31589,31827,32009,31812,31590,31813,31814,31815,31817,31870,31918,31891,31897,31902,31921,31929,31967,31952,32603,32604,32868,32869"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Sunfur Panda"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="31932,31932,31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="32439,32434,32441,32440", cond_if=[[completedq(32428)]]},
+		{ids="31977", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31982", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="31951", cond_if=[[not completedq(31951)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31986", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31970", cond_if=[[not completedq(31970)]]},
+		{ids="31920", cond_if=[[not completedq(31920)]]},
+		{ids="31928", cond_if=[[not completedq(31928)]]},
+		{ids="31588,31589,31827,32009,31812,31590,31813,31814,31815,31817,31870,31918,31891,31897,31902,31921,31929,31967,31952,32603,32604,32868,32869"},
+	},
 	["PROFESSIONS\\Cooking\\Cooking + Fishing (1-525)"] = {
 		{ids="6607"},
 	},
@@ -10120,27 +10254,6 @@ ZGV.Quest_Cache_Accept_Horde = {
 	["REPUTATIONS\\Mists of Pandaria Reputations\\Nat Pagle"] = {
 		{ids="31443,31444,31446"},
 	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\Sunreaver Onslaught"] = {
-		{ids="32521,32520,32522,32524,32523,32293", cond_if=[[thunderstage()>=2 and completedq(32212) and haveq(32201) or thunderstage()>=2 and completedq(32212) and completedq(32201)]]},
-		{ids="32730,32506,32728,32230,32228,32201,32495,32225,32219,32224,32226,32517,32220,32218", cond_if=[[thunderstage()>=2 and completedq(32212)]]},
-		{ids="32255,32204", cond_if=[[haveq(32605) or haveq(32204) or haveq(32255)]]},
-		{ids="32494,32234,32493,32209,32208", cond_if=[[completedq(32524)]]},
-		{ids="32676,32677", cond_if=[[thunderstage()>=4]]},
-		{ids="32521,32523,32524,32293,32522", cond_if=[[haveq(32252) or haveq(32275) or haveq(32200) or completedq(32252) or completedq(32275) or completedq(32200)]]},
-		{ids="32275,32252,32200", cond_if=[[thunderstage()>=1 and haveq(32729) or completedq(32729)]]},
-		{ids="32729,32728,32730,32201,32225,32219,32226,32224,32517,32218,32220,32561,32562", cond_if=[[thunderstage()==1]]},
-		{ids="32549", cond_if=[[not completedq(32507)]]},
-		{ids="32217,32215,32216,32227", cond_if=[[thunderstage()>=1 and completedq(32729)]]},
-		{ids="32285,32287", cond_if=[[thunderstage()>=2]]},
-		{ids="32209,32208,32563,32564", cond_if=[[completedq(32523)]]},
-		{ids="32292", cond_if=[[haveq(32209) or completedq(32208) or haveq(32208) or completedq(32209)]]},
-		{ids="32233,32206,32232", cond_if=[[haveq(32524) or completedq(32524)]]},
-		{ids="32676,32677", cond_if=[[thunderstage()>=5]]},
-		{ids="32729,32521", cond_if=[[thunderstage()>=2  and completedq(32212)]]},
-		{ids="32292", cond_if=[[completedq(32524) or completedq(32523)]]},
-		{ids="32521,32520,32522,32524,32523,32293", cond_if=[[thunderstage()>=2 and completedq(32212) and not haveq(32201) and not completedq(32201)]]},
-		{ids="32678,32680,32212,32276,32277,32278,32279,32204,32254,32605,32255,32274,32299,32489,32491,32521,32520,32522,32524,32523,32293,32294,32565,32207,32297,32283,32298,32282"},
-	},
 	["REPUTATIONS\\Mists of Pandaria Reputations\\Tiller's Union\\Chee Chee"] = {
 		{ids="31372,30252,30535,30254,30255,30256,30257,31338,31339,31340,31341"},
 	},
@@ -10170,6 +10283,24 @@ ZGV.Quest_Cache_Accept_Horde = {
 	},
 	["REPUTATIONS\\Mists of Pandaria\\Lorewalkers"] = {
 		{ids="31103,31095,31100,31093,31097,31102,31096,31094,31055,31055"},
+	},
+	["ACHIEVEMENTS\\Professions\\Cooking\\Sous Chef"] = {
+		{ids="6610,8307,8313,9349,9361,9356,13090"},
+	},
+	["ACHIEVEMENTS\\Professions\\Cooking\\The Northrend Gourmet"] = {
+		{ids="12634,12644,12645,13571"},
+		{ids="1308", cond_if=[[Alliance]]},
+	},
+	["ACHIEVEMENTS\\Professions\\Cooking\\The Outland Gourmet"] = {
+		{ids="9349,9361,9356"},
+	},
+	["REPUTATIONS\\Classic Reputations\\Argent Dawn"] = {
+		{ids="27367,27370,27368,27369,27371,27372,27373,27432,27381,27383,27382,27384,27392,27385,27386,27387,27388,27389,27544,27420,27421,27390,27391,27448,27455,27451,27452,27450,27449,27453,27454,27463,27456,27458,27459,27464,27465,27467,27460,27461,27462,27614,27615,27616,27619,27618,27612,27613,27617,27620,27466,27457,27481,27479,27477,27487,27482,27488,27489,27522,27521,27523,27524,27532,27525,27528,27529,27539,27551,27526,27527,27530,27531,27535,27533,27534,28755"},
+	},
+	["REPUTATIONS\\Wrath of the Lich King Reuptations\\Argent Crusade"] = {
+		{ids="13105", cond=[[DeathKnight]]},
+		{ids="13104", cond_if=[[not DeathKnight]]},
+		{ids="13036,13008,13040,13039,13044,13045,13070,13086,13118,13122,13130,13135,13110,13125,13139,13141,13157,13068,13224,13072,13073,13074,13075,13076,13077,13078,13079,13080,13081,13082"},
 	},
 }
 ZGV.Quest_Cache_Turnin_Horde = {
@@ -10437,13 +10568,26 @@ ZGV.Quest_Cache_Turnin_Horde = {
 		{ids="30716,30717"},
 	},
 	["DAILIES\\Mists of Pandaria Dailies\\The Golden Lotus Dailies"] = {
+		{ids="30284,30265", cond_if=[[haveq(30284,30265) or completedq(30284,30265)]]},
+		{ids="31392,31394,31512,30631", cond_if=[[Alliance]]},
 		{ids="30280,30277", cond_if=[[haveq(30280,30277)]]},
 		{ids="30243,30266", cond_if=[[haveq(30243,30266)]]},
+		{ids="31757,31762,31760", cond_if=[[haveq(31757,31762,31760) or completedq(31757,31762,31760)]]},
+		{ids="30341", cond_if=[[haveq(30341) or completedq(30341)]]},
+		{ids="30307", cond_if=[[haveq(30307) or completedq(30307)]]},
+		{ids="30234", cond_if=[[haveq(30234) or completedq(30234)]]},
+		{ids="30290", cond_if=[[haveq(30290) or completedq(30290)]]},
 		{ids="30306", cond_if=[[haveq(30306)]]},
+		{ids="31393,31395,31511,30649", cond_if=[[Horde]]},
+		{ids="31758,31756", cond_if=[[haveq(31758,31756) or completedq(31758,31756)]]},
 		{ids="30242,30240", cond_if=[[haveq(30242,30240)]]},
-		{ids="31393,31395,31511", cond_if=[[Horde]]},
-		{ids="31392,31394,31512", cond_if=[[Alliance]]},
+		{ids="30340", cond_if=[[haveq(30340) or completedq(30340)]]},
 		{ids="30261", cond_if=[[haveq(30261) or completedq(30261)]]},
+		{ids="30286", cond_if=[[haveq(30286) or completedq(30286)]]},
+		{ids="30288", cond_if=[[haveq(30288) or completedq(30288)]]},
+		{ids="30287", cond_if=[[haveq(30287) or completedq(30287)]]},
+		{ids="30312,31755", cond_if=[[haveq(30312,31755) or completedq(30312,31755)]]},
+		{ids="30632,30634,30633,30637,30635,30636,30638,31131,31242,30195,30193,30190,30192,30235,31243,30297"},
 	},
 	["DAILIES\\Mists of Pandaria Dailies\\The Klaxxi Dailies"] = {
 		{ids="31506", cond_if=[[haveq(31506) or completedq(31506)]]},
@@ -10635,31 +10779,6 @@ ZGV.Quest_Cache_Turnin_Horde = {
 	},
 	["DAILIES\\Jewelcrafting\\Orgimmar Jewelcrafting Dailies"] = {
 		{ids="25160,25162,25158,25161,25159", cond_if=[[haveq(25160,25162,25158,25161,25159) or completedq(25160,25162,25158,25161,25159)]]},
-	},
-	["DAILIES\\Mists of Pandaria Dailies\\Dominance Offensive Dailies"] = {
-		{ids="32238", cond_if=[[haveq(32238) or completedq(32238)]]},
-		{ids="32141,32137", cond_if=[[haveq(32137,32141) or completedq(32137,32141)]]},
-		{ids="32342,32344,32345,32120,32343,32348", cond_if=[[haveq(32342,32344,32345,32120,32343,32348) or completedq(32342,32344,32345,32120,32343,32348)]]},
-		{ids="32126", cond_if=[[haveq(32126) or completedq(32126)]]},
-		{ids="32118", cond_if=[[haveq(32118) or completedq(32118)]]},
-		{ids="32449", cond_if=[[haveq(32449) or completedq(32449)]]},
-		{ids="32135,32132,32133", cond_if=[[haveq(32135,32132,32133) or completedq(32135,32132,32133)]]},
-		{ids="32128", cond_if=[[haveq(32128) or completedq(32128)]]},
-		{ids="32136", cond_if=[[haveq(32136) or completedq(32136)]]},
-		{ids="32130,32131,32134", cond_if=[[haveq(32130,32131,32134) or completedq(32130,32131,32134)]]},
-		{ids="32236", cond_if=[[haveq(32236) or completedq(32236)]]},
-		{ids="32450", cond_if=[[haveq(32450) or completedq(32450)]]},
-		{ids="32223,32222", cond_if=[[haveq(32223,32222) or completedq(32223,32222)]]},
-		{ids="32237", cond_if=[[haveq(32237) or completedq(32237)]]},
-		{ids="32123", cond_if=[[haveq(32123) or completedq(32123)]]},
-		{ids="32199,32197", cond_if=[[haveq(32199,32197) or completedq(32199,32197)]]},
-		{ids="32139", cond_if=[[haveq(32139) or completedq(32139)]]},
-		{ids="32221,32214", cond_if=[[haveq(32221,32214) or completedq(32221,32214)]]},
-		{ids="32140", cond_if=[[haveq(32140) or completedq(32140)]]},
-		{ids="32127", cond_if=[[haveq(32127) or completedq(32127)]]},
-		{ids="32235", cond_if=[[haveq(32235) or completedq(32235)]]},
-		{ids="32138", cond_if=[[haveq(32138) or completedq(32138)]]},
-		{ids="32249,32250,32108"},
 	},
 	["DAILIES\\The Burning Crusade\\Shattered Sun Offensive\\Shattered Sun Dailies"] = {
 		{ids="11543", cond_if=[[haveq(11543) or completedq(11543)]]},
@@ -10869,226 +10988,282 @@ ZGV.Quest_Cache_Turnin_Horde = {
 	["DUNGEONS\\Cataclysm Dungeons\\Zul'Aman"] = {
 		{ids="29186,11196"},
 	},
-	["DUNGEONS\\Cataclysm Raids\\Dragonwrath, Tarecgosa's Rest"] = {
-		{ids="29129", cond_if=[[Horde]]},
-		{ids="29132", cond_if=[[Alliance]]},
-		{ids="29134,29135,29193,29194,29225,29234,29239,29240,29269,29270,29285"},
-	},
-	["DUNGEONS\\Classic\\Blackfathom Deeps Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Blackfathom Deeps Quests"] = {
 		{ids="6564,6563,6565,6921,6922,6561"},
 	},
-	["DUNGEONS\\Classic\\Blackrock Depths Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Blackrock Depths Quests"] = {
 		{ids="4133,3441,3442,3443,3452,3453,3454,3462,3463,3481,4324,4022,4061,4062,3801,3802,4123,4136,4024,3906,4134,4081,4063,4201,3907,4082,3981,3982,4001,4002,4003,4004"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul East Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul East Quests"] = {
 		{ids="5527,7489,7441,5526"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul North Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul North Quests"] = {
 		{ids="5518,7429,7703,7481"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul North Tribute (58-60)"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul North Tribute (58-60)"] = {
 		{ids="1193"},
 	},
-	["DUNGEONS\\Classic\\Dire Maul West Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Dire Maul West Quests"] = {
 		{ids="7461,7462"},
 	},
-	["DUNGEONS\\Classic\\Gnomeregan Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Gnomeregan Quests"] = {
 		{ids="2842,2843,2841"},
 	},
-	["DUNGEONS\\Classic\\Lower Blackrock Spire Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Lower Blackrock Spire Quests"] = {
 		{ids="3520,3527,4787,3528,5065,4981,4982,4867,4742,4866,4729,4862,4983,4724,4788"},
 	},
-	["DUNGEONS\\Classic\\Maraudon Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Maraudon Quests"] = {
 		{ids="7044,7046,7068,7029,7064,7067,7028,7066"},
 	},
-	["DUNGEONS\\Classic\\Ragefire Chasm Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Ragefire Chasm Quests"] = {
 		{ids="5726,5727,5722,5761,5728,5725,5724,5723"},
 	},
-	["DUNGEONS\\Classic\\Raid Attunements\\Blackwing Lair Attunement"] = {
-		{ids="7761"},
-	},
-	["DUNGEONS\\Classic\\Raid Attunements\\Molten Core Attunement"] = {
-		{ids="7848"},
-	},
-	["DUNGEONS\\Classic\\Raid Attunements\\Naxxramas Attunement"] = {
-		{ids="9123", cond_if=[[haveq(9123) or completedq(9123)]]},
-		{ids="9122", cond_if=[[haveq(9122) or completedq(9122)]]},
-		{ids="9121", cond_if=[[haveq(9121) or completedq(9121)]]},
-	},
-	["DUNGEONS\\Classic\\Razorfen Downs Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Razorfen Downs Quests"] = {
 		{ids="6522", cond_if=[[haveq(14352) or completedq(14352)]]},
 		{ids="6521", cond_if=[[haveq(6521) or completedq(6521)]]},
 		{ids="14353", cond_if=[[haveq(14353) or completedq(14353)]]},
 		{ids="6522", cond_if=[[haveq(6522) or completedq(6522)]]},
 		{ids="6626,3523,3525,3341"},
 	},
-	["DUNGEONS\\Classic\\Razorfen Kraul Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Razorfen Kraul Quests"] = {
 		{ids="1144,1221,1102,1109,6522"},
 	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Armory Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Armory Quests"] = {
 		{ids="1048"},
 	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Cathedral Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Cathedral Quests"] = {
 		{ids="1048"},
 	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Graveyard Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Graveyard Quests"] = {
 		{ids="1109,1051,1113"},
 	},
-	["DUNGEONS\\Classic\\Scarlet Monastery Library Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Scarlet Monastery Library Quests"] = {
 		{ids="1049", cond=[[Orc]]},
 		{ids="1149,1150,1151,1152,1154,6627,1159,1160,1048"},
 	},
-	["DUNGEONS\\Classic\\Scholomance Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Scholomance Quests"] = {
 		{ids="4726,4808,4809,4810,4907,4734,4735,5522,5531,5094,5096,5098,838,964,5514,5801,5803,5382,5341,5529,4771,5515,5582,5384,5461,5462,5463,5464,5465,5466"},
 	},
-	["DUNGEONS\\Classic\\Shadowfang Keep Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Shadowfang Keep Quests"] = {
 		{ids="1098,1014,1013"},
 	},
-	["DUNGEONS\\Classic\\Stratholme - Live Side Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Stratholme - Live Side Quests"] = {
 		{ids="5281,5542,5543,5544,5742,5781,5845,5846,5282,5848,5214,5251,5262"},
 	},
-	["DUNGEONS\\Classic\\Stratholme - Undead Side Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Stratholme - Undead Side Quests"] = {
 		{ids="5382,5515,5384,5461,5462,5251,5262,6022,6133,6042,6135,6136,5463,5263,5212,5464,5243,6163,5213"},
 	},
-	["DUNGEONS\\Classic\\Temple of Atal'Hakkar Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Temple of Atal'Hakkar Quests"] = {
 		{ids="3380,3444,3520,3527,1424,1429,4787,1444,4145,4147,3446,3447,3373,1445,1446,3528,4146"},
 	},
-	["DUNGEONS\\Classic\\Uldaman Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Uldaman Quests"] = {
 		{ids="2278,2280", cond_if=[[level >=40]]},
 		{ids="2258,2283,2284,2318,2338,2202,2339,2418,709,2342,2340,2341"},
 	},
-	["DUNGEONS\\Classic\\Upper Blackrock Spire Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Upper Blackrock Spire Quests"] = {
 		{ids="4769,4726,4808,4809,4810,4907,4768,4734,5047,5160,5161,5162,5164,4735"},
 	},
-	["DUNGEONS\\Classic\\Wailing Caverns Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Wailing Caverns Quests"] = {
 		{ids="6981", cond_if=[[haveq(6981) or completedq(6981)]]},
 		{ids="3366", cond_if=[[haveq(3366) or completedq(3366)]]},
 		{ids="886,870,877,880,1489,1490,865,1486,1487,1491,959,914,3369,962"},
 	},
-	["DUNGEONS\\Classic\\Zul'Farrak Quests"] = {
+	["DUNGEONS\\Classic Dungeons\\Zul'Farrak Quests"] = {
 		{ids="2933,2934,2935,3520,3527,2768,2865,3042,2770,2846,2936"},
 	},
-	["DUNGEONS\\Northrend Dungeons\\Forge of Souls Quests"] = {
-		{ids="24510,24511"},
+	["DUNGEONS\\Classic Raids\\Blackwing Lair"] = {
+		{ids="7783", cond_if=[[not completedq(7783)]]},
+		{ids="7784", cond_if=[[completedq(7784)]]},
 	},
-	["DUNGEONS\\Northrend Dungeons\\Halls of Reflection Quests"] = {
-		{ids="24713,24802"},
+	["DUNGEONS\\Classic Raids\\Raid Attunements\\Blackwing Lair Attunement"] = {
+		{ids="7761"},
 	},
-	["DUNGEONS\\Northrend Dungeons\\Pit of Saron Quests"] = {
-		{ids="24682,24507,24712"},
+	["DUNGEONS\\Classic Raids\\Raid Attunements\\Molten Core Attunement"] = {
+		{ids="7848"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Auchenai Crypts Quests"] = {
+	["DUNGEONS\\Classic Raids\\Raid Attunements\\Naxxramas Attunement"] = {
+		{ids="9123", cond_if=[[haveq(9123) or completedq(9123)]]},
+		{ids="9122", cond_if=[[haveq(9122) or completedq(9122)]]},
+		{ids="9121", cond_if=[[haveq(9121) or completedq(9121)]]},
+	},
+	["DUNGEONS\\Classic Raids\\Ruins of Ahn'Qiraj"] = {
+		{ids="8689", cond_if=[[haveq(8689)]]},
+		{ids="8709", cond_if=[[haveq(8709)]]},
+		{ids="8698", cond_if=[[haveq(8698)]]},
+		{ids="8701", cond_if=[[haveq(8701)]]},
+		{ids="8702", cond_if=[[haveq(8702)]]},
+		{ids="8690", cond_if=[[haveq(8690)]]},
+		{ids="8699", cond_if=[[haveq(8699)]]},
+		{ids="8707", cond_if=[[haveq(8707)]]},
+		{ids="8710", cond_if=[[haveq(8710)]]},
+		{ids="8695", cond_if=[[haveq(8695)]]},
+		{ids="8708", cond_if=[[haveq(8708)]]},
+		{ids="8691", cond_if=[[haveq(8691)]]},
+		{ids="8556", cond_if=[[haveq(8556)]]},
+		{ids="8692", cond_if=[[haveq(8692)]]},
+		{ids="8706", cond_if=[[haveq(8706)]]},
+		{ids="8712", cond_if=[[haveq(8712)]]},
+		{ids="8696", cond_if=[[haveq(8696)]]},
+		{ids="8700", cond_if=[[haveq(8700)]]},
+		{ids="8697", cond_if=[[haveq(8697)]]},
+		{ids="8705", cond_if=[[haveq(8705)]]},
+		{ids="8704", cond_if=[[haveq(8704)]]},
+		{ids="8703", cond_if=[[haveq(8703)]]},
+		{ids="8558", cond_if=[[haveq(8558)]]},
+		{ids="8557", cond_if=[[haveq(8557)]]},
+		{ids="8693", cond_if=[[haveq(8693)]]},
+		{ids="8791", cond_if=[[haveq(8791)]]},
+		{ids="8711", cond_if=[[haveq(8711)]]},
+		{ids="8694", cond_if=[[haveq(8694)]]},
+	},
+	["DUNGEONS\\Classic Raids\\Temple of Ahn'Qiraj"] = {
+		{ids="8560,8559,8562,8561,8544", cond=[[Warrior]]},
+		{ids="8629,8655,8627,8628,8630", cond=[[Paladin]]},
+		{ids="8624,8621,8622,8623,8602", cond=[[Shaman]]},
+		{ids="8640,8637,8638,8639,8641", cond=[[Rogue]]},
+		{ids="8631,8634,8633,8632,8625", cond=[[Mage]]},
+		{ids="8801", cond_if=[[not completedq(8801)]]},
+		{ids="8663,8660,8661,8662,8664", cond=[[Warlock]]},
+		{ids="8784", cond_if=[[haveq(8784)]]},
+		{ids="8593,8596,8603,8592,8594", cond=[[Priest]]},
+		{ids="8658,8626,8656,8657,8659", cond=[[Hunter]]},
+		{ids="8668,8665,8666,8667,8669", cond=[[Druid]]},
+		{ids="8595,8579,8595,8579"},
+	},
+	["DUNGEONS\\The Burning Crusade Dungeons\\Auchenai Crypts Quests"] = {
 		{ids="9983", cond_if=[[haveq(9983) or completedq(9983)]]},
 		{ids="9400,9401,9405,9410,9406,9438,9441,10227,10228,10231,10251,10252,10253,9888,9889,9890,9891,9906,9991,9999,10001,10004,10009,10010,10011,9907,9872,9868,10107,9928,9927,9931,9932,9934,10044,10045,10081,10082,10085,10101,10102,10167,10168,10164"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Black Temple Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Black Temple Attunement"] = {
 		{ids="10568,10571,10574", cond_if=[[rep('The Aldor') >= Neutral]]},
 		{ids="10575,10622,10628,10705,10706,10707,10708,10944,10946,10947,10948,10949,10985"},
 		{ids="10683,10684,10685", cond_if=[[rep ('The Scryers') >= Neutral]]},
 	},
-	["DUNGEONS\\The Burning Crusade\\Blood Furnace Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Blood Furnace Quests"] = {
 		{ids="9590,9608"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Hellfire Citadel Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Hellfire Citadel Attunement"] = {
 		{ids="10755,10756,10757,10758"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Hellfire Ramparts Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Hellfire Ramparts Quests"] = {
 		{ids="9407,10120,10289,10291,10121,10123,10124,9588,9572"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Karazhan Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Karazhan Attunement"] = {
 		{ids="11216,9824,9825,9826,9829,9831,9832,9836,9837,9838"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Mana-Tombs Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Mana-Tombs Quests"] = {
 		{ids="10216,10165,10218,10969,10970,10425,10971,10973,10974,10976,10977"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Mount Hyjal Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Mount Hyjal Attunement"] = {
 		{ids="10445"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Old Hillsbrad Foothills Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Old Hillsbrad Foothills Quests"] = {
 		{ids="10279,10277,10282,10283,10284,10285,12513"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Serpentshrine Cavern Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Serpentshrine Cavern Attunement"] = {
 		{ids="9644", cond_if=[[haveq(9644) or completedq(9644)]]},
 		{ids="9630,9638,9639,9640,9645,9680,9631,9637,10901"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Sethekk Halls Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Sethekk Halls Quests"] = {
 		{ids="10180,10097,10098"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Shadow Labyrinth Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Shadow Labyrinth Quests"] = {
 		{ids="10641,10668,10669,10646,10623,10627,10663,10664,11216,9824,9825,9826,9829,10177,10178,10094,10885,10666,10091,10095,9831,10649"},
 		{ids="10587,10637,10640", cond_if=[[rep ('The Aldor') >= Neutral]]},
 		{ids="10687,10688", cond_if=[[rep('The Scryers') >= Neutral]]},
 		{ids="10689", cond_if=[[rep ('The Scryers') >= Neutral]]},
 	},
-	["DUNGEONS\\The Burning Crusade\\Shattered Halls Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Shattered Halls Quests"] = {
 		{ids="9495"},
 	},
-	["DUNGEONS\\The Burning Crusade\\Tempest Keep Attunement"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\Tempest Keep Attunement"] = {
 		{ids="10883,10884,10885,10886,10888"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Arcatraz Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Arcatraz Quests"] = {
 		{ids="10568,10571,10574", cond_if=[[rep('The Aldor') >= Neutral]]},
 		{ids="10683,10684,10685", cond_if=[[rep ('The Scryers') >= Neutral]]},
 		{ids="10265,10262,10205,10266,10267,10268,10269,10275,10276,10280,10575,10622,10628,10705,10704,10706,11216,9824,9825,9826,9829,9831,9832"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Black Morass Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Black Morass Quests"] = {
 		{ids="10902", cond_if=[[skill("Alchemy") < 0]]},
 		{ids="10279,10277,10282,10283,10284,10285,10296,10297,10298"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Botanica Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Botanica Quests"] = {
 		{ids="10897", cond_if=[[skill("Alchemy") < 0]]},
 		{ids="10265,10262,10205,10266,10267,10268,10269,10275,10276,10280,10257,10704"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Cipher of Damnation"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Cipher of Damnation"] = {
 		{ids="10681,10458,10480,10481,10513,10514,10515,10519,10521,10522,10523,10527,10528,10537,10540,10546,10541,10547,10550,10570,10576,10577,10578,10579,10588"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Mechanar Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Mechanar Quests"] = {
 		{ids="10623,10627,10663,10664,10665"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Slave Pens Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Slave Pens Quests"] = {
 		{ids="9738"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Steamvault Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Steamvault Quests"] = {
 		{ids="10623,10627,10663,10664,10666,9763,9764,10885,10667,11216,9824,9825,9826,9829,9831,9832"},
 	},
-	["DUNGEONS\\The Burning Crusade\\The Underbog Quests"] = {
+	["DUNGEONS\\The Burning Crusade Dungeons\\The Underbog Quests"] = {
 		{ids="9715,9717,9719,9738"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Ahn'kahet: The Old Kingdom Quests"] = {
+	["DUNGEONS\\The Burning Crusade Raids\\Hyjal Summit (Battle for Mount Hyjal)"] = {
+		{ids="10277", cond_if=[[haveq(10277)]]},
+	},
+	["DUNGEONS\\The Burning Crusade Raids\\Magtheridon's Lair"] = {
+		{ids="11003", cond_if=[[not completedq(11003)]]},
+	},
+	["DUNGEONS\\The Burning Crusade Raids\\The Eye"] = {
+		{ids="11007", cond_if=[[haveq(11007)]]},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Ahn'kahet: The Old Kingdom Quests"] = {
 		{ids="13187,13204"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Azjol-Nerub Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Azjol-Nerub Quests"] = {
 		{ids="13167,13182"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Drak'Tharon Keep Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Drak'Tharon Keep Quests"] = {
 		{ids="12208,11984,11989,11990,11991,12007,12042,12802,12068,12484,12029,12238,12037,13129"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Gundrak Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Forge of Souls Quests"] = {
+		{ids="24510,24511"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Gundrak Quests"] = {
 		{ids="12507,12510,12514,12516,12623,12627,12628,12632,12642,12646,12647,12653,12665,12666,12667,12672,12668,12674,12675,12684,12685,12712,12721,12729,12730,13099,13097,13096,13111,13098"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Halls of Lightning Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Halls of Lightning Quests"] = {
 		{ids="12843,12846,12841,12905,12906,12907,12908,12921,12969,12970,12971,12972,12851,12856,13063,12900,12983,12996,12997,13061,13062,12886,13064,12922,12915,12956,12966,12967,12967,12924,13009,13050,13051,12975,12976,13010,13057,13005,13035,13047,13108,13109"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Halls of Stone Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Halls of Reflection Quests"] = {
+		{ids="24713,24802"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Halls of Stone Quests"] = {
 		{ids="13207"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Culling of Stratholme Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Pit of Saron Quests"] = {
+		{ids="24682,24507,24712"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Culling of Stratholme Quests"] = {
 		{ids="13149,13151"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Nexus Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Nexus Quests"] = {
 		{ids="11733,11941,11900,11910,11943,11946,11951,11957,11967,11969,13095,11973,11905,11911"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Oculus Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Oculus Quests"] = {
 		{ids="13124,13126,13127,13128"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\The Violet Hold Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\The Violet Hold Quests"] = {
 		{ids="13158,13159"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Utgarde Keep Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Utgarde Keep Quests"] = {
 		{ids="11272,13206,11262"},
 	},
-	["DUNGEONS\\Wrath of the Lich King\\Utgarde Pinnacle Quests"] = {
+	["DUNGEONS\\Wrath of the Lich King Dungeons\\Utgarde Pinnacle Quests"] = {
 		{ids="13131,13132"},
+	},
+	["DUNGEONS\\Wrath of the Lich King Raids\\Naxxramas"] = {
+		{ids="13372", cond_if=[[haveq(13372)]]},
+		{ids="13375", cond_if=[[haveq(13375)]]},
 	},
 	["DUNGEONS\\Pandaria Dungeons\\Gate of the Setting Sun"] = {
 		{ids="31363,31364"},
@@ -11156,10 +11331,10 @@ ZGV.Quest_Cache_Turnin_Horde = {
 		{ids="11446,11409,11412,12191,11431,29396,11120,12062"},
 	},
 	["EVENTS\\Children's Week\\Achievements\\Aw, Isn't It Cute?"] = {
-		{ids="10942,10953,10945,10951,10963,11975"},
+		{ids="10942,10953,10945,10951,10963,11975,10967"},
 	},
 	["EVENTS\\Children's Week\\Achievements\\Veteran Nanny"] = {
-		{ids="10942,10953,10945,10951,10963,11975"},
+		{ids="10942,10953,10945,10951,10963,11975,10967"},
 	},
 	["EVENTS\\Children's Week\\Children's Week Dalaran Quests"] = {
 		{ids="13929,13933,13950,13956,13954,13937,28879,13959", cond_if=[[completedq(13926)]]},
@@ -11304,10 +11479,10 @@ ZGV.Quest_Cache_Turnin_Horde = {
 	},
 	["EVENTS\\Pilgrim's Bounty\\Achievements\\Pilgrim"] = {
 		{ids="14036", cond_if=[[haveq(14036) or completedq(14036)]]},
-		{ids="14065,14037,14040,14041,14043,14044,14047,14060,14061,14062,14059"},
+		{ids="14065,14037,14040,14041,14043,14044,14047,14060,14061,14062,14059,14058"},
 	},
 	["EVENTS\\Pilgrim's Bounty\\Achievements\\Pilgrim's Progress"] = {
-		{ids="14060,14061,14062,14059"},
+		{ids="14060,14061,14062,14059,14058"},
 	},
 	["EVENTS\\Pilgrim's Bounty\\Quests\\Pilgrim's Bounty Daily Quests"] = {
 		{ids="14060,14061,14062,14059,14058"},
@@ -11315,6 +11490,14 @@ ZGV.Quest_Cache_Turnin_Horde = {
 	["EVENTS\\Pilgrim's Bounty\\Quests\\Pilgrim's Bounty Quests"] = {
 		{ids="14036", cond_if=[[haveq(14036) or completedq(14036)]]},
 		{ids="14065,14037,14040,14041,14043,14044,14047"},
+	},
+	["GOLD\\Farming\\Stringy Wolf Meat"] = {
+		{ids="51443", cond_if=[[Horde]]},
+		{ids="46727", cond_if=[[Alliance]]},
+	},
+	["GOLD\\Gathering\\Rugged Leather"] = {
+		{ids="25772", cond_if=[[haveq(25772)]]},
+		{ids="25771", cond_if=[[haveq(25771)]]},
 	},
 	["LEVELING\\Cataclysm 80-85\\Deepholm (82-83)"] = {
 		{ids="27203,27123,26409,27136,26410,27135,26411,26413,26484,27931,27932,27933,27934,27935,26500,26499,26501,26502,26537,26591,26564,26625,27126,26632,26755,26770,26762,26834,26791,26792,26835,26836,27937,26245,26246,26244,27938,26247,26249,26427,26248,26251,26250,26254,26255,26258,26256,26261,26260,27007,27010,27100,27101,27102,27061,26766,26768,26771,26861,26857,26876,26259,26326,26313,26312,26314,26315,26328,26375,26376,26377,26426,26869,26871,26436,26438,26437,26439,28869,26440,26441,26507,26575,26576,26656,26657,26658,26659,26577,26580,26581,26578,26579,26582,26583,26584,26585,26750,26752,26827,26828,26831,26829,26832,26833,26875,26971,26709,27005,27008,27041,27059,27043"},
@@ -13730,6 +13913,84 @@ ZGV.Quest_Cache_Turnin_Horde = {
 	["PETSMOUNTS\\Battle Pets\\Undead Pets\\Macabre Marionette"] = {
 		{ids="14166"},
 	},
+	["PETSMOUNTS\\Battle Pets\\Aquatic Pets\\Fishy"] = {
+		{ids="31239"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Pandaren Air Spirit"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32440"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Pandaren Earth Spirit"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32441"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Pandaren Fire Spirit"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32434"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Elemental Pets\\Pandaren Water Spirit"] = {
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32439"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Mountain Panda"] = {
+		{ids="32441", cond_if=[[haveq(32441)]]},
+		{ids="31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="31977", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31982", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32440", cond_if=[[haveq(32440)]]},
+		{ids="32434", cond_if=[[haveq(32434)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="32439", cond_if=[[haveq(32439)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31986", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31588,31589,32009,31827,31590,31812,31813,31814,31815,31817,31870,31918,31891,31897,31902,31921,31920,31929,31928,31967,31970,31952,31951,32603,32604,32868,32869"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Red Panda"] = {
+		{ids="31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="31977", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31982", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31986", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31588,31589,32009,31827,31590,31812,31813,31814,31815,31817,31870,31918,31891,31897,31902,31921,31920,31929,31928,31967,31970,31952,31951,32603"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Snowy Panda"] = {
+		{ids="32441", cond_if=[[haveq(32441)]]},
+		{ids="31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="31977", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31982", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32440", cond_if=[[haveq(32440)]]},
+		{ids="32434", cond_if=[[haveq(32434)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="32439", cond_if=[[haveq(32439)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31986", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31588,31589,32009,31827,31590,31812,31813,31814,31815,31817,31870,31918,31891,31897,31902,31921,31920,31929,31928,31967,31970,31952,31951,32603,32604,32868,32869"},
+	},
+	["PETSMOUNTS\\Battle Pets\\Humanoid Pets\\Sunfur Panda"] = {
+		{ids="32441", cond_if=[[haveq(32441)]]},
+		{ids="31933,31931,31934", cond_if=[[completedq(31928)]]},
+		{ids="31977", cond_if=[[not completedq(31977) and not completedq(31976)]]},
+		{ids="31982", cond_if=[[not completedq(31981) and not completedq(31982)]]},
+		{ids="32428", cond_if=[[not completedq(32428)]]},
+		{ids="32440", cond_if=[[haveq(32440)]]},
+		{ids="32434", cond_if=[[haveq(32434)]]},
+		{ids="31972,31973,31974", cond_if=[[completedq(31970)]]},
+		{ids="31984", cond_if=[[not completedq(31929) and not completedq(31927)]]},
+		{ids="32439", cond_if=[[haveq(32439)]]},
+		{ids="31953,31955,31954,31957,31991,31956", cond_if=[[completedq(31951)]]},
+		{ids="31986", cond_if=[[not completedq(31985) and not completedq(31986)]]},
+		{ids="31922,31923,31924,31925", cond_if=[[completedq(31920)]]},
+		{ids="31588,31589,32009,31827,31590,31812,31813,31814,31815,31817,31870,31918,31891,31897,31902,31921,31920,31929,31928,31967,31970,31952,31951,32603,32604,32868,32869"},
+	},
 	["PROFESSIONS\\Cooking\\Cooking + Fishing (1-525)"] = {
 		{ids="6607"},
 	},
@@ -13865,39 +14126,6 @@ ZGV.Quest_Cache_Turnin_Horde = {
 	["REPUTATIONS\\Mists of Pandaria Reputations\\Nat Pagle"] = {
 		{ids="31444,31446,31443"},
 	},
-	["REPUTATIONS\\Mists of Pandaria Reputations\\Sunreaver Onslaught"] = {
-		{ids="32201,32495,32220,32225", cond_if=[[thunderstage()>=2 and completedq(32212) and haveq(32201) or thunderstage()>=2 and completedq(32212) and completedq(32201)]]},
-		{ids="32729,32521,32520,32562,32522", cond_if=[[thunderstage()>=2  and completedq(32212) or haveq(32729) or haveq(32521) or haveq(32520) or haveq(32562)]]},
-		{ids="32292", cond_if=[[haveq(32292)]]},
-		{ids="32294", cond_if=[[haveq(32294)]]},
-		{ids="32728,32219,32224,32226,32517", cond_if=[[thunderstage()>=2 and completedq(32212)]]},
-		{ids="32285,32287", cond_if=[[haveq(32285) or haveq(32287)]]},
-		{ids="32605", cond_if=[[haveq(32605) or haveq(32204) or haveq(32255)]]},
-		{ids="32207,32283,32297", cond_if=[[completedq(32523)]]},
-		{ids="32204,32254,32605,32204,32255", cond_if=[[haveq(32489) or haveq(32605) or haveq(32254) or haveq(32255) or haveq(32204)]]},
-		{ids="32274", cond_if=[[haveq(32274)]]},
-		{ids="32676,32677,32520", cond_if=[[thunderstage()>=5]]},
-		{ids="32252,32275,32200", cond_if=[[haveq(32252) or haveq(32275) or haveq(32200) or completedq(32252) or completedq(32275) or completedq(32200)]]},
-		{ids="32549", cond_if=[[not completedq(32507)]]},
-		{ids="32506", cond_if=[[haveq(32506)]]},
-		{ids="32230,32228", cond_if=[[haveq(32230) or haveq(32228) or completedq(32230) or completedq(32228)]]},
-		{ids="32227", cond_if=[[haveq(32227)]]},
-		{ids="32729", cond_if=[[thunderstage()>=1 and haveq(32729) or completedq(32729)]]},
-		{ids="32728,32517,32226,32219,32224,32218,32201,32220,32225,32561,32521,32562", cond_if=[[thunderstage()==1]]},
-		{ids="32201,32225,32220", cond_if=[[haveq(32201) or haveq(32225) or haveq(32220)]]},
-		{ids="32206,32233,32232,32494,32234,32493", cond_if=[[completedq(32524)]]},
-		{ids="32217,32215", cond_if=[[haveq(32217) or haveq(32215)]]},
-		{ids="32215,32217", cond_if=[[haveq(32215) or haveq(32217)]]},
-		{ids="32216,32227", cond_if=[[haveq(32216) or haveq(32227)]]},
-		{ids="32218", cond_if=[[haveq(32218)]]},
-		{ids="32209,32208", cond_if=[[haveq(32209) or completedq(32208) or haveq(32208) or completedq(32209)]]},
-		{ids="32524", cond_if=[[haveq(32524) or completedq(32524)]]},
-		{ids="32252,32200,32293,32275", cond_if=[[haveq(32252) or haveq(32200) or haveq(32293) or haveq(32275)]]},
-		{ids="32209,32208,32292", cond_if=[[completedq(32524) or completedq(32523)]]},
-		{ids="32224,32517,32219", cond_if=[[haveq(32224) or haveq(32517) or haveq(32219)]]},
-		{ids="32489,32299,32491", cond_if=[[haveq(32299) or haveq(32489) or haveq(32491)]]},
-		{ids="32678,32680,32212,32276,32277,32278,32279,32730,32218,32294,32565,32523,32298,32282,32563,32564,32676,32677"},
-	},
 	["REPUTATIONS\\Mists of Pandaria Reputations\\Tiller's Union\\Chee Chee"] = {
 		{ids="31372,30252,30535,30254,30255,30256,30257,30402,30400"},
 	},
@@ -13927,5 +14155,22 @@ ZGV.Quest_Cache_Turnin_Horde = {
 	},
 	["REPUTATIONS\\Mists of Pandaria\\Lorewalkers"] = {
 		{ids="31096,31100,31102,31095,31103,31093,31097,31094,31055"},
+	},
+	["ACHIEVEMENTS\\Professions\\Cooking\\Sous Chef"] = {
+		{ids="6610,8307,8313,9349,9361,9356,13090"},
+	},
+	["ACHIEVEMENTS\\Professions\\Cooking\\The Northrend Gourmet"] = {
+		{ids="13088,12634,12644,12645"},
+	},
+	["ACHIEVEMENTS\\Professions\\Cooking\\The Outland Gourmet"] = {
+		{ids="9349,9361,9356"},
+	},
+	["REPUTATIONS\\Classic Reputations\\Argent Dawn"] = {
+		{ids="27683,27367,27368,27369,27370,27371,27372,27373,27381,27383,27384,27392,27385,27386,27382,27432,27388,27544,27420,27421,27387,27389,27390,27391,27448,27449,27451,27452,27453,27454,27450,27455,27463,27464,27467,27465,27458,27459,27460,27462,27614,27615,27616,27619,27618,27461,27612,27613,27617,27620,27456,27457,27466,27481,27482,27479,27477,27487,27488,27489,27523,27522,27521,27524,27551,27526,27525,27528,27529,27539,27530,27532,27531,27535,27533,27534,27527,28755"},
+	},
+	["REPUTATIONS\\Wrath of the Lich King Reuptations\\Argent Crusade"] = {
+		{ids="13105", cond=[[DeathKnight]]},
+		{ids="13104", cond_if=[[not DeathKnight]]},
+		{ids="13036,13039,13040,13008,13044,13045,13070,13086,13130,13135,13118,13122,13110,13125,13139,13141,13157,13068,13072,13073,13074,13075,13076,13077,13078,13079,13080,13081,13082"},
 	},
 }

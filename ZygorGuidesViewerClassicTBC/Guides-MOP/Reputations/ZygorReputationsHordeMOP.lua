@@ -3,20 +3,92 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Horde" then return end
 if ZGV:DoMutex("ReputationsHMOP") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Dominance Offensive\\Dominance Offensive\\Beastmaster Dailies",{
-description="\nThis guide will walk you through becoming exalted with the Dominance Offensive faction.",
-achieveid={8206},
-patch='50200',
+ZGV.BETASTART()
+ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Anglers",{
+mopready=true,
+description="\nThis guide will walk you through becoming exalted with The Anglers faction.",
+achieveid={6547,7614},
+patch='50004',
 },[[
-#include "Sturdy_Traps"
+step
+Earn Exalted with "The Anglers" Reputation |complete rep("The Anglers")==Exalted
+|tip Refer to the dailies guide to accomplish this.
+|loadguide "Daily Guides\\Mists of Pandaria Dailies\\The Anglers Dailies"
 ]])
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Dominance Offensive\\Dominance Offensive",{
-description="\nThis guide will walk you through becoming exalted with the Dominance Offensive faction.",
-achieveid={7929},
-patch='50100',
+ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The August Celestials",{
+mopready=true,
+description="\nThis guide will walk you through becoming exalted with The August Celestials faction.",
+achieveid={6543},
+patch='50004',
 },[[
-#include "Dominance_Offensive"
+step
+Earn Exalted with the "August Celestials" Reputation |complete rep("August Celestials")==Exalted
+|tip Refer to the dailies guide to accomplish this.
+|loadguide "Daily Guides\\Mists of Pandaria Dailies\\The August Celestials Dailies"
 ]])
+ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Order of the Cloud Serpent",{
+mopready=true,
+description="\nThis guide will walk you through becoming exalted with The Order of the Cloud Serpent faction.",
+achieveid={6550},
+patch='50004',
+},[[
+step
+Earn Exalted with "The Order of the Cloud Serpent" Reputation |complete rep("Order of the Cloud Serpent")==Exalted
+|tip Refer to the dailies guide to accomplish this.
+|loadguide "Daily Guides\\Mists of Pandaria Dailies\\The Order of the Cloud Serpent Dailies"
+]])
+ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Shado-Pan Assault",{
+mopready=true,
+description="\nThis guide will walk you through becoming exalted with the Shado-Pan faction.",
+achieveid={6366},
+patch='50004',
+},[[
+step
+Earn Exalted with the "Shado-Pan" Reputation |complete rep('Shado-Pan')==Exalted
+|tip Refer to the dailies guide to accomplish this.
+|loadguide "Daily Guides\\Mists of Pandaria Dailies\\The Shado-Pan Dailies"
+]])
+ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Tillers",{
+mopready=true,
+description="\nThis guide will walk you through becoming exalted with The Tillers faction.",
+achieveid={6544},
+patch='50004',
+},[[
+step
+Earn Exalted with "The Tillers" Reputation |complete rep("The Tillers")==Exalted
+|tip Refer to the dailies guide to accomplish this.
+|loadguide "Daily Guides\\Mists of Pandaria Dailies\\The Tillers Dailies"
+]])
+ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Golden Lotus",{
+mopready=true,
+description="\nThis guide will walk you through becoming exalted with The Golden Lotus faction.",
+achieveid={7315, 6546},
+patch='50004',
+},[[
+step
+Earn Exalted with "The Golden Lotus " Reputation |complete rep("The Golden Lotus")==Exalted
+|tip Refer to the dailies guide to accomplish this.
+|loadguide "Daily Guides\\Mists of Pandaria Dailies\\The Golden Lotus Dailies"
+]])
+ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Klaxxi",{
+description="\nThis guide will walk you through becoming exalted with The Klaxxi faction.",
+achieveid={6545},
+patch='50004',
+},[[
+step
+Earn Exalted with "The Klaxxi" Reputation |complete rep("The Klaxxi")==Exalted
+|tip Refer to the dailies guide to accomplish this.
+|loadguide "Daily Guides\\Mists of Pandaria Dailies\\The Klaxxi Dailies"
+]])
+ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Forest Hozen",{
+description="\nThis guide will walk you through becoming exalted with the Forest Hozen faction.",
+},[[
+step
+Earn Exalted with "The Klaxxi" Reputation  |complete rep("Forest Hozen")==Exalted
+|tip Refer to The Jade Forest leveling guide to accomplish this.
+|loadguide "Leveling Guides\\Pandaria (85-90)\\The Jade Forest (85-86)"
+]])
+ZGV.BETAEND()
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Tiller's Union\\Chee Chee",{
 description="\nThis guide will walk you through becoming best friends with Chee Chee.",
 achieveid={6551, 6552},
@@ -1020,66 +1092,53 @@ label "end"
 You have reached the end of the guide.
 Please click here to return to the beginning of the guide. |confirm |next "menu"
 ]])
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Anglers",{
-description="\nThis guide will walk you through becoming exalted with The Anglers faction.",
-achieveid={6547,7614},
+ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Nat Pagle",{
+description="\nThis guide will walk you through becoming exalted with Nat Pagle faction.",
+achieveid={7274},
 patch='50004',
 },[[
 step
-#include "H_Anglers"
-]])
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The August Celestials",{
-description="\nThis guide will walk you through becoming exalted with The August Celestials faction.",
-achieveid={6543},
-patch='50004',
-},[[
-step
-#include "August_Celestials"
-step
-label end
-'This is the end of the current guide. Click here to go back to the beginning. |confirm |next "startaug"
-]])
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Emperor Shaohao",{
-description="\nThis guide will walk you through becoming exalted with the Emperor Shaohao faction.",
-achieveid={8715},
-patch='50400',
-},[[
-step
-#include "timeless_isle_prequests"
-step
-'From this point, you have to grind mobs to earn the remaining reputation with _Emperor Shaohao_.
+label "menu"
+_Nat Pagle_ is a _Stranger_ to you. |only if rep("Nat Pagle")<=Stranger
+_Nat Pagle_ is your _Aquaintance_. |only if rep("Nat Pagle")==Aquaintance
+_Nat Pagle_ is your _Buddy_. |only if rep("Nat Pagle")==Buddy
+_Nat Pagle_ is your _Friend_. |only if rep("Nat Pagle")==Friend
+_Nat Pagle_ is your _Good Friend_. |only if rep("Nat Pagle")==GoodFriend
+_Nat Pagle_ is your _Best Friend_. |only if rep("Nat Pagle")==BestFriend
 |confirm
 step
-goto Timeless Isle 52.6,76.9
-.from Ordon Fire-Watcher##72894+, Ordon Candlekeeper##72875+, Ordon Oathguard##72892+
-|condition rep('Emperor Shaohao')==Exalted
+label "menu2"
+In order to successfully gain rep with Nat Pagle you have to catch fish, so we recommend that you are at least 525 in Fishing.
+The fish you catch in this guide are unique, meaning you can only have one of each in your bag at any given time.
+|confirm
 step
-'Congratulations, you are now _Exalted_ with _Emperor Shaohao_!
-]])
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Forest Hozen",{
-description="\nThis guide will walk you through becoming exalted with the Forest Hozen faction.",
-},[[
+label "menu3"
+Click here to start fishing! |confirm |next "fishrun"
+Click here to turn in the fish to Nat Pagle for daily reputation gains. |confirm |next "turnin"
 step
-For this achievement you will need to complete a specific quest line that becomes available whilst doing The Jade Forest leveling zone
-Check out our Jade Forest guide to accomplish this |next "Leveling Guides\\Pandaria (85-90)\\The Jade Forest (85-86)" |confirm |or
-Gain Exalted reputation with the Forest Hozen |complete rep("Forest Hozen")>=Exalted |or
+label "fishrun"
+Equip your Fishing Pole, if it's not already equipped |use Fishing Pole##6256
+Use your Fishing skill to fish in the water here. You can look for fishing pools around the beach also |cast fishing##131474
+collect 1 Flying Tiger Gourami##86542
+accept Flying Tiger Gourami##31443 |use Flying Tiger Gourami##86542 |goto Kun-Lai Summit 72.70,93.10
 step
-Congratulations!
-You are now exalted with the "Pearlfin Jinyu."
-]])
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Golden Lotus",{
-description="\nThis guide will walk you through becoming exalted with The Golden Lotus faction.",
-achieveid={7315, 6546},
-patch='50004',
-},[[
+Equip your Fishing Pole, if it's not already equipped |use Fishing Pole##6256
+Use your Fishing skill to fish in the water here. You can look for fishing pools too |cast fishing##131474.
+collect 1 Spinefish Alpha##86544 |goto Kun-Lai Summit 70.80,84.20
+accept Spinefish Alpha##31444 |use Spinefish Alpha##86544 |goto Kun-Lai Summit 70.80,84.20
 step
-'Proceeding to Pre-Quests |next |only if default
-'Proceeding to The Golden Lotus Dailies |next "dailies" |only if completedq(30638)
+Equip your Fishing Pole, if it's not already equipped |use Fishing Pole##6256
+Use your Fishing skill to fish in the water here. You can look for fishing pools too |cast fishing##131474.
+collect 1 Mimic Octopus##86545 |goto Kun-Lai Summit 57.90,21.90
+accept Mimic Octopus##31446 |use Mimic Octopus##86545 |goto Kun-Lai Summit 57.90,21.90
+|next "menu3"
 step
-#include "Golden_Lotus_PreQuests"
-step
-label dailies
-#include "Golden_Lotus"
+label "turnin"
+talk Nat Pagle##63721
+turnin Spinefish Alpha##31444 |goto Krasarang Wilds 68.40,43.50
+turnin Mimic Octopus##31446 |goto Krasarang Wilds 68.40,43.50
+turnin Flying Tiger Gourami##31443 |goto Krasarang Wilds 68.40,43.50
+|next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren",{
 description="\nThis guide will walk you through becoming exalted with the Huojin Pandaren faction.",
@@ -1089,20 +1148,12 @@ patch='50200',
 },[[
 step
 talk Turtlemaster Odai##66022
-buy Huojin Tabard##83080 |goto Orgrimmar 69.80,41.10
+buy Huojin Tabard##83080 |goto Orgrimmar 69.80,41.10 |n
 Equip your Huojin Tabard |equipped Huojin Tabard##83080 |use Huojin Tabard##83080 |future
 You can run any dungeon that grants experience to gain reputation for the Huojin Pandaren
 Become Exalted with Huojin Pandaren |complete rep('Huojin Pandaren')==Exalted
 step
 Congratulations, you have reached exalted with the Huojin Pandaren!
-]])
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Klaxxi",{
-description="\nThis guide will walk you through becoming exalted with The Klaxxi faction.",
-achieveid={6545},
-patch='50004',
-},[[
-step
-#include "H_Klaxxi"
 ]])
 ZygorGuidesViewer:RegisterGuide("Zygor's Horde Reputations Guides\\Mists of Pandaria\\Lorewalkers",{
 description="\nThis guide will walk you through becoming exalted with the Lorewalkers faction.",
@@ -1313,84 +1364,4 @@ turnin Between a Saurok and a Hard Place##31055 |goto Vale of Eternal Blossoms 8
 Watch his story, then click here |confirm always
 step
 Congratulations, you are now Exalted with the Lorewalkers!
-]])
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Nat Pagle",{
-description="\nThis guide will walk you through becoming exalted with Nat Pagle faction.",
-achieveid={7274},
-patch='50004',
-},[[
-step
-label "menu"
-_Nat Pagle_ is a _Stranger_ to you. |only if rep("Nat Pagle")<=Stranger
-_Nat Pagle_ is your _Aquaintance_. |only if rep("Nat Pagle")==Aquaintance
-_Nat Pagle_ is your _Buddy_. |only if rep("Nat Pagle")==Buddy
-_Nat Pagle_ is your _Friend_. |only if rep("Nat Pagle")==Friend
-_Nat Pagle_ is your _Good Friend_. |only if rep("Nat Pagle")==GoodFriend
-_Nat Pagle_ is your _Best Friend_. |only if rep("Nat Pagle")==BestFriend
-|confirm
-step
-label "menu2"
-In order to successfully gain rep with Nat Pagle you have to catch fish, so we recommend that you are at least 525 in Fishing.
-The fish you catch in this guide are unique, meaning you can only have one of each in your bag at any given time.
-|confirm
-step
-label "menu3"
-Click here to start fishing! |confirm |next "fishrun"
-Click here to turn in the fish to Nat Pagle for daily reputation gains. |confirm |next "turnin"
-step
-label "fishrun"
-Equip your Fishing Pole, if it's not already equipped |use Fishing Pole##6256
-Use your Fishing skill to fish in the water here. You can look for fishing pools around the beach also |cast fishing##131474
-collect 1 Flying Tiger Gourami##86542
-accept Flying Tiger Gourami##31443 |use Flying Tiger Gourami##86542 |goto Kun-Lai Summit 72.70,93.10
-step
-Equip your Fishing Pole, if it's not already equipped |use Fishing Pole##6256
-Use your Fishing skill to fish in the water here. You can look for fishing pools too |cast fishing##131474.
-collect 1 Spinefish Alpha##86544 |goto Kun-Lai Summit 70.80,84.20
-accept Spinefish Alpha##31444 |use Spinefish Alpha##86544 |goto Kun-Lai Summit 70.80,84.20
-step
-Equip your Fishing Pole, if it's not already equipped |use Fishing Pole##6256
-Use your Fishing skill to fish in the water here. You can look for fishing pools too |cast fishing##131474.
-collect 1 Mimic Octopus##86545 |goto Kun-Lai Summit 57.90,21.90
-accept Mimic Octopus##31446 |use Mimic Octopus##86545 |goto Kun-Lai Summit 57.90,21.90
-|next "menu3"
-step
-label "turnin"
-talk Nat Pagle##63721
-turnin Spinefish Alpha##31444 |goto Krasarang Wilds 68.40,43.50
-turnin Mimic Octopus##31446 |goto Krasarang Wilds 68.40,43.50
-turnin Flying Tiger Gourami##31443 |goto Krasarang Wilds 68.40,43.50
-|next "menu"
-]])
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Order of the Cloud Serpent",{
-description="\nThis guide will walk you through becoming exalted with The Order of the Cloud Serpent faction.",
-achieveid={6550},
-patch='50004',
-},[[
-step
-#include "H_Cloud_Serpent"
-]])
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Shado-Pan",{
-description="\nThis guide will walk you through becoming exalted with the Shado-Pan faction.",
-achieveid={6366},
-patch='50004',
-},[[
-step
-#include "Shado_Pan_Daily_H"
-]])
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Sunreaver Onslaught",{
-description="\nThis guide will walk you through becoming exalted with the Sunreaver Onslaught faction.",
-achieveid={8209},
-patch='50200',
-},[[
-step
-#include "Sunreavers_dailies"
-]])
-ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Tillers",{
-description="\nThis guide will walk you through becoming exalted with The Tillers faction.",
-achieveid={6544},
-patch='50004',
-},[[
-step
-#include "H_Tillers"
 ]])

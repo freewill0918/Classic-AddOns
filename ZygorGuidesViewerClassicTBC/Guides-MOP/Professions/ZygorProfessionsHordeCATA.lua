@@ -4,7 +4,7 @@ if UnitFactionGroup("player")~="Horde" then return end
 if ZGV:DoMutex("ProfessionsH") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Cooking + Fishing (1-525)",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return (skill('Cooking') > 0) or (skill('Fishing') > 0) end,
 description="This guide will walk you through leveling both your Cooking and Fishing skills from 1-525, together.",
 },[[
@@ -846,7 +846,7 @@ _<Create 25 Severed Sagefish Head>_
 Reach 525 Cooking |skill Cooking,525
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Chunk of Boar Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Durotar
@@ -863,7 +863,7 @@ collect Chunk of Boar Meat##769 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Small Egg",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Mulgore
@@ -879,7 +879,7 @@ collect Small Egg##6889 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Stringy Wolf Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Tirisfal Glades/0
@@ -891,7 +891,7 @@ collect Stringy Wolf Meat##2672 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Meaty Bat Wing",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Tirisfal Glades
@@ -910,7 +910,7 @@ collect Meaty Bat Wing##12223 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Scorpid Stinger",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Durotar/0
@@ -922,7 +922,7 @@ collect Scorpid Stinger##5466 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Tender Crocolisk Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Path_One"
@@ -949,7 +949,7 @@ collect Tender Crocolisk Meat##3667 |n
 '|goto Dustwallow Marsh 42.01,28.23 < 20 |noway |c |next "Path_One"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Red Wolf Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map The Hinterlands
@@ -961,7 +961,7 @@ collect Red Wolf Meat##12203 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Coyote Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Westfall/0
@@ -975,7 +975,7 @@ collect Coyote Meat##2673 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Strider Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Mulgore/0
@@ -990,7 +990,7 @@ collect Strider Meat##5469 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Kodo Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Mulgore/0
@@ -1002,7 +1002,7 @@ collect Kodo Meat##5467 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Bear Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Darkshore/0
@@ -1014,7 +1014,7 @@ collect Bear Meat##3173 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crawler Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Westfall
@@ -1036,7 +1036,7 @@ collect Crawler Meat##2674 |n
 '|goto Westfall 51.32,9.67 < 20 |noway |c
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crawler Claw",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Westfall
@@ -1058,7 +1058,7 @@ collect Crawler Claw##2675 |n
 '|goto Westfall 51.32,9.67 < 20 |noway |c
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Clam Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Murloc enemies around this area
@@ -1070,7 +1070,7 @@ collect Clam Meat##5503 |n |goto Westfall 37.26,15.67
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Murloc Fin",{
-cataready=true,
+mopready=true,
 },[[
 step
 goto Redridge Mountains/0 52.03,47.88
@@ -1079,7 +1079,7 @@ collect Murloc Fin##1468 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Big Bear Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Hillsbrad Foothills/0
@@ -1091,7 +1091,7 @@ collect Big Bear Meat##3730 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Raptor Egg",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Northern Stranglethorn/0
@@ -1103,7 +1103,7 @@ collect Raptor Egg##3685 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Thunder Lizard Tail",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Southern Barrens/0
@@ -1115,7 +1115,7 @@ collect Thunder Lizard Tail##5470 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Tangy Clam Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Wetlands
@@ -1131,7 +1131,7 @@ collect Tangy Clam Meat##5504 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Lion Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Southern Barrens/0
@@ -1143,7 +1143,7 @@ collect Lion Meat##3731 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Gooey Spider Leg",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Path_One"
@@ -1166,7 +1166,7 @@ collect Gooey Spider Leg##2251 |n
 '|goto Duskwood 75.39,23.25 < 20 |noway |c |next "Path_One"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Mystery Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Desolace/0
@@ -1179,7 +1179,7 @@ collect Mystery Meat##12037 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Turtle Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Hillsbrad Foothills/0
@@ -1194,7 +1194,7 @@ collect Turtle Meat##3712 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Tiger Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Northern Stranglethorn/0
@@ -1206,7 +1206,7 @@ collect Tiger Meat##12202 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Raptor Flesh",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Northern Stranglethorn/0
@@ -1217,7 +1217,7 @@ collect Raptor Flesh##12184 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Buzzard Wing",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Desolace/0
@@ -1230,7 +1230,7 @@ collect Buzzard Wing##3404 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Giant Clam Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 click Giant Clam##2744+
@@ -1240,7 +1240,7 @@ collect Giant Clam Meat##4655 |n |goto Northern Stranglethorn/0  25.51,47.88
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Living Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Tar enemies around this area
@@ -1249,7 +1249,7 @@ collect Living Essence##12803 |n |goto Un'Goro Crater 46.46,17.23
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Essence of Fire",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Fire Elementals around this area
@@ -1258,7 +1258,7 @@ collect Essence of Fire##7078 |n |goto Un'Goro Crater/0 49.29,47.07
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Essence of Air",{
-cataready=true,
+mopready=true,
 },[[
 step
 kill Dust Stormer##11744+
@@ -1268,7 +1268,7 @@ You can find more around [28.75,24.40]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Essence of Earth",{
-cataready=true,
+mopready=true,
 },[[
 step
 kill Desert Rumbler##11746+
@@ -1277,7 +1277,7 @@ collect Essence of Earth##7076 |n |goto Silithus/0 31.27,14.03
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Ichor of Undeath",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Highborne enemies around this area
@@ -1289,7 +1289,7 @@ You can find more around: |notinsticky
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Heart of Fire",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Fire Elementals around this area
@@ -1298,7 +1298,7 @@ collect Essence of Fire##7078 |n |goto Un'Goro Crater/0 49.29,47.07
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Globe of Water",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Purespring Elementals around this area
@@ -1307,7 +1307,7 @@ collect Essence of Water##7080 |n |goto Swamp of Sorrows/0 18.08,57.82
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Core of Earth",{
-cataready=true,
+mopready=true,
 },[[
 step
 kill Desert Rumbler##11746+
@@ -1316,7 +1316,7 @@ collect Essence of Earth##7076 |n |goto Silithus/0 31.27,14.03
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Breath of Wind",{
-cataready=true,
+mopready=true,
 },[[
 step
 kill Dust Stormer##11744+
@@ -1326,7 +1326,7 @@ You can find more around [28.75,24.40]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Elemental Fire",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Fire Elementals around this area
@@ -1335,7 +1335,7 @@ collect Essence of Fire##7078 |n |goto Un'Goro Crater/0 49.29,47.07
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Elemental Water",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Purespring Elementals around this area
@@ -1344,7 +1344,7 @@ collect Essence of Water##7080 |n |goto Swamp of Sorrows/0 18.08,57.82
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Elemental Air",{
-cataready=true,
+mopready=true,
 },[[
 step
 kill Dust Stormer##11744+
@@ -1354,7 +1354,7 @@ You can find more around [28.75,24.40]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Strange Dust",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 5-20 green weapons and armor
@@ -1364,7 +1364,7 @@ collect Strange Dust##10940 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Magic Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 3-12 green weapons and armor
@@ -1374,7 +1374,7 @@ collect Lesser Magic Essence##10938 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Magic Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 9-21 green weapons and armor
@@ -1385,7 +1385,7 @@ collect Greater Magic Essence##10939 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Eternal Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 40-50 green weapons and armor
@@ -1395,7 +1395,7 @@ collect Lesser Eternal Essence##16202 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Eternal Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 45-60 green weapons and armor
@@ -1406,7 +1406,7 @@ collect Greater Eternal Essence##16203 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Small Brilliant Shard",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 38-50 blue and green weapons and armor
@@ -1416,7 +1416,7 @@ collect Small Brilliant Shard##14343 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Large Brilliant Shard",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 50-58 blue weapons and armor
@@ -1426,7 +1426,7 @@ collect Large Brilliant Shard##14344 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Illusion Dust",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 45-60 green weapons and armor
@@ -1436,7 +1436,7 @@ collect Illusion Dust##16204 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Astral Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 20-25 green weapons and armor
@@ -1445,7 +1445,7 @@ collect Lesser Astral Essence##10998 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Astral Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 20-30 green weapons and armor
@@ -1454,7 +1454,7 @@ collect Greater Astral Essence##11082 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Soul Dust",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 25-35 green weapons and armor
@@ -1463,7 +1463,7 @@ collect Soul Dust##11083 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Mystic Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 30-35 green weapons and armor
@@ -1472,7 +1472,7 @@ collect Lesser Mystic Essence##11134 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Mystic Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 35-40 green weapons and armor
@@ -1481,7 +1481,7 @@ collect Greater Mystic Essence##11135 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Vision Dust",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 35-45 green weapons and armor
@@ -1490,7 +1490,7 @@ collect Vision Dust##11137 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Dream Dust",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 45-55 green weapons and armor
@@ -1499,7 +1499,7 @@ collect Dream Dust##11176 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Nether Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 45-50 green weapons and armor
@@ -1508,7 +1508,7 @@ collect Greater Nether Essence##11175 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Nether Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 40-45 green weapons and armor
@@ -1517,7 +1517,7 @@ collect Lesser Nether Essence##11174 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Golden Darter",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Fishing') >= 355 end,
 condition_valid=function() return skill('Fishing') >= 355 end,
 condition_valid_msg="Your Fishing skill must be at least 355 to fish Golden Darter.",
@@ -1542,7 +1542,7 @@ collect Golden Darter##27438 |goto Terokkar Forest/0 51.32,41.91 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Figluster's Mudfish",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Fishing') >= 355 end,
 condition_valid=function() return skill('Fishing') >= 355 end,
 condition_valid_msg="Your Fishing skill must be at least 355 to fish Figluster's Mudfish.",
@@ -1567,7 +1567,7 @@ collect Figluster's Mudfish##27435 |goto Nagrand/0 57.97,32.98 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Icefin Bluefish",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Fishing') >= 355 end,
 condition_valid=function() return skill('Fishing') >= 355 end,
 condition_valid_msg="Your Fishing skill must be at least 355 to fish Icefin Bluefish.",
@@ -1592,7 +1592,7 @@ collect Icefin Bluefish##27437 |goto Nagrand/0 57.97,32.98 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Brilliant Smallfish",{
-cataready=true,
+mopready=true,
 },[[
 step
 Fish in the open water
@@ -1600,7 +1600,7 @@ collect Raw Brilliant Smallfish##6291 |n |goto Mulgore 48.60,52.66
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Slitherskin Mackerel",{
-cataready=true,
+mopready=true,
 },[[
 step
 Fish in the open water
@@ -1608,7 +1608,7 @@ collect Raw Slitherskin Mackerel##6303 |n |goto Durotar 56.41,10.85
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Longjaw Mud Snapper",{
-cataready=true,
+mopready=true,
 },[[
 step
 Fish in the Open Water
@@ -1616,7 +1616,7 @@ collect Raw Longjaw Mud Snapper##6289 |n |goto Orgrimmar/1 69.75,30.12
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Bristle Whisker Catfish",{
-cataready=true,
+mopready=true,
 },[[
 step
 Fish in the Open Water
@@ -1624,7 +1624,7 @@ collect Raw Bristle Whisker Catfish##6308 |n |goto Orgrimmar/1 69.75,30.12
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Rainbow Fin Albacore",{
-cataready=true,
+mopready=true,
 },[[
 step
 Fish in the Open Water
@@ -1632,7 +1632,7 @@ collect Raw Rainbow Fin Albacore##6361 |n |goto The Barrens 68.65,36.15
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Sagefish",{
-cataready=true,
+mopready=true,
 },[[
 step
 Fish from Sagefish Schools in the water around this area
@@ -1643,7 +1643,7 @@ You can find more around [42.70,13.29]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Mithril Head Trout",{
-cataready=true,
+mopready=true,
 },[[
 step
 Fish in the Open Water
@@ -1652,7 +1652,7 @@ collect Raw Mithril Head Trout##8365 |n |goto Desolace 21.47,74.18
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Rockscale Cod",{
-cataready=true,
+mopready=true,
 },[[
 step
 Fish in the Open Water
@@ -1661,7 +1661,7 @@ collect Raw Rockscale Cod##6362 |n |goto The Cape of Stranglethorn/0 35.81,53.43
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Sunscale Salmon",{
-cataready=true,
+mopready=true,
 },[[
 step
 Fish in the Open Water
@@ -1671,7 +1671,7 @@ collect Raw Sunscale Salmon##13760 |n |goto Feralas 75.58,44.52
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Herbalism (1-525)",{
-cataready=true,
+mopready=true,
 description="This guide will walk you through leveling 1-525 Herbalism",
 },[[
 step
@@ -2006,7 +2006,7 @@ click Whiptail##202752+
 Reach Level 525 Herbalism |skill Herbalism,525
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Silverleaf",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Tirisfal Glades
@@ -2024,7 +2024,7 @@ collect Silverleaf##765 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Peacebloom",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Tirisfal Glades
@@ -2042,7 +2042,7 @@ collect Peacebloom##2447 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Earthroot",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Mulgore
@@ -2079,7 +2079,7 @@ Click herbs as you follow the path around this area
 collect Earthroot##2449 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Briarthorn",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Path_One"
@@ -2114,7 +2114,7 @@ collect Briarthorn##2450 |n
 '|goto Silverpine Forest 49.04,32.38 < 20 |noway |c |next "Path_One"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Swiftthistle",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Path_One"
@@ -2151,7 +2151,7 @@ collect Swiftthistle##2452 |n
 '|goto Silverpine Forest 49.04,32.38 < 20 |noway |c |next "Path_One"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Liferoot",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Path_One"
@@ -2176,7 +2176,7 @@ collect Liferoot##3357 |n
 '|goto Wetlands 39.88,29.56 < 20 |noway |c |next "Path_One"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Fadeleaf",{
-cataready=true,
+mopready=true,
 },[[
 step
 map The Cape of Stranglethorn/0
@@ -2195,7 +2195,7 @@ collect Fadeleaf##3818 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Wildvine",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Vilebranch Enemies around this area
@@ -2206,7 +2206,7 @@ collect Wildvine##8153 |n |goto The Hinterlands 66.46,71.42
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Blindweed",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Swamp of Sorrows
@@ -2231,7 +2231,7 @@ collect Blindweed##8839 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Ghost Mushroom",{
-cataready=true,
+mopready=true,
 },[[
 step
 map The Hinterlands
@@ -2246,7 +2246,7 @@ collect Ghost Mushroom##8845 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Mountain Silversage",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Un'Goro Crater
@@ -2272,7 +2272,7 @@ collect Mountain Silversage##13465 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Icecap",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Winterspring
@@ -2294,7 +2294,7 @@ collect Icecap##13467 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Black Lotus",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Path_One"
@@ -2329,7 +2329,7 @@ collect Black Lotus##13468 |n
 '|goto Burning Steppes 75.56,48.10 < 20 |noway |c |next "Path_One"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Mageroyal",{
-cataready=true,
+mopready=true,
 },[[
 step
 map The Barrens/0
@@ -2349,7 +2349,7 @@ collect Mageroyal##785 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Stranglekelp",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Path_One"
@@ -2368,7 +2368,7 @@ collect Stranglekelp##3820 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Bruiseweed",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Bruiseweed_1"
@@ -2386,7 +2386,7 @@ collect Bruiseweed##2453 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Wild Steelbloom",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Northern Stranglethorn/0
@@ -2404,7 +2404,7 @@ collect Wild Steelbloom##3355 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Grave Moss",{
-cataready=true,
+mopready=true,
 },[[
 step
 Click herbs around this area
@@ -2416,7 +2416,7 @@ You can find more inside the crypt at [44.27,25.39]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Kingsblood",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Western Plaguelands/0
@@ -2432,7 +2432,7 @@ collect Kingsblood##3356 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Goldthorn",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Northern Stranglethorn/0
@@ -2451,7 +2451,7 @@ collect Goldthorn##3821 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Khadgar's Whisker",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Western Plaguelands/0
@@ -2467,7 +2467,7 @@ collect Khadgar's Whisker##3358 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Dragon's Teeth",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Badlands/0
@@ -2481,7 +2481,7 @@ collect Dragon's Teeth##3819 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Firebloom",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Searing Gorge/0
@@ -2499,7 +2499,7 @@ collect Firebloom##4625 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Purple Lotus",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Start_Path"
@@ -2558,7 +2558,7 @@ click Purple Lotus##142140+
 collect Purple Lotus##8831 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Sungrass",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Searing Gorge/0
@@ -2576,7 +2576,7 @@ collect Sungrass##8838 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Gromsblood",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Felwood/0
@@ -2602,7 +2602,7 @@ collect Gromsblood##8846 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Golden Sansam",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Swamp of Sorrows/0
@@ -2618,7 +2618,7 @@ collect Golden Sansam##13464 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Dreamfoil",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Felwood/0
@@ -2644,7 +2644,7 @@ collect Dreamfoil##13463 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Sorrowbloom",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Swamp of Sorrows/0
@@ -2668,7 +2668,7 @@ collect Sorrowbloom##13466 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Mining (1-525)",{
-cataready=true,
+mopready=true,
 description="This guide will walk you through leveling 1-525 Mining",
 },[[
 step
@@ -2937,7 +2937,7 @@ click Rich Elementium Vein##202741+
 Reach Level 525 Mining |skill Mining,525
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Copper Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Durotar
@@ -2954,7 +2954,7 @@ collect Copper Ore##2770 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Rough Stone",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Durotar
@@ -2971,7 +2971,7 @@ collect Rough Stone##2835 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Iron Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Feralas
@@ -3004,7 +3004,7 @@ collect Iron Ore##2772 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Heavy Stone",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Feralas
@@ -3037,7 +3037,7 @@ collect Heavy Stone##2838 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Gold Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Feralas
@@ -3070,7 +3070,7 @@ collect Gold Ore##2776 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Mithril Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Begin_Farming_Mithril_Ore"
@@ -3112,7 +3112,7 @@ collect Mithril Ore##3858 |n
 '|goto The Hinterlands/0 21.44,56.49 < 30 |c |noway |next "Begin_Farming_Mithril_Ore"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Solid Stone",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Begin_Farming_Solid_Stone"
@@ -3154,7 +3154,7 @@ collect Solid Stone##7912 |n
 '|goto The Hinterlands/0 21.44,56.49 < 30 |c |noway |next "Begin_Farming_Solid_Stone"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Truesilver Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Begin_Farming_Truesilver_Ore"
@@ -3196,7 +3196,7 @@ collect Truesilver Ore##7911 |n
 '|goto The Hinterlands/0 21.44,56.49 < 30 |c |noway |next "Begin_Farming_Truesilver_Ore"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Dark Iron Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Burning Steppes
@@ -3214,7 +3214,7 @@ collect Dark Iron Ore##11370 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Thorium Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Un'Goro Crater
@@ -3238,7 +3238,7 @@ collect Thorium Ore##10620 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Dense Stone",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Un'Goro Crater
@@ -3262,7 +3262,7 @@ collect Dense Stone##12365 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Guardian Stone",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Un'Goro Crater
@@ -3277,7 +3277,7 @@ collect Guardian Stone##12809 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Elementium Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 Follow the path up |goto Searing Gorge 33.53,75.22 < 20 |only if walking
@@ -3297,7 +3297,7 @@ collect Elementium Ore##18562 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Tin Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Kalimdor/0
@@ -3322,7 +3322,7 @@ collect Tin Ore##2771 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Coarse Stone",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Kalimdor/0
@@ -3347,7 +3347,7 @@ collect Coarse Stone##2836 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Silver Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Kalimdor/0
@@ -3372,7 +3372,7 @@ collect Silver Ore##2775 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Moss Agate",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Kalimdor/0
@@ -3398,7 +3398,7 @@ collect Moss Agate##1206 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Skinning (1-525)",{
-cataready=true,
+mopready=true,
 description="This guide will walk you through leveling 1-525 Skinning",
 },[[
 step
@@ -3546,7 +3546,7 @@ Train Illustrious Grand Master Skinning |skillmax Skinning,525 |goto Orgrimmar/1
 |tip You must be at least level 75 to learn Illustrious Grand Master Skinning. |only if level < 75
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Green Whelp Scale",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Feralas/0
@@ -3561,7 +3561,7 @@ collect Green Whelp Scale##7392 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Black Whelp Scale",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Wetlands/0
@@ -3575,7 +3575,7 @@ collect Black Whelp Scale##7286 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Ruined Leather Scraps",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Durotar/0
@@ -3588,7 +3588,7 @@ collect Ruined Leather Scraps##2934 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Light Leather",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Durotar/0
@@ -3601,7 +3601,7 @@ collect Light Leather##2318 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Slimy Murloc Scale",{
-cataready=true,
+mopready=true,
 },[[
 step
 Enter the Blackfathom Deeps dungeon:
@@ -3610,7 +3610,7 @@ collect Slimy Murloc Scale##5784 |n |goto Ashenvale/0 14.44,14.28
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Medium Hide",{
-cataready=true,
+mopready=true,
 },[[
 step
 step
@@ -3627,7 +3627,7 @@ collect Medium Hide##4232 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Heavy Leather",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -3642,7 +3642,7 @@ You can find more around: |notinsticky
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Raptor Hide",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Northern Stranglethorn/0
@@ -3654,7 +3654,7 @@ collect Raptor Hide##4461 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Heavy Hide",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -3665,7 +3665,7 @@ collect Heavy Hide##4235 |n |goto The Hinterlands 16.19,50.97
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Thick Murloc Scale",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Mirefin enemies around this area
@@ -3673,7 +3673,7 @@ collect Thick Murloc Scale##5785 |n |goto Dustwallow Marsh 58.78,9.45
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Thick Leather",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Ravasaur enemies around this area
@@ -3686,7 +3686,7 @@ You can find more around: |notinsticky
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Thick Hide",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -3701,7 +3701,7 @@ You can find more around: |notinsticky
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Worn Dragonscale",{
-cataready=true,
+mopready=true,
 },[[
 step
 Enter the Sunken Temple dungeon:
@@ -3712,7 +3712,7 @@ collect Worn Dragonscale##8165 |n |goto Swamp of Sorrows/0 69.63,53.77
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Devilsaur Leather",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Devilsaur enemies around this area
@@ -3730,7 +3730,7 @@ You can find more around: |notinsticky
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Rugged Leather",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Ice Thistle enemies around this area
@@ -3742,7 +3742,7 @@ You can find more inside the cave at [66.87,54.64]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Green Dragonscale",{
-cataready=true,
+mopready=true,
 },[[
 step
 Enter the Sunken Temple dungeon:
@@ -3753,7 +3753,7 @@ collect Green Dragonscale##15412 |n |goto Swamp of Sorrows/0 69.63,53.77
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Rugged Hide",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Ice Thistle enemies around this area
@@ -3766,7 +3766,7 @@ You can find more inside the cave at [67.67,41.72]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Black Dragonscale",{
-cataready=true,
+mopready=true,
 },[[
 step
 Enter the Blackwing Lair raid:
@@ -3778,7 +3778,7 @@ collect Black Dragonscale##15416 |n |goto Searing Gorge/0 40.57,95.81
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Heavy Scorpid Scale",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Stonelash enemies around this area
@@ -3797,7 +3797,7 @@ You can find more around: |notinsticky
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Core Leather",{
-cataready=true,
+mopready=true,
 },[[
 step
 Enter the Molten Core Raid:
@@ -3809,7 +3809,7 @@ collect Core Leather##17012 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Light Hide",{
-cataready=true,
+mopready=true,
 },[[
 step
 map The Barrens/0
@@ -3825,7 +3825,7 @@ collect Light Hide##783 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Medium Leather",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Yeti enemies around this area
@@ -3836,7 +3836,7 @@ collect Medium Leather##2319 |n |goto Hillsbrad Foothills 46.64,54.41
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Turtle Scale",{
-cataready=true,
+mopready=true,
 },[[
 step
 kill Steeljaw Snapper##14123+
@@ -3850,7 +3850,7 @@ You can find more around: |notinsticky
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Scorpid Scale",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Desolace/0
@@ -3863,7 +3863,7 @@ collect Scorpid Scale##8154 |n |goto Tanaris/0 50.93,42.32
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Warbear Leather",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Blasted Lands/0
@@ -3878,10 +3878,10 @@ collect Warbear Leather##15419 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Linen Cloth",{
-cataready=true,
+mopready=true,
 },[[
 step
-map Orgrimmar/0
+map Orgrimmar/1
 path follow smart; loop off; ants straight; dist 30
 path    55.36,51.28
 map Orgrimmar
@@ -3894,7 +3894,7 @@ collect Linen Cloth##2589 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Runecloth",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Twilight enemies around this area
@@ -3903,7 +3903,7 @@ You can find more around [33.53,34.87]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Felcloth",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Jadefire enemies around this area
@@ -3912,7 +3912,7 @@ You can find more around [32.71,66.66]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Spider's Silk",{
-cataready=true,
+mopready=true,
 },[[
 step
 Enter the cave |goto Wetlands 52.79,62.90 < 20 |walk
@@ -3923,7 +3923,7 @@ collect Spider's Silk##3182 |n |goto Wetlands 48.51,60.67
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Shadow Silk",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill spider enemies in the area
@@ -3933,7 +3933,7 @@ You can find more around [66.70,68.65]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Ironweb Spider Silk",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Silithus/0
@@ -3947,7 +3947,7 @@ collect Ironweb Spider Silk##14227 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Wool Cloth",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Venture Co. enemies around this area
@@ -3956,7 +3956,7 @@ collect Wool Cloth##2592 |n |goto The Barrens/0 66.28,13.05
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Silk Cloth",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Grimtotem enemies around this area
@@ -3965,7 +3965,7 @@ collect 804 Silk Cloth##4306 |goto Thousand Needles 13.26,5.84 |or
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Mageweave Cloth",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Dunemaul enemies around this area
@@ -3973,7 +3973,7 @@ collect Mageweave Cloth##4338 |n |goto Tanaris/0 40.50,55.50
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Mooncloth",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Farm_Felcloth"
@@ -3987,7 +3987,7 @@ collect Mooncloth##14342 |n |goto Ashenvale 60.19,72.90
 Click here to farm more Felcloth |confirm |next "Farm_Felcloth"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Thick Spider's Silk",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Spider enemies around this area
@@ -3997,7 +3997,7 @@ collect Thick Spider's Silk##4337 |n |goto Dustwallow Marsh/0 34.67,22.20
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Righteous Orb",{
-cataready=true,
+mopready=true,
 },[[
 step
 Enter the Stratholme Dungeon
@@ -4011,7 +4011,7 @@ Kill Crimson enemies around this area
 collect Righteous Orb##12811 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Demonic Rune",{
-cataready=true,
+mopready=true,
 },[[
 step
 Follow the path up |goto Felwood 38.44,59.39 < 20 |only if walking
@@ -4024,7 +4024,7 @@ collect Demonic Rune##12662 |n |goto Felwood 37.61,54.67
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Dark Rune",{
-cataready=true,
+mopready=true,
 },[[
 step
 Enter the Scholomance Dungeon
@@ -4038,7 +4038,7 @@ collect Dark Rune##20520 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Sharp Claw",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Ghostlands/0
@@ -4052,7 +4052,7 @@ collect Sharp Claw##5635 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Ogre Tannin",{
-cataready=true,
+mopready=true,
 },[[
 step
 Enter the Dire Maul West Dungeon Entrance
@@ -4067,7 +4067,7 @@ collect Ogre Tannin##18240 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Small Venom Sac",{
-cataready=true,
+mopready=true,
 },[[
 step
 Enter the mine |goto Silverpine Forest 35.64,13.54 < 20 |walk
@@ -4079,7 +4079,7 @@ collect Small Venom Sac##1475 |n |goto Silverpine Forest 35.38,8.06
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Huge Venom Sac",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Silithus/0
@@ -4093,7 +4093,7 @@ collect Huge Venom Sac##19441 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Black Pearl",{
-cataready=true,
+mopready=true,
 },[[
 step
 map The Hinterlands
@@ -4109,7 +4109,7 @@ collect Black Pearl##7971 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Golden Pearl",{
-cataready=true,
+mopready=true,
 },[[
 step
 map The Hinterlands
@@ -4125,7 +4125,7 @@ collect Golden Pearl##13926 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Zesty Clam Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map The Hinterlands
@@ -4140,7 +4140,7 @@ collect Zesty Clam Meat##7974 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Iridescent Pearl",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Wetlands
@@ -4157,7 +4157,7 @@ collect Iridescent Pearl##5500 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Giant Egg",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Roc enemies around this area

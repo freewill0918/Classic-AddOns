@@ -54794,7 +54794,7 @@ talk Minalei##19046
 |tip Inside the building.
 home Shattrath City |goto Shattrath City/0 28.29,49.36 |q 10553 |future
 |next "Aldor_Scryers_Merge"
-|only if haveq(10554)
+|only if haveq(10021)
 step
 label "Scryers_Allegiance"
 talk Archmage Khadgar##18166
@@ -54818,7 +54818,7 @@ talk Innkeeper Haelthol##19232
 |tip Inside the building.
 home Shattrath City |goto Shattrath City/0 56.34,81.56 |q 9793 |future
 |next "Aldor_Scryers_Merge"
-|only if haveq(10553)
+|only if completedq(10553)
 step
 label "Aldor_Scryers_Merge"
 Cross the bridge |goto Shattrath City/0 58.35,25.41 < 20 |only if walking

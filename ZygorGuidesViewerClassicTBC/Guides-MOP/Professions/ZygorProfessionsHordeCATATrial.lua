@@ -5,7 +5,7 @@ if ZGV:DoMutex("ProfessionsH") then return end
 ZygorGuidesViewer.GuideMenuTier = "TRI"
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Cooking + Fishing (1-525)")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Chunk of Boar Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Durotar
@@ -31,7 +31,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming 
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Strider Meat")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Kodo Meat")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Bear Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Darkshore/0
@@ -43,7 +43,7 @@ collect Bear Meat##3173 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crawler Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Westfall
@@ -66,7 +66,7 @@ collect Crawler Meat##2674 |n
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Crawler Claw")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Clam Meat",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Murloc enemies around this area
@@ -103,7 +103,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Elemental Water")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Elemental Air")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Strange Dust",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 5-20 green weapons and armor
@@ -113,7 +113,7 @@ collect Strange Dust##10940 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Magic Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 3-12 green weapons and armor
@@ -123,7 +123,7 @@ collect Lesser Magic Essence##10938 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Magic Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 9-21 green weapons and armor
@@ -139,7 +139,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Farmi
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Farming Guides\\Large Brilliant Shard")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Farming Guides\\Illusion Dust")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Astral Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 20-25 green weapons and armor
@@ -148,7 +148,7 @@ collect Lesser Astral Essence##10998 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Astral Essence",{
-cataready=true,
+mopready=true,
 },[[
 step
 Disenchant level 20-30 green weapons and armor
@@ -177,7 +177,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming 
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Raw Sunscale Salmon")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Herbalism (1-525)")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Silverleaf",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Tirisfal Glades
@@ -195,7 +195,7 @@ collect Silverleaf##765 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Peacebloom",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Tirisfal Glades
@@ -214,7 +214,7 @@ collect Peacebloom##2447 |n
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Earthroot")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Briarthorn",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Path_One"
@@ -260,7 +260,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farmin
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Mageroyal")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Stranglekelp")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Bruiseweed",{
-cataready=true,
+mopready=true,
 },[[
 step
 label "Bruiseweed_1"
@@ -292,7 +292,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farmin
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Sorrowbloom")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Mining (1-525)")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Copper Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Durotar
@@ -309,7 +309,7 @@ collect Copper Ore##2770 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Rough Stone",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Durotar
@@ -327,7 +327,7 @@ collect Rough Stone##2835 |n
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming Guides\\Iron Ore")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Heavy Stone",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Feralas
@@ -369,7 +369,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming G
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming Guides\\Guardian Stone")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming Guides\\Elementium Ore")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Tin Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Kalimdor/0
@@ -394,7 +394,7 @@ collect Tin Ore##2771 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Coarse Stone",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Kalimdor/0
@@ -419,7 +419,7 @@ collect Coarse Stone##2836 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Silver Ore",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Kalimdor/0
@@ -444,7 +444,7 @@ collect Silver Ore##2775 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Moss Agate",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Kalimdor/0
@@ -473,7 +473,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Skinnin
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Green Whelp Scale")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Black Whelp Scale")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Ruined Leather Scraps",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Durotar/0
@@ -486,7 +486,7 @@ collect Ruined Leather Scraps##2934 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Light Leather",{
-cataready=true,
+mopready=true,
 },[[
 step
 map Durotar/0
@@ -516,7 +516,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Core Leather")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Light Hide")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Medium Leather",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Yeti enemies around this area
@@ -530,10 +530,10 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Scorpid Scale")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Warbear Leather")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Linen Cloth",{
-cataready=true,
+mopready=true,
 },[[
 step
-map Orgrimmar/0
+map Orgrimmar/1
 path follow smart; loop off; ants straight; dist 30
 path    55.36,51.28
 map Orgrimmar
@@ -551,7 +551,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Tailoring\\Farmin
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Tailoring\\Farming Guides\\Shadow Silk")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Tailoring\\Farming Guides\\Ironweb Spider Silk")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Wool Cloth",{
-cataready=true,
+mopready=true,
 },[[
 step
 Kill Venture Co. enemies around this area

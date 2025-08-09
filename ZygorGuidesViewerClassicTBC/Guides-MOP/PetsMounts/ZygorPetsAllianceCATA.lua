@@ -10,6 +10,7 @@ source='Profession',
 description="This battle pet has a 1 in 5 chance to drop as a reward for catching Mr. Pinchy or it can be purchased from the Auction House.",
 keywords={"Aquatic","Mr.","Pinchy"},
 pet=132,
+mopready=true,
 },[[
 step
 cast Fishing##7620
@@ -33,6 +34,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor in Dragonblight after reaching Exalted reputation with the Kalu'ak.",
 keywords={"Aquatic","Dragonblight"},
 pet=198,
+mopready=true,
 },[[
 step
 Reach Exalted reputation with The Kalu'ak |complete rep("The Kalu'ak") >= Exalted |or
@@ -54,6 +56,7 @@ source='Profession',
 description="This battle pet can be caught along the coastal beach of Darkmoon Island using the fishing profession.",
 keywords={"Aquatic","Darkmoon","Faire"},
 pet=340,
+mopready=true,
 },[[
 step
 Wait for the "Darkmoon Faire" Event |complete isevent("Darkmoon Faire")
@@ -76,6 +79,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Aquatic","Auction","House"},
 pet=629,
+mopready=true,
 },[[
 step
 buy Shore Crawler pet
@@ -89,6 +93,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Crystal Lake in Elwynn Forest.",
 keywords={"Aquatic","Elwynn","Forest"},
 pet=419,
+mopready=true,
 },[[
 step
 clicknpc Small Frog##61071
@@ -105,6 +110,7 @@ source='Profession',
 description="This battle pet can be looted from rewards given out for completing any Northrend fishing daily quest or it can be purchased from the Auction House.",
 keywords={"Aquatic","Northrend"},
 pet=211,
+mopready=true,
 },[[
 step
 collect Bag of Fishing Treasures##46007 |n
@@ -125,6 +131,7 @@ patch='111100',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Aquatic pet: Speedy.",
 pet=125,
+mopready=true,
 },[[
 step
 Wait for the Children's Week Event |complete isevent("Children's Week") |or
@@ -148,6 +155,7 @@ patch='31000',
 source='Profession',
 description="This guide will walk you through obtaining the Aquatic pet: Strand Crawler.",
 pet=211,
+mopready=true,
 },[[
 step
 label "select"
@@ -287,6 +295,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Beast","Auction","House"},
 pet=75,
+mopready=true,
 },[[
 step
 collect Black Kingsnake##10360 |n
@@ -305,6 +314,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in Elwynn Forest.",
 keywords={"Beast","Elwynn","Forest"},
 pet=40,
+mopready=true,
 },[[
 step
 Enter the building |goto Elwynn Forest/0 44.39,53.08 > 30 |walk
@@ -326,6 +336,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Beast","Auction","House"},
 pet=77,
+mopready=true,
 },[[
 step
 collect Brown Snake##10361 |n
@@ -344,6 +355,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in Elwynn Forest.",
 keywords={"Beast","Elwynn","Forest"},
 pet=41,
+mopready=true,
 },[[
 step
 Enter the building |goto Elwynn Forest/0 44.39,53.08 > 30 |walk
@@ -365,6 +377,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Beast","Auction","House"},
 pet=78,
+mopready=true,
 },[[
 step
 collect Crimson Snake##10392 |n
@@ -383,6 +396,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in Icecrown after you champion a Dwarf character in the Argent Tournament.",
 keywords={"Beast","Icecrown"},
 pet=205,
+mopready=true,
 },[[
 step
 Enter the tent |goto Icecrown/0 75.90,20.00 < 30 |walk
@@ -409,6 +423,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Beast","Auction","House"},
 pet=207,
+mopready=true,
 },[[
 step
 collect Durotar Scorpion##44973 |n
@@ -427,6 +442,7 @@ source='WorldEvent',
 description="This battle pet can be purchased from a vendor during the Hollow's End world event.",
 keywords={"Beast","Hollow's","End"},
 pet=319,
+mopready=true,
 },[[
 step
 talk Pippi##109685
@@ -450,6 +466,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor in the Molten Front.",
 keywords={"Beast","Molten","Front"},
 pet=317,
+mopready=true,
 },[[
 step
 Complete the Quest _Calling the Ancients_ |complete completedq(29283)
@@ -475,6 +492,7 @@ source='Quest',
 description="This battle pet is rewarded to you after you have completed the quest An Old Friend.",
 keywords={"Beast","An","Old","Friend"},
 pet=307,
+mopready=true,
 },[[
 step
 talk Brother Nimetz##739
@@ -669,6 +687,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in Elwynn Forest.",
 keywords={"Beast","Elwynn","Forest"},
 pet=43,
+mopready=true,
 },[[
 step
 Enter the building |goto Elwynn Forest/0 44.39,53.08 > 30 |walk
@@ -690,6 +709,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in Elwynn Forest.",
 keywords={"Beast","Elwynn","Forest"},
 pet=45,
+mopready=true,
 },[[
 step
 Enter the building |goto Elwynn Forest/0 44.39,53.08 > 30 |walk
@@ -711,6 +731,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in Stormwind.",
 keywords={"Beast","Stormwind"},
 pet=46,
+mopready=true,
 },[[
 step
 map Stormwind City
@@ -740,6 +761,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Black Kingsnake.",
 pet=75,
+mopready=true,
 },[[
 step
 #include "auctioneer"
@@ -753,6 +775,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Bombay Cat.",
 pet=40,
+mopready=true,
 },[[
 step
 talk Donni Anthania##6367
@@ -765,6 +788,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Brown Snake.",
 pet=77,
+mopready=true,
 },[[
 step
 #include "auctioneer"
@@ -778,6 +802,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Cornish Rex Cat.",
 pet=41,
+mopready=true,
 },[[
 step
 talk Donni Anthania##6367
@@ -790,6 +815,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Crimson Snake.",
 pet=78,
+mopready=true,
 },[[
 step
 talk Dealer Rashaad##20980
@@ -802,6 +828,7 @@ patch='31100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Dun Morogh Cub.",
 pet=205,
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the Argent Tournament Grounds Valiant Rank Dailies guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -930,6 +957,7 @@ patch='31100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Durotar Scorpion.",
 pet=207,
+mopready=true,
 },[[
 step
 #include "auctioneer"
@@ -943,6 +971,7 @@ patch='42200',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Beast pet: Feline Familiar.",
 pet=319,
+mopready=true,
 },[[
 step
 This pet can only be obtained during the Hallows End event.
@@ -958,6 +987,7 @@ patch='42000',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Hyjal Bear Cub.",
 pet=317,
+mopready=true,
 },[[
 step
 You will have to do the _Firelands dailies_ quests to complete the quest _"Calling the Ancients"_
@@ -980,6 +1010,7 @@ patch='41000',
 source='Quest',
 description="This guide will walk you through obtaining the Beast pet: Lashtail Hatchling.",
 pet=307,
+mopready=true,
 },[[
 step
 talk James Stillair##43045
@@ -1464,6 +1495,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Orange Tabby Cat.",
 pet=43,
+mopready=true,
 },[[
 step
 talk Donni Anthania##6367
@@ -1476,6 +1508,7 @@ patch='41000',
 source='Quest',
 description="This guide will walk you through obtaining the Beast pet: Panther Cub.",
 pet=301,
+mopready=true,
 },[[
 step
 talk Bwemba##52654
@@ -1565,6 +1598,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Silver Tabby Cat.",
 pet=45,
+mopready=true,
 },[[
 step
 talk Donni Anthania##6367
@@ -1578,6 +1612,7 @@ source='Vendor',
 description="This battle pet can be purchased from a guild vendor after you earn the Critter Kill Squad guild achievement.",
 keywords={"Critter","Guild","Vendor"},
 pet=272,
+mopready=true,
 },[[
 step
 Earn the Critter Kill Squad Guild Achievement |complete achieved(5144)
@@ -1603,6 +1638,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Critter","Auction","House"},
 pet=70,
+mopready=true,
 },[[
 step
 collect Prairie Dog Whistle##10394 |n
@@ -1621,6 +1657,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Durotar.",
 keywords={"Critter","Durotar"},
 pet=467,
+mopready=true,
 },[[
 step
 clicknpc Dung Beetle##62115
@@ -1637,6 +1674,7 @@ source='WorldEvent',
 description="This battle pet is a reward for completing Children's Week Quests.",
 keywords={"Critter","Children's","Week"},
 pet=158,
+mopready=true,
 },[[
 step
 collect Egbert's Egg##32616 |n
@@ -1657,6 +1695,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in Icecrown after you champion a Human character in the Argent Tournament.",
 keywords={"Critter","Icecrown"},
 pet=209,
+mopready=true,
 },[[
 step
 Enter the tent |goto Icecrown/0 75.90,20.00 < 30 |walk
@@ -1683,6 +1722,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around The Hinterlands.",
 keywords={"Critter","The","Hinterlands"},
 pet=448,
+mopready=true,
 },[[
 step
 clicknpc Hare##61751
@@ -1699,6 +1739,7 @@ source='WorldEvent',
 description="This battle pet is a reward for completing Children's Week Quests.",
 keywords={"Critter","Children's","Week"},
 pet=126,
+mopready=true,
 },[[
 step
 collect Piglet's Collar##23007 |n
@@ -1719,6 +1760,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Critter","Auction","House"},
 pet=210,
+mopready=true,
 },[[
 step
 collect Mulgore Hatchling##44980 |n
@@ -1737,6 +1779,7 @@ source='WorldEvent',
 description="This battle pet is a reward for completing Children's Week Quests.",
 keywords={"Critter","Children's","Week"},
 pet=159,
+mopready=true,
 },[[
 step
 collect Elekk Training Collar##32622 |n
@@ -1757,6 +1800,7 @@ source='WorldEvent',
 description="You can purchase this battle pet from a vendor in Dun Morogh during the Brewfest event.",
 keywords={"Critter","Brewfest"},
 pet=166,
+mopready=true,
 },[[
 step
 talk Belbi Quikswitch##23710
@@ -1779,6 +1823,7 @@ source='Drop',
 description="This battle pet has a 1 in 335 chance to drop from a Sack of Pet Supplies or you can purchase it from the Auction House.",
 keywords={"Critter","Auction","House"},
 pet=381,
+mopready=true,
 },[[
 step
 collect Porcupette##89587 |n
@@ -1799,6 +1844,7 @@ source='WorldEvent',
 description="This battle pet is a reward for completing Children's Week Quests.",
 keywords={"Critter","Children's","Week"},
 pet=289,
+mopready=true,
 },[[
 step
 collect Snail Shell##66073 |n
@@ -1819,6 +1865,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in Dun Morogh.",
 keywords={"Critter","Dun","Morogh"},
 pet=72,
+mopready=true,
 },[[
 step
 talk Yarlyn Amberstill##1263
@@ -1839,6 +1886,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor in Netherstorm.",
 keywords={"Critter","Netherstorm"},
 pet=55,
+mopready=true,
 },[[
 step
 talk Dealer Rashaad##20980
@@ -1859,6 +1907,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Canals in the Undercity.",
 keywords={"Critter","Undercity"},
 pet=454,
+mopready=true,
 },[[
 step
 clicknpc Undercity Rat##61889
@@ -1876,6 +1925,7 @@ source='WorldEvent',
 description="This battle pet is a reward for completing Children's Week Quests.",
 keywords={"Critter","Children's","Week"},
 pet=127,
+mopready=true,
 },[[
 step
 collect Rat Cage##23015 |n
@@ -1896,6 +1946,7 @@ source='WorldEvent',
 description="This battle pet has a 1 in 4 chance to drop from a Gaily Wrapped Present during the Feast of Winter Veil event.",
 keywords={"Critter","Feast","Of","Winter","Veil"},
 pet=118,
+mopready=true,
 },[[
 step
 collect Jingling Bell##21308 |n
@@ -1916,6 +1967,7 @@ source='WorldEvent',
 description="This battle pet is rewarded to you after completing the quest Catch the Wild Wolpertinger! during the Brewfest event.",
 keywords={"Critter","Brewfest"},
 pet=153,
+mopready=true,
 },[[
 step
 talk Goldark Snipehunter##23486
@@ -1948,6 +2000,7 @@ patch='40300',
 source='Vendor',
 description="This guide will walk you through obtaining the Critter pet: Armadillo Pup.",
 pet=272,
+mopready=true,
 },[[
 step
 This pet requires your guild to have the achievement _"Critter Kill Squad"_ completed
@@ -1963,6 +2016,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Critter pet: Brown Prairie Dog.",
 pet=70,
+mopready=true,
 },[[
 step
 #include "auctioneer"
@@ -1976,6 +2030,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will walk you through obtaining the Critter pet: Dung Beetle.",
 pet=467,
+mopready=true,
 },[[
 step
 Challenge one to a pet battle and capture it
@@ -1987,6 +2042,7 @@ patch='31100',
 source='Vendor',
 description="This guide will walk you through obtaining the Critter pet: Elwynn Lamb.",
 pet=209,
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the Argent Tournament Grounds Valiant Rank Dailies guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -2112,6 +2168,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will walk you through obtaining the Critter pet: Hare.",
 pet=448,
+mopready=true,
 },[[
 step
 Challenge one to a pet battle and capture it
@@ -2123,6 +2180,7 @@ patch='31100',
 source='Vendor',
 description="This guide will walk you through obtaining the Critter pet: Mulgore Hatchling.",
 pet=210,
+mopready=true,
 },[[
 step
 #include "auctioneer"
@@ -2136,6 +2194,7 @@ patch='24000',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Critter pet: Pint-Sized Pink Pachyderm.",
 pet=166,
+mopready=true,
 },[[
 step
 This pet is only availiable during the Brewfest Holiday
@@ -2155,6 +2214,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Critter pet: Snowshoe Rabbit.",
 pet=72,
+mopready=true,
 },[[
 step
 talk Yarlyn Amberstill##1263
@@ -2167,6 +2227,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Critter pet: Undercity Cockroach.",
 pet=55,
+mopready=true,
 },[[
 step
 talk Dealer Rashaad##20980
@@ -2179,6 +2240,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will walk you through obtaining the Critter pet: Undercity Rat.",
 pet=454,
+mopready=true,
 },[[
 step
 This pet is only found inside The Undercity.
@@ -2194,6 +2256,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Critter pet: White Kitten.",
 pet=46,
+mopready=true,
 },[[
 step
 map Stormwind City
@@ -2215,6 +2278,7 @@ patch='111100',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Critter pet: Winter Reindeer.",
 pet=118,
+mopready=true,
 },[[
 step
 These pets are only availiable during the _Winter Veil_ Holiday
@@ -2229,6 +2293,7 @@ patch='22200',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Critter pet: Wolpertinger.",
 pet=153,
+mopready=true,
 },[[
 step
 You can only obtain this pet during the Brewfest event.
@@ -2252,6 +2317,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Dragonkin","Auction","House"},
 pet=142,
+mopready=true,
 },[[
 step
 collect Golden Dragonhawk Hatchling##29953 |n
@@ -2270,6 +2336,7 @@ source='Vendor',
 description="This battle pet can be purchased from a guild vendor after you earn the Dragonwrath, Tarecgosa's Rest- Guild Edition achievement.",
 keywords={"Dragonkin","Guild","Vendor"},
 pet=320,
+mopready=true,
 },[[
 step
 Earn the Dragonwrath, Tarecgosa's Rest- Guild Edition Achievement |complete achieved(5840)
@@ -2295,6 +2362,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Dragonkin","Auction","House"},
 pet=143,
+mopready=true,
 },[[
 step
 collect Red Dragonhawk Hatchling##29956 |n
@@ -2313,6 +2381,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Dragonkin","Auction","House"},
 pet=144,
+mopready=true,
 },[[
 step
 collect Silver Dragonhawk Hatchling##29957 |n
@@ -2331,6 +2400,7 @@ source='BlackMarket',
 description="This battle pet has a chance to drop from Unclaimed Black Market Container.",
 keywords={"Dragonkin","Black","Market"},
 pet=802,
+mopready=true,
 },[[
 step
 talk Madam Goya##100986
@@ -2352,6 +2422,7 @@ patch='20100',
 source='Vendor',
 description="This guide will walk you through obtaining the Dragonkin pet: Golden Dragonhawk Hatchling.",
 pet=142,
+mopready=true,
 },[[
 step
 #include "auctioneer"
@@ -2365,6 +2436,7 @@ patch='42000',
 source='Vendor',
 description="This guide will walk you through obtaining the Dragonkin pet: Lil' Tarecgosa.",
 pet=320,
+mopready=true,
 },[[
 step
 This pet requires that your guild_ has the achievement "Dragonwrath, Tarecgosa's Rest - Guild Edition"
@@ -2380,6 +2452,7 @@ patch='20100',
 source='Vendor',
 description="This guide will walk you through obtaining the Dragonkin pet: Red Dragonhawk Hatchling.",
 pet=143,
+mopready=true,
 },[[
 step
 You will have to buy this from a neutral Auction House, as it is not available to Alliance characters
@@ -2392,6 +2465,7 @@ patch='20100',
 source='Vendor',
 description="This guide will walk you through obtaining the Dragonkin pet: Silver Dragonhawk Hatchling.",
 pet=144,
+mopready=true,
 },[[
 step
 #include "auctioneer"
@@ -2405,6 +2479,7 @@ patch='50100',
 source='unknown',
 description="This guide will walk you through obtaining the Dragonkin pet: Thundering Serpent Hatchling.",
 pet=802,
+mopready=true,
 },[[
 step
 This pet requires you to be _Revered_ with your guild.
@@ -2421,6 +2496,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in Icecrown after you champion a Draenei character in the Argent Tournament.",
 keywords={"Elemental","Icecrown"},
 pet=212,
+mopready=true,
 },[[
 step
 Enter the tent |goto Icecrown/0 75.90,20.00 < 30 |walk
@@ -2447,6 +2523,7 @@ source='Vendor',
 description="This battle pet can be purchased from a guild vendor after you earn the United Nations guild achievement.",
 keywords={"Elemental","Guild","Vendor"},
 pet=270,
+mopready=true,
 },[[
 step
 Earn the United Nations Guild Achievement |complete achieved(5892)
@@ -2472,6 +2549,7 @@ source='Drop',
 description="This battle pet has a chance to drop from mining Elementium Veins or you can purchase it from the Auction House.",
 keywords={"Elemental","Auction","House"},
 pet=293,
+mopready=true,
 },[[
 step
 collect Elementium Geode##67282 |n
@@ -2491,6 +2569,7 @@ source='WorldEvent',
 description="This battle pet has a chance to drop from Stolen Presents during the Feast of Winter Veil event or you can purchase it from the Auction House.",
 keywords={"Elemental","Feast","Of","Winter","Veil"},
 pet=337,
+mopready=true,
 },[[
 step
 collect Stolen Present##116762 |n
@@ -2514,6 +2593,7 @@ source='Achievement',
 description="This battle pet is a reward for completing the Rock Lover achievement.",
 keywords={"Elemental","Rock","Lover"},
 pet=265,
+mopready=true,
 },[[
 step
 collect Pebble##60869 |n
@@ -2533,6 +2613,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor in the Molten Front.",
 keywords={"Elemental","Molten","Front"},
 pet=172,
+mopready=true,
 },[[
 step
 Complete the Quest _Calling the Ancients_ |complete completedq(29283)
@@ -2562,6 +2643,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in Icecrown after you champion a Night Elf character in the Argent Tournament.",
 keywords={"Elemental","Icecrown"},
 pet=204,
+mopready=true,
 },[[
 step
 Enter the tent |goto Icecrown/0 75.90,20.00 < 30 |walk
@@ -2588,6 +2670,7 @@ source='WorldEvent',
 description="This battle pet has a 1 in 4 chance to drop from Gaily Wrapped Present during the Feast of Winter Veil event.",
 keywords={"Elemental","Feast","Of","Winter","Veil"},
 pet=117,
+mopready=true,
 },[[
 step
 collect Snowman Kit##21309 |n
@@ -2607,6 +2690,7 @@ patch='31100',
 source='Vendor',
 description="This guide will walk you through obtaining the Elemental pet: Ammen Vale Lashling.",
 pet=212,
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the Argent Tournament Grounds Valiant Rank Dailies guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -2736,6 +2820,7 @@ patch='40300',
 source='Vendor',
 description="This guide will walk you through obtaining the Elemental pet: Dark Phoenix Hatchling.",
 pet=270,
+mopready=true,
 },[[
 step
 #include "misc_rep_mount",rep="Guild"
@@ -2753,6 +2838,7 @@ patch='40300',
 source='Drop',
 description="This guide will walk you through obtaining the Elemental pet: Elementium Geode.",
 pet=293,
+mopready=true,
 },[[
 step
 You can either farm for this pet using Mining or buy it from the Auction House:
@@ -2782,6 +2868,7 @@ patch='43000',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Elemental pet: Lumpy.",
 pet=337,
+mopready=true,
 },[[
 step
 talk Strange Snowman##13636
@@ -2806,6 +2893,7 @@ patch='40300',
 source='Achievement',
 description="This guide will walk you through obtaining the Elemental pet: Pebble.",
 pet=265,
+mopready=true,
 },[[
 step
 To earn Pebble, you must do the _Rock Lover_ achievement, which means you will have to do Lost in the Deeps 10 times.
@@ -3679,6 +3767,7 @@ patch='24000',
 source='Vendor',
 description="This guide will walk you through obtaining the Elemental pet: Searing Scorchling.",
 pet=172,
+mopready=true,
 },[[
 step
 This _pet_ requires you to have done the _Firelands Pre-quests_ and dailies to enter the _Molten Front_
@@ -3706,6 +3795,7 @@ patch='31100',
 source='Vendor',
 description="This guide will walk you through obtaining the Elemental pet: Teldrassil Sproutling.",
 pet=204,
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the Argent Tournament Grounds Valiant Rank Dailies guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -3831,6 +3921,7 @@ patch='111100',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Elemental pet: Tiny Snowman.",
 pet=117,
+mopready=true,
 },[[
 step
 These pets are only availiable during the _Winter Veil_ Holiday
@@ -3845,6 +3936,7 @@ patch='40100',
 source='Quest',
 description="This guide will walk you through obtaining the Elemental pet: Withers.",
 pet=220,
+mopready=true,
 },[[
 step
 talk Dentaria Silverglade##32973
@@ -4202,6 +4294,7 @@ source='Quest',
 description="This battle pet is rewarded to you after completing the quest Blown Away.",
 keywords={"Flying","Blown","Away"},
 pet=331,
+mopready=true,
 },[[
 step
 talk Vin##54117
@@ -4229,6 +4322,7 @@ source='Quest',
 description="This battle pet can be chosen as a reward when you complete the achievement Beware of the 'Unbeatable?' Pterodactyl or complete the achievement The 'Unbeatable?' Pterodactyl: BEATEN.",
 keywords={"Flying","Beware","The","Unbeatable","Pterodactyl","Beaten"},
 pet=259,
+mopready=true,
 },[[
 step
 Earn the Beware of the 'Unbeatable?' Pterodactyl Achievement |complete achieved(4959)
@@ -4250,6 +4344,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in The Exodar.",
 keywords={"Flying","The","Exodar"},
 pet=138,
+mopready=true,
 },[[
 step
 talk Sixx##21019
@@ -4269,6 +4364,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor at the Darkmoon Faire.",
 keywords={"Flying","Darkmoon","Faire"},
 pet=336,
+mopready=true,
 },[[
 step
 click Portal to the Darkmoon Faire |goto Mulgore/0 36.85,35.84
@@ -4296,6 +4392,7 @@ source='Vendor',
 description="This battle pet is obtainable through a battle pet trainer in Darkshore.",
 keywords={"Flying","Auction","House"},
 pet=630,
+mopready=true,
 },[[
 step
 talk Will Larsons##63083
@@ -4314,6 +4411,7 @@ source='Quest',
 description="This battle pet can be chosen as a reward when you complete the achievement Beware of the 'Unbeatable?' Pterodactyl or complete the achievement The 'Unbeatable?' Pterodactyl: BEATEN.",
 keywords={"Flying","Beware","The","Unbeatable","Pterodactyl","Beaten"},
 pet=260,
+mopready=true,
 },[[
 step
 Earn the Beware of the 'Unbeatable?' Pterodactyl Achievement |complete achieved(4959)
@@ -4335,6 +4433,7 @@ source='WorldEvent',
 description="This battle pet is given as a reward when you complete the Pilgrim achievement during the Pilgrim's Bounty world event.",
 keywords={"Flying","Pilgrim's","Bounty"},
 pet=201,
+mopready=true,
 },[[
 step
 collect Turkey Cage##44810 |n
@@ -4353,6 +4452,7 @@ source='Profession',
 description="This battle pet is obtained by finding and solving the Pterrordax Hatchling rare Archaeology Fossil artifact.",
 keywords={"Flying","Archaeology"},
 pet=309,
+mopready=true,
 },[[
 step
 cast Survery##80451
@@ -4378,6 +4478,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor in Tol Barad Peninsula.",
 keywords={"Flying","Tol","Barad","Peninsula"},
 pet=271,
+mopready=true,
 },[[
 step
 talk Quartermaster Brazie##47328
@@ -4402,6 +4503,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Flying","Icecrown"},
 pet=206,
+mopready=true,
 },[[
 step
 collect Tirisfal Batling##44971 |n
@@ -4420,6 +4522,7 @@ source='Quest',
 description="This battle pet is rewarded to you after you complete the quest CLUCK!.",
 keywords={"Flying","CLUCK"},
 pet=84,
+mopready=true,
 },[[
 step
 step
@@ -4447,6 +4550,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in The Exodar.",
 keywords={"Flying","The","Exodar"},
 pet=141,
+mopready=true,
 },[[
 step
 talk Sixx##21019
@@ -4466,6 +4570,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in The Exodar.",
 keywords={"Flying","The","Exodar"},
 pet=140,
+mopready=true,
 },[[
 step
 talk Sixx##21019
@@ -4486,6 +4591,7 @@ patch='42000',
 source='Quest',
 description="This guide will walk you through obtaining the Flying pet: Alliance Balloon.",
 pet=331,
+mopready=true,
 },[[
 step
 talk Vin##54117
@@ -4506,6 +4612,7 @@ patch='40300',
 source='Quest',
 description="This guide will walk you through obtaining the Flying pet: Blue Mini Jouster.",
 pet=259,
+mopready=true,
 },[[
 step
 Going to _Egg Wave_ |only if not completedq(25560) |next "eggwave"
@@ -5191,6 +5298,7 @@ patch='20100',
 source='Vendor',
 description="This guide will walk you through obtaining the Flying pet: Blue Moth.",
 pet=138,
+mopready=true,
 },[[
 step
 talk Sixx##21019
@@ -5203,6 +5311,7 @@ patch='43000',
 source='Vendor',
 description="This guide will walk you through obtaining the Flying pet: Darkmoon Balloon.",
 pet=336,
+mopready=true,
 },[[
 step
 This pet requires Darkmoon Island to be accessible.
@@ -5220,6 +5329,7 @@ patch='50100',
 source='Vendor',
 description="This guide will walk you through obtaining the Flying pet: Gilnean Raven.",
 pet=630,
+mopready=true,
 },[[
 step
 talk Will Larsons##63083
@@ -5231,6 +5341,7 @@ patch='40300',
 source='Quest',
 description="This guide will walk you through obtaining the Flying pet: Gold Mini Jouster.",
 pet=260,
+mopready=true,
 },[[
 step
 Going to _Egg Wave_ |only if not completedq(25560) |next "eggwave"
@@ -5917,6 +6028,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Flying pet: Great Horned Owl.",
 pet=68,
+mopready=true,
 },[[
 step
 talk Shylenai##8665
@@ -5930,6 +6042,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Flying pet: Hawk Owl.",
 pet=67,
+mopready=true,
 },[[
 step
 talk Shylenai##8665
@@ -5943,6 +6056,7 @@ patch='32200',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Flying pet: Plump Turkey.",
 pet=201,
+mopready=true,
 },[[
 leechsteps "Events Guides\\Pilgrim's Bounty\\Achievements\\Pilgrim"
 step
@@ -5956,6 +6070,7 @@ patch='41000',
 source='Profession',
 description="This guide will walk you through obtaining the Flying pet: Pterrordax Hatchling.",
 pet=309,
+mopready=true,
 },[[
 step
 This pet is a rare Archaeology "Fossil" solve
@@ -5980,6 +6095,7 @@ patch='40100',
 source='Vendor',
 description="This guide will walk you through obtaining the Flying pet: Rustberg Gull.",
 pet=271,
+mopready=true,
 },[[
 step
 This will require that you be Honored with the Baradin's Wardens.
@@ -6221,6 +6337,7 @@ patch='40300',
 source='Quest',
 description="This guide will walk you through obtaining the Flying pet: Tiny Flamefly.",
 pet=287,
+mopready=true,
 },[[
 step
 talk John J. Keeshan##47811
@@ -6512,6 +6629,7 @@ patch='31100',
 source='Vendor',
 description="This guide will walk you through obtaining the Flying pet: Tirisfal Batling.",
 pet=206,
+mopready=true,
 },[[
 step
 #include "auctioneer"
@@ -6525,6 +6643,7 @@ patch='20100',
 source='Vendor',
 description="This guide will walk you through obtaining the Flying pet: White Moth.",
 pet=141,
+mopready=true,
 },[[
 step
 talk Sixx##21019
@@ -6537,6 +6656,7 @@ patch='20100',
 source='Vendor',
 description="This guide will walk you through obtaining the Flying pet: Yellow Moth.",
 pet=140,
+mopready=true,
 },[[
 step
 talk Sixx##21019
@@ -6550,6 +6670,7 @@ source='Quest',
 description="This battle pet is rewarded to you after you complete the quest A Champion Rises.",
 keywords={"Humanoid","Argent","Tournament"},
 pet=214,
+mopready=true,
 },[[
 step
 collect Argent Squire##44998 |n
@@ -6569,6 +6690,7 @@ source='Quest',
 description="This battle pet is rewarded to you after you complete the quest A Champion Rises and can only be earned with a Horde character.",
 keywords={"Humanoid","Argent","Tournament"},
 pet=216,
+mopready=true,
 },[[
 step
 collect Argent Gruntling##45022 |n
@@ -6587,6 +6709,7 @@ source='WorldEvent',
 description="This battle pet is given as a reward after completing Children's Week Quests.",
 keywords={"Humanoid","Children's","Week"},
 pet=225,
+mopready=true,
 },[[
 step
 collect Curious Oracle Hatchling##46545 |n
@@ -6606,6 +6729,7 @@ source='WorldEvent',
 description="This battle pet has a 1 in 4 chance to drop from a Gaily Wrapped Present during the Feast of Winter Veil event.",
 keywords={"Flying","Feast","Of","Winter","Veil"},
 pet=119,
+mopready=true,
 },[[
 step
 collect Green Helper Box##21301 |n
@@ -6626,6 +6750,7 @@ source='Vendor',
 description="This battle pet can only be obtained with a Horde character.",
 keywords={"Humanoid","Guild","Vendor"},
 pet=283,
+mopready=true,
 },[[
 step
 collect Guild Herald##65364 |n
@@ -6643,6 +6768,7 @@ source='Vendor',
 description="This battle pet can be purchased from a guild vendor after you earn the Profit Sharing guild achievement.",
 keywords={"Humanoid","Guild","Vendor"},
 pet=280,
+mopready=true,
 },[[
 step
 Earn the Profit Sharing Guild Achievement |complete achieved(5201)
@@ -6668,6 +6794,7 @@ source='Vendor',
 description="This battle pet can only be obtained with a Horde character.",
 keywords={"Humanoid","Guild","Vendor"},
 pet=283,
+mopready=true,
 },[[
 step
 collect Guild Page##65362 |n
@@ -6685,6 +6812,7 @@ source='Vendor',
 description="This battle pet can be purchased from a guild vendor after you earn the Horde Slayer guild achievement.",
 keywords={"Humanoid","Guild","Vendor"},
 pet=282,
+mopready=true,
 },[[
 step
 Earn the Horde Slayer Guild Achievement |complete achieved(5031)
@@ -6710,6 +6838,7 @@ source='In-GameShop',
 description="This battle pet used to be available to purchase from the Bizzard store.",
 keywords={"Humanoid","Blizzard","Store"},
 pet=298,
+mopready=true,
 },[[
 step
 collect Moonkin Hatchling##68619 |n
@@ -6727,6 +6856,7 @@ source='In-GameShop',
 description="This battle pet used to be available to purchase from the Blizzard store.",
 keywords={"Humanoid","Blizzard","Store"},
 pet=296,
+mopready=true,
 },[[
 step
 collect Moonkin Hatchling##68618 |n
@@ -6744,6 +6874,7 @@ source='WorldEvent',
 description="You can purchase this battle pet from a vendor in Stormwind City during the Love is in the Air event.",
 keywords={"Humanoid","Love","is","In","The","Air"},
 pet=122,
+mopready=true,
 },[[
 step
 talk Lovely Merchant##37674
@@ -6766,6 +6897,7 @@ source='Quest',
 description="This battle pet has a chance to drop from a Stolen Present during the Feast of Winter Veil event.",
 keywords={"Humanoid","Feast","Of","Winter","Veil"},
 pet=1349,
+mopready=true,
 },[[
 step
 collect Stolen Present##116762 |n
@@ -6788,6 +6920,7 @@ source='WorldEvent',
 description="This battle pet has a 1 in 4 chance to drop from a Gaily Wrapped Present during the Feast of Winter Veil event.",
 keywords={"Humanoid","Feast","Of","Winter","Veil"},
 pet=120,
+mopready=true,
 },[[
 step
 collect Red Helper Box##21305 |n
@@ -6807,6 +6940,7 @@ patch='31000',
 source='Quest',
 description="This guide will walk you through obtaining the Humanoid pet: Argent Squire.",
 pet=214,
+mopready=true,
 },[[
 step
 In order to attain this pet, you will need to do Argent Tournament Daily quests.
@@ -6825,6 +6959,7 @@ patch='31000',
 source='Quest',
 description="This guide will walk you through obtaining the Humanoid pet: Argent Gruntling.",
 pet=216,
+mopready=true,
 },[[
 step
 This pet is only available to Horde Characters
@@ -6834,6 +6969,7 @@ patch='32000',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Humanoid pet: Curious Wolvar Pup.",
 pet=226,
+mopready=true,
 },[[
 step
 You may only get _three_ of these pets _per year_ from _completing_ the quest lines _Back to the Orphanage (Shattrath)_, _Warden of the Alliance_, and _Back to the Orphanage (Dalaran)_
@@ -6849,6 +6985,7 @@ patch='111100',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Humanoid pet: Father Winter's Helper.",
 pet=119,
+mopready=true,
 },[[
 step
 These pets are only availiable during the Winter Veil Holiday
@@ -6863,6 +7000,7 @@ patch='40300',
 source='Vendor',
 description="This guide will walk you through obtaining the Humanoid pet: Guild Herald.",
 pet=282,
+mopready=true,
 },[[
 step
 Your guild needs have the achievement "Profit Sharing"
@@ -6878,6 +7016,7 @@ patch='40300',
 source='Vendor',
 description="This guide will walk you through obtaining the Humanoid pet: Guild Herald.",
 pet=283,
+mopready=true,
 },[[
 step
 This pet model is only available to Horde characters.
@@ -6887,6 +7026,7 @@ patch='40300',
 source='Vendor',
 description="This guide will walk you through obtaining the Humanoid pet: Guild Page.",
 pet=280,
+mopready=true,
 },[[
 step
 Your _guild_ needs have the achievement _"Horde Slayer"_
@@ -6902,6 +7042,7 @@ patch='40300',
 source='Vendor',
 description="This guide will walk you through obtaining the Humanoid pet: Guild Page.",
 pet=281,
+mopready=true,
 },[[
 step
 This pet model is only available to Horde Characters.
@@ -6911,6 +7052,7 @@ patch='40300',
 source='In-GameShop',
 description="This guide will walk you through obtaining the Humanoid pet: Moonkin Hatchling.",
 pet=296,
+mopready=true,
 },[[
 step
 This pet can be purchased for $10.00 on the official Blizzard Store.
@@ -6926,6 +7068,7 @@ patch='40300',
 source='In-GameShop',
 description="This guide will walk you through obtaining the Humanoid pet: Moonkin Hatchling.",
 pet=298,
+mopready=true,
 },[[
 step
 This pet model is only available to Horde characters.
@@ -6935,6 +7078,7 @@ patch='54000',
 source='Quest',
 description="This guide will walk you through obtaining the Humanoid pet: Rotten Little Helper.",
 pet=1349,
+mopready=true,
 },[[
 step
 These pets are only availiable during the Winter Veil Holiday
@@ -6949,6 +7093,7 @@ patch='111100',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Humanoid pet: Winter's Little Helper.",
 pet=120,
+mopready=true,
 },[[
 step
 These pets are only availiable during the _Winter Veil_ Holiday
@@ -6964,6 +7109,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Magic","Icecrown"},
 pet=213,
+mopready=true,
 },[[
 step
 collect Enchanted Broom##44982 |n
@@ -6982,6 +7128,7 @@ source='Profession',
 description="This battle pet can only be created with a Horde Enchanting recipe or purchased at the Auction House if you are Alliance.",
 keywords={"Magic","Auction","House"},
 pet=267,
+mopready=true,
 },[[
 step
 collect Enchanted Lantern##67274 |n
@@ -7000,6 +7147,7 @@ source='WorldEvent',
 description="This battle pet can be only be purchased with a Horde character during the Lunar Festival event.",
 keywords={"Magic","Lunar","Festival"},
 pet=342,
+mopready=true,
 },[[
 step
 collect Festival Lantern##74611 |n
@@ -7018,6 +7166,7 @@ source='WorldEvent',
 description="This battle pet is a reward for completing Children's Week Quests.",
 keywords={"Magic","Children's","Week"},
 pet=308,
+mopready=true,
 },[[
 step
 collect Legs##69648 |n
@@ -7038,6 +7187,7 @@ source='WorldEvent',
 description="This battle pet can be purchased from a vendor in Moonglade during the Lunar Festival event.",
 keywords={"Magic","Lunar","Festival"},
 pet=341,
+mopready=true,
 },[[
 step
 talk Valadar Starsong##15864
@@ -7060,6 +7210,7 @@ source='Profession',
 description="This battle pet can be created if you have a Cataclysm Enchanting level of 75 or purchased from the Auction House.",
 keywords={"Magic","Auction","House"},
 pet=292,
+mopready=true,
 },[[
 step
 collect Magic Lamp##67275 |n
@@ -7078,6 +7229,7 @@ source='Vendor',
 description="This battle pet can be purchased from a vendor in Icecrown.",
 keywords={"Magic","Icecrown"},
 pet=229,
+mopready=true,
 },[[
 step
 You Must Have Exalted Reputation With the Silver Covenant in Order to Purchase This Pet |complete rep("The Silver Covenant")>=Exalted
@@ -7104,6 +7256,7 @@ source='WorldEvent',
 description="This battle pet is a reward for completing Children's Week Quests.",
 keywords={"Magic","Children's","Week"},
 pet=157,
+mopready=true,
 },[[
 step
 collect Sleepy Willy##32617 |n
@@ -7123,6 +7276,7 @@ patch='31100',
 source='Vendor',
 description="This guide will walk you through obtaining the Magic pet: Enchanted Broom.",
 pet=213,
+mopready=true,
 },[[
 step
 #include "auctioneer"
@@ -7136,6 +7290,7 @@ patch='40300',
 source='Profession',
 description="This guide will walk you through obtaining the Magic pet: Enchanted Lantern.",
 pet=267,
+mopready=true,
 },[[
 step
 #include "auctioneer"
@@ -7150,6 +7305,7 @@ patch='43000',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Magic pet: Festival Lantern.",
 pet=342,
+mopready=true,
 },[[
 step
 This pet can only be obtained during the Lunar Festival event.
@@ -7173,6 +7329,7 @@ patch='43000',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Magic pet: Lunar Lantern.",
 pet=341,
+mopready=true,
 },[[
 step
 This pet can only be obtained during the Lunar Festival event.
@@ -7196,6 +7353,7 @@ patch='40300',
 source='Profession',
 description="This guide will walk you through obtaining the Magic pet: Magic Lamp.",
 pet=292,
+mopready=true,
 },[[
 step
 Skipping to the next step |next |only if skill("Enchanting")<525
@@ -7240,6 +7398,7 @@ patch='32000',
 source='Vendor',
 description="This guide will walk you through obtaining the Magic pet: Shimmering Wyrmling.",
 pet=229,
+mopready=true,
 },[[
 step
 Use the _Icecrown Dailies_ section of this guide to complete the _Argent Tournament Grounds_ and _The Silver Covenant pre-quests_ and _dailies_.
@@ -7259,6 +7418,7 @@ source='Profession',
 description="This battle pet is obtained by finding and solving the Clockwork Gnome rare Archaeology Dwarf artifact.",
 keywords={"Mechanical","Archaeology"},
 pet=277,
+mopready=true,
 },[[
 step
 cast Survery##80451
@@ -7284,6 +7444,7 @@ source='WorldEvent',
 description="This battle pet has a chance to drop from a Stolen Present during the Feast of Winter Veil event.",
 keywords={"Mechanical","Feast","Of","Winter","Veil"},
 pet=191,
+mopready=true,
 },[[
 step
 collect Stolen Present##116762 |n
@@ -7306,6 +7467,7 @@ source='Vendor',
 description="This battle pet is sold by a vendor in Icecrown.",
 keywords={"Mechanical","icecrown"},
 pet=215,
+mopready=true,
 },[[
 step
 Enter the tent |goto Icecrown/0 75.90,20.00 < 30 |walk
@@ -7331,6 +7493,7 @@ patch='40100',
 source='Profession',
 description="This guide will walk you through obtaining the Mechanical pet: Clockwork Gnome.",
 pet=277,
+mopready=true,
 },[[
 step
 This pet is a rare Archaeology "Dwarf" solve
@@ -7354,6 +7517,7 @@ patch='23000',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Mechanical pet: Clockwork Rocket Bot.",
 pet=191,
+mopready=true,
 },[[
 step
 This pet can only be obtained during the Feast of Winter Veil Event.
@@ -7382,6 +7546,7 @@ patch='40300',
 source='Profession',
 description="This guide will walk you through obtaining the Mechanical pet: De-Weaponized Mechanical Companion.",
 pet=262,
+mopready=true,
 },[[
 step
 Skipping to the next step |next "aa" |only if skill("Engineering")<475
@@ -7439,6 +7604,7 @@ patch='111100',
 source='Profession',
 description="This guide will walk you through obtaining the Mechanical pet: Lifelike Toad.",
 pet=95,
+mopready=true,
 },[[
 step
 _Skipping_ to the next _step_ |next |only if skill("Engineering")<265
@@ -7495,6 +7661,7 @@ patch='111100',
 source='Profession',
 description="This guide will walk you through obtaining the Mechanical pet: Lil' Smoky.",
 pet=86,
+mopready=true,
 },[[
 step
 Skipping to the next step |next "lazy" |only if skill("Engineering")<205
@@ -7567,6 +7734,7 @@ patch='111100',
 source='Profession',
 description="This guide will walk you through obtaining the Mechanical pet: Mechanical Squirrel.",
 pet=39,
+mopready=true,
 },[[
 step
 Routing to the proper section. |next |only if skill("Engineering")>=75
@@ -7612,6 +7780,7 @@ patch='31100',
 source='Vendor',
 description="This guide will walk you through obtaining the Mechanical pet: Mechanopeep.",
 pet=215,
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the Argent Tournament Grounds Valiant Rank Dailies guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -7737,6 +7906,7 @@ patch='40300',
 source='Profession',
 description="This guide will walk you through obtaining the Mechanical pet: Personal World Destroyer.",
 pet=261,
+mopready=true,
 },[[
 step
 Routing you to the proper section. |next |only if skill("Engineering")<475 |next
@@ -7782,6 +7952,7 @@ patch='111100',
 source='Profession',
 description="This guide will walk you through obtaining the Mechanical pet: Pet Bombling.",
 pet=85,
+mopready=true,
 },[[
 step
 Click here if you want to farm the schematic for this pet. |only if skill("Engineering")<205 |next
@@ -7839,6 +8010,7 @@ patch='111100',
 source='Profession',
 description="This guide will walk you through obtaining the Mechanical pet: Tranquil Mechanical Yeti.",
 pet=116,
+mopready=true,
 },[[
 step
 The recipe to make this was removed with the quest line back in 2014.
@@ -7880,6 +8052,7 @@ source='Profession',
 description="This battle pet is obtained by finding and solving the Crawling Claw rare Archaeology Tol'vir artifact.",
 keywords={"Undead","Archaeology"},
 pet=264,
+mopready=true,
 },[[
 step
 talk Zidormi##141489
@@ -7910,6 +8083,7 @@ source='WorldEvent',
 description="This battle pet is a reward for completing the quest The Creepy Crate during the Hallow's End event.",
 keywords={"Undead","Hallow's","End"},
 pet=321,
+mopready=true,
 },[[
 step
 collect Creepy Crate##71076 |n
@@ -7928,6 +8102,7 @@ source='Profession',
 description="This battle pet is obtained by finding and solving the Fossilized Hatchling rare Archaeology Fossil artifact.",
 keywords={"Undead","Archaeology"},
 pet=266,
+mopready=true,
 },[[
 step
 cast Survery##80451
@@ -7953,6 +8128,7 @@ source='Vendor',
 description="This battle pet is Horde exclusive but Alliance characters can purchase it from the Auction House.",
 keywords={"Undead","Icecrown"},
 pet=218,
+mopready=true,
 },[[
 step
 collect Sen'jin Fetish##45606 |n
@@ -7971,6 +8147,7 @@ source='Profession',
 description="This battle pet is obtained by finding and solving the Voodoo Figurine rare Archaeology Troll artifact.",
 keywords={"Undead","Archaeology"},
 pet=310,
+mopready=true,
 },[[
 step
 cast Survery##80451
@@ -7995,6 +8172,7 @@ patch='40300',
 source='Profession',
 description="This guide will walk you through obtaining the Undead pet: Crawling Claw.",
 pet=264,
+mopready=true,
 },[[
 step
 This pet is a rare Archaeology "Tol'vir" solve
@@ -8019,6 +8197,7 @@ source='WorldEvent',
 description="The Undead pet: Creepy Crate can be obtained by completing the Creepy Crate questline during the Hallow's End event.",
 condition_suggested=function() return isevent("Hallow's End") end,
 pet=321,
+mopready=true,
 },[[
 step
 Wait for the Hallow's End Event to Start |complete isevent("Hallow's End")
@@ -8036,6 +8215,7 @@ patch='40100',
 source='Profession',
 description="This guide will walk you through obtaining the Undead pet: Fossilized Hatchling.",
 pet=266,
+mopready=true,
 },[[
 step
 This pet is a rare Archaeology "Fossil" solve
@@ -8058,6 +8238,7 @@ patch='32200',
 source='WorldEvent',
 description="This guide will walk you through obtaining the Undead pet: Macabre Marionette.",
 pet=1351,
+mopready=true,
 },[[
 step
 You can only obtain this pet during the Day of the Dead event, which only runs for one weekend a year.
@@ -8092,6 +8273,7 @@ patch='31100',
 source='Vendor',
 description="This guide will walk you through obtaining the Undead pet: Sen'jin Fetish.",
 pet=218,
+mopready=true,
 },[[
 step
 #include "auctioneer"
@@ -8105,6 +8287,7 @@ patch='41000',
 source='Profession',
 description="This guide will walk you through obtaining the Undead pet: Voodoo Figurine.",
 pet=310,
+mopready=true,
 },[[
 step
 This pet is a _rare Archaeology "Troll"_ solve

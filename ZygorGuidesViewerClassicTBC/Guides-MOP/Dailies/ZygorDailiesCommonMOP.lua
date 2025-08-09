@@ -4,6 +4,7 @@ if ZGV:DoMutex("DailiesMOP") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
 ZGV.BETASTART()
 ZygorGuidesViewer:RegisterGuide("Daily Guides\\Mists of Pandaria Dailies\\The Anglers Dailies",{
+mopready=true,
 startlevel=90,
 description="This guide will take you through The Anglers dailies Becoming Exalted with The Anglers allows you to purchase a companion pet, fishing poles, and water mounts.",
 patch='50100'
@@ -13,6 +14,7 @@ talk Arnold Leland##5493 |only if Alliance
 |tip Fishing is required to accept daily quests from this faction. |only if Alliance
 Train Apprentice Fishing |skillmax Fishing,75 |goto Stormwind City/0 54.99,69.64 |only if Alliance
 |tip You'll likely want higher for some of the dailies requiring fishing to accomplish. |only if Alliance
+|tip
 talk Lumak##3332 |only if Horde
 |tip Fishing is required to accept daily quests from this faction. |only if Horde
 |tip You'll likely want higher for some of the dailies requiring fishing to accomplish. |only if Horde
@@ -22,52 +24,37 @@ label "dailies"
 talk Fisherman Haito##59584
 accept Shocking!##30584 |goto Krasarang Wilds/0 67.93,45.23 |or
 accept Jagged Abalone##30586 |goto Krasarang Wilds/0 67.93,45.23 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(59584) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Angler Shen##59586
 accept Snapclaw##30700 |goto Krasarang Wilds/0 67.56,43.50 |or
 accept Fishing for a Bruising##30588 |goto Krasarang Wilds/0 67.56,43.50 |or
-|tip Accept what you can and then skip this step.
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(59586) |or
-|confirm
+Click here if no quests are available |confirm
 step
 talk John "Big Hook" Marsock##60674
 accept Bright Bait##30754 |goto Krasarang Wilds/0 68.33,43.50 |or
 accept Jumping the Shark##30753 |goto Krasarang Wilds/0 68.33,43.50 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(60674) |or
-|confirm
+Click here if no quests are available |confirm
 step
 talk Trawler Yotimo##60135
 accept Armored Carp##30613 |goto Krasarang Wilds/0 67.62,42.50 |or
 accept Huff & Puff##30658 |goto Krasarang Wilds/0 67.62,42.50 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(60135) |or
-|confirm
+Click here if no quests are available |confirm
 step
 talk Elder Fisherman Rassan##60673
 accept What Lurks Below##30585 |goto Krasarang Wilds/0 68.34,42.08 |or
 accept Who Knew Fish Liked Eggs?##30598 |goto Krasarang Wilds/0 68.34,42.08 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(60673) |or
-|confirm
+Click here if no quests are available |confirm
 step
 talk Fo Fook##60675
 accept Piranha!##30763 |goto Krasarang Wilds/0 67.21,41.15 |or
 accept Viseclaw Soup##30701 |goto Krasarang Wilds/0 67.21,41.15 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(60675) |or
-|confirm
+Click here if no quests are available |confirm
 step
 talk Fiznix##60136
 accept Like Bombing Fish In A Barrel##30678 |goto Krasarang Wilds/0 67.48,44.59
 accept Scavenger Hunt##30698 |goto Krasarang Wilds/0 67.48,44.59
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(60136) |or
-|confirm
+Click here if no quests are available |confirm
 step
 Ride a Goblin Fishing Raft |havebuff spell:116032 |goto Krasarang Wilds/0 67.50,44.80
 |only if haveq(30698) or completedq(30698)
@@ -204,6 +191,7 @@ You have completed the available daily quests |complete false or not completedq(
 |tip You won't be able to purchase it if you have used it already. |only if rep("The Anglers")>=Revered
 ]])
 ZygorGuidesViewer:RegisterGuide("Daily Guides\\Mists of Pandaria Dailies\\The August Celestials Dailies",{
+mopready=true,
 completion={"quests"},
 startlevel=90,
 description="This guide will take you through The August Celestials dailies Becoming Exalted with The August Celestials allows you to purchase flying mounts and armor for your character.",
@@ -252,18 +240,15 @@ talk Thelonius##60506
 accept Students of Chi-Ji##30718 |goto Krasarang Wilds/0 31.30,63.40
 accept Champion of Chi-Ji##30740 |goto Krasarang Wilds/0 31.30,63.40 |only if achieved(7287)
 |tip If quests are offered, you will not be able to accept all of these quests. |only if achieved(7287)
-Check for Quests |complete nodailies(60506) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Yan Quillpaw##60529
 accept Gifts of the Great Crane##30717 |goto Krasarang Wilds/0 31.30,63.60
-Check for Quests |complete nodailies(60529) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Kuo-Na Quillpaw##60528
 accept Chasing Hope##30716 |goto Krasarang Wilds/0 31.30,63.60
-Check for Quests |complete nodailies(60528) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Champion of Chi-Ji##60546
 Let's fight!
@@ -309,9 +294,7 @@ accept Yan Quillpaw##30736 |goto Krasarang Wilds/0 31.30,63.40 |or			|only if qu
 accept Fat Long-Fat: Rematch##30737 |goto Krasarang Wilds/0 31.30,63.40 |or		|only if questonmap({418},30737)
 accept Thelonius##30738 |goto Krasarang Wilds/0 31.30,63.40 |or				|only if questonmap({418},30738)
 accept Ellia Ravenmane: Redemption##30739 |goto Krasarang Wilds/0 31.30,63.40 |or	|only if questonmap({418},30739)
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(60506) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 |only if not achieved(7287)
 step
 talk Thelonius##60506
@@ -423,16 +406,12 @@ turnin Attack At The Temple of the Jade Serpent##31377 |goto The Jade Forest/0 5
 accept Arrows of Fortune##30065 |goto The Jade Forest/0 53.91,61.95
 accept Hidden Power##30066 |goto The Jade Forest/0 53.91,61.95
 accept The Darkness Around Us##30006 |goto The Jade Forest/0 53.91,61.95
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(57324) |or |next
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Elder Sage Storm-Sing##57319
 accept Behind the Masks##30063 |goto The Jade Forest/0 53.88,61.91
 accept Saving the Sutras##30064 |goto The Jade Forest/0 53.88,61.91
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(57319) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 stickystart "Collect_10_Defenders_Arrow"
 stickystart "Collect_8_Mask_of_Doubt"
 stickystart "Collect_6_Ancient_Mantras"
@@ -479,9 +458,7 @@ turnin The Darkness Around Us##30006 |goto The Jade Forest/0 53.91,61.95 |only i
 accept Flames of the Void##30068 |goto The Jade Forest/0 53.91,61.95 |or
 accept The Shadow of Doubt##30067 |goto The Jade Forest/0 53.91,61.95 |or
 accept Hidden Power##30066 |goto The Jade Forest/0 53.91,61.95 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(57324) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 label "Collect_6_Ancient_Mantras"
 clicknpc Yu'lon Guardian##57400,57326,58186
@@ -514,9 +491,7 @@ turnin Flames of the Void##30068 |goto The Jade Forest/0 53.91,61.95 |only if ha
 turnin Hidden Power##30066 |goto The Jade Forest/0 53.91,61.95 |only if haveq(30066) or completedq(30066)
 accept The Shadow of Doubt##30067 |goto The Jade Forest/0 53.90,61.95
 accept Flames of the Void##30068 |goto The Jade Forest/0 53.90,61.95
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(57324) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 kill Shadow of Doubt##57389
 Shadow of Doubt slain |q 30067/1 |goto The Jade Forest/0 57.52,62.25
@@ -551,10 +526,7 @@ talk Xuen##60968
 accept Round 1: Brewmaster Chani##30879 |goto Kun-Lai Summit/0 67.26,55.89 |or
 accept Round 1: The Streetfighter##30880 |goto Kun-Lai Summit/0 67.26,55.89 |or
 accept Contending With Bullies##31517 |goto Kun-Lai Summit/0 67.26,55.89
-|tip This quest may not be available.
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(60968) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 kill Shonuf##64757 |q 31517/1 |goto Kun-Lai Summit/0 71.10,55.80
 |only if haveq(31517) or completedq(31517)
@@ -577,9 +549,7 @@ turnin Round 1: The Streetfighter##30880 |goto Kun-Lai Summit/0 70.29,51.28 |onl
 turnin Contending With Bullies##31517 |goto Kun-Lai Summit/0 70.29,51.28 |only if haveq(31517) or completedq(31517)
 accept Round 2: Clever Ashyo & Ken-Ken##30881 |goto Kun-Lai Summit/0 70.29,51.28 |or
 accept Round 2: Kang Bramblestaff##30882 |goto Kun-Lai Summit/0 70.29,51.28 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(60968) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Kang Bramblestaff##60978
 |tip Inside the building.
@@ -603,9 +573,7 @@ turnin Round 2: Clever Ashyo & Ken-Ken##30881 |goto Kun-Lai Summit/0 71.77,44.87
 turnin Round 2: Kang Bramblestaff##30882 |goto Kun-Lai Summit/0 71.77,44.87 |only if haveq(30882) or completedq(30882)
 accept Round 3: The Wrestler##30883 |goto Kun-Lai Summit/0 71.77,44.87 |or
 accept Round 3: Master Boom Boom##30885 |goto Kun-Lai Summit/0 71.77,44.87 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(60968) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 |only if haveq(30882,30881) or completedq(30882,30881)
 step
 talk Master Boom Boom##61013
@@ -629,9 +597,7 @@ turnin Round 3: The Wrestler##30883 |goto Kun-Lai Summit/0 66.40,46.34 |only if 
 turnin Round 3: Master Boom Boom##30885 |goto Kun-Lai Summit/0 66.40,46.34 |only if haveq(30885) or completedq(30885)
 accept Round 4: The P.U.G.##30907 |goto Kun-Lai Summit/0 66.40,46.34 |or
 accept Round 4: Master Windfur##30902 |goto Kun-Lai Summit/0 66.40,46.34 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(60968) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Master Windfur##61012
 Select _"I challenge you."_ |gossip 39269
@@ -683,33 +649,26 @@ turnin Defense At Niuzao Temple##31382 |goto Townlong Steppes/0 39.35,62.30 |onl
 turnin Defense At Niuzao Temple##31383 |goto Townlong Steppes/0 39.35,62.30 |only if haveq(31383) or completedq(31383) |only if Horde
 accept The Siege Swells##30956 |goto Townlong Steppes/0 39.35,62.30 |or
 accept The Unending Siege##30952 |goto Townlong Steppes/0 39.35,62.30 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(61580) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Ogo the Younger##61581
 accept The Big Guns##30959 |goto Townlong Steppes/0 39.34,62.21 |or
 accept A Blade is a Blade##30954 |goto Townlong Steppes/0 39.34,62.21 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(61581) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Yak-Keeper Kyana##61585
 accept Fallen Sentinels##30953 |goto Townlong Steppes/0 39.15,62.07
-Check for Quests |complete nodailies(61585) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Sentinel Commander Qipan##61584
 accept The Overwhelming Swarm##30957 |goto Townlong Steppes/0 39.41,61.96
-Check for Quests |complete nodailies(61584) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk High Adept Paosha##61583
+|tip Walking around this area.
 accept In Battle's Shadow##30958 |goto Townlong Steppes/0 38.95,62.44 |or
 accept Paying Tribute##30955 |goto Townlong Steppes/0 38.95,62.44 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(61583) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 stickystart "Throw_10_Loose_Stones"
 stickystart "Heal_8_Niuzao_Sentinels"
 stickystart "Collect_6_Food_for_Niuzao"
@@ -719,11 +678,16 @@ stickystart "Kill_12_Sra'thik_Attackers"
 stickystart "Kill_25_Sra'thik_Attackers"
 step
 use the Pot of Fire##82346
-Cause #3# Sri'thik War Wagons to Explode |q 30959/1 |goto Townlong Steppes/0 40.99,60.35
+Cause #3# Sri'thik War Wagons to Explode |q 30959/1 |goto Townlong Steppes/0 43.60,57.52
+|tip A group of enemies will spawn once they explode.
+you can find more around:
+[Townlong Steppes/0 43.72,62.50]
+[Townlong Steppes/0 39.68,57.02]
 |only if haveq(30957) or completedq(30957)
 step
 label "Throw_10_Loose_Stones"
 click Loose Brick##211752
+|tip On the ground all around this area.
 Throw #10# Loose Stones up to Niuzao Stonemasons |q 30958/1 |goto Townlong Steppes/0 40.99,60.35
 |only if haveq(30958) or completedq(30958)
 step
@@ -791,6 +755,7 @@ You have completed the available daily quests |complete false or not completedq(
 |tip You won't be able to purchase it if you have used it already. |only if rep("August Celestials")>=Revered
 ]])
 ZygorGuidesViewer:RegisterGuide("Daily Guides\\Mists of Pandaria Dailies\\The Order of the Cloud Serpent Dailies",{
+mopready=true,
 completion={"quests",10,11,18},
 patch='50001',
 startlevel=90,
@@ -833,6 +798,7 @@ talk Instructor Tong##58225
 turnin Beating the Odds##30135 |goto The Jade Forest/0 65.33,31.64
 turnin Empty Nests##30136 |goto The Jade Forest/0 65.33,31.64
 turnin Egg Collection##30137 |goto The Jade Forest/0 65.33,31.64
+Watch the dialogue
 accept Choosing the One##30138 |goto The Jade Forest/0 65.33,31.64
 step
 Choose You Egg
@@ -869,8 +835,7 @@ accept Pooped##31716 |goto The Jade Forest/0 57.52,45.36
 accept Feeding Time##30156 |only if questonmap({418},30156)
 accept The Easiest Way To A Serpent's Heart##30154 |goto The Jade Forest/0 57.52,45.36
 accept Sweet as Honey##30150 |goto The Jade Forest/0 57.52,45.36
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(65669,65670,65671) |next |or
+Click here if no quests are available |confirm
 step
 talk Instructor Skythorn##58228
 accept Restoring the Balance##30155 |goto The Jade Forest/0 57.56,45.11 |or 2
@@ -879,9 +844,7 @@ accept Thinning The Pack##31698 |goto The Jade Forest/0 57.56,45.11 |or 2
 accept Weeping Widows##31706 |goto The Jade Forest/0 57.56,45.11 |or 2
 accept A Tangled Web##31707 |goto The Jade Forest/0 57.56,45.11 |or 2
 accept Monkey Mischief##31712 |goto The Jade Forest/0 57.56,45.11 |or 2
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58228) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Jenova Longeye##58413
 |tip Walking around the area.
@@ -892,9 +855,7 @@ accept Fragments of the Past##30147 |goto The Jade Forest/0 57.50,44.70
 accept Snack Time##30146 |goto The Jade Forest/0 57.50,44.70
 |tip If your fishing skill is low, fish from pools.
 She can also be here [The Jade Forest/0 57.32,45.34]
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58413) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Elder Anli##58564
 |tip Walking around this area.
@@ -908,46 +869,34 @@ accept The Trainer's Challenge: Ace Longpaw##31717 |goto The Jade Forest/0 57.63
 accept The Trainer's Challenge: Suchi the Sweet##31720 |goto The Jade Forest/0 57.63,44.95 |or 2
 accept The Trainer's Challenge: Big Bao##31718 |goto The Jade Forest/0 57.63,44.95 |or 2
 accept The Big Kah-Oona##31715 |goto The Jade Forest/0 57.63,44.95 |or 2
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58564) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Ningna Darkwheel##58509
 accept Sprite Fright##31699 |goto The Jade Forest/0 58.26,45.05 |or
 accept The Shoe Is On The Other Foot##31700 |goto The Jade Forest/0 58.26,45.05 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58509) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Suchi the Sweet##58510
 accept Preservation##30159 |goto The Jade Forest/0 58.47,44.70 |or
 accept Emptier Nests##30157 |goto The Jade Forest/0 58.47,44.70 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58510) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Big Bao##58508
 accept Lingering Doubt##31709 |goto The Jade Forest/0 57.49,44.02 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58508) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Qua-Ro Whitebrow##58511
 accept Serpent's Scale##31708 |goto The Jade Forest/0 57.29,43.47 |or
 accept Saving the Serpents##31714 |goto The Jade Forest/0 57.29,43.47 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58511) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Ace Longpaw##58506
 accept The Big Brew-haha##31713 |goto The Jade Forest/0 58.02,43.70 |or
-Check for Quests |complete nodailies(58506) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Instructor Windblade##58420
 accept The Sky Race##30152 |goto The Jade Forest/0 58.61,43.65 |or
-Check for Quests |complete nodailies(58420) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Instructor Windblade##58420
 Tell her you are ready to start the Sky Race.
@@ -1416,6 +1365,7 @@ You have completed the available daily quests |complete false or not completedq(
 |tip You won't be able to purchase it if you have used it already. |only if rep("Order of the Cloud Serpent")>=Revered
 ]])
 ZygorGuidesViewer:RegisterGuide("Daily Guides\\Mists of Pandaria Dailies\\The Shado-Pan Dailies",{
+mopready=true,
 completion={"quests"},
 startlevel=90,
 description="This guide will take you through the Shado-Pan dailies Becoming Exalted with The Shado-Pan allows you to purchase ground mounts and armor for your character.",
@@ -1614,6 +1564,7 @@ Select _"Would you accompany me?"_ |gossip 28741
 talk Yalia Sagewhisper##62303	|goto Townlong Steppes/0 48.80,70.00 |only if completedq(31104)
 |tip
 |tip Choose one to accompany you.
+|tip Only Fei Li will be available initially.
 |tip They will help you in combat and allow you to turn in your quests outside of this questing hub.
 Click Here to Continue |confirm
 step
@@ -1628,6 +1579,14 @@ step
 clicknpc Ball and Chain##62539
 Free #6# Wild Cloudriders |q 31047/1 |goto Townlong Steppes/0 32.80,25.10
 |only if haveq(31047) or completedq(31047)
+stickystart "Collect_8_Shanze_Tablets"
+stickystart "Collect_24_Shanze_Ancestors"
+stickystart "Collect_4_Onyx_Hearts"
+stickystart "Kill_12_Shan'ze_Enemies_1"
+stickystart "Kill_12_Shan'ze_Enemies_2"
+stickystart "Kill_12_Shan'ze_Enemies_3"
+stickystart "Collect_20_Bronze_Claws"
+stickystart "Collect_1000_Ancient_Arcane_Powder"
 step
 label "Free_20_Cloudrider_Hatchlings"
 click Shan'ze Cage##215573
@@ -1638,15 +1597,6 @@ label "Collect_8_Cloudrunner_Eggs"
 click Shiny Egg##214481
 collect 8 Cloudrunner Egg##83129 |q 31041/1 |goto Townlong Steppes/0 32.80,25.10
 |only if haveq(31041) or completedq(31041)
-stickystart "Collect_8_Shanze_Tablets"
-stickystart "Collect_24_Shanze_Ancestors"
-stickystart "Collect_4_Onyx_Hearts"
-stickystart "Kill_12_Shan'ze_Enemies_1"
-stickystart "Kill_12_Shan'ze_Enemies_2"
-stickystart "Kill_12_Shan'ze_Enemies_3"
-stickystart "Collect_20_Bronze_Claws"
-stickystart "Slay_30_Darkwoods_Enemies"
-stickystart "Collect_1000_Ancient_Arcane_Powder"
 step
 kill 3 Shan'ze Illusionist##62440+ |q 31045/1 |goto Townlong Steppes/0 24.40,15.20
 |only if haveq(31045) or completedq(31045)
@@ -1678,7 +1628,8 @@ Slay #12# Shan'ze enemies |q 31106/1 |goto Townlong Steppes/0 28.50,18.50
 step
 label "Kill_12_Shan'ze_Enemies_3"
 kill Shan'ze Serpentbinder##62293, Shan'ze Beastmaster##62530
-Slay #12# Shan'ze enemies |q 31039/1 |goto Townlong Steppes/0 28.50,18.50
+Slay #12# Shan'ze enemies |q 31039/1 |goto Townlong Steppes/0 33.61,25.90
+You can find more around [Townlong Steppes/0 28.50,18.50]
 |only if haveq(31039) or completedq(31039)
 step
 label "Collect_20_Bronze_Claws"
@@ -1693,7 +1644,7 @@ Slay #30# Darkwoods Sprites or Darkwoods Charmers |q 31040/1 |goto Townlong Step
 step
 label "Collect_1000_Ancient_Arcane_Powder"
 Kill Shan'ze enemies around this area |kill Shan'ze Serpentbinder##62293, Shan'ze Illusionist##62440, Shan'ze Ancestor##62285, Shan'ze Beastmaster##62515, Darkwoods Charmer##62520
-collect 1000 Ancient Arcane Powder##84102 |q 31110/1
+collect 1000 Ancient Arcane Powder##84102 |q 31110/1 |goto Townlong Steppes/0 33.61,25.88
 |only if haveq(31110) or completedq(31110)
 step
 _Next to you:_
@@ -1791,21 +1742,21 @@ accept Destroy the Siege Weapons!##31199 |goto Townlong Steppes/0 49.01,71.33 |o
 accept Fumigation##31200 |goto Townlong Steppes/0 49.01,71.33 |or 4
 accept Friends, Not Food!##31201 |goto Townlong Steppes/0 49.01,71.33 |or 4
 step
+click Bag of Wu Kao Supplies
+collect Wu Kao Smoke Bomb##90006 |q 31201 |goto Townlong Steppes/0 49.00,71.28
+collect Shiny Shado-Pan Coin##86534 |q 31201 |goto Townlong Steppes/0 49.00,71.28
+collect Wu Kao Dart of Lethargy##86536 |q 31201 |goto Townlong Steppes/0 49.00,71.28
+step
 talk Hawkmaster Nurong##63618		|goto Townlong Steppes/0 48.70,71.20
 |tip
 talk Taoshi##63617			|goto Townlong Steppes/0 48.70,71.00
-Select _"Would you accompany me?"_ |gossip 35550
 |tip
 talk Tenwu of the Red Smoke##63616	|goto Townlong Steppes/0 48.90,71.20 |only if completedq(31221)
-Select _"Would you accompany me?"_ |gossip 35471
 |tip
 |tip Choose one to accompany you.
+|tip Only Taoshi will be available initially.
 |tip They will help you in combat and allow you to turn in your quests outside of this questing hub.
 |confirm
-step
-talk Ku-Mo##65341
-accept Seeking Father##30933 |goto Townlong Steppes/0 48.70,71.10
-|only if not completedq(30933) and haveq(31201)
 stickystart "Slay_4_Greater_Sra'thik_Mantid"
 stickystart "Slay_15_Lesser_Sra'thik_Mantid"
 step
@@ -1862,13 +1813,13 @@ Destroy the Western Idol |q 31198/2 |goto Townlong Steppes/0 16.20,45.80
 |only if haveq(31198) or completedq(31198)
 step
 talk Shado-Pan Trainee##64459
-Tell them "No you're not!"
-Free the Shado-Pan Trainee at Southern Feeding Pit |q 31201/3 |goto Townlong Steppes/0 17.60,58.00
+Select _"No you're not! Here, take this!"_ |gossip 129778
+Free the Shado-Pan Trainee at Southern Feeding Pit |q 31201/3 |goto Townlong Steppes/0 17.56,58.04
 |only if haveq(31201) or completedq(31201)
 step
 talk Shado-Pan Trainee##64460
-Tell them "No you're not!"
-Free the Shado-Pan Trainee at Southern Feeding Pit |q 31201/2 |goto Townlong Steppes/0 17.40,57.00
+Select _"No you're not! Here, take this!"_ |gossip 129777
+Free the Shado-Pan Trainee at Central Feeding Pit |q 31201/2 |goto Townlong Steppes/0 17.39,56.91
 |only if haveq(31201) or completedq(31201)
 step
 talk Sentinel Ku-Yao##61694
@@ -1877,8 +1828,8 @@ Search for Sentinel Ku-Yao |q 30933/1 |goto Townlong Steppes/0 17.40,57.00
 |only if haveq(30933) or completedq(30933)
 step
 talk Shado-Pan Trainee##64461
-Tell them "No you're not!"
-Free the Shado-Pan Trainee at Southern Feeding Pit |q 31201/1 |goto Townlong Steppes/0 18.00,53.50
+Select _"No you're not! Here, take this!"_ |gossip 129776
+Free the Shado-Pan Trainee at Northern Feeding Pit |q 31201/1 |goto Townlong Steppes/0 18.00,53.46
 |only if haveq(31201) or completedq(31201)
 step
 use the Bag of Shado-Pan Gas Bombs##86532
@@ -1889,18 +1840,23 @@ step
 label "Slay_15_Lesser_Sra'thik_Mantid"
 Kill Sra'thik enemies around this area |kill Sra'thik Mutilator##63678, Sra'thik Cacophyte##63680, Sra'thik Drone##63677, Sra'thik Regenerator##63681, Sra'thik Swiftwing##63683
 Slay #15# Lesser Sra'thik Mantid |q 31196/1 |goto Townlong Steppes/0 25.87,42.16
+You can find more around:
 [Townlong Steppes/0 25.90,42.05] |notinsticky
 [Townlong Steppes/0 27.12,40.28] |notinsticky
 [Townlong Steppes/0 25.10,40.36] |notinsticky
 |only if haveq(31196) or completedq(31196)
+step
 label "Slay_4_Greater_Sra'thik_Mantid"
 Kill Sra'thik enemies around this area |kill Sra'thik Swarm-Leader##63685+, Sra'thik Vessguard##63686+, Sra'thik Will-Breaker##63684+, Sra'thik Deathmixer##63688+
-Slay #4# Greater Sra'thik Mantid |q 31197/1 |goto Townlong Steppes/0 25.00,52.00
-[Townlong Steppes/0 25.90,42.05] |notinsticky
-[Townlong Steppes/0 27.12,40.28] |notinsticky
-[Townlong Steppes/0 25.10,40.36] |notinsticky
+Slay #4# Greater Sra'thik Mantid |q 31197/1 |goto Townlong Steppes/0 23.38,51.77
+You can find more around:
+[Townlong Steppes/0 24.36,48.34] |notinsticky
+[Townlong Steppes/0 25.96,46.06] |notinsticky
+[Townlong Steppes/0 25.97,41.67] |notinsticky
+[Townlong Steppes/0 26.53,38.63] |notinsticky
 |only if haveq(31197) or completedq(31197)
 step
+test
 _Next to you:_
 talk Taoshi##63623
 talk Hawkmaster Nurong##63618
@@ -1971,6 +1927,7 @@ You have completed the available daily quests |complete false or not completedq(
 |tip You won't be able to purchase it if you have used it already. |only if rep("Shado-Pan")>=Revered
 ]])
 ZygorGuidesViewer:RegisterGuide("Daily Guides\\Mists of Pandaria Dailies\\The Tillers Dailies",{
+mopready=true,
 startlevel=85,
 completion={"quests"},
 description="This guide will take you through The Tillers dailies Becoming Exalted with The Tillers allows you to purchase ground mounts and recipes for your character.",
@@ -2073,6 +2030,7 @@ step
 talk Gina Mudclaw##58706
 turnin Learn and Grow V: Halfhill Market##30257 |goto Valley of the Four Winds/0 52.22,48.70
 accept Learn and Grow VI: Gina's Vote##31945 |goto Valley of the Four Winds/0 52.22,48.70
+She may also be here [Valley of the Four Winds/0 53.16,51.80]
 step
 talk Merchant Greenfield##58718
 buy 1 Scallion Seeds##80591 |n
@@ -2120,9 +2078,7 @@ accept The Lesser of Two Evils##30333 |goto Valley of the Four Winds/0 52.25,48.
 accept The White Turnip Treatment##31675 |goto Valley of the Four Winds/0 52.25,48.78
 accept Simian Sabotage##30337 |goto Valley of the Four Winds/0 53.00,51.80
 accept The Cabbage Test##31669 |goto Valley of the Four Winds/0 52.25,48.78
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58646) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 |only if not completedq(32682)
 step
 talk Farmer Yoon##58646
@@ -2142,17 +2098,13 @@ accept The Pink Turnip Challenge##31674 |goto Valley of the Four Winds/0 52.25,4
 accept Which Berries? Witchberries.##31943 |goto Valley of the Four Winds/0 52.25,48.78 |or 2
 accept Why Not Scallions?##31671 |goto Valley of the Four Winds/0 52.25,48.78 |or 2
 accept Simian Sabotage##30337 |goto Valley of the Four Winds/0 52.25,48.78 |or 2
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58646) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 |only if completedq(32682)
 step
 talk Gina Mudclaw##58706
 accept Money Matters##30322 |goto Valley of the Four Winds/0 52.23,48.70
 She can also be found here [Valley of the Four Winds/0 53.16,51.80]
-Check for Quests |complete nodailies(58706) |next |or
-Click here if Gina isn't present |confirm
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Andi##64464
 |tip Only one quest will be available per day.
@@ -2169,53 +2121,43 @@ accept A Gift For Gina##30479 |goto Valley of the Four Winds/0 52.75,50.42 |or
 step
 talk Ella##58647
 accept You Have to Burn the Ropes##30327 |goto Valley of the Four Winds/0 53.10,51.70
-Check for Quests |complete nodailies(58647) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Haohan Mudclaw##57402
 accept Pest Problems##30319 |goto Valley of the Four Winds/0 53.00,51.70
-Check for Quests |complete nodailies(57402) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Tina Mudclaw##58761
 accept They Don't Even Wear Them##30323 |goto Valley of the Four Winds/0 52.98,51.80
-Check for Quests |complete nodailies(58761) |next |or
-Click here if Tina isn't available |confirm
+Click here if no quests are available |confirm
 step
 talk Chee Chee##58709
 accept Not in Chee-Chee's Backyard##30324 |goto Valley of the Four Winds/0 53.10,52.10
-Check for Quests |complete nodailies(58709) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Fish Fellreed##58705
 accept The Kunzen Legend-Chief##30326 |goto Valley of the Four Winds/0 52.76,51.85
-Check for Quests |complete nodailies(58705) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Farmer Fung##57298
 accept Water, Water Everywhere##30317 |goto Valley of the Four Winds/0 52.90,51.70
-Check for Quests |complete nodailies(57298) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Sho##58708
 accept Where It Counts##30325 |goto Valley of the Four Winds/0 53.10,52.10
-Check for Quests |complete nodailies(58708) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Jogu the Drunk##58710
 accept Weed War II##30321 |goto Valley of the Four Winds/0 53.60,52.50
-Check for Quests |complete nodailies(58710) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Old Hillpaw##58707
 accept Chasing the Chicken##30318 |goto Valley of the Four Winds/0 53.06,51.86
-Check for Quests |complete nodailies(58707) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Gina Mudclaw##58706
 accept Money Matters##30322 |goto Valley of the Four Winds/0 53.16,51.80
-Check for Quests |complete nodailies(58706) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Innkeeper Lei Lan##59582
 |tip Walking around inside the building.
@@ -2940,6 +2882,7 @@ Routing Back to the Scallion Harvest |next "Turnin_Learn_and_Grow_VI" |or |only 
 |tip You won't be able to purchase it if you have used it already. |only if rep("The Tillers")>=Revered
 ]])
 ZygorGuidesViewer:RegisterGuide("Daily Guides\\Mists of Pandaria Dailies\\The Golden Lotus Dailies",{
+mopready=true,
 achieveid={7315,6546},
 patch='50004',
 startlevel=90,
@@ -2948,8 +2891,8 @@ description="This guide will take you through The Golden Lotus dailies Becoming 
 step
 Routing to proper section |complete true or completedq(31512) |or |only if Alliance
 Routing to proper section |complete false or completedq(31512) |or |only if Alliance
-Routing to proper section |complete true or completedq(31511) |or |only if Horde
-Routing to proper section |next "dailies" |complete false or completedq(31511) |or |only if Horde
+Routing to proper section |complete true or completedq(30638) |or |only if Horde
+Routing to proper section |next "dailies" |complete false or completedq(30638) |or |only if Horde
 step
 label "prequests"
 talk Wanderer Chu##64521
@@ -2992,7 +2935,8 @@ accept A Witness to History##31512 |or |goto Kun-Lai Summit/0 68.78,43.12
 |only if Alliance
 step
 talk Anduin Wrynn##64848
-Tell him "Let's find out!" |q 31512/1 |goto Kun-Lai Summit/0 55.50,91.30
+Select _"Let's find out!"_ |gossip 41177
+Speak to Anduin at the Gate of the August Celestials |q 31512/1 |goto Kun-Lai Summit/0 55.10,91.74
 |only if Alliance
 step
 talk Matron Vi Vinh##64149
@@ -3014,7 +2958,418 @@ talk Madam Vee Luo##62996
 turnin A Witness to History##31511 |goto Shrine of Two Moons/1 68.42,47.72
 |only if Horde
 step
+talk Sun Tenderheart##58468
+accept The Shrine of Two Moons##30649 |goto Vale of Eternal Blossoms/0 56.73,42.62 |only if Horde
+accept The Shrine of Seven Stars##30631 |goto Vale of Eternal Blossoms/0 56.73,42.62 |only if Alliance
+step
+Run up the ramp |goto Vale of Eternal Blossoms/0 75.41,29.76 < 10 |only if walking
+talk Jaluu the Generous##59908
+Select _"Have you seen anything suspicious?"_ |gossip 134508
+|tip You will be attacked after the dialogue.
+Speak to Jaluu the Generous |q 30649/1 |goto Vale of Eternal Blossoms/0 74.16,42.62 |only if Horde
+Speak to Jaluu the Generous |q 30631/1 |goto Vale of Eternal Blossoms/0 74.16,42.62 |only if Alliance
+step
+talk Elder Liao##63996
+|tip Beneath the platform.
+Select _"What is this place?"_ |gossip 129858
+Speak to Elder Liao |q 30649/4 |goto Vale of Eternal Blossoms/0 62.03,20.60
+|only if Horde
+step
+talk Mokimo the Strong##59959
+|tip Above the platform.
+Select _"How are the refugees settling in?"_ |gossip 126096
+Speak to Mokimo the Strong |q 30649/2 |goto Vale of Eternal Blossoms/0 61.26,22.61
+|only if Horde
+step
+talk Madam Vee Luo##62996
+|tip Inside the building.
+Select _"What can I find here in the city?"_ |gossip 129860
+Speak to Madam Vee Luo |q 30649/3 |goto Shrine of Two Moons/1 68.45,47.61
+|only if Horde
+step
+talk Elder Lin##64029
+|tip Beneath the platform.
+Speak to Elder Lin|q 30631/4 |goto Vale of Eternal Blossoms/0 85.22,62.87
+|only if Alliance
+step
+talk Kuru the Light-Hearted##59961
+Speak to Kuru the Light-Hearted |q 30631/2 |goto Vale of Eternal Blossoms/0 85.83,60.89
+|only if Alliance
+step
+talk Matron Vi Vinh##64149
+|tip Inside the building.
+Speak to Matron Vi Vinh |q 30631/3 |goto Shrine of Seven Stars/1 36.36,66.73
+|only if Alliance
+step
+talk Sun Tenderheart##58468
+turnin The Shrine of Two Moons##30649 |goto Vale of Eternal Blossoms/0 56.73,42.62 |only if Horde
+turnin The Shrine of Seven Stars##30631 |goto Vale of Eternal Blossoms/0 56.73,42.62 |only if Alliance
+step
+ding 90
+step
+talk Leven Dawnblade##58408
+accept The Ruins of Guo-Lai##30632 |goto Vale of Eternal Blossoms/0 56.71,43.60
+|tip You need Pandaria Flying in order to accept this quest.
+step
+talk Anji Autumnlight##58465
+turnin The Ruins of Guo-Lai##30632 |goto Vale of Eternal Blossoms/0 33.98,37.99
+accept Out with the Scouts##30633 |goto Vale of Eternal Blossoms/0 33.98,37.99
+step
+talk Kun Autumnlight##58471
+accept Barring Entry##30634 |goto Vale of Eternal Blossoms/0 33.67,38.40
+stickystart "Slay_8_Shao-Tien Precursor"
+step
+talk Lao Softfoot##65252
+Select _"I'm ready to infiltrate the cave."_ |gossip 126101
+Speak to Lao Softfoot: 1/1 |q 30634/1 |goto Vale of Eternal Blossoms/0 33.79,22.63
+step
+Follow Lao Softfoot
+|tip Stop when he does.
+|tip Stay within the circle around him.
+Plant the Explosives |q 30634/2 |goto Vale of Eternal Blossoms/0 27.49,16.10
+step
+label "Slay_8_Shao-Tien Precursor"
+kill Shao-Tien Precursor##59914+
+Slay #8# Shao-Tien Precursors |q 30633/1 |goto Vale of Eternal Blossoms/0 31.10,30.85
+step
+talk Kun Autumnlight##58471
+turnin Barring Entry##30634 |goto Vale of Eternal Blossoms/0 57.21,43.71
+step
+talk Anji Autumnlight##58465
+turnin Out with the Scouts##30633 |goto Vale of Eternal Blossoms/0 33.98,38.00
+accept Killing the Quilen##30635 |goto Vale of Eternal Blossoms/0 33.97,38.00
+accept Stones of Power##30636 |goto Vale of Eternal Blossoms/0 33.97,38.00
+stickystart "Collect_7_Revelite_Crystals"
+step
+kill 9 Stone Guardian##59971 |q 30635/1 |goto Vale of Eternal Blossoms/0 25.63,29.07
+step
+label "Collect_7_Revelite_Crystals"
+click Revelite Crystal##211306
+collect 7 Revelite Crystal##80511 |q 30636/1 |goto Vale of Eternal Blossoms/0 22.83,28.36
+step
+accept The Guo-Lai Halls##30637 |goto Vale of Eternal Blossoms/0 33.98,38.00
+|tip This should be automatically accepted, if not, you may need to speak with Anji Autumnlight to accept it.
+step
+Enter the building |goto Vale of Eternal Blossoms/0 22.22,26.25 < 10
+kill Zhao-Jin the Bloodletter##59921
+|tip You must attack Zhao-Jin in order for Dagou to spawn properly.
+Watch the dialogue
+kill Dagou##59977 |q 30637/1 |goto Vale of Eternal Blossoms/1 54.27,55.79
+step
+talk Anji Autumnlight##58465
+turnin The Guo-Lai Halls##30637 |goto Vale of Eternal Blossoms/0 33.98,37.96
+turnin Killing the Quilen##30635 |goto Vale of Eternal Blossoms/0 33.98,37.98
+turnin Stones of Power##30636 |goto Vale of Eternal Blossoms/0 33.98,37.98
+accept Leaving an Opening##30638 |goto Vale of Eternal Blossoms/0 33.98,37.98
+step
+talk Leven Dawnblade##58408
+turnin Leaving an Opening##30638 |goto Vale of Eternal Blossoms/0 56.71,43.61
+step
 label "dailies"
+talk Leven Dawnblade##58408
+accept The Eternal Vigil##30307 |goto Vale of Eternal Blossoms/0 56.71,43.62
+step
+talk Anji Autumnlight##58465
+accept Unleashed Spirits##31757 |goto Vale of Eternal Blossoms/0 56.57,43.61 |or 2
+accept Crumbling Behemoth##31762 |goto Vale of Eternal Blossoms/0 56.57,43.61 |or 2
+accept Striking First##31760 |goto Vale of Eternal Blossoms/0 56.57,43.64 |or 2
+accept Thundering Skies##30310 |goto Vale of Eternal Blossoms/0 56.57,43.64 |or 2
+step
+talk Kun Autumnlight##58471
+accept Laosy Scouting##31758 |goto Vale of Eternal Blossoms/0 56.51,43.63 |or
+accept High Chance of Rain##31756 |goto Vale of Eternal Blossoms/0 56.52,43.64 |or
+accept Cannonfire##31754 |goto Vale of Eternal Blossoms/0 56.51,43.63 |or
+step
+talk Sun Tenderheart##58468
+accept Given a Second Chance##30312 |goto Vale of Eternal Blossoms/0 56.50,43.39 |or
+accept Acts of Cruelty##31755 |goto Vale of Eternal Blossoms/0 56.49,43.40 |or
+stickystart "Slay_8_Shao_Tien_Mogu"
+stickystart "Kill_12_Unleashed_Spirits"
+stickystart "Rescue_8_Torture_Victims"
+stickystart "Kill_3_Subjugated_Serpents"
+stickystart "Destroy_7_Shao-Tien_Cannons"
+step
+kill 1 Shao-Tien Behemoth##65824 |q 31762/1 |goto Vale of Eternal Blossoms/0 49.86,40.23
+|only if haveq(31762) or completedq(31762)
+step
+kill Shao-Tien Soul-Render##65978
+|tip There are four of them surrounding the Shao-Tien Behemoth.
+Stop the Shao-Tien Behemoth Ritual |q 31760/1 |goto Vale of Eternal Blossoms/0 44.17,15.49
+|only if haveq(31760) or completedq(31760)
+step
+click Shao-Tien Stormcaller
+Destroy the Northern Stormcaller |q 31756/2 |goto Vale of Eternal Blossoms/0 47.83,19.03
+|only if haveq(31756) or completedq(31756)
+step
+click Shao-Tien Stormcaller
+Destroy the Eastern Stormcaller |q 31756/1 |goto Vale of Eternal Blossoms/0 50.96,22.21
+|only if haveq(31756) or completedq(31756)
+step
+click Shao-Tien Stormcaller
+Destroy the Southern Stormcaller |q 31756/3 |goto Vale of Eternal Blossoms/0 43.13,27.88
+|only if haveq(31756) or completedq(31756)
+step
+click Shao-Tien Stormcaller
+Destroy the Western Stormcaller |q 31756/4 |goto Vale of Eternal Blossoms/0 36.82,18.25
+|only if haveq(31756) or completedq(31756)
+step
+click Shao-Tien Cage
+clicknpc Lao Softfoot##65868
+|tip He's in a random cage around this area.
+Rescue Lao Softfoot |q 31758/1 |goto Vale of Eternal Blossoms/0 41.81,22.55
+|only if haveq(31758) or completedq(31758)
+step
+label "Kill_3_Subjugated_Serpents"
+kill 3 Subjugated Serpent##59158+ |q 30310/1 |goto Vale of Eternal Blossoms/0 45.84,26.16
+|tip Flying around this area.
+|only if haveq(30310) or completedq(30310)
+step
+label "Destroy_7_Shao-Tien_Cannons"
+use the Wu Kao Explosive##89123
+|tip Use them next to Shao-Tien cannons along the walls in around this area.
+Destroy #7# Shao-Tien Cannons |q 31754/1 |goto Vale of Eternal Blossoms/0 49.49,27.05
+[Vale of Eternal Blossoms/0 51.41,24.60]
+|only if haveq(31754) or completedq(31754)
+step
+label "Slay_8_Shao_Tien_Mogu"
+Kill Shao-Tien enemies around this area |kill Shao-Tien Mindbender##63221, Shao-Tien Marauder##58412, Shao-Tien Soul-Render##65810,Shao-Tien Soul-Render##65978
+Slay #8# Shao-Tien Mogu |q 30307/1 |goto Vale of Eternal Blossoms/0 45.55,44.33
+You can find more around [Vale of Eternal Blossoms/0 41.37,24.51]
+|only if haveq(30307) or completedq(30307)
+step
+label "Rescue_8_Torture_Victims"
+kill Shao-Tien Soul-Render##65810
+|tip They will be tormenting Mistfall Villagers or Golden Lotus Guards.
+Rescue #8# Torture Victims |q 31755/1 |goto Vale of Eternal Blossoms/0 43.23,27.84
+|only if haveq(31755) or completedq(31755)
+step
+label "Kill_12_Unleashed_Spirits"
+kill 12 Unleashed Spirit##65935|q 31757/1 |goto Vale of Eternal Blossoms/0 49.86,40.23
+You can find more around:
+[Vale of Eternal Blossoms/0 42.79,34.41] |notinsticky
+[Vale of Eternal Blossoms/0 45.68,26.53] |notinsticky
+|only if haveq(31757) or completedq(31757)
+step
+use the Shado-Pan Bandages##84242
+clicknpc Wounded Defender##59183
+|tip Avoid the golden swirls on the ground.
+Heal #6# Wounded Defenders |q 30312/1 |goto Vale of Eternal Blossoms/0 51.98,30.08
+|only if haveq(30312) or completedq(30312)
+step
+talk Sun Tenderheart##58468
+turnin Given a Second Chance##30312 |goto Vale of Eternal Blossoms/0 56.50,43.38 |only if haveq(30312) or completedq(30312)
+turnin Acts of Cruelty##31755 |goto Vale of Eternal Blossoms/0 56.49,43.40 |only if haveq(31755) or completedq(31755)
+|only if haveq(30312,31755) or completedq(30312,31755)
+step
+talk Kun Autumnlight##58471
+turnin Laosy Scouting##31758 |goto Vale of Eternal Blossoms/0 56.50,43.63 |only if haveq(31758) or completedq(31758)
+turnin High Chance of Rain##31756 |goto Vale of Eternal Blossoms/0 56.52,43.64 |only if haveq(31756) or completedq(31756)
+turnin Cannonfire##31754 |goto Vale of Eternal Blossoms/0 56.51,43.63 |only if haveq(31754) or completedq(31754)
+|only if haveq(31758,31756,31754) or completedq(31758,31756,31754)
+step
+talk Anji Autumnlight##58465
+turnin Unleashed Spirits##31757 |goto Vale of Eternal Blossoms/0 56.57,43.62 |only if haveq(31757) or completedq(31757)
+turnin Crumbling Behemoth##31762 |goto Vale of Eternal Blossoms/0 56.57,43.62 |only if haveq(31762) or completedq(31762)
+turnin Striking First##31760 |goto Vale of Eternal Blossoms/0 56.57,43.64 |only if haveq(31760) or completedq(31760)
+turnin Thundering Skies##30310 |goto Vale of Eternal Blossoms/0 56.57,43.64 |only if haveq(30310) or completedq(30310)
+|only if haveq(31757,31762,31760,30310) or completedq(31757,31762,31760,30310)
+step
+talk Leven Dawnblade##58408
+turnin The Eternal Vigil##30307 |goto Vale of Eternal Blossoms/0 56.70,43.59 |only if haveq(30307) or completedq(30307)
+accept Whitepetal Lake##31131 |goto Vale of Eternal Blossoms/0 56.70,43.59 |or
+accept Mistfall Village##31242 |goto Vale of Eternal Blossoms/0 56.70,43.59 |or |next "Mistfall_Village"
+accept Attack on Mistfall Village##31243 |goto Vale of Eternal Blossoms/0 56.71,43.61 |or |next "Attack_on_Mistfall"
+step
+label "Whitepetal_Lake"
+talk He Softfoot##59342
+turnin Whitepetal Lake##31131 |goto Vale of Eternal Blossoms/0 43.65,46.05
+accept Under Watchful Eyes##30341 |goto Vale of Eternal Blossoms/0 43.67,46.06
+step
+talk Ren Firetongue##59343
+accept A Thousand Pointy Teeth##30284 |goto Vale of Eternal Blossoms/0 42.31,46.01 |or 2
+accept Sparkle in the Eye##30265 |goto Vale of Eternal Blossoms/0 42.31,46.01 |or 2
+accept Fiery Tongue, Fragile Feet##30342 |goto Vale of Eternal Blossoms/0 42.32,46.00 |or 2
+accept A Weighty Task##30338 |goto Vale of Eternal Blossoms/0 42.32,46.00 |or 2
+step
+talk Merchant Tantan##59341
+accept Stick in the Mud##30340 |goto Vale of Eternal Blossoms/0 42.23,45.91
+stickystart "Kill_8_Kinfetooth_Swarmers"
+stickystart "Collect_8_Ruby_Eyes"
+stickystart "Collect_8_Mogu_Artifacts"
+stickystart "Kill_6_Stillwater_Crocolisks"
+step
+label "Collect_8_Mogu_Artifacts"
+click Mogu Artifact
+|tip Under water around this area.
+collect 8 Mogu Artifact##84655 |q 30338/1 |goto Vale of Eternal Blossoms/0 40.60,47.39
+|only if haveq(30338) or completedq(30338)
+step
+label "Collect_8_Ruby_Eyes"
+click Ruby Eye
+|tip In statues of Mogu heads under water around this area.
+collect 8 Ruby Eye##84646 |q 30265/1 |goto Vale of Eternal Blossoms/0 39.32,47.94
+|only if haveq(30265) or completedq(30265)
+step
+label "Kill_8_Kinfetooth_Swarmers"
+kill 8 Knifetooth Swarmer##59404 |q 30284/1 |goto Vale of Eternal Blossoms/0 40.58,48.31
+|tip Under water around this area.
+|only if haveq(30284) or completedq(30284)
+step
+label "Kill_6_Stillwater_Crocolisks"
+kill 6 Stillwater Crocolisk##58455 |q 30342/1 |goto Vale of Eternal Blossoms/0 40.96,47.83
+|only if haveq(30342) or completedq(30342)
+stickstart "Kill_8_Shao-Tien_Surveyors"
+step
+click Whitepetal Reed
+|tip Along the edges of the Whitepetal Lake.
+collect 12 Whitepetal Reed##84241 |q 30340/1 |goto Vale of Eternal Blossoms/0 43.31,48.69
+|only if haveq(30340) or completedq(30340)
+step
+label "Kill_8_Shao-Tien_Surveyors"
+use Shado-Pan Flare##89366
+|tip Use it all around the Whitepetal Lake area.
+kill 8 Shao-Tien Surveyor##59379 |q 30341/1 |goto Vale of Eternal Blossoms/0 45.13,47.53
+|only if haveq(30341) or completedq(30341)
+step
+talk He Softfoot##59342
+turnin Under Watchful Eyes##30341 |goto Vale of Eternal Blossoms/0 43.65,46.05
+|only if haveq(30341) or completedq(30341)
+step
+talk Ren Firetongue##59343
+turnin A Thousand Pointy Teeth##30284 |goto Vale of Eternal Blossoms/0 42.31,46.02 |only if haveq(30284) or completedq(30284)
+turnin Sparkle in the Eye##30265 |goto Vale of Eternal Blossoms/0 42.31,46.02 |only if haveq(30265) or completedq(30265)
+turnin Fiery Tongue, Fragile Feet##30342 |goto Vale of Eternal Blossoms/0 42.32,46.00 |only if haveq(30342) or completedq(30342)
+turnin A Weighty Task##30338 |goto Vale of Eternal Blossoms/0 42.32,46.00 |only if haveq(30338) or completedq(30338)
+|only if haveq(30284,30265,30342,30338) or completedq(30284,30265,30342,30338)
+step
+talk Merchant Tantan##59341
+turnin Stick in the Mud##30340 |goto Vale of Eternal Blossoms/0 42.21,45.94
+|only if haveq(30340) or completedq(30340)
+step
+talk Ren Firetongue##59343
+accept Vicejaw##30234 |goto Vale of Eternal Blossoms/0 42.31,46.01
+step
+kill Vicejaw##246176 |q 30234/1 |goto Vale of Eternal Blossoms/0 37.44,50.94
+|only if haveq(30234) or completedq(30234)
+step
+talk Ren Firetongue##59343
+turnin Vicejaw##30234 |goto Vale of Eternal Blossoms/0 42.32,46.01 |next "end"
+|only if haveq(30234) or completedq(30234)
+step
+label "Mistfall_Village"
+talk Che Wildwalker##59338
+turnin Mistfall Village##31242 |goto Vale of Eternal Blossoms/0 33.87,72.21
+step
+talk Merchant Benny##58820
+accept Blooming Blossoms##30195 |goto Vale of Eternal Blossoms/0 33.77,69.69
+step
+talk Cook Tope##58818
+accept Meating Expectations##30193 |goto Vale of Eternal Blossoms/0 33.84,70.43
+step
+talk Mayor Shiyo##58819
+accept Sprite Plight##30190 |goto Vale of Eternal Blossoms/0 35.37,74.07
+accept My Town, It's on Fire##30192 |goto Vale of Eternal Blossoms/0 35.37,74.07
+stickystart "Kill_8_Slateskin_Troublemakers"
+step
+click Brazier Fire
+Put Out #30# Brazier Fires |q 30192/1 |goto Vale of Eternal Blossoms/0 35.93,70.62
+|only if haveq(30192) or completedq(30192)
+step
+label "Kill_8_Slateskin_Troublemakers"
+kill 8 Slateskin Troublemaker##58673 |q 30190/1 |goto Vale of Eternal Blossoms/0 33.32,72.59
+|only if haveq(30190) or completedq(30190)
+step
+click Eternal Blossom
+|tip Around the river in this area.
+collect 10 Eternal Blossom##244172 |goto Vale of Eternal Blossoms/0 30.57,70.35
+[Vale of Eternal Blossoms/0 34.72,62.09]
+[Vale of Eternal Blossoms/0 33.83,56.52]
+|only if haveq(30190) or completedq(30190)
+step
+kill Fairlands Gazelle##58454+
+collect 10 Fairlands Gazelle Meat##79244 |q 30193/1 |goto Vale of Eternal Blossoms/0 29.26,59.38
+[Vale of Eternal Blossoms/0 33.42,49.52]
+[Vale of Eternal Blossoms/0 25.28,55.78]
+|only if haveq(30193) or completedq(30193)
+step
+talk Merchant Benny##58820
+turnin Blooming Blossoms##30195 |goto Vale of Eternal Blossoms/0 33.76,69.70
+step
+talk Cook Tope##58818
+turnin Meating Expectations##30193 |goto Vale of Eternal Blossoms/0 33.85,70.43
+step
+talk Mayor Shiyo##58819
+turnin Sprite Plight##30190 |goto Vale of Eternal Blossoms/0 35.37,74.06
+turnin My Town, It's on Fire##30192 |goto Vale of Eternal Blossoms/0 35.37,74.06
+step
+talk Che Wildwalker##59338
+accept Quid Pro Quo##30235 |goto Vale of Eternal Blossoms/0 33.86,72.20
+step
+kill Quid##244995 |q 30235/1 |goto Vale of Eternal Blossoms/0 30.69,79.35
+step
+talk Che Wildwalker##59338
+turnin Quid Pro Quo##30235 |goto Vale of Eternal Blossoms/0 33.87,72.21 |next "end"
+step
+label "Attack_on_Mistfall"
+talk Sun Tenderheart##59337
+turnin Attack on Mistfall Village##31243 |goto Vale of Eternal Blossoms/0 35.12,75.37
+accept Backed Into a Corner##30286 |goto Vale of Eternal Blossoms/0 35.12,75.37
+step
+talk Mayor Shiyo##59336
+|tip Inside the building.
+accept My Town, It's On Fire Again##30288 |goto Vale of Eternal Blossoms/0 35.29,76.78
+step
+talk Rook Stonetoe##58911
+accept Mogu Make Poor House Guests##30287 |goto Vale of Eternal Blossoms/0 35.24,74.91
+accept Stonebound Killers##30290 |goto Vale of Eternal Blossoms/0 35.24,74.91
+stickystart "Rescue_6_Cornered_Villagers"
+stickystart "Slay_6_Shao-Tien_Attackers"
+stickystart "Kill_8_Stonebound_Quilen"
+step
+click Mistfall Water Bucket##213463
+|tip They are scattered all around the village.
+collect Mistfall Water Bucket##85950 |n
+use the Mistfall Water Bucket##85950
+Douse #60# Village Fires |q 30288/1 |goto Vale of Eternal Blossoms/0 33.23,73.96
+[Vale of Eternal Blossoms/0 36.19,70.93]
+|only if haveq(30288) or completedq(30288)
+step
+label "Rescue_6_Cornered_Villagers"
+Kill enemies around this area |kill Shao-Tien Subjugator##64192, Stonebound Quilen##64186
+Rescue #6# Cornered Villagers |q 30286/1
+|tip They will be cornered by enemies around the village.
+|only if haveq(30286) or completedq(30286)
+step
+label "Slay_6_Shao-Tien_Attackers"
+Kill enemies around this area |kill Shao-Tien Pillager##63948, Shao-Tien Subjugator##63947
+Slay #6# Shao-Tien Attackers |q 30287/1
+|only if haveq(30287) or completedq(30287)
+step
+label "Kill_8_Stonebound_Quilen"
+kill 8 Stonebound Quilen##63950 |q 30290/1
+|only if haveq(30290) or completedq(30290)
+step
+talk Rook Stonetoe##58911
+turnin Mogu Make Poor House Guests##30287 |goto Vale of Eternal Blossoms/0 35.24,74.91 |only if haveq(30287) or completedq(30287)
+turnin Stonebound Killers##30290 |goto Vale of Eternal Blossoms/0 35.24,74.91 |only if haveq(30290) or completedq(30290)
+step
+talk Sun Tenderheart##59337
+turnin Backed Into a Corner##30286 |goto Vale of Eternal Blossoms/0 35.12,75.37 |only if haveq(30286) or completedq(30286)
+step
+talk Mayor Shiyo##59336
+|tip Inside the building.
+turnin My Town, It's On Fire Again##30288 |goto Vale of Eternal Blossoms/0 35.29,76.78 |only if haveq(30288) or completedq(30288)
+step
+talk Rook Stonetoe##58911
+accept Baolai the Immolator##30297 |goto Vale of Eternal Blossoms/0 35.25,74.91
+step
+kill Baolai the Immolator##245163 |q 30297/1 |goto Vale of Eternal Blossoms/0 37.50,81.44
+|only if haveq(30297) or completedq(30297)
+step
+talk Rook Stonetoe##58911
+turnin Baolai the Immolator##30297 |goto Vale of Eternal Blossoms/0 35.25,74.91 |next "end"
+step
+label "Setting_Sun_Garrison"
 talk Kun Autumnlight##58920
 accept Mantid Under Fire##30243 |goto Vale of Eternal Blossoms/0 21.39,71.47
 accept Bloodied Skies##30266 |goto Vale of Eternal Blossoms/0 21.39,71.47
@@ -3146,10 +3501,11 @@ turnin Bloodied Skies##30266 |goto Vale of Eternal Blossoms/0 21.39,71.47 |only 
 |only if haveq(30243,30266)
 step
 label "end"
-You have completed the available daily quests |complete false or not completedq(30242,30243,30240,30266,30277,30280,30306) |or |next "dailies"
+You have completed the available daily quests |complete false or not completedq(30242,30243,30240,30266,30277,30280,30306,30307,31757,31762,31758,30312,31131,30341,30284,30265,30340,30234,31242,30195,30193,30190,30192,30235,31760,31756,31755,31243,30286,30288,30287,30290,30297) |next "dailies"
 |tip New quests will become available with the next daily server reset.
 ]])
 ZygorGuidesViewer:RegisterGuide("Daily Guides\\Mists of Pandaria Dailies\\The Klaxxi Dailies",{
+mopready=true,
 startlevel=90,
 patch='50001',
 description="This guide will take you through The Klaxxi dailies Becoming Exalted with The Klaxxi allows you to purchase ground mounts, plans for blacksmithing, armor, and weapons for your character.",
@@ -3160,7 +3516,7 @@ Complete the Dread Wastes Storylines |q 31179 |future
 |tip The more Paragons you unlock, the more daily quests will be available.
 |tip You will achieve {y}'Dread Waste Makes Dread Waste'{} before all Paragons are unlocked.
 |tip Refer to the Dread Wastes (89-90) to accomplish this.
-Click Here to Load the "Dread Waste (30-70)" Leveling Guide |confirm |next "Leveling Guides\\Pandaria (10-70)\\Dread Wastes (30-70)" |or
+Click Here to Load the "Dread Wastes (89-90)" Leveling Guide |confirm |next "Leveling Guides\\Pandaria (85-90)\\Dread Wastes (89-90)" |or
 step
 label "dailies"
 talk Kil'ruk the Wind-Reaver##62538
@@ -3170,9 +3526,7 @@ accept Culling the Swarm##31109 |goto Dread Wastes/0 55.06,35.86
 accept Mistblade Destruction##31267 |goto Dread Wastes/0 55.06,35.86
 accept Eradicating the Zan'thik##31111 |goto Dread Wastes/0 55.06,35.86
 accept Vess-Guard Duty##31505 |goto Dread Wastes/0 55.06,35.86
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(62538) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Korven the Prime##62180
 accept An Ancient Empire##31232 |goto Dread Wastes/0 54.31,36.09
@@ -3181,9 +3535,7 @@ accept Sampling the Empire's Finest##31496 |goto Dread Wastes/0 54.31,36.09
 accept The Fight Against Fear##31270 |goto Dread Wastes/0 54.31,36.09
 accept The Scale-Lord##31269 |goto Dread Wastes/0 54.31,36.09
 accept Meltdown##31507 |goto Dread Wastes/0 54.31,36.09
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(62180) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Rik'kal the Dissector##65253
 accept Bad Genes##31271 |goto Dread Wastes/0 54.36,35.94
@@ -3192,9 +3544,7 @@ accept Shortcut to Ruin##31503 |goto Dread Wastes/0 54.36,35.94
 accept Putting An Eye Out##31234 |goto Dread Wastes/0 54.36,35.94
 accept Specimen Request##31508 |goto Dread Wastes/0 54.36,35.94
 accept Fear Takes Root##31509 |goto Dread Wastes/0 54.36,35.94
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(65253) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 |only if completedq(31606)
 step
 talk Kaz'tik the Manipulator##63758
@@ -3205,14 +3555,11 @@ accept A Little Brain Work##31268 |goto Dread Wastes/0 54.25,35.79
 accept Kunchong Treats##31024 |goto Dread Wastes/0 54.25,35.79
 accept Rampage Against the Machine##31808 |goto Dread Wastes/0 54.25,35.79
 accept Shackles of Manipulation##31506 |goto Dread Wastes/0 54.25,35.79
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(63758) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 step
 talk Xaril the Poisoned Mind##62151
 accept Dark Skies##31216 |goto Dread Wastes/0 54.90,36.20
-Check for Quests |complete nodailies(62151) |next |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 |only if completedq(31211)
 step
 talk Hisek the Swarmkeeper##63785
@@ -3220,9 +3567,7 @@ accept Debugging the Terrace##31237 |goto Dread Wastes/0 54.83,36.20
 accept Quiet Now##31510 |goto Dread Wastes/0 54.83,36.20
 accept Infection##31272 |goto Dread Wastes/0 54.83,36.20
 accept Ordnance Disposal##31504 |goto Dread Wastes/0 54.83,36.20
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(63785) |or
-|tip If no quests are offered, this step will advance.
+Click here if no quests are available |confirm
 |only if completedq(31439)
 step
 talk Malik the Unscathed##62774

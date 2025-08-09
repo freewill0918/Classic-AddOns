@@ -158,6 +158,7 @@ local colors={['portal']="|cffff8800",['taxi']="|cff88ff00"}
 local COSTMOD_COMFORT_TAXI = 0.5
 local COSTMOD_WALK = 1.2
 local COSTMOD_HOSTILE = 1
+local COSTMOD_HOSTILE_LEVEL = 5
 
 local TAXI_NODE_RADIUS = 1
 local STANDING_ON_NODE_RADIUS = 10
@@ -700,11 +701,13 @@ function Lib.IsSegmentWalled(node1,node2)
 	if not walls then return false,"no wall on map" end
 	local n1x,n1y,n2x,n2y = node1.x,node1.y,node2.x,node2.y
 	for wi,wall in ipairs(walls) do
-		local segments=wall.segments
-		for si,points in ipairs(segments) do
-			local cross,desc = doesIntersect(n1x,n1y,n2x,n2y,points[1],points[2],points[3],points[4])
-			--print ("doesIntersect? ",wi,si,n1x,n1y,n2x,n2y,points[1],points[2],points[3],points[4]," = ",cross,desc)
-			if cross then return true,wi,si,wall.penalty end
+		if not wall.cond or wall.cond() then
+			local segments=wall.segments
+			for si,points in ipairs(segments) do
+				local cross,desc = doesIntersect(n1x,n1y,n2x,n2y,points[1],points[2],points[3],points[4])
+				--print ("doesIntersect? ",wi,si,n1x,n1y,n2x,n2y,points[1],points[2],points[3],points[4]," = ",cross,desc)
+				if cross then return true,wi,si,wall.penalty end
+			end
 		end
 	end
 	return false
@@ -1145,9 +1148,14 @@ end
 
 function Lib.greenborders:CanCross(id1,id2,loud)
 	local si1=self[id1]
-	if si1 and si1[id2] and si1[id2]>0 then return true end
+	local si1_val = si1 and si1[id2] -- static
+	if type(si1_val)=="function" then si1_val = si1_val() and 1 or 0 end -- conditional
+	if si1 and si1_val and si1_val>0 then return true end
+
 	local si2=self[id2]
-	if si2 and si2[id1] and si2[id1]>0 and not (si1 and si1[id2] and si1[id2]<0) then return true end -- other way only if not defined as oneway
+	local si2_val = si2 and si2[id1] -- static
+	if type(si2_val)=="function" then si2_val = si2_val() and 1 or 0 end -- conditional
+	if si2 and si2_val and si2_val>0 and not (si1 and si1_val and si1_val<0) then return true end -- other way only if not defined as oneway
 end
 
 --[[================ INITIALIZE NODES ===============]]--
@@ -1490,14 +1498,15 @@ local function _StartupThread()
 				oneway=true
 				tremove(zones,3)
 			end
+			local cond = zones.cond
 			for zi1=1,#zones-1 do
 				local z1 = Lib:GetMapByNameFloor(zones[zi1])
 				assert(z1,"initialising green borders, Bad zone "..zones[zi1])
 				for zi2=zi1+1,#zones do
 					local z2 = Lib:GetMapByNameFloor(zones[zi2])
 					assert(z2,"initialising green borders, Bad zone "..zones[zi2])
-					local iz1=Lib.greenborders[z1] or {}   iz1[z2]=1   Lib.greenborders[z1] = iz1
-					local iz2=Lib.greenborders[z2] or {}   iz2[z1]=oneway and -1 or 1   Lib.greenborders[z2] = iz2
+					local iz1=Lib.greenborders[z1] or {}   iz1[z2]=cond or 1   Lib.greenborders[z1] = iz1
+					local iz2=Lib.greenborders[z2] or {}   iz2[z1]=oneway and -1 or (cond or 1)   Lib.greenborders[z2] = iz2
 				end
 			end
 		end
@@ -1530,7 +1539,7 @@ local function _StartupThread()
 				if #points%2~=0 then error("Number of wall coords not even. "..tostring(zone).." "..tostring(i)) end
 				if #points<4 then error("Too few points in wall. "..tostring(zone).." "..tostring(i)) end
 
-				local wall={segments={},nodes={},penalty=penalty}
+				local wall={segments={},nodes={},penalty=penalty, cond=points.cond}
 				for pn=1,#points,2 do
 					local nextpn=pn+2   if nextpn>#points then if loop then nextpn=1 else nextpn=nil end end -- make a loop
 					if nextpn then tinsert(wall.segments,{points[pn]/100,points[pn+1]/100,points[nextpn]/100,points[nextpn+1]/100}) end
@@ -2461,7 +2470,7 @@ function Lib:IsDestinationImpossible(mymap,destmap)
 		title = questdata and questdata.title
 		return true,"KORTHIA_LOCKED","You can't get to Korthia until have completed the " .. (title and "quest \""..title.."\"." or "initial quest.")
 
-	elseif (destmap==1670 or destmap==1671) and (not IsQuestFlaggedCompleted(60151) and not PlayerIsOnQuest(85028)) then
+	elseif (destmap==1670 or destmap==1671) and (not IsQuestFlaggedCompleted(60151) and not PlayerIsOnQuest(85028)) and level<50 then
 		local title
 		local questdata = ZGV.Localizers:GetQuestData(60151)
 		title = questdata and questdata.title
@@ -3467,11 +3476,15 @@ function Lib:StepPath()  -- THE WORKHORSE.
 				if mode=="walk" and CFG_avoid_highlevel_zones then
 					local c_hostile = current.regionobj and current.regionobj.hostile
 					c_hostile = c_hostile or _ZoneMeta[current.m].hostile -- was: zone.level-TMP_PLAYERLEVEL>=2
-					if c_hostile==true then c_hostile = COSTMOD_HOSTILE end
+					if c_hostile==true then 
+						c_hostile = _ZoneMeta[current.m].levelhostile and COSTMOD_HOSTILE_LEVEL or COSTMOD_HOSTILE 
+					end
 					
 					local n_hostile = neigh.regionobj and neigh.regionobj.hostile
 					n_hostile = n_hostile or _ZoneMeta[neigh.m].hostile -- was: zone.level-TMP_PLAYERLEVEL>=2
-					if n_hostile==true then n_hostile = COSTMOD_HOSTILE end
+					if n_hostile==true then 
+						n_hostile = _ZoneMeta[neigh.m].levelhostile and COSTMOD_HOSTILE_LEVEL or COSTMOD_HOSTILE 
+					end
 
 					local hostile
 					if c_hostile and n_hostile then hostile=(c_hostile+n_hostile)/2 else hostile = c_hostile or n_hostile end
@@ -4735,6 +4748,17 @@ function Lib:CheckMaxSpeeds()
 	local canfly_in_slzm = canfly and A_UNLOCKING_THE_SECRETS
 	local canfly_in_df = canfly and A_DRAGON_ISLES_PATHFINDER -- useless, but there it is
 
+	-- in karesh you can mount if you are not phasediving. if you are, you need to have spent enough talent points in zone tree to unlock specific talent
+	-- each talent costs 3 points, the one we need is third in line, so we expect at least 9 points spent. also, you only have access to ground mounts then
+	local MAP_TAZAVESH = 2472
+	local MAP_KARESH = 2371
+
+	local treeID = 1115
+	local configID = C_Traits.GetConfigIDByTreeID(treeID)
+	local treeCurrencyInfo = configID and C_Traits.GetTreeCurrencyInfo(configID, 1115, true)
+	local canride_in_karesh = not C_UnitAuras.GetPlayerAuraBySpellID(1214374) or (treeCurrencyInfo and treeCurrencyInfo[1].spent>=9)
+	local canfly_in_karesh = not C_UnitAuras.GetPlayerAuraBySpellID(1214374)
+
 	local FLIGHTMODE_STEADY = (not not C_UnitAuras.GetPlayerAuraBySpellID(404468)) -- one toon had neither buff; defaulted to dynamic
 	local FLIGHTMODE_DYNAMIC = (not not C_UnitAuras.GetPlayerAuraBySpellID(404464)) or not FLIGHTMODE_STEADY
 	
@@ -4771,6 +4795,7 @@ function Lib:CheckMaxSpeeds()
 		["ShadowlandsZereth"] = { groundspeed + max(BONUS_GUILDPERK_MOUNTUP) , canfly_in_slzm and (dragonspeed_nerfed or flyspeed) or 0, canfly_in_slzm and flyspeed or 0 },
 		["DragonIsles"] = { groundspeed + max(BONUS_GUILDPERK_MOUNTUP) , dragonspeed or (canfly_in_df and flyspeed) or 0, SP_DRAGONRIDING_BASICS and flyspeed or 0 }, -- store normal flying mount speed for comfort mode
 		["KhazAlgar"] = { groundspeed + max(BONUS_GUILDPERK_MOUNTUP) , dragonspeed or (canfly_in_df and flyspeed) or 0, SP_DRAGONRIDING_BASICS and flyspeed or 0 }, -- store normal flying mount speed for comfort mode
+		["Karesh"] = { canride_in_karesh and (groundspeed + max(BONUS_GUILDPERK_MOUNTUP)) or 1 , canfly_in_karesh and (dragonspeed or (canfly_in_df and flyspeed)) or 0, canfly_in_karesh and (SP_DRAGONRIDING_BASICS and flyspeed) or 0 }, -- store normal flying mount speed for comfort mode
 	}
 
 	Lib.debug_maxspeeds = {
@@ -4802,6 +4827,8 @@ function Lib:CheckMaxSpeeds()
 		['canfly_in_sl']=canfly_in_sl,
 		['canfly_in_slzm']=canfly_in_slzm,
 		['canfly_in_df']=canfly_in_df,
+		['canride_in_karesh']=canride_in_karesh,
+		['canfly_in_karesh']=canfly_in_karesh,
 		['dragonspeed']=dragonspeed,
 		['FLIGHTMODE_DYNAMIC']=FLIGHTMODE_DYNAMIC,
 		['FLIGHTMODE_STEADY']=FLIGHTMODE_STEADY,
@@ -4811,6 +4838,14 @@ function Lib:CheckMaxSpeeds()
 	for zoneid=1,3000 do
 		local system = ZGV.GetMapContinent(zoneid)
 		local meta = zonemeta[zoneid]
+
+		if meta.levelhostile then
+			local zonelevel = C_Map.GetMapLevels(zoneid)
+			meta.level = zonelevel
+			meta.hostile = zonelevel and (playerlevel < (zonelevel-meta.levelhostile))
+		end
+
+
 		if (system and Lib.ZoneIsOutdoor(zoneid)) or (meta.flyable==true) then
 			local run,fly,comfortdragon
 			local bonus=0.0
@@ -4830,10 +4865,19 @@ function Lib:CheckMaxSpeeds()
 			elseif system==MAPENUM["KHAZALGAR"] then run,fly,comfortdragon=unpack(Lib.speeds["KhazAlgar"])
 			else run,fly=1,0 end
 
-			if meta.flyable==false then fly,comfortdragon=0,0
-			elseif meta.vashjir then fly=2.4  -- seahorses are fast
-			elseif zoneid==62 and Q_BLESSING_OF_THE_STAG and run<1.55 then run=run+0.1 -- only apply to walking and travel form
-			elseif zoneid==MAP_SIRENISLE and Q_CYRCE_WOULD_BE_SO_PROUD then run,fly,comfortdragon=unpack(Lib.speeds["KhazAlgar"])
+			if meta.flyable==false then 
+				fly,comfortdragon=0,0
+			elseif meta.vashjir then 
+				-- seahorses are fast
+				fly=2.4
+			elseif zoneid==62 and Q_BLESSING_OF_THE_STAG and run<1.55 then 
+				-- only apply to walking and travel form
+				run=run+0.1
+			elseif zoneid==MAP_SIRENISLE and Q_CYRCE_WOULD_BE_SO_PROUD then 
+				run,fly,comfortdragon=unpack(Lib.speeds["KhazAlgar"])
+			elseif zoneid==MAP_TAZAVESH or zoneid==MAP_KARESH then 
+				-- two specific maps ar on KhazAlgar, but have special mount conditions
+				run,fly,comfortdragon=unpack(Lib.speeds["Karesh"])
 			end
 
 			Lib.maxspeedinzone[zoneid]={ max(run,fly), run, fly, comfortdragon }

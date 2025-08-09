@@ -175,6 +175,7 @@ addon.player = {
     faction = select(1,UnitFactionGroup("player")),
     guid = UnitGUID("player"),
     name = UnitName("player"),
+    level = UnitLevel("player"),
     maxlevel = maxLevel,
     season = addon.GetSeason(),
     beta = GetCurrentRegion() >= 20,
@@ -275,28 +276,39 @@ local maxSkillLevel = {}
 local professionNames
 
 function addon.GetProfessionNames()
-    if not professionNames then professionNames = {} end
+    if not professionNames then
+        professionNames = {}
+        addon.professionNames = professionNames
+    end
 
     for profession, ids in pairs(addon.professionID) do
         for i, id in ipairs(ids) do
-            if IsSpellKnown(id) then
+            if IsSpellKnown(id) or addon.gameVersion > 40000 then
                 if id == 2656 then
                     professionNames[profession] = GetSpellInfo(2575)
                 elseif id == 2383 then
-                    professionNames[profession] = GetSpellInfo(9134)
+                    local hid = addon.gameVersion > 30000 and 353982 or 9134
+                    professionNames[profession] = GetSpellInfo(hid)
                 elseif id == 1804 then
                     professionNames[profession] = GetSpellInfo(1809)
                 else
                     professionNames[profession] = GetSpellInfo(id)
                 end
-                break
+                if professionNames[profession] then
+                    break
+                end
             end
         end
     end
-    professionNames.riding = GetSpellInfo(33388)
+    if  C_TradeSkillUI and C_TradeSkillUI.GetTradeSkillDisplayName then
+        professionNames.riding = C_TradeSkillUI.GetTradeSkillDisplayName(762)
+    else
+        professionNames.riding = GetSpellInfo(33388)
+    end
     return professionNames
 end
 
+addon.currrentSkillLevel = currrentSkillLevel
 function addon.GetProfessionLevel()
     local names
     if not (professionNames and professionNames.riding) then
@@ -333,6 +345,19 @@ function addon.GetProfessionLevel()
             end
         end
     end
+--[[
+--Enum.Profession is just wrong, can't use that
+    if _G.GetProfessionInfo then
+        for name,id in pairs(Enum.Profession) do
+            local _, _, current, max = _G.GetProfessionInfo(id)
+            if current then
+                local p = strlower(name)
+                currrentSkillLevel[p] = current
+                maxSkillLevel[p] = max
+            end
+        end
+    end
+]]
 end
 
 function addon.UpdateSkillData()
@@ -1383,6 +1408,8 @@ function addon:PLAYER_LEVEL_UP(_, level)
         addon.SetStep(1)
         addon.SetStep(stepn)]]
     end
+
+    addon.player.level = level
 end
 
 function addon:UNIT_PET(_, unit)

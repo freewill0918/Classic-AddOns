@@ -2017,7 +2017,7 @@ data.flightcost = {
 		taxioperator = "seahorse",
 		neighbors = {
 			[523] = 63, -- Tranquil Wash, Vashj'ir
-			[605] = 80, -- Voldrin's Hold, Vashj'ir
+			[611] = 80, -- Voldrin's Hold, Vashj'ir
 		},
 	},
 	{
@@ -2403,7 +2403,7 @@ data.flightcost = {
 		neighbors = {
 			[522] = 50, -- Silver Tide Hollow, Vashj'ir
 			[526] = 72, -- Tenebrous Cavern, Vashj'ir
-			[610] = 28, -- Stygian Bounty, Vashj'ir
+			[612] = 28, -- Stygian Bounty, Vashj'ir
 		},
 	},
 	{
@@ -2608,7 +2608,7 @@ data.flightcost = {
 	},
 	{
 		tag = "297:377",
-		nodeID = 606,
+		nodeID = 607,
 		name = "Sandy Beach, Vashj'ir",
 		taxioperator = "seahorse",
 		faction = "H",
@@ -2624,7 +2624,7 @@ data.flightcost = {
 		faction = "A",
 		neighbors = {
 			[6] = 189, -- Ironforge, Dun Morogh
-			[605] = 68, -- Voldrin's Hold, Vashj'ir
+			[611] = 68, -- Voldrin's Hold, Vashj'ir
 		},
 	},
 	{
@@ -2639,7 +2639,7 @@ data.flightcost = {
 	},
 	{
 		tag = "290:391",
-		nodeID = 606,
+		nodeID = 607,
 		name = "Sandy Beach, Vashj'ir",
 		taxioperator = "seahorse",
 		faction = "A",
@@ -2687,11 +2687,10 @@ data.flightcost = {
 		name = "Silver Tide Hollow, Vashj'ir",
 		taxioperator = "seahorse",
 		neighbors = {
-			[606] = 36, -- Sandy Beach, Vashj'ir
+			[607] = 36, -- Sandy Beach, Vashj'ir
 			[521] = 72, -- Smuggler's Scar, Vashj'ir
 			[523] = 44, -- Tranquil Wash, Vashj'ir
 			[525] = 49, -- Legion's Rest, Vashj'ir
-			[606] = 58, -- Sandy Beach, Vashj'ir
 		},
 	},
 	{
@@ -2720,17 +2719,8 @@ data.flightcost = {
 		name = "Smuggler's Scar, Vashj'ir",
 		taxioperator = "seahorse",
 		neighbors = {
-			[606] = 43, -- Sandy Beach, Vashj'ir
+			[607] = 43, -- Sandy Beach, Vashj'ir
 			[522] = 84, -- Silver Tide Hollow, Vashj'ir
-		},
-	},
-	{
-		tag = "305:414",
-		nodeID = 521,
-		name = "Smuggler's Scar, Vashj'ir",
-		neighbors = {
-			[522] = 84, -- Silver Tide Hollow, Vashj'ir
-			[606] = 34, -- Sandy Beach, Vashj'ir
 		},
 	},
 	{
@@ -2795,7 +2785,7 @@ data.flightcost = {
 	},
 	{
 		tag = "277:335",
-		nodeID = 610,
+		nodeID = 612,
 		name = "Stygian Bounty, Vashj'ir",
 		taxioperator = "seahorse",
 		neighbors = {
@@ -2854,7 +2844,7 @@ data.flightcost = {
 		taxioperator = "seahorse",
 		neighbors = {
 			[525] = 78, -- Legion's Rest, Vashj'ir
-			[610] = 73, -- Stygian Bounty, Vashj'ir
+			[612] = 73, -- Stygian Bounty, Vashj'ir
 		},
 	},
 	{
@@ -3004,7 +2994,7 @@ data.flightcost = {
 		neighbors = {
 			[522] = 44, -- Silver Tide Hollow, Vashj'ir
 			[524] = 69, -- Darkbreak Cove, Vashj'ir
-			[605] = 60, -- Voldrin's Hold, Vashj'ir
+			[611] = 60, -- Voldrin's Hold, Vashj'ir
 		},
 	},
 	{
@@ -3062,7 +3052,7 @@ data.flightcost = {
 	},
 	{
 		tag = "290:323",
-		nodeID = 605,
+		nodeID = 611,
 		name = "Voldrin's Hold, Vashj'ir",
 		taxioperator = "seahorse",
 		neighbors = {

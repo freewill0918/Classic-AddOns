@@ -2438,9 +2438,9 @@ local lastmovetime=lastbeeptime
 
 local msin,mcos,mabs=math.sin,math.cos,math.abs
 
-local WAYPOINT_RADIUS_LIBROVER_GROUND = 1
+local WAYPOINT_RADIUS_LIBROVER_GROUND = 8
 local WAYPOINT_RADIUS_LIBROVER_FLIGHT = 15
-local WAYPOINT_RADIUS_GUIDE_GROUND = 1
+local WAYPOINT_RADIUS_GUIDE_GROUND = 8
 local WAYPOINT_RADIUS_GUIDE_FLIGHT = 15
 
 function Pointer:GetDefaultStepDist(waypoint)

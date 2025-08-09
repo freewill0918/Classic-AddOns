@@ -10,6 +10,7 @@ patch='unknown',
 mounttype='unknown',
 model={30366},
 description="This guide will help you acquire the Sunwalker Kodo (Paladin only) mount.",
+mopready=true,
 },[[
 step
 This mount is only available to Tauren Paladins
@@ -27,6 +28,7 @@ patch='unknown',
 mounttype='unknown',
 model={30501},
 description="This guide will help you acquire the Great Sunwalker Kodo (Paladin only) mount.",
+mopready=true,
 },[[
 step
 This mount is only available to Tauren Paladins
@@ -48,6 +50,7 @@ patch='20003',
 mounttype='unknown',
 model={19296},
 description="This guide will help you acquire the Thalassian Warhorse (Paladin only) mount.",
+mopready=true,
 },[[
 step
 This mount is only available to Blood Elf Paladins
@@ -69,6 +72,7 @@ patch='unknown',
 mounttype='unknown',
 model={31368},
 description="This guide will help you acquire the Thalassian Charger (Paladin only) mount.",
+mopready=true,
 },[[
 step
 This mount is only available to Blood Elf Paladins
@@ -90,6 +94,7 @@ patch='20003',
 mounttype='unknown',
 model={2346},
 description="This guide will help you acquire the Felsteed (Warlock only) mount.",
+mopready=true,
 },[[
 step
 This mount is only available to Warlocks
@@ -111,6 +116,7 @@ patch='20001',
 mounttype='unknown',
 model={14554},
 description="This guide will help you acquire the Dreadsteed (Warlock only) mount.",
+mopready=true,
 },[[
 step
 This mount is only available to Warlocks
@@ -134,6 +140,7 @@ patch='30305',
 mounttype='Ground',
 model={28918},
 description="This guide will help you acquire the Argent Warhorse and Argent Charger (Paladin only) mounts.",
+mopready=true,
 },[[
 step
 Use the _Icecrown Dailies_ section of this guide to complete the _Argent Tournament Grounds_ and _The Sunreavers pre-quests_ and _dailies_.
@@ -156,6 +163,7 @@ patch='30103',
 mounttype='Ground',
 model={29261},
 description="This guide will help you acquire the Darkspear Raptor and Swift Purple Raptor mounts",
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the ARGENT TOURNAMENT GROUNDS DAILIES (VALIANT RANK) guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -280,6 +288,7 @@ patch='30103',
 mounttype='Ground',
 model={29879},
 description="This guide will help you acquire the Swift Burgundy Wolf and Orgrimmar Wolf mounts.",
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the Argent Tournament Grounds Valiant Rank Dailies guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -402,6 +411,7 @@ patch='30103',
 mounttype='Ground',
 model={29262},
 description="This guide will help you acquire the Swift Red Hawkstrider and Silvermoon Hawkstrider mounts.",
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the ARGENT TOURNAMENT GROUNDS DAILIES (VALIANT RANK) guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -526,6 +536,7 @@ patch='40300',
 mounttype='Ground',
 model={28889},
 description="This guide will help you acquire the Sunreaver Hawkstrider mount.",
+mopready=true,
 },[[
 step
 Use the _Icecrown Dailies_ section of this guide to complete the _Argent Tournament Grounds_ and _The Sunreavers pre-quests_ and _dailies_.
@@ -545,6 +556,7 @@ patch='30103',
 mounttype='Ground',
 model={29259},
 description="This guide will help you acquire the Great Golden Kodo and Thunder Bluff Kodo mounts.",
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the ARGENT TOURNAMENT GROUNDS DAILIES (VALIANT RANK) guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -668,6 +680,7 @@ patch='30103',
 mounttype='Ground',
 model={29257},
 description="This guide will help you acquire the White Skeletal Warhorse and Forsaken Warhorse mounts.",
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the ARGENT TOURNAMENT GROUNDS DAILIES (VALIANT RANK) guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -792,6 +805,7 @@ patch='43000',
 mounttype='Ground',
 model={39060},
 description="This guide will help you acquire the Darkmoon Dancing Bear and Swift Forest Strider mounts.",
+mopready=true,
 },[[
 step
 This mount requires Darkmoon Island to be accessible.
@@ -816,6 +830,7 @@ patch='30100',
 mounttype='Ground',
 model={29102},
 description="This guide will help you acquire the Venomhide Ravasaur mount.",
+mopready=true,
 },[[
 step
 This mount will take _20 days_ to earn.
@@ -903,6 +918,7 @@ patch='unknown',
 mounttype='Ground',
 model={35135},
 description="This guide will help you acquire the Grey Riding Camel mount.",
+mopready=true,
 },[[
 step
 talk Zidormi##162419
@@ -1223,6 +1239,7 @@ patch='unknown',
 mounttype='Ground',
 model={38261},
 description="This guide will help you acquire the Amani Battle Bear mount.",
+mopready=true,
 },[[
 step
 |goto Ghostlands 82.00,64.30 |n
@@ -1250,6 +1267,7 @@ patch='30008',
 mounttype='Ground',
 model={21427},
 description="This guide will help you acquire the Raven Lord mount.",
+mopready=true,
 },[[
 step
 |goto Terokkar Forest,44.90,65.60 |n
@@ -1273,6 +1291,7 @@ patch='30003',
 mounttype='Ground',
 model={16937},
 description="This guide will help you acquire the Rivendare's Deathcharger mount.",
+mopready=true,
 },[[
 step
 |goto Eastern Plaguelands,43.40,19.50 |n
@@ -1295,6 +1314,7 @@ patch='20400',
 mounttype='Ground',
 model={19483},
 description="This guide will help you acquire the Swift White Hawkstrider mount.",
+mopready=true,
 },[[
 step
 |goto Isle of Quel'Danas,61.10,30.80 |n
@@ -1318,6 +1338,7 @@ patch='unknown',
 mounttype='Ground',
 model={37799},
 description="This guide will help you acquire the Swift Zulian Panther and Armored Razzashi Raptor mount.",
+mopready=true,
 },[[
 step
 label "start0"
@@ -1349,6 +1370,7 @@ patch='30003',
 mounttype='Ground',
 model={26424},
 description="This guide will help you acquire the Wooly Mammoth mount.",
+mopready=true,
 },[[
 step
 talk Mei Francis##32216
@@ -1365,6 +1387,7 @@ patch='40304',
 mounttype='unknown',
 model={22350},
 description="This guide will help you acquire the Swift Brewfest Ram mount.",
+mopready=true,
 },[[
 step
 This pet can only be obtained during the Brewfest event
@@ -1385,6 +1408,7 @@ patch='20403',
 mounttype='Ground',
 model={24757},
 description="This guide will help you acquire the Swift Brewfest Kodo mount.",
+mopready=true,
 },[[
 step
 This pet can only be obtained during the Brewfest event
@@ -1406,6 +1430,7 @@ mounts={145133},
 patch='54000',
 mounttype='unknown',
 description="This guide will help you acquire the Shimmering Moonstone mount.",
+mopready=true,
 },[[
 step
 You can only obtain this mount when the Darkmoon Faire is in town.
@@ -1425,6 +1450,7 @@ patch='43000',
 mounttype='Ground',
 model={1961},
 description="This guide will help you acquire the Swift Lovebird mount.",
+mopready=true,
 },[[
 step
 This pet can only be obtained during the Love is in the Air event
@@ -1444,6 +1470,7 @@ patch='43000',
 mounttype='Ground',
 model={1221},
 description="This guide will help you acquire the Swift Springstrider mount.",
+mopready=true,
 },[[
 step
 Thie pet can only be obtained during the Noblegarden event
@@ -1462,6 +1489,7 @@ patch='30202',
 mounttype='Ground',
 model={19482},
 description="This guide will help you acquire the Swift Green Hawkstrider, Swift Pink Hawkstrider, Swift Purple Hawkstrider, Black Hawkstrider, Blue Hawkstrider, Purple Hawkstrider, and Red Hawkstrider mounts.",
+mopready=true,
 },[[
 step
 #include main_rep_mount,rep="Silvermoon City",tabard="SCTabard"
@@ -1491,6 +1519,7 @@ patch='60204',
 mounttype='Ground',
 model={14349},
 description="This guide will help you acquire the Great Brown Kodo, Great Gray Kodo, Great White Kodo, Brown Kodo, Gray Kodo, and White Kodo mounts.",
+mopready=true,
 },[[
 step
 #include main_rep_mount,rep="Thunder Bluff",tabard="TBTabard"
@@ -1518,6 +1547,7 @@ patch='40300',
 mounttype='Ground',
 model={14344},
 description="This guide will help you acquire the Swift Blue Raptor, Swift Olive Raptor, Swift Orange Raptor, Emerald Raptor, Turqoise Raptor, and Violet Raptor mounts.",
+mopready=true,
 },[[
 step
 #include main_rep_mount,rep="Darkspear Trolls",tabard="DSTabard"
@@ -1547,6 +1577,7 @@ patch='unknown',
 mounttype='Ground',
 model={10720},
 description="This guide will help you acquire the Green Skeletal Warhorse, Ochre Skeletal Warhorse, Purple Skeletal Warhorse, Black Skeletal Horse, Blue Skeletal Horse, Brown Skeletal Horse, and Red Skeletal Horse mounts.",
+mopready=true,
 },[[
 step
 #include main_rep_mount,rep="Undercity",tabard="UCTabard"
@@ -1576,6 +1607,7 @@ patch='unknown',
 mounttype='Ground',
 model={35250},
 description="This guide will help you acquire the Goblin Trike and Goblin Turbo-Trike mounts.",
+mopready=true,
 },[[
 step
 #include main_rep_mount,rep="Bilgewater Cartel",tabard="BilgeTabard"
@@ -1595,6 +1627,7 @@ patch='unknown',
 mounttype='Ground',
 model={30047},
 description="This guide will help you acquire the Swift Timber Wolf, Swift Gray Wolf, Swift Brown Wolf, Brown Wolf, Black WOlf, Dire Wolf, and Timber Wolf mounts.",
+mopready=true,
 },[[
 step
 #include main_rep_mount,rep="Orgrimmar",tabard="OrgTabard"
@@ -1624,6 +1657,7 @@ patch='30002',
 mounttype='Ground',
 model={27819},
 description="This guide will help you acquire the Black War Bear mount.",
+mopready=true,
 },[[
 step
 Earn the _"For the Horde"_ achievement |achieve 619
@@ -1640,6 +1674,7 @@ patch='60001',
 mounttype='Ground',
 model={19027},
 description="This guide will help you acquire the Black War Kodo mount.",
+mopready=true,
 },[[
 step
 This mount costs Marks of Honor
@@ -1659,6 +1694,7 @@ patch='30008',
 mounttype='Ground',
 model={25450},
 description="This guide will help you acquire the Black War Mammoth mount.",
+mopready=true,
 },[[
 step
 This mount costs Marks of Honor
@@ -1679,6 +1715,7 @@ patch='30008',
 mounttype='Ground',
 model={14388},
 description="This guide will help you acquire the Black War Raptor mount.",
+mopready=true,
 },[[
 step
 This mount costs Marks of Honor
@@ -1698,6 +1735,7 @@ patch='40100',
 mounttype='Ground',
 model={21241},
 description="This guide will help you acquire the Black War Wolf mount.",
+mopready=true,
 },[[
 step
 This mount costs Marks of Honor
@@ -1717,6 +1755,7 @@ patch='50300',
 mounttype='Ground',
 model={19303},
 description="This guide will help you acquire the Dark War Talbuk mount.",
+mopready=true,
 },[[
 step
 In order to obtain these mounts you must participate in PvP at Halaa in Nagrand
@@ -1743,6 +1782,7 @@ patch='50300',
 mounttype='Ground',
 model={21074},
 description="This guide will help you acquire the Dark War Talbuk and Dark Riding Talbuk mounts.",
+mopready=true,
 },[[
 step
 In order to obtain these mounts you must participate in PvP at Halaa in Nagrand
@@ -1771,6 +1811,7 @@ patch='20300',
 mounttype='Ground',
 model={14776},
 description="This guide will help you acquire the Frostwolf Howler mount.",
+mopready=true,
 },[[
 step
 This mount costs Marks of Honor
@@ -1790,6 +1831,7 @@ patch='40100',
 mounttype='Ground',
 model={10719},
 description="This guide will help you acquire the Red Skeletal Warhorse mount.",
+mopready=true,
 },[[
 step
 This mount costs Marks of Honor
@@ -1809,6 +1851,7 @@ patch='20202',
 mounttype='Ground',
 model={20675},
 description="This guide will help you acquire the Swift Warstrider mount.",
+mopready=true,
 },[[
 step
 This mount costs Marks of Honor
@@ -1828,6 +1871,7 @@ patch='unknown',
 mounttype='Ground',
 model={34410},
 description="This guide will help you acquire the Fossilized Raptor mount.",
+mopready=true,
 },[[
 step
 This mount is a rare _Archaeology "Fossil"_ solve
@@ -1853,6 +1897,7 @@ patch='unknown',
 mounttype='Ground',
 model={15678},
 description="This guide will help you acquire the Ultramarine Qiraji Battle Tank mount.",
+mopready=true,
 },[[
 step
 This mount is a _rare Archaeology "Tol'vir"_ solve
@@ -1879,6 +1924,7 @@ patch='42000',
 mounttype='Ground',
 model={38783},
 description="This guide will help you acquire the Pureblood Fire Hawk.",
+mopready=true,
 },[[
 step
 This mount is drops of the boss Alysrazor within the Firelands raid.
@@ -1895,6 +1941,7 @@ patch='30300',
 mounttype='Ground',
 model={19640},
 description="This guide will help you acquire the Fiery Warhorse mount.",
+mopready=true,
 },[[
 step
 This will _require_ you to be in a _raid group_.
@@ -1920,6 +1967,7 @@ patch='30003',
 mounttype='Ground',
 model={27241},
 description="This guide will help you acquire the Grand Black War Mammoth mount.",
+mopready=true,
 },[[
 step
 This will _require_ you to be in a _raid group_.
@@ -1945,6 +1993,7 @@ patch='unknown',
 mounttype='Ground',
 model={37492},
 description="This guide will help you acquire the Brown Riding Camel and Tan Riding Camel mounts.",
+mopready=true,
 },[[
 step
 #include main_rep_mount,rep="Ramkahen",tabard="RamkahenTabard"
@@ -1967,6 +2016,7 @@ patch='30003',
 mounttype='Ground',
 model={27239},
 description="This guide will help you acquire the Ice Mammoth and Grand Ice Mammoth mounts.",
+mopready=true,
 },[[
 step
 Proceeding to Prequests next step |next |only if rep('The Sons of Hodir')<=Friendly
@@ -1992,6 +2042,7 @@ patch='unknown',
 mounttype='Ground',
 model={37138},
 description="This guide will help you acquire the Kor'kron Annihilator mount.",
+mopready=true,
 },[[
 step
 #include "misc_rep_mount",rep="Guild"
@@ -2010,6 +2061,7 @@ patch='unknown',
 mounttype='Ground',
 model={37159},
 description="This guide will help you acquire the Spectral Wolf mount.",
+mopready=true,
 },[[
 step
 label "menu"
@@ -2271,6 +2323,7 @@ patch='40200',
 mounttype='Ground',
 model={19377},
 description="This guide will help you acquire the Cobalt Riding Talbuk, Cobalt War Talbuk, Silver Riding Talbuk, Silver War Talbuk, Tan Riding Talbuk, Tan War Talbuk, White Riding Talbuk, and White War Talbuk mounts.",
+mopready=true,
 },[[
 step
 label "a"
@@ -2826,6 +2879,7 @@ patch='20403',
 mounttype='Ground',
 model={25335},
 description="This guide will help you acquire the Big Battle Bear mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -2839,6 +2893,7 @@ patch='30103',
 mounttype='Ground',
 model={29344},
 description="This guide will help you acquire the Magic Rooster mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -2852,6 +2907,7 @@ patch='unknown',
 mounttype='Ground',
 model={38048},
 description="This guide will help you acquire the Savage Raptor mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -2865,6 +2921,7 @@ patch='20403',
 mounttype='Ground',
 model={21974},
 description="This guide will help you acquire the Spectral Tiger mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -2878,6 +2935,7 @@ patch='43000',
 mounttype='Ground',
 model={17011},
 description="This guide will help you acquire the Swift Shorestrider mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -2891,6 +2949,7 @@ patch='43000',
 mounttype='Ground',
 model={35899},
 description="This guide will help you acquire the White Riding Camel mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -2904,6 +2963,7 @@ patch='unknown',
 mounttype='Ground',
 model={31721},
 description="This guide will help you acquire the Wooly White Rhino mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -2917,6 +2977,7 @@ patch='30100',
 mounttype='Ground',
 model={22464},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Amani War Bear was the reward for completing the timed event in the original version of Zul'Aman
@@ -2929,6 +2990,7 @@ patch='50200',
 mounttype='Ground',
 model={1166},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Arctic Wolf was one of the original level 60 epic mounts
@@ -2941,6 +3003,7 @@ patch='30008',
 mounttype='Ground',
 model={15676},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Black Qiraji Battle Tank was awarded to anyone who rang the gong within 10 hours on each server to complete the questline required to open the Temple of An'Qiraj
@@ -2953,6 +3016,7 @@ patch='30300',
 mounttype='Ground',
 model={22265},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Brewfest Ram was the original reward for the 2007 Brewfest in-game event.
@@ -2965,6 +3029,7 @@ patch='30200',
 mounttype='Ground',
 model={29938},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Crusader's Black Warhorse was the reward for completing the achievement "A Tribute to Immortality"
@@ -2977,6 +3042,7 @@ patch='50408',
 mounttype='Ground',
 model={12245},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Green Kodo was one of the original level 60 epic mounts
@@ -2989,6 +3055,7 @@ patch='40100',
 mounttype='Ground',
 model={6471},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Ivory Raptor was one of the original level 60 epic mounts
@@ -3001,6 +3068,7 @@ patch='30100',
 mounttype='Ground',
 model={6469},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Mottled Red Raptor was one of the original level 60 epic mounts
@@ -3013,6 +3081,7 @@ patch='40100',
 mounttype='Ground',
 model={2326},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Red Wolf was one of the original level 60 epic mounts
@@ -3025,6 +3094,7 @@ patch='30200',
 mounttype='Ground',
 model={29283},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Swift Horde Wolf dropped from the Argent Crusader Tribute Chest in Trial of the Grand Crusader (10H) with all 50 attempts left
@@ -3037,6 +3107,7 @@ patch='40300',
 mounttype='Ground',
 model={15289},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Swift Razzashi Raptor dropped from the original Zul'Gurub 10 man raid instance
@@ -3050,6 +3121,7 @@ patch='30300',
 mounttype='Ground',
 model={15290},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Swift Zulian Tiger dropped from the original Zul'Gurub 10 man raid instance
@@ -3063,6 +3135,7 @@ patch='50408',
 mounttype='Ground',
 model={12242},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Teal Kodo was one of the original level 60 epic mounts
@@ -3075,6 +3148,7 @@ patch='40001',
 mounttype='Ground',
 model={27821},
 description="This guide will help you acquire the Armored Brown Bear mount.",
+mopready=true,
 },[[
 step
 talk Mei Francis##32216
@@ -3091,6 +3165,7 @@ patch='30002',
 mounttype='Ground',
 model={25451},
 description="This guide will help you acquire the Traveler's Tundra Mammoth mount.",
+mopready=true,
 },[[
 step
 talk Mei Francis##32216
@@ -3107,6 +3182,7 @@ patch='30002',
 mounttype='Flying',
 model={6372},
 description="This guide will help you acquire the Albino Drake mount.",
+mopready=true,
 },[[
 step
 Obtain _50 mounts_, you can use our guide to achieve these |achieve 2143
@@ -3122,6 +3198,7 @@ patch='30302',
 mounttype='Flying',
 model={31156},
 description="This guide will help you acquire the Bloodbathed Frostbrood Vanquisher mount.",
+mopready=true,
 },[[
 step
 This mount is a reward for completing the _"Glory of the Icecrown Raider (10 player)"_ achievement.
@@ -3137,6 +3214,7 @@ patch='unknown',
 mounttype='Flying',
 model={38046},
 description="This guide will help you acquire the Corrupted Fire Hawk mount.",
+mopready=true,
 },[[
 step
 This mount is a reward for completing the _"Glory of the Firelands Raider"_ achievement.
@@ -3152,6 +3230,7 @@ patch='unknown',
 mounttype='Flying',
 model={35757},
 description="This guide will help you acquire the Drake of the East Wind mount.",
+mopready=true,
 },[[
 step
 This achievement requires that you complete 24 achievements based off of Cataclysm Heroic Raids.
@@ -3298,6 +3377,7 @@ patch='unknown',
 mounttype='Flying',
 model={38018},
 description="This guide will help you acquire the Flameward Hippogryph mount.",
+mopready=true,
 },[[
 step
 This _mount requires_ you to have the achievement _"The Molten Front Offensive"_ completed
@@ -3316,6 +3396,7 @@ patch='30300',
 mounttype='Flying',
 model={31154},
 description="This guide will help you acquire the Icebound Frostbrood Vanquisher mount.",
+mopready=true,
 },[[
 step
 This mount is a reward for completing the _"Glory of the Icecrown Raider (25 player)"_ achievement.
@@ -3331,6 +3412,7 @@ patch='30100',
 mounttype='Flying',
 model={28953},
 description="This guide will help you acquire the Ironbound Proto-Drake mount.",
+mopready=true,
 },[[
 step
 kill Flame Leviathan##33113
@@ -3410,6 +3492,7 @@ patch='30800',
 mounttype='Flying',
 model={23515},
 description="This guide will help you acquire the Red Dragonhawk mount.",
+mopready=true,
 },[[
 step
 Obtain _100 mounts_ you can use our guide to achieve this |achieve 2537
@@ -3425,6 +3508,7 @@ patch='30002',
 mounttype='Flying',
 model={28044},
 description="This guide will help you acquire the Red Proto-Drake mount.",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will need complete 38 parts to the achievement _Glory to the Hero_.
@@ -3443,7 +3527,7 @@ In order to earn this achievement, you will need to kill Grand magus Telestra's 
 The easiest way to do this will be to lower the Image's health to 10%.
 Once all 3 are at 10%, kill them all.
 kill Grand Magus Telestra##26731
-achieve 2136/2 |goto The Nexus/0 27.60,41.60
+achieve 2136/2 |goto The Nexus/1 27.60,41.60
 step
 _Chaos Theory_
 In order to earn this achievement, you will need to defeat Anomalus without destroying any _Chaotic Rifts_.
@@ -3456,7 +3540,7 @@ kill Keristrasza##26723
 For this achievement, you will need someone who can dispel, or escape movement impairing effects.
 She will cast _Crystal Chains_, which binds you to the ground for 10 seconds.
 In order to earn this achievement, you will need to be moving around every 3 seconds to avoid _Intense Cold_ from stacking.
-achieve 2136/3 |goto The Nexus/0 37.00,68.40
+achieve 2136/3 |goto The Nexus/1 37.00,68.40
 step
 _Watch Him Die_
 To earn this achievement, you will need to kill Krik'thir the Gatewatcher before you kill _Watcher Silthik, Watcher Narjil and Watcher Gashra_.
@@ -3734,6 +3818,7 @@ patch='30100',
 mounttype='Flying',
 model={28954},
 description="This guide will help you acquire the Rusted Proto-Drake mount.",
+mopready=true,
 },[[
 step
 kill Flame Leviathan##33113
@@ -3813,6 +3898,7 @@ patch='43000',
 mounttype='Flying',
 model={39562},
 description="This guide will help you acquire the Twilight Harbinger mount.",
+mopready=true,
 },[[
 step
 This mount is a reward for completing the _"Glory of the Dragon Soul Raider"_ achievement.
@@ -3828,6 +3914,7 @@ patch='unknown',
 mounttype='Flying',
 model={35551},
 description="This guide will help you acquire the Volcanic Stone Drake mount.",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will need complete 28 parts to the achievement _Glory to the Cataclysm Hero_.
@@ -4079,6 +4166,7 @@ patch='30103',
 mounttype='Flying',
 model={31714},
 description="This guide will help you acquire the Argent Hippogryph mount.",
+mopready=true,
 },[[
 step
 Use the _Icecrown Dailies_ section of this guide to complete the _Argent Tournament Grounds pre-quests_ and _dailies_.
@@ -4100,6 +4188,7 @@ patch='60001',
 mounttype='Flying',
 model={29696},
 description="This guide will help you acquire the Sunreaver Dragonhawk mount.",
+mopready=true,
 },[[
 step
 Use the _Icecrown Dailies_ section of this guide to complete the _Argent_ _Tournament_ _Grounds_ and _The Sunreavers pre-quests_ and _dailies_.
@@ -4119,6 +4208,7 @@ patch='unknown',
 mounttype='Flying',
 model={31958},
 description="This guide will help you acquire the Celestial Steed mount.",
+mopready=true,
 },[[
 step
 This mount can be purchased for $25.00 from the official _Blizzard Store_.
@@ -4134,6 +4224,7 @@ patch='43000',
 mounttype='Flying',
 model={40029},
 description="This guide will help you acquire the Heart of the Aspects mount.",
+mopready=true,
 },[[
 step
 This mount can be purchased for $25.00 from the official _Blizzard Store_.
@@ -4149,6 +4240,7 @@ patch='54200',
 mounttype='Flying',
 model={53038},
 description="This guide will help you acquire the Iron Skyreaver mount.",
+mopready=true,
 },[[
 step
 This mount can be purchased for $25.00 from the official _Blizzard Store_.
@@ -4164,6 +4256,7 @@ patch='43000',
 mounttype='Flying',
 model={46729},
 description="This guide will help you acquire the Swift Windsteed mount.",
+mopready=true,
 },[[
 step
 This mount can be purchased for $25.00 from the official _Blizzard Store_.
@@ -4179,6 +4272,7 @@ patch='unknown',
 mounttype='Flying',
 model={38260},
 description="This guide will help you acquire the Winged Guardian mount.",
+mopready=true,
 },[[
 step
 This mount can be purchased for $25.00 from the official _Blizzard Store_.
@@ -4194,6 +4288,7 @@ patch='unknown',
 mounttype='Flying',
 model={35740},
 description="This guide will help you acquire the Phosphorescent Stone Drake mount.",
+mopready=true,
 },[[
 step
 Follow the Path to Find Aeonaxx at One of the Spawn Points
@@ -4215,6 +4310,7 @@ patch='30002',
 mounttype='Flying',
 model={26711},
 description="This guide will help you acquire the Time-Lost Proto-Drake mount.",
+mopready=true,
 },[[
 step
 map The Storm Peaks
@@ -4235,6 +4331,7 @@ patch='30008',
 mounttype='Flying',
 model={25256},
 description="This guide will help you acquire the Blue Drake mount.",
+mopready=true,
 },[[
 step
 kill Ley-Guardian Eregos##27656
@@ -4257,6 +4354,7 @@ patch='30002',
 mounttype='Flying',
 model={28041},
 description="This guide will help you acquire the Blue Proto-Drake mount.",
+mopready=true,
 },[[
 step
 goto Howling Fjord,57.30,46.60 |n
@@ -4276,6 +4374,7 @@ patch='30002',
 mounttype='Flying',
 model={27812},
 description="This guide will help you acquire the Bronze Drake mount.",
+mopready=true,
 },[[
 step
 step
@@ -4302,6 +4401,7 @@ patch='unknown',
 mounttype='Flying',
 model={35755},
 description="This guide will help you acquire the Drake of the North Wind mount.",
+mopready=true,
 },[[
 step
 Use the _dungeon finder_ to take you to _The Vortex Pinnacle_
@@ -4326,6 +4426,7 @@ patch='unknown',
 mounttype='Flying',
 model={35751},
 description="This guide will help you acquire the Vitreous Stone Drake mount.",
+mopready=true,
 },[[
 step
 Use the _dungeon finder_ to take you to _The Stonecore_
@@ -4346,6 +4447,7 @@ patch='unknown',
 mounttype='unknown',
 model={30989},
 description="This guide will help you acquire the X-45 Heartbreaker mount.",
+mopready=true,
 },[[
 step
 This requires the _Love is in the Air_ event
@@ -4369,6 +4471,7 @@ patch='30002',
 mounttype='Flying',
 model={25159},
 description="This mount has a very low chance to drop from the Headless Horseman during the Hallow's End event.",
+mopready=true,
 },[[
 step
 label "Start"
@@ -4408,6 +4511,7 @@ mounts={47977},
 patch='40100',
 mounttype='unknown',
 model={21939},
+mopready=true,
 },[[
 step
 Wait for the Hallow's End Event to Start |complete isevent("Hallow's End")
@@ -4437,6 +4541,7 @@ mounts={121820},
 patch='43400',
 mounttype='Flying',
 description="This guide will help you acquire the Obsidian Nightwing mount.",
+mopready=true,
 },[[
 step
 This mount is one of the 8 rewards available for completing the requirements of Blizzards Recruit a Friend program
@@ -4455,6 +4560,7 @@ patch='unknown',
 mounttype='Flying',
 model={31992},
 description="This guide will help you acquire the X-53 Touring Rocket mount.",
+mopready=true,
 },[[
 step
 This mount is one of the 8 rewards available for completing the requirements of Blizzards Recruit a Friend program
@@ -4473,6 +4579,7 @@ patch='20403',
 mounttype='Ground',
 model={24745},
 description="This guide will help you acquire the Swift Zhevra mount.",
+mopready=true,
 },[[
 step
 This mount is one of the 8 rewards available for completing the requirements of Blizzard's Recruit a Friend program
@@ -4491,6 +4598,7 @@ patch='54100',
 mounttype='Flying',
 model={51993},
 description="This guide will help you acquire the Emerald Hippogryph mount.",
+mopready=true,
 },[[
 step
 This mount is one of the 8 rewards available for completing the requirements of Blizzard's Recruit a Friend program
@@ -4509,6 +4617,7 @@ patch='20300',
 mounttype='Flying',
 model={22719},
 description="This guide will help you acquire the Flying Machine mount.",
+mopready=true,
 },[[
 step
 Use the _Engineering profession_ section of this guide to _level_ to _300 Engineering_ skill. |only if skill("Engineering")>1 and skill("Engineering")<425
@@ -4566,6 +4675,7 @@ patch='20300',
 mounttype='Flying',
 model={22720},
 description="This guide will help you acquire the Turbo-Charged Flying Machine mount.",
+mopready=true,
 },[[
 step
 Use the _Engineering profession_ section of this guide to _level_ to _375 Engineering_ skill. |only if skill("Engineering")>1 and skill("Engineering")<425
@@ -4617,6 +4727,7 @@ patch='30008',
 mounttype='Flying',
 model={28060},
 description="This guide will help you acquire the Flying Carpet mount.",
+mopready=true,
 },[[
 step
 Click here to use the _Tailoring profession_ section of this guide to _level_ to _300 Tailoring_ skill. |only if  skill("Tailoring")<300
@@ -4681,6 +4792,7 @@ patch='unknown',
 mounttype='Flying',
 model={31837},
 description="This guide will help you acquire the Frost Flying Carpet mount.",
+mopready=true,
 },[[
 step
 talk Frozo the Renowned##40160
@@ -4721,6 +4833,7 @@ patch='30002',
 mounttype='Flying',
 model={28064},
 description="This guide will help you acquire the Magnificent Flying Carpet mount.",
+mopready=true,
 },[[
 step
 Reach Level 27 |ding 27 |or
@@ -4800,6 +4913,7 @@ patch='20100',
 mounttype='Flying',
 model={17890},
 description="This guide will help you acquire the Ashes of Al'ar mount.",
+mopready=true,
 },[[
 step
 This mount is dropped by Kael'thas Sunstrider in the Eye raid.
@@ -4816,6 +4930,7 @@ patch='30002',
 mounttype='Flying',
 model={24743},
 description="This guide will help you acquire the Azure Drake mount.",
+mopready=true,
 },[[
 step
 This mount is foud in Alexstrasza's Gift within The Eye of Eternity raid.
@@ -4833,6 +4948,7 @@ patch='30002',
 mounttype='Flying',
 model={25831},
 description="This guide will help you acquire the Black Drake mount.",
+mopready=true,
 },[[
 step
 This mount is dropped by Sartharion in The Obsidian Sanctum 10-Man raid.
@@ -4848,6 +4964,7 @@ patch='43000',
 mounttype='Flying',
 model={39561},
 description="This guide will help you acquire the Blazing Drake mount.",
+mopready=true,
 },[[
 step
 This mount is found in the Elementium Fragment within the Dragon Soul raid. It can drop from both Heroic and Normal difficulties.
@@ -4865,6 +4982,7 @@ patch='43000',
 mounttype='Flying',
 model={39229},
 description="This guide will help you acquire the Experiment 12-B mount.",
+mopready=true,
 },[[
 step
 This mount is found in the Lesser Cache of the Aspects within the Dragon Soul raid.
@@ -4882,6 +5000,7 @@ patch='30300',
 mounttype='Flying',
 model={31248},
 description="This guide will help you acquire the Invincible mount.",
+mopready=true,
 },[[
 step
 This mount is dropped by The Lich King in the Icecrown Citadel raid. It is only dropped on 25 Heroic Difficulty.
@@ -4898,6 +5017,7 @@ patch='43000',
 mounttype='Flying',
 model={39563},
 description="This guide will help you acquire the Life-Binder's Handmaiden mount.",
+mopready=true,
 },[[
 step
 Reach Level 35 |ding 35 |or
@@ -4933,6 +5053,7 @@ patch='30100',
 mounttype='Flying',
 model={28890},
 description="This guide will help you acquire the Mimiron's Head mount.",
+mopready=true,
 },[[
 step
 This mount is dropped by Yogg-Saron in the Ulduar raid. It can also drop from Unclaimed Black Market Containers which can be purchased from the Black Market Auction House in Pandaria.
@@ -4963,6 +5084,7 @@ patch='30202',
 mounttype='Flying',
 model={30346},
 description="This guide will help you acquire the Onyxian Drake mount.",
+mopready=true,
 },[[
 step
 This mount is dropped by Onyxia in the Onyxia's Lair raid.
@@ -4979,13 +5101,14 @@ patch='unknown',
 mounttype='Flying',
 model={38031},
 description="This guide will help you acquire the Pureblood Fire Hawk.",
+mopready=true,
 },[[
 step
 This mount is found in the Cache of the Fire Lord within the Firelands raid.
 |tip In order to access the heroic version of this cache, you must have downed all bosses on heroic. Switching between normal and heroic difficulties has been known to cause issues with this boss.
 kill Ragnaros##41634
 click Cache of the Fire Lord##208967
-collect 1 Smoldering Egg of Millagazor##69224 |goto Firelands/2 50.40,15.40
+collect 1 Smoldering Egg of Millagazor##69224 |goto Firelands/1 50.40,15.40
 |tip This has a very low drop chance.
 step
 learnmount Pureblood Fire Hawk##97493 |use Smoldering Egg of Millagazor##69224
@@ -4997,6 +5120,7 @@ patch='30002',
 mounttype='Flying',
 model={27796},
 description="This guide will help you acquire the Twilight Drake mount.",
+mopready=true,
 },[[
 step
 Enter "The Obsidian Sanctum" Raid |goto Dragonblight/0 60.01,56.89 < 20 |c |or
@@ -5019,6 +5143,7 @@ patch='unknown',
 mounttype='Flying',
 model={35755},
 description="This guide will help you acquire the Drake of the South Wind mount.",
+mopready=true,
 },[[
 step
 This mount is dropped by Al'Akir in The Throne of the Four Winds on any difficulty.
@@ -5037,6 +5162,7 @@ patch='unknown',
 mounttype='Flying',
 model={37145},
 description="This guide will help you acquire the Dark Phoenix mount.",
+mopready=true,
 },[[
 step
 #include "misc_rep_mount",rep="Guild"
@@ -5055,6 +5181,7 @@ patch='unknown',
 mounttype='Flying',
 model={35754},
 description="This guide will help you acquire the Drake of the West Wind mount.",
+mopready=true,
 },[[
 step
 label "menu"
@@ -5319,6 +5446,7 @@ condition_end=function() return hasmount(41514) and hasmount(41515) and hasmount
 model={21524},
 description="This guide will help you acquire the Azure Netherwing Drake, Cobalt Netherwing Drake, Violet Netherwing Drake, Purple Netherwing Drake, Veridan Netherwing Drake, and Onyx Netherwing Drake mounts.",
 mounts={41516,41514,41515,41513,41517,41518},
+mopready=true,
 },[[
 step
 talk Mordenai##22113
@@ -6004,6 +6132,7 @@ condition_end=function() return hasmount(41514) and hasmount(41515) and hasmount
 model={21524},
 description="This guide will help you acquire the Azure Netherwing Drake, Cobalt Netherwing Drake, Violet Netherwing Drake, Purple Netherwing Drake, Veridan Netherwing Drake, and Onyx Netherwing Drake mounts.",
 mounts={41516,41514,41515,41513,41517,41518},
+mopready=true,
 },[[
 step
 label "Begin_Path"
@@ -6229,6 +6358,7 @@ ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Re
 keywords={"green","red","purple","blue","silver","riding","nether","ray","skyguard","exalted","mount","flying"},
 description="This guide will help you acquire the Green Riding Nether Ray, Red Riding Nether Ray, Blue Riding Nether Ray, Purple Riding Nether Ray, and Silver Riding Nether Ray mounts.",
 mounts={39803,39798,39801,39800,39802},
+mopready=true,
 },[[
 step
 Routing to the proper section. |next "dailies" |only if completedq(11073)
@@ -6256,6 +6386,7 @@ patch='unknown',
 mounttype='Flying',
 model={37800},
 description="This guide will help you acquire the Amani Dragonhawk mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -6269,6 +6400,7 @@ patch='unknown',
 mounttype='Flying',
 model={37231},
 description="This guide will help you acquire the Mottled Drake mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -6282,6 +6414,7 @@ patch='unknown',
 mounttype='Flying',
 model={31803},
 description="This guide will help you acquire the Blazing Hippogryph mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -6295,6 +6428,7 @@ patch='43000',
 mounttype='Flying',
 model={38972},
 description="This guide will help you acquire the Corrupted Hippogryph mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -6308,6 +6442,7 @@ patch='20400',
 mounttype='Flying',
 model={23656},
 description="This guide will help you acquire the X-51 Nether-Rocket mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -6321,6 +6456,7 @@ patch='20400',
 mounttype='Flying',
 model={23647},
 description="This guide will help you acquire the X-51 Nether-Rocket X-TREME mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -6334,6 +6470,7 @@ patch='43200',
 mounttype='Flying',
 model={40568},
 description="This guide will help you acquire the Feldrake mount.",
+mopready=true,
 },[[
 step
 These mounts can only be obtained by redeeming codes from the World of Warcraft trading card game.
@@ -6347,6 +6484,7 @@ patch='30002',
 mounttype='Flying',
 model={28040},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Black Proto-Drake was the reward for completing the achievement "Glory of the Raider (25 Player)"
@@ -6359,6 +6497,7 @@ patch='30002',
 mounttype='Flying',
 model={27507},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Brutal Nether Drake was the reward for top ranking arena teams at the conclusion of Arena Season 4
@@ -6371,6 +6510,7 @@ patch='50400',
 mounttype='Flying',
 model={38757},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Cataclysmic Gladiator's Twilight Drake was the reward for top ranking arena teams at the conclusion of Arena Season 11
@@ -6383,6 +6523,7 @@ patch='30100',
 mounttype='Flying',
 model={25511},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Deadly Gladiator's Frost Wyrm was the reward for top ranking arena teams at the conclusion of Arena Season 5
@@ -6395,6 +6536,7 @@ patch='30200',
 mounttype='Flying',
 model={25593},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Furious Gladiator's Frost Wyrm was the reward for top ranking arena teams at the conclusion of Arena Season 6
@@ -6407,6 +6549,7 @@ patch='20300',
 mounttype='Flying',
 model={22620},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Merciless Nether Drake was the reward for top ranking arena teams at the conclusion of Arena Season 2
@@ -6419,6 +6562,7 @@ patch='30200',
 mounttype='Flying',
 model={29794},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Relentless Gladiator's Frost Wyrm was the reward for top ranking arena teams at the conclusion of Arena Season 7
@@ -6431,6 +6575,7 @@ patch='43000',
 mounttype='Flying',
 model={38755},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Ruthless Gladiator's Twilight Drake was the reward for top ranking arena teams at the conclusion of Arena Season 10
@@ -6443,6 +6588,7 @@ patch='43000',
 mounttype='Flying',
 model={39547},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Spectral Wind Rider was the Horde version of the Scroll of Resurrection reward
@@ -6455,6 +6601,7 @@ patch='20100',
 mounttype='Flying',
 model={20344},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Swift Nether Drake was the reward for top ranking arena teams at the conclusion of Arena Season 1
@@ -6467,6 +6614,7 @@ patch='43000',
 mounttype='Flying',
 model={39530},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 Tyrael's Charger was a reward for subscribing to Blizzard's Annual Pass promotion.
@@ -6479,6 +6627,7 @@ patch='20403',
 mounttype='Flying',
 model={24725},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Vengeful Nether Drake was the reward for top ranking arena teams at the conclusion of Arena Season 3
@@ -6491,6 +6640,7 @@ patch='42000',
 mounttype='Flying',
 model={38756},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Vicious Gladiator's Twilight Drake was the reward for top ranking arena teams at the conclusion of Arena Season 9
@@ -6503,6 +6653,7 @@ patch='30300',
 mounttype='Flying',
 model={31047},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 The Wrathful Gladiator's Frost Wyrm was the reward for top ranking arena teams at the conclusion of Arena Season 8
@@ -6515,6 +6666,7 @@ patch='30002',
 mounttype='Flying',
 model={24045},
 description="This guide will help you acquire the Armored Blue Wind Rider mount.",
+mopready=true,
 },[[
 step
 This _mount_ costs _2000_ gold.
@@ -6533,6 +6685,7 @@ patch='unknown',
 mounttype='Flying',
 model={35750},
 description="This guide will help you acquire the Sandstone Drake flying mount.",
+mopready=true,
 },[[
 step
 You will _need_ at least _29,000_ gold to obtain this _mount_
@@ -6583,6 +6736,7 @@ keywords={"wind","rider","wyvern","tawny","swift","blue","green","red","purple",
 condition_end=function() return hasmount(32243) and hasmount(32245) and hasmount(32244) and hasmount(32296) and hasmount(32246) and hasmount(32297) and hasmount(32295) end,
 model={17699,17700,17701,17719,17720,17721,17722,24044},
 description="This guide will help you acquire the Swift Red Wind Rider, Swift Green Wind Rider, Swift Purple WInd Rider, Tawny Wind Rider, Blue Wind Rider, and Green Wind Rider mounts.",
+mopready=true,
 },[[
 step
 talk Drakma##44918
@@ -6609,6 +6763,7 @@ patch='30001',
 mounttype='Flying',
 model={28108},
 description="This guide will help you acquire the Winged Steed of the Ebon Blade mount.",
+mopready=true,
 },[[
 step
 _Only Death Knights_ can buy this mount!
@@ -6628,6 +6783,7 @@ patch='unknown',
 mounttype='unknown',
 model={29161},
 description="This guide will help you acquire the Sea Turtle mount.",
+mopready=true,
 },[[
 step
 Acquiring _this mount requires_ you to have _fishing_
@@ -6646,6 +6802,7 @@ patch='unknown',
 mounttype='Aquatic',
 model={34955},
 description="This guide will help you acquire the Subdued Seahorse mount.",
+mopready=true,
 },[[
 step
 The Following Steps Will Unlock the Portal to Vashj'ir
@@ -6687,6 +6844,7 @@ patch='unknown',
 mounttype='Aquatic',
 model={34956},
 description="This guide will help you acquire the Vashj'ir Seahorse mount.",
+mopready=true,
 },[[
 step
 The Following Steps Will Unlock the Portal to Vashj'ir
@@ -6807,6 +6965,7 @@ Learn the "Vashj'ir Seahorse" Mount |learnmount Vashj'ir Seahorse##75207
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Crusader Title\\Blood Elf Champion Rank",{
 description="This guide section will walk you through achieving Argent Tournament Grounds Champion Rank with the Blood Elf race. You must have already completed the Argent Tournament Grounds Valiant Rank Dailies guide section in order to be able to complete this guide section.",
 mounts={65639,63642},
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the ARGENT TOURNAMENT GROUNDS DAILIES (VALIANT RANK) guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -6913,6 +7072,7 @@ turnin The Valiant's Challenge##13731 |goto Icecrown 76.50,23.90
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Crusader Title\\Orc Champion Rank",{
 description="This guide section will walk you through achieving Argent Tournament Grounds Champion Rank with the Orc race. You must have already completed the Argent Tournament Grounds Valiant Rank Dailies guide section in order to be able to complete this guide section. You cannot complete this section if you are an Orc.",
 mounts={65646,63640},
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the Argent Tournament Grounds Valiant Rank Dailies guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -7021,6 +7181,7 @@ Congratulations, you are now a Champion of Orgrimmar!
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Crusader Title\\Tauren Champion Rank",{
 description="This guide section will walk you through achieving Argent Tournament Grounds Champion Rank with the Tauren race. You must have already completed the Argent Tournament Grounds Valiant Rank Dailies guide section in order to be able to complete this guide section.",
 mounts={63641,65641},
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the ARGENT TOURNAMENT GROUNDS DAILIES (VALIANT RANK) guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -7130,6 +7291,7 @@ Congratulations, you are now a Champion of Thunder Bluff!
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Crusader Title\\Troll Champion Rank",{
 description="This guide section will walk you through achieving Argent Tournament Grounds Champion Rank with the Troll race. You must have already completed the Argent Tournament Grounds Valiant Rank Dailies guide section in order to be able to complete this guide section.",
 mounts={63635,65644},
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the ARGENT TOURNAMENT GROUNDS DAILIES (VALIANT RANK) guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -7239,6 +7401,7 @@ Congratulations, you are now a Champion of Sen'jin!
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Crusader Title\\Undead Champion Rank",{
 description="This guide section will walk you through achieving Argent Tournament Grounds Champion Rank with the Undead race. You must have already completed the Argent Tournament Grounds Valiant Rank Dailies guide section in order to be able to complete this guide section.",
 mounts={65645,63643},
+mopready=true,
 },[[
 step
 In order to be able to do this guide section, you must have already completed the ARGENT TOURNAMENT GROUNDS DAILIES (VALIANT RANK) guide section, and earned Champion rank with the Argent Tournament Grounds for your race.
@@ -7343,6 +7506,7 @@ turnin The Valiant's Challenge##13729 |goto Icecrown 76.50,24.20
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Required Home Cities Reputation\\Darkspear Trolls & Orgrimmar\\Orc",{
 description="This guide will help you to get Exalted reputation with the Darkspear Trolls and Orgrimmar factions. You need to be exalted with these 5 reputations in order to earn your Crusader title and open up more daily quests.",
 mounts={63640},
+mopready=true,
 },[[
 step
 You will not be able to do some of the quests in this section if you are not an Orc.
@@ -7471,6 +7635,7 @@ accept Report to Sen'jin Village##25133 |goto Durotar,43.50,67.50
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Required Home Cities Reputation\\Darkspear Trolls & Orgrimmar\\Orc & Troll",{
 description="This guide will help you to get Exalted reputation with the Darkspear Trolls and Orgrimmar factions. You need to be exalted with these 5 reputations in order to earn your Crusader title and open up more daily quests.",
 mounts={63640,63635},
+mopready=true,
 },[[
 step
 talk Handler Marnlek##41142
@@ -7901,6 +8066,7 @@ ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament
 description="This guide will help you to get Exalted reputation with the Darkspear Trolls and Orgrimmar factions. You need to be exalted with these 5 reputations in order to earn your Crusader title and open up more daily quests.",
 endlevel=5,
 mounts={65644,63635},
+mopready=true,
 },[[
 step
 You will not be able to do some of the quests in this section if you are not a Troll.
@@ -8339,6 +8505,7 @@ accept Sen'jin Village##25073 |goto Durotar 61.60,65.91
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Required Home Cities Reputation\\Undercity\\Undead",{
 description="This guide will help you to get Exalted reputation with the Undercity faction. You need to be exalted with these 5 reputations in order to earn your Crusader title and open up more daily quests.",
 mounts={63643},
+mopready=true,
 },[[
 step
 You will not be able to do some of the quests in this section if you are not an Undead.
@@ -9306,6 +9473,7 @@ You can buy an Undercity Tabard from Captain Donald Adams in Undercity at [63.50
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Required Home Cities Reputation\\Silvermoon City\\Blood Elf",{
 description="This guide will help you to get Exalted reputation with the Silvermoon City faction. You need to be exalted with these 5 reputations in order to earn your Crusader title and open up more daily quests.",
 mounts={63642},
+mopready=true,
 },[[
 step
 You will not be able to do some of the quests in this section if you are not a Blood Elf.
@@ -10258,6 +10426,7 @@ You can buy a Silvermoon City Tabard from Magistrix Nizara in Eversong Woods at 
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Required Home Cities Reputation\\Thunder Bluff\\Tauren",{
 description="This guide will help you to get Exalted reputation with the Thunder Bluff faction. You need to be exalted with these 5 reputations in order to earn your Crusader title and open up more daily quests.",
 mounts={63641},
+mopready=true,
 },[[
 step
 You will not be able to do some of the quests in this section if you are not a Tauren.
@@ -10736,6 +10905,7 @@ You can buy a Thunder Bluff Tabard from Brave Tuho in Thunder Bluff at [46.70,49
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Argent Tournament Grounds Crusader Dailies",{
 description="In order to be able to complete the quests in this guide section, you must already be Exalted with the Darkspear Trolls, Orgrimmar, Silvermoon City, Thunder Bluff, and Undercity factions. Also, you must have already become a Champion with each of those factions, using the Crusader Title Guide in the Icecrown section of the Dailies guide.",
 mounts={65639,63642,65646,63640,65641,63641,34549,63635,65645,63643},
+mopready=true,
 },[[
 step
 talk High Crusader Adelard##34882
@@ -10788,6 +10958,7 @@ turnin The Fate Of The Fallen##14107 |goto Icecrown 69.50,23.10
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Aspirant Rank Daillies",{
 description="This guide section will walk you through completing your race's Aspirant Rank dailies in order to achieve Argent Tournament Grounds Valiant Rank with your own race.",
 mounts={65639,63642,65646,63640,65641,63641,34549,63635,65645,63643},
+mopready=true,
 },[[
 step
 talk Magister Edien Sunhollow##33542
@@ -10867,6 +11038,7 @@ turnin Up To The Challenge##13678 |goto Icecrown 76.30,24.40
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Champion Rank Dailies - Death Knight Only",{
 description="You must be a Death Knight to do the quests in this Argent Tournament Grounds guide section. Also, you must have completed the Argent Tournament Grounds Valiant Rank Dailies guide section.",
 mounts={65639,63642,65646,63640,65641,63641,34549,63635,65645,63643},
+mopready=true,
 },[[
 step
 talk Zor'be the Bloodletter##33769
@@ -10954,6 +11126,7 @@ only DeathKnight
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Champion Rank Dailies - Non-Death Knight Only",{
 description="You must NOT be a Death Knight to do the quests in this Argent Tournament Grounds guide section. Also, you must have completed the Argent Tournament Grounds Valiant Rank Dailies guide section.",
 mounts={65639,63642,65646,63640,65641,63641,34549,63635,65645,63643},
+mopready=true,
 },[[
 step
 talk Luuri##33771
@@ -11041,6 +11214,7 @@ only if not DeathKnight
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Pre-Quests",{
 description="This guide section contains the pre-quests to unlock most of the daily quests in the Argent Tournament Grounds region of Icecrown. You will need to achieve the Crusader title, using the Crusader Title Guide section in the Icecrown section, to unlock more daily quests.",
 mounts={65639,63642,65646,63640,65641,63641,34549,63635,65645,63643},
+mopready=true,
 },[[
 step
 talk Helidan Lightwing##33849
@@ -11097,6 +11271,7 @@ turnin Mastery Of The Shield-Breaker##13838 |goto Icecrown 76.20,24.40
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Argent Tournament Guides\\Valiant Rank Daillies",{
 description="This guide section will walk you through completing your race's Valiant Rank dailies in order to achieve Argent Tournament Grounds Champion Rank with your own race. You must have completed the Argent Tournament Grounds Aspirant Rank Dailies guide section in order to have access to the quests in this guide section.",
 mounts={65639,63642,65646,63640,65641,63641,34549,63635,65645,63643},
+mopready=true,
 },[[
 step
 talk Magister Edien Sunhollow##33542
@@ -11697,6 +11872,7 @@ only if not DeathKnight
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mount Training",{
 condition_end=function() return knowspell(115913) end,
+mopready=true,
 },[[
 step
 ding 20

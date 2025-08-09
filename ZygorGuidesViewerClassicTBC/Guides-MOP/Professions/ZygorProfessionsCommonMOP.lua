@@ -3,6 +3,7 @@ if not ZygorGuidesViewer then return end
 if ZGV:DoMutex("ProfessionsCMoP") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Leveling Guides\\Cooking (1-600)",{
+mopready=true,
 description="\nThis guide will walk you through leveling your Cooking skill from 1-600.",
 condition_end=function() return skill('Cooking') >= 600 end,
 },[[
@@ -443,6 +444,7 @@ talk Sungshin Ironpaw##64231
 turnin To Be a Master##31521 |goto Valley of the Four Winds/0 53.6,51.2
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Leveling Guides\\Way of the Oven",{
+mopready=true,
 description="\nThis guide will walk you through completing the Way of the Oven cooking mastery.",
 },[[
 step
@@ -560,6 +562,7 @@ _<Create 5 Banquet of the Oven>_
 Reach Cooking Skill 600 |complete skill("Cooking") >= 600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Leveling Guides\\Way of the Brew",{
+mopready=true,
 description="\nThis guide will walk you through completing the Way of the Brew cooking mastery.",
 },[[
 step
@@ -660,6 +663,7 @@ _<Create 5 Banquet of the Brew>_
 Reach Cooking Skill 600 |complete skill("Cooking") >= 600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Leveling Guides\\Way of the Grill",{
+mopready=true,
 description="\nThis guide will walk you through completing the Way of the Grill cooking mastery.",
 },[[
 step
@@ -787,6 +791,7 @@ _<Create 5 Banquet of the Oven>_
 Reach Cooking Skill 600 |complete skill("Cooking") >= 600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Leveling Guides\\Way of the Pot",{
+mopready=true,
 description="\nThis guide will walk you through completing the Way of the Pot cooking mastery.",
 },[[
 step
@@ -901,6 +906,7 @@ _<Create 5 Banquet of the Pot>_
 Reach Cooking Skill 600 |complete skill("Cooking") >= 600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Leveling Guides\\Way of the Steamer",{
+mopready=true,
 description="\nThis guide will walk you through completing the Way of the Steamer cooking mastery.",
 },[[
 step
@@ -1017,6 +1023,7 @@ _<Create 5 Banquet of the Steamer>_
 Reach Cooking Skill 600 |complete skill("Cooking") >= 600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Leveling Guides\\Way of the Wok",{
+mopready=true,
 description="\nThis guide will walk you through completing the Way of the Wok cooking mastery.",
 },[[
 step
@@ -1140,6 +1147,7 @@ _<Create 5 Banquet of the Wok>_
 Reach Cooking Skill 600 |complete skill("Cooking") >= 600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Fool's Cap",{
+mopready=true,
 description="\nFool's Cap can be gathered from the Dread Wastes.",
 condition_end=function() return skill('Pandaria Herbalism') >= 50 end,
 },[[
@@ -1164,6 +1172,7 @@ collect Fool's Cap##79011 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Golden Lotus",{
+mopready=true,
 description="\nGolden Lotus can be gathered from The Jade Forest in Pandaria.",
 condition_end=function() return skill('Pandaria Herbalism') >= 50 end,
 },[[
@@ -1208,6 +1217,7 @@ collect Golden Lotus##72238 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Green Tea Leaf",{
+mopready=true,
 description="\nGreen Tea Leaf can be gathered from The Jade Forest.",
 condition_end=function() return skill('Pandaria Herbalism') >= 50 end,
 },[[
@@ -1250,6 +1260,7 @@ collect Green Tea Leaf##72234 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Rain Poppy",{
+mopready=true,
 description="\nRain Poppy can be gathered from The Jade Forest.",
 condition_end=function() return skill('Pandaria Herbalism') >= 50 end,
 },[[
@@ -1274,6 +1285,7 @@ collect Rain Poppy##72237 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Silkweed",{
+mopready=true,
 description="\nSilkweed can be gathered from Valley of the Four Winds.",
 condition_end=function() return skill('Pandaria Herbalism') >= 50 end,
 },[[
@@ -1299,6 +1311,7 @@ collect Silkweed##72235 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Snow Lily",{
+mopready=true,
 description="\nSnow Lily can be gathered from Kun-Lai Summit.",
 condition_end=function() return skill('Pandaria Herbalism') >= 50 end,
 },[[
@@ -1327,6 +1340,7 @@ collect Snow Lily##79010 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Ghost Iron",{
+mopready=true,
 description="\nGhost Iron can be gathered from Krasarang Wilds.",
 condition_end=function() return skill('Pandaria Mining') >= 50 end,
 },[[
@@ -1358,6 +1372,7 @@ collect Ghost Iron Ore##72092 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Kyparite",{
+mopready=true,
 description="\nKyparite can be gathered from the Dread Wastes.",
 condition_end=function() return skill('Pandaria Mining') >= 50 end,
 },[[
@@ -1380,6 +1395,7 @@ collect Kyparite Ore##72093 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Trillium",{
+mopready=true,
 description="\nTrillium can be gathered from Townlong Steppes.",
 condition_end=function() return skill('Pandaria Mining') >= 50 end,
 },[[
@@ -1414,6 +1430,7 @@ collect Black Trillium Ore##72094 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Exotic Leather",{
+mopready=true,
 description="\nExotic Leather can be gathered from Dread Wastes.",
 condition_end=function() return skill('Pandaria Skinning') >= 50 end,
 },[[
@@ -1428,6 +1445,7 @@ collect Exotic Leather##72120 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Spirit of Harmony",{
+mopready=true,
 description="\nEternal shadow can be gathered from Kun-Lai Summit.",
 },[[
 step

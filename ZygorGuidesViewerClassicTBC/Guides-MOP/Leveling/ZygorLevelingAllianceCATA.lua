@@ -4,7 +4,7 @@ if UnitFactionGroup("player")~="Alliance" then return end
 if ZGV:DoMutex("LevelingACATA") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Startup Guide Wizard",{
-cataready=true,
+mopready=true,
 condition_visible=function() return false end,
 noscoring = true,
 orientation = true,
@@ -78,7 +78,7 @@ step
 You're all set!
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Cataclysm 80-85\\Mount Hyjal (80-82)",{
-cataready=true,
+mopready=true,
 next="Leveling Guides\\Cataclysm 80-85\\Deepholm (82-83)",
 startlevel=80.00,
 },[[
@@ -86,11 +86,7 @@ step
 click Hero's Call Board##250720
 accept Hero's Call: Mount Hyjal!##27726 |goto Stormwind City 62.90,71.55
 step
-accept A Personal Summons##28825 |goto Stormwind City 74.54,19.02
-|tip You will automatically accept this quest when you enter Stormwind City.
-step
 talk Naraat the Earthspeaker##45226
-turnin A Personal Summons##28825 |goto Stormwind City 74.54,19.02
 accept Eye of the Storm##28826 |goto Stormwind City 74.54,19.02
 step
 click Waters of Farseeing##445
@@ -117,6 +113,9 @@ step
 talk Sebelia##40843
 |tip Inside the building.
 home Nordrassil Inn |goto Mount Hyjal 63.10,24.10 |q 25316 |future
+step
+|tip If you just boosted your character to 80, you may want to buy some afordable gear at the local NPC 1st, especially a weapon.
+talk Iris Moondreamer##71304 |goto Mount Hyjal/0 62.96,24.26
 step
 talk Ysera##40928
 |tip Inside the building.
@@ -1420,7 +1419,7 @@ talk Naraat the Earthspeaker##45226
 turnin The Battle Is Won, The War Goes On##27398 |goto Stormwind City 74.55,19.04
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Cataclysm 80-85\\Vashj'ir (80-82)",{
-cataready=true,
+mopready=true,
 next="Leveling Guides\\Cataclysm 80-85\\Deepholm (82-83)",
 startlevel=80.00,
 },[[
@@ -1428,11 +1427,7 @@ step
 click Hero's Call Board##10016
 accept Hero's Call Vashj'ir##27724 |goto Stormwind City 62.90,71.55
 step
-accept A Personal Summons##28825 |goto Stormwind City 74.54,19.02
-|tip You will automatically accept this quest when you enter Stormwind City.
-step
 talk Naraat the Earthspeaker##45226
-turnin A Personal Summons##28825 |goto Stormwind City 74.54,19.02
 accept Eye of the Storm##28826 |goto Stormwind City 74.54,19.02
 step
 click Waters of Farseeing##445
@@ -1781,7 +1776,12 @@ accept Debriefing##25824 |goto Kelp'thar Forest/0 63.86,59.94
 step
 talk Private Pollard##41340
 |tip Inside the underwater cave.
-Select _"Who are you, friend?"_
+Select _"Who are you, friend?"_ |gossip 112247
+Select _"How did you get down here?"_ |gossip 112270
+Select _"What can you tell me about your captors?"_ |gossip 112269
+Select _"How did you escape, Pollard?"_ |gossip 112272
+Select _"Did you see Captain Taylor and his men?"_ |gossip 112271
+Select _"Are there any weaknesses we can exploit? Any holes in the naga defenses?"_ |gossip 112273
 Debrief Private Pollard |q 25824/1 |goto Kelp'thar Forest/0 63.98,59.80
 step
 talk Erunak Stonespeaker##41341
@@ -1880,6 +1880,7 @@ talk Swift Seahorse##43287
 fpath Sandy Beach##607 |goto Kelp'thar Forest/0 42.42,66.14
 step
 talk Francis Greene##43290
+|tip On the island.
 fpath Sandy Beach##606 |goto Shimmering Expanse/0 57.04,17.05
 step
 talk Erunak Stonespeaker##41341
@@ -3132,7 +3133,7 @@ talk Captain Taylor##44490
 turnin Defending the Rift##26193 |goto Abyssal Depths/0 69.76,34.41
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Cataclysm 80-85\\Deepholm (82-83)",{
-cataready=true,
+mopready=true,
 next="Leveling Guides\\Cataclysm 80-85\\Uldum (83-84)",
 startlevel=82.00,
 },[[
@@ -4264,7 +4265,7 @@ talk Explorer Mowi##44799
 accept That's No Pyramid!##28292 |goto Deepholm/0 47.31,51.40
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Cataclysm 80-85\\Uldum (83-84)",{
-cataready=true,
+mopready=true,
 next="Leveling Guides\\Cataclysm 80-85\\Twilight Highlands (84-85)",
 startlevel=83.00,
 },[[
@@ -5373,6 +5374,7 @@ accept Shroud of the Makers##28367 |goto Uldum/0 29.61,21.85
 step
 use the Shroud of the Makers##63699
 |tip Use it every 2 minutes to stay stealthed.
+|tip While refreshing stealth, move away from the range of enemies in the area, as the shroud will drop during that moment.
 |tip Dismiss your pet, if you have one.
 |tip Avoid Mezerian, she can see through your stealth.
 |tip She looks like a large red dragon flying around.
@@ -5489,7 +5491,7 @@ turnin The Coffer of Promise##28633 |goto Uldum/0 44.86,67.32
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Cataclysm 80-85\\Twilight Highlands (84-85)",{
 next="Leveling Guides\\Pandaria (85-90)\\The Jade Forest (85-86)",
-cataready=true,
+mopready=true,
 startlevel=84,
 },[[
 step
@@ -5617,6 +5619,10 @@ talk King Varian Wrynn##29611
 |tip Inside the building.
 turnin A Villain Unmasked##27106 |goto Stormwind City/0 85.79,31.71
 accept Twilight Shores##28238 |goto Stormwind City/0 85.79,31.71
+step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Evidence Against Samuelson##60819
 step
 talk Fargo Flintlocke##44806
 turnin Twilight Shores##28238 |goto Stormwind City/0 26.12,47.29

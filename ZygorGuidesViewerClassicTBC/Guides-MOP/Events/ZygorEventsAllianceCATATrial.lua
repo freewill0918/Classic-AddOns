@@ -400,7 +400,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Darkmoon Faire\\Achie
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Darkmoon Faire\\Achievements\\Quick Shot")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Darkmoon Faire\\Achievements\\Step Right Up")
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Hallow's End Quests",{
-cataready=true,
+mopready=true,
 condition_end=function() return completedq(8373) end,
 description="Complete the quests for the Hallow's End event.",
 patch='40405',
@@ -620,7 +620,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achieve
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\Sinister Calling")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Harvest Festival\\Harvest Festival Quest")
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Feast of Winter Veil Quests",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not completedq(7045) end,
 description="This guide section will walk you through completing the quests for the Feast of Winter Veil event.",
 },[[
@@ -726,7 +726,7 @@ turnin The Hero of the Day##8763 |goto Ironforge/0 37.40,70.21
 |only if haveq(8763) or completedq(8763)
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\'Tis the Season",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(277) end,
 achieveid={277},
 patch='30002',
@@ -845,7 +845,7 @@ Equip the Red Winter Hat |equipped Red Winter Hat##21524
 |only if itemcount(21524) >= 1
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\A Frosty Shake",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1690) end,
 achieveid={1690},
 patch='30003',
@@ -875,7 +875,7 @@ Dance with Another Snowman |achieve 1690
 |tip Target another snowman player.
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\BB King",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(4436) end,
 achieveid={4436},
 patch='30300',
@@ -914,7 +914,7 @@ use the Red Rider Air Rifle##46725
 Use your Red Rider Air Rifle on Lor'themar Theron |achieve 4436/3 |goto Silvermoon City/0 53.80,20.25
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Crashin' & Thrashin'",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1295) end,
 achieveid={1295},
 patch='30002',
@@ -933,7 +933,7 @@ use the Blue Crashin' Thrashin' Racer Controller##54343
 Gain #25# Crashes with your Racer |achieve 1295 |goto Dalaran/1 48.67,62.04
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Fa-la-la-la-Ogri'la",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1282) end,
 achieveid={1282},
 patch='30001',
@@ -1044,7 +1044,7 @@ talk Sky Sergeant Vanderlip##23120
 turnin Bomb Them Again!##11023 |goto Blade's Edge Mountains/0 27.58,52.91
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\He Knows If You've Been Naughty",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1689) end,
 achieveid={1689},
 patch='30002',
@@ -1057,7 +1057,7 @@ Click a present under the tree
 |achieve 1689 |goto Ironforge/0 33.71,65.98
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Holiday Bromance",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1686) end,
 achieveid={1686},
 patch='30002',
@@ -1120,7 +1120,7 @@ use the Mistletoe##21519
 Use Mistletoe on Brother Anton |achieve 1686/7 |goto Desolace/0 66.52,7.90
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Let It Snow",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1687) end,
 achieveid={1687},
 patch='30002',
@@ -1153,7 +1153,7 @@ Troll Hunter |achieve 1687/2 |goto Stormwind City/0 62.74,72.93
 Undead Rogue |achieve 1687/5 |goto Stormwind City/0 62.74,72.93
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\On Metzen!",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(273) end,
 achieveid={273},
 patch='30008',
@@ -1176,7 +1176,7 @@ talk Wulmort Jinglepocket##13433
 turnin Metzen the Reindeer##8762 |goto Ironforge/0 33.59,67.92
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Scrooge",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1255) end,
 achieveid={1255},
 patch='30001',
@@ -1194,7 +1194,7 @@ use the Snowball##17202
 Throw a Snowball at King Magni Bronzebeard |achieve 1255 |goto Ironforge/0 39.17,56.09
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Simply Abominable",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(279) end,
 achieveid={279},
 patch='30008',
@@ -1226,7 +1226,7 @@ talk Greatfather Winter##13444
 turnin A Smokywood Pastures' Thank You!##7045 |goto Ironforge/0 33.16,65.43
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\The Winter Veil Gourmet",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1688) end,
 achieveid={1688},
 patch='30003',
@@ -1293,7 +1293,7 @@ cast Basic Campfire##818
 create 1 Hot Apple Cider##45022,Cooking,1 total |achieve 1688/3 |goto Ironforge/0 33.46,65.53
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\With a Little Helper from My Friends",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(252) end,
 achieveid={252},
 patch='30001',
@@ -1312,7 +1312,7 @@ Earn #50# PvP Kills as a Little Helper |achieve 252 |or
 '|complete achieved(252) |or
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Merrymaker",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1691) end,
 achieveid={1691},
 patch='30003',
@@ -1336,7 +1336,7 @@ leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\He Knows If You'v
 leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\A-Caroling We Will Go"
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\A-Caroling We Will Go",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(5853) end,
 achieveid={5853},
 patch='40001',

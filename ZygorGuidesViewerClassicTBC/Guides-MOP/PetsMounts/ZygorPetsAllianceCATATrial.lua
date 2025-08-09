@@ -14,6 +14,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around Crystal Lake in Elwynn Forest.",
 keywords={"Aquatic","Elwynn","Forest"},
 pet=419,
+mopready=true,
 },[[
 step
 clicknpc Small Frog##61071
@@ -46,6 +47,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Bombay Cat.",
 pet=40,
+mopready=true,
 },[[
 step
 talk Donni Anthania##6367
@@ -59,6 +61,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Cornish Rex Cat.",
 pet=41,
+mopready=true,
 },[[
 step
 talk Donni Anthania##6367
@@ -77,6 +80,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Orange Tabby Cat.",
 pet=43,
+mopready=true,
 },[[
 step
 talk Donni Anthania##6367
@@ -90,6 +94,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Beast pet: Silver Tabby Cat.",
 pet=45,
+mopready=true,
 },[[
 step
 talk Donni Anthania##6367
@@ -124,6 +129,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will walk you through obtaining the Critter pet: Hare.",
 pet=448,
+mopready=true,
 },[[
 step
 Challenge one to a pet battle and capture it
@@ -137,6 +143,7 @@ patch='111100',
 source='Vendor',
 description="This guide will walk you through obtaining the Critter pet: Snowshoe Rabbit.",
 pet=72,
+mopready=true,
 },[[
 step
 talk Yarlyn Amberstill##1263
@@ -150,6 +157,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will walk you through obtaining the Critter pet: Undercity Rat.",
 pet=454,
+mopready=true,
 },[[
 step
 This pet is only found inside The Undercity.

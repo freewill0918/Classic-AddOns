@@ -389,8 +389,9 @@ function ActionBar:SnapToZGVFrame(force)
 		return
 	end
 
-	local x,y = ZGV.Frame:GetLeft()*ZGV.Frame:GetEffectiveScale(),ZGV.Frame:GetTop()*ZGV.Frame:GetEffectiveScale()
-	if force or x~=old_x or y~=old_y then
+	local left,top,scale = ZGV.Frame:GetLeft(), ZGV.Frame:GetTop(), ZGV.Frame:GetEffectiveScale()
+	local x,y = left and left*scale,top and top*scale
+	if force or (left and top and (x~=old_x or y~=old_y)) then
 		old_x,old_y=x,y
 		self.Frame:ClearAllPoints()
 		self.Frame:SetPoint("BOTTOMLEFT",UIParent,"BOTTOMLEFT",(x/self.Frame:GetEffectiveScale()),(y+SNAP_Y)/self.Frame:GetEffectiveScale())

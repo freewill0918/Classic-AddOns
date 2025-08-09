@@ -8,6 +8,7 @@ patch='50100',
 source='Drop',
 description="This guide will teach you how to acquire the Aqua Strider battle pet.",
 pet=836,
+mopready=true,
 },[[
 step
 kill Nalash Verdantis##50776+
@@ -21,6 +22,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Dancing Water Skimmer battle pet.",
 pet=751,
+mopready=true,
 },[[
 step
 clicknpc Dancing Water Skimmer##65209
@@ -34,6 +36,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Emperor Crab battle pet.",
 pet=746,
+mopready=true,
 },[[
 step
 clicknpc Emperor Crab##65203
@@ -46,6 +49,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Eternal Strider battle pet.",
 pet=383,
+mopready=true,
 },[[
 step
 clicknpc Eternal Strider##61088
@@ -62,6 +66,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Garden Frog battle pet.",
 pet=569,
+mopready=true,
 },[[
 step
 clicknpc Garden Frog##63002
@@ -74,6 +79,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Emerald Turtle battle pet.",
 pet=564,
+mopready=true,
 },[[
 step
 clicknpc Emerald Turtle##62994
@@ -86,6 +92,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Golden Civet battle pet.",
 pet=749,
+mopready=true,
 },[[
 step
 clicknpc Golden Civet##63841
@@ -98,6 +105,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Golden Civet Kitten battle pet.",
 pet=750,
+mopready=true,
 },[[
 step
 clicknpc Golden Civet Kitten##63842
@@ -110,6 +118,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Gulp Froglet battle pet.",
 pet=1338,
+mopready=true,
 },[[
 step
 kill Bufo##72775
@@ -124,6 +133,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Jungle Darter battle pet.",
 pet=565,
+mopready=true,
 },[[
 step
 clicknpc Jungle Darter##62997
@@ -136,6 +146,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Kuitan Mongoose battle pet.",
 pet=680,
+mopready=true,
 },[[
 step
 clicknpc Kuitan Mongoose##63953
@@ -148,6 +159,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Leopard Tree Frog battle pet.",
 pet=702,
+mopready=true,
 },[[
 step
 clicknpc Leopard Tree Frog##63919
@@ -160,6 +172,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Mirror Strider battle pet.",
 pet=566,
+mopready=true,
 },[[
 step
 clicknpc Mirror Strider##62998
@@ -172,6 +185,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Mongoose battle pet.",
 pet=737,
+mopready=true,
 },[[
 step
 clicknpc Mongoose##65190
@@ -184,6 +198,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Mongoose Pup battle pet.",
 pet=739,
+mopready=true,
 },[[
 step
 clicknpc Mongoose Pup##63954
@@ -196,6 +211,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Sifang Otter battle pet.",
 pet=711,
+mopready=true,
 },[[
 step
 clicknpc Sifang Otter##63057
@@ -208,6 +224,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Sifang Otter Pup battle pet.",
 pet=712,
+mopready=true,
 },[[
 step
 clicknpc Sifang Otter Pup##63358
@@ -221,6 +238,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Softshell Snapling battle pet.",
 pet=713,
+mopready=true,
 },[[
 step
 clicknpc Softshell Snapling##63060
@@ -233,6 +251,7 @@ patch='52000',
 source='Drop',
 description="This guide will teach you how to acquire the Spawn of G'nathus battle pet.",
 pet=1201,
+mopready=true,
 },[[
 step
 kill G'nathus##66467
@@ -247,6 +266,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Spineclaw Crab battle pet.",
 pet=1337,
+mopready=true,
 },[[
 step
 kill Monstrous Spineclaw##73166
@@ -262,6 +282,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Spiny Terrapin battle pet.",
 pet=723,
+mopready=true,
 },[[
 step
 clicknpc Spiny Terrapin##63293
@@ -274,6 +295,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Spirebound Crab battle pet.",
 pet=572,
+mopready=true,
 },[[
 step
 step
@@ -287,6 +309,7 @@ patch='52000',
 source='PetBattle',
 description="This guide will teach you how to acquire the Swamp Croaker battle pet.",
 pet=1182,
+mopready=true,
 },[[
 step
 clicknpc Swamp Croaker##69819
@@ -299,6 +322,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Tideskipper battle pet.",
 pet=1230,
+mopready=true,
 },[[
 step
 kill Morogrim Tidewalker##21213
@@ -312,6 +336,7 @@ patch='52000',
 source='Profession',
 description="This guide will teach you how to acquire the Tiny Blue Carp battle pet.",
 pet=1207,
+mopready=true,
 },[[
 step
 Equip your Fishing Pole, if it's not already equipped |use Fishing Pole##6256
@@ -327,6 +352,7 @@ patch='50100',
 source='Vendor',
 description="This guide will teach you how to acquire the Tiny Goldfish pet.",
 pet=652,
+mopready=true,
 },[[
 step
 Reach _Honored_ Reputation with _The Anglers_ |complete rep("The Anglers") >= Honored |or
@@ -336,9 +362,9 @@ Click here to be Directed to the Vendor |confirm |next "vendor"
 '|complete haspet(652) |or
 step
 label "reputation"
-Train Pandaria Fishing |complete hasprof("Pandaria Fishing",1,600)
+Train Pandaria Fishing |complete hasprof("Zen Master Fishing",1,600)
 |tip You must have learned the fishing profession in order to accept dailies from this faction.
-'|complete condition skill("Pandaria Fishing") >= 1
+'|complete skill("Zen Master Fishing") >= 1
 step
 talk Master Angler Marina##64033
 accept The Anglers##31369 |goto Vale of Eternal Blossoms/0 86.50,60.10
@@ -508,6 +534,7 @@ patch='52000',
 source='Profession',
 description="This guide will teach you how to acquire the Tiny Green Carp battle pet.",
 pet=1208,
+mopready=true,
 },[[
 step
 Equip your Fishing Pole, if it's not already equipped |use Fishing Pole##6256
@@ -523,6 +550,7 @@ patch='52000',
 source='Profession',
 description="This guide will teach you how to acquire the Tiny Red Carp battle pet.",
 pet=1206,
+mopready=true,
 },[[
 step
 Stand on the small island here.
@@ -539,6 +567,7 @@ patch='52000',
 source='Profession',
 description="This guide will teach you how to acquire the Tiny White Carp battle pet.",
 pet=1209,
+mopready=true,
 },[[
 step
 Equip your Fishing Pole, if it's not already equipped |use Fishing Pole##6256
@@ -554,6 +583,7 @@ patch='50400',
 source='PetBattle',
 description="This guide will teach you how to acquire the Wanderer's Festival Hatchling battle pet.",
 pet=1013,
+mopready=true,
 },[[
 step
 clicknpc Wanderer's Festival Hatchling##67022
@@ -566,6 +596,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Yellow-Bellied Bullfrog battle pet.",
 pet=752,
+mopready=true,
 },[[
 step
 clicknpc Yellow-Bellied Bullfrog##63849
@@ -580,6 +611,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Alpine Foxling battle pet.",
 pet=724,
+mopready=true,
 },[[
 step
 clicknpc Alpine Foxling##63550
@@ -592,6 +624,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Alpine Foxling Kit battle pet.",
 pet=725,
+mopready=true,
 },[[
 step
 clicknpc Alpine Foxling Kit##63551
@@ -604,6 +637,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Amethyst Spiderling battle pet.",
 pet=716,
+mopready=true,
 },[[
 step
 clicknpc Amethyst Spiderling##63288
@@ -616,6 +650,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Bucktooth Flapper battle pet.",
 pet=380,
+mopready=true,
 },[[
 step
 clicknpc Bucktooth Flapper##62992
@@ -628,6 +663,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Clouded Hedgehog battle pet.",
 pet=742,
+mopready=true,
 },[[
 step
 clicknpc Clouded Hedgehog##64242
@@ -640,6 +676,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Coral Adder battle pet.",
 pet=562,
+mopready=true,
 },[[
 step
 clicknpc Coral Adder##62991
@@ -652,6 +689,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Crunchy Scorpion battle pet.",
 pet=745,
+mopready=true,
 },[[
 step
 clicknpc Crunchy Scorpion##63548
@@ -664,6 +702,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Death Adder Hatchling battle pet.",
 pet=1330,
+mopready=true,
 },[[
 step
 kill Imperial Python##73163
@@ -677,6 +716,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Direhorn Runt battle pet.",
 pet=1205,
+mopready=true,
 },[[
 step
 kill Primal Direhorn Hatchling##70012+
@@ -692,6 +732,7 @@ patch='52000',
 source='PetBattle',
 description="This guide will teach you how to acquire the Elder Python battle pet.",
 pet=1181,
+mopready=true,
 },[[
 step
 clicknpc Elder Python##69818
@@ -705,6 +746,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Feverbite Hatchling battle pet.",
 pet=714,
+mopready=true,
 },[[
 step
 clicknpc Feverbite Hatchling##65054
@@ -717,6 +759,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Grove Viper battle pet.",
 pet=571,
+mopready=true,
 },[[
 step
 clicknpc Grove Viper##63004
@@ -729,6 +772,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Jumping Spider battle pet.",
 pet=699,
+mopready=true,
 },[[
 step
 clicknpc Jumping Spider##63715
@@ -741,6 +785,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Kovok battle pet.",
 pet=1334,
+mopready=true,
 },[[
 step
 Complete the _Paragons of the Klaxxi_ encounter.
@@ -756,6 +801,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Moon Moon battle pet.",
 pet=1276,
+mopready=true,
 },[[
 step
 kill Moonfang##71992
@@ -770,6 +816,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Plains Monitor battle pet.",
 pet=726,
+mopready=true,
 },[[
 step
 clicknpc Plains Monitor##63547
@@ -782,6 +829,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Pygmy Direhorn battle pet.",
 pet=1200,
+mopready=true,
 },[[
 step
 kill Horridon##68476
@@ -798,6 +846,7 @@ patch='50100',
 source='PetBattle',
 description="TThis guide will teach you how to acquire the Silent Hedgehog battle pet.",
 pet=741,
+mopready=true,
 },[[
 step
 clicknpc Silent Hedgehog##64804
@@ -810,6 +859,7 @@ patch='81500',
 source='Drop',
 description="This guide will teach you how to acquire the Spawn of Garalon battle pet.",
 pet=2587,
+mopready=true,
 },[[
 step
 kill Garalon##62164
@@ -827,6 +877,7 @@ patch='81500',
 source='Drop',
 description="This guide will teach you how to acquire the Stoneclaw battle pet.",
 pet=2579,
+mopready=true,
 },[[
 step
 Kill Guardian enemies around this area
@@ -845,6 +896,7 @@ patch='52000',
 source='Achievement',
 description="This guide will teach you how to acquire the Stunted Direhorn battle pet.",
 pet=1184,
+mopready=true,
 },[[
 step
 achieve 8300
@@ -861,6 +913,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Summit Kid battle pet.",
 pet=679,
+mopready=true,
 },[[
 step
 clicknpc Summit Kid##64248
@@ -873,6 +926,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Temple Snake battle pet.",
 pet=567,
+mopready=true,
 },[[
 step
 clicknpc Temple Snake##62999
@@ -885,6 +939,7 @@ patch='53000',
 source='Achievement',
 description="This guide will teach you how to acquire the Tito battle pet.",
 pet=1236,
+mopready=true,
 },[[
 step
 achieve 8293
@@ -900,6 +955,7 @@ patch='54000',
 source='Vendor',
 description="This guide will teach you how to acquire the Vengeful Porcupette battle pet.",
 pet=1344,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -928,6 +984,7 @@ patch='54000',
 source='Vendor',
 description="This guide will teach you how to acquire the Xu-Fu, Cub of Xuen battle pet.",
 pet=1266,
+mopready=true,
 },[[
 step
 label "start"
@@ -1052,6 +1109,7 @@ patch='52000',
 source='Drop',
 description="This guide will teach you how to acquire the Zandalari Anklerender battle pet.",
 pet=1211,
+mopready=true,
 },[[
 step
 kill Zandalari Dinomancer##69925+
@@ -1068,6 +1126,7 @@ patch='52000',
 source='Drop',
 description="This guide will teach you how to acquire the Zandalari Footslasher battle pet.",
 pet=1212,
+mopready=true,
 },[[
 step
 kill Zandalari Dinomancer##69925+
@@ -1084,6 +1143,7 @@ patch='52000',
 source='Drop',
 description="This guide will teach you how to acquire the Zandalari Kneebiter battle pet.",
 pet=1180,
+mopready=true,
 },[[
 step
 kill Zandalari Dinomancer##69925+
@@ -1100,6 +1160,7 @@ patch='52000',
 source='Drop',
 description="This guide will teach you how to acquire the Zandalari Toenibbler battle pet.",
 pet=1213,
+mopready=true,
 },[[
 step
 kill Zandalari Dinomancer##69925+
@@ -1116,6 +1177,7 @@ patch='54000',
 source='Vendor',
 description="This guide will teach you how to acquire the Zao, Calfling of Niuzao battle pet.",
 pet=1305,
+mopready=true,
 },[[
 step
 label "start"
@@ -1240,6 +1302,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Zooey Snake battle pet.",
 pet=731,
+mopready=true,
 },[[
 step
 clicknpc Zooey Snake##63555
@@ -1252,6 +1315,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Bandicoon battle pet.",
 pet=706,
+mopready=true,
 },[[
 step
 clicknpc Bandicoon##63062
@@ -1264,6 +1328,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Bandicoon Kit battle pet.",
 pet=707,
+mopready=true,
 },[[
 step
 clicknpc Bandicoon Kit##63064
@@ -1277,6 +1342,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Grassland Hopper battle pet.",
 pet=733,
+mopready=true,
 },[[
 step
 clicknpc Grassland Hopper##63549
@@ -1289,6 +1355,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Gu'chi Swarmling battle pet.",
 pet=1345,
+mopready=true,
 },[[
 step
 kill Gu'chi the Swarmbringer##72909
@@ -1304,6 +1371,7 @@ patch='51000',
 source='Profession',
 description="This guide will teach you how to acquire the Imperial Silkworm battle pet.",
 pet=1040,
+mopready=true,
 },[[
 step
 Click here to gather and create the pet yourself |confirm |next "create"
@@ -1349,6 +1417,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Jungle Grub battle pet.",
 pet=678,
+mopready=true,
 },[[
 step
 clicknpc Jungle Grub##63304
@@ -1361,6 +1430,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Malayan Quillrat battle pet.",
 pet=708,
+mopready=true,
 },[[
 step
 clicknpc Malayan Quillrat##63094
@@ -1373,6 +1443,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Malayan Quillrat Pup battle pet.",
 pet=709,
+mopready=true,
 },[[
 step
 clicknpc Malayan Quillrat Pup##63095
@@ -1385,6 +1456,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Marsh Fiddler battle pet.",
 pet=710,
+mopready=true,
 },[[
 step
 clicknpc Marsh Fiddler##63096
@@ -1397,6 +1469,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Masked Tanuki battle pet.",
 pet=570,
+mopready=true,
 },[[
 step
 clicknpc Masked Tanuki##63003
@@ -1409,6 +1482,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Masked Tanuki Pup battle pet.",
 pet=703,
+mopready=true,
 },[[
 step
 clicknpc Masked Tanuki Pup##63716
@@ -1421,6 +1495,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Prairie Mouse battle pet.",
 pet=727,
+mopready=true,
 },[[
 step
 clicknpc Prairie Mouse##59702
@@ -1433,6 +1508,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Rapana Whelk battle pet.",
 pet=743,
+mopready=true,
 },[[
 step
 clicknpc Rapana Whelk##64352
@@ -1445,6 +1521,7 @@ patch='50400',
 source='Quest',
 description="This guide will teach you how to acquire the Red Cricket battle pet.",
 pet=1042,
+mopready=true,
 },[[
 step
 This pet is given as a reward for gaining Best Friends status with Sho in Valley of the Four Winds.
@@ -1540,6 +1617,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Resilient Roach battle pet.",
 pet=744,
+mopready=true,
 },[[
 step
 clicknpc Resilient Roach##64238
@@ -1552,6 +1630,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Savory Beetle battle pet.",
 pet=717,
+mopready=true,
 },[[
 step
 clicknpc Savory Beetle##63291
@@ -1564,6 +1643,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Shy Bandicoon battle pet.",
 pet=677,
+mopready=true,
 },[[
 step
 clicknpc Shy Bandicoon##64246
@@ -1576,6 +1656,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Silkbead Snail battle pet.",
 pet=568,
+mopready=true,
 },[[
 step
 clicknpc Silkbead Snail##63001
@@ -1588,6 +1669,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Tolai Hare battle pet.",
 pet=729,
+mopready=true,
 },[[
 step
 clicknpc Tolai Hare##63557
@@ -1600,6 +1682,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Tolai Hare Pup battle pet.",
 pet=730,
+mopready=true,
 },[[
 step
 clicknpc Tolai Hare Pup##63558
@@ -1612,6 +1695,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Yakrat battle pet.",
 pet=740,
+mopready=true,
 },[[
 step
 clicknpc Yakrat##63957
@@ -1624,6 +1708,7 @@ patch='81500',
 source='Drop',
 description="This guide will teach you how to acquire the Azure Windseeker battle pet.",
 pet=2583,
+mopready=true,
 },[[
 step
 kill Tsulong##62442
@@ -1642,6 +1727,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Phoenix Hawk Hatchling battle pet.",
 pet=1235,
+mopready=true,
 },[[
 step
 kill Al'ar##19514
@@ -1656,6 +1742,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Wild Crimson Hatchling battle pet.",
 pet=819,
+mopready=true,
 },[[
 step
 clicknpc Wild Crimson Hatchling##65321
@@ -1669,6 +1756,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Wild Golden Hatchling battle pet.",
 pet=818,
+mopready=true,
 },[[
 step
 clicknpc Wild Golden Hatchling##65324
@@ -1682,6 +1770,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Wild Jade Hatchling battle pet.",
 pet=817,
+mopready=true,
 },[[
 step
 clicknpc Wild Jade Hatchling##
@@ -1695,6 +1784,7 @@ patch='54000',
 source='Vendor',
 description="This guide will teach you how to acquire the Yu'la, Broodling of Yu'lon battle pet.",
 pet=1304,
+mopready=true,
 },[[
 step
 label "start"
@@ -1819,6 +1909,7 @@ patch='51000',
 source='In-GameShop',
 description="This guide will teach you how to acquire the Cinder Kitten battle pet.",
 pet=1117,
+mopready=true,
 },[[
 step
 May be Available for Purchase in the Blizzard Online Store
@@ -1834,6 +1925,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Droplet of Y'Shaarj battle pet.",
 pet=1331,
+mopready=true,
 },[[
 step
 kill Sha of Pride##71734
@@ -1848,6 +1940,7 @@ patch='52000',
 source='PetBattle',
 description="This guide will teach you how to acquire the Electrified Razortooth battle pet.",
 pet=1179,
+mopready=true,
 },[[
 step
 clicknpc Electrified Razortooth##69794
@@ -1860,11 +1953,12 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Gooey Sha-ling battle pet.",
 pet=1332,
+mopready=true,
 },[[
 step
 kill Sha of Pride##71734
 |tip Inside the Siege of Orgrimmar raid.
-collect Gooey Sha-Ling##104163 |goto Siege of Orgrimmar/0 54.20,38.20
+collect Gooey Sha-Ling##104163 |goto Siege of Orgrimmar/1 54.20,38.20
 step
 use Gooey Sha-Ling##104163
 learnpet Gooey Sha-ling##1332
@@ -1874,6 +1968,7 @@ patch='50100',
 source='Drop',
 description="This guide will teach you how to acquire the Grinder battle pet.",
 pet=834,
+mopready=true,
 },[[
 step
 kill Karr the Darkener##50347
@@ -1888,6 +1983,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Jadefire Spirit battle pet.",
 pet=1348,
+mopready=true,
 },[[
 step
 kill Spirit of Jadefire##72769
@@ -1903,6 +1999,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Jademist Dancer battle pet.",
 pet=1333,
+mopready=true,
 },[[
 step
 kill Jademist Dancer##72767+
@@ -1918,6 +2015,7 @@ patch='52000',
 source='Drop',
 description="This guide will teach you how to acquire the Living Sandling battle pet.",
 pet=1177,
+mopready=true,
 },[[
 step
 kill Sand Elemental##69944+
@@ -1933,6 +2031,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Ominous Flame battle pet.",
 pet=1335,
+mopready=true,
 },[[
 step
 kill Foreboding Flame##73162+
@@ -1949,6 +2048,7 @@ patch='81500',
 source='Drop',
 description="This guide will teach you how to acquire the Ravenous Prideling battle pet.",
 pet=2590,
+mopready=true,
 },[[
 step
 kill Grand Empress Shek'zeer##62837
@@ -1966,6 +2066,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Ruby Droplet battle pet.",
 pet=1328,
+mopready=true,
 },[[
 step
 kill Garnia##73282
@@ -1981,14 +2082,15 @@ patch='50100',
 source='Profession',
 description="This guide will teach you how to acquire the Sapphire Cub battle pet.",
 pet=846,
+mopready=true,
 },[[
 step
-collect Sapphire Cub##82775 |or
-|tip This can be crafted with Pandaria Jewelcrafting at skill 75.
+Reach Level 600 Jewelcrafting |only if hasprof("Jewelcrafting",1,600)
 |tip You obtain this jewelcrafting design from the Golden Lotus Daily Quest reward or by opening a Serpent's Heart. |only if hasprof("Pandaria Jewelcrafting",1,75)
-|tip Please open your Jewelcrafting Profession Interface. |only if hasprof("Pandaria Jewelcrafting",1,75)
+|tip Please open your Jewelcrafting Profession Interface. |only if hasprof("Jewelcrafting",1,600)
 Click Here to Open the "Golden Lotus Dailies" Guide |confirm |loadguide "Daily Guides\\Mists of Pandaria Dailies\\The Golden Lotus Dailies" |only if hasprof("Pandaria Jewelcrafting",1,75)
-|tip You can also purchase the pet from the auction house.
+|tip You can also purchase this pet from the auction house.
+collect Sapphire Cub##82775 |or
 '|complete haspet(846) |or
 step
 use Sapphire Cub##82775
@@ -1999,6 +2101,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Skunky Alemental battle pet.",
 pet=1336,
+mopready=true,
 },[[
 step
 kill Skunky Brew Alemental##71908+
@@ -2015,6 +2118,7 @@ patch='81500',
 source='Drop',
 description="This guide will teach you how to acquire the Spirit of the Spring battle pet.",
 pet=2584,
+mopready=true,
 },[[
 step
 kill Lei Shi##62983
@@ -2031,6 +2135,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Tainted Waveling battle pet.",
 pet=1231,
+mopready=true,
 },[[
 step
 kill Hydross the Unstable##21216
@@ -2047,6 +2152,7 @@ patch='50100',
 source='Drop',
 description="This guide will teach you how to acquire the Terrible Turnip battle pet.",
 pet=650,
+mopready=true,
 },[[
 step
 Unlock Halfhill Dailies at your Farm
@@ -2066,6 +2172,7 @@ patch='52000',
 source='PetBattle',
 description="This guide will teach you how to acquire the Thundertail Flapper battle pet.",
 pet=1175,
+mopready=true,
 },[[
 step
 clicknpc Thundertail Flapper##69648
@@ -2078,6 +2185,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Amber Moth battle pet.",
 pet=732,
+mopready=true,
 },[[
 step
 clicknpc Amber Moth##65187
@@ -2090,6 +2198,7 @@ patch='81500',
 source='Drop',
 description="This guide will teach you how to acquire the Amberglow Stinger battle pet.",
 pet=2586,
+mopready=true,
 },[[
 step
 kill Blade Lord Ta'yak##62543
@@ -2106,6 +2215,7 @@ patch='54000',
 source='PetBattle',
 description="This guide will teach you how to acquire the Ashwing Moth battle pet.",
 pet=1324,
+mopready=true,
 },[[
 step
 clicknpc Ashwing Moth##73542
@@ -2118,6 +2228,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Azure Crane Chick battle pet.",
 pet=1321,
+mopready=true,
 },[[
 step
 This pet is looted from Crane Nests on the Timeless Isle.
@@ -2137,6 +2248,7 @@ patch='54000',
 source='Vendor',
 description="This guide will teach you how to acquire the Chi-Chi, Hatchling of Chi-Ji battle pet.",
 pet=1303,
+mopready=true,
 },[[
 step
 label "start"
@@ -2267,6 +2379,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Effervescent Glowfly battle pet.",
 pet=747,
+mopready=true,
 },[[
 step
 clicknpc Effervescent Glowfly##63850
@@ -2280,6 +2393,7 @@ patch='54000',
 source='PetBattle',
 description="This guide will teach you how to acquire the Flamering Moth battle pet.",
 pet=1325,
+mopready=true,
 },[[
 step
 clicknpc Flamering Moth##73543
@@ -2292,6 +2406,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Garden Moth battle pet.",
 pet=753,
+mopready=true,
 },[[
 step
 clicknpc Garden Moth##65215
@@ -2304,6 +2419,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Gilded Moth battle pet.",
 pet=748,
+mopready=true,
 },[[
 step
 clicknpc Gilded Moth##63838
@@ -2316,6 +2432,7 @@ patch='51000',
 source='Profession',
 description="This guide will teach you how to acquire the Imperial Moth battle pet.",
 pet=1039,
+mopready=true,
 },[[
 step
 Click here to gather and create the pet yourself |confirm |next "create"
@@ -2363,6 +2480,7 @@ patch='52000',
 source='Drop',
 description="This guide will teach you how to acquire the Ji-Kun Hatchling battle pet.",
 pet=1202,
+mopready=true,
 },[[
 step
 kill Ji-Kun##69712
@@ -2378,6 +2496,7 @@ patch='81500',
 source='Drop',
 description="This guide will teach you how to acquire the Kor'thik Swarmling battle pet.",
 pet=2585,
+mopready=true,
 },[[
 step
 kill Imperial Vizier Zor'lok##62980
@@ -2395,6 +2514,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Luyu Moth battle pet.",
 pet=718,
+mopready=true,
 },[[
 step
 clicknpc Luyu Moth##65124
@@ -2407,6 +2527,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Mei Li Sparkler battle pet.",
 pet=722,
+mopready=true,
 },[[
 step
 clicknpc Mei Li Sparkler##65185
@@ -2419,6 +2540,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Sandy Petrel battle pet.",
 pet=573,
+mopready=true,
 },[[
 step
 clicknpc Sandy Petrel##63006
@@ -2431,6 +2553,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Shrine Fly battle pet.",
 pet=754,
+mopready=true,
 },[[
 step
 clicknpc Shrine Fly##65216
@@ -2443,6 +2566,7 @@ patch='54000',
 source='Vendor',
 description="This guide will teach you how to acquire the Sky Lantern battle pet.",
 pet=1350,
+mopready=true,
 },[[
 step
 Kill enemies around the Timeless Isle
@@ -2460,6 +2584,7 @@ patch='54000',
 source='PetBattle',
 description="This guide will teach you how to acquire the Skywisp Moth battle pet.",
 pet=1326,
+mopready=true,
 },[[
 step
 clicknpc Skywisp Moth##73368
@@ -2472,6 +2597,7 @@ patch='50100',
 source='PetBattle',
 description="This guide will teach you how to acquire the Szechuan Chicken battle pet.",
 pet=728,
+mopready=true,
 },[[
 step
 clicknpc Szechuan Chicken##63585
@@ -2484,6 +2610,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Ashleaf Spriteling battle pet.",
 pet=1323,
+mopready=true,
 },[[
 step
 kill Leafmender##73277
@@ -2499,6 +2626,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Bonkers battle pet.",
 pet=1343,
+mopready=true,
 },[[
 step
 Kill enemies around the Timeless Isle
@@ -2523,6 +2651,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Dandelion Frolicker battle pet.",
 pet=1329,
+mopready=true,
 },[[
 step
 click Neverending Spritewood##220807 |goto Timeless Isle/0 47.70,73.70
@@ -2542,6 +2671,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Fiendish Imp battle pet.",
 pet=1229,
+mopready=true,
 },[[
 step
 kill Terestian Illhoof##15688
@@ -2558,6 +2688,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Lil' Bad Wolf battle pet.",
 pet=1226,
+mopready=true,
 },[[
 step
 kill The Big Bad Wolf##17521
@@ -2571,6 +2702,7 @@ patch='81500',
 source='Drop',
 description="This guide will teach you how to acquire the Baoh-Xi battle pet.",
 pet=2582,
+mopready=true,
 },[[
 step
 kill Qin-xi##60399
@@ -2589,12 +2721,13 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Coilfang Stalker battle pet.",
 pet=1232,
+mopready=true,
 },[[
 step
 kill Lady Vashj##21212
 |tip Inside Serpenshrine Cavern raid.
 |tip You will likely need a group for this boss.
-collect Dripping Strider Egg##97554 |goto Serpentshrine Cavern/2 71.60,59.00
+collect Dripping Strider Egg##97554 |goto Serpentshrine Cavern/1 71.60,59.00
 step
 use Dripping Strider Egg##97554
 learnpet Coilfang Stalker##1232
@@ -2604,6 +2737,7 @@ patch='81500',
 source='Drop',
 description="This guide will teach you how to acquire the Comet battle pet.",
 pet=2581,
+mopready=true,
 },[[
 step
 kill Elegon##60410
@@ -2623,6 +2757,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Filthling battle pet.",
 pet=1245,
+mopready=true,
 },[[
 step
 kill Quivering Filth##69251+
@@ -2637,6 +2772,7 @@ patch='52000',
 source='TradingCardGame',
 description="This guide will teach you how to acquire the Gusting Grimoire battle pet.",
 pet=1174,
+mopready=true,
 },[[
 step
 Purchase this pet in the auction house
@@ -2651,6 +2787,7 @@ patch='54000',
 source='Vendor',
 description="This guide will teach you how to acquire the Harmonious Porcupette battle pet.",
 pet=1346,
+mopready=true,
 },[[
 step
 Reach Revered Reputation with Emperor Shaohao |complete rep("Emperor Shaohao") >= Revered
@@ -2670,6 +2807,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Lesser Voidcaller battle pet.",
 pet=1234,
+mopready=true,
 },[[
 step
 kill High Astromancer Solarian##18805
@@ -2684,6 +2822,7 @@ patch='81500',
 source='Drop',
 description="This guide will teach you how to acquire the Living Amber battle pet.",
 pet=2589,
+mopready=true,
 },[[
 step
 kill Amber-Shaper Un'sok##62511
@@ -2701,6 +2840,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Living Fluid battle pet.",
 pet=1243,
+mopready=true,
 },[[
 step
 kill Primordius##69017
@@ -2718,6 +2858,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Netherspace Abyssal battle pet.",
 pet=1228,
+mopready=true,
 },[[
 step
 kill Prince Malchezaar##15690
@@ -2735,6 +2876,7 @@ patch='51000',
 source='Promotion',
 description="This battle pet is no longer obtainable.",
 pet=1127,
+mopready=true,
 },[[
 step
 This pet was a reward for players who attended the Battle.net World Championships in Shanghai in 2012.
@@ -2746,6 +2888,7 @@ patch='52000',
 source='Quest',
 description="This guide will teach you how to acquire the Spectral Porcupette battle pet.",
 pet=1185,
+mopready=true,
 },[[
 step
 Kill enemies around this area
@@ -2769,6 +2912,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Viscous Horror battle pet.",
 pet=1244,
+mopready=true,
 },[[
 step
 kill Primordius##69017
@@ -2785,6 +2929,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Blackfuse Bombling battle pet.",
 pet=1322,
+mopready=true,
 },[[
 step
 You can only obtain this pet from the Siege of Orgrimmar raid.
@@ -2805,6 +2950,7 @@ patch='54000',
 source='Drop',
 description="This guide will teach you how to acquire the Lil' Bling battle pet.",
 pet=1320,
+mopready=true,
 },[[
 step
 This pet will require an _Engineer_ to make. It's suggested you pick up Engineering in order to obtain this item, as it comes from the _Blingtron 4000_ daily.
@@ -2837,6 +2983,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Menagerie Custodian battle pet.",
 pet=1227,
+mopready=true,
 },[[
 step
 kill The Curator##15691
@@ -2853,6 +3000,7 @@ patch='52000',
 source='Profession',
 description="This guide will teach you how to acquire the Pierre battle pet.",
 pet=1204,
+mopready=true,
 },[[
 step
 Creating this pet requires you to have level 75 in Pandaria Engineering
@@ -2912,6 +3060,7 @@ patch='53000',
 source='Drop',
 description="This guide will teach you how to acquire the Pocket Reaver battle pet.",
 pet=1233,
+mopready=true,
 },[[
 step
 kill Void Reaver##19516
@@ -2928,6 +3077,7 @@ patch='54000',
 source='Profession',
 description="This guide will teach you how to acquire the Rascal-Bot battle pet.",
 pet=1256,
+mopready=true,
 },[[
 step
 Creating this pet requires you to have level 75 in Pandaria Engineering.
@@ -2987,6 +3137,7 @@ patch='52000',
 source='Drop',
 description="This guide will teach you how to acquire the Son of Animus battle pet.",
 pet=1183,
+mopready=true,
 },[[
 step
 kill Dark Animus##69427
@@ -3003,6 +3154,7 @@ patch='52000',
 source='Drop',
 description="This guide will teach you how to acquire the Sunreaver Micro-Sentry battle pet.",
 pet=1178,
+mopready=true,
 },[[
 step
 kill Haywire Sunreaver Construct##50358
@@ -3020,160 +3172,161 @@ patch='53000',
 source='PetBattle',
 description="This guide will teach you how to acquire the Unborn Val'kyr battle pet.",
 pet=1238,
+mopready=true,
 },[[
 step
 label "start"
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Borean Tundra/0 32.60,60.00 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Borean Tundra/0 80.80,48.20 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Borean Tundra/0 47.80,8.00 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Sholazar Basin/0 44.60,69.20 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Sholazar Basin/0 36.80,19.40 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Sholazar Basin/0 58.50,22.00 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Icecrown/0 44.20,33.40 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Icecrown/0 47.90,86.60 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Icecrown/0 73.80,64.50 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest/0 17.60,57.20 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Dragonblight/0 26.80,54.00 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Dragonblight/0 82.20,65.80 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Dragonblight/0 65.60,35.80 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest/0 43.40,44.00 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest/0 68.20,49.60 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto The Storm Peaks/0 42.50,78.50 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto The Storm Peaks/0 29.00,51.40 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto The Storm Peaks/0 65.20,41.80 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Zul'Drak/0 75.00,22.80 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Zul'Drak/0 57.00,39.80 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Zul'Drak/0 24.60,64.00 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Grizzly Hills/0 25.80,56.80 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Grizzly Hills/0 61.40,18.20 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Grizzly Hills/0 79.60,51.80 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Howling Fjord/0 71.80,43.00 |next "end"
 Click here if the pet is not available at this location. |confirm
 step
-clicnpc Unborn Val'kyr##71163
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Unborn Val'kyr##1238 |goto Howling Fjord/0 68.00,67.60 |next "end"
@@ -3190,6 +3343,7 @@ patch='81500',
 source='Drop',
 description="This pet has a chance to drop from Gara'jal the Spiritbinder in the Mogu'shan Vaults raid.",
 pet=2580,
+mopready=true,
 },[[
 step
 kill Gara'jal the Spiritbinder##60143

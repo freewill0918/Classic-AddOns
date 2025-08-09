@@ -69,6 +69,7 @@
 		<Script file="Leveling\ZygorLevelingHordeMOP.lua"/>
 		<Script file="Leveling\ZygorLevelingHordeMOPTrial.lua"/>
 
+		<Script file="Leveling\ZygorLevelingPandaStarterMOP.lua"/>
 		<Script file="Leveling\ZygorLevelingPandaStarterMOPTrial.lua"/>
 
 	<!-- DAILIES -->
@@ -119,6 +120,9 @@
 		<Script file="Achievements\ZygorAchievementsHordeMOP.lua"/>
 		<Script file="Achievements\ZygorAchievementsHordeMOPTrial.lua"/>
 
+		<Script file="Achievements\ZygorAchievementsCommonMOP.lua"/>
+		<Script file="Achievements\ZygorAchievementsCommonMOPTrial.lua"/>
+
 	<!-- DUNGEONS -->
 		<!-- CATA -->
 		<Script file="Dungeons\ZygorDungeonAllianceCATA.lua"/>
@@ -134,10 +138,16 @@
 		<Script file="Dungeons\ZygorDungeonHordeMOP.lua"/>
 		<Script file="Dungeons\ZygorDungeonHordeMOPTrial.lua"/>
 		
+		<Script file="Dungeons\ZygorDungeonScenariosAllianceMOP.lua"/>
+		<Script file="Dungeons\ZygorDungeonScenariosAllianceMOPTrial.lua"/>
 
+		<Script file="Dungeons\ZygorDungeonScenariosHordeMOP.lua"/>
+		<Script file="Dungeons\ZygorDungeonScenariosHordeMOPTrial.lua"/>
 
 	<!-- GEAR -->
+		<Script file="Dungeons\ZygorGearAlliance.lua"/>
 		<Script file="Dungeons\ZygorGearAllianceTrial.lua"/>
+		<Script file="Dungeons\ZygorGearHorde.lua"/>
 		<Script file="Dungeons\ZygorGearHordeTrial.lua"/>
 		<Script file="Dungeons\ZygorGearCommonCLASSIC.lua"/>
 		<Script file="Dungeons\ZygorGearCommonCLASSICTrial.lua"/>

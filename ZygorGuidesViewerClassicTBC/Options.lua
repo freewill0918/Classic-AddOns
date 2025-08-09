@@ -567,12 +567,14 @@ function ZGV:Options_DefineOptionTables()
 			set = function(i,v)
 				Setter_Simple(i,v)
 				self:Debug("size up? %s",tostring(self.db.profile.resizeup))
+				local left,right,top,bottom = ZGV.Frame:GetLeft(),ZGV.Frame:GetRight(),ZGV.Frame:GetTop(),ZGV.Frame:GetBottom()
+				local scale = ZGV.Frame:GetScale()
 				if not v then  -- right side up
 					ZGV.MasterFrame:ClearAllPoints()
-					ZGV.MasterFrame:SetPoint("TOPLEFT",UIParent,"BOTTOMLEFT",ZGV.Frame:GetLeft()*ZGV.Frame:GetScale(),ZGV.Frame:GetTop()*ZGV.Frame:GetScale())
+					ZGV.MasterFrame:SetPoint("TOPLEFT",UIParent,"BOTTOMLEFT",left*scale,top*scale)
 				else  -- upside-down
 					ZGV.MasterFrame:ClearAllPoints()
-					ZGV.MasterFrame:SetPoint("BOTTOMLEFT",UIParent,"BOTTOMLEFT",ZGV.Frame:GetLeft()*ZGV.Frame:GetScale(),ZGV.Frame:GetBottom()*ZGV.Frame:GetScale())
+					ZGV.MasterFrame:SetPoint("BOTTOMLEFT",UIParent,"BOTTOMLEFT",left*scale,bottom*scale)
 				end
 				self:ReanchorFrame()
 				--self.frameNeedsResizing = self.frameNeedsResizing + 1
@@ -1124,6 +1126,25 @@ function ZGV:Options_DefineOptionTables()
 			AddOption('worldquestenable',{ type = 'toggle', _default=true, width="full", set=function(i,v) Setter_Simple(i,v) if v then ZGV.WorldQuests.DisplayFrame:Show() else ZGV.WorldQuests.DisplayFrame:Hide() end if WorldMapFrame then WorldMapFrame:OnMapChanged() end end})
 			AddOption('worldquestlocal',{ type = 'toggle', _default=true, width="full", desc=L["opt_worldquestlocal_desc"], disabled=function() return not self.db.profile.worldquestenable end, indent=20 })
 			AddOption('worldquestmap',{ type = 'toggle', width = "full", _default = true, set = function(i,v) Setter_Simple(i,v) if not v then self.db.profile.n_popup_wq = false end end })
+			AddOption('worldquestscale',{
+				type = 'select',
+				style = 'slider',
+				values = { 
+					[0.70] = L["opt_framescale_s_small"], 
+					[0.80] = "'", 
+					[0.90] = "'", 
+					[1.00] = L["opt_framescale_s_normal"], 
+					[1.10] = "'", 
+					[1.20] = L["opt_framescale_s_large"] 
+				},
+				set = function(i,v) Setter_Simple(i,v) ZGV.WorldQuests.DisplayFrame:SetScale(v) end,
+				_default = 1,
+				disabled=function() return not self.db.profile.worldquestenable end, 
+				indent=20,
+				width="single", 
+				_inline=true,
+			})
+		
 		end
 
 		AddOptionSpace()
@@ -1438,7 +1459,9 @@ function ZGV:Options_DefineOptionTables()
 						[7]="+7", 
 						[8]="+8", 
 						[9]="+9", 
-						[10]= "+10   ", 
+						[10]= "+10", 
+						[11]= "+11", 
+						[12]= "+12   ", 
 					},
 					_default=2,
 					width=400,

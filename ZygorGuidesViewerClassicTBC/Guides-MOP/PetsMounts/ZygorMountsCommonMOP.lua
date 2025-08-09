@@ -9,6 +9,7 @@ patch='52000',
 mounttype='Ground',
 model={47825},
 description="This guide will teach you how to acquire the Bone-White Primal Raptor mount.",
+mopready=true,
 },[[
 step
 Kill Primal enemies around this area
@@ -33,6 +34,7 @@ patch='unknown',
 mounttype='Ground',
 model={25279},
 description="This guide will teach you how to acquire the Crimson Deathcharger mount.",
+mopready=true,
 },[[
 step
 This mount is a reward given to players that complete the quest line to acquire the legendary Shadowmourne
@@ -55,6 +57,7 @@ patch='54000',
 mounttype='Ground',
 model={51484},
 description="This guide will teach you how to acquire the Ashhide Mushan Beast mount.",
+mopready=true,
 },[[
 step
 Collect #1000# Timeless Coins |or
@@ -69,7 +72,7 @@ buy Censer of Eternal Agony##102467 |goto Timeless Isle/0 74.92,44.92 |complete 
 step
 use Censer of Eternal Agony##102467
 Learn the "Censer of Eternal Agony" Toy |complete hastoy(102467) |or
-'|complete hasmount(148428} |or
+'|complete hasmount(148428) |or
 step
 use Censer of Eternal Agony##102467
 |tip This will turn you into an Emissary of Ordos, causing you to become Hostile with both factions and reduce your health by 10%.
@@ -93,6 +96,7 @@ mounts={148417},
 patch='54000',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Kor'kron Juggernaut mount.",
+mopready=true,
 },[[
 step
 Press _I_ and queue for the Siege of Orgrimmar or enter the raid normally |goto Siege of Orgrimmar/11 53.80,11.98 < 100 |c |or
@@ -113,6 +117,7 @@ patch='52000',
 mounttype='Ground',
 model={47238},
 description="This guide will teach you how to acquire the Spawn of Horridon mount.",
+mopready=true,
 },[[
 step
 Press _I_ and queue for the Throne of Thunder or enter the raid normally |goto Throne of Thunder/2 27.40,79.10 < 100 |c |or
@@ -135,6 +140,7 @@ mounts={123886},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Amber Scorpion mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with The Klaxxi |complete rep('The Klaxxi') == Exalted |or
@@ -156,6 +162,7 @@ mounts={127174},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Azure Riding Crane mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Golden Lotus |complete rep('Golden Lotus') == Exalted |or
@@ -183,6 +190,7 @@ mounts={118089},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Azure Water Strider mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with The Anglers |complete rep('The Anglers') == Exalted |or
@@ -204,6 +212,7 @@ mounts={130138},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Black Riding Goat mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with The Tillers |complete rep('The Tillers') == Exalted |or
@@ -225,6 +234,7 @@ mounts={129934},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Blue Shado-Pan Riding Tiger mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Shado-Pan |complete rep('Shado-Pan') == Exalted |or
@@ -246,6 +256,7 @@ mounts={130086},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Brown Riding Goat mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with The Tillers |complete rep('The Tillers') == Exalted
@@ -267,6 +278,7 @@ mounts={127176},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Golden Riding Crane mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Golden Lotus |complete rep('Golden Lotus') == Exalted |or
@@ -294,6 +306,7 @@ mounts={129932},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Green Shado-Pan Riding Tiger mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Shado-Pan |complete rep('Shado-Pan') == Exalted |or
@@ -315,6 +328,7 @@ mounts={129935},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Red Shado-Pan Riding Tiger mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Shado-Pan |complete rep('Shado-Pan') == Exalted |or
@@ -336,6 +350,7 @@ mounts={127177},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Regal Riding Crane mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Golden Lotus |complete rep('Golden Lotus') == Exalted |or
@@ -363,6 +378,7 @@ mounts={130137},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the White Riding Goat mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with The Tillers |complete rep('The Tillers') == Exalted |or
@@ -384,6 +400,7 @@ patch='53000',
 mounttype='Ground',
 model={48858},
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 This mount used to be obtained through the old Brawler's Guild
@@ -396,6 +413,7 @@ mounts={148396},
 patch='54000',
 mounttype='Ground',
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 This mount used to be awarded for completing the achievement "Ahead of the Curve: Garrosh Hellscream (10/25 player)" in Siege of Orgrimmar
@@ -409,6 +427,7 @@ mounts={232405},
 patch='72000',
 mounttype='Ground',
 description="This mount has been removed from the game.",
+mopready=true,
 },[[
 step
 This mount used to be awarded from a Promotional Event in Heroes of the Storm
@@ -421,6 +440,7 @@ mounts={127220},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Blonde Riding Yak mount.",
+mopready=true,
 },[[
 step
 talk Uncle Bigpocket##64518
@@ -437,6 +457,7 @@ mounts={122708},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Grand Expedition Yak mount.",
+mopready=true,
 },[[
 step
 talk Uncle Bigpocket##64518
@@ -453,6 +474,7 @@ mounts={127216},
 patch='50400',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Grey Riding Yak mount.",
+mopready=true,
 },[[
 step
 talk Uncle Bigpocket##64518
@@ -469,6 +491,7 @@ mounts={136400},
 patch='52000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Armored Skyscreamer mount.",
+mopready=true,
 },[[
 step
 achieve 8056 |or
@@ -554,6 +577,7 @@ patch='50400',
 mounttype='Flying',
 model={45521},
 description="This guide will teach you how to acquire the Ashen Pandaren Phoenix mount.",
+mopready=true,
 },[[
 step
 achieve 6375 |n
@@ -576,6 +600,7 @@ mounts={127156},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Crimson Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 achieve 6925 |or
@@ -732,6 +757,7 @@ patch='50400',
 mounttype='Flying',
 model={44633},
 description="This guide will teach you how to acquire the Crimson Pandaren Phoenix mount.",
+mopready=true,
 },[[
 step
 achieve 6375 |n
@@ -754,6 +780,7 @@ patch='50400',
 mounttype='Flying',
 model={45520},
 description="This guide will teach you how to acquire the Emerald Pandaren Phoenix mount.",
+mopready=true,
 },[[
 step
 achieve 6375 |n
@@ -776,6 +803,7 @@ mounts={127161},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Heavenly Crimson Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 achieve 6823 |or
@@ -826,7 +854,7 @@ step
 achieve 6922 |or
 |tip Use the "Timing is Everything" achievement guide to accomplish this.
 Click Here to Load the "Timing is Everything" achievement guide |confirm |loadguide "Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Timing is Everything"
-'|complete hasmount(127161) Or
+'|complete hasmount(127161) |or
 step
 achieve 6717 |or
 |tip Use the "Power Overwhelming" achievement guide to accomplish this.
@@ -851,7 +879,7 @@ step
 achieve 6719 |or
 |tip Use the "Heroic: Stone Guard" achievement guide to accomplish this.
 Click Here to Load the "The Mind-Killer" achievement guide |confirm |loadguide "Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Stone Guard"
-'|complete hasmount(127161) Or
+'|complete hasmount(127161) |or
 step
 achieve 6720 |or
 |tip Use the "Heroic: Feng the Accursed" achievement guide to accomplish this.
@@ -933,6 +961,7 @@ mounts={133023},
 patch='51000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Jade Pandaren Kite mount.",
+mopready=true,
 },[[
 step
 achieve 7860 |or
@@ -953,6 +982,7 @@ mounts={124408},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Thundering Jade Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 achieve 6682 |or
@@ -980,6 +1010,7 @@ mounts={148392},
 patch='54000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Spawn of Galakras mount.",
+mopready=true,
 },[[
 step
 achieve 8536 |or
@@ -1046,6 +1077,7 @@ patch='50400',
 mounttype='Flying',
 model={45522},
 description="This guide will teach you how to acquire the Violet Pandaren Phoenix mount.",
+mopready=true,
 },[[
 step
 achieve 6375 |n
@@ -1068,6 +1100,7 @@ mounts={142878},
 patch='53000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Enchanted Fey Dragon mount.",
+mopready=true,
 },[[
 step
 This mount can be purchased for $25.00 from the official Blizzard Store
@@ -1086,6 +1119,7 @@ mounts={163024},
 patch='60100',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Warforged Nightmare mount.",
+mopready=true,
 },[[
 step
 This mount used to be available for purchase for $30.00 from the official Blizzard Store
@@ -1104,6 +1138,7 @@ mounts={139442},
 patch='52000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Thundering Cobalt Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 kill Nalak##69099
@@ -1123,6 +1158,7 @@ mounts={127158},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Heavenly Onyx Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 kill Sha of Anger##60491
@@ -1141,6 +1177,7 @@ mounts={148476},
 patch='54000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Thundering Onyx Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 kill Huolon##73167
@@ -1160,6 +1197,7 @@ mounts={132036},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Thundering Ruby Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 Kill level 90 - 92 enemies throughout Pandaria
@@ -1191,6 +1229,7 @@ mounts={142073},
 patch='53000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Hearthsteed mount.",
+mopready=true,
 },[[
 step
 achieve 8345 |or
@@ -1211,6 +1250,7 @@ mounts={127154},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Onyx Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Shado-Pan |complete rep('Shado-Pan') == Exalted |or
@@ -1258,6 +1298,7 @@ mounts={126507},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Depleted-Kyparium Rocket mount.",
+mopready=true,
 },[[
 step
 Reach 75 Pandaria Engineering |skill Pandaria Engineering,75 |or
@@ -1268,7 +1309,7 @@ Click Here to Load the "Pandaria Engineering 1-75" |confirm |loadguide "Professi
 step
 talk Didi the Wrench##93520
 |tip Inside the building.
-learn Depleted-Kyparium Rocket##127138 |goto Dalaran L/10 38.80,24.76 |or
+learn Depleted-Kyparium Rocket##127138 |goto Dalaran/1 38.80,24.76 |or
 '|complete hasmount(126507) |or
 step
 collect 12 Living Steel##72104 |or
@@ -1320,6 +1361,7 @@ mounts={126508},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Geosynchronous World Spinner mount.",
+mopready=true,
 },[[
 step
 Reach 75 Pandaria Engineering |skill Pandaria Engineering,75 |or
@@ -1375,6 +1417,7 @@ mounts={134359},
 patch='51000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Sky Golem mount.",
+mopready=true,
 },[[
 step
 Reach 75 Pandaria Engineering |skill Pandaria Engineering,75 |or
@@ -1419,6 +1462,7 @@ mounts={121837},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Jade Panther mount.",
+mopready=true,
 },[[
 step
 Reach 75 Pandaria Jewelcrafting |skill Pandaria Jewelcrafting,75 |or
@@ -1487,6 +1531,7 @@ mounts={120043},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Jeweled Onyx Panther mount.",
+mopready=true,
 },[[
 step
 Reach 75 Pandaria Jewelcrafting |skill Pandaria Jewelcrafting,75 |or
@@ -1539,6 +1584,7 @@ mounts={121838},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Ruby Panther mount.",
+mopready=true,
 },[[
 step
 Reach 75 Pandaria Jewelcrafting |skill Pandaria Jewelcrafting,75 |or
@@ -1607,6 +1653,7 @@ mounts={121836},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Sapphire Panther mount.",
+mopready=true,
 },[[
 step
 Reach 75 Pandaria Jewelcrafting |skill Pandaria Jewelcrafting,75 |or
@@ -1675,6 +1722,7 @@ mounts={121839},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Sunstone Panther mount.",
+mopready=true,
 },[[
 step
 Reach 75 Pandaria Jewelcrafting |skill Pandaria Jewelcrafting,75 |or
@@ -1743,6 +1791,7 @@ mounts={127170},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Astral Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 Press _I_ and queue for the Mogu'shan Vaults or enter the raid normally |goto Mogu'shan Vaults/1 75.32,73.82 < 100 |c |or
@@ -1765,6 +1814,7 @@ mounts={139448},
 patch='52000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Clutch of Ji-kun mount.",
+mopready=true,
 },[[
 step
 Press _I_ and queue for Throne of Thunder or enter the raid normally |goto Throne of Thunder/1 29.99,25.61 < 100 |c |or
@@ -1785,6 +1835,7 @@ mounts={123992},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Azure Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Order of the Cloud Serpent |complete rep('Order of the Cloud Serpent') == Exalted |or
@@ -1806,6 +1857,7 @@ mounts={123993},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Golden Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Order of the Cloud Serpent |complete rep('Order of the Cloud Serpent') == Exalted |or
@@ -1827,6 +1879,7 @@ mounts={127164},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Heavenly Golden Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with Emperor Shaohao |complete rep('Emperor Shaohao') == Exalted |or
@@ -1852,6 +1905,7 @@ mounts={113199},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Jade Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Order of the Cloud Serpent |complete rep('Order of the Cloud Serpent') == Exalted |or
@@ -1873,6 +1927,7 @@ mounts={130092},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Red Flying Cloud mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with The Lorewalkers |complete rep('The Lorewalkers') == Exalted |or
@@ -1895,6 +1950,7 @@ mounts={129918},
 patch='50400',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Thundering August Cloud Serpent mount.",
+mopready=true,
 },[[
 step
 Reach Exalted Reputation with The August Celestials |complete rep('The August Celestials') == Exalted |or

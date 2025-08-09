@@ -54,6 +54,7 @@ data.point_context_templates = {
 	{'taxi_zerethportal2',"arrivefp"},
 	{'taxi_zerethportal3',"arrivefp"},
 	{'taxi_zerethlocus',"arrivefp"},
+	{'taxi_phaseconduit',"arrivefp"},
 
 	{'taximaybe',"Talk to {npc}\nTry to fly to {next_name}, {next_map}"},
 	{'eternalgateway',"Activate the blue teleport pad\nTeleport to {next_name}"},
@@ -93,8 +94,9 @@ data.point_context_templates = {
 	{'zerethportal',"Use the Ancient Translocator\nto Teleport to {next_name}"},
 	{'zerethportal2',"Use the Ancient Translocator\nto Fly to {next_name}"},
 	{'zerethportal3',"Use the Ancient Translocator\nto Fly to {next_name}"},
-	{'zerethlocus',"Use Locus Shift\nand teleport to {next_name}"},
+	{'zerethlocus',"Use Locus Shift\nand Teleport to {next_name}"},
 	{'ancientwaygate',"Use the Ancient Waygate\nto Teleport to {next_name}"},
+	{'phaseconduit',"Use the Phase Conduit\nto Teleport to {next_name}"},
 
 	{'toylocation',"Go to location and use {arrivaltoy} to open portal to {next_map}"},
 	{'*_*__toylocation_*',"Go to location and use {arrivaltoy} to open portal to {next_map}"},

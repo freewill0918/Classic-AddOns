@@ -12,6 +12,7 @@ achieveid={6761},
 patch='50004',
 condition_suggested=function() return level>=35 and level<=35 end,
 description="This guide will walk you through the Scarlet Monastery dungeon.",
+mopready=true
 },[[
 step
 Press _I_ and queue for Scarlet Monastery or enter the dungeon with your group |goto Scarlet Monastery/1 74.20,46.20 < 100 |c

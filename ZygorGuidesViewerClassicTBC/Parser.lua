@@ -20,6 +20,7 @@ local IsUsableSpell=IsUsableSpell or C_Spell.IsSpellUsable
 
 local mod="%05d%05d"
 local FREQ_DAILY = Enum.QuestFrequency and Enum.QuestFrequency.Daily or LE_QUEST_FREQUENCY_DAILY
+local FREQ_WEEKLY = Enum.QuestFrequency and Enum.QuestFrequency.Weekly or LE_QUEST_FREQUENCY_WEEKLY
 
 --[[
 local function split (s,t)
@@ -1359,6 +1360,19 @@ local ConditionEnv = {
 		end
 		return false
 	end,
+	noweeklies = function(npcid) 
+		if ZGV.GetTargetId()==tonumber(npcid) and GossipFrame:IsShown() then
+			for qnum,questInfo in ipairs(C_GossipInfo.GetAvailableQuests()) do
+				if questInfo.frequency==FREQ_WEEKLY then return false end
+			end
+			for qnum,questInfo in ipairs(C_GossipInfo.GetActiveQuests()) do
+				if questInfo.frequency==FREQ_WEEKLY then return false end
+			end
+			C_GossipInfo.CloseGossip()
+			return true
+		end
+		return false
+	end,
 
 }
 setmetatable(ConditionEnv,{__index=function(t,k) local lower=rawget(t,k:lower())  if lower~=nil then return lower end  return _G[k]  end})
@@ -1769,7 +1783,16 @@ function Parser:ParseEntry(guide,fully_parse,lastparsed)
 
 				if cmd=="leechsteps" then
 					-- works anywhere
-					local fromguide,from,to = params:match("^\"(.+)\"%s*(%d+)%s*%-%s*(%d+)$")
+
+					local fromguide,from,to,fromblock
+
+					-- check if we are using guide:blockname syntax
+					fromguide,fromblock = params:match("^\"(.+)\"%s*\"(.+)\"$")
+
+					-- if not, we are using older guide with optional numbered steps
+					if not fromguide then
+						fromguide,from,to = params:match("^\"(.+)\"%s*(%d+)%s*%-%s*(%d+)$")
+					end				
 
 					local leechsteps_guide = ZGV:SanitizeGuideTitle(fromguide or params:match("^\"(.+)\"$") or params) :gsub("\\+","\\")
 					local leechsteps_from = tonumber(from) or 1
@@ -1788,6 +1811,16 @@ function Parser:ParseEntry(guide,fully_parse,lastparsed)
 								do return parseerror(("bad leech! can't parse |cffff8800%s|r"):format(leechsteps_guide)) end
 								breakout=true
 								break
+							end
+						end
+
+						if fromblock then
+							local block = leechedguide.stepblocks[fromblock]
+							if not block then
+								do return parseerror(("leeched named block not found: %s"):format(fromblock)) end
+							else
+								leechsteps_from = block[1] or 1
+								leechsteps_to = block[2] or 9999
 							end
 						end
 
@@ -1873,6 +1906,7 @@ function Parser:ParseEntry(guide,fully_parse,lastparsed)
 					for i=#open_stickies_ord,1,-1 do if open_stickies_ord[i]==label then tremove(open_stickies_ord,i) end end
 					cmd_parsed=true
 				end
+					
 
 				if cmd=="step" and (not step or #step.goals>0) then
 					-- only start a step if there were goals in the former one! Make "step step step step" errors allowed.
@@ -1978,6 +2012,11 @@ function Parser:ParseEntry(guide,fully_parse,lastparsed)
 
 					elseif cmd=="template" then
 						step.template = params
+
+					elseif cmd=="blockstart" then
+						step.blockstart = params
+					elseif cmd=="blockend" then
+						step.blockend = params
 
 					--[[
 					elseif cmd=="@" then

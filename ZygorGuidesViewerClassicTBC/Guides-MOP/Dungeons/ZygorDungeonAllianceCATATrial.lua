@@ -3,8 +3,8 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Alliance" then return end
 if ZGV:DoMutex("DungeonA") then return end
 ZygorGuidesViewer.GuideMenuTier = "TRI"
-ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Classic\\Wailing Caverns (15-25)",{
-cataready=true,
+ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Classic Dungeons\\Wailing Caverns (15-25)",{
+mopready=true,
 image=ZGV.IMAGESDIR.."Wailing Caverns",
 description="This guide will walk you through the Wailing Caverns dungeon.",
 lfgid=718,
@@ -56,8 +56,8 @@ kill Mutanus the Devourer##3654
 |tip Mutanus' "Thunderclap" ability does high damage to the tank and any nearby melee DPS so ranged DPS is better for this fight.
 |tip He also has two abilities, "Terrify" and "Naralex's Nightmare" that both stun/sleep players so the healer should try to keep the group's health topped off as much as possible.
 ]])
-ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Classic\\The Deadmines (17-26)",{
-cataready=true,
+ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Classic Dungeons\\The Deadmines (17-26)",{
+mopready=true,
 image=ZGV.IMAGESDIR.."Deadmines",
 description="This guide will walk you through the Deadmines dungeon.",
 lfgid=1581,
@@ -124,8 +124,8 @@ kill Cookie##645
 |tip If you want to be safe, you can clear the adds below before jumping down.
 |tip Interrupt "Cookie's Cooking" spell or it heals him.
 ]])
-ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Classic\\Shadowfang Keep (22-30)",{
-cataready=true,
+ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Classic Dungeons\\Shadowfang Keep (22-30)",{
+mopready=true,
 image=ZGV.IMAGESDIR.."Shadowfang Keep",
 description="This guide will walk you through the Shadowfang Keep dungeon.",
 lfgid=209,
@@ -188,14 +188,14 @@ kill Archmage Arugal##4275
 |tip His standard attack, "Shadow Bolt" hits very hard.
 Click Here to Continue |confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Classic\\The Stockade (22-30)",{
-cataready=true,
+ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Classic Dungeons\\The Stockade (22-30)",{
+mopready=true,
 image=ZGV.IMAGESDIR.."The Stockade",
 description="This guide will walk you through The Stockade dungeon.",
 lfgid=717,
 },[[
 step
-Enter The Stockade Dungeon with Your Group |goto The Stockade/0 0.00,0.00 < 500 |c
+Enter The Stockade Dungeon with Your Group |goto The Stockade/1 0.00,0.00 < 500 |c
 step
 kill Targorr the Dread##1696
 |tip There will be Defias enemies surrounding him in the room.
@@ -236,59 +236,64 @@ kill Bruegal Ironknuckle##1720
 |tip Clear adds before engaging him and kill the boss.
 Click Here to Continue |confirm
 ]])
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Blackfathom Deeps (24-32)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Gnomeregan (29-38)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Razorfen Kraul (30-40)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Scarlet Monastery (Graveyard) (29-35)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Scarlet Monastery (Library) (31-37)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Scarlet Monastery (Armory) (35-40)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Scarlet Monastery (Cathedral) (36-42)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Razorfen Downs (37-43)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Uldaman (42-52)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Zul'Farrak (44-49)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Maraudon (Wicked Grotto - Purple) (45-53)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Maraudon (Foulspore Cavern - Orange) (45-53)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Maraudon (Poison Falls - Inner) (48-57)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Maraudon (Earth Song Falls - Inner) (48-57)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\The Temple of Atal'Hakkar (50-60)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Blackrock Depths (52-60)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Scholomance (58-60)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Stratholme - Live (58-60)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Stratholme - Undead (58-60)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Dire Maul East (58-60)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Dire Maul North (58-60)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Dire Maul West (58-60)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Dire Maul North Tribute (58-60)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Lower Blackrock Spire (55-60)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Upper Blackrock Spire (55-60)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Wailing Caverns Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\The Deadmines Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Blackfathom Deeps Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\The Stockade Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Gnomeregan Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Razorfen Kraul Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Scarlet Monastery Library Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Scarlet Monastery Armory Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Scarlet Monastery Cathedral Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Razorfen Downs Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Uldaman Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Zul'Farrak Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Maraudon Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Temple of Atal'Hakkar Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Blackrock Depths Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Dire Maul East Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Dire Maul West Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Dire Maul North Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Lower Blackrock Spire Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Scholomance Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Stratholme - Live Side Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Stratholme - Undead Side Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Upper Blackrock Spire Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Raid Attunements\\Blackwing Lair Attunement")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Raid Attunements\\Molten Core Attunement")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Raid Attunements\\Naxxramas Attunement")
-ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\The Burning Crusade\\Hellfire Ramparts (60-70)",{
-cataready=true,
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Blackfathom Deeps (24-32)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Gnomeregan (29-38)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Razorfen Kraul (30-40)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Scarlet Monastery (Graveyard) (29-35)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Scarlet Monastery (Library) (31-37)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Scarlet Monastery (Armory) (35-40)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Scarlet Monastery (Cathedral) (36-42)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Razorfen Downs (37-43)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Uldaman (42-52)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Zul'Farrak (44-49)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Maraudon (Wicked Grotto - Purple) (45-53)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Maraudon (Foulspore Cavern - Orange) (45-53)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Maraudon (Poison Falls - Inner) (48-57)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Maraudon (Earth Song Falls - Inner) (48-57)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\The Temple of Atal'Hakkar (50-60)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Blackrock Depths (52-60)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Scholomance (58-60)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Stratholme - Live (58-60)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Stratholme - Undead (58-60)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Dire Maul East (58-60)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Dire Maul North (58-60)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Dire Maul West (58-60)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Dire Maul North Tribute (58-60)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Lower Blackrock Spire (55-60)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Upper Blackrock Spire (55-60)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Wailing Caverns Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\The Deadmines Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Blackfathom Deeps Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\The Stockade Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Gnomeregan Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Razorfen Kraul Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Scarlet Monastery Library Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Scarlet Monastery Armory Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Scarlet Monastery Cathedral Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Razorfen Downs Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Uldaman Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Zul'Farrak Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Maraudon Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Temple of Atal'Hakkar Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Blackrock Depths Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Dire Maul East Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Dire Maul West Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Dire Maul North Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Lower Blackrock Spire Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Scholomance Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Stratholme - Live Side Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Stratholme - Undead Side Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Dungeons\\Upper Blackrock Spire Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Raids\\Blackwing Lair")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Raids\\Molten Core")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Raids\\Ruins of Ahn'Qiraj")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Raids\\Temple of Ahn'Qiraj")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Raids\\Onyxia's Lair (60)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Raids\\Raid Attunements\\Blackwing Lair Attunement")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Raids\\Raid Attunements\\Molten Core Attunement")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic Raids\\Raid Attunements\\Naxxramas Attunement")
+ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\The Burning Crusade Dungeons\\Hellfire Ramparts (60-70)",{
+mopready=true,
 description="This guide will walk you through the Hellfire Ramparts dungeon.",
 },[[
 step
@@ -320,45 +325,53 @@ kill Nazan##17536
 |tip "Bellowing Roar" will fear the entire party.
 Click Here to Continue |confirm
 ]])
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Blood Furnace (61-70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Slave Pens (62-70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Underbog (63-70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Mana-Tombs (64-70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Auchenai Crypts (65-70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Sethekk Halls (67-70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Old Hillsbrad Foothills (66-70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Black Morass (68-70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Mechanar (70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Shattered Halls (70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Steamvault (70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Shadow Labyrinth (70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Arcatraz (70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Botanica (70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Magisters' Terrace (70)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Slave Pens Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Underbog Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Mana-Tombs Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Old Hillsbrad Foothills Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Black Morass Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Mechanar Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Steamvault Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Arcatraz Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Botanica Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Hellfire Ramparts Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Blood Furnace Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Shattered Halls Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Auchenai Crypts Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Sethekk Halls Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Shadow Labyrinth Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\The Cipher of Damnation")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Karazhan Attunement")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Hellfire Citadel Attunement")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Serpentshrine Cavern Attunement")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Tempest Keep Attunement")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Mount Hyjal Attunement")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade\\Black Temple Attunement")
-ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Wrath of the Lich King\\Utgarde Keep (69-72)",{
-cataready=true,
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Blood Furnace (61-70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Slave Pens (62-70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Underbog (63-70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Mana-Tombs (64-70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Auchenai Crypts (65-70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Sethekk Halls (67-70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Old Hillsbrad Foothills (66-70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Black Morass (68-70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Mechanar (70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Shattered Halls (70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Steamvault (70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Shadow Labyrinth (70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Arcatraz (70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Botanica (70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Magisters' Terrace (70)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Raids\\Black Temple")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Raids\\The Eye")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Raids\\Gruul's Lair")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Raids\\Hyjal Summit (Battle for Mount Hyjal)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Raids\\Karazhan")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Raids\\Magtheridon's Lair")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Raids\\Serpentshrine Cavern")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Raids\\Sunwell Plateau")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Slave Pens Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Underbog Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Mana-Tombs Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Old Hillsbrad Foothills Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Black Morass Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Mechanar Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Steamvault Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Arcatraz Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Botanica Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Hellfire Ramparts Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Blood Furnace Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Shattered Halls Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Auchenai Crypts Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Sethekk Halls Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Shadow Labyrinth Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\The Cipher of Damnation")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Karazhan Attunement")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Hellfire Citadel Attunement")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Serpentshrine Cavern Attunement")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Tempest Keep Attunement")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Mount Hyjal Attunement")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\The Burning Crusade Dungeons\\Black Temple Attunement")
+ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Wrath of the Lich King Dungeons\\Utgarde Keep (69-72)",{
+mopready=true,
 description="This guide will walk you through completing Utgarde Keep.",
 },[[
 step
@@ -388,9 +401,8 @@ kill Ingvar the Plunderer##23954
 |tip Casters be on the look out for "Dreadful Roar" as it will interrupt spells.
 Click Here to Continue |confirm
 ]])
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Utgarde Keep Quests")
-ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Wrath of the Lich King\\The Nexus (69-73)",{
-cataready=true,
+ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Wrath of the Lich King Dungeons\\The Nexus (69-73)",{
+mopready=true,
 description="This guide will walk you through completing The Nexus.",
 },[[
 step
@@ -426,44 +438,52 @@ kill Keristrasza##26723
 |tip
 Click Here to Continue |confirm
 ]])
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\The Nexus Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Azjol-Nerub (72-74)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Azjol-Nerub Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Ahn'kahet: The Old Kingdom (73-75)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Ahn'kahet: The Old Kingdom Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Violet Hold (75-77)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\The Violet Hold Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Drak'Tharon Keep (74-76)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Drak'Tharon Keep Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Gundrak (76-78)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Gundrak Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Halls of Stone (77-79)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Halls of Stone Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Halls of Lightning (78-80)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Halls of Lightning Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\The Culling of Stratholme (78-80)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\The Culling of Stratholme Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\The Oculus (79-80)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\The Oculus Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Utgarde Pinnacle (79-80)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Utgarde Pinnacle Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Ulduar (10)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Ulduar (25)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Classic\\Onyxia's Lair (60)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Onyxia's Lair (80)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Trial of the Champion")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King\\Trial of the Crusader")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Northrend Dungeons\\Forge of Souls")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Northrend Dungeons\\Forge of Souls Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Northrend Dungeons\\Pit of Saron")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Northrend Dungeons\\Pit of Saron Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Northrend Dungeons\\Halls of Reflection")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Northrend Dungeons\\Halls of Reflection Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Northrend Raids\\Icecrown Citadel (10)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Northrend Raids\\Icecrown Citadel (25)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Northrend Raids\\The Ruby Sanctum")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Azjol-Nerub (72-74)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Ahn'kahet: The Old Kingdom (73-75)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Violet Hold (75-77)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Drak'Tharon Keep (74-76)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Gundrak (76-78)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Halls of Stone (77-79)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Halls of Lightning (78-80)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\The Culling of Stratholme (78-80)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\The Oculus (79-80)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Utgarde Pinnacle (79-80)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Ulduar (10)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Ulduar (25)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Onyxia's Lair (80)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Trial of the Champion")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Trial of the Crusader")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Forge of Souls")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Pit of Saron")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Halls of Reflection")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Raids\\The Eye of Eternity")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Raids\\Naxxramas")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Raids\\The Obsidian Sanctum")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Raids\\Onyxia's Lair")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Raids\\Trial of the Crusader")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Raids\\Trial of the Grand Crusader")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Raids\\Ulduar")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Raids\\Vault of Archavon")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Raids\\Icecrown Citadel (10)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Raids\\Icecrown Citadel (25)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Raids\\The Ruby Sanctum")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\The Oculus Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Utgarde Keep Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Utgarde Pinnacle Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Azjol-Nerub Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\The Nexus Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Ahn'kahet: The Old Kingdom Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\The Violet Hold Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Drak'Tharon Keep Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Gundrak Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Halls of Stone Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Halls of Lightning Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\The Culling of Stratholme Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Forge of Souls Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Pit of Saron Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Wrath of the Lich King Dungeons\\Halls of Reflection Quests")
 ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Cataclysm Dungeons\\Blackrock Caverns",{
-cataready=true,
+mopready=true,
 mapid=283,
 achieveid={4833},
 patch='40003',
@@ -681,7 +701,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Cataclysm Dungeons\\
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Cataclysm Dungeons\\Halls of Origination")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Cataclysm Dungeons\\Lost City of the Tol'vir")
 ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Cataclysm Dungeons\\The Stonecore",{
-cataready=true,
+mopready=true,
 mapid=324,
 achieveid={4846},
 patch='40003',

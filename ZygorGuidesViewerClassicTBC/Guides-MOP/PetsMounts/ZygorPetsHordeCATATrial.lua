@@ -14,6 +14,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Overgrowth in Southern Barrens.",
 keywords={"Aquatic","Southern","Barrens"},
 pet=419,
+mopready=true,
 },[[
 step
 clicknpc Small Frog##61071
@@ -33,6 +34,7 @@ source='Vendor',
 description="This battle pet is sold by an Alliance vendor and can only be purchased from the Auction House if you are Horde.",
 keywords={"Beast","Auction","House"},
 pet=40,
+mopready=true,
 },[[
 step
 collect Cat Carrier (Bombay)##8485 |n
@@ -52,6 +54,7 @@ source='Vendor',
 description="This battle pet is sold by an Alliance vendor and can only be purchased from the Auction House if you are Horde.",
 keywords={"Beast","Auction","House"},
 pet=41,
+mopready=true,
 },[[
 step
 collect Cat Carrier (Cornish Rex)##8486 |n
@@ -76,6 +79,7 @@ source='Vendor',
 description="This battle pet is sold by an Alliance vendor and can only be purchased from the Auction House if you are Horde.",
 keywords={"Beast","Auction","House"},
 pet=43,
+mopready=true,
 },[[
 step
 collect Cat Carrier (Orange Tabby)##8487 |n
@@ -95,6 +99,7 @@ source='Vendor',
 description="This battle pet is sold by an Alliance vendor and can only be purchased from the Auction House if you are Horde.",
 keywords={"Beast","Auction","House"},
 pet=45,
+mopready=true,
 },[[
 step
 collect Cat Carrier (Silver Tabby)##8488 |n
@@ -119,6 +124,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild all around Durotar.",
 keywords={"Critter","Durotar"},
 pet=448,
+mopready=true,
 },[[
 step
 clicknpc Hare##61751
@@ -141,6 +147,7 @@ source='Vendor',
 description="This battle pet is sold by an Alliance vendor and can only be purchased from the Auction House if you are Horde.",
 keywords={"Critter","Auction","House"},
 pet=72,
+mopready=true,
 },[[
 step
 collect Rabbit Crate (Snowshoe)##8497 |n
@@ -160,6 +167,7 @@ source='PetBattle',
 description="This battle pet can be tamed in the wild around the Canals in the Undercity.",
 keywords={"Critter","Undercity"},
 pet=454,
+mopready=true,
 },[[
 step
 clicknpc Undercity Rat##61889

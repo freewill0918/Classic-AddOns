@@ -3,8 +3,8 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Alliance" then return end
 if ZGV:DoMutex("AchievementsA") then return end
 ZygorGuidesViewer.GuideMenuTier = "TRI"
-ZGV.BETASTART()
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Collections\\Mounts\\Get to the Choppa!",{
+mopready=true,
 achieveid={2097},
 patch='30002',
 description="To earn this achievement, you will have to craft or purchase a Mekgineer's Chopper. "..
@@ -65,7 +65,6 @@ Earn the "Get to the Choppa!" Achievement |achieve 2097
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Collections\\Represent")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Collections\\Ten Tabards")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Collections\\Twenty-Five Tabards")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Dungeons\\Pardon Denied")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Dungeons\\To the Ground!")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Northrend Dungeons\\A Void Dance")
@@ -327,7 +326,6 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Double Dragon")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Elementary")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Fall of Deathwing")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Four Play")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Full of Sound and Fury")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Al'Akir")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Alysrazor")
@@ -340,17 +338,16 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Conclave of Wind")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Fandral Staghelm")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Hagara the Stormbinder")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Ultraxion")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Halfus Wyrmbreaker")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Keeping it in the Family")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Lord Rhyolith")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Madness of Deathwing")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Magmaw")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Majordomo Fandral Staghelm")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Maloriak")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Morchok")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Nefarian")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Omnotron Defense System")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Ragnaros")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Shannox")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Sinestra")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Spine of Deathwing")
@@ -364,14 +361,12 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Minutes to Midnight")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Not an Ambi-Turner")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\The Only Escape")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Only the Penitent...")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Parasite Evening")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Ping Pong Champion")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Ragnar-O's")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Heroic: Warlod Zon'ozz")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Share the Pain")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Siege of Wyrmrest Temple")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Silence is Golden")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Stay Chill")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Taste the Rainbow!")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Raids\\Throne of the Four Winds")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Cataclysm Dungeons\\Cataclysm Dungeon Hero")
@@ -394,6 +389,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Outland Dungeons\\Outland Dungeonmaster")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Dungeons & Raids\\Outland Raids\\Outland Raider")
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Eastern Kingdoms and Cataclysm Explorer",{
+mopready=true,
 condition_end=function() return achieved(42) end,
 achieveid={42},
 patch='30002',
@@ -433,11 +429,9 @@ leechsteps "Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Eastern P
 leechsteps "Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Ghostlands" 1-16
 leechsteps "Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Eversong Woods" 1-25
 leechsteps "Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Isle of Quel'Danas" 1-1
-step
-_Congratulations!_
-You Earned the "Explore Eastern Kingdoms" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Arathi Highlands",{
+mopready=true,
 condition_end=function() return achieved(761) end,
 achieveid={761},
 patch='30003',
@@ -480,11 +474,9 @@ step
 Discover Galen's Fall |achieve 761/4 |goto Arathi Highlands 13.00,36.40
 step
 |achieve 761
-step
-_Congratulations!_
-You Earned the "Explore Arathi Highlands" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Badlands",{
+mopready=true,
 condition_end=function() return achieved(765) end,
 achieveid={765},
 patch='30003',
@@ -514,11 +506,9 @@ step
 Discover Bloodwatcher Point |achieve 765/9 |goto Badlands 52.30,51.20
 step
 |achieve 765
-step
-_Congratulations!_
-You Earned the "Explore Badlands" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Blasted Lands",{
+mopready=true,
 condition_end=function() return achieved(766) end,
 achieveid={766},
 patch='30003',
@@ -557,11 +547,9 @@ step
 Discover Nethergarde Supply Camps |achieve 766/2 |goto Blasted Lands 52.61,18.63
 step
 |achieve 766
-step
-_Congratulations!_
-You Earned the "Explore Blasted Lands" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Burning Steppes",{
+mopready=true,
 condition_end=function() return achieved(775) end,
 achieveid={775},
 patch='30002',
@@ -591,11 +579,9 @@ step
 Discover Altar of Storms |achieve 775/9 |goto Burning Steppes 9.40,27.50
 step
 |achieve 775
-step
-_Congratulations!_
-You Earned the "Explore Burning Steppes" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore the Cape of Stranglethorn",{
+mopready=true,
 condition_end=function() return achieved(4995) end,
 achieveid={4995},
 patch='40003',
@@ -625,11 +611,9 @@ step
 Discover Crystalvein Mine |achieve 4995/2 |goto The Cape of Stranglethorn 62.40,28.10
 step
 |achieve 4995
-step
-_Congratulations!_
-You Earned the "Explore the Cape of Stranglethorn" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Deadwind Pass",{
+mopready=true,
 condition_end=function() return achieved(777) end,
 achieveid={777},
 patch='30002',
@@ -644,11 +628,9 @@ step
 Discover The Vice |achieve 777/2 |goto Deadwind Pass 58.60,64.70
 step
 |achieve 777
-step
-_Congratulations!_
-You Earned the "Explore Deadwind Pass" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Dun Morogh",{
+mopready=true,
 condition_end=function() return achieved(627) end,
 achieveid={627},
 patch='30002',
@@ -689,11 +671,9 @@ step
 Discover North Gate Outpost |achieve 627/12 |goto Dun Morogh 90.30,37.60
 step
 |achieve 627
-step
-_Congratulations!_
-You Earned the "Explore Dun Morogh" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Duskwood",{
+mopready=true,
 condition_end=function() return achieved(778) end,
 achieveid={778},
 patch='30002',
@@ -730,11 +710,9 @@ step
 Discover Tranquil Gardens Cemetery |achieve 778/10 |goto Duskwood 79.70,66.10
 step
 |achieve 778
-step
-_Congratulations!_
-You Earned the "Explore Duskwood" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Eastern Plaguelands",{
+mopready=true,
 condition_end=function() return achieved(771) end,
 achieveid={771},
 patch='30100',
@@ -792,11 +770,9 @@ step
 Discover Zul'Mashar |achieve 771/17 |goto Eastern Plaguelands 66.40,10.30
 step
 |achieve 771
-step
-_Congratulations!_
-You Earned the "Explore Eastern Plaguelands" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Elwynn Forest",{
+mopready=true,
 condition_end=function() return achieved(776) end,
 achieveid={776},
 patch='30002',
@@ -828,11 +804,9 @@ step
 Discover Stone Cairn Lake |achieve 776/11 |goto Elwynn Forest 74.00,51.50
 step
 |achieve 776
-step
-_Congratulations!_
-You Earned the "Explore Elwynn Forest" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Eversong Woods",{
+mopready=true,
 condition_end=function() return achieved(859) end,
 achieveid={859},
 patch='30002',
@@ -894,11 +868,9 @@ step
 Discover The Living Wood |achieve 859/11 |goto Eversong Woods 54.20,71.90
 step
 |achieve 859
-step
-_Congratulations!_
-You Earned the "Explore Eversong Woods" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Ghostlands",{
+mopready=true,
 condition_end=function() return achieved(858) end,
 achieveid={858},
 patch='30002',
@@ -941,11 +913,9 @@ step
 Discover Elrendar Crossing |achieve 858/15 |goto Ghostlands 48.39,11.51
 step
 |achieve 858
-step
-_Congratulations!_
-You Earned the "Explore Ghostlands" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Hillsbrad Foothills",{
+mopready=true,
 condition_end=function() return achieved(772) end,
 achieveid={772},
 patch='30008',
@@ -1009,11 +979,9 @@ step
 Discover Purgation Isle |achieve 772/16 |goto Hillsbrad Foothills 27.00,85.60
 step
 |achieve 772
-step
-_Congratulations!_
-You Earned the "Explore Hillsbrad Foothills" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore The Hinterlands",{
+mopready=true,
 condition_end=function() return achieved(773) end,
 achieveid={773},
 patch='30002',
@@ -1051,11 +1019,9 @@ step
 Discover Seradane |achieve 773/10 |goto The Hinterlands 62.70,24.10
 step
 |achieve 773
-step
-_Congratulations!_
-You Earned the "Explore The Hinterlands" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Isle of Quel'Danas",{
+mopready=true,
 condition_end=function() return achieved(868) end,
 achieveid={868},
 patch='30003',
@@ -1063,11 +1029,9 @@ description="Explore Isle of Quel'Danas, revealing the covered areas of the worl
 },[[
 step
 Explore Isle of Quel'Danas |achieve 868 |goto Isle of Quel'Danas 47.40,30.60
-step
-_Congratulations!_
-You Earned the "Explore Isle of Quel'Danas" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Loch Modan",{
+mopready=true,
 condition_end=function() return achieved(779) end,
 achieveid={779},
 patch='30002',
@@ -1099,11 +1063,9 @@ step
 Discover North Gate Pass |achieve 779/5 |goto Loch Modan 20.20,17.10
 step
 |achieve 779
-step
-_Congratulations!_
-You Earned the "Explore Loch Modan" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Northern Stranglethorn",{
+mopready=true,
 condition_end=function() return achieved(781) end,
 achieveid={781},
 patch='30003',
@@ -1146,11 +1108,9 @@ step
 Discover Ruins of Zul'Kunda |achieve 781/15 |goto Northern Stranglethorn 26.40,20.20
 step
 |achieve 781
-step
-_Congratulations!_
-You Earned the "Explore Northern Stranglethorn" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Redridge Mountains",{
+mopready=true,
 condition_end=function() return achieved(780) end,
 achieveid={780},
 patch='30002',
@@ -1186,11 +1146,9 @@ step
 Discover Three Corners |achieve 780/3 |goto Redridge Mountains 19.70,59.10
 step
 |achieve 780
-step
-_Congratulations!_
-You Earned the "Explore Redridge Mountains" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Searing Gorge",{
+mopready=true,
 condition_end=function() return achieved(774) end,
 achieveid={774},
 patch='30002',
@@ -1216,11 +1174,9 @@ step
 Discover Grimesilt Dig Site |achieve 774/5 |goto Searing Gorge 62,62.30
 step
 |achieve 774
-step
-_Congratulations!_
-You Earned the "Explore Searing Gorge" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Silverpine Forest",{
+mopready=true,
 condition_end=function() return achieved(769) end,
 achieveid={769},
 patch='30002',
@@ -1261,11 +1217,9 @@ step
 Discover Forsaken High Command |achieve 769/13 |goto Silverpine Forest 62.00,8.70
 step
 |achieve 769
-step
-_Congratulations!_
-You Earned the "Explore Silverpine Forest" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Swamp of Sorrows",{
+mopready=true,
 condition_end=function() return achieved(782) end,
 achieveid={782},
 patch='30002',
@@ -1299,11 +1253,9 @@ step
 Discover The Harborage |achieve 782/2 |goto Swamp of Sorrows 28.80,32.10
 step
 |achieve 782
-step
-_Congratulations!_
-You Earned the "Explore Swamp of Sorrows" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Tirisfal Glades",{
+mopready=true,
 condition_end=function() return achieved(768) end,
 achieveid={768},
 patch='30002',
@@ -1346,11 +1298,9 @@ step
 Discover The Bulwark |achieve 768/15 |goto Tirisfal Glades 84.90,69.40
 step
 |achieve 768
-step
-_Congratulations!_
-You Earned the "Explore Tirisfal Glades" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Western Plaguelands",{
+mopready=true,
 condition_end=function() return achieved(770) end,
 achieveid={770},
 patch='30002',
@@ -1388,11 +1338,9 @@ step
 Discover Caer Darrow |achieve 770/2 |goto Western Plaguelands 68.30,81.10
 step
 |achieve 770
-step
-_Congratulations!_
-You Earned the "Explore Western Plaguelands" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Westfall",{
+mopready=true,
 condition_end=function() return achieved(802) end,
 achieveid={802},
 patch='30002',
@@ -1429,11 +1377,9 @@ step
 Discover The Dust Plains |achieve 802/13 |goto Westfall 64,72
 step
 |achieve 802
-step
-_Congratulations!_
-You Earned the "Explore Westfall" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Wetlands",{
+mopready=true,
 condition_end=function() return achieved(841) end,
 achieveid={841},
 patch='30001',
@@ -1476,11 +1422,9 @@ step
 Discover Dun Modr |achieve 841/8 |goto Wetlands 46.90,16.50
 step
 |achieve 841
-step
-_Congratulations!_
-You Earned the "Explore Wetlands" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Ashenvale",{
+mopready=true,
 condition_end=function() return achieved(845) end,
 achieveid={845},
 patch='30003',
@@ -1527,11 +1471,9 @@ step
 Discover Bough Shadow |achieve 845/16 |goto Ashenvale 93.40,39.20
 step
 |achieve 845
-step
-_Congratulations!_
-You Earned the "Explore Ashenvale" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Azshara",{
+mopready=true,
 condition_end=function() return achieved(852) end,
 achieveid={852},
 patch='30003',
@@ -1577,11 +1519,9 @@ step
 Discover Blackmaw Hold |achieve 852/10 |goto Azshara 33.06,32.76
 step
 |achieve 852
-step
-_Congratulations!_
-You Earned the "Explore Azshara" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Azuremyst Isle",{
+mopready=true,
 condition_end=function() return achieved(860) end,
 achieveid={860},
 patch='30003',
@@ -1626,11 +1566,9 @@ step
 Discover Fairbridge Strand |achieve 860/6 |goto Azuremyst Isle 47.70,6.60
 step
 |achieve 860
-step
-_Congratulations!_
-You Earned the "Explore Azuremyst Isle" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Bloodmyst Isle",{
+mopready=true,
 condition_end=function() return achieved(861) end,
 achieveid={861},
 patch='30002',
@@ -1699,11 +1637,9 @@ step
 Discover The Vector Coil |achieve 861/23 |goto Bloodmyst Isle 18.00,53.40
 step
 |achieve 861
-step
-_Congratulations!_
-You Earned the "Explore Bloodmyst Isle" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Darkshore",{
+mopready=true,
 condition_end=function() return achieved(844) end,
 achieveid={844},
 patch='30003',
@@ -1735,11 +1671,9 @@ step
 Discover Shatterspear War Camp |achieve 844/3 |goto Darkshore 65.90,7.00
 step
 |achieve 844
-step
-_Congratulations!_
-You Earned the "Explore Darkshore" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Desolace",{
+mopready=true,
 condition_end=function() return achieved(848) end,
 achieveid={848},
 patch='30003',
@@ -1782,11 +1716,9 @@ step
 Discover Shadowbreak Ravine |achieve 848/15 |goto Desolace 80.30,79.30
 step
 |achieve 848
-step
-_Congratulations!_
-You Earned the "Explore Desolace" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Dustwallow Marsh",{
+mopready=true,
 condition_end=function() return achieved(850) end,
 achieveid={850},
 patch='30003',
@@ -1814,11 +1746,9 @@ step
 Discover Wyrmbog |achieve 850/8 |goto Dustwallow Marsh 43.40,75.50
 step
 |achieve 850
-step
-_Congratulations!_
-You Earned the "Explore Dustwallow Marsh" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Durotar",{
+mopready=true,
 condition_end=function() return achieved(728) end,
 achieveid={728},
 patch='30003',
@@ -1852,11 +1782,9 @@ step
 Discover Thunder Ridge |achieve 728/9 |goto Durotar 40.30,24.70
 step
 |achieve 728
-step
-_Congratulations!_
-You Earned the "Explore Durotar" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Felwood",{
+mopready=true,
 condition_end=function() return achieved(853) end,
 achieveid={853},
 patch='30003',
@@ -1890,11 +1818,9 @@ step
 Discover Jaedenar |achieve 853/7 |goto Felwood 37.00,59.10
 step
 |achieve 853
-step
-_Congratulations!_
-You Earned the "Explore Felwood" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Feralas",{
+mopready=true,
 condition_end=function() return achieved(849) end,
 achieveid={849},
 patch='30003',
@@ -1931,11 +1857,9 @@ step
 Discover The Twin Colossals |achieve 849/3 |goto Feralas 46.30,17.90
 step
 |achieve 849
-step
-_Congratulations!_
-You Earned the "Explore Feralas" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Moonglade",{
+mopready=true,
 condition_end=function() return achieved(855) end,
 achieveid={855},
 patch='30001',
@@ -1952,11 +1876,9 @@ step
 Discover Shrine of Remulos |achieve 855/3 |goto Moonglade 36.30,38.80
 step
 |achieve 855
-step
-_Congratulations!_
-You Earned the "Explore Moonglade" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Mulgore",{
+mopready=true,
 condition_end=function() return achieved(736) end,
 achieveid={736},
 patch='30003',
@@ -1993,11 +1915,9 @@ step
 Discover Wildmane Water Well |achieve 736/13 |goto Mulgore 43.10,14.20
 step
 |achieve 736
-step
-_Congratulations!_
-You Earned the "Explore Mulgore" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Northern Barrens",{
+mopready=true,
 condition_end=function() return achieved(750) end,
 achieveid={750},
 patch='30008',
@@ -2036,11 +1956,9 @@ step
 Discover The Merchant Coast |achieve 750/14 |goto The Barrens 70.30,84.10
 step
 |achieve 750
-step
-_Congratulations!_
-You Earned the "Explore Northern Barrens" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Silithus",{
+mopready=true,
 condition_end=function() return achieved(856) end,
 achieveid={856},
 patch='30008',
@@ -2066,11 +1984,9 @@ step
 Discover Valor's Rest |achieve 856/8 |goto Silithus 81.30,17.80
 step
 |achieve 856
-step
-_Congratulations!_
-You Earned the "Explore Silithus" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Southern Barrens",{
+mopready=true,
 condition_end=function() return achieved(4996) end,
 achieveid={4996},
 patch='40003',
@@ -2102,11 +2018,9 @@ step
 Discover Bael Modan |achieve 4996/1 |goto Southern Barrens 50.70,84.00
 step
 |achieve 4996
-step
-_Congratulations!_
-You Earned the "Explore Southern Barrens" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Stonetalon Mountains",{
+mopready=true,
 condition_end=function() return achieved(847) end,
 achieveid={847},
 patch='30003',
@@ -2151,11 +2065,9 @@ step
 Discover Windshear Crag |achieve 847/13 |goto Stonetalon Mountains 66.90,49.30
 step
 |achieve 847
-step
-_Congratulations!_
-You Earned the "Explore Stonetalon Mountains" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Tanaris",{
+mopready=true,
 condition_end=function() return achieved(851) end,
 achieveid={851},
 patch='30003',
@@ -2198,11 +2110,9 @@ step
 Discover The Noxious Lair |achieve 851/7 |goto Tanaris 34.30,45.30
 step
 |achieve 851
-step
-_Congratulations!_
-You Earned the "Explore Tanaris" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Teldrassil",{
+mopready=true,
 condition_end=function() return achieved(842) end,
 achieveid={842},
 patch='30003',
@@ -2236,11 +2146,9 @@ step
 Discover Gnarlpine Hold |achieve 842/5 |goto Teldrassil 44.80,67.40
 step
 |achieve 842
-step
-_Congratulations!_
-You Earned the "Explore Teldrassil" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Thousand Needles",{
+mopready=true,
 condition_end=function() return achieved(846) end,
 achieveid={846},
 patch='30003',
@@ -2274,11 +2182,9 @@ step
 Discover Southsea Holdfast |achieve 846/4 |goto Thousand Needles 92.40,78.80
 step
 |achieve 846
-step
-_Congratulations!_
-You Earned the "Explore Thousand Needles" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Un'Goro Crater",{
+mopready=true,
 condition_end=function() return achieved(854) end,
 achieveid={854},
 patch='30003',
@@ -2312,11 +2218,9 @@ step
 Discover The Slithering Scar |achieve 854/9 |goto Un'Goro Crater 51.10,77.50
 step
 |achieve 854
-step
-_Congratulations!_
-You Earned the "Explore Un'Goro Crater" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Explore Winterspring",{
+mopready=true,
 condition_end=function() return achieved(857) end,
 achieveid={857},
 patch='30003',
@@ -2350,11 +2254,9 @@ step
 Discover Frostfire Hot Springs |achieve 857/1 |goto Winterspring 31.90,49.30
 step
 |achieve 857
-step
-_Congratulations!_
-You Earned the "Explore Winterspring" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Kalimdor\\Kalimdor and Cataclysm Explorer",{
+mopready=true,
 condition_end=function() return achieved(43) end,
 achieveid={43},
 patch='30003',
@@ -2387,12 +2289,10 @@ leechsteps "Achievement Guides\\Exploration\\Kalimdor\\Explore Darkshore" 1-11
 leechsteps "Achievement Guides\\Exploration\\Kalimdor\\Explore Teldrassil" 1-12
 leechsteps "Achievement Guides\\Exploration\\Kalimdor\\Explore Azuremyst Isle" 1-17
 leechsteps "Achievement Guides\\Exploration\\Kalimdor\\Explore Bloodmyst Isle" 1-28
-step
-_Congratulations!_
-You Earned the "Explore Kalimdor" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Exploration\\Outland\\Bloody Rare/Medium Rare")
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Outland\\Explore Blade's Edge Mountains",{
+mopready=true,
 condition_end=function() return achieved(865) end,
 achieveid={865},
 patch='30003',
@@ -2454,13 +2354,9 @@ step
 Discover Mok'Nathal Village |achieve 865/15 |goto Blade's Edge Mountains 73.90,62.60
 step
 Discover Vekhaar Stand |achieve 865/25 |goto Blade's Edge Mountains 77.10,75.20
-step
-|achieve 865
-step
-_Congratulations!_
-You Earned the "Explore Blade's Edge Mountains" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Outland\\Explore Hellfire Peninsula",{
+mopready=true,
 condition_end=function() return achieved(862) end,
 achieveid={862},
 patch='30003',
@@ -2505,13 +2401,9 @@ step
 Discover Fallen Sky Ridge |achieve 862/15 |goto Hellfire Peninsula 14.30,41.00
 step
 Discover Ruins of Sha'naar |achieve 862/8 |goto Hellfire Peninsula 13.30,59.40
-step
-|achieve 862
-step
-_Congratulations!_
-You Earned the "Explore Hellfire Peninsula" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Outland\\Explore Nagrand",{
+mopready=true,
 condition_end=function() return achieved(866) end,
 achieveid={866},
 patch='30003',
@@ -2559,13 +2451,9 @@ step
 Discover Throne of the Elements |achieve 866/10 |goto Nagrand 60.80,21.10
 step
 Discover Windyreed Pass |achieve 866/17 |goto Nagrand 72.40,36.30
-step
-|achieve 866
-step
-_Congratulations!_
-You Earned the "Explore Nagrand" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Outland\\Explore Netherstorm",{
+mopready=true,
 condition_end=function() return achieved(843) end,
 achieveid={843},
 patch='30003',
@@ -2619,13 +2507,9 @@ step
 Discover Gyro-Plank Bridge |achieve 843/17 |goto Netherstorm 23.20,55.90
 step
 Discover Manaforge Ara |achieve 843/5 |goto Netherstorm 26.80,39.30
-step
-|achieve 843
-step
-_Congratulations!_
-You Earned the "Explore Netherstorm" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Outland\\Explore Shadowmoon Valley",{
+mopready=true,
 condition_end=function() return achieved(864) end,
 achieveid={864},
 patch='30003',
@@ -2659,13 +2543,9 @@ step
 Discover Altar of Sha'tar |achieve 864/11 |goto Shadowmoon Valley 61.50,26.10
 step
 Discover The Black Temple |achieve 864/6 |goto Shadowmoon Valley 77.60,40.60
-step
-|achieve 864
-step
-_Congratulations!_
-You Earned the "Explore Shadowmoon Valley" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Outland\\Explore Terokkar Forest",{
+mopready=true,
 condition_end=function() return achieved(867) end,
 achieveid={867},
 patch='30003',
@@ -2716,13 +2596,9 @@ step
 Discover Derelict Caravan |achieve 867/18 |goto Terokkar Forest 43.90,76.10
 step
 Discover Skettis |achieve 867/21 |goto Terokkar Forest 58.90,76.40
-step
-|achieve 867
-step
-_Congratulations!_
-You Earned the "Explore Terokkar Forest" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Outland\\Explore Zangarmarsh",{
+mopready=true,
 condition_end=function() return achieved(863) end,
 achieveid={863},
 patch='30003',
@@ -2767,13 +2643,9 @@ step
 Discover Hewn Bog |achieve 863/4 |goto Zangarmarsh 33.60,35.30
 step
 Discover Orebor Harborage |achieve 863/15 |goto Zangarmarsh 44.90,25.20
-step
-|achieve 863
-step
-_Congratulations!_
-You Earned the "Explore Zangarmarsh" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Outland\\Outland Explorer",{
+mopready=true,
 condition_end=function() return achieved(44) end,
 achieveid={44},
 patch='30001',
@@ -2788,12 +2660,10 @@ leechsteps "Achievement Guides\\Exploration\\Outland\\Explore Nagrand" 1-19
 leechsteps "Achievement Guides\\Exploration\\Outland\\Explore Zangarmarsh" 1-18
 leechsteps "Achievement Guides\\Exploration\\Outland\\Explore Blade's Edge Mountains" 1-26
 leechsteps "Achievement Guides\\Exploration\\Outland\\Explore Netherstorm" 1-22
-step
-_Congratulations!_
-You Earned the "Outland Explorer" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Exploration\\Northrend\\Frostbitten/Northern Exposure")
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Northrend\\Explore Borean Tundra",{
+mopready=true,
 condition_end=function() return achieved(1264) end,
 achieveid={1264},
 patch='30008',
@@ -2827,13 +2697,9 @@ step
 Discover Temple City of En'kilah |achieve 1264/1 |goto Borean Tundra 87.60,25.10
 step
 Discover The Dens of the Dying |achieve 1264/13 |goto Borean Tundra 76.40,16.40
-step
-|achieve 1264
-step
-_Congratulations!_
-You Earned the "Explore Borean Tundra" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Northrend\\Explore Crystalsong Forest",{
+mopready=true,
 condition_end=function() return achieved(1457) end,
 achieveid={1457},
 patch='30008',
@@ -2857,13 +2723,9 @@ step
 Discover Windrunner's Overlook |achieve 1457/5 |goto Crystalsong Forest 75.20,83.00
 step
 Discover Sunreaver's Command |achieve 1457/3 |goto Crystalsong Forest 76.90,46.30
-step
-|achieve 1457
-step
-_Congratulations!_
-You Earned the "Explore Crystalsong Forest" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Northrend\\Explore Dragonblight",{
+mopready=true,
 condition_end=function() return achieved(1265) end,
 achieveid={1265},
 patch='30008',
@@ -2906,13 +2768,9 @@ step
 Discover The Crystal Vice |achieve 1265/16 |goto Dragonblight 61.80,19.50
 step
 Discover Coldwind Heights |achieve 1265/9 |goto Dragonblight 50.00,17.50
-step
-|achieve 1265
-step
-_Congratulations!_
-You Earned the "Explore Dragonblight" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Northrend\\Explore Grizzly Hills",{
+mopready=true,
 condition_end=function() return achieved(1266) end,
 achieveid={1266},
 patch='30008',
@@ -2949,13 +2807,9 @@ step
 Discover Dun Argol |achieve 1266/4 |goto Grizzly Hills 77.90,59.30
 step
 Discover Rage Fang Shrine |achieve 1266/7 |goto Grizzly Hills 50.30,57.20
-step
-|achieve 1266
-step
-_Congratulations!_
-You Earned the "Explore Grizzly Hills" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Northrend\\Explore Howling Fjord",{
+mopready=true,
 condition_end=function() return achieved(1263) end,
 achieveid={1263},
 patch='30008',
@@ -3006,13 +2860,9 @@ step
 Discover Steel Gate |achieve 1263/6 |goto Howling Fjord 31.30,25.90
 step
 Discover Apothecary Camp |achieve 1263/4 |goto Howling Fjord 27.00,24.10
-step
-|achieve 1263
-step
-_Congratulations!_
-You Earned the "Explore Howling Fjord" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Northrend\\Explore Icecrown",{
+mopready=true,
 condition_end=function() return achieved(1270) end,
 achieveid={1270},
 patch='30008',
@@ -3051,13 +2901,9 @@ step
 Discover Corp'rethar: The Horror Gate |achieve 1270/12 |goto Icecrown 48.40,70.60
 step
 Discover Icecrown Citadel |achieve 1270/2 |goto Icecrown 54.20,85.80
-step
-|achieve 1270
-step
-_Congratulations!_
-You Earned the "Explore Icecrown" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Northrend\\Explore Sholazar Basin",{
+mopready=true,
 condition_end=function() return achieved(1268) end,
 achieveid={1268},
 patch='30002',
@@ -3089,13 +2935,9 @@ step
 Discover The Glimmering Pillar |achieve 1268/10 |goto Sholazar Basin 50.00,36.00
 step
 Discover The Avalanche |achieve 1268/9 |goto Sholazar Basin 74.50,34.60
-step
-|achieve 1268
-step
-_Congratulations!_
-You Earned the "Explore Sholazar Basin" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Northrend\\Explore Storm Peaks",{
+mopready=true,
 condition_end=function() return achieved(1269) end,
 achieveid={1269},
 patch='30008',
@@ -3136,13 +2978,9 @@ step
 Discover Brunnhildar Village |achieve 1269/1 |goto The Storm Peaks 47.80,68.20
 step
 Discover Garm's Bane |achieve 1269/14 |goto The Storm Peaks 47.10,81.60
-step
-|achieve 1269
-step
-_Congratulations!_
-You Earned the "Explore Storm Peaks" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Northrend\\Explore Zul'Drak",{
+mopready=true,
 condition_end=function() return achieved(1267) end,
 achieveid={1267},
 patch='30008',
@@ -3178,13 +3016,9 @@ step
 Discover Light's Breach |achieve 1267/13 |goto Zul'Drak 32.00,76.40
 step
 Discover Zeramas |achieve 1267/10 |goto Zul'Drak 21.10,75.20
-step
-|achieve 1267
-step
-_Congratulations!_
-You Earned the "Explore Zul'Drak" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Northrend\\Northrend Explorer",{
+mopready=true,
 condition_end=function() return achieved(45) end,
 achieveid={45},
 patch='30002',
@@ -3201,11 +3035,9 @@ leechsteps "Achievement Guides\\Exploration\\Northrend\\Explore Storm Peaks" 1-1
 leechsteps "Achievement Guides\\Exploration\\Northrend\\Explore Zul'Drak" 1-14
 leechsteps "Achievement Guides\\Exploration\\Northrend\\Explore Grizzly Hills" 1-14
 leechsteps "Achievement Guides\\Exploration\\Northrend\\Explore Howling Fjord" 1-21
-step
-_Congratulations!_
-You Earned the "Northrend Explorer" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Cataclysm\\Cataclysm Explorer",{
+mopready=true,
 condition_end=function() return achieved(4868) end,
 achieveid={4868},
 patch='40003',
@@ -3217,11 +3049,9 @@ leechsteps "Achievement Guides\\Exploration\\Cataclysm\\Explore Vashj'ir" 1-57
 leechsteps "Achievement Guides\\Exploration\\Cataclysm\\Explore Deepholm" 1-12
 leechsteps "Achievement Guides\\Exploration\\Cataclysm\\Explore Uldum" 1-22
 leechsteps "Achievement Guides\\Exploration\\Cataclysm\\Explore Twilight Highlands" 1-28
-step
-_Congratulations!_
-You Earned the "Cataclysm Explorer" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Cataclysm\\Explore Deepholm",{
+mopready=true,
 condition_end=function() return achieved(4864) end,
 achieveid={4864},
 patch='40003',
@@ -3254,13 +3084,9 @@ step
 Explore The Quaking Fields |achieve 4864/9 |goto Deepholm/0 31.57,77.30
 step
 Explore the Masters' Gate |achieve 4864/11 |goto Deepholm/0 40.12,71.58
-step
-|achieve 4864
-step
-_Congratulations!_
-You Earned the "Explore Deepholm" Achievement
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Cataclysm\\Explore Hyjal",{
+mopready=true,
 condition_end=function() return achieved(4863) end,
 achieveid={4863},
 patch='40003',
@@ -3290,13 +3116,9 @@ step
 Explore the Gates of Sothann |achieve 4863/5 |goto Mount Hyjal/0 67,75
 step
 Explore the Darkwhisper Gorge |achieve 4863/4 |goto Mount Hyjal/0 76,65
-step
-|achieve 4863
-step
-_Congratulations!_
-You Earned the "Explore Hyjal" Achievement
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Cataclysm\\Explore Twilight Highlands",{
+mopready=true,
 condition_end=function() return achieved(4866) end,
 achieveid={4866},
 patch='40003',
@@ -3361,13 +3183,9 @@ step
 Explore the Slithering Cove |achieve 4866/17 |goto Twilight Highlands/0 71.73,48.14
 step
 Explore Dragonmaw Port |achieve 4866/5 |goto Twilight Highlands/0 75,57
-step
-|achieve 4866
-step
-_Congratulations!_
-You Earned the "Explore Twilight Highlands" Achievement
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Cataclysm\\Explore Uldum",{
+mopready=true,
 condition_end=function() return achieved(4865) end,
 achieveid={4865},
 patch='40003',
@@ -3421,13 +3239,9 @@ step
 Explore the Obelisk of the Moon |achieve 4865/8 |goto Uldum/0 39.67,21.81
 step
 Explore the Ruins of Ahmtul |achieve 4865/13 |goto Uldum/0 45.02,15.04
-step
-|achieve 4865
-step
-_Congratulations!_
-You Earned the "Explore Uldum" Achievement
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Cataclysm\\Explore Vashj'ir",{
+mopready=true,
 condition_end=function() return achieved(4825) end,
 achieveid={4825},
 patch='40003',
@@ -3657,11 +3471,6 @@ step
 Explore the Abandoned Reef |achieve 4825/1 |goto Abyssal Depths/0 38.61,68.30
 step
 Explore Korthun's End |achieve 4825/5 |goto Abyssal Depths/0 48.80,68.15
-step
-|achieve 4825
-step
-_Congratulations!_
-You Earned the "Explore Vashj'ir" Achievement
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Exploration\\Cataclysm\\From Hell's Heart I Stab At Thee")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Exploration\\Cataclysm\\Stood in the Fire")
@@ -3672,6 +3481,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\General\\Drown Y
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\General\\Dual Talent Specialization")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\General\\Fast and Furious")
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Friend or Fowl?",{
+mopready=true,
 achieveid={1254},
 patch='30001',
 description="This guide will walk you through slaying 15 turkeys in 3 minutes in Howling Fjord.",
@@ -3680,12 +3490,10 @@ step
 kill Fjord Turkey##24746+
 |tip Kill them as fast as you can, then hurry to kill another one each time.
 Slay #15# Turkeys in 3 Minutes |achieve 1254 |goto Howling Fjord/0 66.31,71.14
-step
-_Congratulations!_
-You Earned the "Friend or Fowl?" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\General\\Giddy Up!")
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Going Down?",{
+mopready=true,
 achieveid={964},
 patch='30001',
 description="This guide will walk you through falling 65 yards without dying.",
@@ -3699,22 +3507,22 @@ step
 |tip Mount up and fly high into the air, then dismount and use "Divine Shield" or "Hand of Protection" before you hit the ground. |only if Paladin
 |tip Mount up and fly high into the air, then dismount and use "Ice Block" before you hit the ground. |only if Mage
 |tip Mount up and fly high into the air, then dismount and use "Glide" before you hit the ground. |only if DemonHunter
-step
-_Congratulations_
-You Earned the "Going Down?" Achievement.
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Higher Learning",{
+mopready=true,
 achieveid={1956},
 patch='30002',
 description="This guide will walk you through reading the volumes of 'The Schools of Arcane Magic' found in Dalaran.",
 },[[
 step
-Warning: These books have respawn timers of about 3-4 hours (it seems to be random between those times) so this achievement may take you a while to get
-|tip The book you want won't always be there. Fake trash books spawn to make the achievement even harder to get, but keep at it. Make sure you click the fake trash books anyway, so the real books have a chance to spawn.
-This is an achievement that you may want to dedicate a lot of time to if you want it
-|tip You'll have a much greater chance of earning the achievement if you camp each book until you have them all, rather than constantly running through the path in this guide
-Good luck!
-confirm |only if not achieved(1956)
+_NOTE:_
+|tip These books have respawn timers of about 3-4 hours.
+|tip The book you want won't always be there.
+|tip Fake trash books spawn to make the achievement even harder to get, but keep at it.
+|tip Make sure you click the fake trash books anyway, so the real books have a chance to spawn.
+|tip This is an achievement that you may want to dedicate a lot of time to if you want it.
+|tip You'll have a much greater chance of earning the achievement if you camp each book until you have them all, rather than constantly running through the path in this guide.
+confirm |achieve 1956
 step
 label "RestartHigherLearning"
 click The Schools of Arcane Magic - Illusion##192865
@@ -4670,13 +4478,8 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fis
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\250 Fish")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\500 Fish")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\Chasing Marcia")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\Expert Fisherman")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\Northrend Fisherman")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\I Smell A Giant Rat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\Cataclysmic Fisherman")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\Journeyman Fisherman")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\The Limnologist/The Oceanographer")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\Outland Fisherman")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\Old Crafty")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\Old Ironjaw")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\Turtles All the Way Down")

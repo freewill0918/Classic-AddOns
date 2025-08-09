@@ -611,6 +611,7 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 		opt_worldquestlocal = "Prioritize current zone world quests in queue",
 		opt_worldquestlocal_desc = "All queued World Quests in current zone will be completed before moving to the next zone.",
 		opt_worldquestmap = "Load World Quest guides when clicking World Quest icons",
+		opt_worldquestscale = "World Quest Planner Scale",
 		opt_maps_taxi_title = "Flight map",
 		opt_highlighttaxi = "Highlight suggested flight paths",
 		opt_maps_dungeon_title = "Dungeon Map Enhancements",

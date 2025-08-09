@@ -18,7 +18,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\General Farming G
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\General Farming Guides\\Eternal Earth")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\General Farming Guides\\Eternal Fire")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Life",{
-cataready=true,
+mopready=true,
 description="Eternal Life can be gathered from the Howling Fjord in Northrend.",
 },[[
 step
@@ -55,7 +55,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farmin
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Terocone")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Frost Lotus")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Goldclover",{
-cataready=true,
+mopready=true,
 description="Goldclover can be gathered from Borean Tundra.",
 },[[
 step

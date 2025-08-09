@@ -4,7 +4,7 @@ if UnitFactionGroup("player")~="Horde" then return end
 if ZGV:DoMutex("EventsH") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Brewfest Quests",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent("Brewfest") end,
 condition_end=function() return completedq(12492) end,
 description="This guide section will walk you through completing the quests for the Brewfest event.",
@@ -171,7 +171,7 @@ kill Coren Direbrew##23872
 |tip This quest is available in the Grim Guzzler in Blackrock Depths.
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Brewfest Dailies",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent("Brewfest") end,
 description="This guide section will walk you through completing the daily quests for the Brewfest event.",
 },[[
@@ -307,7 +307,7 @@ You have completed the available daily quests
 '|complete not completedq(11408,11407,12020) |next "Begin_Dailies"
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Brew of the Month",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent("Brewfest") end,
 condition_end=function() return achieved(2796) end,
 description="Join the Brew of the Month club.",
@@ -332,7 +332,7 @@ step
 Earn the "Brew of the Month" Achievement |achieve 2796
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Brew of the Year",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent("Brewfest") end,
 condition_end=function() return achieved(1183) end,
 description="Sample the following beers featured in the Brew of the Month club:\n\nBinary Brew\nAutumnal Acorn Ale\n"..
@@ -440,7 +440,7 @@ Earn the "Brew of the Year" Achievement |achieve 1183
 |tip This achievment requires you to drink a new brew every month for a year.
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Direbrewfest",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent("Brewfest") end,
 condition_end=function() return achieved(295) end,
 description="Kill Coren Direbrew.",
@@ -462,7 +462,7 @@ kill Coren Direbrew##23872
 Earn the "Direbrewfest" Achievement |achieve 295
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Disturbing the Peace",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent("Brewfest") end,
 condition_end=function() return achieved(293) end,
 description="While wearing 3 pieces of Brewfest clothing, get completely smashed and dance in Dalaran.",
@@ -522,7 +522,7 @@ Dance in Dalaran |script DoEmote("Dance")
 Earn the "Disturbing the Peace" Achievement |achieve 293 |goto Dalaran/1 50.58,48.36
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Does Your Wolpertinger Linger?",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent("Brewfest") end,
 condition_end=function() return achieved(1936) end,
 description="Obtain a Wolpertinger pet.",
@@ -536,7 +536,7 @@ use the Wolpertinger's Tankard##32233
 Earn the "Does Your Wopertinger Linger?" Achievement |achieve 1936
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Down With The Dark Iron",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent("Brewfest") end,
 condition_end=function() return achieved(1186) end,
 description="Defend the Brewfest camp from the Dark Iron attack and complete the quest, \"This One Time, When I Was Drunk...\"",
@@ -560,7 +560,7 @@ step
 Earn the "Down With The Dark Iron" Achievement |achieve 1186
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Drunken Stupor",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent("Brewfest") end,
 condition_end=function() return achieved(1260) end,
 description="Fall 65 yards without dying while completely smashed during the Brewfest Holiday.",
@@ -580,7 +580,7 @@ Earn the "Drunken Stupor" Achievement |achieve 1260 |goto Shattrath City/0 50.22
 |tip Paladin "Divine Shield" and Mage "Ice Block" allow you to earn this without risk of fall damage.
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Have Keg, Will Travel",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent("Brewfest") end,
 condition_end=function() return achieved(303) end,
 description="Obtain a Brewfest mount, or transform yours into one using Brewfest Hops.",
@@ -606,7 +606,7 @@ use the Fresh Brewfest Hops##37750
 Earn the "Have Keg, Will Travel" Achievement |achieve 303
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Strange Brew",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent("Brewfest") end,
 condition_end=function() return achieved(1203) end,
 description="Drink the following Brewfest beers:\n\nStout Shrunken Head\nBrewdoo Magic\nJungle River Water\n"..
@@ -658,7 +658,7 @@ step
 Earn the "Strange Brew" Achievement |achieve 1203
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\The Brewfest Diet",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent("Brewfest") end,
 condition_end=function() return achieved(1185) end,
 description="Eat all 8 of the following Brewfest foods:\n\nSucculent Sausage\nDried Sausage\nPickled Sausage\n"..
@@ -709,7 +709,7 @@ step
 Earn "The Brewfest Diet" Achievement |achieve 1185
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Children's Week\\Children's Week Orgrimmar Quests",{
-cataready=true,
+mopready=true,
 description="This guide section will walk you through completing the Orgrimmar questline for the Children's Week event.",
 condition_suggested=function() return isevent("Children's Week") end,
 condition_end=function() return completedq(5502) end,
@@ -818,7 +818,7 @@ talk Orphan Matron Battlewail##51989
 turnin A Warden of the Horde##5502 |goto Orgrimmar/1 57.95,57.62
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Children's Week\\Children's Week Shattrath Quests",{
-cataready=true,
+mopready=true,
 description="This guide section will walk you through completing the Shattrath questline for the Children's Week event.",
 condition_suggested=function() return isevent("Children's Week") end,
 condition_end=function() return completedq(10967) end,
@@ -890,7 +890,7 @@ talk Orphan Matron Mercy##22819
 turnin Back to the Orphanage##10967 |goto Shattrath City/0 75.08,47.89
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Children's Week\\Children's Week Dalaran Quests",{
-cataready=true,
+mopready=true,
 description="This guide section will walk you through completing the Dalaran questline for the Children's Week event.",
 condition_suggested=function() return isevent("Children's Week") end,
 condition_end=function() return completedq(28880) or completedq(13960) or completedq(13959) or completedq(28879) end,
@@ -1185,7 +1185,7 @@ turnin Back To The Orphanage##13960 |goto Dalaran/1 49.35,63.25 |only if haveq(1
 |only if completedq(13927)
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Children's Week\\Achievements\\Aw, Isn't It Cute?",{
-cataready=true,
+mopready=true,
 description="Obtain one of the Children's Week reward pets through questing.",
 condition_suggested=function() return isevent("Children's Week") end,
 achieveid={1792},
@@ -1198,7 +1198,7 @@ _Congratulations!_
 You Earned the "Aw, Isn't It Cute?" Achievement
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Children's Week\\Achievements\\Bad Example",{
-cataready=true,
+mopready=true,
 description="Eat the following sweets while your orphan is watching:\n\nTigule's Strawberry Ice Cream\n"..
 "Tasty Cupcake\nRed Velvet Cupcake\nDelicious Chocolate Cake\nLovely Cake Slice\nDalaran Brownie\nDalran Doughnut",
 condition_suggested=function() return isevent("Children's Week") end,
@@ -1259,7 +1259,7 @@ _Congratulations!_
 You Earned the "Bad Example" Achievement
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Children's Week\\Achievements\\Daily Chores",{
-cataready=true,
+mopready=true,
 description="Complete five daily quests with your orphan out.",
 condition_suggested=function() return isevent("Children's Week") end,
 achieveid={1789},
@@ -1283,7 +1283,7 @@ _Congratulations!_
 You Earned the "Daily Chores" Achievement
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Children's Week\\Achievements\\Home Alone",{
-cataready=true,
+mopready=true,
 description="Use your Hearthstone while your orphan is with you.",
 condition_suggested=function() return isevent("Children's Week") end,
 achieveid={1791},
@@ -1305,7 +1305,7 @@ _Congratulations!_
 You Earned the "Home Alone" Achievement
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Children's Week\\Achievements\\School of Hard Knocks",{
-cataready=true,
+mopready=true,
 description="Take your orphan into the battlegrounds and complete the feats listed below:\n\nCapture the flag "..
 "in Eye of the Storm\nAssault a flag in Arathi Basin\nAssault a tower in Alterac Valley\nReturn a "..
 "fallen flag in Warsong Gulch",
@@ -1343,7 +1343,7 @@ _Congratulations!_
 You Earned the "School of Hard Knocks" Achievement
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Children's Week\\Achievements\\Veteran Nanny",{
-cataready=true,
+mopready=true,
 description="Acquire Egbert's Egg, Sleepy Willy, and Elekk Training Collar on a single character.",
 condition_suggested=function() return isevent("Children's Week") end,
 achieveid={275},
@@ -2286,7 +2286,7 @@ step
 achieve 6020
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Hallow's End Quests",{
-cataready=true,
+mopready=true,
 condition_end=function() return completedq(8409) end,
 description="Complete the Hallow's End event quests.",
 patch='40405',
@@ -2524,7 +2524,7 @@ turnin A Time to Break Down##29377 |goto Tirisfal Glades/0 62.12,67.83
 turnin A Season for Celebration##29400 |goto Tirisfal Glades/0 62.12,67.83
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Hallow's End Daily Quests",{
-cataready=true,
+mopready=true,
 description="Put out fires in Razor Hill and kill the Headless Horseman.",
 patch='40405',
 },[[
@@ -2602,7 +2602,7 @@ You have completed the availble daily quests for Hallow's End
 '|complete not completedq(11219,12139,11405) |next "Begin_Dailies" |or
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Hallow's End Candy Buckets",{
-cataready=true,
+mopready=true,
 description="Visit innkeeper candy buckets in Eastern Kingdoms, Kalimdor, and Outland "..
 "for tasty treats.",
 achieveid={971,965,968,967,5835,5838},
@@ -3263,7 +3263,7 @@ click Candy Bucket##208144
 accept Candy Bucket##29019 |goto Deepholm/0 51.19,49.90
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Bring Me The Head of... Oh Wait",{
-cataready=true,
+mopready=true,
 startlevel=75,
 achieveid={255},
 patch='40405',
@@ -3282,7 +3282,7 @@ kill Headless Horseman##23682
 Earn the "Bring Me The Head of... Oh Wait" Achievement |achieve 255
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Check Your Head",{
-cataready=true,
+mopready=true,
 startlevel=1,
 achieveid={291},
 patch='40405',
@@ -3308,7 +3308,7 @@ Dwarf |achieve 291/10 |goto Dalaran/1 49.00,61.36 |only if not achieved(291,10)
 Earn the "Check Your Head" Achievement |achieve 291
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\G.N.E.R.D. Rage",{
-cataready=true,
+mopready=true,
 startlevel=1,
 achieveid={1261},
 patch='40405',
@@ -3325,7 +3325,7 @@ Do any type of PvP of your choice
 Earn #50# Honorable Hills while Under the Influence of the G.N.E.R.D. Buff |achieve 1261
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Hallowed Be Thy Name",{
-cataready=true,
+mopready=true,
 startlevel=1,
 achieveid={1656},
 patch='40405',
@@ -3349,7 +3349,7 @@ step
 Earn the "Hallowed Be Thy Name" Achievement |achieve 1656
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\A Mask for All Occasions",{
-cataready=true,
+mopready=true,
 startlevel=1,
 achieveid={284},
 patch='40405',
@@ -3385,7 +3385,7 @@ Obtain a Flimsy Female Dwarf Mask |achieve 284/20 |only if not achieved(284,20)
 Earn the "A Mask for All Occasions" Achievement |achieve 284
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\The Mask Task",{
-cataready=true,
+mopready=true,
 startlevel=1,
 achieveid={979},
 patch='40405',
@@ -3398,7 +3398,7 @@ Earn "The Mask Task" Achievement |achieve 979
 |tip You also have a chance to obtain one from the Crudely Wrapped Gift from daily fire quests.
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\The Masquerade",{
-cataready=true,
+mopready=true,
 startlevel=1,
 achieveid={283},
 patch='40405',
@@ -3419,7 +3419,7 @@ Transform into a Bat |achieve 283/1
 |tip Find someone to team up with or ask around in Dalaran.
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Out With It",{
-cataready=true,
+mopready=true,
 startlevel=1,
 achieveid={288},
 patch='40405',
@@ -3435,7 +3435,7 @@ use the Tricky Treat##33226
 Earn the "Out With It" Achievement |achieve 288
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Rotten Hallow",{
-cataready=true,
+mopready=true,
 startlevel=25,
 achieveid={1041},
 patch='40405',
@@ -3476,7 +3476,7 @@ step
 Earn the "Rotten Hallow" Achievement |achieve 1041
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\The Savior of Hallow's End",{
-cataready=true,
+mopready=true,
 startlevel=1,
 achieveid={289},
 patch='40405',
@@ -3546,7 +3546,7 @@ step
 Earn "The Savior of Hallow's End" Achievement |achieve 289
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Sinister Calling",{
-cataready=true,
+mopready=true,
 startlevel=1,
 achieveid={292},
 patch='40405',
@@ -3566,7 +3566,7 @@ use the Hallowed Helm##33292
 Obtain a Hallowed Helm |achieve 292/2
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\That Sparkling Smile",{
-cataready=true,
+mopready=true,
 startlevel=1,
 achieveid={981},
 patch='40405',
@@ -3583,7 +3583,7 @@ use the Tooth Pick##37604
 Earn the "That Sparkling Smile" Achievement |achieve 981
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Trick or Treat!",{
-cataready=true,
+mopready=true,
 startlevel=1,
 achieveid={972},
 patch='40405',
@@ -3600,7 +3600,7 @@ step
 Earn the "Trick or Treat!" Achievement |achieve 972
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Tricks and Treats of Azeroth",{
-cataready=true,
+mopready=true,
 startlevel=1,
 achieveid={970,963,966,969},
 patch='40405',
@@ -3613,7 +3613,7 @@ step
 Earn the "Tricks and Treats of Azeroth" Achievement |achieve 970
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Harvest Festival\\Harvest Festival Quest",{
-cataready=true,
+mopready=true,
 condition_end=function() return completedq(8150) end,
 description="Complete the quest \"Honoring a Hero\" for the Harvest Festival event.",
 },[[
@@ -3632,7 +3632,7 @@ talk Javnir Nashak##15012
 turnin Honoring a Hero##8150 |goto Durotar/0 46.25,15.10
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Feast of Winter Veil Quests",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not completedq(6984) end,
 description="This guide section will walk you through completing the quests for the Feast of Winter Veil event.",
 },[[
@@ -3733,7 +3733,7 @@ turnin The Hero of the Day##8799 |goto Orgrimmar/1 53.02,76.92
 |only if haveq(8799) or completedq(8799)
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\'Tis the Season",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(277) end,
 achieveid={277},
 patch='30002',
@@ -3854,7 +3854,7 @@ Equip the Red Winter Hat |equipped Red Winter Hat##21524
 |only if itemcount(21524) >= 1
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\A Frosty Shake",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1690) end,
 achieveid={1691},
 patch='30003',
@@ -3884,7 +3884,7 @@ Dance with Another Snowman |achieve 1690
 |tip Target another snowman player.
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\BB King",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(4437) end,
 achieveid={4437},
 patch='30300',
@@ -3925,7 +3925,7 @@ use the Red Rider Air Rifle##46725
 Use your Red Rider Air Rifle on Prophet Velen |achieve 4437/1 |goto The Exodar/0 32.84,54.48
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Crashin' & Thrashin'",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1295) end,
 achieveid={1295},
 patch='30002',
@@ -3944,7 +3944,7 @@ use the Blue Crashin' Thrashin' Racer Controller##54343
 Gain #25# Crashes with your Racer |achieve 1295 |goto Orgrimmar/1 51.34,78.74
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Fa-la-la-la-Ogri'la",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1282) end,
 achieveid={1282},
 patch='30001',
@@ -4055,7 +4055,7 @@ talk Sky Sergeant Vanderlip##23120
 turnin Bomb Them Again!##11023 |goto Blade's Edge Mountains/0 27.58,52.91
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\He Knows If You've Been Naughty",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1689) end,
 achieveid={1689},
 patch='30002',
@@ -4068,7 +4068,7 @@ Click a present under the tree
 |achieve 1689 |goto Orgrimmar/1 52.12,69.09
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Holiday Bromance",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1685) end,
 achieveid={1685},
 patch='30002',
@@ -4100,7 +4100,7 @@ use the Mistletoe##21519
 Use Mistletoe on Brother Keltan |achieve 1685/3 |goto Icecrown/0 61.98,45.38 |achieve 1685 |future
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Let It Snow",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1687) end,
 achieveid={1687},
 patch='30002',
@@ -4133,7 +4133,7 @@ Troll Hunter |achieve 1687/2 |goto Orgrimmar/1 51.12,78.52
 Undead Rogue |achieve 1687/5 |goto Orgrimmar/1 51.12,78.52
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\On Metzen!",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(273) end,
 achieveid={273},
 patch='30008',
@@ -4158,7 +4158,7 @@ talk Kaymard Copperpinch##13418
 turnin Metzen the Reindeer##8746 |goto Orgrimmar/1 52.54,77.04
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Scrooge",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(259) end,
 achieveid={259},
 patch='30001',
@@ -4175,7 +4175,7 @@ use the Snowball##17202
 Throw a Snowball at Baine Bloodhoof |achieve 259 |goto Thunder Bluff/0 60.25,51.67
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Simply Abominable",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(279) end,
 achieveid={279},
 patch='30008',
@@ -4207,7 +4207,7 @@ talk Great-father Winter##13445
 turnin A Smokywood Pastures' Thank You!##6984 |goto Orgrimmar/1 49.63,78.00
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\The Winter Veil Gourmet",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1688) end,
 achieveid={1688},
 patch='30003',
@@ -4273,7 +4273,7 @@ cast Basic Campfire##818
 create 1 Hot Apple Cider##45022,Cooking,1 total |achieve 1688/3 |goto Orgrimmar/1 51.36,78.30
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\With a Little Helper from My Friends",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(252) end,
 achieveid={252},
 patch='30001',
@@ -4291,7 +4291,7 @@ Earn #50# PvP Kills as a Little Helper |achieve 252 |or
 '|nobuff texture:135849 |next "Become_A_Little_Helper" |or |only if not achieved(252)
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Merrymaker",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1691) end,
 achieveid={1691},
 patch='30003',
@@ -4315,7 +4315,7 @@ leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\He Knows If You'v
 leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\A-Caroling We Will Go"
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\A-Caroling We Will Go",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(5854) end,
 achieveid={5854},
 patch='40001',
@@ -4343,7 +4343,7 @@ Carol in Stormwind City |achieve 5854/3 |goto Stormwind City/0 67.77,80.07
 |tip This is an enemy capital city and has hostile NPCs and players.
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Love is in the Air Main Questline",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Love is in the Air') and not completedq(24576) end,
 description="This guide will walk you through completing the main questline for the Love is in the Air event.",
 },[[
@@ -4373,7 +4373,7 @@ Return the Crown Chemical Co. Package |complete readyq(24541) or completedq(2454
 |tip A crate will appear on your back.
 |tip You have to move quickly before your disguise wears off or you drop the package.
 |tip Simply walk next to Detective Snap Snagglebolt to return the package to him.
-Return it to Snagglebolt at [Orgrimmar/0 50.82,75.25]
+Return it to Snagglebolt at [Orgrimmar/1 50.82,75.25]
 '|complete not hasbuff(71450) and not readyq(24541) and not completedq(24541) |next "Gain_Crown_Parcel_Service_Uniform_Buff" |or
 step
 talk Detective Snap Snagglebolt##37172
@@ -4412,7 +4412,7 @@ talk Detective Snap Snagglebolt##37172
 turnin A Friendly Chat...##24576 |goto Orgrimmar/1 50.82,75.25
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Love is in the Air Dailies",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Love is in the Air') and completedq(24576) and not completedq(44546,24629,24635,24636,24612,44559,24614,24613,24615) end,
 description="This guide will walk you through completing the Love is in the Air event daily quests.",
 },[[
@@ -4630,7 +4630,7 @@ You have completed all available daily quests
 '|complete not completedq(24629,24635,24636,24612,24614,24613,24615,14488) |next "Complete_Leveling_Guide"
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\Be Mine!",{
-cataready=true,
+mopready=true,
 description="Eat the eight \"Bag of Candies\" heart candies listed below:\n\nBe Mine!\nAll yours.\nHot Lips.\n"..
 "You're the best!\nI'll follow you all around Azeroth.\nI'm all yours!\nYou're Mine!\nI LOVE YOU",
 condition_suggested=function() return isevent('Love is in the Air') and not achieved(1701) end,
@@ -4676,7 +4676,7 @@ use Heart Candy##21822
 Eat the "You're mine!" Heart Candy |achieve 1701/8
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\Charming",{
-cataready=true,
+mopready=true,
 description="Create 12 Lovely Charm Bracelets.",
 condition_suggested=function() return isevent('Love is in the Air') and not achieved(260) end,
 achieveid={260},
@@ -4699,7 +4699,7 @@ Create #12# Lovely Charm Bracelets |achieve 260 |or
 '|complete achieved(260) |or
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\Dangerous Love",{
-cataready=true,
+mopready=true,
 description="Assist the Steamwheedle Cartel in stopping the sinister Crown Chemical Co. plot.",
 condition_suggested=function() return isevent('Love is in the Air') and not achieved(1695) end,
 achieveid={1695},
@@ -4808,7 +4808,7 @@ step
 Earn the "Dangerous Love" Achievement |achieve 1695
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\Fistful of Love",{
-cataready=true,
+mopready=true,
 description="Use a Handful of Rose Petals on each of the race/class combinations listed below:\n\nGnome Warlock\n"..
 "Human Death Knight\nOrc Shaman\nUndead Warrior\nBlood Elf Mage\nDwarf Hunter\nOrc Death Knight\nNight Elf Priest"..
 "\nTauren Druid\nTroll Rogue\nDraenei Paladin",
@@ -4876,7 +4876,7 @@ label "Use_Petals_on_Dwarf_Hunter"
 Use Rose Petals on a "Dwarf Hunter" |achieve 1699/6
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\Flirt With Disaster",{
-cataready=true,
+mopready=true,
 description="Get completely smashed, put on your best perfume, throw a handful of rose petals "..
 "on Jeremiah Payson and then kiss him. You'll regret it in the morning.",
 condition_suggested=function() return isevent('Love is in the Air') and not achieved(1280) end,
@@ -4920,7 +4920,7 @@ clicknpc Jeremiah Payson##8403
 Kiss Jeremiah Payson While Completely Smashed |achieve 1280/2 |goto Undercity/0 67.59,44.13
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\I Pitied The Fool",{
-cataready=true,
+mopready=true,
 description="Pity the Love Fool in the locations specified below:\n\nWintergrasp\nNaxxramas\n"..
 "Arathi Basin Blacksmith\nBattle Ring of Gurubashi Arena\nThe Culling of Stratholme",
 condition_suggested=function() return isevent('Love is in the Air') and not achieved(1704) end,
@@ -4968,7 +4968,7 @@ clicknpc Love Fool##16111
 Target and Pity the Love Fool in the Naxxramas Raid |achieve 1704/3 |goto Naxxramas/4 0.00,0.00
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\Lonely?",{
-cataready=true,
+mopready=true,
 description="Enjoy a Buttermilk Delight with someone in Dalaran at a Romantic Picnic during the Love is in the Air celebration.",
 condition_suggested=function() return isevent('Love is in the Air') and not achieved(1291) end,
 achieveid={1291},
@@ -5001,7 +5001,7 @@ use the Buttermilk Delight##22236
 Enjoy a Buttermilk Delight with Someone in Dalaran at a Romantic Picnic |achieve 1291 |goto Dalaran/1 50.42,26.50
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\Lovely Luck Is On Your Side",{
-cataready=true,
+mopready=true,
 description="Open a Lovely Dress Box and receive a Lovely Black Dress.",
 condition_suggested=function() return isevent('Love is in the Air') and not achieved(1694) end,
 achieveid={1694},
@@ -5025,7 +5025,7 @@ step
 Earn the "Lovely Luck Is On Your Side" Achievement |achieve 1694
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\My Love is Like a Red, Red Rose",{
-cataready=true,
+mopready=true,
 description="Obtain a Bouquet of Red or Ebon Roses during the Love is in the Air celebration.",
 condition_suggested=function() return isevent('Love is in the Air') and not achieved(1703) end,
 achieveid={1703},
@@ -5046,7 +5046,7 @@ collect 1 Bouquet of Ebon Roses##44731 |n
 Earn the "My Love is Like a Red, Red Rose" Achievement |achieve 1703
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\Nation of Adoration",{
-cataready=true,
+mopready=true,
 description="Complete the Lovely Charm Bracelet daily quest for each Horde capital.",
 condition_suggested=function() return isevent('Love is in the Air') and completedq(24576) and not achieved(1698) end,
 achieveid={1698},
@@ -5118,7 +5118,7 @@ step
 Earn the "Nation of Adoration" Achievement |achieve 1698
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\Perma-Peddle",{
-cataready=true,
+mopready=true,
 description="Obtain a permanent Peddlefeet pet by procuring a Truesilver Shafted Arrow.",
 condition_suggested=function() return isevent('Love is in the Air') and not achieved(1700) end,
 achieveid={1700},
@@ -5137,7 +5137,7 @@ step
 Earn the "Perma-Peddle" Achievement |achieve 1700
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\Shafted!",{
-cataready=true,
+mopready=true,
 description="Shoot 10 players with a Silver Shafted Arrow.",
 condition_suggested=function() return isevent('Love is in the Air') and not achieved(1188) end,
 achieveid={1188},
@@ -5158,7 +5158,7 @@ use the Silver Shafted Arrow##22200
 Shoot #10# Players with the Silver Shafted Arrow |achieve 1188 |goto Orgrimmar/1 53.05,77.03
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\Sweet Tooth",{
-cataready=true,
+mopready=true,
 description="Sample the following holiday candy:\n\nButtermilk Delight\nDark Desire\n"..
 "Sweet Surprise\nVery Berry Cream",
 condition_suggested=function() return isevent('Love is in the Air') and not achieved(1702) end,
@@ -5192,7 +5192,7 @@ use the Very Berry Cream##22238
 Sample the "Very Berry Cream" Candy |achieve 1702/4
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Love is in the Air\\Achievements\\The Rocket's Pink Glare",{
-cataready=true,
+mopready=true,
 description="Shoot off 10 Love Rockets in 20 seconds or less.",
 condition_suggested=function() return isevent('Love is in the Air') and not achieved(1696) end,
 achieveid={1696},
@@ -5213,7 +5213,7 @@ use the Love Rocket##34258
 Shoot off #10# Love Rockets in 20 Seconds or Less |achieve 1696
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Lunar Festival Main Questline",{
-cataready=true,
+mopready=true,
 description="This guide will walk you through the quests for the \"Lunar Festival\" event.",
 condition_end=function() return completedq(8862) end,
 },[[
@@ -5265,7 +5265,7 @@ talk Valadar Starsong##15864
 turnin Elune's Blessing##8868 |goto Moonglade 53.65,35.26
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Lunar Festival Optimized Elders Path",{
-cataready=true,
+mopready=true,
 description="This guide will walk you through an optimized path, honoring the elders for the \"Lunar Festival\" event.",
 },[[
 step
@@ -5742,7 +5742,7 @@ talk Elder Deepforge##55216
 accept Deepforge the Elder##29734 |goto Deepholm/0 27.70,69.18
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\A Coin of Ancestry",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={605},
 patch='30401',
@@ -5754,7 +5754,7 @@ step
 |achieve 605
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\5 Coins of Ancestry",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={606},
 patch='30401',
@@ -5766,7 +5766,7 @@ step
 |achieve 606
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\10 Coins of Ancestry",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={607},
 patch='30401',
@@ -5778,7 +5778,7 @@ step
 |achieve 607
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\25 Coins of Ancestry",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={608},
 patch='30401',
@@ -5790,7 +5790,7 @@ step
 |achieve 608
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\50 Coins of Ancestry",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={609},
 patch='30401',
@@ -5802,7 +5802,7 @@ step
 |achieve 609
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\Elders of Eastern Kingdoms",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={912},
 patch='30401',
@@ -5914,7 +5914,7 @@ step
 |achieve 912
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\Elders of Kalimdor",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={911},
 patch='30401',
@@ -6045,7 +6045,7 @@ step
 |achieve 911
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\Elders of Northrend",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={1396},
 patch='30401',
@@ -6126,7 +6126,7 @@ step
 |achieve 1396
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\Elders of the Dungeons",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={910},
 patch='30401',
@@ -6245,7 +6245,7 @@ step
 |achieve 910
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\Elders of the Alliance",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={915},
 patch='30401',
@@ -6266,7 +6266,7 @@ step
 |achieve 915
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\Elders of the Horde",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={914},
 patch='30401',
@@ -6288,7 +6288,7 @@ step
 |achieve 914
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\Elune's Blessing",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={937},
 patch='30401',
@@ -6320,7 +6320,7 @@ step
 |achieve 937
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\Frenzied Firecracker",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={1552},
 patch='30401',
@@ -6336,7 +6336,7 @@ use the Festival Firecracker##21747
 |achieve 1552 |goto Orgrimmar/1 41.53,32.96
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\The Rocket's Red Glare",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={1281},
 patch='30401',
@@ -6351,7 +6351,7 @@ use the Red Rocket Cluster##21576
 |achieve 1281 |goto Orgrimmar/1 41.53,32.96
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\Lunar Festival Finery",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={626},
 patch='30401',
@@ -6365,7 +6365,7 @@ talk Valadar Starsong##15864
 Purchase any Pant Suit or Dress |achieve 626 |goto Moonglade/0 53.63,35.41
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Lunar Festival\\Achievements\\To Honor One's Elders",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Lunar Festival') end,
 achieveid={913},
 patch='30401',
@@ -6384,7 +6384,7 @@ step
 |achieve 913
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Midsummer Fire Festival\\Midsummer Fire Festival Quests",{
-cataready=true,
+mopready=true,
 description="This guide will help you complete the Midsummer Fire Festival event quests.\n\n"..
 "|cffff0000NOTE:|r You will need to be at least level 75 to fully complete this guide.",
 condition_end=function() return completedq(11972) end,
@@ -6516,7 +6516,7 @@ turnin Striking Back##11953 |goto Orgrimmar/1 47.26,37.88
 turnin Striking Back##11954 |goto Orgrimmar/1 47.26,37.88
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Midsummer Fire Festival\\Midsummer Fire Festival Dailies",{
-cataready=true,
+mopready=true,
 description="This guide section will walk you through completing the dailies for the Midsummer Fire Festival event.",
 },[[
 step
@@ -6609,7 +6609,7 @@ You have completed all available dailies
 '|complete not completedq(11926,11925,11917,11947,11948,11952,11953,11954) |next "Begin_Daily_Quests"
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Midsummer Fire Festival\\Midsummer Fire Festival Bonfires",{
-cataready=true,
+mopready=true,
 description="This guide section will walk you through finding all of the bonfires for the Midsummer Fire Festival event.",
 achieveid={1036,1025,1026,1027,1037,1031,1032,1033,1145},
 },[[
@@ -6909,7 +6909,7 @@ click Alliance Bonfire##194036
 accept Desecrate this Fire!##13444 |goto Howling Fjord/0 57.80,15.80
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Midsummer Fire Festival\\Burning Hot Pole Dance",{
-cataready=true,
+mopready=true,
 description="Dance at the ribbon pole for 60 seconds while wearing completed Midsummer set.",
 achieveid={271},
 },[[
@@ -6938,7 +6938,7 @@ click Ribbon Pole
 Earn the "Burning Hot Pole Dance" Achievement |achieve 271 |goto Durotar/0 52.46,47.12
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Midsummer Fire Festival\\Torch Juggler",{
-cataready=true,
+mopready=true,
 description="Juggle 40 torches in 15 seconds in Dalaran.",
 achieveid={272},
 },[[
@@ -6956,7 +6956,7 @@ use the Juggling Torch##34599
 Juggle 40 Torches in 15 Seconds in Dalaran |achieve 272 |goto Dalaran/1 55.54,54.11
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Pilgrim's Bounty\\Quests\\Pilgrim's Bounty Quests",{
-cataready=true,
+mopready=true,
 description="This guide section will walk you through completing the quests for the Pilgrim's Bounty event.",
 condition_suggested=function() return isevent("Pilgrim's Bounty") end,
 condition_end=function() return completedq(14047) end,
@@ -7173,7 +7173,7 @@ talk Francis Eaton##34679
 turnin Slow-roasted Turkey##14047 |goto Durotar/0 46.58,13.80
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Pilgrim's Bounty\\Quests\\Pilgrim's Bounty Daily Quests",{
-cataready=true,
+mopready=true,
 description="This guide section will walk you through completing the daily quests for the Pilgrim's Bounty event.",
 condition_suggested=function() return isevent("Pilgrim's Bounty") end,
 patch='40401',
@@ -7247,7 +7247,7 @@ Wait for New Daily Quests |complete not completedq(14060,14061,14062,14059,14058
 |tip This guide will reset when more daily quests become available.
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Pilgrim's Bounty\\Achievements\\FOOD FIGHT!",{
-cataready=true,
+mopready=true,
 description="Bounce food off a fellow feaster's head at a Bountiful Table.",
 condition_suggested=function() return isevent("Pilgrim's Bounty") end,
 achieveid={3579},
@@ -7262,7 +7262,7 @@ clicknpc The Turkey Chair##34812
 Start a Food Fight! |achieve 3579 |goto Tirisfal Glades/0 61.43,66.81
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Pilgrim's Bounty\\Achievements\\Now We're Cookin'",{
-cataready=true,
+mopready=true,
 description="Cook up each of the following Pilgrim's Bounty dishes:\n\n"..
 "Candied Sweet Potato\nCranberry Chutney\nPumpkin Pie\n"..
 "Slow-Roasted Turkey\nSpice Bread Stuffing",
@@ -7370,7 +7370,7 @@ step
 Cook a Pilgrim's Bounty Feast |achieve 3577
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Pilgrim's Bounty\\Achievements\\Pilgrim",{
-cataready=true,
+mopready=true,
 description="Complete the following Pilgrim's Bounty achievements:\n\n"..
 "\"FOOD FIGHT!\"\nNow We're Cookin'\nPilgrim's Paunch\n"..
 "Pilgrim's Peril\nPilgrim's Progress\nSharing is Caring\n"..
@@ -7392,7 +7392,7 @@ step
 Earn the "Pilgrim" Achievement |achieve 3656
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Pilgrim's Bounty\\Achievements\\Pilgrim's Paunch",{
-cataready=true,
+mopready=true,
 description="Acquire the Spirit of Sharing from a complete Bountiful Table feast at the following capital cities:\n\n"..
 "Orgrimmar\nSilvermoon City\n"..
 "Thunder Bluff\nUndercity",
@@ -7565,7 +7565,7 @@ label "Earn_Pilgrim's_Paunch"
 Acquire the Spirit of Sharing |achieve 3557
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Pilgrim's Bounty\\Achievements\\Pilgrim's Peril",{
-cataready=true,
+mopready=true,
 description="While wearing either a Pilgrim's Dress, Robe, or Attire, take a seat at the following enemy capital cities:\n\n"..
 "Darnassus\nThe Exodar\n"..
 "Ironforge\nStormwind",
@@ -7607,7 +7607,7 @@ step
 Earn the "Pilgrim's Peril" Achievement |achieve 3581
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Pilgrim's Bounty\\Achievements\\Pilgrim's Progress",{
-cataready=true,
+mopready=true,
 description="Complete the following Pilgrim's Bounty dailies:\n\n"..
 "Can't Get Enough Turkey\nDon't Forget The Stuffing!\nEasy As Pie\n"..
 "She Says Potato\nWe're Out of Cranberry Chutney Again?",
@@ -7620,7 +7620,7 @@ step
 Earn the "Pilgrim's Progress" Achievement |achieve 3597
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Pilgrim's Bounty\\Achievements\\Sharing is Caring",{
-cataready=true,
+mopready=true,
 description="Pass each of the following dishes at a Bountiful Table:\n\n"..
 "Candied Sweet Potatoes\nCranberry Chutney\nPumpkin Pie\n"..
 "Slow-Roasted Turkey\nSpice Bread Stuffing",
@@ -7669,7 +7669,7 @@ label "Earn_Sharing_Is_Caring"
 Earn the "Sharing is Caring" Achievement |achieve 3558
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Pilgrim's Bounty\\Achievements\\Terokkar Turkey Time",{
-cataready=true,
+mopready=true,
 description="Defeat Talon King Ikiss while wearing a Pilgrim's Hat and either a Pilgrim's Dress, Robe, or Attire.",
 condition_suggested=function() return isevent("Pilgrim's Bounty") end,
 achieveid={3582},
@@ -7696,7 +7696,7 @@ Earn the "Terokkar Turkey Time" Achievement |achieve 3582 |goto Sethekk Halls/1 
 |tip Use the "Auchindoun: Sethekk Halls" dungeon guide to accomplish this.
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Pilgrim's Bounty\\Achievements\\Turkey Lurkey",{
-cataready=true,
+mopready=true,
 description="Blast the following dirty, sneaking Rogues with your Turkey Shooter:\n\n"..
 "Blood Elf Rogue\nDwarf Rogue\nGnome Rogue\nGoblin Rogue\n"..
 "Human Rogue\nNight Elf Rogue\nOrc Rogue\nTroll Rogue\n"..
@@ -7797,7 +7797,7 @@ step
 Earn the "Turkey Lurkey" Achievement |achieve 3559
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Pilgrim's Bounty\\Achievements\\The Turkinator",{
-cataready=true,
+mopready=true,
 description="Hunt enough Wild Turkeys quickly enough to gain Turkey Triumph.",
 condition_suggested=function() return isevent("Pilgrim's Bounty") end,
 achieveid={3578},
@@ -7812,7 +7812,7 @@ kill Wild Turkey##32820+
 Earn the "Turkinator" Achievement |achieve 3578 |goto Tirisfal Glades/0 62.53,57.85
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Noblegarden Quests",{
-cataready=true,
+mopready=true,
 description="This guide section will walk you through completing the quests for the Noblegarden event.",
 condition_suggested=function() return isevent('Noblegarden') end,
 condition_end=function() return completedq(13503) end,
@@ -7838,7 +7838,7 @@ talk Noblegarden Merchant##32837
 turnin A Tisket, a Tasket, a Noblegarden Basket##13503 |goto Durotar/0 51.90,41.87
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Noblegarden Dailies",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return isevent('Noblegarden') end,
 description="This guide section will walk you through completing the dailies for the Noblegarden event.",
 patch='30401',
@@ -7868,7 +7868,7 @@ You have completed all Noblegarden daily quests
 '|complete not completedq(13479) |next "Begin_Daily_Quests"
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Achievements\\Blushing Bride",{
-cataready=true,
+mopready=true,
 description="Kiss someone wearing an Elegant Dress while wearing a White Tuxedo Shirt and Black Tuxedo Pants.",
 condition_suggested=function() return isevent('Noblegarden') end,
 achieveid={2576},
@@ -7903,7 +7903,7 @@ Earn the "Blushing Bride" Achievement |achieve 2576
 |tip The Elegant Dress looks like a long pink dress when worn.
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Achievements\\Chocoholic",{
-cataready=true,
+mopready=true,
 description="Eat 100 Noblegarden Chocolates during the Noblegarden celebration.",
 condition_suggested=function() return isevent('Noblegarden') end,
 achieveid={2418},
@@ -7922,7 +7922,7 @@ use the Noblegarden Chocolate##44791+
 Eat #100# Noblegarden Chocolates |achieve 2418
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Achievements\\Chocolate Lover",{
-cataready=true,
+mopready=true,
 description="Eat 25 Noblegarden Chocolates during the Noblegarden celebration.",
 condition_suggested=function() return isevent('Noblegarden') end,
 achieveid={2417},
@@ -7941,7 +7941,7 @@ use the Noblegarden Chocolate##44791+
 Eat #25# Noblegarden Chocolates |achieve 2417
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Achievements\\Desert Rose",{
-cataready=true,
+mopready=true,
 description="Use Spring Robes to plant a flower in each of the deserts listed below:\n\n"..
 "The Badlands\nDesolace\nSilithus\nTanaris\nThousand Needles",
 condition_suggested=function() return isevent('Noblegarden') end,
@@ -7982,7 +7982,7 @@ step
 Earn the "Desert Rose" Achievement |achieve 2436
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Achievements\\Dressed for the Occasion",{
-cataready=true,
+mopready=true,
 description="Discover an Elegant Dress by opening Brightly Colored Eggs during the Noblegarden celebration.",
 condition_suggested=function() return isevent('Noblegarden') end,
 achieveid={249},
@@ -8003,7 +8003,7 @@ step
 Earn the "Dressed for the Occasion" Achievement |achieve 249
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Achievements\\Hard Boiled",{
-cataready=true,
+mopready=true,
 description="Lay an egg in Un'Goro Crater's Golakka Hot Springs as a rabbit during the Noblegarden celebration.",
 condition_suggested=function() return isevent('Noblegarden') end,
 achieveid={2416},
@@ -8036,7 +8036,7 @@ Earn the "Hard Boiled" Achievement |achieve 2416 |goto Un'Goro Crater/0 33.81,52
 |tip Stand in this spot until you lay an egg.
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Achievements\\I Found One!",{
-cataready=true,
+mopready=true,
 description="Find a Brightly Colored Egg.",
 condition_suggested=function() return isevent('Noblegarden') end,
 achieveid={2676},
@@ -8053,7 +8053,7 @@ step
 Earn the "I Found One!" Achievement |achieve 2676
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Achievements\\Noble Garden",{
-cataready=true,
+mopready=true,
 description="Hide a Brightly Colored Egg in Silvermoon City.",
 condition_suggested=function() return isevent('Noblegarden') end,
 achieveid={2420},
@@ -8077,7 +8077,7 @@ use Noblegarden Egg##44818
 Earn the "Noble Garden" Achievement |achieve 2420 |goto Silvermoon City/0 50.62,16.45
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Achievements\\Shake Your Bunny-Maker",{
-cataready=true,
+mopready=true,
 description="Use Spring Flowers to place rabbit ears upon players of at least 18th level of the following races:\n\n"..
 "Blood Elf\nDraenei\nDwarf\nGnome\nGoblin\nHuman\nNight Elf\nOrc\nTauren\nTroll\nUndead\nWorgen",
 condition_suggested=function() return isevent('Noblegarden') end,
@@ -8117,7 +8117,7 @@ step
 Earn the "Shake Your Bunny-Maker" Achievement |achieve 2422
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Achievements\\Spring Fling",{
-cataready=true,
+mopready=true,
 description="Find your pet Spring Rabbit another one to love in each of the towns listed below:\n\n"..
 "Bloodhoof Village\nBrill\nFalconwing Square\nRazor Hill",
 condition_suggested=function() return isevent('Noblegarden') end,
@@ -8160,7 +8160,7 @@ step
 Earn the "Spring Fling" Achievement |achieve 2497
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Noblegarden\\Achievements\\Sunday's Finest",{
-cataready=true,
+mopready=true,
 description="Discover the White Tuxedo Shirt and Black Tuxedo Pants by opening Brightly Colored Eggs during the Noblegarden celebration.",
 condition_suggested=function() return isevent('Noblegarden') end,
 achieveid={248},

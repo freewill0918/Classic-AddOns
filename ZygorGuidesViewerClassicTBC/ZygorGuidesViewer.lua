@@ -498,6 +498,7 @@ function ZGV:OnEnable()  --PLAYER_LOGIN
 	-- hook templates and objects to use with suggesting guides from world map icons
 	local mixin_to_template = {
 		AreaPOIPinMixin = "AreaPOIPinTemplate",
+		AreaPOIEventPinMixin = "AreaPOIEventPinTemplate",
 		VignettePinMixin = "VignettePinTemplate",
 		DelveEntrancePinMixin = "DelveEntrancePinTemplate",
 	}
@@ -1348,6 +1349,13 @@ setmetatable(ZGV.GuideTitles,{__index=function(i,v) return v end})
 
 function ZGV:GetGuideByTitle(title)
 	if not title then return end
+	local ident = title:match("id:(.*)")
+
+	if ident and ZGV.RegisteredGuidesByIdent[ident] then
+		title = ZGV.RegisteredGuidesByIdent[ident]
+	end
+
+
 	title = ZGV:SanitizeGuideTitle(title)  -- code-side fix for "common" guides.
 	for i,v in ipairs(self.registeredguides) do
 		if v.title==title then return v end
@@ -5604,16 +5612,19 @@ ZGV.POIcache=POIcache
 -- uses guides defined in guidetitles array
 -- checks all steps for rare-12345 label matching poiID number
 function ZGV:SuggestGuideFromBlizzardIcon(object)
-	if not object then return end
-	local poiID = object.areaPoiID or (object.poiInfo and object.poiInfo.areaPoiID)
+	if not object then 
+		ZGV:Debug("&_SUB &worldquests clicked something, but no object given")
+		return 
+	end
+	local poiID = object.areaPoiID or object.areaPOIID or (object.poiInfo and object.poiInfo.areaPoiID)
+
 	local vignetteID = object.vignetteID
 
-	if not (poiID or vignetteID) then return end
-
-	local guidetitles = {
-		["Dailies Guides\\Legion\\Broken Shore Rares"] = {content="rare elite", prefix="rare"},
-		["Dungeon Guides\\Legion Scenarios\\Argus Invasions"] = {content="invasion point", prefix="invasion"},
-	}
+	if not (poiID or vignetteID) then
+		ZGV:Debug("&_SUB &worldquests clicked something, but no id was found. Object saved to ZGV.wqclickobject")
+		ZGV.wqclickobject = object
+		return 
+	end
 
 	local step_guide, step_label, content, prefix
 
@@ -5641,18 +5652,22 @@ function ZGV:SuggestGuideFromBlizzardIcon(object)
 		end
 	end
 
-	if not guide or not guide.steplabels then return end	  --Clickable PoI that are not quest related, like PvP towers in Outland
-
 	if not step_label and poiID then
+		local guidetitles = {
+			["Dailies Guides\\Legion\\Broken Shore Rares"] = {content="rare elite", prefix="rare"},
+			["Dungeon Guides\\Legion Scenarios\\Argus Invasions"] = {content="invasion point", prefix="invasion"},
+		}
 		for guidetitle,guidedata in pairs(guidetitles) do
 			local guide = self:GetGuideByTitle(guidetitle)
 			if not guide then return end
-			if not guide.parsed then guide:Parse(true) end  -- possible FPS hit!
+			if not guide.fully_parsed then guide:Parse(true) end  -- possible FPS hit!
 			content,prefix = guidedata.content, guidedata.prefix
-			for labelname,labeldata in pairs(guide.steplabels) do
-				if labelname == prefix.."-"..poiID then
-					step_label = labeldata[1]
-					step_guide = guide
+			if guide.steplabels then
+				for labelname,labeldata in pairs(guide.steplabels) do
+					if labelname == prefix.."-"..poiID then
+						step_label = labeldata[1]
+						step_guide = guide
+					end
 				end
 			end
 			if step_label then break end
