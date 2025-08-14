@@ -623,3 +623,6 @@ L["Sulfuron Harbinger"] = "Emissário de Sulfuron";
 L["Golemagg the Incinerator"] = "Golemagg, o Incinerador";
 
 L["of level"] = "de nível";
+
+L["Galleon"] = "Gailleon";
+L["World Boss"] = "Chefe mundial";

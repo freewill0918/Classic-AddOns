@@ -24,36 +24,43 @@ label "dailies"
 talk Fisherman Haito##59584
 accept Shocking!##30584 |goto Krasarang Wilds/0 67.93,45.23 |or
 accept Jagged Abalone##30586 |goto Krasarang Wilds/0 67.93,45.23 |or
+|tip
 Click here if no quests are available |confirm
 step
 talk Angler Shen##59586
 accept Snapclaw##30700 |goto Krasarang Wilds/0 67.56,43.50 |or
 accept Fishing for a Bruising##30588 |goto Krasarang Wilds/0 67.56,43.50 |or
+|tip
 Click here if no quests are available |confirm
 step
 talk John "Big Hook" Marsock##60674
 accept Bright Bait##30754 |goto Krasarang Wilds/0 68.33,43.50 |or
 accept Jumping the Shark##30753 |goto Krasarang Wilds/0 68.33,43.50 |or
+|tip
 Click here if no quests are available |confirm
 step
 talk Trawler Yotimo##60135
 accept Armored Carp##30613 |goto Krasarang Wilds/0 67.62,42.50 |or
 accept Huff & Puff##30658 |goto Krasarang Wilds/0 67.62,42.50 |or
+|tip
 Click here if no quests are available |confirm
 step
 talk Elder Fisherman Rassan##60673
 accept What Lurks Below##30585 |goto Krasarang Wilds/0 68.34,42.08 |or
 accept Who Knew Fish Liked Eggs?##30598 |goto Krasarang Wilds/0 68.34,42.08 |or
+|tip
 Click here if no quests are available |confirm
 step
 talk Fo Fook##60675
 accept Piranha!##30763 |goto Krasarang Wilds/0 67.21,41.15 |or
 accept Viseclaw Soup##30701 |goto Krasarang Wilds/0 67.21,41.15 |or
+|tip
 Click here if no quests are available |confirm
 step
 talk Fiznix##60136
 accept Like Bombing Fish In A Barrel##30678 |goto Krasarang Wilds/0 67.48,44.59
 accept Scavenger Hunt##30698 |goto Krasarang Wilds/0 67.48,44.59
+|tip
 Click here if no quests are available |confirm
 step
 Ride a Goblin Fishing Raft |havebuff spell:116032 |goto Krasarang Wilds/0 67.50,44.80
@@ -2078,6 +2085,7 @@ accept The Lesser of Two Evils##30333 |goto Valley of the Four Winds/0 52.25,48.
 accept The White Turnip Treatment##31675 |goto Valley of the Four Winds/0 52.25,48.78
 accept Simian Sabotage##30337 |goto Valley of the Four Winds/0 53.00,51.80
 accept The Cabbage Test##31669 |goto Valley of the Four Winds/0 52.25,48.78
+|tip
 Click here if no quests are available |confirm
 |only if not completedq(32682)
 step
@@ -2098,12 +2106,14 @@ accept The Pink Turnip Challenge##31674 |goto Valley of the Four Winds/0 52.25,4
 accept Which Berries? Witchberries.##31943 |goto Valley of the Four Winds/0 52.25,48.78 |or 2
 accept Why Not Scallions?##31671 |goto Valley of the Four Winds/0 52.25,48.78 |or 2
 accept Simian Sabotage##30337 |goto Valley of the Four Winds/0 52.25,48.78 |or 2
+|tip
 Click here if no quests are available |confirm
 |only if completedq(32682)
 step
 talk Gina Mudclaw##58706
 accept Money Matters##30322 |goto Valley of the Four Winds/0 52.23,48.70
 She can also be found here [Valley of the Four Winds/0 53.16,51.80]
+|tip
 Click here if no quests are available |confirm
 step
 talk Andi##64464
@@ -2118,45 +2128,57 @@ accept A Gift For Ella##30474 |goto Valley of the Four Winds/0 52.75,50.42 |or
 accept A Gift For Old Hillpaw##30476 |goto Valley of the Four Winds/0 52.75,50.42 |or
 accept A Gift For Fish##30473 |goto Valley of the Four Winds/0 52.75,50.42 |or
 accept A Gift For Gina##30479 |goto Valley of the Four Winds/0 52.75,50.42 |or
+|tip
+Click here if no quests are available |confirm
 step
 talk Ella##58647
 accept You Have to Burn the Ropes##30327 |goto Valley of the Four Winds/0 53.10,51.70
+|tip
 Click here if no quests are available |confirm
 step
 talk Haohan Mudclaw##57402
 accept Pest Problems##30319 |goto Valley of the Four Winds/0 53.00,51.70
+|tip
 Click here if no quests are available |confirm
 step
 talk Tina Mudclaw##58761
 accept They Don't Even Wear Them##30323 |goto Valley of the Four Winds/0 52.98,51.80
+|tip
 Click here if no quests are available |confirm
 step
 talk Chee Chee##58709
 accept Not in Chee-Chee's Backyard##30324 |goto Valley of the Four Winds/0 53.10,52.10
+|tip
 Click here if no quests are available |confirm
 step
 talk Fish Fellreed##58705
 accept The Kunzen Legend-Chief##30326 |goto Valley of the Four Winds/0 52.76,51.85
+|tip
 Click here if no quests are available |confirm
 step
 talk Farmer Fung##57298
 accept Water, Water Everywhere##30317 |goto Valley of the Four Winds/0 52.90,51.70
+|tip
 Click here if no quests are available |confirm
 step
 talk Sho##58708
 accept Where It Counts##30325 |goto Valley of the Four Winds/0 53.10,52.10
+|tip
 Click here if no quests are available |confirm
 step
 talk Jogu the Drunk##58710
 accept Weed War II##30321 |goto Valley of the Four Winds/0 53.60,52.50
+|tip
 Click here if no quests are available |confirm
 step
 talk Old Hillpaw##58707
 accept Chasing the Chicken##30318 |goto Valley of the Four Winds/0 53.06,51.86
+|tip
 Click here if no quests are available |confirm
 step
 talk Gina Mudclaw##58706
 accept Money Matters##30322 |goto Valley of the Four Winds/0 53.16,51.80
+|tip
 Click here if no quests are available |confirm
 step
 talk Innkeeper Lei Lan##59582
@@ -2308,7 +2330,7 @@ accept Lost and Lonely##30526 |goto Valley of the Four Winds/0 42.40,50.00
 |only if rep("The Tillers") >= Revered
 step
 talk Gai Lan##57385
-Ask him, "What Weeds?"
+Select _"What weeds?"_ |gossip 125812
 Gain the "Weed War" Buff |complete hasbuff("spell:108219") or hasbuff("spell:114494") |goto Valley of the Four Winds/0 38.50,51.70
 |only if haveq(30321) or completedq(30321)
 step
@@ -2388,6 +2410,7 @@ collect Authentic Valley Stir Fry##79827 |q 30471/1 |goto Valley of the Four Win
 |only if haveq(30471) or completedq(30471)
 step
 clicknpc Yak Statuette##59154
+|tip Check inside of buildings around this area.
 collect Yak Statuette##79828 |q 30473/1 |goto Valley of the Four Winds/0 34.00,24.10
 |only if haveq(30473) or completedq(30473)
 step
@@ -3074,6 +3097,8 @@ accept Unleashed Spirits##31757 |goto Vale of Eternal Blossoms/0 56.57,43.61 |or
 accept Crumbling Behemoth##31762 |goto Vale of Eternal Blossoms/0 56.57,43.61 |or 2
 accept Striking First##31760 |goto Vale of Eternal Blossoms/0 56.57,43.64 |or 2
 accept Thundering Skies##30310 |goto Vale of Eternal Blossoms/0 56.57,43.64 |or 2
+accept Set in Stone##30309 |goto Vale of Eternal Blossoms/0 56.56,43.62 |or 2
+accept Stone Hard Quilen##30308 |goto Vale of Eternal Blossoms/0 56.56,43.63 |or 2
 step
 talk Kun Autumnlight##58471
 accept Laosy Scouting##31758 |goto Vale of Eternal Blossoms/0 56.51,43.63 |or
@@ -3083,11 +3108,14 @@ step
 talk Sun Tenderheart##58468
 accept Given a Second Chance##30312 |goto Vale of Eternal Blossoms/0 56.50,43.39 |or
 accept Acts of Cruelty##31755 |goto Vale of Eternal Blossoms/0 56.49,43.40 |or
+accept Free Spirits##30320 |goto Vale of Eternal Blossoms/0 56.49,43.38 |or
 stickystart "Slay_8_Shao_Tien_Mogu"
 stickystart "Kill_12_Unleashed_Spirits"
 stickystart "Rescue_8_Torture_Victims"
 stickystart "Kill_3_Subjugated_Serpents"
 stickystart "Destroy_7_Shao-Tien_Cannons"
+stickystart "Kill_6_Mogu_Effigy"
+stickystart "Slay_6_Granite_Quilen"
 step
 kill 1 Shao-Tien Behemoth##65824 |q 31762/1 |goto Vale of Eternal Blossoms/0 49.86,40.23
 |only if haveq(31762) or completedq(31762)
@@ -3113,6 +3141,14 @@ click Shao-Tien Stormcaller
 Destroy the Western Stormcaller |q 31756/4 |goto Vale of Eternal Blossoms/0 36.82,18.25
 |only if haveq(31756) or completedq(31756)
 step
+label "Slay_6_Granite_Quilen"
+kill 6 Granite Quilen##59157 |q 30308/1 |goto Vale of Eternal Blossoms/0 44.91,24.65
+|only if haveq(30308) or completedq(30308)
+step
+label "Kill_6_Mogu_Effigy"
+kill 6 Mogu Effigy##59156 |q 30309/1 |goto Vale of Eternal Blossoms/0 44.91,24.65
+|only if haveq(30309) or completedq(30309)
+step
 click Shao-Tien Cage
 clicknpc Lao Softfoot##65868
 |tip He's in a random cage around this area.
@@ -3134,7 +3170,7 @@ step
 label "Slay_8_Shao_Tien_Mogu"
 Kill Shao-Tien enemies around this area |kill Shao-Tien Mindbender##63221, Shao-Tien Marauder##58412, Shao-Tien Soul-Render##65810,Shao-Tien Soul-Render##65978
 Slay #8# Shao-Tien Mogu |q 30307/1 |goto Vale of Eternal Blossoms/0 45.55,44.33
-You can find more around [Vale of Eternal Blossoms/0 41.37,24.51]
+You can find more around [Vale of Eternal Blossoms/0 41.37,24.51] |notinsticky
 |only if haveq(30307) or completedq(30307)
 step
 label "Rescue_8_Torture_Victims"
@@ -3142,10 +3178,17 @@ kill Shao-Tien Soul-Render##65810
 |tip They will be tormenting Mistfall Villagers or Golden Lotus Guards.
 Rescue #8# Torture Victims |q 31755/1 |goto Vale of Eternal Blossoms/0 43.23,27.84
 |only if haveq(31755) or completedq(31755)
+stickystart "Spirit_Void_Buff"
+step
+clicknpc Captive Pandaren Spirit##59231
+|tip Avoid Twisted Tormentors when possible.
+Free #15# Captive Pandaren Spirits |q 30320/1 |goto Vale of Eternal Blossoms/0 42.47,19.59 |or
+|only if haveq(30320) or completedq(30320)
+stickystop "Spirit_Void_Buff"
 step
 label "Kill_12_Unleashed_Spirits"
 kill 12 Unleashed Spirit##65935|q 31757/1 |goto Vale of Eternal Blossoms/0 49.86,40.23
-You can find more around:
+You can find more around: |notinsticky
 [Vale of Eternal Blossoms/0 42.79,34.41] |notinsticky
 [Vale of Eternal Blossoms/0 45.68,26.53] |notinsticky
 |only if haveq(31757) or completedq(31757)
@@ -3159,7 +3202,8 @@ step
 talk Sun Tenderheart##58468
 turnin Given a Second Chance##30312 |goto Vale of Eternal Blossoms/0 56.50,43.38 |only if haveq(30312) or completedq(30312)
 turnin Acts of Cruelty##31755 |goto Vale of Eternal Blossoms/0 56.49,43.40 |only if haveq(31755) or completedq(31755)
-|only if haveq(30312,31755) or completedq(30312,31755)
+turnin Free Spirits##30320 |goto Vale of Eternal Blossoms/0 56.49,43.38 |only if haveq(30320) or completedq(30320)
+|only if haveq(30312,31755,30320) or completedq(30312,31755,30320)
 step
 talk Kun Autumnlight##58471
 turnin Laosy Scouting##31758 |goto Vale of Eternal Blossoms/0 56.50,43.63 |only if haveq(31758) or completedq(31758)
@@ -3172,31 +3216,42 @@ turnin Unleashed Spirits##31757 |goto Vale of Eternal Blossoms/0 56.57,43.62 |on
 turnin Crumbling Behemoth##31762 |goto Vale of Eternal Blossoms/0 56.57,43.62 |only if haveq(31762) or completedq(31762)
 turnin Striking First##31760 |goto Vale of Eternal Blossoms/0 56.57,43.64 |only if haveq(31760) or completedq(31760)
 turnin Thundering Skies##30310 |goto Vale of Eternal Blossoms/0 56.57,43.64 |only if haveq(30310) or completedq(30310)
-|only if haveq(31757,31762,31760,30310) or completedq(31757,31762,31760,30310)
+turnin Set in Stone##30309 |goto Vale of Eternal Blossoms/0 56.56,43.62 |only if haveq(30309) or completedq(30309)
+turnin Stone Hard Quilen##30308 |goto Vale of Eternal Blossoms/0 56.56,43.63
+|only if haveq(31757,31762,31760,30310,30309,30308) or completedq(31757,31762,31760,30310,30309,30308)
 step
 talk Leven Dawnblade##58408
 turnin The Eternal Vigil##30307 |goto Vale of Eternal Blossoms/0 56.70,43.59 |only if haveq(30307) or completedq(30307)
-accept Whitepetal Lake##31131 |goto Vale of Eternal Blossoms/0 56.70,43.59 |or
+accept Whitepetal Lake##31131 |goto Vale of Eternal Blossoms/0 56.70,43.59 |or |next "Whitepetal_Lake"
 accept Mistfall Village##31242 |goto Vale of Eternal Blossoms/0 56.70,43.59 |or |next "Mistfall_Village"
 accept Attack on Mistfall Village##31243 |goto Vale of Eternal Blossoms/0 56.71,43.61 |or |next "Attack_on_Mistfall"
+step
+label "Spirit_Void_Buff"
+click Spirit Vortex
+|havebuff  Spirit Void##129811 |q 30320 |goto Vale of Eternal Blossoms/0 41.07,22.57
 step
 label "Whitepetal_Lake"
 talk He Softfoot##59342
 turnin Whitepetal Lake##31131 |goto Vale of Eternal Blossoms/0 43.65,46.05
-accept Under Watchful Eyes##30341 |goto Vale of Eternal Blossoms/0 43.67,46.06
+accept Under Watchful Eyes##30341 |goto Vale of Eternal Blossoms/0 43.67,46.06 |or
+accept The Displaced Paleblade##30314 |goto Vale of Eternal Blossoms/0 43.66,46.06 |or
+accept The Moving Mists##30313 |goto Vale of Eternal Blossoms/0 43.67,46.05 |or
 step
 talk Ren Firetongue##59343
 accept A Thousand Pointy Teeth##30284 |goto Vale of Eternal Blossoms/0 42.31,46.01 |or 2
 accept Sparkle in the Eye##30265 |goto Vale of Eternal Blossoms/0 42.31,46.01 |or 2
 accept Fiery Tongue, Fragile Feet##30342 |goto Vale of Eternal Blossoms/0 42.32,46.00 |or 2
 accept A Weighty Task##30338 |goto Vale of Eternal Blossoms/0 42.32,46.00 |or 2
+accept Stunning Display##30291 |goto Vale of Eternal Blossoms/0 42.32,46.00 |or 2
 step
 talk Merchant Tantan##59341
 accept Stick in the Mud##30340 |goto Vale of Eternal Blossoms/0 42.23,45.91
 stickystart "Kill_8_Kinfetooth_Swarmers"
 stickystart "Collect_8_Ruby_Eyes"
 stickystart "Collect_8_Mogu_Artifacts"
+stickystart "Collect_12_Stunned_Whitepetal_Carp"
 stickystart "Kill_6_Stillwater_Crocolisks"
+stickystart "Slay_12_Sliverblade_Saurok"
 step
 label "Collect_8_Mogu_Artifacts"
 click Mogu Artifact
@@ -3210,16 +3265,26 @@ click Ruby Eye
 collect 8 Ruby Eye##84646 |q 30265/1 |goto Vale of Eternal Blossoms/0 39.32,47.94
 |only if haveq(30265) or completedq(30265)
 step
+label "Collect_12_Stunned_Whitepetal_Carp"
+clicknpc Stunned Whitepetal Carp##62984
+|tip They will be floating at the surface of the lake.
+|tip One that are swimming won't be able to be gathered.
+collect 12 Stunned Whitepetal Carp##84656 |q 30291/1 |goto Vale of Eternal Blossoms/0 41.26,47.38
+|only if haveq(30291) or completedq(30291)
+step
 label "Kill_8_Kinfetooth_Swarmers"
 kill 8 Knifetooth Swarmer##59404 |q 30284/1 |goto Vale of Eternal Blossoms/0 40.58,48.31
 |tip Under water around this area.
 |only if haveq(30284) or completedq(30284)
+stickystart "Kill_8_Shao-Tien_Surveyors"
+stickystart "Slay_8_Fog_Walkers"
+stickystart "Collect_12_Whitepetal_Reed"
 step
 label "Kill_6_Stillwater_Crocolisks"
 kill 6 Stillwater Crocolisk##58455 |q 30342/1 |goto Vale of Eternal Blossoms/0 40.96,47.83
 |only if haveq(30342) or completedq(30342)
-stickstart "Kill_8_Shao-Tien_Surveyors"
 step
+label "Collect_12_Whitepetal_Reed"
 click Whitepetal Reed
 |tip Along the edges of the Whitepetal Lake.
 collect 12 Whitepetal Reed##84241 |q 30340/1 |goto Vale of Eternal Blossoms/0 43.31,48.69
@@ -3231,45 +3296,98 @@ use Shado-Pan Flare##89366
 kill 8 Shao-Tien Surveyor##59379 |q 30341/1 |goto Vale of Eternal Blossoms/0 45.13,47.53
 |only if haveq(30341) or completedq(30341)
 step
+label "Slay_8_Fog_Walkers"
+kill 8 Fog Walker##58672+ |q 30313/1 |goto Vale of Eternal Blossoms/0 46.03,44.03
+|tip They can be found all around the lake.
+[Vale of Eternal Blossoms/0 40.71,41.68]
+|only if haveq(30313) or completedq(30313)
+step
+label "Slay_12_Sliverblade_Saurok"
+Kill Paleblade enemies around this area |kill Paleblade Flesheater##59378, Paleblade Slithertongue##63044
+map Vale of Eternal Blossoms
+path loop off; bounce; dist 25
+path	38.97,54.54	43.48,51.62	45.18,47.45	45.36,44.00	43.86,40.86
+path	40.61,41.49	38.43,45.91
+Slay #12# Paleblade Saurok |q 30314/1
+|only if haveq(30314) or completedq(30314)
+step
 talk He Softfoot##59342
-turnin Under Watchful Eyes##30341 |goto Vale of Eternal Blossoms/0 43.65,46.05
-|only if haveq(30341) or completedq(30341)
+turnin Under Watchful Eyes##30341 |goto Vale of Eternal Blossoms/0 43.65,46.05 |only if haveq(30341) or completedq(30341)
+turnin The Displaced Paleblade##30314 |goto Vale of Eternal Blossoms/0 43.66,46.06 |only if haveq(30314) or completedq(30314)
+turnin The Moving Mists##30313 |goto Vale of Eternal Blossoms/0 43.67,46.05 |only if haveq(30313) or completedq(30313)
+|only if haveq(30341,30314,30313) or completedq(30341,30314,30313)
 step
 talk Ren Firetongue##59343
 turnin A Thousand Pointy Teeth##30284 |goto Vale of Eternal Blossoms/0 42.31,46.02 |only if haveq(30284) or completedq(30284)
 turnin Sparkle in the Eye##30265 |goto Vale of Eternal Blossoms/0 42.31,46.02 |only if haveq(30265) or completedq(30265)
 turnin Fiery Tongue, Fragile Feet##30342 |goto Vale of Eternal Blossoms/0 42.32,46.00 |only if haveq(30342) or completedq(30342)
 turnin A Weighty Task##30338 |goto Vale of Eternal Blossoms/0 42.32,46.00 |only if haveq(30338) or completedq(30338)
-|only if haveq(30284,30265,30342,30338) or completedq(30284,30265,30342,30338)
+turnin Stunning Display##30291 |goto Vale of Eternal Blossoms/0 42.32,46.00 |only if haveq(30291) or completedq(30291)
+|only if haveq(30284,30265,30342,30338,30291) or completedq(30284,30265,30342,30338,30291)
 step
 talk Merchant Tantan##59341
 turnin Stick in the Mud##30340 |goto Vale of Eternal Blossoms/0 42.21,45.94
 |only if haveq(30340) or completedq(30340)
 step
 talk Ren Firetongue##59343
-accept Vicejaw##30234 |goto Vale of Eternal Blossoms/0 42.31,46.01
+accept Vicejaw##30234 |goto Vale of Eternal Blossoms/0 42.31,46.01 |or
+accept Cracklefang##30233 |goto Vale of Eternal Blossoms/0 42.31,46.01 |or
+accept Mistfall Village##31245 |goto Vale of Eternal Blossoms/0 42.32,46.02 |or |next "Mistfall_Village"
+accept Setting Sun Garrison##31247 |goto Vale of Eternal Blossoms/0 42.32,46.02 |or |next "Setting_Sun_Garrison"
 step
 kill Vicejaw##246176 |q 30234/1 |goto Vale of Eternal Blossoms/0 37.44,50.94
 |only if haveq(30234) or completedq(30234)
 step
+kill Cracklefang## |q 30233/1 |goto Vale of Eternal Blossoms/0 46.89,58.51
+|only if haveq(30233) or completedq(30233)
+step
 talk Ren Firetongue##59343
-turnin Vicejaw##30234 |goto Vale of Eternal Blossoms/0 42.32,46.01 |next "end"
-|only if haveq(30234) or completedq(30234)
+turnin Vicejaw##30234 |goto Vale of Eternal Blossoms/0 42.32,46.01 |only if haveq(30234) or completedq(30234) |next "end"
+turnin Cracklefang##30233 |goto Vale of Eternal Blossoms/0 42.32,46.01 |only if haveq(30233) or completedq(30233) |next "end"
+|only if haveq(30234,30233) or completedq(30234,30233)
 step
 label "Mistfall_Village"
 talk Che Wildwalker##59338
-turnin Mistfall Village##31242 |goto Vale of Eternal Blossoms/0 33.87,72.21
+turnin Mistfall Village##31242 |goto Vale of Eternal Blossoms/0 33.87,72.21 |only if haveq(31242) or completedq(31242)
+turnin Mistfall Village##31245 |goto Vale of Eternal Blossoms/0 33.87,72.21 |only if haveq(31245) or completedq(31245)
+accept Ruffling Some Feathers##30232 |goto Vale of Eternal Blossoms/0 33.87,72.20 |or
+accept The Pandaren Uprising Relived##30237 |goto Vale of Eternal Blossoms/0 33.87,72.20 |or
+|tip
+Click here if no quests are available |confirm
+step
+talk Cook Tope##58818
+accept Meating Expectations##30193 |goto Vale of Eternal Blossoms/0 33.85,70.44 |or
+accept Pomfruit Pickup##30231 |goto Vale of Eternal Blossoms/0 33.85,70.44 |or
+accept Lushroom Rush##30196 |goto Vale of Eternal Blossoms/0 33.85,70.44 |or
+|tip
+Click here if no quests are available |confirm
 step
 talk Merchant Benny##58820
 accept Blooming Blossoms##30195 |goto Vale of Eternal Blossoms/0 33.77,69.69
-step
-talk Cook Tope##58818
-accept Meating Expectations##30193 |goto Vale of Eternal Blossoms/0 33.84,70.43
+|tip
+Click here if no quests are available |confirm
 step
 talk Mayor Shiyo##58819
-accept Sprite Plight##30190 |goto Vale of Eternal Blossoms/0 35.37,74.07
-accept My Town, It's on Fire##30192 |goto Vale of Eternal Blossoms/0 35.37,74.07
+accept Sprite Plight##30190 |goto Vale of Eternal Blossoms/0 35.37,74.07 |or 2
+accept My Town, It's on Fire##30192 |goto Vale of Eternal Blossoms/0 35.37,74.07 |or 2
+accept Steer Clear of the Beer Here##30191 |goto Vale of Eternal Blossoms/0 35.36,74.08 |or 2
+|tip
+Click here if no quests are available |confirm
+stickystart "Collect_10_Stolen_Mistfall_Kegs"
 stickystart "Kill_8_Slateskin_Troublemakers"
+step
+use the Pomharvest Firework##79344
+clicknpc Pomfruit##58767
+|tip They are hanging in trees around the village area.
+collect 12 Fresh Pomfruit##79250 |q 30231/1 |goto Vale of Eternal Blossoms/0 36.97,77.59
+You can find more around [Vale of Eternal Blossoms/0 33.54,75.00]
+|only if haveq(30231) or completedq(30231)
+step
+label "Collect_10_Stolen_Mistfall_Kegs"
+kill Slateskin Troublemaker##58673
+click Stolen Mistfall Keg##213365
+collect 10 Stolen Mistfall Keg##85778 |q 30191/1 |goto Vale of Eternal Blossoms/0 37.19,81.38
+|only if haveq(30191) or completedq(30191)
 step
 click Brazier Fire
 Put Out #30# Brazier Fires |q 30192/1 |goto Vale of Eternal Blossoms/0 35.93,70.62
@@ -3278,37 +3396,77 @@ step
 label "Kill_8_Slateskin_Troublemakers"
 kill 8 Slateskin Troublemaker##58673 |q 30190/1 |goto Vale of Eternal Blossoms/0 33.32,72.59
 |only if haveq(30190) or completedq(30190)
+stickystart "Collect_10_Fairlands_Gazelle_Meat"
+stickystart "Collect_80_Silken_Feathers"
 step
-click Eternal Blossom
+click Eternal Blossom##210539
 |tip Around the river in this area.
 collect 10 Eternal Blossom##244172 |goto Vale of Eternal Blossoms/0 30.57,70.35
 [Vale of Eternal Blossoms/0 34.72,62.09]
 [Vale of Eternal Blossoms/0 33.83,56.52]
-|only if haveq(30190) or completedq(30190)
+|only if haveq(30195) or completedq(30195)
 step
+label "Collect_10_Fairlands_Gazelle_Meat"
 kill Fairlands Gazelle##58454+
 collect 10 Fairlands Gazelle Meat##79244 |q 30193/1 |goto Vale of Eternal Blossoms/0 29.26,59.38
 [Vale of Eternal Blossoms/0 33.42,49.52]
 [Vale of Eternal Blossoms/0 25.28,55.78]
 |only if haveq(30193) or completedq(30193)
+stickystart "Collect_12_Lushrooms"
+step
+kill 8 Ancient Mogu Spirit##58671 |q 30237/1 |goto Vale of Eternal Blossoms/0 45.24,72.03
+|only if haveq(30237) or completedq(30237)
+step
+label "Collect_12_Lushrooms"
+click Lushroom##213350
+collect 12 Lushroom##85681 |goto Vale of Eternal Blossoms/0 44.03,68.48
+|only if haveq(30196) or completedq(30196)
+step
+label "Collect_80_Silken_Feathers"
+kill Silkfeather Hawk##58457
+|tip They are resting in trees and flying around the area.
+collect 80 Silken Feather##84121 |q 30232/1 |goto Vale of Eternal Blossoms/0 31.20,61.80
+|only if haveq(30232) or completedq(30232)
+step
+Click the Quest Complete Box
+turnin The Pandaren Uprising Relived##30237
+accept Lao-Fe the Slavebinder##30239
+|tip This quest may bug, skip the step if it doesn't accept.
+|only if haveq(30237) or completedq(30237)
 step
 talk Merchant Benny##58820
-turnin Blooming Blossoms##30195 |goto Vale of Eternal Blossoms/0 33.76,69.70
+turnin Blooming Blossoms##30195 |goto Vale of Eternal Blossoms/0 33.76,69.70 |only if haveq(30195) or completedq(30195)
+|only if haveq(30195) or completedq(30195)
 step
 talk Cook Tope##58818
-turnin Meating Expectations##30193 |goto Vale of Eternal Blossoms/0 33.85,70.43
+turnin Meating Expectations##30193 |goto Vale of Eternal Blossoms/0 33.85,70.43 |only if haveq(30193) or completedq(30193)
+turnin Pomfruit Pickup##30231 |goto Vale of Eternal Blossoms/0 33.85,70.44 |only if haveq(30231) or completedq(30231)
+turnin Lushroom Rush##30196 |goto Vale of Eternal Blossoms/0 33.85,70.44 |only if haveq(30196) or completedq(30196)
+|only if haveq(30193,30231,30196) or completedq(30193,30231,30196)
 step
 talk Mayor Shiyo##58819
-turnin Sprite Plight##30190 |goto Vale of Eternal Blossoms/0 35.37,74.06
-turnin My Town, It's on Fire##30192 |goto Vale of Eternal Blossoms/0 35.37,74.06
+turnin Sprite Plight##30190 |goto Vale of Eternal Blossoms/0 35.37,74.06 |only if haveq(30190) or completedq(30190)
+turnin My Town, It's on Fire##30192 |goto Vale of Eternal Blossoms/0 35.37,74.06 |only if haveq(30192) or completedq(30192)
+turnin Steer Clear of the Beer Here##30191 |goto Vale of Eternal Blossoms/0 35.36,74.08 |only if haveq(30191) or completedq(30191)
+|only if haveq(30190,30192,30191) or completedq(30190,30192,30191)
 step
 talk Che Wildwalker##59338
-accept Quid Pro Quo##30235 |goto Vale of Eternal Blossoms/0 33.86,72.20
+turnin Ruffling Some Feathers##30232 |goto Vale of Eternal Blossoms/0 33.86,72.20 |only if haveq(30232) or completedq(30232)
+accept Quid Pro Quo##30235 |goto Vale of Eternal Blossoms/0 33.86,72.20 |or
+accept Lao-Fe the Slavebinder##30239 |goto Vale of Eternal Blossoms/0 33.86,72.20 |or
+accept Setting Sun Garrison##30385 |goto Vale of Eternal Blossoms/0 33.86,72.20 |or |next "Setting_Sun_Garrison"
+step
+Enter the cave |goto Vale of Eternal Blossoms/0 47.48,67.44 < 10
+kill Spirit of Lao-Fe##58817 |q 30239/1 |goto Vale of Eternal Blossoms/0 47.44,65.71
+|tip Inside the cave.
+|only if haveq(30239) or completedq(30239)
 step
 kill Quid##244995 |q 30235/1 |goto Vale of Eternal Blossoms/0 30.69,79.35
+|only if haveq(30235) or completedq(30235)
 step
 talk Che Wildwalker##59338
-turnin Quid Pro Quo##30235 |goto Vale of Eternal Blossoms/0 33.87,72.21 |next "end"
+turnin Quid Pro Quo##30235 |goto Vale of Eternal Blossoms/0 33.87,72.21 |next "end" |only if haveq(30235) or completedq(30235)
+turnin Lao-Fe the Slavebinder##30239 |goto Vale of Eternal Blossoms/0 33.86,72.20 |next "end" |only if haveq(30239) or completedq(30239)
 step
 label "Attack_on_Mistfall"
 talk Sun Tenderheart##59337
@@ -3352,58 +3510,65 @@ step
 talk Rook Stonetoe##58911
 turnin Mogu Make Poor House Guests##30287 |goto Vale of Eternal Blossoms/0 35.24,74.91 |only if haveq(30287) or completedq(30287)
 turnin Stonebound Killers##30290 |goto Vale of Eternal Blossoms/0 35.24,74.91 |only if haveq(30290) or completedq(30290)
+|only if haveq(30287,30290) or completedq(30287,30290)
 step
 talk Sun Tenderheart##59337
 turnin Backed Into a Corner##30286 |goto Vale of Eternal Blossoms/0 35.12,75.37 |only if haveq(30286) or completedq(30286)
+|only if haveq(30286) or completedq(30286)
 step
 talk Mayor Shiyo##59336
 |tip Inside the building.
 turnin My Town, It's On Fire Again##30288 |goto Vale of Eternal Blossoms/0 35.29,76.78 |only if haveq(30288) or completedq(30288)
+|only if haveq(30288) or completedq(30288)
 step
 talk Rook Stonetoe##58911
-accept Baolai the Immolator##30297 |goto Vale of Eternal Blossoms/0 35.25,74.91
+accept Baolai the Immolator##30297 |goto Vale of Eternal Blossoms/0 35.25,74.91 |or
+accept Gaohun the Soul-Severer##30296 |goto Vale of Eternal Blossoms/0 35.25,74.91 |or
 step
 kill Baolai the Immolator##245163 |q 30297/1 |goto Vale of Eternal Blossoms/0 37.50,81.44
 |only if haveq(30297) or completedq(30297)
 step
+kill Gaohun the Soul-Severer##245153 |q 30296/1 |goto Vale of Eternal Blossoms/0 39.10,74.66
+|only if haveq(30296) or completedq(30296)
+step
 talk Rook Stonetoe##58911
 turnin Baolai the Immolator##30297 |goto Vale of Eternal Blossoms/0 35.25,74.91 |next "end"
+turnin Gaohun the Soul-Severer##30296 |goto Vale of Eternal Blossoms/0 35.25,74.91 |next "end"
+|only if haveq(30297,30296) or completedq(30297,30296)
 step
 label "Setting_Sun_Garrison"
+talk Anji Autumnlight##58919
+turnin Setting Sun Garrison##30385 |goto Vale of Eternal Blossoms/0 21.46,71.58 |only if haveq(30385) or completedq(30385)
+turnin Setting Sun Garrison##31247 |goto Vale of Eternal Blossoms/0 21.46,71.58 |only if haveq(31247) or completedq(31247)
+accept The Battle Ring##30306 |goto Vale of Eternal Blossoms/0 21.46,71.58 |or
+accept The Thunder Below##30280 |goto Vale of Eternal Blossoms/0 21.47,71.58 |or
+accept The Crumbling Hall##30277 |goto Vale of Eternal Blossoms/0 21.47,71.58 |or
+|tip
+Click here if no quests are available |confirm
+step
 talk Kun Autumnlight##58920
 accept Mantid Under Fire##30243 |goto Vale of Eternal Blossoms/0 21.39,71.47
 accept Bloodied Skies##30266 |goto Vale of Eternal Blossoms/0 21.39,71.47
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58920) |next |goto Vale of Eternal Blossoms/0 21.39,71.47 |or
-|tip If no quests are offered, this step will advance.
+|tip
+Click here if no quests are available |confirm
 step
-talk Anji Autumnlight##58919
-|autoacceptany 30280,30277
-accept The Thunder Below##30280 |goto Vale of Eternal Blossoms/0 21.47,71.58
-accept The Crumbling Hall##30277 |goto Vale of Eternal Blossoms/0 21.47,71.58
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58919) |or |next |goto Vale of Eternal Blossoms/0 21.47,71.58 |or
+talk Leven Dawnblade##59340
+accept Survival Ring: Blades##30242 |goto Vale of Eternal Blossoms/0 21.50,71.17 |or
+accept Survival Ring: Flame##30240 |goto Vale of Eternal Blossoms/0 21.50,71.17 |or
+accept The Secrets of Guo-Lai##30639 |goto Vale of Eternal Blossoms/0 21.50,71.17 |only if not completedq(30639)
+|tip
+Click here if no quests are available |confirm
 step
 talk Hai-Me Heavyhands##58962
 |tip He walks around the Trainees in this area.
-|autoacceptany 30306
 accept The Battle Ring##30306 |goto Vale of Eternal Blossoms/0 20.12,75.69
-Check for Quests |complete nodailies(58962) |or |next |goto Vale of Eternal Blossoms/0 20.12,75.69
-step
-talk Yumi Goldenpaw##58743
-accept Survival Ring: Blades##30242 |goto Vale of Eternal Blossoms/0 18.49,71.53
-accept Survival Ring: Flame##30240 |goto Vale of Eternal Blossoms/0 18.49,71.53
-|autoacceptany 30242,30240 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58743) |or |next |goto Vale of Eternal Blossoms/0 18.49,71.53
-|tip If no quests are offered, this step will advance.
+|tip
+Click here if no quests are available |confirm
 step
 talk Kelari Featherfoot##58704
-|autoacceptany 30261 |or
 accept Roll Club: Serpent's Spine##30261 |goto Vale of Eternal Blossoms/0 18.10,63.58 |or
-|tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(58704) |goto Vale of Eternal Blossoms/0 18.10,63.58 |or
-|tip If no quests are offered, this step will advance.
+|tip
+Click here if no quests are available |confirm
 step
 talk Kelari Featherfoot##58704
 Select _"Let's roll."_ |gossip 40305
@@ -3427,7 +3592,7 @@ Live Through the Survival Ring for 60 Seconds |q 30242/1 |goto Vale of Eternal B
 |tip If you're removed from the circle, you will have to try again.
 |only if haveq(30242) or completedq(30242)
 step
-Live Through the Survival Ring for 90 Seconds |q 30240/1 |goto Vale of Eternal Blossoms/0 19.20,67.50
+Live Through the Survival Ring for 60 Seconds |q 30240/1 |goto Vale of Eternal Blossoms/0 19.20,67.50
 |A progression bar will appear on the screen.
 |tip Stay within the circle and avoid getting hit by the fireworks.
 |only if haveq(30240) or completedq(30240)
@@ -3437,11 +3602,11 @@ kill 20 Shado-Pan Trainee##58992+ |q 30306/1 |goto Vale of Eternal Blossoms/0 19
 |only if haveq(30306) or completedq(30306)
 step
 clicknpc Setting Sun Turret##64336
-Begin Riding the Setting Sun Turret |invehicle Setting Sun Turret##64336 |goto Vale of Eternal Blossoms/0 5.42,72.17 |q 30266
+Begin Riding the Setting Sun Turret |invehicle Setting Sun Turret##64336 |goto Vale of Eternal Blossoms/0 7.30,70.56 |q 30266
 |tip It's on the upper level of the tower here.
 |only if haveq(30266) or completedq(30266)
 step
-kill 30 Krik'thik Swarmer##63973+ |q 30266/1 |goto Vale of Eternal Blossoms/0 5.40,72.30
+kill 30 Krik'thik Swarmer##63973+ |q 30266/1 |goto Vale of Eternal Blossoms/0 7.27,70.55
 |only if haveq(30266) or completedq(30266)
 step
 Exit the Setting Sun Turret |outvehicle |q 30266
@@ -3500,8 +3665,73 @@ turnin Mantid Under Fire##30243 |goto Vale of Eternal Blossoms/0 21.39,71.47 |on
 turnin Bloodied Skies##30266 |goto Vale of Eternal Blossoms/0 21.39,71.47 |only if haveq(30266) or completedq(30266)
 |only if haveq(30243,30266)
 step
+talk Anji Autumnlight##58919
+accept Upon the Ramparts##30246 |goto Vale of Eternal Blossoms/0 21.46,71.58
+|tip
+Click here if no quests are available |confirm
+step
+talk Leven Dawnblade##59340
+accept Bloodied Skies##30266 |goto Vale of Eternal Blossoms/0 21.49,71.18
+|tip
+Click here if no quests are available |confirm
+step
+clicknpc Setting Sun Turret##64336
+Begin Riding the Setting Sun Turret |invehicle Setting Sun Turret##64336 |goto Vale of Eternal Blossoms/0 7.30,70.56 |q 30266
+|tip It's on the upper level of the tower here.
+|only if haveq(30266) or completedq(30266)
+step
+kill 30 Krik'thik Swarmer##63973+ |q 30266/1 |goto Vale of Eternal Blossoms/0 7.27,70.55
+|only if haveq(30266) or completedq(30266)
+step
+Exit the Setting Sun Turret |outvehicle |q 30266
+|only if haveq(30266) or completedq(30266)
+step
+Kill Krik'thik enemies around this area |kill Krik'thik Locust-Guard##63974, Krik'thik Needler##63976
+Slay #10# Krik'thik Wall Attackers |q 30246/1 |goto Vale of Eternal Blossoms/0 11.61,58.61
+You can find more around:
+[Vale of Eternal Blossoms/0 6.95,71.74]
+[Vale of Eternal Blossoms/0 6.98,45.81]
+|only if haveq(30246) or completedq(30246)
+step
+_Click the Quest Complete Box:_
+turnin Upon the Ramparts##30246
+accept Vyraxxis, the Krik'thik Swarm-Lord##30251
+|only if haveq(30246) or completedq(30246)
+step
+kill Vyraxxis##246384 |q 30251/1 |goto Vale of Eternal Blossoms/0 7.97,33.88
+|tip Move out of {y}Caustic Pitch{} that appears on the ground.
+|only if haveq(30251) or completedq(30251)
+step
+talk Kun Autumnlight##58920
+turnin Mantid Under Fire##30243 |goto Vale of Eternal Blossoms/0 21.39,71.47 |only if haveq(30243) or completedq(30243)
+turnin Bloodied Skies##30266 |goto Vale of Eternal Blossoms/0 21.39,71.47 |only if haveq(30266) or completedq(30266)
+|only if haveq(30243,30266)
+step
+talk Anji Autumnlight##58919
+turnin Vyraxxis, the Krik'thik Swarm-Lord##30251 |goto Vale of Eternal Blossoms/0 21.46,71.57 |only if haveq(30251) or completedq(30251)
+|only if haveq(30251) or completedq(30251)
+step
+Enter the building |goto Vale of Eternal Blossoms/0 22.40,26.69 < 15 |walk
+talk He Softfoot##64647
+Select _"Let's go."_ |gossip 129770
+Catch up with He Softfoot |q 30639/1 |goto Vale of Eternal Blossoms/1 40.84,52.26
+|only if not completedq(30639)
+step
+Follow He Softfoot
+Watch the dialogue
+kill Crumbling Jade Warrior##64883
+|tip They start spawning at random.
+Watch the dialogue
+kill Jade Colossus##64676
+Uncover the Mogu Plan in the Hall of Statues |q 30639/2 |goto Vale of Eternal Blossoms/1 48.02,29.72
+|only if not completedq(30639)
+step
+talk Leven Dawnblade##59340
+turnin The Secrets of Guo-Lai##30639 |goto Vale of Eternal Blossoms/0 21.49,71.17
+|only if not completedq(30639)
+step
 label "end"
-You have completed the available daily quests |complete false or not completedq(30242,30243,30240,30266,30277,30280,30306,30307,31757,31762,31758,30312,31131,30341,30284,30265,30340,30234,31242,30195,30193,30190,30192,30235,31760,31756,31755,31243,30286,30288,30287,30290,30297) |next "dailies"
+You have completed the available daily quests |complete false or not completedq(30242,30243,30240,30266,30277,30280,30306,30307,31757,31762,31758,30312,31131,30341,30284,30265,30340,30234,31242,30195,30193,30190,30192,30235,31760,31756,31755,31243,30286,30288,30287,30290,30297,30233,30291,30314,30266,30232,30231,30191,30246,30237,30196,30239,30313,30308,31247) |next "dailies"
 |tip New quests will become available with the next daily server reset.
 ]])
 ZygorGuidesViewer:RegisterGuide("Daily Guides\\Mists of Pandaria Dailies\\The Klaxxi Dailies",{

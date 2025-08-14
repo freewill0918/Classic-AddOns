@@ -2221,8 +2221,10 @@ end
 
 function ZGV.F.SetFrameAnchor(frame,data)
 	if not (data and frame) then return end
-	frame:ClearAllPoints()
 	local point,_,rel,x,y = unpack(data)
+	if not point then return end
+
+	frame:ClearAllPoints()
 	frame:SetPoint(point,UIParent,rel,x,y)	
 end
 
@@ -2231,8 +2233,11 @@ function ZGV.F.SaveFrameAnchor(frame,dataname,context)
 	context = context or ZGV.db.profile
 	local anchor = {frame:GetPoint()}
 	anchor[2] = nil
-	context[dataname] = anchor
+	if anchor[1] then
+		context[dataname] = anchor
+	end
 end
+
 
 function ZGV.F.SaveFrameSizes(frame,dataname,context)
 	if not (dataname and frame) then return end

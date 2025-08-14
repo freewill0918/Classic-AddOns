@@ -5663,7 +5663,8 @@ function Pointer:FindTravelPath(way)
 		LibRover:QueueFindPath(0,0,0,way.m,way.x,way.y, PathFoundHandler,
 			{title=(way.title or "Destination").. (display_zone and ("\n(in %s)"):format(display_zone) or ""), waypoint=way, direct=not ZGV.db.profile.pathfinding or (way.goal and way.goal.waypoint_notravel),
 			waypoint_zone=way.waypoint_zone, waypoint_realzone=way.waypoint_realzone, waypoint_subzone=way.waypoint_subzone, waypoint_minizone=way.waypoint_minizone,
-			waypoint_region=way.waypoint_region, waypoint_indoors = way.waypoint_indoors
+			waypoint_region=way.waypoint_region, waypoint_indoors = way.waypoint_indoors,
+			waypoint_radius = way.goal and (way.goal.dist or way.goal.radius)
 			}
 			)
 	elseif type(way)=="string" then

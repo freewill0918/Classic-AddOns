@@ -6954,6 +6954,7 @@ Strike a Deal with Baron Longshore |q 14046/1 |goto The Barrens 69.91,85.20
 step
 _Click the Complete Quest Box:_
 turnin The Baron's Demands##14046
+talk Baron Longshore##3467 |goto The Barrens 69.91,85.20
 accept A Most Unusual Map##14049
 step
 click Hanging Pirate Head##195205
@@ -13780,7 +13781,7 @@ kill Aldaron the Reckless##16294
 |tip He walks around this area.
 |tip At the top of the building.
 collect Aldaron's Head##22487 |q 9076/1 |goto Eversong Woods 32.80,69.40
-|only if haveq(8480)
+|only if haveq(9076)
 stickystart "Collect_Captain_Kelisendras_Cargo"
 step
 kill Mmmrrrggglll##15937
@@ -13826,10 +13827,11 @@ accept The Dwarven Spy##8483 |goto Eversong Woods 48.17,46.00 |only if level < 1
 |only if level < 11 or haveq(8482)
 step
 Locate Prospector Anvilward |goto Eversong Woods 44.57,53.30 < 7 |c |q 8483
-|only if haveq(8482)
+|only if haveq(8483)
 step
 talk Prospector Anvilward##15420
-Select _"I need a moment of your time, sir."_
+Select _"I need a moment of your time, sir."_ |gossip 91302
+Select _"Why... yes, of course.  I've something to show you right inside this building, Mr. Anvilward."_ |gossip 91301
 Begin Following Prospector Anvilward |goto Eversong Woods 44.57,53.30 > 10 |q 8483
 |only if haveq(8483)
 step
@@ -13851,7 +13853,7 @@ accept The Dead Scar##8475 |goto Eversong Woods 50.34,50.77
 step
 kill 8 Plaguebone Pillager##15654 |q 8475/1 |goto Eversong Woods 50.32,55.21
 |tip They look like skeletons.
-|only if haveq(8483)
+|only if haveq(8475)
 step
 talk Ranger Jaela##15416
 turnin The Dead Scar##8475 |goto Eversong Woods 50.34,50.77
@@ -13860,8 +13862,8 @@ step
 Enter the building |goto Silvermoon City 55.33,71.05 < 10 |walk
 talk Sathren Azuredawn##16191
 |tip Inside the building.
-turnin Fly to Silvermoon City##9133 |goto Silvermoon City 53.94,71.02 |only if haveq(9133)
-|only if haveq(8475)
+turnin Fly to Silvermoon City##9133 |goto Silvermoon City 53.94,71.02
+|only if readyq(9133)
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Speedleveling (1-80)\\Speedleveling (1-60)\\Undead Starter (1-11) (Speed)",{
 mopready=true,

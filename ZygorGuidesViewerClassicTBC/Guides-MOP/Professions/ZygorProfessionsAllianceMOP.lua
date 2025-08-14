@@ -10106,7 +10106,6 @@ collect 130 Shadow Pigment##79251 |or |usebank
 |loadguide "Profession Guides\\Herbalism\\Farming Guides\\Green Tea Leaf"
 |loadguide "Profession Guides\\Herbalism\\Farming Guides\\Rain Poppy"
 |loadguide "Profession Guides\\Herbalism\\Farming Guides\\Silkweed"
-'|complete skill("Inscription") >= 595
 step
 label "Collect_Misty_Pigment_Total"
 collect 9 Misty Pigment##79253 |or |usebank
@@ -10115,7 +10114,6 @@ collect 9 Misty Pigment##79253 |or |usebank
 |loadguide "Profession Guides\\Herbalism\\Farming Guides\\Green Tea Leaf"
 |loadguide "Profession Guides\\Herbalism\\Farming Guides\\Rain Poppy"
 |loadguide "Profession Guides\\Herbalism\\Farming Guides\\Silkweed"
-'|complete skill("Inscription") >= 600
 step
 label "Begin_Profession_Leveling_Pandaria"
 Train Ink of Dreams |learn Ink of Dreams##111645 |goto Stormwind City/0 49.82,74.82
@@ -10126,11 +10124,10 @@ collect 130 Shadow Pigment##79251 |or |usebank
 |loadguide "Profession Guides\\Herbalism\\Farming Guides\\Green Tea Leaf"
 |loadguide "Profession Guides\\Herbalism\\Farming Guides\\Rain Poppy"
 |loadguide "Profession Guides\\Herbalism\\Farming Guides\\Silkweed"
-'|complete skill("Inscription") >= 595
 step
 create 65 Ink of Dreams##111645,Inscription,65 total
 |tip Save these, you will need them for future steps.
-'|complete skill("Inscription") >= 595
+'|complete skill("Inscription") >= 545
 step
 talk Catarina Stanford##30713
 |tip Inside the building.
@@ -10144,7 +10141,6 @@ step
 talk Catarina Stanford##30713
 |tip You can choose any of the shoulder enchantments instead.
 Train Greater Tiger Fang Inscription |learn Greater Tiger Fang Inscription##126997 |goto Stormwind City/0 49.82,74.82
-'|complete skill("Inscription") >= 600
 step
 collect 9 Misty Pigment##79253 |or |usebank
 |tip Mill them from herbs with Inscription or purchase them from the auction house.
@@ -10152,7 +10148,6 @@ collect 9 Misty Pigment##79253 |or |usebank
 |loadguide "Profession Guides\\Herbalism\\Farming Guides\\Green Tea Leaf"
 |loadguide "Profession Guides\\Herbalism\\Farming Guides\\Rain Poppy"
 |loadguide "Profession Guides\\Herbalism\\Farming Guides\\Silkweed"
-'|complete skill("Inscription") >= 600
 step
 create 5 Greater Tiger Fang Inscription##126997,Inscription,600
 '|complete skill("Inscription") >= 600

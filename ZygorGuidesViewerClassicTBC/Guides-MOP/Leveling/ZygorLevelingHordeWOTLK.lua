@@ -13416,6 +13416,7 @@ Strike a Deal with Baron Longshore |q 14046/1 |goto The Barrens 69.91,85.20
 step
 _Click the Complete Quest Box:_
 turnin The Baron's Demands##14046
+talk Baron Longshore##3467 |goto The Barrens 69.91,85.20
 accept A Most Unusual Map##14049
 step
 click Hanging Pirate Head##195205
@@ -15322,7 +15323,7 @@ talk Dagrun Ragehammer##34303
 |tip He walks around inside the building.
 turnin Lousy Pieces of Ship##13883 |goto Ashenvale 11.57,35.30
 step
-use the Mystlash Hydra Blubber##46365
+use the Mystlash Hydra Blubber##46365 |goto Ashenvale/0 11.53,35.47 < 17
 collect Mystlash Hydra Oil##46366 |q 13890
 step
 talk Marukai##12719
@@ -15393,7 +15394,7 @@ talk Dagrun Ragehammer##34303
 turnin The Essence of Aku'Mai##26890 |goto Ashenvale 11.57,35.30
 step
 talk Andruk##11901
-Select _"Grimfang has ordered me to Hellscream's Watch."_
+Select _"Grimfang has ordered me to Hellscream's Watch."_ |gossip 111691
 Begin Flying to Hellscream's Watch |invehicle |goto Ashenvale 11.17,34.43 |q 13923
 step
 Fly to Hellscream's Watch |outvehicle |goto Ashenvale 38.13,42.25 |q 13923 |notravel
@@ -15482,7 +15483,7 @@ talk Mitsuwa##12721
 turnin Troll Charm##6462 |goto Ashenvale 38.89,42.38
 step
 talk Thraka##34429
-Select _"I am to bomb Astranaar! Captain Goggath's orders."_
+Select _"I am to bomb Astranaar! Captain Goggath's orders."_ |gossip 111697
 Begin the Bombing Run |invehicle |goto Ashenvale 38.08,42.22 |q 13947
 step
 kill 20 Astranaar Sentinel##52000 |q 13947/1 |goto Ashenvale 36.14,50.80 |notravel
@@ -15534,7 +15535,7 @@ talk The Vortex##34289
 accept Vortex##13888 |goto Ashenvale 52.33,56.78
 step
 talk The Vortex##34289
-Select _"I am ready to be one with the whirling vortex and defeat Lord Magmathar."_
+Select _"I am ready to be one with the whirling vortex and defeat Lord Magmathar."_ |gossip 111689
 Become One With the Vortex |invehicle |q 13888
 step
 kill Lord Magmathar##34295 |q 13888/1 |goto Ashenvale 49.12,38.66
@@ -39969,7 +39970,7 @@ kill Aldaron the Reckless##16294
 |tip He walks around this area.
 |tip At the top of the building.
 collect Aldaron's Head##22487 |q 9076/1 |goto Eversong Woods 32.80,69.40
-|only if haveq(8480)
+|only if haveq(9076)
 stickystart "Collect_Captain_Kelisendras_Cargo"
 step
 kill Mmmrrrggglll##15937
@@ -40015,10 +40016,11 @@ accept The Dwarven Spy##8483 |goto Eversong Woods 48.17,46.00 |only if level < 1
 |only if level < 11 or haveq(8482)
 step
 Locate Prospector Anvilward |goto Eversong Woods 44.57,53.30 < 7 |c |q 8483
-|only if haveq(8482)
+|only if haveq(8483)
 step
 talk Prospector Anvilward##15420
-Select _"I need a moment of your time, sir."_
+Select _"I need a moment of your time, sir."_ |gossip 91302
+Select _"Why... yes, of course.  I've something to show you right inside this building, Mr. Anvilward."_ |gossip 91301
 Begin Following Prospector Anvilward |goto Eversong Woods 44.57,53.30 > 10 |q 8483
 |only if haveq(8483)
 step
@@ -40040,7 +40042,7 @@ accept The Dead Scar##8475 |goto Eversong Woods 50.34,50.77
 step
 kill 8 Plaguebone Pillager##15654 |q 8475/1 |goto Eversong Woods 50.32,55.21
 |tip They look like skeletons.
-|only if haveq(8483)
+|only if haveq(8475)
 step
 talk Ranger Jaela##15416
 turnin The Dead Scar##8475 |goto Eversong Woods 50.34,50.77
@@ -40049,8 +40051,8 @@ step
 Enter the building |goto Silvermoon City 55.33,71.05 < 10 |walk
 talk Sathren Azuredawn##16191
 |tip Inside the building.
-turnin Fly to Silvermoon City##9133 |goto Silvermoon City 53.94,71.02 |only if haveq(9133)
-|only if haveq(8475)
+turnin Fly to Silvermoon City##9133 |goto Silvermoon City 53.94,71.02
+|only if readyq(9133)
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Speedleveling (1-80)\\Speedleveling (1-60)\\Undead Starter (1-11) (Speed)",{
 mopready=true,
@@ -46417,9 +46419,9 @@ talk Dagrun Ragehammer##34303
 turnin Lousy Pieces of Ship##13883 |goto Ashenvale 11.57,35.30
 |only if readyq(13883)
 step
-use the Mystlash Hydra Blubber##46365
+use the Mystlash Hydra Blubber##46365 |goto Ashenvale/0 11.53,35.47 < 17
 collect Mystlash Hydra Oil##46366 |q 13890
-|only if haveq(13883)
+|only if haveq(13890)
 step
 talk Muglash##12717
 |tip He offers an escort quest.
@@ -46499,13 +46501,13 @@ talk Dagrun Ragehammer##34303
 turnin The Essence of Aku'Mai##26890 |goto Ashenvale 11.57,35.30
 |only if readyq(26890)
 step
-talk Andruk##11901
-Select _"Grimfang has ordered me to Hellscream's Watch."_
+talk Andruk##11901 |goto Ashenvale 11.17,34.43
+Select _"Grimfang has ordered me to Hellscream's Watch."_ |gossip 111691
 Begin Flying to Hellscream's Watch |invehicle |goto Ashenvale 11.17,34.43 |q 13923
-|only if haveq(26890)
+|only if haveq(13923)
 step
 Fly to Hellscream's Watch |outvehicle |goto Ashenvale 38.13,42.25 |q 13923 |notravel
-|only if haveq(26890)
+|only if haveq(13923)
 step
 talk Thraka##34429
 fpath Hellscream's Watch |goto Ashenvale 38.08,42.22
@@ -46611,7 +46613,7 @@ turnin Troll Charm##6462 |goto Ashenvale 38.89,42.38
 |only if readyq(6462)
 step
 talk Thraka##34429
-Select _"I am to bomb Astranaar! Captain Goggath's orders."_
+Select _"I am to bomb Astranaar! Captain Goggath's orders."_ |gossip 111697
 Begin the Bombing Run |invehicle |goto Ashenvale 38.08,42.22 |q 13947
 |only if haveq(6462)
 step

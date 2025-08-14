@@ -274,12 +274,7 @@ function ActionBar:CreateFrame()
 			)
 			:SetScript("OnDragStop", function(self)
 				self:StopMovingOrSizing()
-				if self.snapped then
-					self:ClearAllPoints()
-					--self:SetPoint("BOTTOMLEFT",ZGV.Frame,"TOPLEFT",0,10)
-				else
-					ZGV.F.SaveFrameAnchor(self,"actionbar_anchor")
-				end
+				ActionBar:SavePosition()
 			end)
 			:SetScript("OnMouseDown", function(self)
 				-- store mouse-on-frame location, to take over dragging position
@@ -289,7 +284,7 @@ function ActionBar:CreateFrame()
 				self.drag_offset_x,self.drag_offset_y = cx-l,cy-b
 			end)
 			:SetScript("OnUpdate",ActionBar.Frame_OnUpdate)
-			:SetScript("OnSizeChanged",function() if not ZGV.db.profile.actionbar_anchor then ActionBar:SnapToZGVFrame(true) end end)
+			:SetScript("OnSizeChanged",function() if not ZGV.db.profile.actionbar_anchor then ActionBar:SavePosition(true) end end)
 			:SetAttribute("_onstate-combathide", "if newstate == 'show' then self:Show(); else self:Hide(); end")
 			:Hide()
 		.__END
@@ -312,7 +307,11 @@ function ActionBar:CreateFrame()
 		.__END
 
 		if ZGV.db.profile.actionbar_anchor then
+			ActionBar.Frame.snapped = false
 			ZGV.F.SetFrameAnchor(ActionBar.Frame,ZGV.db.profile.actionbar_anchor)
+		else
+			ActionBar.Frame.snapped = true
+			ActionBar.Frame:SetPoint("BOTTOMLEFT",ZGV.Frame,"TOPLEFT",0,10)
 		end
 	end
 
@@ -337,64 +336,41 @@ function ActionBar.Frame_OnUpdate(self)
 		local zl,zt=ZGV.Frame:GetLeft()*zsc,ZGV.Frame:GetTop()*zsc
 		if (math.abs(zl-l)<10 and math.abs((zt+SNAP_Y)-b)<10) then
 			self.snapped=true
-			ZGV.db.profile.actionbar_anchor=nil
-			ActionBar:SnapToZGVFrame(true)
-			--ZGV.Anchors:Save(self,"actionbar_anchor")
+			self:ClearAllPoints()
+			self:SetPoint("BOTTOMLEFT",ZGV.Frame,"TOPLEFT",0,10)
 		else
 			self.snapped=false
-			self:ClearAllPoints()
-			self:SetPoint("BOTTOMLEFT",self:GetParent(),"BOTTOMLEFT",l/ssc,b/ssc)
-		end
-		--[[
-		local width = self:GetWidth()
-		local x,y = minimap:GetCenter()
-		local sc = minimap:GetEffectiveScale()
-		local mx,my = GetCursorPosition() --self:GetCenter()
-		mx=mx/sc  my=my/sc
-		local dx,dy=mx-x,my-y
-		local dist = (dx*dx+dy*dy)^0.5
-
-		local radmin=radius
-		local radsnap=radius+width*0.2
-		local radpull=radius+width*0.7
-		local radfre=radius+width
-
-		local radclamp
-		if dist<=radsnap then self.snapped=true radclamp=radmin
-		elseif dist<radpull and self.snapped then radclamp=radmin
-		elseif dist<radfre and self.snapped then radclamp=radmin+(dist-radpull)/2
-		else self.snapped=false -- dobby is freeee
-		end
-		
-		if radclamp then
-			dx=dx/(dist/radclamp)
-			dy=dy/(dist/radclamp)
-		end
-		--]]
-	else
-		-- position it where it needs to be, but without anchoring
-		if not ZGV.db.profile.actionbar_anchor then
-			ActionBar:SnapToZGVFrame()
 		end
 	end
 end
 
+
+
 local old_x,old_y
-function ActionBar:SnapToZGVFrame(force)
-	if ActionBar.SnapTimer then ZGV:CancelTimer(ActionBar.SnapTimer) end
-	if InCombatLockdown() or ActionBar.Lockdown then
-		ActionBar.SnapTimer = ZGV:ScheduleTimer(function() 
-			ActionBar:SnapToZGVFrame(force)
+function ActionBar:SavePosition()
+	if self.SnapTimer then ZGV:CancelTimer(self.SnapTimer) end
+	if InCombatLockdown() or self.Lockdown then
+		self.SnapTimer = ZGV:ScheduleTimer(function() 
+			self:SavePosition(force)
 		end, 1)
 		return
 	end
 
-	local left,top,scale = ZGV.Frame:GetLeft(), ZGV.Frame:GetTop(), ZGV.Frame:GetEffectiveScale()
-	local x,y = left and left*scale,top and top*scale
-	if force or (left and top and (x~=old_x or y~=old_y)) then
-		old_x,old_y=x,y
+
+	if self.Frame.snapped then
 		self.Frame:ClearAllPoints()
-		self.Frame:SetPoint("BOTTOMLEFT",UIParent,"BOTTOMLEFT",(x/self.Frame:GetEffectiveScale()),(y+SNAP_Y)/self.Frame:GetEffectiveScale())
+		self.Frame:SetPoint("BOTTOMLEFT",ZGV.Frame,"TOPLEFT",0,10)
+		ZGV.db.profile.actionbar_anchor=nil
+	else
+		local ssc = self.Frame:GetEffectiveScale()
+		local x,y = GetCursorPosition()
+		local l,b = x-self.Frame.drag_offset_x, y-self.Frame.drag_offset_y
+		local zsc = ZGV.Frame:GetEffectiveScale()
+		local zl,zt = ZGV.Frame:GetLeft()*zsc, ZGV.Frame:GetTop()*zsc
+		self.Frame:ClearAllPoints()
+		self.Frame:SetPoint("BOTTOMLEFT",self.Frame:GetParent(),"BOTTOMLEFT",l/ssc,b/ssc)
+
+		ZGV.F.SaveFrameAnchor(self.Frame,"actionbar_anchor")
 	end
 end
 

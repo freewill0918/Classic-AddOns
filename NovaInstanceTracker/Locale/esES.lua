@@ -626,3 +626,6 @@ L["Sulfuron Harbinger"] = "Sulfuron Presagista";
 L["Golemagg the Incinerator"] = "Golemagg el Incinerador";
 
 L["of level"] = "de nivel";
+
+L["Galleon"] = "Galeón";
+L["World Boss"] = "Jefe del mundo";

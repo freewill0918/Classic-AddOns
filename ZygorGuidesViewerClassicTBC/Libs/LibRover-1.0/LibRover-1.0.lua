@@ -2764,7 +2764,8 @@ function Lib:InitializePath_Threaded() --called in as part of StepForever_Thread
 		zone=Lib.extradata and Lib.extradata.waypoint_zone,realzone=Lib.extradata and Lib.extradata.waypoint_realzone,subzone=Lib.extradata and Lib.extradata.waypoint_subzone,minizone=Lib.extradata and Lib.extradata.waypoint_minizone,
 		region=Lib.extradata and Lib.extradata.waypoint_region,
 		indoors=Lib.extradata and not not Lib.extradata.waypoint_indoors,
-		waypoint=Lib.extradata and Lib.extradata.waypoint
+		waypoint=Lib.extradata and Lib.extradata.waypoint,
+		radius = Lib.extradata and Lib.extradata.waypoint_radius,
 		}
 		AddNode(self.endnode)
 

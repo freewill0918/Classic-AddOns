@@ -504,6 +504,9 @@ function Guide:Parse(fully)
 
 				-- gather all step labels, round'em up and brand'em
 				self.steplabels={}
+				-- mark ranges for all named blocks in guide
+				self.stepblocks={}
+
 				for si,step in ipairs(self.steps) do
 					local label=step.label
 					if label then
@@ -516,6 +519,18 @@ function Guide:Parse(fully)
 							tinsert(self.steplabels[extralabel],si)
 						end
 					end
+
+					if step.blockstart then 
+						self.stepblocks[step.blockstart]={step.num}
+					end
+					if step.blockend then
+						if not self.stepblocks[step.blockend] then
+							ZGV:Error("Closing block %s in step %d but it was not opened in this guide %s",step.blockend,sn,self.title)
+							self.stepblocks[step.blockend]={step.num}
+						end
+						self.stepblocks[step.blockend][2]=step.num
+					end
+
 				end
 
 				-- render sticky refs into their steps
