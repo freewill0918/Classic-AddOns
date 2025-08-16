@@ -629,3 +629,6 @@ L["of level"] = "de nivel";
 
 L["Galleon"] = "Galeón";
 L["World Boss"] = "Jefe del mundo";
+
+L["autoCelestialBuffReminder"] = "Obtén el beneficio Celestial de %s";
+L["NPC"] = "PNJ";
