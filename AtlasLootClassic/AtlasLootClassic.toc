@@ -1,6 +1,6 @@
 ## Interface: 50500
 ## Author: Snowflame0
-## Version: v5.0.2
+## Version: v5.0.3
 ## SavedVariables: AtlasLootClassicDB
 ## OptionalDeps: Ace3, LibSharedMedia-3.0, AceGUI-3.0-SharedMediaWidgets, LibDBIcon-1.0, LibDataBroker-1.1
 ## DefaultState: Enabled
@@ -38,11 +38,7 @@
 ## X-WoWI-ID: 26745
 ## X-Wago-ID: ANz0LwK4
 
-## Title-zhTW: |cffB973FF[裝備]|r 副本戰利品查詢
-## Notes-zhTW: AtlasLoot Classic |n|n顯示首領與小怪可能掉落的物品，並可查詢各陣營與戰場的獎勵物品、套裝物品等資訊。|n|n|cffffd200使用方法: |r點小地圖按鈕。
-## DefaultState: disabled
-
-Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+embeds.xml
 
 Init.lua
 Constants.lua

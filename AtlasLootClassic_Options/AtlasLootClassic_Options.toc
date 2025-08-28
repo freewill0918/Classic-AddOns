@@ -1,6 +1,6 @@
 ## Interface: 50500
 ## Author: Snowflame0
-## Version: v5.0.2
+## Version: v5.0.3
 ## Dependencies: AtlasLootClassic
 ## LoadOnDemand: 1
 
@@ -26,15 +26,22 @@
 ## Notes-ptBR: Módulo de opções de AtlasLoot
 ## Notes-ruRU: Модуль настроек AtlasLoot
 ## Notes-zhCN: AtlasLoot 选项模块
+## Notes-zhTW: AtlasLoot options module
 
 ## X-Category: Map
 ## X-License: GPL v2
 
-## Title-zhTW: |cffB973FF[裝備]|r 副本戰利品查詢-設定選項
-## Notes-zhTW: AtlasLootClassic - Options |n|n副本戰利品查詢的選項設定。
-## DefaultState: disabled
+embeds.xml
 
 Locales\constants.cn.lua
+Locales\constants.de.lua
+Locales\constants.es.lua
+Locales\constants.fr.lua
+Locales\constants.it.lua
+Locales\constants.kr.lua
+Locales\constants.mx.lua
+Locales\constants.pt.lua
+Locales\constants.ru.lua
 Locales\constants.tw.lua
 
 Core.lua

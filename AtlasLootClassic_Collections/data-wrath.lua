@@ -36,7 +36,7 @@ local RAID25H_DIFF = data:AddDifficulty("25RAIDH")
 
 local VENDOR_DIFF = data:AddDifficulty(AL["Vendor"], "vendor", 0)
 local T10_1_DIFF = data:AddDifficulty(AL["10H / 25 / 25H"], "T10_1", 0)
-local T10_2_DIFF = data:AddDifficulty(AL["25 Raid Heroic"], "T10_2", 0)
+local T10_2_DIFF = data:AddDifficulty(ALIL["25 Raid Heroic"], "T10_2", 0)
 
 local ALLIANCE_DIFF, HORDE_DIFF, LOAD_DIFF
 if UnitFactionGroup("player") == "Horde" then
@@ -579,7 +579,7 @@ data["EmblemofFrost"] = {
 }
 
 data["SiderealEssence"] = {
-    name = format(AL["'%s' Vendor"], AL["Sidereal Essence"]),
+    name = format(AL["'%s' Vendor"], ALIL["Sidereal Essence"]),
     ContentType = VENDOR_CONTENT,
     TableType = NORMAL_ITTYPE,
     gameVersion = AtlasLoot.WRATH_VERSION_NUM,
@@ -681,7 +681,7 @@ data["SiderealEssence"] = {
 }
 
 data["DefilersScourgestone"] = {
-    name = format(AL["'%s' Vendor"], AL["Defiler's Scourgestone"]),
+    name = format(AL["'%s' Vendor"], ALIL["Defiler's Scourgestone"]),
     ContentType = VENDOR_CONTENT,
     TableType = NORMAL_ITTYPE,
     gameVersion = AtlasLoot.WRATH_VERSION_NUM,
