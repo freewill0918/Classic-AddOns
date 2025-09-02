@@ -5,7 +5,7 @@ if ZGV:DoMutex("ReputationsH") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Bloodsail Buccaneers",{
 cataready=true,
-description="\nThis guide will walk you through becoming exalted with the Bloodsail Buccaneers faction.",
+description="This guide will walk you through becoming exalted with the Bloodsail Buccaneers faction.",
 achieveid={2336},
 patch='30100',
 },[[
@@ -302,7 +302,7 @@ kill Booty Bay Bruiser##4624
 Earn Exalted Status with the Bloodsail Buccaneers |complete rep('Bloodsail Buccaneers')==Exalted |goto The Cape of Stranglethorn/0 41.60,73.20
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Cenarion Circle",{
-description="\nThis guide will walk you through becoming exalted with the Cenarion Circle faction.",
+description="This guide will walk you through becoming exalted with the Cenarion Circle faction.",
 achieveid={953},
 patch='30001',
 },[[
@@ -755,7 +755,7 @@ This is the end of the questing
 Click here to go back to the Silithus Reputation menu |confirm always |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Darkspear Trolls",{
-description="\nThis guide will walk you through becoming exalted with the Darkspear Trolls faction.",
+description="This guide will walk you through becoming exalted with the Darkspear Trolls faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('Darkspear Trolls') < Exalted end,
 },[[
 step
@@ -766,7 +766,7 @@ You can run any dungeon that grants experience to gain reputation for the Darksp
 Become Exalted with Darkspear Trolls |complete rep('Darkspear Trolls')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\The Defilers",{
-description="\nComplete Arathi Basin and the Comp Stomp brawl to gain reputation.",
+description="Complete Arathi Basin and the Comp Stomp brawl to gain reputation.",
 achieveid={710},
 patch='30001',
 },[[
@@ -791,7 +791,7 @@ Reach "Exalted" Reputation with The Defilers |complete rep('The Defilers') == Ex
 |tip Continue running these battlegrounds for reputation.
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Frostwolf Clan",{
-description="\nThis guide will walk you through becoming exalted with the Frostwolf Clan faction.",
+description="This guide will walk you through becoming exalted with the Frostwolf Clan faction.",
 achieveid={708},
 patch='30002',
 },[[
@@ -876,7 +876,7 @@ step
 Continue joining Alterac Valley until you reach Exalted with the Frostwolf Clan. |complete rep('Frostwolf Clan')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Hydraxian Waterlords",{
-description="\nThis guide will walk you through becoming exalted with the Hydraxian Waterlords faction.",
+description="This guide will walk you through becoming exalted with the Hydraxian Waterlords faction.",
 achieveid={955},
 patch='30001',
 },[[
@@ -890,7 +890,7 @@ Earn Exalted status with the Hydraxian Waterlords |complete rep('Hydraxian Water
 |tip You can only become Exalted by killing Golemagg the Incinerator or Ragnaros, the maximum rep you can get without these two dying is 20999/21000 Revered.
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Orgrimmar",{
-description="\nThis guide will walk you through becoming exalted with the Orgrimmar faction.",
+description="This guide will walk you through becoming exalted with the Orgrimmar faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('Orgrimmar') < Exalted end,
 },[[
 step
@@ -901,7 +901,7 @@ You can run any dungeon that grants experience to gain reputation for Orgrimmar
 Become Exalted with Orgrimmar |complete rep('Orgrimmar')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Ravenholdt",{
-description="\nThis guide will walk you through becoming exalted with the Ravenholdt faction.",
+description="This guide will walk you through becoming exalted with the Ravenholdt faction.",
 achieveid={2336},
 patch='30100',
 },[[
@@ -937,7 +937,7 @@ or
 Click here to get more _Heavy Junkboxes_ |confirm |next "boxes"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\The Steamwheedle Cartel",{
-description="\nThis guide will walk you through becoming exalted with The Steamwheedle Cartel faction.",
+description="This guide will walk you through becoming exalted with The Steamwheedle Cartel faction.",
 },[[
 step
 label "Steam_Menu"
@@ -1136,7 +1136,7 @@ Click to go back to the Steamwheedle Menu |confirm always |next "Steam_Menu2"
 |next "Steam_Menu2"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Thunder Bluff",{
-description="\nThis guide will walk you through becoming exalted with the Thunder Bluff faction.",
+description="This guide will walk you through becoming exalted with the Thunder Bluff faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('Thunder Bluff') < Exalted end,
 },[[
 step
@@ -1147,7 +1147,7 @@ You can run any dungeon that grants experience to gain reputation for Thunder Bl
 Become Exalted with Thunder Bluff |complete rep('Thunder Bluff')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Timbermaw Hold",{
-description="\nThis guide will walk you through becoming exalted with the Timbermaw Hold faction.",
+description="This guide will walk you through becoming exalted with the Timbermaw Hold faction.",
 achieveid={944},
 patch='30001',
 },[[
@@ -1295,7 +1295,7 @@ accept Feathers for Nafien##28395 |n |goto Felwood 64.00,10.30
 Click here to go back to grinding. |next "the_grind" |only if rep('Timbermaw Hold')<=Revered |confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Undercity",{
-description="\nThis guide will walk you through becoming exalted with the Undercity faction.",
+description="This guide will walk you through becoming exalted with the Undercity faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('Undercity') < Exalted end,
 },[[
 step
@@ -1306,7 +1306,7 @@ You can run any dungeon that grants experience to gain reputation for Undercity
 Become Exalted with Undercity |complete rep('Undercity')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Warsong Outriders",{
-description="\nThis guide will walk you through becoming exalted with the Warsong Outriders faction.",
+description="This guide will walk you through becoming exalted with the Warsong Outriders faction.",
 achieveid={712},
 patch='30001',
 },[[
@@ -1316,7 +1316,7 @@ To join Warsong Gulch hit the _[H]_ key, click _Warsong Gulch_, and click _Join 
 Earn Exalted status with the Warsong Outriders |complete rep('Warsong Outriders')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\Ashtongue Deathsworn",{
-description="\nThis guide will walk you through becoming exalted with the Ashtongue Deathsworn faction.",
+description="This guide will walk you through becoming exalted with the Ashtongue Deathsworn faction.",
 achieveid={958},
 patch='30001',
 },[[
@@ -1336,7 +1336,7 @@ Click here to go back to the beginning of the guide |next "start" |confirm
 Earn Exalted status with Ashtongue Deathsworn |complete rep('Ashtongue Deathsworn')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\Keepers of Time",{
-description="\nThis guide will walk you through becoming exalted with the Keepers of Time faction.",
+description="This guide will walk you through becoming exalted with the Keepers of Time faction.",
 },[[
 step
 This faction largely relies on running certain instances repeatedly in order to gain reputation
@@ -1457,7 +1457,7 @@ If you're revered with the Keepers of time, you'll be able to talk to Zephyr in 
 Earn Exalted reputation with the Keepers of Time |complete rep('Keepers of Time')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\Mag'har",{
-description="\nThis guide will walk you through becoming Exalted with the Mag'har faction.",
+description="This guide will walk you through becoming Exalted with the Mag'har faction.",
 condition_suggested=function() return level >= 80 and level <= 85 and rep('Mag\'har') < Exalted end,
 achieveid={901},
 patch='30100',
@@ -2169,13 +2169,13 @@ talk Altruis the Sufferer##18417
 turnin It's Just That Easy?##10010 |goto Nagrand/0 27.34,43.09
 accept Forge Camp: Annihilated##10011 |goto Nagrand/0 27.34,43.09
 step
-kill Demos,Overseer of Hate##18535
+kill DemosOverseer of Hate##18535
 collect 1 Fel Cannon Activator##25770 |goto Nagrand/0 24.98,36.09 |q 10011
 step
 use the Fel Cannon Activator##25770
 Destroy Forge Camp: Hate |q 10011/1 |goto Nagrand/0 24.98,36.09
 step
-kill Xirkos,Overseer of Fear##18536
+kill XirkosOverseer of Fear##18536
 collect 1 Fel Cannon Activator##25771 |goto Nagrand/0 19.59,51.15 |q 10011
 step
 use the Fel Cannon Activator##25771
@@ -2200,7 +2200,7 @@ Earn Exalted status with The Mag'har |complete rep("The Mag'har")==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\Netherwing",{
 startlevel=25,
-description="\nThis guide section will walk you through completing Netherwing quests from neutral to exalted.",
+description="This guide section will walk you through completing Netherwing quests from neutral to exalted.",
 },[[
 step
 Follow the path |goto Shadowmoon Valley/0 59.27,58.68 < 30 |walk
@@ -2540,7 +2540,7 @@ accept Malfas the Purple Netherwing Drake##11110 |goto Shattrath City 66.80,17.6
 accept Jorus the Cobalt Netherwing Drake##11109 |goto Shattrath City 66.80,17.60 |noautoaccept |or
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\Ogri'la",{
-description="\nThis guide will walk you through becoming exalted with the Ogri'la faction.",
+description="This guide will walk you through becoming exalted with the Ogri'la faction.",
 achieveid={896},
 patch='30001',
 },[[
@@ -2849,7 +2849,7 @@ Click here to be taken to the beginning of the guide |confirm |next "daily"
 |only if rep("Ogri'la") < Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\The Scale of the Sands",{
-description="\nThis guide will walk you through becoming exalted with The Scale of the Sands faction.",
+description="This guide will walk you through becoming exalted with The Scale of the Sands faction.",
 achieveid={959},
 patch='30001',
 },[[
@@ -2868,7 +2868,7 @@ Kill every creature that is hostile in this instance in order to gain reputation
 Earn Exalted status with The Scale of the Sands |complete rep('The Scale of the Sands')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\The Scryers",{
-description="\nThis guide will walk you through becoming exalted with The Scryers faction.",
+description="This guide will walk you through becoming exalted with The Scryers faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('The Scryers') < Exalted end,
 achieveid={903, 1205},
 patch='30001',
@@ -3258,7 +3258,7 @@ Click here to continue farming. |next "farming" |confirm
 Earn Exalted reputation with The Scryers. |complete rep('The Scryers')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\The Sha'tar",{
-description="\nThis guide will walk you through becoming exalted with The Sha'tar faction.",
+description="This guide will walk you through becoming exalted with The Sha'tar faction.",
 },[[
 step
 talk Haggard War Veteran##19684
@@ -3410,13 +3410,13 @@ talk Altruis the Sufferer##18417
 turnin It's Just That Easy?##10010 |goto Nagrand,27.30,43.10
 accept Forge Camp: Annihilated##10011 |goto Nagrand,27.30,43.10
 step
-kill Demos\,\ Overseer of Hate##18535
+kill Demos Overseer of Hate##18535
 collect Fel Cannon Activator##25770 |q 10011 |goto Nagrand 25.00,36.10
 step
 Use your Fel Cannon Activator on the Fel Cannon: Hate |use Fel Cannon Activator##25770
 Destroy Forge Camp: Hate |q 10011/1 |goto Nagrand 25.10,36.00
 step
-kill Xirkos\,\ Overseer of Fear##18536
+kill Xirkos Overseer of Fear##18536
 collect Fel Cannon Activator##25771 |q 10011 |goto Nagrand 19.60,51.10
 step
 Use your Fel Cannon Activator on the Fel Cannon: Fear |use Fel Cannon Activator##25771
@@ -3661,7 +3661,7 @@ accept Grom'tor, Son of Oronok##10521 |goto Shadowmoon Valley/0 53.90,23.50
 accept Ar'tor, Son of Oronok##10527 |goto Shadowmoon Valley/0 53.90,23.50
 accept Borak, Son of Oronok##10546 |goto Shadowmoon Valley/0 53.90,23.50
 step
-talk Grom'tor, Son of Oronok##21291
+talk Grom'tor Son of Oronok##21291
 turnin Grom'tor, Son of Oronok##10521 |goto Shadowmoon Valley/0 44.50,23.60
 accept The Cipher of Damnation - Grom'tor's Charge##10522 |goto Shadowmoon Valley/0 44.50,23.60
 step
@@ -3671,28 +3671,28 @@ Click Coilskar Chests
 |tip They look like big gray stone containers around this area.
 collect First Fragment of the Cipher of Damnation##30428 |q 10522/1 |goto Shadowmoon Valley/0 52.60,27.40
 step
-talk Grom'tor, Son of Oronok##21291
+talk Grom'tor Son of Oronok##21291
 turnin The Cipher of Damnation - Grom'tor's Charge##10522 |goto Shadowmoon Valley/0 44.50,23.60
 accept The Cipher of Damnation - The First Fragment Recovered##10523 |goto Shadowmoon Valley/0 44.50,23.60
 step
 talk Oronok Torn-heart##21183
 turnin The Cipher of Damnation - The First Fragment Recovered##10523 |goto Shadowmoon Valley/0 53.90,23.50
 step
-talk Ar'tor, Son of Oronok##21292
+talk Ar'tor Son of Oronok##21292
 turnin Ar'tor, Son of Oronok##10527 |goto Shadowmoon Valley/0 29.60,50.40
 accept Demonic Crystal Prisons##10528 |goto Shadowmoon Valley/0 29.60,50.40
 step
 kill Painmistress Gabrissa##21309+
 collect Crystalline Key##30442 |q 10528/1 |goto Shadowmoon Valley/0 28.00,47.50
 step
-talk Ar'tor, Son of Oronok##21292
+talk Ar'tor Son of Oronok##21292
 turnin Demonic Crystal Prisons##10528 |goto Shadowmoon Valley/0 29.60,50.40
 step
 talk Spirit of Ar'tor##21318
 accept Lohn'goron, Bow of the Torn-heart##10537 |goto Shadowmoon Valley/0 29.50,50.50
 step
 kill Illidari Satyr##21656+, Illidari Shocktrooper##19802+, Illidari Dreadbringer##19799+, Illidari Painlasher##19800+
-collect Lohn'goron, Bow of the Torn-Heart##31072 |q 10537/1 |goto Shadowmoon Valley/0 29.60,50.30
+collect Lohn'goron Bow of the Torn-Heart##31072 |q 10537/1 |goto Shadowmoon Valley/0 29.60,50.30
 step
 talk Spirit of Ar'tor##21318
 turnin Lohn'goron, Bow of the Torn-heart##10537 |goto Shadowmoon Valley/0 29.50,50.50
@@ -3709,7 +3709,7 @@ step
 talk Oronok Torn-heart##21183
 turnin The Cipher of Damnation - The Second Fragment Recovered##10541 |goto Shadowmoon Valley,53.90,23.50
 step
-talk Borak, Son of Oronok##21293
+talk Borak Son of Oronok##21293
 turnin Borak, Son of Oronok##10546 |goto Shadowmoon Valley 47.60,57.20
 accept Of Thistleheads and Eggs...##10547 |goto Shadowmoon Valley 47.60,57.20
 step
@@ -3721,7 +3721,7 @@ talk Tobias the Filth Gorger##21411
 turnin Of Thistleheads and Eggs...##10547 |goto Shattrath City,64.00,70.00
 accept The Bundle of Bloodthistle##10550 |goto Shattrath City,64.00,70.00
 step
-talk Borak, Son of Oronok##21293
+talk Borak Son of Oronok##21293
 turnin The Bundle of Bloodthistle##10550 |goto Shadowmoon Valley,47.60,57.20
 accept To Catch A Thistlehead##10570 |goto Shadowmoon Valley,47.60,57.20
 step
@@ -3729,14 +3729,14 @@ Use your Bundle of Bloodthistle at the other end of the bridge |use Bundle of Bl
 kill Envoy Icarius##21409
 collect Stormrage Missive##30617 |q 10570/1 |goto Shadowmoon Valley 49.00,57.50
 step
-talk Borak, Son of Oronok##21293
+talk Borak Son of Oronok##21293
 turnin To Catch A Thistlehead##10570 |goto Shadowmoon Valley 47.60,57.20
 accept The Shadowmoon Shuffle##10576 |goto Shadowmoon Valley 47.60,57.20
 step
 kill Eclipsion Centurion##19792+, Eclipsion Blood Knight##19795+, Eclipsion Archmage##19796+, Eclipsion Bloodwarder##19806+
 collect 6 Eclipsion Armor##30640 |q 10576/1 |goto Shadowmoon Valley 49.30,60.50
 step
-talk Borak, Son of Oronok##21293
+talk Borak Son of Oronok##21293
 turnin The Shadowmoon Shuffle##10576 |goto Shadowmoon Valley 47.60,57.20
 accept What Illidan Wants, Illidan Gets...##10577 |goto Shadowmoon Valley 47.60,57.20
 step
@@ -3744,14 +3744,14 @@ Use your Blood Elf Disguise |use Blood Elf Disguise##30639
 Talk to Grand Commander Ruusk |goto Shadowmoon Valley 46.50,71.90
 Deliver Illidan's Message |q 10577/1 |goto Shadowmoon Valley 45.30,68.20
 step
-talk Borak, Son of Oronok##21293
+talk Borak Son of Oronok##21293
 turnin What Illidan Wants, Illidan Gets...##10577 |goto Shadowmoon Valley 47.60,57.20
 accept The Cipher of Damnation - Borak's Charge##10578 |goto Shadowmoon Valley 47.60,57.20
 step
 kill Ruul the Darkener##21315
 collect Third Fragment of the Cipher of Damnation##30645 |q 10578/1 |goto Shadowmoon Valley 61.40,57.00
 step
-talk Borak, Son of Oronok##21293
+talk Borak Son of Oronok##21293
 turnin The Cipher of Damnation - Borak's Charge##10578 |goto Shadowmoon Valley 47.50,57.20
 accept The Cipher of Damnation - The Third Fragment Recovered##10579 |goto Shadowmoon Valley 47.50,57.20
 step
@@ -4056,7 +4056,7 @@ Doing these on Heroic will yield more reputation gains - However you can only do
 Reach Exalted with The Sha'tar |complete rep("The Sha'tar")==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\Sha'tari Skyguard",{
-description="\nThis guide will walk you through becoming exalted with the Sha'tari Skyguard faction.",
+description="This guide will walk you through becoming exalted with the Sha'tari Skyguard faction.",
 achieveid={894},
 patch='30202',
 },[[
@@ -4300,7 +4300,7 @@ Killing Terokk will gain you 550 reputation with Ska'tari Skyguard
 |confirm always |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\Sporeggar",{
-description="\nThis guide will walk you through becoming exalted with the Sporeggar faction.",
+description="This guide will walk you through becoming exalted with the Sporeggar faction.",
 cataready=true,
 achieveid={900},
 patch='30002',
@@ -4369,7 +4369,7 @@ Click here to continue farming |next "Farm_Dungeon_Collect_Sanguine_Hibiscus" |c
 Earn Exalted status with the Sporeggar |complete rep('Sporeggar')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\The Violet Eye",{
-description="\nThis guide will walk you through becoming exalted with The Violet Eye faction.",
+description="This guide will walk you through becoming exalted with The Violet Eye faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('The Violet Eye') < Exalted end,
 achieveid={960},
 patch='30001',
@@ -4392,7 +4392,7 @@ Click here to go back to the beginning of the guide |next "start" |confirm
 Earn Exalted status with The Violet Eye |complete rep('The Violet Eye')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\Shattered Sun Offensive",{
-description="\nThis guide will walk you through becoming exalted with the Shattered Sun Offensive faction.",
+description="This guide will walk you through becoming exalted with the Shattered Sun Offensive faction.",
 achieveid={897},
 patch='30001',
 },[[
@@ -4400,7 +4400,7 @@ step
 #include "SSO_PreQuest_Dailies"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\Silvermoon City",{
-description="\nThis guide will walk you through becoming exalted with the Silvermoon City faction.",
+description="This guide will walk you through becoming exalted with the Silvermoon City faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('Silvermoon City') < Exalted end,
 },[[
 step
@@ -4411,7 +4411,7 @@ You can run any dungeon that grants experience to gain reputation for Silvermoon
 Become Exalted with Silvermoon City |complete rep('Silvermoon City')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\Thrallmar",{
-description="\nThis guide will walk you through becoming exalted with the Thrallmar faction.",
+description="This guide will walk you through becoming exalted with the Thrallmar faction.",
 condition_suggested=function() return level >= 60 and level <= 70 and rep('Thrallmar') < Exalted end,
 },[[
 step
@@ -5114,7 +5114,7 @@ turnin Hellfire Fortifications##10110 |goto Hellfire Peninsula,56.00,39.20
 Earn Exalted Reputation with Thrallmar |c rep('Thrallmar')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Wrath of the Lich King Reputations\\Argent Crusade",{
-description="\nThis guide will walk you through becoming exalted with the Argent Crusade faction.",
+description="This guide will walk you through becoming exalted with the Argent Crusade faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('Argent Crusade') < Exalted end,
 achieveid={947},
 patch='30100',
@@ -5372,7 +5372,7 @@ Revered with Argent Crusade |complete rep('Argent Crusade')>=Revered
 Become Exalted with Argent Crusade |complete rep('Argent Crusade')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Wrath of the Lich King Reputations\\Ashen Verdict",{
-description="\nThis guide will walk you through becoming exalted with the Ashen Verdict faction.",
+description="This guide will walk you through becoming exalted with the Ashen Verdict faction.",
 achieveid={4598},
 patch='30300',
 },[[
@@ -5392,7 +5392,7 @@ label "exalted"
 Congratulations, you are now Exalted with the Ashen Verdict!
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Wrath of the Lich King Reputations\\The Frenzyheart Tribe",{
-description="\nThis guide will walk you through becoming exalted with The Frenzyheart Tribe faction.",
+description="This guide will walk you through becoming exalted with The Frenzyheart Tribe faction.",
 achieveid={950},
 patch='40001',
 },[[
@@ -5730,7 +5730,7 @@ label "exalted"
 Congratulations, you are now Exalted with the Frenzyheart Tribe!
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Wrath of the Lich King Reputations\\The Horde Expedition",{
-description="\nThis guide will walk you through becoming exalted with The Horde Expedition faction.",
+description="This guide will walk you through becoming exalted with The Horde Expedition faction.",
 condition_suggested=function() return level >= 10 and level <= 50 end,
 achieveid={1011},
 patch='unknown',
@@ -5753,7 +5753,7 @@ step
 Congratulation, You are now Exalted with the Horde Expedition!
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Wrath of the Lich King Reputations\\Kalu'ak",{
-description="\nThis guide will walk you through becoming exalted with the Kalu'ak faction.",
+description="This guide will walk you through becoming exalted with the Kalu'ak faction.",
 achieveid={949},
 patch='30001',
 },[[
@@ -6159,7 +6159,7 @@ turnin Gambling Debt##11464 |goto Howling Fjord/0 36.32,80.48
 accept Jack Likes His Drink##11466 |goto Howling Fjord/0 36.32,80.48
 step
 Enter the building |goto Howling Fjord/0 35.28,80.22 < 10 |walk
-talk Olga, the Scalawag Wench##24639
+talk Olga the Scalawag Wench##24639
 |tip Inside the building.
 Select _"I'd like to buy Jack a drink. Perhaps something... extra strong."_
 Click Here After You Buy Jack Adams a Drink |confirm |goto Howling Fjord/0 35.31,79.59 |q 11466
@@ -6493,7 +6493,7 @@ You have completed the available dailies
 Earn Exalted Reputation with the Kalu'ak |complete rep("Kalu'ak") == Exalted |or
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Wrath of the Lich King Reputations\\Kirin Tor",{
-description="\nThis guide will walk you through becoming exalted with the Kirin Tor faction.",
+description="This guide will walk you through becoming exalted with the Kirin Tor faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('Kirin Tor') < Exalted end,
 achieveid={1008},
 patch='30008',
@@ -6613,7 +6613,7 @@ label "exalted"
 Congratulations, you are now Exalted with The Kirin Tor!
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Wrath of the Lich King Reputations\\Knights of the Ebon Blade",{
-description="\nThis guide will walk you through becoming exalted with the Knights of the Ebon Blade faction.",
+description="This guide will walk you through becoming exalted with the Knights of the Ebon Blade faction.",
 achieveid={1009},
 patch='30008',
 },[[
@@ -6756,7 +6756,7 @@ label "exalted"
 Congratulations, you are now Exalted with the Knights of the Ebon Blade!
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Wrath of the Lich King Reputations\\The Oracles",{
-description="\nThis guide will walk you through becoming exalted with the The Oracles faction.",
+description="This guide will walk you through becoming exalted with the The Oracles faction.",
 achieveid={951},
 patch='30008',
 },[[
@@ -6886,7 +6886,7 @@ Click here to go back to the start of the dailies guide.  Keep in mind that they
 Reach Exalted Reputation with The Oracles |c rep("The Oracles")==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Wrath of the Lich King Reputations\\The Sons of Hodir",{
-description="\nThis guide will walk you through becoming exalted with the Sons of Hodir faction.",
+description="This guide will walk you through becoming exalted with the Sons of Hodir faction.",
 },[[
 step
 Proceeding to Prequests next step |next "Daily" |only if rep('The Sons of Hodir')<=Friendly
@@ -7969,7 +7969,7 @@ To restart the Hodir daily quests, click here. |confirm |next "Daily3" |only if 
 Become Exalted with The Sons of Hodir |complete rep('The Sons of Hodir')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Wrath of the Lich King Reputations\\The Wyrmrest Accord",{
-description="\nThis guide will walk you through becoming exalted with The Wyrmrest Accord faction.",
+description="This guide will walk you through becoming exalted with The Wyrmrest Accord faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('The Wyrmrest Accord') < Exalted end,
 achieveid={1007},
 patch='30008',
@@ -8486,7 +8486,7 @@ Congratulation, you are now exalted with The Wyrmrest Accord!
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Cataclysm Reputations\\Avengers of Hyjal",{
 cataready=true,
-description="\nThis guide will walk you through becoming exalted with the Avengers of Hyjal faction.",
+description="This guide will walk you through becoming exalted with the Avengers of Hyjal faction.",
 condition_suggested=function() return level >= 80 and level <= 85 and rep('Avengers of Hyjal') < Exalted end,
 achieveid={5827},
 patch='40200',
@@ -8500,7 +8500,7 @@ Earn Exalted status with the Avengers of Hyjal |complete rep('Avengers of Hyjal'
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Cataclysm Reputations\\The Earthen Ring",{
 cataready=true,
-description="\nThis guide will walk you through becoming exalted with The Earthen Ring faction.",
+description="This guide will walk you through becoming exalted with The Earthen Ring faction.",
 condition_suggested=function() return level >= 80 and level <= 85 and rep('The Earthen Ring') < Exalted end,
 achieveid={4881},
 patch='40003',
@@ -8517,7 +8517,7 @@ Earn Exalted reputation with The Earthen Ring |complete rep('The Earthen Ring')=
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Cataclysm Reputations\\Ramkahen",{
 cataready=true,
-description="\nThis guide will walk you through becoming exalted with the Ramkahen faction.",
+description="This guide will walk you through becoming exalted with the Ramkahen faction.",
 condition_suggested=function() return level >= 80 and level <= 85 and rep('Ramkahen') < Exalted end,
 achieveid={4884},
 patch='40003',
@@ -8571,7 +8571,7 @@ Click Here to Return to Dailies |confirm |next "Reset"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Cataclysm Reputations\\Dragonmaw Clan",{
 cataready=true,
-description="\nThis guide will walk you through becoming exalted with the Dragonmaw Clan faction.",
+description="This guide will walk you through becoming exalted with the Dragonmaw Clan faction.",
 condition_suggested=function() return level >= 80 and level <= 85 and rep('Dragonmaw Clan') < Exalted end,
 achieveid={4886},
 patch='40003',
@@ -8646,7 +8646,7 @@ Earn Exalted reputation with the Dragonmaw Clan|complete rep('Dragonmaw Clan')==
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Cataclysm Reputations\\Hellscream's Reach",{
 cataready=true,
-description="\nThis guide will walk you through becoming exalted with the Hellscream's Reach faction.",
+description="This guide will walk you through becoming exalted with the Hellscream's Reach faction.",
 achieveid={5376},
 patch='40003',
 },[[

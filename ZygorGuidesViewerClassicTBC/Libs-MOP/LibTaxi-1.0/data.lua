@@ -689,7 +689,7 @@ data.flightcost = {
 			[80] = 90, -- Ratchet, The Barrens
 			[179] = 62, -- Mudsprocket, Dustwallow Marsh
 			[391] = 56, -- Desolation Hold, Southern Barrens
-			["521:399"] = 60, -- ?
+			[77] = 60, -- Vendetta Point, Southern Barrens
 			[39] = 205, -- Gadgetzan, Tanaris
 		},
 	},
@@ -833,7 +833,7 @@ data.flightcost = {
 			[55] = 47, -- Brackenwall Village, Dustwallow Marsh
 			[179] = 76, -- Mudsprocket, Dustwallow Marsh
 			[390] = 98, -- Hunter's Hill, Southern Barrens
-			["521:399"] = 48, -- ?
+			[77] = 48, -- Vendetta Point, Southern Barrens
 		},
 	},
 	{
@@ -1105,7 +1105,7 @@ data.flightcost = {
 			[22] = 66, -- Thunder Bluff, Mulgore
 			[25] = 43, -- The Crossroads, The Barrens
 			[391] = 93, -- Desolation Hold, Southern Barrens
-			["521:399"] = 49, -- ?
+			[77] = 49, -- Vendetta Point, Southern Barrens
 		},
 	},
 	{
@@ -1616,7 +1616,7 @@ data.flightcost = {
 			[363] = 115, -- Malaka'jin, Stonetalon Mountains
 			[390] = 49, -- Hunter's Hill, Southern Barrens
 			[458] = 67, -- Nozzlepot's Outpost, The Barrens
-			["521:399"] = 70, -- ?
+			[77] = 70, -- Vendetta Point, Southern Barrens
 			[55] = 163, -- Brackenwall Village, Dustwallow Marsh
 			[58] = 231, -- Zoram'gar Outpost, Ashenvale
 			[39] = 303, -- Gadgetzan, Tanaris
@@ -1689,7 +1689,7 @@ data.flightcost = {
 			[369] = 66, -- Thunk's Abode, Desolace
 			[390] = 66, -- Hunter's Hill, Southern Barrens
 			[402] = 51, -- Bloodhoof Village, Mulgore
-			["521:399"] = 85, -- ?
+			[77] = 85, -- Vendetta Point, Southern Barrens
 			[55] = 238, -- Brackenwall Village, Dustwallow Marsh
 			[58] = 264, -- Zoram'gar Outpost, Ashenvale
 			[39] = 290, -- Gadgetzan, Tanaris
@@ -1728,6 +1728,7 @@ data.flightcost = {
 	},
 	{
 		tag = "521:399",
+		nodeID = 77,
 		name = "Vendetta Point, Southern Barrens",
 		neighbors = {
 			[22] = 117, -- Thunder Bluff, Mulgore
@@ -1749,7 +1750,7 @@ data.flightcost = {
 			[55] = 97, -- Brackenwall Village, Dustwallow Marsh
 			[179] = 83, -- Mudsprocket, Dustwallow Marsh
 			[391] = 100, -- Desolation Hold, Southern Barrens
-			["521:399"] = 122, -- ?
+			[77] = 122, -- Vendetta Point, Southern Barrens
 			[39] = 153, -- Gadgetzan, Tanaris
 			[513] = 118, -- Fizzle & Pozzik's Speedbarge, Thousand Needles
 		},

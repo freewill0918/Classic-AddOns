@@ -1170,7 +1170,7 @@ use the Bright Baubles##6532 |only if skill("Fishing") >= 100
 |tip If you have a better bait, you can use that instead.
 Reach Skill 125 in Fishing |skill Fishing,125 |goto Orgrimmar/1 66.71,41.84
 ]])
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Leveling Guides\\Pandaria Herbalism 1-75")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Leveling Guides\\Herbalism (1-600)")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Inscription\\Leveling Guides\\Inscription (1-600)",{
 mopready=true,
 author="support@zygorguides.com",
@@ -1835,7 +1835,8 @@ step
 create 13 Contender's Wyrmhide Bracers##124592,Leatherworking,13 total |or |usebank
 |complete skill("Leatherworking") >= 600 |or
 ]])
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Leveling Guides\\Pandaria Mining 1-75")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Leveling Guides\\Mining (1-600)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Leveling Guides\\Skinning (1-600)")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Leveling Guides\\Tailoring (1-600)",{
 mopready=true,
 author="support@zygorguides.com",

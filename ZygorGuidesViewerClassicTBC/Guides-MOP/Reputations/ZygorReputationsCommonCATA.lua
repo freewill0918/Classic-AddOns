@@ -3,7 +3,7 @@ if not ZygorGuidesViewer then return end
 if ZGV:DoMutex("ReputationsC") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\The Aldor",{
-description="\nThis guide will walk you through becoming exalted with The Aldor faction.",
+description="This guide will walk you through becoming exalted with The Aldor faction.",
 condition_suggested=function() return level >= 80 and level <= 85 and rep('The Aldor') < Exalted end,
 achieveid={903,1205},
 patch='30001',
@@ -410,7 +410,7 @@ Click here to turn in Marks of Sargeras |next "marks"
 Earn Exalted Status with The Aldor |complete rep('The Aldor')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Burning Crusade Reputations\\Cenarion Expedition",{
-description="\nThis guide will walk you through becoming exalted with the Cenarion Expedition faction.",
+description="This guide will walk you through becoming exalted with the Cenarion Expedition faction.",
 condition_suggested=function() return level >= 80 and level <= 85 and rep('Cenarion Expedition') < Exalted end,
 achieveid={953},
 patch='30001',
@@ -1162,7 +1162,7 @@ kill Loot Crazed Diver##25836s|n
 collect 15 Nesingwary Lackey Ear##35188|q 11866/1 |goto Borean Tundra 53.40,42.70
 step
 Find and kill "Lunchbox"##25968|kill "Lunchbox"##25968|q 11884/2 |goto Borean Tundra 46.40,40
-kill Nedar, Lord of Rhinos##25801|q 11884/1 |goto Borean Tundra 46.40,40
+kill Nedar Lord of Rhinos##25801|q 11884/1 |goto Borean Tundra 46.40,40
 |tip He walks around this area.  Kill 'Lunchbox' and then Nedar, Lord of Rhinos will jump off.
 step
 Stand inside the Caribou Traps on the ground
@@ -1344,7 +1344,7 @@ Keep repeating this quest until you are Exalted with the Cenarion Expedition |co
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Cataclysm Reputations\\Therazane",{
 cataready=true,
-description="\nThis guide will walk you through becoming exalted with the Therazane faction.",
+description="This guide will walk you through becoming exalted with the Therazane faction.",
 condition_suggested=function() return level >= 80 and level <= 85 and rep('Therazane') < Exalted end,
 achieveid={4881},
 patch='40003',
@@ -1357,7 +1357,7 @@ Click here to Load the "Deepholm (82-83)" Leveling Guide |confirm |next "Levelin
 Earn Exalted reputation with Therazane |complete rep('Therazane')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Cataclysm Reputations\\Guardians of Hyjal",{
-description="\nThis guide will walk you through becoming exalted with the Guardians of Hyjal faction.",
+description="This guide will walk you through becoming exalted with the Guardians of Hyjal faction.",
 condition_suggested=function() return level >= 80 and level <= 85 and rep('Guardians of Hyjal') < Exalted end,
 achieveid={5827},
 patch='40200',
@@ -2495,7 +2495,7 @@ stickystart "Kill_Horrorguard"
 step
 use the Talisman of Flame Ascendancy##54814
 |tip Use the abilities on your hotbar to fight Garnoth.
-kill Garnoth, Fist of the Legion##39726 |q 25310/1 |goto Mount Hyjal 64.76,64.67
+kill Garnoth Fist of the Legion##39726 |q 25310/1 |goto Mount Hyjal 64.76,64.67
 step
 label "Kill_Horrorguard"
 kill 10 Horrorguard##39724 |q 25311/1 |goto Mount Hyjal 66.60,66.90

@@ -6436,7 +6436,7 @@ talk Elder Ohanzee##30537
 |tip Open the world map to see an ant trail guiding you to your destination.
 accept Ohanzee the Elder##13065 |goto Gundrak/1 45.34,61.08
 step
-map Utgarde Keep/0
+map Utgarde Keep/1
 path follow smart; loop off; ants curved; dist 20
 path	68.72,70.54	63.56,46.67	62.27,40.22	65.57,29.03	58.82,23.44
 path	50.07,28.17	43.76,27.31	34.00,32.04	24.10,38.93	26.40,51.83
@@ -6444,7 +6444,7 @@ path	28.26,61.94	21.66,76.35	28.69,87.53	39.60,86.02	49.21,81.94
 path	47.32,69.46
 talk Elder Jarten##30531
 |tip Open the world map to see an ant trail guiding you to your destination.
-accept Jarten the Elder##13017 |goto Utgarde Keep/0 47.32,69.46
+accept Jarten the Elder##13017 |goto Utgarde Keep/1 47.32,69.46
 step
 map Utgarde Pinnacle/1
 path follow smart; loop off; ants curved; dist 20

@@ -6,3 +6,4 @@
 ## Dependencies: RXPGuides
 Classic/Custom (1).lua
 Classic/Custom (2).lua
+Classic/Custom (3).lua

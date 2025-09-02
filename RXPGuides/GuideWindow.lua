@@ -650,6 +650,7 @@ function addon.SetStep(n, n2, loopback)
     table.wipe(addon.questTurnIn)
     table.wipe(addon.activeItems)
     table.wipe(addon.activeSpells)
+    table.wipe(addon.activeMacros)
     table.wipe(addon.inventoryManager.itemsToOpen)
     ClearFrameData()
     local level = UnitLevel("player")
@@ -697,11 +698,14 @@ function addon.SetStep(n, n2, loopback)
     elseif step and not step.completed and
         not (req and #activeSteps > 0 and (req.active or not (req.reqFulfilled))) and
         level >= step.level then
+        step.completed = false
+        addon.settings.ReplaceColors(step)
         tinsert(activeSteps, step)
         ScrollChild.framePool[n]:SetAlpha(1)
         step.active = true
         scrollHeight = n
         if step.tipWindow then
+            step.tipWindow.completed = false
             tinsert(activeSteps,step.tipWindow)
             step.tipWindow.active = true
         end
@@ -847,7 +851,12 @@ function addon.SetStep(n, n2, loopback)
                     local parent = self:GetParent()
                     local element = parent.element
                     if element and not element.optional then
-                        element.skip = self:GetChecked()
+                        local skip = self:GetChecked()
+                        if element.OnComplete and skip and not element.skip then
+                            element.OnComplete(element)
+                        end
+                        element.skip = skip
+
                     end
                     addon.updateSteps = true
                     addon.UpdateMap()
@@ -992,6 +1001,11 @@ function addon.SetStep(n, n2, loopback)
             if step.activeSpells then
                 for k, v in pairs(step.activeSpells) do
                     addon.activeSpells[k] = v
+                end
+            end
+            if step.activeMacros then
+                for k, v in pairs(step.activeMacros) do
+                    addon.activeMacros[k] = v
                 end
             end
         else

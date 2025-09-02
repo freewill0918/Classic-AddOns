@@ -206,6 +206,24 @@ clicknpc Mongoose Pup##63954
 |tip You may need to attempt the trap several times.
 learnpet Mongoose Pup##739 |goto Townlong Steppes/0 21.00,57.60
 ]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Sa'bak's Favored",{
+patch='51000',
+source='In-GameShop',
+description="This guide will teach you how to acquire the Sa'bak's Favored battle pet.",
+pet=4850,
+mopready=true,
+},[[
+step
+May be Available for Purchase in the Blizzard Online Store
+|tip Check the Blizzard Online Shop and purchase the battle pet.
+|tip May also be awarded if you have a 6 month sub.
+|tip Once purchased or awarded, you may need to unwrap in your pet inventory.
+collect 1 Sa'bak's Favored##239082 |or
+'|complete haspet(4850) |or
+step
+use Sa'bak's Favored##239082
+learnpet Sa'bak's Favored##4850
+]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Sifang Otter",{
 patch='50100',
 source='PetBattle',
@@ -1072,22 +1090,22 @@ step
 Defeat three champions of Pandaria in a pet battle |scenariogoal 1/23601 |q 33137 |next "phasetwo"
 step
 label "phasetwo"
-talk Yu'la, Broodling of Yu'lon##73507
+talk Yu'la Broodling of Yu'lon##73507
 Tell him, "Let's do this!"
 |tip Yu'la is a Dragonkin type pet. Use Humanoid attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Yu'la, Broodling of Yu'lon in a pet battle |scenariogoal 2/23613 |goto Celestial Tournament/0 38.90,56.70
 step
-talk Xu-Fu, Cub of Xuen##73505
+talk Xu-Fu Cub of Xuen##73505
 Tell him, "Let's do this!"
 |tip Xu-Fu is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Xu-Fu, Cub of Xuen in a pet battle |scenariogoal 2/23612 |goto Celestial Tournament/0 40.00,55.20
 step
-talk Zao, Calfling of Niuzao##73506
+talk Zao Calfling of Niuzao##73506
 Tell him, "Let's do this!"
 |tip Zao is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Zao, Calfling of Niuzao in a pet battle |scenariogoal 2/23614 |goto Celestial Tournament/0 39.00,53.80
 step
-talk Chi-Chi, Hatchling of Chi-Ji##73503
+talk Chi-Chi Hatchling of Chi-Ji##73503
 Tell him, "Let's do this!"
 |tip Chi-Chi is a Flying type pet. Use Magic attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Chi-Chi, Hatchling of Chi-Ji in a pet battle |scenariogoal 2/23615 |goto Celestial Tournament/0 38.00,55.20
@@ -1101,7 +1119,7 @@ step
 talk Master Li##73082
 buy 1 Xu-Fu, Cub of Xuen##101771 |goto Timeless Isle/0 34.80,59.70
 step
-use Xu-Fu, Cub of Xuen##101771
+use Xu-Fu Cub of Xuen##101771
 learnpet Xu-Fu, Cub of Xuen##1266
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Beast Pets\\Zandalari Anklerender",{
@@ -1265,22 +1283,22 @@ step
 Defeat three champions of Pandaria in a pet battle |scenariogoal 1/23601 |q 33137 |next "phasetwo"
 step
 label "phasetwo"
-talk Yu'la, Broodling of Yu'lon##73507
+talk Yu'la Broodling of Yu'lon##73507
 Tell him, "Let's do this!"
 |tip Yu'la is a Dragonkin type pet. Use Humanoid attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Yu'la, Broodling of Yu'lon in a pet battle |scenariogoal 2/23613 |goto Celestial Tournament/0 38.90,56.70
 step
-talk Xu-Fu, Cub of Xuen##73505
+talk Xu-Fu Cub of Xuen##73505
 Tell him, "Let's do this!"
 |tip Xu-Fu is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Xu-Fu, Cub of Xuen in a pet battle |scenariogoal 2/23612 |goto Celestial Tournament/0 40.00,55.20
 step
-talk Zao, Calfling of Niuzao##73506
+talk Zao Calfling of Niuzao##73506
 Tell him, "Let's do this!"
 |tip Zao is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Zao, Calfling of Niuzao in a pet battle |scenariogoal 2/23614 |goto Celestial Tournament/0 39.00,53.80
 step
-talk Chi-Chi, Hatchling of Chi-Ji##73503
+talk Chi-Chi Hatchling of Chi-Ji##73503
 Tell him, "Let's do this!"
 |tip Chi-Chi is a Flying type pet. Use Magic attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Chi-Chi, Hatchling of Chi-Ji in a pet battle |scenariogoal 2/23615 |goto Celestial Tournament/0 38.00,55.20
@@ -1294,7 +1312,7 @@ step
 talk Master Li##73082
 buy 1 Zao, Calfling of Niuzao##102146 |goto Timeless Isle/0 34.80,59.70
 step
-use Zao, Calfling of Niuzao##102146
+use Zao Calfling of Niuzao##102146
 learnpet Zao, Calfling of Niuzao##1305
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Beast Pets\\Zooey Snake",{
@@ -1722,6 +1740,24 @@ step
 use the Azure Cloud Serpent Egg##167051
 learnpet Azure Windseeker##2583
 ]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Cypress",{
+patch='51000',
+source='In-GameShop',
+description="This guide will teach you how to acquire the Cypress battle pet.",
+pet=4273,
+mopready=true,
+},[[
+step
+May be Available for Purchase in the Blizzard Online Store
+|tip Check the Blizzard Online Shop and purchase the battle pet.
+|tip May also be awarded if you have a 6 month sub.
+|tip Once purchased or awarded, you may need to unwrap in your pet inventory.
+collect 1 Cypress##209877 |or
+'|complete haspet(4273) |or
+step
+use Cypress##209877
+learnpet Cypress##4273
+]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Dragonkin Pets\\Phoenix Hawk Hatchling",{
 patch='53000',
 source='Drop',
@@ -1872,22 +1908,22 @@ step
 Defeat three champions of Pandaria in a pet battle |scenariogoal 1/23601 |q 33137 |next "phasetwo"
 step
 label "phasetwo"
-talk Yu'la, Broodling of Yu'lon##73507
+talk Yu'la Broodling of Yu'lon##73507
 Tell him, "Let's do this!"
 |tip Yu'la is a Dragonkin type pet. Use Humanoid attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Yu'la, Broodling of Yu'lon in a pet battle |scenariogoal 2/23613 |goto Celestial Tournament/0 38.90,56.70
 step
-talk Xu-Fu, Cub of Xuen##73505
+talk Xu-Fu Cub of Xuen##73505
 Tell him, "Let's do this!"
 |tip Xu-Fu is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Xu-Fu, Cub of Xuen in a pet battle |scenariogoal 2/23612 |goto Celestial Tournament/0 40.00,55.20
 step
-talk Zao, Calfling of Niuzao##73506
+talk Zao Calfling of Niuzao##73506
 Tell him, "Let's do this!"
 |tip Zao is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Zao, Calfling of Niuzao in a pet battle |scenariogoal 2/23614 |goto Celestial Tournament/0 39.00,53.80
 step
-talk Chi-Chi, Hatchling of Chi-Ji##73503
+talk Chi-Chi Hatchling of Chi-Ji##73503
 Tell him, "Let's do this!"
 |tip Chi-Chi is a Flying type pet. Use Magic attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Chi-Chi, Hatchling of Chi-Ji in a pet battle |scenariogoal 2/23615 |goto Celestial Tournament/0 38.00,55.20
@@ -1901,7 +1937,7 @@ step
 talk Master Li##73082
 buy 1 Yu'la, Broodling of Yu'lon##102147 |goto Timeless Isle/0 34.80,59.70
 step
-use Yu'la, Broodling of Yu'lon##102147
+use Yu'la Broodling of Yu'lon##102147
 learnpet Yu'la, Broodling of Yu'lon##1304
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Elemental Pets\\Cinder Kitten",{
@@ -2336,22 +2372,22 @@ step
 Defeat three champions of Pandaria in a pet battle |scenariogoal 1/23601 |q 33137 |next "phasetwo"
 step
 label "phasetwo"
-talk Yu'la, Broodling of Yu'lon##73507
+talk Yu'la Broodling of Yu'lon##73507
 Tell him, "Let's do this!"
 |tip Yu'la is a Dragonkin type pet. Use Humanoid attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Yu'la, Broodling of Yu'lon in a pet battle |scenariogoal 2/23613 |goto Celestial Tournament/0 38.90,56.70
 step
-talk Xu-Fu, Cub of Xuen##73505
+talk Xu-Fu Cub of Xuen##73505
 Tell him, "Let's do this!"
 |tip Xu-Fu is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Xu-Fu, Cub of Xuen in a pet battle |scenariogoal 2/23612 |goto Celestial Tournament/0 40.00,55.20
 step
-talk Zao, Calfling of Niuzao##73506
+talk Zao Calfling of Niuzao##73506
 Tell him, "Let's do this!"
 |tip Zao is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Zao, Calfling of Niuzao in a pet battle |scenariogoal 2/23614 |goto Celestial Tournament/0 39.00,53.80
 step
-talk Chi-Chi, Hatchling of Chi-Ji##73503
+talk Chi-Chi Hatchling of Chi-Ji##73503
 Tell him, "Let's do this!"
 |tip Chi-Chi is a Flying type pet. Use Magic attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Chi-Chi, Hatchling of Chi-Ji in a pet battle |scenariogoal 2/23615 |goto Celestial Tournament/0 38.00,55.20
@@ -2371,7 +2407,7 @@ step
 talk Master Li##73082
 buy 1 Chi-Chi, Hatchling of Chi-Ji##102145 |goto Timeless Isle/0 34.80,59.70
 step
-use Chi-Chi, Hatchling of Chi-Ji##102145
+use Chi-Chi Hatchling of Chi-Ji##102145
 learnpet Chi-Chi, Hatchling of Chi-Ji##1303
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Effervescent Glowfly",{

@@ -117,7 +117,7 @@ function addon.DrawArrow(self)
     if dist ~= self.distance then
         self.distance = dist
         local step = element.step
-        local title = step and (step.title or step.index and ("Step "..step.index))
+        local title = step and (step.arrowtext or step.title or step.index and ("Step "..step.index))
         if element.title then
             for RXP_ in string.gmatch(element.title, "RXP_[A-Z]+_") do
                 element.title = element.title:gsub(RXP_, addon.guideTextColors[RXP_] or
@@ -1149,7 +1149,7 @@ function addon.UpdateGotoSteps()
                     if element.arrow and element.wpHash then
                         --print(element.arrow,element.skip,element.wpHash)
                         local wp = RXPCData.completedWaypoints[step.index or "tip"]
-                        if element.skip or (wp and wp[element.wpHash]) then
+                        if element.skip or wp and wp[element.wpHash] then
                             element.skip = false
                             if wp then
                                 wp[element.wpHash] = false

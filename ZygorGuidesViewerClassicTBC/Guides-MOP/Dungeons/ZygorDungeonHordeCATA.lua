@@ -10012,7 +10012,7 @@ step
 use the Fel Cannon Activator##25770
 Destroy Forge Camp: Hate |q 10011/1 |goto Nagrand/0 25.04,35.89
 step
-kill Xirkos, Overseer of Fear##18536
+kill Xirkos Overseer of Fear##18536
 collect Fel Cannon Activator##25771 |q 10011 |goto Nagrand/0 19.60,51.12
 step
 use the Fel Cannon Activator##25771
@@ -11735,7 +11735,7 @@ accept Grom'tor, Son of Oronok##10521 |goto Shadowmoon Valley/0 53.92,23.53
 accept Ar'tor, Son of Oronok##10527 |goto Shadowmoon Valley/0 53.92,23.53
 accept Borak, Son of Oronok##10546 |goto Shadowmoon Valley/0 53.92,23.53
 step
-talk Grom'tor, Son of Oronok##21291
+talk Grom'tor Son of Oronok##21291
 |tip He walks around this area.
 turnin Grom'tor, Son of Oronok##10521 |goto Shadowmoon Valley/0 44.60,23.67
 accept The Cipher of Damnation - Grom'tor's Charge##10522 |goto Shadowmoon Valley/0 44.60,23.67
@@ -11747,7 +11747,7 @@ click Coilskar Chest##184716+
 |tip They look like big gray stone containers around this area.
 collect First Fragment of the Cipher of Damnation##30428 |q 10522/1 |goto Shadowmoon Valley/0 46.59,27.86
 step
-talk Grom'tor, Son of Oronok##21291
+talk Grom'tor Son of Oronok##21291
 |tip He walks around this area.
 turnin The Cipher of Damnation - Grom'tor's Charge##10522 |goto Shadowmoon Valley/0 44.60,23.67
 accept The Cipher of Damnation - The First Fragment Recovered##10523 |goto Shadowmoon Valley/0 44.60,23.67
@@ -11755,21 +11755,21 @@ step
 talk Oronok Torn-heart##21183
 turnin The Cipher of Damnation - The First Fragment Recovered##10523 |goto Shadowmoon Valley/0 53.92,23.52
 step
-talk Ar'tor, Son of Oronok##21292
+talk Ar'tor Son of Oronok##21292
 turnin Ar'tor, Son of Oronok##10527 |goto Shadowmoon Valley/0 29.63,50.40
 accept Demonic Crystal Prisons##10528 |goto Shadowmoon Valley/0 29.63,50.40
 step
 kill Painmistress Gabrissa##21309+
 collect Crystalline Key##30442 |q 10528/1 |goto Shadowmoon Valley/0 28.01,47.58
 step
-talk Ar'tor, Son of Oronok##21292
+talk Ar'tor Son of Oronok##21292
 turnin Demonic Crystal Prisons##10528 |goto Shadowmoon Valley/0 29.63,50.40
 step
 talk Spirit of Ar'tor##21318
 accept Lohn'goron, Bow of the Torn-heart##10537 |goto Shadowmoon Valley/0 29.54,50.56
 step
 Kill Illidari enemies around this area
-collect Lohn'goron, Bow of the Torn-Heart##30451 |q 10537/1 |goto Shadowmoon Valley/0 30.23,52.41
+collect Lohn'goron Bow of the Torn-Heart##30451 |q 10537/1 |goto Shadowmoon Valley/0 30.23,52.41
 step
 talk Spirit of Ar'tor##21318
 turnin Lohn'goron, Bow of the Torn-heart##10537 |goto Shadowmoon Valley/0 29.54,50.56
@@ -11782,7 +11782,7 @@ talk Spirit of Ar'tor##21318
 turnin The Cipher of Damnation - Ar'tor's Charge##10540 |goto Shadowmoon Valley/0 29.54,50.56
 accept The Cipher of Damnation - The Second Fragment Recovered##10541 |goto Shadowmoon Valley/0 29.54,50.56
 step
-talk Borak, Son of Oronok##21293
+talk Borak Son of Oronok##21293
 turnin Borak, Son of Oronok##10546 |goto Shadowmoon Valley/0 47.56,57.17
 accept Of Thistleheads and Eggs...##10547 |goto Shadowmoon Valley/0 47.56,57.17
 step
@@ -11797,7 +11797,7 @@ talk Tobias the Filth Gorger##21411
 turnin Of Thistleheads and Eggs...##10547 |goto Shattrath City/0 63.94,70.04
 accept The Bundle of Bloodthistle##10550 |goto Shattrath City/0 63.94,70.04
 step
-talk Borak, Son of Oronok##21293
+talk Borak Son of Oronok##21293
 turnin The Bundle of Bloodthistle##10550 |goto Shadowmoon Valley/0 47.55,57.18
 accept To Catch A Thistlehead##10570 |goto Shadowmoon Valley/0 47.55,57.18
 step
@@ -11807,14 +11807,14 @@ Watch the dialogue
 kill Envoy Icarius##21409
 collect Stormrage Missive##30617 |q 10570/1 |goto Shadowmoon Valley/0 48.97,57.50
 step
-talk Borak, Son of Oronok##21293
+talk Borak Son of Oronok##21293
 turnin To Catch A Thistlehead##10570 |goto Shadowmoon Valley/0 47.55,57.18
 accept The Shadowmoon Shuffle##10576 |goto Shadowmoon Valley/0 47.55,57.18
 step
 Kill Eclipsion enemies around this area
 collect 6 Eclipsion Armor##30640 |q 10576/1 |goto Shadowmoon Valley/0 48.21,65.82
 step
-talk Borak, Son of Oronok##21293
+talk Borak Son of Oronok##21293
 turnin The Shadowmoon Shuffle##10576 |goto Shadowmoon Valley/0 47.55,57.18
 accept What Illidan Wants, Illidan Gets...##10577 |goto Shadowmoon Valley/0 47.55,57.18
 step
@@ -11825,7 +11825,7 @@ talk Grand Commander Ruusk##20563
 Select _"I bring word from Lord Illidan."_
 Deliver Illidan's Message |q 10577/1 |goto Shadowmoon Valley/0 46.45,71.93
 step
-talk Borak, Son of Oronok##21293
+talk Borak Son of Oronok##21293
 turnin What Illidan Wants, Illidan Gets...##10577 |goto Shadowmoon Valley/0 47.55,57.18
 accept The Cipher of Damnation - Borak's Charge##10578 |goto Shadowmoon Valley/0 47.56,57.18
 step
@@ -11835,7 +11835,7 @@ kill Ruul the Darkener##21315
 |tip You may need help with this.
 collect Third Fragment of the Cipher of Damnation##30645 |q 10578/1 |goto Shadowmoon Valley/0 60.69,56.85
 step
-talk Borak, Son of Oronok##21293
+talk Borak Son of Oronok##21293
 turnin The Cipher of Damnation - Borak's Charge##10578 |goto Shadowmoon Valley/0 47.55,57.18
 accept The Cipher of Damnation - The Third Fragment Recovered##10579 |goto Shadowmoon Valley/0 47.55,57.18
 step
@@ -19006,8 +19006,8 @@ kill Evolved Twilight Zealot##39987
 |tip
 Click Here to Continue |confirm
 step
-kill Corla, Herald of Twilight##39679 |goto Blackrock Caverns/1 27.40,16.60 |only if not haveq(28737)
-kill Corla, Herald of Twilight##39679 |goto Blackrock Caverns/1 27.40,16.60 |q 28737/1 |or |only if haveq(28737)
+kill Corla Herald of Twilight##39679 |goto Blackrock Caverns/1 27.40,16.60 |only if not haveq(28737)
+kill Corla Herald of Twilight##39679 |goto Blackrock Caverns/1 27.40,16.60 |q 28737/1 |or |only if haveq(28737)
 _EVERYONE:_ |grouprole EVERYONE
 |tip Have healers and Ranged DPS interrupt the 2 beams Corla channels to the Twilight Zealots. |grouprole EVERYONE
 |tip This is accomplished by standing between Corla and her target, absorbing the beam yoruself. |grouprole EVERYONE

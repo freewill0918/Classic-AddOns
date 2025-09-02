@@ -10,4 +10,5 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Daily Guides\\Mists of Pandaria Dail
 ZygorGuidesViewer:RegisterGuidePlaceholder("Daily Guides\\Mists of Pandaria Dailies\\The Tillers Dailies")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Daily Guides\\Mists of Pandaria Dailies\\The Golden Lotus Dailies")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Daily Guides\\Mists of Pandaria Dailies\\The Klaxxi Dailies")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Daily Guides\\Mists of Pandaria Dailies\\Pandaria Cooking Dailies")
 ZGV.BETAEND()

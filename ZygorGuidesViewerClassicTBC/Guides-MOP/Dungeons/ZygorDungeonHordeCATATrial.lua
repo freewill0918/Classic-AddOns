@@ -536,8 +536,8 @@ kill Evolved Twilight Zealot##39987
 |tip
 Click Here to Continue |confirm
 step
-kill Corla, Herald of Twilight##39679 |goto Blackrock Caverns/1 27.40,16.60 |only if not haveq(28737)
-kill Corla, Herald of Twilight##39679 |goto Blackrock Caverns/1 27.40,16.60 |q 28737/1 |or |only if haveq(28737)
+kill Corla Herald of Twilight##39679 |goto Blackrock Caverns/1 27.40,16.60 |only if not haveq(28737)
+kill Corla Herald of Twilight##39679 |goto Blackrock Caverns/1 27.40,16.60 |q 28737/1 |or |only if haveq(28737)
 _EVERYONE:_ |grouprole EVERYONE
 |tip Have healers and Ranged DPS interrupt the 2 beams Corla channels to the Twilight Zealots. |grouprole EVERYONE
 |tip This is accomplished by standing between Corla and her target, absorbing the beam yoruself. |grouprole EVERYONE

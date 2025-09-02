@@ -5359,3 +5359,1503 @@ ZygorGuidesViewer:RegisterInclude("H_Therazane_PreQuest",[[
 		talk Therazane##42465
 		turnin The Stone Throne##26709 |goto 56.40,12.10
 ]])
+
+ZygorGuidesViewer:RegisterInclude("H_Beasts_of_Fable_D",[[
+		talk Gentle San##64582
+		accept Beasts of Fable Book I##32604 |goto Vale of Eternal Blossoms 60.80,23.70
+		accept Beasts of Fable Book II##32868 |goto Vale of Eternal Blossoms 60.80,23.70
+		accept Beasts of Fable Book III##32869 |goto Vale of Eternal Blossoms 60.80,23.70
+		accept Pandaren Spirit Tamer##32428 |goto Vale of Eternal Blossoms 60.80,23.70 |only if not completedq(32428)
+	step
+		_No-No_
+		This enemy is aquatic
+		It is strong against undead and weak to flying attacks
+		I would suggest that you use flying pets against this enemy
+		No-No defeated |q 32869/2 |goto Vale of Eternal Blossoms 11.00,70.90
+	step
+		_Lucky Yi_
+		This enemy is a critter
+		Is is strong against Elementals and weak to beast attacks
+		I would suggest using beast pets against this enemy
+		Lucky Yi defeated |q 32868/2 |goto Valley of the Four Winds 40.50,43.70
+	step
+		_Greyhoof_
+		This enemy is a beast
+		It is strong against humanoids and weak against mechanical pets
+		I would suggest using a team of mechanical pets against this enemy
+		Greyhoof defeated |q 32868/1 |goto Valley of the Four Winds 25.30,78.50
+	step
+		_Skitterer Xi'a_
+		This enemy is aquatic
+		It is strong against undead and weak to flying pets
+		I would suggest using flying pets against this enemy
+		Xi'a defeated |q 32868/3 |goto Krasarang Wilds 36.30,37.30
+	step
+		_Flowing Pandaren Spirit_
+		This enemy uses aquatic and elemental pets
+		They are strong against undead and mechanical and weak to flying and aquatic pets
+		I would suggest using flying and aquatic pets against this enemy
+		Flowing Pandaren Spirit defeated |q 32428/4 |goto Dread Wastes 61.10,87.50
+		|only if haveq(32428)
+	step
+		talk Flowing Pandaren Spirit##68462
+		accept Flowing Pandaren Spirit##32439 |goto Dread Wastes 61.10,87.50
+		|only if completedq(32428)
+	step
+		_Flowing Pandaren Spirit_
+		This enemy uses aquatic and elemental pets
+		They are strong against undead and mechanical and weak to flying and aquatic pets
+		I would suggest using flying and aquatic pets against this enemy
+		Flowing Pandaren Spirit defeated |q 32439/1 |goto Dread Wastes 61.10,87.50
+		|only if haveq(32439)
+	step
+		talk Flowing Pandaren Spirit##68462
+		turnin Flowing Pandaren Spirit##32439 |goto Dread Wastes 61.10,87.50
+		|only if haveq(32439)
+	step
+		_Gorespine_
+		This enemy is a beast
+		It is strong against humanoids and weak against mechanical pets
+		I would suggest using a team of mechanical pets against this enemy
+		Gorespine defeated |q 32869/1 |goto Dread Wastes 26.10,50.20
+	step
+		_Ti'un the Wanderer_
+		This enemy is aquatic
+		It is strong against undead and weak to flying pets
+		I would suggest using flying pets against this enemy
+		Ti'un the Wanderer defeated |q 32869/3 |goto Townlong Steppes 72.30,79.80
+	step
+		_Burning Pandaren Spirit_
+		This enemy uses a dragonkin, flying and elemental pet
+		They are strong against flying, beast, and mechanical pets, respectively
+		They are weak against humanoid, magic, and aquatic pets, respectively
+		I would suggest using a humanoid, magic, and aquatic pet against this enemy
+		Burning Pandaren Spirit defeated |q 32428/1 |goto Townlong Steppes 57.10,42.10
+		|only if haveq(32428)
+	step
+		talk Burning Pandaren Spirit##68463
+		accept Burning Pandaren Spirit##32434 |goto Townlong Steppes 57.10,42.10
+		|only if completedq(32428)
+	step
+		_Burning Pandaren Spirit_
+		This enemy uses a dragonkin, flying and elemental pet
+		They are strong against flying, beast, and mechanical pets, respectively
+		They are weak against humanoid, magic, and aquatic pets, respectively
+		I would suggest using a humanoid, magic, and aquatic pet against this enemy
+		Burning Pandaren Spirit defeated |q 32434/1 |goto Townlong Steppes 57.10,42.10
+		|only if haveq(32434)
+	step
+		talk Burning Pandaren Spirit##68463
+		turnin Burning Pandaren Spirit##32434 |goto Townlong Steppes 57.10,42.10
+		|only if haveq(32434)
+	step
+		_Kafi_
+		This enemy is a beast
+		It is strong against humanoids and weak against mechanical pets
+		I would suggest using a team of mechanical pets against this enemy
+		Kafi defeated |q 32604/2 |goto Kun-Lai Summit 35.20,56.20
+	step
+		_Thundering Pandaren Spirit_
+		This enemy uses a beast, elemental, and magic pet
+		They are strong against humanoids, mechanical, and aquatic pets, respectively
+		They are weak against mechanical, aquatic, and dragonkin pets, respectively
+		I would suggest using a mechanical, aquatic, and dragonkin pet against this enemy
+		Thundering Pandaren Spirit defeated |q 32428/2 |goto Kun-Lai Summit 64.90,93.80
+		|only if haveq(32428)
+	step
+		talk Thundering Pandaren Spirit##68465
+		accept Thundering Pandaren Spirit##32441 |goto Kun-Lai Summit 64.90,93.80
+		|only if completedq(32428)
+	step
+		_Thundering Pandaren Spirit_
+		This enemy uses a beast, elemental, and magic pet
+		They are strong against humanoids, mechanical, and aquatic pets, respectively
+		They are weak against mechanical, aquatic, and dragonkin pets, respectively
+		I would suggest using a mechanical, aquatic, and dragonkin pet against this enemy
+		Thundering Pandaren Spirit defeated |q 32441/1 |goto Kun-Lai Summit 64.90,93.80
+		|only if haveq(32441)
+	step
+		talk Thundering Pandaren Spirit##68465
+		turnin Thundering Pandaren Spirit##32441 |goto Kun-Lai Summit 64.90,93.80
+		|only if haveq(32441)
+	step
+		_Dos-Ryga_
+		This enemy is aquatic
+		It is strong against undead and weak to flying pets
+		I would suggest using flying pets against this enemy
+		Dos-Ryga defeated |q 32604/3 |goto Kun-Lai Summit 67.90,84.70
+	step
+		_Whispering Pandaren Spirit_
+		This enemy uses a flying, elemental, and dragonkin pet
+		They are strong against beast, mechanical, and flying pets, respectively
+		They are weak against magic, aquatic, and humanoid pets, respectively
+		I would suggest using a magic, aquatic, and humanoid pet against this enemy
+		Whispering Pandaren Spirit defeated |q 32428/3 |goto The Jade Forest 28.90,36
+		|only if haveq(32428)
+	step
+		talk Whispering Pandaren Spirit##68464
+		accept Whispering Pandaren Spirit##32440 |goto The Jade Forest 28.90,36
+		|only if completedq(32428)
+	step
+		_Whispering Pandaren Spirit_
+		This enemy uses a flying, elemental, and dragonkin pet
+		They are strong against beast, mechanical, and flying pets, respectively
+		They are weak against magic, aquatic, and humanoid pets, respectively
+		I would suggest using a magic, aquatic, and humanoid pet against this enemy
+		Whispering Pandaren Spirit defeated |q 32440/1 |goto The Jade Forest 28.90,36
+		|only if haveq(32440)
+	step
+		talk Whispering Pandaren Spirit##68464
+		turnin Whispering Pandaren Spirit##32440 |goto The Jade Forest 28.90,36
+		|only if haveq(32440)
+	step
+		_Ka'wi the Gorger_
+		This enemy is a critter
+		Is is strong against Elementals and weak to beast attacks
+		I would suggest using a team of mechanical pets against this enemy
+		Ka'wi the Gorger defeated |q 32604/1 |goto The Jade Forest 48.40,71.00
+	step
+		_Nitun_
+		This enemy is a critter
+		Is is strong against Elementals and weak to beast attacks
+		I would suggest using beast pets against this enemy
+		Nitun defeated |q 32604/4 |goto The Jade Forest 57.00,29.10
+	step
+		talk Gentle San##64582
+		turnin Beasts of Fable Book I##32604 |goto Vale of Eternal Blossoms 60.80,23.70
+		turnin Beasts of Fable Book II##32868 |goto Vale of Eternal Blossoms 60.80,23.70
+		turnin Beasts of Fable Book III##32869 |goto Vale of Eternal Blossoms 60.80,23.70
+		turnin Pandaren Spirit Tamer##32428 |only if not completedq(32428) |goto Vale of Eternal Blossoms 60.80,23.70
+]])
+
+-----------------------
+----- The Tillers -----
+-----------------------
+
+ZygorGuidesViewer:RegisterInclude("Tillers_Dailies",[[
+		Proceeding to the Tiller's Dailies  |next "dailies" |complete completedq(31945) |only if completedq(31945)
+		Proceeding to the Tiller's Prequests |next |complete not completedq(31945) |only if not completedq(31945)
+	step
+	label "Tillers_Prequests"
+		talk Farmer Yoon##58721
+		accept A Helping Hand##30252 |goto Valley of the Four Winds/0 52.02,48.01
+	step
+		clicknpc Unbudging Rock##58719
+		Clear the First Unbudging Rock |q 30252/1 |goto 52.23,47.66 |count 1
+	step
+		clicknpc Unbudging Rock##58719
+		Clear the Second Unbudging Rock |q 30252/1 |goto 52.10,48.02 |count 2
+	step
+		clicknpc Unbudging Rock##58719
+		Clear the Third Unbudging Rock |q 30252/1 |goto 51.89,48.39 |count 3
+	step
+		clicknpc Unbudging Rock##58719
+		Clear the Fourth Unbudging Rock |q 30252/1 |goto 51.70,48.70 |count 4
+	step
+		clicknpc Unbudging Rock##58719
+		Clear the Fifth Unbudging Rock |q 30252/1 |goto 51.55,49.30 |count 5
+	step
+		clicknpc Unbudging Rock##58719
+		Clear the Sixth Unbudging Rock |q 30252/1 |goto 51.90,49.16 |count 6
+	step
+		clicknpc Unbudging Rock##58719
+		Clear the Seventh Unbudging Rock |q 30252/1 |goto 52.36,49.23 |count 7
+	step
+		clicknpc Unbudging Rock##58719
+		Clear the Final Unbudging Rock |q 30252/1 |goto 52.83,49.86 |count 8
+	step
+		Go up the stairs |goto 52.22,48.47 < 7 |only if walking
+		Enter the building |goto 52.56,48.12 < 7 |walk
+		talk Farmer Yoon##58646
+		turnin A Helping Hand##30252 |goto 52.75,47.94
+	step
+		Leave the building |goto 52.53,48.15 < 5 |walk
+		Go down the stairs |goto 52.20,48.49 < 7 |only if walking
+		talk Farmer Yoon##58646
+		|tip Wait for the dialogue to complete.
+		accept Learn and Grow I: Seeds##30535 |goto 52.25,48.79
+	step
+		Follow the path |goto 52.64,50.43 < 10 |only if walking
+		Follow the path |goto 53.16,51.39 < 10 |only if walking
+		talk Merchant Greenfield##58718
+		Tell him _"I'm here to pick up seeds for Farmer Yoon."_
+		Get a Packet of Green Cabbage Seeds |q 30535/1 |goto 52.88,52.14
+	step
+		Follow the path |goto 53.15,51.03 < 10 |only if walking
+		talk Farmer Yoon##58646
+		turnin Learn and Grow I: Seeds##30535 |goto 52.25,48.79
+		accept Learn and Grow II: Tilling and Planting##30254 |goto 52.25,48.79
+	step
+		clicknpc Untilled Soil##59985
+		Till the Soil |q 30254/1 |goto 52.01,48.44 |count 1
+	step
+		use EZ-Gro Green Cabbage Seeds##80302
+		Plant the First EZ-Gro Green Cabbage Seed |q 30254/2 |goto 52.01,48.44 |count 1
+	step
+		clicknpc Untilled Soil##59985
+		Till the Soil |q 30254/1 |goto 52.03,48.25 |count 2
+	step
+		use EZ-Gro Green Cabbage Seeds##80302
+		Plant the First EZ-Gro Green Cabbage Seed |q 30254/2 |goto 52.03,48.25 |count 2
+	step
+		talk Farmer Yoon##58646
+		turnin Learn and Grow II: Tilling and Planting##30254 |goto 52.25,48.79
+		accept Learn and Grow III: Tending Crops##30255 |goto 52.25,48.79
+	step
+		use Rusty Watering Can##79104
+		Water the First Parched EZ-Gro Green Cabbage |q 30255/1 |goto 52.01,48.44 |count 1
+	step
+		use Rusty Watering Can##79104
+		Water the Second Parched EZ-Gro Green Cabbage |q 30255/1 |goto 52.03,48.23 |count 2
+	step
+		talk Farmer Yoon##58646
+		turnin Learn and Grow III: Tending Crops##30255 |goto 52.25,48.79
+		accept Learn and Grow IV: Harvesting##30256 |goto 52.25,48.79
+	step
+		clicknpc Ripe EZ-Gro Green Cabbage##59833
+		|tip Wait a moment for it to ripen fully.
+		collect 2 EZ-Gro Green Cabbage##80314 |q 30256/1 |goto 52.01,48.44 |count 1
+	step
+		clicknpc Ripe EZ-Gro Green Cabbage##59833
+		collect 2 EZ-Gro Green Cabbage##80314 |q 30256/1 |goto 52.03,48.23 |count 2
+	step
+		talk Farmer Yoon##58646
+		turnin Learn and Grow IV: Harvesting##30256 |goto 52.25,48.79
+		accept Learn and Grow V: Halfhill Market##30257 |goto 52.25,48.79
+	step
+		Follow the path |goto 52.91,48.41 < 5 |only if walking
+		click Dark Soil##210582
+		collect Marsh Lily##79268 |q 30257/1 |goto 52.83,48.00
+	step
+		talk Gina Mudclaw##58706
+		turnin Learn and Grow V: Halfhill Market##30257 |goto 53.16,51.80
+		accept Learn and Grow VI: Gina's Vote##31945 |goto 53.16,51.80
+	step
+		talk Merchant Greenfield##58718
+		buy 1 Scallion Seeds##80591 |n
+		collect 1 Scallion Seeds##80591 |goto 52.88,52.14 |q 31945 |future
+	step
+		Follow the path |goto 53.09,51.01 < 7 |only if walking
+		clicknpc Untilled Soil##58562
+		use Scallion Seeds##80591
+		Plant Scallion Seeds |q 31945/1 |goto 52.01,48.44
+	step
+	label "info"
+		Click here for information on Bursting Crops |next "bursting" |confirm
+		Click here for information on Parched Crops |next "parched" |confirm
+		Click here for information on Infested Crops |next "infested" |confirm
+		Click here for information on Wiggling Crops |next "wiggling" |confirm
+		Click here for information on Alluring Crops |next "alluring" |confirm
+		Click here for information on Smothered Crops |next "smothered" |confirm
+		Click here for information on Wild Crops |next "wild" |confirm
+		Click here for information on Runty Crops |next "runty" |confirm
+		Click here for information on Tangled Crops |next "tangled" |confirm
+	step
+	label "bursting"
+		Unless you got a Bursting Scallion immediately after planting your Scallions, you will have to wait a full day until you can pick your crops
+		Click here if you are ready to harvest your crops |confirm
+		Click here to start doing dailies |next "dailies" |confirm
+	step
+		clicknpc Bursting Scallions##63160
+		clicknpc Ripe Scallions##63165
+		Harvest Ripe Scallions |q 31945/2 |goto 52.00,48.40
+		collect 5 Scallion##74843 |q 31945/3 |goto 52.00,48.40
+		|next "exit"
+	step
+	label "runty"
+		clicknpc Runty Scallions##63166 |goto 52.00,48.40
+		Press your Space Bar and jump
+		Click here to return to the information page |next "info" |confirm
+		Click here when you are have tilled your crops |next "bursting" |confirm
+	step
+	label "wiggling"
+		clicknpc Wiggling Scallions##63169 |goto 52.00,48.40
+		kill Voracious Virmen##60039
+		Click here to return to the information page |next "info" |confirm
+		Click here when you are have tilled your crops |next "bursting" |confirm
+	step
+	label "infested"
+		click Vintage Bug Sprayer##211331
+		collect Vintage Bug Sprayer##80513 |n
+		Use your Vintage Bug Sprayer on the Infested Scallions |use Vintage Bug Sprayer##80513 |goto 52.20,48.30
+		Click here to return to the information page |next "info" |confirm
+		Click here when you are have tilled your crops |next "bursting" |confirm
+	step
+	label "alluring"
+		clicknpc Alluring Scallions##63159
+		kill Swooping Plainshawk##60072 |goto 52.20,48.30
+		Click here to return to the information page |next "info" |confirm
+		Click here when you are have tilled your crops |next "bursting" |confirm
+	step
+	label "wild"
+		clicknpc Wild Scallions##63170
+		Ride the Scallion |invehicle |c |goto 52.00,48.40
+	step
+		Spam the Flex ability on your new hotbar, when the plant tries to cast Vine Slam, interrupt it with your Gnaw ability
+		Build 50 stacks on Dominance |outvehicle |c
+	step
+		Click here to return to the information page |next "info" |confirm
+		Click here when you are have tilled your crops |next "bursting" |confirm
+	step
+	label "tangled"
+		clicknpc Tangled Scallions##63168 |goto 52.00,48.40
+		Run to this area |goto 51.70,48.90
+		Click here to return to the information page |next "info" |confirm
+		Click here when you are have tilled your crops |next "bursting" |confirm
+	step
+	label "parched"
+		Use the Rusty Watering Can on the Parched Scallions |use Rusty Watering Can##79104 |goto 52.00,48.40
+		Click here to return to the information page |next "info" |confirm
+		Click here when you are have tilled your crops |next "bursting" |confirm
+	step
+	label "smothered"
+		clicknpc Encroaching Weed##60185 |goto 52.00,48.40
+		Ride the Weed |invehicle |c
+	step
+		Spam the Pull ability on your new hotbar
+		Pull the Weed |outvehicle |c
+	step
+		Click here to return to the information page |next "info" |confirm
+		Click here when you are have tilled your crops |next "bursting" |confirm
+	step
+	label "exit"
+		talk Gina Mudclaw##58706
+		turnin Learn and Grow VI: Gina's Vote##31945 |goto 53.10,51.80
+	step
+	label "dailies"
+		Start each day out by harvesting the crops from the previous day |goto Valley of the Four Winds 51.90,48.30
+		confirm
+	step
+		talk Farmer Yoon##58646
+		|tip He will only have 1 quest a day.
+		accept The Kunzen Hunter-Chief##30336 |goto 53.00,51.80 |or
+		accept Stealing is Bad... Re-Stealing is OK##30334 |goto 53.00,51.80 |or
+		accept Stalling the Ravage##30335 |goto 53.00,51.80 |or
+		accept The Lesser of Two Evils##30333 |goto 53.00,51.80 |or
+		accept Simian Sabotage##30337 |goto 53.00,51.80 |or
+		|only if not completedq(32682)
+	step
+		talk Farmer Yoon##58646
+		|tip He will only have 2 dailies at a time.
+		accept The Kunzen Hunter-Chief##30336 |goto 52.25,48.79 |or 2
+		accept That Dangling Carrot##31670 |goto 52.25,48.79 |or 2
+		accept Stealing is Bad... Re-Stealing is OK##30334 |goto 52.25,48.79 |or 2
+		accept The Cabbage Test##31669 |goto 52.25,48.79 |or 2
+		accept It's Melon Time##31942 |goto 52.25,48.79 |or 2
+		accept A Pumpkin-y Perfume##31672 |goto 52.25,48.79 |or 2
+		accept Stalling the Ravage##30335 |goto 52.25,48.79 |or 2
+		accept Red Blossom Leeks, You Make the Croc-in' World Go Down##31673 |goto 52.25,48.79 |or 2
+		accept Squash Those Foul Odors##31941 |goto 52.25,48.79 |or 2
+		accept The Lesser of Two Evils##30333 |goto 52.25,48.79 |or 2
+		accept The White Turnip Treatment##31675 |goto 52.25,48.79 |or 2
+		accept The Pink Turnip Challenge##31674 |goto 52.25,48.79 |or 2
+		accept Which Berries? Witchberries.##31943 |goto 52.25,48.79 |or 2
+		accept Why Not Scallions?##31671 |goto 52.25,48.79 |or 2
+		accept Simian Sabotage##30337 |goto 52.25,48.79 |or 2
+		|only if completedq(32682)
+	step
+		talk Andi##64464
+		|tip He will only have 1 quest a day.
+		accept A Gift For Fung##30475 |goto 52.70,50.50 |or
+		accept A Gift For Chee Chee##30471 |goto 52.70,50.50 |or
+		accept A Gift For Haohan##30477 |goto 52.70,50.50 |or
+		accept A Gift For Jogu##30478 |goto 52.70,50.50 |or
+		accept A Gift For Sho##30472 |goto 52.70,50.50 |or
+		accept A Gift For Tina##30470 |goto 52.70,50.50 |or
+		accept A Gift For Ella##30474 |goto 52.70,50.50 |or
+		accept A Gift For Old Hillpaw##30476 |goto 52.70,50.50 |or
+		accept A Gift For Fish##30473 |goto 52.70,50.50 |or
+		accept A Gift For Gina##30479 |goto 52.70,50.50 |or
+	step
+		talk Ella##58647
+		accept You Have to Burn the Ropes##30327 |goto 53.10,51.70
+		_
+		Click here if Ella is not in town |confirm
+	step
+		talk Haohan Mudclaw##57402
+		accept Pest Problems##30319 |goto 53.00,51.70
+		_
+		Click here if Haohan is not in town |confirm
+	step
+		talk Tina Mudclaw##58761
+		accept They Don't Even Wear Them##30323 |goto 53.10,51.70
+		_
+		Click here if Tina is not in town |confirm
+	step
+		talk Chee Chee##58709
+		accept Not in Chee-Chee's Backyard##30324 |goto 53.10,52.10
+		_
+		Click here if Chee-Chee is not in town |confirm
+	step
+		talk Fish Fellreed##58705
+		accept The Kunzen Legend-Chief##30326 |goto 52.80,51.80
+		_
+		Click here if Fish Felreed is not in town |confirm
+	step
+		talk Farmer Fung##57298
+		accept Water, Water Everywhere##30317 |goto 52.90,51.70
+		_
+		Click here if Farmer Fung is not in town |confirm
+	step
+		talk Sho##58708
+		accept Where It Counts##30325 |goto 53.10,52.10
+		_
+		Click here if Sho is not in town |confirm
+	step
+		talk Jogu the Drunk##58710
+		accept Weed War II##30321 |goto 53.60,52.50
+		_
+		Click here if Jogu has no available quests |confirm
+	step
+		talk Old Hillpaw##58707
+		accept Chasing the Chicken##30318 |goto 53.00,51.80
+		_
+		Click here if Old Hillpaw is not in town |confirm
+	step
+		talk Gina Mudclaw##58706
+		accept Money Matters##30322 |goto 53.20,51.80
+		_
+		If this quest is unavailable click here |confirm
+	step
+		talk Innkeeper Lei Lan##59582
+		Tell her you are here on behalf of Gina Mudclaw
+		Innkeeper Lei Lan's Payment |q 30322/3 |goto 55.10,50.30
+		|only if haveq(30322)
+	step
+		talk Lolo Lio##59585
+		Tell him you are here on behalf of Gina Mudclaw
+		Lolo Lio's Payment |q 30322/4 |goto 55.60,52.10
+		|only if haveq(30322)
+	step
+		talk Trader Jambeezi##59583
+		Tell him you are here on behalf of Gina Mudclaw
+		Trader Jambeezi's Payment |q 30322/2 |goto 56.10,49.60
+		|only if haveq(30322)
+	step
+		talk Spicemaster Jin Jao##59581
+		Tell him you are here on behalf of Gina Mudclaw
+		Spicemaster Jin Jao's Payment |q 30322/1 |goto 56.70,47.10
+		|only if haveq(30322)
+	step
+		talk Merchant Greenfield##58718
+		buy 1 Juicycrunch Carrot Seeds##80590 |goto 52.90,52.10
+		|only if haveq(31670)
+	step
+		talk Merchant Greenfield##58718
+		buy 1 Green Cabbage Seeds##79102 |goto 52.90,52.10
+		|only if haveq(31669)
+	step
+		talk Merchant Greenfield##58718
+		buy 1 Witchberry Seeds##89326 |goto 52.90,52.10
+		|only if haveq(31943)
+	step
+		talk Merchant Greenfield##58718
+		buy 1 Scallion Seeds##80591 |goto 52.90,52.10
+		|only if haveq(31671)
+	step
+		talk Merchant Greenfield##58718
+		buy 1 White Turnip Seeds##80595 |goto 52.90,52.10
+		|only if haveq(31675)
+	step
+		talk Merchant Greenfield##58718
+		buy 1 Pink Turnip Seeds##80594 |goto 52.90,52.10
+		|only if haveq(31674)
+	step
+		talk Merchant Greenfield##58718
+		buy 1 Jade Squash Seeds##89328 |goto 52.90,52.10
+		|only if haveq(31941)
+	step
+		talk Merchant Greenfield##58718
+		buy 1 Striped Melon Seeds##89329 |goto 52.90,52.10
+		|only if haveq(31942)
+	step
+		talk Merchant Greenfield##58718
+		buy 1 Mogu Pumpkin Seeds##80592 |goto 52.90,52.10
+		|only if haveq(31672)
+	step
+		talk Merchant Greenfield##58718
+		buy 1 Red Blossom Leek Seeds##80593 |goto 52.90,52.10
+		|only if haveq(31673)
+	step
+		talk Wing Nga##60231
+		Tell her that you'd like to borrow one of Farmer Fung's kites |goto 56.50,50.40
+		Ride a kite |invehicle |c
+		|only if haveq(30317)
+	step
+		Use your Water Buckest ability on the Dusty Spots below you
+		|tip They are outlined by a yellow circle.
+		Water 35 Dusty Spots |q 30317/1
+		|only if haveq(30317)
+	step
+		clicknpc Untilled Soil##58562
+		Use your Scallion Seeds on the Tilled Soil |use Scallion Seeds##80591
+		Plant Scallion Seeds |q 31671/1 |goto 52.00,48.40
+		|only if haveq(31671)
+	step
+		clicknpc Untilled Soil##58562
+		Use your Juicycrunch Carrot Seed on the Tilled Soil |use Juicycrunch Carrot Seeds##80590
+		Plant 1 Juicycrunch Carrot Seed |q 31670/1 |goto 52.00,48.40
+		|only if haveq(31670)
+	step
+		clicknpc Untilled Soil##58562
+		Use your Witchberry Seeds on the Tilled Soil |use Witchberry Seeds##89326
+		Plant Witchberry Seeds |q 31943/1 |goto 52.00,48.40
+		|only if haveq(31943)
+	step
+		clicknpc Untilled Soil##58562
+		Use your Mogu Pumpkin Seeds on the Tilled Soil |use Mogu Pumpkin Seeds##80592
+		Plant Mogu Pumpkin Seeds |q 31672/1 |goto 52.00,48.40
+		|only if haveq(31672)
+	step
+		clicknpc Untilled Soil##58562
+		Use your Jade Squash Seeds on the Tilled Soil |use Jade Squash Seeds##89328
+		Plant Jade Squash Seeds |q 31941/1 |goto 52.00,48.40
+		|only if haveq(31941)
+	step
+		clicknpc Untilled Soil##58562
+		Use your White Turnip Seeds on the Tilled Soil |use White Turnip Seeds##80595
+		Plant White Turnip Seeds |q 31675/1 |goto 52.00,48.40
+		|only if haveq(31675)
+	step
+		clicknpc Untilled Soil##58562
+		Use your Pink Turnip Seeds on the Tilled Soil |use Pink Turnip Seeds##80594
+		Plant Pink Turnip Seeds |q 31674/1 |goto 52.00,48.40
+		|only if haveq(31674)
+	step
+		clicknpc Untilled Soil##58562
+		Use your Green Cabbage Seeds on the Tilled Soil |use Green Cabbage Seeds##79102
+		Plant Green Cabbage Seeds |q 31669/1 |goto 52.00,48.40
+		|only if haveq(31669)
+	step
+		clicknpc Untilled Soil##58562
+		Use your Striped Melon Seeds on the Tilled Soil |use Striped Melon Seeds##89329
+		Plant Striped Melon Seeds |q 31942/1 |goto 52.00,48.40
+		|only if haveq(31942)
+	step
+		clicknpc Untilled Soil##58562
+		Use your Red Blossom Leek Seeds on the Tilled Soil |use Red Blossom Leek Seeds##80593
+		Plant Red Blossom Leek Seeds |q 31673/1 |goto 52.00,48.40
+		|only if haveq(31673)
+	step
+		click Goldenfire Orchid##211025
+		collect Goldenfire Orchid##80231 |q 30479/1 |goto 45.90,48.50
+		You can also find this here |goto 41.60,42.80
+		or at this location |goto 37.50,37.30
+		|only if haveq(30479)
+	step
+		talk Lost Dog##59533
+		accept Lost and Lonely##30526 |goto 42.40,50.00
+		|only if repval('The Tillers','Revered')>=13000
+	step
+		talk Gai Lan##57385
+		Ask him, "What Weeds?"
+		Get the Weed War Buff |complete hasbuff("spell:108219") or hasbuff("spell:114494") |goto 38.50,51.70
+		|only if haveq(30321)
+	step
+		clicknpc Ugly Weed##57306
+		clicknpc Nasty Weed##57308
+		click Weed-B-Gone Gas Bomb##210057
+		|tip Use the new button available to you to clear a lot of weeds at once
+		Pull 100 Weeds |q 30321/1
+		|only if haveq(30321)
+	step
+		clicknpc Hillpaw's Chicken##58918
+		|tip Most of these chickens are disguised animals. When you pick one up click the button that appears on your screen.
+		You can deliver lost hens to the chicken coop here |goto 30.40,52.50
+		collect Old Hillpaw's Prize Chicken##80223 |q 30318/1 |goto 31.30,53.20
+		|only if haveq(30318)
+	step
+		kill Monstrous Plainshawk##59641
+		collect 1 Bloody Plainshawk Leg##80232 |goto 37.40,37.30
+		|only if haveq(30475)
+	step
+		talk Wika-Wika##59532
+		Mook-mooks?
+		Get the Pest Problems Buff |complete hasbuff("spell:114517") or hasbuff("spell:114573") |goto 39.60,45.30
+		|only if haveq(30319)
+	step
+		clicknpc Black-Nose Marmot##59530
+		Stomp 25 Black-Nose Marmot |q 30319/1 |goto 39.60,45.30
+		|only if haveq(30319)
+	step
+		kill Teeku##59130, Jim-Jim##59128, Jokka-Jokka##59126, Kon-Kon##59127
+		Kill the Kunzen-Hunter Chief |q 30336/1 |goto 30.20,46.00
+		|only if haveq(30336)
+	step
+		kill Skyrange Mushan##64309+
+		collect 20 Tasty T-Bone##80144 |q 30526/1 |goto 29.20,38.20
+		|only if haveq(30526)
+	stickystart "kunzenritual"
+	stickystart "kunzenhozen"
+	step
+		click Kunzen Rope
+		Burn 6 ropes |q 30327/1 |goto 32.00,32.10
+		|only if haveq(30327)
+	step
+		click Yu-Ping Soup Cauldron##210873
+		collect Yu-Ping Soup##79870 |q 30472/1 |goto 29.70,34.50
+		|only if haveq(30472)
+	step
+	label "kunzenritual"
+		kill 1 Kunzen Ritualist##59123 |q 30325/3 |goto 29.70,34.50
+		click Blazing Ember##210890
+		Kick 4 Blazing Ember |q 30325/2
+		click Kunzen Ritual Candle##210955
+		Throw 8 Kunzen Ritual Candles |q 30325/1 |goto 29.70,34.50
+		|only if haveq(30325)
+	stickystart "kunzentribe"
+	step
+		kill Buk-Buk##59133+, Bimba##59135+, Yammo##59134+, Rit-Rit##59132+
+		collect 1 Kunzen Legend-Book##79866 |q 30326/1 |goto 31.60,28.70
+		|only if haveq(30326)
+	step
+		click Authentic Valley Stir Fry##210803
+		collect Authentic Valley Stir Fry##79827 |q 30471/1 |goto 33.60,23.90
+		|only if haveq(30471)
+	step
+		clicknpc Yak Statuette##59154
+		collect Yak Statuette##79828 |q 30473/1 |goto 34.00,24.10
+		|only if haveq(30473)
+	step
+		talk Zidormi##163463
+		Ask her _"Can you show me what the Vale was like before the Black Empire assault?"_
+		Trave to the Past |complete ZGV.InPhase('OldVale') |goto Vale of Eternal Blossoms New/0 80.97,29.48 |q 30337
+		|only if haveq(30337)
+	step
+		use Barrel of Fireworks##79885
+		Explode the Stolen Tools |q 30337/2 |goto Valley of the Four Winds/0 32.70,30.60
+		|only if haveq(30337)
+	step
+		Use the Barrel of Fireworks in your bags |use Barrel of Fireworks##79885
+		Stolen weapons exploded |q 30337/1 |goto 30.40,28.10
+		|only if haveq(30337)
+	step
+		Use the Barrel of Fireworks in your bags |use Barrel of Fireworks##79885
+		Stolen beer exploded |q 30337/3 |goto 32.10,25.90
+		|only if haveq(30337)
+	step
+		Use the Barrel of Fireworks in your bags |use Barrel of Fireworks##79885
+		Stolen grain exploded |q 30337/4 |goto 35.00,22.00
+		|only if haveq(30337)
+	step
+	label "kunzenhozen"
+		kill Kunzen Rockflinger##59120+, Kunzen Collector##59124+, Kunzen Ravager##59119+, Kunzen Hunter##59121+
+		Kill 12 Kunzen hozen |q 30335/1 |goto 34.20,23.50
+		|only if haveq(30335)
+	step
+	label "kunzentribe"
+		click Stolen Vegetable##210768 |only if haveq(30334)
+		collect 16 Stolen Vegetable##79824 |q 30334/1 |only if haveq(30334) |goto 34.20,23.50
+		kill Kunzen Rockflinger##59120+, Kunzen Collector##59124+, Kunzen Ravager##59119+ |only if haveq(30324) or haveq(30474)
+		Kill 8 Kunzen tribe members |q 30324/1 |only if haveq(30324) |goto 34.20,23.50
+		collect Spicy Shrimp Dumplings##79871 |q 30474/1 |only if haveq(30474) |goto 34.20,23.50
+		|only if haveq(30474) or haveq(30334) or haveq(30324)
+	step
+		kill Enormous Cattail Grouper##59639
+		collect Enormous Cattail Grouper Tooth##80228 |q 30477/1 |goto 44.10,29.10
+		|only if haveq(30477)
+	stickystart "chrysoberylout"
+	step
+		Enter this warren |goto 46.90,21.10 < 10
+		kill Springtail Warren-Mother##59516 |q 30333/1 |goto 48.70,18.70
+		|only if haveq(30333)
+	step
+		kill Springtail Littlewhisker##59515+, Springtail Trapper##59513+, Springtail Burrower##59514+
+		collect Stolen Circlet##80138 |q 30323/1 |goto 44.70,19.60
+		collect Ransacked Ring##80137 |q 30323/2 |goto 44.70,19.60
+		collect Buglarized Bracelet##80139 |q 30323/3 |goto 44.70,19.60
+		|only if haveq(30323)
+	step
+	label "chrysoberylout"
+		This item could be in either warren or the patch of land seperating the two entrances
+		click Chrysoberyl Outcropping##210960
+		collect Uncut Chrysoberyl##80134 |q 30470/1
+		|only if haveq(30470)
+	step
+		click Freshwater Oyster##211021
+		collect Blue Freshwater Pearl## |q 30476/1 |goto 44.20,28.80
+		|only if haveq(30476)
+	step
+		talk Lost Dog##59533
+		turnin Lost and Lonely##30526 |goto 42.40,50.00
+		|only if haveq(30526)
+	step
+		click Yoon's Apples##211020
+		collect 8 Yoon's Apple##80234 |goto 52.60,47.80
+		|only if haveq(30478)
+	step
+		click Yoon's Craneberries##211022
+		collect 50 Yoon's Craneberry##80235 |goto 52.80,47.90
+		|only if haveq(30478)
+	step
+		talk Bobo Ironpaw##58717
+		Tell him you've got all this fruit here
+		collect Apple-Berry Hooch##80236 |q 30478/1 |goto 53.20,52.20
+		|only if haveq(30478)
+	step
+		talk Kol Ironpaw##58712
+		Ask him if he could grill your plainshawk leg
+		collect Grilled Plainshawk Leg##80233 |q 30475/1 |goto 53.00,51.30
+		|only if haveq(30475)
+	step
+		Leave the warren |goto 46.90,21.10 < 10 |only if haveq(30333)
+		talk Farmer Yoon##58646
+		turnin The Kunzen Hunter-Chief##30336 |goto 52.25,48.79
+		turnin That Dangling Carrot##31670 |goto 52.25,48.79
+		turnin Stealing is Bad... Re-Stealing is OK##30334 |goto 52.25,48.79
+		turnin The Cabbage Test##31669 |goto 52.25,48.79
+		turnin It's Melon Time##31942 |goto 52.25,48.79
+		turnin A Pumpkin-y Perfume##31672 |goto 52.25,48.79
+		turnin Stalling the Ravage##30335 |goto 52.25,48.79
+		turnin Red Blossom Leeks, You Make the Croc-in' World Go Down##31673 |goto 52.25,48.79
+		turnin Squash Those Foul Odors##31941 |goto 52.25,48.79
+		turnin The Lesser of Two Evils##30333v
+		turnin The White Turnip Treatment##316 |goto 52.25,48.7975
+		turnin The Pink Turnip Challenge##31674 |goto 52.25,48.79
+		turnin Which Berries? Witchberries.##31943 |goto 52.25,48.79
+		turnin Why Not Scallions?##31671 |goto 52.25,48.79
+		turnin Simian Sabotage##30337 |goto 52.25,48.79
+		|only if not completedq(32682)
+	step
+		talk Farmer Yoon##58646
+		|tip He will only have 1 quest a day.
+		turnin The Kunzen Hunter-Chief##30336 |or |goto 53.00,51.80
+		turnin Stealing is Bad... Re-Stealing is OK##30334 |or |goto 53.00,51.80
+		turnin Stalling the Ravage##30335 |or |goto 53.00,51.80
+		turnin The Lesser of Two Evils##30333 |or |goto 53.00,51.80
+		turnin Simian Sabotage##30337 |or |goto 53.00,51.80
+		|only if not completedq(32682)
+	step
+		talk Farmer Fung##57298
+		turnin Water, Water Everywhere##30317 |goto 52.90,51.70
+		turnin A Gift For Fung##30475 |goto 52.90,51.70 |only if haveq(30475)
+	step
+		talk Fish Fellreed##58705
+		turnin The Kunzen Legend-Chief##30326 |goto 52.80,51.80
+		turnin A Gift For Fish##30473 |goto 52.80,51.80 |only if haveq(30473)
+	step
+		talk Ella##58647
+		turnin You Have to Burn the Ropes##30327 |goto 53.00,51.70
+		turnin A Gift For Ella##30474 |goto 53.00,51.70 |only if haveq(30474)
+	step
+		talk Sho##58708
+		turnin Where It Counts##30325 |goto 53.10,52.10
+		turnin A Gift For Sho##30472 |goto 53.10,52.10 |only if haveq(30472)
+	step
+		talk Gina Mudclaw##58706
+		turnin Money Matters##30322 |goto 53.20,51.80
+		turnin A Gift For Gina##30479 |goto 53.20,51.80 |only if haveq(30479)
+	step
+		talk Old Hillpaw##58707
+		turnin Chasing the Chicken##30318 |goto 53.10,51.90
+		turnin A Gift For Old Hillpaw##30476 |goto 53.10,51.90 |only if haveq(30476)
+	step
+		talk Tina Mudclaw##58761
+		turnin A Gift For Tina##30470 |goto 53.10,51.70 |only if haveq(30470)
+		turnin They Don't Even Wear Them##30323 |goto 53.10,51.70
+	step
+		talk Haohan Mudclaw##57402
+		turnin Pest Problems##30319 |goto 53.00,51.70
+		turnin A Gift For Haohan##30477 |goto 53.00,51.70 |only if haveq(30477)
+	step
+		talk Jogu the Drunk##58710
+		turnin Weed War II##30321 |goto 53.60,52.50
+		turnin A Gift For Jogu##30478 |goto 53.60,52.50 |only if haveq(30478)
+	step
+		talk Chee Chee##58709
+		turnin Not in Chee-Chee's Backyard##30324 |goto 53.10,52.10
+		turnin A Gift For Chee Chee##30471 |goto 53.10,52.10 |only if haveq(30471)
+		|next "honored" |only if rep('The Tillers')==Honored
+		|next "revered" |only if rep('The Tillers')==Revered
+		|next "exalted" |only if rep('The Tillers')==Exalted
+		|next "end" |only if rep('The Tillers')<=Friendly
+	step
+	label "honored"
+		talk Farmer Yoon##58646
+		accept Growing the Farm I: The Weeds##30260 |goto 52.30,48.80
+		|next "mungmung" |only if repval('The Tillers','Honored')>=5600 and completedq(31936) and not completedq(31946)
+	step
+		talk Gai Lan##57385
+		turnin Growing the Farm I: The Weeds##30260 |goto 38.60,51.70
+		accept Growing the Farm I: A Little Problem##30516 |goto 38.60,51.70
+	step
+		click Spideroot##211117
+		collect 6 Spideroot##80122 |q 30516/1 |goto 36.50,51.10
+	step
+		talk Gai Lan##57385
+		turnin Growing the Farm I: A Little Problem##30516 |goto 38.60,51.70
+		|next "revered" |only if rep('The Tillers')>=Revered
+	step
+		When you arrive at Sunsong Ranch you will get a buff |goto 51.90,48.30
+		After 15 minutes your ranch will be expanded
+		|tip You cannot buy your farm upgrade until the expansion is done.
+		confirm
+		|only if not completedq(31936)
+	step
+		talk Gina Mudclaw##58706
+		buy 1 "Jinyu Princess" Irrigation System##89812 |q 31936 |goto 53.20,51.80
+	step
+		Click the "Jinyu Princess" Irrigation System in your bags |use "Jinyu Princess" Irrigation System##89812
+		accept The "Jinyu Princess" Irrigation System##31936
+	step
+		talk Farmer Yoon##58646
+		turnin The "Jinyu Princess" Irrigation System##31936 |goto 52.30,48.80
+		|next "mungmung" |only if repval('The Tillers','Honored')>=5600 and completedq(31936) and not completedq(31946)
+		|next "end" |only if default
+	step
+	label "revered"
+		talk Gina Mudclaw##58706
+		buy 1 Grand Commendation of the Tillers##93226 |n
+		Use the Commendation of the Tillers you just purchased |complete ZGV:GetReputation("The Tillers").hasBonus |use Grand Commendation of the Tillers##93226 |goto 53.20,51.80
+		|only if rep("The Tillers")>=Revered
+	step
+		talk Farmer Yoon##58646
+		accept Growing the Farm II: The Broken Wagon##30523 |goto 52.30,48.80
+		|next "fung" |only if repval('The Tillers','Revered')>=4200
+		|next "mungmung" |only if completedq(31936) and not completedq(31946)
+		|only if completedq(30516) and rep('The Tillers')>=Revered
+	step
+		talk Fish Fellreed##58705
+		turnin Growing the Farm II: The Broken Wagon##30523 |goto 41.70,30.00
+		accept Growing the Farm II: Knock on Wood##30524 |goto 41.70,30.00
+	step
+		click Boat Planks##211122
+		collect 100 Waxed Plank##80136 |q 30524/1 |goto 42.80,29.10
+	step
+		talk Fish Fellreed##58705
+		turnin Growing the Farm II: Knock on Wood##30524 |goto 41.70,30.00
+	step
+		When you arrive at Sunsong Ranch you will get a buff |goto 51.90,48.30
+		After 15 minutes your ranch will be expanded
+		|tip You cannot buy your farm upgrade until the expansion is done.
+		confirm
+		|only if not completedq(31937)
+	step
+		talk Gina Mudclaw##58706
+		buy 1 "Thunder King" Pest Repellers##89813 |q 31937 |goto 53.20,51.80
+	step
+		Click the "Thunder King" Pest Repellers in your bags |use "Thunder King" Pest Repellers##89813
+		accept "Thunder King" Pest Repellers##31937
+	step
+		talk Farmer Yoon##58646
+		turnin "Thunder King" Pest Repellers##31937 |goto 52.30,48.80
+		|next "end"
+	step
+	label "mungmung"
+		talk Farmer Yoon##58646
+		accept Mung-Mung's Vote I: A Hozen's Problem##30258 |goto 52.30,48.80
+		|next "fung" |only if completedq(31946)
+	step
+		talk Mung-Mung##57401
+		turnin Mung-Mung's Vote I: A Hozen's Problem##30258 |goto 44.20,34.30
+		accept Mung-Mung's Vote II: Rotten to the Core##30259 |goto 44.20,34.30
+	step
+		click Partially Chewed Carrot##210942
+		collect 10 Partially Chewed Carrot##80116 |q 30259/1 |goto 42.70,38.20
+	step
+		talk Mung-Mung##57401
+		turnin Mung-Mung's Vote II: Rotten to the Core##30259 |goto 44.20,34.30
+		accept Mung-Mung's Vote III: The Great Carrot Caper##31946 |goto 44.20,34.30
+	step
+		talk Merchant Greenfield##58718
+		buy 2 Juicycrunch Carrot Seeds##80590 |q 31946 |goto 52.90,52.10
+	step
+		clicknpc Untilled Soil##58562
+		Use your Juicycrunch Carrot Seeds on the Tilled Soil |use Juicycrunch Carrot Seeds##80590
+		Plant 2 Juicycrunch Carrot Seeds |q 31946/1 |goto 52.00,48.40
+	step
+		Wait a day for the carrots to grow and then harvest them
+		Harvest 2 Ripe Juicycrunch Carrots |q 31946/2
+		collect 10 Juicycrunch Carrot##74841 |q 31946/3
+	step
+		talk Mung-Mung##57401
+		turnin Mung-Mung's Vote III: The Great Carrot Caper##31946 |goto 44.20,34.30
+		|next "end"
+	step
+	label "fung"
+		talk Farmer Yoon##58646
+		accept Farmer Fung's Vote I: Yak Attack##30517 |goto 52.30,48.80
+		|next |only if repval('The Tillers','Revered')>=8400
+		Click here if this quest is not available yet |confirm |next "end"
+	step
+		talk Farmer Fung##57298
+		turnin Farmer Fung's Vote I: Yak Attack##30517 |goto 48.30,33.90
+		accept Farmer Fung's Vote II: On the Loose##30518 |goto 48.30,33.90
+	step
+		clicknpc Escaped Shagskin##59491
+		Ride 5 Escaped Shagskin to |q 30518/1 |goto 51.00,36.70
+		Take the Shagskin to this location|goto 50.40,34.70
+	step
+		talk Farmer Fung##57298
+		turnin Farmer Fung's Vote II: On the Loose##30518 |goto 48.30,33.90
+		accept Farmer Fung's Vote III: Crazy For Cabbage##31947 |goto 48.30,33.90
+	step
+		talk Merchant Greenfield##58718
+		buy 3 Green Cabbage Seeds##79102 |q 31947 |goto 52.90,52.10
+	step
+		clicknpc Untilled Soil##58562
+		Use your Green Cabbage Seeds on the Tilled Soil |use Green Cabbage Seeds##79102
+		Plant 3 Green Cabbage Seeds |q 31947/1 |goto 52.00,48.40
+	step
+		Wait a day for the Green Cabbage to grow and then harvest them
+		Harvest 3 Green Cabbage |q 31947/2
+		collect 15 Green Cabbage##74840 |q 31947/3
+	step
+		talk Farmer Fung##57298
+		turnin Farmer Fung's Vote III: Crazy For Cabbage##31947 |goto 48.30,33.90
+	step
+	label "nana"
+		talk Farmer Yoon##58646
+		accept Nana's Vote I: Nana's Secret Recipe##30519 |goto 52.20,48.80
+		|next |only if repval('The Tillers','Revered')>=16800
+		Click here if this quest is not available yet |confirm |next "end"
+	step
+		talk Nana Mudclaw##64597
+		turnin Nana's Vote I: Nana's Secret Recipe##30519 |goto 54.70,47.00
+		accept Nana's Vote II: The Sacred Springs##31948 |goto 54.70,47.00
+	step
+		kill Thousand-Year Guardian##66850+
+		You may have to kill the Guardian first, then collect the water
+		Use the Empty Pitcher while standing under the waterfall |use Empty Pitcher##89902
+		Thousand-Year Water |q 31948/1 |goto 56.70,21.70
+	step
+		talk Nana Mudclaw##64597
+		turnin Nana's Vote II: The Sacred Springs##31948 |goto 54.70,47.00
+		accept Nana's Vote III: Witchberry Julep##31949 |goto 54.70,47.00
+	step
+		talk Merchant Greenfield##58718
+		buy 3 Witchberry Seeds##89326 |q 31949 |goto 52.90,52.10
+	step
+		clicknpc Untilled Soil##58562
+		Use your Witchberry Seeds on the Tilled Soil |use Witchberry Seeds##89326
+		Plant 3 Witchberry Seeds |q 31949/1 |goto 52.00,48.40
+		|only if haveq(31949)
+	step
+		Wait a day for the Witchberries to grow and then harvest them
+		Harvest 3 Witchberries |q 31949/2
+		collect 15 Witchberries##74846 |q 31949/3
+	step
+		talk Nana Mudclaw##64597
+		turnin Nana's Vote III: Witchberry Julep##31949 |goto 54.70,47.00
+	step
+	label "haohan"
+		talk Farmer Yoon##58646
+		accept Haohan's Vote I: Bungalow Break-In##30521 |goto 52.20,48.80
+		Click here if this quest is not available yet |confirm |next "end"
+	step
+		talk Haohan Mudclaw##57402
+		turnin Haohan's Vote I: Bungalow Break-In##30521 |goto 44.60,34.10
+		accept Haohan's Vote II: The Real Culprits##30522 |goto 44.60,34.10
+	step
+		clicknpc Muddy Tracks##52171
+		Investigate 8 Suspicious Footprints. |q 30522/1 |goto 39.40,43.60
+		|tip When you click the eighth footprint a hozen will attack you.
+	step
+		talk Farmer Yoon##58646
+		turnin Haohan's Vote II: The Real Culprits##30522 |goto 52.20,48.80
+		accept Haohan's Vote III: Pure Poison##30525 |goto 52.20,48.80
+	step
+		_Enter_ the warren |goto 47.00,20.90 < 10
+		click Cave Lily##210969
+		collect Cave Lily##80141 |q 30525/2
+	step
+		_Leave_ the warren |goto 47.00,20.90 < 10
+		_Enter_ the warren |goto 44.00,22.20 < 10
+		click Bloodbloom##210968
+		collect Bloodbloom##80140 |q 30525/1
+	step
+		_Leave_ the warren |goto 44.00,22.20 < 5 |walk
+		click Violet Lichen##210971
+		collect Violet Lichen##80143 |q 30525/4 |goto 42.50,22.30
+	step
+		_Enter_ the warren |goto 39.40,20.40 < 10 |walk
+		click Ghostcap##210970
+		collect Ghostcap##80142 |q 30525/3
+	step
+		_Leave_ the warren |goto 39.40,20.40 < 10
+		talk Farmer Yoon##58646
+		turnin Haohan's Vote III: Pure Poison##30525 |goto 52.20,48.80
+		accept Haohan's Vote IV: Melons For Felons##30527 |goto 52.20,48.80
+	step
+		talk Merchant Greenfield##58718
+		buy 4 Striped Melon Seeds##89329 |q 30527 |goto 52.90,52.10
+	step
+		clicknpc Untilled Soil##58562
+		Use your Striped Melon Seeds on the Tilled Soil |use Striped Melon Seeds##89329
+		Plant 4 Striped Melon Seeds |q 30527/1 |goto 52.00,48.40
+	step
+		Wait a day for the Striped Melons to grow and then harvest them
+		Harvest 4 Striped Melons |q 30527/2
+		collect 20 Striped Melon##74848 |q 30527/3
+	step
+		talk Farmer Yoon##58646
+		turnin Haohan's Vote IV: Melons For Felons##30527 |goto 52.20,48.80
+		accept Haohan's Vote V: Chief Yip-Yip##30528 |goto 52.20,48.80 //20000 Revered?
+	step
+		_Enter_ the cave here |goto 33.10,20.20 < 10 |walk
+		kill Chief Yip-Yip##59567 |q 30528/1 |goto 32.40,20.60
+		Use the _Throw Melon_ button on your screen when he begins casting _Charging Up_. This will cause him to stop attacking and take increased damage for a few seconds.
+	step
+		talk Farmer Yoon##58646
+		turnin Haohan's Vote V: Chief Yip-Yip##30528 |goto 52.20,48.80
+	step
+		After some talking, the Offering Bowl should light up for you to click. |goto 52.00,49.00
+		click Offering Bowl##241877
+		confirm
+		|next "end"
+	step
+	label "exalted"
+		talk Farmer Yoon##58646
+		accept Growing the Farm III: The Mossy Boulder##30529 |goto 52.20,48.80
+		Click here if this quest is not available yet |confirm |next "end"
+		|next |only if default
+	step
+		talk Haohan Mudclaw##57402
+		turnin Growing the Farm III: The Mossy Boulder##30529 |goto 44.60,34.10
+	step
+		When you arrive at Sunsong Ranch you will get a buff |goto 51.90,48.30
+		After 15 minutes your ranch will be expanded
+		|tip You cannot buy your farm upgrade until the expansion is done.
+		confirm
+		|only if not completedq(31938)
+	step
+		talk Gina Mudclaw##58706
+		buy 1 "Earth-Slasher" Master Plow##89814 |q 31938 |goto 53.20,51.80
+	step
+		Click the "Earth-Slasher" Master Plow in your bags. |use "Earth-Slasher" Master Plow##89814
+		accept The "Earth-Slasher" Master Plow##31938
+	step
+		talk Farmer Yoon##58646
+		turnin The "Earth-Slasher" Master Plow##31938 |goto 52.30,48.80
+	step
+		talk Nana Mudclaw##64597
+		accept Inherit the Earth##32682 |goto Valley of the Four Winds 54.70,47.00
+		|only if rep('The Tillers')==Exalted and not completedq(32682)
+	step
+		talk Farmer Yoon##58646
+		Ask him if he will join the council of the Tillers Union. |q 32682/1 |goto Valley of the Four Winds 52.20,48.80
+		|only if rep('The Tillers')==Exalted and not completedq(32682)
+	step
+		talk Nana Mudclaw##64597
+		turnin Inherit the Earth##32682 |goto Valley of the Four Winds 54.70,47.00
+		|tip This quest opens up the farm to you, granting you a place to rest and set your hearthstone, as well as opening up new quests known as work orders that allow you to gain reputation with other factions through farming.
+		|only if rep('The Tillers')==Exalted and not completedq(32682)
+	step
+		click Tillers Shrine##215705
+		accept A Second Hand##30534 |goto 52.00,49.00
+	step
+		For this quest you must be _Best Friends_ with one of the 10 Tiller NPCs
+		Please refer to the Reputations guides for assistance in gaining rep for an individual
+		confirm
+	step
+		Go to your _Best Friend's_ home
+		Ask them: <Friend>, how'd you like to help us run the farm? |q 30534/1
+	step
+		click Tillers Shrine##215705
+		turnin A Second Hand##30534 |goto 52.00,49.00
+	step
+	label "end"
+		The last thing to do with The Tillers each day is to plant as many crops as your farm can hold
+		Each crop harvest will award reputation so do this every day
+		Click here to go back to the beginning of the dailies section |next "dailies" |confirm
+]])
+
+ZygorGuidesViewer:RegisterInclude("Marista_Hub",[[
+	step
+		talk Nan-Po##60441
+		fpath Marista |goto Krasarang Wilds 52.40,76.60
+	step
+		talk Tony Tuna##60182
+		accept Particular Plumage##30667 |goto Krasarang Wilds 51.70,75.30
+	step
+		talk Jay Cloudfall##60173
+		|tip Outside, up the stairs and to the right.
+		accept Sudden, Unexpected Crocolisk Aggression##30666 |goto 51.50,76.90
+	step
+		kill Crimson Lory##60198+
+		collect 6 Crimson Tailfeather##80678+ |q 30667/2 |goto 46.40,68.60
+		kill Emerald Lory##60200+
+		collect 6 Emerald Tailfeather##80677+ |q 30667/1 |goto 46.40,68.60
+		kill Dusky Lory##60196+
+		collect 6 Dusky Tailfeather##80679+ |q 30667/3 |goto 46.40,68.60
+ 		kill Mortbreath Skulker##60202+, Mortbreath Snapper##60201+
+ 		Kill 8 Mortbreath crocolisk |q 30666/1 |goto 46.40,68.60
+	step
+		talk Tony Tuna##60182
+		turnin Particular Plumage##30667 |goto 51.70,75.30
+	step
+		talk Jay Cloudfall##60173
+		turnin Sudden, Unexpected Crocolisk Aggression##30666 |goto 51.50,76.90
+		accept Build Your Own Raft##30668 |goto 51.50,76.90
+	stickystart "spareplank"
+	step
+		click Tough Kelp##211382
+		collect Tough Kelp##80804 |q 30668/2 |goto 52.30,77.90
+	step
+	label "spareplank"
+		click Spare Plank##211379
+		collect 4 Spare Plank##80685 |q 30668/1 |goto 52.40,76.20
+	step
+		talk Jay Cloudfall##60173
+		turnin Build Your Own Raft##30668 |goto 51.50,76.90
+		accept The Lorewalker on the Lake##30669 |goto 51.50,76.90
+	step
+		click Your Raft##211392
+		Pick up your raft |q 30669/1 |goto 51.70,76.60
+	step
+		talk Wise Ana Wu##60139
+		turnin The Lorewalker on the Lake##30669 |goto 46.00,78.90
+		accept Wisdom Has A Price##30671 |goto 46.00,78.90
+		accept Misery##30691 |goto 46.00,78.90
+	step
+		_Go underwater_ and enter the cave |goto 46.00,79.90 < 15 |walk
+		kill Nahassa##60203+
+		|tip Nahassa will use an ability called Feverish Deathbite that will cause you to hallucinate many more crocolisks have spawned, they aren't really there so don't panic.
+		Put Nahassa out of his misery |q 30691/1 |goto 46.20,83.50 |indoors Mortbreath Grotto
+	step
+		Click the Complete Quest box that displays on the right side of the screen under your minimap
+		turnin Misery##30691
+	step
+		_Exit_ the cave |goto 46.00,79.90 < 15 |walk
+		kill Great Grey Shark##60204+, Nayeli Hammerhead##60432+
+		collect 5 Shark Fillet##80810+ |q 30671/1 |goto 46.00,79.00
+	step
+		talk Wise Ana Wu##60139
+		turnin Wisdom Has A Price##30671 |goto 46.00,78.90
+		accept Balance##30672 |goto 46.00,78.90
+	stickystart "buriedtreasure"
+	step
+		Run over one of the piles of fish along the beach
+		Click the Quest Discovered box that displays on the right side of the screen under your minimap
+		accept Balance Without Violence##30674 |goto 45.10,84.90
+	step
+	label "buriedtreasure"
+		kill Unga Fish-Getter##60299+
+		collect 1 Confusing Treasure Map##80827 |n
+		Click the Confusing Treasure Map in your bags |use Confusing Treasure Map##80827
+		accept Buried Hozen Treasure##30675 |goto 45.50,85.20
+	step
+		clicknpc Flailing Carp##60367
+		|tip You can find these all along the beach, usually in the big piles of fish
+		Throw 6 Flailing Carp back into the water |q 30674/1 |goto 46.10,86.70
+		kill 10 Unga Fish-Getter##60299+ |q 30672/1 |goto 46.10,86.70
+		click Lump of Sand##211420
+		collect Buried Hozen Treasure##80817 |q 30675/1 |goto 46.10,86.70
+	step
+		Click the Complete Quest box that displays on the right side of the screen under your minimap
+		turnin Balance Without Violence##30674
+		turnin Buried Hozen Treasure##30675
+	step
+		talk Jay Cloudfall##60173
+		turnin Balance##30672 |goto 51.50,76.80
+	step
+		talk Tired Shushen##58278
+		accept Thieving Raiders##30168 |goto Krasarang Wilds 29.70,39.00
+		accept Raid Leader Slovan##30169 |goto Krasarang Wilds 29.70,39.00
+	step
+		kill Slovan##58285 |q 30169/1
+		kill Riverblade Flesh-hunter##58274
+		collect 5 Pillaged Jinyu Loot##78958 |q 30168/1 |goto 31.80,29.00
+	step
+		talk Tired Shushen##58278
+		turnin Thieving Raiders##30168 |goto Krasarang Wilds 29.70,39.10
+		turnin Raid Leader Slovan##30169 |goto Krasarang Wilds 29.70,39.10
+	stickystart "Mogu Artifact"
+	step
+		clicknpc Dawnchaser Captive##58608
+		|tip Marking them with Shift+v makes them much easier to spot (Use v to mark enemies again).
+		Rescue 8 Captives |q 30163/1 |goto 24.60,39.20
+		kill 8 Korjan Reclaimer##58614+ |q 30229/1 |goto 24.60,39.20
+	step
+	label "Mogu Artifact"
+		click Mogu Artifact##212765
+		|tip They look like large brown maces and artifacts on the ground.
+		collect 10 Mogu Artifact##79120+ |q 30230/1 |goto 24.60,39.20
+	step
+		talk Kang Bramblestaff##56112
+		turnin Re-Reclaim##30230 |goto 28.80,50.60
+	step
+		talk Kor Bloodtusk##58114
+		turnin For the Tribe##30163 |goto 28.70,50.90
+		turnin The Greater Danger##30229 |goto 28.70,50.90
+	step
+		talk Ambassador Han##58630
+		accept The Mantid##30175 |goto 29.10,51.10
+	step
+		talk Sunwalker Dezco##58607
+		accept The Stoneplow Convoy##30164 |goto 16.00,39.80
+	stickystart "Ik Mantid"
+	step
+		clicknpc Stoneplow Envoy##58955
+		|tip Marking them with Shift+v makes them much easier to spot (Use v to mark enemies again).
+		Save 7 Stoneplow Envoy |q 30164/1 |goto 15.30,35.30
+	step
+	label "Ik Mantid"
+		kill Ik'thallik Precursor##58367+, Ik'thallik Vanguard##58368+
+		Kill 10 Ik'thallik Mantid |q 30175/1 |goto 15.30,35.30
+	step
+		talk Sunwalker Dezco##58607
+		turnin The Stoneplow Convoy##30164 |goto 16.00,39.80
+	step
+		talk Ambassador Len##58954
+		turnin The Mantid##30175 |goto 15.70,39.70
+	step
+		talk Sunwalker Dezco##58607
+		accept For Family##30174 |goto 16.00,39.80
+	step
+		talk Kor Bloodtusk##58670
+		Try to free Kor from his bonds
+		kill Groundbreaker Brojai##58224 |q 30174/1 |goto 23.60,48.80
+		|tip He will summon adds one at a time. They aren't too difficult to kill.
+	step
+		talk Sunwalker Dezco##58607
+		turnin For Family##30174 |goto 28.90,50.80
+		accept Warn Stoneplow##30241 |goto 28.90,50.80
+	step
+		talk Loon Mai##56720
+		turnin Warn Stoneplow##30241 |goto Valley of the Four Winds 19.50,56.80
+	step
+		talk Mudmug##56474
+		accept It Does You No Good In The Keg##30653 |goto 18.10,55.90
+	step
+		talk Loon Mai##56720
+		accept The Swarm Begins##30622 |goto Valley of the Four Winds 18.00,56.30
+	step
+		talk Mei Barrelbottom##59855
+		accept The Mantidote##30623 |goto Valley of the Four Winds 18.00,56.50
+	stickystart "ikthallik"
+	step
+		Deliver beer to Zhu's Wardens |q 30653/1 |goto Valley of the Four Winds 17.50,50.20
+	step
+		Deliver beer to Crane Wing Priests |q 30653/2 |goto Valley of the Four Winds 15.20,55.40
+	step
+		Deliver beer to Tauren Settlers |q 30653/4 |goto Valley of the Four Winds 13.00,56.00
+	step
+		Deliver beer to Shado-Pan |q 30653/3 |goto Valley of the Four Winds 10.70,55.50
+	step
+		Click the Complete Quest box that displays on the right side of the screen under your minimap
+		turnin It Does You No Good In The Keg##30653
+	step
+	label "ikthallik"
+		kill Ik'thallik Infestor##56721+, Ik'thik Warrior##56722+
+		Kill 15 Ik'thallik Infestors or Warriors |q 30622/1 |goto 13.40,54.60
+		Use Ken-Ken's mask on Ik'thik Wing Commanders |use Ken-Ken's Mask##80337
+		kill Manifestation of Fear##59874+
+		Defeat 5 Manifestation of Fear that come out of Ik'thik Wing Commanders |q 30623/1 |goto 13.40,54.60
+	step
+		Click the Complete Quest box that displays on the right side of the screen under your minimap
+		turnin The Mantidote##30623
+	step
+		talk Guard Captain Oakenshield##57198
+		turnin The Swarm Begins##30622 |goto 11.60,49.50
+		accept Students No More##30625 |goto 11.60,49.50
+	stickystart "2nd coord"
+	stickystart "3rd coord"
+	stickystart "4th coord"
+	step
+		The students you are looking for can be at one of four locations fighting one of the quest mobs below. Find the students and kill the following monsters:
+		|tip Once you find the students just follow them around and kill what they do.
+		talk Ik'thallik Tendon-Slicer##59888
+		kill Ik'thallik Tendon-Slicer##59888 |q 30625/3 |goto Valley of the Four Winds,9.50,54.00
+	step
+	label "2nd coord"
+		talk Ik'thallik Fearmonger##59889
+		kill Ik'thallik Fearmonger##59889 |q 30625/4 |goto Valley of the Four Winds,9.50,58.20
+	step
+	label "3rd coord"
+		talk Ik'thallik Bloodrager##59887
+		kill Ik'thallik Bloodrager##59887 |q 30625/1 |goto Valley of the Four Winds,8.90,54.20
+	step
+	label "4th coord"
+		talk Ik'thik Incubator##59890
+		kill Ik'thik Incubator##59890 |q 30625/2 |goto Valley of the Four Winds,8.90,51.00
+	step
+		talk Guard Captain Oakenshield##57198
+		turnin Students No More##30625 |goto 11.60,49.50
+		accept Retreat!##30626 |goto 11.60,49.50
+	step
+		talk Loon Mai##56720
+		turnin Retreat!##30626 |goto 18.00,56.30
+	step
+		talk Master Bruised Paw##59856
+		accept The Savior of Stoneplow##30627 |goto 17.90,55.70
+	step
+		talk Miss Fanny##59857
+		Tell her "Let's go." |invehicle |goto 18.00,56.70
+	step
+		Use your Unyielding Fist ability to defeat the Mantid Collossus.
+		|tip Use your Unyielding Fist ability when the new icon on your screens flashes orange
+		kill Mantid Colossus##56703 |q 30627/1
+	step
+		talk Loon Mai##56720
+		turnin The Savior of Stoneplow##30627 |goto 18.00,56.30
+		accept The Gratitude of Stoneplow##30628 |goto 18.00,56.30
+]])
+
+ZygorGuidesViewer:RegisterInclude("H_Beasts_of_Fable_D",[[
+		talk Gentle San##64582
+		accept Beasts of Fable Book I##32604 |goto Vale of Eternal Blossoms 60.80,23.70
+		accept Beasts of Fable Book II##32868 |goto Vale of Eternal Blossoms 60.80,23.70
+		accept Beasts of Fable Book III##32869 |goto Vale of Eternal Blossoms 60.80,23.70
+		accept Pandaren Spirit Tamer##32428 |goto Vale of Eternal Blossoms 60.80,23.70 |only if not completedq(32428)
+	step
+		_No-No_
+		This enemy is aquatic
+		It is strong against undead and weak to flying attacks
+		I would suggest that you use flying pets against this enemy
+		No-No defeated |q 32869/2 |goto Vale of Eternal Blossoms 11.00,70.90
+	step
+		_Lucky Yi_
+		This enemy is a critter
+		Is is strong against Elementals and weak to beast attacks
+		I would suggest using beast pets against this enemy
+		Lucky Yi defeated |q 32868/2 |goto Valley of the Four Winds 40.50,43.70
+	step
+		_Greyhoof_
+		This enemy is a beast
+		It is strong against humanoids and weak against mechanical pets
+		I would suggest using a team of mechanical pets against this enemy
+		Greyhoof defeated |q 32868/1 |goto Valley of the Four Winds 25.30,78.50
+	step
+		_Skitterer Xi'a_
+		This enemy is aquatic
+		It is strong against undead and weak to flying pets
+		I would suggest using flying pets against this enemy
+		Xi'a defeated |q 32868/3 |goto Krasarang Wilds 36.30,37.30
+	step
+		_Flowing Pandaren Spirit_
+		This enemy uses aquatic and elemental pets
+		They are strong against undead and mechanical and weak to flying and aquatic pets
+		I would suggest using flying and aquatic pets against this enemy
+		Flowing Pandaren Spirit defeated |q 32428/4 |goto Dread Wastes 61.10,87.50
+		|only if haveq(32428)
+	step
+		talk Flowing Pandaren Spirit##68462
+		accept Flowing Pandaren Spirit##32439 |goto Dread Wastes 61.10,87.50
+		|only if completedq(32428)
+	step
+		_Flowing Pandaren Spirit_
+		This enemy uses aquatic and elemental pets
+		They are strong against undead and mechanical and weak to flying and aquatic pets
+		I would suggest using flying and aquatic pets against this enemy
+		Flowing Pandaren Spirit defeated |q 32439/1 |goto Dread Wastes 61.10,87.50
+		|only if haveq(32439)
+	step
+		talk Flowing Pandaren Spirit##68462
+		turnin Flowing Pandaren Spirit##32439 |goto Dread Wastes 61.10,87.50
+		|only if haveq(32439)
+	step
+		_Gorespine_
+		This enemy is a beast
+		It is strong against humanoids and weak against mechanical pets
+		I would suggest using a team of mechanical pets against this enemy
+		Gorespine defeated |q 32869/1 |goto Dread Wastes 26.10,50.20
+	step
+		_Ti'un the Wanderer_
+		This enemy is aquatic
+		It is strong against undead and weak to flying pets
+		I would suggest using flying pets against this enemy
+		Ti'un the Wanderer defeated |q 32869/3 |goto Townlong Steppes 72.30,79.80
+	step
+		_Burning Pandaren Spirit_
+		This enemy uses a dragonkin, flying and elemental pet
+		They are strong against flying, beast, and mechanical pets, respectively
+		They are weak against humanoid, magic, and aquatic pets, respectively
+		I would suggest using a humanoid, magic, and aquatic pet against this enemy
+		Burning Pandaren Spirit defeated |q 32428/1 |goto Townlong Steppes 57.10,42.10
+		|only if haveq(32428)
+	step
+		talk Burning Pandaren Spirit##68463
+		accept Burning Pandaren Spirit##32434 |goto Townlong Steppes 57.10,42.10
+		|only if completedq(32428)
+	step
+		_Burning Pandaren Spirit_
+		This enemy uses a dragonkin, flying and elemental pet
+		They are strong against flying, beast, and mechanical pets, respectively
+		They are weak against humanoid, magic, and aquatic pets, respectively
+		I would suggest using a humanoid, magic, and aquatic pet against this enemy
+		Burning Pandaren Spirit defeated |q 32434/1 |goto Townlong Steppes 57.10,42.10
+		|only if haveq(32434)
+	step
+		talk Burning Pandaren Spirit##68463
+		turnin Burning Pandaren Spirit##32434 |goto Townlong Steppes 57.10,42.10
+		|only if haveq(32434)
+	step
+		_Kafi_
+		This enemy is a beast
+		It is strong against humanoids and weak against mechanical pets
+		I would suggest using a team of mechanical pets against this enemy
+		Kafi defeated |q 32604/2 |goto Kun-Lai Summit 35.20,56.20
+	step
+		_Thundering Pandaren Spirit_
+		This enemy uses a beast, elemental, and magic pet
+		They are strong against humanoids, mechanical, and aquatic pets, respectively
+		They are weak against mechanical, aquatic, and dragonkin pets, respectively
+		I would suggest using a mechanical, aquatic, and dragonkin pet against this enemy
+		Thundering Pandaren Spirit defeated |q 32428/2 |goto Kun-Lai Summit 64.90,93.80
+		|only if haveq(32428)
+	step
+		talk Thundering Pandaren Spirit##68465
+		accept Thundering Pandaren Spirit##32441 |goto Kun-Lai Summit 64.90,93.80
+		|only if completedq(32428)
+	step
+		_Thundering Pandaren Spirit_
+		This enemy uses a beast, elemental, and magic pet
+		They are strong against humanoids, mechanical, and aquatic pets, respectively
+		They are weak against mechanical, aquatic, and dragonkin pets, respectively
+		I would suggest using a mechanical, aquatic, and dragonkin pet against this enemy
+		Thundering Pandaren Spirit defeated |q 32441/1 |goto Kun-Lai Summit 64.90,93.80
+		|only if haveq(32441)
+	step
+		talk Thundering Pandaren Spirit##68465
+		turnin Thundering Pandaren Spirit##32441 |goto Kun-Lai Summit 64.90,93.80
+		|only if haveq(32441)
+	step
+		_Dos-Ryga_
+		This enemy is aquatic
+		It is strong against undead and weak to flying pets
+		I would suggest using flying pets against this enemy
+		Dos-Ryga defeated |q 32604/3 |goto Kun-Lai Summit 67.90,84.70
+	step
+		_Whispering Pandaren Spirit_
+		This enemy uses a flying, elemental, and dragonkin pet
+		They are strong against beast, mechanical, and flying pets, respectively
+		They are weak against magic, aquatic, and humanoid pets, respectively
+		I would suggest using a magic, aquatic, and humanoid pet against this enemy
+		Whispering Pandaren Spirit defeated |q 32428/3 |goto The Jade Forest 28.90,36
+		|only if haveq(32428)
+	step
+		talk Whispering Pandaren Spirit##68464
+		accept Whispering Pandaren Spirit##32440 |goto The Jade Forest 28.90,36
+		|only if completedq(32428)
+	step
+		_Whispering Pandaren Spirit_
+		This enemy uses a flying, elemental, and dragonkin pet
+		They are strong against beast, mechanical, and flying pets, respectively
+		They are weak against magic, aquatic, and humanoid pets, respectively
+		I would suggest using a magic, aquatic, and humanoid pet against this enemy
+		Whispering Pandaren Spirit defeated |q 32440/1 |goto The Jade Forest 28.90,36
+		|only if haveq(32440)
+	step
+		talk Whispering Pandaren Spirit##68464
+		turnin Whispering Pandaren Spirit##32440 |goto The Jade Forest 28.90,36
+		|only if haveq(32440)
+	step
+		_Ka'wi the Gorger_
+		This enemy is a critter
+		Is is strong against Elementals and weak to beast attacks
+		I would suggest using a team of mechanical pets against this enemy
+		Ka'wi the Gorger defeated |q 32604/1 |goto The Jade Forest 48.40,71.00
+	step
+		_Nitun_
+		This enemy is a critter
+		Is is strong against Elementals and weak to beast attacks
+		I would suggest using beast pets against this enemy
+		Nitun defeated |q 32604/4 |goto The Jade Forest 57.00,29.10
+	step
+		talk Gentle San##64582
+		turnin Beasts of Fable Book I##32604 |goto Vale of Eternal Blossoms 60.80,23.70
+		turnin Beasts of Fable Book II##32868 |goto Vale of Eternal Blossoms 60.80,23.70
+		turnin Beasts of Fable Book III##32869 |goto Vale of Eternal Blossoms 60.80,23.70
+		turnin Pandaren Spirit Tamer##32428 |only if not completedq(32428) |goto Vale of Eternal Blossoms 60.80,23.70
+]])

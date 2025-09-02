@@ -51,6 +51,10 @@ ZygorGuidesViewer:RegisterInclude("vendor_Cooking",[[
 		talk Suja##46708 |goto Orgrimmar 56.40,61.30
 ]])
 
+ZygorGuidesViewer:RegisterInclude("trainer_Cooking_MoP",[[
+		talk Sungshin Ironpaw##64231 |goto Valley of the Four Winds 53.60,51.20
+]])
+
 ------------------------
 ------ Enchanting ------
 ------------------------

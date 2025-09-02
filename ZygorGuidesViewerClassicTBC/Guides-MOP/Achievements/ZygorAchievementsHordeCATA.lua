@@ -1157,31 +1157,12 @@ patch='70305',
 description="Destroy both of Kologarn's arms and then Kologarn himself within 12 seconds.",
 },[[
 step
-path Ulduar/1
-path loop off; dist 20
-path	50.98,85.52
-map Ulduar/2
-path	37.10,76.41
-click Ulduar Teleporter##194569
-Teleport to the Antechamber of Ulduar |goto Ulduar/2 37.10,76.41 |noway |c
-'|achieve 12338 |next "End"
-step
-map Ulduar/2
-path loop off; dist 20
-path	37.10,54.92	34.83,35.10	37.06,18.31
-Follow the path to Kologarn |goto Ulduar/2 37.06,18.31 |noway |c
-'|achieve 12338 |next "End"
-step
 kill Kologarn##32930
 |tip To start, DPS Kologarn's body until he's at about 25 percent health.
 |tip Make sure not to attack his arms at all while you do this!
 |tip Once his body is at the 25 percent mark, kill his Left Arm, then his Right Arm.
 |tip Kill his body immidiately after.
-Earn the _Disarmed_ achievement |achieve 12338 |goto Ulduar/2 37.30,14.00
-step
-label "End"
-Congratulations!
-You have earned the _Disarmed_ achievement
+Earn the Disarmed Achievement |achieve 12338 |goto Ulduar/2 37.30,14.00
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend Raids\\Don't Stand in the Lightning",{
 achieveid={12348},
@@ -1730,34 +1711,10 @@ patch='70305',
 description="Defeat Hodir before he shatters his rare cache.",
 },[[
 step
-path Ulduar/1
-path loop off; dist 20
-path	50.98,85.52
-map Ulduar/2
-path	37.10,76.41
-click Ulduar Teleporter##194569
-Teleport to the Antechamber of Ulduar |goto Ulduar/2 37.10,76.41 |noway |c
-'|achieve 12347 |next "End"
-step
-map Ulduar/2
-path loop off; dist 20
-path	37.10,54.92	34.83,35.10	37.06,18.31
-path	37.12,8.17
-map Ulduar/3
-path	52.90,74.15	57.89,72.18	63.79,77.03
-path	73.14,79.13	75.93,76.98	75.09,71.80
-path	73.75,64.55	70.97,63.85
-Enter the Halls of Winter |goto Ulduar/3 70.97,63.85 |noway |c
-'|achieve 12347 |next "End"
-step
 kill Hodir##32845
 |tip To earn this achievement, you need to kill Hodir within 3 minutes.
 |tip Pop all cooldowns that increase your damage and defeat Hodir.
-Earn the _I Could Say That This Cache Was Rare_ achievement |achieve 12347 |goto Ulduar/3 66.00,63.70
-step
-label "End"
-Congratulations!
-You have earned the _I Could Say That This Cache Was Rare_ achievement
+Earn the I Could Say That This Cache Was Rare Achievement |achieve 12347 |goto Ulduar/3 66.00,63.70
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend Raids\\I Have the Coolest Friends",{
 achieveid={12344},
@@ -1778,34 +1735,12 @@ patch='70305',
 description="Defeat General Vezax after defeating the Saronite Animus.",
 },[[
 step
-map Ulduar/1
-path loop off; dist 20
-path	50.98,85.52
-map Ulduar/3
-path	51.02,54.02
-Teleport to the Conservatory of Life |goto Ulduar/3 51.02,54.02 |noway |c
-'|achieve 12373 |next "End"
-step
-map Ulduar/3
-path loop off; dist 20
-path	48.88,58.35	45.96,62.22	45.45,68.77
-path	42.70,73.55	34.89,74.44
-map Ulduar/4
-path	33.82,51.62	27.85,50.21	28.71,58.83
-path	35.66,67.97	41.56,65.68
-Follow the path to General Vezax |goto Ulduar/4 41.56,65.68 |noway |c
-'|achieve 12373 |next "End"
-step
 kill General Vezax##33271
 |tip To start, engage General Vezax with light damage.
 |tip He will spawn Saronite Vapors. Eventually he will absorb them when there are enough.
 |tip When that happens, a Saronite Animus will spawn.
 |tip Kill the Saronite Animus, then General Vazax.
-Earn the _I Love the Smell of Saronite in the Morning_ achievement |achieve 12373 |goto Ulduar/4 52.60,57.10
-step
-label "End"
-Congratulations!
-You have earned the _I Love the Smell of Saronite in the Morning_ achievement
+Earn the I Love the Smell of Saronite in the Morning Achievement |achieve 12373 |goto Ulduar/4 52.60,57.10
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend Raids\\I'll Take You All On",{
 achieveid={12349},
@@ -1908,24 +1843,13 @@ patch='70305',
 description="Defeat 25 Dark Rune Guardian Dwarves with Razorscale's Flame Breath.",
 },[[
 step
-path Ulduar/1
-path loop off; dist 20
-path	50.98,85.52	48.54,28.08
-click Ulduar Teleporter##194569
-Teleport to the Colossal Forge |goto Ulduar/1 48.54,28.08 |noway |c
-'|achieve 12322 |next "End"
-step
 kill Razorscale##33186
 |tip To start, ignore the Harpoon guns.
 |tip You will need a powerful AoE.
 |tip You can kill the large enemies, but leave the smaller ones alone for now.
 |tip Once you have at least 25, use the Harpoon Gun on Razorscale.
 |tip Wait for Razorscale to start casting Flame Breath and as soon as it hits, use your AoE attack.
-Earn the _Iron Dwarf, Medium Rare_ achievement |achieve 12322 |goto Ulduar/1 54.10,26.30
-step
-label "End"
-Congratualtions!
-You have earned the _Iron Dwarf, Medium Rare_ achievement
+Earn the Iron Dwarf, Medium Rare Achievement |achieve 12322 |goto Ulduar/1 54.10,26.30
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend Raids\\Just Can't Get Enough (10 player)",{
 achieveid={2184},
@@ -2041,32 +1965,9 @@ patch='70305',
 description="Defeat Freya while leaving all 3 Elders alive.",
 },[[
 step
-path Ulduar/1
-path loop off; dist 20
-path	50.98,85.52
-map Ulduar/2
-path	37.10,76.41
-click Ulduar Teleporter##194569
-Teleport to the Antechamber of Ulduar |goto Ulduar/2 37.10,76.41 |noway |c
-'|achieve 12366 |next "End"
-step
-map Ulduar/2
-path loop off; dist 20
-path	37.10,54.92	34.83,35.10	37.06,18.31
-path	37.12,8.17
-map Ulduar/3
-path	52.90,74.15	56.66,68.68	55.82,61.33
-path	51.28,56.78	51.72,38.40	52.26,29.14
-Follow the path to Freya |goto Ulduar/3 52.26,29.14 |noway |c
-'|achieve 12366 |next "End"
-step
 kill Freya##32906
 |tip To earn this achievement, Kill Freya directly without killing any of the Elders in her room.
-Earn the _Knock, Knock, Knock on Wood_ achievement |achieve 12366 |goto Ulduar/3 53,23
-step
-label "End"
-Congratulations!
-You have earned the _Knock, Knock, Knock on Wood_ achievement
+Earn the Knock, Knock, Knock on Wood Achievement |achieve 12366 |goto Ulduar/3 53,23
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend Raids\\Knock on Wood",{
 achieveid={12364},
@@ -2129,25 +2030,6 @@ patch='70305',
 description="Defeat Thorim while Sif is present.",
 },[[
 step
-path Ulduar/1
-path loop off; dist 20
-path	50.98,85.52
-map Ulduar/2
-path	37.10,76.41
-click Ulduar Teleporter##194569
-Teleport to the Antechamber of Ulduar |goto Ulduar/2 37.10,76.41 |noway |c
-'|achieve 12352 |next "End"
-step
-map Ulduar/2
-path loop off; dist 20
-path	37.10,54.92	34.83,35.10	37.06,18.31
-path	37.12,8.17
-map Ulduar/3
-path	52.90,74.15	56.66,68.68	55.82,61.33
-path	59.45,51.49	65.59,48.56
-Follow the path to Thorim |goto Ulduar/3 65.59,48.56 |noway |c
-'|achieve 12352 |next "End"
-step
 map Ulduar/3
 path	loop off; dist 20
 path	69.04,43.15	69.21,38.08	75.23,38.11
@@ -2161,11 +2043,7 @@ click Lever##245102
 |tip Run down the corridor, killing mobs quickly.
 |tip Reach the end of the hallway and jump down fast quickly to force Sif to join the fight.
 |tip Ignore Sif and kill Thorim.
-Earn the _Lose Your Illusion_ achievement |achieve 12352
-step
-label "End"
-Congratulations!
-You have earned the _Lose Your Illusion_ achievement
+Earn the Lose Your Illusion Achievement |achieve 12352
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend Raids\\Lumberjacked",{
 achieveid={12360},
@@ -3417,7 +3295,7 @@ patch='40003',
 description="This guide will walk you through how to get the Arrested Development achievement.",
 },[[
 step
-kill Corla, Herald of Twilight##39679
+kill Corla Herald of Twilight##39679
 |tip On Heroic difficulty, wait for the Twilight Zealots to gain 100 stacks of Evolution.
 |tip Once they evolve, kill them and Corla, Herald of Twilight.
 Earn the "Arrested Development" Achievement |achieve 5282 |goto Blackrock Caverns/1 27.00,16.30
@@ -3739,7 +3617,7 @@ patch='40003',
 description="This guide will walk you through how to get the Headed South achievement.",
 },[[
 step
-kill Siamat, Lord of the South Wind##44819
+kill Siamat Lord of the South Wind##44819
 |tip Defeat Siamat, Lord of the South Wind with 3 stacks of Lightning Charge in Lost City of the Tol'vir on heroic difficulty.
 |tip Engage the boss and wait for adds to spawn.
 |tip When you have 3 of the melee adds hitting you kill them and stand in the cloud that spawns. This will give you the Lightning Charge buff you need, then kill the boss.
@@ -3828,7 +3706,7 @@ description="This guide will walk you through how to get the Heroic: Lost City o
 step
 This achievement is gained by defeating Siamat, Lord of the South Wind in Lost City of the Tol'vir on Heroic mode
 |tip Use our dungeon guides to accomplish this.
-kill Siamat, Lord of the South Wind##44819
+kill Siamat Lord of the South Wind##44819
 Complete Lost City of the Tol'vir |achieve 5066 |goto Lost City of the Tol'vir 41.50,55.20
 step
 Congratulations, you have earned the Heroic: Lost City of the Tol'vir achievement!
@@ -8411,7 +8289,6 @@ achieveid={2257,2256},
 patch='30002',
 description="Kill all of the extremely rare and hard to find Northrend Creatures.",
 },[[
-stickystart "Hunter"
 step
 kill Old Crystalbark##32357 |goto Borean Tundra 25.60,34.40
 |tip He walks all around the Nexus so you may need to search for him.
@@ -11284,7 +11161,7 @@ kill Loot Crazed Diver##25836+ |n
 collect 15 Nesingwary Lackey Ear##35188 |q 11866/1 |goto Borean Tundra 53.40,42.70
 step
 kill "Lunchbox"##25968 |q 11884/2 |goto Borean Tundra 46.40,40
-kill Nedar, Lord of Rhinos##25801 |q 11884/1 |goto Borean Tundra 46.40,40
+kill Nedar Lord of Rhinos##25801 |q 11884/1 |goto Borean Tundra 46.40,40
 |tip He walks around this area. Kill 'Lunchbox' and then Nedar, Lord of Rhinos will jump off.
 step
 Stand inside the Caribou Traps on the ground

@@ -50,7 +50,7 @@ function Guide:New(title,header,data)
 		ZGV.RegisteredGuidesByIdent[header.id] = title
 	end
 
-	local filepath = debugstack(2):gsub(".*@",""):gsub('"]:'," line "):gsub(': in main chunk\n',""):gsub("Interface/AddOns/",""):gsub("\\","\\ "):gsub("_","_ ")
+	local filepath = debugstack(2):gsub(".*RegisterGuide",""):gsub(".*AddOns",""):gsub("\]",""):gsub(": in main chunk",""):gsub("/"," / "):gsub("_"," _ ")
 
 	if ZGV.IsClassicHardcore and not header.hardcore then
 		-- append there be dragons warning

@@ -9616,36 +9616,382 @@ use the Bright Baubles##6532
 |tip You can fish in any body of water that is convenient for you.
 Reach 600 Fishing |skill Fishing,600 |goto Vale of Eternal Blossoms/0 69.9,27.7
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Leveling Guides\\Pandaria Herbalism 1-75",{
-description="\nThis guide will walk you through leveling your Pandaria Herbalism skill from 1-75.",
-condition_end=function() return skill('Pandaria Herbalism') >= 75 end,
-condition_suggested=function() return skill('Pandaria Herbalism') > 0 and skill('Pandaria Herbalism') < 75 and level >= 5 end,
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Leveling Guides\\Herbalism (1-600)",{
+mopready=true,
+description="This guide will walk you through leveling 1-600 Herbalism",
 },[[
 step
+talk Muraga##467418
+Train Herbalism |skillmax Herbalism,75 |goto Orgrimmar/1 54.99,50.36
+|tip She walks around the room inside the building
+step
+map Durotar/0
+path follow smart; loop on; ants straight; dist 30
+path	42.32,15.46	38.48,17.88	38.48,21.04	36.72,23.85	37.08,26.77
+path	37.52,28.92	38.27,31.61	36.69,37.54	35.81,40.25	41.85,41.22
+path	38.24,46.11	40.14,49.62	43.99,45.01	50.95,47.51	51.04,51.45
+path	51.60,56.37	52.37,60.98	54.54,64.08	54.50,59.72	56.33,56.70
+path	57.35,53.02	56.16,49.04	56.55,45.71	58.25,44.42	55.93,41.14
+path	55.62,36.89	55.10,32.76	56.30,27.54	56.87,24.05	56.92,20.43
+path	56.42,16.15	53.30,13.04	53.00,11.17	49.53,13.22
+|tip Gather Peacebloom, Silverleaf, and Earthroot along the path.
+click Peacebloom##1618+
+click Silverleaf##1617+
+click Earthroot##1619+
+Reach Level 60 Herbalism |skill Herbalism,60
+step
+talk Muraga##46741
+Train Journeyman Herbalism |skillmax Herbalism,150 |goto Orgrimmar/1 54.99,50.36
+|tip She walks around the room inside the building
+step
+map The Barrens/0
+path follow smart; loop on; ants straight; dist 30
+path	66.63,12.04	59.22,17.42	55.62,18.76	55.16,19.61	53.05,25.68
+path	56.62,32.61	58.31,35.92	51.93,35.34	49.02,36.86	48.54,42.53
+path	46.28,45.82	42.95,48.35	39.95,49.12	33.87,50.00	35.19,52.18
+path	39.36,57.99	36.99,66.92	40.41,72.74	43.36,70.65	46.29,69.81
+path	48.36,74.04	52.36,70.51	53.51,74.82	57.12,78.65	60.72,77.37
+path	63.22,78.21	66.36,77.65	63.34,66.93	65.08,62.95	70.51,60.28
+path	66.71,53.97	64.65,54.15	61.56,49.66	58.75,47.58	55.22,48.61
+|tip Gather Earthroot and Mageroyal along the path.
+click Earthroot##1619+
+click Mageroyal##1620+
+Reach Level 70 Herbalism |skill Herbalism,70
+step
+map The Barrens/0
+path follow smart; loop on; ants straight; dist 30
+path	66.63,12.04	59.22,17.42	55.62,18.76	55.16,19.61	53.05,25.68
+path	56.62,32.61	58.31,35.92	51.93,35.34	49.02,36.86	48.54,42.53
+path	46.28,45.82	42.95,48.35	39.95,49.12	33.87,50.00	35.19,52.18
+path	39.36,57.99	36.99,66.92	40.41,72.74	43.36,70.65	46.29,69.81
+path	48.36,74.04	52.36,70.51	53.51,74.82	57.12,78.65	60.72,77.37
+path	63.22,78.21	66.36,77.65	63.34,66.93	65.08,62.95	70.51,60.28
+path	66.71,53.97	64.65,54.15	61.56,49.66	58.75,47.58	55.22,48.61
+|tip Gather Briarthorn and Mageroyal along the path.
+click Briarthorn##2450+
+click Mageroyal##1620+
+Reach Level 125 Herbalism |skill Herbalism,125
+step
+talk Muraga##46741
+Train Expert Herbalism |skillmax Herbalism,225 |goto Orgrimmar/1 54.99,50.36
+|tip She walks around the room inside the building
+|tip You must be at least level 10 to learn Expert Herbalism. |only if level < 10
+step
+map Northern Stranglethorn/0
+path follow smart; loop on; ants straight; dist 30
+path	41.90,20.67	37.44,18.90	34.85,19.46	32.34,24.69	30.05,30.56
+path	31.98,34.72	35.10,35.48	36.39,37.67	36.22,43.48	39.56,45.08
+path	41.94,46.79	43.43,52.34	46.37,51.56	48.08,49.67	48.49,45.14
+path	48.80,39.39	47.67,35.55	47.51,32.62	54.93,29.17	59.73,28.40
+path	63.25,29.41	63.03,23.00	59.49,21.11	57.08,20.01	54.52,20.03
+path	52.60,22.27	51.52,24.23	41.44,25.58
+|tip Gather Kingsblood and Wild Steelbloom along the path.
+click Kingsblood##3356+
+click Wild Steelbloom##1623+
+|tip At 150 you can start gathering Liferoot from along the river.
+Reach Level 160 Herbalism |skill Herbalism,160
+step
+map The Cape of Stranglethorn/0
+path follow smart; loop on; ants straight; dist 30
+path	49.45,10.57	48.12,15.04	49.07,18.49	46.62,19.50	42.69,17.68
+path	43.11,22.88	41.16,27.28	44.83,34.99	45.80,43.54	40.95,44.14
+path	37.46,47.35	37.28,51.60	39.19,56.20	42.32,61.61	45.84,65.53
+path	47.45,61.68	47.26,57.65	49.85,55.73	50.58,49.54	49.59,41.91
+path	51.92,33.55	53.22,31.69	54.47,27.92	58.38,28.73	62.17,31.34
+path	62.14,27.41
+|tip Gather Fadeleaf, Khadgar's Whisker and Goldthorn along this path.
+click Fadeleaf##3818+
+click Khadgar's Whisker##2043+
+click Goldthorn##2046+
+Reach Level 210 Herbalism |skill Herbalism,210
+step
+talk Muraga##46741
+Train Artisan Herbalism |skillmax Herbalism,300 |goto Orgrimmar/1 54.99,50.36
+|tip She walks around the room inside the building
+|tip You must be at least level 25 to learn Artisan Herbalism. |only if level < 25
+step
+map Searing Gorge/0
+path follow smart; loop on; ants straight; dist 30
+path	37.00,41.10	30.85,44.01	29.87,50.40	31.28,58.18	31.09,64.17
+path	31.15,68.86	34.68,68.60	39.43,73.19	45.08,66.57	47.38,61.80
+path	52.13,67.88	56.85,61.86	58.61,56.17	63.23,64.32	64.76,55.47
+path	65.92,46.59	67.62,37.32	59.23,35.66	48.34,38.83
+|tip Gather Firebloom along this path.
+click Firebloom##4625+
+Reach Level 230 Herbalism |skill Herbalism,230
+step
+map Searing Gorge/0
+path follow smart; loop on; ants straight; dist 30
+path	37.00,41.10	30.85,44.01	29.87,50.40	31.28,58.18	31.09,64.17
+path	31.15,68.86	34.68,68.60	39.43,73.19	45.08,66.57	47.38,61.80
+path	52.13,67.88	56.85,61.86	58.61,56.17	63.23,64.32	64.76,55.47
+path	65.92,46.59	67.62,37.32	59.23,35.66	48.34,38.83
+|tip Gather Firebloom and Sungrass along this path.
+click Firebloom##4625+
+click Sungrass##176636+
+Reach Level 260 Herbalism |skill Herbalism,260
+step
+map Felwood/0
+path follow smart; loop on; ants curved; dist 30
+path	48.25,74.18	45.57,71.52	45.19,67.93	44.99,64.81	43.75,63.75
+path	42.60,61.94	42.10,60.44	42.52,58.39	42.19,55.80	42.12,53.77
+path	42.52,51.99	42.46,49.04	43.22,46.66	42.28,45.26	43.25,43.10
+path	44.86,43.11	46.09,41.05	45.72,36.88	46.03,33.95	47.65,33.39
+path	51.14,32.99	51.89,29.81	53.84,27.92	55.31,24.24	55.39,22.27
+path	45.98,22.93	52.60,22.73	51.41,24.65	50.01,21.04	46.67,25.21
+path	43.76,23.67	42.49,24.58	40.74,26.31	41.42,27.63	41.25,30.12
+path	40.28,31.55	39.63,32.74	40.28,34.49	39.88,36.76	39.02,41.56
+path	38.95,44.99	40.65,46.99	39.91,49.88	39.07,53.19	38.83,55.66
+path	39.72,58.29	41.23,59.18	41.60,60.63	42.10,62.62	41.71,64.52
+path	40.58,65.26	40.40,68.00	39.31,70.23	39.26,71.58	41.53,72.75
+path	41.89,74.07	40.92,76.49	41.72,78.38	43.01,80.29	44.69,81.19
+path	45.84,83.32	47.74,82.92	49.87,80.73
+|tip Gather Gromsblood and Golden Sansam along this path.
+click Gromsblood##142145+
+click Golden Sansam##176583+
+|tip Gather Dreamfoil at 270 as well
+Reach Level 280 Herbalism |skill Herbalism,280
+step
+map Winterspring/0
+path follow smart; loop on; ants straight; dist 30
+path	22.42,57.71	22.19,61.90	24.41,62.07	25.90,57.83	28.15,57.73
+path	30.01,58.79	33.34,59.63	36.12,58.61	37.72,57.57	41.87,53.30
+path	42.37,56.65	47.15,60.90	49.65,58.66	52.13,58.02	53.47,63.96
+path	53.44,67.10	55.13,69.75	55.67,73.09	55.70,76.15	57.96,75.83
+path	60.19,72.78	61.19,69.92	61.14,67.07	61.38,62.85	62.74,61.72
+path	65.10,60.73	67.03,61.17	67.14,57.10	66.70,52.77	65.40,50.58
+path	63.77,49.22	65.55,45.93	68.20,45.58	68.56,43.10	67.70,40.22
+path	67.74,37.68	66.91,35.23	67.08,32.77	66.70,30.51	65.97,26.46
+path	64.59,29.09	62.41,31.24	60.89,31.57	59.82,29.78	58.81,27.51
+path	59.22,24.40	59.88,22.11	57.63,18.43	54.82,19.50	52.66,18.83
+path	49.90,18.51	48.92,14.84	46.77,13.89	44.89,14.63	44.82,16.63
+path	44.90,19.96	44.89,22.91	45.39,25.33	46.78,29.13	47.65,32.26
+path	47.37,33.81	48.66,37.63	48.80,42.57	48.06,44.53	44.26,47.48
+path	42.29,46.73	40.02,46.26	38.31,45.75	35.60,47.41	31.24,47.64
+path	27.43,47.39	25.05,46.58
+|tip Gather Mountain Silversage along this path.
+click Mountain Silversage##176586+
+click Icecap##176588+
+Reach Level 300 Herbalism |skill Herbalism,300
+step
+talk Muraga##46741
+Train Master Herbalism |skillmax Herbalism,375 |goto Orgrimmar/1 54.99,50.36
+|tip She walks around the room inside the building
+|tip You must be at least level 40 to learn Master Herbalism. |only if level < 40
+step
+map Terokkar Forest/0
+path follow smart; loop on; ants curved
+path	31.60,45.71	32.29,42.68	32.86,38.44	32.61,35.72	34.85,34.70
+path	36.60,32.54	36.98,30.09	38.61,28.59	39.20,26.76	40.64,25.10
+path	41.40,22.16	43.06,19.91	43.81,17.68	43.32,15.01	43.95,12.48
+path	45.94,12.75	48.58,14.35	50.45,17.02	49.36,20.09	49.79,22.32
+path	50.98,24.83	53.08,25.59	55.63,25.32	58.26,25.33	59.93,23.87
+path	61.12,26.59	62.13,28.15	63.46,29.60	65.02,31.32	67.13,31.63
+path	69.82,31.74	69.61,35.63	68.73,39.39	69.79,42.02	70.46,45.89
+path	70.51,48.71	68.94,53.17	68.11,54.89	65.38,54.27	63.87,51.31
+path	61.59,50.51	59.04,49.28	56.48,46.30	53.96,42.43	54.33,38.20
+path	53.25,35.66	50.24,35.67	48.92,34.53	46.58,34.04	43.68,34.49
+path	40.40,35.76	38.35,36.51	36.62,38.18	36.01,39.93	36.50,42.94
+path	35.72,43.53	33.66,44.98
+click Felweed##181270+
+|tip Gather Felweed along the path.
+Reach Level 315 Herbalism |skill Herbalism,315
+step
+map Nagrand/0
+path follow smart; loop on; ants straight; dist 30
+path	73.74,55.38	71.51,57.49	71.51,61.00	74.67,63.28	75.05,67.93
+path	75.00,69.36	74.71,71.83	72.26,73.84	70.34,76.16	71.17,78.66
+path	67.46,75.67	67.01,73.43	65.67,70.00	62.51,74.78	59.20,72.11
+path	57.98,68.35	59.35,65.14	58.76,60.69	57.55,56.52	55.56,57.85
+path	51.66,60.42	49.73,61.20	49.91,67.46	48.17,69.91	45.96,67.39
+path	44.50,70.51	42.62,70.55	40.94,71.99	39.26,77.58	35.82,76.93
+path	32.40,75.32	30.49,72.19	32.35,69.48	33.86,67.30	34.51,64.49
+path	32.65,61.72	28.70,60.83	26.80,56.13	23.10,54.53	22.95,54.34
+path	21.30,50.23	22.32,45.77	27.38,40.65	30.02,37.64	30.91,33.55
+path	32.43,32.10	33.38,27.86	36.77,24.78	39.86,24.33	40.09,22.13
+path	41.89,22.68	44.55,26.87	46.66,26.77	47.66,23.71	49.19,22.59
+path	51.90,22.15	51.16,29.01	52.21,30.91	50.37,38.57	48.03,43.27
+path	49.18,47.27	52.27,46.65	53.97,47.44	58.03,46.11	59.60,43.60
+path	62.80,41.81	66.80,40.73	69.47,45.77	71.27,47.04
+|tip Gather Felweed along this path
+click Felweed##181270+
+click Dreaming Glory##181271+
+Reach Level 325 Herbalism |skill Herbalism,325
+step
+step
+map Terokkar Forest/0
+path follow smart; loop on; ants curved
+path	31.60,45.71	32.29,42.68	32.86,38.44	32.61,35.72	34.85,34.70
+path	36.60,32.54	36.98,30.09	38.61,28.59	39.20,26.76	40.64,25.10
+path	41.40,22.16	43.06,19.91	43.81,17.68	43.32,15.01	43.95,12.48
+path	45.94,12.75	48.58,14.35	50.45,17.02	49.36,20.09	49.79,22.32
+path	50.98,24.83	53.08,25.59	55.63,25.32	58.26,25.33	59.93,23.87
+path	61.12,26.59	62.13,28.15	63.46,29.60	65.02,31.32	67.13,31.63
+path	69.82,31.74	69.61,35.63	68.73,39.39	69.79,42.02	70.46,45.89
+path	70.51,48.71	68.94,53.17	68.11,54.89	65.38,54.27	63.87,51.31
+path	61.59,50.51	59.04,49.28	56.48,46.30	53.96,42.43	54.33,38.20
+path	53.25,35.66	50.24,35.67	48.92,34.53	46.58,34.04	43.68,34.49
+path	40.40,35.76	38.35,36.51	36.62,38.18	36.01,39.93	36.50,42.94
+path	35.72,43.53	33.66,44.98
+click Terocone##181277+
+|tip Gather Terocone and other herbs along the path.
+Reach Level 350 Herbalism |skill Herbalism,350
+step
+map Netherstorm/0
+path follow smart; loop on; ants curved
+path	40.24,77.20	35.96,77.64	33.57,77.45	32.69,76.46	29.37,79.43
+path	26.96,78.02	25.18,76.67	22.65,76.95	21.15,76.56	20.31,74.78
+path	19.80,71.91	19.08,69.17	20.47,66.62	22.14,66.23	24.65,65.10
+path	27.12,60.26	25.78,57.60	24.23,55.80	25.51,54.63	28.56,54.51
+path	31.15,52.38	29.62,43.63	27.59,44.60	25.41,44.20	22.98,42.42
+path	23.01,39.51	24.33,37.29	25.59,34.57	28.07,36.77	29.58,40.32
+path	31.85,40.98	36.24,37.50	34.06,33.89	33.35,29.83	33.90,25.46
+path	35.11,23.24	35.65,19.13	37.78,16.74	39.58,16.09	42.42,14.81
+path	44.23,11.72	45.11,9.32	45.88,7.67	46.97,9.19	48.22,13.84
+path	50.05,15.38	50.32,17.83	53.22,17.87	55.50,17.51	55.81,20.17
+path	56.92,23.83	54.87,25.87	52.51,26.14	50.65,26.43	48.19,27.46
+path	47.13,31.47	47.76,34.54	49.01,37.61	54.64,32.59	56.67,31.80
+path	58.36,31.54	60.65,30.28	62.49,30.31	65.43,30.84	67.85,32.79
+path	68.63,35.87	70.41,36.32	72.66,35.05	73.97,35.64	73.61,37.25
+path	73.81,39.22	73.42,40.88	72.18,43.37	70.07,44.56	68.89,46.88
+path	66.51,48.70	64.20,50.40	61.71,50.31	59.22,50.15	57.37,48.48
+path	56.39,46.25	54.77,43.82	53.12,41.66	49.55,46.57	49.57,50.00
+path	50.42,52.90	51.84,54.87	53.70,56.61	56.10,56.66	57.95,57.14
+path	59.94,58.21	62.03,58.25	64.36,58.34	66.65,58.84	67.89,61.91
+path	66.70,65.88	64.15,67.93	62.18,68.23	61.37,64.52	60.24,63.12
+path	57.94,63.05	57.36,65.05	56.29,67.80	52.89,68.59	51.27,70.71
+path	51.54,75.15	54.25,76.46	57.15,77.98	59.64,78.82	62.25,79.25
+path	60.11,81.86	60.14,84.60	59.80,87.70	58.69,89.60	56.55,89.08
+path	54.83,88.42	52.69,86.63	50.15,86.35	48.74,85.68	46.78,84.05
+path	45.54,79.03	43.73,76.27
+click Netherbloom##181279+
+|tip Gather Netherbloom along the path.
+Reach Level 375 Herbalism |skill Herbalism,375
+step
+talk Muraga##46741
+Train Grand Master Herbalism |skillmax Herbalism,450 |goto Orgrimmar/1 54.99,50.36
+|tip She walks around the room inside the building
+|tip You must be at least level 55 to learn Grand Master Herbalism. |only if level < 55
+step
+map Howling Fjord/0
+path follow smart; loop on; ants straight; dist 30
+path	28.32,9.45	26.89,7.87
+map Grizzly Hills
+path	34.30,81.36
+map Howling Fjord
+path	24.38,14.17	27.59,18.66	28.51,21.97	28.47,25.41	27.25,29.28
+path	29.21,31.96	31.02,33.50	32.75,33.13	34.65,34.63	39.17,33.19
+path	41.20,34.00	42.30,28.24	43.86,27.95	44.60,29.76	47.05,29.52
+path	48.37,29.95	49.43,34.95	50.68,33.99	52.23,32.35	53.73,32.24
+path	55.99,36.28	57.37,37.11	58.94,38.82	51.52,42.42	47.37,42.65
+path	45.21,42.41	43.48,43.14	41.04,40.53	37.50,40.00	37.15,44.48
+path	35.33,46.41	34.64,50.52	36.59,52.85	39.34,54.24	46.33,53.51
+path	46.60,50.54	48.34,48.40	50.70,48.46	52.29,51.37	53.00,55.99
+path	51.29,58.81	49.26,62.45	46.78,71.23	48.76,72.20	52.81,71.77
+path	53.69,75.28	56.26,75.89	61.22,80.50	66.72,74.20	69.10,74.68
+path	70.02,72.41	70.08,69.89	70.63,66.92	73.14,66.67	76.45,67.80
+path	76.65,64.02	75.76,60.81	73.48,58.67	72.44,55.06	75.72,51.02
+path	78.83,49.70	80.48,46.73	78.94,45.06	76.53,43.20	74.27,44.13
+path	72.64,42.52	70.62,40.65	70.40,34.94	70.44,32.87	70.65,28.32
+path	69.75,24.84	69.72,22.42	70.12,19.08	68.38,19.94	65.57,24.57
+path	63.35,27.37	61.53,28.13	59.26,26.03	58.29,23.98	56.01,20.08
+path	52.69,18.20	50.68,16.74	49.14,18.22	45.76,22.17	42.21,23.86
+path	39.89,23.58	35.69,22.56
+|tip Gather Goldclover and Tiger Lily along the path.
+click Goldclover##189973+
+click Tiger Lily##190169+
+Reach Level 400 Herbalism |skill Herbalism,400
+step
+map Sholazar Basin/0
+path follow smart; loop on; ants curved; dist 30
+path	24.23,56.13	27.03,55.88	28.77,58.22	30.23,54.96	29.81,49.57
+path	30.16,47.28	33.16,47.05	35.35,48.39	37.38,50.81	38.86,53.62
+path	40.12,57.19	38.28,58.88	35.54,59.62	33.29,60.96	33.97,63.13
+path	36.14,64.74	38.39,66.80	40.60,66.19	41.59,67.02	42.33,70.20
+path	43.23,74.84	43.38,79.66	43.24,82.82	40.64,84.76	37.93,83.94
+path	36.78,82.55	35.42,82.23	33.77,83.66	32.50,84.16	30.86,84.19
+path	28.98,83.64	28.84,80.96	29.94,78.24	29.66,74.84	30.05,71.44
+path	29.72,69.53	28.01,66.13	26.96,64.47	25.20,65.29	22.71,63.99
+path	21.97,60.65	22.37,57.35
+click Adder's Tongue##191019+
+|tip Gather Adder's Tongue and other herbs along the path.
+Reach Level 435 Herbalism |skill Herbalism,435
+step
+talk Muraga##46741
+Train Illustrious Grand Master Herbalism |skillmax Herbalism,525 |goto Orgrimmar/1 54.99,50.36
+|tip She walks around the room inside the building
+|tip You must be at least level 75 to learn Illustrious Grand Master Herbalism. |only if level < 75
+step
+map Mount Hyjal/0
+path follow smart; loop on; ants straight; dist 30
+path	63.52,31.55	59.57,32.88	56.84,34.54	54.71,29.36	53.13,31.28
+path	48.07,30.68	45.74,27.86	36.60,22.67	35.18,25.84	33.14,25.57
+path	33.77,34.17	33.99,37.06	27.61,39.43	25.94,37.24	24.30,33.51
+path	23.48,36.14	21.88,38.77	15.82,40.94	13.52,40.33	14.38,45.61
+path	17.12,53.39	19.25,57.53	23.37,59.85	24.79,61.79	27.32,59.90
+path	28.50,54.44	31.11,52.22	34.43,54.53	35.78,57.57	36.87,62.02
+path	38.97,61.57	40.29,59.61	41.57,56.62	49.01,57.60	51.13,57.93
+path	51.16,53.77	51.72,51.91	54.23,53.26	55.58,57.23	57.62,54.09
+path	61.08,59.46	61.30,60.55	65.74,54.83	69.41,55.41	72.97,59.21
+path	74.00,61.72	77.50,59.62	79.41,55.08	81.41,51.90
+|tip Gather Cinderbloom and other herbs along the path.
+click Cinderbloom##202747+
+Reach Level 500 Herbalism |skill Herbalism,500
+step
 talk Grower Miao##66980
-Train Pandaria Herbalism |skillmax Pandaria Herbalism,75 |goto The Jade Forest/0 27.79,15.53
-|tip You must be at least level 5.
+Train Zen Master Herbalism |skillmax Herbalism,600 |goto The Jade Forest/0 27.79,15.53
+|tip You must be at least level 80.
+step
+map The Jade Forest/0
+path follow strictbounce; loop off; ants curved; dist 30
+path	30.96,15.27	30.12,18.71	29.45,22.30	29.04,26.58	29.55,30.35
+path	30.95,33.00	31.95,35.68	33.30,37.92	35.24,38.99	37.60,39.51
+path	39.18,39.31	42.05,37.52	44.38,35.96	45.74,34.01	47.42,30.41
+path	50.56,30.49	52.85,33.06	54.01,35.54	53.48,38.95	51.13,40.35
+path	49.59,39.98	47.22,39.85	44.00,39.80	41.43,40.54	38.15,45.25
+Collect herbs along the path
+|tip Make sure you enable "Find Herbs" in the tracking menu on the minimap.
+Reach 525 Herbalism |skill Herbalism,525
+step
+map The Jade Forest/0
+path follow smart; loop on; ants curved; dist 30
+path	37.23,46.91	38.09,49.98	39.13,52.36	41.00,53.42	42.55,54.57
+path	43.48,58.48	43.96,62.91	45.74,64.62	49.06,65.24	51.81,63.28
+path	51.74,60.57	50.41,57.77	47.17,57.56	45.27,54.03	43.66,49.29
+Collect herbs along the path
+|tip Make sure you enable "Find Herbs" in the tracking menu on the minimap.
+Reach 545 Herbalism |skill Herbalism,545
 step
 map Valley of the Four Winds/0
 path follow smart; loop on; ants curved; dist 30
-path	84.25,28.72	80.77,35.08	76.82,37.07	72.76,40.45	71.84,47.89
-path	70.41,52.47	66.85,59.48	63.12,65.25	59.51,69.39	55.72,70.75
-path	52.13,67.94	49.42,67.53	42.68,67.97	37.80,63.45	34.03,64.32
-path	31.00,67.56	30.11,71.30	31.37,76.24	25.69,79.32	22.85,70.29
-path	23.31,62.97	25.88,57.19	29.20,52.04	31.27,51.51	34.32,47.66
-path	34.62,44.76	34.33,39.09	35.99,33.89	37.08,30.85	39.81,33.17
-path	43.05,36.81	45.44,39.36	47.69,34.44	47.02,30.50	49.62,27.65
-path	52.04,27.52	53.48,27.58	55.12,31.96	55.15,36.80	55.58,40.56
-path	58.06,44.14	60.21,44.03	60.26,41.05	60.71,38.10	59.88,33.72
-path	62.02,31.97	67.56,26.23	70.66,25.13	73.95,24.19	78.36,22.08
-path	82.35,21.48
+path	85.95,23.04	86.12,32.29	79.98,38.66	75.75,44.40	72.83,52.62
+path	69.05,59.77	64.70,66.39	57.77,72.38	51.07,70.05	44.73,70.56
+path	36.49,74.27	33.42,78.40	30.68,76.24	30.32,69.62	32.03,57.19
+path	32.14,51.66	35.07,41.85	36.11,33.68	37.28,31.96	40.17,36.36
+path	41.52,37.80	45.39,35.05	50.97,29.46	53.49,32.97	54.92,38.78
+path	57.35,43.71	60.34,40.37	59.47,33.45	59.15,28.16	60.81,26.07
+path	63.27,28.55	64.56,33.17	66.59,31.91	66.56,26.58	72.39,24.91
+path	79.59,22.21	83.47,19.35
 Collect herbs along the path
 |tip Make sure you enable "Find Herbs" in the tracking menu on the minimap.
-collect Green Tea Leaf##72234 |n
-Reach 75 Pandaria Herbalism |skill Pandaria Herbalism,75
+Reach 575 Herbalism |skill Herbalism,575
 step
-_Congratulations!_
-You Reached 75 Pandaria Herbalism Skill.
+map Kun-Lai Summit/0
+path follow smart; loop on; ants curved; dist 30
+path	59.72,56.78	56.75,53.76	54.95,53.31	53.58,52.97	52.60,54.61
+path	53.43,58.65	54.42,62.34	54.21,65.06	53.47,66.03	52.28,64.71
+path	50.69,61.06	49.32,59.44	47.63,57.93	46.24,55.30	45.51,58.22
+path	45.68,64.22	46.27,69.07	46.10,72.21	43.25,73.98	41.82,74.67
+path	39.93,78.44	37.05,80.06	36.37,76.87	37.21,73.40	38.22,70.14
+path	37.29,67.35	36.47,65.02	38.47,63.17	41.30,62.41	41.85,60.35
+path	40.81,58.93	37.48,59.09	35.08,58.00	34.65,54.04	34.62,50.21
+path	37.47,51.49	39.10,52.36	39.66,46.47	39.59,41.30	41.66,40.49
+path	42.37,44.95	42.35,46.40	45.66,46.31	47.19,46.56	49.73,50.69
+path	50.94,50.92	51.52,48.72	53.71,45.99	57.25,42.17	58.01,45.03
+path	57.86,48.76	58.86,53.46
+Collect herbs along the path
+|tip Make sure you enable "Find Herbs" in the tracking menu on the minimap.
+Reach 600 Herbalism |skill Herbalism,600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Inscription\\Leveling Guides\\Inscription (1-600)",{
 mopready=true,
@@ -14335,15 +14681,278 @@ step
 create 13 Contender's Wyrmhide Bracers##124592,Leatherworking,13 total |or |usebank
 |complete skill("Leatherworking") >= 600 |or
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Leveling Guides\\Pandaria Mining 1-75",{
-description="\nThis guide will walk you through leveling your Pandaria Mining skill from 1-75.",
-condition_end=function() return skill('Pandaria Mining') >= 75 end,
-condition_suggested=function() return skill('Pandaria Mining') > 0 and skill('Pandaria Mining') < 75 and level >= 5 end,
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Leveling Guides\\Mining (1-600)",{
+mopready=true,
+description="This guide will walk you through leveling 1-600 Mining",
 },[[
 step
+talk Makaru##3357
+Train Mining |skillmax Mining,75 |goto Orgrimmar/1 72.36,34.96
+|tip He is inside the building
+step
+map Durotar/0
+path follow smart; loop on; ants straight; dist 30
+path	39.65,14.79	38.28,15.44	38.22,20.48	38.38,22.76	36.65,26.69
+path	35.91,28.78	36.06,33.42	36.96,36.30	37.80,39.27	39.26,39.70
+path	42.38,39.50	43.19,44.44	41.45,47.20	38.90,50.61	39.14,52.89
+path	42.55,50.67	45.74,49.28	47.76,48.46	50.63,46.66	50.86,52.45
+path	50.91,55.62	51.94,58.63	51.24,65.15	50.15,71.44	52.02,77.63
+path	53.44,78.95	55.23,76.72	57.35,70.85	55.28,65.96	54.96,60.66
+path	58.62,60.36	60.61,61.55	60.55,54.98	56.43,50.20	58.59,41.52
+path	56.89,31.45	54.40,28.26	51.34,27.28	51.18,23.73	51.64,19.86
+path	52.93,18.10	51.32,16.33
+|tip Mine Copper Ore along the path
+click Copper Vein##1731+
+|tip You can smelt Copper Ore as well from 1-50.
+Reach Level 50 Mining |skill Mining,50
+step
+talk Makaru##3357
+Train Journeyman Mining |skillmax Mining,150 |goto Orgrimmar/1 72.36,34.96
+|tip He is inside the building
+step
+map Kalimdor/0
+path follow smart; loop on; ants straight; dist 30
+path	44.89,34.26	44.33,34.72
+map Ashenvale
+path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
+path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
+path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
+path	44.49,70.63	51.56,74.31	55.59,75.26	55.32,68.67	56.36,64.09
+path	58.46,65.61	62.13,64.77	63.83,65.27	65.66,69.02	71.90,71.98
+path	75.32,75.93	75.51,69.19	82.44,71.50	81.58,49.07	79.19,47.72
+path	76.14,51.73	70.40,54.04	69.08,52.18	65.23,55.56	66.82,47.07
+path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
+path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
+path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
+path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
+|tip Mine Tin Ore along the path.
+|tip Enter caves along the path to check for ore as well.
+click Tin Vein##1732+
+|tip You can smelt Tin Ore as well from 50-75. Afterwards smelt Bronze til 115 and Silver up to 125.
+Reach Level 125 Mining |skill Mining,125
+step
+talk Makaru##3357
+Train Expert Mining |skillmax Mining,225 |goto Orgrimmar/1 72.36,34.96
+|tip He is inside the building
+|tip You must be at least level 10 to learn Expert Mining. |only if level < 10
+step
+map Desolace/0
+path follow smart; loop on; ants straight; dist 30
+path	56.89,12.79	55.69,16.76	55.93,21.85	57.37,28.71	56.18,30.02
+path	54.51,32.54	52.22,32.64	48.21,29.09	45.96,27.10	38.90,35.04
+path	38.63,37.92	34.22,51.24	32.16,53.03	29.52,52.35	29.39,55.11
+path	30.97,59.87	29.89,66.12	29.70,70.86	26.60,80.92	28.44,83.18
+path	33.54,82.52	39.19,89.95	42.73,85.78	44.07,83.20	47.68,82.24
+path	51.21,83.38	52.17,86.89	60.31,89.98	64.45,91.08	64.71,86.76
+path	65.90,83.88	68.95,82.50	64.62,70.06	67.89,62.18	64.91,57.19
+path	65.28,48.42	69.53,53.43	74.94,49.96	74.45,44.35	68.66,38.22
+path	74.23,36.02	76.67,34.48	74.56,26.14	78.57,20.83	79.72,15.70
+path	74.12,15.10	69.97,16.80
+|tip Mine Iron Ore along the path.
+click Iron Deposit##1735+
+|tip You can smelt Iron Ore from 125-140 as well.
+Reach Level 175 Mining |skill Mining,175
+step
+map Tanaris/0
+path follow smart; loop on; ants straight; dist 30
+path	41.35,22.41	37.40,23.15	38.08,28.44	36.86,33.87	38.23,42.08
+path	37.78,44.80	33.64,46.79	31.88,44.50	30.70,47.06	28.38,60.77
+path	30.90,63.50	31.94,66.31	29.73,70.62	28.95,73.69	29.49,77.01
+path	44.87,76.24	47.38,76.98	49.08,78.82	52.92,76.78	55.35,69.14
+path	58.88,64.71	63.17,62.71	63.41,59.12	65.21,56.55	69.29,51.69
+path	70.11,47.78	70.46,44.88	69.02,42.59	61.32,41.61	56.28,38.90
+path	47.40,25.38	44.76,24.36
+|tip Mine Mithril Ore along the path.
+|tip Enter caves along the path to check for ore as well.
+click Mithril Deposit##2040+
+|tip You can smelt Mithril Ore from 175-230 as well.
+Reach Level 225 Mining |skill Mining,225
+step
+talk Brek Stonehoof##3001
+Train Artisan Mining |skillmax Mining,300 |goto Thunder Bluff/0 34.36,57.88
+|tip He is inside the building
+|tip You must be at least level 25 to learn Artisan Mining. |only if level < 25
+step
+map Tanaris/0
+path follow smart; loop on; ants straight; dist 30
+path	41.35,22.41	37.40,23.15	38.08,28.44	36.86,33.87	38.23,42.08
+path	37.78,44.80	33.64,46.79	31.88,44.50	30.70,47.06	28.38,60.77
+path	30.90,63.50	31.94,66.31	29.73,70.62	28.95,73.69	29.49,77.01
+path	44.87,76.24	47.38,76.98	49.08,78.82	52.92,76.78	55.35,69.14
+path	58.88,64.71	63.17,62.71	63.41,59.12	65.21,56.55	69.29,51.69
+path	70.11,47.78	70.46,44.88	69.02,42.59	61.32,41.61	56.28,38.90
+path	47.40,25.38	44.76,24.36
+|tip Mine Mithril Ore along the path.
+|tip Enter caves along the path to check for ore as well.
+click Mithril Deposit##2040+
+|tip You can smelt Mithril Ore from 175-230 as well.
+Reach Level 235 Mining |skill Mining,235
+step
+map Un'Goro Crater/0
+path follow smart; loop on; ants straight; dist 30
+path	76.74,42.05	73.74,30.89	69.66,20.70	63.51,16.72	59.87,15.96
+path	56.36,12.61	49.73,13.57	36.10,20.32	26.67,30.68	24.84,39.93
+path	23.80,50.02	24.09,58.91	26.24,66.95	29.29,72.74	31.69,79.87
+path	37.12,81.23	39.59,84.18	44.39,86.33	50.01,79.90	54.71,86.32
+path	59.99,84.20	65.04,79.87	74.01,69.76	76.30,60.04	76.90,54.28
+|tip Mine Thorium Ore along the path.
+|tip Enter caves along the path to check for ore as well.
+click Small Thorium Vein##324+
+click Rich Thorium Vein##175404+
+Reach Level 300 Mining |skill Mining,300
+step
+talk Makaru##3357
+Train Master Mining |skillmax Mining,375 |goto Orgrimmar/1 72.36,34.96
+|tip He is inside the building
+|tip You must be at least level 40 to learn Master Mining. |only if level < 40
+step
+map Hellfire Peninsula/0
+path follow smart; loop on; ants curved; dist 30
+path	40.75,42.50	40.26,40.96	40.59,36.51	41.36,33.28	43.83,33.24
+path	44.70,32.04	44.07,29.69	41.52,29.31	40.39,28.06	39.18,28.60
+path	38.78,31.28	39.45,34.58	38.84,37.75	38.00,41.81	37.29,44.05
+path	34.94,45.10	33.47,44.99	32.33,43.34	31.25,41.56	31.18,38.16
+path	33.35,35.12	34.81,36.51	36.88,34.23	36.38,31.00	36.65,27.50
+path	34.86,27.64	34.18,30.27	33.95,32.60	32.82,32.93	30.49,32.56
+path	29.46,34.09	29.89,36.50	29.26,38.76	28.50,39.00	27.60,36.52
+path	26.16,37.69	25.80,40.12	24.27,41.44	21.50,41.64	20.34,41.76
+path	19.47,39.60	18.10,38.61	16.12,37.94	14.31,37.73	13.47,36.02
+path	12.48,35.85	12.11,38.86	13.09,40.80	12.81,43.48	12.08,46.56
+path	11.32,48.30	9.56,49.23	8.57,51.37	9.57,52.68	10.84,55.14
+path	12.17,55.31	12.26,58.81	12.81,59.93	14.07,61.24	14.96,63.01
+path	15.77,59.56	17.36,57.29	19.16,56.46	21.27,57.56	22.06,59.04
+path	23.61,61.30	22.10,63.38	21.62,65.68	22.34,67.89	23.43,69.32
+path	25.05,71.45	26.07,71.93	25.79,75.23	25.80,78.02	27.25,79.15
+path	28.84,78.89	29.38,76.72	29.62,73.24	29.96,69.53	30.61,66.72
+path	32.37,65.87	33.99,66.14	35.61,70.00	36.83,67.98	39.60,68.47
+path	40.74,70.17	42.73,73.61	42.33,76.12	43.05,79.48	41.89,82.43
+path	40.80,84.01	39.64,86.19	38.83,87.20	36.99,88.84	34.33,90.22
+path	34.22,92.33	35.51,92.08	37.34,90.33	38.44,88.67	40.48,86.49
+path	44.73,81.62	46.22,84.73	48.19,84.16	51.50,82.91	53.54,84.94
+path	55.09,86.21	55.59,83.18	56.70,82.04	58.55,79.67	58.63,77.75
+path	57.99,75.75	56.39,74.03	57.13,72.33	58.10,70.83	59.03,68.99
+path	61.00,68.45	63.04,67.10	63.48,64.36	65.00,63.16	65.82,67.02
+path	67.49,69.37	68.20,70.18	66.71,72.92	65.89,73.70	64.97,73.80
+path	64.55,75.74	66.07,77.99	67.88,76.49	68.96,73.63	70.44,70.80
+path	70.78,66.63	69.81,64.01	68.32,62.59	65.54,61.99	64.51,60.64
+path	65.42,57.87	67.00,57.51	69.46,58.76	72.80,60.39	74.27,58.69
+path	72.07,56.26	70.55,54.02	71.34,51.09	70.09,49.47	69.18,47.28
+path	67.71,41.84	65.81,40.93	64.46,40.63	64.00,38.40	64.00,34.75
+path	62.89,32.54	61.87,29.33	60.44,30.36	59.24,29.85	57.33,29.47
+path	55.07,28.81	53.89,27.91	53.69,30.17	55.04,30.78	55.79,32.59
+path	54.46,34.59	52.34,34.35	50.66,34.27	49.00,34.34	47.97,37.12
+path	47.88,40.46	46.11,43.55	45.00,44.24	43.34,43.21	41.71,43.80
+click Fel Iron Deposit##181555+
+|tip Gather Fel Iron Ore along the path.
+Reach Level 350 Mining |skill Mining,350
+step
+talk Makaru##3357
+Train Grand Master Mining |skillmax Mining,450 |goto Orgrimmar/1 72.36,34.96
+|tip He is inside the building
+|tip You must be at least level 55 to learn Grand Master Mining. |only if level < 55
+step
+map Howling Fjord/0
+path follow smart; loop on; ants curved; dist 30
+path	62.24,38.40	63.07,41.42	63.77,44.33	65.07,46.85	65.95,49.99
+path	65.47,51.84	66.77,53.34	66.99,56.22	68.17,56.81	68.22,58.55
+path	67.42,61.43	66.93,62.92	65.20,65.61	64.49,67.54	64.27,69.82
+path	64.00,71.83	65.17,72.57	66.65,74.03	67.17,75.22	67.85,75.50
+path	68.69,76.65	69.47,75.47	70.01,73.15	70.12,70.66	70.93,69.55
+path	72.23,67.74	73.93,67.56	76.01,67.84	77.18,66.44	77.17,63.42
+path	76.71,61.35	75.63,59.18	74.86,56.68	75.11,53.88	75.75,52.62
+path	76.15,50.91	77.59,50.42	79.22,49.34	80.40,47.64	80.44,45.88
+path	78.79,44.50	77.53,42.78	76.17,40.85	74.06,39.02	72.84,38.87
+path	71.02,37.09	70.56,34.57	70.76,32.23	71.99,29.32	73.29,27.03
+path	74.48,25.10	75.12,22.81	74.22,21.32	73.50,20.11	73.65,18.35
+path	73.46,16.35	72.60,15.11	70.32,12.12	68.85,10.78	67.15,10.13
+path	65.65,9.71	64.56,12.64	64.09,14.33	64.19,16.42	63.22,19.28
+path	61.95,20.11	60.43,20.26	58.19,21.42	57.37,20.43	58.06,15.77
+path	58.35,12.87	57.89,11.23	56.19,10.49	53.95,9.67	53.32,7.34
+path	50.44,7.72	49.96,9.54	48.06,11.09	47.61,14.35	46.34,16.30
+path	45.11,16.76	42.86,15.76	41.25,15.66	39.95,18.02	39.01,18.97
+path	37.72,19.53	36.15,18.54	35.25,16.71	34.42,14.04	32.74,12.27
+path	31.94,13.09	30.73,12.46	29.39,11.21	27.26,11.67	25.33,12.39
+path	23.77,13.71	24.66,16.85	25.79,20.30	26.12,22.28	26.20,26.21
+path	26.42,29.01	27.57,31.54	28.62,33.43	29.43,34.27	30.74,36.27
+path	32.54,37.36	34.28,36.57	38.77,35.98	42.03,37.88	44.65,40.18
+path	48.10,40.27	52.12,40.35	53.86,39.72	56.24,37.91	58.51,36.22
+path	60.26,36.57
+click Cobalt Deposit##189978+
+click Rich Cobalt Deposit##189979+
+|tip Gather Cobalt Ore along the path.
+Reach Level 400 Mining |skill Mining,400
+step
+map Sholazar Basin/0
+path follow smart; loop on; ants curved; dist 30
+path	47.55,60.54	45.98,63.10	47.07,66.19	48.50,67.57	48.06,72.89
+path	50.18,79.08	51.11,83.87	50.24,87.27	47.95,87.13	45.88,86.92
+path	43.83,87.15	40.80,87.29	38.41,86.20	37.55,82.52	39.01,79.09
+path	39.97,76.03	39.89,72.63	38.87,69.59	37.13,68.11	34.77,68.38
+path	34.09,71.52	32.47,76.06	30.69,80.02	27.90,83.52	24.95,83.83
+path	22.95,82.59	21.27,78.60	20.64,74.21	20.80,69.62	20.99,66.37
+path	21.63,60.90	21.93,56.40	23.34,52.96	26.15,53.68	29.38,55.20
+path	32.17,55.87	35.01,55.74	37.57,52.39	36.47,49.33	34.26,47.11
+path	31.92,44.99	29.37,43.15	30.16,39.22	32.21,35.48	34.85,33.69
+path	37.60,32.87	39.99,32.13	41.50,33.05	43.22,37.70	45.00,41.85
+path	47.30,42.65	50.33,42.48	52.24,41.57	53.34,38.94	53.09,35.64
+path	51.58,32.70	49.27,30.10	47.00,28.68	45.35,26.84	43.66,24.20
+path	43.30,21.65	45.46,21.34	48.34,21.59	51.18,22.09	55.10,24.48
+path	58.23,26.57	61.53,30.34	63.92,33.33	66.01,36.41	66.75,39.64
+path	64.98,42.63	63.15,45.78	60.70,48.14	58.67,48.97	57.04,50.77
+path	56.86,53.99	58.78,55.73	61.38,56.54	64.12,55.19	67.02,54.31
+path	69.67,56.56	71.72,60.58	75.27,61.51	74.93,65.10	73.11,68.76
+path	71.40,71.86	68.77,76.48	66.01,80.90	63.54,80.54	60.96,79.85
+path	58.85,81.83	56.78,85.19	55.87,83.09	56.40,78.00	56.32,71.21
+path	54.35,65.42	51.00,63.86
+click Saronite Deposit##189980+
+click Rich Saronite Deposit##189981+
+click Cobalt Deposit##189978+
+click Rich Cobalt Deposit##189979+
+|tip Gather Saronite and Cobalt Ore along the path.
+Reach Level 450 Mining |skill Mining,450 |or
+|tip If you want to gather Cataclysm Ore as soon as possible, you can leave at 425.
+Click Here Once You Are At 425 |confirm |or
+step
+talk Makaru##3357
+Train Illustrious Grand Master Mining |skillmax Mining,525 |goto Orgrimmar/1 72.36,34.96
+|tip He is inside the building
+|tip You must be at least level 75 to learn Illustrious Grand Master Mining. |only if level < 75
+step
+map Mount Hyjal/0
+path follow smart; loop on; ants straight; dist 30
+path	64.52,32.82	59.54,32.60	54.43,28.82	51.95,17.39	46.03,25.96
+path	43.53,26.94	41.14,21.81	35.52,23.56	33.12,24.51	32.25,29.77
+path	33.96,33.62	30.51,39.40	27.14,38.97	27.15,36.08	24.15,32.92
+path	13.59,37.50	10.03,36.02	15.27,46.43	17.82,54.98	20.48,59.09
+path	24.63,59.77	29.20,55.47	33.08,52.54	35.89,51.99	36.52,57.46
+path	33.75,64.34	39.87,63.17	49.68,58.94	55.81,57.37	58.34,56.00
+path	62.24,58.01	65.04,53.21	68.69,55.16	72.55,58.55	74.49,62.92
+path	78.12,59.42	83.94,60.29	87.31,54.46	87.18,49.22	80.70,51.98
+|tip Gather Obsidium Ore along the path.
+|tip Enter caves along the path for additional ore.
+click Obsidium Deposit##202736+
+Reach Level 500 Mining |skill Mining,500
+step
+map Twilight Highlands/0
+path follow smart; loop on; ants straight; dist 30
+path	37.63,88.45	41.95,87.09	45.86,86.00	51.33,81.88	55.69,79.72
+path	57.97,77.60	49.80,75.94	43.68,75.44	40.53,71.45	39.24,68.14
+path	38.23,62.09	38.59,58.11	45.30,51.07	49.00,46.94	50.07,44.64
+path	50.95,37.93	55.43,38.55	58.32,38.52	60.65,37.79	63.05,41.91
+path	65.17,42.27	67.34,37.88	64.34,33.11	61.76,28.47	57.60,25.19
+path	54.90,22.38	52.20,20.68	47.53,20.83	42.75,20.33	40.20,23.77
+path	41.81,28.12	38.78,30.69	37.34,37.09	37.22,39.43	36.85,46.91
+path	37.04,52.83	34.85,59.65	29.33,66.94	31.85,71.82	35.72,73.45
+path	37.97,78.84
+|tip Gather Elementium Ore along the path.
+|tip Enter caves along the path for additional ore.
+click Elementium Vein##202738+
+click Rich Elementium Vein##202741+
+Reach Level 525 Mining |skill Mining,525
+step
 talk Stonebreaker Ruian##66979
-Train Pandaria Mining |skillmax Pandaria Mining,75 |goto The Jade Forest/0 27.82,14.84
-|tip You must be at least level 5.
+Train Zen Master Mining |skillmax Mining,600 |goto The Jade Forest/0 27.82,14.84
+|tip You must be at least level 80.
 step
 map Dread Wastes/0
 path follow smart; loop on; ants curved; dist 30
@@ -14357,10 +14966,193 @@ path	71.46,33.55	71.77,30.02	70.53,24.75	69.50,21.19	68.67,17.19
 path	67.71,13.20	64.79,12.60	62.17,13.69
 Mine along the path
 |tip Make sure you enable "Find Minerals" in the tracking menu on the minimap.
-Reach 75 Pandaria Mining |skill Pandaria Mining,75
+Reach 600 Mining |skill Mining,600
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Leveling Guides\\Skinning (1-600)",{
+mopready=true,
+description="This guide will walk you through leveling 1-600 Skinning",
+},[[
 step
-_Congratulations!_
-You Reached 75 Pandaria Mining Skill.
+talk Thuwd##7088
+Train Apprentice Skinning |skillmax Skinning,75 |goto Orgrimmar/1 61.16,54.69
+step
+map Durotar/0
+path follow smart; loop on; ants straight; dist 30
+path	45.45,22.62	45.31,27.05	45.20,31.59	46.14,35.11	47.83,35.80
+path	49.03,37.31	48.33,39.33	46.46,40.80	44.80,36.50	44.20,33.66
+path	42.34,31.86	42.39,28.82
+Kill Boars, Raptors, and Scorpids along the path.
+|tip Skin their corpses.
+Reach Level 60 Skinning |skill Skinning,60
+step
+talk Thuwd##7088
+Train Journeyman Skinning |skillmax Skinning,150 |goto Orgrimmar/1 61.16,54.69
+step
+map The Barrens/0
+path follow smart; loop on; ants straight; dist 30
+path	64.31,53.60	63.54,56.03	64.35,57.96	63.62,59.42	63.28,61.27
+path	61.12,64.95	56.87,64.69	53.70,65.29	51.28,63.15	52.37,56.14
+Kill Raptors, Zhevras, and Prowlers, Giraffes, and Plainstriders along the path.
+|tip Skin their corpses.
+Reach Level 110 Skinning |skill Skinning,110
+step
+map Ashenvale/0
+path follow smart; loop on; ants straight; dist 30
+path	71.31,63.57	70.37,62.85	70.19,59.62	70.61,57.68	72.60,55.09
+path	72.39,52.76	72.45,52.50	72.47,50.09	70.12,50.60	68.54,51.07
+path	66.57,51.69	64.39,53.16	63.99,55.31	64.47,58.15	65.80,60.60
+path	66.00,62.81	64.62,65.63	63.00,68.65	62.12,70.57	60.62,71.25
+path	59.45,72.56	57.46,72.39	56.74,70.29	58.15,67.21
+Kill Deer, Wolves, and Bears along the path.
+|tip Skin their corpses.
+Reach level 150 Skinning |skill Skinning,150
+step
+talk Thuwd##7088
+Train Expert Skinning |skillmax Skinning,225 |goto Orgrimmar/1 61.16,54.69
+|tip You must be at least level 10 to learn Expert Skinning. |only if level < 10
+step
+map Ashenvale/0
+path follow smart; loop on; ants straight; dist 30
+path	71.31,63.57	70.37,62.85	70.19,59.62	70.61,57.68	72.60,55.09
+path	72.39,52.76	72.45,52.50	72.47,50.09	70.12,50.60	68.54,51.07
+path	66.57,51.69	64.39,53.16	63.99,55.31	64.47,58.15	65.80,60.60
+path	66.00,62.81	64.62,65.63	63.00,68.65	62.12,70.57	60.62,71.25
+path	59.45,72.56	57.46,72.39	56.74,70.29	58.15,67.21
+Kill Deer, Wolves, and Bears along the path.
+|tip Skin their corpses.
+Reach level 185 Skinning |skill Skinning,185
+step
+map Dustwallow Marsh/0
+path follow smart; loop on; ants straight; dist 30
+path	46.81,17.35	48.14,19.50	48.89,19.50	49.21,18.22	48.54,16.45
+path	47.70,15.03	47.29,16.57
+kill Bloodfen Screecher##4352+
+|tip Skin their corpses.
+Reach level 205 Skinning |skill Skinning,205
+step
+talk Mooranta##7089
+Train Artisan Skinning |skillmax Skinning,300 |goto Thunder Bluff/0 44.59,43.21
+|tip She is outside the tent.
+|tip You must be at least level 25 to learn Artisan Skinning. |only if level < 25
+step
+map Thousand Needles/0
+path follow smart; loop on; ants straight; dist 30
+path	75.62,47.01	70.58,49.25	68.78,48.07	66.37,45.46	64.01,43.72
+path	59.87,43.88	57.01,43.58	54.77,41.66	57.10,53.30	62.03,57.52
+path	65.36,58.56	64.04,64.55	64.03,67.49	64.01,70.28	65.52,72.46
+path	65.91,74.88	65.25,77.61	64.32,79.70
+Kill Scorpions, Cobras and Wind Serpents along the path.
+|tip Skin their corpses.
+Reach 265 Skinning |skill Skinning,265
+step
+map Un'Goro Crater/0
+path follow smart; loop on; ants straight; dist 30
+path	71.50,51.89	68.37,50.13	66.83,49.45	64.55,50.01	62.23,51.83
+path	62.73,56.71	63.99,59.59	63.75,62.76	62.89,66.14	65.36,70.11
+path	67.29,72.47	70.55,63.82	70.89,60.76
+kill Venomhide Ravasaur##6508+
+|tip Skin their corpses.
+Reach 300 Skinnning |skill Skinning,300
+step
+talk Mooranta##7089
+Train Master Skinning |skillmax Skinning,375 |goto Thunder Bluff/0 44.59,43.21
+|tip You must be at least level 40 to learn Master Skinning. |only if level < 40
+step
+map Hellfire Peninsula/0
+path follow smart; loop on; ants straight; dist 30
+path	67.67,62.73	69.93,63.31	68.52,65.87	66.74,66.93	61.37,76.30
+path	61.93,78.10	59.44,77.65	58.14,73.92
+kill Starving Helboar##16879+
+|tip Skin their corpses.
+Reach 305 Skinning |skill Skinning,305
+step
+map Hellfire Peninsula/0
+path follow smart; loop on; ants straight; dist 30
+path	53.26,71.27	52.73,70.26	50.84,68.97	49.79,70.09	50.38,72.02
+path	51.18,73.94	51.33,75.80
+kill Deranged Helboar##16863+
+|tip Skin their corpses.
+Reach 310 Skinning |skill Skinning,310
+step
+map Hellfire Peninsula/0
+path follow smart; loop on; ants straight; dist 30
+path	41.25,83.55	40.47,84.73	38.69,86.68	37.48,88.25	36.69,90.47
+path	37.80,89.87	39.49,88.08	40.61,86.62	41.85,85.56
+Kill Ravagers in the area.
+|tip Skin their corpses.
+Reach 330 Skinning |skill Skinning,330
+step
+map Nagrand/0
+path follow smart; loop on; ants straight; dist 30
+path	62.06,44.42	59.47,44.66	58.06,45.14	57.00,45.96	55.04,44.81
+path	53.28,43.00	52.14,42.31	51.03,40.98	50.19,39.58	50.09,37.13
+path	51.20,32.74	52.07,29.94	49.70,29.32	48.27,30.45	47.68,39.20
+path	49.49,42.11	49.25,45.08	50.85,48.34	52.43,48.11	56.05,47.54
+Kill Talbuks and Clefthoofs in the area.
+|tip Skin their corpses.
+Reach 350 Skinning |skill Skinning,350
+step
+talk Tiponi Stormwhisper##26986
+|tip Inside the building.
+Train Grand Master Skinning |skillmax Skinning,450 |goto Borean Tundra/0 76.19,37.52
+|tip You must be at least level 55 to learn Grand Master Skinning.
+step
+map Borean Tundra/0
+path follow smart; loop on; ants straight; dist 30
+path	44.51,48.38	45.85,47.32	46.44,44.34	45.02,41.41	43.61,41.61
+path	42.56,43.29	41.23,43.73	42.93,46.90
+Kill Rhinos in the area.
+|tip Skin their corpses.
+Reach 395 Skinning |skill Skinning,395
+step
+map Sholazar Basin/0
+path follow smart; loop on; ants straight; dist 30
+path	56.24,78.81	56.68,75.64	58.12,72.80	59.86,70.72	63.95,70.51
+path	65.62,70.12	70.28,70.04	67.18,73.51	64.45,74.90
+Kill Gorillas in the area.
+|tip Skin their corpses.
+Reach 425 Skinning |skill Skinning,425
+step
+talk Tiponi Stormwhisper##26986
+|tip Inside the building.
+Train Illustrious Grand Master Skinning |skillmax Skinning,525 |goto Borean Tundra/0 76.19,37.52
+|tip You must be at least level 75 to learn Illustrious Grand Master Skinning.
+step
+Reach 500 Skinning |skill Skinning,550 |goto The Oculus/1 47.99,12.02
+|tip Clear the first floor of The Occulus dungeon, skinning the mobs you kill.
+|tip When you clear the floor, zone out and reset.
+step
+talk Trapper Ri##66981
+Train Zen Master Skinning |skillmax Skinning,600 |goto The Jade Forest/0 27.77,15.47
+|tip You must be at least level 80.
+step
+kill Wyrmhorn Turtle##56256+
+|tip Skin their corpses.
+Reach 550 Skinning |skill Skinning,550 |goto Valley of the Four Winds/0 67.08,29.10
+step
+map Townlong Steppes/0
+path follow smart; loop on; ants curved; dist 30
+path	58.75,63.79	56.44,66.35	54.53,69.06	52.41,71.42	50.82,67.21
+path	50.49,60.06	51.64,52.92	54.80,47.03	57.35,47.27	60.28,50.18
+path	61.86,56.27	61.22,60.01
+kill Longshadow Mushan##61618, Longshadow Bull##66463, Fluttering Moth##66514
+|tip Skin their corpses.
+Reach 590 Skinning |skill Skinning,590
+step
+map Dread Wastes/0
+path follow smart; loop on; ants curved; dist 30
+path	29.18,47.69	32.57,50.12	34.01,52.27	30.67,52.54	28.69,50.40
+path	26.11,46.96	25.52,41.29	25.59,34.86	24.60,28.53	27.13,26.36
+path	27.14,33.18	27.68,37.56	28.33,41.75	29.07,46.76
+kill Ruby Venomtail##63588, Onyx Venomtail##63586
+|tip Skin their corpses.
+Reach 600 Skinning |skill Skinning,600
+|only if not knowspell(115913) and not knowspell(130487)
+step
+kill Skyrange Mushan##64309, Stout Shaghorn##59139
+|tip Skin their corpses.
+Reach 600 Skinning |skill Skinning,600 |goto Valley of the Four Winds/0 28.95,37.57
+|only if knowspell(115913) or knowspell(130487)
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Leveling Guides\\Tailoring (1-600)",{
 mopready=true,

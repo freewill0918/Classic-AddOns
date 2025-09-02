@@ -9,7 +9,7 @@ items={{10940,92},{10938,18,'crap'},{10939,2,'crap'},{10998,1,'crap'},{11082,1,'
 maps={"Northern Barrens"},
 },[[
 step
-Enter the Wailing Caverns |goto Northern Barrens/20 55.00,66.00
+Enter the Wailing Caverns |goto The Barrens/20 55.00,66.00
 |goldcollect 92 Strange Dust##10940
 |tip Strange Dust can be Disenchanted from Uncommon items with an item level of 1 to 25.
 |tip The Wailing Caverns dungeon offers the best yield of Strange Dust.
@@ -138,7 +138,7 @@ maps={"Northern Barrens"},
 },[[
 step
 Use your Fishing skill to fish from the School of Deviate Fish |cast Fishing##131474
-|goldcollect 184 Deviate Fish##6522 |goto Northern Barrens/0 39.60,76.10
+|goldcollect 184 Deviate Fish##6522 |goto The Barrens/0 39.60,76.10
 |goldtracker
 Click here to sell items |confirm
 step
@@ -3155,7 +3155,7 @@ maps={"Northern Barrens"},
 },[[
 step
 label "route_1"
-map Northern Barrens/20
+map The Barrens/20
 path	follow smart; loop off; ants curved; dist 15
 path	22.70,88.90	22.40,79.80	28.50,68.90
 path	25.80,58.20	25.30,49.50	21.20,39.30
@@ -3164,7 +3164,7 @@ path	55.60,25.40	62.20,23.90	71.70,20.40
 path	78.00,34.90	76.80,45.60	67.80,52.30
 path	52.70,59.70	50.00,40.20
 kill Deviate Creeper##3632+, Deviate Stalker##3634+, Deviate Slayer##3633+, Deviate Lurker##3641+
-Follow the path, killing any Deviate mobs you see |goto Northern Barrens/20 50.00,40.20 < 20 |noway |c |next "route_2" |or
+Follow the path, killing any Deviate mobs you see |goto The Barrens/20 50.00,40.20 < 20 |noway |c |next "route_2" |or
 |goldcollect 40 Deviate Scale##6470 |next "Sell" |or
 |goldcollect 16 Perfect Deviate Scale##6471
 |goldcollect 24 Medium Leather##2319
@@ -3175,13 +3175,13 @@ Follow the path, killing any Deviate mobs you see |goto Northern Barrens/20 50.0
 Click here to sell items |confirm |next "Sell"
 step
 label "route_2"
-map Northern Barrens/20
+map The Barrens/20
 path	follow smart; loop off; ants curved; dist 15
 path	50.00,40.20	48.80,28.70	44.00,31.20
 path	36.10,23.60	24.50,25.10	21.20,39.30
 path	25.30,49.50	25.30,54.80	18.50,52.10
 kill Deviate Creeper##3632+, Deviate Stalker##3634+, Deviate Slayer##3633+, Deviate Lurker##3641+
-Follow the path, killing any Deviate mobs you see |goto Northern Barrens/20 18.50,52.10 < 20 |noway |c |next "route_3" |or
+Follow the path, killing any Deviate mobs you see |goto The Barrens/20 18.50,52.10 < 20 |noway |c |next "route_3" |or
 |goldcollect 40 Deviate Scale##6470 |next "Sell" |or
 |goldcollect 16 Perfect Deviate Scale##6471
 |goldcollect 24 Medium Leather##2319
@@ -3192,12 +3192,12 @@ Follow the path, killing any Deviate mobs you see |goto Northern Barrens/20 18.5
 Click here to sell items |confirm |next "Sell"
 step
 label "route_3"
-map Northern Barrens/20
+map The Barrens/20
 path	follow smart; loop off; ants curved; dist 15
 path	18.50,52.10	23.20,55.20	28.50,68.30
 path	21.80,81.40
 kill Deviate Creeper##3632+, Deviate Stalker##3634+, Deviate Slayer##3633+, Deviate Lurker##3641+
-Follow the path, killing any Deviate mobs you see |goto Northern Barrens/20 21.80,81.40 |noway |c |next "route_1" |or
+Follow the path, killing any Deviate mobs you see |goto The Barrens/20 21.80,81.40 |noway |c |next "route_1" |or
 |goldcollect 40 Deviate Scale##6470 |next "Sell" |or
 |goldcollect 16 Perfect Deviate Scale##6471
 |goldcollect 24 Medium Leather##2319

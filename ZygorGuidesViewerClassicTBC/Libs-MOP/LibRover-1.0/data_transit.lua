@@ -197,13 +197,10 @@ data.basenodes.transit = --[[LIBROVER]] {
 		-- Tirisfal Glades, Eastern Kingdoms (Old Time) -to- Vengeance Landing - Howling Fjord, Northrend --CHECKED
 		"Tirisfal Glades/0 59.09,58.91 -x- Howling Fjord/0 79.00,28.92 {fac:H} {mode:ZEPPELIN}",
 
-		-- Undercity - Tirisfal Glades, Eastern Kingdoms -to- The Stair of Destiny - Hellfire Peninsula, Outland (Portal Usable) --CHECKED
-		"Undercity/0 85.25,17.04 -to- Hellfire Peninsula/0 89.16,49.56 {fac:H} {mode:PORTAL}",
-
 		"Orgrimmar/1 35.47,69.14 -to- Blasted Lands/0 53.90,46.08 <tag:cityportal> {fac:H} {mode:PORTAL} {title:Click the Portal to Blasted Lands Upstairs Inside the Hut} {cond:UnitLevel('player') >= 58}",
 		"Orgrimmar/2 44.70,67.97 -to- Blasted Lands/0 53.90,46.08 <tag:cityportal> {fac:H} {mode:PORTAL} {cond:UnitLevel('player') >= 58}",
 		"Silvermoon City/0 58.42,21.03 -to- Blasted Lands/0 53.90,46.08 <tag:cityportal> {fac:H} {mode:PORTAL} {cond:UnitLevel('player') >= 58}",
-
+		"Undercity/0 85.25,17.04 -to- Blasted Lands/0 53.90,46.08 <tag:cityportal> {fac:H} {mode:PORTAL} {cond:UnitLevel('player') >= 58}",
 
 
 

@@ -166,6 +166,7 @@ addon.questTurnIn = {}
 addon.disabledQuests = {}
 addon.activeItems = {}
 addon.activeSpells = {}
+addon.activeMacros = {}
 addon.functions = {}
 addon.enabledFrames = {} -- Hold all enabled frame/features for Hide/Show
 addon.player = {
@@ -247,7 +248,7 @@ function addon.GetStepQuestReward(titleOrId)
 end
 
 function addon.IsPlayerSpell(id)
-    if IsPlayerSpell(id) or IsSpellKnown(id, true) or IsSpellKnown(id) then
+    if IsPlayerSpell(id) or IsSpellKnown(id, true) or IsSpellKnown(id) or C_Spell and C_Spell.IsSpellUsable(id) then
         return true
     end
 
@@ -1324,6 +1325,9 @@ function addon:PLAYER_ENTERING_WORLD(_, isInitialLogin)
     if isInitialLogin then
         C_Timer.After(4, function()
             addon.settings:DetectXPRate()
+            if addon.LoadDefaultGuide and addon.currentGuide.empty then
+                addon.LoadDefaultGuide()
+            end
         end)
 
         C_Timer.After(20, function()

@@ -3877,7 +3877,7 @@ You must kill 10 Angered Earth with The Skullcracker.
 achieve 4845/2 |goto Blackrock Caverns/1 50.00,70.20
 step
 _Arrested Development_
-kill Corla, Herald of Twilight##39679
+kill Corla Herald of Twilight##39679
 Before fighting Corla, clear this entire room of trash. You will be using the space to drag away one Evolved Zealot.
 She will have 3 Zealots with her before engaging.
 You will still want to block two of the beams hitting the zealots after engaging her.
@@ -9416,7 +9416,7 @@ turnin The Future of Gnomeregan##26202 |goto Dun Morogh/0 37.70,38.00
 accept Meet the High Tinker##26424 |goto Dun Morogh/0 37.70,38.00
 |only Gnome Warlock
 step
-talk Xi, Friend to the Small##63238
+talk Xi Friend to the Small##63238
 turnin The Future of Gnomeregan##31135 |goto Dun Morogh/0 40.10,35.60
 accept Meet the High Tinker##31137 |goto Dun Morogh/0 40.10,35.60
 |only Gnome Monk

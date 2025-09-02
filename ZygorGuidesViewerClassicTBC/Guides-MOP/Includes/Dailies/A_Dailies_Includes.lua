@@ -3483,3 +3483,171 @@ ZygorGuidesViewer:RegisterInclude("WAccord_Dailies", [[
 		talk Lord Afrasastrasz##27575
 		turnin Defending Wyrmrest Temple##12372 |goto 59.20,54.30
 ]])
+
+ZygorGuidesViewer:RegisterInclude("A_Beasts_of_Fable_D",[[
+		talk Sara Finkleswitch##64572
+		accept Beasts of Fable Book I##32604 |goto Vale of Eternal Blossoms 86.60,60.00
+		accept Beasts of Fable Book II##32868 |goto Vale of Eternal Blossoms 86.60,60.00
+		accept Beasts of Fable Book III##32869 |goto Vale of Eternal Blossoms 86.60,60.00
+		accept Pandaren Spirit Tamer##32428 |only if not completedq(32428) |goto Vale of Eternal Blossoms 86.60,60.00
+	step
+		_No-No_
+		This enemy is aquatic
+		It is strong against undead and weak to flying attacks
+		I would suggest that you use flying pets against this enemy
+		Defeat No-No |q 32869/2 |goto Vale of Eternal Blossoms 11.00,70.90
+	step
+		_Lucky Yi_
+		This enemy is a critter
+		Is is strong against Elementals and weak to beast attacks
+		I would suggest using beast pets against this enemy
+		Defeat Lucky Yi |q 32868/2 |goto Valley of the Four Winds 40.50,43.70
+	step
+		_Greyhoof_
+		This enemy is a beast
+		It is strong against humanoids and weak against mechanical pets
+		I would suggest using a team of mechanical pets against this enemy
+		Defeat Greyhoof |q 32868/1 |goto Valley of the Four Winds 25.30,78.50
+	step
+		_Skitterer Xi'a_
+		This enemy is aquatic
+		It is strong against undead and weak to flying pets
+		I would suggest using flying pets against this enemy
+		Defeat Xi'a |q 32868/3 |goto Krasarang Wilds 36.30,37.30
+	step
+		_Flowing Pandaren Spirit_
+		This enemy uses aquatic and elemental pets
+		They are strong against undead and mechanical and weak to flying and aquatic pets
+		I would suggest using flying and aquatic pets against this enemy
+		Defeat Flowing Pandaren Spirit |q 32428/4 |goto Dread Wastes 61.10,87.50
+		|only if haveq(32428)
+	step
+		talk Flowing Pandaren Spirit##68462
+		accept Flowing Pandaren Spirit##32439 |goto Dread Wastes 61.10,87.50
+		|only if completedq(32428)
+	step
+		_Flowing Pandaren Spirit_
+		This enemy uses aquatic and elemental pets
+		They are strong against undead and mechanical and weak to flying and aquatic pets
+		I would suggest using flying and aquatic pets against this enemy
+		Defeat Flowing Pandaren Spirit |q 32439/1 |goto Dread Wastes 61.10,87.50
+		|only if haveq(32439)
+	step
+		talk Flowing Pandaren Spirit##68462
+		turnin Flowing Pandaren Spirit##32439 |goto Dread Wastes 61.10,87.50
+		|only if haveq(32439)
+	step
+		_Gorespine_
+		This enemy is a beast
+		They are strong against undead and mechanical and weak to flying and aquatic pets
+		I would suggest using flying and aquatic pets against this enemy
+		Defeat Gorespine |q 32869/1 |goto Dread Wastes 26.10,50.20
+	step
+		_Ti'un the Wanderer_
+		This enemy is aquatic
+		It is strong against undead and weak to flying pets
+		I would suggest using flying pets against this enemy
+		Defeat Ti'un the Wanderer |q 32869/3 |goto Townlong Steppes 72.30,79.80
+	step
+		_Burning Pandaren Spirit_
+		This enemy uses a dragonkin, flying and elemental pet
+		They are strong against flying, beast, and mechanical pets, respectively
+		They are weak against humanoid, magic, and aquatic pets, respectively
+		I would suggest using a humanoid, magic, and aquatic pet against this enemy
+		Defeat Burning Pandaren Spirit |q 32428/1 |goto Townlong Steppes 57.10,42.10
+		|only if haveq(32428)
+	step
+		talk Burning Pandaren Spirit##68463
+		accept Burning Pandaren Spirit##32434 |goto Townlong Steppes 57.10,42.10
+		|only if completedq(32428)
+	step
+		_Burning Pandaren Spirit_
+		This enemy uses a dragonkin, flying and elemental pet
+		They are strong against flying, beast, and mechanical pets, respectively
+		They are weak against humanoid, magic, and aquatic pets, respectively
+		I would suggest using a humanoid, magic, and aquatic pet against this enemy
+		Defeat Burning Pandaren Spirit |q 32434/1 |goto Townlong Steppes 57.10,42.10
+		|only if haveq(32434)
+	step
+		talk Burning Pandaren Spirit##68463
+		turnin Burning Pandaren Spirit##32434 |goto Townlong Steppes 57.10,42.10
+		|only if haveq(32434)
+	step
+		_Kafi_
+		This enemy is a beast
+		It is strong against humanoids and weak against mechanical pets
+		I would suggest using a team of mechanical pets against this enemy
+		Defeat Kafi |q 32604/2 |goto Kun-Lai Summit 35.20,56.20
+	step
+		_Thundering Pandaren Spirit_
+		This enemy uses a beast, elemental, and magic pet
+		They are strong against humanoids, mechanical, and aquatic pets, respectively
+		They are weak against mechanical, aquatic, and dragonkin pets, respectively
+		I would suggest using a mechanical, aquatic, and dragonkin pet against this enemy
+		Defeat Thundering Pandaren Spirit |q 32428/2 |goto Kun-Lai Summit 64.90,93.80
+		|only if haveq(32428)
+	step
+		talk Thundering Pandaren Spirit##68465
+		accept Thundering Pandaren Spirit##32441 |goto Kun-Lai Summit 64.90,93.80
+		|only if completedq(32428)
+	step
+		_Thundering Pandaren Spirit_
+		This enemy uses a beast, elemental, and magic pet
+		They are strong against humanoids, mechanical, and aquatic pets, respectively
+		They are weak against mechanical, aquatic, and dragonkin pets, respectively
+		I would suggest using a mechanical, aquatic, and dragonkin pet against this enemy
+		Defeat Thundering Pandaren Spirit |q 32441/1 |goto Kun-Lai Summit 64.90,93.80
+		|only if haveq(32441)
+	step
+		talk Thundering Pandaren Spirit##68465
+		turnin Thundering Pandaren Spirit##32441 |goto Kun-Lai Summit 64.90,93.80
+		|only if haveq(32441)
+	step
+		_Dos-Ryga_
+		This enemy is aquatic
+		It is strong against undead and weak to flying pets
+		I would suggest using flying pets against this enemy
+		Defeat Dos-Ryga |q 32604/3 |goto Kun-Lai Summit 67.90,84.70
+	step
+		_Whispering Pandaren Spirit_
+		This enemy uses a flying, elemental, and dragonkin pet
+		They are strong against beast, mechanical, and flying pets, respectively
+		They are weak against magic, aquatic, and humanoid pets, respectively
+		I would suggest using a magic, aquatic, and humanoid pet against this enemy
+		Defeat Whispering Pandaren Spirit |q 32428/3 |goto The Jade Forest 28.90,36
+		|only if haveq(32428)
+	step
+		talk Whispering Pandaren Spirit##68464
+		accept Whispering Pandaren Spirit##32440 |goto The Jade Forest 28.90,36
+		|only if completedq(32428)
+	step
+		_Whispering Pandaren Spirit_
+		This enemy uses a flying, elemental, and dragonkin pet
+		They are strong against beast, mechanical, and flying pets, respectively
+		They are weak against magic, aquatic, and humanoid pets, respectively
+		I would suggest using a magic, aquatic, and humanoid pet against this enemy
+		Defeat Whispering Pandaren Spirit |q 32440/1 |goto The Jade Forest 28.90,36
+		|only if haveq(32440)
+	step
+		talk Whispering Pandaren Spirit##68464
+		turnin Whispering Pandaren Spirit##32440 |goto The Jade Forest 28.90,36
+		|only if haveq(32440)
+	step
+		_Ka'wi the Gorger_
+		This enemy is a critter
+		Is is strong against Elementals and weak to beast attacks
+		I would suggest using a team of mechanical pets against this enemy
+		Defeat Ka'wi the Gorger |q 32604/1 |goto The Jade Forest 48.40,71.00
+	step
+		_Nitun_
+		This enemy is a critter
+		Is is strong against Elementals and weak to beast attacks
+		I would suggest using beast pets against this enemy
+		Defeat Nitun |q 32604/4 |goto The Jade Forest 57.00,29.10
+	step
+		talk Sara Finkleswitch##64572
+		turnin Beasts of Fable Book I##32604 |goto Vale of Eternal Blossoms 86.60,60.00
+		turnin Beasts of Fable Book II##32868 |goto Vale of Eternal Blossoms 86.60,60.00
+		turnin Beasts of Fable Book III##32869 |goto Vale of Eternal Blossoms 86.60,60.00
+		turnin Pandaren Spirit Tamer##32428 |only if not completedq(32428) |goto Vale of Eternal Blossoms 86.60,60.00
+]])

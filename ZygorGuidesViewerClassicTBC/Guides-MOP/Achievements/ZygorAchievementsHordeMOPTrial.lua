@@ -94,22 +94,22 @@ step
 Defeat three champions of Pandaria in a pet battle |scenariogoal 1/23601 |q 33137 |next "phasetwo"
 step
 label "phasetwo"
-talk Yu'la, Broodling of Yu'lon##73507
+talk Yu'la Broodling of Yu'lon##73507
 Tell him, "Let's do this!"
 |tip Yu'la is a Dragonkin type pet. Use Humanoid attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Yu'la, Broodling of Yu'lon in a pet battle |scenariogoal 2/23613 |goto Celestial Tournament/0 38.90,56.70
 step
-talk Xu-Fu, Cub of Xuen##73505
+talk Xu-Fu Cub of Xuen##73505
 Tell him, "Let's do this!"
 |tip Xu-Fu is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Xu-Fu, Cub of Xuen in a pet battle |scenariogoal 2/23612 |goto Celestial Tournament/0 40.00,55.20
 step
-talk Zao, Calfling of Niuzao##73506
+talk Zao Calfling of Niuzao##73506
 Tell him, "Let's do this!"
 |tip Zao is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Zao, Calfling of Niuzao in a pet battle |scenariogoal 2/23614 |goto Celestial Tournament/0 39.00,53.80
 step
-talk Chi-Chi, Hatchling of Chi-Ji##73503
+talk Chi-Chi Hatchling of Chi-Ji##73503
 Tell him, "Let's do this!"
 |tip Chi-Chi is a Flying type pet. Use Magic attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Chi-Chi, Hatchling of Chi-Ji in a pet battle |scenariogoal 2/23615 |goto Celestial Tournament/0 38.00,55.20
@@ -127,25 +127,25 @@ buy 1 Zao, Calfling of Niuzao##102146 |next "zaol" |only if not achieved(8519,4)
 buy 1 Chi-Chi, Hatchling of Chi-Ji##102145 |next "chichil" |only if not achieved(8519,2) |or |goto Timeless Isle/0 34.80,59.70
 step
 label "yulal"
-Use the _Yu'la, Broodling of Yu'lon_ in your bags. |use Yu'la, Broodling of Yu'lon##102147
+Use the _Yu'la Broodling of Yu'lon_ in your bags. |use Yu'la Broodling of Yu'lon##102147
 learnpet Yu'la, Broodling of Yu'lon##72463
 |next "check"
 |only if not achieved(8519,3)
 step
 label "chichil"
-Use the _Chi-Chi, Hatchling of Chi-Ji_ in your bags. |use Chi-Chi, Hatchling of Chi-Ji##102145
+Use the _Chi-Chi Hatchling of Chi-Ji_ in your bags. |use Chi-Chi Hatchling of Chi-Ji##102145
 learnpet Chi-Chi, Hatchling of Chi-Ji##72462
 |next "check"
 |only if not achieved(8519,2)
 step
 label "zaol"
-Use the _Zao, Calfling of Niuzao_ in your bags. |use Zao, Calfling of Niuzao##102146
+Use the _Zao Calfling of Niuzao_ in your bags. |use Zao Calfling of Niuzao##102146
 learnpet Zao, Calfling of Niuzao##72464
 |next "check"
 |only if not achieved(8519,4)
 step
 label "xuful"
-Use the _Xu-Fu, Cub of Xuen_ in your bags. |use Xu-Fu, Cub of Xuen##101771
+Use the _Xu-Fu Cub of Xuen_ in your bags. |use Xu-Fu Cub of Xuen##101771
 learnpet Xu-Fu, Cub of Xuen##71942
 |next "check"
 |only if not achieved(8519,1)
@@ -170,7 +170,6 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Pet Battles\\Col
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Pet Battles\\Collect\\Raiding with Leashes III: Drinkin' From the Sunwell")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Pet Battles\\Collect\\Raiding with Leashes IV: Wrath of the Lich King")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Pet Battles\\Collect\\That was Close!")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Pet Battles\\Collect\\World Safari")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Pet Battles\\Collect\\Zen Pet Hunter")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Pet Battles\\Battle\\Big City Pet Brawler")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Pet Battles\\Battle\\Big City Pet Brawlin' - Alliance")
@@ -217,7 +216,6 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Coo
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Cooking\\Master of the Pot")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Cooking\\Master of the Steamer")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Cooking\\Master of the Wok")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Cooking\\Now I Am the Master")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Cooking\\The Pandaren Gourmet")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Professions\\Fishing\\The Pandarian Angler")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Achievement Guides\\Quests\\Mists of Pandaria\\A Taste of History")

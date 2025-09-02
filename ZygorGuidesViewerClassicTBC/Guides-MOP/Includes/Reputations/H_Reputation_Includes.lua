@@ -1229,7 +1229,7 @@ ZygorGuidesViewer:RegisterInclude("Kaluak_Rep",[[
 		turnin Gambling Debt##11464 |goto 36.30,80.50
 		accept Jack Likes His Drink##11466 |goto 36.30,80.50
 	step
-		talk Olga, the Scalawag Wench##24639
+		talk Olga the Scalawag Wench##24639
 		Tell her:
 		<I'd like to buy Jack a drink.>
 		She will walk over to Jack Adams |goto 35.30,79.60

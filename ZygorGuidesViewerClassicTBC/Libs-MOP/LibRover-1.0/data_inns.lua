@@ -201,7 +201,7 @@ data.basenodes.inns = {
 		{name="Scryer's Tier",faction="B",npc="Innkeeper Haelthol",npcid=19232,x=56.2,y=81.6},-- // SCRYER ONLY
 	},
 	["Netherstorm"]={
-		{name="Rusty Rocket Tavern",faction="B",npc="Innkeeper Remi Dodoso",npcid=19571,x=32.0,y=64.4},
+		{name="Area 52",faction="B",npc="Innkeeper Remi Dodoso",npcid=19571,x=32.0,y=64.4},
 		{name="The Stormspire",faction="B",npc="Eyonix",npcid=19531,x=43.4,y=36.0},
 	},
 

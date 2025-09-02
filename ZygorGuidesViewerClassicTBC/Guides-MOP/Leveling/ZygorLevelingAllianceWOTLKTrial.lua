@@ -171,10 +171,11 @@ click Saronite Arrow##190691+
 |tip Yellow and green arrows stuck in the ground around this area.
 collect 15 Saronite Arrow##39160 |q 12679/1 |goto Plaguelands: The Scarlet Enclave/0 56.41,50.97
 step
-click Havenshire Horse
-|tip Horses around this area.
-|tip Watch out for Stable Master Kitrik, he's elite and will pull you off the horse.
+clicknpc Havenshire Stallion##28605, Havenshire Mare##28606, Havenshire Colt##28607
+|tip Horses.
+|tip Avoid {y}Stable Master Kitrik{}, an elite human riding a horse.
 Ride the Havenshire Horse |invehicle |goto Plaguelands: The Scarlet Enclave/0 55.74,43.39 |q 12680
+'|clicknpc Stable Master Kitrik##28683
 step
 Follow the path up |goto Plaguelands: The Scarlet Enclave/0 50.95,41.71 < 30 |only if walking
 Successfully Steal the Horse |q 12680/1 |goto Plaguelands: The Scarlet Enclave/0 52.26,34.96
@@ -5679,7 +5680,7 @@ step
 clicknpc Bravo Company Siege Tank##43714
 Take Control of the Bravo Company Siege Tank |invehicle |c |goto Redridge Mountains 77.09,65.97 |q 26708
 step
-Kill Blackrock enemies around this area
+kill Blackrock Invader##43775
 |tip John J. Keeshan will kill them as you drive
 kill 200 Blackrock Invader##43775 |q 26708/1 |goto Redridge Mountains 74.05,46.54
 step
@@ -5993,7 +5994,7 @@ clicknpc Totem of Vark##17364
 turnin Totem of Vark##9542 |goto Azuremyst Isle 28.10,62.39
 accept The Prophecy of Akida##9544 |goto Azuremyst Isle 28.10,62.39
 step
-Kill Bristlelimb enemies around this area
+kill Bristlelimb Furbolg##17183, Bristlelimb Windcaller##17184, Bristlelimb Ursa##17185
 |tip Furbolgs.
 collect Bristlelimb Key##23801+ |n
 click Bristlelimb Cage##1787+
@@ -6007,7 +6008,7 @@ stickystart "Kill_Wrathscale_Myrmidons"
 stickystart "Kill_Wrathscale_Nagas"
 stickystart "Kill_Wrathscale_Sirens"
 step
-Kill Wratchscale enemies around this area
+kill Wrathscale Naga##17193, Wrathscale Myrmidon##17194, Wrathscale Siren##17195
 |tip Nagas.
 collect Rune Covered Tablet##23759 |n
 use the Rune Covered Tablet##23759
@@ -6041,7 +6042,7 @@ talk Cowlen##17311
 turnin The Missing Fisherman##10428 |goto Azuremyst Isle 16.59,94.45
 accept All That Remains##9527 |goto Azuremyst Isle 16.59,94.45
 step
-Kill Owlbeast enemies around this area
+kill Aberrant Owlbeast##17187, Raving Owlbeast##17188, Deranged Owlbeast##17186
 collect Remains of Cowlen's Family##23789 |q 9527/1 |goto Azuremyst Isle 15.16,86.80
 step
 talk Cowlen##17311
@@ -6138,7 +6139,7 @@ talk Moordo##17442
 turnin Beasts of the Apocalypse!##9560 |goto Azuremyst Isle 44.76,23.91
 stickystart "Accept_Gurfs_Dignity"
 step
-Kill Siltfin enemies around this area
+kill Siltfin Murloc##17190, Siltfin Oracle##17191, Siltfin Hunter##17192
 |tip Murlocs.
 click Stillpine Grain##181757+
 |tip Brown bags with yellow contents in them on the ground near murloc huts around this area.
@@ -6234,7 +6235,7 @@ talk Princess Stillpine##17682
 accept Saving Princess Stillpine##9667 |goto Bloodmyst Isle 68.26,81.09
 |only if completedq(9544)
 step
-Kill Bristlelimb enemies around this area
+kill Bristlelimb Shaman##17320, Bristlelimb Warrior##17321
 |tip All around this area.
 |tip Eventually, High Chief Bristelimb will yell in the chat and appear at this location.
 kill High Chief Bristlelimb##17702
@@ -7546,7 +7547,7 @@ step
 click Decoy Bot Control Console##195006
 Control the Robot |invehicle |goto Darkshore 52.97,11.02 |q 13560
 step
-Kill Greymist enemies around this area
+kill Greymist Raider##2201, Greymist Coastrunner##2202, Greymist Seer##2203, Greymist Netter##2204, Greymist Warrior##2205, Greymist Hunter##2206, Greymist Oracle##2207, Greymist Tidehunter##2208
 |tip Murlocs.
 |tip Underwater around this area.
 |tip Use the ability on your action bar.
@@ -7702,7 +7703,7 @@ Destroy #6# Shatterspear Structures |q 13514/2 |goto Darkshore 70.30,20.10
 |tip Use the abilities on your action bar near the troll buildings around this area.
 step
 label "Slay_Shatterspear_Vale_Trolls"
-Kill Shatterspear enemies around this area
+kill Shatterspear Laborer##32861, Shatterspear Shaman##32860, Shatterspear Priestess##32855, Shatterspear Champion##32858, Shatterspear Overseer##32863, Shatterspear Raider##33071, Shatterspear Mystic##34248
 |tip Trolls. |notinsticky
 |tip Use the abilities on your action bar near them.
 Slay #30# Shatterspear Vale Trolls |q 13514/1 |goto Darkshore 70.30,20.10
@@ -8357,7 +8358,7 @@ You can find more around: |notinsticky
 [60.17,52.13] |notinsticky
 step
 label "Slay_Bonechewer_Orcs"
-Kill Bonechewer enemies around this area
+kill Bonechewer Raider##16925, Bonechewer Scavenger##18952, Bonechewer Mutant##16876, Bonechewer Evoker##19701
 |tip Red orcs.
 Slay #20# Bonechewer Orcs |q 10482/1 |goto Hellfire Peninsula/0 54.64,54.15
 You can find more around: |notinsticky
@@ -8413,7 +8414,7 @@ turnin The Path of Anguish##10142 |goto Hellfire Peninsula/0 61.70,60.91
 accept Expedition Point##10143 |goto Hellfire Peninsula/0 61.70,60.91
 step
 Follow the path |goto Hellfire Peninsula/0 64.23,62.10 < 70 |only if walking
-Kill Bleeding Hollow enemies around this area
+kill Bleeding Hollow Peon##16907, Bleeding Hollow Grunt##16871, Bleeding Hollow Dark Shaman##16873, Bleeding Hollow Tormentor##19424, Bleeding Hollow Necrolyte##19422
 |tip Red orcs.
 collect Cursed Talisman##30157 |q 10483/1 |goto Hellfire Peninsula/0 68.17,69.78
 step
@@ -8474,7 +8475,7 @@ use the Smoke Beacon##31739
 Mark the Southern Tower |q 10895/2 |goto Hellfire Peninsula/0 66.44,76.51
 step
 label "Collect_Cursed_Talismans"
-Kill Bleeding Hollow enemies around this area
+kill Bleeding Hollow Peon##16907, Bleeding Hollow Grunt##16871, Bleeding Hollow Dark Shaman##16873, Bleeding Hollow Tormentor##19424, Bleeding Hollow Necrolyte##19422
 |tip Red orcs.
 collect 12 Cursed Talisman##30157 |q 10484/1 |goto Hellfire Peninsula/0 68.01,72.27
 step
@@ -8539,6 +8540,7 @@ use the Area 52 Special##28132 |notinsticky
 |tip If you don't complete this in the first run, you can try again by talking to the same NPC. |notinsticky
 Destroy #5# Fel Cannons |q 10163/3 |goto Hellfire Peninsula/0 72.62,20.81
 |tip Brown and green metal demon cannons on the ground around this area as you fly.
+'|clicknpc Fel Cannon##19399
 step
 label "Slay_Ganarg_Peons"
 use the Area 52 Special##28132 |notinsticky
@@ -8979,7 +8981,7 @@ accept Makuru's Vengeance##9424 |goto Hellfire Peninsula/0 23.14,40.17
 step
 Follow the path |goto Hellfire Peninsula/0 28.95,39.83 < 50 |only if walking
 Follow the path up |goto Hellfire Peninsula/0 29.91,34.62 < 20 |only if walking
-Kill Mag'har enemies around this area
+kill Mag'har Grunt##16846, Debilitated Mag'har Grunt##16847
 collect 10 Mag'har Ancestral Beads##23589 |q 9424/1 |goto Hellfire Peninsula/0 35.44,32.39
 stickystart "Kill_Terrorfiends"
 stickystart "Kill_Blistering_Rots"
@@ -9059,6 +9061,7 @@ use the Cenarion Antidote##23337
 |tip Use it on a Hulking Helboar around this area.
 kill Dreadtusk
 Administer the Antidote |q 10255/1 |goto Hellfire Peninsula/0 22.82,55.58
+'|kill Dreadtusk##16880
 stickystart "Kill_Illidari_Taskmasters"
 stickystart "Collect_Shanaar_Relics"
 step
@@ -9115,6 +9118,7 @@ use the Staff of the Dreghood Elders##29513
 |tip He will become weakened and easier to kill.
 |tip He spawns at this location, but walks around this area.
 kill Arzeth the Powerless##20680 |q 10369/1 |goto Hellfire Peninsula/0 14.33,62.17
+'|clicknpc Arzeth the Merciless##19354
 step
 Enter the building |goto Hellfire Peninsula/0 16.18,64.76 < 7 |walk
 talk Naladu##19361
@@ -9145,7 +9149,7 @@ talk Mirren Longbeard##16851
 turnin Gaining Mirren's Trust##9563 |goto Hellfire Peninsula/0 23.97,72.35
 accept The Finest Down##9420 |goto Hellfire Peninsula/0 23.97,72.35
 step
-Kill enemies around this area
+kill Quillfang Ravager##16932, Quillfang Skitterer##16933
 Slay #10# Quillfang Ravagers |q 9385/1 |goto Hellfire Peninsula/0 22.70,67.85
 stickystart "Kill_Haaleshi_Windwalkers"
 stickystart "Kill_Haaleshi_Talonguards"
@@ -9173,11 +9177,10 @@ label "Kill_Haaleshi_Talonguards"
 kill 6 Haal'eshi Talonguard##16967  |q 9417/2 |goto Hellfire Peninsula/0 25.88,75.23
 step
 label "Collect_Kaliri_Feathers"
-Kill Kaliri enemies around this area
+kill Female Kaliri Hatchling##17034, Kaliri Matriarch##17035, Male Kaliri Hatchling##17039, Kaliri Swooper##17053
 click Kaliri Nest##181582+
 |tip Bird nests with pink eggs in them.
-|tip Either a male or female hatchling will appear.
-|tip Kill the hatchlings.
+|tip Kill the hatchlings that appear.
 collect 8 Kaliri Feather##23588 |q 9420/1 |goto Hellfire Peninsula/0 25.88,75.23
 step
 Follow the path |goto Hellfire Peninsula/0 26.09,72.32 < 20 |only if walking
@@ -9260,7 +9263,7 @@ collect Glowing Sanctified Crystal##23442 |q 9383/1 |goto Hellfire Peninsula/0 4
 You can find more around [46.31,83.29]
 step
 label "Collect_Condensed_Voidwalker_Essences"
-Kill Voidwalker enemies around this area
+kill Uncontrolled Voidwalker##16975, Rogue Voidwalker##16974
 collect 10 Condensed Voidwalker Essence##23218 |q 9351/1 |goto Hellfire Peninsula/0 46.31,83.29
 You can find more around [46.31,83.29]
 |only if haveq(9351) or completedq(9351)
@@ -9647,14 +9650,13 @@ use the Ironvine Seeds##24355
 Disable the Marshlight Lake Pump Controls |q 9720/2 |goto Zangarmarsh/0 25.42,42.87
 step
 label "Accept_Drain_Schematics"
-Kill Bloodscale Overseer enemies around this area
-|tip This item is not guaranteed to drop, skip it if you kill all the Overseers and do not receive it.
+kill Bloodscale Enchantress##18088, Bloodscale Slavedriver##18089, Steam Pump Overseer##18340, Bloodscale Overseer##20088, Bloodscale Wavecaller##20089
 collect Drain Schematics##24330 |n
 use the Drain Schematics##24330
 accept Drain Schematics##9731 |goto Zangarmarsh/0 25.42,42.87 |only if (completedq(9720) or haveq(9720))
 step
 label "Collect_Naga_Claws"
-Kill Naga enemies around this area
+kill Bloodscale Enchantress##18088, Bloodscale Slavedriver##18089, Bloodscale Overseer##20088, Bloodscale Wavecaller##20089, Darkcrest Slaver##19946, Darkcrest Sorceress##17952, Darkcrest Sentry##20079, Steam Pump Overseer##18340
 |tip Do not rush to finish this, you will kill plenty of Naga before the other chains are finished. |onlyinsticky
 collect 30 Naga Claws##24280 |q 9728/1 |goto Zangarmarsh/0 25.42,42.87
 You can find more around: |notinsticky
@@ -9764,10 +9766,10 @@ kill 12 Marshfang Slicer##18131 |q 9833/1 |goto Zangarmarsh/0 35.90,58.70
 You can find more around [25.34,57.53]
 step
 label "Collect_Fertile_Spores"
-Kill enemies around this area
+kill Greater Sporebat##18129, Fen Strider##18134, Marsh Walker##18135, Sporebat##18128
+|tip Greater Sporebats, Fen Striders, Marsh Walkers and Sporebats will drop this quest item.
+|tip It has about a 33% drop rate.
 collect 6 Fertile Spores##24449 |goto Zangarmarsh/0 37.02,58.64 |q 9806 |future
-|tip Only Sporebats and Fen striders will drop these.
-|tip Don't go too out of your way for these, you have the entire zone to collect them. |onlyinsticky
 |tip Save these, you will need them for a later quest.
 step
 label "Collect_Glowcap_Mushrooms"
@@ -10728,7 +10730,7 @@ turnin Gambling Debt##11464 |goto Howling Fjord/0 36.32,80.48
 accept Jack Likes His Drink##11466 |goto Howling Fjord/0 36.32,80.48
 step
 Enter the building |goto Howling Fjord/0 35.28,80.22 < 10 |walk
-talk Olga, the Scalawag Wench##24639
+talk Olga the Scalawag Wench##24639
 |tip Inside the building.
 Select _"I'd like to buy Jack a drink. Perhaps something... extra strong."_
 Click Here After You Buy Jack Adams a Drink |confirm |goto Howling Fjord/0 35.31,79.59 |q 11466
@@ -11934,9 +11936,9 @@ accept Reference Material##11908 |goto Borean Tundra 58.19,62.98
 stickystart "Burn_Farshire_Grain"
 stickystart "Kill_Plagued_Scavengers"
 step
-click Fields, Factories and Workshops##188120
+click Fields Factories and Workshops##188120
 |tip It looks like a small red book inside the burning building.
-collect Fields, Factories and Workshops##35481|q 11908/1 |goto Borean Tundra 55.75,58.32
+collect Fields Factories and Workshops##35481|q 11908/1 |goto Borean Tundra 55.75,58.32
 step
 label "Burn_Farshire_Grain"
 use Wendy's Torch##35491
@@ -22482,9 +22484,9 @@ accept Reference Material##11908 |goto Borean Tundra 58.19,62.98 |only if (compl
 stickystart "Burn_Farshire_Grain"
 stickystart "Kill_Plagued_Scavengers"
 step
-click Fields, Factories and Workshops##188120
+click Fields Factories and Workshops##188120
 |tip It looks like a small red book inside the burning building.
-collect Fields, Factories and Workshops##35481|q 11908/1 |goto Borean Tundra 55.75,58.32
+collect Fields Factories and Workshops##35481|q 11908/1 |goto Borean Tundra 55.75,58.32
 |only if haveq(11908)
 step
 label "Burn_Farshire_Grain"
@@ -24960,7 +24962,7 @@ accept Jack Likes His Drink##11466 |goto Howling Fjord/0 36.32,80.48 |only if le
 |only if level < 73 and (completedq(11464) or haveq(11464)) or readyq(11464)
 step
 Enter the building |goto Howling Fjord/0 35.28,80.22 < 10 |walk
-talk Olga, the Scalawag Wench##24639
+talk Olga the Scalawag Wench##24639
 |tip Inside the building.
 Select _"I'd like to buy Jack a drink. Perhaps something... extra strong."_
 Click Here After You Buy Jack Adams a Drink |confirm |goto Howling Fjord/0 35.31,79.59 |q 11466

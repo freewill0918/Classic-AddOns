@@ -248,7 +248,6 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming 
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Raw Sagefish")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Raw Rockscale Cod")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Raw Sunscale Salmon")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Herbalism (1-525)")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Silverleaf")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Peacebloom",{
 cataready=true,
@@ -332,7 +331,6 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farmin
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Golden Sansam")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Dreamfoil")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Sorrowbloom")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Mining (1-525)")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Copper Ore",{
 cataready=true,
 },[[
@@ -523,7 +521,6 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming G
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming Guides\\Dense Stone")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming Guides\\Guardian Stone")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming Guides\\Elementium Ore")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Skinning (1-525)")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Green Whelp Scale")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Black Whelp Scale")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Ruined Leather Scraps",{

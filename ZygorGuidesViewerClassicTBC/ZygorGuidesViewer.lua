@@ -2773,13 +2773,14 @@ function ZGV:ReanchorFrame()
 	end
 
 
+	local lef = frame:GetLeft()
 	frame:ClearAllPoints()
 	local tabh = ZGV.Frame.Border.TabContainer:GetHeight()
 
 	if frame.sizedleft then
-		local q,w,e,x,y = framemaster:GetPoint()
+		local poi,rel,relpoi,x,y = framemaster:GetPoint()
 		framemaster:ClearAllPoints()
-		framemaster:SetPoint(q,w,e,x+frame:GetLeft()-frame.sizedleft,y)
+		framemaster:SetPoint(poi,rel,relpoi,x+lef-frame.sizedleft,y)
 		frame.sizedleft=nil
 	end
 

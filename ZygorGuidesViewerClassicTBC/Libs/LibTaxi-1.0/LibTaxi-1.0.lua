@@ -900,7 +900,7 @@ do
 	end
 
 	function Lib:ImportTaxiDataFromGame()
-		if not (Lib.IsRetail or Lib.IsClassicMOP) then return end
+		if not (Lib.IsRetail) then return end
 		local LOCALE = GetLocale()
 		Lib.master.translation = Lib.master.translation or {}
 		Lib.master.translation[LOCALE] = Lib.master.translation[LOCALE] or {}
@@ -1983,7 +1983,13 @@ function HooksForFlightMapFrame:DEV_HighlightIncompletePins()
 		local node = Lib:FindTaxiByNodeID(pin.taxiNodeData.nodeID)
 		if node then
 			local missingtimes = 0
-			if node.taxicosts then for ni,nt in pairs(node.taxicosts) do if nt==0 then missingtimes=missingtimes+1 end end end
+			if node.taxicosts then 
+				for ni,nt in pairs(node.taxicosts) do 
+					if nt==0 and type(ni)=="table" and ni.taxihidden then
+						missingtimes=missingtimes+1 
+					end 
+				end
+			end
 			if missingtimes>0 then pin.Icon:SetVertexColor(1,0,0,1) end
 		end
 	end

@@ -94,22 +94,22 @@ step
 Defeat three champions of Pandaria in a pet battle |scenariogoal 1/23601 |q 33137 |next "phasetwo"
 step
 label "phasetwo"
-talk Yu'la, Broodling of Yu'lon##73507
+talk Yu'la Broodling of Yu'lon##73507
 Tell him, "Let's do this!"
 |tip Yu'la is a Dragonkin type pet. Use Humanoid attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Yu'la, Broodling of Yu'lon in a pet battle |scenariogoal 2/23613 |goto Celestial Tournament/0 38.90,56.70
 step
-talk Xu-Fu, Cub of Xuen##73505
+talk Xu-Fu Cub of Xuen##73505
 Tell him, "Let's do this!"
 |tip Xu-Fu is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Xu-Fu, Cub of Xuen in a pet battle |scenariogoal 2/23612 |goto Celestial Tournament/0 40.00,55.20
 step
-talk Zao, Calfling of Niuzao##73506
+talk Zao Calfling of Niuzao##73506
 Tell him, "Let's do this!"
 |tip Zao is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Zao, Calfling of Niuzao in a pet battle |scenariogoal 2/23614 |goto Celestial Tournament/0 39.00,53.80
 step
-talk Chi-Chi, Hatchling of Chi-Ji##73503
+talk Chi-Chi Hatchling of Chi-Ji##73503
 Tell him, "Let's do this!"
 |tip Chi-Chi is a Flying type pet. Use Magic attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Chi-Chi, Hatchling of Chi-Ji in a pet battle |scenariogoal 2/23615 |goto Celestial Tournament/0 38.00,55.20
@@ -127,25 +127,25 @@ buy 1 Zao, Calfling of Niuzao##102146 |next "zaol" |only if not achieved(8519,4)
 buy 1 Chi-Chi, Hatchling of Chi-Ji##102145 |next "chichil" |only if not achieved(8519,2) |or |goto Timeless Isle/0 34.80,59.70
 step
 label "yulal"
-Use the _Yu'la, Broodling of Yu'lon_ in your bags. |use Yu'la, Broodling of Yu'lon##102147
+Use the _Yu'la Broodling of Yu'lon_ in your bags. |use Yu'la Broodling of Yu'lon##102147
 learnpet Yu'la, Broodling of Yu'lon##72463
 |next "check"
 |only if not achieved(8519,3)
 step
 label "chichil"
-Use the _Chi-Chi, Hatchling of Chi-Ji_ in your bags. |use Chi-Chi, Hatchling of Chi-Ji##102145
+Use the _Chi-Chi Hatchling of Chi-Ji_ in your bags. |use Chi-Chi Hatchling of Chi-Ji##102145
 learnpet Chi-Chi, Hatchling of Chi-Ji##72462
 |next "check"
 |only if not achieved(8519,2)
 step
 label "zaol"
-Use the _Zao, Calfling of Niuzao_ in your bags. |use Zao, Calfling of Niuzao##102146
+Use the _Zao Calfling of Niuzao_ in your bags. |use Zao Calfling of Niuzao##102146
 learnpet Zao, Calfling of Niuzao##72464
 |next "check"
 |only if not achieved(8519,4)
 step
 label "xuful"
-Use the _Xu-Fu, Cub of Xuen_ in your bags. |use Xu-Fu, Cub of Xuen##101771
+Use the _Xu-Fu Cub of Xuen_ in your bags. |use Xu-Fu Cub of Xuen##101771
 learnpet Xu-Fu, Cub of Xuen##71942
 |next "check"
 |only if not achieved(8519,1)
@@ -245,14 +245,14 @@ label "darkmoon"
 This pet requires Darkmoon Island to be accessible.
 |confirm
 step
-|goto Darkmoon Island/0,56.00,52.90 |n
-Follow the Path to the Darkmoon Faire |goto Darkmoon Island/0,56.00,52.90,1 |noway |c
+|goto Darkmoon Island/0 56.00,52.90 |n
+Follow the Path to the Darkmoon Faire |goto Darkmoon Island/0 56.00,52.90 |noway |c
 step
 Complete daily quests on Darkmoon Island until you have 90 Darkmoon Prize Tickets
 earn 90 Darkmoon Prize Ticket##515
 step
 talk Lhara##14846
-buy 1 Darkmoon Cub##74981 |goto Darkmoon Island/0,48.20,69.60
+buy 1 Darkmoon Cub##74981 |goto Darkmoon Island/0 48.20,69.60
 step
 learnpet Darkmoon Cub##56031 |use Darkmoon Cub##74981
 |next "menu" |only if not achieved(8397)
@@ -560,22 +560,22 @@ step
 Defeat three champions of Pandaria in a pet battle |scenariogoal 1/23601 |q 33137 |next "phasetwo"
 step
 label "phasetwo"
-talk Yu'la, Broodling of Yu'lon##73507
+talk Yu'la Broodling of Yu'lon##73507
 Tell him, "Let's do this!"
 |tip Yu'la is a Dragonkin type pet. Use Humanoid attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Yu'la, Broodling of Yu'lon in a pet battle |scenariogoal 2/23613 |goto Celestial Tournament/0 38.90,56.70
 step
-talk Xu-Fu, Cub of Xuen##73505
+talk Xu-Fu Cub of Xuen##73505
 Tell him, "Let's do this!"
 |tip Xu-Fu is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Xu-Fu, Cub of Xuen in a pet battle |scenariogoal 2/23612 |goto Celestial Tournament/0 40.00,55.20
 step
-talk Zao, Calfling of Niuzao##73506
+talk Zao Calfling of Niuzao##73506
 Tell him, "Let's do this!"
 |tip Zao is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Zao, Calfling of Niuzao in a pet battle |scenariogoal 2/23614 |goto Celestial Tournament/0 39.00,53.80
 step
-talk Chi-Chi, Hatchling of Chi-Ji##73503
+talk Chi-Chi Hatchling of Chi-Ji##73503
 Tell him, "Let's do this!"
 |tip Chi-Chi is a Flying type pet. Use Magic attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Chi-Chi, Hatchling of Chi-Ji in a pet battle |scenariogoal 2/23615 |goto Celestial Tournament/0 38.00,55.20
@@ -589,7 +589,7 @@ step
 talk Master Li##73082
 buy 1 Xu-Fu, Cub of Xuen##101771 |goto Timeless Isle/0 34.80,59.70
 step
-Use the _Xu-Fu, Cub of Xuen_ in your bags. |use Xu-Fu, Cub of Xuen##101771
+Use the _Xu-Fu Cub of Xuen_ in your bags. |use Xu-Fu Cub of Xuen##101771
 learnpet Xu-Fu, Cub of Xuen##71942
 |next "menu" |only if not achieved(8397)
 |next "end" |only if achieved(8397)
@@ -3191,35 +3191,6 @@ Capture a Battle Pet below 5% health. |achieve 6571 |goto Durotar 45.40,25.70
 step
 Congratulations, you have earned the _That was Close!_ Achievement!
 ]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\World Safari",{
-achieveid={6590},
-patch='50004',
-description="Complete the Safari achievements listed below.",
-},[[
-step
-Complete the Eastern Kingdoms Safari achievement
-Click here to check out our guide for Eastern Kingdoms Safari |confirm |next "Achievement Guides\\Pet Battles\\Collect\\Eastern Kingdoms Safari" |or
-|achieve 6587/1 |or
-step
-Complete the Kalimdor Safari achievement
-Click here to check out our guide for Kalimdor Safari |confirm |next "Achievement Guides\\Pet Battles\\Collect\\Kalimdor Safari" |or
-|achieve 6587/2 |or
-step
-Complete the Northrend Safari achievement
-Click here to check out our guide for Northrend Safari |confirm |next "Achievement Guides\\Pet Battles\\Collect\\Northrend Safari" |or
-|achieve 6587/4 |or
-step
-Complete the Outland Safari achievement
-Click here to check out our guide for Outland Safari |confirm |next "Achievement Guides\\Pet Battles\\Collect\\Outland Safari" |or
-|achieve 6587/3 |or
-step
-Complete the Pandaria Safari achievement
-Click here to check out our guide for Pandaria Safari |confirm |next "Achievement Guides\\Pet Battles\\Collect\\Pandaria Safari" |or
-|achieve 6587/5 |or
-step
-_Congratulations!_
-You have earned the _World Safari_ achievement
-]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Zen Pet Hunter",{
 achieveid={7436},
 patch='50004',
@@ -3400,22 +3371,22 @@ step
 Defeat three champions of Pandaria in a pet battle |scenariogoal 1/23601 |q 33137 |next "phasetwo"
 step
 label "phasetwo"
-talk Yu'la, Broodling of Yu'lon##73507
+talk Yu'la Broodling of Yu'lon##73507
 Tell him, "Let's do this!"
 |tip Yu'la is a Dragonkin type pet. Use Humanoid attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Yu'la, Broodling of Yu'lon in a pet battle |scenariogoal 2/23613 |goto Celestial Tournament/0 38.90,56.70
 step
-talk Xu-Fu, Cub of Xuen##73505
+talk Xu-Fu Cub of Xuen##73505
 Tell him, "Let's do this!"
 |tip Xu-Fu is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Xu-Fu, Cub of Xuen in a pet battle |scenariogoal 2/23612 |goto Celestial Tournament/0 40.00,55.20
 step
-talk Zao, Calfling of Niuzao##73506
+talk Zao Calfling of Niuzao##73506
 Tell him, "Let's do this!"
 |tip Zao is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Zao, Calfling of Niuzao in a pet battle |scenariogoal 2/23614 |goto Celestial Tournament/0 39.00,53.80
 step
-talk Chi-Chi, Hatchling of Chi-Ji##73503
+talk Chi-Chi Hatchling of Chi-Ji##73503
 Tell him, "Let's do this!"
 |tip Chi-Chi is a Flying type pet. Use Magic attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Chi-Chi, Hatchling of Chi-Ji in a pet battle |scenariogoal 2/23615 |goto Celestial Tournament/0 38.00,55.20
@@ -3659,22 +3630,22 @@ step
 Defeat three champions of Pandaria in a pet battle |scenariogoal 1/23601 |q 33137 |next "phasetwo"
 step
 label "phasetwo"
-talk Yu'la, Broodling of Yu'lon##73507
+talk Yu'la Broodling of Yu'lon##73507
 Tell him, "Let's do this!"
 |tip Yu'la is a Dragonkin type pet. Use Humanoid attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Yu'la, Broodling of Yu'lon in a pet battle |scenariogoal 2/23613 |goto Celestial Tournament/0 38.90,56.70
 step
-talk Xu-Fu, Cub of Xuen##73505
+talk Xu-Fu Cub of Xuen##73505
 Tell him, "Let's do this!"
 |tip Xu-Fu is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Xu-Fu, Cub of Xuen in a pet battle |scenariogoal 2/23612 |goto Celestial Tournament/0 40.00,55.20
 step
-talk Zao, Calfling of Niuzao##73506
+talk Zao Calfling of Niuzao##73506
 Tell him, "Let's do this!"
 |tip Zao is a Beast type pet. Use Mechanical attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Zao, Calfling of Niuzao in a pet battle |scenariogoal 2/23614 |goto Celestial Tournament/0 39.00,53.80
 step
-talk Chi-Chi, Hatchling of Chi-Ji##73503
+talk Chi-Chi Hatchling of Chi-Ji##73503
 Tell him, "Let's do this!"
 |tip Chi-Chi is a Flying type pet. Use Magic attacks against him in order to defeat him. Your pets should all be level 25.
 Defeat Chi-Chi, Hatchling of Chi-Ji in a pet battle |scenariogoal 2/23615 |goto Celestial Tournament/0 38.00,55.20
@@ -4600,7 +4571,6 @@ description="This guide will show you how to learn 240 cooking recipes.",
 step
 There are 47 Recipes here to help complete your Ironpaw Chef Achievement.
 |confirm
-If you need the previous 200 Recipes, click here to load the Iron Chef Guide |confirm |next "Achievement Guides\\Professions\\Cooking\\Iron Chef"
 step
 #include "trainer_Cooking_MoP"
 learn Perfectly Cooked Instant Noodles##125067
@@ -4728,26 +4698,16 @@ description="This guide will walk you through becoming the Master of Pandaren Co
 step
 In order to earn this achievement, you will have to level your cooking skill.
 This achievement requires that you are leveled in all ways of Pandaren Cooking.
-|confirm |next "mopc"
+|confirm
 step
-label "mopc"
-|next "520_up" |only if skill("Cooking")>525
-|next "520_down" |only if skill("Cooking")<525
-step
-label "520_down"
-#include "Pandarian_Cooking_1-520"
-step
-label "520_up"
-#include "Cooking_PreMasteries"
-#include "Cooking_520-600"
-step
-|next "520_up" |only if not achieved(7306)
-|next "end" |only if achieved(7306)
-step
-label "end"
-Earn the Master of Pandaren Cooking achievement |achieve 7306
-step
-Congratulations, you have earned the Master of Pandaren Cooking Achievement!
+Earn the Master of Pandaren Cooking Achievement |achieve 7306
+|loadguide "Profession Guides\\Cooking\\Leveling Guides\\Cooking (1-600)"
+|loadguide "Profession Guides\\Cooking\\Leveling Guides\\Way of the Oven"
+|loadguide "Profession Guides\\Cooking\\Leveling Guides\\Way of the Brew"
+|loadguide "Profession Guides\\Cooking\\Leveling Guides\\Way of the Grill"
+|loadguide "Profession Guides\\Cooking\\Leveling Guides\\Way of the Pot"
+|loadguide "Profession Guides\\Cooking\\Leveling Guides\\Way of the Steamer"
+|loadguide "Profession Guides\\Cooking\\Leveling Guides\\Way of the Wok"
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Master of the Pot",{
 achieveid={7302},
@@ -4790,56 +4750,6 @@ Earn the Master of the Wok Achievement |achieve 7301
 step
 _Congratulations!_
 You have earned the _Master of the Wok_ achievement
-]])
-ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Now I Am the Master",{
-achieveid={7325},
-patch='50004',
-description="This guide will walk you through the achievement Now I Am the Master.",
-},[[
-step
-For this achievement, you will need to complete the Master of Pandaren Cooking achievement.
-|complete completedq(31521) |next "daily" |only if completedq(31521)
-|complete not completedq(31521) |next "cooking" |only if not completedq(31521)
-step
-label "cooking"
-You will need to level your cooking to 600 with each of the 6 styles that have been introduced in Mists of Pandaria.
-confirm
-step
-Proceed to the 520-600 Cooking guide. |next "520_up" |only if skill("Cooking")>525
-Proceed to the 1-520 Cooking guide. |next "520_down" |only if skill("Cooking")<525
-step
-label "520_down"
-#include "Pandarian_Cooking_1-520"
-step
-label "520_up"
-#include "Cooking_PreMasteries"
-#include "Cooking_520-600"
-step
-|next "520_up" |only if not achieved(7306)
-|next "daily" |only if completedq(31521)
-step
-label "daily"
-You will need to complete daily quests and collect _50 Ironpaw Tokens_.
-earn 50 Ironpaw Token##402 |next "school_bell"
-|complete default |next "dailyq"
-step
-label "dailyq"
-#include "MoP_Cooking_Dailies"
-step
-You have reached the end of the cooking dailies guide for today.
-confirm |complete curcount(402)>=50  |next "school_bell" |only if curcount(402)>=100
-confirm |complete curcount(402)<=50 |next "dailyq" |only if curcount(402)<=100
-step
-label "school_bell"
-talk Nam Ironpaw##64395
-buy 1 Cooking School Bell##86425 |complete itemcount(86425) >= 1 |goto Valley of the Four Winds 53.50,51.30
-step
-label "nomi"
-#include "Nomi_Dailies"
-step
-You have reached the end of the dailies for today. |only if not achieved(7306)
-Click here to go back to the beginning of the dailies. |confirm |next "nomi" |only if not achieved(7306)
-Congratulations, you have achieved the _Now I Am the Master_ achievement! |only if achieved(7306)
 ]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\The Pandaren Gourmet",{
 achieveid={7326},
@@ -9188,7 +9098,7 @@ confirm |next "menu"
 step
 label "mingus"
 You will need _Archaeology_ in order to attempt to get this Challenge Card.
-Click here to go to the Archaeology guide to begin Archaeology. You will need to be around level 500 in this skill. |confirm |next "Profession Guides\\Archaeology\\Leveling Guides\\Archaeology 1-600"
+Click here to go to the Archaeology guide to begin Archaeology. You will need to be around level 500 in this skill. |confirm |next "Profession Guides\\Archaeology\\Leveling Guides\\Archaeology (1-600)"
 only if skill("Archaeology")<1
 step
 Open your world map, find dig sites in Eastern Kingdoms then go to them

@@ -1374,6 +1374,14 @@ local ConditionEnv = {
 		return false
 	end,
 
+	clearquest = function(id) -- autoscript function
+		for i,v in pairs(ZGV.recentlyCompletedGoals) do 
+			if v.questid == id then 
+				ZGV.recentlyCompletedGoals[i]=nil 
+			end
+		end
+		ZGV.completedQuests[id]=nil
+	end,
 }
 setmetatable(ConditionEnv,{__index=function(t,k) local lower=rawget(t,k:lower())  if lower~=nil then return lower end  return _G[k]  end})
 
@@ -2242,7 +2250,7 @@ function Parser:ParseEntry(guide,fully_parse,lastparsed)
 								end
 							end
 
-						elseif cmd=="autoscript" then
+						elseif cmd=="autoscript" or cmd=="execute" then
 							goal.autoscript = params
 						elseif cmd=="n" then
 							goal.force_nocomplete = true

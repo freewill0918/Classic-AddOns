@@ -171,10 +171,11 @@ click Saronite Arrow##190691+
 |tip Yellow and green arrows stuck in the ground around this area.
 collect 15 Saronite Arrow##39160 |q 12679/1 |goto Plaguelands: The Scarlet Enclave/0 56.41,50.97
 step
-click Havenshire Horse
-|tip Horses around this area.
-|tip Watch out for Stable Master Kitrik, he's elite and will pull you off the horse.
+clicknpc Havenshire Stallion##28605, Havenshire Mare##28606, Havenshire Colt##28607
+|tip Horses.
+|tip Avoid {y}Stable Master Kitrik{}, an elite human riding a horse.
 Ride the Havenshire Horse |invehicle |goto Plaguelands: The Scarlet Enclave/0 55.74,43.39 |q 12680
+'|clicknpc Stable Master Kitrik##28683
 step
 Follow the path up |goto Plaguelands: The Scarlet Enclave/0 50.95,41.71 < 30 |only if walking
 Successfully Steal the Horse |q 12680/1 |goto Plaguelands: The Scarlet Enclave/0 52.26,34.96
@@ -6292,7 +6293,7 @@ step
 clicknpc Bravo Company Siege Tank##43714
 Take Control of the Bravo Company Siege Tank |invehicle |c |goto Redridge Mountains 77.09,65.97 |q 26708
 step
-Kill Blackrock enemies around this area
+kill Blackrock Invader##43775
 |tip John J. Keeshan will kill them as you drive
 kill 200 Blackrock Invader##43775 |q 26708/1 |goto Redridge Mountains 74.05,46.54
 step
@@ -7384,7 +7385,7 @@ click Holy Spring##759
 collect Pure Water##60386 |q 26817/1 |goto The Cape of Stranglethorn 43.90,49.00
 step
 label "Collect_Naga_Icons"
-click Naga Icon##204336
+click Naga Icon##204336+
 |tip Small silver naga statues.
 collect 6 Naga Icon##58877 |q 26820/1 |goto The Cape of Stranglethorn 41.13,50.66
 step
@@ -7421,7 +7422,7 @@ Watch the dialogue
 Spy on Zanzil |q 26809/2 |goto The Cape of Stranglethorn 61.53,43.03 |notravel
 step
 label "Collect_Zanzils_Mixture"
-Kill Zanzil enemies around this area
+kill Zanzil Zombie##1488, Zanzil Hunter##1489, Zanzil Witch Doctor##1490, Zanzil Naga##1491, Zanzil Mindslave##43223
 collect 5 Zanzil's Mixture##4016 |q 26815/1 |goto The Cape of Stranglethorn 52.80,32.80
 step
 talk Dask "The Flask" Gobfizzle##44099
@@ -11318,7 +11319,7 @@ click Chillwind Egg##321+
 |tip Large purple eggs.
 collect 40 Chillwind Egg##65890 |q 28828/1 |goto Winterspring 56.80,24.40
 step
-Kill Frostsaber enemies around this area
+kill Frostsaber##7431, Frostsaber Stalker##7432
 |tip Frostsaber Huntresses won't count.
 Slay #15# Frostsabers |q 28640/1 |goto Winterspring 54.30,22.10
 step
@@ -12215,7 +12216,7 @@ clicknpc Totem of Vark##17364
 turnin Totem of Vark##9542 |goto Azuremyst Isle 28.10,62.39
 accept The Prophecy of Akida##9544 |goto Azuremyst Isle 28.10,62.39
 step
-Kill Bristlelimb enemies around this area
+kill Bristlelimb Furbolg##17183, Bristlelimb Windcaller##17184, Bristlelimb Ursa##17185
 |tip Furbolgs.
 collect Bristlelimb Key##23801+ |n
 click Bristlelimb Cage##1787+
@@ -12229,7 +12230,7 @@ stickystart "Kill_Wrathscale_Myrmidons"
 stickystart "Kill_Wrathscale_Nagas"
 stickystart "Kill_Wrathscale_Sirens"
 step
-Kill Wratchscale enemies around this area
+kill Wrathscale Naga##17193, Wrathscale Myrmidon##17194, Wrathscale Siren##17195
 |tip Nagas.
 collect Rune Covered Tablet##23759 |n
 use the Rune Covered Tablet##23759
@@ -12263,7 +12264,7 @@ talk Cowlen##17311
 turnin The Missing Fisherman##10428 |goto Azuremyst Isle 16.59,94.45
 accept All That Remains##9527 |goto Azuremyst Isle 16.59,94.45
 step
-Kill Owlbeast enemies around this area
+kill Aberrant Owlbeast##17187, Raving Owlbeast##17188, Deranged Owlbeast##17186
 collect Remains of Cowlen's Family##23789 |q 9527/1 |goto Azuremyst Isle 15.16,86.80
 step
 talk Cowlen##17311
@@ -12360,7 +12361,7 @@ talk Moordo##17442
 turnin Beasts of the Apocalypse!##9560 |goto Azuremyst Isle 44.76,23.91
 stickystart "Accept_Gurfs_Dignity"
 step
-Kill Siltfin enemies around this area
+kill Siltfin Murloc##17190, Siltfin Oracle##17191, Siltfin Hunter##17192
 |tip Murlocs.
 click Stillpine Grain##181757+
 |tip Brown bags with yellow contents in them on the ground near murloc huts around this area.
@@ -12456,7 +12457,7 @@ talk Princess Stillpine##17682
 accept Saving Princess Stillpine##9667 |goto Bloodmyst Isle 68.26,81.09
 |only if completedq(9544)
 step
-Kill Bristlelimb enemies around this area
+kill Bristlelimb Shaman##17320, Bristlelimb Warrior##17321
 |tip All around this area.
 |tip Eventually, High Chief Bristelimb will yell in the chat and appear at this location.
 kill High Chief Bristlelimb##17702
@@ -13768,7 +13769,7 @@ step
 click Decoy Bot Control Console##195006
 Control the Robot |invehicle |goto Darkshore 52.97,11.02 |q 13560
 step
-Kill Greymist enemies around this area
+kill Greymist Raider##2201, Greymist Coastrunner##2202, Greymist Seer##2203, Greymist Netter##2204, Greymist Warrior##2205, Greymist Hunter##2206, Greymist Oracle##2207, Greymist Tidehunter##2208
 |tip Murlocs.
 |tip Underwater around this area.
 |tip Use the ability on your action bar.
@@ -13924,7 +13925,7 @@ Destroy #6# Shatterspear Structures |q 13514/2 |goto Darkshore 70.30,20.10
 |tip Use the abilities on your action bar near the troll buildings around this area.
 step
 label "Slay_Shatterspear_Vale_Trolls"
-Kill Shatterspear enemies around this area
+kill Shatterspear Laborer##32861, Shatterspear Shaman##32860, Shatterspear Priestess##32855, Shatterspear Champion##32858, Shatterspear Overseer##32863, Shatterspear Raider##33071, Shatterspear Mystic##34248
 |tip Trolls. |notinsticky
 |tip Use the abilities on your action bar near them.
 Slay #30# Shatterspear Vale Trolls |q 13514/1 |goto Darkshore 70.30,20.10
@@ -15651,6 +15652,7 @@ use the Goblin Pump Controller##56140
 |tip Use it next to Oil Pumps.
 |tip Red and gray metal machines all along the shore of the lake around this area.
 Destroy #4# Oil Pumps |q 25878/1 |goto Stonetalon Mountains 49.90,47.80
+'|clicknpc Oil Pump##41475
 step
 talk "Goblin" Pump Controller##41434
 |tip Inside the building.
@@ -15981,11 +15983,9 @@ turnin Grundig Darkcloud, Chieftain of the Grimtotem##25846 |goto Stonetalon Mou
 accept Grimtotem Supremacy##25847 |goto Stonetalon Mountains 72.30,83.90
 step
 use the Alliance Weapon Crate##56069
-'|talk Grimtotem Brute##11912
-'|talk Grimtotem Mercenary##11911
-'|talk Grimtotem Ruffian##11910
 |tip Use it on friendly Grimtotem NPC's around this area.
 Arm #12# Grimtotem |q 25847/1 |goto Stonetalon Mountains 71.83,84.80
+'|clicknpc Grimtotem Brute##11912, Grimtotem Mercenary##11911, Grimtotem Ruffian##11910
 step
 talk Grundig Darkcloud##11858
 |tip Walks around.
@@ -16297,10 +16297,10 @@ turnin Biological Intervention##24565 |goto Southern Barrens 50.42,40.67
 accept To Harvest Chaos##24574 |goto Southern Barrens 50.42,40.67
 step
 use the Soothing Seeds##49882
-'|talk Deviate Plainstrider##37091
 |tip Use them on Deviate Plainstriders and Deviate Terrortooths around this area.
 Observe #6# Results |q 24566/1 |goto Southern Barrens 50.90,38.85
 You can find more around [48.66,35.72]
+'|clicknpc Deviate Plainstrider##37091, Deviate Terrortooth##37090
 stickystart "Kill_Outgrowths"
 step
 kill Outgrowth##37092+
@@ -17044,6 +17044,7 @@ use the Soothing Broth##49144
 |tip Light grey kodos with no hair.
 |tip If you can't find any, kill Recovering Kodos also, to get more to spawn.
 Calm #5# Enraged Kodo |q 14309/1 |goto Desolace 60.60,56.75
+'|clicknpc Enraged Kodo##36094
 step
 talk Smeed Scrabblescrew##11596
 accept Kodo Roundup##5561 |goto Desolace 60.86,61.86
@@ -17055,6 +17056,7 @@ Tame #3# Kodos |q 5561/1 |goto Desolace 54.79,63.60
 |tip Near Smeed Scrabble screw, tame the kodos by talking to them.
 |tip It's okay if you outrun the Tamed Kodos, they will catch up even if they disappear.
 Lead the Tamed Kodos to [60.56,62.09]
+'|clicknpc Ancient Kodo##4702, Aged Kodo##4700
 step
 talk Smeed Scrabblescrew##11596
 turnin Kodo Roundup##5561 |goto Desolace 60.86,61.86
@@ -17490,6 +17492,7 @@ use Tessina's Wisp Call##53101
 |tip Use it on Feralas Wisps.
 |tip Floating blue balls of light with faces on them near trees around this area.
 Rally #3# Wisps |q 25407/1 |goto Feralas 56.98,54.00
+'|clicknpc Feralas Wisp##40079
 step
 talk Handler Tessina##40078
 turnin Forces of Nature: Wisps##25407 |goto Feralas 57.08,53.79
@@ -17575,6 +17578,7 @@ use Tessina's Treant Call##53105
 |tip You can do this while mounted
 Rally #6# Treants |q 25410/1 |goto Feralas 57.90,58.00
 You can find more around [56.82,62.14]
+'|clicknpc Wandering Forest Walker##7584
 step
 talk Handler Tessina##40078
 turnin Forces of Nature: Treants##25410 |goto Feralas 57.08,53.79
@@ -17636,6 +17640,7 @@ use Jesana's Giant Call##58967
 |tip Rock giants.
 |tip You can do this while mounted.
 Rally #5# Mountain Giants |q 25469/1 |goto Feralas 71.22,61.04
+'|clicknpc Mountain Giant##40026
 step
 kill Woodpaw Mystic##5254, Woodpaw Reaver##5255, Woodpaw Brute##5253, Woodpaw Mongrel##5249, Woodpaw Trapper##5251
 |tip Gnolls.
@@ -17646,6 +17651,7 @@ use Jesana's Faerie Dragon Call##58966
 |tip This can be done while mounted.
 Rally #10# Faerie Dragons |q 25468/1 |goto Feralas 70.85,46.95
 You can find more around [72.27,41.49]
+'|clicknpc Sprite Darter##5278
 step
 Follow the path up |goto Feralas 75.02,35.11 < 20 |only if walking
 kill 5 Gordunni Hillguard##39952 |q 25432/1 |goto Feralas 75.66,33.88
@@ -18145,6 +18151,7 @@ use the Ooze Buster##33108
 |tip Use it on green and blue oozes around this area, while you have the "Energized!" buff.
 |tip Stand next to the large lightning structures around this area to get the "Energized!" buff.
 Dissolve #10# Oozes |q 27347/1 |goto Dustwallow Marsh 53.10,56.00
+'|clicknpc Acidic Swamp Ooze##4393, Bubbling Swamp Ooze##4394
 step
 talk Moxie Steelgrille##23797
 turnin Corrosion Prevention##27347 |goto Dustwallow Marsh 53.58,56.91
@@ -18156,7 +18163,7 @@ talk Nat Pagle##12919
 turnin Is it Real?##27219 |goto Dustwallow Marsh 58.76,60.17
 accept Nat's Bargain##27220 |goto Dustwallow Marsh 58.76,60.17
 step
-use Pagle's Fish Paste, Extra Strength##33166
+use Pagle's Fish Paste Extra Strength##33166
 Wear Pagle's Fish Paste |havebuff Nat Pagle's Fish Paste##42644 |q 27220
 step
 kill Lurking Shark##23928
@@ -18427,6 +18434,7 @@ use the Bottle of Grog##54746
 |tip Use it on a Goblin Bar Patron around this area.
 |tip Inside the building.
 Start a Bar Fight! |q 25517/1 |goto Thousand Needles 76.65,74.63
+'|clicknpc Goblin Bar Patron##40494, Goblin Bar Patron##40530
 step
 talk Rizzle Brassbolts##40554
 turnin Bar Fight!##25517 |goto Thousand Needles 77.99,73.31
@@ -19899,6 +19907,7 @@ use the Swiftwind Switch##64300
 |tip Use it near Talonbranch Wisps around this area.
 |tip Small balls of blue light flying low to the ground around this area.
 Capture #5# Talonbranch Wisps |q 28383/1 |goto Felwood 63.10,21.25
+'|clicknpc Talonbranch Wisp##48454
 step
 label "Kill_Irontree_Choppers"
 kill 8 Irontree Chopper##48453 |q 28382/1 |goto Felwood 63.10,21.25
@@ -19948,6 +19957,7 @@ use the Stolen Irontree Explosives##64301
 |tip Use it next to Oil Gushers around this area.
 |tip Spots on the ground with black oil shooting upward around this area.
 Ignite #7# Oil Gushers |q 28387/1 |goto Felwood 53.95,14.74
+'|clicknpc Oil Gusher##48317
 step
 label "Kill_Panicking_Workers"
 kill 7 Panicking Worker##48331 |q 28388/1 |goto Felwood 53.95,14.74
@@ -20043,7 +20053,7 @@ kill Winterfall Totemic##7441, Winterfall Pathfinder##7442, Winterfall Den Watch
 collect 10 Winterfall Spirit Beads##21383 |q 28522/1 |goto Winterspring 24.40,48.90
 step
 label "Slay_Winterfall_Furbolgs"
-Kill Winterfall enemies around this area |notinsticky
+kill Winterfall Totemic##7441, Winterfall Pathfinder##7442, Winterfall Den Watcher##7440 |notinsticky
 |tip Furbolgs. |notinsticky
 Slay #15# Winterfall Furbolgs |q 28460/1 |goto Winterspring 24.40,48.90
 step
@@ -20619,15 +20629,29 @@ talk Windcaller Proudhorn##15191
 turnin Stepping Up Security##8281 |goto Silithus 54.89,36.03
 step
 talk Frankal Stonebridge##15171
-Select _"Hello, Frankal. I've heard that you might have some information as to the whereabouts of Mistress Natalia Mar'alith."_
+Select _"Hello, Frankal. I've heard that you might have some information as to the whereabouts of Mistress Natalia Mar'alith."_ |gossip 90297
+Select _"That's what I like to hear."_ |gossip 90541
+Select _"That's odd."_ |gossip 90540
+Select _"You couldn't handle a lone night elf priestess?"_ |gossip 90539
+Select _"I've been meaning to ask you about that monkey"_ |gossip 90538
+Select _"Then what?"_ |gossip 88181
+Select _"What a story! So she went into Hive'Regal and that was the last you saw her?"_ |gossip 88448
+Select _"Thanks for the information, Frankal."_ |gossip 90744
 Question Frankal |q 8304/1 |goto Silithus 46.00,79.40
 step
 talk Rutgar Glyphshaper##15170
-Select _"Hello, Rutgar. The Commander has sent me here to gather some information about his missing wife."_
+Select _"Hello, Rutgar. The Commander has sent me here to gather some information about his missing wife."_ |gossip 90298
+Select _"That sounds dangerous"_ |gossip 89430
+Select _"What happened to her after that?"_ |gossip 89429
+Select _"Natalia?"_ |gossip 89428
+Select _"What demands?"_ |gossip 88180
+Select _"Lost it? What do you mean?"_ |gossip 90718
+Select _"Possessed by what?"_ |gossip 89427
+Select _"I'll be back once I straighten this mess out."_ |gossip 89426
 Question Rutgar |q 8304/2 |goto Silithus 46.41,79.08
 step
-_Click the Complete Quest Box:_
-turnin Dearest Natalia##8304
+talk Commander Mar'alith##15181
+turnin Dearest Natalia##8304 |goto Silithus/0 53.21,32.49
 accept Into The Maw of Madness##8306
 step
 talk Rutgar Glyphshaper##15170
@@ -20668,7 +20692,7 @@ Discover the Fate of Mistress Natalia Mar'alith |q 8306/1 |goto Silithus 55.58,9
 step
 click Hive'Regal Glyphed Crystal##180453
 |tip Inside the cave.
-Choose _<Use the transcription device to gather a rubbing.>_
+Choose _<Use the transcription device to gather a rubbing.>_ |gossip 90177
 collect Hive'Regal Rubbing##20456 |q 8309/1 |goto Silithus 55.59,90.55
 step
 label "Accept_Brann_Bronzebeards_Lost_Letter"
@@ -20752,12 +20776,12 @@ kill Lar'korwi Mate##9683
 collect 2 Ravasaur Pheromone Gland##11509 |q 24732/1 |goto Un'Goro Crater 60.90,72.20
 step
 use Garl's Net##50441
-'|talk Bloodpetal Seed##38202
 |tip Use it next to Bloodpetal Seeds around this area.
 |tip Small spiked orange balls floating underwater around this area.
 |tip Stay here and they will float toward you from the south.
 collect 4 Un'Goro Lasher Seed##50253 |q 24686/1 |goto Un'Goro Crater 71.14,67.36
 you can find more around [72.87,57.81]
+'|clicknpc Bloodpetal Seed##38202
 step
 talk Garl Stormclaw##38274
 |tip Walks around.
@@ -20792,6 +20816,7 @@ use the Scraps of Rotting Meat##50430
 |tip Use them on Young Diemetradons around this area.
 Bait #4# Dinosaurs |q 24697/1 |goto Un'Goro Crater 58.88,61.34
 Lead the Young Diemetradons into the pit of spikes at [56.94,62.93]
+'|clicknpc Young Diemetradon##9162
 step
 talk Nolen Tacker##38270
 turnin How to Make Meat Fresh Again##24697 |goto Un'Goro Crater 55.04,60.57
@@ -21087,7 +21112,12 @@ turnin Adventures in Archaeology##24698 |goto Un'Goro Crater 31.85,50.28
 accept Roll the Bones##24730 |goto Un'Goro Crater 31.85,50.28
 step
 talk Maximillian of Northshire##38237
-Select _"Alright, I'm ready."_
+Select _"Alright, I'm ready."_ |gossip 111926
+Select _"Understandable."_ |gossip 111952
+Select _"I give you my oath."_ |gossip 111930
+Select _"Yes, sir."_ |gossip 111931
+Select _"Umm... yes, yes she is. Unquestionably."_ |gossip 111933
+Select _"Woo hoo!"_ |gossip 111934
 Complete Squire Training |q 24703/1 |goto Un'Goro Crater 30.62,51.14
 step
 talk Maximillian of Northshire##38237
@@ -21141,6 +21171,7 @@ Complete #2# Prayers |q 24706/1 |goto Un'Goro Crater 33.95,48.49
 |tip Grey ghosts around this area.
 |tip Maximillian of Northshire will pray to them.
 |tip Don't kill them, they will disappear after he finishes praying to them.
+'|clicknpc Steaming Fury##38254
 step
 _Click the Complete Quest Box:_
 turnin The Spirits of Golakka Hot Springs##24706
@@ -21181,12 +21212,12 @@ accept The Western Pylon##24723 |goto Un'Goro Crater 31.85,50.28
 step
 click Western Crystal Pylon##164956
 |tip Up on the cliff.
-Choose _"Examine the pylon."_
+Choose _"Examine the pylon."_ |gossip 88442
 Discover and Examine the Western Crystal Pylon |q 24723/1 |goto Un'Goro Crater 23.54,50.11
 step
 click Northern Crystal Pylon##164955
 |tip Up on the cliff.
-Choose _"Examine the pylon."_
+Choose _"Examine the pylon."_ |gossip 90998
 Discover and Examine the Northern Crystal Pylon |q 24722/1 |goto Un'Goro Crater 56.56,12.44
 step
 talk J.D. Collie##9117
@@ -21197,7 +21228,7 @@ clicknpc Un'Goro Examinant##38504
 accept The Shaper's Terrace##24694 |goto Un'Goro Crater 53.84,62.51
 step
 clicknpc Un'Goro Examinant##38504 |goto Un'Goro Crater 53.84,62.51
-Choose _"I'm ready to go to The Shaper's Terrace."_
+Choose _"I'm ready to go to The Shaper's Terrace."_ |gossip 111964
 Teleport to The Shaper's Terrace |goto Un'Goro Crater 79.67,45.89 < 20 |noway |c |q 24694
 step
 talk Nablya##38502
@@ -21230,17 +21261,20 @@ click Gorilla Observation Lever
 Become a Gorilla |havebuff Illusory Gorilla##72181 |goto Un'Goro Crater 83.97,46.40 |q 24695
 step
 talk Un'Goro Stomper##6513
-Select _"What can you teach me, Stomper?"_
+Select _"What can you teach me, Stomper?"_ |gossip 111971
+Select _"I understand. Thank you."_ |gossip 111970
 Click Here After Talking to the Un'Goro Stomper |confirm |goto Un'Goro Crater 61.95,18.16 |q 24695
 step
 talk Un'Goro Gorilla##6514
-Select _"What can you teach me, Gorilla?"_
+Select _"What can you teach me, Gorilla?"_ |gossip 111969
+Select _"I understand. Thank you."_ |gossip 111968
 Click Here After Talking to the Un'Goro Gorilla |confirm |goto Un'Goro Crater 61.95,18.16 |q 24695
 step
 Enter the cave |goto Un'Goro Crater 64.06,16.34 < 15 |walk
 talk Un'Goro Thunderer##6516
 |tip Inside the cave.
-Select _"What can you teach me, Thunderer?"_
+Select _"What can you teach me, Thunderer?"_ |gossip 111967
+Select _"I understand. Thank you."_ |gossip 111966
 Complete the Gorilla Observation |q 24695/3 |goto Un'Goro Crater 65.21,16.66
 step
 Return to Nablya |nobuff Illusory Gorilla##72181 |q 24695
@@ -21250,8 +21284,7 @@ click Diemetradon Observation Lever
 Become a Diemetradon |havebuff Illusory Diemetradon##72189 |goto Un'Goro Crater 83.52,46.72 |q 24695
 step
 Complete the Diemetradon Observation |q 24695/2 |goto Un'Goro Crater 54.87,62.60
-|tip Use the Bite ability on your action bar on NPC's around this area.
-|tip Bite 5 Humanoids.
+|tip Bite 5 humanoid NPCs.
 step
 Return to Nablya |nobuff Illusory Diemetradon##72189 |q 24695
 step
@@ -21260,7 +21293,7 @@ talk Nablya##38502
 turnin Ever Watching From Above##24695 |goto Un'Goro Crater 83.53,46.00
 step
 talk Nablya##38502 |goto Un'Goro Crater 83.53,46.00
-Select _"I'd like to return to Marshal's Stand, please."_
+Select _"I'd like to return to Marshal's Stand, please."_ |gossip 111962
 Teleport to Marshal's Stand |goto Un'Goro Crater 55.31,61.87 < 50 |noway |c |q 28857 |future
 step
 talk Innkeeper Vizzie##11118
@@ -21341,7 +21374,7 @@ You can find more around: |notinsticky
 [60.17,52.13] |notinsticky
 step
 label "Slay_Bonechewer_Orcs"
-Kill Bonechewer enemies around this area
+kill Bonechewer Raider##16925, Bonechewer Scavenger##18952, Bonechewer Mutant##16876, Bonechewer Evoker##19701
 |tip Red orcs.
 Slay #20# Bonechewer Orcs |q 10482/1 |goto Hellfire Peninsula/0 54.64,54.15
 You can find more around: |notinsticky
@@ -21397,7 +21430,7 @@ turnin The Path of Anguish##10142 |goto Hellfire Peninsula/0 61.70,60.91
 accept Expedition Point##10143 |goto Hellfire Peninsula/0 61.70,60.91
 step
 Follow the path |goto Hellfire Peninsula/0 64.23,62.10 < 70 |only if walking
-Kill Bleeding Hollow enemies around this area
+kill Bleeding Hollow Peon##16907, Bleeding Hollow Grunt##16871, Bleeding Hollow Dark Shaman##16873, Bleeding Hollow Tormentor##19424, Bleeding Hollow Necrolyte##19422
 |tip Red orcs.
 collect Cursed Talisman##30157 |q 10483/1 |goto Hellfire Peninsula/0 68.17,69.78
 step
@@ -21458,7 +21491,7 @@ use the Smoke Beacon##31739
 Mark the Southern Tower |q 10895/2 |goto Hellfire Peninsula/0 66.44,76.51
 step
 label "Collect_Cursed_Talismans"
-Kill Bleeding Hollow enemies around this area
+kill Bleeding Hollow Peon##16907, Bleeding Hollow Grunt##16871, Bleeding Hollow Dark Shaman##16873, Bleeding Hollow Tormentor##19424, Bleeding Hollow Necrolyte##19422
 |tip Red orcs.
 collect 12 Cursed Talisman##30157 |q 10484/1 |goto Hellfire Peninsula/0 68.01,72.27
 step
@@ -21523,6 +21556,7 @@ use the Area 52 Special##28132 |notinsticky
 |tip If you don't complete this in the first run, you can try again by talking to the same NPC. |notinsticky
 Destroy #5# Fel Cannons |q 10163/3 |goto Hellfire Peninsula/0 72.62,20.81
 |tip Brown and green metal demon cannons on the ground around this area as you fly.
+'|clicknpc Fel Cannon##19399
 step
 label "Slay_Ganarg_Peons"
 use the Area 52 Special##28132 |notinsticky
@@ -21963,7 +21997,7 @@ accept Makuru's Vengeance##9424 |goto Hellfire Peninsula/0 23.14,40.17
 step
 Follow the path |goto Hellfire Peninsula/0 28.95,39.83 < 50 |only if walking
 Follow the path up |goto Hellfire Peninsula/0 29.91,34.62 < 20 |only if walking
-Kill Mag'har enemies around this area
+kill Mag'har Grunt##16846, Debilitated Mag'har Grunt##16847
 collect 10 Mag'har Ancestral Beads##23589 |q 9424/1 |goto Hellfire Peninsula/0 35.44,32.39
 stickystart "Kill_Terrorfiends"
 stickystart "Kill_Blistering_Rots"
@@ -22043,6 +22077,7 @@ use the Cenarion Antidote##23337
 |tip Use it on a Hulking Helboar around this area.
 kill Dreadtusk
 Administer the Antidote |q 10255/1 |goto Hellfire Peninsula/0 22.82,55.58
+'|kill Dreadtusk##16880
 stickystart "Kill_Illidari_Taskmasters"
 stickystart "Collect_Shanaar_Relics"
 step
@@ -22099,6 +22134,7 @@ use the Staff of the Dreghood Elders##29513
 |tip He will become weakened and easier to kill.
 |tip He spawns at this location, but walks around this area.
 kill Arzeth the Powerless##20680 |q 10369/1 |goto Hellfire Peninsula/0 14.33,62.17
+'|clicknpc Arzeth the Merciless##19354
 step
 Enter the building |goto Hellfire Peninsula/0 16.18,64.76 < 7 |walk
 talk Naladu##19361
@@ -22129,7 +22165,7 @@ talk Mirren Longbeard##16851
 turnin Gaining Mirren's Trust##9563 |goto Hellfire Peninsula/0 23.97,72.35
 accept The Finest Down##9420 |goto Hellfire Peninsula/0 23.97,72.35
 step
-Kill enemies around this area
+kill Quillfang Ravager##16932, Quillfang Skitterer##16933
 Slay #10# Quillfang Ravagers |q 9385/1 |goto Hellfire Peninsula/0 22.70,67.85
 stickystart "Kill_Haaleshi_Windwalkers"
 stickystart "Kill_Haaleshi_Talonguards"
@@ -22157,11 +22193,10 @@ label "Kill_Haaleshi_Talonguards"
 kill 6 Haal'eshi Talonguard##16967  |q 9417/2 |goto Hellfire Peninsula/0 25.88,75.23
 step
 label "Collect_Kaliri_Feathers"
-Kill Kaliri enemies around this area
+kill Female Kaliri Hatchling##17034, Kaliri Matriarch##17035, Male Kaliri Hatchling##17039, Kaliri Swooper##17053
 click Kaliri Nest##181582+
 |tip Bird nests with pink eggs in them.
-|tip Either a male or female hatchling will appear.
-|tip Kill the hatchlings.
+|tip Kill the hatchlings that appear.
 collect 8 Kaliri Feather##23588 |q 9420/1 |goto Hellfire Peninsula/0 25.88,75.23
 step
 Follow the path |goto Hellfire Peninsula/0 26.09,72.32 < 20 |only if walking
@@ -22244,7 +22279,7 @@ collect Glowing Sanctified Crystal##23442 |q 9383/1 |goto Hellfire Peninsula/0 4
 You can find more around [46.31,83.29]
 step
 label "Collect_Condensed_Voidwalker_Essences"
-Kill Voidwalker enemies around this area
+kill Uncontrolled Voidwalker##16975, Rogue Voidwalker##16974
 collect 10 Condensed Voidwalker Essence##23218 |q 9351/1 |goto Hellfire Peninsula/0 46.31,83.29
 You can find more around [46.31,83.29]
 |only if haveq(9351) or completedq(9351)
@@ -22631,14 +22666,13 @@ use the Ironvine Seeds##24355
 Disable the Marshlight Lake Pump Controls |q 9720/2 |goto Zangarmarsh/0 25.42,42.87
 step
 label "Accept_Drain_Schematics"
-Kill Bloodscale Overseer enemies around this area
-|tip This item is not guaranteed to drop, skip it if you kill all the Overseers and do not receive it.
+kill Bloodscale Enchantress##18088, Bloodscale Slavedriver##18089, Steam Pump Overseer##18340, Bloodscale Overseer##20088, Bloodscale Wavecaller##20089
 collect Drain Schematics##24330 |n
 use the Drain Schematics##24330
 accept Drain Schematics##9731 |goto Zangarmarsh/0 25.42,42.87 |only if (completedq(9720) or haveq(9720))
 step
 label "Collect_Naga_Claws"
-Kill Naga enemies around this area
+kill Bloodscale Enchantress##18088, Bloodscale Slavedriver##18089, Bloodscale Overseer##20088, Bloodscale Wavecaller##20089, Darkcrest Slaver##19946, Darkcrest Sorceress##17952, Darkcrest Sentry##20079, Steam Pump Overseer##18340
 |tip Do not rush to finish this, you will kill plenty of Naga before the other chains are finished. |onlyinsticky
 collect 30 Naga Claws##24280 |q 9728/1 |goto Zangarmarsh/0 25.42,42.87
 You can find more around: |notinsticky
@@ -22748,10 +22782,10 @@ kill 12 Marshfang Slicer##18131 |q 9833/1 |goto Zangarmarsh/0 35.90,58.70
 You can find more around [25.34,57.53]
 step
 label "Collect_Fertile_Spores"
-Kill enemies around this area
+kill Greater Sporebat##18129, Fen Strider##18134, Marsh Walker##18135, Sporebat##18128
+|tip Greater Sporebats, Fen Striders, Marsh Walkers and Sporebats will drop this quest item.
+|tip It has about a 33% drop rate.
 collect 6 Fertile Spores##24449 |goto Zangarmarsh/0 37.02,58.64 |q 9806 |future
-|tip Only Sporebats and Fen striders will drop these.
-|tip Don't go too out of your way for these, you have the entire zone to collect them. |onlyinsticky
 |tip Save these, you will need them for a later quest.
 step
 label "Collect_Glowcap_Mushrooms"
@@ -23156,7 +23190,7 @@ You can find more around: |notinsticky
 [59.89,47.31]
 step
 label "Collect_Timber_Worg_Tails"
-Kill Timber Worg enemies around this area
+kill Timber Worg##18476, Timber Worg Alpha##18477
 |tip Wolves.
 collect 12 Timber Worg Tail##25807 |q 10016/1 |goto Terokkar Forest/0 56.44,35.90
 You can find more around: |notinsticky
@@ -23256,7 +23290,7 @@ talk Mekeda##22370
 |tip Walks around.
 accept Before Darkness Falls##10878 |goto Terokkar Forest/0 37.44,51.31
 step
-Kill enemies around this area
+kill Infested Root-Walker##22095, Rotting Forest-Rager##22307
 kill 25 Wood Mite##22419+ |q 10896/1 |goto Terokkar Forest/0 39.68,47.32
 |tip They appear after you kill Infested Root-walkers or Rotting Forest-Ragers.
 You can find more around [46.39,50.87]
@@ -23273,18 +23307,18 @@ kill Urdak##18541|q 9986/3 |goto Terokkar Forest/0 31.40,42.50
 |tip Up on this wooden platform.
 step
 label "Collect_Lathrais_Stolen_Goods"
-Kill Skithian enemies around this area
+kill Skithian Windripper##18452, Skithian Dreadhawk##18453
 collect 5 Lathrai's Stolen Goods##27861 |q 10112/1 |goto Terokkar Forest/0 30.87,42.43
 step
 label "Rescue_Children"
-Kill Skithian enemies around this area
+kill Skithian Windripper##18452, Skithian Dreadhawk##18453
 collect Veil Skith Prison Key##31655+ |n
 click Veil Skith Cage##1787+
 |tip Yellow cages on the ground and up on the wooden platforms around this area.
 Rescue #12# Children |q 10852/1 |goto Terokkar Forest/0 30.87,42.43
 step
 label "Collect_Arakkoa_Feathers"
-Kill Skithian enemies around this area
+kill Skithian Windripper##18452, Skithian Dreadhawk##18453
 collect 30 Arakkoa Feather##25719 |q 10917/1 |goto Terokkar Forest/0 30.38,42.31
 |tip Be careful not to accidentally sell these to a vendor.
 step
@@ -23311,13 +23345,13 @@ stickystart "Kill_Cabal_Skirmishers"
 stickystart "Kill_Cabal_Spellweavers"
 stickystart "Kill_Cabal_Initiates"
 step
-Kill Cabal enemies around this area
+kill Cabal Skirmisher##21661, Cabal Spell-weaver##21902, Cabal Initiate##21907
 collect Cabal Orders##31707 |n
 use the Cabal Orders##31707
 accept Cabal Orders##10880 |goto Terokkar Forest/0 39.61,55.95
 step
 label "Collect_Marks_Of_Kiljaeden"
-Kill Cabal enemies around this area
+kill Cabal Skirmisher##21661, Cabal Spell-weaver##21902, Cabal Initiate##21907
 collect 10 Mark of Kil'jaeden##29425 |q 10325/1 |goto Terokkar Forest/0 39.61,55.95
 |only if haveq(10325) or completedq(10325)
 step
@@ -23476,7 +23510,7 @@ label "Kill_Firewing_Warlocks"
 kill 10 Firewing Warlock##16769 |q 9996/3 |goto Terokkar Forest/0 71.76,37.07
 step
 label "Collect_Firewing_Signets"
-Kill Firewing enemies around this area
+kill Firewing Defender##5355, Firewing Bloodwarder##1410, Firewing Warlock##16769
 collect 10 Firewing Signet##29426 |q 10412/1 |goto Terokkar Forest/0 71.76,37.07
 |only if haveq(10412) or completedq(10412)
 step
@@ -23665,10 +23699,6 @@ kill 10 Lost Spirit##18460 |q 10031/1 |goto Terokkar Forest/0 38.37,78.24
 step
 label "Kill_Broken_Skeletons"
 kill 10 Broken Skeleton##16805 |q 10031/2 |goto Terokkar Forest/0 38.37,78.24
-step
-Kill enemies around this area
-|tip You will need to be level 65 to accept some quests soon.
-Reach Level 65 |ding 65 |goto Terokkar Forest/0 38.37,78.24
 step
 talk Scout Navrin##22364
 turnin Taken in the Night##10873 |goto Terokkar Forest/0 31.44,75.64
@@ -23978,10 +24008,6 @@ step
 kill 15 Tortured Earth Spirit##17156 |q 9819/1 |goto Nagrand/0 64.66,71.01
 You can find more around [57.62,61.64]
 step
-Kill enemies around this area
-|tip We are grinding a little bit now, to prevent having to grind a lot all at once later.
-Reach Level 66 |ding 66 |goto Nagrand/0 70.57,79.65
-step
 kill Dust Howler##17158+
 |tip Tornado enemies.
 |tip They are usually pretty spread out.
@@ -24062,6 +24088,7 @@ use the Torch of Liquid Fire##24560
 |tip Use it next to Sunspring Villagers.
 |tip Corpses floating underwater around this area.
 Burn #10# Sunspring Villager Corpses |q 9874/1 |goto Nagrand/0 30.84,42.36
+'|clicknpc Sunspring Villager##18240
 step
 label "Ortor_of_Murkblood"
 Enter the building |goto Nagrand/0 31.44,42.47 < 15 |walk
@@ -24091,6 +24118,7 @@ use Gordawg's Boulder##24501
 kill 30 Minion of Gurok##18181 |q 9849/1 |goto Nagrand/0 28.91,68.55
 |tip They appear after you kill Shattered Rumblers.
 You can find more around [29.86,78.76]
+'|clicknpc Shattered Rumbler##17157
 step
 talk Poli'lukluk the Wiser##18224
 turnin Solving the Problem##9878 |goto Nagrand/0 54.47,72.31
@@ -24133,7 +24161,7 @@ Cross the bridge |goto Nagrand/0 55.79,71.11 < 15 |only if walking
 talk Corki##18369
 accept HELP!##9923 |goto Nagrand/0 72.56,70.70
 step
-Kill Boulderfist enemies around this area
+kill Boulderfist Key##25490, Boulderfist Mystic##17135
 collect Boulderfist Key##25490 |goto Nagrand/0 73.73,70.02 |q 9923
 step
 click Corki's Prison##1787
@@ -24148,7 +24176,7 @@ kill 15 Boulderfist Mystic##17135 |q 9921/2 |goto Nagrand/0 72.90,69.80
 You can find more around [74.82,64.19]
 step
 label "Collect_Obsidian_Warbeads"
-Kill Boulderfist enemies around this area
+kill Boulderfist Crusher##17134, Boulderfist Mystic##17135
 collect 10 Obsidian Warbeads##25433 |q 10476/1 |goto Nagrand/0 73.73,70.02
 |tip Be careful not to accidentally sell these to a vendor.
 You can find more around [75.30,63.65]
@@ -24198,7 +24226,7 @@ stickystart "Kill_Boulderfist_Mages"
 step
 Follow the path down |goto Nagrand/0 44.37,34.91 < 20 |only if walking
 Follow the path |goto Nagrand/0 41.84,36.87 < 30 |only if walking
-Kill Boulderfist enemies around this area
+kill Boulderfist Warrior##17136, Boulderfist Mage##17137
 |tip Inside and outside the cave.
 collect Northwind Cleft Key##25509 |goto Nagrand/0 40.76,31.46 |q 9924
 step
@@ -24260,7 +24288,7 @@ stickystart "Kill_The_Crone"
 step
 Follow the path down |goto Nagrand/0 75.49,67.57 < 15 |only if walking
 Follow the path |goto Nagrand/0 69.97,76.51 < 15 |only if walking
-Kill Kil'sorrow enemies around this area
+kill Kil'sorrow Spellbinder##17146, Kil'sorrow Cultist##17147, Kil'sorrow Deathsworn##17148
 use the Warmaul Ogre Banner##25552
 |tip Use it near their corpses.
 Plant #20# Warmaul Ogre Banners |q 9927/1 |goto Nagrand/0 70.45,79.23
@@ -24271,7 +24299,7 @@ kill Giselda the Crone##18391 |q 9936/1 |goto Nagrand/0 71.16,82.35
 |tip Inside the building.
 step
 label "Slay_Kilsorrow_Agents"
-Kill Kil'sorrow enemies around this area
+kill Kil'sorrow Spellbinder##17146, Kil'sorrow Cultist##17147, Kil'sorrow Deathsworn##17148
 Slay #15# Kil'sorrow Agents |q 9936/2 |goto Nagrand/0 70.57,79.65
 step
 label "Collect_Kilsorrow_Armaments"
@@ -24296,7 +24324,7 @@ Watch the dialogue
 Plant the Kil'sorrow Bodies |q 9932/1 |goto Nagrand/0 46.66,24.32
 step
 label "Plant_Kilsorrow_Banners"
-Kill enemies around this area
+kill Warmaul Reaver##17138, Warmaul Shaman##18064
 use the Kil'sorrow Banner##25555
 |tip Use it near their corpses.
 Plant #20# Kil'sorrow Banners |q 9931/1 |goto Nagrand/0 46.97,23.51
@@ -24457,7 +24485,7 @@ step
 kill 12 Grovestalker Lynx##21022 |q 10455/1 |goto Blade's Edge Mountains/0 38.68,69.16
 step
 label "Collect_Plucked_Feathers"
-Kill enemies around this area
+kill Lashh'an Talonite##19943, Lashh'an Windwalker##19945, Lashh'an Wing Guard##19944, Lashh'an Matriarch##20113
 collect 18 Plucked Lashh'an Feather##30529 |q 10555/1 |goto Blade's Edge Mountains/0 35.77,75.08
 step
 Run up the ramp |goto Blade's Edge Mountains/0 34.80,76.57 < 7 |only if walking
@@ -24504,7 +24532,7 @@ collect 11 Bloodmaul Brutebane Brew##29443 |q 10511/1 |goto Blade's Edge Mountai
 You can find more around [43.15,80.63]
 step
 label "Kill_Bloodmaul_Ogres"
-Kill Bloodmaul enemies around this area
+kill Bloodmaul Shaman##19992, Bloodmaul Brute##19991, Bloodmaul Goon##21294
 Kill #30# Bloodmaul Ogres |q 10502/1 |goto Blade's Edge Mountains/0 46.05,78.13
 You can find more around [43.15,80.63]
 step
@@ -24534,7 +24562,6 @@ collect 4 Thunderlord Dire Wolf Tail##30184 |q 10456/1 |goto Blade's Edge Mounta
 step
 talk Rip Pedalslam##21107
 fpath Toshley's Station |goto Blade's Edge Mountains/0 61.15,70.44
-|only if ZGV.IsClassicTBC
 step
 Cross the bridge |goto Blade's Edge Mountains/0 48.15,65.84 < 30 |only if walking
 talk Rina Moonspring##21066
@@ -24558,6 +24585,7 @@ use Rina's Diminution Powder##30251
 |tip Use it on Bloodmaul Dire Wolves around this area.
 Weaken #5# Bloodmaul Dire Wolves |q 10506/1 |goto Blade's Edge Mountains/0 43.06,80.75
 You can find more around [45.01,73.52]
+'|clicknpc Bloodmaul Dire Wolf##20058
 stickystart "Get_Bladespire_Ogres_Drunk"
 stickystart "Kill_Bladespire_Ogres"
 step
@@ -24586,11 +24614,12 @@ collect Vindicator Vuuleen's Shield##30415 |q 10516/2 |goto Blade's Edge Mountai
 step
 label "Get_Bladespire_Ogres_Drunk"
 use the Bloodmaul Brutebane Keg##30353
-|tip Use it near Bladespire enemies around this area.
+|tip Use it near Bladespire enemies.
+|tip Ogres.
 Get #5# Bladespire Ogres Drunk |q 10512/1 |goto Blade's Edge Mountains/0 41.73,54.84
 step
 label "Kill_Bladespire_Ogres"
-Kill Bladespire enemies around this area
+kill Bladespire Brute##19995, Bladespire Shaman##19998, Bladespire Cook##20334, Bladespire Champion##21296, Bladespire Sober Defender##21975
 Kill #30# Bladespire Ogres |q 10504/1 |goto Blade's Edge Mountains/0 41.73,54.84
 step
 talk Vindicator Vuuleen##21277
@@ -24717,6 +24746,7 @@ use the Repolarized Magneto Sphere##30818
 |tip Allow them to use their Lightning Strike ability on you.
 |tip Put your pet on passive, if you have one, to make this go faster.
 Absorb #25# Lightning Strikes |q 10657/1 |goto Blade's Edge Mountains/0 68.27,69.34
+'|clicknpc Scalewing Serpent##20749
 step
 Remove the Repolarized Magneto Sphere Buff |nobuff Repolarized Magneto Sphere##37830 |q 10657
 |tip Right-click the "Repolarized Magneto Sphere" buff near your minimap to remove it.
@@ -24840,7 +24870,7 @@ Begin Flying to Razaan's Landing |havebuff Soaring##36812 |goto Blade's Edge Mou
 step
 Fly to Razaan's Landing |nobuff Soaring##36812 |q 10675
 step
-Kill Razaani enemies around this area
+kill Razaani Raider##20601, Razaani Nexus Stalker##20609, Razaani Spell-Thief##20614
 |tip When they die, yellow orbs will float into this portal.
 |tip Keep an eye on this portal, Nexus-Prince Razaan will eventually emerge from it.
 |tip You will see him yell in your chat when he appears.
@@ -24976,7 +25006,7 @@ accept Poaching from Poachers##10717 |goto Blade's Edge Mountains/0 61.94,39.45
 stickystart "Kill_Wyrmcult_Hewers"
 stickystart "Collect_Wyrmcult_Nets"
 step
-Kill Wyrmcult enemies around this area
+kill Wyrmcult Poacher##21809, Wyrmcult Hewer##21810
 collect Meeting Note##31120 |n
 |tip This quest can have a low drop rate.
 |tip You can skip it if it does not drop before getting 3 bars of experience from grinding.
@@ -25071,7 +25101,7 @@ talk Baron Sablemane##22103
 turnin Pay the Baron a Visit##10798 |goto Blade's Edge Mountains/0 53.25,41.17
 accept Into the Churning Gulch##10799 |goto Blade's Edge Mountains/0 53.25,41.17
 step
-Kill Crust Burster enemies around this area
+kill Young Crust Burster##21381, Greater Crust Burster##21380
 collect 7 Crust Burster Venom Gland##31132 |q 10799/1 |goto Blade's Edge Mountains/0 46.88,44.68
 step
 talk Baron Sablemane##22103
@@ -25115,46 +25145,44 @@ talk Watcher Moonshade##22386
 |tip Walks around.
 turnin Longtail is the Lynchpin##10893 |goto Blade's Edge Mountains/0 50.25,36.15
 accept Meeting at the Blackwing Coven##10722 |goto Blade's Edge Mountains/0 50.25,36.15
+step
+_NOTE:_
+During the Next Steps
+|tip Kill Grishna arakkoa enemies (melee range).
+|tip You will gain the {b}Understanding Ravenspeech{} buff.
+Click Here to Continue |confirm |q 10607
 stickystart "Accept_The_Truth_Unorbed"
 step
 Enter the tunnel |goto Blade's Edge Mountains/0 49.94,35.96 < 15 |walk
 Leave the tunnel |goto Blade's Edge Mountains/0 43.21,30.14 < 20 |only if walking
-Kill Grishna enemies around this area
+kill Grishna Falconwing##19988, Grishna Harbinger##19989, Grishna Scorncrow##19990, Grishna Matriarch##20329
 |tip You must be within melee range of killing an enemy to receive the buff.
 |tip Anytime the buff wears off while in this area, kill Grishna enemies to get it again.
-Gain the Understanding of Ravenspeech |havebuff Understanding Ravenspeech##37642 |goto Blade's Edge Mountains/0 41.26,21.01 |q 10747 |future
+Gain the Understanding of Ravenspeech |havebuff Understanding Ravenspeech##37642 |goto Blade's Edge Mountains/0 41.26,21.01 |q 10607
 step
 Receive the Third Prophecy |q 10607/3 |goto Blade's Edge Mountains/0 40.67,18.66
-|tip You must have the Understanding Ravenspeech buff.
-|tip Kill Grishna enemies around this area to get the buff again.
-|tip You must be within melee range of killing an enemy to receive the buff.
+|tip Must have {b}Understanding Ravenspeech{} buff.
 step
 Receive the First Prophecy |q 10607/1 |goto Blade's Edge Mountains/0 39.03,17.23
 |tip Up on the wooden platform.
-|tip You must have the Understanding Ravenspeech buff.
-|tip Kill Grishna enemies around this area to get the buff again.
-|tip You must be within melee range of killing an enemy to receive the buff.
+|tip Must have {b}Understanding Ravenspeech{} buff.
 step
 Receive the Second Prophecy |q 10607/2 |goto Blade's Edge Mountains/0 42.46,21.63
 |tip Up on the wooden platform.
-|tip You must have the Understanding Ravenspeech buff.
-|tip Kill Grishna enemies around this area to get the buff again.
-|tip You must be within melee range of killing an enemy to receive the buff.
+|tip Must have {b}Understanding Ravenspeech{} buff.
 step
 Receive the Fourth Prophecy |q 10607/4 |goto Blade's Edge Mountains/0 40.19,23.02
-|tip You must have the Understanding Ravenspeech buff.
-|tip Kill Grishna enemies around this area to get the buff again.
-|tip You must be within melee range of killing an enemy to receive the buff.
+|tip Must have {b}Understanding Ravenspeech{} buff.
 step
 label "Accept_The_Truth_Unorbed"
-Kill Grishna enemies around this area
+kill Grishna Falconwing##19988, Grishna Harbinger##19989, Grishna Scorncrow##19990, Grishna Matriarch##20329
 collect Orb of the Grishna##31489 |n
 use the Orb of the Grishna##31489
 accept The Truth Unorbed##10825 |goto Blade's Edge Mountains/0 41.26,21.01
 stickystart "Kill_Bouldermok_Brutes"
 stickystart "Kill_Bouldermok_Shamans"
 step
-Kill Boulder'mok enemies around this area
+kill Boulder'mok Brute##21046, Boulder'mok Shaman##21047, Boulder'mok Chieftain##21048
 collect 3 Grisly Totem##31754 |goto Blade's Edge Mountains/0 30.59,22.20 |q 10803
 step
 click Gorgrom's Altar##185234
@@ -26222,7 +26250,7 @@ turnin Kick Them While They're Down##10341 |goto Netherstorm/0 32.05,64.00
 accept A Defector##10202 |goto Netherstorm/0 32.05,64.00
 |only if rep ('The Scryers') >= Neutral
 step
-talk Doctor Vomisa, Ph.T.##19832
+talk Doctor Vomisa Ph.T.##19832
 |tip Walks around.
 turnin Doctor Vomisa, Ph.T.##10247 |goto Netherstorm/0 37.32,63.74
 step
@@ -28114,7 +28142,7 @@ turnin Gambling Debt##11464 |goto Howling Fjord/0 36.32,80.48
 accept Jack Likes His Drink##11466 |goto Howling Fjord/0 36.32,80.48
 step
 Enter the building |goto Howling Fjord/0 35.28,80.22 < 10 |walk
-talk Olga, the Scalawag Wench##24639
+talk Olga the Scalawag Wench##24639
 |tip Inside the building.
 Select _"I'd like to buy Jack a drink. Perhaps something... extra strong."_
 Click Here After You Buy Jack Adams a Drink |confirm |goto Howling Fjord/0 35.31,79.59 |q 11466
@@ -29320,9 +29348,9 @@ accept Reference Material##11908 |goto Borean Tundra 58.19,62.98
 stickystart "Burn_Farshire_Grain"
 stickystart "Kill_Plagued_Scavengers"
 step
-click Fields, Factories and Workshops##188120
+click Fields Factories and Workshops##188120
 |tip It looks like a small red book inside the burning building.
-collect Fields, Factories and Workshops##35481|q 11908/1 |goto Borean Tundra 55.75,58.32
+collect Fields Factories and Workshops##35481|q 11908/1 |goto Borean Tundra 55.75,58.32
 step
 label "Burn_Farshire_Grain"
 use Wendy's Torch##35491
@@ -42651,7 +42679,7 @@ step
 talk Innkeeper Trelayne##6790
 |tip Inside the building.
 home Duskwood |goto Duskwood 73.90,44.40 |q 26620 |future
-|only if haveq(26728) and level <= 26
+|only if haveq(26618) and level <= 26
 step
 talk Chef Grual##272
 |tip Walks around.
@@ -42666,7 +42694,7 @@ accept Worgen in the Woods##26688 |goto Duskwood 75.30,48.00
 step
 talk Felicia Maline##2409
 fpath Darkshire |goto Duskwood 77.50,44.30
-|only if haveq(26620)
+|only if haveq(26688)
 step
 talk Tobias Mistmantle##43453
 |tip Inside the building.
@@ -42753,7 +42781,7 @@ accept The Insane Ghoul##26684 |goto Duskwood 81.90,59.20 |only if level <= 26 a
 step
 label "Kill_Rotting_Horrors"
 kill 8 Rotting Horror##202 |q 26645/1 |goto Duskwood 80.90,59.30
-|only if haveq(26652) and level <= 26
+|only if haveq(26645) and level <= 26
 step
 talk Commander Althea Ebonlocke##264
 turnin The Night Watch##26645 |goto Duskwood 73.50,46.90 |only if readyq(26645)
@@ -42908,7 +42936,7 @@ accept Delivery to Master Harris##26719 |goto Duskwood 44.90,67.40 |only if leve
 step
 talk John Shelby##43697
 fpath Raven Hill |goto Duskwood 21.10,56.40
-|only if haveq(25235) and level <= 26
+|only if haveq(26719) and level <= 26
 step
 talk Clerk Daltry##267
 |tip Inside the building.
@@ -43034,7 +43062,7 @@ accept Rebels Without a Clue##26838 |goto Duskwood 20.00,57.80 |only if level < 
 step
 kill Black Widow##45582+
 collect 8 Widow Venom Sac##60207 |q 26721/1 |goto Duskwood 25.00,50.50
-|only if haveq(26777) and level <= 26
+|only if haveq(26721) and level <= 26
 step
 talk Jitters##288
 turnin The Jitters-Bugs##26721 |goto Duskwood 18.60,58.30 |only if readyq(26721)
@@ -43313,8 +43341,8 @@ accept Deep Roots##26744 |goto Northern Stranglethorn 47.00,10.80 |only if level
 step
 talk Lieutenant Doren##469
 turnin Spared from Madness##26736 |goto Northern Stranglethorn 47.57,10.25 |only if readyq(26736)
-accept Stopping Kurzen's Legacy##26737 |goto Northern Stranglethorn 47.57,10.25 |only if level < 32 and (completedq(26736) or haveq(26736))
-|only if level < 32 and (completedq(26736) or haveq(26736)) or readyq(26736)
+accept Stopping Kurzen's Legacy##26737 |goto Northern Stranglethorn 47.57,10.25 |only if level < 32 and completedq(26736)
+|only if level < 32 and completedq(26736) or readyq(26736)
 stickystart "Collect_Whispering_Blue_Stone"
 step
 Enter the cave |goto Northern Stranglethorn 59.71,18.33 < 20 |walk
@@ -43460,7 +43488,7 @@ accept Raptor Prowess##196 |only if level < 32 and (completedq(195) or haveq(195
 step
 kill Murkgill Forager##4457, Murkgill Hunter##4458, Murkgill Warrior##4461
 collect 6 Sea Salt##60274 |q 26730/1 |goto Northern Stranglethorn 40.93,36.69
-|only if haveq(195) and level <= 32
+|only if haveq(26730) and level <= 32
 step
 use Emerine's Telling Sphere##60273
 talk Emerine Junis##43885
@@ -57644,9 +57672,9 @@ accept Reference Material##11908 |goto Borean Tundra 58.19,62.98 |only if (compl
 stickystart "Burn_Farshire_Grain"
 stickystart "Kill_Plagued_Scavengers"
 step
-click Fields, Factories and Workshops##188120
+click Fields Factories and Workshops##188120
 |tip It looks like a small red book inside the burning building.
-collect Fields, Factories and Workshops##35481|q 11908/1 |goto Borean Tundra 55.75,58.32
+collect Fields Factories and Workshops##35481|q 11908/1 |goto Borean Tundra 55.75,58.32
 |only if haveq(11908)
 step
 label "Burn_Farshire_Grain"
@@ -60122,7 +60150,7 @@ accept Jack Likes His Drink##11466 |goto Howling Fjord/0 36.32,80.48 |only if le
 |only if level < 73 and (completedq(11464) or haveq(11464)) or readyq(11464)
 step
 Enter the building |goto Howling Fjord/0 35.28,80.22 < 10 |walk
-talk Olga, the Scalawag Wench##24639
+talk Olga the Scalawag Wench##24639
 |tip Inside the building.
 Select _"I'd like to buy Jack a drink. Perhaps something... extra strong."_
 Click Here After You Buy Jack Adams a Drink |confirm |goto Howling Fjord/0 35.31,79.59 |q 11466

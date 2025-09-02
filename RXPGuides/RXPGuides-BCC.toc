@@ -2,7 +2,7 @@
 ## Title: RestedXP Guides
 ## Notes: In-game leveling guides
 ## Author: RestedXP
-## Version: v4.8.6
+## Version: v4.8.8
 ## OptionalDeps: Questie, RXPGuides_Themes
 ## SavedVariables: RXPData, RXPDB, RXPSettings
 ## SavedVariablesPerCharacter: RXPCData, RXPCTrackingData, RXPCComms, RXPCSettings
@@ -39,4 +39,5 @@ GuideLoader.lua
 
 Guides/GuideList.xml
 
-
+Talents.lua
+Guides/Talents/tbc.xml

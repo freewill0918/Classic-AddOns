@@ -6,7 +6,7 @@ ZygorGuidesViewer.GuideMenuTier = "CLA"
 ZGV.BETASTART()
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Anglers",{
 mopready=true,
-description="\nThis guide will walk you through becoming exalted with The Anglers faction.",
+description="This guide will walk you through becoming exalted with The Anglers faction.",
 achieveid={6547,7614},
 patch='50004',
 },[[
@@ -17,7 +17,7 @@ Earn Exalted with "The Anglers" Reputation |complete rep("The Anglers")==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The August Celestials",{
 mopready=true,
-description="\nThis guide will walk you through becoming exalted with The August Celestials faction.",
+description="This guide will walk you through becoming exalted with The August Celestials faction.",
 achieveid={6543},
 patch='50004',
 },[[
@@ -28,7 +28,7 @@ Earn Exalted with the "August Celestials" Reputation |complete rep("August Celes
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Order of the Cloud Serpent",{
 mopready=true,
-description="\nThis guide will walk you through becoming exalted with The Order of the Cloud Serpent faction.",
+description="This guide will walk you through becoming exalted with The Order of the Cloud Serpent faction.",
 achieveid={6550},
 patch='50004',
 },[[
@@ -39,7 +39,7 @@ Earn Exalted with "The Order of the Cloud Serpent" Reputation |complete rep("Ord
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Shado-Pan Assault",{
 mopready=true,
-description="\nThis guide will walk you through becoming exalted with the Shado-Pan faction.",
+description="This guide will walk you through becoming exalted with the Shado-Pan faction.",
 achieveid={6366},
 patch='50004',
 },[[
@@ -50,7 +50,7 @@ Earn Exalted with the "Shado-Pan" Reputation |complete rep('Shado-Pan')==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Tillers",{
 mopready=true,
-description="\nThis guide will walk you through becoming exalted with The Tillers faction.",
+description="This guide will walk you through becoming exalted with The Tillers faction.",
 achieveid={6544},
 patch='50004',
 },[[
@@ -61,7 +61,7 @@ Earn Exalted with "The Tillers" Reputation |complete rep("The Tillers")==Exalted
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Golden Lotus",{
 mopready=true,
-description="\nThis guide will walk you through becoming exalted with The Golden Lotus faction.",
+description="This guide will walk you through becoming exalted with The Golden Lotus faction.",
 achieveid={7315, 6546},
 patch='50004',
 },[[
@@ -71,7 +71,7 @@ Earn Exalted with "The Golden Lotus " Reputation |complete rep("The Golden Lotus
 |loadguide "Daily Guides\\Mists of Pandaria Dailies\\The Golden Lotus Dailies"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\The Klaxxi",{
-description="\nThis guide will walk you through becoming exalted with The Klaxxi faction.",
+description="This guide will walk you through becoming exalted with The Klaxxi faction.",
 achieveid={6545},
 patch='50004',
 },[[
@@ -81,7 +81,7 @@ Earn Exalted with "The Klaxxi" Reputation |complete rep("The Klaxxi")==Exalted
 |loadguide "Daily Guides\\Mists of Pandaria Dailies\\The Klaxxi Dailies"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Forest Hozen",{
-description="\nThis guide will walk you through becoming exalted with the Forest Hozen faction.",
+description="This guide will walk you through becoming exalted with the Forest Hozen faction.",
 },[[
 step
 Earn Exalted with "The Klaxxi" Reputation  |complete rep("Forest Hozen")==Exalted
@@ -90,7 +90,7 @@ Earn Exalted with "The Klaxxi" Reputation  |complete rep("Forest Hozen")==Exalte
 ]])
 ZGV.BETAEND()
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Tiller's Union\\Chee Chee",{
-description="\nThis guide will walk you through becoming best friends with Chee Chee.",
+description="This guide will walk you through becoming best friends with Chee Chee.",
 achieveid={6551, 6552},
 patch='50004',
 },[[
@@ -102,7 +102,7 @@ Becoming _Best Friends_ with Chee Chee rewards you with _Chee Chee's Goodie Bag_
 |modelnpc Chee Chee##58709
 step
 label "tillers"
-#include "tillers_prequests"
+#include "Tillers_Quests"
 step
 label "menu"
 _Chee Chee_ is a _Stranger_ to you. |only if rep("Chee Chee")<=Stranger
@@ -214,7 +214,7 @@ You have reached the end of the guide.
 Please click here to return to the beginning of the guide. |confirm |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Tiller's Union\\Ella",{
-description="\nThis guide will walk you through becoming best friends with Ella.",
+description="This guide will walk you through becoming best friends with Ella.",
 achieveid={6551, 6552},
 patch='50004',
 },[[
@@ -226,7 +226,7 @@ Becoming _Best Friends_ with Ella rewards you with a _Tree Seed Pack_, which con
 |modelnpc Ella##58647
 step
 label "tillers"
-#include "tillers_prequests"
+#include "Tillers_Quests"
 step
 label "menu"
 _Ella_ is a _Stranger_ to you. |only if rep("Ella")<=Stranger
@@ -390,7 +390,7 @@ You have reached the end of the guide.
 Please click here to return to the beginning of the guide. |confirm |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Tiller's Union\\Farmer Fung",{
-description="\nThis guide will walk you through becoming best friends with Farmer Fung.",
+description="This guide will walk you through becoming best friends with Farmer Fung.",
 achieveid={6551, 6552},
 patch='50004',
 },[[
@@ -401,7 +401,7 @@ Becoming _Best Friends_ with Farmer Fung rewards you with an _Enigma Seed_, whic
 |next "menu" |only if completedq(30257)
 step
 label "tillers"
-#include "tillers_prequests"
+#include "Tillers_Quests"
 step
 label "menu"
 _Farmer Fung_ is a _Stranger_ to you. |only if rep("Farmer Fung")<=Stranger
@@ -469,7 +469,7 @@ You have reached the end of the guide.
 Please click here to return to the beginning of the guide. |confirm |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Tiller's Union\\Fish Fellreed",{
-description="\nThis guide will walk you through becoming best friends with Fish Fellreed.",
+description="This guide will walk you through becoming best friends with Fish Fellreed.",
 achieveid={6551, 6552},
 patch='50004',
 },[[
@@ -481,7 +481,7 @@ Becoming _Best Friends_ with Fish Fellreed rewards you with a _Special Seed Pack
 |modelnpc Fish Fellreed##58705
 step
 label "tillers"
-#include "tillers_prequests"
+#include "Tillers_Quests"
 step
 label "menu"
 _Fish Fellreed_ is a _Stranger_ to you. |only if rep("Fish Fellreed")<=Stranger
@@ -562,7 +562,7 @@ You have reached the end of the guide.
 Please click here to return to the beginning of the guide. |confirm |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Tiller's Union\\Gina Mudclaw",{
-description="\nThis guide will walk you through becoming best friends with Gina Mudclaw.",
+description="This guide will walk you through becoming best friends with Gina Mudclaw.",
 achieveid={6551, 6552},
 patch='50004',
 },[[
@@ -574,7 +574,7 @@ Becoming _Best Friends_ with Gina Mudclaw rewards you with _Celebration Gift_, w
 |modelnpc Gina Mudclaw##58706
 step
 label "tillers"
-#include "tillers_prequests"
+#include "Tillers_Quests"
 step
 label "menu"
 _Gina Mudclaw_ is a _Stranger_ to you. |only if rep("Gina Mudclaw")<=Stranger
@@ -644,7 +644,7 @@ You have reached the end of the guide.
 Please click here to return to the beginning of the guide. |confirm |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Tiller's Union\\Haohan Mudclaw",{
-description="\nThis guide will walk you through becoming best friends with Haohan Mudclaw.",
+description="This guide will walk you through becoming best friends with Haohan Mudclaw.",
 achieveid={6551, 6552},
 patch='50004',
 },[[
@@ -655,7 +655,7 @@ Becoming _Best Friends_ with Haohan Mudclaw rewards you with three _Songbell See
 |next "menu" |only if completedq(30257)
 step
 label "tillers"
-#include "tillers_prequests"
+#include "Tillers_Quests"
 step
 label "menu"
 _Haohan Mudclaw_ is a _Stranger_ to you. |only if rep("Haohan Mudclaw")<=Stranger
@@ -724,7 +724,7 @@ You have reached the end of the guide.
 Please click here to return to the beginning of the guide. |confirm |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Tiller's Union\\Jogu the Drunk",{
-description="\nThis guide will walk you through becoming best friends with Jogu the Drunk.",
+description="This guide will walk you through becoming best friends with Jogu the Drunk.",
 achieveid={6551, 6552},
 patch='50004',
 },[[
@@ -735,7 +735,7 @@ Becoming _Best Friends_ with Jogu the Drunk rewards you with a _Secret Stash_, w
 |next "menu" |only if completedq(30257)
 step
 label "tillers"
-#include "tillers_prequests"
+#include "Tillers_Quests"
 step
 label "menu"
 _Jogu the Drunk_ is a _Stranger_ to you. |only if rep("Jogu the Drunk")<=Stranger
@@ -793,8 +793,6 @@ turnin A Dish For Jogu##30439 |tip You can only turn this quest in once a day.
 Click here to be taken back to the beginning of the Cooking Dailies for Jogu the Drunk |confirm |next "cooking"
 |next "quest1" |only if rep("Jogu the Drunk")==Aquaintance
 |next "quest2" |only if rep("Jogu the Drunk")==Buddy
-|next "quest3" |only if rep("Jogu the Drunk")==Friend
-|next "quest4" |only if rep("Jogu the Drunk")==GoodFriend
 step
 label "turnin2"
 goto Valley of the Four Winds 53.5,52.6
@@ -802,10 +800,8 @@ talk Jogu the Drunk##58710
 turnin A Lovely Apple for Jogu##30435 |tip Keep turning this in until you reach the next friendship status.
 |next "quest1" |only if rep("Jogu the Drunk")==Aquaintance
 |next "quest2" |only if rep("Jogu the Drunk")==Buddy
-|next "quest3" |only if rep("Jogu the Drunk")==Friend
-|next "quest4" |only if rep("Jogu the Drunk")==GoodFriend
 step
-quest1
+label "quest1"
 goto 53.5,52.6
 talk Jogu the Drunk##58710
 accept Buy A Fish A Drink?##31320
@@ -818,7 +814,7 @@ goto 53.5,52.6
 talk Jogu the Drunk##58710
 turnin Buy A Fish A Drink?##31320
 step
-quest2
+label "quest2"
 goto 53.5,52.6
 talk Jogu the Drunk##58710
 accept Buy A Fish A Round?##31321
@@ -836,7 +832,7 @@ You have reached the end of the guide.
 Please click here to return to the beginning of the guide. |confirm |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Tiller's Union\\Old Hillpaw",{
-description="\nThis guide will walk you through becoming best friends with Old Hillpaw.",
+description="This guide will walk you through becoming best friends with Old Hillpaw.",
 achieveid={6551, 6552},
 patch='50004',
 },[[
@@ -848,7 +844,7 @@ Becoming _Best Friends_ with Old Hillpaw rewards you with a _Straw Hat_ and _Chi
 |modelnpc Old Hillpaw##58707
 step
 label "tillers"
-#include "tillers_prequests"
+#include "Tillers_Quests"
 step
 label "menu"
 _Old Hillpaw_ is a _Stranger_ to you. |only if rep("Old Hillpaw")<=Stranger
@@ -922,7 +918,7 @@ You have reached the end of the guide.
 Please click here to return to the beginning of the guide. |confirm |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Tiller's Union\\Sho",{
-description="\nThis guide will walk you through becoming best friends with Sho.",
+description="This guide will walk you through becoming best friends with Sho.",
 achieveid={6551, 6552},
 patch='50004',
 },[[
@@ -933,7 +929,7 @@ Becoming _Best Friends_ with Sho rewards you with a _Red Cricket_ Battle Pet and
 |next "menu" |only if completedq(30257)
 step
 label "tillers"
-#include "tillers_prequests"
+#include "Tillers_Quests"
 step
 label "menu"
 _Sho_ is a _Stranger_ to you. |only if rep("Sho")<=Stranger
@@ -1011,7 +1007,7 @@ You have reached the end of the guide.
 Please click here to return to the beginning of the guide. |confirm |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Tiller's Union\\Tina Mudclaw",{
-description="\nThis guide will walk you through becoming best friends with Tina Mudclaw.",
+description="This guide will walk you through becoming best friends with Tina Mudclaw.",
 achieveid={6551, 6552},
 patch='50004',
 },[[
@@ -1093,7 +1089,7 @@ You have reached the end of the guide.
 Please click here to return to the beginning of the guide. |confirm |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Nat Pagle",{
-description="\nThis guide will walk you through becoming exalted with Nat Pagle faction.",
+description="This guide will walk you through becoming exalted with Nat Pagle faction.",
 achieveid={7274},
 patch='50004',
 },[[
@@ -1141,7 +1137,7 @@ turnin Flying Tiger Gourami##31443 |goto Krasarang Wilds 68.40,43.50
 |next "menu"
 ]])
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren",{
-description="\nThis guide will walk you through becoming exalted with the Huojin Pandaren faction.",
+description="This guide will walk you through becoming exalted with the Huojin Pandaren faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('Huojin Pandaren') < Exalted end,
 achieveid={8206},
 patch='50200',
@@ -1156,7 +1152,7 @@ step
 Congratulations, you have reached exalted with the Huojin Pandaren!
 ]])
 ZygorGuidesViewer:RegisterGuide("Zygor's Horde Reputations Guides\\Mists of Pandaria\\Lorewalkers",{
-description="\nThis guide will walk you through becoming exalted with the Lorewalkers faction.",
+description="This guide will walk you through becoming exalted with the Lorewalkers faction.",
 achieveid={6548},
 patch='50004',
 },[[
@@ -1170,7 +1166,7 @@ step
 click The Thunder King##214136
 achieve The Dark Heart of the Mogu##6754/4 |goto Vale of Eternal Blossoms 40.2,77.5
 step
-click Together, We Are Strong##214126
+click Together We Are Strong##214126
 achieve What is Worth Fighting For##6858/4 |goto Vale of Eternal Blossoms 26.6,21.5
 step
 click Trapped in a Strange Land##214120

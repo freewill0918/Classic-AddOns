@@ -5807,17 +5807,13 @@ step
 talk Master Gadrin##3188
 accept Riding On##25171 |goto Durotar 55.95,74.72
 step
-talk Raider Jhash##10676
-Select _"Can I catch a ride to Razor Hill?"_
-Begin Riding to Razor Hill |invehicle |goto Durotar 55.26,74.65 |q 25171
-step
-Ride to Razor Hill |outvehicle |goto Durotar 52.49,44.22 |q 25171 |notravel
-step
-talk Burok##41140
-fpath Razor Hill |goto Durotar 53.09,43.58
+talk Handler Marnlek##41142
+fpath Sen'jin Village |goto Durotar/0 55.40,73.34
+|tip Get the flightpath and fly to Razor Hill.
 step
 talk Gar'Thok##3139
 |tip Upstiars inside the building.
+|tip You can fly to Razor Hill from Sen'jin Village.
 turnin Riding On##25171 |goto Durotar 51.95,43.50
 accept From Bad to Worse##25173 |goto Durotar 51.95,43.50
 step
@@ -7150,6 +7146,11 @@ step
 talk Brak Blusterpipe##34674
 turnin Samophlange Repair##14003 |goto The Barrens 62.66,16.97
 step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Control Console Operating Manual##5088
+|only if itemcount(5088) > 0
+step
 Watch the dialogue
 talk Brak Blusterpipe##34674
 accept Wenikee Boltbucket##29026 |goto The Barrens 62.66,16.97
@@ -7583,11 +7584,11 @@ accept Need More Science##14424 |goto Azshara/0 29.59,66.86
 step
 talk Spirit of Kalytha##35567
 |tip She walks around this area.
-Choose _<Merge with the spirit.>_
+Choose _<Merge with the spirit.>_ |gossip 111768
 Explore the Memories of Kalytha |havebuff Memories of the Dead##67704 |goto Azshara/0 36.43,72.36 |q 14215
 step
 talk Archmage Selwyn##35595
-Select _"Yes Archmage. I will hide the stone."_
+Select _"Yes Archmage. I will hide the stone."_ |gossip 111767
 Learn Kalytha's Secret |q 14215/1 |goto Azshara/0 37.52,74.52
 step
 _Click the Complete Quest Box:_
@@ -7603,7 +7604,7 @@ turnin Mystery of the Sarcen Stone##14216 |goto Azshara/0 29.68,66.88
 step
 talk Bilgewater Rocket-jockey##43217
 |tip At the top of the tower.
-Select _"Southern Rocketway Terminus, please."_
+Select _"Southern Rocketway Terminus, please."_ |gossip 112430
 Request a Rocket |invehicle |goto Azshara/0 29.48,66.20 |q 14424
 step
 Ride the Rocket to the Southern Rocketway Terminus |outvehicle |goto Azshara/0 51.00,74.10 |q 14424 |notravel
@@ -7660,12 +7661,17 @@ step
 talk Bombardier Captain Smooks##35817
 turnin Mortar the Point##14258 |goto Azshara/0 52.22,74.24
 step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Artillery Signal##49042
+|only if itemcount(49042) > 0
+step
 talk Torg Twocrush##35657
 accept To Gut a Fish##14262 |goto Azshara/0 50.68,75.30
 accept Investigating the Sea Shrine##14267 |goto Azshara/0 50.68,75.30
 step
 clicknpc Door Buzzer##36472
-Choose _<Ring the Buzzer>_
+Choose _<Ring the Buzzer>_ |gossip 111829
 kill Mutant Goblin##36156
 collect Secret Rocket Plans##49204 |q 14408/2 |goto Azshara/0 45.93,76.09
 step
@@ -7708,7 +7714,12 @@ turnin A Gigantic Snack##14371 |goto Azshara/0 50.41,74.29
 accept Befriending Giants##14377 |goto Azshara/0 50.41,74.29
 step
 talk Gormungan##36297
-Select _"I brought you something to eat."_
+Select _"I brought you something to eat."_ |gossip 111814
+Select _"Do you know anything about azsharite?"_ |gossip 111818
+Select _"Tell me again about Azsharite?"_ |gossip 111815
+Select _"It's ... your droppings!? And the goblins have been running around scooping it up?"_ |gossip 111821
+Select _"How often do you, uh. "go"?"_ |gossip 111822
+Select _"15 to 25 years? Assistant Greely isn't going to want to hear that!"_ |gossip 111823
 Discover the Secret of Azsharite |q 14377/1 |goto Azshara/0 47.75,75.53
 step
 talk Assistant Greely##39199
@@ -7768,8 +7779,13 @@ step
 label "Kill_Zapper_Gnomes"
 kill 6 Zapper Gnome##36384 |q 14383/3 |goto Azshara/0 40.34,84.36
 step
+_Destroy This Item:_
+|tip It is no longer needed, unless you wish to read it.
+trash Purchase Order Receipt##49229
+|only if itemcount(49229) > 0
+step
 talk Gormungan##36297
-Select _"Here, eat this! It's a special chocolate rock."_
+Select _"Here, eat this! It's a special chocolate rock."_ |gossip 111816
 Try to Feed Gormungan |q 14385/1 |goto Azshara/0 47.75,75.53
 step
 talk Assistant Greely##39199
@@ -7777,7 +7793,7 @@ turnin Azsharite Experiment Number One##14385 |goto Azshara/0 50.41,74.29
 accept Azsharite Experiment Number Two##14388 |goto Azshara/0 50.41,74.29
 step
 talk Assistant Greely##39199
-Tell her "_I'm ready. Shrink me!"_
+Tell her "_I'm ready. Shrink me!"_ |gossip 111824
 Become Mouse-sized! |havebuff Shrunkified##68710 |goto Azshara/0 50.41,74.29 |q 14388
 step
 clicknpc Rocketway Rat##36437
@@ -7785,7 +7801,7 @@ clicknpc Rocketway Rat##36437
 Ride a Rat |invehicle |q 14388 |goto Azshara/0 50.30,74.27
 step
 talk Gormungan##36297
-Select _"SQUEAK!!"_
+Select _"SQUEAK!!"_ |gossip 111817
 Scare Gormungan |q 14388/1 |goto Azshara/0 47.75,75.53
 step
 talk Assistant Greely##39199
@@ -7797,7 +7813,7 @@ turnin The Terrible Tinkers of the Ruined Reaches##14383 |goto Azshara/0 50.53,7
 accept A Hello to Arms##24458 |goto Azshara/0 50.53,74.74
 step
 talk Friz Groundspin##37005
-Select _"Just give me the 'copter, Friz."_
+Select _"Just give me the 'copter, Friz."_ |gossip 111876
 Begin Flying to Bilgewater Harbor |invehicle |goto Azshara/0 51.49,74.28 |q 14478 |future
 step
 Fly to Bilgewater Harbor |outvehicle |goto Azshara/0 57.60,50.60 |q 14478 |future |notravel
@@ -7965,7 +7981,7 @@ turnin Shore Leave##24449 |goto Azshara/0 60.61,50.53
 step
 talk Bilgewater Rocket-jockey##43217
 |tip At the top of the tower.
-Select _"Northern Rocketway Terminus, please."_
+Select _"Northern Rocketway Terminus, please."_ |gossip 112437
 Begin Flying to the Northern Rocketway Terminus |invehicle |goto Azshara/0 50.70,74.22 |q 14130
 step
 Fly to the Northern Rocketway Terminus |outvehicle |goto Azshara/0 66.98,21.39 |q 14130 |notravel
@@ -8093,7 +8109,7 @@ turnin Arcane De-Construction##14429 |goto Azshara/0 52.99,29.03
 accept Hacking the Construct##14430 |goto Azshara/0 52.99,29.03
 step
 talk Arcane Construct##36599
-Choose _"Um ... Al'teth ... la c'tolgar? Or something."_
+Choose _"Um ... Al'teth ... la c'tolgar? Or something."_ |gossip 111854
 Hack the Arcane Construct |q 14430/1 |goto Azshara/0 52.98,29.95
 step
 talk Quarla Whistlebreak##35754
@@ -8239,7 +8255,17 @@ turnin Wasn't It Obvious?##14389
 accept Easy is Boring##14390
 step
 talk Spirit of Azuregos##36436
-Select _"Kalec sent me..."_
+Select _"Kalec sent me..."_ |gossip 111878
+Select _"No no no, you don't understand. I'm here to help."_ |gossip 111879
+Select _"Met someone? I didn't know there were any other dragons out here."_ |gossip 111880
+Select _"...the spirit healer?"_ |gossip 111881
+Select _"I'm sorry, I didn't mean to be rude, I just..."_ |gossip 111882
+Select _"That's not what I was saying at all."_ |gossip 111883
+Select _"I'm the... forget it. I'm here to warn you that the black dragonflight is here hunting you."_ |gossip 111884
+Select _"You already know? Why don't you go stop them then?"_ |gossip 111885
+Select _"But Kalecgos is already out there trying to stop them. He needs your help."_ |gossip 111886
+Select _"You'll come then?"_ |gossip 111887
+Select _"I'm going to let him know right away. Meet us at Sable Ridge."_ |gossip 111888
 Convince Azuregos to Meet with Kalecgos |q 14390/1 |goto Azshara/0 27.81,40.09
 step
 _Click the Complete Quest Box:_
@@ -8247,7 +8273,7 @@ turnin Easy is Boring##14390
 accept Turning the Tables##14391
 step
 talk Anara##37040
-Select _"Return me to life."_
+Select _"Return me to life."_ |gossip 111889
 Return to Life |complete not isdead |goto Azshara/0 27.89,40.04 |q 14391
 stickystart "Collect_Ambassadors_Robes"
 stickystart "Collect_Briaroot_Brews"
@@ -8269,7 +8295,7 @@ collect 10 Briaroot Brew##49365 |q 14432/1 |goto Azshara/0 30.86,36.41
 step
 talk Bilgewater Rocket-jockey##43217
 |tip At the top of the tower.
-Select _"Northern Rocketway Exchange, please."_
+Select _"Northern Rocketway Exchange, please."_ |gossip 112440
 Begin Flying to the Northern Rocketway Exchange |invehicle |goto Azshara/0 25.93,49.64 |q 14430
 step
 Fly to the Northern Rocketway Exchange |outvehicle |goto Azshara/0 44.25,24.34 |q 14430 |notravel
@@ -8282,11 +8308,11 @@ turnin A Pale Brew##14432 |goto Azshara/0 42.42,23.61
 turnin Diplomacy by Another Means##14433 |goto Azshara/0 42.42,23.61
 accept The Blackmaw Doublecross##14435 |goto Azshara/0 42.42,23.61
 step
-use Ambassador Disguise##49368
+use Ambassador Disguise##49368 |goto Azshara/0 42.51,23.68 < 10
 Take on the Appearance of a Night Elf Ambassador |havebuff Ambassador Disguise##69054 |q 14435
 step
 talk Andorel Sunsworn##36596 |goto Azshara/0 42.61,23.70
-Select _"I am ready. Teleport me to Blackmaw Hold."_
+Select _"I am ready. Teleport me to Blackmaw Hold."_ |gossip 111853
 Teleport to Blackmaw Hold |goto Azshara/0 31.17,29.86 < 30 |noway |c |q 14435
 step
 talk Ungarl##36618
@@ -8308,7 +8334,7 @@ turnin The Blackmaw Doublecross##14435 |goto Azshara/0 42.42,23.61
 step
 talk Bilgewater Rocket-jockey##43217
 |tip At the top of the tower.
-Select _"Northern Rocketway Terminus, please."_
+Select _"Northern Rocketway Terminus, please."_ |gossip 112443
 Begin Flying to the Northern Rocketway Terminus |invehicle |goto Azshara/0 42.53,24.56 |q 14391
 step
 Fly to the Northern Rocketway Terminus |outvehicle |goto Azshara/0 67.76,22.13 |q 14391 |notravel
@@ -8427,7 +8453,7 @@ clicknpc Lorekeeper's Summoning Stone##36918
 turnin Commando Drop##24434 |goto Azshara/0 10.55,69.85
 step
 clicknpc Lorekeeper's Summoning Stone##36918
-Choose _<Use the stone to teleport back to Valormok.>_
+Choose _<Use the stone to teleport back to Valormok.>_ |gossip 111875
 Return to Valormok |condition not subzone("Talrendis Point") |goto Azshara/0 10.55,69.85 |q 24433
 step
 talk Chawg##36730
@@ -8469,7 +8495,7 @@ kill Commander Jarrodenus##36884
 collect The Head of Jarrodenus##49674 |q 24439/1 |goto Azshara/0 9.15,72.82
 step
 clicknpc Lorekeeper's Summoning Stone##36918
-Choose _<Use the stone to teleport back to Valormok.>_
+Choose _<Use the stone to teleport back to Valormok.>_ |gossip 111875
 Return to Valormok |condition not subzone("Talrendis Point") |goto Azshara/0 10.55,69.85 |q 24439
 step
 talk Chawg##36730
@@ -9338,7 +9364,7 @@ use the Cenarion Antidote##23337
 |tip Use it on a Hulking Helboar around this area.
 kill Dreadtusk
 Administer the Antidote |q 10255/1 |goto Hellfire Peninsula/0 22.82,55.58
-kill Dreadtusk##16880
+'|kill Dreadtusk##16880
 step
 talk Thiah Redmane##16991
 turnin Testing the Antidote##10255 |goto Hellfire Peninsula/0 15.70,52.09
@@ -15460,9 +15486,6 @@ talk Gato##63296
 turnin Tiger Palm##31157 |goto Valley of Trials/0 42.08,68.71
 |only if Orc Monk
 step
-talk Canaga Earthcaller##5887
-accept Hana'zua##25128 |goto Valley of Trials/0 41.70,70.00
-step
 talk Foreman Thazz'ril##11378
 accept Lazy Peons##25134 |goto Valley of Trials/0 46.13,63.09
 stickystart "Collect_Scorpid_Worker_Tails"
@@ -15481,7 +15504,6 @@ You can find more at: |notinsticky
 [Valley of Trials/0 60.09,25.72]
 step
 talk Hana'zua##3287
-turnin Hana'zua##25128 |goto Valley of Trials/0 34.62,44.20
 accept Sarkoth##25129 |goto Valley of Trials/0 34.62,44.20
 step
 kill Sarkoth##3281
@@ -15489,13 +15511,13 @@ kill Sarkoth##3281
 |tip It walks around.
 collect Sarkoth's Mangled Claw##4905 |q 25129/1 |goto Valley of Trials/0 34.13,62.70
 step
-talk Hana'zua##3287
-turnin Sarkoth##25129 |goto Valley of Trials/0 34.62,44.20
-accept Back to the Den##25130 |goto Valley of Trials/0 34.62,44.20
-step
 label "Collect_Scorpid_Worker_Tails"
 kill Scorpid Worker##3124+
 collect 8 Scorpid Worker Tail##4862 |q 25127/1 |goto Valley of Trials/0 37.11,45.91
+step
+talk Hana'zua##3287
+turnin Sarkoth##25129 |goto Valley of Trials/0 34.62,44.20
+accept Back to the Den##25130 |goto Valley of Trials/0 34.62,44.20
 step
 label "Collect_Cactus_Apples"
 click Cactus Apple##171938+
@@ -16247,12 +16269,9 @@ talk Master Gadrin##3188
 accept Riding On##25171 |goto Durotar 55.95,74.72 |only if level <= 10
 |only if level <= 10
 step
-talk Raider Jhash##10676
-Select _"Can I catch a ride to Razor Hill?"_
-Begin Riding to Razor Hill |invehicle |goto Durotar 55.26,74.65 |q 25171
-|only if haveq(25171)
-step
-Ride to Razor Hill |outvehicle |goto Durotar 52.49,44.22 |q 25171 |notravel
+talk Handler Marnlek##41142
+fpath Sen'jin Village |goto Durotar/0 55.40,73.34
+|tip Get the flightpath and fly to Razor Hill
 |only if haveq(25171)
 step
 talk Burok##41140
@@ -16261,6 +16280,7 @@ fpath Razor Hill |goto Durotar 53.09,43.58
 step
 talk Gar'Thok##3139
 |tip Upstiars inside the building.
+|tip You can fly to Razor Hill from Sen'jin Village.
 turnin Riding On##25171 |goto Durotar 51.95,43.50 |only if haveq(25171)
 accept From Bad to Worse##25173 |goto Durotar 51.95,43.50 |only if level <= 10
 |only if level <= 10 or haveq(25171)
@@ -20710,24 +20730,12 @@ talk Nazgrel##3230
 turnin The Mag'har##9406 |goto Hellfire Peninsula/0 55.02,35.97
 |only if haveq(9406)
 step
-talk Earthcaller Ryga##17123
-accept A Debilitating Sickness##9442 |goto Hellfire Peninsula/0 32.09,28.36 |only if (completedq(9441) or haveq(9441))
-|only if level < 63 and (completedq(9441) or haveq(9441))
-step
 Follow the path |goto Hellfire Peninsula/0 34.48,30.93 < 30 |only if walking
 Follow the path down |goto Hellfire Peninsula/0 33.77,34.61 < 30 |only if walking
 Follow the path |goto Hellfire Peninsula/0 30.69,39.83 < 70 |only if walking
 click Southern Beacon
 Light the Southern Beacon |q 9391/3 |goto Hellfire Peninsula/0 36.10,65.31
 |only if haveq(9391)
-step
-Enter the cave |goto Hellfire Peninsula/0 34.16,63.03 < 7 |walk
-click Drycap Mushroom
-|tip They look like brown mushrooms on the ground around this area.
-|tip Inside the cave.
-|tip Be careful to avoid Blacktalon the Savage, an elite enemy inside the cave.
-collect Drycap Mushroom##23753 |q 9442/1 |goto Hellfire Peninsula/0 34.21,64.53
-|only if haveq(9442)
 step
 Leave the cave |goto Hellfire Peninsula/0 34.16,63.03 < 7 |walk
 click Central Beacon
@@ -23184,7 +23192,7 @@ accept Jack Likes His Drink##11466 |goto Howling Fjord/0 36.32,80.48 |only if le
 |only if level < 71 and (completedq(11464) or haveq(11464)) or readyq(11464)
 step
 Enter the building |goto Howling Fjord/0 35.28,80.22 < 10 |walk
-talk Olga, the Scalawag Wench##24639
+talk Olga the Scalawag Wench##24639
 |tip Inside the building.
 Select _"I'd like to buy Jack a drink. Perhaps something... extra strong."_
 Click Here After You Buy Jack Adams a Drink |confirm |goto Howling Fjord/0 35.31,79.59 |q 11466

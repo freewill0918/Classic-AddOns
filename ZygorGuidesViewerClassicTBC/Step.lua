@@ -399,6 +399,7 @@ function Step:OnEnter()
 	end
 	self.needsreload = false
 
+	--[[
 	if ZGV.autopause or ZGV.LastSkip<0 then
 		local autoscripts
 		for i,goal in ipairs(self.goals) do if goal.autoscript then autoscripts=true end end
@@ -416,6 +417,7 @@ function Step:OnEnter()
 			self.needsreload = true
 		end
 	end
+	--]]
 
 	for i,goal in ipairs(self.goals) do if goal.action=="fly" then
 		if not goal.sub_goto then -- TODO how about when continents differ?

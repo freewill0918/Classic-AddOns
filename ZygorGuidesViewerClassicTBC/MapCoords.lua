@@ -95,6 +95,7 @@ local force_maptype={
 	[2016]=Enum_Micro,					-- Tazavesh is orphan, change to micro
 
 	[391]=Enum_Zone, [393]=Enum_Zone, [394]=Enum_Zone, -- Pandaria Shrines should be zones
+	[327]=Enum_Zone, -- AQ overworld
 
 	-- ptr
 	[1970]=Enum_Continent,					-- Zereth Mortis, zone to continent, since its taxis collide with rest of shadowlands

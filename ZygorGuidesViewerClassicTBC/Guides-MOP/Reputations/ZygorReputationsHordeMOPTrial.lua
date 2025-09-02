@@ -9,7 +9,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Mists of Pandaria
 ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Mists of Pandaria Reputations\\The Order of the Cloud Serpent")
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Mists of Pandaria Reputations\\Shado-Pan Assault",{
 mopready=true,
-description="\nThis guide will walk you through becoming exalted with the Shado-Pan faction.",
+description="This guide will walk you through becoming exalted with the Shado-Pan faction.",
 achieveid={6366},
 patch='50004',
 },[[

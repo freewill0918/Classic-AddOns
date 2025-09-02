@@ -12067,6 +12067,11 @@ turnin The Amulet of Sevine##25698 |goto Blasted Lands 39.21,36.29
 turnin The Amulet of Grol##25699 |goto Blasted Lands 39.21,36.29
 accept Loramus Thalipedes Awaits##25700 |goto Blasted Lands 39.21,36.29
 step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Broken Amulet##56007
+|only if itemcount(56007) > 0
+step
 talk Bloodmage Lynnore##7506
 |tip Upstairs inside the cave.
 Select _"I would like to start the Amulet Ritual, Lynnore."_ |gossip 112242
@@ -12176,6 +12181,24 @@ step
 talk Rohan Sunveil##42344
 |tip On top of the mountain.
 turnin The Downfall of Marl Wormthorn##25720 |goto Blasted Lands 49.75,71.43
+step
+label "OneDraeneisJunk"
+use all your Imperfect Draenethyst Fragment##10593+
+accept One Draenei's Junk...##25771 |autoscript table.wipe(ZGV.recentlyCompletedGoals) table.wipe(ZGV.completedQuests)
+|only if itemcount(10593) > 0
+step
+talk Kum'isha the Collector##7363 |goto Blasted Lands/0 48.69,32.06
+turnin One Draenei's Junk...##25771
+'|next OneDraeneisJunk |only if itemcount(10593) > 0
+step
+label "Endeavors"
+use all your Flawless Draenethyst Sphere##8244+
+accept Kum'isha's Endeavors##25772 |autoscript table.wipe(ZGV.recentlyCompletedGoals) table.wipe(ZGV.completedQuests)
+|only if itemcount(8244) > 0
+step
+talk Kum'isha the Collector##7363 |goto Blasted Lands/0 48.69,32.06
+turnin Kum'isha's Endeavors##25772
+'|next Endeavors |only if itemcount(8244) > 0
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Kalimdor (1-60)\\Durotar (5-11)",{
 mopready=true,
@@ -12269,17 +12292,13 @@ step
 talk Master Gadrin##3188
 accept Riding On##25171 |goto Durotar 55.95,74.72
 step
-talk Raider Jhash##10676
-Select _"Can I catch a ride to Razor Hill?"_
-Begin Riding to Razor Hill |invehicle |goto Durotar 55.26,74.65 |q 25171
-step
-Ride to Razor Hill |outvehicle |goto Durotar 52.49,44.22 |q 25171 |notravel
-step
-talk Burok##41140
-fpath Razor Hill |goto Durotar 53.09,43.58
+talk Handler Marnlek##41142
+fpath Sen'jin Village |goto Durotar/0 55.40,73.34
+|tip Get the flightpath and fly to Razor Hill.
 step
 talk Gar'Thok##3139
 |tip Upstiars inside the building.
+|tip You can fly to Razor Hill from Sen'jin Village.
 turnin Riding On##25171 |goto Durotar 51.95,43.50
 accept From Bad to Worse##25173 |goto Durotar 51.95,43.50
 step
@@ -13612,6 +13631,11 @@ step
 talk Brak Blusterpipe##34674
 turnin Samophlange Repair##14003 |goto The Barrens 62.66,16.97
 step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Control Console Operating Manual##5088
+|only if itemcount(5088) > 0
+step
 Watch the dialogue
 talk Brak Blusterpipe##34674
 accept Wenikee Boltbucket##29026 |goto The Barrens 62.66,16.97
@@ -14045,11 +14069,11 @@ accept Need More Science##14424 |goto Azshara/0 29.59,66.86
 step
 talk Spirit of Kalytha##35567
 |tip She walks around this area.
-Choose _<Merge with the spirit.>_
+Choose _<Merge with the spirit.>_ |gossip 111768
 Explore the Memories of Kalytha |havebuff Memories of the Dead##67704 |goto Azshara/0 36.43,72.36 |q 14215
 step
 talk Archmage Selwyn##35595
-Select _"Yes Archmage. I will hide the stone."_
+Select _"Yes Archmage. I will hide the stone."_ |gossip 111767
 Learn Kalytha's Secret |q 14215/1 |goto Azshara/0 37.52,74.52
 step
 _Click the Complete Quest Box:_
@@ -14065,7 +14089,7 @@ turnin Mystery of the Sarcen Stone##14216 |goto Azshara/0 29.68,66.88
 step
 talk Bilgewater Rocket-jockey##43217
 |tip At the top of the tower.
-Select _"Southern Rocketway Terminus, please."_
+Select _"Southern Rocketway Terminus, please."_ |gossip 112430
 Request a Rocket |invehicle |goto Azshara/0 29.48,66.20 |q 14424
 step
 Ride the Rocket to the Southern Rocketway Terminus |outvehicle |goto Azshara/0 51.00,74.10 |q 14424 |notravel
@@ -14122,12 +14146,17 @@ step
 talk Bombardier Captain Smooks##35817
 turnin Mortar the Point##14258 |goto Azshara/0 52.22,74.24
 step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Artillery Signal##49042
+|only if itemcount(49042) > 0
+step
 talk Torg Twocrush##35657
 accept To Gut a Fish##14262 |goto Azshara/0 50.68,75.30
 accept Investigating the Sea Shrine##14267 |goto Azshara/0 50.68,75.30
 step
 clicknpc Door Buzzer##36472
-Choose _<Ring the Buzzer>_
+Choose _<Ring the Buzzer>_ |gossip 111829
 kill Mutant Goblin##36156
 collect Secret Rocket Plans##49204 |q 14408/2 |goto Azshara/0 45.93,76.09
 step
@@ -14170,7 +14199,12 @@ turnin A Gigantic Snack##14371 |goto Azshara/0 50.41,74.29
 accept Befriending Giants##14377 |goto Azshara/0 50.41,74.29
 step
 talk Gormungan##36297
-Select _"I brought you something to eat."_
+Select _"I brought you something to eat."_ |gossip 111814
+Select _"Do you know anything about azsharite?"_ |gossip 111818
+Select _"Tell me again about Azsharite?"_ |gossip 111815
+Select _"It's ... your droppings!? And the goblins have been running around scooping it up?"_ |gossip 111821
+Select _"How often do you, uh. "go"?"_ |gossip 111822
+Select _"15 to 25 years? Assistant Greely isn't going to want to hear that!"_ |gossip 111823
 Discover the Secret of Azsharite |q 14377/1 |goto Azshara/0 47.75,75.53
 step
 talk Assistant Greely##39199
@@ -14230,8 +14264,13 @@ step
 label "Kill_Zapper_Gnomes"
 kill 6 Zapper Gnome##36384 |q 14383/3 |goto Azshara/0 40.34,84.36
 step
+_Destroy This Item:_
+|tip It is no longer needed, unless you wish to read it.
+trash Purchase Order Receipt##49229
+|only if itemcount(49229) > 0
+step
 talk Gormungan##36297
-Select _"Here, eat this! It's a special chocolate rock."_
+Select _"Here, eat this! It's a special chocolate rock."_ |gossip 111816
 Try to Feed Gormungan |q 14385/1 |goto Azshara/0 47.75,75.53
 step
 talk Assistant Greely##39199
@@ -14239,7 +14278,7 @@ turnin Azsharite Experiment Number One##14385 |goto Azshara/0 50.41,74.29
 accept Azsharite Experiment Number Two##14388 |goto Azshara/0 50.41,74.29
 step
 talk Assistant Greely##39199
-Tell her "_I'm ready. Shrink me!"_
+Tell her "_I'm ready. Shrink me!"_ |gossip 111824
 Become Mouse-sized! |havebuff Shrunkified##68710 |goto Azshara/0 50.41,74.29 |q 14388
 step
 clicknpc Rocketway Rat##36437
@@ -14247,7 +14286,7 @@ clicknpc Rocketway Rat##36437
 Ride a Rat |invehicle |q 14388 |goto Azshara/0 50.30,74.27
 step
 talk Gormungan##36297
-Select _"SQUEAK!!"_
+Select _"SQUEAK!!"_ |gossip 111817
 Scare Gormungan |q 14388/1 |goto Azshara/0 47.75,75.53
 step
 talk Assistant Greely##39199
@@ -14259,7 +14298,7 @@ turnin The Terrible Tinkers of the Ruined Reaches##14383 |goto Azshara/0 50.53,7
 accept A Hello to Arms##24458 |goto Azshara/0 50.53,74.74
 step
 talk Friz Groundspin##37005
-Select _"Just give me the 'copter, Friz."_
+Select _"Just give me the 'copter, Friz."_ |gossip 111876
 Begin Flying to Bilgewater Harbor |invehicle |goto Azshara/0 51.49,74.28 |q 14478 |future
 step
 Fly to Bilgewater Harbor |outvehicle |goto Azshara/0 57.60,50.60 |q 14478 |future |notravel
@@ -14427,7 +14466,7 @@ turnin Shore Leave##24449 |goto Azshara/0 60.61,50.53
 step
 talk Bilgewater Rocket-jockey##43217
 |tip At the top of the tower.
-Select _"Northern Rocketway Terminus, please."_
+Select _"Northern Rocketway Terminus, please."_ |gossip 112437
 Begin Flying to the Northern Rocketway Terminus |invehicle |goto Azshara/0 50.70,74.22 |q 14130
 step
 Fly to the Northern Rocketway Terminus |outvehicle |goto Azshara/0 66.98,21.39 |q 14130 |notravel
@@ -14555,7 +14594,7 @@ turnin Arcane De-Construction##14429 |goto Azshara/0 52.99,29.03
 accept Hacking the Construct##14430 |goto Azshara/0 52.99,29.03
 step
 talk Arcane Construct##36599
-Choose _"Um ... Al'teth ... la c'tolgar? Or something."_
+Choose _"Um ... Al'teth ... la c'tolgar? Or something."_ |gossip 111854
 Hack the Arcane Construct |q 14430/1 |goto Azshara/0 52.98,29.95
 step
 talk Quarla Whistlebreak##35754
@@ -14701,7 +14740,17 @@ turnin Wasn't It Obvious?##14389
 accept Easy is Boring##14390
 step
 talk Spirit of Azuregos##36436
-Select _"Kalec sent me..."_
+Select _"Kalec sent me..."_ |gossip 111878
+Select _"No no no, you don't understand. I'm here to help."_ |gossip 111879
+Select _"Met someone? I didn't know there were any other dragons out here."_ |gossip 111880
+Select _"...the spirit healer?"_ |gossip 111881
+Select _"I'm sorry, I didn't mean to be rude, I just..."_ |gossip 111882
+Select _"That's not what I was saying at all."_ |gossip 111883
+Select _"I'm the... forget it. I'm here to warn you that the black dragonflight is here hunting you."_ |gossip 111884
+Select _"You already know? Why don't you go stop them then?"_ |gossip 111885
+Select _"But Kalecgos is already out there trying to stop them. He needs your help."_ |gossip 111886
+Select _"You'll come then?"_ |gossip 111887
+Select _"I'm going to let him know right away. Meet us at Sable Ridge."_ |gossip 111888
 Convince Azuregos to Meet with Kalecgos |q 14390/1 |goto Azshara/0 27.81,40.09
 step
 _Click the Complete Quest Box:_
@@ -14709,7 +14758,7 @@ turnin Easy is Boring##14390
 accept Turning the Tables##14391
 step
 talk Anara##37040
-Select _"Return me to life."_
+Select _"Return me to life."_ |gossip 111889
 Return to Life |complete not isdead |goto Azshara/0 27.89,40.04 |q 14391
 stickystart "Collect_Ambassadors_Robes"
 stickystart "Collect_Briaroot_Brews"
@@ -14731,7 +14780,7 @@ collect 10 Briaroot Brew##49365 |q 14432/1 |goto Azshara/0 30.86,36.41
 step
 talk Bilgewater Rocket-jockey##43217
 |tip At the top of the tower.
-Select _"Northern Rocketway Exchange, please."_
+Select _"Northern Rocketway Exchange, please."_ |gossip 112440
 Begin Flying to the Northern Rocketway Exchange |invehicle |goto Azshara/0 25.93,49.64 |q 14430
 step
 Fly to the Northern Rocketway Exchange |outvehicle |goto Azshara/0 44.25,24.34 |q 14430 |notravel
@@ -14744,11 +14793,11 @@ turnin A Pale Brew##14432 |goto Azshara/0 42.42,23.61
 turnin Diplomacy by Another Means##14433 |goto Azshara/0 42.42,23.61
 accept The Blackmaw Doublecross##14435 |goto Azshara/0 42.42,23.61
 step
-use Ambassador Disguise##49368
+use Ambassador Disguise##49368 |goto Azshara/0 42.51,23.68 < 10
 Take on the Appearance of a Night Elf Ambassador |havebuff Ambassador Disguise##69054 |q 14435
 step
 talk Andorel Sunsworn##36596 |goto Azshara/0 42.61,23.70
-Select _"I am ready. Teleport me to Blackmaw Hold."_
+Select _"I am ready. Teleport me to Blackmaw Hold."_ |gossip 111853
 Teleport to Blackmaw Hold |goto Azshara/0 31.17,29.86 < 30 |noway |c |q 14435
 step
 talk Ungarl##36618
@@ -14770,7 +14819,7 @@ turnin The Blackmaw Doublecross##14435 |goto Azshara/0 42.42,23.61
 step
 talk Bilgewater Rocket-jockey##43217
 |tip At the top of the tower.
-Select _"Northern Rocketway Terminus, please."_
+Select _"Northern Rocketway Terminus, please."_ |gossip 112443
 Begin Flying to the Northern Rocketway Terminus |invehicle |goto Azshara/0 42.53,24.56 |q 14391
 step
 Fly to the Northern Rocketway Terminus |outvehicle |goto Azshara/0 67.76,22.13 |q 14391 |notravel
@@ -14889,7 +14938,7 @@ clicknpc Lorekeeper's Summoning Stone##36918
 turnin Commando Drop##24434 |goto Azshara/0 10.55,69.85
 step
 clicknpc Lorekeeper's Summoning Stone##36918
-Choose _<Use the stone to teleport back to Valormok.>_
+Choose _<Use the stone to teleport back to Valormok.>_ |gossip 111875
 Return to Valormok |condition not subzone("Talrendis Point") |goto Azshara/0 10.55,69.85 |q 24433
 step
 talk Chawg##36730
@@ -14931,7 +14980,7 @@ kill Commander Jarrodenus##36884
 collect The Head of Jarrodenus##49674 |q 24439/1 |goto Azshara/0 9.15,72.82
 step
 clicknpc Lorekeeper's Summoning Stone##36918
-Choose _<Use the stone to teleport back to Valormok.>_
+Choose _<Use the stone to teleport back to Valormok.>_ |gossip 111875
 Return to Valormok |condition not subzone("Talrendis Point") |goto Azshara/0 10.55,69.85 |q 24439
 step
 talk Chawg##36730
@@ -15392,6 +15441,16 @@ step
 talk Dagrun Ragehammer##34303
 |tip He walks around inside the building.
 turnin The Essence of Aku'Mai##26890 |goto Ashenvale 11.57,35.30
+step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Sapphire of Aku'Mai##16784
+|only if itemcount(16784) > 0
+step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Damp Note##16790
+|only if itemcount(16790) > 0
 step
 talk Andruk##11901
 Select _"Grimfang has ordered me to Hellscream's Watch."_ |gossip 111691
@@ -16116,6 +16175,10 @@ accept Feeding the Fear##25284 |goto Southern Barrens 37.65,16.64
 stickystart "Kill_Tower_Wardens"
 stickystart "Arm_Stonetalon_Prisoners"
 step
+click Coiled Rope##201708 |goto Southern Barrens 37.35,16.63
+Climb Down the Cliff |goto Southern Barrens 37.29,15.48 < 20 |noway |c |q 24512
+|only if walking
+step
 click Confiscated Arms##201701+
 |tip They look like flat square boxes with red axe symbols on them.
 collect 5 Confiscated Arms##49769 |q 24512 |goto Southern Barrens 37.33,13.78
@@ -16124,7 +16187,7 @@ label "Arm_Stonetalon_Prisoners"
 talk Stonetalon Prison##37167+
 |tip They look like orcs.
 |tip Inside the tower.
-Select _"I recovered your armor and weapons. Victory or death!"_
+Select _"I recovered your armor and weapons. Victory or death!"_ |gossip 111897
 Arm #5# Stonetalon Prisoners |q 24512/1 |goto Southern Barrens 37.19,14.09
 step
 talk Oltarg##37136
@@ -16393,7 +16456,7 @@ turnin To Harvest Chaos##24574 |goto Southern Barrens 50.42,40.67
 accept The Nightmare Scar##24601 |goto Southern Barrens 50.42,40.67
 step
 talk Naralex##37570
-Select _"I'm ready, Naralex."_
+Select _"I'm ready, Naralex."_ |gossip 111911
 Kill the enemies that attack in waves
 |tip Protect Naralex.
 Seal the Nightmare Scar |q 24601/1 |goto Southern Barrens 48.20,38.64
@@ -16410,13 +16473,15 @@ talk Warlord Bloodhilt##37679
 accept Desolation Hold Inspection##24577 |goto Southern Barrens 41.49,46.81
 step
 talk Warlord Bloodhilt##37679
-Select _"I am ready to ride, Warlord!"_
+Select _"I am ready to ride, Warlord!"_ |gossip 111907
 Begin Traveling to Desolation Hold |invehicle |goto Southern Barrens 41.49,46.81 |q 24577
 step
 Travel to Desolation Hold |outvehicle |goto Southern Barrens 41.81,69.72 |q 24577 |notravel
 step
 talk Warlord Gar'dul##37811
-Select _"I'm here on behalf of Warlord Bloodhilt, who wants you to know he will be arriving shortly."_
+Select _"I'm here on behalf of Warlord Bloodhilt, who wants you to know he will be arriving shortly."_ |gossip 111906
+Select _"I'll be sure to tell the Taurajo refugees that. Those that lived."_ |gossip 111908
+Select _"Tell him yourself. He's almost here!"_ |gossip 111909
 Notify Gar'dul |q 24577/1 |goto Southern Barrens 41.64,69.82
 step
 _Click the Complete Quest Box:_
@@ -16500,7 +16565,7 @@ turnin Flightmare##24631 |goto Southern Barrens 41.10,71.01
 accept Tauren Vengeance##24632 |goto Southern Barrens 41.10,71.01
 step
 talk Karthog##38015
-Select _"I'm ready, Karthog. For the Horde!"_
+Select _"I'm ready, Karthog. For the Horde!"_ |gossip 111914
 kill General Hawthorne##38323 |q 24637/1 |goto Southern Barrens 48.19,58.19
 |tip He will approach from the north on the road.
 step
@@ -16581,7 +16646,7 @@ turnin Echoes of Agamaggan##24653 |goto Southern Barrens 45.14,85.42
 accept Mahka's Plea##24633 |goto Southern Barrens 45.14,85.42
 step
 talk Mankrik##3432
-Select _"Mahka wants you to come see her, Mankrik."_
+Select _"Mahka wants you to come see her, Mankrik."_ |gossip 111910
 Complete Mahka's Plea |q 24633/1 |goto Southern Barrens 44.51,88.09
 step
 talk Mahka##37812
@@ -16705,7 +16770,7 @@ step
 Leave the mine |goto Dustwallow Marsh 33.22,22.76 < 15 |walk |only if subzone("Darkmist Cavern") and indoors()
 talk Ithania##17119
 |tip Inside the building.
-Select _"Balandar sent me to get you out of here and reclaim his cargo. He's waiting for you in Brackenwall Village."_
+Select _"Balandar sent me to get you out of here and reclaim his cargo. He's waiting for you in Brackenwall Village."_ |gossip 91594
 Rescue Ithania From North Point Tower |q 9437/1 |goto Dustwallow Marsh 46.64,24.47
 step
 click Warped Crates##181626
@@ -17116,7 +17181,7 @@ accept To the Summit##25478 |goto Dustwallow Marsh 41.87,73.88 |or
 '|complete completedq(25487) |or
 step
 talk Dyslix Silvergrub##40358
-Select _"Dyslix, I need to get to Westreach Summit!"_
+Select _"Dyslix, I need to get to Westreach Summit!"_ |gossip 112185
 Take a Wind Rider to Westreach Summit |q 25478/1 |goto Dustwallow Marsh 42.82,72.43
 step
 Begin Flying to Westreach Summit |invehicle |goto Dustwallow Marsh 42.82,72.43 |q 25478
@@ -17316,7 +17381,8 @@ kill Kohor##35632 |q 14223/1 |goto Desolace 53.14,32.87
 step
 _Click the Complete Quest Box:_
 turnin Peace of Mind##14223
-accept You'll Know It When You See It##14225
+|tip If this quest won't start on its own, return to Sorrem to start it.
+accept You'll Know It When You See It##14225 |goto Desolace/0 44.91,29.50
 step
 kill Burning Blade Reaver##4664, Burning Blade Augur##4663, Burning Blade Felsworn##4666
 collect Burning Blade Ear##49010 |n
@@ -17442,7 +17508,7 @@ Select _"I need another Slitherblade Charm, Korrah."_ |gossip 111773
 collect Slitherblade Charm##49064 |goto Desolace 38.80,26.95 |q 14292
 step
 use the Slitherblade Charm##49064
-Gain the Naga Disguise |havebuff |havebuff Naga Disguise##68086 |q 14292
+Gain the Naga Disguise |havebuff Naga Disguise##68165 |q 14292
 step
 talk Lord Hydronis##35902
 turnin The Enemy of Our Enemy##14292 |goto Desolace 29.09,8.09
@@ -17468,6 +17534,11 @@ talk Cenarion Researcher Korrah##35773
 |tip Up on the cliff.
 turnin Return and Report##14301 |goto Desolace 38.80,26.95
 accept Official Assessment##14302 |goto Desolace 38.80,26.95
+step
+_Destroy This Item:_
+|tip It is no longer needed and works only in Slitherblade Shore in Desolace.
+trash Slitherblade Charm##49064
+|only if itemcount(49064) > 0
 step
 talk Bibbly F'utzbuckle##11438
 |tip He walks around this area.
@@ -17764,7 +17835,7 @@ click Broken Relic##196393
 accept While You're Here##14333 |goto Desolace/21 12.51,49.32
 stickystart "Kill_Maraudine_Maulers"
 step
-Follow the path back up to the Stone Door |goto Desolace/21 20.43,61.35 < 15 |walk
+Follow the path back up to the Stone Door and go outside|goto Desolace/21 20.43,61.35 < 15 |walk
 click Defiled Relic##196395+
 |tip They look like small grey statues inside the tents and on the ground around this area.
 collect 6 Defiled Relic##49194 |goto Desolace 30.92,60.30 |q 14333
@@ -19101,6 +19172,11 @@ step
 talk Trenton Lighthammer##7804
 turnin Secrets in the Oasis##25032 |goto Tanaris 42.46,24.03
 step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Wet Sand##52074
+|only if itemcount(52074) > 0
+step
 Run through the tunnel |goto Tanaris 67.76,41.81 < 15 |only if walking
 talk Megs Dreadshredder##38703
 turnin Momentum##24947 |goto Tanaris 71.86,45.42
@@ -19219,7 +19295,7 @@ turnin A Great Idea##24951 |goto Tanaris 55.65,60.86
 accept Just Trying to Kill Some Bugs##24953 |goto Tanaris 55.65,60.86
 step
 talk Narain Soothfancy##11811
-Select _"I'm ready to pilot our silithid."_
+Select _"I'm ready to pilot our silithid."_ |gossip 111576
 Pilot the Silithid |invehicle |goto Tanaris 55.23,60.26 |q 24953
 step
 Enter the cave |goto Tanaris/0 54.43,69.86 < 15 |walk
@@ -19242,7 +19318,8 @@ Become an Ogre |havebuff Refurbished Ogre Suit##72984 |goto Tanaris 43.65,52.97 
 step
 talk Dunemaul Enforcer##5472+
 |tip They look like ogres carrying 2 axes.
-Select _"You sign charter! Is good!"_
+|tip You may also talk to any other ogres in the area!
+Select _"You sign charter! Is good!"_ |gossip 112014
 Obtain #10# "Signatures" |q 24955/1 |goto Tanaris 41.01,53.84
 step
 talk Megs Dreadshredder##38849
@@ -19548,7 +19625,9 @@ kill Shadow Lord Fel'dan##9517 |q 28153/1 |goto Felwood 39.48,46.95
 step
 _Click the Complete Quest Box:_
 turnin Shadow Lord Fel'dan##28153
-accept Lord Banehollow##28155
+accept Lord Banehollow##28155 |goto Felwood/0 36.35,58.26
+|tip If the next quest won't be started correctly, you may need to visit Andalar Shadevale, next to the main entrance, on the surface.
+|tip The quickest way to him is to use Hearthstone, as you should be saved nearby.
 step
 label "Slay_Shadow_Hold_Defenders"
 kill Jaedenar Hunter##7126, Jaedenar Warlock##7120, Jaedenar Darkweaver##7118, Jaedenar Legionnaire##9862, Jaedenar Enforcer##7114
@@ -20543,7 +20622,7 @@ accept The Eastern Pylon##24721 |goto Un'Goro Crater 76.44,48.34
 |tip He will teleport you up onto the nearby cliff.
 step
 click Eastern Crystal Pylon##164957
-Choose _"Examine the pylon."_
+Choose _"Examine the pylon."_ |gossip 88441
 Discover and Examine the Eastern Crystal Pylon |q 24721/1 |goto Un'Goro Crater 77.24,49.97
 step
 talk Torwa Pathfinder##9619
@@ -20789,7 +20868,12 @@ turnin Adventures in Archaeology##24698 |goto Un'Goro Crater 31.85,50.28
 accept Roll the Bones##24730 |goto Un'Goro Crater 31.85,50.28
 step
 talk Maximillian of Northshire##38237
-Select _"Alright, I'm ready."_
+Select _"Alright, I'm ready."_ |gossip 111926
+Select _"Understandable."_ |gossip 111952
+Select _"I give you my oath."_ |gossip 111930
+Select _"Yes, sir."_ |gossip 111931
+Select _"Umm... yes, yes she is. Unquestionably."_ |gossip 111933
+Select _"Woo hoo!"_ |gossip 111934
 Complete Squire Training |q 24703/1 |goto Un'Goro Crater 30.62,51.14
 step
 talk Maximillian of Northshire##38237
@@ -20882,12 +20966,12 @@ accept The Western Pylon##24723 |goto Un'Goro Crater 31.85,50.28
 step
 click Western Crystal Pylon##164956
 |tip Up on the cliff.
-Choose _"Examine the pylon."_
+Choose _"Examine the pylon."_ |gossip 88442
 Discover and Examine the Western Crystal Pylon |q 24723/1 |goto Un'Goro Crater 23.54,50.11
 step
 click Northern Crystal Pylon##164955
 |tip Up on the cliff.
-Choose _"Examine the pylon."_
+Choose _"Examine the pylon."_ |gossip 90998
 Discover and Examine the Northern Crystal Pylon |q 24722/1 |goto Un'Goro Crater 56.56,12.44
 step
 talk J.D. Collie##9117
@@ -20898,7 +20982,7 @@ clicknpc Un'Goro Examinant##38504
 accept The Shaper's Terrace##24694 |goto Un'Goro Crater 53.84,62.51
 step
 clicknpc Un'Goro Examinant##38504 |goto Un'Goro Crater 53.84,62.51
-Choose _"I'm ready to go to The Shaper's Terrace."_
+Choose _"I'm ready to go to The Shaper's Terrace."_ |gossip 111964
 Teleport to The Shaper's Terrace |goto Un'Goro Crater 79.67,45.89 < 20 |noway |c |q 24694
 step
 talk Nablya##38502
@@ -20931,17 +21015,20 @@ click Gorilla Observation Lever
 Become a Gorilla |havebuff Illusory Gorilla##72181 |goto Un'Goro Crater 83.97,46.40 |q 24695
 step
 talk Un'Goro Stomper##6513
-Select _"What can you teach me, Stomper?"_
+Select _"What can you teach me, Stomper?"_ |gossip 111971
+Select _"I understand. Thank you."_ |gossip 111970
 Click Here After Talking to the Un'Goro Stomper |confirm |goto Un'Goro Crater 61.95,18.16 |q 24695
 step
 talk Un'Goro Gorilla##6514
-Select _"What can you teach me, Gorilla?"_
+Select _"What can you teach me, Gorilla?"_ |gossip 111969
+Select _"I understand. Thank you."_ |gossip 111968
 Click Here After Talking to the Un'Goro Gorilla |confirm |goto Un'Goro Crater 61.95,18.16 |q 24695
 step
 Enter the cave |goto Un'Goro Crater 64.06,16.34 < 15 |walk
 talk Un'Goro Thunderer##6516
 |tip Inside the cave.
-Select _"What can you teach me, Thunderer?"_
+Select _"What can you teach me, Thunderer?"_ |gossip 111967
+Select _"I understand. Thank you."_ |gossip 111966
 Complete the Gorilla Observation |q 24695/3 |goto Un'Goro Crater 65.21,16.66
 step
 Return to Nablya |nobuff Illusory Gorilla##72181 |q 24695
@@ -20961,7 +21048,7 @@ talk Nablya##38502
 turnin Ever Watching From Above##24695 |goto Un'Goro Crater 83.53,46.00
 step
 talk Nablya##38502 |goto Un'Goro Crater 83.53,46.00
-Select _"I'd like to return to Marshal's Stand, please."_
+Select _"I'd like to return to Marshal's Stand, please."_ |gossip 111962
 Teleport to Marshal's Stand |goto Un'Goro Crater 55.31,61.87 < 50 |noway |c |q 28857 |future
 step
 talk Innkeeper Vizzie##11118
@@ -21111,15 +21198,29 @@ talk Windcaller Proudhorn##15191
 turnin Stepping Up Security##8281 |goto Silithus 54.89,36.03
 step
 talk Frankal Stonebridge##15171
-Select _"Hello, Frankal. I've heard that you might have some information as to the whereabouts of Mistress Natalia Mar'alith."_
+Select _"Hello, Frankal. I've heard that you might have some information as to the whereabouts of Mistress Natalia Mar'alith."_ |gossip 90297
+Select _"That's what I like to hear."_ |gossip 90541
+Select _"That's odd."_ |gossip 90540
+Select _"You couldn't handle a lone night elf priestess?"_ |gossip 90539
+Select _"I've been meaning to ask you about that monkey"_ |gossip 90538
+Select _"Then what?"_ |gossip 88181
+Select _"What a story! So she went into Hive'Regal and that was the last you saw her?"_ |gossip 88448
+Select _"Thanks for the information, Frankal."_ |gossip 90744
 Question Frankal |q 8304/1 |goto Silithus 46.00,79.40
 step
 talk Rutgar Glyphshaper##15170
-Select _"Hello, Rutgar. The Commander has sent me here to gather some information about his missing wife."_
+Select _"Hello, Rutgar. The Commander has sent me here to gather some information about his missing wife."_ |gossip 90298
+Select _"That sounds dangerous"_ |gossip 89430
+Select _"What happened to her after that?"_ |gossip 89429
+Select _"Natalia?"_ |gossip 89428
+Select _"What demands?"_ |gossip 88180
+Select _"Lost it? What do you mean?"_ |gossip 90718
+Select _"Possessed by what?"_ |gossip 89427
+Select _"I'll be back once I straighten this mess out."_ |gossip 89426
 Question Rutgar |q 8304/2 |goto Silithus 46.41,79.08
 step
-_Click the Complete Quest Box:_
-turnin Dearest Natalia##8304
+talk Commander Mar'alith##15181
+turnin Dearest Natalia##8304 |goto Silithus/0 53.21,32.49
 accept Into The Maw of Madness##8306
 step
 talk Rutgar Glyphshaper##15170
@@ -21159,7 +21260,7 @@ Discover the Fate of Mistress Natalia Mar'alith |q 8306/1 |goto Silithus 55.58,9
 step
 click Hive'Regal Glyphed Crystal##180453
 |tip Inside the cave.
-Choose _<Use the transcription device to gather a rubbing.>_
+Choose _<Use the transcription device to gather a rubbing.>_ |gossip 90177
 collect Hive'Regal Rubbing##20456 |q 8309/1 |goto Silithus 55.59,90.55
 step
 label "Accept_Brann_Bronzebeards_Lost_Letter"
@@ -22038,7 +22139,7 @@ use the Cenarion Antidote##23337
 |tip Use it on a Hulking Helboar around this area.
 kill Dreadtusk
 Administer the Antidote |q 10255/1 |goto Hellfire Peninsula/0 22.82,55.58
-kill Dreadtusk##16880
+'|kill Dreadtusk##16880
 step
 talk Thiah Redmane##16991
 turnin Testing the Antidote##10255 |goto Hellfire Peninsula/0 15.70,52.09
@@ -22771,7 +22872,7 @@ Ride the elevator up |goto Shattrath City/0 49.96,62.94 < 10 |only if walking
 talk Magistrix Fyalenn##18531
 accept Firewing Signets##10412 |goto Shattrath City/0 45.20,81.46
 step
-Enter the building |goto Shattrath City/0 28.50,33.48 < 15 |walk
+Enter the building |goto Shattrath City/0 42.80,91.70 < 15 |walk
 talk Voren'thal the Seer##18530
 |tip Upstairs inside the building.
 turnin Voren'thal the Seer##10553 |goto Shattrath City/0 42.80,91.70
@@ -22779,7 +22880,7 @@ step
 Enter the building |goto Shattrath City/0 55.80,80.54 < 7 |walk
 talk Innkeeper Haelthol##19232
 |tip Inside the building.
-home Shattrath City |goto Shattrath City/0 56.34,81.56 |q 9793 |future
+home Scryer's Tier |goto Shattrath City/0 56.34,81.56 |q 9793 |future
 |next "Aldor_Scryers_Merge"
 step
 label "Aldor_Scryers_Merge"
@@ -22827,7 +22928,7 @@ accept By Any Means Necessary##9978 |goto Terokkar Forest/0 44.33,26.31
 step
 talk Empoor##18482
 |tip He walks along the road between Shattrath City and Tuurem.
-Select _"Empoor, you're going to tell me what I want to know, or else!"_
+Select _"Empoor, you're going to tell me what I want to know, or else!"_ |gossip 91294
 kill Empoor##18482
 |tip He will eventually surrender.
 turnin By Any Means Necessary##9978 |goto Terokkar Forest/0 47.46,27.17
@@ -22960,7 +23061,7 @@ turnin Olemba Seed Oil##9993 |goto Terokkar Forest/0 50.13,44.88
 accept And Now, the Moment of Truth##10201 |goto Terokkar Forest/0 50.13,44.88
 step
 talk Grek##19606
-Select _"Grek, will you try out this new weapon oil Rakoria made?"_
+Select _"Grek, will you try out this new weapon oil Rakoria made?"_ |gossip 92054
 Have Grek Test Olemba Oil |q 10201/1 |goto Terokkar Forest/0 49.85,45.30
 step
 talk Rakoria##18385
@@ -22999,23 +23100,23 @@ turnin Speak with Scout Neftis##10039 |goto Terokkar Forest/0 39.03,43.75
 accept Who Are They?##10041 |goto Terokkar Forest/0 39.03,43.75
 step
 talk Scout Neftis##18714
-Select _"Scout Neftis, I need another disguise."_
+Select _"Scout Neftis, I need another disguise."_ |gossip 91534
 Gain an Orc Disguise |havebuff Shadowy Disguise##32756 |goto Terokkar Forest/0 39.03,43.75 |q 10041
 stickystart "Keep_Disguise"
 step
 Enter the building |goto Terokkar Forest/0 39.69,39.69 < 7 |walk
 talk Shadowy Advisor##18719
 |tip Inside the building.
-Select _"Advisor, what's the latest news?"_
+Select _"Advisor, what's the latest news?"_ |gossip 91421
 Talk to the Shadowy Advisor |q 10041/3 |goto Terokkar Forest/0 40.32,39.04
 step
 talk Shadowy Initiate##18716
-Select _"What are you doing there?"_
+Select _"What are you doing there?"_ |gossip 91419
 Talk to the Shadowy Initiate |q 10041/1 |goto Terokkar Forest/0 39.03,39.68
 step
 talk Shadowy Laborer##18717
 |tip It walks around this area.
-Select _"Why are you fixing all of this up?"_
+Select _"Why are you fixing all of this up?"_ |gossip 91319
 Talk to the Shadowy Laborer |q 10041/2 |goto Terokkar Forest/0 38.08,41.10
 He can also be around [41.00,40.65]
 step
@@ -24465,7 +24566,7 @@ accept Whispers of the Raven God##10607 |goto Blade's Edge Mountains/0 62.16,39.
 step
 talk Overseer Nuaar##21981
 |tip He looks like a neutral Draenei that walks around this large area.
-Select _"Overseer, I am here to negotiate on behalf of the Cenarion Expedition."_
+Select _"Overseer, I am here to negotiate on behalf of the Cenarion Expedition."_ |gossip 92142
 Negotiate with Overseer Nuaar |q 10682/1 |goto Blade's Edge Mountains/0 59.37,37.97
 You can also find him around [62.83,27.89]
 step
@@ -24771,7 +24872,11 @@ Wear the Overseer Disguise |havebuff Overseer Disguise##38157 |goto Blade's Edge
 step
 talk Kolphis Darkscale##22019
 |tip Inside the cave.
-Select _"I'm fine, thank you. You asked for me?"_
+Select _"I'm fine, thank you. You asked for me?"_ |gossip 91744
+Select _"Oh, it's not my fault, I can assure you."_ |gossip 91743
+Select _"Um, no... no, I don't want that at all."_ |gossip 91745
+Select _"Impressive. When do we attack?"_ |gossip 91746
+Select _"Absolutely!"_ |gossip 91747
 Attend the Meeting with Kolphis Darkscale |q 10722/1 |goto Blade's Edge Mountains/0 32.64,37.49
 step
 talk Timeon##21782
@@ -25321,7 +25426,7 @@ collect B'naar Access Crystal##29366 |q 10329/2 |goto Netherstorm/0 23.83,70.58 
 step
 click B'naar Control Console##183770
 |tip Inside the building.
-Choose _<Begin emergency shutdown.>_
+Choose _<Begin emergency shutdown.>_ |gossip 91933
 Kill the enemies that attack in waves
 |tip This takes 2 minutes.
 Shut Down Manaforge B'naar |q 10299/1 |goto Netherstorm/0 23.18,68.16 |only if rep ('The Aldor') >= Neutral
@@ -25361,7 +25466,7 @@ accept Behind Enemy Lines##10652 |goto Netherstorm/0 33.81,64.23
 |only if rep ('The Scryers') >= Neutral
 step
 talk Veronia##20162
-Select _"I'm as ready as I'll ever be."_
+Select _"I'm as ready as I'll ever be."_ |gossip 92038
 Take a Flight to Manaforge Coruu |invehicle |goto Netherstorm/0 33.81,64.23 |q 10652
 |only if rep ('The Scryers') >= Neutral
 step
@@ -25423,7 +25528,7 @@ stickystart "Kill_Sunfury_Researchers"
 step
 Enter the building |goto Netherstorm/0 47.26,80.93 < 7 |walk
 kill Overseer Seylanna##20397
-|tip Inside the building.
+|tip Inside the building. Right click the Sunfury Disguise buff to remove it 1st.
 collect Coruu Access Crystal##29396 |q 10330/2 |goto Netherstorm/0 49.02,81.51 |only if rep ('The Scryers') >= Neutral
 collect Coruu Access Crystal##29396 |q 10321/2 |goto Netherstorm/0 49.02,81.51 |only if rep ('The Aldor') >= Neutral
 step
@@ -25434,7 +25539,7 @@ kill 5 Sunfury Researcher##20136+ |q 10246/1 |goto Netherstorm/0 48.38,81.74
 step
 click Coruu Control Console##183956
 |tip Inside the building.
-Choose _<Begin emergency shutdown.>_
+Choose _<Begin emergency shutdown.>_ |gossip 91916
 Kill the enemies that attack in waves
 |tip This takes 2 minutes.
 Shut Down Manaforge Coruu |q 10321/1 |goto Netherstorm/0 48.95,81.51 |only if rep ('The Aldor') >= Neutral
@@ -25903,7 +26008,7 @@ collect Duro Access Crystal##29397 |q 10338/2 |goto Netherstorm/0 59.99,68.50 |o
 step
 click Duro Control Console##184311
 |tip Inside the building.
-Choose _<Begin emergency shutdown.>_
+Choose _<Begin emergency shutdown.>_ |gossip 91917
 Kill the enemies that attack in waves
 |tip This takes 2 minutes.
 Shut Down Manaforge Duro |q 10322/1 |goto Netherstorm/0 59.11,66.78 |only if rep ('The Aldor') >= Neutral
@@ -25979,7 +26084,7 @@ turnin Kick Them While They're Down##10341 |goto Netherstorm/0 32.05,64.00
 accept A Defector##10202 |goto Netherstorm/0 32.05,64.00
 |only if rep ('The Scryers') >= Neutral
 step
-talk Doctor Vomisa, Ph.T.##19832
+talk Doctor Vomisa Ph.T.##19832
 |tip He walks around this area.
 turnin Doctor Vomisa, Ph.T.##10247 |goto Netherstorm/0 37.32,63.74
 step
@@ -26290,12 +26395,12 @@ Discover the First Triangulation Point |q 10269/1 |goto Netherstorm/0 66.81,34.8
 step
 Follow the path down |goto Netherstorm/0 68.66,33.55 < 30 |only if walking
 click Ethereum Transponder Zeta
-Choose _"Attempt to contact Wind Trader Marid."_
+Choose _"Attempt to contact Wind Trader Marid."_ |gossip 91803
 talk Image of Wind Trader Marid##20518
 turnin A Not-So-Modest Proposal##10270 |goto Netherstorm/0 71.14,38.99
 accept Getting Down to Business##10271 |goto Netherstorm/0 71.14,38.99
 step
-Kill Nether enemies around this area
+use Essence Gatherer##69825
 collect 8 Nether Dragon Essence##28970 |q 10271/1 |goto Netherstorm/0 72.34,38.46
 step
 talk Shrouded Figure##20154
@@ -26330,7 +26435,7 @@ step
 Locate Wind Trader Marid |goto Netherstorm/0 58.32,31.65 < 15 |c |q 10273
 step
 talk Wind Trader Marid##20071
-Select _"Wind Trader Marid, I've returned with more information on the nether drakes. I'm prepared to be your business partner, and for an extra sum, I'll take care of that troublesome elf and her human friend."_
+Select _"Wind Trader Marid, I've returned with more information on the nether drakes. I'm prepared to be your business partner, and for an extra sum, I'll take care of that troublesome elf and her human friend."_ |gossip 91906
 Begin Following Wind Trader Marid |goto Netherstorm/0 58.32,31.65 > 15 |c |q 10273
 step
 Watch the dialogue
@@ -26339,7 +26444,7 @@ Watch the dialogue
 kill Wind Trader Marid##20071 |q 10273/1 |goto Netherstorm/0 59.95,30.96
 step
 talk Protectorate Nether Drake##20903
-Select _"I'm ready to fly! Take me up, dragon!"_
+Select _"I'm ready to fly! Take me up, dragon!"_ |gossip 91826
 Begin Flying with the Nether Drake |invehicle |goto Netherstorm/0 60.21,31.76 |q 10438
 step
 use the Phase Disruptor##29778
@@ -26656,7 +26761,7 @@ step
 Follow the path |goto Shadowmoon Valley/0 36.33,41.36 < 15 |walk
 clicknpc Kagrosh##21725
 |tip Inside the mine.
-Choose _<Search the corpse for Kagrosh' pack.>_
+Choose _<Search the corpse for Kagrosh' pack.>_ |gossip 91873
 collect Kagrosh's Pack##30659 |q 10601/1 |goto Shadowmoon Valley/0 35.19,40.19
 step
 Cross the bridge |goto Shadowmoon Valley/0 37.77,40.91 < 15 |walk
@@ -41649,9 +41754,6 @@ talk Gato##63296
 turnin Tiger Palm##31157 |goto Valley of Trials/0 42.08,68.71
 |only if Orc Monk
 step
-talk Canaga Earthcaller##5887
-accept Hana'zua##25128 |goto Valley of Trials/0 41.70,70.00
-step
 talk Foreman Thazz'ril##11378
 accept Lazy Peons##25134 |goto Valley of Trials/0 46.13,63.09
 stickystart "Collect_Scorpid_Worker_Tails"
@@ -41670,7 +41772,6 @@ You can find more at: |notinsticky
 [Valley of Trials/0 60.09,25.72]
 step
 talk Hana'zua##3287
-turnin Hana'zua##25128 |goto Valley of Trials/0 34.62,44.20
 accept Sarkoth##25129 |goto Valley of Trials/0 34.62,44.20
 step
 kill Sarkoth##3281
@@ -41678,13 +41779,13 @@ kill Sarkoth##3281
 |tip It walks around.
 collect Sarkoth's Mangled Claw##4905 |q 25129/1 |goto Valley of Trials/0 34.13,62.70
 step
-talk Hana'zua##3287
-turnin Sarkoth##25129 |goto Valley of Trials/0 34.62,44.20
-accept Back to the Den##25130 |goto Valley of Trials/0 34.62,44.20
-step
 label "Collect_Scorpid_Worker_Tails"
 kill Scorpid Worker##3124+
 collect 8 Scorpid Worker Tail##4862 |q 25127/1 |goto Valley of Trials/0 37.11,45.91
+step
+talk Hana'zua##3287
+turnin Sarkoth##25129 |goto Valley of Trials/0 34.62,44.20
+accept Back to the Den##25130 |goto Valley of Trials/0 34.62,44.20
 step
 label "Collect_Cactus_Apples"
 click Cactus Apple##171938+
@@ -42436,12 +42537,9 @@ talk Master Gadrin##3188
 accept Riding On##25171 |goto Durotar 55.95,74.72 |only if level <= 10
 |only if level <= 10
 step
-talk Raider Jhash##10676
-Select _"Can I catch a ride to Razor Hill?"_
-Begin Riding to Razor Hill |invehicle |goto Durotar 55.26,74.65 |q 25171
-|only if haveq(25171)
-step
-Ride to Razor Hill |outvehicle |goto Durotar 52.49,44.22 |q 25171 |notravel
+talk Handler Marnlek##41142
+fpath Sen'jin Village |goto Durotar/0 55.40,73.34
+|tip Get the flightpath and fly to Razor Hill
 |only if haveq(25171)
 step
 talk Burok##41140
@@ -42450,6 +42548,7 @@ fpath Razor Hill |goto Durotar 53.09,43.58
 step
 talk Gar'Thok##3139
 |tip Upstiars inside the building.
+|tip You can fly to Razor Hill from Sen'jin Village.
 turnin Riding On##25171 |goto Durotar 51.95,43.50 |only if haveq(25171)
 accept From Bad to Worse##25173 |goto Durotar 51.95,43.50 |only if level <= 10
 |only if level <= 10 or haveq(25171)
@@ -53658,24 +53757,12 @@ talk Nazgrel##3230
 turnin The Mag'har##9406 |goto Hellfire Peninsula/0 55.02,35.97
 |only if haveq(9406)
 step
-talk Earthcaller Ryga##17123
-accept A Debilitating Sickness##9442 |goto Hellfire Peninsula/0 32.09,28.36 |only if (completedq(9441) or haveq(9441))
-|only if level < 63 and (completedq(9441) or haveq(9441))
-step
 Follow the path |goto Hellfire Peninsula/0 34.48,30.93 < 30 |only if walking
 Follow the path down |goto Hellfire Peninsula/0 33.77,34.61 < 30 |only if walking
 Follow the path |goto Hellfire Peninsula/0 30.69,39.83 < 70 |only if walking
 click Southern Beacon
 Light the Southern Beacon |q 9391/3 |goto Hellfire Peninsula/0 36.10,65.31
 |only if haveq(9391)
-step
-Enter the cave |goto Hellfire Peninsula/0 34.16,63.03 < 7 |walk
-click Drycap Mushroom
-|tip They look like brown mushrooms on the ground around this area.
-|tip Inside the cave.
-|tip Be careful to avoid Blacktalon the Savage, an elite enemy inside the cave.
-collect Drycap Mushroom##23753 |q 9442/1 |goto Hellfire Peninsula/0 34.21,64.53
-|only if haveq(9442)
 step
 Leave the cave |goto Hellfire Peninsula/0 34.16,63.03 < 7 |walk
 click Central Beacon
@@ -58963,7 +59050,7 @@ accept Jack Likes His Drink##11466 |goto Howling Fjord/0 36.32,80.48 |only if le
 |only if level < 71 and (completedq(11464) or haveq(11464)) or readyq(11464)
 step
 Enter the building |goto Howling Fjord/0 35.28,80.22 < 10 |walk
-talk Olga, the Scalawag Wench##24639
+talk Olga the Scalawag Wench##24639
 |tip Inside the building.
 Select _"I'd like to buy Jack a drink. Perhaps something... extra strong."_
 Click Here After You Buy Jack Adams a Drink |confirm |goto Howling Fjord/0 35.31,79.59 |q 11466

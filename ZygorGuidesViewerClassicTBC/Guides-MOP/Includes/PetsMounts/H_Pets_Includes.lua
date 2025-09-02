@@ -1058,3 +1058,71 @@ ZygorGuidesViewer:RegisterInclude("H_Battlepet_dailies",[[
 		|next "reset"
 		only if completedq(31951)
 ]])
+
+ZygorGuidesViewer:RegisterInclude("H_Beasts_of_Fable",[[
+		talk Gentle San##64582
+		accept Beasts of Fable##32603 |goto Vale of Eternal Blossoms 60.80,23.70
+	step
+	label "dailies"
+		_No-No_
+		This enemy is aquatic
+		It is strong against undead and weak to flying attacks
+		I would suggest that you use flying pets against this enemy
+		Defeat No-No |q 32603/3 |goto Vale of Eternal Blossoms 11.00,70.90
+	step
+		_Lucky Yi_
+		This enemy is a critter
+		Is is strong against Elementals and weak to beast attacks
+		I would suggest using beast pets against this enemy
+		Defeat Lucky Yi |q 32603/5 |goto Valley of the Four Winds 40.50,43.70
+	step
+		_Greyhoof_
+		This enemy is a beast
+		It is strong against humanoids and weak against mechanical pets
+		I would suggest using a team of mechanical pets against this enemy
+		Defeat Greyhoof |q 32603/4 |goto Valley of the Four Winds 25.30,78.50
+	step
+		_Xi'a_
+		This enemy is aquatic
+		It is strong against undead and weak to flying pets
+		I would suggest using flying pets against this enemy
+		Defeat Xi'a |q 32603/10 |goto Krasarang Wilds 36.30,37.30
+	step
+		_Gorespine_
+		This enemy is a beast
+		Is is strong against Critters and weak to Mechanical attacks
+		I would suggest using Mechanical pets against this enemy
+		Defeat Gorespine |q 32603/2 |goto Dread Wastes 26.10,50.20
+	step
+		_Ti'un the Wanderer_
+		This enemy is aquatic
+		It is strong against undead and weak to flying pets
+		I would suggest using flying pets against this enemy
+		Defeat Ti'un the Wanderer |q 32603/6 |goto Townlong Steppes 72.30,79.80
+	step
+		_Kafi_
+		This enemy is a beast
+		It is strong against humanoids and weak against mechanical pets
+		I would suggest using a team of mechanical pets against this enemy
+		Defeat Kafi |q 32603/7 |goto Kun-Lai Summit 35.20,56.20
+	step
+		_Dos-Ryga_
+		This enemy is aquatic
+		It is strong against undead and weak to flying pets
+		I would suggest using flying pets against this enemy
+		Defeat Dos-Ryga |q 32603/8 |goto Kun-Lai Summit 67.90,84.70
+	step
+		_Ka'wi_
+		This enemy is a critter
+		Is is strong against Elementals and weak to beast attacks
+		I would suggest using a team of mechanical pets against this enemy
+		Defeat Ka'wi the Gorger |q 32603/1 |goto The Jade Forest 48.40,71.00
+	step
+		This enemy is a critter
+		Is is strong against Elementals and weak to beast attacks
+		I would suggest using beast pets against this enemy
+		Defeat Nitun |q 32603/9 |goto The Jade Forest 57.00,29.10
+	step
+		talk Gentle San##64582
+		turnin Beasts of Fable##32603 |goto Vale of Eternal Blossoms 60.80,23.70
+]])

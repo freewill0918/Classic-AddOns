@@ -6,7 +6,7 @@ ZygorGuidesViewer.GuideMenuTier = "TRI"
 ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Classic Reputations\\Bloodsail Buccaneers")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Classic Reputations\\Cenarion Circle")
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Darkspear Trolls",{
-description="\nThis guide will walk you through becoming exalted with the Darkspear Trolls faction.",
+description="This guide will walk you through becoming exalted with the Darkspear Trolls faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('Darkspear Trolls') < Exalted end,
 },[[
 step
@@ -24,7 +24,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Classic Reputatio
 ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Classic Reputations\\The Steamwheedle Cartel")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Classic Reputations\\Thunder Bluff")
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Timbermaw Hold",{
-description="\nThis guide will walk you through becoming exalted with the Timbermaw Hold faction.",
+description="This guide will walk you through becoming exalted with the Timbermaw Hold faction.",
 achieveid={944},
 patch='30001',
 },[[
@@ -196,7 +196,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Wrath of the Lich
 ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Wrath of the Lich King Reputations\\Knights of the Ebon Blade")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Wrath of the Lich King Reputations\\The Oracles")
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Wrath of the Lich King Reputations\\The Sons of Hodir",{
-description="\nThis guide will walk you through becoming exalted with the Sons of Hodir faction.",
+description="This guide will walk you through becoming exalted with the Sons of Hodir faction.",
 },[[
 step
 Proceeding to Prequests next step |next "Daily" |only if rep('The Sons of Hodir')<=Friendly

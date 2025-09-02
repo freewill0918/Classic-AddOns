@@ -2100,7 +2100,7 @@ ZygorGuidesViewer:RegisterInclude("Cenarion_Expedition_Rep",[[
 	step
 		kill "Lunchbox"##25968 |q 11884/2 |goto 46.40,40
 		|tip He walks around this area. Kill 'Lunchbox' and then Nedar, Lord of Rhinos will jump off.
-		kill Nedar, Lord of Rhinos##25801 |q 11884/1 |goto 46.40,40
+		kill Nedar Lord of Rhinos##25801 |q 11884/1 |goto 46.40,40
 	step
 		Stand inside the Caribou Traps on the ground
 		|tip They look like metal spiked traps on the ground.
@@ -2590,7 +2590,7 @@ ZygorGuidesViewer:RegisterInclude("Kaluak_rep",[[
 		turnin Gambling Debt##11464 |goto 36.30,80.50
 		accept Jack Likes His Drink##11466 |goto 36.30,80.50
 	step
-		talk Olga, the Scalawag Wench##24639
+		talk Olga the Scalawag Wench##24639
 		Tell her:
 		<I'd like to buy Jack a drink.> |goto 35.30,79.60
 		She will walk over to Jack Adams

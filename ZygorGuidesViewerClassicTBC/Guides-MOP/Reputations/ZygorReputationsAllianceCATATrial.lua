@@ -5,7 +5,7 @@ if ZGV:DoMutex("ReputationsA") then return end
 ZygorGuidesViewer.GuideMenuTier = "TRI"
 ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Classic Reputations\\Bloodsail Buccaneers")
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Classic Reputations\\Darnassus",{
-description="\nThis guide will walk you through becoming exalted with the Darnassus faction.",
+description="This guide will walk you through becoming exalted with the Darnassus faction.",
 condition_suggested=function() return level >= 10 and level <= 50 and rep('Darnassus') < Exalted end,
 },[[
 step
@@ -48,7 +48,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Wrath of the Lich
 ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Wrath of the Lich King Reputations\\Knights of the Ebon Blade")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Reputation Guides\\Wrath of the Lich King Reputations\\The Oracles")
 ZygorGuidesViewer:RegisterGuide("Reputation Guides\\Wrath of the Lich King Reputations\\The Sons of Hodir",{
-description="\nThis guide will walk you through becoming exalted with the Sons of Hodir faction.",
+description="This guide will walk you through becoming exalted with the Sons of Hodir faction.",
 },[[
 step
 Proceeding to Prequests next step |next |only if rep('The Sons of Hodir')<=Friendly

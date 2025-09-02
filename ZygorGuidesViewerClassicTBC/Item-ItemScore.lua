@@ -940,7 +940,7 @@ function ItemScore:GetAzeritePowers(itemlink)
 	
 	-- is it an item in bags or bank
 	if not location then
-		for cont = 0,  NUM_BAG_SLOTS + GetNumBankSlots() do
+		for cont = 0,  NUM_BAG_SLOTS + (NUM_CHARACTERBANK_SLOTS or 0) do
 			for slot = 1, C_Container.GetContainerNumSlots(cont) do
 				local itemInfo = C_Container.GetContainerItemInfo(cont, slot);
 				if itemInfo and itemlink == itemInfo.hyperlink then

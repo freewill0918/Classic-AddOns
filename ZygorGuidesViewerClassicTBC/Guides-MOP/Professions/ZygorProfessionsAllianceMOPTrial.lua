@@ -6,7 +6,7 @@ ZygorGuidesViewer.GuideMenuTier = "TRI"
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Alchemy\\Leveling Guides\\Alchemy (1-600)")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Archaeology\\Leveling Guides\\Archaeology (1-600)")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Blacksmithing\\Leveling Guides\\Blacksmithing (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Blacksmithing') > 0 end,
 description="This guide will walk you through leveling your Blacksmithing skill from 1-600.",
@@ -353,7 +353,7 @@ create 10 Patterned Bronze Bracers##2672,Blacksmithing,150 |goto Stormwind City/
 |tip Stand next to an anvil.
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Engineering\\Leveling Guides\\Engineering (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Engineering') > 0 end,
 description="This guide will walk you through leveling your Engineering skill from 1-600.",
@@ -694,7 +694,7 @@ create 10 Standard Scope##3978,Engineering,150 |only if Gnome |or
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Leveling Guides\\Enchanting (1-600)")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\First Aid\\Leveling Guides\\First Aid (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('First Aid') > 0 end,
 description="This guide will walk you through leveling your First Aid skill from 1-600.",
@@ -757,7 +757,7 @@ step
 create 60 Heavy Wool Bandage##3278,First Aid,150
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Leveling Guides\\Fishing (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Fishing') > 0 end,
 description="This guide will walk you through leveling your Fishing skill from 1-600.",
@@ -845,8 +845,9 @@ use the Bright Baubles##6532 |only if skill("Fishing") >= 100
 |tip If you have a better bait, you can use that instead.
 Reach Skill 125 in Fishing |skill Fishing,125 |goto Stormwind City/0 55.08,68.10
 ]])
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Leveling Guides\\Herbalism (1-600)")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Inscription\\Leveling Guides\\Inscription (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill("Inscription") > 0 and skill("Inscription") < 600 end,
 description="This guide will walk you through leveling your Inscription skill from 1-600.",
@@ -1040,7 +1041,7 @@ _<Create any orange-difficulty glyphs>_
 Reach 125 Inscription Skill |skill Inscription,125
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Leveling Guides\\Jewelcrafting (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Jewelcrafting') > 0 end,
 description="This guide will walk you through leveling your Jewelcrafting skill from 1-600.",
@@ -1332,7 +1333,7 @@ create 30 Pendant of the Agate Shield##25610,Jewelcrafting,150 |only if default 
 create 30 Pendant of the Agate Shield##25610,Jewelcrafting,155 |only if Draenei |or
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Leatherworking\\Leveling Guides\\Leatherworking (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Leatherworking') > 0 end,
 description="This guide will walk you through leveling your Leatherworking skill from 1-600.",
@@ -1453,8 +1454,10 @@ create 18 Dark Leather Boots##2167,Leatherworking,137
 |tip You may need to create more or less of these.
 |tip Each additional Dark Leather Boot requires 4 Medium Leather, 2 Fine Thread, and 1 Gray Dye.
 ]])
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Leveling Guides\\Mining (1-600)")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Leveling Guides\\Skinning (1-600)")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Leveling Guides\\Tailoring (1-600)",{
-cataready=true,
+mopready=true,
 author="support@zygorguides.com",
 condition_suggested=function() return skill('Tailoring') > 0 end,
 description="This guide will walk you through leveling your Tailoring skill from 1-600.",
