@@ -1,6 +1,6 @@
 ## Interface: 50500
 ## Author: Snowflame0
-## Version: v5.0.3
+## Version: v5.0.4
 ## Dependencies: AtlasLootClassic
 ## LoadOnDemand: 1
 
@@ -32,6 +32,10 @@
 ## X-License: GPL v2
 
 ## X-AtlasLootClassic-LootModule: 1
+
+## Title-zhTW: |cffB973FF[裝備]|r 副本戰利品查詢-專業製作
+## Notes-zhTW: AtlasLootClassic - Crafting |n|n專業技能物品資料庫。
+## DefaultState: disabled
 
 Locales\Locales.xml
 

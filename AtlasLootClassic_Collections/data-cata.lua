@@ -128,7 +128,7 @@ data["CookingVendorCata"] = {
 }
 
 data["ValorPointsCata"] = {
-    name = format(AL["'%s' Vendor"], format(EPIC_QUALITY, ALIL["Valor Points"])),
+    name = format(AL["'%s' Vendor"], format(EPIC_QUALITY, AL["Valor Points"])),
     ContentType = VENDOR_CONTENT,
     TableType = NORMAL_ITTYPE,
     gameVersion = AtlasLoot.CATA_VERSION_NUM,
@@ -202,7 +202,7 @@ data["ValorPointsCata"] = {
             { 21, 77171 }, -- Bladeshatter Treads
         }
     }, {
-        name = ALIL["Armor"] .. " - " .. AL["Accessories"],
+        name = ALIL["Armor"] .. " - " .. ALIL["Accessories"],
         [VENDOR_DIFF] = { -- Plate
             { 1,  77095 }, -- Batwing Cloak
             { 2,  77097 }, -- Dreamcrusher Drape
@@ -235,7 +235,7 @@ data["ValorPointsCata"] = {
 }
 
 data["JusticePointsCata"] = {
-    name = format(AL["'%s' Vendor"], format(SUPERIOR_QUALITY, ALIL["Justice Points"])),
+    name = format(AL["'%s' Vendor"], format(SUPERIOR_QUALITY, AL["Justice Points"])),
     ContentType = VENDOR_CONTENT,
     TableType = NORMAL_ITTYPE,
     gameVersion = AtlasLoot.CATA_VERSION_NUM,
@@ -601,7 +601,7 @@ data["JusticePointsCata"] = {
 }
 
 data["ObsidianFragments"] = {
-    name = format(AL["'%s' Vendor"], format(EPIC_QUALITY, ALIL["Obsidian Fragment"])),
+    name = format(AL["'%s' Vendor"], format(EPIC_QUALITY, AL["Obsidian Fragment"])),
     ContentType = VENDOR_CONTENT,
     TableType = NORMAL_ITTYPE,
     gameVersion = AtlasLoot.CATA_VERSION_NUM,
@@ -809,7 +809,7 @@ data["ObsidianFragments"] = {
 }
 
 data["FissureStoneFragments"] = {
-    name = format(AL["'%s' Vendor"], format(EPIC_QUALITY, ALIL["Fissure Stone Fragment"])),
+    name = format(AL["'%s' Vendor"], format(EPIC_QUALITY, AL["Fissure Stone Fragment"])),
     ContentType = VENDOR_CONTENT,
     TableType = NORMAL_ITTYPE,
     gameVersion = AtlasLoot.CATA_VERSION_NUM,

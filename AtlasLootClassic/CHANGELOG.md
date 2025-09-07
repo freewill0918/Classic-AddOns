@@ -1,3 +1,8 @@
+# 5.0.4 (September 4, 2025)
+- Added Transmog tracker feature from AtlasLoot v8+ (Shadowlands version?)
+- Added new Celestial dungeon drops (HoF)
+- Added source tooltip for T14 items
+
 # 5.0.3 (August 27, 2025)
 - Added Celestial Dungeon drops
 - Added Rare mobs and items to Collections
@@ -36,32 +41,27 @@
 - Noblegarden items added
 - Several small fixes to old world loot
 - Change order of expansions to put newest one on top first
-(2025-08-27)
+(2025-09-04)
 
-[Full Changelog](https://github.com/snowflame0/AtlasLootClassic_MoP/compare/v5.0.2...v5.0.3)
+[Full Changelog](https://github.com/snowflame0/AtlasLootClassic_MoP/compare/v5.0.3...v5.0.4)
 
 ## Commits
 
-Adal (10):
+Adal (1):
 
-- Missing pet
-- Some details
-- Phases added
-- Add vendor prices
-- Pets per phase
-- Pets per phase
-- Update data-mop.lua
-- Update data-mop.lua
-- Update data-mop.lua
-- Pets per phase
+- Phase correction
 
-Snowflame (7):
+Snowflame (11):
 
-- Update TODO, release notes, update pane
-- Add S12 pvp non-set items, phase indicator for later seasons
-- Add rare and zone locales
-- Remove relics and throwing weapons from PvP
-- fix JP values
-- Add rare mobs and items, fix celestial items, add companion accessories
-- Added celestial dungeon drops
+- Update release notes and update panel
+- Added new (HoF) Celestial dungeon drops
+- no change
+- Fix global variable issue
+- Fix global variable issue
+- Update sources for T14 pieces, fix some duplication issues
+- Add tier tokens to celestial diff in dungeons and raids
+- Fixed celestial loot source raid, lots of misplaced items
+- Whitespace clean
+- Transmog nil check
+- Port Transmog feature from retail AL
 

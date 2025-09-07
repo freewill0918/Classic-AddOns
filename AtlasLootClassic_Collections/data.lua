@@ -39,7 +39,7 @@ local MINOR_GLYPHS_DIFF = data:AddDifficulty(ALIL["Minor Glyphs"], "minorglyphs"
 
 local VENDOR_DIFF = data:AddDifficulty(AL["Vendor"], "vendor", 0)
 local T10_1_DIFF = data:AddDifficulty(AL["10H / 25 / 25H"], "T10_1", 0)
-local T10_2_DIFF = data:AddDifficulty("25RAIDH", "T10_2", 0)
+local T10_2_DIFF = data:AddDifficulty(AL["25 Raid Heroic"], "T10_2", 0)
 
 local ALLIANCE_DIFF, HORDE_DIFF, LOAD_DIFF
 if UnitFactionGroup("player") == "Horde" then
