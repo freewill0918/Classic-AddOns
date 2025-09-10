@@ -1,8 +1,6 @@
 # Auctionator
 
-## [290](https://github.com/Auctionator/Auctionator/tree/290) (2025-08-17)
-[Full Changelog](https://github.com/Auctionator/Auctionator/compare/289...290) 
+## [292](https://github.com/Auctionator/Auctionator/tree/292) (2025-09-09)
+[Full Changelog](https://github.com/Auctionator/Auctionator/compare/291...292) 
 
-- Classic: Cancelling: Put auctions with bids on them at the top  
-- Retail: Cancelling: Sort auctions so that bids appear at the top  
-- Fix Shift+Click on search result when inserting into chat searching again  
+- [Fixes #1717] Legacy AH: Fix cancelling auctions from selling tab  
