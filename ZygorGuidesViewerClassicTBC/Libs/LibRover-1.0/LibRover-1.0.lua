@@ -4747,7 +4747,7 @@ function Lib:CheckMaxSpeeds()
 	local canfly_in_bfa = canfly and playerlevel>=20 -- and SP_BFA_PATHFINDER_2 -- BfA Pathfinder 2 no longer needed in 10.0.7
 	local canfly_in_sl = canfly and Q_MEMORIES_SUNLESS_SKIES
 	local canfly_in_slzm = canfly and A_UNLOCKING_THE_SECRETS
-	local canfly_in_df = canfly and A_DRAGON_ISLES_PATHFINDER -- useless, but there it is
+	local canfly_in_df = canfly -- A_DRAGON_ISLES_PATHFINDER requirement removed in 11.0
 
 	-- in karesh you can mount if you are not phasediving. if you are, you need to have spent enough talent points in zone tree to unlock specific talent
 	-- each talent costs 3 points, the one we need is third in line, so we expect at least 9 points spent. also, you only have access to ground mounts then
@@ -4795,8 +4795,8 @@ function Lib:CheckMaxSpeeds()
 		["Shadowlands"] = { groundspeed + max(BONUS_GUILDPERK_MOUNTUP) , dragonspeed_nerfed or (canfly_in_sl and flyspeed) or 0, canfly_in_sl and flyspeed or 0 },
 		["ShadowlandsZereth"] = { groundspeed + max(BONUS_GUILDPERK_MOUNTUP) , canfly_in_slzm and (dragonspeed_nerfed or flyspeed) or 0, canfly_in_slzm and flyspeed or 0 },
 		["DragonIsles"] = { groundspeed + max(BONUS_GUILDPERK_MOUNTUP) , dragonspeed or (canfly_in_df and flyspeed) or 0, SP_DRAGONRIDING_BASICS and flyspeed or 0 }, -- store normal flying mount speed for comfort mode
-		["KhazAlgar"] = { groundspeed + max(BONUS_GUILDPERK_MOUNTUP) , dragonspeed or (canfly_in_df and flyspeed) or 0, SP_DRAGONRIDING_BASICS and flyspeed or 0 }, -- store normal flying mount speed for comfort mode
-		["Karesh"] = { canride_in_karesh and (groundspeed + max(BONUS_GUILDPERK_MOUNTUP)) or 1 , canfly_in_karesh and (dragonspeed or (canfly_in_df and flyspeed)) or 0, canfly_in_karesh and (SP_DRAGONRIDING_BASICS and flyspeed) or 0 }, -- store normal flying mount speed for comfort mode
+		["KhazAlgar"] = { groundspeed + max(BONUS_GUILDPERK_MOUNTUP) , dragonspeed or (FLIGHTMODE_STEADY and flyspeed) or 0, SP_DRAGONRIDING_BASICS and flyspeed or 0 }, -- store normal flying mount speed for comfort mode
+		["Karesh"] = { canride_in_karesh and (groundspeed + max(BONUS_GUILDPERK_MOUNTUP)) or 1 , canfly_in_karesh and (dragonspeed or (FLIGHTMODE_STEADY and flyspeed)) or 0, canfly_in_karesh and (SP_DRAGONRIDING_BASICS and flyspeed) or 0 }, -- store normal flying mount speed for comfort mode
 	}
 
 	Lib.debug_maxspeeds = {

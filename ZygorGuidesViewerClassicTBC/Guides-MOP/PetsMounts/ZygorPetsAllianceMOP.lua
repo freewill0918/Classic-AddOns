@@ -3360,5 +3360,155 @@ talk Auctioneer Chilton##8670
 buy 1 Jade Owl##82774 |goto Stormwind City 61.00,71.60
 step
 label "done"
-learnpet Jade Owl##845 |use Jade Owl##82774
+|use Jade Owl##82774
+learnpet Jade Owl##845
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Mechanical Pets\\Clock'em",{
+patch='51000',
+source='Vendor',
+description="This guide will teach you how to acquire the Clock'em battle pet.",
+pet=1142,
+mopready=true,
+},[[
+step
+This pet will require you to reach Rank 4 in the Brawler's Guild.
+confirm
+step
+Acquire an Invitation to the Brawler's Guild
+|tip Bid on a Blood-Soaked Invitation and win.
+collect Blood Soaked Invitation##93194 |goto The Veiled Stair/0 63.80,75.80
+step
+use Blood Soaked Invitation##93194
+achieve 7947
+step
+WARNING:
+|tip There is an enrage timer on all Brawler's Guild fights.
+|tip You have 2 minutes to kill the current opponent before it activates.
+confirm
+step
+talk Bizmo's Brawlpub Bouncer##68408 |goto Deeprun Tram/2 39.20,34.10
+Tell them you're ready to fight. |goto Deeprun Tram/2 50.80,47.40 |noway |c
+step
+Fight 1: _Bruce_
+|tip Bruce is a very easy fight, meant to get you started in the Brawler's Guild. He has 1 ability:
+|tip Chomp, chomp, chomp is an ability that he uses in front of him. When he begins casting, run to the side or behind him to avoid getting hit by this attack.
+|tip The best strategy for this fight is to dps him as fast as you can, making sure to avoid being directly in front of him whenever he begins to cast his ability.
+Defeat Bruce in the Brawler's Guild |complete repval("Bizmo's Brawlpub","Friendly") >= 250
+step
+talk Bizmo's Brawlpub Bouncer##68408 |goto Deeprun Tram/2 39.20,34.10
+Tell them you're ready to fight. |goto Deeprun Tram/2 50.80,47.40 |noway |c
+step
+Fight 2: _Vian the Volatile_
+|tip Vian is more difficult, but still relatively easy. He has 4 abilities:
+|tip Fire Line is very similar to Bruce's _Chomp Chomp Chomp.
+|tip Fire Orbs will bounce around the arena, doing damage to you if they touch you, and causing an enrage effect on Vian if they touch him.
+|tip Lava Burst is a normal spell, you should not worry about this one.
+|tip The best strategy for this fight is to stay on him while avoiding both the orbs and the Fire Line spell, interrupting them if possible.
+Defeat Vian the Volatile in the Brawler's Guild |complete repval("Bizmo's Brawlpub","Friendly") >= 500
+step
+talk Bizmo's Brawlpub Bouncer##68408 |goto Deeprun Tram/2 39.20,34.10
+Tell them you're ready to fight. |goto Deeprun Tram/2 50.80,47.40 |noway |c
+step
+Fight 3: _Goredome_
+|tip Goredome is very similar to Bruce. He has 1 ability:
+|tip Lumbering Charge is a relatively quick cast, but it's easily avoidable. He will lay a red circle on the ground as he begins casting it. Make sure to get out of the circle before he charges.
+|tip If you are in the circle, you will instantly be killed.
+Defeat Goredome in the Brawler's Guild |complete repval("Bizmo's Brawlpub","Friendly") >= 750
+step
+talk Bizmo's Brawlpub Bouncer##68408 |goto Deeprun Tram/2 39.20,34.10
+Tell them you're ready to fight. |goto Deeprun Tram/2 50.80,47.40 |noway |c
+step
+Fight 4: _Dungeon Master Vishas_
+|tip Dungeon Master Vishas is the boss of this Rank. He has 2 abilities:
+|tip Naughty Secrets is a 2.50-second cast debuff that inflicts damage and increases vulnerability to future shadow damage for 1 minute. This isn't a big concern, but this spell can be interrupted.
+|tip Heated Pokers is a 2.50-second cast that causes Vishas' attacks to do massive damage. This spell cannot be interrupted except using a stun. If he does cast this, make sure to run away until the buff wears off.
+Defeat Dungeon Master Vishas in the Brawler's Guild |complete repval("Bizmo's Brawlpub","Friendly") >= 1000
+step
+talk Bizmo's Brawlpub Bouncer##68408 |goto Deeprun Tram/2 39.20,34.10
+Tell them you're ready to fight. |goto Deeprun Tram/2 50.80,47.40 |noway |c
+step
+Fight 5: _Dippy_
+|tip Dippy is the first fight in rank 2 and has the following abilities:
+|tip Slippy is a constant debuff that causes him to fall down with every direct hit. This interrupts the current cast of Peck. This will not happen if Dippy is next to a wall.
+|tip Peck is a very quick casted spell that will instantly kill you. Unless you are strictly a melee class, the best option in this fight is to kite him and kill him from range.
+|tip The best strategy for this fight is to keep pressue on Dippy, and never give him a chance to cast his Peck. Any direct strike will do, so don't rely on DoTs to knock him over.
+Defeat Dippy in the Brawler's Guild |complete repval("Bizmo's Brawlpub","Friendly") >= 1250
+step
+talk Bizmo's Brawlpub Bouncer##68408 |goto Deeprun Tram/2 39.20,34.10
+Tell them you're ready to fight. |goto Deeprun Tram/2 50.80,47.40 |noway |c
+step
+Fight 6: _Kirrawk_
+|tip Kirrawk is the second fight in rank 2 and has the following abilities:
+|tip Lightning Bolt is his basic cast spell. It does quite a bit of damage, but isn't a primary concern.
+|tip Storm Cloud is an ability that summons a cloud to inflict Nature damage when Kirrawk is attacked. Interrupt this whenever possible.
+|tip Tornado is an ability that summons a twister that will toss you up somewhere in the arena, and will make a straight line towards you. The only way to avoid this is to have the tornado touch Kirrawk before it touches you.
+|tip Lightning Flurry is an ability that he will only cast if you are tossed up by his Tornado. This attack does considerable damage.
+|tip The best strategy for this fight is to pay attention to the tornado, and make sure it hits him instead of you. Also, pay attention to his casts and interrupt Storm Cloud any way you can.
+Defeat Kirrawk in the Brawler's Guild |complete repval("Bizmo's Brawlpub","Friendly") >= 1500
+step
+talk Bizmo's Brawlpub Bouncer##68408 |goto Deeprun Tram/2 39.20,34.10
+Tell them you're ready to fight. |goto Deeprun Tram/2 50.80,47.40 |noway |c
+step
+Fight 7: _Fran_ and _Riddoh_
+|tip Fran and Riddoh is the first fight where you must kill 2 enemies:
+|tip Riddoh should be your primary target and has these abilities:
+|tip Throw Net is his basic ability. It is a quick cast, and immobilizes you for 5 seconds.
+|tip Frenzied Riddoh is an ability that will only be used if you kill Fran first. This causes Riddoh's attacks to deal 250% damage
+|tip Fran_ should be your secondary Target and has the following abilities:
+|tip Throw Dynamite is his basic ability. He throws a stick of dynamite in the air that can be avoided.
+|tip Goblin Device is an ability that summons a a ring of bombs around you. You will have to run out of the circle before they explode.
+|tip The best strategy for this fight is to kill Riddoh first to prevent him from becoming frenzied, while making sure to avoid the AoE attacks that Fran throws at you.
+Defeat Fran and Riddoh in the Brawler's Guild |complete repval("Bizmo's Brawlpub","Friendly") >= 1750
+step
+talk Bizmo's Brawlpub Bouncer##68408 |goto Deeprun Tram/2 39.20,34.10
+Tell them you're ready to fight. |goto Deeprun Tram/2 50.80,47.40 |noway |c
+step
+Fight 8: _King Kulaka_
+|tip King Kulaka is the boss of this Rank. He has 1 ability:
+|tip Dash is an instant cast spell that increases his movement speed by 60% for 5 seconds.
+|tip The best strategy for this is to dps him before he can kill you. His melee attacks hit hard, so be sure to have some potions handy and do your best to kite him if possible.
+Defeat King Kulaka in the Brawler's Guild |complete repval("Bizmo's Brawlpub","Friendly") >= 2000
+step
+talk Bizmo's Brawlpub Bouncer##68408 |goto Deeprun Tram/2 39.20,34.10
+Tell them you're ready to fight. |goto Deeprun Tram/2 50.80,47.40 |noway |c
+step
+Fight 9: _Blat_
+|tip Blat is where the difficulty starts to raise a bit. He has 1 ability:
+|tip Split is a 0.50 second cast spell that causes him to create a copy of himself. He will use this several times throughout the fight.
+|tip The best strategy for this fight is to kite him away, and focus on the main version of him. If you can't kite, then just try and do as much dps as possible. All of the other versions have as much health as he does, so you will not be able to kill them fast enough to avoid the enrage timer.
+Defeat Blat in the Brawler's Guild |complete repval("Bizmo's Brawlpub","Friendly") >= 2250
+step
+talk Bizmo's Brawlpub Bouncer##68408 |goto Deeprun Tram/2 39.20,34.10
+Tell them you're ready to fight. |goto Deeprun Tram/2 50.80,47.40 |noway |c
+step
+Fight 10: _Sanoriak_
+Sanoriak is basically a more powerful version of Vian the Volatile. He has 4 abilities:
+|tip Fireball and Pyroblast are both his most common moves. They do quite a bit of damage, so interrupt them every now and then if possible.
+|tip Flame Buffet is a strong move that does a lot of damage and increases any fire damage taken for 15 seconds. Interrupt this as much as possible.
+|tip Firewall is his most powerful move. It will not show a casting bar, but he will show the animation. This spawns a rain of fireballs down on your location. Be sure to move out of this, because it does a ton of damage.
+|tip The best strategy for this fight is to keep pressure on him, avoid his AoE meteor attack, and interrupt/stun whenever possible.
+Defeat Sanoriak in the Brawler's Guild |complete repval("Bizmo's Brawlpub","Friendly") >= 2500
+step
+talk Bizmo's Brawlpub Bouncer##68408 |goto Deeprun Tram/2 39.20,34.10
+Tell them you're ready to fight. |goto Deeprun Tram/2 50.80,47.40 |noway |c
+step
+Fight 11: _Ixx_
+Ixx is very similar to _Mogu Warriors_ in Pandaria. He has 1 ability:
+|tip Conal Cleave is a average cast spell that shows a large cone in front of him when he begins casting. If this hits you, you will die.
+|tip The best strategy for this fight is to keep pressure on him, and run through him when he begins casting his cleave.
+Defeat Ixx in the Brawler's Guild |complete repval("Bizmo's Brawlpub","Friendly") >= 2750
+step
+talk Bizmo's Brawlpub Bouncer##68408 |goto Deeprun Tram/2 39.20,34.10
+Tell them you're ready to fight. |goto Deeprun Tram/2 50.80,47.40 |noway |c
+step
+Fight 12: _Mazhareen_
+Mazhareen is a pretty straightforward fight. She does not have any abiilities, but Mazhareen does more damage as she loses health.
+|tip The best strategy for this fight is to DPS her down as quickly as possible, saving any cooldowns for the end of the fight.
+Defeat Mazhareen in the Brawler's Guild |complete repval("Bizmo's Brawlpub","Friendly") >= 3000
+step
+talk Quackenbush##68363
+buy 1 Clock'em##93025 |goto Deeprun Tram/2 54.40,29.80
+step
+use Clock'em##93025
+learnpet Clock'em##1142
 ]])

@@ -1382,6 +1382,10 @@ local ConditionEnv = {
 		end
 		ZGV.completedQuests[id]=nil
 	end,
+	clearallquests = function() -- autoscript function
+		table.wipe(ZGV.recentlyCompletedGoals)
+		table.wipe(ZGV.completedQuests)
+	end,
 }
 setmetatable(ConditionEnv,{__index=function(t,k) local lower=rawget(t,k:lower())  if lower~=nil then return lower end  return _G[k]  end})
 

@@ -11514,7 +11514,7 @@ accept Magic Carpet Ride##11636 |goto Borean Tundra 42.48,55.21
 step
 talk Yanni##25459
 |tip Outside, on top of the building.
-Select _"Send me to Garrosh's Landing, Yanni."_
+Select _"Send me to Garrosh's Landing, Yanni."_ |gossip 93565
 Begin Flying to Garrosh's Landing |invehicle |goto Borean Tundra 42.29,55.68 |q 11636
 step
 Fly to Garrosh's Landing |outvehicle |goto Borean Tundra 32.13,54.64 |q 11636 |notravel
@@ -11903,7 +11903,7 @@ step
 talk Durkot Wolfbrother##26044
 |tip He walks around this area.
 |tip Inside the building, on the bottom floor.
-Select _"I am ready to leave, Durkot."_
+Select _"I am ready to leave, Durkot."_ |gossip 93395
 Begin Traveling to Taunka'le Village |invehicle |goto Borean Tundra/0 40.23,55.09 |q 11916
 step
 Watch the dialogue
@@ -11951,7 +11951,7 @@ clicknpc Fizzcrank Recon Pilot##25841+
 |tip They look like dead gnomes in black clothing laying on the ground.
 |tip They are usually on the white parts of the ground next to water.
 |tip You can find them all around the Scalding Pools area.
-Choose _Search the body for the pilot's emergency toolkit._
+Choose _Search the body for the pilot's emergency toolkit._ |gossip 93388
 collect 7 Gnomish Emergency Toolkit##35276 |q 11887/1 |goto Borean Tundra/0 62.98,35.75
 You can find more around: |notinsticky
 [62.39,38.87]
@@ -12004,6 +12004,10 @@ Enter the building |goto Borean Tundra/0 77.34,37.01 < 10 |walk
 talk Greatmother Taiga##25602
 |tip Inside the building.
 accept Souls of the Decursed##11899 |goto Borean Tundra/0 77.30,36.88
+step
+talk Pahu Frosthoof##26709  |goto Borean Tundra/0 76.26,37.20
+Select _"Make this inn your home."_ |gossip 93579
+home Taunka'le Village
 step
 use the Windsoul Totem##35281
 |tip This will plant a Windsoul Totem in the ground.
@@ -12241,7 +12245,7 @@ During the Next Steps:
 |tip If you get attacked and lose your invisibility, unequip the cloak, and equip it again to regain the invisibility buff.
 Click Here to Continue |confirm |q 11633
 step
-use the Imbued Scourge Shroud##34782
+equipped the Imbued Scourge Shroud##34782
 |tip You will become invisible.
 Gain the Shroud of the Scourge Buff |havebuff Shroud of the Scourge##45614 |goto Borean Tundra/0 84.27,30.79 |q 11633
 step
@@ -12400,7 +12404,7 @@ accept Spirits Watch Over Us##11961 |goto Borean Tundra/0 67.20,54.85
 step
 clicknpc Iruk##26219
 |tip Underwater.
-Choose _<Search corpse for Issliruk's Totem.>_
+Choose _<Search corpse for Issliruk's Totem.>_ |gossip 93095
 collect Issliruk's Totem##35701 |q 11961/1 |goto Borean Tundra/0 67.64,50.41
 step
 talk Elder Muahit##26218
@@ -12926,7 +12930,7 @@ accept Saragosa's End##11957
 step
 _Next to you:_
 talk Keristrasza##26237
-Select _"I am prepared to face Saragosa!"_
+Select _"I am prepared to face Saragosa!"_ |gossip 93094
 Teleport to Saragosa's Landing |complete subzone("Saragosa's Landing") |q 11957
 step
 use the Arcane Power Focus##35690
@@ -12945,7 +12949,7 @@ accept Mustering the Reds##11967
 step
 _Next to you:_
 talk Keristrasza##26237
-Select _"Keristrasa, I am finished here. Please return me to the Transitus Shield."_
+Select _"Keristrasa, I am finished here. Please return me to the Transitus Shield."_ |gossip 93093
 Return to Transitus Shield |complete subzone("Transitus Shield") |q 11967
 step
 talk Raelorasz##26117

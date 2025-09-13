@@ -12183,8 +12183,8 @@ talk Rohan Sunveil##42344
 turnin The Downfall of Marl Wormthorn##25720 |goto Blasted Lands 49.75,71.43
 step
 label "OneDraeneisJunk"
-use all your Imperfect Draenethyst Fragment##10593+
-accept One Draenei's Junk...##25771 |autoscript table.wipe(ZGV.recentlyCompletedGoals) table.wipe(ZGV.completedQuests)
+use the Imperfect Draenethyst Fragment##10593+
+accept One Draenei's Junk...##25771 |repeatable
 |only if itemcount(10593) > 0
 step
 talk Kum'isha the Collector##7363 |goto Blasted Lands/0 48.69,32.06
@@ -12192,8 +12192,8 @@ turnin One Draenei's Junk...##25771
 '|next OneDraeneisJunk |only if itemcount(10593) > 0
 step
 label "Endeavors"
-use all your Flawless Draenethyst Sphere##8244+
-accept Kum'isha's Endeavors##25772 |autoscript table.wipe(ZGV.recentlyCompletedGoals) table.wipe(ZGV.completedQuests)
+use the Flawless Draenethyst Sphere##8244+
+accept Kum'isha's Endeavors##25772 |repeatable
 |only if itemcount(8244) > 0
 step
 talk Kum'isha the Collector##7363 |goto Blasted Lands/0 48.69,32.06
@@ -25081,7 +25081,7 @@ step
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Outland (60-70)\\Netherstorm (68-70)",{
 mopready=true,
-next="Leveling Guides\\Northrend 70-80\\Borean Tundra (70-72)",
+next="Leveling Guides\\Northrend (70-80)\\Borean Tundra (70-72)",
 },[[
 step
 talk Haggard War Veteran##19684
@@ -26557,7 +26557,7 @@ step
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Outland (60-70)\\Shadowmoon Valley (68-70)",{
 mopready=true,
-next="Leveling Guides\\Northrend 70-80\\Borean Tundra (70-72)",
+next="Leveling Guides\\Northrend (70-80)\\Borean Tundra (70-72)",
 },[[
 step
 talk Haggard War Veteran##19684
@@ -28696,7 +28696,7 @@ accept Magic Carpet Ride##11636 |goto Borean Tundra 42.48,55.21
 step
 talk Yanni##25459
 |tip Outside, on top of the building.
-Select _"Send me to Garrosh's Landing, Yanni."_
+Select _"Send me to Garrosh's Landing, Yanni."_ |gossip 93565
 Begin Flying to Garrosh's Landing |invehicle |goto Borean Tundra 42.29,55.68 |q 11636
 step
 Fly to Garrosh's Landing |outvehicle |goto Borean Tundra 32.13,54.64 |q 11636 |notravel
@@ -29085,7 +29085,7 @@ step
 talk Durkot Wolfbrother##26044
 |tip He walks around this area.
 |tip Inside the building, on the bottom floor.
-Select _"I am ready to leave, Durkot."_
+Select _"I am ready to leave, Durkot."_ |gossip 93395
 Begin Traveling to Taunka'le Village |invehicle |goto Borean Tundra/0 40.23,55.09 |q 11916
 step
 Watch the dialogue
@@ -29133,7 +29133,7 @@ clicknpc Fizzcrank Recon Pilot##25841+
 |tip They look like dead gnomes in black clothing laying on the ground.
 |tip They are usually on the white parts of the ground next to water.
 |tip You can find them all around the Scalding Pools area.
-Choose _Search the body for the pilot's emergency toolkit._
+Choose _Search the body for the pilot's emergency toolkit._ |gossip 93388
 collect 7 Gnomish Emergency Toolkit##35276 |q 11887/1 |goto Borean Tundra/0 62.98,35.75
 You can find more around: |notinsticky
 [62.39,38.87]
@@ -29186,6 +29186,10 @@ Enter the building |goto Borean Tundra/0 77.34,37.01 < 10 |walk
 talk Greatmother Taiga##25602
 |tip Inside the building.
 accept Souls of the Decursed##11899 |goto Borean Tundra/0 77.30,36.88
+step
+talk Pahu Frosthoof##26709  |goto Borean Tundra/0 76.26,37.20
+Select _"Make this inn your home."_ |gossip 93579
+home Taunka'le Village
 step
 use the Windsoul Totem##35281
 |tip This will plant a Windsoul Totem in the ground.
@@ -29423,7 +29427,7 @@ During the Next Steps:
 |tip If you get attacked and lose your invisibility, unequip the cloak, and equip it again to regain the invisibility buff.
 Click Here to Continue |confirm |q 11633
 step
-use the Imbued Scourge Shroud##34782
+equipped the Imbued Scourge Shroud##34782
 |tip You will become invisible.
 Gain the Shroud of the Scourge Buff |havebuff Shroud of the Scourge##45614 |goto Borean Tundra/0 84.27,30.79 |q 11633
 step
@@ -29582,7 +29586,7 @@ accept Spirits Watch Over Us##11961 |goto Borean Tundra/0 67.20,54.85
 step
 clicknpc Iruk##26219
 |tip Underwater.
-Choose _<Search corpse for Issliruk's Totem.>_
+Choose _<Search corpse for Issliruk's Totem.>_ |gossip 93095
 collect Issliruk's Totem##35701 |q 11961/1 |goto Borean Tundra/0 67.64,50.41
 step
 talk Elder Muahit##26218
@@ -30108,7 +30112,7 @@ accept Saragosa's End##11957
 step
 _Next to you:_
 talk Keristrasza##26237
-Select _"I am prepared to face Saragosa!"_
+Select _"I am prepared to face Saragosa!"_ |gossip 93094
 Teleport to Saragosa's Landing |complete subzone("Saragosa's Landing") |q 11957
 step
 use the Arcane Power Focus##35690
@@ -30127,7 +30131,7 @@ accept Mustering the Reds##11967
 step
 _Next to you:_
 talk Keristrasza##26237
-Select _"Keristrasa, I am finished here. Please return me to the Transitus Shield."_
+Select _"Keristrasa, I am finished here. Please return me to the Transitus Shield."_ |gossip 93093
 Return to Transitus Shield |complete subzone("Transitus Shield") |q 11967
 step
 talk Raelorasz##26117
@@ -30603,7 +30607,7 @@ talk Nethestrasz##26851
 fpath Wyrmrest Temple |goto Dragonblight 60.32,51.55
 step
 talk Tariolstrasz##26443
-Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_
+Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_ |gossip 93560
 Begin Flying to the Top of the Temple |invehicle |goto Dragonblight 57.91,54.16 |q 12458 |future
 step
 Fly to the Top of the Temple |outvehicle |goto Dragonblight 59.72,53.07 |q 12458 |future
@@ -30617,7 +30621,7 @@ talk Nalice##27765
 accept The Obsidian Dragonshrine##12447 |goto Dragonblight 60.07,54.20
 step
 talk Torastrasza##26949
-Select _"Yes, please, I would like to return to the ground level of the temple."_
+Select _"Yes, please, I would like to return to the ground level of the temple."_ |gossip 93074
 Begin Flying to the Ground Level of the Temple |invehicle |goto Dragonblight 59.51,53.33 |q 12447
 step
 Fly to the Ground Level of the Temple |outvehicle |goto Dragonblight 58.01,55.18 |q 12447
@@ -30663,6 +30667,7 @@ Enter Agmar's Hammer |goto Dragonblight 37.34,48.07 < 40 |only if walking and no
 talk Messenger Torvus##26649
 accept Message from the West##12033 |goto Dragonblight 37.32,46.79
 step
+use Letter from Saurfang##35941
 click Burning Brazier
 Read and Destroy the Letter from Saurfang |q 12033/1 |goto Dragonblight 37.36,46.67
 step
@@ -30714,7 +30719,10 @@ step
 talk Taunka'le Refugee##26184+
 |tip They look like Tauren.
 |tip You can find them all around the Westwind Refugee Camp area.
-Select _"Worry no more, taunka. The Horde will save and protect you and your people, but first you must swear allegiance to the Warchief by taking the blood oath of the Horde."_
+Select _"Worry no more, taunka. The Horde will save and protect you and your people, but first you must swear allegiance to the Warchief by taking the blood oath of the Horde."_ |gossip 93244
+Select _"Yes, taunka. Retribution is a given right of all members of the Horde."_ |gossip 93247
+Select _"Then repeat after me: "Lok'tar ogar! Victory or death - it is these words that bind me to the Horde. For they are the most sacred and fundamental of truths to any warrior of the Horde. I give my flesh and blood freely to the Warchief. I am the instrument of my Warchief's desire. I am a weapon of my Warchief's command. From this moment until the end of days I live and die - For the Horde!""_ |gossip 93246
+Select _"For the Horde! Arm yourself from the crates that surround us and report to Agmar's Hammer, east of here. Your first trial as a member of the Horde is to survive the journey. Lok'tar ogar!"_ |gossip 93245
 Admit #5# Taunka Into the Horde |q 11983/1 |goto Dragonblight 13.34,48.62
 step
 talk Emissary Brighthoof##26181
@@ -30919,7 +30927,7 @@ kill Tivax the Breaker##26770
 |tip Inside the building.
 |tip Spawns in random huts around the village.
 collect Tivax's Key Fragment##36753 |q 12064/2 |goto Dragonblight/0 26.76,39.05
-He can alsobe found here [23.84,39.05]
+He can also be found here [23.84,39.05]
 step
 use Warsong Battle Standard##36738
 Kill the enemies that attack in waves
@@ -31009,7 +31017,8 @@ accept All Hail Roanauk!##12140 |goto Dragonblight/0 38.15,46.33
 He sometimes can be found here [36.33,45.59]
 step
 talk Roanauk Icemist##26810
-Select _"Greetings High Chief..."_
+Select _"Greetings High Chief. Would you do me the honor of accepting my invitation to join the Horde as an official member and leader of the Taunka?"_ |gossip 93080
+Select _"It is you who honor me, High Chief. Please read from this scroll. It is the oath of allegiance."_ |gossip 93081
 |tip After talking to him, skip to the next step.
 |tip A long dialogue happens, but you don't need to wait for it to finish.
 |tip The quest goal will complete as you travel.
@@ -31340,23 +31349,23 @@ Follow the path up to leave the Emerald Dragonshrine |goto Dragonblight/0 66.37,
 Enter New Hearthglen |goto Dragonblight/0 72.17,69.81 < 50 |only if walking
 talk Chancellor Amai##27381
 |tip Inside the cage.
-Select _"No, chancellor, I wouldn't say that I'm here to 'rescue' you, per se."_
+Select _"No, chancellor, I wouldn't say that I'm here to 'rescue' you, per se."_ |gossip 93649
 kill Chancellor Amai##27381 |q 12245/4 |goto Dragonblight/0 72.65,72.58
 step
 talk Deathguard Schneider##27376
 |tip Inside the cage.
-Select _"I'm afraid not, Schneider. Your time has come!"_
+Select _"I'm afraid not, Schneider. Your time has come!"_ |gossip 93637
 kill Deathguard Schneider##27376 |q 12245/1 |goto Dragonblight/0 71.42,72.21
 step
 talk Engineer Burke##27379
 |tip Inside the cage.
 |tip Outside, next to the building.
-Select _"Afraid not. Your days as a sanitation engineer are coming to an end."_
+Select _"Afraid not. Your days as a sanitation engineer are coming to an end."_ |gossip 93645
 kill Engineer Burke##27379 |q 12245/3 |goto Dragonblight/0 72.71,74.36
 step
 talk Senior Scrivener Kinnedius##27378
 |tip Inside the cage.
-Select _"Not today, senior scrivener!"_
+Select _"Not today, senior scrivener!"_ |gossip 93641
 kill Senior Scrivener Kinnedius##27378 |q 12245/2 |goto Dragonblight/0 69.39,73.99
 step
 label "Hand_Over_Scarlet_Onslaught_Warhorse_Reins"
@@ -31594,7 +31603,8 @@ Ring the Abbey Bell |q 12274/1 |goto Dragonblight/0 72.90,73.48
 step
 talk High Abbot Landgren##27245
 |tip Inside the building, on the ground floor.
-Select _"Your eminence, may I have a word in private?"_
+Select _"Your eminence, may I have a word in private?"_ |gossip 93237
+Select _"I am ready, your grace. <kiss the ring>"_ |gossip 93270
 Click Here After Talking to High Abbot Landgren |confirm |goto Dragonblight/0 73.50,74.28 |q 12274
 step
 Meet High Abbot Landgren at the Abbey Entrance |goto Dragonblight/0 72.25,73.46 < 15 |c |q 12274
@@ -31649,7 +31659,7 @@ use the Frost Gem##36847
 collect Filled Frost Gem##36846 |q 12127/1 |goto Dragonblight/0 67.08,53.53
 step
 talk Tariolstrasz##26443
-Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_
+Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_ |gossip 93560
 Begin Flying to the Top of the Temple |invehicle |goto Dragonblight/0 57.91,54.16 |q 12458
 step
 Fly to the Top of the Temple |outvehicle |goto Dragonblight/0 59.72,53.07 |q 12458
@@ -31663,7 +31673,7 @@ talk Krasus##27990
 turnin The Fate of the Ruby Dragonshrine##12419 |goto Dragonblight/0 59.79,54.70
 step
 talk Torastrasza##26949
-Select _"Yes, please, I would like to return to the ground level of the temple."_
+Select _"Yes, please, I would like to return to the ground level of the temple."_ |gossip 93074
 Begin Flying to the Ground Level of the Temple |invehicle |goto Dragonblight/0 59.51,53.33 |q 12110 |future
 step
 Fly to the Ground Level of the Temple |outvehicle |goto Dragonblight/0 58.01,55.18 |q 12110 |future
@@ -31835,7 +31845,7 @@ turnin Speak with your Ambassador##12767 |goto Dragonblight/0 58.44,56.08
 accept Report to the Ruby Dragonshrine##12461 |goto Dragonblight/0 58.44,56.08
 step
 talk Tariolstrasz##26443
-Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_
+Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_ |gossip 93560
 Begin Flying to the Top of the Temple |invehicle |goto Dragonblight/0 57.91,54.16 |q 12266
 step
 Fly to the Top of the Temple |outvehicle |goto Dragonblight/0 59.72,53.07 |q 12266
@@ -31930,7 +31940,7 @@ turnin The Steward of Wyrmrest Temple##12769 |goto Dragonblight/0 57.91,54.16
 accept Informing the Queen##12124 |goto Dragonblight/0 57.91,54.16
 step
 talk Tariolstrasz##26443
-Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_
+Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_ |gossip 93560
 Begin Flying to the Top of the Temple |invehicle |goto Dragonblight/0 57.91,54.16 |q 12124 |future
 step
 Fly to the Top of the Temple |outvehicle |goto Dragonblight/0 59.72,53.07 |q 12124 |future
@@ -31941,7 +31951,7 @@ turnin Informing the Queen##12124 |goto Dragonblight/0 59.83,54.65
 accept Report to Lord Devrestrasz##12435 |goto Dragonblight/0 59.83,54.65
 step
 talk Torastrasza##26949
-Select _"I would like to go to Lord Devrestrasz in the middle of the temple."_
+Select _"I would like to go to Lord Devrestrasz in the middle of the temple."_ |gossip 93073
 Begin Flying to the Ground Level of the Temple |invehicle |goto Dragonblight/0 59.51,53.33 |q 12435
 step
 Fly to the Middle Level of the Temple |outvehicle |goto Dragonblight/0 59.20,54.33 |q 12435
@@ -31953,7 +31963,7 @@ accept Defending Wyrmrest Temple##12372 |goto Dragonblight/0 59.24,54.32 |only i
 step
 talk Wyrmrest Defender##27629
 |tip On the middle level of the tower.
-Select _"We need to get into the fight. Are you ready?"_
+Select _"We need to get into the fight. Are you ready?"_ |gossip 93574
 Fly with the Wyrmrest Defender |invehicle |goto Dragonblight/0 58.35,55.22 |q 12372
 |only if haveq(12372) or completedq(12372)
 stickystart "Kill_Azure_Dragons"
@@ -32172,6 +32182,11 @@ talk Narf##26647
 |tip He walks around this area.
 accept Stiff Negotiations##12112 |goto Dragonblight/0 54.47,23.60
 step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Coldwind Lumber##36733
+|only if itemcount(36733) > 0
+step
 talk Zort##26659
 |tip Inside the ice canyon.
 turnin Stiff Negotiations##12112 |goto Dragonblight/0 59.40,18.18
@@ -32254,7 +32269,7 @@ talk Aurastrasza##26983
 turnin Disturbing Implications##12147 |goto Dragonblight/0 60.02,55.19
 step
 talk Tariolstrasz##26443
-Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_
+Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_ |gossip 93560
 Begin Flying to the Top of the Temple |invehicle |goto Dragonblight/0 57.91,54.16 |q 12498
 step
 Fly to the Top of the Temple |outvehicle |goto Dragonblight/0 59.72,53.07 |q 12498
@@ -32265,35 +32280,13 @@ turnin On Ruby Wings##12498 |goto Dragonblight/0 59.84,54.65
 accept Return To Angrathar##12500 |goto Dragonblight/0 59.84,54.65
 step
 talk Torastrasza##26949
-Select _"Yes, please, I would like to return to the ground level of the temple."_
+Select _"Yes, please, I would like to return to the ground level of the temple."_ |gossip 93074
 Begin Flying to the Ground Level of the Temple |invehicle |goto Dragonblight/0 59.51,53.33 |q 12500
 step
 Fly to the Ground Level of the Temple |outvehicle |goto Dragonblight/0 58.01,55.18 |q 12500
 step
 talk Saurfang the Younger##25257
 turnin Return To Angrathar##12500 |goto Dragonblight/0 40.71,18.06
-step
-talk Alexstrasza the Life-Binder##31333
-accept Darkness Stirs##13242 |goto Dragonblight/0 38.42,19.25
-step
-click Saurfang's Battle Armor
-|tip It looks like a silver metal spiked collar on the ground.
-collect Saurfang's Battle Armor##43615 |q 13242/1 |goto Dragonblight/0 38.15,18.70
-step
-talk High Overlord Saurfang##25256
-|tip Inside the building, on the bottom floor.
-turnin Darkness Stirs##13242 |goto Borean Tundra 41.43,53.67
-accept Herald of War##13257 |goto Borean Tundra 41.43,53.67
-step
-click Portal to Orgrimmar
-|tip Inside the building, on the bottom floor.
-Teleport to Orgrimmar |complete (zone("Durotar") or zone("Orgrimmar")) |goto Borean Tundra 41.49,53.80 |q 13257
-step
-Enter the building |goto Orgrimmar 39.60,37.07 < 15 |walk |only if not subzone("Grommash Hold")
-talk Thrall##31412
-|tip He walks around this area.
-|tip Inside the building.
-turnin Herald of War##13257 |goto Orgrimmar 32.72,37.71
 step
 Enter the building |goto Dragonblight 76.88,62.96 < 10 |walk
 talk Magister Tyr'ganal##29162
@@ -32303,7 +32296,7 @@ accept The Magical Kingdom of Dalaran##12791 |goto Dragonblight 76.84,63.23
 step
 talk Magister Tyr'ganal##29162
 |tip Inside the building, on the bottom floor.
-Select _"I am ready to be teleported to Dalaran."_
+Select _"I am ready to be teleported to Dalaran."_ |gossip 93309
 Teleport to Dalaran |complete zone("Dalaran") |goto Dragonblight 76.84,63.23 |q 12791
 |only if not Mage
 step
@@ -33031,14 +33024,17 @@ step
 Enter the cave |goto Grizzly Hills 66.78,61.83 < 15 |walk
 talk Kodian##27275
 |tip Inside the cave.
-Select _"Who was this stranger?"_
+Select _"Who was this stranger?"_ |gossip 93632
+Select _"Thank you, Kodian.  I'll do what I can."_ |gossip 93633
 Listen to Kodian's Story |q 12231/2 |goto Grizzly Hills 66.90,62.40
 step
 Follow the path up |goto Grizzly Hills 52.85,56.77 < 50 |only if walking
 Enter the cave |goto Grizzly Hills 48.35,58.47 < 5 |walk
 talk Orsonn##27274
 |tip Inside the cave.
-Select _"You're free to go Orsonn, but first tell me what's wrong with the furbolg."_
+Select _"You're free to go Orsonn, but first tell me what's wrong with the furbolg."_ |gossip 93451
+Select _"What happened then?"_ |gossip 93453
+Select _"Thank you, Son of Ursoc.  I'll see what can be done."_ |gossip 93454
 Listen to Orsonn's Story |q 12231/1 |goto Grizzly Hills 48.07,58.87
 step
 label "Collect_Crazed_Furbolg_Blood"
@@ -33301,7 +33297,7 @@ collect Snow of Eternal Slumber##36859 |q 12137/1 |goto Grizzly Hills 69.36,19.5
 step
 talk Gan'jo##26924
 |tip Inside the crypt.
-Select _"I am ready to return to the realm of the living."_
+Select _"I am ready to return to the realm of the living."_ |gossip 94150
 Leave the Spirit Realm |nobuff On the Other Side##61611 |goto Grizzly Hills 69.41,19.48 |q 12137
 step
 Follow the path down |goto Grizzly Hills 69.83,19.62 < 7 |walk
@@ -33374,7 +33370,7 @@ talk Hugh Glass##26484
 turnin A Bear of an Appetite##12279 |goto Grizzly Hills 69.10,40.10
 step
 talk Hugh Glass##26484
-Select _"Calm down. I want to ask you about the iron dwarves and Loken."_
+Select _"Calm down. I want to ask you about the iron dwarves and Loken."_ |gossip 93283
 Watch the dialogue
 Question Hugh Glass |q 12204/1 |goto Grizzly Hills 69.10,40.10
 step
@@ -33385,7 +33381,7 @@ talk Gavrock##26420
 turnin Free at Last##12099 |goto Grizzly Hills 79.76,33.61
 step
 talk Gavrock##26420
-Select _"What can you tell me about Loken and the iron dwarves?"_
+Select _"What can you tell me about Loken and the iron dwarves?"_ |gossip 93284
 Watch the dialogue
 Question Gavrock |q 12204/2 |goto Grizzly Hills 79.76,33.62
 step
@@ -33528,10 +33524,10 @@ kill Iron Thane Furyhammer##26405 |q 12199/1 |goto Grizzly Hills 76.37,63.72
 |tip Downstairs inside the building.
 |tip Use the abilities on your action bar.
 |tip Use the "EMP" ability to stun The Anvil and remove Iron Thane Furyhammer's Shield.
-|tip Use the "Charged Smash" ability Iron Thane Furyhammer.
+|tip Use the "Charged Smash" ability on Iron Thane Furyhammer.
 step
 Stop Controlling the War Golem |outvehicle |q 12199
-|tip Click the yellow arrow on your action bar.
+|tip Click the yellow arrow on your action bar. Best right after you reapply stun from your "EMP" ability.
 step
 use the Hearthstone##6948
 Hearth to Camp Oneqwah |complete subzone("Camp Oneqwah") |q 12199
@@ -33715,7 +33711,7 @@ accept Taking a Stand##12795 |goto Zul'Drak 14.28,74.04
 |only if not completedq(12503)
 step
 talk Bloodrose Datura##28532
-Select _"Stefan told me you would demonstrate the purpose of this item."_
+Select _"Stefan told me you would demonstrate the purpose of this item."_ |gossip 93671
 Expose the Choker's Purpose |q 12637/1 |goto Zul'Drak 14.28,74.04	|only if haveq(12637) or completedq(12637)
 Expose the Choker's Purpose |q 12638/1 |goto Zul'Drak 14.28,74.04	|only if haveq(12638) or completedq(12638)
 step
@@ -33805,7 +33801,7 @@ turnin Our Only Hope##12916 |goto Zul'Drak 19.74,56.41
 accept The Storm King's Vengeance##12919 |goto Zul'Drak 19.74,56.41
 step
 talk Gymer##29647
-Select _"I'm ready, Gymer. Let's go!"_
+Select _"I'm ready, Gymer. Let's go!"_ |gossip 93218
 Ride on Gymer's Shoulder |invehicle |goto Zul'Drak 19.74,56.41 |q 12919
 stickystart "Slay_Scourge"
 step
@@ -33855,7 +33851,7 @@ step
 talk Gorebag##28666
 |tip He walks around this area.
 |tip Inside the floating building.
-Select _"Uhh, can you send me on the tour of Zul'Drak?"_
+Select _"Uhh, can you send me on the tour of Zul'Drak?"_ |gossip 93177
 Begin the Tour of Zul'Drak |invehicle |goto Zul'Drak 29.84,48.03 |q 12664	|only if haveq(12664) or completedq(12664)
 Begin the Tour of Zul'Drak |invehicle |goto Zul'Drak 29.84,48.03 |q 12663	|only if haveq(12663) or completedq(12663)
 step
@@ -34064,7 +34060,7 @@ Teleport Up to Voltarus |complete subzone("Voltarus") |goto Zul'Drak 28.37,44.87
 step
 talk Overlord Drakuru##28503 |goto Zul'Drak 27.08,46.16
 |tip Inside the floating building.
-Select _"I am ready to accompany you, Drakuru."_
+Select _"I am ready to accompany you, Drakuru."_ |gossip 93176
 Teleport to the Top fo Voltarus with Drakuru |goto Zul'Drak 28.34,45.28 < 5 |noway |c |q 12713
 step
 Watch the dialogue
@@ -34080,7 +34076,7 @@ collect Drakuru's Skull##40425 |q 12713/1 |goto Zul'Drak 28.39,44.87
 step
 click Drakuru's Last Wish##202357
 |tip On top of the floating building.
-Choose _"I'm ready."_
+Choose _"I'm ready."_ |gossip 93665
 Teleport to the Ground |complete subzone("Reliquary of Pain") |goto Zul'Drak 28.62,44.55 |q 12713
 |only if subzone("Voltarus")
 step
@@ -34472,7 +34468,7 @@ label "Tell_Argent_Soldiers_To_Report_Back_To_The_Sergeant"
 talk Argent Soldier##28041+
 |tip They look like friendly NPCs wearing Alliance armor.
 |tip You can find them all around the Altar of Sseratus area. |notinsticky
-Select _"Soldier, you have new orders. You're to pull back and report to the sergeant!"_
+Select _"Soldier, you have new orders. You're to pull back and report to the sergeant!"_ |gossip 93280
 Tell #10# Argent Soldiers to Report Back to the Sergeant |q 12504/1 |goto Zul'Drak 40.38,44.81
 step
 label "Accept_Strange_Mojo"
@@ -34812,7 +34808,7 @@ turnin Back to Har'koa##12653 |goto Zul'Drak 63.71,70.39
 accept I Sense a Disturbance##12665 |goto Zul'Drak 63.71,70.39
 step
 talk Har'koa##28401
-Select _"Great and powerful Har'koa, please call for one of your children that it might stealthily carry me into the Altar of Quetz'lun."_
+Select _"Great and powerful Har'koa, please call for one of your children that it might stealthily carry me into the Altar of Quetz'lun."_ |gossip 93201
 Ride with a Child of Har'koa |invehicle |goto Zul'Drak 63.71,70.39 |q 12665
 step
 Watch the dialogue
@@ -34841,7 +34837,7 @@ use To'kini's Blowgun##44890
 |tip You can only use the blowgun while not in combat.
 |tip They will become tranquilized and clickable.
 clicknpc Frost Leopard##29327+
-Choose _"Lift the frost leopard's tail to check if it's a male or a female."_
+Choose _"Lift the frost leopard's tail to check if it's a male or a female."_ |gossip 94166
 |tip If they are male, they will attack you.
 |tip You can use Feign Death with your pet dismissed to avoid combat entirely. |only Hunter
 Recover #3# Female Frost Leopards |q 13549/1 |goto Zul'Drak 73.82,68.55
@@ -34853,7 +34849,7 @@ use To'kini's Blowgun##44890
 |tip You can only use the blowgun while not in combat.
 |tip They will become tranquilized and clickable.
 clicknpc Icepaw Bear##29319+
-Choose _"Lift the icepaw bear's tail to check if it's a male or a female."_
+Choose _"Lift the icepaw bear's tail to check if it's a male or a female."_ |gossip 94167
 |tip If they are male, they will attack you.
 |tip You can use Feign Death with your pet dismissed to avoid combat entirely. |only Hunter
 Recover #3# Female Icepaw Bears |q 13549/2 |goto Zul'Drak 73.82,68.55
@@ -35085,7 +35081,7 @@ talk Amisi Azuregaze##28687
 home Dalaran |goto Dalaran 50.25,39.52
 step
 talk Archmage Pentarus##28160
-Select _"I'm ready to fly to Sholazar Basin."_
+Select _"I'm ready to fly to Sholazar Basin."_ |gossip 94291
 Begin Flying to Sholazar Basin |invehicle |goto Dalaran 68.55,42.05 |q 12521
 step
 Fly to Sholazar Basin |outvehicle |goto Sholazar Basin 39.11,56.87 |q 12521 |notravel
@@ -35307,7 +35303,7 @@ turnin Some Make Lemonade, Some Make Liquor##12634 |goto Sholazar Basin 26.78,60
 accept Still At It##12644 |goto Sholazar Basin 26.78,60.07
 step
 talk "Tipsy" McManus##28566
-Select _"I'm ready to start the distillation, uh, Tipsy."_
+Select _"I'm ready to start the distillation, uh, Tipsy."_ |gossip 93670
 Click Here After Starting the Distillation |confirm |goto Sholazar Basin 26.67,59.99 |q 12644
 step
 Perform the Distillation
@@ -35515,6 +35511,7 @@ talk High-Shaman Rakjak##28082
 turnin Playing Along##12528 |goto Sholazar Basin 54.99,69.12
 accept The Ape Hunter's Slave##12529 |goto Sholazar Basin 54.99,69.12
 step
+use Goregeck's Shackles##38619
 _Next to you:_
 talk Goregek the Gorilla Hunter##28214
 accept Tormenting the Softknuckles##12530
@@ -35632,7 +35629,7 @@ talk Tanak##31911
 buy Nepeta Leaf##44064 |goto Sholazar Basin 55.14,69.02 |q 12536
 step
 talk Captive Crocolisk##28298
-Select _"You look safe enough... let's do this."_
+Select _"You look safe enough... let's do this."_ |gossip 93070
 Begin Riding the Captive Crocolisk |invehicle |goto Sholazar Basin 57.28,68.38 |q 12536
 step
 Watch the dialogue
@@ -35686,7 +35683,7 @@ turnin Hoofing It##12539 |goto Sholazar Basin 55.00,69.12
 accept Just Following Orders##12540 |goto Sholazar Basin 55.00,69.12
 step
 talk Injured Rainspeaker Oracle##28217
-Choose _<Reach down and pull the Injured Rainspeaker Oracle to its feet.>_
+Choose _<Reach down and pull the Injured Rainspeaker Oracle to its feet.>_ |gossip 93071
 |tip You will be attacked.
 kill Ravenous Mangal Crocolisk##28325
 Locate the Injured Rainspeaker Oracle |q 12540/1 |goto Sholazar Basin 55.70,64.98
@@ -35696,7 +35693,7 @@ turnin Just Following Orders##12540 |goto Sholazar Basin 55.70,64.98
 accept Fortunate Misunderstandings##12570 |goto Sholazar Basin 55.70,64.98
 step
 talk Injured Rainspeaker Oracle##28217
-Select _"I am ready to travel to your village now."_
+Select _"I am ready to travel to your village now."_ |gossip 93199
 Begin Following the Injured Rainspeaker Oracle |goto Sholazar Basin 55.70,64.90 > 20 |c |q 12570
 step
 Watch the dialogue
@@ -35755,7 +35752,8 @@ accept Making Peace##12573 |goto Sholazar Basin 54.59,56.35
 step
 talk Shaman Vekjik##28315
 |tip On top of the cliff, overlooking the lake.
-Select _"Shaman Vekjik, I have spoken with the big-tongues and they desire peace. I have brought this offering on their behalf."_
+Select _"Shaman Vekjik, I have spoken with the big-tongues and they desire peace. I have brought this offering on their behalf."_ |gossip 93072
+Select _"No no... I had no intentions of betraying your people. I was only defending myself. It was all a misunderstanding."_ |gossip 93200
 Extend the Peace Offering to Shaman Vekjik |q 12573/1 |goto Sholazar Basin 51.30,64.63
 step
 talk High-Oracle Soo-say##28027
@@ -35914,7 +35912,9 @@ turnin The Lifewarden's Wrath##12620 |goto Sholazar Basin 64.55,48.61
 accept Freya's Pact##12621 |goto Sholazar Basin 64.55,48.61
 step
 talk Avatar of Freya##27801
-Select _"I want to stop the Scourge as much as you do. How can I help?"_
+Select _"I want to stop the Scourge as much as you do. How can I help?"_ |gossip 93674
+Select _"You can trust me.  I am no friend of the Lich King's."_ |gossip 93675
+Select _"I will not fail."_ |gossip 93676
 Receive Freya's Pact |q 12621/1 |goto Sholazar Basin 64.55,48.61
 step
 talk Avatar of Freya##27801
@@ -36032,7 +36032,7 @@ step
 talk Mosswalker Victim##28113+
 |tip They look like dead green gremlins on the ground.
 |tip You can find them all around the Mosswalker Village area.
-Choose _<Check for a pulse...>_
+Choose _<Check for a pulse...>_ |gossip 93168
 |tip They won't all live to be rescued.
 Rescue #6# Mosswalker Victims |q 12580/1 |goto Sholazar Basin 75.68,51.18
 step
@@ -36194,7 +36194,7 @@ accept Moving In##12829 |goto The Storm Peaks 41.67,80.01
 accept Ore Repossession##12830 |goto The Storm Peaks 41.67,80.01
 step
 click U.D.E.D. Dispenser##191553
-Choose _<Retrieve a bomb from the dispenser.>_
+Choose _<Retrieve a bomb from the dispenser.>_ |gossip 93931
 |tip Hurry to the mammoth location.
 |tip You will need to use or destroy the bomb within ~45 seconds, or it will blow up in your bags and damage you.
 collect U.D.E.D.##40686 |q 12828 |n
@@ -36237,7 +36237,7 @@ talk Injured Goblin Miner##29434
 |tip He offers an escort quest.
 |tip If he's not here, someone may be escorting him.
 |tip Wait until he respawns.
-Select _"I'm ready - let's get you out of here."_
+Select _"I'm ready - let's get you out of here."_ |gossip 93378
 Begin Following the Injured Goblin Miner |goto The Storm Peaks 43.48,75.24 > 15 |c |q 12832
 step
 Watch the dialogue
@@ -36309,7 +36309,7 @@ kill 6 Garm Watcher##29409 |q 12822/1 |goto The Storm Peaks/0 48.22,81.08
 |tip Inside and outside the cave. |notinsticky
 step
 label "Kill_Snowblind_Devotees"
-kill 8 Snowblind Devotee##29407 |q 12822/2 |goto The Storm Peaks/0 48.22,81.08
+kill 8 Snowblind Devotee##29554 |q 12822/2 |goto The Storm Peaks/0 48.22,81.08
 |tip They look like kobolds.
 |tip Inside and outside the cave. |notinsticky
 step
@@ -36376,7 +36376,7 @@ turnin Overstock##12833 |goto The Storm Peaks/0 40.93,85.31
 |only if haveq(12833) or completedq(12833)
 step
 talk Ricket##29428
-Select _"I am ready to head further into Storm Peaks."_
+Select _"I am ready to head further into Storm Peaks."_ |gossip 93818
 Begin Flying in the D16 Propelled Delivery Device |invehicle |goto The Storm Peaks/0 40.93,85.31 |q 13060
 step
 Fly to Grom'arsh Crash-Site |outvehicle |goto The Storm Peaks/0 36.83,49.61 |q 13060 |notravel
@@ -36538,7 +36538,7 @@ turnin A Change of Scenery##12921 |goto The Storm Peaks 47.47,69.08
 accept Is That Your Goblin?##12969 |goto The Storm Peaks 47.47,69.08
 step
 talk Agnetta Tyrsdottar##30154
-Select _"Skip the warmup, sister... or are you too scared to face someone your own size?"_
+Select _"Skip the warmup, sister... or are you too scared to face someone your own size?"_ |gossip 93533
 kill Agnetta Tyrsdottar##30154 |q 12969/1 |goto The Storm Peaks 48.25,69.76
 step
 talk Lok'lira the Crone##29975
@@ -36546,7 +36546,10 @@ turnin Is That Your Goblin?##12969 |goto The Storm Peaks 47.47,69.08
 accept The Hyldsmeet##12970 |goto The Storm Peaks 47.47,69.08
 step
 talk Lok'lira the Crone##29975
-Select _"Tell me about this proposal."_
+Select _"Tell me about this proposal."_ |gossip 93203
+Select _"What happened then?"_ |gossip 93204
+Select _"You want me to take part in the Hyldsmeet to end the war?"_ |gossip 93205
+Select _"Very well.  I'll take part in this competition."_ |gossip 93206
 Listen to Lok'lira's Proposal |q 12970/1 |goto The Storm Peaks 47.47,69.08
 step
 talk Lok'lira the Crone##29975
@@ -36556,7 +36559,7 @@ step
 talk Victorious Challenger##30012+
 |tip They look like blue armored women standing place.
 |tip They are the ones that aren't already fighting each other.
-Select _"Let's do this, sister."_
+Select _"Let's do this, sister."_ |gossip 93387
 kill 6 Victorious Challenger##30012 |q 12971/1 |goto The Storm Peaks 48.16,70.30
 You can find more around: |notinsticky
 [50.38,68.02]
@@ -36726,7 +36729,9 @@ accept Sibling Rivalry##13064 |goto The Storm Peaks 33.42,57.95
 step
 talk Thorim##29445
 |tip At the top of the huge column.
-Select _"Can you tell me what became of Sif?"_
+Select _"Can you tell me what became of Sif?"_ |gossip 93826
+Select _"He did more than that, Thorim.  He controls Ulduar now."_ |gossip 94050
+Select _"It needn't end this way."_ |gossip 93873
 Hear Thorim's History |q 13064/1 |goto The Storm Peaks 33.42,57.95
 step
 talk Thorim##29445
@@ -36817,7 +36822,7 @@ step
 _Next to you:_
 use Brann's Communicator##40971
 talk Brann Bronzebeard##29579
-Select _"Do you understand me? We should be able to understand each other now."_
+Select _"Do you understand me? We should be able to understand each other now."_ |gossip 93222
 Watch the dialogue
 Speak with Brann |q 12920/1
 step
@@ -36939,7 +36944,7 @@ Leave the building |goto The Storm Peaks 30.63,37.00 < 15 |walk |only if subzone
 talk Captive Mechagnome##29384+
 |tip They look like metal gnomes mining.
 |tip You can find them all throughout the Frozen Mine.
-Select _"I'm not a laborer. I'm here to free you from servitude in the mines."_
+Select _"I'm not a laborer. I'm here to free you from servitude in the mines."_ |gossip 93530
 Attempt to Free #6# Captive Mechagnomes |q 12957/1 |goto The Storm Peaks 27.35,49.80
 step
 label "Kill_Stormforged_Taskmasters"
@@ -37022,7 +37027,7 @@ Leave the building |goto The Storm Peaks 30.63,37.00 < 15 |walk |only if subzone
 Enter the building in the side of the mountain |goto The Storm Peaks 33.56,39.65 < 20 |walk
 talk Attendant Tock##30190
 |tip Inside the building.
-Select _"I found this strange armor plate. Can you tell me more about it?"_
+Select _"I found this strange armor plate. Can you tell me more about it?"_ |gossip 93703
 Click Here Once the Dialogue Begins |confirm |goto The Storm Peaks 32.04,40.73 |q 12980
 step
 Leave the building |goto The Storm Peaks 33.56,39.65 < 20 |walk |only if subzone("Mimir's Workshop") and _G.IsIndoors()
@@ -37238,7 +37243,7 @@ Fly up here |goto The Storm Peaks 54.76,57.43 < 30 |walk |only if subzone("Loken
 Leave the large metal hole in the side of the mountain |goto The Storm Peaks 56.38,58.49 < 30 |walk |only if subzone("Loken's Bargain")
 talk Brann Bronzebeard##29579
 |tip On top of the huge pillar.
-Select _"I'm ready, Brann. Let's make the keystone."_
+Select _"I'm ready, Brann. Let's make the keystone."_ |gossip 94560
 |tip After talking to him, skip to the next step.
 |tip A long dialogue happens, but you don't need to wait for it to finish.
 |tip The quest goal will complete as you travel.
@@ -37332,7 +37337,7 @@ step
 Enter the cave |goto The Storm Peaks 62.45,41.40 < 20 |walk |only if not (subzone("Frostfloe Deep") and _G.IsIndoors())
 talk Chieftain Swiftspear##30395
 |tip Inside the cave, on the upper floor.
-Select _"I am sorry to disturb your rest, chieftain, but your brother's spirit may be in danger. Would you tell me what you remember of him?"_
+Select _"I am sorry to disturb your rest, chieftain, but your brother's spirit may be in danger. Would you tell me what you remember of him?"_ |gossip 93202
 Watch the dialogue
 Ask Chieftain Swiftspear About His Memories |q 13037/1 |goto The Storm Peaks 61.18,39.00
 step

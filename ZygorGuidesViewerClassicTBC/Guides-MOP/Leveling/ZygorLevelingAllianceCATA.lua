@@ -6055,7 +6055,7 @@ label "Collect_Wildhammer_Ale"
 click Wildhammer Ale Cask##206292
 |tip They look like brown wooden barrels laying on their side.
 |tip They can also be inside buildings. |notinsticky
-collect 6 Wildhammer Ale##62327 |q 27649/1 |goto Twilight Highlands/0 45.95,55.13
+collect 6 Wildhammer Ale##62327 |q 27649/1 |goto Twilight Highlands/0 47.69,72.55
 You can find more around [50.73,69.84]
 step
 label "Find_Dunwald_Victims"

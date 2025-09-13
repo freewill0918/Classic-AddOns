@@ -184,11 +184,11 @@ step
 use the Grand Gryphon##93385
 learnmount Grand Gryphon##136163
 ]])
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Reputation Mounts\\Grand Armored Gryphon",{
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Achievement Mounts\\Grand Armored Gryphon",{
 keywords={"grand","armored","gryphon","operation:","shieldwall","exalted","flying","mount"},
 model={46929},
 mounts={135416},
-patch='51000',
+patch='55000',
 mounttype='Flying',
 description="This guide will teach you how to acquire the Grand Armored Gryphon mount.",
 mopready=true,
@@ -231,6 +231,7 @@ turnin Lion's Landing##32109 |goto Krasarang Wilds/0 85.62,29.06 |or
 step
 Reach Exalted Reputation with Operation: Shieldwall |complete rep('Operation: Shieldwall') == Exalted |or
 |tip Use the "Operation: Shieldwall" reputation guide to accomplish this.
+Click Here to Load the "Operation: Shieldwall" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Operation: Shieldwall\\Beastmaster Dailies"
 '|complete hasmount(135416) |or
 step
 talk Agent Malley##69059

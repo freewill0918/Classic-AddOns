@@ -2,6 +2,44 @@ local ZygorGuidesViewer=ZygorGuidesViewer
 if not ZygorGuidesViewer then return end
 if ZGV:DoMutex("MountsCMOP") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Dropped Mounts\\Cobalt Primordial Direhorn",{
+keywords={"direhorn","primordial","son","saddle","elite","drop","valley","four","winds","mount"},
+model={47716},
+mounts={69829},
+patch='55000',
+mounttype='Ground',
+description="This guide will teach you how to acquire the Cobalt Primordial Direhorn mount.",
+mopready=true,
+},[[
+step
+kill Oondasta##69161
+|tip He is an elite world boss on the Isle of Giants.
+collect Reins of the Cobalt Primordial Direhorn##94228 |goto Isle of Giants/0 49.87,54.00 |or
+|tip This has an extremely low drop rate.
+'|complete hasmount(69829) |or
+step
+use the Reins of the Cobalt Primordial Direhorn##94228
+learnmount Cobalt Primordial Direhorn##69829
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Dropped Mounts\\Son of Galleon",{
+keywords={"galleon","salyis","son","saddle","elite","drop","valley","four","winds","mount"},
+model={45264},
+mounts={66645},
+patch='55000',
+mounttype='Ground',
+description="This guide will teach you how to acquire the Son of Galleon mount.",
+mopready=true,
+},[[
+step
+kill Galleon##62346
+|tip He is an elite world boss in the Valley of the Four Winds.
+collect Son of Galleon's Saddle##89783 |goto Valley of the Four Winds/0 71.07,64.00 |or
+|tip This has an extremely low drop rate.
+'|complete hasmount(66645) |or
+step
+use the Son of Galleon's Saddle##89783
+learnmount Son of Galleon##66645
+]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Miscellaneous Mounts\\Bone-White Primal Raptor",{
 keywords={"bone","white","primal","raptor","ground","mount"},
 mounts={138640},
@@ -1131,6 +1169,25 @@ step
 use the Warforged Nightmare##112326
 learnmount Warforged Nightmare##163024
 ]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Dropped Mounts\\Heavenly Onyx Cloud Serpent",{
+keywords={"heavenly","onyx","cloud","serpent","sha","of","anger","flying","mount"},
+model={43689},
+mounts={127158},
+patch='50400',
+mounttype='Flying',
+description="This guide will teach you how to acquire the Heavenly Onyx Cloud Serpent mount.",
+mopready=true,
+},[[
+step
+kill Sha of Anger##60491
+|tip It has about a 10-20 minute respawn timer.
+collect Reins of the Heavenly Onyx Cloud Serpent##87771 |goto Kun-Lai Summit/0 54.47,63.22 |or
+|tip This has an extremely low drop rate.
+'|complete hasmount(127158) |or
+step
+use the Reins of the Heavenly Onyx Cloud Serpent##87771
+learnmount Heavenly Onyx Cloud Serpent##127158
+]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Dropped Mounts\\Thundering Cobalt Cloud Serpent",{
 keywords={"heavenly","onyx","cloud","serpent","sha","of","anger","flying","mount"},
 model={47981},
@@ -1150,25 +1207,6 @@ collect Reins of the Thundering Cobalt Cloud Serpent##95057 |goto Isle of Thunde
 step
 use the Reins of the Thundering Cobalt Cloud Serpent##95057
 learnmount Thundering Cobalt Cloud Serpent##139442
-]])
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Dropped Mounts\\Heavenly Onyx Cloud Serpent",{
-keywords={"heavenly","onyx","cloud","serpent","sha","of","anger","flying","mount"},
-model={43689},
-mounts={127158},
-patch='50400',
-mounttype='Flying',
-description="This guide will teach you how to acquire the Heavenly Onyx Cloud Serpent mount.",
-mopready=true,
-},[[
-step
-kill Sha of Anger##60491
-|tip It has about a 10-20 minute respawn timer.
-collect Reins of the Heavenly Onyx Cloud Serpent##87771 |goto Kun-Lai Summit/0 54.47,63.22 |or
-|tip This has an extremely low drop rate.
-'|complete hasmount(127158) |or
-step
-use the Reins of the Heavenly Onyx Cloud Serpent##87771
-learnmount Heavenly Onyx Cloud Serpent##127158
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Dropped Mounts\\Thundering Onyx Cloud Serpent",{
 keywords={"thundering","onyx","cloud","serpent","huolon","flying","mount"},
@@ -1291,6 +1329,62 @@ step
 use the Reins of the Onyx Cloud Serpent##87768
 learnmount Onyx Cloud Serpent##127154
 ]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\PVP Mounts\\Grievous Gladiator's Cloud Serpent",{
+keywords={"grievous","gladiators","gladiator's","cloud","serpent","arena"},
+mounts={148619},
+patch='54000',
+mounttype='Flying',
+model={51360},
+description="This guide will teach you how to acquire the Grievous Gladiator's Cloud Serpent mount.",
+mopready=true,
+},[[
+step
+achieve 2091 |or
+|tip Reward for the top ranking arena teams (ranked 0.5% or higher) at the conclusion of Arena Season 14.
+'|complete hasmount(148619) |or
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\PVP Mounts\\Malevolent Gladiator's Cloud Serpent",{
+keywords={"malevolent","gladiator's","cloud","serpent","arena"},
+mounts={139407},
+patch='52000',
+mounttype='Flying',
+model={47976},
+description="This guide will teach you how to acquire the Malevolent Gladiator's Cloud Serpent mount.",
+mopready=true,
+},[[
+step
+achieve 2091 |or
+|tip Reward for the top ranking arena teams (ranked 0.5% or higher) at the conclusion of Arena Season 12.
+'|complete hasmount(139407) |or
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\PVP Mounts\\Prideful Gladiator's Cloud Serpent",{
+keywords={"prideful","gladiator's","cloud","serpent","arena"},
+mounts={148620},
+patch='54000',
+mounttype='Flying',
+model={51359},
+description="This guide will teach you how to acquire the Prideful Gladiator's Cloud Serpent mount.",
+mopready=true,
+},[[
+step
+achieve 2091 |or
+|tip Reward for the top ranking arena teams (ranked 0.5% or higher) at the conclusion of Arena Season 15.
+'|complete hasmount(148620) |or
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\PVP Mounts\\Tyrannical Gladiator's Cloud Serpent",{
+keywords={"tyrannical","gladiator's","cloud","serpent","arena"},
+mounts={148618},
+patch='54000',
+mounttype='Flying',
+model={51361},
+description="This guide will teach you how to acquire the Tyrannical Gladiator's Cloud Serpent mount.",
+mopready=true,
+},[[
+step
+achieve 2091 |or
+|tip Reward for the top ranking arena teams (ranked 0.5% or higher) at the conclusion of Arena Season 13.
+'|complete hasmount(148620) |or
+]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Profession Mounts\\Engineering\\Depleted-Kyparium Rocket",{
 keywords={"engineering","flying","mount","depleted","kyparium"},
 model={43637},
@@ -1301,10 +1395,10 @@ description="This guide will teach you how to acquire the Depleted-Kyparium Rock
 mopready=true,
 },[[
 step
-Reach 75 Pandaria Engineering |skill Pandaria Engineering,75 |or
-|tip Use the "Pandaria Engineering 1-75" profession guide to accomplish this.
+Reach 600 Pandaria Engineering |skill Engineering,600 |or
+|tip Use the "Engineering 1-600" profession guide to accomplish this.
 |tip If you don't want to gather the materials to craft it you can buy it from the Auction House.
-Click Here to Load the "Pandaria Engineering 1-75" |confirm |loadguide "Profession Guides\\Engineering\\Leveling Guides\\Pandaria Engineering 1-75"
+Click Here to Open the "Engineering 1-600" |confirm |loadguide "Profession Guides\\Engineering\\Leveling Guides\\Engineering (1-600)"
 '|complete hasmount(126507) |or
 step
 talk Didi the Wrench##93520
@@ -1364,10 +1458,10 @@ description="This guide will teach you how to acquire the Geosynchronous World S
 mopready=true,
 },[[
 step
-Reach 75 Pandaria Engineering |skill Pandaria Engineering,75 |or
-|tip Use the "Pandaria Engineering 1-75" profession guide to accomplish this.
+Reach 600 Pandaria Engineering |skill Engineering,600 |or
+|tip Use the "Engineering 1-600" profession guide to accomplish this.
 |tip If you don't want to gather the materials to craft it you can buy it from the Auction House.
-Click Here to Load the "Pandaria Engineering 1-75" |confirm |loadguide "Profession Guides\\Engineering\\Leveling Guides\\Pandaria Engineering 1-75"
+Click Here to Open the "Engineering 1-600" |confirm |loadguide "Profession Guides\\Engineering\\Leveling Guides\\Engineering (1-600)"
 '|complete hasmount(126507) |or
 step
 talk Sally Fizzlefury##55143
@@ -1420,10 +1514,10 @@ description="This guide will teach you how to acquire the Sky Golem mount.",
 mopready=true,
 },[[
 step
-Reach 75 Pandaria Engineering |skill Pandaria Engineering,75 |or
-|tip Use the "Pandaria Engineering 1-75" profession guide to accomplish this.
+Reach 600 Pandaria Engineering |skill Engineering,600 |or
+|tip Use the "Engineering 1-600" profession guide to accomplish this.
 |tip If you don't want to gather the materials to craft it you can buy it from the Auction House.
-Click Here to Open the "Pandaria Engineering 1-75" |confirm |loadguide "Profession Guides\\Engineering\\Leveling Guides\\Pandaria Engineering 1-75"
+Click Here to Open the "Engineering 1-600" |confirm |loadguide "Profession Guides\\Engineering\\Leveling Guides\\Engineering (1-600)"
 '|complete hasmount(134359) |or
 step
 Kill enemies in the Vale of Eternal Blossoms
@@ -1465,10 +1559,10 @@ description="This guide will teach you how to acquire the Jade Panther mount.",
 mopready=true,
 },[[
 step
-Reach 75 Pandaria Jewelcrafting |skill Pandaria Jewelcrafting,75 |or
-|tip Use the "Pandaria Jewelcrafting 1-75" profession guide to accomplish this.
+Reach 600 Jewelcrafting |skill Jewelcrafting,600 |or
+|tip Use the "Jewelcrafting 1-600" profession guide to accomplish this.
 |tip If you don't want to gather the materials to craft it you can buy it from the Auction House.
-Click Here to Open the "Pandaria Jewelcrafting 1-75" |confirm |loadguide "Profession Guides\\Engineering\\Leveling Guides\\Pandaria Jewelcrafting 1-75"
+Click Here to Open the "Jewelcrafting 1-600" profession guide |confirm |loadguide "Profession Guides\\Jewelcrafting\\Leveling Guides\\Jewelcrafting (1-600)"
 '|complete hasmount(121837) |or
 step
 Reach Honored Reputation with the Order of the Cloud Serpent |complete rep('Order of the Cloud Serpent') == Honored |or
@@ -1510,7 +1604,7 @@ talk Big Keech##61650
 |tip He walks around this area.
 buy 1 Orb of Mystery##83092 |goto Vale of Eternal Blossoms/0 71.52,44.20 |or
 '|complete hasmount(121837) |or
-He may also be found around [62.26,41.96]
+He may also be found around [Vale of Eternal Blossoms/0 62.26,41.96]
 step
 talk Danky##66685
 buy 2 Serpent's Eye##76734 |goto Vale of Eternal Blossoms/0 61.69,21.67 |or
@@ -1534,10 +1628,10 @@ description="This guide will teach you how to acquire the Jeweled Onyx Panther m
 mopready=true,
 },[[
 step
-Reach 75 Pandaria Jewelcrafting |skill Pandaria Jewelcrafting,75 |or
-|tip Use the "Pandaria Jewelcrafting 1-75" profession guide to accomplish this.
+Reach 600 Jewelcrafting |skill Jewelcrafting,600 |or
+|tip Use the "Jewelcrafting 1-600" profession guide to accomplish this.
 |tip If you don't want to gather the materials to craft it you can buy it from the Auction House.
-Click Here to Open the "Pandaria Jewelcrafting 1-75" |confirm |loadguide "Profession Guides\\Engineering\\Leveling Guides\\Pandaria Jewelcrafting 1-75"
+Click Here to Open the "Jewelcrafting 1-600" |confirm |loadguide "Profession Guides\\Jewelcrafting\\Leveling Guides\\Jewelcrafting (1-600)"
 '|complete hasmount(120043) |or
 step
 Reach Exalted Reputation with the Order of the Cloud Serpent |complete rep('Order of the Cloud Serpent') == Exalted |or
@@ -1587,10 +1681,10 @@ description="This guide will teach you how to acquire the Ruby Panther mount.",
 mopready=true,
 },[[
 step
-Reach 75 Pandaria Jewelcrafting |skill Pandaria Jewelcrafting,75 |or
-|tip Use the "Pandaria Jewelcrafting 1-75" profession guide to accomplish this.
+Reach 600 Jewelcrafting |skill Jewelcrafting,600 |or
+|tip Use the "Jewelcrafting 1-600" profession guide to accomplish this.
 |tip If you don't want to gather the materials to craft it you can buy it from the Auction House.
-Click Here to Open the "Pandaria Jewelcrafting 1-75" |confirm |loadguide "Profession Guides\\Engineering\\Leveling Guides\\Pandaria Jewelcrafting 1-75"
+Click Here to Open the "Jewelcrafting 1-600" |confirm |loadguide "Profession Guides\\Jewelcrafting\\Leveling Guides\\Jewelcrafting (1-600)"
 '|complete hasmount(121838) |or
 step
 Reach Revered Reputation with the Order of the Cloud Serpent |complete rep('Order of the Cloud Serpent') == Revered |or
@@ -1632,7 +1726,7 @@ talk Big Keech##61650
 |tip He walks around this area.
 buy 1 Orb of Mystery##83092 |goto Vale of Eternal Blossoms/0 71.52,44.20 |or
 '|complete hasmount(121838) |or
-He may also be found around [62.26,41.96]
+He may also be found around [Vale of Eternal Blossoms/0 62.26,41.96]
 step
 talk Danky##66685
 buy 2 Serpent's Eye##76734 |goto Vale of Eternal Blossoms/0 61.69,21.67 |or
@@ -1656,10 +1750,10 @@ description="This guide will teach you how to acquire the Sapphire Panther mount
 mopready=true,
 },[[
 step
-Reach 75 Pandaria Jewelcrafting |skill Pandaria Jewelcrafting,75 |or
-|tip Use the "Pandaria Jewelcrafting 1-75" profession guide to accomplish this.
+Reach 600 Jewelcrafting |skill Jewelcrafting,600 |or
+|tip Use the "Jewelcrafting 1-600" profession guide to accomplish this.
 |tip If you don't want to gather the materials to craft it you can buy it from the Auction House.
-Click Here to Open the "Pandaria Jewelcrafting 1-75" |confirm |loadguide "Profession Guides\\Engineering\\Leveling Guides\\Pandaria Jewelcrafting 1-75"
+Click Here to Open the "Jewelcrafting 1-600" |confirm |loadguide "Profession Guides\\Jewelcrafting\\Leveling Guides\\Jewelcrafting (1-600)"
 '|complete hasmount(121836) |or
 step
 Reach Revered Reputation with the Order of the Cloud Serpent |complete rep('Order of the Cloud Serpent') == Revered |or
@@ -1701,7 +1795,7 @@ talk Big Keech##61650
 |tip He walks around this area.
 buy 1 Orb of Mystery##83092 |goto Vale of Eternal Blossoms/0 71.52,44.20 |or
 '|complete hasmount(121836) |or
-He may also be found around [62.26,41.96]
+He may also be found around [Vale of Eternal Blossoms/0 62.26,41.96]
 step
 talk Danky##66685
 buy 2 Serpent's Eye##76734 |goto Vale of Eternal Blossoms/0 61.69,21.67 |or
@@ -1725,10 +1819,10 @@ description="This guide will teach you how to acquire the Sunstone Panther mount
 mopready=true,
 },[[
 step
-Reach 75 Pandaria Jewelcrafting |skill Pandaria Jewelcrafting,75 |or
-|tip Use the "Pandaria Jewelcrafting 1-75" profession guide to accomplish this.
+Reach 600 Jewelcrafting |skill Jewelcrafting,600 |or
+|tip Use the "Jewelcrafting 1-600" profession guide to accomplish this.
 |tip If you don't want to gather the materials to craft it you can buy it from the Auction House.
-Click Here to Open the "Pandaria Jewelcrafting 1-75" |confirm |loadguide "Profession Guides\\Engineering\\Leveling Guides\\Pandaria Jewelcrafting 1-75"
+Click Here to Open the "Jewelcrafting 1-600" |confirm |loadguide "Profession Guides\\Jewelcrafting\\Leveling Guides\\Jewelcrafting (1-600)"
 '|complete hasmount(121839) |or
 step
 Reach Honored Reputation with the Order of the Cloud Serpent |complete rep('Order of the Cloud Serpent') == Honored |or
@@ -1770,7 +1864,7 @@ talk Big Keech##61650
 |tip He walks around this area.
 buy 1 Orb of Mystery##83092 |goto Vale of Eternal Blossoms/0 71.52,44.20 |or
 '|complete hasmount(121839) |or
-He may also be found around [62.26,41.96]
+He may also be found around [Vale of Eternal Blossoms/0 62.26,41.96]
 step
 talk Danky##66685
 buy 2 Serpent's Eye##76734 |goto Vale of Eternal Blossoms/0 61.69,21.67 |or
@@ -1822,6 +1916,7 @@ Press _I_ and queue for Throne of Thunder or enter the raid normally |goto Thron
 step
 kill Ji-Kun##69712
 |tip Use the "Throne of Thunder" raid guide to accomplish this.
+Click Here to Load the "Throne of Thunder" raid guide |confirm |loadguide "Dungeon Guides\\Pandaria Raids\\Throne of Thunder"
 collect 1 Clutch of Ji-kun##95059 |or
 '|complete hasmount(139448) |or
 step

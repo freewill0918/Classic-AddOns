@@ -6635,10 +6635,14 @@ turnin The Peak of Serenity - Continue Your Training##31861 |goto Kun-Lai Summit
 accept Continue Your Training: Master Hsu##31839 |goto Kun-Lai Summit/0 48.59,42.70
 step
 talk Master Hsu##66207
-Select _"I wish to challenge you."_
+Select _"I wish to challenge you."_ |gossip 130184
 |tip Follow him as he walks.
 kill Master Hsu##65977
 |tip Use the {o}/bow{} emote on him to begin the fight. |script DoEmote("BOW")
+|tip Be ready to disarm Master Hsu with Grapple Weapon when you will see the warning.
+|tip Afterwards you will need to clense yourself from the poinson using Detox when needed.
+cast Glapple Weapon##117368
+cast Detox##115450
 Complete Master Hsu's Training |q 31839/1 |goto Kun-Lai Summit/0 47.49,40.93
 step
 talk Master Hight##66260

@@ -1550,8 +1550,151 @@ You can only start earning reputation with Sho after completing the Tillers preq
 confirm
 |next "menu" |only if completedq(30257)
 step
-label "tillers"
-#include "Tillers_Quests"
+talk Tang Ironhoe##64036 |only Alliance
+accept The Tillers##31372 |goto Valley of the Four Winds/0 87.00,60.80 |only Alliance
+talk Farmhand Dooka##64011 |only Horde
+accept The Tillers##31374 |goto Vale of Eternal Blossoms/0 60.20,22.90 |only Horde
+step
+talk Farmer Yoon##58721
+turnin The Tillers##31372 |goto Valley of the Four Winds/0 52.00,48.00 |only Alliance
+turnin The Tillers##31374 |goto Valley of the Four Winds/0 52.00,48.00 |only Horde
+accept A Helping Hand##30252 |goto Valley of the Four Winds/0 52.00,48.00
+step
+clicknpc Unbudging Rock##58719
+Clear 8 Unbudging Rocks |q 30252/1 |goto Valley of the Four Winds/0 51.80,48.80
+step
+talk Farmer Yoon##58646
+turnin A Helping Hand##30252 |goto Valley of the Four Winds/0 52.80,47.90
+step
+talk Farmer Yoon##58646
+accept Learn and Grow I: Seeds##30535 |goto Valley of the Four Winds/0 52.30,48.80
+step
+talk Merchant Greenfield##58718
+Tell him you're there to pick up seeds
+Get a Packet of Green Cabbage Seeds |q 30535/1 |goto Valley of the Four Winds/0 52.90,52.20
+step
+talk Farmer Yoon##58646
+turnin Learn and Grow I: Seeds##30535 |goto Valley of the Four Winds/0 52.30,48.80
+accept Learn and Grow II: Tilling and Planting##30254 |goto Valley of the Four Winds/0 52.30,48.80
+step
+clicknpc Untilled Soil##59985+
+Till 2 patches of Soil |q 30254/1 |goto 52.00,48.30
+Use the EZ-Gro Green Cabbage Seeds in your bags on the Tilled Soil |use EZ-Gro Green Cabbage Seeds##80302
+Plant seeds in 2 patches of Tilled Soil |q 30254/2 |goto Valley of the Four Winds/0 52.00,48.30
+step
+talk Farmer Yoon##58646
+turnin Learn and Grow II: Tilling and Planting##30254 |goto Valley of the Four Winds/0 52.30,48.80
+accept Learn and Grow III: Tending Crops##30255 |goto Valley of the Four Winds/0 52.30,48.80
+step
+Use the Rusty Watering Can on the Parched EZ-Gro Green Cabbage |use Rusty Watering Can##79104
+Water 2 parched Ez-Gro Green Cabbage |q 30255/1 |goto Valley of the Four Winds/0 52.00,48.30
+step
+talk Farmer Yoon##58646
+turnin Learn and Grow III: Tending Crops##30255 |goto Valley of the Four Winds/0 52.30,48.80
+accept Learn and Grow IV: Harvesting##30256 |goto Valley of the Four Winds/0 52.30,48.80
+step
+clicknpc Ripe EZ-Gro Green Cabbage##59833
+collect 2 EZ-Gro Green Cabbage##80314 |q 30256/1 |goto Valley of the Four Winds/0 52.00,48.30
+step
+talk Farmer Yoon##58646
+turnin Learn and Grow IV: Harvesting##30256 |goto Valley of the Four Winds/0 52.30,48.80
+accept Learn and Grow V: Halfhill Market##30257 |goto Valley of the Four Winds/0 52.30,48.80
+step
+click Dark Soil##210582
+collect Marsh Lily##79268 |q 30257/1 |goto Valley of the Four Winds/0 52.80,48.00
+step
+talk Gina Mudclaw##58706
+turnin Learn and Grow V: Halfhill Market##30257 |goto Valley of the Four Winds/0 53.10,51.80
+accept Learn and Grow VI: Gina's Vote##31945 |goto Valley of the Four Winds/0 53.10,51.80
+step
+talk Merchant Greenfield##58718
+buy 1 Scallion Seeds##80591 |q 31945 |goto Valley of the Four Winds/0 52.90,52.20
+step
+clicknpc Untilled Soil##58562
+Use your Scallion Seeds on the Tilled Soil |use Scallion Seeds##80591
+Plant Scallion Seeds |q 31945/1 |goto Valley of the Four Winds/0 52.00,48.40
+step
+label "info"
+Click here for information on Bursting Crops |next "bursting" |confirm
+Click here for information on Parched Crops |next "parched" |confirm
+Click here for information on Infested Crops |next "infested" |confirm
+Click here for information on Wiggling Crops |next "wiggling" |confirm
+Click here for information on Alluring Crops |next "alluring" |confirm
+Click here for information on Smothered Crops |next "smothered" |confirm
+Click here for information on Wild Crops |next "wild" |confirm
+Click here for information on Runty Crops |next "runty" |confirm
+Click here for information on Tangled Crops |next "tangled" |confirm
+step
+label "bursting"
+Unless you got a Bursting Scallion immediately after planting your Scallions, you will have to wait a full day until you can pick your crops
+Click here if you are ready to harvest your crops |confirm
+step
+clicknpc Bursting Scallions##63160
+clicknpc Ripe Scallions##63165
+Harvest Ripe Scallions |q 31945/2 |goto Valley of the Four Winds/0 52.00,48.40
+collect 5 Scallion##74843 |q 31945/3 |goto Valley of the Four Winds/0 52.00,48.40
+|next "exit"
+step
+label "runty"
+clicknpc Runty Scallions##63166
+Press your Space Bar and jump |goto Valley of the Four Winds/0 52.00,48.40
+Click here to return to the information page |next "info" |confirm
+Click here when you are have tilled your crops |next "bursting" |confirm
+step
+label "wiggling"
+clicknpc Wiggling Scallions##63169
+kill Voracious Virmen##60039 |goto Valley of the Four Winds/0 52.00,48.40
+Click here to return to the information page |next "info" |confirm
+Click here when you are have tilled your crops |next "bursting" |confirm
+step
+label "infested"
+click Vintage Bug Sprayer##211331
+collect Vintage Bug Sprayer##80513 |n
+Use your Vintage Bug Sprayer on the Infested Scallions |goto Valley of the Four Winds/0 52.20,48.30 |use Vintage Bug Sprayer##80513
+Click here to return to the information page |next "info" |confirm
+Click here when you are have tilled your crops |next "bursting" |confirm
+step
+label "alluring"
+clicknpc Alluring Scallions##63159
+kill Swooping Plainshawk##60072 |goto Valley of the Four Winds/0 52.20,48.30
+Click here to return to the information page |next "info" |confirm
+Click here when you are have tilled your crops |next "bursting" |confirm
+step
+label "wild"
+clicknpc Wild Scallions##63170
+Ride the Scallion |invehicle |c |goto Valley of the Four Winds/0 52.00,48.40
+step
+Spam the Flex ability on your new hotbar, when the plant tries to cast Vine Slam, interrupt it with your Gnaw ability
+Build 50 stacks on Dominance |outvehicle |c
+step
+Click here to return to the information page. |next "info" |confirm
+Click here when you are have tilled your crops. |next "bursting" |confirm
+step
+label "tangled"
+clicknpc Tangled Scallions##63168 |goto Valley of the Four Winds/0 51.70,48.90 < 5
+confirm
+step
+Click here to return to the information page |next "info" |confirm
+Click here when you are have tilled your crops |next "bursting" |confirm
+step
+label "parched"
+Use the Rusty Watering Can on the Parched Scallions |use Rusty Watering Can##79104
+Click here to return to the information page |next "info" |confirm |goto Valley of the Four Winds/0 52.00,48.40
+Click here when you are have tilled your crops |next "bursting" |confirm |goto Valley of the Four Winds/0 52.00,48.40
+step
+label "smothered"
+clicknpc Encroaching Weed##60185 |goto Valley of the Four Winds/0 52.00,48.40
+Ride the Weed |invehicle |c
+step
+Spam the Pull ability on your new hotbar
+Pull the Weed |outvehicle |c
+step
+Click here to return to the information page |next "info" |confirm
+Click here when you are have tilled your crops |next "bursting" |confirm
+step
+label "exit"
+talk Gina Mudclaw##58706
+turnin Learn and Grow VI: Gina's Vote##31945 |goto Valley of the Four Winds/0 53.10,51.80
 step
 label "menu"
 _Sho_ is a _Stranger_ to you. |only if rep("Sho")<=Stranger
@@ -1966,6 +2109,7 @@ mopready=true,
 step
 kill Sha of Pride##71734
 |tip Inside the Siege of Orgrimmar raid.
+|tip You may have to kill this boss more than once to receive the pet drop.
 collect Droplet of Y'Shaarj##104162 |goto Siege of Orgrimmar/3 28.70,67.90
 step
 use Droplet of Y'Shaarj##104162
@@ -1994,6 +2138,7 @@ mopready=true,
 step
 kill Sha of Pride##71734
 |tip Inside the Siege of Orgrimmar raid.
+|tip You may have to kill this boss more than once to receive the pet drop.
 collect Gooey Sha-Ling##104163 |goto Siege of Orgrimmar/1 54.20,38.20
 step
 use Gooey Sha-Ling##104163
@@ -2079,24 +2224,6 @@ step
 use Ominous Flame##104166
 learnpet Ominous Flame##1335
 ]])
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Elemental Pets\\Ravenous Prideling",{
-patch='81500',
-source='Drop',
-description="This guide will teach you how to acquire the Ravenous Prideling battle pet.",
-pet=2590,
-mopready=true,
-},[[
-step
-kill Grand Empress Shek'zeer##62837
-|tip Inside the Heart of Fear raid.
-|tip You may have to kill it more than once to obtain the pet.
-|tip You can also purchase this pet from the auction house.
-collect Essence of Pride##167056 |goto Heart of Fear/2 26.49,73.34 |or
-'|complete haspet(2590) |or
-step
-use Essence of Pride##167056
-learnpet Ravenous Prideling##2590
-]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Elemental Pets\\Ruby Droplet",{
 patch='54000',
 source='Drop',
@@ -2144,9 +2271,9 @@ kill Skunky Brew Alemental##71908+
 |tip Wait for these to spawn as a random event.
 |tip After killing 10, Zhu-Gon will spawn.
 kill Zhu-Gon the Sour##71919
-collect 1 Skunky Almental##104167 |goto Timeless Isle/0 38.00,77.60
+collect 1 Skunky Alemental##104167 |goto Timeless Isle/0 38.00,77.60
 step
-use Skunky Almental##104167
+use Skunky Alemental##104167
 learnpet Skunky Alemental##1336
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Elemental Pets\\Spirit of the Spring",{
@@ -2471,45 +2598,48 @@ pet=1039,
 mopready=true,
 },[[
 step
-Click here to gather and create the pet yourself |confirm |next "create"
-Click here to be taken to the Auctioneer to purchase it |confirm |next "buy"
-|tip This pet requires you to either have level 25-35 Pandaria Tailoring, or purchase it from the Auction House.
-|tip Creating an Imperial Silk or Song of Harmony in the Silken Fields awards a Silkworm Cocoon, which has a chance to drop the pet.
+You may acquire this pet from a {b}Silkworm Cocoon{} that has a chance to drop when a 550+ level Tailor creates Imperial Silk. |confirm
+Click Here to Gather the Materials and Craft the Pet Yourself |confirm |next "CRAFT" |only if skill("Tailoring") >= 550
+Click Here to Load the Tailoring Profession Leveling guide |confirm |loadguide "Profession Guides\\Tailoring\\Leveling Guides\\Tailoring (1-600)" |only if skill("Tailoring") >= 1
+|tip You can also purchase this pet in the auction house.
 step
-label "create"
+label "CRAFT"
 kill Springtail Leaper##57415+, Springtail Gnasher##57413+
 collect 40 Windwool Cloth##72988 |goto Valley of the Four Winds/0 43.90,38.60
+|only if skill("Tailoring") >= 550
 step
-create 5 Bolt of Windwool Cloth##82441
+Craft the Cloth into Bolts
+collect 8 Bolts of Windwool Cloth##82441
+|only if skill("Tailoring") >= 550
+step
+Craft 1 Imperial Silk in the Silken Fields
+|tip There is a chance to create a Silkworm Cocoon when crafting the Imperial Silk.
+collect Silkworm Cocoon##125557
+|only if skill("Tailoring") >= 550
 step
 Farm all enemies on the Isle of Thunder to collect Motes of Harmony.
 when you get 10, right click them to collect Spirit of Harmony.
 collect 3 Spirit of Harmony##76061+
+|only if skill("Tailoring") >= 550
 step
 create Song of Harmony##130325,Tailoring,1 total
 collect 1 Imperial Silk##82447
+|only if skill("Tailoring") >= 550
 step
-#include "trainer_Tailoring"
+talk Georgio Bolero##1346 |goto Stormwind City/0 53.10,81.30 |only if Alliance
+talk Magar##3363 |goto Orgrimmar/1 60.80,59.10 |only if Horde
 learn Silkworm Cocoon##125557
+|only if skill("Tailoring") >= 550
 step
-create 1 Silkworm Cocoon##92960
+collect 1 Silkworm Cocoon##92960
 step
-Open the Silkworm Cocoon to see what pet it contains! |use Silkworm Cocoon##92960
-|tip You have a chance of getting the Imperial Moth or the Imperial Silkworm. If you didn't get the one you wanted, you will have to wait a day and try again.
-collect 1 Imperial Moth##67230 |or
-collect 1 Imperial Silkworm##67233 |or
-|next "done"
+use Silkworm Cocoon##92960
+|tip You have a chance of getting the Imperial Moth or the Imperial Silkworm.
+|tip If you didn't get the moth, you will have to try again.
+collect 1 Imperial Moth##90900 |or
 step
-label "buy"
-#include "auctioneer"
-buy 1 Imperial Moth##90900
-|next "done"
-step
-label "done"
 use Imperial Moth##90900
-use Imperial Silkworm##9090
-learnpet Imperial Moth##1039 |or
-learnpet Imperial Silkworm##1040 |or
+learnpet Imperial Moth##1039
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Flying Pets\\Ji-Kun Hatchling",{
 patch='52000',
@@ -2640,6 +2770,26 @@ clicknpc Szechuan Chicken##63585
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
 learnpet Szechuan Chicken##728 |goto Kun-Lai Summit/0 60.20,88.60
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Humanoid Pets\\Anubisath Idol",{
+patch='55000',
+source='Drop',
+description="This guide will teach you how to acquire the Anubisath Idol battle pet.",
+pet=1155,
+mopready=true,
+},[[
+step
+Enter the Temple of Ahn'Qiraj |goto Ahn'Qiraj: The Fallen Kingdom/0 46.76,7.47 < 15
+kill Emperor Vek'lor##15276
+|tip He is one of the Twin Emperors within the Temple of Ahn'Qiraj raid.
+|tip Ahn'Qiraj is at the southwestern corner of Silithus on Kalimdor.
+|tip You must be at least level 60 and in a raid group to enter this raid.
+|tip You may have to kill this boss more than once to obtain the pet.
+|tip You can also purchase this pet in the Auction House.
+collect 1 Anubisath Idol##93040 |goto Ahn'Qiraj: The Fallen Kingdom/0 46.76,7.47
+step
+use Anubisath Idol##93040
+learnpet Anubisath Idol##1155
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Humanoid Pets\\Ashleaf Spriteling",{
 patch='54000',

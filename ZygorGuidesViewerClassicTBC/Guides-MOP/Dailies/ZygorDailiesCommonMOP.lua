@@ -323,8 +323,8 @@ turnin Champion of Chi-Ji##30740 |goto Krasarang Wilds/0 31.34,63.43 |only if ha
 |next "end"
 step
 talk Fat Long-Fat##60534
-|tip He is on the very top of this building.
-Let's fight!
+|tip On top of the building.
+Select _"Let's fight!"_ |gossip 126147
 Defeat Fat Long-Fat |q 30728/1 |goto Krasarang Wilds/0 32.00,70.70
 |only if haveq(30728) or completedq(30728)
 step
@@ -369,8 +369,8 @@ Defeat Kuo-Na Quillpaw |q 30731/1 |goto Krasarang Wilds/0 36.60,74.80
 |only if haveq(30731) or completedq(30731)
 step
 talk Ellia Ravenmane##60533
-Let's fight!
-Defeat Ellia Ravenmane |q 30727/1 |goto Krasarang Wilds/0 35.20,75.10
+Select _"Let's fight!"_ |gossip 126146
+Defeat Ellia Ravenmane |q 30727/1 |goto Krasarang Wilds/0 35.17,75.05
 |only if haveq(30727) or completedq(30727)
 step
 talk Julia Bates##60535
@@ -782,9 +782,9 @@ label "end"
 You have completed the available daily quests |complete false or not completedq(30006,30063,30064,30065,30066,30067,30068,30716,30717,30718,30726,30727,30728,30729,30730,30731,30732,30733,30734,30735,30736,30737,30738,30739,30740,30956,30952,30959,30954,30953,30957,30958,30955,30879,30880,31517,30881,30882,30883,30885,30907,30902,31492) |or |next "dailies"
 |tip New quests will become available with the next daily server reset.
 |tip  |only if rep("August Celestials")>=Revered
-'|talk Sage Whiteheart##64032 |goto Vale of Eternal Blossoms/0 84.60,63.70  |only if rep("August Celestials")>=Revered
-|tip Purchase the Grand Commendation of the August Celestials from Sage Whiteheart if possible. |only if rep("August Celestials")>=Revered
-|tip If you're seeing {b}bonus{} rep at the end of daily turnins, you don't need to purchase this. |only if rep("August Celestials")>=Revered
+'|talk Sage Whiteheart##64032 |goto Vale of Eternal Blossoms/0 62.79,23.39 |only if rep("The August Celestials")>=Revered
+|tip Purchase the Grand Commendation of the August Celestials from Sage Whiteheart if possible. |only if rep("The August Celestials")>=Revered
+|tip If you're seeing {b}bonus{} rep at the end of daily turnins, you don't need to purchase this. |only if rep("The August Celestials")>=Revered
 ]])
 ZygorGuidesViewer:RegisterGuide("Daily Guides\\Mists of Pandaria Dailies\\The Order of the Cloud Serpent Dailies",{
 mopready=true,
@@ -1445,12 +1445,13 @@ accept The Challenger's Ring: Lao-Chin the Iron Belly##31128 |goto Townlong Step
 |only if rep('Shado-Pan')>=Revered
 step
 talk Lao-Chin the Iron Belly##62978
-I'm here to challenge you! |q 31128/1 |goto Townlong Steppes/0 49.30,72.00
+Select _"I'm here to challenge you!"_ |gossip 129477
+Challenge Lao-Chin the Iron Belly |q 31128/1 |goto Townlong Steppes/0 49.29,71.93
 |only if haveq(31128) or completedq(31128)
 step
 talk Lao-Chin the Iron Belly##63135
-Tell him: _"All right, let's do this!"_
-Defeat Lao-Chin the Iron Belly |q 31128/2 |goto Townlong Steppes/0 50.60,67.80
+Select _"All right, let's do this!"_ |gossip 129479
+Defeat Lao-Chin the Iron Belly |q 31128/2 |goto Townlong Steppes/0 50.54,67.83
 |only if haveq(31128) or completedq(31128)
 step
 talk Master Snowdrift##63009
@@ -1963,7 +1964,7 @@ accept Surprise Attack!##31277 |goto Townlong Steppes/0 49.51,70.56
 |only if rep('Shado-Pan')==Exalted and not completedq(31277)
 step
 talk Ban Bearheart##63908
-Select _"Alright. Let's go."_ |gossip 33154
+Select _"Alright. Let's go."_ |gossip 129605
 Join the Battle at Niuzao Temple |q 31277/1 |goto Townlong Steppes/0 42.62,63.92
 |only if haveq(31277) or completedq(31277)
 step
@@ -1980,7 +1981,7 @@ talk Ban Bearheart##62304
 turnin Surprise Attack!##31277 |goto Townlong Steppes/0 49.17,71.05
 |only if haveq(31277)
 step
-You have completed the available daily quests |complete false or not completedq(31221,31196,31197,31198,31199,31200,31201,31204,31203,31047,31105,31106,31039,31044,31045,31048,31043,31042,31040,31041,31046,31062,31061,31049,31113,31114,31119,31116,31118,31117,31120) |or |next "dailies"
+You have completed the available daily quests |complete false or not completedq(31039,31040,31041,31042,31043,31044,31045,31046,31047,31048,31049,31061,31062,31105,31106,31113,31114,31116,31117,31118,31119,31120,31196,31197,31198,31199,31200,31201,31203,31204) |or |next "dailies"
 |tip New quests will become available with the next daily server reset.
 |tip |only if rep("Shado-Pan")>=Revered
 '|talk Rushi the Fox##64595 |goto Townlong Steppes/0 48.80,70.60 |only if rep("Shado-Pan")>=Revered
@@ -2595,10 +2596,12 @@ turnin Lost and Lonely##30526 |goto Valley of the Four Winds/0 42.40,50.00
 |only if haveq(30526)
 step
 click Yoon's Apples##211020
+|tip Inside the building.
 collect 8 Yoon's Apple##80234 |goto Valley of the Four Winds/0 52.60,47.80 |q 30478
 |only if haveq(30478) or completedq(30478)
 step
 click Yoon's Craneberries##211022
+|tip Inside the building.
 collect 50 Yoon's Craneberry##80235 |goto Valley of the Four Winds/0 52.80,47.90 |q 30478
 |only if haveq(30478) or completedq(30478)
 step
@@ -3474,6 +3477,7 @@ accept Cracklefang##30233 |goto Vale of Eternal Blossoms/0 42.31,46.01 |or
 accept Mistfall Village##31245 |goto Vale of Eternal Blossoms/0 42.32,46.02 |or |next "Mistfall_Village"
 accept Setting Sun Garrison##31247 |goto Vale of Eternal Blossoms/0 42.32,46.02 |or |next "Setting_Sun_Garrison"
 accept Guo-Lai Infestation##31240 |goto Vale of Eternal Blossoms/0 42.32,46.02 |or |next "Guo-Lai_Infest"
+accept Attack on Mistfall Village##31246 |goto Vale of Eternal Blossoms/0 42.32,46.01 |or |next "Attack_on_Mistfall"
 step
 kill Vicejaw##246176 |q 30234/1 |goto Vale of Eternal Blossoms/0 37.44,50.94
 |only if haveq(30234) or completedq(30234)
@@ -3605,7 +3609,8 @@ accept Lao-Fe the Slavebinder##30239 |goto Vale of Eternal Blossoms/0 33.86,72.2
 accept Return to Rest##30238 |goto Vale of Eternal Blossoms/0 33.86,72.20 |or
 accept Aetha##30236 |goto Vale of Eternal Blossoms/0 33.86,72.20 |or
 accept Setting Sun Garrison##30385 |goto Vale of Eternal Blossoms/0 33.86,72.20 |or |next "Setting_Sun_Garrison"
-accept Mogu within the Ruins of Guo-Lai##31295 |goto Vale of Eternal Blossoms/0 42.31,46.01 |or |next "Guo-Lai_Ruins"
+accept Mogu within the Ruins of Guo-Lai##31295 |goto Vale of Eternal Blossoms/0 33.86,72.20 |or |next "Guo-Lai_Ruins"
+accept The Ruins of Guo-Lai##31294 |goto Vale of Eternal Blossoms/0 33.87,72.21 |or |next "Guo-Lai_Infest"
 step
 Enter the cave |goto Vale of Eternal Blossoms/0 47.48,67.44 < 10
 kill Spirit of Lao-Fe##58817 |q 30239/1 |goto Vale of Eternal Blossoms/0 47.44,65.71
@@ -3633,9 +3638,9 @@ Click here if no quests are available |confirm |next "end"
 step
 label "Attack_on_Mistfall"
 talk Sun Tenderheart##59337
-turnin Attack on Mistfall Village##31243 |goto Vale of Eternal Blossoms/0 35.12,75.37
-accept Backed Into a Corner##30286 |goto Vale of Eternal Blossoms/0 35.12,75.37 |or
-accept Wu Kao Scouting Reports##30285 |goto Vale of Eternal Blossoms/0 35.12,75.37 |or
+turnin Attack on Mistfall Village##31243 |goto Vale of Eternal Blossoms/0 35.12,75.37 |only if haveq(31243) or completedq(31243)
+accept Backed Into a Corner##30286 |goto Vale of Eternal Blossoms/0 35.12,75.37
+accept Wu Kao Scouting Reports##30285 |goto Vale of Eternal Blossoms/0 35.12,75.37
 |tip
 Click here if no quests are available |confirm
 step
@@ -3644,6 +3649,7 @@ talk Mayor Shiyo##59336
 accept My Town, It's On Fire Again##30288 |goto Vale of Eternal Blossoms/0 35.29,76.78
 step
 talk Rook Stonetoe##58911
+turnin Attack on Mistfall Village##31246 |goto Vale of Eternal Blossoms/0 35.24,74.91 |only if haveq(31246) or completedq(31246)
 accept Mogu Make Poor House Guests##30287 |goto Vale of Eternal Blossoms/0 35.24,74.91 |or 2
 accept Mogu Make Poor House Guests##31293 |goto Vale of Eternal Blossoms/0 35.24,74.88 |or 2
 accept Stonebound Killers##30290 |goto Vale of Eternal Blossoms/0 35.24,74.91 |or 2
@@ -3727,8 +3733,8 @@ kill Gaohun the Soul-Severer##245153 |q 30296/1 |goto Vale of Eternal Blossoms/0
 |only if haveq(30296) or completedq(30296)
 step
 talk Rook Stonetoe##58911
-turnin Baolai the Immolator##30297 |goto Vale of Eternal Blossoms/0 35.25,74.91 |next "end"
-turnin Gaohun the Soul-Severer##30296 |goto Vale of Eternal Blossoms/0 35.25,74.91 |next "end"
+turnin Baolai the Immolator##30297 |goto Vale of Eternal Blossoms/0 35.25,74.91 |only if haveq(30297) or completedq(30297) |next "end"
+turnin Gaohun the Soul-Severer##30296 |goto Vale of Eternal Blossoms/0 35.25,74.91 |only if haveq(30296) or completedq(30296) |next "end"
 |only if haveq(30297,30296) or completedq(30297,30296)
 step
 label "Guo-Lai_Ruins"
@@ -3799,6 +3805,7 @@ step
 label "Guo-Lai_Infest"
 talk Anji Autumnlight##58503
 turnin Guo-Lai Infestation##31240 |goto Vale of Eternal Blossoms/0 33.97,38.11 |only if haveq(31240) or completedq(31240)
+turnin The Ruins of Guo-Lai##31294 |goto Vale of Eternal Blossoms/0 33.97,38.12 |only if haveq(31294) or completedq(31294)
 accept In Ashen Webs##30200 |goto Vale of Eternal Blossoms/0 33.97,38.11
 accept Troubling the Troublemakers##30228 |goto Vale of Eternal Blossoms/0 33.97,38.11
 |tip
@@ -3818,12 +3825,14 @@ Click here if no quests are available |confirm
 stickystart "Kill_50_Ashweb_Hatchlings"
 stickystart "Collect_12_Guo-Lai_Relics"
 stickystart "Destroy_10_Mogu_Statues"
+stickystart "Slay_8_Ashweb_Spiders"
 step
 click Ancient Mogu Artifact
 |tip Look for {b}blue{} runes on the ground.
 |tip When you find them, look for four of them.
 |tip You need to stand in them, activating all four in order to be able to look the artifact.
 collect Ancient Mogu Artifact##85204 |q 30205/1 |goto Vale of Eternal Blossoms/0 26.56,20.13
+The locks can also appear around here [Vale of Eternal Blossoms/0 31.23,31.09]
 step
 label "Destroy_10_Mogu_Statues"
 click Mogu Statue
@@ -3834,7 +3843,6 @@ You can find more around:
 [Vale of Eternal Blossoms/0 30.70,20.11]
 [Vale of Eternal Blossoms/0 30.96,27.13]
 |only if haveq(30228) or completedq(30228)
-stickystart "Slay_8_Ashweb_Spiders"
 step
 label "Collect_12_Guo-Lai_Relics"
 click Guo-Lai Runestane##547432
@@ -3873,12 +3881,19 @@ step
 talk Anji Autumnlight##58503
 turnin In Ashen Webs##30200 |goto Vale of Eternal Blossoms/0 33.97,38.11 |only if haveq(30200) or completedq(30200)
 turnin Troubling the Troublemakers##30228 |goto Vale of Eternal Blossoms/0 33.97,38.11 |only if haveq(30228) or completedq(30228)
-accept The Ashweb Matriarch##30225 |goto Vale of Eternal Blossoms/0 33.97,38.11
-accept The Crumbling Hall##30277 |goto Vale of Eternal Blossoms/0 33.96,38.12
+accept The Ashweb Matriarch##30225 |goto Vale of Eternal Blossoms/0 33.97,38.11 |or 2
+accept The Crumbling Hall##30277 |goto Vale of Eternal Blossoms/0 33.96,38.12 |or 2
+accept Wulon, the Granite Sentinel##30227 |goto Vale of Eternal Blossoms/0 33.98,38.11 |or 2
+|tip
+Click here if no quests are available |confirm
 step
 Enter the building |goto Vale of Eternal Blossoms/0 22.22,26.23 < 15
 kill Bloodtip##245926 |q 30225/1 |goto Vale of Eternal Blossoms/1 75.55,48.17
 |only if haveq(30225) or completedq(30225)
+step
+Enter the building |goto Vale of Eternal Blossoms/0 22.22,26.23 < 15
+kill Wulon##63510 |q 30227/1 |goto Vale of Eternal Blossoms/1 75.03,71.55
+|only if haveq(30227) or haveq(30227)
 step
 click Deactivate First spirit Wall##214474 |goto Vale of Eternal Blossoms/1 36.49,36.55 < 5
 click Deactivate Second Spirit Wall##214476 |goto Vale of Eternal Blossoms/1 23.16,28.80 < 5
@@ -3893,11 +3908,10 @@ collect Ancient Guo-Lai Artifact##87790 |q 30277/2 |goto Vale of Eternal Blossom
 step
 talk Anji Autumnlight##58503
 turnin The Ashweb Matriarch##30225 |goto Vale of Eternal Blossoms/0 33.97,38.11 |only if haveq(30225) or completedq(30225)
+turnin Wulon, the Granite Sentinel##30227 |goto Vale of Eternal Blossoms/0 33.97,38.11 |only if haveq(30227) or completedq(30227)
 turnin The Crumbling Hall##30277 |goto Vale of Eternal Blossoms/0 33.96,38.12 |only if haveq(30277) or completedq(30277)
 |next "end"
-|only if haveq(30225) or completedq(30225)
-step
-confirm always
+|only if haveq(30225,30227,30277) or completedq(30225,30227,30277)
 step
 label "Setting_Sun_Garrison"
 talk Anji Autumnlight##58919
@@ -4275,7 +4289,7 @@ talk Anji Autumnlight##58465
 turnin The Final Power##30646 |goto Vale of Eternal Blossoms/0 56.57,43.62
 |only if rep("Golden Lotus") == Exalted and not completedq(30646)
 step
-You have completed the available daily quests |complete false or not completedq(30242,30243,30240,30266,30277,30280,30306,30307,31757,31762,31758,30312,31131,30341,30284,30265,30340,30234,31242,30195,30193,30190,30192,30235,31760,31756,31755,31243,30286,30288,30287,30290,30297,30233,30291,30314,30266,30232,30231,30191,30246,30237,30196,30239,30313,30308,31247,30444,30245,30248,30339,31295,30298,30301,30299,30300,30302,30304,30205,30236) |next "dailies"
+You have completed the available daily quests |complete false or not completedq(30242,30243,30240,30266,30277,30280,30306,30307,31757,31762,31758,30312,31131,30341,30284,30265,30340,30234,31242,30195,30193,30190,30192,30235,31760,31756,31755,31243,30286,30288,30287,30290,30297,30233,30291,30314,30266,30232,30231,30191,30246,30237,30196,30239,30313,30308,31247,30444,30245,30248,30339,31295,30298,30301,30299,30300,30302,30304,30205,30236,30227) |next "dailies"
 |tip New quests will become available with the next daily server reset.
 |tip
 buy Grand Commendation of the Golden Lotus##93215 |goto Vale of Eternal Blossoms/0 74.16,42.62 |n |only if rep("Golden Lotus") >= Revered
@@ -4810,7 +4824,7 @@ accept The Empress' Gambit##31959 |goto Dread Wastes/0 55.06,35.47
 |only if rep("The Klaxxi") == Exalted
 step
 talk Malik the Unscathed##66776
-Select _"Let's get started."_ |gossip 41792
+Select _"Let's get started."_ |gossip 130319
 Watch the dialogue
 Report to Malik the Unscathed |q 31959/1 |goto Dread Wastes/0 40.40,34.56
 |only if rep("The Klaxxi") == Exalted
@@ -4849,6 +4863,7 @@ Manifestation of Terror may be active [Dread Wastes/0 43.83,29.59]
 |only if rep("The Klaxxi") == Exalted
 step
 label "Kill_25_Mantid_Subjugates"
+Kill Zan'Thik Subjugates around this area |kill Zan'thik Subjugate##66790, Krik'thik Subjugate##66789, Sra'thik Subjugate##66788
 kill 25 Mantid Subjugate##66788+ |q 31609/4 |goto Dread Wastes/0 43.40,33.00
 |only if rep("The Klaxxi") == Exalted
 step
@@ -4858,9 +4873,9 @@ accept Shadow of the Empire##31612 |goto Dread Wastes/0 55.06,35.86
 |only if rep("The Klaxxi") == Exalted
 step
 talk Kil'ruk the Wind-Reaver##62538
-Select _"What do you want to show me, Kil'ruk?"_ |gossip 35593
+Select _"What do you want to show me, Kil'ruk?"_ |gossip 126277
 Watch the dialogue
-Walk with Kil'ruk |q 31612/1 |goto Dread Wastes/0 54.02,34.51
+Walk with Kil'ruk |q 31612/1 |goto Dread Wastes/0 55.06,35.86
 |only if rep("The Klaxxi") == Exalted
 step
 Leave the building |goto Dread Wastes/0 56.00,33.64

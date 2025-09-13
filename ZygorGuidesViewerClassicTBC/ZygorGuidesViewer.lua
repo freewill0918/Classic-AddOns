@@ -5792,6 +5792,8 @@ function ZGV.InPhase(phasename)
 	local getmapartid = C_Map.GetMapArtID
 	local getstate = C_ContributionCollector and C_ContributionCollector.GetState
 	local quest = C_QuestLog.IsQuestFlaggedCompleted
+	local areapoi = ZGV.Parser.ConditionEnv.areapoi
+	
 	phasename = phasename:lower():gsub(" ","")
 
 	-- expansion checks
@@ -5836,7 +5838,7 @@ function ZGV.InPhase(phasename)
 	elseif phasename=="olduldum" then
 		return quest(50659) -- timetravel flag
 	elseif phasename=="oldvale" then
-		return quest(59024) -- timetravel flag
+		return quest(59024) or not (areapoi(390,6573) or areapoi(1530,6574)) -- timetravel flag, or zidormi not yet spawned
 	elseif phasename=="ulduminvasionleft" then
 		return getmaptexture(1527)==3165083
 	elseif phasename=="ulduminvasioncenter" then
