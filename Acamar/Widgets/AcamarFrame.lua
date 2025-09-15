@@ -233,7 +233,9 @@ local function Constructor()
 	frame:SetFrameStrata("BACKGROUND")
 	frame:SetBackdrop(FrameBackdrop)
 	frame:SetBackdropColor(0, 0, 0, 0.36)
-	frame:SetResizeBounds(minWidth, minHeight)
+	frame:SetResizeBounds(minWidth, minHeight, 2000, 1500)
+	frame:SetWidth(700)
+	frame:SetHeight(500)
 	--frame:SetToplevel(true)
 	frame:SetScript("OnShow", Frame_OnShow)
 	frame:SetScript("OnHide", Frame_OnClose)
@@ -414,7 +416,7 @@ local function Constructor()
 	content:SetScript("OnMouseUp", MoverSizer_OnMouseUp)
 
 	local widget = {
-		localstatus = {},
+		localstatus = {width = 700, height = 500},
     	powerbutton = powerbutton,
     	title 		= title,
 		titletext   = titletext,
