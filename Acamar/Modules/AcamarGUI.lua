@@ -12,9 +12,22 @@ function AcamarGUI:OnLogout()
 end
 
 function AcamarGUI:ShowSysSettings()
-    InterfaceOptionsFrame_Show()
-    InterfaceOptionsFrame_OpenToCategory(addonName);
-    InterfaceOptionsFrame_OpenToCategory(addonName);
+    -- Handle different WoW versions
+    if InterfaceOptionsFrame_Show then
+        -- Classic/older versions
+        InterfaceOptionsFrame_Show()
+        InterfaceOptionsFrame_OpenToCategory(addonName)
+        InterfaceOptionsFrame_OpenToCategory(addonName)
+    elseif SettingsPanel then
+        -- Modern versions (10.0+)
+        SettingsPanel:Open()
+    elseif Settings and Settings.OpenToCategory then
+        -- Shadowlands/BFA versions
+        Settings.OpenToCategory(addonName)
+    else
+        -- Fallback - try to open addon options directly
+        addon:Print("Settings panel not available")
+    end
 end
 
 function AcamarGUI:Load_Ace_Custom()
