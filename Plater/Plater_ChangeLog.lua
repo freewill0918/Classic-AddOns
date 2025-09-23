@@ -8,6 +8,18 @@ function Plater.GetChangelogTable()
 	if (not Plater.ChangeLogTable) then
 		Plater.ChangeLogTable = {
 
+			{1755715831, "Backend Change", "Aug 25th, 2025", "Fixing texture artifacts and unifying to tga.", "cont1nuity"},
+			{1755715831, "Backend Change", "Aug 25th, 2025", "Correction to tank recognition adjustments for MoP.", "cont1nuity"},
+			{1755715831, "Bug Fix", "Aug 25th, 2025", "Recognizing 'Twist of Fate' as 35% execute for priests.", "cont1nuity"},
+			{1755715831, "Bug Fix", "Aug 25th, 2025", "Fixing send to party/raid functionality.", "cont1nuity"},
+			
+			{1754345972, "Backend Change", "Aug 10th, 2025", "MoP has spec specific ghost auras.", "cont1nuity"},
+			{1754345972, "Bug Fix", "Aug 9th, 2025", "Recognizing 'Deathspeaker' as 35% execute for priests.", "cont1nuity"},
+			{1754345972, "Backend Change", "Aug 5th, 2025", "NpcColorPanels: Add Remove All Renames Button.", "Wtz_LASR"},
+			{1754345972, "Backend Change", "Aug 5th, 2025", "Improve/fix the cast bar script previews.", "gareth3001"},
+			{1754345972, "Backend Change", "Aug 4th, 2025", "Updated the wording of the priority tooltip.", "Lynn"},
+			{1754345972, "Backend Change", "Aug 3rd, 2025", "Tank recognition adjustments for MoP.", "cont1nuity"},
+			
 			{1750963632, "Backend Change", "July 19th, 2025", "Changing Drain Soul execute for MoP classic.", "cont1nuity"},
 			{1750963632, "Bug Fix", "July 5th, 2025", "Fixing an error in quest tracking for MoP for certain units.", "cont1nuity"},
 			{1750963632, "Backend Change", "July 4th, 2025", "Changing SW:D execute for MoP classic.", "cont1nuity"},
