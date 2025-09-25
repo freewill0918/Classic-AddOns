@@ -1,6 +1,4 @@
--- namespace
-MerInsClaEra = MerInsClaEra or {}
-MerInsClaEra.Core = MerInsClaEra.Core or {}
+
 --------------
 -- 配置面板 --
 --------------
@@ -11,27 +9,32 @@ local VERSION = 1.0
 
 local addon, ns = ...
 
+ns.GameVersion = select(4, GetBuildInfo())
+ns.IsClassic = _G.WOW_PROJECT_ID == _G.WOW_PROJECT_CLASSIC
+ns.IsClassicSoD = ns.IsClassic and C_Engraving and C_Engraving.IsEngravingEnabled()
+ns.IsWrath = _G.WOW_PROJECT_ID == _G.WOW_PROJECT_WRATH_CLASSIC
+ns.IsCata = _G.WOW_PROJECT_ID == _G.WOW_PROJECT_CATACLYSM_CLASSIC
+ns.IsMists = _G.WOW_PROJECT_ID == _G.WOW_PROJECT_MISTS_CLASSIC
+
 local L = ns.L or {}
 
 setmetatable(L, { __index = function(_, k)
     return k:gsub("([a-z])([A-Z])", "%1 %2")
 end})
 
+ns.L = L
+
 local DefaultDB = {
     version = VERSION,
-    ShowItemSlotString = true,              --物品部位文字
+    ShowItemSlotString = false,              --物品部位文字
     ShowItemBorder = true,                  --物品直角邊框
     ShowCharacterItemSheet = true,          --玩家自己裝備列表
-    ShowCharacterItemStats = true,          --玩家自己屬性統計
+    ShowCharacterItemStats = false,         --玩家自己屬性統計
     ShowInspectAngularBorder = false,       --觀察面板直角邊框
     ShowInspectColoredLabel = true,         --觀察面板顔色隨物品品質
     ShowInspectItemSheet = true,            --顯示观察对象装备列表
-    ShowOwnFrameWhenInspecting = false,  --觀察同時顯示自己裝備列表
-    ShowItemStats = true,                --顯示裝備屬性統計
-    Debug = false,
-    DefaultPosition = false,
-    position = {"TOPLEFT", "CharacterFrame", "TOPRIGHT", 0, 0, 0}, -- point, relativeTo, relativePoint, xOfs, yOfs, isPositioned (0/1)
-    MoveFrame = false -- option to unlock the frame (panel)
+        ShowOwnFrameWhenInspecting = false,  --觀察同時顯示自己裝備列表
+        ShowItemStats = false,                --顯示裝備屬性統計
 }
 
 local options = {
@@ -47,8 +50,6 @@ local options = {
             { key = "ShowItemStats" },
         }
     },
-    { key = "MoveFrame" },
-    { key = "Debug" },
 }
 
 MerInspectDB = DefaultDB
@@ -142,10 +143,15 @@ local function CreateAnchorFrame(anchorkey, parent)
         end)
         frame[anchorPoint] = button
     end
-    local frame = CreateFrame("Frame", nil, parent.SubtypeFrame or parent, "ThinBorderTemplate")
+    local frame = CreateFrame("Frame", nil, parent.SubtypeFrame or parent, "ThinBorderTemplate,BackdropTemplate")
     frame.anchorkey = anchorkey
-    frame:SetBackdrop(GameTooltip:GetBackdrop())
-    frame:SetBackdropColor(GameTooltip:GetBackdropColor())
+    frame:SetBackdrop({
+            bgFile   = "Interface\\Tooltips\\UI-Tooltip-Background",
+            edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+            tile     = true, tileSize = 8, edgeSize = 16,
+            insets   = {left = 4, right = 4, top = 4, bottom = 4}
+    })
+    frame:SetBackdropColor(0, 0, 0, 0.7)
     frame:SetBackdropBorderColor(1, 1, 1, 0)
     frame:SetSize(80, 80)
     frame:SetPoint("TOPRIGHT", 100, -5)
@@ -196,13 +202,13 @@ local function InitCheckbox(parent)
     end
 end
 
-local frame = CreateFrame("Frame", nil, UIParent)
+local frame = CreateFrame("Frame")
 frame.title = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
 frame.title:SetPoint("TOPLEFT", 18, -16)
 frame.title:SetText(addon)
-frame.name = addon
-
 CreateCheckbox(options, frame, frame.title, 18, 9)
+local category = Settings.RegisterCanvasLayoutCategory(frame, addon)
+Settings.RegisterAddOnCategory(category)
 
 LibEvent:attachEvent("VARIABLES_LOADED", function()
     if (not MerInspectDB or not MerInspectDB.version) then
@@ -218,27 +224,8 @@ LibEvent:attachEvent("VARIABLES_LOADED", function()
     InitCheckbox(frame)
 end)
 
--- Reset frame position function
-local function ResetFramePosition()
-    -- Restore to default position
-    MerInspectDB.position = {"TOPLEFT", "CharacterFrame", "TOPRIGHT", 0, 0, 0}
-end
-
-if InterfaceOptions_AddCategory then
-    InterfaceOptions_AddCategory(frame)
-else
-    local category, layout = _G.Settings.RegisterCanvasLayoutCategory(frame, frame.name)
-    _G.Settings.RegisterAddOnCategory(category)
-end
 SLASH_MerInspect1 = "/merinspect"
 SLASH_MerInspect2 = "/mi"
 function SlashCmdList.MerInspect(msg, editbox)
-    if msg == "reset" then
-        ResetFramePosition()
-        print("position has been reset to default.")
-    else
-        print("Usage: /mi reset or /merinspect reset")
-        InterfaceOptionsFrame_OpenToCategory(frame)
-        InterfaceOptionsFrame_OpenToCategory(frame)
-    end
+    Settings.OpenToCategory(category.ID)
 end

@@ -28,15 +28,8 @@
 			<OnEnter>
 				GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT", 0, 0);
 				if (self.objectType == "item") then
-					local itemIndex = self:GetID();
-					if (itemIndex and itemIndex > 0) then
-						local success = pcall(function()
-							GameTooltip:SetQuestItem(self.type, itemIndex);
-						end);
-						if (success) then
-							GameTooltip_ShowCompareItem(GameTooltip);
-						end
-					end
+					GameTooltip:SetQuestItem(self.type, self:GetID());
+					GameTooltip_ShowCompareItem(GameTooltip);
 				elseif (self.objectType == "currency") then
 					GameTooltip:SetQuestCurrency(self.type, self:GetID());
 				end

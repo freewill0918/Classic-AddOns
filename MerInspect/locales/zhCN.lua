@@ -36,5 +36,5 @@ ns.L = {
     PaperDoll                   = "人物面板",
     Chat                        = "聊天",
     Loot                        = "拾取",
-    MoveFrame                   = "移動版面",
+    BeltBuckle                  = "腰带扣",
 }

@@ -1,5 +1,3 @@
--- namespace and alias
-MerInsClaEra = MerInsClaEra or {}
 
 ------------------------------------------------
 -- @DepandsOn: LibStub, LibEvent, LibItemStats
@@ -13,6 +11,7 @@ local GetStatsValue = LibItemStats.GetStatsValue
 
 STAT_RESISTANCE_ATTRIBUTES = GetStatsName("Resistance")
 STAT_SUIT_ATTRIBUTES = GetStatsName("Suit")
+STAT_SUIT_PVP = GetStatsName("PVP")
 
 --赋数据
 local function SetStats(self, data)
@@ -22,11 +21,14 @@ end
 
 --创建单条属性按钮框体
 local function CreateStatFrame(parent, index, key, option)
-    local frame = CreateFrame("Frame", nil, parent, "MerClassicEraClassicCharacterStatFrameTemplate, BackdropTemplate")
+    local frame = CreateFrame("Frame", nil, parent, "ClassicCharacterStatFrameTemplate")
     frame:EnableMouse(false)
     frame:SetWidth(178)
     frame.key = key
     frame.Background:SetShown((index%2) ~= 1)
+    frame.Label:SetWidth(120)
+    frame.Label:SetJustifyH("LEFT")
+    frame.Label:SetWordWrap(false)
     parent["stat" .. index] = frame
     return frame
 end
@@ -43,7 +45,7 @@ local function GetStatFrame(self)
     return CreateStatFrame(self, index)
 end
 
---头像框架(装等框架/边框颜色等) @trigger: INSPECT_FRAME_BACKDROP
+--头像框架(装等框架/边框颜色等) @trigger: INSPECT_STATSFRAME_BACKDROP
 local ItemLevelPattern = (ITEM_LEVEL_ABBR or "ilvl") .. " %.1f"
 local function HandlePortraitFrame(self)
     local ilevel = self.data.ilevel or 0
@@ -62,14 +64,14 @@ local function HandlePortraitFrame(self)
     self.ResistanceCategory.Title:SetTextColor(color.r, color.g, color.b)
     self.EnhancementsCategory.Title:SetTextColor(color.r, color.g, color.b)
     self.SuitCategory.Title:SetTextColor(color.r, color.g, color.b)
-    LibEvent:trigger("INSPECT_FRAME_BACKDROP", self)
+    LibEvent:trigger("INSPECT_STATSFRAME_BACKDROP", self)
     self:SetBackdrop(self.backdrop)
     self:SetBackdropColor(0, 0, 0, 0.88)
     self:SetBackdropBorderColor(color.r, color.g, color.b)
 end
 
 
-function MerClassicEraClassicStatsFrameTemplate_Onload(self)
+function ClassicStatsFrameTemplate_Onload(self)
     self.backdrop = {
         bgFile   = "Interface\\Tooltips\\UI-Tooltip-Background",
         edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
@@ -78,6 +80,8 @@ function MerClassicEraClassicStatsFrameTemplate_Onload(self)
         edgeSize = 16,
         insets   = {left = 4, right = 4, top = 4, bottom = 4}
     }
+    self:SetBackdrop(self.backdrop)
+    self:SetBackdropColor(0, 0, 0, 0.88)
     self.SetStats = SetStats
     local index, keys = 1, ","
     local frame, anchor
@@ -121,9 +125,9 @@ function MerClassicEraClassicStatsFrameTemplate_Onload(self)
     end
 end
 
-function MerClassicEraClassicStatsFrameTemplate_OnShow(self)
+function ClassicStatsFrameTemplate_OnShow(self)
     local button
-    local height = 66 + 36*3 + 15*self.maxStaticIndex
+    local height = 68 + 36*3 + 15*self.maxStaticIndex
     HandlePortraitFrame(self)
     for i = 1, self.maxStaticIndex do
         button = self["stat"..i]
@@ -132,49 +136,49 @@ function MerClassicEraClassicStatsFrameTemplate_OnShow(self)
         button:Show()
     end
     local hasEnhancements = false
-    local offset = 0
+    local anchor = self.EnhancementsCategory
     for k, v in pairs(self.data.static) do
         if (not strfind(self.allStaticKeys, ","..k..",")) then
             button = GetStatFrame(self)
             button.Label:SetText(GetStatsName(k))
             button.Value:SetText(GetStatsValue(k, self.data.static))
             button:Show()
-            button:SetPoint("TOPLEFT", self.EnhancementsCategory, "BOTTOMLEFT", 0, offset)
+            button:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT")
             height = height + 15
-            offset = offset - 15
+            anchor = button
             hasEnhancements = true
         end
     end
+    if (hasEnhancements) then
+        self.EnhancementsCategory:Show()
+        self.SuitCategory:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT")
+        height = height + 36
+    else
+        self.EnhancementsCategory:Hide()
+        self.SuitCategory:SetPoint("TOPLEFT", self.EnhancementsCategory, "TOPLEFT")
+    end
     local hasSuit = self.data.suit
     if (hasSuit) then
-        if (not hasEnhancements) then
-            offset = offset + 36
-        end
         self.SuitCategory:Show()
-        self.SuitCategory:SetPoint("TOPLEFT", self.EnhancementsCategory, "BOTTOMLEFT", 0, offset)
-        height = height + 36
-        offset = offset - 36
+        anchor = self.SuitCategory
         for _, v in ipairs(self.data.suit) do
             button = GetStatFrame(self)
-            button.Label:SetText(v.colorStr .. v.value)
+            button.Label:SetText(v.colorStr .. v.name)
+            button.Value:SetText(v.colorStr .. format("(%s)", v.value))
             button:Show()
-            button:SetPoint("TOPLEFT", self.EnhancementsCategory, "BOTTOMLEFT", 0, offset)
+            button:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT")
             height = height + 15
-            offset = offset - 15
+            anchor = button
         end
     else
         self.SuitCategory:Hide()
     end
-    if (hasEnhancements) then
-        self.EnhancementsCategory:Show()
-    else
-        self.EnhancementsCategory:Hide()
-    end
     height = max(height, 424)
     self:SetHeight(height)
+    LibEvent:trigger("INSPECT_STATSFRAME_SHOW", self)
 end
 
-function MerClassicEraClassicStatsFrameTemplate_OnHide(self)
+function ClassicStatsFrameTemplate_OnHide(self)
     local index = 1
     while (self["stat"..index]) do
         self["stat"..index].Label:SetText("")

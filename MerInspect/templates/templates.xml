@@ -49,7 +49,7 @@
 			</Layer>
 		</Layers>
 	</Frame>
-	<Frame name="MerClassicEraCharacterStatFrameCategoryTemplate" virtual="true">
+	<Frame name="ClassicStatFrameCategoryTemplate" virtual="true">
 		<Size x="197" y="40"/>
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -73,7 +73,7 @@
 			</OnLoad>
 		</Scripts>
 	</Frame>
-    <Frame name="MerClassicEraClassicStatsFrameTemplate" hidden="true" virtual="true" inherits="BackdropTemplate">
+    <Frame name="ClassicStatsFrameTemplate" inherits="BackdropTemplate" hidden="true" virtual="true">
         <Size x="178" y="200"/>
         <Frames>
             <Frame parentKey="PortraitFrame" inherits="ClassicGarrisonFollowerPortraitTemplate">
@@ -102,7 +102,7 @@
                     </OnLoad>
                 </Scripts>
             </Frame>
-            <Frame parentKey="AttributesCategory" inherits="MerClassicEraCharacterStatFrameCategoryTemplate">
+            <Frame parentKey="AttributesCategory" inherits="ClassicStatFrameCategoryTemplate">
                 <KeyValues>
                     <KeyValue key="titleText" value="STAT_CATEGORY_ATTRIBUTES" type="global"/>
                 </KeyValues>
@@ -110,17 +110,17 @@
                     <Anchor point="TOPLEFT" relativeKey="$parent.PortraitFrame" relativePoint="BOTTOMLEFT" x="-14" y="0"/>
                 </Anchors>
             </Frame>
-            <Frame parentKey="ResistanceCategory" inherits="MerClassicEraCharacterStatFrameCategoryTemplate">
+            <Frame parentKey="ResistanceCategory" inherits="ClassicStatFrameCategoryTemplate">
                 <KeyValues>
                     <KeyValue key="titleText" value="STAT_RESISTANCE_ATTRIBUTES" type="global"/>
                 </KeyValues>
             </Frame>
-            <Frame parentKey="EnhancementsCategory" inherits="MerClassicEraCharacterStatFrameCategoryTemplate">
+            <Frame parentKey="EnhancementsCategory" inherits="ClassicStatFrameCategoryTemplate">
                 <KeyValues>
                     <KeyValue key="titleText" value="STAT_CATEGORY_ENHANCEMENTS" type="global"/>
                 </KeyValues>
             </Frame>
-            <Frame parentKey="SuitCategory" inherits="MerClassicEraCharacterStatFrameCategoryTemplate">
+            <Frame parentKey="SuitCategory" inherits="ClassicStatFrameCategoryTemplate">
                 <KeyValues>
                     <KeyValue key="titleText" value="STAT_SUIT_ATTRIBUTES" type="global"/>
                 </KeyValues>
@@ -128,40 +128,53 @@
         </Frames>
         <Scripts>
             <OnLoad>
-                MerClassicEraClassicStatsFrameTemplate_Onload(self)
+                ClassicStatsFrameTemplate_Onload(self)
             </OnLoad>
             <OnShow>
-                MerClassicEraClassicStatsFrameTemplate_OnShow(self)
+                ClassicStatsFrameTemplate_OnShow(self)
             </OnShow>
             <OnHide>
-                MerClassicEraClassicStatsFrameTemplate_OnHide(self)
+                ClassicStatsFrameTemplate_OnHide(self)
             </OnHide>
         </Scripts>
     </Frame>
-    <Frame name="MerClassicEraClassicCharacterStatFrameTemplate" virtual="true">
-		<Size x="187" y="15"/>
-		<Layers>
-			<Layer level="BACKGROUND">
-				<Texture parentKey="Background" atlas="UI-Character-Info-Line-Bounce" useAtlasSize="true" alpha="0.3">
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-				</Texture>
-			</Layer>
-			<Layer level="ARTWORK">
-				<FontString parentKey="Label" inherits="GameFontNormalSmall">
-					<Anchors>
-						<Anchor point="LEFT" x="11" y="0"/>
-					</Anchors>
-				</FontString>
-				<FontString parentKey="Value" inherits="GameFontHighlightSmall">
-					<Anchors>
-						<Anchor point="RIGHT" x="-8" y="0"/>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Scripts>
-		</Scripts>
-	</Frame>
+    <Frame name="ClassicCharacterStatFrameTemplate" inherits="BackdropTemplate" hidden="true" virtual="true">
+        <Size x="187" y="15"/>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <Texture parentKey="Background" atlas="UI-Character-Info-Line-Bounce" useAtlasSize="true" alpha="0.3">
+              <Anchors>
+                <Anchor point="CENTER"/>
+              </Anchors>
+            </Texture>
+          </Layer>
+          <Layer level="ARTWORK">
+            <FontString parentKey="Label" inherits="GameFontNormalSmall">
+              <Anchors>
+                <Anchor point="LEFT" x="11" y="0"/>
+              </Anchors>
+            </FontString>
+            <FontString parentKey="Value" inherits="GameFontHighlightSmall">
+              <Anchors>
+                <Anchor point="RIGHT" x="-8" y="0"/>
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Scripts>
+          <OnEnter>
+            if ( self.onEnterFunc ) then
+              self:onEnterFunc();
+            else
+              PaperDollStatTooltip(self);
+            end
+          </OnEnter>
+          <OnLeave function="GameTooltip_Hide"/>
+          <OnLoad>
+            if (STATFRAME_STATTEXT_FONT_OVERRIDE) then
+              self.Value:SetFontObject(STATFRAME_STATTEXT_FONT_OVERRIDE);
+            end
+          </OnLoad>
+        </Scripts>
+    </Frame>
 </Ui>

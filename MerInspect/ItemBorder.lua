@@ -17,7 +17,7 @@ local function SetItemAngularBorder(self, quality, itemIDOrLink)
         else
             w, h = min(w, ww), min(h, hh)
         end
-        self.angularFrame = CreateFrame("Frame", nil, self, "BackdropTemplate")
+        self.angularFrame = CreateFrame("Frame", nil, self)
         self.angularFrame:SetFrameLevel(5)
         self.angularFrame:SetSize(w, h)
         self.angularFrame:SetPoint("CENTER", anchor, "CENTER", 0, 0)
@@ -52,18 +52,17 @@ end)
 
 --設置物品直角邊框
 LibEvent:attachTrigger("SET_ITEM_ANGULARBORDER", function(self, frame, quality, itemIDOrLink)
-    if (quality) then
-        -- Default to common quality if the quality is invalid
-        local validQuality = quality or 1  -- Common quality
-            
-        -- Check if the quality is within the expected range
-        if type(validQuality) ~= "number" or validQuality < 0 or validQuality > 7 then
-            validQuality = 1  -- Default to common quality
-        end
-        MerInsClaEra.Core.DebugPrintf('test')
-        MerInsClaEra.Core.DebugPrintf(quality)
-        local r, g, b, qualityString= C_Item.GetItemQualityColor(validQuality)
-        if (validQuality <= 1) then
+    -- 處理quality可能是table的情況（新版API）
+    if type(quality) == "table" then
+        -- 新版API傳入的是table格式，暫時設為nil避免錯誤
+        quality = nil
+    end
+
+    if (quality and type(quality) == "number") then
+        -- 使用新版API（兼容舊版）
+        local GetItemQualityColor = C_Item and C_Item.GetItemQualityColor or GetItemQualityColor
+        local r, g, b = GetItemQualityColor(quality)
+        if (quality <= 1) then
             r = r - 0.3
             g = g - 0.3
             b = b - 0.3

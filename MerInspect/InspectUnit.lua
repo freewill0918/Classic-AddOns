@@ -1,8 +1,8 @@
--- namespace and alias
-MerInsClaEra = MerInsClaEra or {}
+
 -------------------------------------
 -- 查看装备等级 Author: M
 -------------------------------------
+local addon, ns = ...
 
 local locale = GetLocale()
 
@@ -28,34 +28,17 @@ local slots = {
     { index = 15, name = BACKSLOT, },
     { index = 16, name = MAINHANDSLOT, },
     { index = 17, name = SECONDARYHANDSLOT, },
-    { index = 18, name = RANGEDSLOT, },
 }
+
+if ns.GameVersion < 50000 then
+    table.insert(slots, { index = 18, name = RANGEDSLOT })
+end
 
 --創建面板
 local function GetInspectItemListFrame(parent)
     if (not parent.inspectFrame) then
         local itemfont = "ChatFontNormal"
         local frame = CreateFrame("Frame", nil, parent, "BackdropTemplate")
-        -- Make the frame movable
-        frame:SetMovable(MerInsClaEra.Core.MoveFrame())
-        frame:EnableMouse(MerInsClaEra.Core.MoveFrame())
-        frame:RegisterForDrag("LeftButton")
-        frame:SetScript("OnDragStart", frame.StartMoving)
-        frame:SetScript("OnDragStop", function(self)
-            self:StopMovingOrSizing()
-            MerInsClaEra.Core.DebugPrintf("start Frame position")
-            -- Save the new position
-            local point, relativeTo, relativePoint, xOfs, yOfs = self:GetPoint()
-            local relativeToName = relativeTo and relativeTo:GetName() or "UIParent"
-            MerInspectDB.position = {point, relativeToName, relativePoint, xOfs, yOfs, 1}
-            MerInsClaEra.Core.DebugPrintf("Frame position saved")
-            MerInsClaEra.Core.DebugPrintf(point)
-            MerInsClaEra.Core.DebugPrintf(relativeToName)
-            MerInsClaEra.Core.DebugPrintf(relativePoint)
-            MerInsClaEra.Core.DebugPrintf(xOfs)
-            MerInsClaEra.Core.DebugPrintf(yOfs)
-        end) 
-
         frame.backdrop = {
             bgFile   = "Interface\\Tooltips\\UI-Tooltip-Background",
             edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
@@ -79,7 +62,7 @@ local function GetInspectItemListFrame(parent)
         frame.level = frame:CreateFontString(nil, "ARTWORK", itemfont)
         frame.level:SetPoint("TOPLEFT", frame, "TOPLEFT", 66, -42)
         frame.level:SetFont(frame.level:GetFont(), 12, "THINOUTLINE")
-        
+
         local itemframe
         local fontsize = locale:sub(1,2) == "zh" and 12 or 9
         local backdrop = {
@@ -94,6 +77,7 @@ local function GetInspectItemListFrame(parent)
             itemframe = CreateFrame("Button", nil, frame, "BackdropTemplate")
             itemframe:SetSize(120, (height-80)/#slots)
             itemframe.index = v.index
+            itemframe.slot = v.name
             itemframe.backdrop = backdrop
             if (i == 1) then
                 itemframe:SetPoint("TOPLEFT", frame, "TOPLEFT", 15, -68)
@@ -142,7 +126,7 @@ local function GetInspectItemListFrame(parent)
             frame["item"..i] = itemframe
             LibEvent:trigger("INSPECT_ITEMFRAME_CREATED", itemframe)
         end
-        
+
         frame.closeButton = CreateFrame("Button", nil, frame)
         frame.closeButton:SetSize(12, 12)
         frame.closeButton:SetScale(0.85)
@@ -179,20 +163,21 @@ function ShowInspectItemListFrame(unit, parent, ilevel, maxLevel)
     frame.title:SetTextColor(color.r, color.g, color.b)
     frame.level:SetText(format(ItemLevelPattern, ilevel))
     frame.level:SetTextColor(1, 0.82, 0)
-    local _, name, level, link, quality
+    local _, name, level, link, quality, equipLoc
     local itemframe, mframe, oframe, itemwidth
-    local width = 210
+    local width = 160
     local formats = "%2s"
     if (maxLevel and maxLevel > 0) then
         formats = "%" .. string.len(floor(maxLevel)) .. "s"
     end
     for i, v in ipairs(slots) do
-        level, name, link, quality = LibItemInfo:GetUnitItemIndexLevel(unit, v.index)
+        level, name, link, quality, _, _, _, _, _, equipLoc = LibItemInfo:GetUnitItemIndexLevel(unit, v.index)
         itemframe = frame["item"..i]
         itemframe.name = name
         itemframe.link = link
         itemframe.level = level
         itemframe.quality = quality
+        itemframe.equipLoc = equipLoc
         itemframe.itemString:SetWidth(0)
         if (level > 0) then
             itemframe.levelString:SetText(format(formats,level))
@@ -204,8 +189,8 @@ function ShowInspectItemListFrame(unit, parent, ilevel, maxLevel)
             if (not link) then itemframe:SetAlpha(0.5) end
         end
         itemwidth = itemframe.itemString:GetWidth()
-        if (itemwidth > 260) then
-            itemwidth = 260
+        if (itemwidth > 208) then
+            itemwidth = 208
             itemframe.itemString:SetWidth(itemwidth)
         end
         itemframe.width = itemwidth + max(64, floor(itemframe.label:GetWidth() + itemframe.levelString:GetWidth()) + 4)
@@ -215,7 +200,7 @@ function ShowInspectItemListFrame(unit, parent, ilevel, maxLevel)
         end
         LibEvent:trigger("INSPECT_ITEMFRAME_UPDATED", itemframe)
     end
-    frame:SetWidth(width + 60)
+    frame:SetWidth(width + 36)
     frame:Show()
 
     LibEvent:trigger("INSPECT_FRAME_SHOWN", frame, parent, ilevel)
@@ -224,19 +209,6 @@ function ShowInspectItemListFrame(unit, parent, ilevel, maxLevel)
     frame:SetBackdropBorderColor(color.r, color.g, color.b)
 
     return frame
-end
-
--- SOD rune frame
-local function CheckEngravingFrame()
-    local isEnabled = false
-    local frame = _G["EngravingFrame"]
-    if frame then
-        MerInsClaEra.Core.DebugPrintf("EngravingFrame exists.")
-        isEnabled = frame:IsShown()
-    else
-        MerInsClaEra.Core.DebugPrintf("EngravingFrame does not exist.")
-    end
-    return isEnabled
 end
 
 --裝備變更時
@@ -274,66 +246,35 @@ LibEvent:attachTrigger("INSPECT_FRAME_BACKDROP", function(self, frame)
     end
 end)
 
---設置邊框和位置
 LibEvent:attachTrigger("INSPECT_FRAME_SHOWN", function(self, frame, parent, ilevel)
-    MerInsClaEra.Core.DebugPrintf("INSPECT_FRAME_SHOWN")
     local x, y, f = 0, 0, parent:GetName()
-    local Core = MerInsClaEra.Core
-    -- Get the anchor position of the CharacterFrameCloseButton
-    -- use the Close bottom position to calculate the correct anchor point of the character frame
-    local point, relativeTo, relativePoint, offsetX, offsetY = CharacterFrameCloseButton:GetPoint()
-        
-    Core.DebugPrintf("CharacterFrameCloseButton:GetPoint(): x,y" .. offsetX .. offsetY)
-
-    if Core.IsPositioned() then
-        Core.RestorePosition(frame)
-    else
-        if (f == "InspectFrame" or f == "PaperDollFrame") then
-            -- dealing with inconsist CharacterFrame anchor position between Era and Cata
-            if offsetX < 0 then
-                -- Use cases: CharacterFrame seems scaled down in Era
-                x, y = offsetX + 15, offsetY + 10
-            else 
-                x, y = offsetX, offsetY - 5
-            end
-        end
-
-        -- SOD rune frame
-        if CheckEngravingFrame() then
-            relativeTo = parent
-            x = x + 210
-        end
-        
-        if (MerInspectDB and MerInspectDB.ShowInspectAngularBorder) then
-            frame.backdrop.edgeSize = 1
-            frame.backdrop.edgeFile = "Interface\\Buttons\\WHITE8X8"
-            frame.backdrop.insets.top = 1
-            frame.backdrop.insets.left = 1
-            frame.backdrop.insets.right = 1
-            frame.backdrop.insets.bottom = 1
-        else
-            frame.backdrop.edgeSize = 16
-            frame.backdrop.edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border"
-            frame.backdrop.insets.top = 4
-            frame.backdrop.insets.left = 4
-            frame.backdrop.insets.right = 4
-            frame.backdrop.insets.bottom = 4
-        end
-        Core.DebugPrintf("update frame point")
-        Core.DebugPrintf("relative frame:" .. relativeTo:GetName())
-        Core.DebugPrintf("x,y:" .. x .. " , ".. y)
-
-        -- Clear all previous points to avoid conflicts
-        frame:ClearAllPoints()
-
-        -- Set the point relative to the parent frame, avoiding circular references
-        if relativeTo and relativeTo ~= frame then
-            frame:SetPoint("TOPLEFT", relativeTo, "TOPRIGHT", x, y)
-        else
-            Core.DebugPrintf("Cannot set anchor: relativeTo is invalid or creates a circular reference.")
-        end
+    if (f == "InspectFrame" or f == "PaperDollFrame") and ns.GameVersion < 40000 then
+        x, y = 33, 14
     end
-
+    -- SoD rune frame
+    if (f == "PaperDollFrame" and EngravingFrame and EngravingFrame:IsVisible()) then
+        x = -178
+    end
+    local backdrop = frame:GetBackdrop()
+    if (MerInspectDB and MerInspectDB.ShowInspectAngularBorder) then
+        backdrop.edgeSize = 1
+        backdrop.edgeFile = "Interface\\Buttons\\WHITE8X8"
+        backdrop.insets.top = 1
+        backdrop.insets.left = 1
+        backdrop.insets.right = 1
+        backdrop.insets.bottom = 1
+        frame.backdrop = backdrop
+        frame:SetPoint("TOPLEFT", parent, "TOPRIGHT", 2-x, 0-y)
+    else
+        backdrop.edgeSize = 16
+        backdrop.edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border"
+        backdrop.insets.top = 4
+        backdrop.insets.left = 4
+        backdrop.insets.right = 4
+        backdrop.insets.bottom = 4
+        frame.backdrop = backdrop
+        frame:SetPoint("TOPLEFT", parent, "TOPRIGHT", 0-x, 0-y)
+    end
 end)
 
 --根據品質設置Label顔色
@@ -375,7 +316,7 @@ end)
 --   Player   --
 ----------------
 
-local PlayerStatsFrame = CreateFrame("Frame", nil, UIParent, "MerClassicEraClassicStatsFrameTemplate")
+local PlayerStatsFrame = CreateFrame("Frame", nil, UIParent, "ClassicStatsFrameTemplate")
 local mask = PlayerStatsFrame:CreateTexture()
 mask:SetTexture("Interface\\Tooltips\\UI-Tooltip-Background")
 mask:SetPoint("TOPLEFT", PlayerStatsFrame, "TOPLEFT", 3, -2)
@@ -391,11 +332,10 @@ LibEvent:attachTrigger("TogglePlayerStatsFrame", function(self, frame, bool, for
         if (LibItemStats:IsSupported()) then
             local stats = LibItemStats:GetUnitStats("player")
             stats.ilevel = LibItemInfo:GetUnitItemLevel("player")
-            MerInsClaEra.Core.DebugPrintf(stats)
             PlayerStatsFrame:SetStats(stats):Show()
             if (frame.inspectFrame and frame.inspectFrame:IsShown()) then
                 PlayerStatsFrame:SetPoint("TOPLEFT", frame.inspectFrame, "TOPRIGHT", 1, 0)
-            elseif (not frame:GetName()) then
+            elseif (not frame:GetName()) or (frame == PaperDollFrame and ns.GameVersion > 40000) then
                 PlayerStatsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", 1, 0)
             else
                 PlayerStatsFrame:SetPoint("TOPLEFT", frame, "TOPRIGHT", -32, -14)
@@ -405,10 +345,7 @@ LibEvent:attachTrigger("TogglePlayerStatsFrame", function(self, frame, bool, for
 end)
 
 PaperDollFrame:HookScript("OnShow", function(self)
-    MerInsClaEra.Core.DebugPrintf("PaperDollFrame:HookScript(OnShow)")
     if (MerInspectDB and MerInspectDB.ShowCharacterItemSheet) then
-        MerInsClaEra.Core.DebugPrintf("ShowCharacterItemSheet")
-        MerInsClaEra.Core.DebugPrintf(MerInspectDB.ShowCharacterItemSheet)
         local ilevel, _, maxLevel = LibItemInfo:GetUnitItemLevel("player")
         ShowInspectItemListFrame("player", self, ilevel, maxLevel)
     end
@@ -416,7 +353,6 @@ PaperDollFrame:HookScript("OnShow", function(self)
 end)
 
 PaperDollFrame:HookScript("OnHide", function(self)
-    MerInsClaEra.Core.DebugPrintf("PaperDollFrame:HookScript(OnHide)")
     LibEvent:trigger("TogglePlayerStatsFrame", self, false)
 end)
 
