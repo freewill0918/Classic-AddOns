@@ -9,6 +9,33 @@ _G.SimpleItemLevel = {}
 local SLOT_MAINHAND = GetInventorySlotInfo("MainHandSlot")
 local SLOT_OFFHAND = GetInventorySlotInfo("SecondaryHandSlot")
 
+-- Tooltip scanning for accurate item levels (similar to Oilvl/MerInspect approach)
+local tooltipScanner = CreateFrame("GameTooltip", "SimpleItemLevelTooltipScanner", UIParent, "GameTooltipTemplate")
+
+-- Function to get item level from tooltip scanning
+local function GetItemLevelFromTooltip(unit, slot)
+    if not unit or not slot then return nil end
+
+    tooltipScanner:SetOwner(UIParent, "ANCHOR_NONE")
+    tooltipScanner:ClearLines()
+    tooltipScanner:SetInventoryItem(unit, slot)
+
+    -- Scan tooltip text to find item level
+    for i = 1, 4 do
+        local line = _G["SimpleItemLevelTooltipScannerTextLeft"..i]
+        if line and line:GetText() then
+            local itemLevel = line:GetText():match(ITEM_LEVEL:gsub("%%d", "(%%d+)"))
+            if itemLevel then
+                return tonumber(itemLevel)
+            end
+        else
+            break
+        end
+    end
+
+    return nil
+end
+
 function ns.Print(...) print("|cFF33FF99".. myfullname.. "|r:", ...) end
 
 -- events
@@ -356,7 +383,16 @@ local function UpdateButtonFromItem(button, item, variant, suppress, extradetail
         if not ShouldShowOnItem(item) then return end
         PrepareItemButton(button)
         local details = DetailsFromItem(item)
-        if extradetails then MergeTable(details, extradetails) end
+        if extradetails then
+            -- Use safe table merging
+            if MergeTable then
+                MergeTable(details, extradetails)
+            else
+                for k, v in pairs(extradetails) do
+                    details[k] = v
+                end
+            end
+        end
         if not suppress.level then AddLevelToButton(button, details) end
         if not suppress.upgrade then AddUpgradeToButton(button, details) end
         if not suppress.bound then AddBoundToButton(button, details) end
@@ -431,8 +467,24 @@ local function AddAverageLevelToFontString(unit, fontstring)
     -- end
     continuableContainer:ContinueOnLoad(function()
         local totalLevel = 0
+        local slotIndex = INVSLOT_FIRST_EQUIPPED
         for _, item in ipairs(items) do
-            totalLevel = totalLevel + item:GetCurrentItemLevel()
+            -- Skip shirt and tabard slots in counting
+            while slotIndex == INVSLOT_BODY or slotIndex == INVSLOT_TABARD do
+                slotIndex = slotIndex + 1
+            end
+
+            local itemLevel = item:GetCurrentItemLevel()
+            -- For non-player units, try tooltip scanning for more accurate level
+            if unit ~= "player" and slotIndex <= INVSLOT_LAST_EQUIPPED then
+                local tooltipLevel = GetItemLevelFromTooltip(unit, slotIndex)
+                if tooltipLevel and tooltipLevel > 0 then
+                    itemLevel = tooltipLevel
+                end
+            end
+
+            totalLevel = totalLevel + itemLevel
+            slotIndex = slotIndex + 1
         end
         fontstring:SetFormattedText(ITEM_LEVEL, totalLevel / numSlots)
         fontstring:Show()
@@ -460,7 +512,16 @@ local function UpdateItemSlotButton(button, unit)
                 item = itemLink and Item:CreateFromItemLink(itemLink) or Item:CreateFromItemID(itemID)
             end
         end
-        UpdateButtonFromItem(button, item, key)
+        -- For inspect, try to get accurate item level using tooltip scanning
+        local extraDetails = {}
+        if unit ~= "player" and item then
+            local tooltipLevel = GetItemLevelFromTooltip(unit, slotID)
+            if tooltipLevel and tooltipLevel > 0 then
+                extraDetails.level = tooltipLevel
+            end
+        end
+
+        UpdateButtonFromItem(button, item, key, nil, extraDetails)
         return item
     end
 end

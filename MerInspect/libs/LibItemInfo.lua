@@ -13,6 +13,29 @@ local locale = GetLocale()
 --Toolip
 local tooltip = CreateFrame("GameTooltip", "ClassicLibItemLevelTooltip1", UIParent, "GameTooltipTemplate")
 local unittip = CreateFrame("GameTooltip", "ClassicLibItemLevelTooltip2", UIParent, "GameTooltipTemplate")
+local itemlevel_tooltip = CreateFrame("GameTooltip", "MerInspectItemLevelTooltip", UIParent, "GameTooltipTemplate")
+
+--從tooltip掃描獲取物品等級（類似Oilvl的方法）
+function lib:GetItemLevelFromTooltip(unit, slot)
+    itemlevel_tooltip:SetOwner(UIParent, "ANCHOR_NONE")
+    itemlevel_tooltip:ClearLines()
+    itemlevel_tooltip:SetInventoryItem(unit, slot)
+
+    -- 掃描tooltip文本以找到物品等級
+    for i = 1, 4 do
+        local line = _G["MerInspectItemLevelTooltipTextLeft"..i]
+        if line and line:GetText() then
+            local itemLevel = line:GetText():match(ITEM_LEVEL:gsub("%%d", "(%%d+)"))
+            if itemLevel then
+                return tonumber(itemLevel)
+            end
+        else
+            break
+        end
+    end
+
+    return nil
+end
 
 --物品是否已經本地化
 function lib:HasLocalCached(item)
@@ -51,6 +74,14 @@ function lib:GetItemLevel(link, stats)
         return -1
     end
     self:GetItemStats(link, stats)
+
+    -- 優先使用SimpleItemLevel的API獲取正確的升級後等級
+    if _G.SimpleItemLevel and _G.SimpleItemLevel.API and _G.SimpleItemLevel.API.ItemLevel then
+        local simpleLevel = _G.SimpleItemLevel.API.ItemLevel(link)
+        if simpleLevel and simpleLevel > 0 then
+            return simpleLevel
+        end
+    end
 
     -- 使用Item:GetCurrentItemLevel()獲取升級後的實際物品等級（如SimpleItemLevel addon）
     if Item and Item.CreateFromItemLink then
@@ -91,7 +122,22 @@ end
 function lib:GetUnitItemIndexLevel(unit, index, stats)
     if (not UnitExists(unit)) then return -1 end
 
-    -- 優先使用Item:CreateFromEquipmentSlot獲取正確的升級後等級（如SimpleItemLevel）
+    -- 優先使用tooltip掃描方法獲取實際（升級後）的物品等級
+    local tooltipLevel = self:GetItemLevelFromTooltip(unit, index)
+    if tooltipLevel and tooltipLevel > 0 then
+        -- 獲取物品連結和其他信息
+        unittip:SetOwner(UIParent, "ANCHOR_NONE")
+        unittip:SetInventoryItem(unit, index)
+        local link = GetInventoryItemLink(unit, index) or select(2, unittip:GetItem())
+
+        if link then
+            self:GetItemStats(link, stats)
+            local name, link2, quality, ilevel, reqLevel, class, subclass, maxStack, equipSlot, texture, vendorPrice = GetItemInfo(link)
+            return tooltipLevel, name, link, quality, reqLevel, class, subclass, maxStack, equipSlot, texture, vendorPrice
+        end
+    end
+
+    -- 如果tooltip掃描失敗，對玩家使用Item:CreateFromEquipmentSlot獲取正確的升級後等級
     if unit == "player" and Item and Item.CreateFromEquipmentSlot then
         local item = Item:CreateFromEquipmentSlot(index)
         if item and not item:IsItemEmpty() then
@@ -111,12 +157,15 @@ function lib:GetUnitItemIndexLevel(unit, index, stats)
         end
     end
 
-    -- 原始方法作為後備（非player或新方法失敗時）
+    -- 最後的後備方法：使用基本的API
     unittip:SetOwner(UIParent, "ANCHOR_NONE")
     unittip:SetInventoryItem(unit, index)
     local link = GetInventoryItemLink(unit, index) or select(2, unittip:GetItem())
+
     if (link) then
-        return self:GetItemLevel(link, stats), GetItemInfo(link)
+        local level = self:GetItemLevel(link, stats)
+        local name, link2, quality, ilevel, reqLevel, class, subclass, maxStack, equipSlot, texture, vendorPrice = GetItemInfo(link)
+        return level, name, link, quality, reqLevel, class, subclass, maxStack, equipSlot, texture, vendorPrice
     else
         return -1
     end
