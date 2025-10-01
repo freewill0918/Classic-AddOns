@@ -143,7 +143,7 @@ itemSlots["INVTYPE_QUIVER"] = LBIS.L["Quiver"];
 itemSlots["INVTYPE_RELIC"] = LBIS.L["Ranged/Relic"];
 function LBIS:GetItemInfo(itemId, returnFunc)
 
-    if itemId == nil or not itemId or itemId <= 0 or type(itemId) ~= "number" then
+    if itemId == nil or not itemId or itemId <= 0 then
         returnFunc({ Name = nil, Link = nil, Quality = nil, Type = nil, SubType = nil, Texture = nil, Class = nil, Slot = nil });
         return;
     end
@@ -153,18 +153,14 @@ function LBIS:GetItemInfo(itemId, returnFunc)
     if cachedItem then
         returnFunc(cachedItem);
     else
-        if not itemId or type(itemId) ~= "number" or itemId <= 0 then
-            returnFunc({ Name = nil, Link = nil, Quality = nil, Type = nil, SubType = nil, Texture = nil, Class = nil, Slot = nil });
-            return;
-        end
         local itemCache = Item:CreateFromItemID(itemId)
 
         itemCache:ContinueOnItemLoad(function()
-            local itemIdResult, itemType, subType, itemSlot, _, classId = C_Item.GetItemInfoInstant(itemId);
+            local itemId, itemType, subType, itemSlot, _, classId = C_Item.GetItemInfoInstant(itemId);
             local name = itemCache:GetItemName();
 
             local newItem = {
-                Id = itemIdResult,
+                Id = itemId,
                 Name = name,
                 Link = itemCache:GetItemLink(),
                 Quality = itemCache:GetItemQuality(),
@@ -555,7 +551,8 @@ function LBIS.CreateItemRow(f, specItem, specItemSource)
             type = item.Type .. ", " .. item.Subtype;
         end
         type = type.. ", "..specItem.Slot;
-        local st = f:CreateFontString(nil, nil,"GameFontNormalGraySmall");
+        local st = f:CreateFontString(nil, nil,"GameFontNormalSmall");
+        st:SetTextColor(.6, .6, .6);
         st:SetText(type:gsub("~", "/"));
         st:SetPoint("BOTTOMLEFT", b, "BOTTOMRIGHT", 2, 2);
 
