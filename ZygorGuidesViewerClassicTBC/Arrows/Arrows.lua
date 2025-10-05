@@ -144,6 +144,7 @@ end
 local mabs,mfloor=math.abs,math.floor
 function ZygorGuidesViewerFrame_Arrow_Mixin:GetArrowColors(angle_rad,dist)
 	if self.colors then
+		local distperc,angleperc
 		if ZGV.db.profile.arrowcolordist then
 			Pointer.initialdist = Pointer.initialdist or dist
 			distperc=max(0,1-(dist/min(max(100,Pointer.initialdist or 0),500)))

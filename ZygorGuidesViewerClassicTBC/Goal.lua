@@ -163,10 +163,10 @@ local function GetScenarioGoalData(scenariogoalid,count,stage)
 				end
 				local progressquantity = quantityString:match("(%d+)")
 				if tonumber(progressquantity) then
-					needed = 100
+					needed = count or 100
 					quantity = tonumber(progressquantity)
 				else
-					needed = 100
+					needed = count or 100
 					quantity = tonumber(quantity)
 				end
 			end
@@ -1421,6 +1421,7 @@ GOALTYPES['talk'] = {
 		end
 	end,
 	gettext = function(self,complete,complete_extra,goalcountnow,goalcountneeded,remaining,brief) 
+		local text
 		if self.targets and #self.targets>1 then
 			text = L["stepgoal_talk_around"]:format(self.targetcommon or "npcs")
 		else
@@ -1893,6 +1894,7 @@ GOALTYPES['click'] = {
 		end
 	end,
 	gettext = function(self,complete,complete_extra,goalcountnow,goalcountneeded,remaining,brief) 
+		local text
 		if self.targets and #self.targets>1 then
 			text = L["stepgoal_click_around"]:format(self.targetcommon or "objects")
 		else
@@ -1915,6 +1917,7 @@ GOALTYPES['clicknpc'] = {
 		end
 	end,
 	gettext = function(self,complete,complete_extra,goalcountnow,goalcountneeded,remaining,brief) 
+		local text
 		if self.targets and #self.targets>1 then
 			text = L["stepgoal_clicknpc_around"]:format(self.targetcommon or "npcs")
 		else
@@ -2274,6 +2277,7 @@ GOALTYPES['questchoice'] = {
 
 }
 
+--[[
 GOALTYPES['playerchoice'] = {
 	parse = function(self,params)
 		_,self.choiceset,self.choice = ParseID(params)
@@ -2282,6 +2286,7 @@ GOALTYPES['playerchoice'] = {
 		return ZGV.Parser.ConditionEnv.playerchoice(self.choiceset,self.choice),true
 	end,
 }
+--]]
 
 local default_goto_dist = 3
 
@@ -3015,6 +3020,42 @@ GOALTYPES['discover'] = {
 	end,
 	gettext = function(self) return L["stepgoal_discover"]:format(self.the or "",ZGV.BZL[self.zone] or self.zone) end,
 }
+
+GOALTYPES['playerchoice'] = {
+	parse = function(self,params)
+		self.option,self.optionID = ParseID(params)
+		self.picked = false
+	end,
+	events = {"PLAYER_CHOICE_UPDATE"},
+	onenter = function(self)
+		-- trigger when entering step in case gossip was already visible
+		GOALTYPES['playerchoice'].onevent(self,_,"PLAYER_CHOICE_UPDATE")
+	end,
+	onevent = function(self, _, event)
+		if not ZGV.db.profile.autogossip then return end
+		if self.noautogossip then return end
+
+		if event=="PLAYER_CHOICE_UPDATE" then 
+			local choices = PlayerChoiceFrame and PlayerChoiceFrame.choiceInfo
+			if not choices then return end
+			for i,option in ipairs(choices.options) do
+				if option.id==self.optionID then
+					local button = option.buttons[1]
+					if button then
+						--self.picked = true
+						C_PlayerChoice.SendPlayerChoiceResponse(button.id)
+						HideUIPanel(PlayerChoiceFrame)
+					end
+				end
+			end
+		end
+	end,
+	--iscomplete = function(self)
+	--	return self.picked,true
+	--end,
+	gettext = function(self) return self.option or "" end,
+}
+
 
 --[[
 

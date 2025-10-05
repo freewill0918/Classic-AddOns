@@ -74,6 +74,13 @@ function Guide:New(title,header,data)
 		data = "step\nThis is the Retail version of this guide. Mists of Pandaria Classic is running an older version of MoP than Retail and its differences may affect this guide. Based on customer feedback, we've made this guide available to MoP Classic users, but you may run into issues. Our team is working to properly update all guides for MoP Classic.\nClick here to continue.|confirm\n"..data
 	end
 
+	if ZGV.IsLegionRemix and not header.legionready then
+		-- Cata warning clone
+		data = "step\nThis is the Retail version of this guide. Legion Remix is running different version of Legion than Retail and its differences may affect this guide. Based on customer feedback, we've made this guide available to Legion Remix users, but you may run into issues. Our team is working to properly update all guides for Legion Remix.\nClick here to continue.|confirm\n"..data
+	end
+
+
+
 	--if (not not ZGV.IsPandariaRemix)~=(not not header.pandariaremix) then
 	--	return nil -- don't load non remix guides on remix realms, and keep remix off regular
 	--end
@@ -1125,7 +1132,7 @@ function GuideFuncs:IsValid(guide,step,from,special,shared,prevguide)
 		self.BadGuidePopup.noMinimize = 1 --Can not minimize this one
 
 		self.BadGuidePopup:SetText(L['static_badguide']:format(guide.title_short,msg or ""))
-		self.BadGuidePopup:Show()
+		self.BadGuidePopup:Show("unique")
 		return false
 	end
 

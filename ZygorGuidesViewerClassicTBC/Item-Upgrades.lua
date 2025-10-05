@@ -257,7 +257,7 @@ local function get_upgrade(newitem,olditem,secondnewitem)
 
 	if arrowframe then
 		if olditem then
-			pathnode = arrowframe.waypoint and arrowframe.waypoint.pathnode
+			local pathnode = arrowframe.waypoint and arrowframe.waypoint.pathnode
 			if pathnode then 
 				local portkey = pathnode.item or (pathnode.link and pathnode.link.item)
 				if portkey and portkey==olditem.itemid then return 0,0 end -- original protected by travel system

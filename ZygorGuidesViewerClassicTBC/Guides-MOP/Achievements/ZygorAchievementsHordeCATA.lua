@@ -10,6 +10,7 @@ patch='30002',
 description="To earn this achievement, you will have to craft or purchase a Mechano-Hog. "..
 "Crafting this mount requires the Northrend Engineering profession. You may also purchase it from "..
 "the Auction House.",
+mopready=true,
 },[[
 step
 Click Here to Craft with Northrend Engineering |next "Craft_Mechano-Hog" |confirm |only if skill("Engineering") >= 1 |achieve 2097 |or
@@ -67,6 +68,7 @@ condition_end=function() return achieved(5755) end,
 achieveid={621,1020,1021,5755},
 patch='40100',
 description="Equip a tabard.",
+mopready=true,
 },[[
 step
 You can _obtain various tabards_ through reputation, achievements, PvP, and questing
@@ -118,6 +120,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5503},
 patch='40003',
 description="This guide will walk you through on how to get the Pardon Denied achievement.",
+mopready=true,
 },[[
 step
 kill Baron Ashbury##46962
@@ -132,6 +135,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5504},
 patch='40003',
 description="This guide will walk you through on how to get the To the Ground! achievement.",
+mopready=true,
 },[[
 step
 kill Commander Springvale##4278
@@ -146,6 +150,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2153},
 patch='30003',
 description="This guide will walk you through getting the A Void Dance achievement.",
+mopready=true,
 },[[
 step
 kill Zuramat the Obliterator##29314
@@ -159,6 +164,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2155},
 patch='30002',
 description="This guide will walk you through getting the Abuse the Ooze achievement.",
+mopready=true,
 },[[
 step
 kill Sjonnir the Ironshaper##27978
@@ -172,6 +178,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2046},
 patch='30002',
 description="This guide will walk you through getting the Amber Void achievement.",
+mopready=true,
 },[[
 step
 kill Ley-Guardian Eregos##27656
@@ -185,6 +192,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2039},
 patch='30003',
 description="This guide will walk you through getting the Better Off Dred achievement.",
+mopready=true,
 },[[
 step
 kill King Dred##27483
@@ -199,6 +207,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2154},
 patch='30002',
 description="This guide will walk you through getting the Brann Spankin' New achievement.",
+mopready=true,
 },[[
 step
 kill Tribunal of Ages##28234
@@ -213,6 +222,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2037},
 patch='30008',
 description="This guide will walk you through getting the Chaos Theory achievement.",
+mopready=true,
 },[[
 step
 kill Anomalus##26763
@@ -226,6 +236,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2151},
 patch='30008',
 description="This guide will walk you through getting the Consumption Junction achievement.",
+mopready=true,
 },[[
 step
 kill Trollgore##26630
@@ -239,6 +250,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1817},
 patch='30002',
 description="This guide will walk you through how to get The Culling of Time achievement.",
+mopready=true,
 },[[
 step
 kill Infinite Corruptor##32273
@@ -253,6 +265,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1816},
 patch='30003',
 description="This guide will walk you through getting the Defenseless achievement.",
+mopready=true,
 },[[
 step
 kill Cyanigosa##31134
@@ -267,6 +280,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2041},
 patch='30003',
 description="This guide will walk you through getting the Dehydration achievement.",
+mopready=true,
 },[[
 step
 kill Ichoron##29313
@@ -281,6 +295,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2045},
 patch='30002',
 description="This guide will walk you through getting the Emerald Void achievement.",
+mopready=true,
 },[[
 step
 kill Ley-Guardian Eregos##27656
@@ -294,6 +309,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1871},
 patch='30008',
 description="This guide will walk you through getting the Experienced Drake Rider achievement.",
+mopready=true,
 },[[
 step
 kill Ley-Guardian Eregos##27656
@@ -309,6 +325,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2136},
 patch='30002',
 description="This guide will walk you through getting the Glory of the Hero achievement.",
+mopready=true,
 },[[
 step
 Load the "On The Rocks" guide |confirm |next "Achievement Guides\\Dungeons & Raids\\Northrend Dungeons\\On The Rocks"
@@ -466,6 +483,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1866},
 patch='30008',
 description="This guide will walk you through getting the Good Grief achievement.",
+mopready=true,
 },[[
 step
 kill Maiden of Grief##27975
@@ -480,6 +498,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1860},
 patch='30008',
 description="This guide will walk you through getting the Gotta Go! achievement.",
+mopready=true,
 },[[
 step
 kill Anub'arak##29120
@@ -494,6 +513,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1297},
 patch='30008',
 description="This guide will walk you through getting the Hadronox Denied achievement.",
+mopready=true,
 },[[
 step
 kill Hadronox##28921
@@ -508,6 +528,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2036},
 patch='30003',
 description="This guide will walk you through getting the Intense Cold achievement.",
+mopready=true,
 },[[
 step
 kill Keristrasza##26723
@@ -522,6 +543,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2043},
 patch='30002',
 description="This guide will walk you through getting The Incredible Hulk achievement.",
+mopready=true,
 },[[
 step
 kill Svala Sorrowgrave##26668
@@ -539,6 +561,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2157},
 patch='30003',
 description="This guide will walk you through getting the King's Bane achievement.",
+mopready=true,
 },[[
 step
 kill King Ymiron##26861
@@ -553,6 +576,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2040},
 patch='30003',
 description="This guide will walk you through getting the Less-rabi achievement.",
+mopready=true,
 },[[
 step
 kill Moorabi##29305
@@ -568,6 +592,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1834},
 patch='30008',
 description="This guide will walk you through getting the Lightning Struck achievement.",
+mopready=true,
 },[[
 step
 kill General Bjarngrim##28586
@@ -581,6 +606,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1865},
 patch='30008',
 description="This guide will walk you through getting the Lockdown! achievement.",
+mopready=true,
 },[[
 step
 kill Xevozz##29266 |achieve 1865/1
@@ -598,6 +624,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1873},
 patch='30002',
 description="This guide will walk you through getting the Lodi Dodi We Loves the Skadi achievement.",
+mopready=true,
 },[[
 step
 kill Skadi the Ruthless##26693
@@ -614,6 +641,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1868},
 patch='30008',
 description="This guide will walk you through getting the Make It Count achievement.",
+mopready=true,
 },[[
 step
 kill Drakos the Interrogator##27654
@@ -629,6 +657,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2156},
 patch='30002',
 description="This guide will walk you through getting the My Girl Loves to Skadi All the Time achievement.",
+mopready=true,
 },[[
 step
 kill Grauf##26893
@@ -644,6 +673,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2057},
 patch='30003',
 description="This guide will walk you through getting the Oh Novos! achievement.",
+mopready=true,
 },[[
 step
 kill Novos the Summoner##26631
@@ -657,6 +687,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1919},
 patch='30002',
 description="This guide will walk you through getting the On The Rocks achievement.",
+mopready=true,
 },[[
 step
 |tip Enter from the _south_ or _east_ side, on the lower level of the building, to reach Utgarde Keep.
@@ -671,6 +702,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2038},
 patch='30008',
 description="This guide will walk you through how to get the Respect Your Elders achievement.",
+mopready=true,
 },[[
 step
 kill Elder Nadox##29309
@@ -684,6 +716,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2044},
 patch='30002',
 description="This guide will walk you through getting the Ruby Void achievement.",
+mopready=true,
 },[[
 step
 kill Ley-Guardian Eregos##27656
@@ -697,6 +730,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2152},
 patch='30003',
 description="This guide will walk you through getting the Share the Love achievement.",
+mopready=true,
 },[[
 step
 Get the Impale Debuff |havebuff Puncture##55276
@@ -712,6 +746,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2042},
 patch='30003',
 description="This guide will walk you through how to get the Shatter Resistant achievement.",
+mopready=true,
 },[[
 step
 kill Volkhan##28587
@@ -725,6 +760,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2058},
 patch='30002',
 description="This guide will walk you through getting the Snakes. Why'd It Have To Be Snakes? achievement.",
+mopready=true,
 },[[
 step
 kill Slad'ran##29304
@@ -739,6 +775,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2150},
 patch='30008',
 description="This guide will walk you through getting the Split Personality achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Grand Magus Telestra in The Nexus on _Heroic_ mode after having killed her images within 5 seconds of the first one dying during each split
@@ -753,6 +790,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1867},
 patch='30008',
 description="This guide will walk you through getting the Timely Death achievement.",
+mopready=true,
 },[[
 step
 kill Loken##28923
@@ -767,6 +805,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1862},
 patch='30008',
 description="This guide will walk you through how to get the Volazj's Quick Demise achievement.",
+mopready=true,
 },[[
 step
 kill Herald Volazj##29311
@@ -781,6 +820,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2056},
 patch='30008',
 description="This guide will walk you through getting the Volunteer Work achievement.",
+mopready=true,
 },[[
 step
 kill Jedoga Shadowseeker##29310
@@ -794,6 +834,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1296},
 patch='30008',
 description="This guide will walk you through getting the Watch Him Die achievement.",
+mopready=true,
 },[[
 step
 kill Krik'thir the Gatewatcher##28684
@@ -807,6 +848,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1864},
 patch='30003',
 description="This guide will walk you through getting the What the Eck? achievement.",
+mopready=true,
 },[[
 step
 kill Eck the Ferocious##29932
@@ -824,6 +866,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1872},
 patch='30002',
 description="This guide will walk you through getting the Zombiefest! achievement.",
+mopready=true,
 },[[
 step
 kill 100 Risen Zombie##27737+
@@ -840,6 +883,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4580},
 patch='30300',
 description="Defeat Sindragosa in 10-player mode without any member of your raid receiving more than 5 stacks of Mystic Buffet.",
+mopready=true,
 },[[
 step
 This achievement is basically a DPS race
@@ -853,6 +897,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4620},
 patch='30300',
 description="Defeat Sindragosa in 25-player mode without any member of your raid receiving more than 5 stacks of Mystic Buffet.",
+mopready=true,
 },[[
 step
 This achievement is basically a DPS race
@@ -866,6 +911,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4601},
 patch='30300',
 description="Allow Necrotic Plague to stack to 30 before defeating the Lich King in 10-player mode.",
+mopready=true,
 },[[
 step
 _You need a pet or another player in order to earn this achievement!_
@@ -882,6 +928,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4621},
 patch='30300',
 description="Allow Necrotic Plague to stack to 30 before defeating the Lich King in 25-player mode.",
+mopready=true,
 },[[
 step
 _You need a pet or another player in order to earn this achievement!_
@@ -898,6 +945,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4534},
 patch='30300',
 description="Defeat Lord Marrowgar without any raid member remaining impaled for more than 8 seconds in 10-player mode.",
+mopready=true,
 },[[
 step
 map Icecrown Citadel/1
@@ -916,6 +964,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4610},
 patch='30300',
 description="Defeat Lord Marrowgar without any raid member remaining impaled for more than 8 seconds in 25-player mode.",
+mopready=true,
 },[[
 step
 map Icecrown Citadel/1
@@ -933,6 +982,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1658},
 patch='30002',
 description="This guide will walk you through how to get the Champion of the Frozen Wastes achievement.",
+mopready=true,
 },[[
 step
 Complete the following Northrend dungeons and raids:
@@ -959,6 +1009,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12341},
 patch='70305',
 description="Defeat Auriaya without destroying her Sanctum Sentries.",
+mopready=true,
 },[[
 step
 path Ulduar/1
@@ -993,6 +1044,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4529},
 patch='unknown',
 description="This guide will walk you through how to get The Crimson Hall (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of The Crimson Hall in Icecrown Citadel in 10-player mode
@@ -1007,6 +1059,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4606},
 patch='unknown',
 description="This guide will walk you through how to get The Crimson Hall (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of The Crimson Hall in Icecrown Citadel in 10-player mode
@@ -1021,6 +1074,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4538},
 patch='30300',
 description="Defeat Rotface without a Big Ooze casting Unstable Ooze Explosion in 10-player mode.",
+mopready=true,
 },[[
 step
 To start, you will need to maximize dps against Rotface to earn this achievement
@@ -1035,6 +1089,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4614},
 patch='30302',
 description="Defeat Rotface without a Big Ooze casting Unstable Ooze Explosion in 25-player mode.",
+mopready=true,
 },[[
 step
 To start, you will need to maximize dps against Rotface to earn this achievement
@@ -1049,6 +1104,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={578},
 patch='30001',
 description="With all three Twilight Drakes still alive, engage and defeat Sartharion the Onyx Guardian in 10-player mode.",
+mopready=true,
 },[[
 step
 Kill the following Naxxramas raid bosses while in a group of 8 or less:
@@ -1074,6 +1130,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={579},
 patch='30001',
 description="Defeat the bosses of Naxxramas with less than 21 people in the zone in 25-player mode.",
+mopready=true,
 },[[
 step
 Kill the following bosses while in a raid group of 21 or less:
@@ -1099,6 +1156,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12362},
 patch='70305',
 description="This guide will walk you through how to get the Deforestation achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating 2 Ancient Water Spirits, 2 Storm Lashers and 2 Snaplashers within 10 seconds, while fighting Freya in Ulduar
@@ -1114,6 +1172,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2148},
 patch='30003',
 description="This guide will walk you through how to get the Denyin' the Scion (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by delivering a killing blow to a Scion of Eternity _while riding on a hover disk_ in The Eye of Eternity in 10 player mode
@@ -1128,6 +1187,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2149},
 patch='30002',
 description="This guide will walk you through how to get the Denyin' the Scion (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by delivering a killing blow to a Scion of Eternity _while riding on a hover disk_ in The Eye of Eternity in 25 player mode
@@ -1142,6 +1202,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12310},
 patch='70305',
 description="This guide will walk you through how to get The Descent into Madness achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of the Descent into Madness area of Ulduar
@@ -1155,6 +1216,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12338},
 patch='70305',
 description="Destroy both of Kologarn's arms and then Kologarn himself within 12 seconds.",
+mopready=true,
 },[[
 step
 kill Kologarn##32930
@@ -1168,6 +1230,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12348},
 patch='70305',
 description="This guide will walk you through how to get the Don't Stand in the Lightning achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Thorim in Ulduar _without any raid member being struck by Lightning Charge_
@@ -1181,6 +1244,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12395},
 patch='70305',
 description="This guide will walk you through how to get the Drive Me Crazy achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Yogg-Saron in Ulduar _without any raid member going insane_
@@ -1194,6 +1258,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12312},
 patch='70305',
 description="This guide will walk you through how to get the Dwarfageddon achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating 100 Steelforged Defenders in 10 seconds on the Ulduar gauntlet in _10 player mode_
@@ -1207,6 +1272,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4016},
 patch='30200',
 description="This guide will walk you through how to get the Earth, Wind & Fire (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Archavon the Stone Watcher, Emalon the Storm Watcher, and Koralon the Flame Watcher _within 60 seconds of each other_ in 10 player mode
@@ -1222,6 +1288,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4017},
 patch='30200',
 description="This guide will walk you through how to get the Earth, Wind & Fire (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Archavon the Stone Watcher, Emalon the Storm Watcher, and Koralon the Flame Watcher _within 60 seconds of each other_ in 25 player mode
@@ -1237,6 +1304,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={576},
 patch='30100',
 description="This guide will walk you through how to get The Fall of Naxxramas (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating all the bosses of Naxxramas in 10 player mode
@@ -1254,6 +1322,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={577},
 patch='30001',
 description="This guide will walk you through how to get The Fall of Naxxramas (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating all the bosses of Naxxramas in 25 player mode
@@ -1271,6 +1340,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12369},
 patch='70305',
 description="Defeat Mimiron after activating his Self-Destruct mechanism.",
+mopready=true,
 },[[
 step
 path Ulduar/1
@@ -1302,6 +1372,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4577},
 patch='30300',
 description="Defeat Festergut while none of the players in your raid group ever had 3 stacks of Inoculated in 10-player mode.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will to defeat Festergut without allowing Inoculated to raise above 2 stacks
@@ -1315,6 +1386,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4615},
 patch='30300',
 description="Defeat Festergut while none of the players in your raid group ever had 3 stacks of Inoculated in 25-player mode.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will to defeat Festergut without allowing Inoculated to raise above 3 stacks
@@ -1328,6 +1400,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4527},
 patch='unknown',
 description="This guide will walk you through how to get The Frostwing Halls (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _all the the bosses of The Frostwing Halls_ in Icecrown Citadel in 10 player mode
@@ -1341,6 +1414,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4607},
 patch='unknown',
 description="This guide will walk you through how to get The Frostwing Halls (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _all the the bosses of The Frostwing Halls_ in Icecrown Citadel in 25 player mode
@@ -1354,6 +1428,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4530},
 patch='30300',
 description="This guide will walk you through how to get The Frozen Throne (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _the Lich King_ in Icecrown Citadel in 10 player mode
@@ -1366,6 +1441,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4597},
 patch='30300',
 description="This guide will walk you through how to get The Frozen Throne (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _the Lich King_ in Icecrown Citadel in 25 player mode
@@ -1378,6 +1454,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4535},
 patch='30300',
 description="Defeat Lady Deathwhisper with at least five different types of Cultists active at the time of her demise in 10-player mode.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to defeat lady Deathwhisper with 5 specifc mobs active:
@@ -1398,6 +1475,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4611},
 patch='30300',
 description="Defeat Lady Deathwhisper with at least five different types of Cultists active at the time of her demise in 25-player mode.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to defeat lady Deathwhisper with 5 specifc mobs active:
@@ -1418,6 +1496,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12363},
 patch='70305',
 description="This guide will walk you through how to get the Getting Back to Nature achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Freya in Ulduar _while she is affected by at least 25 stacks of Attuned to Nature_
@@ -1431,6 +1510,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12345},
 patch='70305',
 description="This guide will walk you through how to get the Getting Cold in Here achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Hodir in Ulduar _without any raid member having more than 2 stacks of Biting Cold_
@@ -1444,6 +1524,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2047},
 patch='30002',
 description="This guide will walk you through how to get the Gonna Go When the Volcano Blows (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Sartharion the Onyx Guardian in The Obsidian Sanctum _without getting hit by Lava Strike_ in 10 player mode
@@ -1456,6 +1537,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2048},
 patch='30002',
 description="This guide will walk you through how to get the Gonna Go When the Volcano Blows (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Sartharion the Onyx Guardian in The Obsidian Sanctum _without getting hit by Lava Strike_ in 25 player mode
@@ -1468,6 +1550,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12396},
 patch='70305',
 description="This guide will walk you through how to get the He's Not Getting Any Older achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Yogg-Saron in Ulduar _within 7 minutes_
@@ -1480,6 +1563,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12330},
 patch='70305',
 description="Defeat XT-002 Deconstructor after destroying his heart.",
+mopready=true,
 },[[
 step
 path Ulduar/1
@@ -1505,6 +1589,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4630},
 patch='unknown',
 description="This guide will walk you through how to get the Heroic: The Crimson Hall (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of The Crimson Hall in Icecrown Citadel in 10-player _Heroic_ mode
@@ -1519,6 +1604,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4634},
 patch='unknown',
 description="This guide will walk you through how to get the Heroic: The Crimson Hall (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of The Crimson Hall in Icecrown Citadel in 25-player _Heroic_ mode
@@ -1533,6 +1619,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4629},
 patch='unknown',
 description="This guide will walk you through how to get the Heroic: The Plagueworks (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of The Plagueworks in Icecrown Citadel in 10-player _Heroic_ mode
@@ -1549,6 +1636,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4633},
 patch='unknown',
 description="This guide will walk you through how to get the Heroic: The Plagueworks (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of The Plagueworks in Icecrown Citadel in 25-player _Heroic_ mode
@@ -1565,6 +1653,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4628},
 patch='30305',
 description="This guide will walk you through how to get the Heroic: Storming the Citadel (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the first four bosses in Icecrown Citadel in 10-player _Heroic_ mode
@@ -1582,6 +1671,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4632},
 patch='50200',
 description="This guide will walk you through how to get the Heroic: Storming the Citadel (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the first four bosses in Icecrown Citadel in 25-player _Heroic_ mode
@@ -1599,6 +1689,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12324},
 patch='70305',
 description="This guide will walk you through how to get the Hot Pocket achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by surviving being thrown into Ignis the Furnace Master's Slag Pot in Ulduar
@@ -1614,6 +1705,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2146},
 patch='30002',
 description="Defeat Sapphiron in Naxxramas without any member of the raid having a frost resist value over 100 in 10-player mode.",
+mopready=true,
 },[[
 step
 map Naxxramas/5
@@ -1631,6 +1723,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2147},
 patch='30008',
 description="Defeat Sapphiron in Naxxramas without any member of the raid having a frost resist value over 100 in 25-player mode.",
+mopready=true,
 },[[
 step
 map Naxxramas/5
@@ -1648,6 +1741,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12332},
 patch='70305',
 description="This guide will walk you through how to get the I Choose You, Runemaster Molgeim achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the Assembly of Iron in Ulduar _by killing Runemaster Molgeim last_
@@ -1663,6 +1757,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12334},
 patch='70305',
 description="Defeat the Assembly of Iron with Steelbreaker as the last member alive.",
+mopready=true,
 },[[
 step
 path Ulduar/1
@@ -1694,6 +1789,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12333},
 patch='70305',
 description="This guide will walk you through how to get the I Choose You, Stormcaller Brundir achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the Assembly of Iron in Ulduar _by killing Stormcaller Brundir last_
@@ -1709,6 +1805,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12347},
 patch='70305',
 description="Defeat Hodir before he shatters his rare cache.",
+mopready=true,
 },[[
 step
 kill Hodir##32845
@@ -1720,6 +1817,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12344},
 patch='70305',
 description="This guide will walk you through how to get the I Have the Coolest Friends achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Hodir in Ulduar _without any friendly NPC dying_
@@ -1733,6 +1831,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12373},
 patch='70305',
 description="Defeat General Vezax after defeating the Saronite Animus.",
+mopready=true,
 },[[
 step
 kill General Vezax##33271
@@ -1746,6 +1845,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12349},
 patch='70305',
 description="This guide will walk you through how to get the I'll Take You All On achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Thorim, the Ancient Rune Giant and the Runic Colossus in Ulduar
@@ -1761,6 +1861,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4536},
 patch='30300',
 description="Claim victory in the Gunship Battle without any raid member visiting the enemy gunship more than twice in 10-player mode.",
+mopready=true,
 },[[
 step
 To start, hope in the gun ship as soon as you're able and shoot the horde ship
@@ -1774,6 +1875,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4612},
 patch='30300',
 description="Claim victory in the Gunship Battle without any raid member visiting the enemy gunship more than twice in 25-player mode.",
+mopready=true,
 },[[
 step
 To start, hope in the gun ship as soon as you're able and shoot the horde ship
@@ -1787,6 +1889,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4537},
 patch='30300',
 description="Defeat the Deathbringer before Mark of the Fallen Champion is cast three times in 10-player mode.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to defeat the Deathbring beofre Mark of the Fallen Champion is cast 3 times
@@ -1800,6 +1903,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4613},
 patch='30300',
 description="Defeat the Deathbringer before Mark of the Fallen Champion is cast five times in 25-player mode.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to defeat the Deathbring beofre Mark of the Fallen Champion is cast 3 times
@@ -1813,6 +1917,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12339},
 patch='70305',
 description="This guide will walk you through how to get the If Looks Could Kill achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Kologarn in Ulduar _without any raid member being hit by Focused Eyebeams_
@@ -1825,6 +1930,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12398},
 patch='70305',
 description="This guide will walk you through how to get the In His House He Waits Dreaming achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by experiencing all 3 visions of Yogg-Saron's mind
@@ -1841,6 +1947,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12322},
 patch='70305',
 description="Defeat 25 Dark Rune Guardian Dwarves with Razorscale's Flame Breath.",
+mopready=true,
 },[[
 step
 kill Razorscale##33186
@@ -1855,6 +1962,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2184},
 patch='30008',
 description="Defeat Kel'Thuzad in Naxxramas while killing at least 18 abominations in his chamber in 10 player mode.",
+mopready=true,
 },[[
 step
 map Naxxramas/5
@@ -1882,6 +1990,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2185},
 patch='30008',
 description="Defeat Kel'Thuzad in Naxxramas while killing at least 18 abominations in his chamber in 25 player mode.",
+mopready=true,
 },[[
 step
 map Naxxramas/5
@@ -1909,6 +2018,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12309},
 patch='70305',
 description="This guide will walk you through how to get The Keepers of Ulduar achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the Keeper bosses of Ulduar
@@ -1924,6 +2034,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={574},
 patch='unknown',
 description="This guide will walk you through how to get the Kel'Thuzad's Defeat (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Kel'Thuzad in Naxxramas in 10 player mode
@@ -1936,6 +2047,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={575},
 patch='30200',
 description="This guide will walk you through how to get the Kel'Thuzad's Defeat (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Kel'Thuzad in Naxxramas in 25 player mode
@@ -1948,6 +2060,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12384},
 patch='70305',
 description="This guide will walk you through how to get the Kiss and Make Up achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by doing "/kiss" on Sara in Ulduar while she is angry with you
@@ -1963,6 +2076,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12366},
 patch='70305',
 description="Defeat Freya while leaving all 3 Elders alive.",
+mopready=true,
 },[[
 step
 kill Freya##32906
@@ -1973,6 +2087,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12364},
 patch='70305',
 description="This guide will walk you through how to get the Knock on Wood achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Freya in Ulduar _while leaving at least 1 Elder alive_
@@ -1986,6 +2101,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={624},
 patch='30001',
 description="This guide will walk you through how to get the Less Is More (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Sartharion the Onyx Guardian and the Twilight Drakes in The Obsidian Sanctum _with fewer than 9 players_ in 10 player mode
@@ -2001,6 +2117,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1877},
 patch='30009',
 description="This guide will walk you through how to get the Less Is More (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Sartharion the Onyx Guardian and the Twilight Drakes in The Obsidian Sanctum _with fewer than 9 players_ in 25 player mode
@@ -2016,6 +2133,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4584},
 patch='30300',
 description="This guide will walk you through how to get the The Light of Dawn achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the Lich King in 25-player _Heroic_ mode
@@ -2028,6 +2146,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12352},
 patch='70305',
 description="Defeat Thorim while Sif is present.",
+mopready=true,
 },[[
 step
 map Ulduar/3
@@ -2049,6 +2168,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12360},
 patch='70305',
 description="This guide will walk you through how to get the Lumberjacked achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Elder Brightleaf, Elder Ironbranch and Elder Stonebark _within 15 seconds of each other_ in Ulduar
@@ -2064,6 +2184,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1856},
 patch='30008',
 description="Defeat Patchwerk in Naxxramas in 3 minutes or less in 10-player mode.",
+mopready=true,
 },[[
 step
 map Naxxramas/1
@@ -2083,6 +2204,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1857},
 patch='30008',
 description="Defeat Patchwerk in Naxxramas in 3 minutes or less in 25-player mode.",
+mopready=true,
 },[[
 step
 map Naxxramas/1
@@ -2102,6 +2224,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4403},
 patch='30202',
 description="This guide will walk you through how to get the Many Whelps! Handle It! (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by _causing 50 Onyxia Whelplings to hatch within 10 seconds_ of Onyxia's liftoff and then defeat her in 10 player mode
@@ -2114,6 +2237,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4406},
 patch='30202',
 description="This guide will walk you through how to get the Many Whelps! Handle It! (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by _causing 50 Onyxia Whelplings to hatch within 10 seconds_ of Onyxia's liftoff and then defeat her in 25 player mode
@@ -2126,6 +2250,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={568},
 patch='30008',
 description="This guide will walk you through how to get The Military Quarter (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of The Military Quarter in Naxxramas in 10 player mode
@@ -2139,6 +2264,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={569},
 patch='30008',
 description="This guide will walk you through how to get The Military Quarter (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of The Military Quarter in Naxxramas in 25 player mode
@@ -2152,6 +2278,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1997},
 patch='30003',
 description="This guide will walk you through how to get the Momma Said Knock You Out (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Grand Widow Faerlina in Naxxramas _without dispelling or preventing Frenzy_ in 10 player mode
@@ -2164,6 +2291,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2140},
 patch='30003',
 description="This guide will walk you through how to get the Momma Said Knock You Out (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Grand Widow Faerlina in Naxxramas _without dispelling or preventing Frenzy_ in 25 player mode
@@ -2176,6 +2304,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4402},
 patch='30202',
 description="This guide will walk you through how to get the More Dots! (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Onyxia _within 5 minutes_ in 10 player mode
@@ -2188,6 +2317,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4405},
 patch='30202',
 description="This guide will walk you through how to get the More Dots! (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Onyxia _within 5 minutes_ in 25 player mode
@@ -2200,6 +2330,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12329},
 patch='70305',
 description="This guide will walk you through how to get the Must Deconstruct Faster achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating XT-002 Deconstructor in Ulduar _within 205 seconds_
@@ -2212,6 +2343,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4578},
 patch='30300',
 description="Defeat Professor Putricide without using Regurgitated Ooze on the Abomination in 10-player mode.",
+mopready=true,
 },[[
 step
 To earn this achievement, don't drink any of the Ooze provided for the encounter as it will cause you to fail this achievement
@@ -2224,6 +2356,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4616},
 patch='30300',
 description="Defeat Professor Putricide without using Regurgitated Ooze on the Abomination in 25-player mode.",
+mopready=true,
 },[[
 step
 To earn this achievement, don't drink any of the Ooze provided for the encounter as it will cause you to fail this achievement
@@ -2236,6 +2369,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4581},
 patch='30300',
 description="This guide will walk you through how to get the Neck-Deep in Vile (10 Player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by killing _every Vile Spirit that spawns before it explodes_ and then defeating the Lich King in 10-player mode
@@ -2249,6 +2383,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4622},
 patch='30302',
 description="This guide will walk you through how to get the Neck-Deep in Vile (25 Player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by killing _every Vile Spirit that spawns before it explodes_ and then defeating the Lich King in 25-player mode
@@ -2262,6 +2397,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12326},
 patch='70305',
 description="This guide will walk you through how to get the Nerf Engineering achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating XT-002 Deconstructor in Ulduar _without him recovering any health from XS-013 Scrapbots_
@@ -2275,6 +2411,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12328},
 patch='70305',
 description="This guide will walk you through how to get the Nerf Gravity Bombs achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating XT-002 Deconstructor in Ulduar _without any raid member dying from a Gravity Bomb_
@@ -2287,6 +2424,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12327},
 patch='70305',
 description="This guide will walk you through how to get the Nerf Scrapbots achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _20 XS-013 Scrapbots within 12 seconds_ using XE-321 Boombots in Ulduar
@@ -2300,6 +2438,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12342},
 patch='70305',
 description="This guide will walk you through how to get the Nine Lives achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by _defeating the Feral Defender_ in Ulduar while defeating Auriaya
@@ -2316,6 +2455,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12368},
 patch='70305',
 description="This guide will walk you through how to get the Not-So-Friendly Fire achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by forcing Mimiron in Ulduar to _kill an Assault Bot with a Rocket Strike_
@@ -2330,6 +2470,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={3936},
 patch='30200',
 description="This guide will walk you through how to get the Not One, But Two Jormungars (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Acidmaw and Dreadscale _within 10 seconds of each other_ in 10 player mode
@@ -2343,6 +2484,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={3937},
 patch='30200',
 description="This guide will walk you through how to get the Not One, But Two Jormungars (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Acidmaw and Dreadscale _within 10 seconds of each other_ in 25 player mode
@@ -2356,6 +2498,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12399},
 patch='70305',
 description="This guide will walk you through how to get the Observed achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Algalon the Observer in Ulduar
@@ -2368,6 +2511,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4539},
 patch='30300',
 description="Defeat Professor Putricide without using Regurgitated Ooze on the Abomination in 10-player mode.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to defeat Blood-Queen Lana'thel twice:
@@ -2384,6 +2528,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4618},
 patch='30300',
 description="Defeat Professor Putricide without using Regurgitated Ooze on the Abomination in 25-player mode.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to defeat Blood-Queen Lana'thel twice:
@@ -2400,6 +2545,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12387},
 patch='70305',
 description="Defeat Yogg-Saron with the assistance of one or fewer Keepers.",
+mopready=true,
 },[[
 step
 map Ulduar/1
@@ -2423,6 +2569,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4582},
 patch='30300',
 description="Defeat the Blood Council without anyone in the raid taking more than 23,000 spell damage in a single hit in 10-player mode.",
+mopready=true,
 },[[
 step
 _Prince Valanar_ casts Empowered Shock Vortex
@@ -2440,6 +2587,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4617},
 patch='30302',
 description="Defeat the Blood Council without anyone in the raid taking more than 25,000 spell damage in a single hit in 25-player mode.",
+mopready=true,
 },[[
 step
 _Prince Valanar_ casts Empowered Shock Vortex
@@ -2457,6 +2605,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12320},
 patch='70305',
 description="Defeat Flame Leviathan with all 4 Orbital Defense Systems active.",
+mopready=true,
 },[[
 step
 talk Lore Keeper of Norgannon##33686 |goto Ulduar/1 52.64,88.26
@@ -2483,6 +2632,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12317},
 patch='70305',
 description="This guide will walk you through how to get the Orbital Bombardment achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Flame Leviathan in Ulduar _with at least 1 Orbital Defense System active_
@@ -2496,6 +2646,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={566},
 patch='30008',
 description="This guide will walk you through how to get The Plague Quarter (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of The Plague Quarter in Naxxramas in 10 player mode
@@ -2509,6 +2660,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={567},
 patch='30008',
 description="This guide will walk you through how to get The Plague Quarter (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of The Plague Quarter in Naxxramas in 25 player mode
@@ -2522,6 +2674,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4528},
 patch='30302',
 description="This guide will walk you through how to get The Plagueworks (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of The Plagueworks in Icecrown Citadel in 10 player mode
@@ -2535,6 +2688,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4579},
 patch='30300',
 description="Enter every portal spawned by Valithria Dreamwalker before healing her to full health in 10-player mode.",
+mopready=true,
 },[[
 step
 To start, you will need to be a healer for this achievement
@@ -2548,6 +2702,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4619},
 patch='30303',
 description="Enter every portal spawned by Valithria Dreamwalker before healing her to full health in 25-player mode.",
+mopready=true,
 },[[
 step
 To start, you will need to be a healer for this achievement
@@ -2561,6 +2716,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={3798},
 patch='30200',
 description="This guide will walk you through how to get the Resilience Will Fix It (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by all the enemy heroes _within 60 seconds of the first one dying_ in 10 player mode
@@ -2574,6 +2730,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12340},
 patch='70305',
 description="This guide will walk you through how to get the Rubble and Roll achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Kologarn in Ulduar _after causing at least 25 Rubble creatures to spawn_
@@ -2587,6 +2744,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1996},
 patch='30002',
 description="Defeat Heigan the Unclean in Naxxramas without anyone in the raid dying in 10 player mode.",
+mopready=true,
 },[[
 step
 map Naxxramas/5
@@ -2613,6 +2771,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2139},
 patch='30002',
 description="Defeat Heigan the Unclean in Naxxramas without anyone in the raid dying in 25 player mode.",
+mopready=true,
 },[[
 step
 map Naxxramas/5
@@ -2639,6 +2798,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={3799},
 patch='30202',
 description="This guide will walk you through how to get the Salt and Pepper (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the Twin Val'kyr in 3 minutes or less in the Trial of the Crusader in 10 player mode
@@ -2652,6 +2812,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={3815},
 patch='30202',
 description="This guide will walk you through how to get the Salt and Pepper (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the Twin Val'kyr in 3 minutes or less in the Trial of the Crusader in 25 player mode
@@ -2665,6 +2826,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={572},
 patch='unknown',
 description="This guide will walk you through how to get the Sapphiron's Demise (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Sapphiron in Naxxramas in 10 player mode
@@ -2677,6 +2839,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={573},
 patch='30200',
 description="This guide will walk you through how to get the Sapphiron's Demise (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Sapphiron in Naxxramas in 25 player mode
@@ -2689,6 +2852,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12367},
 patch='70305',
 description="This guide will walk you through how to get the Set Up Us the Bomb achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Mimiron in Ulduar _without anyone in the raid being hit by:_
@@ -2704,6 +2868,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12372},
 patch='70305',
 description="This guide will walk you through how to get the Shadowdodger achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating General Vezax in Ulduar _without any raid member being hit by Shadow Crash_
@@ -2716,6 +2881,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12323},
 patch='70305',
 description="This guide will walk you through how to get the Shattered achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Ignis the Furnace Master _after shattering 2 Iron Constructs within 5 seconds_
@@ -2731,6 +2897,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4404},
 patch='30202',
 description="This guide will walk you through how to get the She Deep Breaths More (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Onyxia _without anyone taking damage from Deep Breath_ in 10 player mode
@@ -2743,6 +2910,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4407},
 patch='30202',
 description="This guide will walk you through how to get the She Deep Breaths More (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Onyxia _without anyone taking damage from Deep Breath_ in 25 player mode
@@ -2755,6 +2923,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2178},
 patch='30002',
 description="This guide will walk you through how to get the Shocking! (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Thaddius in Naxxramas _without anyone crossing the negative and positive charges_ in 10 player mode
@@ -2767,6 +2936,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2179},
 patch='30002',
 description="This guide will walk you through how to get the Shocking! (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Thaddius in Naxxramas _without anyone crossing the negative and positive charges_ in 25 player mode
@@ -2779,6 +2949,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12316},
 patch='70305',
 description="This guide will walk you through how to get the Shutout achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Flame Leviathan in Ulduar _without causing a System Shutdown_
@@ -2792,6 +2963,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12297},
 patch='70305',
 description="This guide will walk you through how to get The Siege of Ulduar achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses of The Siege area of Ulduar
@@ -2807,6 +2979,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12351},
 patch='70305',
 description="This guide will walk you through how to get the Siffed achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by forcing Thorim to enter the arena while Sif is present in Ulduar
@@ -2820,6 +2993,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={622},
 patch='30001',
 description="This guide will walk you through how to get The Spellweaver's Downfall (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Malygos in The Eye of Eternity in 10 player mode
@@ -2832,6 +3006,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={623},
 patch='30001',
 description="This guide will walk you through how to get The Spellweaver's Downfall (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Malygos in The Eye of Eternity in 25 player mode
@@ -2844,6 +3019,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2182},
 patch='30008',
 description="Defeat Loatheb in Naxxramas without killing any spores in 10-player mode.",
+mopready=true,
 },[[
 step
 map Naxxramas/5
@@ -2878,6 +3054,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2183},
 patch='30008',
 description="Defeat Loatheb in Naxxramas without killing any spores in 25-player mode.",
+mopready=true,
 },[[
 step
 map Naxxramas/5
@@ -2912,6 +3089,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12346},
 patch='70305',
 description="This guide will walk you through how to get the Staying Buffed All Winter achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by gaining the _effects of Toasty Fire, Storm Power and Starlight at the same time_ during the Hodir fight in Ulduar
@@ -2926,6 +3104,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12325},
 patch='70305',
 description="Defeat Ignis the Furnace Master in 4 minutes.",
+mopready=true,
 },[[
 step
 path Ulduar/1
@@ -2947,6 +3126,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4531},
 patch='30302',
 description="This guide will walk you through how to get the Storming the Citadel (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the first four bosses in Icecrown Citadel in 10-player mode
@@ -2964,6 +3144,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2180},
 patch='30003',
 description="Defeat Thaddius in Naxxramas with less than 9 players in 10-player mode.",
+mopready=true,
 },[[
 step
 map Naxxramas/1
@@ -2990,6 +3171,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2181},
 patch='30008',
 description="Defeat Thaddius in Naxxramas with less than 21 players in 25-player mode.",
+mopready=true,
 },[[
 step
 map Naxxramas/1
@@ -3016,6 +3198,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12400},
 patch='70305',
 description="This guide will walk you through how to get the Supermassive achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Algalon the Observer in Ulduar _after closing 3 Black Holes within 10 seconds_
@@ -3030,6 +3213,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12315},
 patch='70305',
 description="This guide will walk you through how to get the Take Out Those Turrets achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating a Flame Leviathan Defense Turret in Ulduar
@@ -3046,6 +3230,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12397},
 patch='70305',
 description="This guide will walk you through how to get the They're Coming Out of the Walls achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating 9 Guardians of Yogg-Saron in Ulduar
@@ -3059,6 +3244,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12314},
 patch='70305',
 description="This guide will walk you through how to get the Three Car Garage achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Flame Leviathan in Ulduar _while in each of the following vehicles_
@@ -3073,6 +3259,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12385},
 patch='70305',
 description="This guide will walk you through how to get the Three Lights in the Darkness achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Yogg-Saron in Ulduar _with the assistance of three or fewer Keepers_
@@ -3085,6 +3272,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={3996},
 patch='30200',
 description="This guide will walk you through how to get the Three Sixty Pain Spike (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Lord Jaraxxus _while at least two Mistresses of Pain are alive_ in 10 player mode
@@ -3098,6 +3286,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={3997},
 patch='30200',
 description="This guide will walk you through how to get the Three Sixty Pain Spike (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Lord Jaraxxus _while at least two Mistresses of Pain are alive_ in 25 player mode
@@ -3111,6 +3300,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={3800},
 patch='30200',
 description="This guide will walk you through how to get The Traitor King (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _25 Swarm Scarabs within 30 seconds_ in 10 player mode
@@ -3125,6 +3315,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={3816},
 patch='40001',
 description="This guide will walk you through how to get The Traitor King (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _25 Swarm Scarabs within 30 seconds_ in 25 player mode
@@ -3139,6 +3330,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2049},
 patch='30008',
 description="This guide will walk you through how to get the Twilight Assist (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Sartharion the Onyx Guardian in The Obsidian Sanctum _with at least one Twilight Drake still alive_ in 10 player mode
@@ -3152,6 +3344,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2052},
 patch='30008',
 description="This guide will walk you through how to get the Twilight Assist (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Sartharion the Onyx Guardian in The Obsidian Sanctum _with at least one Twilight Drake still alive_ in 25 player mode
@@ -3165,6 +3358,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2051},
 patch='30008',
 description="With all three Twilight Drakes still alive, engage and defeat Sartharion the Onyx Guardian in 10-player mode.",
+mopready=true,
 },[[
 step
 To earn this achievement, ignore the Twilight Drakes and kill Sartharion
@@ -3177,6 +3371,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2054},
 patch='30002',
 description="With all three Twilight Drakes still alive, engage and defeat Sartharion the Onyx Guardian in 10-player mode.",
+mopready=true,
 },[[
 step
 To earn this achievement, ignore the Twilight Drakes and kill Sartharion
@@ -3189,6 +3384,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12313},
 patch='70305',
 description="This guide will walk you through how to get the Unbroken achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Flame Leviathan in Ulduar _on the first try without anyone repairing their vehicle_
@@ -3201,6 +3397,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={3797},
 patch='30200',
 description="This guide will walk you through how to get the Upper Back Pain (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Icehowl _while at least 2 Snobolds remain alive_ in 10 player mode
@@ -3214,6 +3411,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={3813},
 patch='30200',
 description="This guide will walk you through how to get the Upper Back Pain (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Icehowl _while at least 4 Snobolds remain alive_ in 25 player mode
@@ -3227,6 +3425,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12350},
 patch='70305',
 description="This guide will walk you through how to get the Who Needs Bloodlust? achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Thorim in Ulduar _while under the effect of Aura of Celerity_
@@ -3239,6 +3438,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={12337},
 patch='70305',
 description="This guide will walk you through how to get the With Open Arms achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Kologarn in Ulduar _without destroying either of his arms_
@@ -3252,6 +3452,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1874},
 patch='30008',
 description="This guide will walk you through how to get the You Don't Have an Eternity (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Malygos in The Eye of Eternity _in 6 minutes or less_ in 10 player mode
@@ -3264,6 +3465,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1875},
 patch='30002',
 description="This guide will walk you through how to get the You Don't Have an Eternity (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Malygos in The Eye of Eternity _in 6 minutes or less_ in 25 player mode
@@ -3276,6 +3478,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5291},
 patch='40003',
 description="This guide will walk you through how to get the Acrocalypse Now achievement.",
+mopready=true,
 },[[
 step
 kill 20 Frenzied Crocolisk##43658+
@@ -3293,6 +3496,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5282},
 patch='40003',
 description="This guide will walk you through how to get the Arrested Development achievement.",
+mopready=true,
 },[[
 step
 kill Corla Herald of Twilight##39679
@@ -3307,6 +3511,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5284},
 patch='40003',
 description="This guide will walk you through how to get the Ascendant Descending achievement.",
+mopready=true,
 },[[
 step
 kill Ascendant Lord Obsidius##39705
@@ -3322,6 +3527,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5858},
 patch='40200',
 description="This guide will walk you through how to get the Bear-ly Made It achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by _saving all four prisoners before they are sacrificed_ in Zul'Aman on Heroic mode
@@ -3377,6 +3583,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5505},
 patch='40003',
 description="This guide will walk you through how to get the Bullet Time achievement.",
+mopready=true,
 },[[
 step
 kill 12 Bloodthirsty Ghoul##50561+ |achieve 5505/1
@@ -3393,6 +3600,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5281},
 patch='40003',
 description="This guide will walk you through how to get the Crushing Bones and Cracking Skulls achievement.",
+mopready=true,
 },[[
 step
 kill Rom'ogg Bonecrusher##39665
@@ -3411,6 +3619,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5298},
 patch='40003',
 description="This guide will walk you through how to get the Don't Need to Break Eggs to Make an Omelet achievement.",
+mopready=true,
 },[[
 step
 kill Erudax##40484
@@ -3425,6 +3634,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6132},
 patch='40300',
 description="This guide will walk you through how to get the Eclipse achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _10 Twilight Sparks and then defeat Archbishop Benedictus_ in Hour of Twilight on Heroic mode
@@ -3439,6 +3649,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5289},
 patch='40003',
 description="This guide will walk you through how to get the Extra Credit Bonus Stage achievement.",
+mopready=true,
 },[[
 step
 map The Vortex Pinnacle
@@ -3458,6 +3669,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5296},
 patch='40003',
 description="This guide will walk you through how to get the Faster Than the Speed of Light achievement.",
+mopready=true,
 },[[
 step
 kill Flame Warden##39800 |goto Halls of Origination 48.33,32.28
@@ -3475,6 +3687,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={4845},
 patch='40003',
 description="This guide will walk you through getting the Glory of the Cataclysm Hero achievement.",
+mopready=true,
 },[[
 step
 Load the "Cataclysm Dungeon Hero" guide |confirm |next "Achievement Guides\\Dungeons & Raids\\Cataclysm Dungeons\\Cataclysm Dungeon Hero"
@@ -3596,6 +3809,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5744},
 patch='40100',
 description="This guide will walk you through how to get the Gurubashi Headhunter achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by _defeating the following bosses_ in Zul'Gurub on Heroic mode:
@@ -3615,6 +3829,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5292},
 patch='40003',
 description="This guide will walk you through how to get the Headed South achievement.",
+mopready=true,
 },[[
 step
 kill Siamat Lord of the South Wind##44819
@@ -3630,6 +3845,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5765},
 patch='40100',
 description="This guide will walk you through how to get the Here, Kitty Kitty... achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating High Priestess Kilnara in Zul'Gurub _after having fed Temple Rats to 4 of Bethekk's Pride_ on Heroic mode
@@ -3650,6 +3866,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5060},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Blackrock Caverns achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Ascendant Lord Obsidius in Blackrock Caverns on Heroic mode
@@ -3663,6 +3880,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5083},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Deadmines achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Vanessa VanCleef in Deadmines on Heroic mode
@@ -3676,6 +3894,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5062},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Grim Batol achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Erudax in Grim Batol on Heroic mode
@@ -3689,6 +3908,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5065},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Halls of Origination achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Rajh in the Halls of Origination on Heroic mode
@@ -3702,6 +3922,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5066},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Lost City of the Tol'vir achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Siamat, Lord of the South Wind in Lost City of the Tol'vir on Heroic mode
@@ -3715,6 +3936,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5093},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Shadowfang Keep achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Lord Godfrey in Shadowfang Keep on Heroic mode
@@ -3728,6 +3950,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5063},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: The Stonecore achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating High Priestess Azil in the Stonecore on Heroic mode
@@ -3741,6 +3964,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5064},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: The Vortex Pinnacle achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Asaad in The Vortex Pinnacle on Heroic mode
@@ -3754,6 +3978,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5061},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Throne of the Tides achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Ozumat in Throne of the Tides on Heroic mode
@@ -3767,6 +3992,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5761},
 patch='40100',
 description="This guide will walk you through how to get the Hex Mix achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by _un-hexing all of the potential hex victims_ in Zul'Aman on Heroic mode
@@ -3794,6 +4020,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5293},
 patch='40003',
 description="This guide will walk you through how to get the I Hate That Song achievement.",
+mopready=true,
 },[[
 step
 kill Temple Guardian Anhuur##39425
@@ -3808,6 +4035,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5370},
 patch='40003',
 description="This guide will walk you through how to get the I'm on a Diet achievement.",
+mopready=true,
 },[[
 step
 kill "Captain" Cookie##47739
@@ -3823,6 +4051,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5369},
 patch='40003',
 description="This guide will walk you through how to get the It's Frost Damage achievement.",
+mopready=true,
 },[[
 step
 kill Admiral Ripsnarl##47626
@@ -3837,6 +4066,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5743},
 patch='40100',
 description="This guide will walk you through how to get the It's Not Easy Being Green achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by _not getting hit by Bloodvenom, Pool of Acrid Tears, or Venomous Effusion_ in the High Priest Venoxis encounter in Zul'Gurub on Heroic mode
@@ -3850,6 +4080,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5290},
 patch='40003',
 description="This guide will walk you through how to get the Kill It With Fire! achievement.",
+mopready=true,
 },[[
 step
 kill 3 Burning Soul##49219+
@@ -3871,6 +4102,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6127},
 patch='40300',
 description="This guide will walk you through how to get the Lazy Eye achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Peroth'arn _without any party member being detected by an Eye of Peroth'arn_ in Well of Eternity on Heroic mode
@@ -3884,6 +4116,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5995},
 patch='40300',
 description="This guide will walk you through how to get the Moon Guard achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by engaging the Echo of Tyrande after surviving her Shadow Gauntlet _without allowing the party's healer to take any damage_ in End Time on Heroic mode
@@ -3897,6 +4130,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5288},
 patch='40003',
 description="This guide will walk you through how to get the No Static at All achievement.",
+mopready=true,
 },[[
 step
 kill Asaad##43875
@@ -3912,6 +4146,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5762},
 patch='40100',
 description="This guide will walk you through how to get the Ohganot So Fast! achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Bloodlord Mandokir _without killing Ohgan_ in Zul'Gurub on Heroic mode
@@ -3925,6 +4160,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5285},
 patch='40003',
 description="This guide will walk you through how to get the Old Faithful achievement.",
+mopready=true,
 },[[
 step
 kill Lady Naz'jar##40586
@@ -3941,6 +4177,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5286},
 patch='40003',
 description="This guide will walk you through how to get the Prince of Tides achievement.",
+mopready=true,
 },[[
 step
 kill Unyielding Behemoth##44648
@@ -3956,6 +4193,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5368},
 patch='40003',
 description="This guide will walk you through how to get the Prototype Prodigy achievement.",
+mopready=true,
 },[[
 step
 kill Foe Reaper 5000##43778
@@ -3969,6 +4207,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5367},
 patch='40003',
 description="This guide will walk you through how to get the Rat Pack achievement.",
+mopready=true,
 },[[
 step
 kill 20 Mine Rat##51462+
@@ -3987,6 +4226,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5366},
 patch='40003',
 description="This guide will walk you through how to get the Ready for Raiding achievement.",
+mopready=true,
 },[[
 step
 kill Glubtok##47162
@@ -4000,6 +4240,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5760},
 patch='40100',
 description="This guide will walk you through how to get the Ring Out! achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Daakara in Zul'Aman on Heroic mode _without any player leaving the rectangular turquoise stonework_ in the center of his area
@@ -4012,6 +4253,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5287},
 patch='40003',
 description="This guide will walk you through how to get the Rotten to the Core achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _60 Disciples within 10 seconds_ during the High Priestess Azil encounter in the Stonecore on Heroic mode
@@ -4028,6 +4270,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6130},
 patch='40300',
 description="This guide will walk you through how to get the Severed Ties achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _two Risen Ghouls during Echo of Sylvanas' Calling of the Highborne phase_, then defeat the Echo of Sylvanas in End Time on Heroic mode
@@ -4042,6 +4285,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5759},
 patch='40100',
 description="This guide will walk you through how to get the Spirit Twister achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _20 Twisted Spirits within 15 seconds_ during the Jin'do encounter in Zul'Gurub on Heroic mode
@@ -4057,6 +4301,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5294},
 patch='40003',
 description="This guide will walk you through how to get the Straw That Broke the Camel's Back achievement.",
+mopready=true,
 },[[
 step
 clicknpc Camel##39443 |goto Halls of Origination/1 35.14,44.28
@@ -4072,6 +4317,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5295},
 patch='40003',
 description="This guide will walk you through how to get the Sun of a.... achievement.",
+mopready=true,
 },[[
 step
 kill Rajh##39378
@@ -4086,6 +4332,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6070},
 patch='40300',
 description="This guide will walk you through how to get the That's Not Canon! achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Mannoroth in Well of Eternity _after dealing enough damage to Mannoroth to cause him to sacrifice Varo'then to heal himself_ on Heroic mode
@@ -4099,6 +4346,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5283},
 patch='40003',
 description="This guide will walk you through how to get the Too Hot to Handle achievement.",
+mopready=true,
 },[[
 step
 kill Karsh Steelbender##39698
@@ -4113,6 +4361,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5750},
 patch='40100',
 description="This guide will walk you through how to get the Tunnel Vision achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Halazzi _without killing any of his totems_ in Zul'Aman on Heroic mode
@@ -4126,6 +4375,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5297},
 patch='40003',
 description="This guide will walk you through how to get the Umbrage for Umbriss achievement.",
+mopready=true,
 },[[
 step
 kill Malignant Trogg##39984
@@ -4143,6 +4393,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5371},
 patch='40003',
 description="This guide will walk you through how to get the Vigorous VanCleef Vindicator achievement.",
+mopready=true,
 },[[
 step
 kill Vanessa VanCleef##49541
@@ -4156,6 +4407,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5310},
 patch='40003',
 description="Kill 12 Aberrations within 10 seconds on the Maloriak encounter in Blackwing Descent and then defeat Maloriak.",
+mopready=true,
 },[[
 step
 map Blackwing Descent/1
@@ -4178,6 +4430,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5312},
 patch='40003',
 description="Defeat Cho'gall in the Bastion of Twilight before any raid member earns more than 30% Corrupted Blood.",
+mopready=true,
 },[[
 step
 map The Bastion of Twilight/1
@@ -4201,6 +4454,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5307},
 patch='40003',
 description="Defeat the Omnotron Defense System in Blackwing Descent while neutralizing the following attacks.",
+mopready=true,
 },[[
 step
 map Blackwing Descent/1
@@ -4224,6 +4478,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5829},
 patch='40200',
 description="During a single engagement, bring Shannox to each of the following locations in the Firelands before dispatching him.",
+mopready=true,
 },[[
 step
 map Firelands/0
@@ -4251,6 +4506,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6180},
 patch='40300',
 description="Destroy Deathwing in Dragon Soul on Normal or Heroic Difficulty after beginning the encounter on each Aspect's platform and allowing Deathwing to assault that Aspect:",
+mopready=true,
 },[[
 step
 Note that it will take 4 lockouts to earn this achievement if you haven't done this before
@@ -4279,6 +4535,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5821},
 patch='40200',
 description="Only kill Cinderweb Drones while they are atop the web canopy during the Beth'tilac encounter in Firelands.",
+mopready=true,
 },[[
 step
 map Firelands/0
@@ -4303,6 +4560,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6105,6114},
 patch='40300',
 description="Defeat Warmaster Blackhorn on Normal or Heroic Difficulty without allowing any Twilight Barrages to damage the Skyfire.",
+mopready=true,
 },[[
 step
 talk Nethestrasz##57287 |goto Dragon Soul/1 50.28,57.66
@@ -4330,6 +4588,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5813},
 patch='40200',
 description="Defeat Alysrazor in the Firelands without any raid member getting hit by the following attacks.",
+mopready=true,
 },[[
 step
 map Firelands/0
@@ -4352,6 +4611,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6174},
 patch='40300',
 description="Defeat Morchok in Dragon Soul on Normal or Heroic Difficulty without any two players (three players on 25-player mode) ever being within 5 yards of each other while Morchok is channeling Black Blood of the Earth.",
+mopready=true,
 },[[
 step
 If you go in solo on this encounter, you will earn the achievement upon killing the boss
@@ -4366,6 +4626,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={4852},
 patch='40003',
 description="Kill 6 Twilight Fiends in the Twilight Realm and then defeat Valiona and Theralion in the Bastion of Twilight.",
+mopready=true,
 },[[
 step
 map The Bastion of Twilight/1
@@ -4392,6 +4653,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5311},
 patch='40003',
 description="Defeat the Elementium Monstrosity in the Bastion of Twilight while only allowing it to create a single Liquid Ice patch.",
+mopready=true,
 },[[
 step
 map The Bastion of Twilight/1
@@ -4421,6 +4683,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6107},
 patch='40300',
 description="This guide will walk you through how to get the Fall of Deathwing achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses leading up to the Fall of Deathwing in Dragon Soul
@@ -4443,6 +4706,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5309},
 patch='40003',
 description="Defeat Chimaeron in Blackwing Descent with no more than 2 raid member deaths.",
+mopready=true,
 },[[
 step
 map Blackwing Descent/1
@@ -4465,6 +4729,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5123},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Al'Akir achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Al'Akir in the Throne of the Four Winds on Heroic mode
@@ -4477,6 +4742,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5809},
 patch='40200',
 description="This guide will walk you through how to get the Heroic: Alysrazor achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Alysrazor in Firelands on Heroic Difficulty_
@@ -4490,6 +4756,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5119},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Ascendant Council achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the Ascendant Council in the Bastion of Twilight on Heroic mode
@@ -4502,6 +4769,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5109},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Atramedes achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Atramedes in Blackwing Descent on Heroic Difficulty_
@@ -4515,6 +4783,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5805},
 patch='40200',
 description="This guide will walk you through how to get the Heroic: Baleroc achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Baleroc in Firelands on Heroic Difficulty_
@@ -4528,6 +4797,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5807},
 patch='40200',
 description="This guide will walk you through how to get the Heroic: Beth'tilac achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Beth'tilac in Firelands on Heroic Difficulty_
@@ -4541,6 +4811,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5115},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Chimaeron achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Chimaeron in Blackwing Descent on Heroic Difficulty_
@@ -4554,6 +4825,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5120},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Cho'gall achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Cho'gall in the Bastion of Twilight on Heroic mode
@@ -4566,6 +4838,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5122},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Conclave of Wind achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the Conclave of Wind in the Throne of the Four Winds on Heroic mode
@@ -4580,6 +4853,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5975},
 patch='40200',
 description="Activate both of Fandral's Flames at once in Firelands without any raid member getting hit by Kneel to the Flame!",
+mopready=true,
 },[[
 step
 map Firelands/0
@@ -4599,6 +4873,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6112,6113},
 patch='40300',
 description="Defeat Ultraxion in Dragon Soul on Normal or Heroic Difficulty without any raid member being hit by Hour of Twilight more than once.",
+mopready=true,
 },[[
 step
 Set the Raid Difficulty to Heroic before entering the raid
@@ -4619,6 +4894,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5118},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Halfus Wyrmbreaker achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Halfus Wyrmbreaker in The Bastion of Twilight on Heroic Difficulty_
@@ -4632,6 +4908,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5808},
 patch='40200',
 description="This guide will walk you through how to get the Heroic: Lord Rhyolith achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Lord Rhyolith in Firelands on Heroic Difficulty_
@@ -4645,6 +4922,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6116},
 patch='40300',
 description="Defeat Deathwing in the Dragon Soul raid on Heroic Difficulty.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Deathwing in Dragon Soul on Heroic Difficulty_
@@ -4659,6 +4937,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5094},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Magmaw achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Magmaw in Blackwing Descent on Heroic Difficulty_
@@ -4672,6 +4951,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5108},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Maloriak achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Maloriak in Blackwing Descent on Heroic Difficulty_
@@ -4685,6 +4965,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6109},
 patch='40300',
 description="Defeat Morchok in the Dragon Soul raid on Heroic Difficulty.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Morchok in Dragon Soul on Heroic Difficulty_
@@ -4699,6 +4980,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5116},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Nefarian achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Nefarian in Blackwing Descent on Heroic Difficulty_
@@ -4712,6 +4994,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5107},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Omnotron Defense System achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _the Omnotron Defense System in Blackwing Descent on Heroic Difficulty_
@@ -4725,6 +5008,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5806},
 patch='40200',
 description="This guide will walk you through how to get the Heroic: Shannox achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Shannox in Firelands on Heroic Difficulty_
@@ -4738,6 +5022,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5121},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Sinestra achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Sinestra in the Bastion of Twilight on Heroic mode
@@ -4753,6 +5038,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6115},
 patch='40300',
 description="Complete the Spine of Deathwing encounter in the Dragon Soul raid on Heroic Difficulty.",
+mopready=true,
 },[[
 step
 This achievement is gained by completing the _Spine of Deathwing encounter in Dragon Soul on Heroic Difficulty_
@@ -4767,6 +5053,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6113},
 patch='40300',
 description="Defeat Ultraxion in the Dragon Soul raid on Heroic Difficulty.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Ultraxion in Dragon Soul on Heroic Difficulty_
@@ -4781,6 +5068,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5117},
 patch='40003',
 description="This guide will walk you through how to get the Heroic: Valiona and Theralion achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating Valiona and Theralion in the Bastion of Twilight on Heroic mode
@@ -4793,6 +5081,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6110},
 patch='40300',
 description="Defeat Warlord Zon'ozz in the Dragon Soul raid on Heroic Difficulty.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Warlord Zon'ozz in Dragon Soul on Heroic Difficulty_
@@ -4807,6 +5096,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6114},
 patch='40300',
 description="Defeat Warmaster Blackhorn in the Dragon Soul raid on Heroic Difficulty.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Warmaster Blackhorn in Dragon Soul on Heroic Difficulty_
@@ -4821,6 +5111,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6111},
 patch='40300',
 description="Defeat Yor'sahj the Unsleeping in the Dragon Soul raid on Heroic Difficulty.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating _Yor'sahj the Unsleeping in Dragon Soul on Heroic Difficulty_
@@ -4835,6 +5126,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6175},
 patch='40300',
 description="Destroy the final Crystal Conductor during Hagara's lightning phase on Normal or Heroic Difficulty, while all players are part of the final Lightning Conduit.",
+mopready=true,
 },[[
 step
 This achievement is gained by _destroying the final Crystal Conductor during Hagara's lightning phase_ on Normal or Heroic Difficulty
@@ -4851,6 +5143,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={4849},
 patch='40003',
 description="Damage Nefarian below 50% health before he lands for the final confrontation and then defeat Nefarian in Blackwing Descent.",
+mopready=true,
 },[[
 step
 map Blackwing Descent/1
@@ -4877,6 +5170,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6133},
 patch='40300',
 description="Defeat the Spine of Deathwing encounter on Normal or Heroic Difficulty after tricking Deathwing into performing the following roll sequence: Left, Right, Left, Right.",
+mopready=true,
 },[[
 step
 talk Sky Captain Swayze##55870
@@ -4900,6 +5194,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6084},
 patch='40300',
 description="Defeat Ultraxion in Dragon Soul on Normal or Heroic Difficulty without any raid member being hit by Hour of Twilight more than once.",
+mopready=true,
 },[[
 step
 talk Nethestrasz##57287 |goto Dragon Soul/1 50.28,57.66
@@ -4919,6 +5214,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5810},
 patch='40200',
 description="Defeat Lord Rhyolith in the Firelands without ever causing him to turn left while his armor is intact.",
+mopready=true,
 },[[
 step
 map Firelands/0
@@ -4940,6 +5236,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5300},
 patch='40003',
 description="Defeat Halfus Wyrmbreaker after defeating two drakes within 10 seconds of each other. The Emerald Whelp pack counts as one drake for this purpose.",
+mopready=true,
 },[[
 step
 map The Bastion of Twilight/1
@@ -4963,6 +5260,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5306},
 patch='40003',
 description="Defeat Magmaw in Blackwing Descent without anyone in the raid becoming infected with a parasite.",
+mopready=true,
 },[[
 step
 map Blackwing Descent/1
@@ -4981,6 +5279,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6128,6110},
 patch='40300',
 description="Bounce the Void of the Unmaking 10 times off of players, and then defeat Warlord Zon'ozz on Normal or Heroic Difficulty.",
+mopready=true,
 },[[
 step
 talk Valeera##57289 |goto Dragon Soul/1 49.16,58.99
@@ -5004,6 +5303,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5830},
 patch='40200',
 description="Defeat Baleroc in the Firelands without allowing any member of your raid to suffer Torment more than three times.",
+mopready=true,
 },[[
 step
 map Firelands/0
@@ -5026,6 +5326,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6106},
 patch='40300',
 description="This guide will walk you through how to get the Siege of Wyrmrest Temple achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by defeating the bosses laying siege to Wyrmrest Temple in Dragon Soul
@@ -5048,6 +5349,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5308},
 patch='40003',
 description="Defeat Atramedes in Blackwing Descent without any raid member's sound bar going over 50%.",
+mopready=true,
 },[[
 step
 map Blackwing Descent/1
@@ -5073,6 +5375,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6129,6111},
 patch='40300',
 description="Experience the following color combinations, and then defeat Yor'sahj the Unsleeping on Normal or Heroic Difficulty.",
+mopready=true,
 },[[
 step
 talk Eiendormi##57288 |goto Dragon Soul/1 51.24,59.28
@@ -5096,6 +5399,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={4851},
 patch='40003',
 description="This guide will walk you through how to get the Throne of the Four Winds achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by _defeating the bosses in the Throne of the Four Winds raid_
@@ -5115,6 +5419,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={4844},
 patch='40003',
 description="This guide will walk you through how to get the Cataclysm Dungeon Hero achievement.",
+mopready=true,
 },[[
 step
 Complete Heroic: Blackrock Caverns |achieve 4844/1
@@ -5136,6 +5441,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Classic R
 achieveid={1285},
 patch='30001',
 description="This guide will walk you through how to get the Classic Raider achievement.",
+mopready=true,
 },[[
 step
 Complete the following Classic raids:
@@ -5151,6 +5457,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={4853},
 patch='40003',
 description="This guide will walk you through earning the Glory of the Cataclysm Raider achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by completing the following raid achievements:
@@ -5186,6 +5493,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={6169},
 patch='40300',
 description="This guide will walk you through earning the Glory of the Dragon Soul Raider achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by completing the following raid achievements:
@@ -5210,6 +5518,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Cataclysm
 achieveid={5828},
 patch='40200',
 description="This guide will walk you through earning the Glory of the Firelands Raider achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by completing the following raid achievements:
@@ -5235,6 +5544,7 @@ patch='40300',
 condition_valid=function() return raceclass('Rogue') end,
 condition_valid_msg="Rogue only.",
 description="This guide will walk you through how to acquire the legendary rogue daggers.",
+mopready=true,
 },[[
 step
 talk Lord Devrestrasz##55476
@@ -5420,6 +5730,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4602},
 patch='30300',
 description="This guide will walk you through obtaining the Glory of the Icecrown Raider (10 Player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by completing the following raid achievements:
@@ -5447,6 +5758,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={4603},
 patch='30300',
 description="This guide will walk you through obtaining the Glory of the Icecrown Raider (25 Player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by completing the following raid achievements:
@@ -5475,6 +5787,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2137},
 patch='30002',
 description="This guide will walk you through earning the Glory of the Raider (10 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is earned by completing the following raid achievements:
@@ -5502,6 +5815,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={2138},
 patch='30002',
 description="This guide will walk you through earning the Glory of the Raider (25 player) achievement.",
+mopready=true,
 },[[
 step
 This achievement is gained by completing the following raid achievements:
@@ -5528,6 +5842,7 @@ Congratulations, you have earned the Glory of the Raider (25 player) achievement
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend Raids\\Glory of the Ulduar Raider",{
 condition_end="achieved(12401)",
 description="This guide will walk you through earning the \"Glory of the Ulduar Raider\" achievement.",
+mopready=true,
 },[[
 step
 kill Flame Leviathan##33113
@@ -5602,6 +5917,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Looking F
 achieveid={4477},
 patch='30300',
 description="This guide will walk you through earning the Looking For Many achievement.",
+mopready=true,
 },[[
 step
 Use the Dungeon Finder tool to complete _Heroic Dungeons_ with random players
@@ -5614,6 +5930,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Looking F
 achieveid={4476},
 patch='30300',
 description="This guide will walk you through earning the Looking For More achievement.",
+mopready=true,
 },[[
 step
 Use the Dungeon Finder tool to complete _Heroic Dungeons_ with random players
@@ -5626,6 +5943,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Looking F
 achieveid={4478},
 patch='30300',
 description="This guide will walk you through earning the Looking For Multitudes achievement.",
+mopready=true,
 },[[
 step
 Use the Dungeon Finder tool to complete _Heroic Dungeons_ with random players
@@ -5638,6 +5956,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1289},
 patch='30001',
 description="This guide will walk you through how to get the Northrend Dungeon Hero achievement.",
+mopready=true,
 },[[
 step
 Complete the following _Northrend dungeons in Heroic mode_:
@@ -5661,6 +5980,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Northrend
 achieveid={1288},
 patch='30008',
 description="This guide will walk you through how to get the Northrend Dungeonmaster achievement.",
+mopready=true,
 },[[
 step
 Complete the following Northrend dungeons:
@@ -5684,6 +6004,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Outland D
 achieveid={1287},
 patch='30001',
 description="This guide will walk you through how to get the Outland Dungeon Hero achievement.",
+mopready=true,
 },[[
 step
 Complete the following Heroic Burning Crusade dungeons:
@@ -5711,6 +6032,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Outland D
 achieveid={1284},
 patch='30001',
 description="This guide will walk you through how to get the Outland Dungeonmaster achievement.",
+mopready=true,
 },[[
 step
 Complete the following Burning Crusade dungeons:
@@ -5738,6 +6060,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Outland R
 achieveid={1286},
 patch='30002',
 description="This guide will walk you through how to get the Outland Raider achievement.",
+mopready=true,
 },[[
 step
 Complete the following Burning Crusade raids:
@@ -5764,6 +6087,7 @@ description="Earn the following Eastern Kingdoms exploration achievements:\n\nEx
 "Explore Blasted Lands\nExplore Dun Morogh\nExplore Hillsbrad Foothills\nExplore Redridge Mountains\n"..
 "Explore Eversong Woods\nExplore Silverpine Forest\nExplore Northern Stranglethorn\nExplore Swamp of Sorrows\n"..
 "Explore Westfall\nExplore Deadwind Pass\nExplore Eastern Plaguelands",
+mopready=true,
 },[[
 leechsteps "Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore the Cape of Stranglethorn" 1-10
 leechsteps "Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Northern Stranglethorn" 1-16
@@ -5803,6 +6127,7 @@ description="Explore Arathi Highlands, revealing the following covered areas of 
 "Circle of West Binding\nStromgarde Keep\nCircle of Inner Binding\nBoulderfist Hall\nCircle of Outer Binding\n"..
 "Go'Shek Farm\nCircle of East Binding\nNorthfold Manor\nGalen's Fall\nFaldir's Cove\nThandol Span\n"..
 "Refuge Pointe\nWitherbark Village\nDabyrie's Farmstead\nHammerfall",
+mopready=true,
 },[[
 step
 Discover Thandol Span |achieve 761/8 |goto Arathi Highlands 41.30,91.00
@@ -5849,6 +6174,7 @@ patch='30003',
 description="Explore Badlands, revealing the following covered areas of the world map:\n\nLethlor Ravine\n"..
 "Uldaman\nScar of the Worldbreaker\nAngor Fortress\nBloodwatcher Point\nAgmond's End\n"..
 "Camp Cagg\nThe Dustbowl\nCamp Kosh\nNew Kargath",
+mopready=true,
 },[[
 step
 Discover Lethlor Ravine |achieve 765/1 |goto Badlands 68.00,48.20
@@ -5884,6 +6210,7 @@ description="Explore Blasted Lands, revealing the following covered areas of the
 "Nethergarde Keep\nThe Dark Portal\nDreadmaul Post\nRise of the Defiler\nSunveil Excursion\nThe Red "..
 "Reaches\nNethergarde Supply Camps\nSerpent's Coil\nAltar of Storms\nThe Tainted Scar\nShattershore\n"..
 "Surwich\nThe Tainted Forest",
+mopready=true,
 },[[
 step
 Discover Dreadmaul Hold |achieve 766/1 |goto Blasted Lands 39.50,12.90
@@ -5926,6 +6253,7 @@ patch='30002',
 description="Explore Burning Steppes, revealing the following covered areas of the world map:\n\nDreadmaul Rock\n"..
 "Terror Wing Path\nRuins of Thaurissan\nBlackrock Stronghold\nAltar of Storms\nMorgan's Vigil\n"..
 "Blackrock Pass\nBlack Tooth Hovel\nThe Whelping Downs\nBlackrock Mountain",
+mopready=true,
 },[[
 step
 Discover Blackrock Pass |achieve 775/4 |goto Burning Steppes 66.70,77.50
@@ -5960,6 +6288,7 @@ patch='40003',
 description="Explore the Cape of Stranglethorn, revealing the following covered areas of the world map:\n\nBooty Bay\n"..
 "Gurubashi Arena\nJaquero Isle\nNek'mani Wellspring\nRuins of Jubuwal\nCrystalvein Mine\nHardwrench Hideaway"..
 "\nMistvale Valley\nRuins of Aboraz\nThe Wild Shore",
+mopready=true,
 },[[
 step
 Discover Booty Bay |achieve 4995/1 |goto The Cape of Stranglethorn 39.70,71.00
@@ -5993,6 +6322,7 @@ achieveid={777},
 patch='30002',
 description="Explore Deadwind Pass, revealing the following covered areas of the world map:\n\nKarazhan\n"..
 "Deadman's Crossing\nThe Vice",
+mopready=true,
 },[[
 step
 Discover Deadman's Crossing |achieve 777/1 |goto Deadwind Pass 45.10,35.80
@@ -6014,6 +6344,7 @@ description="Explore Dun Morogh, revealing the following covered areas of the wo
 "Frostmane Front\nIronforge Airfield\nKharanos\nAmberstill Ranch\nGol'Bolar Quarry\nFrostmane Hold\n"..
 "Gates of Ironforge\nColdridge Valley\nNew Tinkertown\nShimmer Ridge\nThe Tundrid Hills\nIceflow Lake"..
 "\nHelm's Bed Lake\nNorth Gate Outpost",
+mopready=true,
 },[[
 step
 Discover Helm's Bed Lake |achieve 627/10 |goto Dun Morogh 84.10,51.80
@@ -6059,6 +6390,7 @@ description="Explore Duskwood, revealing the following covered areas of the worl
 "Raven Hill\nVul'Gol Ogre Mound\nThe Yorgen Farmstead\nThe Rotting Orchard\nDarkshire\nThe "..
 "Darkened Bank\nAddle's Stead\nRaven Hill Cemetery\nTwilight Grove\nBrightwood Grove\nTranquil "..
 "Gardens Cemetery\nManor Mistmantle",
+mopready=true,
 },[[
 step
 Discover The Hushed Bank |achieve 778/1 |goto Duskwood 10.10,44.30
@@ -6101,6 +6433,7 @@ description="Explore Eastern Plaguelands, revealing the following covered areas 
 "Blackwood Lake\nZul'Mashar\nQuel'Lithien Lodge\nPlaguewood\nRuins of the Scarlet Enclave\nThe Marris Stead\n"..
 "Crown Guard Tower\nDarrowshire\nCorin's Crossing\nTyr's Hand\nThe Infectis Scar\nEastwall Tower\nNorthdale\n"..
 "Northpass Tower\nTerrordale\nStratholme",
+mopready=true,
 },[[
 step
 Discover Darrowshire |achieve 771/6 |goto Eastern Plaguelands 35.10,84.20
@@ -6161,6 +6494,7 @@ patch='30002',
 description="Explore Elwynn Forest, revealing the following covered areas of the world map:\n\nNorthshire Valley\n"..
 "Goldshire\nJerod's Landing\nBrackwell Pumpkin Patch\nRidgepoint Tower\nStone Cairn Lake\nWestbrook Garrison\n"..
 "Fargodeep Mine\nTower of Azora\nEastvale Logging Camp\nCrystal Lake",
+mopready=true,
 },[[
 step
 Discover Eastvale Logging Camp |achieve 776/8 |goto Elwynn Forest 83.50,66.90
@@ -6199,6 +6533,7 @@ description="Explore Eversong Woods, revealing the following covered areas of th
 "\nAzurebreeze Coast\nGoldenbough Pass\nRunestone Falithas\nSaltheril's Haven\nThuron's Livery\nZeb'Watha\n"..
 "Ruins of Silvermoon\nSunsail Anchorage\nEast Sanctum\nStillwhisper Pond\nFairbreeze Village\nTor'Watha\n"..
 "Silvermoon City\nElrendar Falls\nLake Elrendar\nRunestone Shan'dor\nGolden Strand\nTranquil Shore",
+mopready=true,
 },[[
 step
 Discover The Scorched Grove |achieve 859/13 |goto Eversong Woods 36.20,86.00
@@ -6264,6 +6599,7 @@ description="Explore Ghostlands, revealing the following covered areas of the wo
 "Goldenmist Village\nSanctum of the Moon\nDawnstar Spire\nHowling Ziggurat\nZeb'Nowa\nWindrunner Spire"..
 "\nElrendar Crossing\nSuncrown Village\nWindrunner Village\nSanctum of the Sun\nFarstrider Enclave\n"..
 "Deatholme\nAmani Pass\nBleeding Ziggurat\nThalassian Pass",
+mopready=true,
 },[[
 step
 Discover Thalassian Pass |achieve 858/16 |goto Ghostlands 48.20,84.30
@@ -6312,6 +6648,7 @@ description="Explore Hillsbrad Foothills, revealing the following covered areas 
 "\nRuins of Alterac\nSlaughter Hollow\nSouthpoint Gate\nTarren Mill\nThe Sludge Fields\nBrazie Farmstead\n"..
 "Crushridge Hold\nDalaran Crater\nDarrow Hill\nDurnholde Keep\nGavin's Naze\nMisty Shore\nPurgation Isle\n"..
 "Ruins of Southshore\nSofera's Naze\nStrahnbrad\nThe Headland\nThe Uplands",
+mopready=true,
 },[[
 step
 Discover Durnholde Keep |achieve 772/10 |goto Hillsbrad Foothills 68.30,60.00
@@ -6378,6 +6715,7 @@ patch='30002',
 description="Explore The Hinterlands, revealing the following covered areas of the world map:\n\nAerie Peak\n"..
 "Zun'watha\nShadra'Alor\nAgol'watha\nThe Altar of Zul\nSkulk Rock\nJintha'Alor\nPlaguemist Ravine\n"..
 "Quel'Danil Lodge\nValorwind Lake\nThe Creeping Ruin\nSeradane\nShaol'watha\nThe Overlook Cliffs",
+mopready=true,
 },[[
 step
 Discover Aerie Peak |achieve 773/1 |goto The Hinterlands 13.90,45.00
@@ -6418,6 +6756,7 @@ condition_end=function() return achieved(868) end,
 achieveid={868},
 patch='30003',
 description="Explore Isle of Quel'Danas, revealing the covered areas of the world map.",
+mopready=true,
 },[[
 step
 Explore Isle of Quel'Danas |achieve 868 |goto Isle of Quel'Danas 47.40,30.60
@@ -6432,6 +6771,7 @@ patch='30002',
 description="Explore Loch Modan, revealing the following covered areas of the world map:\n\nThe Loch\n"..
 "Mo'grosh Stronghold\nNorth Gate Pass\nIronband's Excavation Site\nThelsamar\nValley of Kings\n"..
 "Stonewrought Dam\nSilver Stream Mine\nThe Farstrider Lodge\nGrizzlepaw Ridge\nStonesplinter Valley",
+mopready=true,
 },[[
 step
 Discover Valley of Kings |achieve 779/11 |goto Loch Modan 20.30,78.50
@@ -6469,6 +6809,7 @@ description="Explore Northern Stranglethorn, revealing the following covered are
 "Grom'gol Base Camp\nBambala\nRebel Camp\nKal'ai Ruins\nMosh'Ogg Ogre Mound\nBal'lal Ruins\nBalia'mah Ruins\n"..
 "Ruins of Zul'Kunda\nFort Livingston\nNesingwary's Expedition\nKurzen's Compound\nMizjah Ruins\nThe Vile Reef\n"..
 "Lake Nazferiti\nZul'Gurub",
+mopready=true,
 },[[
 step
 Discover Lake Nazferiti |achieve 781/12 |goto Northern Stranglethorn 51.48,34.05
@@ -6515,6 +6856,7 @@ patch='30002',
 description="Explore Redridge Mountains, revealing the following covered areas of the world map:\n\nLakeshire\n"..
 "Three Corners\nRedridge Canyons\nStonewatch Falls\nRender's Camp\nGalardell Valley\nCamp Everstill\n"..
 "Lake Everstill\nLakeridge Highway\nAlther's Mill\nRender's Valley\nStonewatch Keep\nShalewind Canyon",
+mopready=true,
 },[[
 step
 Discover Lakeridge Highway |achieve 780/4 |goto Redridge Mountains 38.20,68.50
@@ -6555,6 +6897,7 @@ patch='30002',
 description="Explore Searing Gorge, revealing the following covered areas of the world map:\n\nFirewatch Ridge\n"..
 "Blackchar Cave\nGrimesilt Dig Site\nThorium Point\nThe Cauldron\nThe Sea of Cinders\nDustfire Valley"..
 "\nBlackrock Mountain",
+mopready=true,
 },[[
 step
 Discover Blackrock Mountain |achieve 774/8 |goto Searing Gorge 39.90,82.90
@@ -6586,6 +6929,7 @@ description="Explore Silverpine Forest, revealing the following covered areas of
 "The Forsaken Front\nNorth Tide's Beachhead\nValgan's Field\nDeep Elem Mine\nForsaken High Command\n"..
 "Ambermill\nForsaken Rear Guard\nThe Decrepit Fields\nThe Skittering Dark\nFenris Isle\nThe Sepulcher\n"..
 "Olsen's Farthing\nShadowfang Keep\nNorth Tide's Run",
+mopready=true,
 },[[
 step
 Discover The Battlefront |achieve 769/1 |goto Silverpine Forest 46.10,79.50
@@ -6630,6 +6974,7 @@ patch='30002',
 description="Explore Swamp of Sorrows, revealing the following covered areas of the world map:\n\nMisty Valley\n"..
 "Splinterspear Junction\nStonard\nStagalbog\nBogpaddle\nPurespring Cavern\nThe Harborage\nSorrowmurk\n"..
 "The Shifting Mire\nPool of Tears\nMisty Reed Strand\nMarshtide Watch",
+mopready=true,
 },[[
 step
 Discover Stagalbog |achieve 782/7 |goto Swamp of Sorrows 67.80,74.90
@@ -6669,6 +7014,7 @@ description="Explore Tirisfal Glades, revealing the following covered areas of t
 "Agamand Mills\nCold Hearth Manor\nGarren's Haunt\nBalnir Farmstead\nScarlet Watch Post\nThe Bulwark\n"..
 "Ruins of Lordaeron\nSolliden Farmstead\nNightmare Vale\nBrill\nBrightwater Lake\nCrusader Outpost\n"..
 "Venomweb Vale\nScarlet Monastery Entrance\nCalston Estate",
+mopready=true,
 },[[
 step
 Discover Deathknell |achieve 768/1 |goto Tirisfal Glades 32.20,63.80
@@ -6715,6 +7061,7 @@ patch='30002',
 description="Explore Western Plaguelands, revealing the following covered areas of the world map:\n\nDarrowmere Lake\n"..
 "Sorrow Hill\nThe Bulwark\nDalson's Farm\nNorthridge Lumber Camp\nRedpine Dell\nThe Weeping Cave\nCaer Darrow"..
 "\nAndorhal\nFelstone Field\nThe Writhing Haunt\nHearthglen\nGahrron's Withering\nThondroril River",
+mopready=true,
 },[[
 step
 Discover The Bulwark |achieve 770/5 |goto Western Plaguelands 27.00,57.70
@@ -6758,6 +7105,7 @@ description="Explore Westfall, revealing the following covered areas of the worl
 "Furlbrow's Pumpkin Farm\nJangolode Mine\nThe Dead Acre\nAlexston Farmstead\nThe Dust Plains\n"..
 "The Dagger Hills\nSaldean's Farm\nThe Jansen Stead\nThe Molsen Farm\nDemont's Place\nMoonbrook\n"..
 "The Raging Chasm",
+mopready=true,
 },[[
 step
 Discover The Dagger Hills |achieve 802/11 |goto Westfall 44.90,82.00
@@ -6799,6 +7147,7 @@ description="Explore Wetlands, revealing the following covered areas of the worl
 "Bluegill Marsh\nSundown Marsh\nIronbeard's Tomb\nAngerfang Encampment\nGreenwarden's Grove\n"..
 "Direforge Hill\nSlabchisel's Survey\nBlack Channel Marsh\nWhelgar's Excavation Site\nSaltspray Glen\n"..
 "Dun Modr\nThelgen Rock\nMosshide Fen\nDun Algaz\nRaptor Ridge",
+mopready=true,
 },[[
 step
 Discover Raptor Ridge |achieve 841/16 |goto Wetlands 67.90,34.90
@@ -6846,6 +7195,7 @@ description="Explore Ashenvale, revealing the following covered areas of the wor
 "The Zoram Strand\nSilverwind Refuge\nThistlefur Village\nAstranaar\nThe Howling Vale\nSatyrnaar\n"..
 "Fallen Sky Lake\nWarsong Lumber Camp\nOrendil's Retreat\nThunder Peak\nThe Shrine of Aessina\n"..
 "Maestra's Post\nThe Ruins of Stardust\nRaynewood Retreat\nSplintertree Post\nBough Shadow\nFelfire Hill",
+mopready=true,
 },[[
 step
 Discover Silverwind Refuge |achieve 845/3 |goto Ashenvale 50.15,67.08
@@ -6898,6 +7248,7 @@ description="Explore Azshara, revealing the following covered areas of the world
 "Rear Gate\nSouthridge Beach\nLake Mennar\nStorm Cliffs\nThe Shattered Strand\nBitter Reaches\n"..
 "Ruins of Arkkoran\nThe Secret Lab\nBlackmaw Hold\nRuins of Eldarath\nRavencrest Monument\n"..
 "The Ruined Reaches",
+mopready=true,
 },[[
 step
 Discover Darnassian Base Camp |achieve 852/7 |goto Azshara 52.25,26.95
@@ -6947,6 +7298,7 @@ description="Explore Azuremyst Isle, revealing the following covered areas of th
 "Azure Watch\nEmberglade\nGeezle's Camp\nOdesyus' Landing\nPod Wreckage\nSilvermyst Isle\nThe Exodar\n"..
 "Wrathscale Point\nAmmen Ford\nBristlelimb Village\nFairbridge Strand\nMoongraze Woods\nPod Cluster\n"..
 "Silting Shore\nStillpine Hold\nValaar's Berth",
+mopready=true,
 },[[
 step
 Discover Valaar's Berth |achieve 860/16 |goto Azuremyst Isle 23.70,54.00
@@ -6998,6 +7350,7 @@ description="Explore Bloodmyst Isle, revealing the following covered areas of th
 "Wrathscale Lair\nAxxarien\nBladewood\nBlood Watch\nKessel's Crossing\nMystwood\nRagefeather Ridge\n"..
 "Talon Stand\nThe Bloodcursed Reef\nThe Crimson Reach\nThe Foul Pool\nThe Lost Fold\nThe Warp Piston\n"..
 "Vindicator's Rest\nWyrmscar Island",
+mopready=true,
 },[[
 step
 Discover Kessel's Crossing |achieve 861/8 |goto Bloodmyst Isle 61.90,90.00
@@ -7068,6 +7421,7 @@ patch='30003',
 description="Explore Darkshore, revealing the following covered areas of the world map:\n\nLor'danel\n"..
 "Ruins of Auberdine\nShatterspear War Camp\nWithering Thicket\nThe Eye of the Vortex\nNazj'vel\n"..
 "The Master's Glaive\nShatterspear Vale\nWildbend River\nRuins of Mathystra\nAmeth'Aran",
+mopready=true,
 },[[
 step
 Discover The Master's Glaive |achieve 844/11 |goto Darkshore 40.30,86.20
@@ -7105,6 +7459,7 @@ description="Explore Desolace, revealing the following covered areas of the worl
 "Nijel's Point\nThunder Axe Fortress\nMagram Territory\nValley of Spears\nShadowprey Village\n"..
 "Mannoroc Coven\nShadowbreak Ravine\nThargad's Camp\nSargeron\nCenarion Wildlands\nRanazjar Isle\n"..
 "Kodo Graveyard\nGelkis Village\nShok'Thokar\nSlitherblade Shore",
+mopready=true,
 },[[
 step
 Discover Gelkis Village |achieve 848/12 |goto Desolace 36.10,88.60
@@ -7151,6 +7506,7 @@ patch='30003',
 description="Explore Dustwallow Marsh, revealing the following covered areas of the world map:\n\nTheramore Isle\n"..
 "Direhorn Post\nShady Rest Inn\nBrackenwall Village\nAlcaz Island\nBlackhoof Village\nDreadmurk Shore\n"..
 "Mudsprocket\nWyrmbog",
+mopready=true,
 },[[
 step
 Discover Shady Rest Inn |achieve 850/5 |goto Dustwallow Marsh 29.70,49.00
@@ -7183,6 +7539,7 @@ patch='30003',
 description="Explore Durotar, revealing the following covered areas of the world map:\n\nValley of Trials\n"..
 "Southfury Watershed\nEcho Isles\nRazor Hill\nThunder Ridge\nSkull Rock\nNorthwatch Foothold\n"..
 "Sen'jin Village\nTiragarde Keep\nRazormane Grounds\nDrygulch Ravine\nOrgrimmar",
+mopready=true,
 },[[
 step
 Discover Orgrimmar |achieve 728/12 |goto Orgrimmar 45.40,8.50
@@ -7221,6 +7578,7 @@ patch='30003',
 description="Explore Felwood, revealing the following covered areas of the world map:\n\nFelpaw Village\n"..
 "Irontree Woods\nShatter Scar Vale\nJaedenar\nJadefire Glen\nDeadwood Village\nTalonbranch Glade\n"..
 "Jadefire Run\nBloodvenom Falls\nRuins of Constellas\nEmerald Sanctuary\nMorlos'Aran",
+mopready=true,
 },[[
 step
 Discover Felpaw Village |achieve 853/1 |goto Felwood 61.20,11.50
@@ -7260,6 +7618,7 @@ description="Explore Feralas, revealing the following covered areas of the world
 "The Twin Colossals\nDire Maul\nRuins of Isildien\nCamp Mojache\nGordunni Outpost\nFeral Scar Vale"..
 "\nFeathermoon Stronghold\nRuins of Feathermoon\nThe Forgotten Coast\nThe Writhing Deep\nGrimtotem "..
 "Compound\nDarkmist Ruins",
+mopready=true,
 },[[
 step
 Discover The Writhing Deep |achieve 849/8 |goto Feralas 75.90,62.40
@@ -7299,6 +7658,7 @@ achieveid={855},
 patch='30001',
 description="Explore Moonglade, revealing the following covered areas of the world map:\n\nNighthaven\n"..
 "Lake Elune'ara\nShrine of Remulos\nStormrage Barrow Dens",
+mopready=true,
 },[[
 step
 Discover Stormrage Barrow Dens |achieve 855/4 |goto Moonglade 67.80,53.80
@@ -7322,6 +7682,7 @@ description="Explore Mulgore, revealing the following covered areas of the world
 "Bloodhoof Village\nThe Rolling Plains\nRavaged Caravan\nThunderhorn Water Well\nRed Rocks\n"..
 "Wildmane Water Well\nPalemane Rock\nWinterhoof Water Well\nThe Venture Co. Mine\nWindfury Ridge\n"..
 "The Golden Plains\nBael'dun Digsite",
+mopready=true,
 },[[
 step
 Discover Bael'dun Digsite |achieve 736/10 |goto Mulgore 32.30,50.60
@@ -7363,6 +7724,7 @@ description="Explore Northern Barrens, revealing the following covered areas of 
 "Boulder Lode Mine\nThe Mor'shan Rampart\nDreadmist Peak\nThe Forgotten Pools\nFar Watch Post\n"..
 "The Crossroads\nLushwater Oasis\nThe Sludge Fen\nThe Dry Hills\nGrol'dom Farm\nThorn Hill\n"..
 "The Stagnant Oasis\nThe Merchant Coast",
+mopready=true,
 },[[
 step
 Discover Boulder Lode Mine |achieve 750/1 |goto The Barrens 67.20,12.10
@@ -7405,6 +7767,7 @@ patch='30008',
 description="Explore Silithus, revealing the following covered areas of the world map:\n\nHive'Regal\n"..
 "The Crystal Vale\nCenarion Hold\nSouthwind Village\nHive'Ashi\nHive'Zora\nThe Scarab Wall\n"..
 "Valor's Rest",
+mopready=true,
 },[[
 step
 Discover Hive'Regal |achieve 856/5 |goto Silithus 60.00,71.70
@@ -7435,6 +7798,7 @@ patch='40003',
 description="Explore Southern Barrens, revealing the following covered areas of the world map:\n\nBael Modan\n"..
 "Forward Command\nHonor's Stand\nNorthwatch Hold\nRuins of Taurajo\nVendetta Point\nFrazzlecraz Motherlode\n"..
 "Battlescar\nHunter's Hill\nRazorfen Kraul\nThe Overgrowth",
+mopready=true,
 },[[
 step
 Discover Northwatch Hold |achieve 4996/7 |goto Southern Barrens 68.80,49.10
@@ -7472,6 +7836,7 @@ description="Explore Stonetalon Mountains, revealing the following covered areas
 "Ruins of Eldre'thar\nUnearthed Grounds\nWindshear Hold\nMalaka'jin\nBoulderslide Ravine\nWindshear Crag\n"..
 "The Charred Vale\nStonetalon Peak\nKrom'gar Fortress\nThal'darah Overlook\nWebwinder Hollow\nCliffwalker Post\n"..
 "Webwinder Path\nGreatwood Vale\nSun Rock Retreat\nMirkfallon Lake",
+mopready=true,
 },[[
 step
 Discover Malaka'jin |achieve 847/9 |goto Stonetalon Mountains 72.60,92.40
@@ -7521,6 +7886,7 @@ description="Explore Tanaris, revealing the following covered areas of the world
 "Gadgetzan\nValley of the Watchers\nThe Noxious Lair\nSouthbreak Shore\nEastmoon Ruins\nZul'Farrak\n"..
 "Southmoon Ruins\nSandsorrow Watch\nLost Rigger Cove\nBroken Pillar\nDunemaul Compound\nThe Gaping Chasm"..
 "\nLand's End Beach\nThistleshrub Valley\nCaverns of Time",
+mopready=true,
 },[[
 step
 Discover Zul'Farrak |achieve 851/15 |goto Tanaris 37.30,14.30
@@ -7567,6 +7933,7 @@ patch='30003',
 description="Explore Teldrassil, revealing the following covered areas of the world map:\n\nShadowglen\n"..
 "Dolanaar\nGnarlpine Hold\nPools of Arlithrien\nThe Oracle Glade\nDarnassus\nThe Cleft\n"..
 "Ban'ethil Hollow\nLake Al'Ameth\nStarbreeze Village\nWellspring Lake\nRut'theran Village",
+mopready=true,
 },[[
 step
 Discover Lake Al'Ameth |achieve 842/6 |goto Teldrassil 55.00,61.00
@@ -7605,6 +7972,7 @@ patch='30003',
 description="Explore Thousand Needles, revealing the following covered areas of the world map:\n\nThe Great Lift\n"..
 "Sunken Dig Site\nThe Twilight Withering\nWestreach Summit\nFreewind Post\nThe Shimmering Deep\nHighperch\n"..
 "Razorfen Downs\nSouthsea Holdfast\nTwilight Bulwark\nDarkcloud Pinnacle\nSplithoof Heights",
+mopready=true,
 },[[
 step
 Discover Razorfen Downs |achieve 846/2 |goto Thousand Needles 51.70,30.00
@@ -7643,6 +8011,7 @@ patch='30003',
 description="Explore Un'Goro Crater, revealing the following covered areas of the world map:\n\nMossy Pile\n"..
 "Fire Plume Ridge\nMarshal's Stand\nThe Roiling Gardens\nGolakka Hot Springs\nThe Slithering Scar\n"..
 "Ironstone Plateau\nFungal Rock\nThe Screaming Reaches\nTerror Run\nThe Marshlands\nLakkari Tar Pits",
+mopready=true,
 },[[
 step
 Discover Ironstone Plateau |achieve 854/11 |goto Un'Goro Crater 77.10,39.20
@@ -7681,6 +8050,7 @@ patch='30003',
 description="Explore Winterspring, revealing the following covered areas of the world map:\n\nLake Kel'Theril\n"..
 "Frostfire Hot Springs\nMazthoril\nOwl Wing Thicket\nWinterfall Village\nFrostsaber Rock\nEverlook\n"..
 "Timbermaw Post\nStarfall Village\nIce Thistle Hills\nThe Hidden Grove\nFrostwhisper Gorge",
+mopready=true,
 },[[
 step
 Discover Frostwhisper Gorge |achieve 857/12 |goto Winterspring 59.80,85.50
@@ -7721,6 +8091,7 @@ description="Earn the following Kalimdor exploration achievements:\n\nExplore Du
 "Explore Desolace\nExplore Feralas\nExplore Azshara\nExplore Un'Goro Crater\nExplore Silithus\nExplore "..
 "Mulgore\nExplore Azuremyst Isle\nExplore Winterspring\nExplore Darkshore\nExplore Stonetalon Mountains\n"..
 "Explore Ashenvale\nExplore Dustwallow Marsh\nExplore Tanaris\nExplore Felwood\nExplore Moonglade",
+mopready=true,
 },[[
 leechsteps "Achievement Guides\\Exploration\\Kalimdor\\Explore Durotar" 1-12
 leechsteps "Achievement Guides\\Exploration\\Cataclysm\\Explore Vashj'ir" 1-51
@@ -7756,6 +8127,7 @@ condition_end=function() return achieved(1312) end,
 achieveid={1311,1312},
 patch='30002',
 description="Kill all of the Rare enemies in Outlands",
+mopready=true,
 },[[
 step
 kill Mekthorg the Wild##18677 |achieve 1312/14 |goto Hellfire Peninsula 69.00,71.40
@@ -7892,6 +8264,7 @@ description="Explore Blade's Edge Mountains, revealing the following covered are
 "Gruul's Lair\nMok'Nathal Village\nRazor Ridge\nSkald\nCrystal Spine\nVeil Lashh\nVekhaar Stand\n"..
 "Bladed Gulch\nBloodmaul Camp\nBroken Wilds\nDeath's Door\nForge Camp: Terror\nGrishnath\nJagged "..
 "Ridge\nRaven's Wood\nRuuan Weald\nSylvanaar\nThunderlord Stronghold\nVeil Ruuan\nVortex Summit",
+mopready=true,
 },[[
 step
 Discover Forge Camp: Terror |achieve 865/10 |goto Blade's Edge Mountains 29.10,81.00
@@ -7959,6 +8332,7 @@ description="Explore Hellfire Peninsula, revealing the following covered areas o
 "Falcon Watch\nHonor Hold\nPools of Aggonar\nTemple of Telhamat\nThrallmar\nFallen Sky Ridge\n"..
 "Zeth'Gor\nThe Warp Fields\nExpedition Armory\nHellfire Citadel\nMag'har Post\nRuins of Sha'naar\n"..
 "The Legion Front\nThrone of Kil'jaeden\nDen of Haal'esh\nVoid Ridge\nForge Camp: Mageddon",
+mopready=true,
 },[[
 step
 Discover The Stair of Destiny |achieve 862/1 |goto Hellfire Peninsula 87.70,50.30
@@ -8011,6 +8385,7 @@ description="Explore Nagrand, revealing the following covered areas of the world
 "Southwind Cleft\nWindyreed Pass\nZangar Ridge\nGaradar\nKil'sorrow Fortress\nSpirit Fields\n"..
 "Telaar\nThrone of the Elements\nBurning Blade Ruins\nForge Camp: Hate\nThe Twilight Ridge\n"..
 "Windyreed Village",
+mopready=true,
 },[[
 step
 Discover Windyreed Village |achieve 866/18 |goto Nagrand 74.30,52.90
@@ -8065,6 +8440,7 @@ description="Explore Netherstorm, revealing the following covered areas of the w
 "Sunfury Hold\nGyro-Plank Bridge\nEthereum Staging Grounds\nForge Base: Oblivion\nManaforge B'naar"..
 "Manaforge Duro\nManaforge Ultris\nTempest Keep\nArklon Ruins\nKirin'Var Village\nRuins of Enkaat\n"..
 "The Stormspire\nEco-Dome Farfield\nSocrethar's Seat\nEco-Dome Midrealm",
+mopready=true,
 },[[
 step
 Discover Manaforge B'naar |achieve 843/2 |goto Netherstorm 23.50,72.90
@@ -8123,6 +8499,7 @@ patch='30003',
 description="Explore Shadowmoon Valley, revealing the following covered areas of the world map:\n\nCoilskar Point\n"..
 "Legion Hold\nShadowmoon Village\nThe Deathforge\nWarden's Cage\nAltar of Sha'tar\nNetherwing Fields\n"..
 "Eclipse Point\nNetherwing Ledge\nThe Black Temple\nThe Hand of Gul'dan\nWildhammer Stronghold\nIllidari Point",
+mopready=true,
 },[[
 step
 Discover Legion Hold |achieve 864/3 |goto Shadowmoon Valley 24.10,39.20
@@ -8164,6 +8541,7 @@ description="Explore Terokkar Forest, revealing the following covered areas of t
 "Cenarion Thicket\nGrangol'var Village\nTuurem\nRaastok Glade\nRazorthorn Shelf\nAuchenai Grounds\nSkettis\n"..
 "Refugee Caravan\nShadow Tomb\nVeil Rhaze\nAllerian Stronghold\nFirewing Point\nStonebreaker Hold\nCarrion "..
 "Hill\nShattrath City\nThe Barrier Hills\nBonechewer Ruins\nRing of Observance\nDerelict Caravan\nWrithing Mound",
+mopready=true,
 },[[
 step
 Discover Razorthorn Shelf |achieve 867/11 |goto Terokkar Forest 55.00,20.00
@@ -8221,6 +8599,7 @@ description="Explore Zangarmarsh, revealing the following covered areas of the w
 "Feralfen Village\nMarshlight Lake\nTelredor\nThe Lagoon\nUmbrafen Village\nAngo'rosh Stronghold\n"..
 "Orebor Harborage\nZabra'jin\nAngo'rosh Grounds\nHewn Bog\nQuagg Ridge\nTwin Spire Ruins\nSporeggar\n"..
 "The Dead Mire\nBloodscale Grounds\nThe Spawning Glen\nDarkcrest Shore",
+mopready=true,
 },[[
 step
 Discover Darkcrest Shore |achieve 863/18 |goto Zangarmarsh 70.60,79.90
@@ -8271,6 +8650,7 @@ patch='30001',
 description="Earn the following Outland exploration achievements:\n\nExplore Hellfire Peninsula\nExplore Terokkar Forest\n"..
 "Explore Blade's Edge Mountains\nExplore Shadowmoon Valley\nExplore Zangarmarsh\nExplore Netherstorm\n"..
 "Explore Nagrand",
+mopready=true,
 },[[
 leechsteps "Achievement Guides\\Exploration\\Outland\\Explore Hellfire Peninsula" 1-18
 leechsteps "Achievement Guides\\Exploration\\Outland\\Explore Terokkar Forest" 1-21
@@ -8288,6 +8668,7 @@ condition_end=function() return achieved(2256) end,
 achieveid={2257,2256},
 patch='30002',
 description="Kill all of the extremely rare and hard to find Northrend Creatures.",
+mopready=true,
 },[[
 step
 kill Old Crystalbark##32357 |goto Borean Tundra 25.60,34.40
@@ -8433,6 +8814,7 @@ patch='30008',
 description="Explore Borean Tundra, revealing the following covered areas of the world map:\n\nRiplash Strand\n"..
 "Temple City of En'kilah\nGarrosh's Landing\nColdarra\nAmber Ledge\nThe Dens of the Dying\nKaskala\n"..
 "Steeljaw's Caravan\nValiance Keep\nBor'gorok Outpost\nThe Geyser Fields\nWarsong Hold\nDeath's Stand",
+mopready=true,
 },[[
 step
 Discover Valiance Keep |achieve 1264/11 |goto Borean Tundra 57.70,69.30
@@ -8473,6 +8855,7 @@ patch='30008',
 description="Explore Crystalsong Forest, revealing the following covered areas of the world map:\n\nViolet Stand\n"..
 "Windrunner's Overlook\nSunreaver's Command\nThe Azure Front\nThe Decrepit Flow\nThe Unbound Thicket\n"..
 "Forlorn Woods\nThe Great Tree",
+mopready=true,
 },[[
 step
 Discover The Azure Front |achieve 1457/1 |goto Crystalsong Forest 26.40,61.40
@@ -8504,6 +8887,7 @@ description="Explore Dragonblight, revealing the following covered areas of the 
 "Obsidian Dragonshrine\nNaxxramas\nIcemist Village\nColdwind Heights\nWestwind Refugee Camp\nLake Indu'le\n"..
 "Agmar's Hammer\nThe Forgotten Shore\nScarlet Point\nAngrathar the Wrath Gate\nEmerald Dragonshrine\n"..
 "New Hearthglen\nLight's Trust\nWyrmrest Temple\nThe Crystal Vice\nVenomspite",
+mopready=true,
 },[[
 step
 Discover Angrathar the Wrath Gate |achieve 1265/10 |goto Dragonblight 36.00,15.00
@@ -8553,6 +8937,7 @@ description="Explore Grizzly Hills, revealing the following covered areas of the
 "Conquest Hold\nBlue Sky Logging Grounds\nWestfall Brigade Encampment\nGranite Springs\nVoldrune\n"..
 "Rage Fang Shrine\nVenture Bay\nAmberpine Lodge\nCamp Oneqwah\nDrak'Tharon Keep\nDun Argol\n"..
 "Grizzlemaw\nThor Modan",
+mopready=true,
 },[[
 step
 Discover Drak'Tharon Keep |achieve 1266/2 |goto Grizzly Hills 17.50,23.60
@@ -8596,6 +8981,7 @@ description="Explore Howling Fjord, revealing the following covered areas of the
 "Kamagua\nVengeance Landing\nScalawag Point\nGjalerbron\nGiant's Run\nIvald's Ruin\nNew Agamand\n"..
 "The Twisted Glade\nWestguard Keep\nBaleheim\nCauldros Isle\nBaelgun's Excavation Site\nSkorn\n"..
 "Apothecary Camp\nSteel Gate\nNifflevar\nEmber Clutch\nFort Wildervar\nUtgarde Keep\nHalgrind\n",
+mopready=true,
 },[[
 step
 Discover Gjalerbron |achieve 1263/9 |goto Howling Fjord 36.60,9.50
@@ -8653,6 +9039,7 @@ description="Explore Icecrown, revealing the following covered areas of the worl
 "Onslaught Harbor\nAldur'thar: The Desolation Gate\nThe Fleshwerks\nCorp'rethar: The Horror Gate\n"..
 "Sindragosa's Fall\nValley of Echoes\nThe Conflagration\nJotunheim\nThe Shadow Vault\nScourgeholme\n"..
 "Icecrown Citadel\nThe Broken Front\nYmirheim\nValhalas",
+mopready=true,
 },[[
 step
 Discover Onslaught Harbor |achieve 1270/3 |goto Icecrown 8.90,42.90
@@ -8697,6 +9084,7 @@ patch='30002',
 description="Explore Sholazar Basin, revealing the following covered areas of the world map:\n\nThe Mosslight Pillar\n"..
 "Makers' Perch\nRainspeaker Canopy\nThe Avalanche\nKartak's Hold\nThe Savage Thicket\nMakers' Overlook\n"..
 "The Suntouched Pillar\nThe Lifeblood Pillar\nThe Glimmering Pillar\nThe Stormwright's Shelf",
+mopready=true,
 },[[
 step
 Discover Makers' Overlook |achieve 1268/4 |goto Sholazar Basin 81.00,55.40
@@ -8736,6 +9124,7 @@ description="Explore Storm Peaks, revealing the following covered areas of the w
 "Brunnhildar Village\nValkyrion\nSparksocket Minefield\nTemple of Life\nThunderfall\nUlduar\n"..
 "Snowdrift Plains\nFrosthold\nNarvir's Cradle\nBor's Breath\nTerrace of the Makers\nNidavelir\n"..
 "Engine of the Makers\nTemple of Storms\nGarm's Bane",
+mopready=true,
 },[[
 step
 Discover Sparksocket Minefield |achieve 1269/7 |goto The Storm Peaks 35.10,84.00
@@ -8782,6 +9171,7 @@ patch='30008',
 description="Explore Zul'Drak, revealing the following covered areas of the world map:\n\nAltar of Rhunok\n"..
 "Ampitheater of Anguish\nGundrak\nAltar of Mam'toth\nDrak'Sotra Fields\nAltar of Quetz'lun\nZeramas\n"..
 "Altar of Har'koa\nAltar of Sseratus\nLight's Breach\nVoltarus\nZim'Torga\nKolramas\nThrym's End",
+mopready=true,
 },[[
 step
 Discover Thrym's End |achieve 1267/12 |goto Zul'Drak 17.00,57.30
@@ -8824,6 +9214,7 @@ patch='30002',
 description="Earn the following Northrend exploration achievements:\n\nExplore Borean Tundra\nExplore Dragonblight\n"..
 "Explore Zul'Drak\nExplore Crystalsong Forest\nExplore Icecrown\nExplore Howling Fjord\nExplore Grizzly Hills\n"..
 "Explore Sholazar Basin\nExplore Storm Peaks",
+mopready=true,
 },[[
 leechsteps "Achievement Guides\\Exploration\\Northrend\\Explore Borean Tundra" 1-13
 leechsteps "Achievement Guides\\Exploration\\Northrend\\Explore Sholazar Basin" 1-12
@@ -8844,6 +9235,7 @@ achieveid={4868},
 patch='40003',
 description="Earn the following Cataclysm exploration achievements:\n\nExplore Twilight Highlands\nExplore Deepholm\n"..
 "Explore Hyjal\nExplore Vashj'ir\nExplore Uldum",
+mopready=true,
 },[[
 leechsteps "Achievement Guides\\Exploration\\Cataclysm\\Explore Hyjal" 1-11
 leechsteps "Achievement Guides\\Exploration\\Cataclysm\\Explore Vashj'ir" 1-51
@@ -8862,6 +9254,7 @@ description="Explore Deepholm, revealing the following covered areas of the worl
 "Deathwing's Fall\nStorm's Fury Wreckage\nThe Pale Roost\nThe Quaking Fields\nStonehearth\n"..
 "Needlerock Chasm\nMasters' Gate\nTemple of Earth\nTherazane's Throne\nTwilight Overlook\n"..
 "Crimson Expanse",
+mopready=true,
 },[[
 step
 Explore the Temple of Earth |achieve 4864/6 |goto Deepholm/0 48.94,53.28
@@ -8900,6 +9293,7 @@ patch='40003',
 description="Explore Hyjal, revealing the following covered areas of the world map:\n\nRim of the World\n"..
 "Ashen Lake\nGates of Sothann\nSethria's Roost\nThe Flamewake\nThe Throne of Flame\nNordrassil\n"..
 "The Circle of Cinders\nDarkwhisper Gorge\nShrine of Goldrinn\nThe Scorched Plain",
+mopready=true,
 },[[
 step
 Explore Nordrassil |achieve 4863/6 |goto Mount Hyjal/0 62,25
@@ -8939,6 +9333,7 @@ description="Explore Twilight Highlands, revealing the following covered areas o
 "The Maw of Madness\nCrucible of Carnage\nDragonmaw Pass\nDunwald Ruins\nGlopgut's Hollow\nThundermar\n"..
 "Highland Forest\nGrim Batol\nRuins of Drakgor\nThe Black Breach\nThe Krazzworks\nVermillion Redoubt\n"..
 "Wyrms' Bend",
+mopready=true,
 },[[
 step
 Explore Highbank |achieve 4866/11 |goto Twilight Highlands/0 77.04,74.73
@@ -9009,6 +9404,7 @@ description="Explore Uldum, revealing the following covered areas of the world m
 "Orsis\nTemple of Uldum\nThe Gate of Unending Cycles\nThe Trail of Devastation\nObelisk of the Sun\n"..
 "Cradle of the Ancients\nLost City of the Tol'vir\nObelisk of the Moon\nNahom\nTombs of the Precursors\n"..
 "Ramkahen\nRuins of Ammon\nTahret Grounds\nThe Cursed Landing\nVir'naal Dam",
+mopready=true,
 },[[
 step
 Explore Ramkahen |achieve 4865/12 |goto Uldum/0 54.91,34.24
@@ -9069,6 +9465,7 @@ description="Explore Vashj'ir, revealing the following covered areas of the worl
 "Seafarer's Tomb\nThe Skeletal Reef\nNespirah\nRuins of Vashj'ir\nSilver Tide Hollow\nL'ghorek\n"..
 "Abyssal Breach\nThe Scalding Chasm\nGnaws' Boneyard\nRuins of Thelserai Temple\nBeth'mora Ridge\n"..
 "The Clutch\nLegion's Fate\nShimmering Grotto",
+mopready=true,
 },[[
 step
 click Warchief's Command Board##207325
@@ -9248,6 +9645,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Cataclysm\\Fro
 achieveid={4975},
 patch='40003',
 description="This guide will walk you through defeating the Whale Shark in Vashj'ir (despite or perhaps because of the fact that he drops no loot).",
+mopready=true,
 },[[
 step
 The Whale Shark swims in a circle around Nespirah so some searching may be required
@@ -9261,6 +9659,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Cataclysm\\Sto
 achieveid={5518},
 patch='40003',
 description="Get killed by Deathwing.",
+mopready=true,
 },[[
 step
 This achievement requires you to get to the end of the _Dragon Soul_ raid, and fight the final stage of Deathwing
@@ -9274,6 +9673,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Cataclysm\\Sur
 achieveid={4827},
 patch='40003',
 description="This guide will walk you through exploring areas in Kalimdor and the Eastern Kingdoms to see the changes wrought by the Cataclysm.",
+mopready=true,
 },[[
 step
 View The Raging Chasm in Westfall |achieve 4827/13 |goto Westfall/0 38.50,42.30
@@ -9308,6 +9708,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Higher Learning",{
 achieveid={1956},
 patch='30002',
 description="Read the volumes of 'The Schools of Arcane Magic' found in Dalaran.",
+mopready=true,
 },[[
 step
 _Warning:_ These books have respawn timers of about 3-4 hours (it seems to be random between those times) so this achievement may take you a while to get |tip The book you want won't always be there. Fake trash books spawn to make the achievement even harder to get, but keep at it. Make sure you click the fake trash books anyway, so the real books have a chance to spawn.
@@ -9364,6 +9765,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\First Aid\\Pre
 achieveid={5480},
 patch='40003',
 description="This guide will walk you through creating 500 Dense Embersilk Bandages.",
+mopready=true,
 },[[
 step
 Reach 525 First Aid, use the First Aid leveling guide to accomplish this.
@@ -9387,6 +9789,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\First Aid\\Sto
 achieveid={137},
 patch='30001',
 description="This guide will walk you through creating 500 Heavy Frostweave Bandages.",
+mopready=true,
 },[[
 step
 Reach 450 First Aid, use the First Aid leveling guide to accomplish this.
@@ -9410,6 +9813,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\First Aid\\Ult
 achieveid={141},
 patch='30001',
 description="This guide will walk you through the Ultimate Triage achievement.",
+mopready=true,
 },[[
 step
 Reach 400 First Aid, use the First Aid leveling guide to accomplish this,
@@ -9426,6 +9830,7 @@ condition_end=function() return achieved(5473) end,
 achieveid={5472,5473},
 patch='40003',
 description="Cook Cataclysm recipes.",
+mopready=true,
 },[[
 step
 You must be at least 525 in _Cooking_ to obtain this achievement
@@ -9700,6 +10105,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Critt
 achieveid={1781},
 patch='30002',
 description="This guide will walk you through coerceing 10 critters to be your pet within 3 minutes or less using Critter Bites.",
+mopready=true,
 },[[
 step
 This requires 10 Critter Bites, which can be made using the following:
@@ -9744,6 +10150,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Kicki
 achieveid={906},
 patch='30001',
 description="Complete each of The Rokk's 4 cooking daily quests.",
+mopready=true,
 },[[
 step
 talk The Rokk##24393
@@ -9833,6 +10240,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Let's
 achieveid={5475},
 patch='40003',
 description="Complete each of the Orgrimmar cooking daily quests.",
+mopready=true,
 },[[
 step
 talk Marogg##42506
@@ -9886,6 +10294,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Let's
 achieveid={5843},
 patch='40200',
 description="Complete each of the Thunder Bluff cooking daily quests.",
+mopready=true,
 },[[
 step
 talk Aska Mistrunner##3026
@@ -9947,6 +10356,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Let's
 achieveid={5844},
 patch='40200',
 description="Complete each of the Undercity cooking daily quests.",
+mopready=true,
 },[[
 step
 talk Eunice Burch##4552
@@ -9993,6 +10403,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Secon
 achieveid={1780},
 patch='30002',
 description="Eat the 'emotion' foods.",
+mopready=true,
 },[[
 step
 kill Winterfin Warrior##25217+
@@ -10069,6 +10480,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\25 Fi
 achieveid={1556},
 patch='30003',
 description="Fish up 25 items.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -10080,6 +10492,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\50 Fi
 achieveid={1557},
 patch='40200',
 description="Fish up 50 items.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -10091,6 +10504,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\100 F
 achieveid={1558},
 patch='30002',
 description="Fish up 100 items.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -10102,6 +10516,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\250 F
 achieveid={1559},
 patch='30003',
 description="Fish up 250 items.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -10113,6 +10528,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\500 F
 achieveid={1560},
 patch='30100',
 description="Fish up 500 items.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -10124,6 +10540,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Chasi
 achieveid={3217},
 patch='30100',
 description="Complete each of Marcia Chase's 5 fishing daily quests.",
+mopready=true,
 },[[
 step
 talk Marcia Chase##28742
@@ -10180,6 +10597,7 @@ condition_end=function() return achieved(2096) end,
 achieveid={2094,2095,1957,2096},
 patch='30002',
 description="Complete the coin fishing achievements.",
+mopready=true,
 },[[
 step
 This guide will help you _earn_ the achievements A Penny For Your Thoughts, Silver in the City, There's Gold In That There Fountain, and finally The Coin Master
@@ -10266,6 +10684,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\I Sme
 achieveid={1958},
 patch='30003',
 description="Fish up the Giant Sewer Rat from The Underbelly in Dalaran.",
+mopready=true,
 },[[
 step
 _Go down_ into the sewers |goto Dalaran 36.30,45.50 < 10 |walk
@@ -10280,6 +10699,7 @@ condition_end=function() return achieved(5478) end,
 achieveid={5478,5479,5478},
 patch='40003',
 description="Catch 42 different freshwater fish and catch 31 different saltwater fish.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -10510,7 +10930,8 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\The L
 achieveid={144},
 patch='30001',
 description="Fish up The Lurker Below in Serpentshrine Cavern.",
-endlevel=30
+endlevel=30,
+mopready=true,
 },[[
 step
 _Swim down_ underwater through the tube to the Coilfang Reservoir |goto Zangarmarsh 50.40,41.00<20
@@ -10529,6 +10950,7 @@ description="Be one of the first 50 people to complete the Stranglethorn Fishing
 "fishing pools around The Cape of Stranglethorn.",
 achieveid={306},
 patch='30001',
+mopready=true,
 },[[
 step
 accept Stranglethorn Fishing Extravaganza##44765 |goto The Cape of Stranglethorn/0 40.66,68.34
@@ -10579,6 +11001,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Old C
 achieveid={1836},
 patch='30002',
 description="Fish up Old Crafty in Orgrimmar.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -10590,6 +11013,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Old I
 achieveid={1837},
 patch='30002',
 description="Fish up Old Ironjaw in Ironforge.",
+mopready=true,
 },[[
 step
 This achievement will _flag you for PVP_ while you are in Stormwind
@@ -10603,6 +11027,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Turtl
 achieveid={3218},
 patch='30100',
 description="Fish up a Sea Turtle mount from any fishing pool in Deepholm, Mount Hyjal, Twilight Highlands, Uldum, or Northrend.",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will need to fish from any school of fish within a Northrend or Cataclysm Zone
@@ -10620,6 +11045,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Eastern Kingdoms\\F
 achieveid={5442},
 patch='40003',
 description="Recruit all 8 characters into Fiona's travelling party in Eastern Plaguelands.",
+mopready=true,
 },[[
 step
 talk Fiona##45417
@@ -10914,6 +11340,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Eastern Kingdoms\\R
 achieveid={5444},
 patch='40003',
 description="Using the Billy Goat Blaster or the Billy Goat Blaster DX, blast 12 Billy Goats in under 1 minute.",
+mopready=true,
 },[[
 step
 talk Garyanne Fleezlebop##46653
@@ -10950,6 +11377,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Kalimdor\\E'ko Madn
 achieveid={5443},
 patch='40003',
 description="Obtain E'ko from creatures in Winterspring.",
+mopready=true,
 },[[
 step
 kill Shardtooth Mauler##7443+
@@ -10979,6 +11407,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Kalimdor\\Glutton f
 achieveid={5448},
 patch='40003',
 description="In Archmage Xylem's Trial of Fire in Azshara, gain 10 stacks of Fire Dancing without taking damage.",
+mopready=true,
 },[[
 step
 _Stand on the red fire runes_ without getting hit by fire 10 times in a row
@@ -10991,6 +11420,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Kalimdor\\Glutton f
 achieveid={5546},
 patch='40003',
 description="In Archmage Xylem's Trial of Frost in Azshara, gain 20 stacks of Essence of Ice without taking damage.",
+mopready=true,
 },[[
 step
 _Run around_ on top of the mountain and get next to the floating white orbs
@@ -11003,6 +11433,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Kalimdor\\Glutton f
 achieveid={5547},
 patch='40003',
 description="In Archmage Xylem's Trial of Shadow in Azshara, trap 20 Weeping Souls without taking damage.",
+mopready=true,
 },[[
 step
 _Click_ the Touch to Begin crystal
@@ -11019,6 +11450,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Kalimdor\\Joy Ride"
 achieveid={5454},
 patch='40003',
 description="Ride the full length of the Rocketway in Azshara.",
+mopready=true,
 },[[
 step
 talk Bilgewater Rocket-jockey##43217
@@ -11031,6 +11463,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Outland\\Blade's Ed
 achieveid={1276},
 patch='30001',
 description="Complete the Bomb Them Again! quest in under 2 minutes 15 seconds while not in a group.",
+mopready=true,
 },[[
 step
 talk Chu'a'lor##23233
@@ -11104,6 +11537,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Outland\\Bombs Away
 achieveid={1275},
 patch='30002',
 description="Complete the Fires Over Skettis quest in under 2 minutes 15 seconds while not in a group.",
+mopready=true,
 },[[
 step
 talk Yuula##23449
@@ -11134,6 +11568,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Northrend\\D.E.H.T.
 achieveid={561},
 patch='30001',
 description="This guide will walk you through completing the D.E.H.T.A. questline in Borean Tundra.",
+mopready=true,
 },[[
 step
 talk Arch Druid Lathorius##25809
@@ -11243,6 +11678,7 @@ achieveid={2836},
 patch='30100',
 keywords={"Lance","a","Lot","Argent","Tournament"},
 description="This guilde will walk you through obtaining the Lance a Lot achievement",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to defeat a rider from each faction at the Argent Tournament
@@ -11264,6 +11700,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Northrend\\Mine Swe
 achieveid={1428},
 patch='30003',
 description="Get caught in 10 consecutive land mine explosions in the Sparksocket Minefield without landing.",
+mopready=true,
 },[[
 step
 You will see a field of mines
@@ -11277,6 +11714,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Northrend\\Rapid De
 achieveid={1277},
 patch='30008',
 description="This guide will walk you through completing the Defending Wyrmrest Temple quest in under 3 minutes while not in a group.",
+mopready=true,
 },[[
 step
 talk Lord Devrestrasz##27575
@@ -11304,6 +11742,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Northrend\\Veteran 
 achieveid={547},
 patch='30002',
 description="This guide will walk you through completing the Dragonblight quests leading up to and including the Return to Angrathar.",
+mopready=true,
 },[[
 step
 talk Emissary Brighthoof##26181
@@ -11469,6 +11908,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\The 'Unb
 achieveid={5860},
 patch='40200',
 description="Complete the Vigilance on Wings daily quest in Mount Hyjal 10 times.",
+mopready=true,
 },[[
 step
 _Go inside_ the blue portal |goto Mount Hyjal 38.77,58.01 < 15 |walk
@@ -11499,6 +11939,7 @@ patch='40003',
 startlevel=1,
 keywords={"Dungeon","Quests","Completed"},
 description="This guide will walk you through completing the \"20 Dungeon Quests Completed\" Achievement.",
+mopready=true,
 },[[
 step
 To earn this achievement, complete quests that correspond with a dungeon
@@ -11515,6 +11956,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\And the 
 achieveid={5868},
 patch='40200',
 description="Help critters get revenge on the mean old fire elementals.",
+mopready=true,
 },[[
 step
 label "MeekInheritStart"
@@ -11579,6 +12021,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Beware o
 achieveid={4959},
 patch='40003',
 description="Complete the jousting quests in Mount Hyjal up to and including Egg Wave.",
+mopready=true,
 },[[
 step
 click Warchief's Command Board##207325
@@ -12188,6 +12631,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Bounce",
 achieveid={5483},
 patch='40003',
 description="Stay on the trampoline in the Whistling Grove in Mount Hyjal for 20 consecutive bounces.",
+mopready=true,
 },[[
 step
 You will be able to _control your character_ mid air by turning them in the direction you want to go
@@ -12200,6 +12644,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Consumed
 achieveid={5451},
 patch='40003',
 description="Endure the nightmares of Iso'rath in the Twilight Highlands.",
+mopready=true,
 },[[
 step
 For this achievement, you'll want to complete our Twilight Highlands quests guide
@@ -12208,6 +12653,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Death Fr
 achieveid={5874},
 patch='40200',
 description="Bomb the following elementals during a bombing run in the Molten Front.",
+mopready=true,
 },[[
 step
 The easiest way to do this achievement is to accept the daily and NEVER turn it in until you have completed the achievement
@@ -12236,6 +12682,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Dragonma
 achieveid={5482},
 patch='40003',
 description="Explore all the nooks and crannies of the Thundermar Ruins in Twilight Highlands and impress your Dragonmaw allies.",
+mopready=true,
 },[[
 step
 kill High Shaman MacKilligan##46885
@@ -12264,6 +12711,7 @@ achieveid={5861},
 patch='40200',
 startlevel=32,
 description="This guide will walk you through completing the \"The Fiery Lords of Sethria's Roost\" achievement.",
+mopready=true,
 },[[
 step
 talk Captain Soren Moonfall##53073
@@ -12289,6 +12737,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Flawless
 achieveid={5867},
 patch='40200',
 description="Solo kill a Molten Behemoth in the Molten Front without taking any damage from Molten Stomp or Fiery Boulder.",
+mopready=true,
 },[[
 step
 kill Molten Behemoth##52552
@@ -12300,6 +12749,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Gang War
 achieveid={5864},
 patch='40200',
 description="This guide will walk you through wining a duel in Sethria's Roost while on the quest 'The Protectors of Hyjal.'",
+mopready=true,
 },[[
 step
 talk Captain Soren Moonfall##53073
@@ -12314,6 +12764,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Have... 
 achieveid={5865},
 patch='40200',
 description="Acknowledge your recognition by /waving at the following NPCs in Sethria's Roost.",
+mopready=true,
 },[[
 step
 talk Captain Soren Moonfall##53073
@@ -12334,6 +12785,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Help the
 achieveid={5317},
 patch='40003',
 description="Kill 10 Schnotzz infantry with one artillery shell during the Fire From the Sky daily quest in Uldum.",
+mopready=true,
 },[[
 step
 talk Weathered Nomad##49523
@@ -12350,6 +12802,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\King of 
 achieveid={5321},
 patch='40003',
 description="Complete the Twilight's Hammer quest chain in Twilight Highlands up to and including Skullcrusher the Mountain.",
+mopready=true,
 },[[
 step
 For this achievement, you'll want to complete our Twilight Highlands quests guide
@@ -12358,6 +12811,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\King of 
 achieveid={5872},
 patch='40200',
 description="Reach the highest point in the Widow's Clutch within the Molten Front.",
+mopready=true,
 },[[
 step
 kill Cinderweb Spinner##52981+
@@ -12373,6 +12827,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Ludicrou
 achieveid={5862},
 patch='40200',
 description="While on the quest Call the Flock in Mount Hyjal, obtain 65 stacks of Soar.",
+mopready=true,
 },[[
 step
 talk Matoclaw##52669
@@ -12391,6 +12846,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Master o
 achieveid={5871},
 patch='40200',
 description="This guide will walk you through completing various challenges within the Molten Flow.",
+mopready=true,
 },[[
 step
 kill Flamewaker Shaman##53093
@@ -12411,6 +12867,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Round Th
 achieveid={4960},
 patch='40003',
 description="Complete the Crucible of Carnage quests in Twilight Highlands up to and including the Twilight Terror!.",
+mopready=true,
 },[[
 step
 You will need a group for these quests
@@ -12475,6 +12932,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\5 Dungeon Quests Co
 achieveid={4956},
 patch='40003',
 description="Complete 5 dungeon quests.",
+mopready=true,
 },[[
 step
 Enter the swirling portal |goto The Deadmines 38.30,77.50
@@ -12533,6 +12991,7 @@ patch='40003',
 startlevel=1,
 keywords={"Dungeon","Quests","Completed"},
 description="This guide will walk you through completing the \"20 Dungeon Quests Completed\" Achievement.",
+mopready=true,
 },[[
 step
 To earn this achievement, complete quests that correspond with a dungeon
@@ -12549,6 +13008,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\A Simple Re-Quest",
 achieveid={31},
 patch='30001',
 description="Complete a daily quest every day for five consecutive days.",
+mopready=true,
 },[[
 step
 Ask around _Orgrimmar and Vol'mar_ for someone to drop a Blingtron for you
@@ -12561,7 +13021,8 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Of Blood And Anguis
 achieveid={1576},
 patch='30002',
 description="Complete the Ring of Blood and Amphitheater of Anguish.",
-endlevel=15
+endlevel=15,
+mopready=true,
 },[[
 step
 talk Gurgthock##18471
@@ -12673,6 +13134,7 @@ condition_end=function() return achieved(5751) end,
 achieveid={973,974,975,976,977,5751,7410,7411,5751},
 patch='40100',
 description="This guide will walk you through completing 5, 50, 200, 500, 1000, 2500, 5000, 10000 Daily Quests.",
+mopready=true,
 },[[
 step
 In order to complete these achievements, you simply have to complete daily quests. You can work through Zygor's Dailies guides to obtain all of these achievements
@@ -12705,7 +13167,8 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\The First Rule of R
 achieveid={4958},
 patch='40003',
 description="Complete the Ring of Blood, Amphitheater of Anguish and Crucible of Carnage.",
-endlevel=15
+endlevel=15,
+mopready=true,
 },[[
 step
 talk Gurgthock##18471
@@ -12867,6 +13330,7 @@ condition_end=function() return achieved(941) end,
 achieveid={940,939,938,941},
 patch='30001',
 description="Complete the Green Hills of Stranglethorn, Hills Like White Elekk and Snows of Northrend achievements.",
+mopready=true,
 },[[
 step
 label "TheGreenHills"
@@ -13266,6 +13730,7 @@ achieveid={5752},
 patch='40100',
 startlevel=1,
 description="This guide will walk you through completing the \"Justly Rewarded\" Achievement.",
+mopready=true,
 },[[
 step
 For this achievement, complete any quests save for repeatable ones to earn gold
@@ -13280,6 +13745,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Breaking The Sound
 achieveid={5180},
 patch='40003',
 description="Learn the master riding skill.",
+mopready=true,
 },[[
 step
 This achievement _requires_ level 40
@@ -13296,6 +13762,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Cataclysmically Ep
 achieveid={5372},
 patch='40003',
 description="Equip items in each slot that have at least an item level of 359",
+mopready=true,
 },[[
 step
 You need to equip _Epic (purple) Quality items_ of at least item level 359 in all your Armor and Weapon slots
@@ -13324,6 +13791,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Cataclysmically Su
 achieveid={5373},
 patch='40003',
 description="Equip a superior item in every slot with a minimum item level of 333.",
+mopready=true,
 },[[
 step
 You need to equip _Superior (blue) Quality items_ of at least item level 333 in all your Armor and Weapon slots
@@ -13353,6 +13821,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Drown Your Sorrows
 achieveid={5754},
 patch='40100',
 description="This guide will walk you through drinking these Cataclysm beverages.",
+mopready=true,
 },[[
 step
 talk Kylene##19186
@@ -13444,6 +13913,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Dual Talent Specia
 achieveid={2716},
 patch='30101',
 description="Visit your class trainer when you are at least level 30 and activate your Dual Talent Specialization.",
+mopready=true,
 },[[
 step
 This achievement _requires_ level 30
@@ -13512,6 +13982,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Epic",{
 achieveid={556},
 patch='30001',
 description="Equip items in each slot that have at least an item level of 213",
+mopready=true,
 },[[
 step
 You need to equip _Epic (purple) Quality items_ of at least item level 213 in all your Armor and Weapon slots
@@ -13539,6 +14010,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Fast and Furious",
 achieveid={889},
 patch='30001',
 description="Learn the journeyman riding skill.",
+mopready=true,
 },[[
 step
 This achievement _requires_ level 40
@@ -13582,6 +14054,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Friend or Fowl?",{
 achieveid={1254},
 patch='30001',
 description="This guide will walk you through slaying 15 turkeys in 3 minutes in Howling Fjord.",
+mopready=true,
 },[[
 step
 kill Fjord Turkey##24746+
@@ -13595,6 +14068,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Giddy Up!",{
 achieveid={891},
 patch='30200',
 description="Learn the apprentice riding skill.",
+mopready=true,
 },[[
 step
 This achievement _requires_ level 20
@@ -13638,6 +14112,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Going Down?",{
 achieveid={964},
 patch='30001',
 description="This guide will walk you through falling 65 yards without dying.",
+mopready=true,
 },[[
 step
 |achieve 964 |goto Shattrath City/0 50.13,62.05 |only if not (Mage or Paladin or DemonHunter)
@@ -13656,6 +14131,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Greedy",{
 achieveid={558},
 patch='30001',
 description="Win a greed roll on a superior or better item above level 185 by rolling 100.",
+mopready=true,
 },[[
 step
 You will need to be in a group and _roll a 100 on a Superior (blue) or higher quality item_
@@ -13668,6 +14144,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Into The Wild Blue
 achieveid={890},
 patch='30001',
 description="Learn the expert riding skill.",
+mopready=true,
 },[[
 step
 This achievement _requires_ level 60
@@ -13682,6 +14159,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\It's Happy Hour So
 achieveid={1833},
 patch='30002',
 description="Drink 25 different types of beverages.",
+mopready=true,
 },[[
 step
 talk Innkeeper Gryshka##6929
@@ -13821,6 +14299,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\It's Over Nine Tho
 achieveid={4496},
 patch='30300',
 description="This guide will walk you through completing the \"It's Over Nine Thousand!\" Achievement.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to earn at least 9,000 achievement points
@@ -13835,6 +14314,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Needy",{
 achieveid={559},
 patch='30001',
 description="Win a need roll on a superior or better item above level 185 by rolling 100.",
+mopready=true,
 },[[
 step
 You will need to be in a group and _roll a 100 on a Superior (blue) or higher quality item_
@@ -13847,6 +14327,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\The Right Stuff",{
 achieveid={892},
 patch='30001',
 description="Learn the artisan riding skill.",
+mopready=true,
 },[[
 step
 talk Maztha##44919
@@ -13859,6 +14340,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Safe Deposit",{
 achieveid={546},
 patch='30001',
 description="Buy 7 additional bank slots.",
+mopready=true,
 },[[
 step
 This achievement will cost you _111 gold 10 silver_ to complete
@@ -13871,6 +14353,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Shave and a Haircu
 achieveid={545},
 patch='30001',
 description="Visit a Barber Shop and get your hair cut.",
+mopready=true,
 },[[
 step
 click Barbershop Chair
@@ -13886,6 +14369,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Superior",{
 achieveid={557},
 patch='30001',
 description="Equip a superior item in every slot with a minimum item level of 187.",
+mopready=true,
 },[[
 step
 You need to equip _Superior (blue) Quality items_ of at least item level 187in all your Armor and Weapon slots
@@ -13913,6 +14397,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Tastes Like Chicke
 achieveid={1832},
 patch='30002',
 description="Sample 50 different kinds of Azeroth's delectable dishes.",
+mopready=true,
 },[[
 step
 talk Innkeeper Gryshka##6929
@@ -14230,6 +14715,7 @@ condition_end=function() return achieved(5548) end,
 achieveid={1206,2557,2556,5548},
 patch='40003',
 description="Show the critters of Azeroth how much you /love them. Slay the pests.",
+mopready=true,
 },[[
 step
 Use the _Love emote_ on a Rockchewer Whelk |clicknpc Rockchewer Whelk##48848 |script DoEmote("LOVE")
@@ -14417,6 +14903,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Well Read",{
 achieveid={1244},
 patch='30001',
 description="Read books.",
+mopready=true,
 },[[
 step
 click The Betrayer Ascendant##268068 |achieve 1244/23 |goto Silvermoon City 68.60,64.10
@@ -14568,6 +15055,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\You'll Feel Right 
 achieveid={5779},
 patch='40100',
 description="This guide will walk you through feeling 1000% better by eating Chocolate Cookies.",
+mopready=true,
 },[[
 step
 Use the Stormwind City Cooking Dailies guide to

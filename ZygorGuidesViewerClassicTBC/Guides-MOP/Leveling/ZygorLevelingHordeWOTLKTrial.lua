@@ -3553,7 +3553,7 @@ Allow Enemies to Kill You
 Die on Purpose |complete isdead |goto Eversong Woods 27.14,59.02 |q 8885
 step
 talk Spirit Healer##6491
-Select _"Return me to life."_
+Select _"Return me to life."_ |gossip 88335
 Resurrect at the Spirit Healer |complete not isdead |goto Eversong Woods 44.33,71.19 |q 8885 |zombiewalk
 step
 talk Magistrix Landra Dawnstrider##16210
@@ -3725,7 +3725,8 @@ step
 Locate Prospector Anvilward |goto Eversong Woods 44.57,53.30 < 7 |c |q 8483
 step
 talk Prospector Anvilward##15420
-Select _"I need a moment of your time, sir."_
+Select _"I need a moment of your time, sir."_ |gossip 91302
+Select _"Why... yes, of course.  I've something to show you right inside this building, Mr. Anvilward."_ |gossip 91301
 Begin Following Prospector Anvilward |goto Eversong Woods 44.57,53.30 > 10 |q 8483
 step
 Watch the dialogue
@@ -3745,32 +3746,6 @@ buy Suntouched Special Reserve##22775 |q 9067/1 |goto Silvermoon City 79.51,58.5
 step
 talk Instructor Antheol##15970
 turnin Swift Discipline##9066 |goto Eversong Woods/0 55.70,54.51
-step
-Enter the building |goto Silvermoon City 75.65,44.91 < 10 |walk
-talk Talionia##16647
-|tip Downstairs inside the building.
-accept The Stone##9529 |goto Silvermoon City 74.39,47.15
-|only if BloodElf Warlock
-step
-click Voidstone
-turnin The Stone##9529 |goto Ghostlands 43.66,15.98
-accept The Rune of Summoning##9619 |goto Ghostlands 43.66,15.98
-|only if BloodElf Warlock
-step
-Follow the shore along the river |goto Eversong Woods 44.26,91.08 < 40 |only if walking
-Follow the path down |goto Ghostlands 29.35,7.87 < 30 |only if walking
-use the Voidstone##23732
-|tip Use it near the pink symbol on the ground.
-|tip All way at the top of the building.
-|tip Inside the building.
-kill Summoned Voidwalker##5676 |q 9619/1 |goto Ghostlands 27.00,15.25
-|only if BloodElf Warlock
-step
-Enter the building |goto Silvermoon City 75.65,44.91 < 10 |walk
-talk Talionia##16647
-|tip Downstairs inside the building.
-turnin The Rune of Summoning##9619 |goto Silvermoon City 74.39,47.15
-|only if BloodElf Warlock
 step
 talk Zalene Firstlight##16443
 |tip Inside the building.
@@ -4300,7 +4275,7 @@ Allow Enemies to Kill You
 Die on Purpose |havebuff Ghost##8326 |goto Ghostlands 12.41,25.66 |q 9163
 step
 talk Spirit Healer##6491
-Select _"Return me to life."_
+Select _"Return me to life."_ |gossip 88335
 Resurrect at the Spirit Healer |nobuff Ghost##8326 |goto Ghostlands 43.87,25.74 |q 9163 |zombiewalk
 step
 talk Arcanist Vandril##16197
@@ -4595,7 +4570,8 @@ kill Jurion the Deceiver##16248 |q 9170/3 |goto Ghostlands 32.09,74.45
 step
 talk Apothecary Enith##16208
 |tip Inside the crypt.
-Choose _<Administer the restorative draught.>_
+Choose _<Administer the restorative draught.>_ |gossip 91625
+Select _"A bit ungrateful, aren't we?  The way out is clear, flee quickly!"_ |gossip 91567
 Rescue Apothecary Enith |q 9164/1 |goto Ghostlands 32.14,73.95
 step
 Leave the crypt and enter the building |goto Ghostlands 29.95,87.79 < 10 |walk
@@ -4612,7 +4588,8 @@ Click Here if He's Not Here |confirm |q 9170 |or
 step
 talk Ranger Vedoran##16209
 |tip Downstairs inside the building.
-Choose _<Administer the restorative draught.>_
+Choose _<Administer the restorative draught.>_ |gossip 91546
+Select _"You're free to go now.  The way out is safe."_ |gossip 91545
 Rescue Ranger Vedoran |q 9164/3 |goto Ghostlands 32.79,89.92
 step
 Enter the building |goto Ghostlands 35.06,87.96 < 10 |walk
@@ -4624,7 +4601,8 @@ Follow the path up |goto Ghostlands 37.63,84.74 < 30 |only if walking
 Follow the path up and enter the building |goto Ghostlands 39.77,83.43 < 10 |walk
 talk Apprentice Varnis##16206
 |tip Inside the building.
-Choose _<Administer the restorative draught.>_
+Choose _<Administer the restorative draught.>_ |gossip 91627
+Select _"You're free to go now.  The way out is safe."_ |gossip 91628
 Rescue Ranger Vedoran |q 9164/2 |goto Ghostlands 40.98,83.22
 step
 kill Borgoth the Bloodletter##16247 |q 9170/2 |goto Ghostlands 41.26,83.04
@@ -4640,7 +4618,7 @@ Allow Enemies to Kill You
 Die on Purpose |havebuff Ghost##8326 |goto Ghostlands 35.04,80.32 |q 9170
 step
 talk Spirit Healer##6491
-Select _"Return me to life."_
+Select _"Return me to life."_ |gossip 88335
 Resurrect at the Spirit Healer |nobuff Ghost##8326 |goto Ghostlands 61.45,56.97 |q 9170 |zombiewalk
 step
 Enter the building |goto Ghostlands 54.75,49.44 < 10 |walk
@@ -4664,6 +4642,11 @@ Follow the path |goto Undercity 52.25,64.25 < 10 |walk
 talk Lady Sylvanas Windrunner##10181
 turnin Journey to Undercity##9180 |goto Undercity 58.05,91.79 |only if BloodElf
 turnin Journey to Undercity##9177 |goto Undercity 58.05,91.79 |only if not BloodElf
+step
+talk Ambassador Sunsorrow##16287 |goto Undercity/0 57.56,90.55 |only if BloodElf
+Select _"What is it that you have for me, ambassador?"_ |gossip 91547
+collect Lament of the Highborne##30632 |only if BloodElf
+|tip You may discard Lament of the Highborne, if you will need space in your bags. It provides the text of the song and its translation.
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Eastern Kingdoms (1-60)\\Tirisfal Glades (5-11)",{
 mopready=true,

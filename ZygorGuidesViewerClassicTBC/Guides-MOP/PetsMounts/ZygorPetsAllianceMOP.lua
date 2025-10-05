@@ -3,10 +3,65 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Alliance" then return end
 if ZGV:DoMutex("PetsAMOP") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts\\Battle Pets\\Aquatic Pets\\Aqua Strider",{
+patch='50500',
+source='Drop',
+author="support@zygorguides.com",
+description="This guide will teach you how to acquire the Aqua Strider battle pet.",
+keywords={"Drop","Aquatic"},
+pet=836,
+mopready=true,
+},[[
+step
+label "A_HOLLOW_REED_BEGIN"
+kill Nalash Verdantis##50776
+|tip He is a jinyu with a staff standing on the island here.
+|tip Respawn time is about an hour.
+|tip You may have to kill him more than once to obtain the pet item drop.
+collect Hollow Reed##86563 |goto Dread Wastes/0 64.25,58.46 |next "A_HOLLOW_REED_END" |or
+Click Here to Complete a Celestial Challenge daily to earn currency for a chance to acquire this Battle Pet |confirm |next "A_SATCHEL_OF_CELESTIAL_CHANCE"  |only if level == 90 and _G.GetAverageItemLevel()>=435
+|tip Spam-killing Nalash Verdantis may be the surest method to obtain this battle pet, but you can also obtain this pet and other mounts and pets by completing Celestial Challenge daily quests. |only if level == 90 and _G.GetAverageItemLevel()>=435
+'|complete haspet(836) |next "A_HOLLOW_REED_END" |or
+step
+label "A_SATCHEL_OF_CELESTIAL_CHANCE"
+ding 90 |or
+'|complete haspet(836) |or
+step
+Reach item level 435 |complete _G.GetAverageItemLevel()>=435 |or
+'|complete haspet(836) |or
+step
+talk Challenger Soong##64028
+|tip He is underneath the main outdoor platform at the shrine.
+Accept a Celestial Challenge Daily Quest |complete haveq(91702,91706,91704,91710,91718,91714,91708,91712,91716) or completedq(91702,91706,91704,91710,91718,91714,91708,91712,91716) |goto Vale of Eternal Blossoms/0 86.45,61.56 |or
+'|complete haspet(836) |or
+step
+Press _I_ and Queue for a {y}Random Mists of Pandaria Celestial{} Dungeon
+|tip Run random Celestial Dungeons until your quest is completed.
+|tip You will have to complete 3 or 4 Celestial Challenge daily quests to acquire enough August Stone Fragments to purchase a Satchel of Celestial Chance.
+Complete the Celestial Challenge Daily Quest |n
+earn 10 August Stone Fragment##3350
+Click Here to Return to the Beginning of the {b}Satchels of Celestial Chance{} Guide |confirm |next "A_SATCHEL_OF_CELESTIAL_CHANCE"
+|tip
+Click Here to Return to the Beginning of the Guide |confirm |next "A_HOLLOW_REED_BEGIN"
+step
+talk Avatar of the August Celestials##248108
+|tip This vendor is upstairs, inside the building, on the righthand balcony in the Shrine of Seven Stars.
+|tip He looks like a ghostly cloud serpent.
+buy Satchel of Celestial Chance##248666 |goto Shrine of Seven Stars/2 42.60,45.59
+step
+use Satchel of Celestial Chance##248666
+|tip You may have to purchase more than one satchel to acquire the pet.
+collect Hollow Reed##86563 |next "A_HOLLOW_REED_END"
+Click Here to Return to the Beginning of the Guide |confirm |next "A_HOLLOW_REED_BEGIN"
+step
+label "A_HOLLOW_REED_END"
+use Hollow Reed##86563
+learnpet Aqua Strider##836
+]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Fishy",{
 patch='50100',
 source='Quest',
-description="This guide will teach you how to acquire the Fishy bsttle pet.",
+description="This guide will teach you how to acquire the Fishy battle pet.",
 pet=847,
 mopready=true,
 },[[
@@ -73,6 +128,311 @@ step
 use Rodent Crate##92532
 |tip Capture the Sumprush Rodent using the crate.
 learnpet Sumprush Rodent##1128 |goto Krasarang Wilds/0 89.50,33.50
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts\\Battle Pets\\Critter Pets\\Porcupette",{
+patch='50500',
+source='Drop',
+author="support@zygorguides.com",
+description="This guide will teach you how to acquire the Porcupette battle pet.",
+keywords={"Drop","Critter"},
+pet=381,
+mopready=true,
+},[[
+step
+label "START_OVER_PORCUPETTE"
+Click Here to Acquire this Battle Pet from the {g}Sack of Pet Supplies{}. |confirm |next "SACK_OF_PET_SUPPLIES" |only if not completedallq(31909,31916,31926,31935,31971,31957,31956,31954,31953,31991,31955) |or
+Click Here to Acquire this Battle Pet from the {y}Satchel of Celestial Chance{} |confirm |next "SATCHEL_OF_CELESTIAL_CHANCE" |or
+|tip You can also purchase this pet from the auction house.
+'|complete haspet(381) |or
+step
+label "SACK_OF_PET_SUPPLIES"
+talk Stone Cold Trixxy##66466
+accept Grand Master Trixxy##31909 |goto Winterspring/0 65.63,64.52 |or
+'|complete completedq(31909) or haspet(381) |or
+step
+talk Stone Cold Trixxy##66466
+Select _"Let's rumble!"_ |gossip 41411
+Defeat Stone Cold Trixxy |q 31909/1 |goto Winterspring/0 65.63,64.52 |or
+'|complete completedq(31909) or haspet(381) |or
+step
+talk Stone Cold Trixxy##66466
+turnin Grand Master Trixxy##31909 |n
+collect Sack of Pet Supplies##89125 |goto Winterspring/0 65.63,64.52 |or
+'|complete haspet(381) |or
+step
+use Sack of Pet Supplies##89125
+|tip You can complete this quest again after daily quests reset.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE" |or
+Click Here to Continue to the Next Pet Battle |confirm |next
+'|complete haspet(381) |or
+step
+talk Lydia Accoste##66522
+accept Grand Master Lydia Accost##31916 |goto Deadwind Pass/0 40.04,76.46 |or
+'|complete completedq(31916) or haspet(381) |or
+step
+talk Lydia Accoste##66522
+Select _"Think you can take me in a pet battle? Let's fight!"_ |gossip 41781
+Defeat Lydia Accoste |q 31916/1 |goto Deadwind Pass/0 40.04,76.46 |or
+'|complete completedq(31916) or haspet(381) |or
+step
+talk Lydia Accoste##66522
+turnin Grand Master Lydia Accost##31916 |n
+collect Sack of Pet Supplies##89125 |goto Deadwind Pass/0 40.04,76.46 |or
+'|complete haspet(381) |or
+step
+use Sack of Pet Supplies##89125
+|tip You can complete this quest again after daily quests reset.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE" |or
+Click Here to Continue to the Next Pet Battle |confirm |next
+'|complete haspet(381) |or
+step
+talk Bloodknight Antari##66557
+accept Grand Master Antari##31926 |goto Shadowmoon Valley/0 30.52,41.76 |or
+'|complete completedq(31926) or haspet(381) |or
+step
+talk Bloodknight Antari##66557
+Select _"Let's rumble!"_ |gossip 41753
+Defeat Bloodknight Antari |q 31926/1 |goto Shadowmoon Valley/0 30.52,41.76 |or
+'|complete completedq(31926) or haspet(381) |or
+step
+talk Bloodknight Antari##66557
+turnin Grand Master Antari##31926 |n
+collect Sack of Pet Supplies##89125 |goto Shadowmoon Valley/0 30.52,41.76 |or
+'|complete haspet(381) |or
+step
+use Sack of Pet Supplies##89125
+|tip You can complete this quest again after daily quests reset.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE" |or
+Click Here to Continue to the Next Pet Battle |confirm |next
+'|complete haspet(381) |or
+step
+talk Major Payne##66675
+accept Grand Master Payne##31935 |goto Icecrown/0 77.39,19.57 |or
+'|complete completedq(31935) or haspet(381) |or
+step
+talk Major Payne##66675
+Select _"Think you can take me in a pet battle? Let's fight!"_ |gossip 40769
+Defeat Major Payne |q 31935/1 |goto Icecrown/0 77.39,19.57 |or
+'|complete completedq(31935) or haspet(381) |or
+step
+talk Major Payne##66675
+turnin Grand Master Payne##31935 |n
+collect Sack of Pet Supplies##89125 |goto Icecrown/0 77.39,19.57 |or
+'|complete haspet(381) |or
+step
+use Sack of Pet Supplies##89125
+|tip You can complete this quest again after daily quests reset.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE" |or
+Click Here to Continue to the Next Pet Battle |confirm |next
+'|complete haspet(381) |or
+step
+talk Obalis##66824
+accept Grand Master Obalis##31971 |goto Uldum/0 56.56,42.00 |or
+'|complete completedq(31971) or haspet(381) |or
+step
+talk Obalis##66824
+Defeat Grand Master Obalis |q 31971/1 |goto Uldum/0 56.56,42.00 |or
+'|complete completedq(31971) or haspet(381) |or
+step
+talk Obalis##66824
+turnin Grand Master Obalis##31971 |n
+collect Sack of Pet Supplies##89125 |goto Uldum/0 56.56,42.00 |or
+'|complete haspet(381) |or
+step
+use Sack of Pet Supplies##89125
+|tip You can complete this quest again after daily quests reset.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE" |or
+Click Here to Continue to the Next Pet Battle |confirm |next
+'|complete haspet(381) |or
+step
+talk Wastewalker Shu##66739
+accept Grand Master Shu##31957 |goto Dread Wastes/0 55.10,37.56 |or
+'|complete completedq(31957) or haspet(381) |or
+step
+talk Wastewalker Shu##66739
+Select _"Think you can take me in a pet battle? Let's fight!"_ |gossip 41822
+Defeat Wastewalker Shu |q 31957/1 |goto Dread Wastes/0 54.94,37.44 |or
+'|complete completedq(31957) or haspet(381) |or
+step
+talk Wastewalker Shu##66739
+turnin Grand Master Shu##31957 |goto Dread Wastes/0 55.10,37.56 |or
+'|complete haspet(381) |or
+step
+use Sack of Pet Supplies##89125
+|tip You can complete this quest again after daily quests reset.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE" |or
+Click Here to Continue to the Next Pet Battle |confirm |next
+'|complete haspet(381) |or
+step
+Enter the cave |goto Kun-Lai Summit/0 35.85,73.99 < 10
+talk Courageous Yon##66738
+|tip Inside the tiny cave near the summit of the mountain.
+accept Grand Master Yon##31956 |goto Kun-Lai Summit/0 35.84,73.63 |or
+'|complete completedq(31956) or haspet(381) |or
+step
+Enter the cave |goto Kun-Lai Summit/0 35.85,73.99 < 10
+talk Courageous Yon##66738
+|tip Inside the tiny cave near the summit of the mountain.
+Select _"Think you can take me in a pet battle? Let's fight!"_ |gossip 41820
+Defeat Courageous Yon |q 31956/1 |goto Kun-Lai Summit/0 35.83,73.86 |or
+'|complete completedq(31956) or haspet(381) |or
+step
+Enter the cave |goto Kun-Lai Summit/0 35.85,73.99 < 10
+talk Courageous Yon##66738
+|tip Inside the tiny cave near the summit of the mountain.
+turnin Grand Master Yon##31956 |n
+collect Sack of Pet Supplies##89125 |goto Kun-Lai Summit/0 35.84,73.63 |or
+'|complete haspet(381) |or
+step
+use Sack of Pet Supplies##89125
+|tip You can complete this quest again after daily quests reset.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE" |or
+Click Here to Continue to the Next Pet Battle |confirm |next
+'|complete haspet(381) |or
+step
+talk Mo'ruk##66733
+accept Grand Master Mo'ruk##31954 |goto Krasarang Wilds/0 62.24,45.91 |or
+'|complete completedq(31954) or haspet(381) |or
+step
+talk Mo'ruk##66733
+Select _"Think you can take me in a pet battle? Let's fight!"_ |gossip 41816
+Defeat Mo'ruk |q 31954/1 |goto Krasarang Wilds/0 62.24,45.91 |or
+'|complete completedq(31954) or haspet(381) |or
+step
+talk Mo'ruk##66733
+turnin Grand Master Mo'ruk##31954 |n
+collect Sack of Pet Supplies##89125 |goto Krasarang Wilds/0 62.24,45.91 |or
+'|complete haspet(381) |or
+step
+use Sack of Pet Supplies##89125
+|tip You can complete this quest again after daily quests reset.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE" |or
+Click Here to Continue to the Next Pet Battle |confirm |next
+'|complete haspet(381) |or
+step
+talk Hyuna of the Shrines##66730
+accept Grand Master Hyuna##31953 |goto The Jade Forest/0 47.96,54.17  |or
+'|complete completedq(31953) or haspet(381) |or
+step
+talk Hyuna of the Shrines##66730
+Select _"Think you can take me in a pet battle?  Let's fight!"_ |gossip 41814
+Defeat Hyuna of the Shrines |q 31953/1 |goto The Jade Forest/0 47.96,54.17 |or
+'|complete completedq(31953) or haspet(381) |or
+step
+talk Hyuna of the Shrines##66730
+turnin Grand Master Hyuna##31953 |n
+collect Sack of Pet Supplies##89125 |goto The Jade Forest/0 47.96,54.17 |or
+'|complete haspet(381) |or
+step
+use Sack of Pet Supplies##89125
+|tip You can complete this quest again after daily quests reset.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE" |or
+Click Here to Continue to the Next Pet Battle |confirm |next
+'|complete haspet(381) |or
+step
+talk Seeker Zusshi##66918
+accept Grand Master Zusshi##31991 |goto  |or
+'|complete completedq(31991) or haspet(381) |or
+step
+talk Seeker Zusshi##66918
+Select
+Defeat Seeker Zusshi |q 31991/1 |goto  |or
+'|complete completedq(31991) or haspet(381) |or
+step
+talk Seeker Zusshi##66918
+turnin Grand Master Zusshi##31991 |n
+collect Sack of Pet Supplies##89125 |goto  |or
+'|complete haspet(381) |or
+step
+use Sack of Pet Supplies##89125
+|tip You can complete this quest again after daily quests reset.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE" |or
+Click Here to Continue to the Next Pet Battle |confirm |next
+'|complete haspet(381) |or
+step
+talk Farmer Nishi##66734
+accept Grand Master Nishi##31955 |goto Valley of the Four Winds/0 46.06,43.68 |or
+'|complete completedq(31955) or haspet(381) |or
+step
+talk Farmer Nishi##66734
+Select _"Think you can take me in a pet battle?  Let's fight!"_ |gossip 41818
+Defeat Grand Master Nishi |q 31955/1 |goto Valley of the Four Winds/0 46.06,43.68 |or
+'|complete completedq(31955) or haspet(381) |or
+step
+talk Farmer Nishi##66734
+turnin Grand Master Nishi##31955 |n
+collect Sack of Pet Supplies##89125 |goto Valley of the Four Winds/0 46.06,43.68 |or
+'|complete haspet(381) |or
+step
+use Sack of Pet Supplies##89125
+|tip You can complete this quest again after daily quests reset.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE" |or
+Click Here to Continue to the Next Pet Battle |confirm |next
+'|complete haspet(381) |or
+step
+talk Aki the Chosen##66741
+|tip Inside the top floor of the building.
+accept Grand Master Aki##31958 |goto Vale of Eternal Blossoms/0 84.10,28.80 |or
+'|complete completedq(31958) or haspet(381) |or
+You may also find Aki at [Vale of Eternal Blossoms/0 31.26,74.10]
+step
+talk Aki the Chosen##66741
+|tip Inside the top floor of the building.
+Select _"Think you can take me in a pet battle?  Let's fight!"_ |gossip 41824
+Defeat Grand Master Aki |q 31958/1 |goto Vale of Eternal Blossoms/0 84.10,28.80 |or
+'|complete completedq(31958) or haspet(381) |or
+You may also find Aki at [Vale of Eternal Blossoms/0 31.26,74.10]
+step
+talk Aki the Chosen##66741
+|tip Inside the top floor of the building.
+turnin Grand Master Aki##31958 |n
+collect Sack of Pet Supplies##89125 |goto Vale of Eternal Blossoms/0 84.10,28.80 |or
+'|complete haspet(381) |or
+You may also find Aki at [Vale of Eternal Blossoms/0 31.26,74.10]
+step
+use Sack of Pet Supplies##89125
+|tip You can complete this quest again after daily quests reset.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE" |or
+Click Here to Collect the Currency to Purchase {b}Satchels of Celestial Chance{} |confirm |next "SATCHEL_OF_CELESTIAL_CHANCE"
+|tip You must be level 90, and at least item level 435 to obtain the Celestial Challenge daily quest.
+|tip
+Click Here to Return to the Beginning of the Guide |confirm |next "START_OVER_PORCUPETTE"
+'|complete haspet(381) |or
+step
+label "SATCHEL_OF_CELESTIAL_CHANCE"
+ding 90 |or
+'|complete haspet(381) |or
+step
+Reach item level 435 |complete _G.GetAverageItemLevel()>=435 |or
+'|complete haspet(381) |or
+step
+label "BEGIN_SATCHELS_AGAIN"
+talk Challenger Soong##64028
+|tip He is underneath the main outdoor platform at the shrine.
+Accept a Celestial Challenge Daily Quest |complete haveq(91702,91706,91704,91710,91718,91714,91708,91712,91716) or completedq(91702,91706,91704,91710,91718,91714,91708,91712,91716) |goto Vale of Eternal Blossoms/0 86.45,61.56
+step
+Press _I_ and Queue for a {y}Random Mists of Pandaria Celestial{} Dungeon
+|tip Run random Celestial Dungeons until your quest is completed.
+|tip You will have to complete 3 or 4 Celestial Challenge daily quests to acquire enough August Stone Fragments to purchase a Satchel of Celestial Chance.
+Complete the Celestial Challenge Daily Quest |n
+earn 10 August Stone Fragment##3350
+Click Here to Return to the Beginning of the {b}Satchels of Celestial Chance{} Guide |confirm |next "BEGIN_SATCHELS_AGAIN"
+|tip
+Click Here to Return to the Beginning of the Guide |confirm |next "START_OVER_PORCUPETTE"
+step
+talk Avatar of the August Celestials##248108
+|tip This vendor is upstairs, inside the building, on the righthand balcony in the Shrine of Seven Stars.
+|tip He looks like a ghostly cloud serpent.
+buy Satchel of Celestial Chance##248666 |goto Shrine of Seven Stars/2 42.60,45.59
+step
+use Satchel of Celestial Chance##248666
+|tip You may need to purchase more than one satchel to acquire the pet.
+collect Porcupette##89587 |next "END_OF_PORCUPETTE_GUIDE"
+Click Here to Return to the Beginning of the Guide |confirm |next "START_OVER_PORCUPETTE"
+step
+label "END_OF_PORCUPETTE_GUIDE"
+use Porcupette##89587
+learnpet Porcupette##381
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Elemental Pets\\Pandaren Air Spirit",{
 patch='51000',
@@ -1006,6 +1366,7 @@ It is strong against undead and weak to flying pets.
 I would suggest using flying pets against this enemy.
 Defeat Ti'un the Wanderer |q 32603/6 |goto Townlong Steppes/0 72.30,79.80
 step
+_Kafi_
 This enemy is a beast.
 It is strong against humanoids and weak against mechanical pets.
 I would suggest using a team of mechanical pets against this enemy.
@@ -1023,6 +1384,7 @@ Is is strong against Elementals and weak to beast attacks.
 I would suggest using a team of mechanical pets against this enemy.
 Defeat Ka'wi the Gorger |q 32603/1 |goto The Jade Forest/0 48.40,71.00
 step
+_Nitun_
 This enemy is a critter.
 Is is strong against Elementals and weak to beast attacks.
 I would suggest using beast pets against this enemy.
@@ -1213,7 +1575,7 @@ mopready=true,
 step
 Click here to proceed to the Battle Pet Questline. |confirm
 Click here to proceed to the Fabled Beast hunt. |confirm |next "fable"
-|tip In order to attain this pet, you will need to complete the Battle Pet Questline and defeating 10 Fabled beasts.
+|tip In order to attain this pet, you will need to complete the Battle Pet Questline and defeat 10 Fabled beasts.
 step
 talk Audrey Burnhep##63596
 learnspell Revive Battle Pets##125439 |goto Stormwind City/0 69.48,25.15
@@ -3054,14 +3416,14 @@ turnin Grand Master Aki##31951 |goto Vale of Eternal Blossoms/0 31.27,74.09
 |tip Humanoid battle pets are strong against Dragonkin battle pets.
 step
 talk Sara Finkleswitch##64572
-accept Beasts of Fable##32603 |goto Vale of Eternal Blossoms 86.60,60.00
+accept Beasts of Fable##32603 |goto Vale of Eternal Blossoms/0 86.60,60.00
 step
 label "dailies"
 _No-No_
 This enemy is aquatic.
 It is strong against undead and weak to flying attacks.
 I would suggest that you use flying pets against this enemy.
-Defeat No-No |q 32603/3 |goto Vale of Eternal Blossoms 11.00,70.90
+Defeat No-No |q 32603/3 |goto Vale of Eternal Blossoms/0 11.00,70.90
 step
 _Lucky Yi_
 This enemy is a critter.
@@ -3079,19 +3441,19 @@ _Xi'a_
 This enemy is aquatic.
 It is strong against undead and weak to flying pets.
 I would suggest using flying pets against this enemy.
-Defeat Xi'a |q 32603/10 |goto Krasarang Wilds 36.30,37.30
+Defeat Xi'a |q 32603/10 |goto Krasarang Wilds/0 36.30,37.30
 step
 _Gorespine_
 This enemy is a beast.
 It is strong against humanoids and weak against mechanical pets.
 I would suggest using a team of mechanical pets against this enemy.
-Defeat Gorespine |q 32603/2 |goto Dread Wastes 26.10,50.20
+Defeat Gorespine |q 32603/2 |goto Dread Wastes/0 26.10,50.20
 step
 _Ti'un the Wanderer_
 This enemy is aquatic.
 It is strong against undead and weak to flying pets.
 I would suggest using flying pets against this enemy.
-Defeat Ti'un the Wanderer |q 32603/6 |goto Townlong Steppes 72.30,79.80
+Defeat Ti'un the Wanderer |q 32603/6 |goto Townlong Steppes/0 72.30,79.80
 step
 This enemy is a beast.
 It is strong against humanoids and weak against mechanical pets.
@@ -3108,15 +3470,15 @@ _Ka'wi_
 This enemy is a critter.
 Is is strong against Elementals and weak to beast attacks.
 I would suggest using a team of mechanical pets against this enemy.
-Defeat Ka'wi the Gorger |q 32603/1 |goto The Jade Forest 48.40,71.00
+Defeat Ka'wi the Gorger |q 32603/1 |goto The Jade Forest/0 48.40,71.00
 step
 This enemy is a critter.
 Is is strong against Elementals and weak to beast attacks.
 I would suggest using beast pets against this enemy.
-Defeat Nitun |q 32603/9 |goto The Jade Forest 57.00,29.10
+Defeat Nitun |q 32603/9 |goto The Jade Forest/0 57.00,29.10
 step
 talk Sara Finkleswitch##64572
-turnin Beasts of Fable##32603 |goto Vale of Eternal Blossoms 86.60,60.00
+turnin Beasts of Fable##32603 |goto Vale of Eternal Blossoms/0 86.60,60.00
 talk Sara Finkleswitch##64572
 accept Beasts of Fable Book I##32604 |goto Vale of Eternal Blossoms/0 86.60,60.00
 accept Beasts of Fable Book II##32868 |goto Vale of Eternal Blossoms/0 86.60,60.00
@@ -3342,7 +3704,7 @@ turnin A Witness to History##31511 |goto Shrine of Seven Stars/1 35.40,65.90
 or
 turnin A Witness to History##31512 |goto Shrine of Seven Stars/1 35.40,65.90
 step
-map Vale of Eternal Blossoms
+map Vale of Eternal Blossoms/0
 path	54.60,23.70	52.80,23.10	47.00,18.70
 path	42.60,15.00	41.80,17.80	36.90,18.00
 path	353.50,21.30	35.00,28.70	35.60,34.50

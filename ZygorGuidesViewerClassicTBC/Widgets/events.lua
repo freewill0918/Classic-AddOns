@@ -245,7 +245,7 @@ function widget:UpdateTimes()
 		local row = self.rows[i]
 		if row then
 			if eventdata.startTime and eventdata.endTime then
-				local remain,remainsec
+				local remains,remainsec
 				if eventdata.future then
 					remains,remainsec = ZGV.F.GetTimeUntil(eventdata.startTime,"short")
 					remains = "in "..remains

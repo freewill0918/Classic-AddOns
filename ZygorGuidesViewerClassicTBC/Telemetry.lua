@@ -194,3 +194,112 @@ Telemetry.Hooks = {
 tinsert(ZGV.startups,{"Telemetry",function(self)
 	Telemetry:Setup()
 end})
+
+
+Telemetry.Miner = {}
+local Miner = Telemetry.Miner
+
+Miner.RecentOptions = {}
+Miner.CurrentStepData = {}
+local gossipFormat = "Select _\"%s\"_ ||gossip %d"
+local minerraceclass = (UnitRace("player") or "??").." "..(UnitClass("player") or "??")
+local ver=ZGV.version
+
+
+function Miner:Startup()
+	-- Hook selection functions
+	if C_GossipInfo then
+		if C_GossipInfo.SelectOption then hooksecurefunc(C_GossipInfo, "SelectOption",function(id) Miner:GetSelectedOption("id",id) end) end
+		if C_GossipInfo.SelectOptionByIndex then hooksecurefunc(C_GossipInfo, "SelectOptionByIndex",function(index) Miner:GetSelectedOption("index",index) end) end
+	end
+
+	-- record visible gossips. we can't wait for next frame, since autogossip will be too fast for us
+	ZGV:AddEventHandler("GOSSIP_SHOW",Miner.GetGossips) 
+
+	-- When we change step, verify that we have a reason to check its gossips
+	ZGV:AddMessageHandler("ZGV_STEP_CHANGED", Miner.CheckCurrentStep)
+end
+
+function Miner:CheckCurrentStep()
+	local gossip_target
+	local step_has_quests
+
+	for g,goal in ipairs(ZGV.CurrentStep.goals) do
+		if goal.action=="talk" then
+			gossip_target = goal.npcid
+		end
+		if goal.action=="accept" or goal.action=="turnin" then
+			step_has_quests = true
+		end				
+	end
+	if gossip_target and not step_has_quests then
+		local goalstable = ZGV.Sync:GetStepSource(ZGV.CurrentStepNum,"nomap")
+
+		Miner.CurrentStepData = {
+			num = ZGV.CurrentStep.num, 
+			goals = table.concat(goalstable,"\n"),
+			npc = gossip_target,
+		}
+	else
+		table.wipe(Miner.CurrentStepData)
+	end
+end
+
+function Miner:GetGossips()
+	if not Miner.CurrentStepData.npc then return end
+
+	Miner.RecentOptions = C_GossipInfo.GetOptions()
+
+	local unitguid = UnitGUID("npc") or ""
+	local npctype,npcid = unitguid:match("(%w+)%-%d+%-%d+%-%d+%-%d+%-(%d+)")
+	local npctype = npctype or "Unknown"
+	Miner.RecentOptions.source = (UnitName("npc") or "???").."##"..(tonumber(npcid) or npctype)
+	Miner.RecentOptions.sourceID = tonumber(npcid)
+end
+
+function Miner:GetSelectedOption(mode,param)
+	if not Miner.CurrentStepData.npc then return end
+	if Miner.RecentOptions.sourceID ~= Miner.CurrentStepData.npc then return end
+
+	local selectedOption = false
+
+	if mode=="id" then
+		for i,v in pairs(Miner.RecentOptions) do
+			if type(v)=="table" and v.gossipOptionID == param then
+				selectedOption = v
+				break
+			end
+		end
+
+	elseif mode=="index" then
+		for i,v in pairs(Miner.RecentOptions) do
+			if type(v)=="table" and v.orderIndex == param then
+				selectedOption = v
+				break
+			end
+		end
+	end
+
+	if not selectedOption then
+		return
+	end
+
+	local text = selectedOption.name:gsub("(Quest) ",""):gsub("(Delve) ","")
+	local gossipGoal = gossipFormat:format(text,selectedOption.gossipOptionID)
+	
+	ZGV.Telemetry:AddEvent('GOSSIP_MINED',{
+		guide = ZGV.CurrentGuide.title,
+		file = ZGV.CurrentGuide.filepath,
+		raceclass = minerraceclass,
+		ver = ver,
+		step = Miner.CurrentStepData.num,
+		stepgoals = Miner.CurrentStepData.goals,
+		gossip = gossipFormat:format(text,selectedOption.gossipOptionID),
+		gossipIcon = selectedOption.icon,
+	})
+end
+
+
+tinsert(ZGV.startups,{"Dataminer",function(self)
+	Miner:Startup()
+end})

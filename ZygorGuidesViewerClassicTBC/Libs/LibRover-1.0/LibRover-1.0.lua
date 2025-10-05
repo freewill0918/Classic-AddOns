@@ -80,7 +80,14 @@ Lib.IsClassicWOTLK = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 Lib.IsClassicCATA = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
 Lib.IsClassicMOP = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 Lib.IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
-Lib.IsPandariaRemix =  PlayerGetTimerunningSeasonID and PlayerGetTimerunningSeasonID() == Constants.TimerunningConsts.TIMERUNNING_SEASON_PANDARIA
+
+local TIMERUNNING_SEASON_PANDARIA = Constants.TimerunningConsts.TIMERUNNING_SEASON_PANDARIA or 1
+local TIMERUNNING_SEASON_LEGION = Constants.TimerunningConsts.TIMERUNNING_SEASON_LEGION or 2
+
+Lib.RemixSeason = (C_TimerunningUI and C_TimerunningUI.GetActiveTimerunningSeasonID) and C_TimerunningUI.GetActiveTimerunningSeasonID()
+Lib.IsPandariaRemix =  Lib.RemixSeason and Lib.RemixSeason == TIMERUNNING_SEASON_PANDARIA
+Lib.IsLegionRemix =  Lib.RemixSeason and Lib.RemixSeason == TIMERUNNING_SEASON_LEGION
+Lib.IsServerRemix = Lib.RemixSeason and Lib.RemixSeason>0
 
 --[[
 if not Lib then -- ookay, REPLACE the old thing! This is evil, I know.
@@ -150,7 +157,7 @@ local COST_FORCED = -1000000  -- guaranteed best
 local COST_MOUNTUP = 2.0  -- 1.5 + decision
 
 local COST_MODIFIERS_BY_MODE = { portal=1, taxi=1, item=1, walk=1, fly=1 }
-_G['COST_MODIFIERS_BY_MODE'] = COST_MODIFIERS_BY_MODE
+--_G['COST_MODIFIERS_BY_MODE'] = COST_MODIFIERS_BY_MODE -- global is not used anywhere, why taint it?
 
 local BASE_MOVEMENT_SPEED = BASE_MOVEMENT_SPEED
 local colors={['portal']="|cffff8800",['taxi']="|cff88ff00"}
@@ -1451,10 +1458,6 @@ local function _StartupThread()
 		yield("conts",1)
 	end
 
-	Lib.IsPandariaRemix =  PlayerGetTimerunningSeasonID and PlayerGetTimerunningSeasonID() == Constants.TimerunningConsts.TIMERUNNING_SEASON_PANDARIA
-	-- yes, we check again. PlayerGetTimerunningSeasonID() is not returning values at startup, but by this time, it will
-
-
 	do -- INITIALIZE SETUP
 		for i,text in ipairs(Lib.data.basenodes.setup) do
 			SmartAddNode(text,nil,use_cache)
@@ -2188,6 +2191,7 @@ function Lib:SetupInitialQuickTravel(startnode)
 		-- denial conditions
 		local reject_reason = (function()
 			if not dest then  return "no destination"  end ---------------- continue   -- destination NOT found!
+			if UnitOnTaxi("player") then return "no keying the taxi" end
 			if port.spell and not IsSpellKnown(port.spell) then  return "spell unknown"  end
 			if port.item then
 				local valid = PlayerHasToy and PlayerHasToy(port.item) -- toy collected
@@ -2385,12 +2389,16 @@ function Lib:UpdateNow(quiet,speed)
 	--self.updatepaused=nil
 end
 
-local valid_remix_nonpandaria_maps = {
-	[499]=true,
-	[500]=true,
-	[516]=true,
-	[517]=true,
-	[517]=true,
+local valid_remix_maps = {
+	[TIMERUNNING_SEASON_PANDARIA] = {
+		[499]=true,
+		[500]=true,
+		[516]=true,
+		[517]=true,
+		[517]=true,
+	},
+	[TIMERUNNING_SEASON_LEGION] = {
+	},
 }
 
 function Lib:IsDestinationImpossible(mymap,destmap)
@@ -2437,8 +2445,11 @@ function Lib:IsDestinationImpossible(mymap,destmap)
 		title = questdata and questdata.title
 		return true,"PANDARIA_LOCKED","You can't get to Pandaria until you're level 10 and have completed the " .. (title and "quest \""..title.."\"." or "initial quest.")
 
-	elseif (cont~=424 and not valid_remix_nonpandaria_maps[destmap]) and Lib.IsPandariaRemix then
+	elseif Lib.IsPandariaRemix and (cont~=424 and not valid_remix_maps[TIMERUNNING_SEASON_PANDARIA][destmap]) then
 		return true,"REMIX_LOCKED","You can't leave Pandaria on this character."
+
+	elseif Lib.IsLegionRemix and (cont~=619 and not valid_remix_maps[TIMERUNNING_SEASON_LEGION][destmap]) then
+		return true,"REMIX_LOCKED","You can't leave Broken isles on this character."
 
 	elseif false and destmap==808 and fac~="Neutral" then -- Can't get to Panda starter area
 		return true,"PANDA_STARTER","You can't get to the Panda Starter Area."
@@ -4850,7 +4861,7 @@ function Lib:CheckMaxSpeeds()
 		if (system and Lib.ZoneIsOutdoor(zoneid)) or (meta.flyable==true) then
 			local run,fly,comfortdragon
 			local bonus=0.0
-			if system==MAPENUM["EASTERNKINGDOMS"] or system==MAPENUM["KALIMDOR"] or system==MAPENUM["DEEPHOLM"] then run,fly,comfortdragon=unpack(Lib.speeds["Azeroth"])
+			if system==MAPENUM["EASTERNKINGDOMS"] or system==MAPENUM["KALIMDOR"] or zoneid==MAPENUM["DEEPHOLM"] then run,fly,comfortdragon=unpack(Lib.speeds["Azeroth"])
 			elseif system==MAPENUM["OUTLAND"] then run,fly,comfortdragon=unpack(Lib.speeds["Outland"])
 			elseif system==MAPENUM["NORTHREND"] then run,fly,comfortdragon=unpack(Lib.speeds["Northrend"])
 			elseif system==MAPENUM["PANDARIA"] then run,fly,comfortdragon=unpack(Lib.speeds["Pandaria"])
@@ -4971,6 +4982,10 @@ local function onEvent(this, event, arg1, arg2, arg3, arg4, arg5)
 		if event=="LOADING_SCREEN_DISABLED" then
 			if ZGV.db.profile.debug_librover_boat_loading then
 				Lib:BoatLockDisable("loading")
+			end
+			if not UnitOnTaxi("player") then
+				LibRover.unitOnTaxi=false 
+				LibTaxi:AbortTaxiTiming()
 			end
 		end
 

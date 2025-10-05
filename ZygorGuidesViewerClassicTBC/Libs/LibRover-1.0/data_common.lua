@@ -112,6 +112,7 @@ data.point_context_templates = {
 	{'tram',"Ride the Tram to {next_map}"},
 
 	{'deathgate',"Cast Death Gate to Acherus"},
+	{'zenpilgrimage',"Cast Zen Pilgrimage\nand Teleport to {next_map}"},
 	{'teleport',"Cast Teleport to {map}"},
 
 	{'courtesymage',"Find a Mage to Teleport you to {map}\nNo Direct Path Available"},

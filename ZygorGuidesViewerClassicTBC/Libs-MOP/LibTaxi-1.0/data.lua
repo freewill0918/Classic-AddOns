@@ -2609,7 +2609,7 @@ data.flightcost = {
 	},
 	{
 		tag = "297:377",
-		nodeID = 607,
+		nodeID = 609,
 		name = "Sandy Beach, Vashj'ir",
 		taxioperator = "seahorse",
 		faction = "H",
@@ -2630,7 +2630,7 @@ data.flightcost = {
 	},
 	{
 		tag = "296:377",
-		nodeID = 606,
+		nodeID = 608,
 		name = "Sandy Beach, Vashj'ir",
 		faction = "H",
 		neighbors = {
@@ -2688,7 +2688,7 @@ data.flightcost = {
 		name = "Silver Tide Hollow, Vashj'ir",
 		taxioperator = "seahorse",
 		neighbors = {
-			[607] = 36, -- Sandy Beach, Vashj'ir
+			[609] = 36, -- Sandy Beach, Vashj'ir
 			[521] = 72, -- Smuggler's Scar, Vashj'ir
 			[523] = 44, -- Tranquil Wash, Vashj'ir
 			[525] = 49, -- Legion's Rest, Vashj'ir
@@ -2720,7 +2720,7 @@ data.flightcost = {
 		name = "Smuggler's Scar, Vashj'ir",
 		taxioperator = "seahorse",
 		neighbors = {
-			[607] = 43, -- Sandy Beach, Vashj'ir
+			[609] = 43, -- Sandy Beach, Vashj'ir
 			[522] = 84, -- Silver Tide Hollow, Vashj'ir
 		},
 	},
@@ -2800,7 +2800,7 @@ data.flightcost = {
 		name = "Stygian Bounty, Vashj'ir",
 		faction = "H",
 		neighbors = {
-			[606] = 50, -- Sandy Beach, Vashj'ir
+			[608] = 50, -- Sandy Beach, Vashj'ir
 		},
 	},
 	{
@@ -3025,7 +3025,7 @@ data.flightcost = {
 			[384] = 89, -- The Bulwark, Tirisfal
 			[460] = 62, -- Brill, Tirisfal Glades
 			[601] = 248, -- Galen's Fall, Arathi
-			[606] = 345, -- Sandy Beach, Vashj'ir
+			[608] = 345, -- Sandy Beach, Vashj'ir
 		},
 	},
 	{

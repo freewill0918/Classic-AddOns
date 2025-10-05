@@ -7,6 +7,59 @@ local GuideMenu = ZGV.GuideMenu
 GuideMenu.Featured={}
 
 table.insert(GuideMenu.Featured,{
+title="Mists of Pandaria Phase 2 - Landfall", group="mop",
+
+{"section", text=[[LEVELING]]},
+{"banner", image=ZGV.IMAGESDIR.."MoPLeveling",showcaseonly=true},
+
+	{"content", text=[[Landfall]]},
+	{"text", text=[[Aid the Horde or Alliance as their fleets make landfall in the Krasarang Wilds.]]},
+	{"columns",
+	{"item", text="**Dominance Offensive**", guide="Leveling Guides\\Pandaria (85-90)\\Dominance Offensive",faction="H"},
+	{"item", text="**Operation: Shieldwall**", guide="Leveling Guides\\Pandaria (85-90)\\Operation: Shieldwall",faction="A"},
+	}, --columnsend
+
+	--{"content", text=[[Go to Pandaria zones and Level to 90]]},
+	--{"text", text=[[Once you've reached level 85 you're ready to go to Pandaria zones.]]},
+	--{"columns",
+	--{"item", text="**The Jade Forest (85-86)**", guide="Leveling Guides\\Pandaria (85-90)\\The Jade Forest (85-86)"},
+	--}, --columnsend
+
+
+
+{"section", text=[[SCENARIOS]]},
+{"banner", image=ZGV.IMAGESDIR.."MoPScenarios",showcaseonly=true},
+
+	{"content", text=[[Scenario Strategy Guides]]},
+	{"text", text=[[These guides will walk you through completing the objectives in Pandaria scenarios.]]},
+	{"columns",
+	{"item", text="**Assault on Zan'vess**", guide="Dungeon Guides\\Pandaria Scenarios\\Assault on Zan'vess"},
+	{"item", text="**A Little Patience**", guide="Dungeon Guides\\Pandaria Scenarios\\A Little Patience"},
+	{"item", text="**Dagger in the Dark**", guide="Dungeon Guides\\Pandaria Scenarios\\Dagger in the Dark"},
+	{"item", text="**Domination Point**", guide="Dungeon Guides\\Pandaria Scenarios\\Domination Point",faction="H"},
+	{"item", text="**Lion's Landing**", guide="Dungeon Guides\\Pandaria Scenarios\\Lion's Landing",faction="A"},
+	}, --columnsend
+
+{"section", text=[[DAILIES]]},
+{"banner", image=ZGV.IMAGESDIR.."MoPDailies",showcaseonly=true},
+
+	{"content", text=[[Landfall Daily Quest Guides]]},
+
+	{"item", text="**Dominance Offensive Dailies**", guide="Daily Guides\\Mists of Pandaria Dailies\\Dominance Offensive Dailies",faction="H"},
+	{"item", text="**Beastmaster's Hunt Dailies (Dominance Offensive)**", guide="Daily Guides\\Mists of Pandaria Dailies\\Beastmaster's Hunt Dailies (Dominance Offensive)",faction="H"},
+	{"item", text="**Operation: Shieldwall Dailies**", guide="Daily Guides\\Mists of Pandaria Dailies\\Operation: Shieldwall Dailies",faction="A"},
+	{"item", text="**Beastmaster's Hunt Dailies (Operation: Shieldwall)**", guide="Daily Guides\\Mists of Pandaria Dailies\\Beastmaster's Hunt Dailies (Operation: Shieldwall)",faction="A"},
+
+})
+
+
+
+
+
+
+
+
+table.insert(GuideMenu.Featured,{
 title="Mists of Pandaria", group="mop",
 
 {"section", text=[[LEVELING]]},

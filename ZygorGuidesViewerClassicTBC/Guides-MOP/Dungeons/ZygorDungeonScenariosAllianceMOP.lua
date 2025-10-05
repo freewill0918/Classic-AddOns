@@ -637,3 +637,301 @@ step
 Leave the Scenario |goto Unga Ingoo/0 49.56,60.70 > 1000 |noway |c
 |tip Right-click your player frame and select "Leave Instance Group."
 ]])
+ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Pandaria Scenarios\\Assault on Zan'vess",{
+description="This guide will walk you through the \"Assault on Zan'vess\" scenario.",
+keywords={"mists", "of", "pandaria", "scenario"},
+achieveid={8016,8017},
+patch='50001',
+model={46500,29899},
+startlevel=85,
+endlevel=90,
+mapid=883,
+mopready=true
+},[[
+step
+Enter the building |goto Vale of Eternal Blossoms/0 81.40,31.95 < 10 |walk |only if not subzone("Seat of Knowledge")
+talk Lorewalker Fu##78709
+|tip Inside the building.
+Select _"Tell me of the Assault on Zan'vess."_ |script GossipFrame:SelectGossipOption(7)
+Enter the Assault on Zan'vess Scenario |scenariostart |goto Vale of Eternal Blossoms/0 82.96,30.38
+step
+clicknpc Skyfire Gyrocopter##68115
+Join the assault of Zan'vess |scenariogoal 1/22294 |goto Assault on Zan'vess/0 45.33,24.67
+step
+kill Sonic Control Tower##67279+
+|tip Use the first ability on your bar to destroy them.
+|tip If you see a missile incoming, use the second ability to raise a shield.
+Destroy the Kyparite Quarry Sonic Control Towers |scenariogoal 2/22295 |goto Assault on Zan'vess/0 41.09,84.34
+step
+kill Zan'thik Guardian##67710+, Sonic Control Tower##67279+
+|tip First, you must take out the Guardians channeling the shields.
+|tip You will see yellow pools on the ground to indicate their location.
+|tip Use the first ability on your bar to destroy them.
+|tip If you see a missile incoming, use the second ability to raise a shield.
+Destroy the Whispering Stone Sonic Control Towers |scenariogoal 2/22296 |goto Assault on Zan'vess/0 28.65,75.82
+step
+kill Scorpid Relocator##67784+, Sonic Control Tower##67279+
+|tip First, you must take out the scorpids carrying the towers.
+|tip Use the first ability on your bar to destroy them.
+|tip If you see a missile incoming, use the second ability to raise a shield.
+Destroy the Venomsting Pits Stone Sonic Control Towers |scenariogoal 2/22297 |goto Assault on Zan'vess/0 29.41,53.76
+step
+Follow the path |goto Assault on Zan'vess/0 50.34,45.32 < 15 |walk
+Follow the path up |goto Assault on Zan'vess/0 50.56,53.05 < 15 |walk
+kill Squad Leader Bosh##68143
+|tip You can pull the group of enemies before Bosh without engaging him.
+Defeat Squad Leader Bosh |scenariogoal 3/22483 |goto Assault on Zan'vess/0 51.00,55.69
+step
+Follow the path up |goto Assault on Zan'vess/0 48.49,55.32 < 15 |walk
+Follow the path |goto Assault on Zan'vess/0 45.25,53.30 < 15 |walk
+Follow the path |goto Assault on Zan'vess/0 42.25,53.66 < 15 |walk
+Reach the Heart of Zan'vess |scenariogoal 3/22301 |goto Assault on Zan'vess/0 40.13,55.32
+step
+kill Commander Tel'vrak##67879
+|tip Periodically, swarms of adds will engage.
+|tip Use the special action ability "Strafing Run" to kill them.
+|tip Move out of areas targeted on the ground.
+Defeat Commander Tel'vrak |scenariogoal 4/22299 |goto Assault on Zan'vess/0 38.62,56.23
+step
+'|script LeaveInstanceParty()
+Leave the Scenario |goto Assault on Zan'vess/0 38.62,56.23 > 1000 |noway |c
+|tip Right-click your player frame and select "Leave Instance Group."
+]])
+ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Pandaria Scenarios\\A Little Patience",{
+description="This guide will walk you through the \"A Little Patience\" scenario.",
+keywords={"mists", "of", "pandaria", "scenario"},
+achieveid={7988,7989,7990,7992,7993,7991},
+patch='50001',
+model={46813},
+startlevel=85,
+endlevel=90,
+mapid=912,
+mopready=true
+},[[
+step
+talk Lyalia##64610
+|tip You must complete a brief quest chain to accept the quest related to this scenario.
+|tip You can pick up the initial quest, "Meet the Scout," from Lyalia outside of Shrine of Seven Stars.
+|tip Complete the two following quests to unlock Lion's Landing.
+accept Meet the Scout##32246 |goto Vale of Eternal Blossoms/0 83.99,58.66
+step
+talk Scout Lynna##68311
+|tip Wait for the dialogue to complete
+turnin Meet the Scout##32246 |goto Krasarang Wilds/0 85.24,29.13
+step
+talk King Varian Wrynn##61796
+accept A King Among Men##32247 |goto Krasarang Wilds/0 85.29,29.11
+step
+Follow the path |goto Krasarang Wilds/0 84.09,26.19 < 15 |only if walking
+Follow the path |goto Krasarang Wilds/0 81.64,25.58 < 15 |only if walking
+talk Marshal Troteman##68331
+Find Marshal Troteman |q 32247/2 |goto Krasarang Wilds/0 79.64,25.05
+step
+Follow the path |goto Krasarang Wilds/0 80.31,22.51 < 15 |only if walking
+Follow the path |goto Krasarang Wilds/0 80.17,19.48 < 15 |only if walking
+talk Hilda Hornswaggle##68312
+Find Hilda Hornswaggle |q 32247/3 |goto Krasarang Wilds/0 80.43,17.53
+step
+Kill Horde enemies around this area
+Kill #25# Horde |q 32247/1 |goto Krasarang Wilds/0 78.52,22.24
+step
+talk King Varian Wrynn##61796
+|tip He is standing next to you.
+turnin A King Among Men##32247
+accept Lion's Landing##32109
+step
+click Flare Launcher##216609
+turnin Lion's Landing##32109 |goto Krasarang Wilds/0 85.60,29.13
+step
+talk Admiral Taylor##67940
+accept A Little Patience##32248 |goto Krasarang Wilds/0 89.55,32.58
+step
+Enter the building |goto Vale of Eternal Blossoms/0 81.40,31.95 < 10 |walk |only if not subzone("Seat of Knowledge")
+talk Lorewalker Fu##78709
+|tip Inside the building.
+Select _"Tell me of how Varian and Tyrande learned a Little Patience."_ |script GossipFrame:SelectGossipOption(10)
+Enter the A Little Patience Scenario |scenariostart |goto Vale of Eternal Blossoms/0 82.96,30.38
+step
+talk King Varian Wrynn##69026
+turnin A Little Patience##32248 |goto A Little Patience/0 41.91,15.44
+stickystart "info"
+step
+talk Duff McStrum##68057 |goto A Little Patience/0 39.04,23.11
+talk Ferra Pearl##68599 |goto A Little Patience/0 36.65,16.27
+talk Rosey Axlerod##67883 |goto A Little Patience/0 42.46,24.15
+talk Elder Adler##67569 |goto A Little Patience/0 22.60,32.64
+talk Master Brownstone##68240 |goto A Little Patience/0 48.41,22.12
+|tip Only two allies will be available.
+|tip About thirty seconds after entering the scenario, you can look on your world map for white dialogue icons to note their location.
+Click here when you talk to the two available NPCs |confirm
+step
+When you initiate the instance, there will be random defense camps that spawn.
+|tip Refer to your map to locate them.
+|tip Occasionally, the defense camps will be attacked. Have 1 well geared player defend, while the others gathering resources.
+Kill enemies around the area
+Construct #2# Defenses |scenariogoal 1/22517
+step
+label "info"
+Throughout this scenario, you will need to collect various objects
+|tip Look for shining objects on the ground.
+|tip Use these objects at the available construction sites to increase your progress.
+step
+kill Commander Scargash##68474
+|tip If you do not outgear the encounter and are targeted by Blood Rage, run away.
+|tip Occasionally, Scargash will use Crushing Leap, jumping to an area and knocking everyone nearby back.
+Defeat Commander Scargash |scenariogoal 2/22461 |goto A Little Patience/0 47.51,60.60
+step
+'|script LeaveInstanceParty()
+Leave the Scenario |goto A Little Patience/0 47.51,60.60 > 1000 |noway |c
+|tip Right-click your player frame and select "Leave Instance Group."
+]])
+ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Pandaria Scenarios\\Dagger in the Dark",{
+description="This guide will walk you through the \"Dagger in the Dark\" scenario.",
+keywords={"mists", "of", "pandaria", "scenario"},
+achieveid={8009,7987,7984,7986},
+patch='50001',
+model={46480,46111},
+startlevel=85,
+endlevel=90,
+mapid=914,
+mopready=true
+},[[
+step
+Enter the building |goto Vale of Eternal Blossoms/0 81.40,31.95 < 10 |walk |only if not subzone("Seat of Knowledge")
+talk Lorewalker Fu##78709
+|tip Inside the building.
+Select _"Tell me of the Dagger in the Dark that felled Vol'jin."_ |script GossipFrame:SelectGossipOption(9)
+Enter the Dagger in the Dark Scenario |scenariostart |goto Vale of Eternal Blossoms/0 82.96,30.38
+step
+talk Vol'jin##67414
+Select _"I'm ready. Let's go."_ |script GossipFrame:SelectGossipOption(1)
+Speak to Vol'jin |scenariogoal 1/22282 |goto Dagger in the Dark/0 56.08,75.18
+step
+Follow the path |goto Dagger in the Dark/0 51.16,60.97 < 15 |walk
+Find the Saurok Cave |scenariogoal 2/22281 |goto Dagger in the Dark/0 52.48,46.41
+step
+Kill Darkhatched enemies around this area
+Defeat the Saurok Patrol |scenariogoal 3/22416 |goto Dagger in the Dark/0 52.28,44.09
+step
+kill Darkhatched Lizard-Lord##67263
+Defeat the Darkhatched Lizard-Lord |scenariogoal 3/22238 |goto Dagger in the Dark/0 52.06,44.51
+step
+Watch the dialogue
+clicknpc The Spring Saurok-Slayer##67706
+|tip Wait a moment for the boat to be repaired.
+Jump in the Boat |invehicle |goto Dagger in the Dark/0 51.84,43.05
+step
+kill Darkhatched Sorcerer##67748
+|tip Kill Sorcerers along the way to maintain your progress.
+Complete the Boat Ride |scenariogoal 4/22284 |goto Dagger in the Dark/1 50.34,51.15
+step
+Find the Saurok Hatchery |scenariogoal 5/22287 |goto Dagger in the Dark/1 56.61,31.95
+step
+kill Broodmaster Noshi##67264
+|tip Use Flamethrower when you get swarmed by Darkhatched Swarmlings.
+Defeat Broodmaster Noshi |scenariogoal 6/22239 |goto Dagger in the Dark/1 53.00,24.89
+step
+Watch the dialogue
+clicknpc Broken Mogu Tablet##67863
+|tip Wait for the dialogue to complete.
+Investigate the West Statue |scenariogoal 7/22288 |goto Dagger in the Dark/1 51.49,34.17 |future
+step
+clicknpc Broken Mogu Tablet##67863
+Investigate the East Statue |scenariogoal 7/22289 |goto Dagger in the Dark/1 54.91,16.32
+step
+Watch the dialogue
+kill Rak'gor Bloodrazor##67266
+|tip Wait for the dialogue to complete.
+|tip Rak'gor will place a Gas Bomb on the ground that you will need to move out of.
+Defeat Rak'gor Bloodrazor |scenariogoal 8/22240 |goto Dagger in the Dark/1 53.54,26.34
+step
+'|script LeaveInstanceParty()
+Leave the Scenario |goto Dagger in the Dark/1 53.54,26.34 > 1000 |noway |c
+|tip Right-click your player frame and select "Leave Instance Group."
+]])
+ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Pandaria Scenarios\\Lion's Landing",{
+description="This guide will walk you through the \"Lion's Landing\" scenario.",
+keywords={"mists", "of", "pandaria", "scenario"},
+achieveid={8010,8011,8012},
+patch='50001',
+model={46221},
+startlevel=85,
+endlevel=90,
+mapid=911,
+mopready=true
+},[[
+step
+Enter the building |goto Vale of Eternal Blossoms/0 81.40,31.95 < 10 |walk |only if not subzone("Seat of Knowledge")
+talk Lorewalker Fu##78709
+|tip Inside the building.
+Select _"Tell me of the defense of Lion's Landing."_ |script GossipFrame:SelectGossipOption(11)
+Enter the Lion's Landing Scenario |scenariostart |goto Vale of Eternal Blossoms/0 82.96,30.38
+step
+Kill Bloodhilt enemies around this area
+talk Daggin Windbeard##68581
+|tip Kill any enemies attacking him to enable dialogue.
+Select _"Fight with us."_ |script GossipFrame:SelectGossipOption(1)
+Join Daggin Windbeard |scenariogoal 1/22463 |goto Lion's Landing/0 79.92,78.82
+step
+Follow the path down |goto Lion's Landing/0 72.98,79.15 < 10 |walk
+talk Admiral Taylor##68685
+|tip Kill any enemies attacking him to enable dialogue.
+Select _"Fight with us."_ |script GossipFrame:SelectGossipOption(1)
+Join Admiral Taylor |scenariogoal 2/22466 |goto Lion's Landing/0 69.07,69.32
+step
+Kill enemies around this area
+Slay the South Attackers |scenariogoal 3/22484 |goto Lion's Landing/0 70.63,64.25
+step
+Kill enemies around this area
+Slay the East Attackers |scenariogoal 3/22485 |goto Lion's Landing/0 73.17,60.24
+step
+Kill enemies around this area
+Slay the West Attackers |scenariogoal 3/22486 |goto Lion's Landing/0 69.35,57.84
+step
+talk High Marshal Twinbraid##68851
+Select _"We're here to help."_ |script GossipFrame:SelectGossipOption(1)
+Locate High Marshal Twinbraid |scenariogoal 4/22488 |goto Lion's Landing/0 67.61,49.47
+step
+kill Uduji##67434
+Slay the Assault Commander |scenariogoal 4/22487 |goto Lion's Landing/0 65.48,51.71
+step
+talk Amber Kearnen##68871
+|tip Kill any enemies attacking her to enable dialogue.
+Select _"Fight with us."_ |script GossipFrame:SelectGossipOption(1)
+Gather Amber's Report |scenariogoal 5/22493 |goto Lion's Landing/0 73.19,51.23
+step
+talk Sully "The Pickle" McLeary##68883
+Select _"Fight with us."_ |script GossipFrame:SelectGossipOption(1)
+Gather Sully's Report |scenariogoal 5/22495 |goto Lion's Landing/0 74.94,61.37
+step
+Enter the building |goto Lion's Landing/0 73.27,66.21 < 10 |walk
+talk Mishka##68870
+|tip Inside the building.
+Select _"Fight with us."_ |script GossipFrame:SelectGossipOption(1)
+Gather Mishka's Report |scenariogoal 5/22494 |goto Lion's Landing/0 75.09,70.74
+step
+clicknpc Place Boomsticks Here!##68885
+Place the Boomsticks |scenariogoal 6/22498 |goto Lion's Landing/0 66.74,53.24
+step
+clicknpc Place Rockets Here!##68886
+Place the Rockets |scenariogoal 6/22496 |goto Lion's Landing/0 66.83,52.76
+step
+clicknpc Place Bombs Here!##68884
+Place the Bombs |scenariogoal 6/22497 |goto Lion's Landing/0 67.14,52.34
+step
+Kill the approaching enemies
+Defeat the First Wave of Enemies |scenariogoal 7/22489 |goto Lion's Landing/0 65.34,51.58
+step
+Kill the approaching enemies
+Defeat the Second Wave of Enemies |scenariogoal 7/22490 |goto Lion's Landing/0 65.34,51.58
+step
+Kill the approaching enemies
+Defeat the Third Wave of Enemies |scenariogoal 7/22491 |goto Lion's Landing/0 65.34,51.58
+step
+kill Sunwalker Chagon##67548
+Slay the Horde Commander |scenariogoal 7/22492 |goto Lion's Landing/0 65.34,51.58
+step
+'|script LeaveInstanceParty()
+Leave the Scenario |goto Lion's Landing/0 65.34,51.58 > 1000 |noway |c
+|tip Right-click your player frame and select "Leave Instance Group."
+]])

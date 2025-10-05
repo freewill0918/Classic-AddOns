@@ -12566,7 +12566,7 @@ Learn Master Jewelcrafting |skillmax Jewelcrafting,375 |goto Hellfire Peninsula/
 step
 talk Kalaen##18751
 |tip Inside the building.
-Train Brilliant Blood Garnet |learn Brilliant Blood Garnet##28903 |goto Hellfire Peninsula/0 56.78,37.79
+Train Bold Blood Garnet |learn Bold Blood Garnet##28905 |goto Hellfire Peninsula/0 56.78,37.79
 stickystart "Collect_Flame_Spessarite_Total"
 stickystart "Collect_Shadow_Draenite_Total"
 stickystart "Collect_Primal_Earth_Total"
@@ -12808,7 +12808,7 @@ collect 30 Blood Garnet##23077 |or
 |tip You can cut any low level gem for points.
 '|complete skill("Jewelcrafting") >= 320 |or
 step
-create 30 Brilliant Blood Garnet##28903,Jewelcrafting,320
+create 30 Bold Blood Garnet##28905,Jewelcrafting,320
 |tip You can cut any low level gem for points.
 step
 talk Kalaen##18751

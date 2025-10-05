@@ -3,8 +3,10 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Alliance" then return end
 if ZGV:DoMutex("PetsAMOP") then return end
 ZygorGuidesViewer.GuideMenuTier = "TRI"
+ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts\\Battle Pets\\Aquatic Pets\\Aqua Strider")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Fishy")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Battle Pets\\Beast Pets\\Sumprush Rodent")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts\\Battle Pets\\Critter Pets\\Porcupette")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Battle Pets\\Elemental Pets\\Pandaren Air Spirit")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Battle Pets\\Elemental Pets\\Pandaren Earth Spirit")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Battle Pets\\Elemental Pets\\Pandaren Fire Spirit")

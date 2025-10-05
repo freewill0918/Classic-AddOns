@@ -374,7 +374,7 @@ Defeat Ellia Ravenmane |q 30727/1 |goto Krasarang Wilds/0 35.17,75.05
 |only if haveq(30727) or completedq(30727)
 step
 talk Julia Bates##60535
-Let's fight!
+Select _"Let's fight!"_ |gossip 126148
 Defeat Julia Bates |q 30729/1 |goto Krasarang Wilds/0 28.90,75.50
 |only if haveq(30729) or completedq(30729)
 step
@@ -3317,6 +3317,7 @@ stickystart "Spirit_Void_Buff"
 step
 clicknpc Captive Pandaren Spirit##59231
 |tip Avoid Twisted Tormentors when possible.
+|tip You can be mounted while clicking them.
 Free #15# Captive Pandaren Spirits |q 30320/1 |goto Vale of Eternal Blossoms/0 42.47,19.59 |or
 |only if haveq(30320) or completedq(30320)
 stickystop "Spirit_Void_Buff"
@@ -3360,10 +3361,66 @@ turnin The Eternal Vigil##30307 |goto Vale of Eternal Blossoms/0 56.70,43.59 |on
 accept Whitepetal Lake##31131 |goto Vale of Eternal Blossoms/0 56.70,43.59 |or |next "Whitepetal_Lake"
 accept Mistfall Village##31242 |goto Vale of Eternal Blossoms/0 56.70,43.59 |or |next "Mistfall_Village"
 accept Attack on Mistfall Village##31243 |goto Vale of Eternal Blossoms/0 56.71,43.61 |or |next "Attack_on_Mistfall"
+|tip
+Click Here if no quests are available |confirm
 step
 label "Spirit_Void_Buff"
 click Spirit Vortex
+|tip They look like pink fissures on the ground around this area.
 |havebuff  Spirit Void##129811 |q 30320 |goto Vale of Eternal Blossoms/0 41.07,22.57
+step
+talk Anji Autumnlight##58465
+accept Burning Away the Filth##30282 |goto Vale of Eternal Blossoms/0 56.56,43.62
+step
+talk Kun Autumnlight##58471
+accept Rude Awakenings##30292 |goto Vale of Eternal Blossoms/0 56.52,43.61
+step
+talk He Softfoot##58470
+accept The Silent Approach##30281 |goto Vale of Eternal Blossoms/0 56.55,43.21
+step
+talk Ren Firetongue##58469
+accept A Smashing Impression##30283 |goto Vale of Eternal Blossoms/0 56.68,43.16
+stickystart "Burn_10_Shao-Tien_Banners"
+stickystart "Kill_10_Paleblade_Flesheaters"
+stickystart "Slay_6_Whitepetal_Lake_Mogu"
+step
+click Shao-Tien Rutual Statues
+|tip There are four of them around a golden pillar.
+Destroy the Shao-Tien Ritual Statues |q 30283/1 |goto Vale of Eternal Blossoms/0 43.98,44.38
+step
+label "Burn_10_Shao-Tien_Banners"
+use the Shado-Pan Torch##84781
+Burn #10# Shao-Tien Banners |q 30282/1 |goto Vale of Eternal Blossoms/0 43.68,46.28
+step
+label "Kill_10_Paleblade_Flesheaters"
+Kill Paleblade enemies around this area |kill Paleblade Flesheater##63130, Paleblade Flesheater##63082
+Slay #10# Paleblade Flesheaters |q 30292/1 |goto Vale of Eternal Blossoms/0 44.50,48.13
+step
+label "Slay_6_Whitepetal_Lake_Mogu"
+Kill Shao-Tien enemies around this area |kill Shao-Tien Reclaimer##63081, Shao-Tien Mindbender##63065,Shao-Tien Reclaimer##63131, Shao-Tien Mindbender##63129
+Slay #6# Whitepetal Lake Mogu |q 30281/1 |goto Vale of Eternal Blossoms/0 44.81,41.59
+step
+_Click the Quest Complete Box_
+turnin The Silent Approach##30281
+accept The Soul-Gatherer##30482
+step
+kill Shadowmaster Sydow##246246
+collect Soul-Gatherer's Beads##85161 |q 30482/1 |goto Vale of Eternal Blossoms/0 40.69,48.12
+step
+talk Ren Firetongue##58469
+turnin A Smashing Impression##30283 |goto Vale of Eternal Blossoms/0 56.69,43.17
+step
+talk He Softfoot##58470
+turnin The Soul-Gatherer##30482 |goto Vale of Eternal Blossoms/0 56.54,43.22
+step
+talk Kun Autumnlight##58471
+turnin Rude Awakenings##30292 |goto Vale of Eternal Blossoms/0 56.52,43.64
+step
+talk Anji Autumnlight##58465
+turnin Burning Away the Filth##30282 |goto Vale of Eternal Blossoms/0 56.56,43.61
+step
+talk Leven Dawnblade##58408
+accept Mistfall Village##31249 |goto Vale of Eternal Blossoms/0 56.70,43.60 |or |next "Mistfall_Village"
 step
 label "Whitepetal_Lake"
 talk He Softfoot##59342
@@ -3478,6 +3535,7 @@ accept Mistfall Village##31245 |goto Vale of Eternal Blossoms/0 42.32,46.02 |or 
 accept Setting Sun Garrison##31247 |goto Vale of Eternal Blossoms/0 42.32,46.02 |or |next "Setting_Sun_Garrison"
 accept Guo-Lai Infestation##31240 |goto Vale of Eternal Blossoms/0 42.32,46.02 |or |next "Guo-Lai_Infest"
 accept Attack on Mistfall Village##31246 |goto Vale of Eternal Blossoms/0 42.32,46.01 |or |next "Attack_on_Mistfall"
+accept Guo-Lai Encampment##31244 |goto Vale of Eternal Blossoms/0 42.32,46.01 |or |next "Guo-Lai_Ruins"
 step
 kill Vicejaw##246176 |q 30234/1 |goto Vale of Eternal Blossoms/0 37.44,50.94
 |only if haveq(30234) or completedq(30234)
@@ -3494,9 +3552,11 @@ label "Mistfall_Village"
 talk Che Wildwalker##59338
 turnin Mistfall Village##31242 |goto Vale of Eternal Blossoms/0 33.87,72.21 |only if haveq(31242) or completedq(31242)
 turnin Mistfall Village##31245 |goto Vale of Eternal Blossoms/0 33.87,72.21 |only if haveq(31245) or completedq(31245)
-accept Ruffling Some Feathers##30232 |goto Vale of Eternal Blossoms/0 33.87,72.20 |or
-accept The Pandaren Uprising Relived##30237 |goto Vale of Eternal Blossoms/0 33.87,72.20 |or
-accept Encroaching Storm##30194 |goto Vale of Eternal Blossoms/0 33.87,72.19 |or
+turnin Mistfall Village##31249 |goto Vale of Eternal Blossoms/0 33.87,72.21 |only if haveq(31249) or completedq(31249)
+accept Ruffling Some Feathers##30232 |goto Vale of Eternal Blossoms/0 33.87,72.20
+accept The Pandaren Uprising Relived##30237 |goto Vale of Eternal Blossoms/0 33.87,72.20
+accept Encroaching Storm##30194 |goto Vale of Eternal Blossoms/0 33.87,72.19
+accept Return to Rest##30238 |goto Vale of Eternal Blossoms/0 33.86,72.20
 |tip
 Click here if no quests are available |confirm
 step
@@ -3563,7 +3623,13 @@ collect 10 Fairlands Gazelle Meat##79244 |q 30193/1 |goto Vale of Eternal Blosso
 [Vale of Eternal Blossoms/0 25.28,55.78]
 |only if haveq(30193) or completedq(30193)
 stickystart "Collect_12_Lushrooms"
+stickystart "Kill_8_Mogu_Spirits"
 step
+click Pandaren Gravestone##210419+
+Honor #6# Pandaren Gravestones |q 30238/1 |goto Vale of Eternal Blossoms/0 44.20,69.72
+|only if haveq(30238) or completedq(30238)
+step
+label "Kill_8_Mogu_Spirits"
 kill 8 Ancient Mogu Spirit##58671 |q 30237/1 |goto Vale of Eternal Blossoms/0 45.24,72.03
 |only if haveq(30237) or completedq(30237)
 step
@@ -3578,7 +3644,7 @@ kill Silkfeather Hawk##58457
 collect 80 Silken Feather##84121 |q 30232/1 |goto Vale of Eternal Blossoms/0 31.20,61.80
 |only if haveq(30232) or completedq(30232)
 step
-Click the Quest Complete Box
+_Click the Quest Complete Box_
 turnin The Pandaren Uprising Relived##30237
 accept Lao-Fe the Slavebinder##30239
 |tip This quest may bug, skip the step if it doesn't accept.
@@ -3602,8 +3668,10 @@ turnin Steer Clear of the Beer Here##30191 |goto Vale of Eternal Blossoms/0 35.3
 |only if haveq(30190,30192,30191) or completedq(30190,30192,30191)
 step
 talk Che Wildwalker##59338
+turnin The Pandaren Uprising Relived##30237 |goto Vale of Eternal Blossoms/0 33.86,72.21 |only if haveq(30237) or completedq(30237)
 turnin Ruffling Some Feathers##30232 |goto Vale of Eternal Blossoms/0 33.86,72.20 |only if haveq(30232) or completedq(30232)
 turnin Encroaching Storm##30194 |goto Vale of Eternal Blossoms/0 33.87,72.19 |only if haveq(30194) or completedq(30194)
+turnin Return to Rest##30238 |goto Vale of Eternal Blossoms/0 33.87,72.19 |only if haveq(30238) or completedq(30238)
 accept Quid Pro Quo##30235 |goto Vale of Eternal Blossoms/0 33.86,72.20 |or
 accept Lao-Fe the Slavebinder##30239 |goto Vale of Eternal Blossoms/0 33.86,72.20 |or
 accept Return to Rest##30238 |goto Vale of Eternal Blossoms/0 33.86,72.20 |or
@@ -3740,10 +3808,16 @@ step
 label "Guo-Lai_Ruins"
 talk Leven Dawnblade##59332
 turnin Mogu within the Ruins of Guo-Lai##31295 |goto Vale of Eternal Blossoms/0 33.81,38.50 |only if haveq(31295) or completedq(31295)
+turnin Guo-Lai Encampment##31244 |goto Vale of Eternal Blossoms/0 33.81,38.50 |only if haveq(31244) or completedq(31244)
 accept Painting the Ruins Red##30298 |goto Vale of Eternal Blossoms/0 33.81,38.50 |or 2
 accept Offering a Warm Welcome##30301 |goto Vale of Eternal Blossoms/0 33.81,38.50 |or 2
 |tip
-Click here of no quests are available |confirm |or
+Click here of no quests are available |confirm
+step
+talk Rook Stonetoe##59333
+accept Carved in Stone##30481 |goto Vale of Eternal Blossoms/0 33.39,38.04
+|tip
+Click here of no quests are available |confirm
 step
 talk Sun Tenderheart##59334
 accept No Stone Unturned##30299 |goto Vale of Eternal Blossoms/0 33.11,38.97 |or 2
@@ -3755,6 +3829,17 @@ stickystart "Collect_1_Shao-Tien_Cage_Keys"
 stickystart "Slay_8_Guo-Lai_Mogu"
 stickystart "Free_6_Golden_Lotus_Prisoners"
 step
+label "Collect_12_Guo-Lai_Relics"
+kill Shao-Tien Dominator##63610+
+click Guo-Lai Runestane##547432
+|tip On the walls of ruins around this area.
+collect 12 Guo-Lai Runestone##85278 |q 30206/1 |goto Vale of Eternal Blossoms/0 25.92,30.77 |only if haveq(30206) or completedq(30206)
+collect 12 Guo-Lai Runestone##85278 |q 30481/1 |goto Vale of Eternal Blossoms/0 25.92,30.77 |only if haveq(30481) or completedq(30481)
+You can find more around: |notinsticky
+[Vale of Eternal Blossoms/0 21.46,30.21] |notinsticky
+[Vale of Eternal Blossoms/0 25.41,40.81] |notinsticky
+|only if haveq(30206,30481) or completedq(30206,30481)
+step
 use the Shado-Pan Torch##85581
 |tip Use them on tents around this area.
 Burn #6# Shao-Tien Tents |q 30301/1 |goto Vale of Eternal Blossoms/0 26.71,30.22
@@ -3763,7 +3848,7 @@ You can find more around:
 [Vale of Eternal Blossoms/0 20.94,30.62]
 step
 label "Collect_1_Shao-Tien_Cage_Keys"
-Kill enemies around this area |kill Shao-Tien Dominator##63610, Shao-Tien Soul-Caller##63611,Shao-Tien Torturer##63641
+Kill Shao-Tien Mogu around this area |kill Shao-Tien Dominator##63610, Shao-Tien Soul-Caller##63611,Shao-Tien Torturer##63641
 collect 1 Shao-Tien Cage Key##85582 |q 30300/1 |goto Vale of Eternal Blossoms/0 25.37,28.95
 |tip These may have a very low drop rate.
 step
@@ -3775,7 +3860,7 @@ You can find more around:
 [Vale of Eternal Blossoms/0 20.93,29.96]
 step
 label "Slay_8_Guo-Lai_Mogu"
-Kill enemies around this area |kill Shao-Tien Dominator##63610, Shao-Tien Soul-Caller##63611,Shao-Tien Torturer##63641
+Kill Shao-Tien Mogu around this area |kill Shao-Tien Dominator##63610, Shao-Tien Soul-Caller##63611,Shao-Tien Torturer##63641
 Slay #8# Guo-Lai Mogu |q 30298/1 |goto Vale of Eternal Blossoms/0 25.37,28.95
 step
 label "Destroy_6_Mogu_Statues"
@@ -3788,7 +3873,14 @@ talk Leven Dawnblade##59332
 turnin Painting the Ruins Red##30298 |goto Vale of Eternal Blossoms/0 33.83,38.51 |only if haveq(30298) or completedq(30298)
 turnin Offering a Warm Welcome##30301 |goto Vale of Eternal Blossoms/0 33.83,38.51 |only if haveq(30301) or completedq(30301)
 accept The Imperion Threat##30302 |goto Vale of Eternal Blossoms/0 33.83,38.51
+accept The Crumbling Hall##30277 |goto Vale of Eternal Blossoms/0 33.82,38.48
+|tip
+Click here of no quests are available |confirm
 |only if haveq(30298,30301) or completedq(30298,30301)
+step
+talk Rook Stonetoe##59333
+turnin Carved in Stone##30481 |goto Vale of Eternal Blossoms/0 33.39,38.04
+|only if haveq(30481) or completedq(30481)
 step
 talk Sun Tenderheart##59334
 turnin No Stone Unturned##30299 |goto Vale of Eternal Blossoms/0 33.12,38.96 |only if haveq(30299) or completedq(30299)
@@ -3799,8 +3891,22 @@ Enter the building |goto Vale of Eternal Blossoms/0 22.26,26.31 < 15
 Follow the path |goto Vale of Eternal Blossoms/1 60.45,64.59 < 15
 kill Gochao the Ironfist##246031 |q 30302/1 |goto Vale of Eternal Blossoms/1 77.92,73.34
 step
+click Deactivate First spirit Wall##214474 |goto Vale of Eternal Blossoms/1 36.49,36.55 < 5
+click Deactivate Second Spirit Wall##214476 |goto Vale of Eternal Blossoms/1 23.16,28.80 < 5
+Follow the path |goto Vale of Eternal Blossoms/1 32.98,20.84 < 10
+click Deactivate Final Spirit Wall##214477
+Deactivate the Final Spirit Wall |q 30277/1 |goto Vale of Eternal Blossoms/1 42.01,27.54
+|only if haveq(30277) or completedq(30277)
+step
+click Ancient Guo-Lai Artifact##214394
+collect Ancient Guo-Lai Artifact##87790 |q 30277/2 |goto Vale of Eternal Blossoms/1 49.40,30.60
+|only if haveq(30277) or completedq(30277)
+step
 talk Leven Dawnblade##59332
-turnin The Imperion Threat##30302 |goto Vale of Eternal Blossoms/0 33.83,38.52 |next "end"
+turnin The Imperion Threat##30302 |goto Vale of Eternal Blossoms/0 33.83,38.52 |only if haveq(30302) or completedq(30302)
+turnin The Crumbling Hall##30277 |goto Vale of Eternal Blossoms/0 33.83,38.52 |only if haveq(30277) or completedq(30277)
+|next "end"
+|only if haveq(30302,30277) or completedq(30302,30277)
 step
 label "Guo-Lai_Infest"
 talk Anji Autumnlight##58503
@@ -3848,6 +3954,7 @@ label "Collect_12_Guo-Lai_Relics"
 click Guo-Lai Runestane##547432
 |tip On the walls of ruins around this area.
 collect 12 Guo-Lai Runestone##85278 |q 30206/1 |goto Vale of Eternal Blossoms/0 25.92,30.77
+collect 12 Guo-Lai Runestone##85278 |q 30481/1 |goto Vale of Eternal Blossoms/0 25.92,30.77
 You can find more around: |notinsticky
 [Vale of Eternal Blossoms/0 21.46,30.21] |notinsticky
 [Vale of Eternal Blossoms/0 25.41,40.81] |notinsticky
@@ -3884,6 +3991,7 @@ turnin Troubling the Troublemakers##30228 |goto Vale of Eternal Blossoms/0 33.97
 accept The Ashweb Matriarch##30225 |goto Vale of Eternal Blossoms/0 33.97,38.11 |or 2
 accept The Crumbling Hall##30277 |goto Vale of Eternal Blossoms/0 33.96,38.12 |or 2
 accept Wulon, the Granite Sentinel##30227 |goto Vale of Eternal Blossoms/0 33.98,38.11 |or 2
+accept The Thunder Below##30280 |goto Vale of Eternal Blossoms/0 33.97,38.11 |or 2
 |tip
 Click here if no quests are available |confirm
 step
@@ -3906,10 +4014,15 @@ click Ancient Guo-Lai Artifact##214394
 collect Ancient Guo-Lai Artifact##87790 |q 30277/2 |goto Vale of Eternal Blossoms/1 49.40,30.60
 |only if haveq(30277) or haveq(30277)
 step
+Run down the stairs |goto Vale of Eternal Blossoms/1 68.82,24.14
+kill Milau##64965 |q 30280/1 |goto Vale of Eternal Blossoms/2 54.97,64.49
+|only if haveq(30280) or completedq(30280)
+step
 talk Anji Autumnlight##58503
 turnin The Ashweb Matriarch##30225 |goto Vale of Eternal Blossoms/0 33.97,38.11 |only if haveq(30225) or completedq(30225)
 turnin Wulon, the Granite Sentinel##30227 |goto Vale of Eternal Blossoms/0 33.97,38.11 |only if haveq(30227) or completedq(30227)
 turnin The Crumbling Hall##30277 |goto Vale of Eternal Blossoms/0 33.96,38.12 |only if haveq(30277) or completedq(30277)
+turnin The Thunder Below##30280  |goto Vale of Eternal Blossoms/0 33.96,38.12 |only if haveq(30280) or completedq(30280)
 |next "end"
 |only if haveq(30225,30227,30277) or completedq(30225,30227,30277)
 step
@@ -3996,6 +4109,8 @@ Begin Riding the Hot Oil Cauldron |invehicle Hot Oil Cauldron##64369 |goto Vale 
 step
 kill 80 Krik'thik Hiveling##63972 |q 30243/1 |goto Vale of Eternal Blossoms/0 3.90,51.70
 |tip Use the Ignitable Oil Bucket first, followed by the Shado-Pan Torch on the enemies below.
+|tip If you don't get credit from high up, try flying down closer to the enemies.
+[Dread Wastes/0 68.38,12.34]
 |only if haveq(30243) or completedq(30243)
 step
 Exit the Hot Oil Cauldron |outvehicle |q 30243
@@ -4063,6 +4178,7 @@ Click here if no quests are available |confirm
 step
 clicknpc War Serpent##65336
 Mount a War Serpent |q 30264/1 |goto Vale of Eternal Blossoms/0 15.54,66.11
+|only if haveq(30264) or completedq(30264)
 step
 As You Fly:
 |tip Use the {y}Delayed Clusterbomb{} ability on your action bar to kill enemies below.
@@ -4070,6 +4186,7 @@ Kill enemies around this area |kill Krik'thik War Wagon##64274, Krik'thik Hiveli
 Slay #60# Krik'thik Hiveling slain |q 30264/2 |goto Dread Wastes/0 66.30,11.72
 Slay #3# Krik'thik War Wagon |q 30264/3 |goto Dread Wastes/0 66.30,11.72
 Slay #3# Krik'thik Catapult |q 30264/4 |goto Dread Wastes/0 66.30,11.72
+|only if haveq(30264) or completedq(30264)
 step
 clicknpc Hot Oil Cauldron##64369
 Begin Riding the Hot Oil Cauldron |invehicle Hot Oil Cauldron##64369 |goto Vale of Eternal Blossoms/0 3.90,51.70 |q 30243

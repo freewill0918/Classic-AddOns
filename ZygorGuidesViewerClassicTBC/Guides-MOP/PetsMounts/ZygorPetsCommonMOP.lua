@@ -3,20 +3,6 @@ if not ZygorGuidesViewer then return end
 if ZGV:DoMutex("PetsCMOP") then return end
 if not ZGV.CommonPets then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Aqua Strider",{
-patch='50100',
-source='Drop',
-description="This guide will teach you how to acquire the Aqua Strider battle pet.",
-pet=836,
-mopready=true,
-},[[
-step
-kill Nalash Verdantis##50776+
-collect Hollow Reed##86563 |goto Dread Wastes/0 64.20,58.50
-step
-use Hollow Reed##86563
-learnpet Aqua Strider##836
-]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Dancing Water Skimmer",{
 patch='50100',
 source='PetBattle',
@@ -274,6 +260,7 @@ mopready=true,
 step
 kill G'nathus##66467
 |tip You may need help with this.
+|tip You can also obtain this pet from a Satchel of Celestial Chance, or purchase it in the auction house.
 collect 1 Spawn of G'nathus##94595 |goto Townlong Steppes/0 29.10,5.00
 step
 use Spawn of G'nathus##94595
@@ -2288,7 +2275,7 @@ kill Lei Shi##62983
 |tip Inside the Terrace of Endless Spring raid.
 |tip You may have to make this kill more than once to obtain the pet.
 |tip You can also purchase this pet from the auction house.
-collect Spirit of the Spring##167052 |goto Terrace of Endless Spring 53.85,49.02
+collect Spirit of the Spring##167052 |goto Terrace of Endless Spring/0 53.85,49.02
 step
 use Spirit of the Spring##167052
 learnpet Spirit of the Spring##2584
@@ -2651,7 +2638,7 @@ mopready=true,
 step
 kill Ji-Kun##69712
 |tip Inside the Throne of Thunder raid.
-|tip You will need a raid team to reach and defeat him.
+|tip You will need a raid team to reach and defeat this raid boss.
 collect Ji-Kun Hatchling##94835
 step
 use Ji-Kun Hatchling##94835

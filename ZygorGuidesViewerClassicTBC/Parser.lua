@@ -627,7 +627,7 @@ local ConditionEnv = {
 		for i = 1, count do
 			local id = select(i, ...)
 			local q=ZGV.questsbyid[id]
-			return q and q.complete and q.inlog
+			if (q and q.complete and q.inlog) then return true end
 		end
 		return false
 	end,
@@ -1373,11 +1373,21 @@ local ConditionEnv = {
 		end
 		return false
 	end,
+	goalexists = function(questID,goalNum) 
+		-- checks if we have quest in log, and it has specific goal id
+		local quest = ZGV.questsbyid[questID]
+		if not quest then return false end
+
+		local goals = quest.goals
+		if not (goals and goals[goalNum]) then return false end
+
+		return true
+	end,
 
 	clearquest = function(id) -- autoscript function
-		for i,v in pairs(ZGV.recentlyCompletedGoals) do 
-			if v.questid == id then 
-				ZGV.recentlyCompletedGoals[i]=nil 
+		for goal,_ in pairs(ZGV.recentlyCompletedGoals) do 
+			if goal.questid == id then 
+				ZGV.recentlyCompletedGoals[goal]=nil 
 			end
 		end
 		ZGV.completedQuests[id]=nil

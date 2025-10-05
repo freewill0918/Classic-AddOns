@@ -3573,6 +3573,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\It's Happy Hour So
 achieveid={1833},
 patch='30002',
 description="This guide will walk you through drinking 25 different types of beverages.",
+mopready=true,
 },[[
 step
 talk Innkeeper Allison##6740
@@ -3716,6 +3717,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Shave and a Haircu
 achieveid={545},
 patch='30001',
 description="This guide will walk you through visiting a Barber Shop and get your hair cut.",
+mopready=true,
 },[[
 step
 click Barbershop Chair
@@ -3731,6 +3733,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Tastes Like Chicke
 achieveid={1832},
 patch='30002',
 description="This guide will walk you through sampling 50 different kinds of Azeroth's delectable dishes.",
+mopready=true,
 },[[
 step
 talk Innkeeper Firebrew##5111
@@ -4050,6 +4053,7 @@ condition_end=function() return achieved(5548) end,
 achieveid={1206,2557,2556,5548},
 patch='40003',
 description="This guide will walk you through showing the critters of Azeroth how much you /love them and slaying the pests.",
+mopready=true,
 },[[
 step
 label "start"
@@ -4294,6 +4298,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Well Read",{
 achieveid={1244},
 patch='30001',
 description="This guide will walk you through reading the scattered books of Azeroth.",
+mopready=true,
 },[[
 step
 click The World Tree and the Emerald Dream##268087 |achieve 1244/42 |goto Stormwind City 85.40,23.30
@@ -4430,6 +4435,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\You'll Feel Right 
 achieveid={5779},
 patch='40100',
 description="This guide will walk you through feeling 1000% better by eating Chocolate Cookies.",
+mopready=true,
 },[[
 step
 _Click here_ to buy them from the Auction House |confirm |next "buy"

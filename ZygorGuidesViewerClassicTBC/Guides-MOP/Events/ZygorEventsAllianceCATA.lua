@@ -90,76 +90,98 @@ talk Belbi Quikswitch##23710
 turnin Say, There Wouldn't Happen to be a Souvenir This Year, Would There?##12193 |goto Dun Morogh/0 56.39,37.84
 |only if haveq(12193) or completedq(12193)
 step
+talk Pol Amberstill##24468
+accept A New Supplier of Souvenirs##29397 |goto Dun Morogh/0 53.54,38.57
+step
 talk Goldark Snipehunter##23486
 accept Catch the Wild Wolpertinger!##11117 |goto Dun Morogh/0 55.13,37.72
+|only if GetCurrentRegion() ~= 3
 step
 talk Goldark Snipehunter##23486
-Select _"What if I don't like drinking... is there another way I can help out?"_
-Select _"I'd like a pair of Synthebrew Goggles."_
+Select _"What are Synthebrew Goggles?"_ |gossip 92304
+Select _"I'd like a pair of Synthebrew Goggles."_ |gossip 94708
 collect Synthebrew Goggles##46735 |goto Dun Morogh/0 55.13,37.72 |q 11117
+|only if haveq(11117) or completedq(11117)
 step
 Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11117
+|only if haveq(11117) or completedq(11117)
 step
 clicknpc Wild Wolpertinger##23487+
 use the Wolpertinger Net##32907
 |tip Use it on Wild Wolpertingers.
 |tip They look like small rabbits with antlers and wings running around on the ground around this area.
 collect 5 Stunned Wolpertinger##32906 |q 11117/1 |goto Dun Morogh/0 53.22,39.84
+|only if haveq(11117) or completedq(11117)
 step
 Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11117
 |tip Remove the Synthebrew Goggles and re-equip your helm.
+|only if haveq(11117) or completedq(11117)
 step
 talk Goldark Snipehunter##23486
-turnin Catch the Wild Wolpertinger!##11117 |goto Dun Morogh/0 55.13,37.72
-accept Pink Elekks On Parade##11118 |goto Dun Morogh/0 55.13,37.72
+turnin Catch the Wild Wolpertinger!##11117 |goto Dun Morogh/0 55.13,37.72 |only if haveq(11117) or completedq(11117)
+accept Pink Elekks On Parade##11118 |goto Dun Morogh/0 55.13,37.72 |only if completedq(11117)
+|only if haveq(11117) or completedq(11117)
 step
 talk Belbi Quikswitch##23710
 turnin A New Supplier of Souvenirs##29397 |goto Dun Morogh/0 56.39,37.84
 step
 Go to Elwynn Forest |goto Elwynn Forest/0 33.59,51.44 < 100 |c |q 11118
 |tip Go to this spot before you equip the goggles.
+|only if haveq(11118) or completedq(11118)
 step
 Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11118
+|only if haveq(11118) or completedq(11118)
 step
 use the Elekk Dispersion Ray##32960
 |tip Use it on Elwynn Pink Elekks around this area.
 |tip They look like pink elephants with four horns around this area.
 kill 3 Elwynn Pink Elekk##23507 |q 11118/2 |goto Elwynn Forest/0 33.59,51.44
+|only if haveq(11118) or completedq(11118)
 step
 Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11118
 |tip Remove the Synthebrew Goggles and re-equip your helm.
+|only if haveq(11118) or completedq(11118)
 step
 Go to Darnassus |goto Darnassus/0 67.12,35.28 < 100 |c |q 11118
 |tip Go to this spot before you equip the goggles.
+|only if haveq(11118) or completedq(11118)
 step
 Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11118
+|only if haveq(11118) or completedq(11118)
 step
 use the Elekk Dispersion Ray##32960
 |tip Use it on Teldrassil Pink Elekks around this area.
 |tip They look like pink elephants with four horns around this area.
 kill 3 Teldrassil Pink Elekk##23527 |q 11118/3 |goto Darnassus/0 67.12,35.28
+|only if haveq(11118) or completedq(11118)
 step
 Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11118
 |tip Remove the Synthebrew Goggles and re-equip your helm.
+|only if haveq(11118) or completedq(11118)
 step
 Go to The Exodar |goto The Exodar/0 79.18,57.47 < 100 |c |q 11118
 |tip Go to this spot at the entrance to The Exodar before you equip the goggles.
+|only if haveq(11118) or completedq(11118)
 step
 Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11118
+|only if haveq(11118) or completedq(11118)
 step
 use the Elekk Dispersion Ray##32960
 |tip Use it on Azuremyst Pink Elekks around this area.
 |tip They look like pink elephants with four horns around this area.
 kill 3 Azuremyst Pink Elekk##23528 |q 11118/1 |goto The Exodar/0 79.18,57.47
+|only if haveq(11118) or completedq(11118)
 step
 Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11118
 |tip Remove the Synthebrew Goggles and re-equip your helm.
+|only if haveq(11118) or completedq(11118)
 step
 talk Goldark Snipehunter##23486
 turnin Pink Elekks On Parade##11118 |goto Dun Morogh/0 55.13,37.72
+|only if haveq(11118) or completedq(11118)
 step
-Reach Level 75 |ding 75
-|tip Coren Direbrew is level 82 elite.
+Reach Level 80 |ding 80
+|tip Coren Direbrew is level 87 elite.
 step
 talk Darna Honeybock##27584
 accept Save Brewfest!##12318 |goto Dun Morogh/0 52.96,51.01
@@ -168,6 +190,9 @@ step
 talk Brewfest Spy##26719
 |tip Queue for Coren Direbrew.
 turnin Save Brewfest!##12318
+step
+talk Brewfest Spy##26719
+|tip Queue for Coren Direbrew.
 accept Insult Coren Direbrew##12062
 |tip This quest is elite and will require a group.
 step
@@ -180,6 +205,7 @@ kill Coren Direbrew##23872
 |tip Form a group and travel to the Blackrock Depths dungeon.
 |tip Someone with the daily quest "Insult Coren Direbrew" can talk to him to make him hostile.
 |tip This quest is available in the Grim Guzzler in Blackrock Depths.
+|confirm
 step
 talk Ipfelkofer Ironkeg##24710
 turnin Direbrew's Dire Brew##12491 |goto Dun Morogh/0 55.12,38.08
@@ -3680,7 +3706,7 @@ accept Honoring a Hero##8149 |goto Dun Morogh/0 59.74,34.27
 step
 use Uther's Tribute##19850
 |tip Inside the building.
-Place a Tribute at Uther's Tomb |q 8149/1 |goto Dun Morogh/0 52.14,83.57
+Place a Tribute at Uther's Tomb |q 8149/1 |goto Western Plaguelands/0 52.14,83.57
 step
 talk Wagner Hammerstrike##15011
 turnin Honoring a Hero##8149 |goto Dun Morogh/0 59.74,34.27

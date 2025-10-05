@@ -3,18 +3,810 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Alliance" then return end
 if ZGV:DoMutex("EventsA") then return end
 ZygorGuidesViewer.GuideMenuTier = "TRI"
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Brewfest Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Brewfest Dailies")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Brew of the Month")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Brew of the Year")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Direbrewfest")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Disturbing the Peace")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Does Your Wolpertinger Linger?")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Down With The Dark Iron")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Drunken Stupor")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Have Keg, Will Travel")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Strange Brew")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\The Brewfest Diet")
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Brewfest Quests",{
+mopready=true,
+condition_suggested=function() return isevent("Brewfest") end,
+condition_end=function() return completedq(12491) end,
+description="This guide section will walk you through completing the quests for the Brewfest event.",
+},[[
+step
+talk Dwarf Commoner##19148
+accept Brewfest!##11441 |goto Ironforge/0 30.82,62.83
+step
+talk Ipfelkofer Ironkeg##24710
+turnin Brewfest!##11441 |goto Dun Morogh/0 55.12,38.08
+accept Welcome to Brewfest!##11442 |goto Dun Morogh/0 55.12,38.08
+step
+talk Boxey Boltspinner##27215
+accept Chug and Chuck!##12022 |goto Dun Morogh/0 54.67,38.09
+step
+click Alcohol-Free Brewfest Sampler##186189+
+|tip They look like mugs of beer on the small tables inside this tent.
+collect Alcohol-Free Brewfest Sampler##33096 |n
+use the Alcohol-Free Brewfest Sampler##33096
+|tip Face yourself towards the Self-Turning and Oscillating Utility Target behind the tent.
+Hit the S.T.O.U.T. #5# Times |q 12022/1 |goto Dun Morogh/0 54.74,37.92
+step
+talk Boxey Boltspinner##27215
+turnin Chug and Chuck!##12022 |goto Dun Morogh/0 54.67,38.09
+step
+talk Neill Ramstein##23558
+accept Now This is Ram Racing... Almost.##11318 |goto Dun Morogh/0 53.68,38.55
+step
+As you run around on the ram:
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip You have to use the Ram Racing Reins to make it run at certain speeds for 8 seconds.
+|tip To make the ram Trot for 8 seconds, use the Giddyup! ability every 2 seconds or so.
+Maintain a Trot for 8 seconds |q 11318/1
+step
+As you run around on the ram:
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip You have to use the Ram Racing Reins to make it run at certain speeds for 8 seconds.
+|tip To make the ram Canter for 8 seconds, use the Ram Racing Reins a little more often than when you made the ram Trot.
+Maintain a Canter for 8 seconds |q 11318/2
+step
+As you run around on the ram:
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip You have to use the Ram Racing Reins to make it run at certain speeds for 8 seconds.
+|tip To make the ram Gallop, just spam the Ram Racing Reins.
+Maintain a Gallop for 8 seconds |q 11318/3
+step
+Stop Riding the Ram |nobuff Rental Racing Ram##43883 |q 11318
+|tip Right-click the "Rental Racing Ram" buff on your buff bar.
+step
+talk Neill Ramstein##23558
+turnin Now This is Ram Racing... Almost.##11318 |goto Dun Morogh/0 53.68,38.55
+accept There and Back Again##11122 |goto Dun Morogh/0 53.68,38.55
+step
+map Dun Morogh/0
+path follow strictbounce; loop off; ants curved; dist 20
+path	53.55,38.69	53.66,40.23	54.59,43.32	54.57,47.45	53.93,49.28
+path	53.12,50.78
+Follow the waypoint path:
+use the Ram Racing Reins##33306
+|tip Alternate between Canter and Gallop as needed to keep your fatigue below 100 between buckets.
+|tip Ride over buckets of apples to refresh your Ram's fatigue level.
+Flynn Firebrew will throw you a keg when you get close
+Once you have a keg, run back and turn it in to Pol Amberstill
+|tip Just get near him and you will throw the keg to him.
+Deliver 3 Kegs in Under 4 Minutes |q 11122/1
+|tip If you lose your ram, return to Neill Ramstein to acquire another.
+step
+Stop Riding the Ram |nobuff Ramstein's Swift Work Ram##43880 |q 11122
+|tip Right-click the "Ramstein's Swift Work Ram" buff on your buff bar.
+step
+talk Neill Ramstein##23558
+turnin There and Back Again##11122 |goto Dun Morogh/0 53.68,38.55
+step
+talk Pol Amberstill##24468
+accept Say, There Wouldn't Happen to be a Souvenir This Year, Would There?##12193 |goto Dun Morogh/0 53.54,38.57 |or
+|tip This quest is not always available.
+Click Here if this Quest Is Not Offered |confirm |or
+step
+talk Belbi Quikswitch##23710
+turnin Say, There Wouldn't Happen to be a Souvenir This Year, Would There?##12193 |goto Dun Morogh/0 56.39,37.84
+|only if haveq(12193) or completedq(12193)
+step
+talk Pol Amberstill##24468
+accept A New Supplier of Souvenirs##29397 |goto Dun Morogh/0 53.54,38.57
+step
+talk Goldark Snipehunter##23486
+accept Catch the Wild Wolpertinger!##11117 |goto Dun Morogh/0 55.13,37.72
+|only if GetCurrentRegion() ~= 3
+step
+talk Goldark Snipehunter##23486
+Select _"What are Synthebrew Goggles?"_ |gossip 92304
+Select _"I'd like a pair of Synthebrew Goggles."_ |gossip 94708
+collect Synthebrew Goggles##46735 |goto Dun Morogh/0 55.13,37.72 |q 11117
+|only if haveq(11117) or completedq(11117)
+step
+Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11117
+|only if haveq(11117) or completedq(11117)
+step
+clicknpc Wild Wolpertinger##23487+
+use the Wolpertinger Net##32907
+|tip Use it on Wild Wolpertingers.
+|tip They look like small rabbits with antlers and wings running around on the ground around this area.
+collect 5 Stunned Wolpertinger##32906 |q 11117/1 |goto Dun Morogh/0 53.22,39.84
+|only if haveq(11117) or completedq(11117)
+step
+Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11117
+|tip Remove the Synthebrew Goggles and re-equip your helm.
+|only if haveq(11117) or completedq(11117)
+step
+talk Goldark Snipehunter##23486
+turnin Catch the Wild Wolpertinger!##11117 |goto Dun Morogh/0 55.13,37.72 |only if haveq(11117) or completedq(11117)
+accept Pink Elekks On Parade##11118 |goto Dun Morogh/0 55.13,37.72 |only if completedq(11117)
+|only if haveq(11117) or completedq(11117)
+step
+talk Belbi Quikswitch##23710
+turnin A New Supplier of Souvenirs##29397 |goto Dun Morogh/0 56.39,37.84
+step
+Go to Elwynn Forest |goto Elwynn Forest/0 33.59,51.44 < 100 |c |q 11118
+|tip Go to this spot before you equip the goggles.
+|only if haveq(11118) or completedq(11118)
+step
+Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11118
+|only if haveq(11118) or completedq(11118)
+step
+use the Elekk Dispersion Ray##32960
+|tip Use it on Elwynn Pink Elekks around this area.
+|tip They look like pink elephants with four horns around this area.
+kill 3 Elwynn Pink Elekk##23507 |q 11118/2 |goto Elwynn Forest/0 33.59,51.44
+|only if haveq(11118) or completedq(11118)
+step
+Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11118
+|tip Remove the Synthebrew Goggles and re-equip your helm.
+|only if haveq(11118) or completedq(11118)
+step
+Go to Darnassus |goto Darnassus/0 67.12,35.28 < 100 |c |q 11118
+|tip Go to this spot before you equip the goggles.
+|only if haveq(11118) or completedq(11118)
+step
+Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11118
+|only if haveq(11118) or completedq(11118)
+step
+use the Elekk Dispersion Ray##32960
+|tip Use it on Teldrassil Pink Elekks around this area.
+|tip They look like pink elephants with four horns around this area.
+kill 3 Teldrassil Pink Elekk##23527 |q 11118/3 |goto Darnassus/0 67.12,35.28
+|only if haveq(11118) or completedq(11118)
+step
+Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11118
+|tip Remove the Synthebrew Goggles and re-equip your helm.
+|only if haveq(11118) or completedq(11118)
+step
+Go to The Exodar |goto The Exodar/0 79.18,57.47 < 100 |c |q 11118
+|tip Go to this spot at the entrance to The Exodar before you equip the goggles.
+|only if haveq(11118) or completedq(11118)
+step
+Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11118
+|only if haveq(11118) or completedq(11118)
+step
+use the Elekk Dispersion Ray##32960
+|tip Use it on Azuremyst Pink Elekks around this area.
+|tip They look like pink elephants with four horns around this area.
+kill 3 Azuremyst Pink Elekk##23528 |q 11118/1 |goto The Exodar/0 79.18,57.47
+|only if haveq(11118) or completedq(11118)
+step
+Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11118
+|tip Remove the Synthebrew Goggles and re-equip your helm.
+|only if haveq(11118) or completedq(11118)
+step
+talk Goldark Snipehunter##23486
+turnin Pink Elekks On Parade##11118 |goto Dun Morogh/0 55.13,37.72
+|only if haveq(11118) or completedq(11118)
+step
+Reach Level 80 |ding 80
+|tip Coren Direbrew is level 87 elite.
+step
+talk Darna Honeybock##27584
+accept Save Brewfest!##12318 |goto Dun Morogh/0 52.96,51.01
+|tip This quest is elite and will require a group.
+step
+talk Brewfest Spy##26719
+|tip Queue for Coren Direbrew.
+turnin Save Brewfest!##12318
+step
+talk Brewfest Spy##26719
+|tip Queue for Coren Direbrew.
+accept Insult Coren Direbrew##12062
+|tip This quest is elite and will require a group.
+step
+talk Coren Direbrew##23872
+|tip Inside the Grim Guzzler in the Blackrock Depths dungeon.
+turnin Insult Coren Direbrew##12062
+|tip This quest is elite and will require a group.
+step
+kill Coren Direbrew##23872
+|tip Form a group and travel to the Blackrock Depths dungeon.
+|tip Someone with the daily quest "Insult Coren Direbrew" can talk to him to make him hostile.
+|tip This quest is available in the Grim Guzzler in Blackrock Depths.
+|confirm
+step
+talk Ipfelkofer Ironkeg##24710
+turnin Direbrew's Dire Brew##12491 |goto Dun Morogh/0 55.12,38.08
+|only if haveq(12491)
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Brewfest Dailies",{
+mopready=true,
+condition_suggested=function() return isevent("Brewfest") end,
+description="This guide section will walk you through completing the daily quests for the Brewfest event.",
+},[[
+step
+Complete the "Brewfest Quests" Guide |complete completedq(11122)
+step
+label "Begin_Dailies"
+talk Neill Ramstein##23558
+Select _"Do you still need some help shipping kegs from Kharanos?"_
+Begin the Keg Run |havebuff Ramstein's Swift Work Ram##43880 |goto Dun Morogh/0 53.68,38.55
+step
+map Dun Morogh/0
+path follow strictbounce; loop off; ants curved; dist 20
+path	53.55,38.69	53.66,40.23	54.59,43.32	54.57,47.45	53.93,49.28
+path	53.12,50.78
+Follow the waypoint path:
+use the Ram Racing Reins##33306
+|tip Alternate between Canter and Gallop as needed to keep your fatigue below 100 between buckets.
+|tip Ride over buckets of apples to refresh your Ram's fatigue level.
+Flynn Firebrew will throw you a keg when you get close
+Once you have a keg, run back and turn it in to Pol Amberstill
+|tip Just get near him and you will throw the keg to him.
+Deliver as Many Kegs as you Can 4 Minutes |nobuff Ramstein's Swift Work Ram##43880
+|tip If you lose your ram, return to Neill Ramstein to acquire another.
+step
+talk Becan Barleybrew##23627
+accept Bark for the Barleybrews!##11293 |goto Dun Morogh/0 56.13,38.06 |or
+talk Daran Thunderbrew##23628
+accept Bark for the Thunderbrews!##11294 |goto Dun Morogh/0 56.58,36.91 |or
+|tip You will only be able to accept one of these quests per day.
+step
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip Keep a Trot pace most of the time and only Canter occasionally.
+|tip Your ram will become exhausted if you go too fast.
+Ride your ram into Ironforge |goto Ironforge/0 21.83,77.49 < 30 |c |q 11293
+|only if haveq(11293)
+step
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip Keep a Trot pace most of the time and only Canter occasionally.
+|tip Your ram will become exhausted if you go too fast.
+Ride your ram into Ironforge |goto Ironforge/0 21.83,77.49 |noway |c |q 11294
+|only if haveq(11294)
+step
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip Keep a Trot pace most of the time and only Canter occasionally.
+|tip Your ram will become exhausted if you go too fast.
+|tip Ride around the outer ring of Ironforge.
+Bark Outside the Bank |q 11293/1 |goto Ironforge/0 32.03,64.97
+|only if haveq(11293)
+step
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip Keep a Trot pace most of the time and only Canter occasionally.
+|tip Your ram will become exhausted if you go too fast.
+|tip Ride around the outer ring of Ironforge.
+Bark Outside the Bank |q 11294/1 |goto Ironforge/0 32.03,64.97
+|only if haveq(11294)
+step
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip Keep a Trot pace most of the time and only Canter occasionally.
+|tip Your ram will become exhausted if you go too fast.
+|tip Ride around the outer ring of Ironforge.
+Bark in the Military Ward |q 11293/2 |goto Ironforge/0 64.18,78.08 |notravel
+|only if haveq(11293)
+step
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip Keep a Trot pace most of the time and only Canter occasionally.
+|tip Your ram will become exhausted if you go too fast.
+|tip Ride around the outer ring of Ironforge.
+Bark in the Hall of Explorers |q 11293/3 |goto Ironforge/0 64.56,24.49 |notravel
+|only if haveq(11293)
+step
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip Keep a Trot pace most of the time and only Canter occasionally.
+|tip Your ram will become exhausted if you go too fast.
+|tip Ride around the outer ring of Ironforge.
+Bark in the Mystic Ward |q 11293/4 |goto Ironforge/0 28.61,15.12 |notravel
+|only if haveq(11293)
+step
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip Keep a Trot pace most of the time and only Canter occasionally.
+|tip Your ram will become exhausted if you go too fast.
+|tip Ride around the outer ring of Ironforge.
+Bark in the Military Ward |q 11294/2 |goto Ironforge/0 64.18,78.08 |notravel
+|only if haveq(11294)
+step
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip Keep a Trot pace most of the time and only Canter occasionally.
+|tip Your ram will become exhausted if you go too fast.
+|tip Ride around the outer ring of Ironforge.
+Bark in the Hall of Explorers |q 11294/3 |goto Ironforge/0 64.56,24.49 |notravel
+|only if haveq(11294)
+step
+use the Ram Racing Reins##33306
+|tip The ram runs slow by default.
+|tip Keep a Trot pace most of the time and only Canter occasionally.
+|tip Your ram will become exhausted if you go too fast.
+|tip Ride around the outer ring of Ironforge.
+Bark in the Mystic Ward |q 11294/4 |goto Ironforge/0 28.61,15.12 |notravel
+|only if haveq(11294)
+step
+Stop Riding the Ram |nobuff Rental Racing Ram##43883
+|tip Right-click the "Rental Racing Ram" buff on your buff bar.
+step
+talk Becan Barleybrew##23627
+turnin Bark for the Barleybrews!##11293 |goto Dun Morogh/0 56.13,38.06
+|only if haveq(11293)
+step
+talk Daran Thunderbrew##23628
+turnin Bark for the Thunderbrews!##11294 |goto Dun Morogh/0 56.58,36.91
+|only if haveq(11294)
+step
+Wait for the Dark Iron Defense event to start
+|tip This even occurs every 30 minutes.
+|tip You have to defend the three kegs at these locations in order to complete it.
+click Complimentary Brewfest Sampler##186189+ |goto Dun Morogh/0 55.94,37.33
+click Complimentary Brewfest Sampler##186189+ |goto Dun Morogh/0 55.94,37.33
+use the Alcohol-Free Brewfest Sampler##33096
+|tip Use it to throw it at the Dark Iron Dwarves and the Mole Machines around this area.
+click Dark Iron Mole Machine Wreckage##189989
+|tip It looks like a big metal gear laying on ground in the middle of the festival.
+|tip It appears after the Dark Iron dwarves attack the Brewfest festival, so you may have to wait for it to appear.
+accept This One Time, When I Was Drunk...##12020 |goto Dun Morogh/0 48.69,39.13 |or
+'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
+step
+talk Boxey Boltspinner##27215
+turnin This One Time, When I Was Drunk...##12020 |goto Dun Morogh/0 54.67,38.09
+step
+Reach Level 75 |ding 75 |or
+|tip Coren Direbrew is level 82 elite.
+'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
+step
+talk Darna Honeybock##27584
+accept Save Brewfest!##12318 |goto Dun Morogh/0 52.96,51.01 |or
+|tip This quest is elite and will require a group.
+'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
+step
+Enter the Blackrock Depths Dungeon with your Group |goto Blackrock Depths/1 0,0 |q 12062 |future |or
+'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
+step
+talk Brewfest Spy##26719
+|tip Queue for Coren Direbrew.
+turnin Save Brewfest!##12318 |or
+'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
+step
+talk Brewfest Spy##26719
+|tip Inside the Grim Guzzler in the Blackrock Depths dungeon.
+accept Insult Coren Direbrew##12062 |or
+|tip This quest is elite and will require a group.
+'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
+step
+talk Coren Direbrew##23872
+|tip Inside the Grim Guzzler in the Blackrock Depths dungeon.
+turnin Insult Coren Direbrew##12062 |or
+|tip This quest is elite and will require a group.
+'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
+step
+kill Coren Direbrew##23872
+|tip Form a group and travel to the Blackrock Depths dungeon.
+|tip Someone with the daily quest "Insult Coren Direbrew" can talk to him to make him hostile.
+|tip This quest is available in the Grim Guzzler in Blackrock Depths.
+Click Here to Continue |confirm |or
+'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
+step
+talk Ipfelkofer Ironkeg##24710
+turnin Direbrew's Dire Brew##12491 |goto Dun Morogh/0 55.12,38.08 |or
+'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
+|only if haveq(12491)
+step
+You have completed the available daily quests
+|tip This guide will reset when more become available.
+'|complete not completedq(11293,11294,12020) |next "Begin_Dailies"
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Brew of the Month",{
+mopready=true,
+condition_suggested=function() return isevent("Brewfest") end,
+condition_end=function() return achieved(2796) end,
+description="Join the Brew of the Month club.",
+},[[
+step
+collect 200 Brewfest Prize Token##37829 |or
+|tip These are earned by doing Brewfest Dailies.
+Load the "Brewfest Dailies" Guide |confirm |loadguide "Events Guides\\Brewfest\\Brewfest Dailies"
+|tip Click the line above to load the guide.
+'|complete achieved(2796) |or
+step
+talk Belbi Quikswitch##23710
+buy "Brew of the Month" Club Membership Form##37736 |goto Dun Morogh/0 56.39,37.84 |or
+'|complete achieved(2796) |or
+step
+use the "Brew of the Month" Club Membership Form##37736
+accept Brew of the Month Club##12420
+step
+Enter the building |goto Ironforge/0 20.65,53.21 < 5 |walk
+talk Larkin Thunderbrew##27478
+|tip Inside the building.
+turnin Brew of the Month Club##12420 |goto Ironforge/0 18.80,53.11
+step
+Earn the "Brew of the Month" Achievement |achieve 2796
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Brew of the Year",{
+mopready=true,
+condition_suggested=function() return isevent("Brewfest") end,
+condition_end=function() return achieved(1183) end,
+description="Sample the following beers featured in the Brew of the Month club:\n\nBinary Brew\nAutumnal Acorn Ale\n"..
+"Bartlett's Bitter Brew\nLord of Frost's Private Label\nWild Winter Pilsner\nIzzard's Ever Flavor\nAromatic Honey Brew\n"..
+"Metok's Bubble Bock\nSpringtime Stout\nBlackrock Lager\nStranglethorn Brew\nDraenic Pale Ale",
+},[[
+step
+collect 200 Brewfest Prize Token##37829 |or
+|tip These are earned by doing Brewfest Dailies.
+Load the "Brewfest Dailies" Guide |confirm |loadguide "Events Guides\\Brewfest\\Brewfest Dailies"
+|tip Click the line above to load the guide.
+'|complete achieved(2796) |or
+step
+talk Belbi Quikswitch##23710
+buy "Brew of the Month" Club Membership Form##37736 |goto Dun Morogh/0 56.39,37.84 |or
+'|complete achieved(2796) |or
+step
+use the "Brew of the Month" Club Membership Form##37736
+accept Brew of the Month Club##12420
+step
+Enter the building |goto Ironforge/0 20.65,53.21 < 5 |walk
+talk Larkin Thunderbrew##27478
+|tip Inside the building.
+turnin Brew of the Month Club##12420 |goto Ironforge/0 18.80,53.11
+step
+collect Binary Brew##37496 |or
+|tip This brew will be in your mailbox for the month of September.
+'|complete achieved(1183,5) |or
+step
+use the Binary Brew##37496
+Drink September's Brew |achieve 1183/5
+step
+collect Autumnal Acorn Ale##37497 |or
+|tip This brew will be in your mailbox for the month of October.
+'|complete achieved(1183,4) |or
+step
+use the Autumnal Acorn Ale##37497
+Drink October's Brew |achieve 1183/4
+step
+collect Bartlett's Bitter Brew##37498 |or
+|tip This brew will be in your mailbox for the month of November.
+'|complete achieved(1183,3) |or
+step
+use Bartlett's Bitter Brew##37498
+Drink November's Brew |achieve 1183/3
+step
+collect Lord of Frost's Private Label##37499 |or
+|tip This brew will be in your mailbox for the month of December.
+'|complete achieved(1183,2) |or
+step
+use Lord of Frost's Private Label##37499
+Drink December's Brew |achieve 1183/2
+step
+collect Wild Winter Pilsner##37488 |or
+|tip This brew will be in your mailbox for the month of January.
+'|complete achieved(1183,1) |or
+step
+use the Wild Winter Pilsner##37488
+Drink January's Brew |achieve 1183/1
+step
+collect Izzard's Ever Flavor##37489 |or
+|tip This brew will be in your mailbox for the month of February.
+'|complete achieved(1183,8) |or
+step
+use the Izzard's Ever Flavor##37489
+Drink February's Brew |achieve 1183/8
+step
+collect Aromatic Honey Brew##37490 |or
+|tip This brew will be in your mailbox for the month of March.
+'|complete achieved(1183,11) |or
+step
+use the Aromatic Honey Brew##37490
+Drink March's Brew |achieve 1183/11
+step
+collect Metok's Bubble Bock##37491 |or
+|tip This brew will be in your mailbox for the month of April.
+'|complete achieved(1183,12) |or
+step
+use Metok's Bubble Bock##37491
+Drink April's Brew |achieve 1183/12
+step
+collect Springtime Stout##37492 |or
+|tip This brew will be in your mailbox for the month of May.
+'|complete achieved(1183,9) |or
+step
+use the Springtime Stout##37492
+Drink May's Brew |achieve 1183/9
+step
+collect Blackrock Lager##37493 |or
+|tip This brew will be in your mailbox for the month of June.
+'|complete achieved(1183,6) |or
+step
+use the Blackrock Lager##37493
+Drink June's Brew |achieve 1183/6
+step
+collect Stranglethorn Brew##37494 |or
+|tip This brew will be in your mailbox for the month of July.
+'|complete achieved(1183,10) |or
+step
+use the Stranglethorn Brew##37494
+Drink July's Brew |achieve 1183/10
+step
+collect Draenic Pale Ale##37495 |or
+|tip This brew will be in your mailbox for the month of August.
+'|complete achieved(1183,7) |or
+step
+use the Draenic Pale Ale##37495
+Drink August's Brew |achieve 1183/7
+step
+Earn the "Brew of the Year" Achievement |achieve 1183
+|tip This achievment requires you to drink a new brew every month for a year.
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Direbrewfest",{
+mopready=true,
+condition_suggested=function() return isevent("Brewfest") end,
+condition_end=function() return achieved(295) end,
+description="Kill Coren Direbrew.",
+},[[
+step
+talk Darna Honeybock##27584
+accept Save Brewfest!##12318 |goto Dun Morogh/0 52.96,51.01 |or
+|tip This quest is elite and will require a group.
+step
+talk Brewfest Spy##26719
+|tip Queue for Coren Direbrew.
+turnin Save Brewfest!##12318 |goto Blackrock Depths/1 0.00,0.00
+accept Insult Coren Direbrew##12062 |goto Blackrock Depths/1 0.00,0.00 |or
+'|complete achieved(295) |or
+step
+talk Coren Direbrew##23872
+|tip Coren Direbrew is located in the bar.
+|tip He will attack you after turnin this quest in.
+turnin Insult Coren Direbrew##12062 |or
+'|complete achieved(295) |or
+step
+kill Coren Direbrew##23872
+Earn the "Direbrewfest" Achievement |achieve 295
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Disturbing the Peace",{
+mopready=true,
+condition_suggested=function() return isevent("Brewfest") end,
+condition_end=function() return achieved(293) end,
+description="While wearing 3 pieces of Brewfest clothing, get completely smashed and dance in Dalaran.",
+},[[
+step
+collect 350 Brewfest Prize Token##37829 |or
+|tip These are earned by doing Brewfest Dailies.
+Load the "Brewfest Dailies" Guide |confirm |loadguide "Events Guides\\Brewfest\\Brewfest Dailies"
+|tip Click the line above to load the guide.
+'|complete achieved(293) |or
+step
+talk Belbi Quikswitch##23710
+collect Blue Brewfest Hat##33968 |goto Dun Morogh/0 56.39,37.84 |or
+collect Purple Brewfest Hat##33969 |goto Dun Morogh/0 56.39,37.84 |or
+collect Green Brewfest Hat##33967 |goto Dun Morogh/0 56.39,37.84 |or
+collect Brown Brewfest Hat##33864 |goto Dun Morogh/0 56.39,37.84 |or
+|tip Purchase one of these from the vendor.
+|tip It will require 50 Brewfest Coins.
+'|complete achieved(293) |or
+step
+talk Belbi Quikswitch##23710
+collect Brewfest Dress##33863 |goto Dun Morogh/0 56.39,37.84 |or
+collect Brewfest Regalia##33862 |goto Dun Morogh/0 56.39,37.84 |or
+|tip Purchase one of these from the vendor.
+|tip It will require 200 Brewfest Coins.
+'|complete achieved(293) |or
+step
+talk Belbi Quikswitch##23710
+collect Brewfest Boots##33868 |goto Dun Morogh/0 56.39,37.84 |or
+collect Brewfest Slippers##33966 |goto Dun Morogh/0 56.39,37.84 |or
+|tip Purchase one of these from the vendor.
+|tip It will require 100 Brewfest Coins.
+'|complete achieved(293) |or
+step
+talk Arille Azuregaze##29049
+|tip Inside the building.
+buy 5 Caraway Burnwine##40042 |goto Dalaran/1 48.54,37.44 |or
+'|complete achieved(293) |or
+step
+Equip the Blue Brewfest Hat |equipped Blue Brewfest Hat##33968 |goto Dalaran/1 50.58,48.36 |only if default |or
+Equip the Purple Brewfest Hat |equipped Purple Brewfest Hat##33969 |goto Dalaran/1 50.58,48.36 |only if itemcount(33969) >= 1 |or
+Equip the Green Brewfest Hat |equipped Green Brewfest Hat##33967 |goto Dalaran/1 50.58,48.36 |only if itemcount(33967) >= 1 |or
+Equip the Brown Brewfest Hat |equipped Brown Brewfest Hat##33864 |goto Dalaran/1 50.58,48.36 |only if itemcount(33864) >= 1 |or
+'|complete achieved(293) |or
+step
+Equip the Brewfest Dress |equipped Brewfest Dress##33863 |goto Dalaran/1 50.58,48.36 |only if default |or
+Equip the Brewfest Regalia |equipped Brewfest Regalia##33862 |goto Dalaran/1 50.58,48.36 |only if itemcount(33862) >= 1 |or
+'|complete achieved(293) |or
+step
+Equip the Brewfest Boots |equipped Brewfest Boots##33868 |goto Dalaran/1 50.58,48.36 |only if default |or
+Equip the Brewfest Slippers |equipped Brewfest Slippers##33966 |goto Dalaran/1 50.58,48.36 |only if itemcount(33966) >= 1 |or
+'|complete achieved(293) |or
+step
+use the Caraway Burnwine##40042
+|tip Use them all until you are "Completely Smashed."
+Dance in Dalaran |script DoEmote("Dance")
+Earn the "Disturbing the Peace" Achievement |achieve 293 |goto Dalaran/1 50.58,48.36
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Does Your Wolpertinger Linger?",{
+mopready=true,
+condition_suggested=function() return isevent("Brewfest") end,
+condition_end=function() return achieved(1936) end,
+description="Obtain a Wolpertinger pet.",
+},[[
+step
+talk Belbi Quikswitch##23710
+buy Wolpertinger's Tankard##32233 |goto Dun Morogh/0 56.39,37.84 |or
+'|complete achieved(1936) |or
+step
+use the Wolpertinger's Tankard##32233
+Earn the "Does Your Wopertinger Linger?" Achievement |achieve 1936
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Down With The Dark Iron",{
+mopready=true,
+condition_suggested=function() return isevent("Brewfest") end,
+condition_end=function() return achieved(1186) end,
+description="Defend the Brewfest camp from the Dark Iron attack and complete the quest, \"This One Time, When I Was Drunk...\"",
+},[[
+step
+Wait for the Dark Iron Defense event to start
+|tip This even occurs every 30 minutes.
+|tip You have to defend the three kegs at these locations in order to complete it.
+click Complimentary Brewfest Sampler##186189+ |goto Dun Morogh/0 55.94,37.33
+click Complimentary Brewfest Sampler##186189+ |goto Dun Morogh/0 55.94,37.33
+use the Alcohol-Free Brewfest Sampler##33096
+|tip Use it to throw it at the Dark Iron Dwarves and the Mole Machines around this area.
+click Dark Iron Mole Machine Wreckage##189989
+|tip It looks like a big metal gear laying on ground in the middle of the festival.
+|tip It appears after the Dark Iron dwarves attack the Brewfest festival, so you may have to wait for it to appear.
+accept This One Time, When I Was Drunk...##12020 |goto Dun Morogh/0 48.69,39.13 |or
+'|complete achieved(1186) |or
+step
+talk Boxey Boltspinner##27215
+turnin This One Time, When I Was Drunk...##12020 |goto Dun Morogh/0 54.67,38.09 |or
+'|complete achieved(1186) |or
+step
+Earn the "Down With The Dark Iron" Achievement |achieve 1186
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Drunken Stupor",{
+mopready=true,
+condition_suggested=function() return isevent("Brewfest") end,
+condition_end=function() return achieved(1260) end,
+description="Fall 65 yards without dying while completely smashed during the Brewfest Holiday.",
+},[[
+step
+talk Kylene##19186
+|tip Walking around the building.
+buy 5 Flagon of Dwarven Honeymead##2594 |goto Shattrath City/0 75.11,32.27 |or
+'|complete achieved(1260) |or
+step
+use Flagon of Dwarven Honeymead##2594
+|tip Use them until you are "Completely Smashed" before jumping.
+Earn the "Drunken Stupor" Achievement |achieve 1260 |goto Shattrath City/0 50.22,62.42
+|tip You must fall at least 65 yards and not die to receive this achievement.
+|tip From this point, run off the edge and miss the platform below, landing on the ground.
+|tip You must do this while "Completely Smashed" drunk.
+|tip Paladin "Divine Shield" and Mage "Ice Block" allow you to earn this without risk of fall damage.
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Have Keg, Will Travel",{
+mopready=true,
+condition_suggested=function() return isevent("Brewfest") end,
+condition_end=function() return achieved(303) end,
+description="Obtain a Brewfest mount, or transform yours into one using Brewfest Hops.",
+},[[
+step
+collect 2 Brewfest Prize Token##37829 |or
+|tip These are earned by doing Brewfest Dailies.
+Load the "Brewfest Dailies" Guide |confirm |loadguide "Events Guides\\Brewfest\\Brewfest Dailies"
+|tip Click the line above to load the guide.
+'|complete achieved(303) |or
+step
+Reach Level 20 |ding 20
+|tip You must be level 20 to complete this achievement.
+|tip Use the leveling guides to accomplish this.
+step
+talk Belbi Quikswitch##23710
+buy Fresh Brewfest Hops##37750 |goto Dun Morogh/0 56.39,37.84 |or
+|tip You will need 2 Brewfest Prize Tokens to purchase this.
+'|complete achieved(303) |or
+step
+use the Fresh Brewfest Hops##37750
+|tip Mount up and use the hops to make your mount festive.
+Earn the "Have Keg, Will Travel" Achievement |achieve 303
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Strange Brew",{
+mopready=true,
+condition_suggested=function() return isevent("Brewfest") end,
+condition_end=function() return achieved(1184) end,
+description="Drink the following Brewfest beers:\n\nThunderbrew Stout\nThunderbrew Ale\nThunder 45\n"..
+"Barleybrew Dark\nBarleybrew Light\nBarleybrew Clear\nOgre Mead\nMudder's Milk\nGordok Grog",
+},[[
+step
+talk Thunderbrew Apprentice##23510
+buy Thunderbrew Stout##33033 |goto Dun Morogh/0 56.59,37.00 |achieve 1184
+buy Thunderbrew Ale##33032 |goto Dun Morogh/0 56.59,37.00 |achieve 1184
+buy Thunder 45##33031 |goto Dun Morogh/0 56.59,37.00 |achieve 1184
+step
+talk Barleybrew Apprentice##23482
+buy Barleybrew Dark##33029 |goto Dun Morogh/0 56.06,38.09 |achieve 1184
+buy Barleybrew Light##33028 |goto Dun Morogh/0 56.06,38.09 |achieve 1184
+buy Barleybrew Clear##33030 |goto Dun Morogh/0 56.06,38.09 |achieve 1184
+step
+talk Gordok Brew Apprentice##23511
+buy Ogre Mead##33035 |goto Dun Morogh/0 55.47,36.68 |achieve 1184
+buy Mudder's Milk##33036 |goto Dun Morogh/0 55.47,36.68 |achieve 1184
+buy Gordok Grog##33034 |goto Dun Morogh/0 55.47,36.68 |achieve 1184
+step
+use the Thunderbrew Stout##33033
+Drink Some Thunderbrew Stout |achieve 1184/2
+step
+use the Thunderbrew Ale##33032
+Drink Some Thunderbrew Ale |achieve 1184/4
+step
+use the Thunder 45##33031
+Drink Some Thunder 45 |achieve 1184/9
+step
+use the Barleybrew Dark##33029
+Drink Some Barleybrew Dark |achieve 1184/1
+step
+use the Barleybrew Light##33028
+Drink Some Barleybrew Light |achieve 1184/8
+step
+use the Barleybrew Clear##33030
+Drink Some Barleybrew Clear |achieve 1184/3
+step
+use the Ogre Mead##33035
+Drink Some Ogre Mead |achieve 1184/5
+step
+use the Mudder's Milk##33036
+Drink Some Mudder's Milk |achieve 1184/6
+step
+use the Gordok Grog##33034
+Drink Some Gordok Grog |achieve 1184/7
+step
+Earn the "Strange Brew" Achievement |achieve 1184
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\The Brewfest Diet",{
+mopready=true,
+condition_suggested=function() return isevent("Brewfest") end,
+condition_end=function() return achieved(1185) end,
+description="Eat all 8 of the following Brewfest foods:\n\nSucculent Sausage\nDried Sausage\nPickled Sausage\n"..
+"Savory Sausage\nSpiced Onion Cheese\nSpicy Smoked Sausage\nThe Essential Brewfest Pretzel\nThe Golden Link",
+},[[
+step
+talk Keiran Donoghue##23481
+buy Succulent Sausage##34064 |goto Dun Morogh/0 56.02,36.39 |achieve 1185
+buy Dried Sausage##34063 |goto Dun Morogh/0 56.02,36.39 |achieve 1185
+buy Pickled Sausage##33024 |goto Dun Morogh/0 56.02,36.39 |achieve 1185
+buy Savory Sausage##33023 |goto Dun Morogh/0 56.02,36.39 |achieve 1185
+buy Spicy Smoked Sausage##33025 |goto Dun Morogh/0 56.02,36.39 |achieve 1185
+buy The Golden Link##33026 |goto Dun Morogh/0 56.02,36.39 |achieve 1185
+step
+talk Anne Summers##23521
+buy Spiced Onion Cheese##34065 |goto Dun Morogh/0 56.46,37.71 |achieve 1185
+step
+talk Arlen Lochlan##23522
+buy The Essential Brewfest Pretzel##33043 |goto Dun Morogh/0 55.57,38.21 |achieve 1185
+step
+use The Essential Brewfest Pretzel##33043
+Eat The Essential Brewfest Pretzel |achieve 1185/2
+step
+use the Spiced Onion Cheese##34065
+Eat Some Spiced Onion Cheese |achieve 1185/4
+step
+use the Dried Sausage##34063
+Eat Some Dried Sausage |achieve 1185/7
+step
+use the Succulent Sausage##34064
+Eat Some Succulent Sausage |achieve 1185/8
+step
+use the Savory Sausage##33023
+Eat Some Savory Sausage |achieve 1185/5
+step
+use the Pickled Sausage##33024
+Eat Some Pickled Sausage |achieve 1185/6
+step
+use the Spicy Smoked Sausage##33025
+Eat Some Spicy Smoked Sausage |achieve 1185/3
+step
+use the The Golden Link##33026
+Eat The Golden Link |achieve 1185/1
+step
+Earn "The Brewfest Diet" Achievement |achieve 1185
+]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Children's Week\\Children's Week Stormwind Quests")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Children's Week\\Children's Week Shattrath Quests")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Children's Week\\Children's Week Dalaran Quests")
@@ -619,750 +1411,22 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achieve
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\The Masquerade")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\Sinister Calling")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Harvest Festival\\Harvest Festival Quest")
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Feast of Winter Veil Quests",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not completedq(7045) end,
-description="This guide section will walk you through completing the quests for the Feast of Winter Veil event.",
-},[[
-step
-Reach Level 40 |ding 40
-|tip You can skip this step and proceed, but several quests require level 30 to level 40.
-|tip All quests in this guide require a minimum of level 10 to accept.
-step
-talk Gwenna Firebrew##5112
-|tip Inside the building.
-buy 1 Ice Cold Milk##1179 |goto Ironforge/0 18.63,51.77 |q 7025 |future
-step
-talk Wulmort Jinglepocket##13433
-accept Greatfather Winter is Here!##7022 |goto Ironforge/0 33.59,67.92
-step
-talk Greatfather Winter##13444
-turnin Greatfather Winter is Here!##7022 |goto Ironforge/0 33.16,65.43
-accept Treats for Greatfather Winter##7025 |goto Ironforge/0 33.16,65.43
-step
-talk Goli Krumn##1365
-accept The Reason for the Season##7062 |goto Ironforge/0 30.26,59.41
-step
-Enter the building |goto Ironforge/0 59.29,37.87 < 10 |walk
-talk Daryl Riknussun##5159
-|tip Inside the building.
-Train Cooking |skillmax Cooking,1 |goto Ironforge/0 60.07,36.43
-step
-talk Historian Karnik##2916
-|tip Inside the building.
-turnin The Reason for the Season##7062 |goto Ironforge/0 77.54,11.82
-accept The Feast of Winter Veil##7063 |goto Ironforge/0 77.54,11.82
-step
-Enter the building |goto Ironforge/0 44.64,49.38 < 7 |walk
-talk King Magni Bronzebeard##2784
-|tip Inside the building.
-turnin The Feast of Winter Veil##7063 |goto Ironforge/0 39.17,56.09
-step
-Leave the building |goto Ironforge/0 44.55,49.50 < 7 |walk
-talk Wulmort Jinglepocket##13433
-buy 1 Recipe: Gingerbread Cookie##17200 |goto Ironforge/0 33.59,67.92 |q 7025 |only if not knowsrecipe(21143)
-buy 5 Holiday Spices##17194 |goto Ironforge/0 33.59,67.92 |q 7025
-step
-use the Recipe: Gingerbread Cookie##17200
-learn Gingerbread Cookie##21143
-step
-talk Auctioneer Redmuse##8720
-|tip Inside the building.
-buy 5 Small Egg##6889 |goto Ironforge/0 24.24,74.54 |next "Cook_Gingerbread_Cookies" |q 7025 |or
-_Or_
-Click Here to Farm Them |confirm |next "Farm_Small_Eggs" |or
-step
-label "Farm_Small_Eggs"
-Kill Fleshripper enemies around this area
-|tip You can find them flying all over Westfall.
-collect 5 Small Egg##6889 |goto Westfall/0 50.61,27.62 |q 7025
-step
-label "Cook_Gingerbread_Cookies"
-cast Basic Campfire##818
-|tip Stand next to your fire or a Dwarven Brazier in Ironforge.
-create 5 Gingerbread Cookie##21143,Cooking,5 total |q 7025/1 |goto Ironforge/0 33.50,65.58
-step
-talk Greatfather Winter##13444
-turnin Treats for Greatfather Winter##7025 |goto Ironforge/0 33.16,65.43
-step
-ding 80
-|tip You will also need 300 cooking skill for one quest.
-|tip It will not be shown if you do not meet the skill requirement.
-step
-talk Strange Snowman##13636
-accept You're a Mean One...##7043 |goto Hillsbrad Foothills/0 42.35,41.14
-step
-kill The Abominable Greench##54499
-|tip This is a boss and will require a group.
-collect Stolen Treats##17662 |q 7043/2 |goto Hillsbrad Foothills/0 43.56,39.13
-step
-Free Metzen the Reindeer |q 7043/1 |goto Hillsbrad Foothills/0 44.12,38.56
-|tip Metzen will run free shortly after killing the Greench.
-step
-talk Wulmort Jinglepocket##13433
-turnin You're a Mean One...##7043 |goto Ironforge/0 33.59,67.92
-step
-talk Wulmort Jinglepocket##13433
-|tip These should be available after completing You're a Mean One...
-accept A Smokywood Pastures' Thank You!##7045 |goto Ironforge/0 33.59,67.92
-accept The Hero of the Day##8763 |goto Ironforge/0 33.59,67.92 |only if skill("Cooking") >= 300
-step
-talk Greatfather Winter##13444
-turnin A Smokywood Pastures' Thank You!##7045 |goto Ironforge/0 33.16,65.43
-stickystart "Collect_5_Gold"
-step
-Kill Rock Elemental enemies |kill Lesser Rock Elemental##2735,kill Rock Elemental##92
-collect 1 Deeprock Salt##8150 |q 8763/1 |goto Badlands/0 17.08,31.80
-|tip You can also purchase this item from the auction house.
-You can find more around [Badlands/0 41.00,69.12]
-|only if haveq(8763) or completedq(8763)
-step
-label "Collect_5_Gold"
-Collect 5 Gold |complete _G.GetMoney() >= 50000 |q 8763 |future
-|only if haveq(8763) or completedq(8763)
-step
-click Holly Preserver##180715
-turnin The Hero of the Day##8763 |goto Ironforge/0 37.40,70.21
-|only if haveq(8763) or completedq(8763)
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\'Tis the Season",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(277) end,
-achieveid={277},
-patch='30002',
-description="During the Feast of Winter Veil, wear 3 pieces of winter clothing and eat Graccu's Mince Meat Fruitcake.",
-},[[
-step
-Complete the "Feast of Winter Veil Quests" guide |complete completedq(7045) |only if level >= 80
-Complete the "Feast of Winter Veil Quests" guide |complete completedq(7063) |only if default
-step
-talk Auctioneer Redmuse##8720
-buy 1 Red Winter Clothes##34085 |goto Ironforge/0 24.24,74.54 |next "Collect_Winter_Boots" |or
-buy 1 Green Winter Clothes##34087 |goto Ironforge/0 24.24,74.54 |next "Collect_Winter_Boots" |or
-|tip You only need one of these.
-_Or_ |only if skill("Tailoring") >= 250 |or
-Click Here to Craft Clothes with Tailoring |confirm |next "Craft_Winter_Clothes" |only if skill("Tailoring") >= 250 |or
-'|complete achieved(277) |or
-step
-label "Craft_Winter_Clothes"
-talk Wulmort Jinglepocket##13433
-buy 1 Pattern: Red Winter Clothes##34319 |goto Ironforge/0 33.59,67.92 |or
-'|complete achieved(277) |or
-step
-use the Pattern: Red Winter Clothes##34319
-learn Red Winter Clothes##44958 |or
-'|complete achieved(277) |or
-step
-collect 16 Runecloth##14047 |or
-|tip Farm them from humanoid mobs or purchase them from the Auction House.
-'|complete achieved(277) |or
-step
-collect 3 Wool Cloth##2592 |or
-|tip Farm them from humanoid mobs or purchase them from the Auction House.
-'|complete achieved(277) |or
-step
-talk Bombus Finespindle##5128
-|tip Inside the building.
-buy 1 Rune Thread##14341 |goto Ironforge/0 39.61,34.47
-buy 2 Red Dye##2604 |goto Ironforge/0 39.61,34.47
-step
-create 1 Bolt of Woolen Cloth##2964,Tailoring,1 total |or
-'|complete achieved(277) |or
-step
-create 4 Bolt of Runecloth##18401,Tailoring,4 total |or
-'|complete achieved(277) |or
-step
-create 1 Green Winter Clothes##44950,Tailoring,1 total |or
-'|complete achieved(277) |or
-step
-label "Collect_Winter_Boots"
-talk Auctioneer Redmuse##8720
-|tip Inside the building.
-buy 1 Winter Boots##34086 |goto Ironforge/0 24.24,74.54 |next "Collect_Winter_Hat" |or
-_Or_ |only if skill("Leatherworking") >= 285
-Click Here to Craft Boots with Leatherworking |confirm |next "Create_Winter_Boots" |or |only if skill("Leatherworking") >= 285
-'|complete achieved(277) |or
-step
-label "Create_Winter_Boots"
-talk Wulmort Jinglepocket##13433
-buy Pattern: Winter Boots##34262 |goto Ironforge/0 33.59,67.92 |or
-'|complete achieved(277) |or
-step
-use the Pattern: Winter Boots##34262
-learn Winter Boots##44953 |or
-'|complete achieved(277) |or
-step
-collect 1 Copper Bar##2840 |or
-|tip Farm and Smelt it with Mining or purchase it from the Auction House.
-'|complete achieved(277) |or
-step
-collect 1 Bolt of Woolen Cloth##2997 |or
-|tip Farm the cloth from humanoid mobs and create it with Tailoring or purchase it from the Auction House.
-'|complete achieved(277) |or
-step
-collect 4 Rugged Leather##8170 |or
-|tip Farm it with Skinning or purchase it from the Auction House.
-'|complete achieved(277) |or
-step
-create 1 Winter Boots##44953,Leatherworking,1 total |or
-'|complete achieved(277) |or
-step
-label "Collect_Winter_Hat"
-kill Grand Magus Telestra##26731
-|tip Inside "The Nexus" dungeon.
-|tip It's the bottom portal.
-|tip The hat will only drop on Heroic difficulty.
-Collect a Winter Hat |complete itemcount(21525) >=1 or itemcount(21524) >= 1 |goto The Nexus/1 |achieve 277 |future
-step
-collect Smokywood Pastures Sampler##17685 |or
-|tip You should have this from completing "Treats for Greatfather Winter" in the quest guide.
-|tip It can take a while for this to appear in your mailbox.
-'|complete achieved(277) |or
-step
-use the Smokywood Pastures Sampler##17685
-use Smokywood Pastures Extra-Special Gift##21216
-|tip You may also receive this later in the mail.
-collect 1 Graccu's Mince Meat Fruitcake##21215 |or
-'|complete achieved(277) |or
-step
-use the Red Winter Clothes##34085
-Equip the Red Winter Clothes |equipped Red Winter Clothes##34085
-|only if itemcount(34085) >= 1
-step
-use the Green Winter Clothes##34087
-Equip the Green Winter Clothes |equipped Green Winter Clothes##34087
-|only if itemcount(34087) >= 1
-step
-use the Winter Boots##151791
-Equip the Winter Boots |equipped Winter Boots##151791
-step
-use the Green Winter Hat##21525
-Equip the Green Winter Hat |equipped Green Winter Hat##21525
-|only if itemcount(21525) >= 1
-step
-use the Red Winter Hat##21524
-Equip the Red Winter Hat |equipped Red Winter Hat##21524
-|only if itemcount(21524) >= 1
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\A Frosty Shake",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1690) end,
-achieveid={1690},
-patch='30003',
-description="During the Feast of Winter Veil, use your Winter Veil Disguise kit to become a "..
-"snowman and then dance with another snowman in Dalaran.",
-},[[
-step
-Reach Level 80 |ding 80
-step
-Complete the "Feast of Winter Veil Quests" Guide |complete completedq(7043)
-step
-collect 1 Winter Veil Disguise Kit##17712 |or
-|tip This should appear in your mailbox within 24 hours of completing the quest guide.
-'|complete achieved(1690) |or
-step
-talk Wulmort Jinglepocket##13433
-buy 1 Snowball##17202 |goto Ironforge/0 33.59,67.92 |or
-'|complete achieved(1690) |or
-step
-use the Winter Veil Disguise Kit##17712
-|tip Use it near another snowman because it will root you.
-|tip You may have to search around Dalaran.
-Become a Snowman |complete hasbuff(21848) or achieved(1690) |goto Dalaran/1 48.11,62.79
-step
-|script DoEmote("DANCE")
-Dance with Another Snowman |achieve 1690
-|tip Target another snowman player.
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\BB King",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(4436) end,
-achieveid={4436},
-patch='30300',
-description="Pelt the following enemy leaders:\n\nBaine Bloodhoof\nLady Sylvanas Windrunner\n"..
-"Lor'themar Theron\nHigh Overlord Saurfang",
-},[[
-step
-click A Winter Veil Gift
-|tip You can only open a present from December 25 to January 2.
-accept A Winter Veil Gift##13966 |goto Ironforge/0 33.71,65.98
-step
-use Winter Veil Gift##46740
-collect 1 Red Rider Air Rifle##46725 |or
-|tip You can only open a present from December 25 to January 2.
-'|complete achieved(4436) |or
-step
-clicknpc Garrosh Hellscream##39605
-use the Red Rider Air Rifle##46725
-|tip Use it on Garrosh Hellscream inside the building.
-Use your Red Rider Air Rifle on Garrosh Hellscream |achieve 4436/4 |goto Orgrimmar/1 48.10,70.46
-step
-clicknpc Baine Bloodhoof##36648
-use the Red Rider Air Rifle##46725
-|tip Use it on Baine Bloodhoof inside the building.
-Use your Red Rider Air Rifle on Baine Bloodhoof |achieve 4436/1 |goto Thunder Bluff/0 60.25,51.67
-step
-Enter the tunnel |goto Undercity/0 51.95,64.64 < 10 |walk
-clicknpc Lady Sylvanas Windrunner##10181
-use the Red Rider Air Rifle##46725
-|tip Use it on Lady Sylvanas Windrunner inside the building.
-Use your Red Rider Air Rifle on Lady Sylvanas Windrunner |achieve 4436/2 |goto Undercity/0 58.05,91.78
-step
-clicknpc Lor'themar Theron##16802
-use the Red Rider Air Rifle##46725
-|tip Use it on Lor'themar Theron inside the building.
-Use your Red Rider Air Rifle on Lor'themar Theron |achieve 4436/3 |goto Silvermoon City/0 53.80,20.25
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Crashin' & Thrashin'",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1295) end,
-achieveid={1295},
-patch='30002',
-description="Gain 25 crashes with your Crashin' Thrashin' Racer during the Feast of Winter Veil.",
-},[[
-step
-Enter the building |goto Dalaran/1 43.15,45.13 < 5
-talk Jepetto Joybuzz##29478
-buy 1 Blue Crashin' Thrashin' Racer Controller##54343 |goto Dalaran/1 44.81,45.62 |or
-'|complete achieved(1295) |or
-step
-use the Blue Crashin' Thrashin' Racer Controller##54343
-|tip Use the "Racer Rocket Slam" ability on other players' race controllers.
-|tip You will likely need to search for them.
-|tip Having a friend to do this with helps.
-Gain #25# Crashes with your Racer |achieve 1295 |goto Dalaran/1 48.67,62.04
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Fa-la-la-la-Ogri'la",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1282) end,
-achieveid={1282},
-patch='30001',
-description="Complete the Bomb Them Again! quest while mounted on a flying reindeer during the Feast of Winter Veil.",
-},[[
-step
-Kiss a Winter Reveler |script DoEmote("KISS")
-|tip Emote kiss Winter Revelers for a chance at Mistletoe.
-|tip They can be found in capital cities around inns.
-|tip You can only get a reward from them once per hour.
-|tip You may need to do this multiple times before proceeding.
-Collect a Fresh Holly or Preserved Holly |complete itemcount(21212) >= 1 or itemcount(21212) >= 1 or achieved(1282)
-step
-Routing to proper section |next "Complete_Achievement_Quest" |only if completedq(11010)
-Routing to proper section |next "Unlock_Ogri'la_Dailies" |only if not completedq(11010)
-step
-label "Unlock_Ogri'la_Dailies"
-talk Chu'a'lor##23233
-accept The Trouble Below##11057 |goto Blade's Edge Mountains/0 28.75,57.38
-accept The Crystals##11025 |goto Blade's Edge Mountains/0 28.75,57.38
-step
-Kill enemies around this area
-|tip They spawn all around the crystal-covered hills.
-collect 6 Apexis Shard##32569 |goto Blade's Edge Mountains/0 29.23,53.70 |q 11025
-step
-talk Chu'a'lor##23233
-turnin The Crystals##11025 |goto Blade's Edge Mountains/0 28.75,57.38
-accept An Apexis Relic##11058 |goto Blade's Edge Mountains/0 28.75,57.38
-step
-talk Torkus##23316
-accept Our Boy Wants To Be A Skyguard Ranger##11030 |goto Blade's Edge Mountains/0 28.38,57.65
-step
-kill Gan'arg Analyzer##23386+
-|tip They can respawn during this process.
-click Apexis Relic
-|tip It looks like a small crystal of alternating colors floating in the air.
-|tip Kill more enemies for shards if needed.
-Choose _"Insert an Apexis Shard to begin!"_
-|tip Stand on the white globe and watch as the crystal floating above you casts a beam on the surrounding clusters.
-|tip Click the clusters in the same color pattern as the crystal.
-|tip You must do this eight times.
-|tip If you make a mistake, you will be given a few chances to correct yourself before having to start over.
-Attain the Apexis Emanations |q 11058/1 |goto Blade's Edge Mountains/0 29.05,47.00
-step
-Kill enemies around this area
-|tip They spawn all around the crystal-covered hills.
-collect 11 Apexis Shard##32569 |goto Blade's Edge Mountains/0 29.23,53.70 |q 11030
-step
-Click the Fel Crystalforge
-|tip It looks like a big metal machine with green smoke coming out of it.
-Choose _"Purchase 1 Unstable Flask of the Beast for the cost of 10 Apexis Shards"_
-collect 1 Unstable Flask of the Beast##32598 |q 11030/1 |goto Blade's Edge Mountains/0 32.79,40.49
-step
-talk Chu'a'lor##23233
-turnin An Apexis Relic##11058 |goto Blade's Edge Mountains/0 28.75,57.38
-accept The Relic's Emanation##11080 |goto Blade's Edge Mountains/0 28.75,57.38
-step
-talk Torkus##23316
-turnin Our Boy Wants To Be A Skyguard Ranger##11030 |goto Blade's Edge Mountains/0 28.38,57.65
-step
-kill Gan'arg Analyzer##23386+
-|tip They can respawn during this process.
-click Apexis Relic
-|tip It looks like a small crystal of alternating colors floating in the air.
-|tip Kill more enemies for shards if needed.
-Choose _"Insert an Apexis Shard to begin!"_
-|tip Stand on the white globe and watch as the crystal floating above you casts a beam on the surrounding clusters.
-|tip Click the clusters in the same color pattern as the crystal.
-|tip You must do this eight times.
-|tip If you make a mistake, you will be given a few chances to correct yourself before having to start over.
-Attain the Apexis Vibrations |q 11080/1 |goto Blade's Edge Mountains/0 31.49,63.35
-step
-talk Chu'a'lor##23233
-turnin The Relic's Emanation##11080 |goto Blade's Edge Mountains/0 28.75,57.38
-accept The Skyguard Outpost##11062 |goto Blade's Edge Mountains/0 28.75,57.38
-step
-talk Sky Commander Keller##23334
-turnin The Skyguard Outpost##11062 |goto Blade's Edge Mountains/0 27.40,52.69
-step
-label "Complete_Achievement_Quest"
-talk Sky Sergeant Vanderlip##23120
-accept Bombing Run##11010 |goto Blade's Edge Mountains/0 27.58,52.91
-step
-use the Skyguard Bombs##32456
-|tip While on your flying reindeer mount, use them on Fel Cannonball Stacks.
-|tip They are located next to cannons and marked with a red arrow.
-|tip Keep moving and avoid the fel cannonfire.
-Destroy #15# Fel Cannonball Stacks |q 11010/1 |goto Blade's Edge Mountains/0 34.49,40.99 |achieve 1282 |future
-step
-talk Sky Sergeant Vanderlip##23120
-turnin Bombing Run##11010 |goto Blade's Edge Mountains/0 27.58,52.91
-accept Bomb Them Again!##11023 |goto Blade's Edge Mountains/0 27.58,52.91
-step
-_You must be on a flying mount!_
-use the Preserved Holly##21213 |only if itemcount(21213) >= 1
-use the Fresh Holly##21212 |only if itemcount(21212) >= 1
-Use Holly While Riding your Flying Mount |havebuff Festive Holiday Mount##62061 |achieve 1282 |future
-step
-_You must be on a flying reindeer mount!_
-use the Skyguard Bombs##32456
-|tip While on your flying reindeer mount, use them on Fel Cannonball Stacks.
-|tip They are located next to cannons and marked with a red arrow.
-|tip Keep moving and avoid the fel cannonfire.
-Destroy #15# Fel Cannonball Stacks |q 11023/1 |goto Blade's Edge Mountains/0 34.49,40.99 |achieve 1282 |future
-step
-_You must be on a flying reindeer mount!_
-talk Sky Sergeant Vanderlip##23120
-turnin Bomb Them Again!##11023 |goto Blade's Edge Mountains/0 27.58,52.91
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\He Knows If You've Been Naughty",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1689) end,
-achieveid={1689},
-patch='30002',
-description="Open one of the presents underneath the Winter Veil tree once they are available.",
-},[[
-step
-Click a present under the tree
-|tip You can only open a present from December 25 to January 2.
-|tip No peeking!
-|achieve 1689 |goto Ironforge/0 33.71,65.98
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Holiday Bromance",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1686) end,
-achieveid={1686},
-patch='30002',
-description="Use Mistletoe on the eight Alliance \"Brothers\" during the Feast of Winter Veil.",
-},[[
-step
-Kiss a Winter Reveler |script DoEmote("KISS")
-|tip Emote kiss Winter Revelers for a chance at Mistletoe.
-|tip They can be found in capital cities around inns.
-|tip You can only get a reward from them once per hour.
-|tip You may need to do this multiple times before proceeding.
-collect 8 Mistletoe##21519 |achieve 1686 |future
-step
-clicknpc Brother Kristoff##1444
-use the Mistletoe##21519
-|tip Use it on Brother Kristoff outside the buildings.
-Use Mistletoe on Brother Kristoff |achieve 1686/5 |goto Stormwind City/0 55.04,54.16
-step
-clicknpc Brother Benjamin##5484
-use the Mistletoe##21519
-|tip Use it on Brother Benjamin.
-|tip He patrols back and forth on the right side of the room.
-Use Mistletoe on Brother Benjamin |achieve 1686/1 |goto Stormwind City/0 51.46,46.09
-step
-clicknpc Brother Cassius##1351
-use the Mistletoe##21519
-|tip Use it on Brother Cassius inside the building.
-Use Mistletoe on Brother Cassius |achieve 1686/3 |goto Stormwind City/0 53.33,45.30
-step
-Run down the ramp |goto Stormwind City/0 51.22,44.81 < 5 |walk
-clicknpc Brother Crowley##12336
-use the Mistletoe##21519
-|tip Use it on Brother Crowley inside the building.
-Use Mistletoe on Brother Crowley |achieve 1686/6 |goto Stormwind City/0 52.62,43.18
-step
-Run up the ramp |goto Stormwind City/0 51.12,44.29 < 5 |walk
-clicknpc Brother Joshua##5489
-use the Mistletoe##21519
-|tip Use it on Brother Joshua inside the building.
-Use Mistletoe on Brother Joshua |achieve 1686/9 |goto Stormwind City/0 49.51,45.21
-step
-clicknpc Brother Wilhelm##927
-use the Mistletoe##21519
-|tip Use it on Brother Wilhelm.
-Use Mistletoe on Brother Wilhelm |achieve 1686/2 |goto Elwynn Forest/0 41.09,66.04
-step
-clicknpc Brother Nimetz##739
-use the Mistletoe##21519
-|tip Use it on Brother Nimetz.
-Use Mistletoe on Brother Nimetz |achieve 1686/8 |goto Stranglethorn Vale/0 37.83,3.56
-step
-clicknpc Brother Karman##8140
-use the Mistletoe##21519
-|tip Use it on Brother Karman.
-Use Mistletoe on Brother Karman |achieve 1686/4 |goto Dustwallow Marsh/0 67.40,47.41
-step
-clicknpc Brother Anton##1182
-use the Mistletoe##21519
-|tip Use it on Brother Anton inside the building.
-Use Mistletoe on Brother Anton |achieve 1686/7 |goto Desolace/0 66.52,7.90
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Let It Snow",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1687) end,
-achieveid={1687},
-patch='30002',
-description="During the Feast of Winter Veil, use a Handful of Snowflakes on the following "..
-"race/class combinations:\n\nBlood Elf Warlock\nDraenei Priest\nDwarf Paladin\n"..
-"Gnome Mage\nHuman Warrior\nNight Elf Druid\nOrc Death Knight\nTauren Shaman\n"..
-"Troll Hunter\nUndead Rogue",
-},[[
-step
-Kiss a Winter Reveler |script DoEmote("KISS")
-|tip Inside the building.
-|tip Emote kiss Winter Revelers for a chance at Mistletoe.
-|tip You can only get a reward from them once per hour.
-|tip You may need to do this multiple times before proceeding.
-collect 10 Handful of Snowflakes##34191 |goto Ironforge/0 20.06,53.74 |or
-'|complete achieved(1687) |or
-step
-Use a Handful of Snowflakes on the following race/class combinations:
-use the Handful of Snowflakes##34191
-|tip Use one on each of the races below.
-Blood Elf Warlock |achieve 1687/10 |goto Stormwind City/0 62.74,72.93
-Draenei Priest |achieve 1687/1 |goto Stormwind City/0 62.74,72.93
-Dwarf Paladin |achieve 1687/6 |goto Stormwind City/0 62.74,72.93
-Gnome Mage |achieve 1687/7 |goto Stormwind City/0 62.74,72.93
-Human Warrior |achieve 1687/3 |goto Stormwind City/0 62.74,72.93
-Night Elf Druid |achieve 1687/8 |goto Stormwind City/0 62.74,72.93
-Orc Death Knight |achieve 1687/4 |goto Stormwind City/0 62.74,72.93
-Tauren Shaman |achieve 1687/9 |goto Stormwind City/0 62.74,72.93
-Troll Hunter |achieve 1687/2 |goto Stormwind City/0 62.74,72.93
-Undead Rogue |achieve 1687/5 |goto Stormwind City/0 62.74,72.93
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\On Metzen!",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(273) end,
-achieveid={273},
-patch='30008',
-description="Save Metzen the Reindeer.",
-},[[
-step
-Reach Level 80 |ding 80
-step
-talk Wulmort Jinglepocket##13433
-accept Metzen the Reindeer##8762 |goto Ironforge/0 33.59,67.92
-step
-use the Smokywood Satchel##21315
-Open the Smokywood Satchel |complete itemcount(21315) == 0 or completedq(8762)
-step
-clicknpc Metzen the Reindeer##15664
-Choose _"Sprinkle some of the reindeer dust onto Metzen."_
-Free Metzen the Reindeer |q 8762/1 |goto Searing Gorge/0 68.76,34.23
-step
-talk Wulmort Jinglepocket##13433
-turnin Metzen the Reindeer##8762 |goto Ironforge/0 33.59,67.92
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Scrooge",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1255) end,
-achieveid={1255},
-patch='30001',
-description="Throw a snowball at King Magni Bronzebeard during the Feast of Winter Veil.",
-},[[
-step
-talk Wulmort Jinglepocket##13433
-buy 1 Snowball##17202 |goto Ironforge/0 33.59,67.92 |or
-'|complete achieved(1255) |or
-step
-Enter the building |goto Ironforge/0 44.64,49.38 < 10 |walk
-talk King Magni Bronzebeard##2784
-use the Snowball##17202
-|tip Use it on King Magni Bronzebeard.
-Throw a Snowball at King Magni Bronzebeard |achieve 1255 |goto Ironforge/0 39.17,56.09
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Simply Abominable",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(279) end,
-achieveid={279},
-patch='30008',
-description="Complete the quest to retrieve Smokywood Pastures' stolen treats and receive a Smokywood Pastures' Thank You.",
-},[[
-step
-ding 80
-|tip You will also need 300 cooking skill for one quest.
-|tip It will not be shown if you do not meet the skill requirement.
-step
-talk Strange Snowman##13636
-accept You're a Mean One...##7043 |goto Hillsbrad Foothills/0 42.35,41.14
-step
-kill The Abominable Greench##54499
-|tip This is a boss and will require a group.
-collect Stolen Treats##17662 |q 7043/2 |goto Hillsbrad Foothills/0 43.56,39.13
-step
-Free Metzen the Reindeer |q 7043/1 |goto Hillsbrad Foothills/0 44.12,38.56
-|tip Metzen will run free shortly after killing the Greench.
-step
-talk Wulmort Jinglepocket##13433
-turnin You're a Mean One...##7043 |goto Ironforge/0 33.59,67.92
-step
-talk Wulmort Jinglepocket##13433
-accept A Smokywood Pastures' Thank You!##7045 |goto Ironforge/0 33.59,67.92
-|tip This should be available after completing You're a Mean One...
-step
-talk Greatfather Winter##13444
-turnin A Smokywood Pastures' Thank You!##7045 |goto Ironforge/0 33.16,65.43
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\The Winter Veil Gourmet",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1688) end,
-achieveid={1688},
-patch='30003',
-description="During the Feast of Winter Veil, use your culinary expertise to produce a Gingerbread "..
-"Cookie, Winter Veil Egg Nog and Hot Apple Cider.",
-},[[
-step
-Reach 325 Cooking Skill |complete skill("Cooking") >= 325 or achieved(1688)
-|tip Use the "Cooking 1-525" Profession guide.
-|loadguide "Profession Guides\\Cooking\\Cooking (1-525)"
-step
-talk Gwenna Firebrew##5112
-|tip Inside the building.
-buy 1 Ice Cold Milk##1179 |goto Ironforge/0 18.63,51.77 |or
-'|complete achieved(1688) |or
-step
-talk Macey Jinglepocket##13434
-buy 1 Sparkling Apple Cider##34412 |goto Ironforge/0 33.67,67.26 |or
-'|complete achieved(1688) |or
-step
-talk Wulmort Jinglepocket##13433
-buy 1 Recipe: Winter Veil Egg Nog##17201 |goto Ironforge/0 33.59,67.92
-buy 1 Recipe: Hot Apple Cider##34413 |goto Ironforge/0 33.59,67.92
-buy 1 Recipe: Gingerbread Cookie##17200 |goto Ironforge/0 33.59,67.92
-buy 3 Holiday Spices##17194 |goto Ironforge/0 33.59,67.92
-buy 2 Holiday Spirits##17196 |goto Ironforge/0 33.59,67.92
-'|complete achieved(1688) |or
-step
-talk Auctioneer Redmuse##8720
-|tip Inside the building.
-buy 2 Small Egg##6889 |goto Ironforge/0 24.24,74.54 |next "Learn_Hot_Apple_Cider" |or
-_Or_
-Click Here to Farm Them |confirm |next "Farm_Small_Eggs" |or
-'|complete achieved(1688) |or
-step
-label "Farm_Small_Eggs"
-Kill Fleshripper enemies around this area
-collect 2 Small Egg##6889 |goto Westfall/0 50.61,27.62 |or
-'|complete achieved(1688) |or
-step
-label "Learn_Hot_Apple_Cider"
-use the Recipe: Hot Apple Cider##34413
-learn Hot Apple Cider##45022 |or
-'|complete achieved(1688) |or
-step
-use the Recipe: Egg Nog##17201
-learn Egg Nog##21144 |or
-'|complete achieved(1688) |or
-step
-use the Recipe: Gingerbread Cookie##17200
-learn Gingerbread Cookie##21143 |or
-'|complete achieved(1688) |or
-step
-cast Basic Campfire##818
-|tip Stand next to your fire or a Dwarven Brazier in Ironforge.
-create 1 Gingerbread Cookie##21143,Cooking,1 total |achieve 1688/1 |goto Ironforge/0 33.46,65.53
-step
-cast Basic Campfire##818
-|tip Stand next to your fire or a Dwarven Brazier in Ironforge.
-create 1 Egg Nog##21144,Cooking,1 total |achieve 1688/2 |goto Ironforge/0 33.46,65.53
-step
-cast Basic Campfire##818
-|tip Stand next to your fire or a Dwarven Brazier in Ironforge.
-create 1 Hot Apple Cider##45022,Cooking,1 total |achieve 1688/3 |goto Ironforge/0 33.46,65.53
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\With a Little Helper from My Friends",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(252) end,
-achieveid={252},
-patch='30001',
-description="Earn 50 honorable kills as a Little Helper from the Winter Wondervolt machine.",
-},[[
-step
-label "Become_A_Little_Helper"
-Become a Little Helper |havebuff texture:135849 |goto Dun Morogh/0 60.32,33.93 |or
-|tip Step on the blue pad.
-'|complete achieved(252) |or
-step
-Kill enemies in PvP combat
-|tip Queue up for PvP Battlegrounds and kill enemy players.
-Earn #50# PvP Kills as a Little Helper |achieve 252 |or
-'|nobuff texture:135849 |next "Become_A_Little_Helper" |or |only if not achieved(252)
-'|complete achieved(252) |or
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\Merrymaker",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(1691) end,
-achieveid={1691},
-patch='30003',
-description="Complete the following Winter Veil achievements:\n\nOn Metzen!\nScrooge\n"..
-"'Tis the Season\nLet It Snow\nThe Winter Veil Gourmet\nA Frosty Shake\n"..
-"With a Little Helper from My Friends\nFa-la-la-la-Ogri'la\nSimply Abominable\n"..
-"Bros. Before Ho Ho Ho's\nHe Knows If You've Been Naughty",
-},[[
-step
-leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\On Metzen!"
-leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\Scrooge"
-leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\'Tis the Season"
-leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\Let It Snow"
-leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\The Winter Veil Gourmet"
-leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\A Frosty Shake"
-leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\With a Little Helper from My Friends"
-leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\Fa-la-la-la-Ogri'la"
-leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\Simply Abominable"
-leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\Holiday Bromance"
-leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\He Knows If You've Been Naughty"
-leechsteps "Events Guides\\Feast of Winter Veil\\Achievements\\A-Caroling We Will Go"
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Feast of Winter Veil\\Achievements\\A-Caroling We Will Go",{
-mopready=true,
-condition_suggested=function() return isevent('Feast of Winter Veil') and not achieved(5853) end,
-achieveid={5853},
-patch='40001',
-description="Use your Gaudy Winter Veil Sweater to carol in enemy capital cities during the Feast of Winter Veil.",
-},[[
-step
-collect Gaudy Winter Veil Sweater##70923
-|tip Gifts under the tree on or after December 25th award this item.
-|tip You will need it to carol in capital cities.
-step
-use the Gaudy Winter Veil Sweater##70923
-Carol in Orgrimmar |achieve 5853/2 |goto Orgrimmar/1 49.55,85.78
-|tip This is an enemy capital city and has hostile NPCs and players.
-step
-use the Gaudy Winter Veil Sweater##70923
-Carol in Thunder Bluff |achieve 5853/4 |goto Thunder Bluff/0 36.26,68.10
-|tip This is an enemy capital city and has hostile NPCs and players.
-step
-use the Gaudy Winter Veil Sweater##70923
-Carol in Silvermoon City |achieve 5853/1 |goto Silvermoon City/0 71.00,79.85
-|tip This is an enemy capital city and has hostile NPCs and players.
-step
-use the Gaudy Winter Veil Sweater##70923
-Carol in Undercity |achieve 5853/3 |goto Undercity/0 66.04,36.81
-|tip This is an enemy capital city and has hostile NPCs and players.
-]])
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Feast of Winter Veil Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\'Tis the Season")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\A Frosty Shake")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\BB King")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\Crashin' & Thrashin'")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\Fa-la-la-la-Ogri'la")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\He Knows If You've Been Naughty")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\Holiday Bromance")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\Let It Snow")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\On Metzen!")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\Scrooge")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\Simply Abominable")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\The Winter Veil Gourmet")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\With a Little Helper from My Friends")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\Merrymaker")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\A-Caroling We Will Go")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Love is in the Air\\Love is in the Air Main Questline")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Love is in the Air\\Love is in the Air Dailies")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Love is in the Air\\Achievements\\Be Mine!")

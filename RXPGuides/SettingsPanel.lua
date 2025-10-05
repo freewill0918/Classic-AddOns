@@ -1219,7 +1219,8 @@ function addon.settings:CreateAceOptionsPanel()
                         end,
                         type = "header",
                         width = "full",
-                        order = 5.0
+                        order = 5.0,
+                        hidden = addon.gameVersion >= 50000,
                     },
                     enableTalentGuides = {
                         name = L("Enable Talents Guides"), -- TODO locale
@@ -1231,6 +1232,7 @@ function addon.settings:CreateAceOptionsPanel()
                             return not (addon.talents and
                                        addon.talents:IsSupported())
                         end,
+                        hidden = addon.gameVersion >= 50000,
                         confirm = requiresReload,
                         set = function(info, value)
                             SetProfileOption(info, value)
@@ -1248,7 +1250,7 @@ function addon.settings:CreateAceOptionsPanel()
                                        addon.settings.profile.enableTalentGuides and
                                        addon.talents:IsSupported())
                         end,
-                        hidden = addon.gameVersion < 30000
+                        hidden = addon.gameVersion < 30000 or addon.gameVersion >= 50000
                     },
                     hightlightTalentPlan = {
                         name = L("Enable Talent Plan"), -- TODO locale
@@ -1260,7 +1262,8 @@ function addon.settings:CreateAceOptionsPanel()
                             return not (addon.talents and
                                        addon.settings.profile.enableTalentGuides and
                                        addon.talents:IsSupported())
-                        end
+                        end,
+                        hidden = addon.gameVersion >= 50000
                     },
                     upcomingTalentCount = {
                         name = L("Talent Plan Number"), -- TODO locale
@@ -1280,7 +1283,8 @@ function addon.settings:CreateAceOptionsPanel()
                                        addon.settings.profile
                                            .hightlightTalentPlan and
                                        addon.talents:IsSupported())
-                        end
+                        end,
+                        hidden = addon.gameVersion >= 50000
                     }
                 }
             },
@@ -3511,13 +3515,20 @@ function addon.GetXPBonuses(ignoreBuffs,playerLevel)
         calculatedRate = calculatedRate + 0.1
     end
 
+    if addon.game == "MOP" and UnitLevel('player') >= 85 then
+        --5.4 xp rates
+        calculatedRate = calculatedRate + 0.55
+    end
+
     if addon.game == "RETAIL" then
         local cloakBonus = C_CurrencyInfo.GetCurrencyInfo(3001).quantity
         local warModeBonus = (C_PvP.IsWarModeActive() or CheckBuff(282559) or CheckBuff(269083) or CheckBuff(289954)) and C_PvP.GetWarModeRewardBonus() or 0
         local warbandBuff = C_UnitAuras.GetPlayerAuraBySpellID(430191)
         --1,2: xp buff, 3: max level
         local warbandBonus = warbandBuff and warbandBuff.points[1] or 0
-        calculatedRate = calculatedRate + (cloakBonus + warModeBonus + warbandBonus)/100
+        local legionRemix = C_UnitAuras.GetPlayerAuraBySpellID(1232454)
+        legionRemix = legionRemix and legionRemix.points[10] or 0
+        calculatedRate = calculatedRate + (cloakBonus + warModeBonus + warbandBonus + legionRemix)/100
         return calculatedRate
     elseif addon.game == "WOTLK" then
         local itemQuality

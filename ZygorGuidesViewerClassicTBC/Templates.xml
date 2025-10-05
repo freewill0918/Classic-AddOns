@@ -271,6 +271,24 @@
 				self:SetNormalTexture(ZGV.DIR.."\\Skins\\findinzygor")
 			</OnLoad>
 		</Scripts>
+		<Frames>
+			<Frame name="$parentGlow" useParentLevel="true" parentKey="glow">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="3" y="-3"/>
+					<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture parentKey="tex" alphaMode="ADD">
+							<Size x="28" y="28"/>
+							<Anchors>
+								<Anchor point="CENTER" relativePoint="CENTER" />
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
 	</Button>
 
 	<Button name="ZygorActionButton" virtual="true" frameStrata="MEDIUM" inherits="SecureActionButtonTemplate,SecureHandlerStateTemplate" />

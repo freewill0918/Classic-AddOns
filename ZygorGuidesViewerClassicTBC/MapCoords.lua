@@ -31,7 +31,6 @@ end
 local GWP=C_Map.GetWorldPosFromMapPos
 local Enum_Continent = Enum.UIMapType.Continent
 local Enum_Dungeon = Enum.UIMapType.Dungeon
-local Enum_Orphan = Enum.UIMapType.Orphan
 local Enum_Micro = Enum.UIMapType.Micro
 local Enum_Zone = Enum.UIMapType.Zone
 local Enum_Orphan = Enum.UIMapType.Orphan
@@ -101,6 +100,8 @@ local force_maptype={
 	[1970]=Enum_Continent,					-- Zereth Mortis, zone to continent, since its taxis collide with rest of shadowlands
 
 	[2322]=Enum_Micro,					-- Earthen Starter
+
+	[2248]=Enum_Continent,					-- Isle of Dorn needs to be a continent for ants to work both on over an underworld
 }
 
 local phasedmappairs = {
@@ -248,28 +249,28 @@ end
 
 
 
-local cache={}  -- makes the lookup 50% faster (1mil runs on random maps: 2000ms without cache, 1300 with cache)
+local modf_cache={}  -- makes the lookup 50% faster (1mil runs on random maps: 2000ms without cache, 1300 with cache)
 -- subfloors in Dazar'Alor should be grouped, really. Link 1165 to others - others themselves will be fine.
-cache["1163_1164"]=true
-cache["1163_1165"]=true
-cache["1164_1165"]=true
-cache["1165_1166"]=true
-cache["1165_1167"]=true
+modf_cache["1163_1164"]=true
+modf_cache["1163_1165"]=true
+modf_cache["1164_1165"]=true
+modf_cache["1165_1166"]=true
+modf_cache["1165_1167"]=true
 
 function ZGV.MapsOnDifferentFloors(m1,m2)
 	if not (m1 and m2) then return false end
 	if m1==m2 then return false end
 	if m1>m2 then m1,m2=m2,m1 end
-	if cache[m1]==false then return false end
-	if cache[m2]==false then return false end
-	local c=cache[m1.."_"..m2]
+	if modf_cache[m1]==false then return false end
+	if modf_cache[m2]==false then return false end
+	local c=modf_cache[m1.."_"..m2]
 	if c~=nil then return c end
-	local group_w = ZGV.GetMapGroupID(m1)
-	if not group_w then cache[m1]=false return false end
-	local group_c = ZGV.GetMapGroupID(m2 or m1)
-	if not group_c then cache[m2]=false return false end
-	c=(group_w==group_c)
-	cache[m1.."_"..m2]=c
+	local group1 = ZGV.GetMapGroupID(m1)
+	if not group1 then modf_cache[m1]=false return false end
+	local group2 = ZGV.GetMapGroupID(m2 or m1)
+	if not group2 then modf_cache[m2]=false return false end
+	c=(group1==group2)
+	modf_cache[m1.."_"..m2]=c
 	return c
 end
 
@@ -330,7 +331,6 @@ local function FixMAPDATA()
 
 	if MAPDATA[2070] then MAPDATA[2070][1]=0 end -- Tirisfal L is on EK
 
-
 	for mapid,_ in pairs(LibRover.data.InstanceMapsRev) do
 		MAPDATA[mapid] = {mapid,0,0,0,0}
 	end
@@ -353,7 +353,10 @@ local function HBDuse(id)
 	MAPDATA[id]={dh.instance,dh[4],dh[3],dh[1],dh[2]}
 end
 
-function MapCoords.Mdist(map1,x1,y1,map2,x2,y2)
+--- Calculate distance between two points on two maps.
+--- @param keepSquared boolean If true, returns squared distance (no sqrt), which is faster to compute and fine for comparisons.
+--- @return number|nil distanceSquared, number|nil deltaX, number|nil deltaY, string|nil error, any|nil err1, any|nil err2
+function MapCoords.Mdist(map1,x1,y1,map2,x2,y2,keepSquared)
 	local dx,dy
 	local dm1=MAPDATA[map1]
 	if not dm1 or not x1 or not x2 then return nil,nil,nil,"err, no start" end
@@ -371,61 +374,84 @@ function MapCoords.Mdist(map1,x1,y1,map2,x2,y2)
 		dx = gx2-gx1
 		dy = gy2-gy1
 	end
-	return sqrt(dx*dx+dy*dy),dx,dy
+	if keepSquared then return dx*dx+dy*dy,dx,dy else return sqrt(dx*dx+dy*dy),dx,dy end
 end
 local Mdist = MapCoords.Mdist
 
 function MapCoords.Mangle(...)
 	local dist,dx,dy = Mdist(...)
-	if not dx then return nil,nil end
+	if not dx or not dy then return nil,nil end
 	local angle = atan2(-dx,dy)
 	if angle>0 then angle = PI2-angle else angle=-angle end
 	return angle,dist
 end
 
+-- tests
+function MapCoords.TestMdist()
+	local tests = {
+		"same map",
+		{ 84,0.5,0.5,  84,0.5,0.5, 0},
+		{ 84,0.5,0.5,  84,0.6,0.5, 173},
+		{ 84,0.5,0.5,  84,0.5,0.6, 115},
+		{ 84,0.5,0.5,  84,0.6,0.6, 208},
+		"diff map same continent",
+		{ 84,0.5,0.5,  87,0.5,0.5, 4225},
+		{ 84,0.5,0.5,  87,0.6,0.5, 4262},
+		{ 84,0.5,0.5,  87,0.5,0.6, 4178},
+		{ 84,0.5,0.5,  87,0.6,0.6, 4216},
+		"diff continent",
+		{ 84,0.5,0.5,  57,0.5,0.5, "err"},
+	}
+	local lastLabel,n
+	local errs={}
+	for i,test in ipairs(tests) do
+		if type(test)=="string" then
+			lastLabel = test
+			n=0
+		else
+			n=n+1
+			local d,dx,dy,err=Mdist(test[1],test[2],test[3],test[4],test[5],test[6])
+			d=d or err
+			if (type(test[7])=="string" and type(d)~="number") or (type(test[7])=="number" and d and abs(d-test[7])<2) then
+				-- silently pass
+			else
+				tinsert(errs,"Mdist test failed: '"..lastLabel.."' #"..n..", expected "..tostring(test[7])..", got "..tostring(d))
+			end
+		end
+	end
+	if (#errs>0) then
+		Spoo(errs)
+	end
+end
+
+
+
+
 -- instance IDs
-local C_KULTIRAS = 1643
-local C_ZANDALAR = 1642
-local C_NAZJATAR = 1718
-local C_BROKENIS = 1220
-local C_PANDARIA = 870
-local C_NORTHREND = 571
-local C_DEEPHOLM = 646
-local C_LOSTISLES = 648
-local C_DRAENOR = 1116
-local C_OUTLAND = 530
-local C_EASTERN = 0
-local C_KALIMDOR = 1
+local C_KULTIRAS    = 1643
+local C_ZANDALAR    = 1642
+local C_NAZJATAR    = 1718
+local C_BROKENIS    = 1220
+local C_PANDARIA    =  870
+local C_NORTHREND   =  571
+local C_DEEPHOLM    =  646
+local C_LOSTISLES   =  648
+local C_DRAENOR     = 1116
+local C_OUTLAND     =  530
+local C_EASTERN     =    0
+local C_KALIMDOR    =    1
 local C_SHADOWLANDS = 2222
 local C_DRAGONISLES = 2444
-local C_ISLEOFDORN = 2552
-local C_KHAZALGAR = 2601
+local C_ISLEOFDORN  = 2552
+local C_KHAZALGAR   = 2601
+local C_KARESH      = 2738
 
 local cosmicMapData = {}
 MapCoords.cosmicMapData = cosmicMapData  --debug export
-	if ZGV.IsClassic then
-		-- data for the azeroth world map
-		cosmicMapData[C_EASTERN] = { 140000, 79000, 82000, 37000 } -- Eastern
-		cosmicMapData[C_KALIMDOR] = { 160000, 71000, 67000, 32000 } -- Kalimdor
 
-	elseif ZGV.IsClassicTBC then
-		-- data for the azeroth world map
-		cosmicMapData[C_EASTERN] = { 94000, 60000, 79000, 35000 } -- Eastern
-		cosmicMapData[C_KALIMDOR] = { 100000, 64000, 67000, 40000 } -- Kalimdor
+-- data for the COSMIC world map. Edited by hand. Coords are... I don't know. { something X, something Y, some width, height } I guess.
 
-		-- outland
-		cosmicMapData[C_OUTLAND] = { 45000, 33000, 18200, 11200 }
-
-	elseif ZGV.IsClassicWOTLK then
-		-- data for the azeroth world map
-		cosmicMapData[C_EASTERN] = { 94000, 60000, 79000, 35000 } -- Eastern
-		cosmicMapData[C_KALIMDOR] = { 100000, 64000, 67000, 40000 } -- Kalimdor
-		cosmicMapData[C_NORTHREND] = { 110000, 220000, 56000, 70000 } -- Northrend
-
-		-- outland
-		cosmicMapData[C_OUTLAND] = { 45000, 33000, 18200, 11200 }
-	else
-		-- data for the azeroth world map
+	if ZGV.IsRetail then
 		cosmicMapData[C_EASTERN] = { 140000, 79000, 82000, 37000 } -- Eastern
 		cosmicMapData[C_KALIMDOR] = { 160000, 71000, 67000, 32000 } -- Kalimdor
 
@@ -438,14 +464,30 @@ MapCoords.cosmicMapData = cosmicMapData  --debug export
 		cosmicMapData[C_LOSTISLES] = { 250000, 210000, 125000, 115000 } -- The Lost Isles, 
 		cosmicMapData[C_DEEPHOLM] = { 250000, 210000, 130000, 110000 } -- The Maelstrom
 
-		-- draenor
-		cosmicMapData[C_DRAENOR] = { 65000, 40000, 56000, 28000 }
-		-- outland
-		cosmicMapData[C_OUTLAND] = { 65000, 46000, 18000, 34000 }
-		-- shadowlands
-		cosmicMapData[C_SHADOWLANDS] = { 95000, 66000, 18000, 15000 }
-		-- dragon isles
-		cosmicMapData[C_DRAGONISLES] = { 3000000, 2000000, 1600000, 1200000 }
+		
+		cosmicMapData[C_DRAENOR] = { 65000, 40000, 56000, 28000 } -- draenor
+		cosmicMapData[C_OUTLAND] = { 65000, 46000, 18000, 34000 } -- outland
+		cosmicMapData[C_SHADOWLANDS] = { 95000, 66000, 18000, 15000 } -- shadowlands
+		cosmicMapData[C_DRAGONISLES] = { 3000000, 2000000, 1600000, 1200000 } -- dragon isles
+		cosmicMapData[C_ISLEOFDORN] = { 90000, 91000, 40000, 66000 } -- isle of dorn
+		cosmicMapData[C_KHAZALGAR] =  { 90000, 92000, 40000, 66000 } -- khazalgar
+
+	elseif ZGV.IsClassic then
+		cosmicMapData[C_EASTERN] = { 140000, 79000, 82000, 37000 } -- Eastern
+		cosmicMapData[C_KALIMDOR] = { 160000, 71000, 67000, 32000 } -- Kalimdor
+
+	elseif ZGV.IsClassicTBC then
+		cosmicMapData[C_EASTERN] = { 94000, 60000, 79000, 35000 } -- Eastern
+		cosmicMapData[C_KALIMDOR] = { 100000, 64000, 67000, 40000 } -- Kalimdor
+
+		cosmicMapData[C_OUTLAND] = { 45000, 33000, 18200, 11200 } -- outland
+
+	elseif ZGV.IsClassicWOTLK then
+		cosmicMapData[C_EASTERN] = { 94000, 60000, 79000, 35000 } -- Eastern
+		cosmicMapData[C_KALIMDOR] = { 100000, 64000, 67000, 40000 } -- Kalimdor
+		cosmicMapData[C_NORTHREND] = { 110000, 220000, 56000, 70000 } -- Northrend
+
+		cosmicMapData[C_OUTLAND] = { 45000, 33000, 18200, 11200 } -- outland
 	end
 --
 
@@ -468,15 +510,24 @@ local MAP_COSMIC = 946
 
 MAPDATA_XLT = {}
 local MXLT=MAPDATA_XLT
+
+-- initial overrides, for maps that are on different continents but we want to allow translation between them.
+MAPDATA_XLT[2248] = MAPDATA_XLT[2248] or {}
+MAPDATA_XLT[2248][2274] = { 0.50,0.44, 0.02,0.44, true } -- Isle of Dorn on Khazalgar
+MAPDATA_XLT[2339] = MAPDATA_XLT[2339] or {}
+MAPDATA_XLT[2339][2274] = { 0.67,0.10, 0.15,0.10, true } -- Dornogal on Khazalgar
+MAPDATA_XLT[2369] = MAPDATA_XLT[2369] or {}
+MAPDATA_XLT[2369][2248] = { 0.10,0.10, 0.13,0.10, true } -- Siren Isle on Isle of Dorn
+
 function MapCoords.Mxlt(map1,x,y,map2,oob_ok,creative)
 	if map1==map2 then return x,y end
 	if not map1 or not map2 then return false,nil,nil,"no maps" end
 
-	if map2==MAP_AZEROTH --[[AZEROTH--]] then
+	if map2==MAP_AZEROTH then
 		if map1==MAP_COSMIC then return false,nil,nil,"cosmic <-> azeroth" end
 		local x,y,zone = ZGV.HBD:GetWorldCoordinatesFromZone(x,y,map1)
 		return ZGV.HBD:GetAzerothWorldMapCoordinatesFromWorld(x,y,zone,true)
-	elseif map2==MAP_COSMIC --[[COSMIC--]] then
+	elseif map2==MAP_COSMIC then
 		if map1==MAP_AZEROTH then return false,nil,nil,"cosmic <-> azeroth" end
 		local x,y,zone = ZGV.HBD:GetWorldCoordinatesFromZone(x,y,map1)
 		return GetCosmicWorldMapCoordinatesFromWorld(x,y,zone,true)
@@ -495,23 +546,29 @@ function MapCoords.Mxlt(map1,x,y,map2,oob_ok,creative)
 	else
 		XM1={} MXLT[map1]=XM1
 	end
+	--creative=true
 	local was_creative
-	if XM12==false and not creative then
+	if XM12==false and not creative then -- explicitly forbidden translation, marked as such by get_v_c_d
+		--print("Mxlt "..map1.." to "..map2..": forbidden")
 		return false,nil,nil,"no XM"
-	elseif XM12 then
+	elseif XM12 then -- get offsets from cache
+		--print("Mxlt "..map1.." to "..map2..": cached")
 		ox,sx,oy,sy,overlap=unpack(XM12)
 		if not oob_ok and not overlap then return false,nil,"oob" end
-	else
+	else -- figure out offsets
+		--print("Mxlt "..map1.." to "..map2..": calc")
 		local dm1=MAPDATA[map1]
 		local dm2=MAPDATA[map2]
 		if not dm1 or not dm2 then return false end
 		if dm1[1]~=dm2[1] then -- diff continent
 			if creative then
 				dm1 = MapCoords.Mxlt_get_virtual_cont_data(map1,map2)
+				--print(" - virtual? "..(dm1 and "yes" or "no"))
 				if not dm1 then return nil,nil,false,"creative fail" end
 				was_creative=true
 			else
 				XM1[map2]=false
+				--print(" - diff cont")
 				return false,nil,nil,"diff cont"
 			end
 		end
@@ -584,7 +641,7 @@ elseif ZGV.IsClassicMOP then
 	}
 end
 
-local virtual_continents
+local virtual_continents = {}
 	-- containing
 		-- contained
 			-- x,y,scale in rel. to original contained
@@ -662,6 +719,7 @@ if ZGV.IsRetail then
 			[C_PANDARIA] =  { -0.8,  1.0,  1.0 },
 			[C_NORTHREND] = { -1.0, -3.0,  1.0 },
 			[C_NAZJATAR] =  {  0.8,  0.06, 0.5 },
+			--[C_ISLEOFDORN] =  {  1.8,  0.06, 0.5 },
 		}
 	}
 elseif ZGV.IsClassicTBC then
@@ -755,8 +813,8 @@ local virtual_calculated = {
 MapCoords.virtual_continents = virtual_continents  --debug export
 MapCoords.virtual_calculated = virtual_calculated  --debug export
 
-local dummy_pos_00 = {x=0,y=0}
-local dummy_pos_11 = {x=1,y=1}
+--local dummy_pos_00 = {x=0,y=0}
+--local dummy_pos_11 = {x=1,y=1}
 
 
 function MapCoords.TranslateVirtualContinents()
@@ -775,47 +833,51 @@ function MapCoords.TranslateVirtualContinents()
 	end
 end
 
-local virtual_cache={}
+--local virtual_cache={}
+--MapCoords.virtual_cache = virtual_cache
 
 function MapCoords.Mxlt_get_virtual_cont_data(map_new,map_ori)
 	-- figure out what if map_new's whole continent was on map_ori's continent somewhere
-	
-	local D={}
+	--print("get_v_c_d mapping "..map_new.." ("..C_Map.GetMapInfo(map_new).name..") on "..map_ori.." ("..C_Map.GetMapInfo(map_ori).name..")")
+	--local D={}
 
 	-- use cache if available
-	 local v1=virtual_cache[map_ori]
-	 local v2=v1 and v1[map_new]
-	 if v2 then return v2 end
+	-- local v1=virtual_cache[map_ori]
+	-- local v2=v1 and v1[map_new]
+	-- if v2 then print("cached "..map_ori) return v2 end
 
 	local md_new = MAPDATA[map_new]
 	local md_ori = MAPDATA[map_ori]
 
-	D.md_new = md_new  D.md_ori = md_ori
+	--D.md_new = md_new  D.md_ori = md_ori
 
 	local vc1=virtual_calculated[md_ori[1]]
 	local virt_c_new = vc1 and vc1[md_new[1]]
-	if not virt_c_new then return end
+	if not virt_c_new then
+		--print(" - boo: no v_c["..md_ori[1].."]["..md_new[1].."]")
+		return
+	end
 
 	-- get full continent coords for map_origin
-	local _,ori_cx,ori_cy,ori_cw,ori_ch = unpack(MAPDATA[ZGV.GetMapContinent(map_ori)])
-	D.ori_cx=ori_cx	D.ori_cy=ori_cy	D.ori_cw=ori_cw	D.ori_ch=ori_ch
+	--local _,ori_cx,ori_cy,ori_cw,ori_ch = unpack(MAPDATA[ZGV.GetMapContinent(map_ori)])
+	--D.ori_cx=ori_cx	D.ori_cy=ori_cy	D.ori_cw=ori_cw	D.ori_ch=ori_ch
 
 	-- get full continent coords for map_new
 	local _,new_cx,new_cy,new_cw,new_ch = unpack(MAPDATA[ZGV.GetMapContinent(map_new)])
-	D.new_cx=new_cx	D.new_cy=new_cy	D.new_cw=new_cw	D.new_ch=new_ch
+	--D.new_cx=new_cx	D.new_cy=new_cy	D.new_cw=new_cw	D.new_ch=new_ch
 
 	-- new map on its continent, normalized
-	local new_posx = ((new_cx-md_new[2])/new_cw)
-	local new_posy = ((new_cy-md_new[3])/new_ch)
+	local new_posx = (new_cx-md_new[2])/new_cw
+	local new_posy = (new_cy-md_new[3])/new_ch
 	local new_scax = md_new[4]/new_cw
 	local new_scay = md_new[5]/new_ch
-	D.new_posx,D.new_posy,D.new_scax,D.new_scay = new_posx,new_posy,new_scax,new_scay
+	--D.new_posx,D.new_posy,D.new_scax,D.new_scay = new_posx,new_posy,new_scax,new_scay
 
 	local virt_new_posx = virt_c_new.x-virt_c_new.w*new_posx
 	local virt_new_posy = virt_c_new.y-virt_c_new.h*new_posy
 	local virt_new_wid = virt_c_new.w*new_scax
 	local virt_new_hei = virt_c_new.h*new_scay
-	D.virt_new_posx,D.virt_new_posy,D.virt_new_wid,D.virt_new_hei = virt_new_posx,virt_new_posy,virt_new_wid,virt_new_hei
+	--D.virt_new_posx,D.virt_new_posy,D.virt_new_wid,D.virt_new_hei = virt_new_posx,virt_new_posy,virt_new_wid,virt_new_hei
 
 	return {-2,virt_new_posx,virt_new_posy,virt_new_wid,virt_new_hei}
 end
@@ -1104,6 +1166,10 @@ tinsert(ZGV.startups,{"POI map icon",function()
 	if not ZGV.IsRetail then return end
 	MapCoords:SetupMapButtons()
 end})
+
+if ZGV.DEV then tinsert(ZGV.startups,{"MapCoords test",function()
+	MapCoords.TestMdist()
+end}) end
 
 if not ZGV.QuestBakerRunning then
 	FixHBD() -- fix what HBD is breaking

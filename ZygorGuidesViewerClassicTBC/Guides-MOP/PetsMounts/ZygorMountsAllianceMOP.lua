@@ -3,11 +3,57 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Alliance" then return end
 if ZGV:DoMutex("PetsMountsAMOP") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Faction Mounts\\Brown Dragon Turtle",{
-keywords={"brown","dragon","turtle","ground","mount"},
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Black Dragon Turtle",{
+keywords={"tushui","black","dragon","turtle","ground","mount"},
+model={43717},
+mounts={127286},
+patch='50500',
+mounttype='Ground',
+description="This guide will teach you how to acquire the Black Dragon Turtle mount.",
+mopready=true,
+},[[
+step
+Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
+|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+'|complete hasmount(127286) |or
+only if not Pandaren
+step
+talk Old Whitenose##65068
+buy Reins of the Black Dragon Turtle##87795 |goto Stormwind City/0 67.74,18.43 |or
+'|complete hasmount(127286) |or
+step
+use the Reins of the Black Dragon Turtle##87795
+learnmount Black Dragon Turtle##127286
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Blue Dragon Turtle",{
+keywords={"tushui","blue","dragon","turtle","ground","mount"},
+model={43718},
+mounts={127287},
+patch='50500',
+mounttype='Ground',
+description="This guide will teach you how to acquire the Blue Dragon Turtle mount.",
+mopready=true,
+},[[
+step
+Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
+|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+'|complete hasmount(127287) |or
+only if not Pandaren
+step
+talk Old Whitenose##65068
+buy Reins of the Blue Dragon Turtle##87796 |goto Stormwind City/0 67.74,18.43 |or
+'|complete hasmount(127287) |or
+step
+use the Reins of the Blue Dragon Turtle##87796
+learnmount Blue Dragon Turtle##127287
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Brown Dragon Turtle",{
+keywords={"tushui","brown","dragon","turtle","ground","mount"},
 model={43719},
 mounts={127288},
-patch='50400',
+patch='50500',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Brown Dragon Turtle mount.",
 mopready=true,
@@ -26,31 +72,31 @@ step
 use the Reins of the Brown Dragon Turtle##91005
 learnmount Brown Dragon Turtle##127288
 ]])
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Faction Mounts\\Purple Dragon Turtle",{
-keywords={"purple","dragon","turtle","ground","mount"},
-model={43910},
-mounts={127289},
-patch='50400',
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Great Black Dragon Turtle",{
+keywords={"tushui","great","black","dragon","turtle","ground","mount"},
+model={43723},
+mounts={127295},
+patch='50500',
 mounttype='Ground',
-description="This guide will teach you how to acquire the Purple Dragon Turtle mount.",
+description="This guide will teach you how to acquire the Great Black Dragon Turtle mount.",
 mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
 |tip Use the "Tushui Pandaren" reputation guide to accomplish this.
 Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
-'|complete hasmount(127289) |or
+'|complete hasmount(127295) |or
 only if not Pandaren
 step
 talk Old Whitenose##65068
-buy Reins of the Purple Dragon Turtle##91006 |goto Stormwind City/0 67.74,18.43 |or
-'|complete hasmount(127289) |or
+buy Great Reins of the Great Black Dragon Turtle##87802 |goto Stormwind City/0 67.74,18.43 |or
+'|complete hasmount(127295) |or
 step
-use the Reins of the Purple Dragon Turtle##91006
-learnmount Purple Dragon Turtle##127289
+use the Reins of the Great Black Dragon Turtle##87802
+learnmount Great Black Dragon Turtle##127295
 ]])
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Faction Mounts\\Great Blue Dragon Turtle",{
-keywords={"great","blue","dragon","turtle","ground","mount"},
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Great Blue Dragon Turtle",{
+keywords={"tushui","great","blue","dragon","turtle","ground","mount"},
 model={43724},
 mounts={127302},
 patch='50400',
@@ -72,8 +118,8 @@ step
 use the Reins of the Great Blue Dragon Turtle##91013
 learnmount Great Blue Dragon Turtle##127302
 ]])
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Faction Mounts\\Great Brown Dragon Turtle",{
-keywords={"great","brown","dragon","ninja","turtle","ground","mount"},
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Great Brown Dragon Turtle",{
+keywords={"tushui","great","brown","dragon","ninja","turtle","ground","mount"},
 model={43725},
 mounts={127308},
 patch='50400',
@@ -95,7 +141,54 @@ step
 use the Reins of the Great Brown Dragon Turtle##91014
 learnmount Great Brown Dragon Turtle##127308
 ]])
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Faction Mounts\\Great Red Dragon Turtle",{
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Great Green Dragon Turtle",{
+keywords={"tushui","green","dragon","turtle","ground","mount"},
+model={43719},
+mounts={127288},
+patch='50500',
+mounttype='Ground',
+description="This guide will teach you how to acquire the Great Green Dragon Turtle mount.",
+mopready=true,
+},[[
+step
+Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
+|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+'|complete hasmount(127288) |or
+only if not Pandaren
+step
+talk Old Whitenose##65068
+buy Reins of the Great Green Dragon Turtle##91005 |goto Stormwind City/0 67.74,18.43 |or
+'|complete hasmount(127288) |or
+step
+use the Reins of the Great
+Green Dragon Turtle##91005
+learnmount Green Dragon Turtle##127288
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Great Purple Dragon Turtle",{
+keywords={"tushui","purple","dragon","turtle","ground","mount"},
+model={43726},
+mounts={127310},
+patch='50400',
+mounttype='Ground',
+description="This guide will teach you how to acquire the Great Purple Dragon Turtle mount.",
+mopready=true,
+},[[
+step
+Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
+|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+'|complete hasmount(127310) |or
+only if not Pandaren
+step
+talk Old Whitenose##65068
+buy Reins of the Great Purple Dragon Turtle##87805 |goto Stormwind City/0 67.74,18.43 |or
+'|complete hasmount(127310) |or
+step
+use the Reins of the Great Purple Dragon Turtle##87805
+learnmount Great Purple Dragon Turtle##127310
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Great Red Dragon Turtle",{
 keywords={"great","red","dragon","turtle","ground","mount"},
 model={42352},
 mounts={120822},
@@ -118,6 +211,29 @@ step
 use the Reins of the Great Red Dragon Turtle##91010
 learnmount Great Red Dragon Turtle##120822
 ]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Green Dragon Turtle",{
+keywords={"tushui","green","dragon","turtle","ground","mount"},
+model={43719},
+mounts={127288},
+patch='50500',
+mounttype='Ground',
+description="This guide will teach you how to acquire the Green Dragon Turtle mount.",
+mopready=true,
+},[[
+step
+Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
+|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+'|complete hasmount(127288) |or
+only if not Pandaren
+step
+talk Old Whitenose##65068
+buy Reins of the Green Dragon Turtle##91005 |goto Stormwind City/0 67.74,18.43 |or
+'|complete hasmount(127288) |or
+step
+use the Reins of the Green Dragon Turtle##91005
+learnmount Green Dragon Turtle##127288
+]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Golden Primal Direhorn",{
 keywords={"golden","prime","direhorn","exalted","sunreaver","onslaught","ground","mount"},
 model={48100},
@@ -139,6 +255,52 @@ buy Reins of the Golden Primal Direhorn##95564 |goto Isle of Thunder/0 64.69,74.
 step
 use the Reins of the Golden Primal Direhorn##95564
 learnmount Golden Primal Direhorn##140249
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Purple Dragon Turtle",{
+keywords={"tushui","purple","dragon","turtle","ground","mount"},
+model={43910},
+mounts={127289},
+patch='50400',
+mounttype='Ground',
+description="This guide will teach you how to acquire the Purple Dragon Turtle mount.",
+mopready=true,
+},[[
+step
+Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
+|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+'|complete hasmount(127289) |or
+only if not Pandaren
+step
+talk Old Whitenose##65068
+buy Reins of the Purple Dragon Turtle##91006 |goto Stormwind City/0 67.74,18.43 |or
+'|complete hasmount(127289) |or
+step
+use the Reins of the Purple Dragon Turtle##91006
+learnmount Purple Dragon Turtle##127289
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Red Dragon Turtle",{
+keywords={"tushui","red","dragon","turtle","ground","mount"},
+model={43910},
+mounts={127290},
+patch='50400',
+mounttype='Ground',
+description="This guide will teach you how to acquire the Red Dragon Turtle mount.",
+mopready=true,
+},[[
+step
+Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
+|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+'|complete hasmount(127290) |or
+only if not Pandaren
+step
+talk Old Whitenose##65068
+buy Reins of the Red Dragon Turtle##87800 |goto Stormwind City/0 67.74,18.43 |or
+'|complete hasmount(127290) |or
+step
+use the Reins of the Red Dragon Turtle##87800
+learnmount Red Dragon Turtle##127290
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Achievement Mounts\\Armored Blue Dragonhawk",{
 keywords={"armored","Blue","dragon","hawk","flying","mount"},
@@ -271,4 +433,62 @@ collect 1 Pandaren Kite String##89785 |or
 step
 use the Pandaren Kite String##89785
 learnmount Pandaren Kite##130985
+]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Dropped Mounts\\Heavenly Onyx Cloud Serpent",{
+keywords={"heavenly","onyx","cloud","serpent","sha","of","anger","flying","mount"},
+model={43689},
+mounts={127158},
+patch='50400',
+mounttype='Flying',
+description="This guide will teach you how to acquire the Heavenly Onyx Cloud Serpent mount.",
+mopready=true,
+},[[
+step
+label "A_SHA_OF_ANGER_KILL"
+kill Sha of Anger##60491
+|tip It has about a 10-20 minute respawn timer.
+|tip You may have to kill him more than once to obtain the mount item drop.
+collect Reins of the Heavenly Onyx Cloud Serpent##87771 |goto Kun-Lai Summit/0 54.47,63.22 |next "A_HEAVENLY_ONYX_END" |or
+Click Here to Complete a Celestial Challenge daily to earn currency for a chance to acquire this mount |confirm |next "A_SATCHEL_HEAVENLY_ONYX_CLOUD_SERPENT" |only if level == 90 and _G.GetAverageItemLevel()>=435
+|tip Spam-killing Sha of Anger may be the surest method to obtain this mount, but you can also obtain this pet and other mounts and pets by completing Celestial Challenge daily quests. |only if level == 90 and _G.GetAverageItemLevel()>=435
+|tip This has an extremely low drop rate.
+'|complete hasmount(127158) |next "A_HEAVENLY_ONYX_END" |or
+step
+label "A_SATCHEL_HEAVENLY_ONYX_CLOUD_SERPENT"
+ding 90 |or
+'|complete hasmount(127158) |next "A_HEAVENLY_ONYX_END" |or
+step
+Reach item level 435 |complete _G.GetAverageItemLevel()>=435 |or
+'|complete hasmount(127158) |next "A_HEAVENLY_ONYX_END" |or
+step
+talk Challenger Soong##64028
+|tip He is underneath the main outdoor platform at the shrine.
+Accept a Celestial Challenge Daily Quest |complete haveq(91702,91706,91704,91710,91718,91714,91708,91712,91716) or completedq(91702,91706,91704,91710,91718,91714,91708,91712,91716) |goto Vale of Eternal Blossoms/0 86.45,61.56 |or
+'|complete hasmount(127158) |next "A_HEAVENLY_ONYX_END" |or
+step
+Press _I_ and Queue for a {y}Random Mists of Pandaria Celestial{} Dungeon
+|tip Run random Celestial Dungeons until your quest is completed.
+|tip You will have to complete 3 or 4 Celestial Challenge daily quests to acquire enough August Stone Fragments to purchase a Satchel of Celestial Chance.
+Complete the Celestial Challenge Daily Quest |n
+earn 10 August Stone Fragment##3350
+Click Here to Return to the Beginning of the {b}Satchels of Celestial Chance{} Guide |confirm |next "A_SATCHEL_OF_CELESTIAL_CHANCE"
+|tip
+Click Here to Return to the Beginning of the Guide |confirm |next "A_SHA_OF_ANGER_KILL"
+'|complete hasmount(127158) |next "A_HEAVENLY_ONYX_END" |or
+step
+talk Avatar of the August Celestials##248108
+|tip This vendor is upstairs, inside the building, on the righthand balcony in the Shrine of Seven Stars.
+|tip He looks like a ghostly cloud serpent.
+buy Satchel of Celestial Chance##248666 |goto Shrine of Seven Stars/2 42.60,45.59
+'|complete hasmount(127158) |next "A_HEAVENLY_ONYX_END" |or
+step
+use Satchel of Celestial Chance##248666
+|tip You may need to purchase more than one satchel to acquire the pet.
+collect Reins of the Heavenly Onyx Cloud Serpent##87771 |next "A_HEAVENLY_ONYX_END"
+Click Here to Return to the Beginning of the Guide |confirm |next "A_SHA_OF_ANGER_KILL"
+'|complete hasmount(127158) |next "A_HEAVENLY_ONYX_END" |or
+step
+label "A_HEAVENLY_ONYX_END"
+use the Reins of the Heavenly Onyx Cloud Serpent##87771
+learnmount Heavenly Onyx Cloud Serpent##127158
 ]])

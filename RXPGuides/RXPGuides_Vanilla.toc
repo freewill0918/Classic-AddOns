@@ -2,7 +2,7 @@
 ## Title: RestedXP Guides
 ## Notes: In-game leveling guides
 ## Author: RestedXP
-## Version: v4.8.9
+## Version: v4.8.11
 ## OptionalDeps: Questie, RXPGuides_Themes
 ## SavedVariables: RXPData, RXPDB, RXPSettings
 ## SavedVariablesPerCharacter: RXPCData, RXPCTrackingData, RXPCComms, RXPCSettings
@@ -31,7 +31,6 @@ Communications.lua
 Targeting.lua
 Tips.lua
 InventoryManager.lua
-
 
 map.lua
 functions.lua

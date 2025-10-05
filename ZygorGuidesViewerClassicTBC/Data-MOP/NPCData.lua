@@ -3671,28 +3671,6 @@ ZGV._NPCData={
 
 	
 	]],
-	["ClassDeathKnight"] = [[
-	]],
-	["ClassDruid"] = [[
-	]],
-	["ClassHunter"] = [[
-	]],
-	["ClassMage"] = [[
-	]],
-	["ClassMonk"] = [[
-	]],
-	["ClassPaladin"] = [[
-	]],
-	["ClassPriest"] = [[
-	]],
-	["ClassRogue"] = [[
-	]],
-	["ClassShaman"] = [[
-	]],
-	["ClassWarlock"] = [[
-	]],
-	["ClassWarrior"] = [[
-	]],
 	["TrainerAlchemy"] = [[
 		3347=sH|m85|x55.3|y45.1 -- Yelmak
 		5499=sA|m84|x55.5|y85.5 -- Lilyssia Nightbreeze
@@ -3914,6 +3892,45 @@ ZGV._NPCData={
 		55143=sB|m376|x16.06|y83.14--Nesingwary's Safari, Valley of the Four Winds (Sally Fizzlefury)
 	]],
 	["TrainerFirst Aid"] = [[
+		49879=sH|m76|x57|y50.6 -- Azshara (Doc Zapnozzle)
+		17214=sA|m97|x48.5|y51.8 -- Azuremyst Isle (Anchorite Fateema)
+		19478=sH|m105|x53.8|y55 -- Blade's Edge Mountains (Fera Palerunner)
+		17424=sA|m106|x54.6|y54 -- Bloodmyst Isle (Anchorite Paetheus)
+		26992=sA|m114|x57.8|y66.2 -- Borean Tundra (Brynna Wilson)
+		29233=sH|m114|x41.6|y54.4 -- Borean Tundra (Nurse Applewood)
+		28706=sB|m125|x36.8|y37.2 -- Dalaran/1 (Olisarra the Kind)
+		4211=sA|m89|x51.55|y12.55 -- Darnassus (Dannelor)
+		2326=sA|m27|x47.2|y52.5 -- Dun Morogh (Thamner Pol)
+		5943=sH|m1|x54|y42 -- Durotar (Rawrk)
+		12939=sA|m70|x67.6|y48.8 -- Dustwallow Marsh (Doctor Gustaf VanHowzen)
+		2329=sA|m37|x43.4|y65.6 -- Elwynn Forest (Michelle Belle)
+		16272=sH|m94|x48.55|y47.52 -- Eversong Woods (Kanaria)
+		50574=sA|m179|x36.8|y65.6 -- Gilneas/0 (Amelia Atherton)
+		18991=sH|m100|x26.2|y62 -- Hellfire Peninsula (Aresella)
+		18990=sA|m100|x22.4|y39.2 -- Hellfire Peninsula (Burko)
+		23734=sA|m117|x59.8|y61.6 -- Howling Fjord (Anchorite Yazmina)
+		26956=sH|m117|x79.4|y29.4 -- Howling Fjord (Sally Tompkins)
+		33589=sB|m118|x71.4|y22.5 -- Icecrown (Joseph Wilson)
+		5150=sA|m87|x54.8|y58.5 -- Ironforge (Nissa Firestone)
+		59077=sB|m379|x71.6|y92.8 -- Kun-Lai Summit (Apothecary Cheng)
+		66357=sB|m379|x51|y40.2 -- Kun-Lai Summit (Master Bier)
+		3373=sH|m85|x34|y84.4 -- Orgrimmar (Arnok)
+		45540=sH|m85|x37.29|y87.2 -- Orgrimmar (Krenk Choplimb)
+		19184=sB|m111|x66.55|y13.52 -- Shattrath City (Mildred Fletcher)
+		64482=sA|m393|x42.6|y61.2 -- Shrine of Seven Stars/1 (Healer Nan)
+		65862=sH|m391|x29.6|y74.6 -- Shrine of Two Moons (Ala'thinel)
+		16662=sH|m110|x77.5|y71.39 -- Silvermoon City (Alestus)
+		56796=sA|m84|x52.2|y45.5 -- Stormwind City (Angela Leifeld)
+		2327=sA|m84|x52.8|y44.8 -- Stormwind City (Shaina Fuller)
+		6094=sA|m57|x55|y49.6 -- Teldrassil (Byancie)
+		22477=sB|m108|x30.8|y76 -- Terokkar Forest (Anchorite Ensham)
+		16731=sA|m103|x39.54|y22.47 -- The Exodar (Nus)
+		66222=sH|m371|x28.2|y15.2 -- The Jade Forest (Elder Muur)
+		65983=sA|m371|x45.5|y85.8 -- The Jade Forest (Soraka)
+		36615=sH|m174|x28.4|y76.4 -- The Lost Isles (Doc Zapnozzle)
+		2798=sH|m88|x29.55|y21.52 -- Thunder Bluff (Pand Stonebinder)
+		4591=sH|m998|x73.55|y55.52 -- Undercity (Mary Edras)
+		3181=sA|m56|x10.8|y61.2 -- Wetlands (Fremal Doohickey)
 	]],
 	["TrainerFishing"] = [[
 		5161=sA|m87|x47.6|y6.8 -- Grimnur Stonebrand
@@ -4193,6 +4210,9 @@ ZGV._NPCData={
 	]],
 
 	["ClassDeathKnight"] = [[
+		29195=sB|m23|x83.6|y44.5 -- Eastern Plaguelands (Lady Alistra)
+		29196=sB|m23|x80.8|y43.8 -- Eastern Plaguelands (Lord Thorval)
+		29194=sB|m23|x80.4|y48 -- Eastern Plaguelands (Amal'thazad)
 	]],
 	["ClassDruid"] = [[
 		12042=sB|m80|x52.4|y40.5 -- Loganaar
@@ -4295,6 +4315,10 @@ ZGV._NPCData={
 		5880=sH|m1|x56.2|y75 -- Un'Thuwa
 	]],
 	["ClassMonk"] = [[
+		62445=sH|m85|x68.65|y40.29 -- Orgrimmar (Ji Firepaw)
+		62419=sA|m84|x68.2|y16.39 -- Stormwind City (Aysa Cloudsinger)
+		62464=sA|m103|x54.6|y80.8 -- The Exodar (Pan of the Martial Spirit)
+		64975=sB|m379|x48.8|y43.5 -- Kun-Lai Summit (Iron-Body Ponshu)
 	]],
 	["ClassPaladin"] = [[
 		23128=sH|m85|x32.5|y35.79 -- Master Pyreanor

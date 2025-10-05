@@ -1312,7 +1312,7 @@ function GuideMenu:ParseFeatured()
 		table.insert(GuideMenu.FeaturedShowcase,parsedgroup)
 
 		for _,section in ipairs(group) do
-			parsedsection = {name = section.name, hash={}}
+			local parsedsection = {name = section.name, hash={}}
 			local forced = false
 			local count=0
 			local only_guideslists = true
@@ -1360,7 +1360,7 @@ function GuideMenu:ParseFeatured()
 		local parsedgroup = {}
 		table.insert(GuideMenu.FeaturedRoadmap,parsedgroup)
 		for _,section in ipairs(group) do
-			parsedsection = {}
+			local parsedsection = {}
 			for _,element in ipairs(section) do
 				if not (element.showcaseonly or element[1]=="section") then
 					table.insert(parsedsection,element)

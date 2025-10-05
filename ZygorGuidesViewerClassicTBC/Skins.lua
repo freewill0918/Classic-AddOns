@@ -367,12 +367,20 @@ function ZGV.IconSets:Create()
 		[5]	= { 6,1},
 		GOOD	= { 7,1},
 		BAD	= { 8,1},
+		ANIM1	= { 1,2},
+		ANIM2	= { 2,2},
+		ANIM3	= { 3,2},
+		ANIM4	= { 4,2},
+		ANIM5	= { 5,2},
+		ANIM6	= { 6,2},
+		ANIM7	= { 7,2},
+		ANIM8	= { 8,2},
 
 		file = ZGV.SKINSDIR.."zta_hints",
 		cols = 8,
-		rows = 1,
+		rows = 2,
 		width = 512,
-		height = 64,
+		height = 128,
 		padding = 0,
 		default = "EMPTY"
 	}

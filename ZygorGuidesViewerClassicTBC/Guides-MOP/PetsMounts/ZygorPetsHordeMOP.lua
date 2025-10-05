@@ -3,6 +3,61 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Horde" then return end
 if ZGV:DoMutex("PetsHMOP") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts\\Battle Pets\\Aquatic Pets\\Aqua Strider",{
+patch='50500',
+source='Drop',
+author="support@zygorguides.com",
+description="This guide will teach you how to acquire the Aqua Strider battle pet.",
+keywords={"Drop","Aquatic"},
+pet=836,
+mopready=true,
+},[[
+step
+label "HOLLOW_REED_BEGIN"
+kill Nalash Verdantis##50776
+|tip He is a jinyu with a staff standing on the island here.
+|tip Respawn time is about an hour.
+|tip You may have to kill him more than once to obtain the pet item drop.
+collect Hollow Reed##86563 |goto Dread Wastes/0 64.25,58.46 |next "H_HOLLOW_REED_END" |or
+Click Here to Complete a Celestial Challenge daily to earn currency for a chance to acquire this Battle Pet |confirm |next "H_SATCHEL_OF_CELESTIAL_CHANCE"  |only if level == 90 and _G.GetAverageItemLevel()>=435
+|tip Spam-killing Nalash Verdantis may be the surest method to obtain this battle pet, but you can also obtain this pet and other mounts and pets by completing Celestial Challenge daily quests. |only if level == 90 and _G.GetAverageItemLevel()>=435
+'|complete haspet(836) |next "HOLLOW_REED_END" |or
+step
+label "H_SATCHEL_OF_CELESTIAL_CHANCE"
+ding 90 |or
+'|complete haspet(836) |or
+step
+Reach item level 435 |complete _G.GetAverageItemLevel()>=435 |or
+'|complete haspet(836) |or
+step
+talk Challenger Wuli##63994
+|tip He is underneath the main outdoor platform at the shrine.
+Accept a Celestial Challenge Daily Quest |complete haveq(91702,91706,91704,91710,91718,91714,91708,91712,91716) or completedq(91702,91706,91704,91710,91718,91714,91708,91712,91716) |goto Vale of Eternal Blossoms/0 61.08,20.80 |or
+'|complete haspet(836) |or
+step
+Press _I_ and Queue for a {y}Random Mists of Pandaria Celestial{} Dungeon
+|tip Run random Celestial Dungeons until your quest is completed.
+|tip You will have to complete 3 or 4 Celestial Challenge daily quests to acquire enough August Stone Fragments to purchase a Satchel of Celestial Chance.
+Complete the Celestial Challenge Daily Quest |n
+earn 10 August Stone Fragment##3350
+Click Here to Return to the Beginning of the {b}Satchels of Celestial Chance{} Guide |confirm |next "H_SATCHEL_OF_CELESTIAL_CHANCE"
+|tip
+Click Here to Return to the Beginning of the Guide |confirm |next "H_HOLLOW_REED_BEGIN"
+step
+talk Avatar of the August Celestials##248108
+|tip This vendor is upstairs, inside the building, on the lefthand balcony in the Shrine of Two Moons.
+|tip He looks like a ghostly cloud serpent.
+buy Satchel of Celestial Chance##248666 |goto goto Shrine of Two Moons/2 42.60,45.59v
+step
+use Satchel of Celestial Chance##248666
+|tip You may have to purchase more than one satchel to acquire the pet.
+collect Hollow Reed##86563 |next "H_HOLLOW_REED_END"
+Click Here to Return to the Beginning of the Guide |confirm |next "H_HOLLOW_REED_BEGIN"
+step
+label "H_HOLLOW_REED_END"
+use Hollow Reed##86563
+learnpet Aqua Strider##836
+]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Fishy",{
 patch='50100',
 source='Quest',

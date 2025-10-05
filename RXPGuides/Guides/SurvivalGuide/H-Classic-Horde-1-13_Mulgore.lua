@@ -2226,7 +2226,7 @@ step
 step
     .goto Durotar,54.39,42.18
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Jark|r
-    >>|cRXP_BUY_Buy one or more|r |T133634:0|t[Small Brown Pouches] |cRXP_BUY_from|r |cRXP_FRIENDLY_him|r
+    >>|cRXP_BUY_Buy one or more|r |T133634:0|t[Small Brown Pouches] |cRXP_BUY_from|r |cRXP_BUY_him|r
     .collect 4496,1,835,1 --Small Brown Pouch (1)
     .target Jark
     .money <0.05
@@ -2371,7 +2371,7 @@ step << Druid
 step << Druid
     .goto Moonglade,52.53,40.58
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Loganaar|r
-    .train 8050 >> Train your class spells
+    .train 8936 >> Train your class spells
     .target Loganaar
     .xp <12,1
     .isQuestComplete 806
@@ -2912,9 +2912,9 @@ step << Druid
     .zoneskip Moonglade
     .solo
 step << Druid
-    .goto Durotar,54.42,42.59
+    .goto Moonglade,52.53,40.58
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Loganaar|r
-    .train 8050 >> Train your class spells
+    .train 8936 >> Train your class spells
     .target Loganaar
     .xp <12,1
     .cooldown item,6948,>0

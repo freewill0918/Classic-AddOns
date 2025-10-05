@@ -813,7 +813,7 @@ function Pointer:SetWaypoint (m,x,y,data,arrow)
 
 	Pointer.Provider:SoilData()
 
-	if Pointer.SavePointsStarted then
+	if Pointer.SavePointsStarted and data.type=="manual" then
 		-- if we are ready for it, save all manual waypoints
 		self:Debug("SetWaypoint saving manual waypoints.")
 		table.wipe(ZGV.db.char.pointsetsmanual)
@@ -5295,7 +5295,7 @@ function Pointer:AnimateAnts(force)
 
 		if self.pointsets["route"] then animate_set("route","worldmap",spacing,parentmap,xmin,ymin,xmax,ymax) end
 		if self.pointsets["path"] then animate_set("path","worldmap",spacing,parentmap,xmin,ymin,xmax,ymax) end
-		for name,pointset in pairs(self.pointsets) do  if name~="route" and name~="path" then
+		for name,pointset in pairs(self.pointsets) do  if name~="route" and name~="path" and pointset.type~="poi" then
 			animate_set(name,"worldmap",spacing,parentmap,xmin,ymin,xmax,ymax)
 		end end
 	end
@@ -5321,7 +5321,7 @@ function Pointer:AnimateAnts(force)
 
 		if self.pointsets["route"] then animate_set("route","minimap",spacing,parentmap,xmin,ymin,xmax,ymax) end
 		if self.pointsets["path"] then animate_set("path","minimap",spacing,parentmap,xmin,ymin,xmax,ymax) end
-		for name,pointset in pairs(self.pointsets) do  if name~="route" and name~="path" then
+		for name,pointset in pairs(self.pointsets) do  if name~="route" and name~="path" and pointset.type~="poi" then
 			animate_set(name,"minimap",spacing,parentmap,xmin,ymin,xmax,ymax)
 		end end
 	end

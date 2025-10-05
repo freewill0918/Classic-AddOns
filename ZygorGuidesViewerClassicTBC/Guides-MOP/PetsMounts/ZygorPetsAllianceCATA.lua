@@ -1817,27 +1817,6 @@ step
 _Congratulations!_
 You Collected the "Pint-Sized Pink Pachyderm" Battle Pet.
 ]])
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Critter Pets\\Porcupette",{
-patch='50100',
-source='Drop',
-description="This battle pet has a 1 in 335 chance to drop from a Sack of Pet Supplies or you can purchase it from the Auction House.",
-keywords={"Critter","Auction","House"},
-pet=381,
-mopready=true,
-},[[
-step
-collect Porcupette##89587 |n
-|tip This has a 1 in 335 chance to drop from a Sack of Pet Supplies, it may take a while to get this.
-|tip You can earn a Sack of Pet Supplies from Battle Pet Tamer quests and Battle Pet Daily quests.
-|tip You can use our Battle Pet Tamer guides as well as our Battle Pet Daily guides to help you complete quests.
-|tip This pet is cageable, meaning you can purchase it from the Auction House.
-use the Porcupette##89587
-|tip It is in your inventory.
-Learn the "Porcupette" Battle Pet |learnpet Porcupette##381
-step
-_Congratulations!_
-You Collected the "Porcupette" Battle Pet.
-]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Critter Pets\\Scooter the Snail",{
 patch='41000',
 source='WorldEvent',

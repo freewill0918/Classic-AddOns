@@ -6509,6 +6509,716 @@ step
 talk Kil'ruk the Wind-Reaver##62538
 turnin The Scent of Blood##31179 |goto Dread Wastes/0 55.06,35.85
 ]])
+ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Operation: Shieldwall",{
+startlevel=90,
+description="This guide will take you through quests for Operation: Shieldwall.",
+patch='50500',
+mopready=true
+},[[
+step
+talk Lyalia##64610
+accept Meet the Scout##32246 |goto Vale of Eternal Blossoms/0 84.29,66.08
+step
+talk Scout Lynna##68311
+turnin Meet the Scout##32246 |goto Krasarang Wilds/0 85.24,29.13
+step
+Watch the dialogue
+talk King Varian Wrynn##61796
+|tip He will eventually reach the beach.
+accept A King Among Men##32247 |goto Krasarang Wilds/0 85.29,29.11
+stickystart "Slay_Horde"
+step
+talk Marshal Troteman##68331
+|tip Kill any enemies he is attacking.
+Find Marshal Troteman |q 32247/2 |goto Krasarang Wilds/0 79.63,25.05
+step
+talk Hilda Hornswaggle##68312
+|tip Kill any enemies she is attacking.
+Find Hilda Hornswaggle |q 32247/3 |goto Krasarang Wilds/0 80.43,17.53
+step
+label "Slay_Horde"
+Kill Horde enemies around this area |kill Horde Raider##68332,Horde Hunter##68334,Horde Priest##67904
+Slay #25# Horde |q 32247/1 |goto Krasarang Wilds/0 81.42,21.94
+step
+_Next to you:_
+talk King Varian Wrynn##61796
+turnin A King Among Men##32247 |goto Krasarang Wilds/0 81.42,21.94
+accept Lion's Landing##32109 |goto Krasarang Wilds/0 81.42,21.94
+step
+click Flare Launcher##216609
+turnin Lion's Landing##32109 |goto Krasarang Wilds/0 85.59,29.16
+step
+talk Daggin Windbeard##68226
+fpath Lion's Landing |goto Krasarang Wilds/0 88.33,34.70
+step
+Complete the _"A Little Patience"_ Scenario
+|tip Refer to the scenario guide to accomplish this.
+Click Here to Load the "A Little Patience" Scenario Guide |loadguide "Dungeon Guides\\Pandaria Scenarios\\A Little Patience"
+|tip
+Click here if you have completed the scenario |confirm
+step
+Reach 950/6000 Friendly with the Operation: Shieldwall Faction |complete repval("Operation: Shieldwall",Friendly) >= 950
+step
+talk Admiral Taylor##67940
+accept The Best Around##32380 |goto Krasarang Wilds/0 89.55,32.58
+step
+Enter the tunnel |goto Deeprun Tram/1 52.09,46.99 < 5 |walk
+|tip Jump down into the first trench and go through the door on the left with the flashing red light above it.
+Locate Bizmo's Brawlpub |q 32380/1 |goto Deeprun Tram/1 52.23,47.55
+step
+talk Barkeep Townsley##68526
+Select _"Are you the agent that is following Connelly?"_ |gossip 130565
+Locate Agent Townsley |q 32380/2 |goto Deeprun Tram/2 69.98,47.17
+step
+talk Barkeep Townsley##68526
+turnin The Best Around##32380 |goto Deeprun Tram/2 69.98,47.17
+accept To Catch A Spy##32381 |goto Deeprun Tram/2 69.98,47.17
+step
+talk Barkeep Townsley##68526
+Select _"I'm ready for the first clue."_ |gossip 130566
+collect The Pink Marmot##92975 |goto Deeprun Tram/2 69.98,47.17 |q 32381
+step
+talk Keith "The Party" Westin##68537
+Select _"Is this your drink order?"_ |gossip 130577
+Deliver the Pink Marmot |q 32381/1 |goto Deeprun Tram/2 64.68,22.79
+step
+talk Barkeep Townsley##68526
+Select _"Ok, hit me with another clue!"_ |gossip 130567
+collect The Rusty Dagger##92976 |goto Deeprun Tram/2 69.98,47.17 |q 32381
+step
+talk Twix Gearspark##68540
+Select _"You didn't happen to order a Rusty Dagger did you?"_ |gossip 130575
+Deliver the Rusty Dagger |q 32381/2 |goto Deeprun Tram/2 49.66,34.81
+step
+talk Barkeep Townsley##68526
+Select _"I got this! Give me the last clue."_ |gossip 130568
+collect The Mogu Melon Twist##92977 |goto Deeprun Tram/2 69.98,47.17 |q 32381
+step
+talk Tasha Windpaw##68539
+Select _"Does this drink belong to you?"_ |gossip 130573
+Deliver the Mogu Melon |q 32381/3 |goto Deeprun Tram/2 67.43,59.58
+step
+talk Barkeep Townsley##68526
+turnin To Catch A Spy##32381 |goto Deeprun Tram/2 69.98,47.17
+accept Stirred, Not Shaken##32426 |goto Deeprun Tram/2 69.98,47.17
+step
+Run up the ramp |goto Deeprun Tram/2 28.02,20.40 < 5 |walk
+Locate Professor Kilt |q 32426/1 |goto Deeprun Tram/2 23.98,81.73
+step
+talk Professor Kilt##68531
+turnin Stirred, Not Shaken##32426 |goto Deeprun Tram/2 23.98,81.73
+step
+talk Admiral Taylor##67940
+accept He's In Deep##32382 |goto Krasarang Wilds/0 89.55,32.58
+step
+Reach 4900/6000 Friendly with the Operation: Shieldwall Faction |complete repval("Operation: Shieldwall",Friendly) >= 4900
+step
+talk Admiral Taylor##67940
+accept He's In Deep##32382 |goto Krasarang Wilds/0 89.55,32.58
+step
+talk Fennie Hornswaggle##68741
+Select _"Take me to Fire Camp Bataar."_ |gossip 41244
+Ride Fennie's Kite |invehicle |goto Krasarang Wilds/0 88.34,34.19 |q 32382
+step
+Watch the dialogue
+Take Fennie's Kite to Kun-Lai Summit |q 32382/1 |goto Kun-Lai Summit/0 59.40,84.46 |notravel
+step
+talk Cousin Goottooth##68417
+turnin He's In Deep##32382 |goto Kun-Lai Summit/0 59.20,84.26
+accept Bugging Out##32383 |goto Kun-Lai Summit/0 59.20,84.26
+accept He Won't Even Miss It##32397 |goto Kun-Lai Summit/0 59.20,84.26
+step
+use the Grummle Disguise Kit##92950
+|tip Watch out for Nero the wolf.
+|tip It will see through your disguise.
+Put on the Grummle Disguise |havebuff Grummle Disguise##134886 |goto Kun-Lai Summit/0 59.20,84.26 |q 32397
+step
+clicknpc Shaggy Longhorn##68413
+|tip Watch out for Nero the wolf.
+|tip It will see through your disguise.
+Distract Garrosh |q 32397/1 |goto Kun-Lai Summit/0 58.63,83.81
+step
+clicknpc Mogu Statue##68913
+|tip Watch out for Nero the wolf.
+|tip It will see through your disguise.
+Bug the Large Tent |q 32383/1 |goto Kun-Lai Summit/0 58.34,84.05
+step
+click the Weathered Jounral
+|tip Watch out for Nero the wolf.
+|tip It will see through your disguise.
+collect Weathered Journal##92804 |q 32397/2 |goto Kun-Lai Summit/0 58.26,84.20
+step
+clicknpc Mogu Statue##68913
+|tip Watch out for Nero the wolf.
+|tip It will see through your disguise.
+Bug the Small Tent |q 32383/2 |goto Kun-Lai Summit/0 58.08,84.55
+step
+clicknpc Mogu Statue##68913
+|tip Watch out for Nero the wolf.
+|tip It will see through your disguise.
+Bug the Supplies |q 32383/3 |goto Kun-Lai Summit/0 58.22,84.93
+step
+talk Cousin Goottooth##68417
+turnin Bugging Out##32383 |goto Kun-Lai Summit/0 59.20,84.26
+turnin He Won't Even Miss It##32397 |goto Kun-Lai Summit/0 59.20,84.26
+step
+Reach 2850/12000 Honored with the Operation: Shieldwall Faction |complete repval("Operation: Shieldwall",Honored) >= 2850
+step
+talk Admiral Taylor##67940
+accept The Kirin Tor##32331 |goto Krasarang Wilds/0 89.55,32.58
+step
+click Portal to The Purple Parlor
+Use the Portal to The Purple Parlor |q 32331/1 |goto Krasarang Wilds/0 89.20,33.57
+step
+talk Anduin Wrynn##68106
+turnin The Kirin Tor##32331 |goto Dalaran/1 26.75,39.01
+accept The Fate of Dalaran##32362 |goto Dalaran/1 26.75,39.01
+step
+talk Lady Jaina Proudmoore##68108
+Select _"I would commit our order to an Alliance victory!"_ |gossip 41501
+Select _"I would struggle to maintain our neutrality."_ |gossip 41503
+|tip Choose the dialogue option you prefer.
+Speak with Jaina Proudmoore |q 32362/1 |goto Dalaran/1 26.79,39.23
+step
+talk Anduin Wrynn##68106
+turnin The Fate of Dalaran##32362 |goto Dalaran/1 26.75,39.01
+step
+click Portal to Lion's Landing
+Take the Portal to Lion's Landing |complete subzone("Lion's Landing") or completedq(32193) |goto Dalaran/1 22.62,39.65
+step
+Reach 6800/12000 Honored with the Operation: Shieldwall Faction |complete repval("Operation: Shieldwall",Honored) >= 6800
+step
+talk Admiral Taylor##67940
+accept To Mogujia##32193 |goto Krasarang Wilds/0 89.55,32.58
+step
+talk Fennie Hornswaggle##68741
+Select _"Take me to Mogujia."_ |gossip 41242
+Ride Fennie's Kite |invehicle |goto Krasarang Wilds/0 88.34,34.19 |q 32193
+step
+Watch the dialogue
+Take Fennie's Kite to Mogujia |q 32193/1 |goto Kun-Lai Summit/0 59.58,76.27 |notravel
+step
+talk Brann Bronzebeard##67682
+turnin To Mogujia##32193 |goto Kun-Lai Summit/0 59.84,75.95
+step
+talk Hilda Hornswaggle##67716
+accept The Source of Korune Power##32243 |goto Kun-Lai Summit/0 59.81,76.05
+step
+talk Sarannha Skyglaive##67734
+accept Bad Blood##32194 |goto Kun-Lai Summit/0 59.97,75.33
+stickystart "Collect_Korune_Artifacts"
+step
+kill Korune Spellweaver##68815+
+collect Sha-Touched Claw##93190 |q 32243/1 |goto Kun-Lai Summit/0 58.12,70.92
+step
+label "Collect_Korune_Artifacts"
+Kill enemies around this area |kill Silvermoon Runeseeker##67806,Dominance Mage##67804,Dominance Knight##67805
+collect 5 Korune Artifact##93189 |q 32194/1 |goto Kun-Lai Summit/0 58.42,74.59
+step
+talk Sarannha Skyglaive##67734
+turnin Bad Blood##32194 |goto Kun-Lai Summit/0 59.97,75.33
+step
+talk Hilda Hornswaggle##67716
+turnin The Source of Korune Power##32243 |goto Kun-Lai Summit/0 59.81,76.05
+step
+Reach 10750/12000 Honored with the Operation: Shieldwall Faction |complete repval("Operation: Shieldwall",Honored) >= 10750
+step
+talk Admiral Taylor##67940
+accept Anduin's Plea##32315 |goto Krasarang Wilds 89.55,32.58
+step
+talk Fennie Hornswaggle##68741
+Select _"Take me to the Shrine of Seven Stars."_ |gossip 41241
+Ride Fennie's Kite |q 32315/1 |goto Krasarang Wilds 88.34,34.19
+step
+Watch the dialogue
+Take Fennie's Kite to Shrine of Seven Stars |outvehicle |goto Vale of Eternal Blossoms/0 86.23,63.10 |q 32315 |notravel
+step
+talk Anduin Wrynn##67948
+|tip Upstairs inside the building.
+turnin Anduin's Plea##32315 |goto Shrine of Seven Stars/2 66.18,33.30
+accept Heart Of The Alliance##32316 |goto Shrine of Seven Stars/2 66.18,33.30
+step
+clicknpc Sha-Touched Footman##68006+
+|tip They look like black and white NPCs laying on the ground on shifting patches of black inside the building.
+kill Sha-Touched Footman##68006+
+Save #6# Sha-Touched Footmen |q 32316/1 |goto Shrine of Seven Stars/1 46.67,45.13
+step
+talk King Varian Wrynn##68242
+|tip Upstairs inside the building.
+turnin Heart Of The Alliance##32316 |goto Shrine of Seven Stars/2 67.40,43.35
+step
+Reach 2700/12000 Revered with the Operation: Shieldwall Faction |complete repval("Operation: Shieldwall",Revered) >= 2700
+step
+talk Admiral Taylor##67940
+accept The Kun-Lai Expedition##32370 |goto Krasarang Wilds/0 89.55,32.58
+step
+talk Fennie Hornswaggle##68741
+Select _"Take me to the Grummle Bazaar."_ |gossip 41240
+Ride Fennie's Kite |invehicle |goto Krasarang Wilds/0 88.34,34.19 |q 32370
+step
+Watch the dialogue
+Take Fennie's Kite to the Grummle Bazaar |q 32370/1 |goto Kun-Lai Summit/0 65.11,60.77 |notravel
+step
+talk Agent Connelly##68375
+turnin The Kun-Lai Expedition##32370 |goto Kun-Lai Summit/0 65.11,60.77
+accept A Kor'kron In Our Midst##32377 |goto Kun-Lai Summit/0 65.11,60.77
+stickystart "Collect_Kor'kron_Armor"
+stickystart "Collect_Kor'kron_Boots"
+step
+Kill Kor'kron enemies around this area |kill Kor'kron Reaver##68367,Kor'Kron Honor Guard##68369,Kor'Kron Scout##68368
+collect Kor'kron Helmet##92763 |goto Kun-Lai Summit/0 60.94,55.97 |q 32377
+step
+label "Collect_Kor'kron_Armor"
+Kill Kor'kron enemies around this area |kill Kor'kron Reaver##68367,Kor'Kron Honor Guard##68369,Kor'Kron Scout##68368 |notinsticky
+collect Kor'kron Armor##92764 |goto Kun-Lai Summit/0 60.94,55.97 |q 32377
+step
+label "Collect_Kor'kron_Boots"
+Kill Kor'kron enemies around this area |kill Kor'kron Reaver##68367,Kor'Kron Honor Guard##68369,Kor'Kron Scout##68368 |notinsticky
+collect Kor'kron Boots##92765 |goto Kun-Lai Summit/0 60.94,55.97 |q 32377
+step
+use the Kor'Kron Helmet##92763
+collect Kor'kron Disguise##92766 |q 32377/1 |goto Kun-Lai Summit/0 60.94,55.97
+step
+Click the Complete Quest Box
+turnin A Kor'kron In Our Midst##32377 |goto Kun-Lai Summit/0 60.94,55.97
+accept Memory Wine##32371 |goto Kun-Lai Summit/0 60.94,55.97
+step
+use the Kor'kron Disguise##92766
+Use your Kor'kron Disguise |q 32371/1
+step
+click Memory Wine##216625
+Drink the Memory Wine |q 32371/2 |goto Kun-Lai Summit/0 60.36,55.31
+step
+Watch the dialogue
+Witness Shan Kien's Past |q 32371/3
+step
+talk Agent Connelly##68375
+turnin Memory Wine##32371 |goto Kun-Lai Summit/0 65.11,60.77
+step
+Reach 6650/12000 Revered with the Operation: Shieldwall Faction |complete repval("Operation: Shieldwall",Revered) >= 6650
+step
+talk Admiral Taylor##67940
+accept The Ruins of Korune##32393 |goto Krasarang Wilds/0 89.55,32.58
+step
+talk Fennie Hornswaggle##68741
+Select _"Take me to the Ruins of Korune."_ |gossip 41239
+Ride Fennie's Kite |invehicle |goto Krasarang Wilds/0 88.34,34.19 |q 32393
+step
+Watch the dialogue
+Take Fennie's Kite to the Ruins of Korune |q 32393/1 |goto Kun-Lai Summit/0 32.82,25.84
+step
+talk Sarannha Skyglaive##67734
+turnin The Ruins of Korune##32393 |goto Kun-Lai Summit/0 32.89,26.27
+accept The Divine Bell##32394 |goto Kun-Lai Summit/0 32.89,26.27
+step
+kill Dreadweaver Avartu##68504 |q 32394/1 |goto Kun-Lai Summit/21 59.03,26.25
+|tip Downstairs inside the ruins.
+|tip Avoid red and yellow tiles, and ones with green arrows.
+|tip Only blue tiles are safe to walk on.
+|tip Kill mobs that attack you along the way.
+|tip Avoid standing in rumbling patches on the ground and large red circles.
+|tip Keep moving quickly.
+step
+click Divine Bell
+|tip Downstairs inside the ruins.
+Recover the Divine Bell |q 32394/2 |goto Kun-Lai Summit/21 61.52,20.84
+step
+talk Sarannha Skyglaive##67734
+turnin The Divine Bell##32394 |goto Kun-Lai Summit/21 61.91,25.71
+step
+Reach 8665/12000 Revered with the Operation: Shieldwall Faction |complete repval("Operation: Shieldwall",Revered) >= 8665
+step
+talk Admiral Taylor##67940
+accept Darnassus Attacked?##32414 |goto Krasarang Wilds/0 89.55,32.58
+step
+talk Seamus Goldenkicks##67848
+Speak with Seamus Goldenkicks |q 32414/1 |goto Krasarang Wilds/0 89.10,33.75
+step
+talk Seamus Goldenkicks##67848
+Select _"I need a portal to Darnassus."_ |gossip 40720
+Teleport to Darnassus |complete subzone("Cenarion Enclave") or completedq(32414) |goto Krasarang Wilds/0 89.10,33.75
+step
+talk Lady Jaina Proudmoore##68651
+turnin Darnassus Attacked?##32414 |goto Darnassus/0 38.90,32.78
+accept Tracking the Thieves##32460 |goto Darnassus/0 38.90,32.78
+step
+Track the Thieves |q 32460/1
+|tip Follow the trail of white orbs out of Darnassus and to the portal in Teldrassil.
+|tip You must reveal the entire trail to get credit.
+step
+talk Lady Jaina Proudmoore##68651
+turnin Tracking the Thieves##32460 |goto Teldrassil/0 39.98,50.49
+accept Jaina's Resolution##32416 |goto Teldrassil/0 39.98,50.49
+step
+click Portal to Dalaran
+Take the portal from Darnassus to Dalaran |q 32416/1
+step
+Watch the dialogue
+talk Vereesa Windrunner##68687
+turnin Jaina's Resolution##32416 |goto Dalaran/1 34.27,48.70
+accept Nowhere to Run##32421 |goto Dalaran/1 34.27,48.70
+accept Nowhere to Hide##32419 |goto Dalaran/1 34.27,48.70
+accept Sewer Cleaning##32417 |goto Dalaran/1 34.27,48.70
+accept Unfair Trade##32418 |goto Dalaran/1 34.27,48.70
+accept Cashing Out##32420 |goto Dalaran/1 34.27,48.70
+step
+kill Inkmaster Aelon##68752 |q 32418/1 |goto Dalaran/1 41.94,36.64
+|tip He walks around inside the building.
+step
+kill Sintharia Cinderweave##68755 |q 32418/4 |goto Dalaran/1 36.35,32.58
+|tip She walks around inside the building.
+step
+kill Gearmage Astalon |q 32418/3 |goto Dalaran/1 39.46,24.51
+|tip Inside the building.
+step
+kill Tolyria##68754 |q 32418/2 |goto Dalaran/1 43.34,26.01
+|tip Inside the building.
+step
+kill Magister Brasael##68751 |q 32420/1 |goto Dalaran/1 53.55,15.51
+|tip Inside the building.
+step
+Kill Sunreaver enemies around this area |kill Sunreaver Mage##68050, Sunreaver Captain##68761, Sunreaver Aegis##68051
+Slay #16# Sunreavers in the Sunreaver's Sanctuary |q 32419/1 |goto Dalaran/1 59.41,31.33
+step
+kill Sunreaver Dragonhawk##68762+
+Subdue #5# Sunreaver Dragonhawks |q 32421/1 |goto Dalaran/1 72.71,45.70
+step
+Enter the tunnel |goto Dalaran/1 62.34,50.07 < 5 |walk
+Enter the Dalaran Sewers |goto Dalaran/1 65.74,47.44 < 1000 |c |noway |q 32417
+step
+Kill Sunreaver enemies around this area |kill Sunreaver Pyromancer##68757, Sunreaver Assassin##68756, Sunreaver Frosthand##68758
+Slay #12# Sunreavers in the Dalaran Sewers |q 32417/1 |goto Dalaran/1 46.31,43.06
+step
+Enter the tunnel |goto Dalaran/1 33.97,42.89 < 5 |walk
+Exit the tunnel |goto Dalaran/1 27.13,42.62 < 4 |walk
+Leave the Dalaran Sewers |goto Dalaran/1 34.75,45.47 < 1000 |c |noway |q 32417
+step
+talk Vereesa Windrunner##68687
+turnin Nowhere to Run##32421 |goto Dalaran/1 34.27,48.70
+turnin Nowhere to Hide##32419 |goto Dalaran/1 34.27,48.70
+turnin Sewer Cleaning##32417 |goto Dalaran/1 34.27,48.70
+turnin Unfair Trade##32418 |goto Dalaran/1 34.27,48.70
+turnin Cashing Out##32420 |goto Dalaran/1 34.27,48.70
+accept What Had To Be Done##32423 |goto Dalaran/1 34.27,48.70
+step
+talk Vereesa Windrunner##68687
+Speak with Vereesa Windrunner |q 32423/1 |goto Dalaran/1 34.27,48.70
+step
+talk Vereesa Windrunner##68687
+Select _"I'm ready to return to Pandaria."_ |gossip 41763
+Return to Lion's Landing |complete subzone("Lion's Landing") or completedq(32423) |goto Dalaran/1 34.27,48.70
+step
+talk King Varian Wrynn##68690
+|tip Inside the building.
+turnin What Had To Be Done##32423 |goto Krasarang Wilds/0 87.91,33.10
+step
+Reach 15500/12000 Revered with the Operation: Shieldwall Faction |complete repval("Operation: Shieldwall",Revered) >= 15500
+step
+talk Admiral Taylor##67940
+accept The Harmonic Mallet##32355 |goto Krasarang Wilds/0 89.55,32.58
+step
+talk Fennie Hornswaggle##68741
+Select _"Take me to the Valley of Emperors."_ |gossip 41237
+Ride Fennie's Kite |invehicle |goto Krasarang Wilds/0 88.34,34.19 |q 32355
+step
+Watch the dialogue
+Take Fennie's Kite to the Tomb of Conquerors |q 32355/1 |goto Kun-Lai Summit/0 53.28,45.98 |notravel
+step
+talk Anduin Wrynn##68004
+turnin The Harmonic Mallet##32355 |goto Kun-Lai Summit/0 52.96,46.45
+accept The Monkey King##32321 |goto Kun-Lai Summit/0 52.96,46.45
+step
+talk Anduin Wrynn##68004
+Select _"Anduin, why are we here?"_ |gossip 41051
+|tip Make sure you choose this dialogue option to start escorting him.
+Talk with Anduin Wrynn |q 32321/1 |goto Kun-Lai Summit/0 52.96,46.45
+step
+Enter the Tomb of Conquerors |goto Kun-Lai Summit/17 88.10,54.60 < 5 |c |q 32321 |walk
+|tip Make sure you choose the dialogue option with Anduin to start escorting him.
+step
+Follow the path |goto Kun-Lai Summit/17 65.64,75.92 < 10 |walk
+Follow the path |goto Kun-Lai Summit/0 50.45,52.43 < 10 |walk
+Run down the stairs |goto Kun-Lai Summit/0 48.78,51.86 < 10 |walk
+Escort Anduin Wrynn |q 32321/2 |goto Kun-Lai Summit/0 48.87,50.48
+|tip Stepping on the tile with arrows on it will trigger the wall cannons to fire.
+|tip Avoid the tiles on the floor with designs on them.
+|tip Yellow and red tiles take a couple of seconds to activate before triggering.
+step
+talk Anduin Wrynn##68004
+Select _"I'm ready. Release the Monkey King."_ |gossip 41925
+Watch the dialogue
+|tip Anduin will cast a spell and The Jade Warlord will attack you.
+kill The Jade Warlord##68005
+Release The Monkey King |q 32321/3 |goto Kun-Lai Summit/0 48.87,50.48
+step
+talk The Monkey King##68003
+|tip He should be standing at the center of the room next to Anduin.
+turnin The Monkey King##32321 |goto Kun-Lai Summit/0 48.80,50.47
+accept The First Riddle: Mercy##32332 |goto Kun-Lai Summit/0 48.80,50.47
+accept The Second Riddle: Fellowship##32333 |goto Kun-Lai Summit/0 48.80,50.47
+accept The Third Riddle: Strength##32334 |goto Kun-Lai Summit/0 48.80,50.47
+step
+Follow the path |goto Kun-Lai Summit/0 50.45,52.43 < 10 |walk
+Run up the stairs |goto Kun-Lai Summit/17 74.49,74.88 < 10 |walk
+Leave the Tomb of Conquerors |goto Kun-Lai Summit/0 52.83,46.78 < 10 |c |walk |q 32334
+step
+Enter the building |goto Kun-Lai Summit/0 68.62,45.96 < 10 |walk
+talk The Monkey King##68538
+|tip Down the ramp inside the building.
+Select _"I challenge you."_ |gossip 41838
+|tip He will attack you.
+Defeat the Challenger |q 32334/1 |goto Kun-Lai Summit/0 70.14,45.83
+step
+click Hammer of Fellowship
+Ring the Gong of Fellowship |q 32333/1 |goto The Jade Forest/0 33.43,34.24
+step
+kill Sam the Wise##64694
+|tip He walks out and becomes attackable.
+Defeat the Challenger |q 32333/2 |goto The Jade Forest/0 33.65,34.36
+step
+click A Keg of Metal Brew
+|tip It appears after defeating Sam.
+collect The Metal Brew##92557 |q 32333/3 |goto The Jade Forest/0 33.73,34.44
+step
+click Untamed Amber##216360
+kill Untamed Ambertail##68117
+|tip It appears and becomes attackable.
+collect Untamed Amber##92539 |q 32332/1 |goto Dread Wastes/0 65.68,71.67
+|tip Loot it from the Untamed Ambertail.
+step
+talk The Monkey King##68538
+turnin The First Riddle: Mercy##32332 |goto Krasarang Wilds/0 88.87,31.74
+turnin The Second Riddle: Fellowship##32333 |goto Krasarang Wilds/0 88.87,31.74
+turnin The Third Riddle: Strength##32334 |goto Krasarang Wilds/0 88.87,31.74
+accept The Greatest Prank##32335 |goto Krasarang Wilds/0 88.87,31.74
+step
+Watch the dialogue
+Listen to The Monkey King's Story |q 32335/1 |goto Krasarang Wilds/0 88.87,31.74
+step
+talk Anduin Wrynn##68004
+turnin The Greatest Prank##32335 |goto Krasarang Wilds/0 88.98,31.71
+step
+Reach 18500/12000 Revered with the Operation: Shieldwall Faction |complete repval("Operation: Shieldwall",Revered) >= 18500
+step
+talk The Monkey King##68538
+accept The Handle##32336 |goto Krasarang Wilds/0 88.87,31.74
+accept The Head##32337 |goto Krasarang Wilds/0 88.87,31.74
+accept The Harmonic Ointment##32338 |goto Krasarang Wilds/0 88.87,31.74
+step
+talk Chief Ingoo Ingoo XVII##68545
+Select _"But that is the real Monkey King."_ |gossip 40881
+|tip He will attack you.
+kill Chief Ingoo Ingoo XVII##68545
+collect Mallet Handle##92561 |q 32336/1 |goto Krasarang Wilds/0 43.56,86.06
+step
+talk The Monkey King##68544
+turnin The Handle##32336 |goto Krasarang Wilds/0 43.46,86.54
+step
+talk Royal Finder##68554
+|tip Up on the cliff near the foliage.
+Find the Royal Finder |q 32337/1 |goto Valley of the Four Winds/0 23.09,30.66
+step
+click Mallet Head##216421
+|tip Down inside the tunnel in front of you.
+|tip You will need to kill Skiggit to reach it.
+collect Mallet Head##92560 |q 32337/2 |goto Valley of the Four Winds/0 25.01,28.04
+step
+kill The Blade##61010
+|tip This enemy is elite and may require a group.
+collect Harmonic Ointment##92562 |q 32338/1 |goto Townlong Steppes/0 62.67,34.09
+step
+talk The Monkey King##68538
+turnin The Head##32337 |goto Krasarang Wilds/0 88.87,31.74
+turnin The Harmonic Ointment##32338 |goto Krasarang Wilds/0 88.87,31.74
+step
+Reach Exalted with the Operation: Shieldwall Faction |complete rep("Operation: Shieldwall") == Exalted
+step
+talk Admiral Taylor##67940
+accept The Bell Speaks##32400 |goto Krasarang Wilds/0 89.55,32.58
+step
+talk Fennie Hornswaggle##68741
+Select _"Take me to Emperor's Reach."_ |gossip 41236
+Ride Fennie's Kite |invehicle |goto Krasarang Wilds/0 88.34,34.19 |q 32400
+step
+Watch the dialogue
+Find Anduin at Emperor's Reach |q 32400/1 |goto Kun-Lai Summit/0 56.14,33.85 |notravel
+step
+talk Anduin Wrynn##68939
+turnin The Bell Speaks##32400 |goto Kun-Lai Summit/0 56.38,34.31
+accept Breath of Darkest Shadow##32401 |goto Kun-Lai Summit/0 56.38,34.31
+step
+Watch the dialogue
+kill Kor'kron Reaver##68940+
+|tip Wait until the Horde become afflicted by the Sha.
+|tip Once the Juggernauts are defeated, Ishi will get possessed.
+kill Ishi##68936 |q 32401/1 |goto Kun-Lai Summit/0 55.95,32.10
+|tip Run through gold orbs for healing.
+|tip Stay out of shadow areas on the ground.
+step
+Watch the dialogue
+Destroy the Divine Bell |q 32401/2 |goto Kun-Lai Summit/0 55.95,32.10
+step
+talk Anduin Wrynn##68987
+turnin Breath of Darkest Shadow##32401 |goto Kun-Lai Summit/0 55.96,31.87
+accept The Silence##32455 |goto Kun-Lai Summit/0 55.96,31.87
+step
+use the Alliance Flare Gun##93362
+Use the Alliance Flare Gun |q 32455/1 |goto Kun-Lai Summit/0 55.95,32.10
+step
+Enter the building |goto Krasarang Wilds/0 87.12,32.19 < 7 |walk
+talk Admiral Taylor##69090
+|tip Upstairs inside the building.
+turnin The Silence##32455 |goto Krasarang Wilds/0 87.72,33.07
+]])
+ZGV.BETASTART()
+ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Trial of the Black Prince",{
+condition_end="achieved(7533)",
+description="Prove your worth to Wrathion and acquire a sha-touched gem upgrade.",
+},[[
+step
+talk Brewmaster Tsu##64144
+accept Stranger in a Strange Land##31488 |goto Shrine of Seven Stars/1 87.4,68.0
+step
+turnin Wrathion##64616
+|tip Inside the building.
+turnin Stranger in a Strange Land##31488 |goto The Veiled Stair/0 54.6,72.6
+accept A Legend in the Making##31454 |goto The Veiled Stair/0 54.6,72.6
+step
+Share a Drink with Wrathion |q 31454/1 |goto The Veiled Stair/0 54.6,72.6
+step
+turnin Wrathion##64616
+|tip Inside the building.
+turnin A Legend in the Making##31454 |goto The Veiled Stair/0 54.6,72.6
+accept The Strength of One's Foes##31473 |goto The Veiled Stair/0 54.5,72.6
+accept Trial of the Black Prince##31468 |goto The Veiled Stair/0 54.5,72.6
+stickystart "Collect_Sigil_of_Wisdom"
+stickystart "Reach_Honored_with_the_Black_Prince"
+step
+collect 10 Sigil of Power##87208 |q 31473/1
+|tip You will need to gather these from raids.
+|tip Mogu'shan Vaults, Heart of Fear, and Terrace of Endless Spring bosses drop these.
+step
+label "Collect_Sigil_of_Wisdom"
+collect 10 Sigil of Wisdom##87209 |q 31473/2
+|tip You will need to gather these from raids. |notinsticky
+|tip Mogu'shan Vaults, Heart of Fear, and Terrace of Endless Spring bosses drop these. |notinsticky
+step
+label "Reach_Honored_with_the_Black_Prince"
+kill Krik'thik Needler##63976, Krik'thik Locust-Guard##63974
+Reach Honored with the Black Prince. |q 31468/1 |goto Vale of Eternal Blossoms/0 11.5,58.4
+|tip This will take a lot of grinding.
+|tip You start out Neutral with The Black Prince, and you will have to gain about 6,200 rep in order to reach Honored.
+step
+talk Wrathion##64616
+|tip Inside the building.
+turnin The Strength of One's Foes##31473 |goto The Veiled Stair/0 54.5,72.6
+turnin Trial of the Black Prince##31468 |goto The Veiled Stair/0 54.5,72.6
+accept Fear Itself##31481 |goto The Veiled Stair/0 54.5,72.6
+step
+This will require you to go into the _Terrace of Endless Spring_ and take down the _Sha of Fear_.
+|tip You can use the Raid finder to take down this boss.
+|confirm
+step
+kill Sha of Fear##60999
+|tip You can kill it on any raid difficulty.
+collect Chimera of Fear##87210 |q 31481/1 |goto Terrace of Endless Spring/0 39.1,48.3
+|tip Loot it from the Sha of Fear.
+step
+talk Wrathion##64616
+|tip Inside the building.
+turnin Fear Itself##31481 |goto The Veiled Stair/0 54.5,72.6
+accept Breath of the Black Prince##31482 |goto The Veiled Stair/0 54.5,72.6
+step
+talk Wrathion##64616
+|tip Inside the building.
+accept Incoming...##31483 |goto The Veiled Stair/0 54.5,72.6
+step
+talk Lyalia##64610
+accept Meet the Scout##32246 |goto Vale of Eternal Blossoms/0 83.97,58.64
+step
+talk Scout Lynna##68311
+turnin Meet the Scout##32246 |goto Krasarang Wilds/0 85.24,29.13
+step
+Watch the dialogue
+talk King Varian Wrynn##61796
+|tip He will eventually reach the beach.
+accept A King Among Men##32247 |goto Krasarang Wilds/0 85.29,29.11
+stickystart "Slay_Horde"
+step
+talk Marshal Troteman##68331
+|tip Kill any enemies he is attacking.
+Find Marshal Troteman |q 32247/2 |goto Krasarang Wilds/0 79.63,25.05
+step
+talk Hilda Hornswaggle##68312
+|tip Kill any enemies she is attacking.
+Find Hilda Hornswaggle |q 32247/3 |goto Krasarang Wilds/0 80.43,17.53
+step
+label "Slay_Horde"
+Kill Horde enemies around this area |kill Horde Raider##68332,Horde Hunter##68334,Horde Priest##67904
+Slay #25# Horde |q 32247/1 |goto Krasarang Wilds/0 81.42,21.94
+step
+_Next to you:_
+talk King Varian Wrynn##61796
+turnin A King Among Men##32247 |goto Krasarang Wilds/0 81.42,21.94
+accept Lion's Landing##32109 |goto Krasarang Wilds/0 81.42,21.94
+step
+click Flare Launcher##216609
+turnin Lion's Landing##32109 |goto Krasarang Wilds/0 85.59,29.16
+step
+talk Daggin Windbeard##68226
+fpath Lion's Landing |goto Krasarang Wilds/0 88.33,34.70
+step
+talk Wrathion##64616
+|tip Inside the building.
+turnin Incoming...##31483 |goto The Veiled Stair/0 54.5,72.6
+accept A Test of Valor##32474 |goto The Veiled Stair/0 54.5,72.6
+accept The Measure of a Leader##32373 |goto The Veiled Stair/0 54.5,72.6
+step
+talk Wrathion##64616
+Talk to Wrathion about the Horde |q 32373/1 |goto The Veiled Stair/0 54.5,72.6
+step
+talk Wrathion##64616
+turnin The Measure of a Leader##32373 |goto The Veiled Stair/0 54.5,72.6
+accept The Prince's Pursuit##32374 |goto The Veiled Stair/0 54.5,72.6
+step
+kill Lion's Landing Priest##67512, Dwarven Mortar Team Engineer##67545, Shieldwall Rifleman##67297, Shieldwall Vindicator##67296, Shieldwall Footman##67304, Thane Stonehearth##67636
+Earn Revered Status with The Black Prince |q 32374/1 |goto Krasarang Wilds/0 82.3,25.6
+step
+talk Wrathion##64616
+turnin The Prince's Pursuit##32374 |goto The Veiled Stair/0 54.5,72.6
+step
+Earn 3,000 Valor |q 32474/1
+|tip You will need to acquire 3,000 Valor Points from the time you pick up the A Test of Valor quest.
+|tip This quest will take around 3 weeks to complete if you hit the valor cap every week.
+|tip Previous valor points you acquired before accepting this quest will not count.
+step
+talk Wrathion##64616
+turnin A Test of Valor##32474 |goto The Veiled Stair/0 54.5,72.6
+accept The Lion Roars##32389 |goto The Veiled Stair/0 54.5,72.6
+accept A Change of Command##32388 |goto The Veiled Stair/0 54.5,72.6
+label "Win_a_Battle_at_Silvershard_Mines"
+step
+Win a Battle at Temple of Kotmogu |q 32389/1
+|tip Open your PvP menu and queue up for either Temple of Kotmogu or Silvershard Mines.
+|tip You will need to win a battle at both locations to complete this quest.
+step
+label "Win_a_Battle_at_Silvershard_Mines"
+Win a Battle at Silvershard Mines |q 32389/2
+|tip Open your PvP menu and queue up for either Temple of Kotmogu or Silvershard Mines. |notinsticky
+|tip You will need to win a battle at both locations to complete this quest. |notinsticky
+step
+kill High Marshal Twinbraid##67801 |q 32388/1 |goto Krasarang Wilds 86.6,25.4
+|tip You may need help with this.
+step
+talk Wrathion##64616
+turnin The Lion Roars##32389 |goto The Veiled Stair/0 54.5,72.6
+turnin A Change of Command##32388 |goto The Veiled Stair/0 54.5,72.6
+accept Call of the Packmaster##32390 |goto The Veiled Stair/0 54.5,72.6
+step
+talk Wrathion##64616
+turnin Call of the Packmaster##32390 |goto The Veiled Stair/0 54.9,72.6
+]])
+ZGV.BETAEND()
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Peak of Serenity\\Monk Daily",{
 image=ZGV.IMAGESDIR.."WanderingIsle",
 monkquest=1,

@@ -9395,6 +9395,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Into The Wild Blue
 achieveid={890},
 patch='30001',
 description="This guide will walk you through learning the expert riding skill.",
+mopready=true,
 },[[
 step
 This achievement _requires_ level 60
@@ -9412,6 +9413,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\It's Happy Hour So
 achieveid={1833},
 patch='30002',
 description="This guide will walk you through drinking 25 different types of beverages.",
+mopready=true,
 },[[
 step
 talk Innkeeper Allison##6740
@@ -9551,6 +9553,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\It's Over Nine Tho
 achieveid={4496},
 patch='30300',
 description="This guide will walk you through completing the \"It's Over Nine Thousand!\" Achievement.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to earn at least 9,000 achievement points
@@ -9565,6 +9568,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Needy",{
 achieveid={559},
 patch='30001',
 description="This guide will walk you through completing the \"Needy\" Achievement.",
+mopready=true,
 },[[
 step
 You will have to roll Need on a _superior or better item above the item level of 185_ to earn this achievement
@@ -9577,6 +9581,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\The Right Stuff",{
 achieveid={892},
 patch='30001',
 description="This guide will walk you through learning the artisan riding skill.",
+mopready=true,
 },[[
 step
 This achievement requires level 70
@@ -9594,6 +9599,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Safe Deposit",{
 achieveid={546},
 patch='30001',
 description="This guide will walk you through buying 7 additional bank slots.",
+mopready=true,
 },[[
 step
 This achievement will cost you _111 gold 10 silver_ to complete
@@ -9608,6 +9614,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Shave and a Haircu
 achieveid={545},
 patch='30001',
 description="This guide will walk you through visiting a Barber Shop and get your hair cut.",
+mopready=true,
 },[[
 step
 click Barbershop Chair
@@ -9623,6 +9630,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Tastes Like Chicke
 achieveid={1832},
 patch='30002',
 description="This guide will walk you through sampling 50 different kinds of Azeroth's delectable dishes.",
+mopready=true,
 },[[
 step
 talk Innkeeper Firebrew##5111
@@ -9942,6 +9950,7 @@ condition_end=function() return achieved(5548) end,
 achieveid={1206,2557,2556,5548},
 patch='40003',
 description="This guide will walk you through showing the critters of Azeroth how much you /love them and slaying the pests.",
+mopready=true,
 },[[
 step
 label "start"
@@ -10186,6 +10195,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Well Read",{
 achieveid={1244},
 patch='30001',
 description="This guide will walk you through reading the scattered books of Azeroth.",
+mopready=true,
 },[[
 step
 click The World Tree and the Emerald Dream##268087 |achieve 1244/42 |goto Stormwind City 85.40,23.30
@@ -10322,6 +10332,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\You'll Feel Right 
 achieveid={5779},
 patch='40100',
 description="This guide will walk you through feeling 1000% better by eating Chocolate Cookies.",
+mopready=true,
 },[[
 step
 _Click here_ to buy them from the Auction House |confirm |next "buy"
@@ -10360,6 +10371,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\A Bun
 achieveid={5845},
 patch='40200',
 description="Complete each Let's Do Lunch achievement.",
+mopready=true,
 },[[
 step
 Complete each of the following achievements using the appropiate sections of this guide:
@@ -10532,6 +10544,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Cooki
 achieveid={3296},
 patch='30100',
 description="Obtain a Chef's Hat",
+mopready=true,
 },[[
 step
 label "start"
@@ -10654,6 +10667,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Critt
 achieveid={1781},
 patch='30002',
 description="This guide will walk you through coerceing 10 critters to be your pet within 3 minutes or less using Critter Bites.",
+mopready=true,
 },[[
 step
 This requires 10 Critter Bites
@@ -10716,6 +10730,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Kicki
 achieveid={906},
 patch='30001',
 description="Complete each of The Rokk's 4 cooking daily quests.",
+mopready=true,
 },[[
 step
 talk The Rokk##24393
@@ -10803,6 +10818,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Let's
 achieveid={5842},
 patch='40200',
 description="Complete each of the Darnassus cooking daily quests.",
+mopready=true,
 },[[
 step
 You will only be able to complete one cooking daily per day in either Darnassus, Ironforge, or Stormwind
@@ -10859,6 +10875,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Let's
 achieveid={5841},
 patch='40200',
 description="Complete each of the Ironforge cooking daily quests.",
+mopready=true,
 },[[
 step
 You will only be able to _complete one cooking daily per day_ in either Darnassus, Ironforge, or Stormwind
@@ -10920,6 +10937,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Let's
 achieveid={5474},
 patch='40003',
 description="Complete the Stormwind cooking daily quests.",
+mopready=true,
 },[[
 step
 You will only be able to _complete one cooking daily per day_ in either Darnassus, Ironforge, or Stormwind
@@ -10971,6 +10989,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Secon
 achieveid={1780},
 patch='30002',
 description="Eat the 'emotion' foods.",
+mopready=true,
 },[[
 step
 You can either _buy these_ items from the auction house _or farm them_
@@ -11075,6 +11094,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\25 Fi
 achieveid={1556},
 patch='30003',
 description="Fish up 25 items.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -11086,6 +11106,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\50 Fi
 achieveid={1557},
 patch='40200',
 description="Fish up 50 items.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -11097,6 +11118,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\100 F
 achieveid={1558},
 patch='30002',
 description="Fish up 100 items.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -11108,6 +11130,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\250 F
 achieveid={1559},
 patch='30003',
 description="Fish up 250 items.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -11119,6 +11142,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\500 F
 achieveid={1560},
 patch='30100',
 description="Fish up 500 items.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -11130,6 +11154,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Chasi
 achieveid={3217},
 patch='30100',
 description="Complete each of Marcia Chase's 5 fishing daily quests.",
+mopready=true,
 },[[
 step
 talk Marcia Chase##28742
@@ -11185,6 +11210,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\I Sme
 achieveid={1958},
 patch='30003',
 description="Fish up the Giant Sewer Rat from The Underbelly in Dalaran.",
+mopready=true,
 },[[
 step
 _Go down_ into the sewers |goto Dalaran 36.30,45.50 < 10 |walk
@@ -11199,6 +11225,7 @@ condition_end=function() return achieved(5478) end,
 achieveid={5478,5479,5478},
 patch='40003',
 description="Catch 42 different freshwater fish and catch 31 different saltwater fish.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -11432,6 +11459,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Old C
 achieveid={1836},
 patch='30002',
 description="Fish up Old Crafty in Orgrimmar.",
+mopready=true,
 },[[
 step
 This achievement will _flag you for PVP_ while you are in Orgrimmar
@@ -11447,6 +11475,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Old I
 achieveid={1837},
 patch='30002',
 description="Fish up Old Ironjaw in Ironforge.",
+mopready=true,
 },[[
 step
 _Use_ your fishing ability |cast Fishing##7620
@@ -11458,6 +11487,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\Turtl
 achieveid={3218},
 patch='30100',
 description="Fish up a Sea Turtle mount from any fishing pool in Deepholm, Mount Hyjal, Twilight Highlands, Uldum, Northrend, or Pandaria.",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will _need to fish_ in Deepholm, Mount Hyjal, Twilight Highlands, Uldum, Northrend, or Pandaria
@@ -11484,6 +11514,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\First Aid\\Pre
 achieveid={5480},
 patch='40003',
 description="This guide will walk you through creating 500 Dense Embersilk Bandages.",
+mopready=true,
 },[[
 step
 Reach 525 First Aid, use the First Aid leveling guide to accomplish this.
@@ -11508,6 +11539,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\First Aid\\Sto
 achieveid={137},
 patch='30001',
 description="This guide will walk you through creating 500 Heavy Frostweave Bandages.",
+mopready=true,
 },[[
 step
 Reach 450 First Aid, use the First Aid leveling guide to accomplish this.
@@ -11531,6 +11563,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\First Aid\\Ult
 achieveid={141},
 patch='30001',
 description="This guide will walk you through the Ultimate Triage achievement.",
+mopready=true,
 },[[
 step
 Reach 400 First Aid, use the First Aid leveling guide to accomplish this,
@@ -11546,6 +11579,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Kalimdor\\Ghosts in
 achieveid={5453},
 patch='40003',
 description="Discover the secret buried beneath the Maw of the Void in Darkshore.",
+mopready=true,
 },[[
 step
 _Jump down_ into the water |goto Darkshore 51.70,31.10 < 5 |only if walking
@@ -11567,6 +11601,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Kalimdor\\Glutton f
 achieveid={5448},
 patch='40003',
 description="In Archmage Xylem's Trial of Fire in Azshara, gain 10 stacks of Fire Dancing without taking damage.",
+mopready=true,
 },[[
 step
 _Stand on the red fire runes_ without getting hit by fire 10 times in a row
@@ -11579,6 +11614,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Kalimdor\\Glutton f
 achieveid={5546},
 patch='40003',
 description="In Archmage Xylem's Trial of Frost in Azshara, gain 20 stacks of Essence of Ice without taking damage.",
+mopready=true,
 },[[
 step
 _Run around_ on top of the mountain and get next to the floating white orbs
@@ -11591,6 +11627,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Kalimdor\\Glutton f
 achieveid={5547},
 patch='40003',
 description="In Archmage Xylem's Trial of Shadow in Azshara, trap 20 Weeping Souls without taking damage.",
+mopready=true,
 },[[
 step
 _Click_ the Touch to Begin crystal
@@ -11607,6 +11644,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Outland\\Bombs Away
 achieveid={1275},
 patch='30002',
 description="Complete the Fires Over Skettis quest in under 2 minutes 15 seconds while not in a group.",
+mopready=true,
 },[[
 step
 talk Yuula##23449
@@ -11638,6 +11676,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Northrend\\D.E.H.T.
 achieveid={561},
 patch='30001',
 description="This guide will walk you through completing the D.E.H.T.A. questline in Borean Tundra.",
+mopready=true,
 },[[
 step
 talk Arch Druid Lathorius##25809
@@ -11747,6 +11786,7 @@ achieveid={2836},
 patch='30100',
 keywords={"Lance","a","Lot","Argent","Tournament"},
 description="This guilde will walk you through obtaining the Lance a Lot achievement",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to defeat a rider from each faction at the Argent Tournament
@@ -11768,6 +11808,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Northrend\\Mine Swe
 achieveid={1428},
 patch='30003',
 description="Get caught in 10 consecutive land mine explosions in the Sparksocket Minefield without landing.",
+mopready=true,
 },[[
 step
 You will see a field of mines. Use a ground mount and run into them as fast as you can. There will be a short grace period to find the next mine before the timer runs out.
@@ -11779,6 +11820,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Northrend\\Rapid De
 achieveid={1277},
 patch='30008',
 description="This guide will walk you through completing the Defending Wyrmrest Temple quest in under 3 minutes while not in a group.",
+mopready=true,
 },[[
 step
 talk Lord Devrestrasz##27575
@@ -11806,6 +11848,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Northrend\\Veteran 
 achieveid={547},
 patch='30002',
 description="This guide will walk you through completing the Dragonblight quests leading up to and including the Return to Angrathar.",
+mopready=true,
 },[[
 step
 talk Private Casey##26186
@@ -12043,6 +12086,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\The 'Unb
 achieveid={5860},
 patch='40200',
 description="Complete the Vigilance on Wings daily quest in Mount Hyjal 10 times.",
+mopready=true,
 },[[
 step
 _Go inside_ the blue portal |goto Mount Hyjal 38.77,58.01 < 5 |walk
@@ -12071,7 +12115,8 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Beware o
 achieveid={4959},
 patch='40003',
 description="Complete the jousting quests in Mount Hyjal up to and including Egg Wave.",
-endlevel=30
+endlevel=30,
+mopready=true,
 },[[
 step
 ding 30
@@ -12764,6 +12809,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Bounce",
 achieveid={5483},
 patch='40003',
 description="This guide will walk you through staying on the trampoline in the Whistling Grove in Mount Hyjal for 20 consecutive bounces.",
+mopready=true,
 },[[
 step
 You will be able to control your character mid air by turning them in the direction you want to go
@@ -12776,6 +12822,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Consumed
 achieveid={5451},
 patch='40003',
 description="This guide will walk you through enduring the nightmares of Iso'rath in the Twilight Highlands.",
+mopready=true,
 },[[
 step
 click Hero's Call Board##250720
@@ -13519,6 +13566,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Help the
 achieveid={5317},
 patch='40003',
 description="This guide will walk you through killing 10 Schnotzz infantry with one artillery shell during the Fire From the Sky daily quest in Uldum.",
+mopready=true,
 },[[
 step
 talk Weathered Nomad##49523
@@ -13536,6 +13584,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\King of 
 achieveid={5320},
 patch='40003',
 description="Complete the Twilight's Hammer quest chain in Twilight Highlands up to and including Skullcrusher the Mountain.",
+mopready=true,
 },[[
 step
 click Hero's Call Board##250720
@@ -14749,6 +14798,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Round Th
 achieveid={4960},
 patch='40003',
 description="Complete the Crucible of Carnage quests in Twilight Highlands up to and including the Twilight Terror!.",
+mopready=true,
 },[[
 step
 You will need a group for these quests
@@ -14813,6 +14863,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Cataclysm\\Wildhamm
 achieveid={5481},
 patch='40003',
 description="Explore all the nooks and crannies of the Thundermar Ruins in Twilight Highlands and impress your Wildhammer allies by killing a few enemies.",
+mopready=true,
 },[[
 step
 _Kill_ Warlord Halthar |achieve 5481/2 |goto Twilight Highlands 49.20,36.40
@@ -14829,6 +14880,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\5 Dungeon Quests Co
 achieveid={4956},
 patch='40003',
 description="Complete 5 dungeon quests.",
+mopready=true,
 },[[
 step
 Enter the swirling portal |goto The Deadmines 38.30,77.50
@@ -14887,6 +14939,7 @@ patch='40003',
 startlevel=1,
 keywords={"Dungeon","Quests","Completed"},
 description="This guide will walk you through completing the \"20 Dungeon Quests Completed\" Achievement.",
+mopready=true,
 },[[
 step
 To earn this achievement, complete quests that correspond with a dungeon
@@ -14903,6 +14956,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\A Simple Re-Quest",
 achieveid={31},
 patch='30001',
 description="Complete a daily quest every day for five consecutive days.",
+mopready=true,
 },[[
 step
 To earn this achievement, you must complete a daily quests every day for five consecutive days.
@@ -14927,7 +14981,8 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Of Blood and Anguis
 achieveid={1576},
 patch='30002',
 description="Complete the Ring of Blood and Amphitheater of Anguish.",
-endlevel=15
+endlevel=15,
+mopready=true,
 },[[
 step
 ding 15
@@ -15039,6 +15094,7 @@ condition_end=function() return achieved(5751) end,
 achieveid={973,974,975,976,977,5751,7410,7411,5751},
 patch='40100',
 description="This guide will walk you through completing 5, 50, 200, 500, 1000, 2500, 5000, 10000 Daily Quests.",
+mopready=true,
 },[[
 step
 In order to complete these achievements, you simply have to complete daily quests. You can work through Zygor's Dailies guides to obtain all of these achievements
@@ -15075,7 +15131,8 @@ achieveid={4960,4958},
 patch='40003',
 keywords={"round","three.","fight!"},
 description="Complete the Ring of Blood, Amphitheater of Anguish and Crucible of Carnage.",
-endlevel=15
+endlevel=15,
+mopready=true,
 },[[
 step
 ding 15
@@ -15236,6 +15293,7 @@ achieveid={940,939,938,941},
 patch='30001',
 keywords={"Green","hills","stranglethorn","like","white","elekk","snows","northrend","of"},
 description="Complete the Green Hills of Stranglethorn, Hills Like White Elekk and Snows of Northrend achievements.",
+mopready=true,
 },[[
 step
 Redirecting to The Green Hills of Stranglethorn |next "TheGreenHills" |only if not completedq(208)
@@ -15652,6 +15710,7 @@ achieveid={5752},
 patch='40100',
 startlevel=1,
 description="This guide will walk you through completing the \"Justly Rewarded\" Achievement.",
+mopready=true,
 },[[
 step
 For this achievement, complete any quests save for repeatable ones to earn gold

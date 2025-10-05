@@ -12,3 +12,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Scenarios\\
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Scenarios\\Greenstone Village")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Scenarios\\Theramore's Fall")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Scenarios\\Unga Ingoo")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Scenarios\\Assault on Zan'vess")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Scenarios\\A Little Patience")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Scenarios\\Dagger in the Dark")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Scenarios\\Domination Point")

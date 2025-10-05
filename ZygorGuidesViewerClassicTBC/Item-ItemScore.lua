@@ -389,12 +389,21 @@ function ItemScore:GetItemDetailsQueued(itemlink,force)
 		local found_enchant, found_equip, found_proc, found_use, found_flavour = false, false, false, false, false
 		local itemMinLevel
 
+		local CLASS_PATTERN = ITEM_CLASSES_ALLOWED:gsub("%%s","(.*)")
+		local SPEC_PATTERN = ITEM_REQ_SPECIALIZATION:gsub("%%s","(.*)")
+		local SPEC2_PATTERN = ITEM_REQ_SKILL:gsub("%%s","(.*) "..ItemScore.playerclassName)
+
 		for i,line in ipairs(tooltip) do
-			local found_class = line:match( gsub(ITEM_CLASSES_ALLOWED,"%%s","(.*)")) 
+			local found_class = line:match(CLASS_PATTERN) 
 			if found_class then playerclass = found_class end
 
-			local found_spec = line:match( gsub(ITEM_REQ_SPECIALIZATION,"%%s","(.*)"))
+			local found_spec = line:match(SPEC_PATTERN)
 			if found_spec then playerspec = found_spec end
+
+			if not playerspec then
+				local found_spec = line:match(SPEC2_PATTERN)
+				if found_spec then playerspec = found_spec end
+			end
 			
 			-- gg blizz. some of itemlink from encounter journal report min level 120, even if tooltips states 110. 
 			local found_level = line:match( gsub(ITEM_MIN_LEVEL,"%%d","(.*)"))

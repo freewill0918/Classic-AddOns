@@ -3,10 +3,5087 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Horde" then return end
 if ZGV:DoMutex("AchievementsHMOP") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
+ZGV.BETASTART()
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Collections\\Mounts\\Grand Expedition Yak",{
+achieveid={7386},
+patch='50004',
+description="This guide will walk you through obtaining the Grand Expedition Yak from Uncle Bigpocket in Kun-Lai Summit.",
+mopready=true,
+},[[
+step
+In order to obtain this mount, you will need to have 120,000 gold
+talk Uncle Bigpocket##64518
+buy Reins of the Grand Expedition Yak##84101 |complete itemcount(84101) >= 1 |goto Kun-Lai Summit 65.40,61.80
+learnmount Grand Expedition Yak##122708 |use Reins of the Grand Expedition Yak##84101 |achieve 7386
+step
+Congratulations, you have earned the Grand Expedition Yak achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Collections\\Mounts\\Mount Parade",{
+achieveid={8302},
+patch='50300',
+condition_valid=function() return achieved(7862) end,
+description="Obtain 200 mounts.",
+mopready=true,
+},[[
+step
+You can use our Mounts guide to obtain all you need to complete the achievements below:
+Collect 10 mounts |achieve 2141
+Collect 25 mounts |achieve 2142
+Collect 50 mounts |achieve 2143
+Collect 100 mounts |achieve 2537
+Collect 150 mounts |achieve 7862
+Collect 200 mounts |achieve 8302
+step
+Congratulations, you have earned the Mount Parade achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Collections\\Going To Need A Bigger Bag",{
+achieveid={8728},
+patch='50400',
+description="Obtain all of the rare items from the Timeless Isle listed below.",
+mopready=true,
+},[[
+step
+label "start"
+This achievement requires you to obtain all 4 of the celesital pets on the Timeless Isle.
+In order to do so, you must complete the _Celestial Tournament_ every week to earn _Celestial Coins_. These are used to purchase the 4 pets.
+|confirm
+step
+kill Jademist Dancer##72767+
+collect 1 Jademist Dancer##104164 |goto Timeless Isle/0 26.30,29.70
+|tip This item is a rare drop, so you may need to grind for a while. |achieve 8728/52
+collect Condensed Jademist##104288 |achieve 8728/38 |goto Timeless Isle/0 26.30,29.70
+step
+kill Ancient Spineclaw##72766+
+collect Scuttler's Shell##104293 |achieve 8728/33 |goto Timeless Isle/0 18.80,56.50
+step
+kill Monstrous Spineclaw##73166
+|tip This mob is a rare spawn, so you may need to wait a while for it to spawn.
+collect 1 Spineclaw Crab##104168 |achieve 8728/49 |goto Timeless Isle/0 26.90,76.40
+step
+map Timeless Isle
+path	32.60,69.40	29.70,67.20	31.60,64.60
+path	33.10,66.20	43.20,66.00	41.40,69.60
+click Crane Nest##222685
+|tip This item is a rare drop, so you may be searching for a while.
+collect 1 Azure Crane Chick##104157 |achieve 8728/56
+step
+kill Imperial Python##73163
+|tip This mob is a rare spawn, so you may need to wait a while for it to spawn.
+collect 1 Death Adder Hatchling##104161 |achieve 8728/53 |goto Timeless Isle 44.40,65.50
+collect 1 Partially-Digested Meal##104292 |achieve 8728/34 |goto Timeless Isle 44.40,65.50
+step
+kill Spectral Windwalker##73021+
+collect Bubbling Pi'jiu Brew##104336 |goto Timeless Isle/0 38.00,77.60
+|tip This item is a rare drop, so you may need to grind for a while. |achieve 8728/11
+step
+kill Spectral Brewmaster##73018+
+collect Thick Pi'jiu Brew##104335 |goto Timeless Isle/0 38.00,77.60
+|tip This item is a rare drop, so you may need to grind for a while. |achieve 8728/12
+step
+kill Spectral Mistweaver##73025+
+collect Misty Pi'jiu Brew##104334 |goto Timeless Isle/0 38.00,77.60
+|tip This item is a rare drop, so you may need to grind for a while. |achieve 8728/13
+step
+kill Skunky Brew Alemental##71908+ |goto Timeless Isle/0 38.00,77.60
+|tip You will have to wait for these to spawn as a random event. After killing 10, Zhu-Gon will spawn.
+|confirm
+|only if not achieved(8728/50)
+step
+kill Zhu-Gon the Sour##71919+
+collect 1 Skunky Almental##104167 |achieve 8728/50 |goto Timeless Isle/0 38.00,77.60
+step
+kill Gu'chi the Swarmbringer##72909
+|tip He walks around the village here, so some searching may be necessary.
+collect 1 Gu'chi Swarmling##104291 |achieve 8728/35 |goto Timeless Isle/0 40.40,78.00
+step
+kill Spotted Swarmer##72908+
+collect Sticky Silkworm Goo##104290 |achieve 8728/36 |goto Timeless Isle/0 40.50,76.20
+You can also find groups of them at the following locations:
+[39.00,83.20]
+[32.70,75.20]
+[33.80,77.70]
+step
+kill Karkanos##72193
+|tip This mob is a rare spawn, so you may need to wait a while for it to spawn.
+collect Giant Purse of Timeless Coins##104035 |achieve 8728/3 |goto Timeless Isle/0 34.20,84.70
+step
+kill Cursed Swabby##71920+
+|tip They are underwater near the sunken ship
+collect Barnacle Encrusted Key##104015 |n
+click Sunken Chest##32
+collect 1 Cursed Swabby Helmet##104038 |achieve 8728/1 |goto Timeless Isle/0 40.40,93.10
+step
+kill Zesqua##72245
+collect Rain Stone##104303 |achieve 8728/26 |goto Timeless Isle/0 47.60,87.30
+step
+kill Rattleskew##72048
+collect Captain Zvezdan's Lost Leg##104321 |achieve 8728/17 |goto Timeless Isle/0 60.70,88.00
+step
+kill Bufo##72775
+|tip Bufo can spawn in the place of any Gulp Frog in this area.
+collect 1 Gulp Froglet##104169 |achieve 8728/48 |goto Timeless Isle/0 62.70,74.60
+step
+kill Gulp Frog##72777+
+collect 1 Overgrown Lilypad##86580 |achieve 8728/9 |goto Timeless Isle/0 62.70,74.60
+step
+kill Golganarr##72970
+collect Odd Polished Stone##104262 |achieve 8728/44 |goto Timeless Isle/0 62.50,63.50
+step
+kill Eroded Cliffdweller##72809+
+collect Glinting Pile of Stone##104263 |achieve 8728/43 |goto Timeless Isle/0 56.60,52.30
+step
+kill Primal Stalker##72805+
+collect Pristine Stalker Hide##104268 |achieve 8728/42 |goto Timeless Isle/0 62.00,53.10
+step
+Wait for the cave-in, then click the hammer that spawns here. It may take a minute for the hammer to spawn, but it shouldn't be too long. |goto Timeless Isle/0 59.20,48.30
+|confirm
+step
+clicknpc Cave-In##73329
+kill Spelurk##71864+
+collect Cursed Talisman##104320 |achieve 8728/18 |goto Timeless Isle/0 59.10,48.60
+step
+This pet requires you to have a lot of Timeless coins, as it is a random drop from a chest.
+|confirm
+|only if not achieved(8728/47)
+step
+Enter this cave here |goto Timeless Isle/0 58.50,42.80 |noway |c
+|only if not achieved(8728/47)
+step
+talk Master Kukuru##72007
+buy Kukuru's Cache Key##101538 |goto Timeless Isle/0 59.10,40.60
+|only if not achieved(8728/47)
+step
+Pick one of the many chests in this room and use your key to open it.
+click Timeless Chest##221016
+collect 1 Bonkers##104202
+|tip This will most likely not drop on your first try. You will need to keep buying keys and opening chests until this drops. |achieve 8728/47
+step
+click Eerie Crystal##222686
+|tip They can be found all around inside this cave.
+collect Crystal of Insanity##86569 |achieve 8728/4 |goto Timeless Isle/22 54.20,66.40
+step
+kill Spirit of Jadefire##72769
+|tip This is a rare spawn, so you may need to wait for it to respawn.
+collect 1 Jadefire Spirit##104307 |achieve 8728/22 |goto Timeless Isle/22 56.00,30.70
+collect Glowing Green Ash##104258 |achieve 8728/46 |goto Timeless Isle/22 56.00,30.70
+step
+kill Rock Moss##73157
+|tip This mob is a rare spawn, so you may need to wait a while.
+collect Golden Moss##104313 |achieve 8728/19 |goto Timeless Isle/22 45.40,29.40
+step
+kill Damp Shambler##72771+
+collect Strange Glowing Mushroom##104312 |achieve 8728/20 |goto Timeless Isle/22 45.20,30.50
+step
+kill Foreboding Flame##73162+
+collect Glowing Blue Ash##104261 |achieve 8728/45 |goto Timeless Isle/22 53.30,66.00
+collect 1 Ominous Flame##104166 |goto Timeless Isle/22 53.30,66.00
+|tip This item is a rare drop, so you may need to grind for a while. |achieve 8728/51
+step
+kill Brilliant Windfeather##72762
+collect Wildfeather Plume##104287 |achieve 8728/39 |goto Timeless Isle/0 37.70,43.00
+step
+kill Jakur of Ordon##73169
+collect Warning Sign##104331 |achieve 8728/14 |goto Timeless Isle/0 51.50,83.30
+step
+kill Ordon Candlekeeper##72875+, Ordon Oathguard##72892+, Ordon Fire-Watcher##72894+
+collect Warped Warning Sign##104330 |achieve 8728/2 |goto Timeless Isle/0 53.70,79.90
+|tip This is a rare drop, so you may need to grind for a while.
+collect Battle Horn##86565 |achieve 8728/5 |goto Timeless Isle/0 53.70,79.90
+|tip This is a rare drop, so you may need to grind for a while.
+step
+kill Watcher Osu##73170
+collect 1 Ashen Stone##104305 |achieve 8728/24 |goto Timeless Isle/0 57.50,77.10
+collect Ordon Ceremonial Robes##104296 |achieve 8728/31 |goto Timeless Isle/0 57.50,77.10
+You can also obtain these from _Urdur the Cauterizer_ at [45.40,26.60]
+step
+kill Ashleaf Sprite##72877
+collect Faintly-Glowing##104289 |achieve 8728/37 |goto Timeless Isle/0 68.60,58.20
+step
+kill Crimsonscale Firestorm##72876
+collect Quivering Firestorm Egg##10428 |achieve 8728/40 |goto Timeless Isle/0 68.60,58.20
+step
+kill Huolon##73167 |tip He is a rare spawn.
+Note that he flies around the entire island, but this is the easiest place to reach him.
+collect Reins of the Thundering Onyx Cloud Serpent##104269 |achieve 8728/41 |goto Timeless Isle/0 72.90,48.70
+step
+kill Champion of the Black Flame##73171
+|tip The all 3 walk up and down this path here, some searching may be necessary.
+collect Blackflame Daggers##104302 |achieve 8728/27 |goto Timeless Isle/0 70.90,49.90
+step
+kill Leafmender##73277
+|tip This mob is a rare spawn, so you may need to wait a while for it to spawn.
+collect 1 Ashleaf Spriteling##104156 |achieve 8728/57 |goto Timeless Isle 67.30,44.10
+step
+kill Eternal Kilnmaster##72896
+collect 1 Eternal Kiln##104309 |achieve 8728/21 |goto Timeless Isle/0 68.50,36.50
+step
+kill Blazebound Chanter##72897
+collect Blizzard Stone##104304 |achieve 8728/25 |goto Timeless Isle/0 68.50,36.50
+step
+kill Eternal Kilnmaster##72896+, Burning Berserker##72895+, Blazebound Chanter##72897+
+collect Forager's Gloves##86566 |achieve 8728/7 |goto Timeless Isle/0 68.50,39.90
+collect Big Bag of Herbs##87219 |achieve 8728/8 |goto Timeless Isle/0 68.50,39.90
+collect Blazing Sigil of Ordos##104297 |achieve 8728/30 |goto Timeless Isle/0 68.50,39.90
+step
+kill Cinderfall##73175 |tip On the bridge up above.
+collect Cauterizing Core##104328 |achieve 8728/16 |goto Timeless Isle/0 54.00,52.40
+collect Falling Flame##104299 |achieve 8728/28 |goto Timeless Isle/0 54.00,52.40
+step
+kill Flintlord Gairan##73172
+collect Ordon Death Chime##104298 |achieve 8728/29 |goto Timeless Isle
+step
+kill High Priest of Ordos##72898+
+collect 1 Ash-Covered Horn##104329 |achieve 8728/15 |goto Timeless Isle/0 48.20,38.40
+step
+kill Urdur the Cauterizer##73173
+collect Sunset Stone##104306 |achieve 8728/23 |goto Timeless Isle/0 45.40,26.60
+step
+kill Garnia##73282
+collect Ruby Droplet##104159 |achieve 8728/55 |goto Timeless Isle/0 64.80,28.80
+step
+kill Dread Ship Vazuvius##73281+
+collect Rime of the Time-Lost Mariner##104294 |achieve 8728/32 |goto Timeless Isle/0 26.20,23.80
+step
+kill Archiereus of Flame##73174
+collect 1 Elixir of Ancient Knowledge##86574 |achieve 8728/6 |goto Timeless Isle/0 58.10,25.50
+You can also find him at the following coordinates:
+[56.90,35.90]
+[48.60,33.70]
+[50.00,22.50]
+step
+kill Great Turtle Furyshell##73161
+|tip This mob is a rare spawn, so you may need to wait a while for it to spawn.
+collect 1 Hardened Shell##86584 |achieve 8728/10 |goto Timeless Isle/0 25.60,55.50
+step
+click Neverlasting Crystal |goto Timeless Isle 47.70,73.70
+This will provide a limited debuff that will turn all Nice Sprites into Angry Sprites.
+|confirm
+|only if not achieved(8728/54)
+step
+kill Nice Sprite##71823+, Angry Sprite##71824+
+|tip Kill enough of these in the time allotment and a Scary Sprite will spawn.
+kill Scary Sprite##71826
+collect 1 Dandelion Frolicker##104160 |achieve 8728/54 |goto Timeless Isle 45.50,73.40
+step
+Congratulations, you have obtained the _Going to Need a Bigger Bag_ achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\And Stay Dead",{
+achieveid={6929},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Scarlet Monastery",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Scarlet Monastery.
+You will also need to have an Item Level of 440.
+This achievement takes place during the final encounter with High Inquisitor Whitemane.
+|confirm
+step
+Upon killing Commander Durand, High Inquisitor Whiteman comes out.
+After a bit, she will start to cast an interruptable spell, _Mass Resurrection_.
+_DO NOT_ interrupt it.
+When the sell is finished, 13 Scarlet Judicators will come from [Scarlet Monastery/2 58.10,74.60].
+Use any form of _Crowd Control_ that your group has.
+_Hunters_ and _Rogues_  use _Misdirection_ and _Tricks of the Trade_ respectively to get aggro to your tanks.
+Defeat all of the Scarlet Judicators, then kill Commander Durand and High Inquisitor WHitemane.
+Earn the _And Stay Dead!_ achievement |achieve 6929
+step
+Congratulations, you have earned the And Stay Dead! Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Attention to Detail",{
+achieveid={6531},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Scholomance",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Scarlet Monastery.
+You will also need to have an Item Level of 440.
+This achievement takes place during the second encounter with Jandic Barov.
+|confirm
+step
+This is a tricky achievement.
+You will need to memorize Jandice Barov's features by paying attention to her appearance.
+Look carefully at the neck, her facial markings, her headband color, hair style and eye color.
+Earn the _Attention to Detail_ achievement |achieve 6531
+step
+Congratulations, you have earned the Attention to Detail Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Bomberman",{
+achieveid={6479},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Gate of the Setting Sun",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Gate of the Setting Sun.
+You will also need to have an Item Level of 440.
+This achievement takes place during the first encounter with Saboteur Kip'tilak.
+|confirm
+step
+This achievement is tricky and fairly deadly.
+Let Saboteur Kip'tilak throw out _Stable Munitions_ around the room.
+When you count at least 15, damage Saboteur Kip'tilak to 70% health, which will trigger his _World in Flames_ ability.
+It will detonate all of the explosives in the room, sending 4 waves in each direction from each of the munitions detonated.
+Earn the _Bomberman_ achievement |achieve 6479
+step
+Congratulations, you have earned the Bomberman Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Burning Man",{
+achieveid={6928},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Scarlet Monastery",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Scarlet Monastery.
+You will also need to have an Item Level of 440.
+This achievement takes place during the second encounter with Brother Korloff.
+|confirm
+step
+Before engaging in combat with Brother Korloff, clear all trash from the entire room.
+Have the _Tank_ drag him to any of the six _Training Dummies_ in the room.
+When _Brother Korloff_ uses _BLAZING FISTS_ or _FIRESTORM KICK_, face him at one of the dummies and Ignite it on fire.
+The first 3 are located here. [Scarlet Monastery/2 56.10,40.00]
+The second 3 are located here. [Scarlet Monastery/2 42.20,40.10]
+Earn the _Burning Man_ achievement |achieve 6928
+step
+Congratulations, you have earned the Burning Man Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Cleaning Up",{
+achieveid={6475},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Temple of the Jade Serpent",
+mopready=true,
+},[[
+step
+For this achievement, you will need to be Level 90, as it requires heroic mode.
+You will also need to have an Item Level of 440.
+This achievement takes place in the _Temple of the Jade Serpent_ and involves the Liu Flameheart and Sha of Doubt encounters.
+|confirm
+step
+Upon defeating Liu Flameheart, you will gain a buff called _Purified Water_.
+Your objective is to defeat the Sha of Doubt before the buff runs out.
+The buff itself has a _5 minute timer_, so use any buffs you can spare to increase your DPS.
+Earn the _Cleaning Up_ achievement |achieve 6475
+step
+Congratulations, you  have earned the Cleaning Up Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Conscriptinator",{
+achieveid={6476},
+patch='50004',
+description="This guide will walk you through earning the Conscriptinator achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by getting _three stacks of Resin Residue_ by defeating Mantid Conscripts in Gate of the Setting Sun dungeon on _Heroic mode_
+Kill the first three bosses. Before jumping down to Raigonn:
+kill Krik'thik Conscript##61213+
+|tip The Krik'thik Conscripts will explode when killed and give all nearby players the stacks of Resin Residue needed for the achievement.
+Gain the Resin Residue Buff |achieve 6476 |goto Gate of the Setting Sun 41,52
+step
+Congratulations, you have earned the Conscriptinator Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Empowered Spiritualist",{
+achieveid={6946},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Scarlet Monastery",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Scarlet Monastery.
+You will also need to have an Item Level of 440.
+This achievement takes place during the first encounter with Thalnos the Soulrender.
+|confirm
+step
+For this achievement, you will need to leave 3 _Fallen Crusaders_ alive.
+Be sure to DPS him down slowly.
+As the fight progresses, he will cast a spell called _Empowering Spirits_, which will turn a Fallen Crusader into an _Empowered Zombie_.
+For each Empowered Zombie present, you will need one less Fallen Crusader alive.
+Once there are 3 _Empowered Zombies_, DPS should focus on Thalnos the Soulrender and defeat him as quickly as possible.
+Having an Off-Healer might be good, but you will likely need all the dps you can get once all 3 zombies are active.
+Earn the _Empowered Spiritualist_ achievement |achieve 6946
+step
+Congratulations, you have earned the Empowered Spiritualist Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Glintrok N' Roll",{
+achieveid={6478},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Mogu'shan Palace",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Mogu'Shan Palace.
+You will also need to have an Item Level of 440.
+This achievement takes place after the first boss of the instance.
+|confirm
+step
+At some point during the trash after the second boss, there will be a Glintrok Scout that spots you.
+You will have _5 Minutes_ from that point to reach Gekkan, defeating him and his 4 Saurok.
+Earn the _Glintrok N' Roll_ achievement |achieve 6478
+step
+Congratulations, you have earned the Glintrok N' Roll Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Hate Leads to Suffering",{
+achieveid={6471},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Shado-Pan Monastery",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Shado-Pan Monastery.
+You will also need to have an Item Level of 440.
+This achievement takes place during the fourth encounter with Taran Zhu.
+|confirm
+step
+For this,  you will need to let your _Hatred_ reach maximum level.
+It's recommended that you wait til his health is low before letting it reach the max.
+Once _EVERYONE_ in the group has maximum hatred, defeat Taran Zhu.
+Earn the _Hate Leads to Suffering_ achievement |achieve 6471
+step
+Congratulations, you have earned the Hate Leads to Suffering Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Heroic: Shado-Pan Monastery",{
+achieveid={6470},
+patch='50004',
+description="This guide will walk you through earning the Heroic: Shado-Pan Monastery achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by completing the Shado-Pan Monastery dungeon on _Heroic mode_
+|tip Use our dungeon guides to accomplish this.
+kill Taran Zhu##56884
+Defeat Taran Zhu |achieve 6470 |goto Shado-Pan Monastery 72.10,47.40
+step
+Congratulations, you have earned the Heroic: Shado-Pan Monastery Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Heroic: Stormstout Brewery",{
+achieveid={6456},
+patch='50004',
+description="This guide will walk you through earning the Heroic: Stormstout Brewery achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by completing the Stormstout Brewery dungeon on _Heroic mode_
+|tip Use our dungeon guides to accomplish this.
+kill Yan-Zhu the Uncasked##59479
+Defeat Yan-Zhu the Uncasked |achieve 6456 |goto Stormstout Brewery/4 48.80,51.70
+step
+Congratulations, you have earned the Heroic: Stormstout Brewery Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Heroic: Temple of the Jade Serpent",{
+achieveid={6758},
+patch='50004',
+description="This guide will walk you through earning the Heroic: Temple of the Jade Serpent achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by completing the Temple of the Jade Serpent dungeon on _Heroic mode_
+|tip Use our dungeon guides to accomplish this.
+kill Sha of Doubt##56439
+Defeat Sha of Doubt |achieve 6758 |goto Temple of the Jade Serpent 60.80,59.00
+step
+Congratulations, you have earned the Heroic: Temple of the Jade Serpent Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Hopocalypse Now!",{
+achieveid={6420},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Stormstout Brewery",
+mopready=true,
+},[[
+step
+For this achievement, you will need to be Level 90, as it requires heroic mode.
+You will also need to have an Item Level of 440.
+This achievement takes place in the _Stormstout Brewery_, after the _Ook-Ook_ encounter.
+|confirm
+step
+After the first boss, there will be a path full of Vermin called _Hoppers_ and _Boppers_.
+Upon killthing the Boppers, they will drop something called _Big Ol' Hammer_.
+As you progress through the tunnel, more vermin gather. You will need the help of your tank to gather at least 100 enemies.
+After the tank has gathered the enemies have only one person use the Big Ol' Hammer
+Earn the _Hopocalypse Now!_ achievement |achieve 6420
+step
+Congratulations, you have earned the Hopocalypse Now! Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\How Did He Get Up There?",{
+achieveid={6400},
+patch='50004',
+description="This achievement requires the instance Stormstout Brewery",
+mopready=true,
+},[[
+step
+For this achievement, you will need to have access to the _Stormstout Brewery_, a level 85 Mists of Pandaria instance.
+This achievement takes place in the _Stormstout Brewery_, after the _Ook-Ook_ encounter.
+|confirm
+step
+After you defeat _Ook-Ook_, there will be a path full of Vermin called _Hoppers_ and _Boppers_.
+Upon killthing the Boppers, they will drop something called _Big Ol' Hammer_.
+After you have a Big Ol' Hammer, have your tank gather up at least 5 of the vermin.
+The _Hozen Clinger_ is under the banner at [22.80,67.20]
+Drag the vermin up the path up into the room above where you defeated Ook-Ook and you will see a _Hozen Clinger_ hanging off the banners.
+Use your Hammer and knock the vermin into the Hozen and knock him down. Note that it may take a few tries.
+Earn the _How Did He Get Up There?_ achievement |achieve 6400
+step
+Congratulations, you have earned the How Did He Get Up There? Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Humane Society",{
+achieveid={6684},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Scarlet Halls",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Scarlet Halls.
+You will also need to have an Item Level of 440.
+This achievement takes place during the first encounter with Houndmaster Braun.
+|confirm
+step
+For this achievement, you will need to control the hounds that accompany Houndmaster Braun.
+The tank will need to pick them up as they appear.
+It will help to use _Crowd Control_ on them as well.
+Hunters and Rogues can use _Misdirection_ and _Tricks of the Trade_ respectively to help the tank maintain threat on the adds.
+Focus on DPSing Houndmaster Braun down quickly.
+Earn the _Humane Society_ achievement |achieve 6684
+step
+Congratulations, you have earned the Humane Society Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Hydrophobia",{
+achieveid={6460},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Temple of the Jade Serpent",
+mopready=true,
+},[[
+step
+For this achievement, you will need to be Level 90, as it requires heroic mode.
+You will also need to have an Item Level of 440.
+This achievement takes place in the _Temple of the Jade Serpent_, during the Wise Mari encounter.
+|confirm
+step
+There will be 3 attacks to look out for: _Corrupted Water_, _Hydrolance_ and _Wash Away_.
+You will need to avoid being hit by these attacks.
+_Corrupted Water_ is cast on the water surrounding Wise Mari. During the last phase, you will need to jump on the platforms while avoiding Wash Away.
+_Hydrolance_ will be an attack that appears on the ground in a straight line, it should be easy enough to avoid.
+_Wash Away_ Is used in the last phase, where he will channel a huge wall of water in a circular motion. Keep on the opposing end of the wall to stay safe from the attack.
+Note that being hit even once will mess up your chance at earning this achievement.
+Earn the _Hydrophobia_ achievement |achieve 6460
+step
+Congratulations, you have earned the Hydrophobia Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Keep Rollin' Rollin' Rollin'",{
+achieveid={6089},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Stormstout Brewery",
+mopready=true,
+},[[
+step
+For this achievement, you will need to be Level 90, as it requires heroic mode.
+You will also need to have an Item Level of 440.
+This achievement takes place in the _Stormstout Brewery_, after the _Ook-Ook_ encounter.
+|confirm
+step
+During the first encounter of Stormstout Brewery, barrels will spawn and roll around the room as you fight Ook-Ook.
+Have the DPS in the group click the barrels and run them into the boss 20 times.
+Earn the _Keep Rollin' Rollin' Rollin'_ |achieve 6089
+step
+Congratulations, you have earned the Keep Rollin' Rollin' Rollin' Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Ling-Ting's Herbal Journey",{
+achieveid={6402},
+patch='50004',
+description="This achievement requires the instance Stormstout Brewery",
+mopready=true,
+},[[
+step
+For this achievement, you will need to have access to the _Stormstout Brewery_, a level 85 Mists of Pandaria instance.
+This achievement takes place throughout the _Stormstout Brewery_ and involves _Auntie Stormstout_, who can be found at the start of the instance.
+It's recommended that you wait until the instance is cleared before doing this achievement.
+|confirm
+step
+talk Auntie Stormstout##59822
+buy 5 Ling-Ting's Favorite Tea##80313 |n |goto Stormstout Brewery/1 76.80,35.80
+Ling-Ting's Favorite Tea costs 5 gold each and grants a buff that will allow you to see the _Golden Hopling_.
+|confirm
+step
+_Trickling Passage_
+Use Ling-Ting's Favorite Tea |use Ling-Ting's Favorite Tea##80313
+The first is at [Stormstout Brewery/1 75.60,34.30]
+The second is at [Stormstout Brewery/1 72.10,56.00]
+The third is at [Stormstout Brewery/1 68.50,37.60]
+|confirm
+step
+_Grain Cellar_
+The fourth is at [Stormstout Brewery/1 55.60,46.00]
+The fifth is at [Stormstout Brewery/1 55.80,53.40]
+The sixth is at [Stormstout Brewery/1 43.80,42.50]
+The seventh is at [Stormstout Brewery/1 34.90,42.20]
+The eighth is at [Stormstout Brewery/1 41.70,63.10]
+The ninth is at [Stormstout Brewery/1 40.90,72.70]
+|confirm
+step
+_Mama's Pantry_
+The tenth is at [Stormstout Brewery/1 34.40,65.10]
+The eleventh is at [Stormstout Brewery/1 30.90,86.50]
+|confirm
+step
+_Stormstout Brewhall_
+The twefth is at [Stormstout Brewery/1 18.90,73.90]
+The thirteenth is at [Stormstout Brewery/1 16.10,57.50]
+The fourteenth is at [Stormstout Brewery/2 33.40,44.60]
+The fifthteenth is at [Stormstout Brewery/2 48.30,73.30]
+The sixteenth is at [Stormstout Brewery/2 69.70,34.00]
+The seventeenth is at [Stormstout Brewery/2 74.80,64.90]
+|confirm
+step
+_Stormstout Brewery_
+The eighteenth is at [Stormstout Brewery/2 87.50,81.70]
+|confirm
+step
+_Stormstout Brewhall_
+The nineteenth is at [Stormstout Brewery/3 29.80,86.60]
+The twentieth is at [Stormstout Brewery/3 26.40,44.00]
+|confirm
+step
+_Stormstout Brewery_
+The twenty-first is at [Stormstout Brewery/3 42.40,24.90]
+The twenty-second is at [Stormstout Brewery/3 57.60,31.10]
+|confirm
+step
+_The Great Wheel_
+The twenty-third is at [Stormstout Brewery/3 59.00,48.00]
+The twenty-fourth is at [Stormstout Brewery/3 69.70,33.30]
+The twenty-fifth is at [Stormstout Brewery/3 63.20,68.80]
+|confirm
+step
+_Stormstout Brewery_
+The twenty-sixth is at [Stormstout Brewery/3 85.00,32.10]
+|confirm
+step
+_The Tasting Room_
+The twenty-seventh is at [Stormstout Brewery/4 52.80,22.50]
+The twenty-eighth is at [Stormstout Brewery/4 43.00,81.10]
+The twenty-ninth is at [Stormstout Brewery/4 63.90,73.50]
+The thirtieth is at [Stormstout Brewery/4 48.60,52.40]
+Earn the Ling-Ting's Herbal Journey achievement |achieve 6402
+step
+Congratulations, you have earned the Ling-Ting's Herbal Journey Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Mantid Swarm",{
+achieveid={6945},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Gate of the Setting Sun",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Gate of the Setting Sun.
+You will also need to have an Item Level of 440.
+This achievement takes place during the fourth encounter with Raigonn.
+|confirm
+step
+For this achievement, you will need to ignore any add that Raigonn summons during the encounter.
+The tank will need to pick them up as they appear.
+It will help to use _Crowd Control_ on them as well.
+Hunters and Rogues can use _Misdirection_ and _Tricks of the Trade_ respectively to help the tank maintain threat on the adds.
+Focus on DPSing Raigonn down quickly.
+Earn the _Mantid Swarm_ achievement |achieve 6945
+step
+Congratulations, you have earned the Mantid Swarm Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Mosh Pit",{
+achieveid={6427},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Scarlet Halls",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Scarlet Halls.
+You will also need to have an Item Level of 440.
+This achievement takes place during the second encounter with Armsmaster Harlan.
+|confirm
+step
+For this achievement, you will need your _Tank_ and _DPS_ to get caught in the Armsmasster's _Bladesof Light_ ability.
+Be sure that there are also 4 _Scarlet Defenders_ along with you before getting caught.
+You will need _HEAVY HEALS_ throughout the duration of the ability.
+After surviving, defeat Armsmaster Harlan.
+If applicable, you can have 3 players get caught with 5 Scarlet Defenders.
+This is recommended if you have someone who can _OFF HEAL_ with the Healer.
+Earn the _Mosh Pit_ achievement |achieve 6427
+step
+Congratulations, you have earned the Mosh Pit achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\The Obvious Solution",{
+achieveid={6472},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Shado-Pan Monastery",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Shado-Pan Monastery.
+You will also need to have an Item Level of 440.
+This achievement takes place during the third encounter with the Sha of Violence.
+|confirm
+step
+For this achievement, you will need to _ALL_ of the remaining Sha enemies imprisoned in the Sealed Chambers, _THEN_ defeat the Sha of Violence.
+Earn _The Obvious Solution_ achievement |achieve 6472
+step
+Congratulations, you have earned The Obvious Solution Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Polyformic Acid Science",{
+achieveid={6715},
+patch='50004',
+description="This guide will walk you through how to get the Polyformic Acid Science achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by defeating the following dungeon and raid bosses while under the effects of a Polyformic Acid Potion
+Commander Ri'mok |achieve 6715/1
+Liu Flameheart |achieve 6715/2
+Gu Cloudstrike |achieve 6715/3
+Trial of the King |achieve 6715/4
+Vizier Jin'bak |achieve 6715/5
+Yan-Zhu the Uncasked |achieve 6715/6
+|confirm |only if not achieved(6715)
+step
+kill Professor Slate##59613
+click Polyformic Acid Potion |goto Scholomance/2 53.26,79.93
+|tip It is sitting on the table by Professor Slate.
+Gain the Polyformic Acid Potion Buff |havebuff Polyformic Acid Potion##114800 |goto Scholomance/2 53.26,79.93
+|only if not achieved(6715)
+step
+kill Commander Ri'mok##56636 |achieve 6715/1 |goto Gate of the Setting Sun 46.20,23.70
+step
+kill Liu Flameheart##56732 |achieve 6715/2 |goto Temple of the Jade Serpent 48.00,53.10
+step
+kill Gu Cloudstrike##56747 |achieve 6715/3 |goto Shado-Pan Monastery 64.90,69.10
+step
+kill Haiyan the Unstoppable##61445, Kuai the Brute##61442, Ming the Cunning##61444
+Complete the Trial of the King |achieve 6715/4 |goto Mogu'shan Palace 40.70,70.50
+step
+kill Vizier Jin'bak##61567 |achieve 6715/5 |goto Siege of Niuzao Temple/2 47.00,52.10
+step
+kill Yan-Zhu the Uncasked##59479 |achieve 6715/6 |goto Stormstout Brewery/4 48.80,51.70
+step
+Polyformic Acid Science |achieve 6715
+step
+Congratulations, you have earned the Polyformic Acid Science achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Quarrelsome Quilen Quintet",{
+achieveid={6713},
+patch='50004',
+description="This guide will walk you through earning the Quarrelsome Quilen Quintet achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by collecting all the Jade Quilen inside the Mogu'Shan Palace dungeon on _Heroic mode_
+clicknpc Jade Quilen##63092
+|tip Opening the map will display a path with one of Jade Quilen at each point.
+|tip The second Jade Quilen will spawn after completing the Trial of the Kings. Use /tar Jade Quilen to find its exact location (it will be hard to see because of all the add spawns).
+|tip You can't reach the third one from the ground, so jump unto the purple flaming torch, then jump towards the Jade Quilen and click it in the air.
+|tip For the last Jade Quilen you must click the Scrying Orb first, then it will drop.
+map Mogu'shan Palace
+path follow strict;loop off;ants straight
+path	52.00,18.00	39.00,62.00	Mogu'shan Palace/2 27.00,30.00
+path	44.30,91.00	Mogu'shan Palace/3 57.00,46.00
+Collect Jade Quilen |achieve 6713
+step
+Congratulations, you have earned the Quarrelsome Quilen Quintet Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Rattle No More",{
+achieveid={6394},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Scholomance",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Scarlet Monastery.
+You will also need to have an Item Level of 440.
+This achievement takes place during the third encounter with Rattlegore.
+|confirm
+step
+Rattlegore gains a buff that stacks for each of his melee swings called _Rusted_.
+To earn this achievement, you _MUST NOT_ let him get more than 5 stacks of this Buff.
+The tank _MUST_ kite Rattlegore around the room when he has 5 stacks of rusted.
+DPS needs to make sure they don't peel aggro off of the tank while they are kiting.
+_Hunters_ and _Rogues_ be sure to use _Misdirection_ and _Tricks of the Trade_ respectively to redirect aggro.
+Repeat this process until Rattlegore is defeated.
+Earn the _Rattle No More_ achievement |achieve 6394
+step
+Congratulations, you have earned the Rattle No More Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Respect",{
+achieveid={6477},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Shado-Pan Monastery",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Shado-Pan Monastery.
+You will also need to have an Item Level of 440.
+This achievement takes place during the second encounter with Master Snowdrift.
+|confirm
+step
+For this achievement, you will need to use the _/bow_ emote for each _Shado-Pan Novice_ that you face.
+They will bow to you upon being defeated.
+Earn the _Respect_ achievement |achieve 6477
+step
+Congratulations, you have earned the Respect Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Return to Sender",{
+achieveid={6485},
+patch='50004',
+description="This guide will walk you through earning the Return to Sender achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by defeating General Pa'valak _while he has 20 stacks of Detonate_ in the Siege of Niuzao Temple dungeon on _Heroic mode_
+|tip When the boss is weakened he will throw a shield on himself, adds will spawn and bombs will drop. Pick up the bombs and throw them at the boss to start applying Detonate stacks.
+kill General Pa'valak##61485
+Defeat General Pa'valak |achieve 6485 |goto Siege of Niuzao Temple 55.30,46.20
+step
+Congratulations, you have earned the Return to Sender Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Run with the Wind",{
+achieveid={6822},
+patch='50004',
+description="This guide will walk you through earning the Run with the Wind achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by defeating Ner'onok _while under the effect of Tenwu's Resolve_ in the Siege of Niuzao Temple dungeon on _Heroic mode_
+|tip When the boss casts Gusting Winds for the first time, move towards the edge of the platform and jump across to the broken bridge. Tenwu will be laying on the ground, talking to him will grant the Tenwu's Resolve buff.
+talk Tenwu of the Red Smoke##64133
+kill Wing Leader Ner'onok##62205
+Defeat Wing Leader Ner'onok |achieve 6822 |goto Siege of Niuzao Temple 62.20,13.00
+step
+Congratulations, you have earned the Run with the Wind Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Sanguinarian",{
+achieveid={6396},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Scholomance",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Scarlet Monastery.
+You will also need to have an Item Level of 440.
+This achievement takes place after the third encounter with Rattlegore.
+|confirm
+step
+Whenever you kill a Carver you CC the one with less stacks than the other, pull a new one and always kill the Carver with the highest number of stacks.
+After defeating Rattlegore, there will be a room full of _Krastinovian Carvers_.
+The goal here is to end up with a Carver that has 99 stacks of the buff _Boiling Bloodthirst_.
+Start by pulling 3 _Krastinovian Carvers_.
+Use _Crowd Control_ on one and kill another. _MAKE SURE YOU KILL THEM CLOSE TOGETHER_.
+Refresh your Crowd Control, and pull another to you, killing one of the carvers with 2 stacks.
+You should now have a carver with 4 stacks and 3 stacks.
+From this point on, whenever you kill a carver, _ALWAYS_ CC the one with less stacks, pull a new one, then kill the carver with the highest stacks.
+Earn the _Sanguinarian_ achievement |achieve 6396
+step
+Congratulations, you have earned the Sanguinarian Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\School's Out Forever",{
+achieveid={6821},
+patch='50004',
+keywords={"Pandaria","Dungeon","Heroic","Scholomance","School's","Out","Forever"},
+description="This guide will walk you through obtaining the School's Out Forever Achievement.",
+mopready=true,
+},[[
+step
+kill Darkmaster Gandling##59080
+|tip You will need a group of five for this.
+|tip He will cast Harsh Lesson on a party member.
+|tip Eventually, he will cast it again on another party member.
+|tip When all five group members have been teleported, kill the Expired Test Subjects quickly.
+|tip Group up in the center room if you are having trouble killing them.
+Earn the "School's Out Forever" Achievement |achieve 6821/1
+step
+_Congratulations!_
+You Earned the "School's Out Forever" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Seeds of Doubt",{
+achieveid={6671},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Temple of the Jade Serpent",
+mopready=true,
+},[[
+step
+For this achievement, you will need to be Level 90, as it requires heroic mode.
+You will also need to have an Item Level of 440.
+This achievement takes place in the _Temple of the Jade Serpent_ and involves the Liu Flameheart and Sha of Doubt encounters.
+|confirm
+step
+Upon defeating Liu Flameheart, you will fight the _Sha of Doubt_.
+After the Sha spawns adds for the _third time_, run to each corner of the room and click the 4 _Shards of Doubt_ to gain a debuff.
+Your objective is to defeat the Sha of Doubt before the debuff runs out.
+The debuff itself has a _1 minute timer_, so use any buffs you can spare to increase your DPS.
+Earn the _Seeds of Doubt_ achievement |achieve 6671
+step
+Congratulations, you  have earned the _Seeds of Doubt_ Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\What Does This Button Do?",{
+achieveid={6736},
+patch='50004',
+description="You will need a Gear Score of 440 Heroic Mogu'shan Palace",
+mopready=true,
+},[[
+step
+This achievement requires Heroic Mogu'Shan Palace.
+You will also need to have an Item Level of 440.
+This achievement takes place during the final encounter with Xin the Weaponmaster.
+|confirm
+step
+Be warned that this achievement is very challanging.
+At 33% Crossbow Traps activate about 30 seconds apart.
+You will see a message _"You hear a faint clicking noise..."_
+When this happens, crystals will spawn at the _Front Left_ of the room and the _Back Right_ of the room.
+Have DPS from the group click the two crystals at the same time when they are both active, which will activate a new crystal, that will appear at the Back Left of the room.
+Have the DPS standing at the mouth of the Crossbows at the first two crystal locations, and the tank standing at the new crystal location.
+Have your Healer stand at the center of the room.
+Earn the _What Does This Button Do?_ achievement |achieve 6736
+step
+Congratulations, you have earned the What Does This Button Do? Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Where's My Air Support?",{
+achieveid={6688},
+patch='50004',
+description="This guide will walk you through earning the Where's My Air Support? achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by defeating Commander Vo'jak _after having killed the Sik'thik Amberwing_ in Siege of Niuzao Temple on _Heroic mode_
+kill Sik'thik Amberwing##61699
+|tip It will fly up by the top platform and bombard it. Kill it before it flies away again, then kill Commander Vo'jak.
+kill Commander Vo'jak##61634
+Defeat Commander Vo'jak |achieve 6688 |goto Siege of Niuzao Temple 44.00,74.00
+step
+Congratulations, you have earned the Where's My Air Support? Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\And... It's Good!",{
+achieveid={7933},
+patch='50100',
+keywords={"Pandaria","Raid","Mogu'shan","Vaults","And...","It's","Good!"},
+description="This guide will walk you through obtaining the And... It's Good! Achievement.",
+mopready=true,
+},[[
+step
+kill Elegon##60410
+|tip Ignore the boss.
+|tip Keep one Mogu'shan Warden alive.
+|tip Have the Mogu'shan Warden face the console.
+|tip Stand on the console.
+|tip If you are max level, sit to ensure that you get hit.
+Earn the "And... It's Good!" Achievement |achieve 7933
+step
+_Congratulations!_
+You Earned the "And... It's Good!" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Anything You Can Do, I Can Do Better...",{
+achieveid={6674},
+patch='50004',
+keywords={"Pandaria","Raid","Mogu'shan","Vaults","Anything","You","Can","Do","I","Can","Do","Better"},
+description="This guide will walk you through obtaining the Anything You Can Do, I Can Do Better... Achievement.",
+mopready=true,
+},[[
+step
+kill Feng the Accursed##60009
+|tip Remove any item that passive attacks the enemy before starting.
+|tip You need 2 tanks in the group, with a proper tank specialization on each as well as one addition group member.
+|tip Have a tank remove their weapon and auto attack the boss, pulling it to face the center of the room.
+|tip Have a designated person that isn't the second tank stand behind the first.
+|tip When the Blue Diamond appears, the second tank will click it.
+|tip This tank will mimic two moves during the first phase.
+|tip When the boss uses Epicenter, use your action button on the first tank to gain the ability.
+|tip Then, run up to the boss and use Epicenter.
+|tip Next, the boss will use Lightning Fist aimed at the 1st tank.
+|tip It will pass through and hit the person who was supposed to be behind the tank, that person will be stunned if done correctly.
+|tip The stunned person gains Lightning Fist, and should move to the boss and use it.
+|tip Next, have the unarmed tank damage the boss to 65% health.
+|tip Tank 2 will channel Wild Fire Spark from the player being targeted by the boss.
+|tip Once you gain the ability, use it on the boss.
+|tip Once that is done, damage the boss to 30% health.
+|tip Tank 2 will channel Arcane Resonance from the targeted player.
+|tip Run up to the boss and use this once you attain it.
+|tip Tank 2 then channels Arcane Velocity from Tank 1 when the boss uses the ability.
+|tip Run up to the boss and use this on him once you attain it.
+|tip After all of that, kill the boss.
+Earn the "Anything You Can Do, I Can Do Better..." Achievement |achieve 6674
+step
+_Congratulations!_
+You Earned the "Anything You Can Do, I Can Do Better..." Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Candle in the Wind",{
+achieveid={6936},
+patch='50004',
+keywords={"Pandaria","Raid","Heart","of","Fear","Candle","in","the","Wind"},
+description="This guide will walk you through obtaining the Candle in the Wind Achievement.",
+mopready=true,
+},[[
+step
+kill Blade Lord Ta'yak##62543
+|tip When Blade Lord Ta'yak is at 20% health, go to the center of the room and click one of the braziers.
+|tip Then, follow the wind and light the two torches at the end of the room.
+|tip Go back to the center of the room and click the brazier again.
+|tip Then, go against the wind and light the two torches at the end of the room.
+|tip Kill Blade Lord Ta'yak after for the achivement.
+Earn the "Candle in the Wind" Achievement |achieve 6936
+step
+_Congratulations!_
+You Earned the "Candle in the Wind" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Celestial Challenge",{
+achieveid={8535},
+patch='50400',
+description="Complete the trials of all four Celestials, besting them each in combat on the Timeless Isle.",
+mopready=true,
+},[[
+step
+You will need a very large group of people on your faction to help you with these fights.
+|tip We recommend having a raid group of at least 20 to complete this achievement.
+|confirm
+step
+label "route"
+Click here for a guide to defeating Xuen. |confirm |next "xuen"
+Click here for a guide to defeating Yu'lon. |confirm |next "yulon"
+Click here for a guide to defeating Niuzao. |confirm |next "niuzao"
+Click here for a guide to defeating Chi-Ji. |confirm |next "chiji"
+step
+label "xuen"
+_Xuen the White Tiger_
+Xuen has 5 abilities:
+_Spectral Swipe_ does 300k damage in a cone in front of Xuen. The tank(s) for this fight must be sure to switch and face Xuen away from the raid group at all times.
+_Leap_ picks a player at random and uses _Spectral Swipe_. Healers will need to pay attention to who gets leaped on.
+_Crackling Lightning_ is a 60yd AoE attack. Make sure all healers are constantly healing the party during this attack.
+_Chi Barrage_ will shoot bombs all over the field. These are relatively easy to avoid provided everyone is paying attention.
+_Agility_ gives Xuen a 300% increase to his haste. Dispel this immediately every time he casts it!
+kill Xuen##71953
+|achieve 8535 |next "end"
+|confirm |next "route"
+step
+label "yulon"
+_Yu'lon the Jade Serpent_
+Yu'lon has 4 abilities:
+_Jadefire Breath_ does 300k damage in a cone in front of Yu'lon. The tank(s) for this fight must be sure to switch and face Yu'lon away from the raid group at all times.
+_Jadefire Buffet_ is a 60yd AoE attack. Make sure all healers are constantly healing the party during this attack. This also causes the raid to take more damage as the fight continues.
+_Jadefire Bolt_ will shoot void zones all over the field. These are relatively easy to avoid provided everyone is paying attention.
+_Jadefire Wall_ summons a wall of fire with a small opening. Make sure the raid members go through the opening as the flame wall deals 500k to those who don't!
+kill Yu'lon##71955
+|achieve 8535 |next "end"
+|confirm |next "route"
+step
+label "niuzao"
+_Niuzao the Black Ox_
+Niuzao has 4 abilities:
+_Headbutt_ does 1 million damage to the current tank. Directly after this attack, he switches focus to the player with the 2nd highest amount of threat. The tanks for this fight must be sure to stay in the top 2-3 slots for threat generation to avoid having Niuzao focus on anyone else.
+_Charge_ is a move that Niuzao will use at both 33% and 66% health. He will run around the arena, dealing 500k damage to all of those that cross his path. Avoid him at all costs during this attack.
+_Massive Quake_ is a 70yd AoE attack that channels for 10 seconds. Make sure all healers are constantly healing the party during this attack.
+_Oxen Fortitude_ increases the damage dealt by Niuzao by 10% each stack, but also increases your health by 20%. This is beneficial as long as your tank stays alive throughout the fight; otherwise they lose the buff granted and only take more damage. This is unavoidable but can be managed by having medium to high DPS during this fight.
+kill Niuzao##71954
+|achieve 8535 |next "end"
+|confirm |next "route"
+step
+label "chiji"
+_Chi-Ji the Red Crane_
+Chi-Ji has 5 abilities:
+_Inspiring Song_ heals him for 5% health per tick. Interrupt this as soon as he casts it!
+_Beacon of Hope_ is a spell that will place a beacon of light somewhere in the arena. THE WHOLE RAID MUST ENTER THE BEACON.
+_Blazing Song_ is an AoE that will kill anyone not in the _Beacon of Hope_ in 1-2 ticks.
+_Firestorm_ slowly moves around the arena and causes 200k to each player that touches it. Avoid this throughout the fight.
+_Crane Rush_ summons several small cranes that do 300k to each player withing 4 yards of them. Make sure to pay attention to this cast and avoid getting hit.
+kill Chi-Ji##71952
+|achieve 8535 |next "end"
+|confirm |next "route"
+step
+label "end"
+Congratulations, you have obtained the _Celestial Challenge_ achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Extinction Event",{
+achieveid={6517},
+patch='50004',
+description="Defeat Salyis's Warband in Valley of the Four Winds.",
+mopready=true,
+},[[
+step
+This achievement is gained by _defeating Salyis's Warband_ in Valley of the Four Winds
+kill Galleon##62346
+|tip If it was recently killed it will respawn in about 20 minutes.
+Extinction Event |achieve 6517 |goto Valley of the Four Winds 70.64,63.65
+step
+_Congratulations!_
+You Earned the "Extinction Event" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Face Clutchers",{
+achieveid={6824},
+patch='50004',
+keywords={"Pandaria","Raid","Terrace","of","Endless","Springs","Face","Clutchers"},
+description="This guide will walk you through obtaining the Face Clutchers Achievement.",
+mopready=true,
+},[[
+step
+kill Lei Shi##62983
+|tip During the encounter, jump into the water surrounding the platform Lei Shi is on.
+|tip Parasitioid Sha will cast Parasitic Clutch on you.
+|tip Make sure you aren't mounted in any way before starting the encounter.
+Get the Parasitic Clutch Buff |havebuff Parasitic Clutch##125652 |achieve 6824
+|tip Once you have Parasitic Clutch buff, kill Lei Shi.
+|tip Avoid using AoE spells as they could accidentally kill the parasite.
+|tip Use a pet or another player to stand on the platform so Lei Shi doesn't despawn.
+Earn the "Face Clutchers" Achievement |achieve 6824
+step
+_Congratulations!_
+You Earned the "Face Clutchers" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Gamon Will Save Us!",{
+achieveid={8448},
+patch='50400',
+keywords={"Pandaria","Raid","Seige","of","Orgrimmar","Gamon","Will","Save","Us!"},
+description="This guide will walk you through obtaining the Gamon Will Save Us! Achievement.",
+mopready=true,
+},[[
+step
+kill General Nazgrim##71515
+|tip You will need to unchain Gamon before going to the General Nazgrim encounter.
+|tip He is chained up at a giant tree near the entrance to "The Drag".
+|tip Once you free him, run ahead of him and kill anything that would otherwise attack him.
+|tip Burst General Nazgrim down as fast as possible.
+Earn the "Gamon Will Save Us!" Achievement |achieve 8448
+step
+_Congratulations!_
+You Earned the "Gamon Will Save Us!" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Getting Hot In Here",{
+achieveid={6687},
+patch='50004',
+keywords={"Pandaria","Raid","Mogu'shan","Vaults","Getting","Hot","In","Here"},
+description="This guide will walk you through obtaining the Getting Hot In Here Achievement.",
+mopready=true,
+},[[
+step
+Defeat the Spirit Kings
+|tip You will need a full group to accomplish this.
+|tip Stand together and wait for Pillage to be cast on the raid.
+|tip Once you are under the affects of Pillage, use /target Subtai the Swift follow by /dance.
+|tip Once preformed, beat the encounter.
+|tip Note that everyone in the raid will need to do this for credit.
+Earn the "Getting Hot In Here" Achievement |achieve 6687
+step
+_Congratulations!_
+You Earned the "Getting Hot In Here" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Blade Lord Ta'yak",{
+achieveid={6726},
+patch='50004',
+keywords={"Pandaria","Raid","Heart","of","Fear","Heroic","Blade","Lord","Ta'yak"},
+description="This guide will walk you through obtaining the Heroic: Blade Lord Ta'yak Achievement.",
+mopready=true,
+},[[
+step
+kill Blade Lord Ta'yak##62543
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Blade Lord Ta'yak" Achievement |achieve 6726
+step
+_Congratulations!_
+You Earned the "Heroic: Blade Lord Ta'yak" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Elegon",{
+achieveid={6723},
+patch='50004',
+description="Defeat Elegon in the Mogu'shan Vaults raid on Heroic mode.",
+mopready=true,
+},[[
+step
+kill Elegon##60410
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Elegon" Achievement  |achieve 6723 |goto Mogu'shan Vaults/3 20.70,51.10
+step
+_Congratulations!_
+You Earned the "Heroic: Elegon" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Feng the Accursed",{
+achieveid={6720},
+patch='50004',
+description="Defeat Feng the Accursed in the Mogu'shan Vaults raid on Heroic mode.",
+mopready=true,
+},[[
+step
+kill Feng the Accursed##60009
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Feng the Accursed" Achievement |achieve 6720 |goto Mogu'shan Vaults 31.90,32.80
+step
+_Congratulations!_
+You Earned the "Heroic: Feng the Accursed" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Four Kings",{
+achieveid={6722},
+patch='50004',
+description="Defeat the Spirit Kings in the Mogu'shan Vaults raid on Heroic mode.",
+mopready=true,
+},[[
+step
+kill Qiang the Merciless##60709
+kill Subetai the Swift##60710
+kill Meng the Demented##60708
+kill Zian of the Endless Shadow##60701
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Four Kings" Achievement |achieve 6722 |goto Mogu'shan Vaults/2 18.90,51.50
+step
+_Congratulations!_
+You Earned the "Heroic: Four Kings" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Gara'jal the Spiritbinder",{
+achieveid={6721},
+patch='50004',
+description="Defeat Gara'jal the Spiritbinder in the Mogu'shan Vaults raid on Heroic mode.",
+mopready=true,
+},[[
+step
+kill Gara'jal the Spiritbinder##60143
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Gara'jal the Spiritbinder" Achievement |achieve 6721 |goto Mogu'shan Vaults/2 77.80,34.40
+step
+_Congratulations!_
+You Earned the "Heroic: Gara'jal the Spiritbinder" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Garalon",{
+achieveid={6727},
+patch='50004',
+keywords={"Pandaria","Raid","Heart","of","Fear","Heroic","Garalon"},
+description="This guide will walk you through obtaining the Heroic: Garalon Achievement.",
+mopready=true,
+},[[
+step
+kill Garalon##62164
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Garalon" Achievement |achieve 6727
+step
+_Congratulations!_
+You Earned the "Heroic: Garalon" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Imperial Vizier Zor'lok",{
+achieveid={6725},
+patch='50004',
+keywords={"Pandaria","Raid","Heart","of","Fear","Heroic","Imperial","Vizier","Zor'lok"},
+description="This guide will walk you through obtaining the Heroic: Imperial Vizier Zor'lok Achievement.",
+mopready=true,
+},[[
+step
+kill Imperial Vizier Zor'lok##62980
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Imperial Vizier Zor'lok" Achievement |achieve 6725
+step
+_Congratulations!_
+You Earned the "Heroic: Imperial Vizier Zor'lok" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Lei Shi",{
+achieveid={6733},
+patch='50004',
+keywords={"Pandaria","Raid","Terrace","of","Endless","Springs","Heroic","Lei","Shi"},
+description="This guide will walk you through obtaining the Heroic: Lei Shi Achievement.",
+mopready=true,
+},[[
+step
+kill Lei Shi##62983
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Lei Shi" Achievement |achieve 6733 |goto Terrace of Endless Spring 58.60,48.60
+step
+_Congratulations!_
+You Earned the "Heroic: Lei Shi" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Protectors of the Endless",{
+achieveid={6731},
+patch='50004',
+keywords={"Pandaria","Raid","Terrace","of","Endless","Springs","Heroic","Protectors","of","the","Endless"},
+description="This guide will walk you through obtaining the Heroic: Protectors of the Endless Achievement.",
+mopready=true,
+},[[
+step
+kill Elder Regail##60585
+kill Elder Asani##60586
+kill Protector Kaolan##60583
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Protectors of the Endless" Achievement |achieve 6731 |goto Terrace of Endless Spring 78.50,48.90
+step
+_Congratulations!_
+You Earned the "Heroic: Protectors of the Endless" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Settle Down, Bro",{
+achieveid={6480},
+patch='50004',
+description="Defeat the Sha of Anger in Kun-Lai Summit.",
+mopready=true,
+},[[
+step
+This achievement is gained by _defeating the Sha of Anger_ in Kun-Lai Summit
+kill Sha of Anger##60491
+|tip If it was recently killed you may have to wait a few minutes for it to respawn.
+Settle Down, Bro |achieve 6480 |goto Kun-Lai Summit 53.80,64.67
+step
+_Congratulations!_
+You Earned the "Settle Down, Bro" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Stone Guard",{
+achieveid={6719},
+patch='50004',
+description="Defeat the Stone Guard in the Mogu'shan Vaults raid on Heroic mode.",
+mopready=true,
+},[[
+step
+kill Amethyst Guardian##60047
+kill Cobalt Guardian##60051
+kill Jade Guardian##60043
+kill Jasper Guardian##59915
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Stone Guard" Achievement |achieve 6719 |goto Mogu'shan Vaults 45.90,64.10
+step
+_Congratulations!_
+You Earned the "Heroic: Stone Guard" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Tsulong",{
+achieveid={6732},
+patch='50004',
+keywords={"Pandaria","Raid","Terrace","of","Endless","Springs","Heroic","Tsulong"},
+description="This guide will walk you through obtaining the Heroic: Tsulong Achievement.",
+mopready=true,
+},[[
+step
+kill Tsulong##62442
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Tsulong" Achievement |achieve 6732 |goto Terrace of Endless Spring 78.50,48.90
+step
+_Congratulations!_
+You Earned the "Heroic: Tsulong" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Will of the Emperor",{
+achieveid={6724},
+patch='50004',
+description="Defeat the Will of the Emperor in the Mogu'shan Vaults raid on Heroic mode.",
+mopready=true,
+},[[
+step
+kill Jan-xi##60400
+kill Qin-xi##60399
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Will of the Emperor" Achievement |achieve 6724 |goto Mogu'shan Vaults/3 68.80,82.20
+step
+_Congratulations!_
+You Earned the "Heroic: Will of the Emperor" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Heroic: Wind Lord Mel'jarak",{
+achieveid={6728},
+patch='50004',
+keywords={"Pandaria","Raid","Heart","of","Fear","Heroic","Wind","Lord","Mel'jarak"},
+description="This guide will walk you through obtaining the Heroic: Wind Lord Mel'jarak Achievement.",
+mopready=true,
+},[[
+step
+kill Wind Lord Mel'jarak##62397
+|tip Right click your character portrait and set the raid difficulty to "Heroic" before entering the raid to accomplish this.
+Earn the "Heroic: Wind Lord Mel'jarak" Achievement |achieve 6728
+step
+_Congratulations!_
+You Earned the "Heroic: Wind Lord Mel'jarak" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\I Heard You Like Amber...",{
+achieveid={6518},
+patch='50004',
+keywords={"Pandaria","Raid","Heart","of","Fear","I","Heard","You","Like","Amber..."},
+description="This guide will walk you through obtaining the Timing is Everything Achievement.",
+mopready=true,
+},[[
+step
+kill 8 Living Amber##62691
+|tip You will need at least one other person in your group for this.
+|tip Don't touch the boss until you stack 8 pools.
+|tip Use raid markers to designate an area to kill the Oozes.
+|tip The player who is transformed must not consume any amber.
+kill Amber-Shaper Un'sok##62511
+Earn the "I Heard You Like Amber..." Achievement |achieve 6518
+step
+_Congratulations!_
+You Earned the "I Heard You Like Amber..." Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\The Immortal Vanguard",{
+achieveid={8530},
+patch='50400',
+description="This guide will walk you through how to get The Immortal Vanguard achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by defeating Galakras in Siege of Orgrimmar _without allowing a single friendly NPC to die_
+|tip Just kill the boss as fast as possible.
+kill Galakras##72249
+The Immortal Vanguard |achieve 8530 |goto Siege of Orgrimmar/3 29.30,66.90
+step
+Congratulations, you have earned The Immortal Vanguard achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Lasers and Magnets and Drills! Oh My!",{
+achieveid={8543},
+patch='50400',
+description="This guide will walk you through how to get the Lasers and Magnets and Drills! Oh My! achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by defeating Siegecrafter Blackfuse in Siege of Orgrimmar _without destroying each of the following weapons_
+|tip Just kill the boss without anyone getting on the conveyor belt.
+kill Siegecrafter Blackfuse##71504
+Deactivated Laser Turret |achieve 8543/1 |goto Siege of Orgrimmar/10 58.70,46.50
+Deactivated Electromagnet |achieve 8543/2 |goto Siege of Orgrimmar/10 58.70,46.50
+Deactivated Missle Turret |achieve 8543/3 |goto Siege of Orgrimmar/10 58.70,46.50
+Disassembled Crawler Mines |achieve 8543/4 |goto Siege of Orgrimmar/10 58.70,46.50
+step
+Congratulations, you have earned the Lasers and Magnets and Drills! Oh My! achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Last Stand of the Zandalari",{
+achieveid={8069},
+patch='50200',
+description="This guide will walk you through how to get the Last Stand of the Zandalari achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by defeating the bosses occupying the ruins at the entrance to the Throne of Thunder
+|confirm |only if not achieved(8069)
+step
+kill Jin'rokh the Breaker##69465 |achieve 8069/1 |goto Throne of Thunder 59.40,25.60
+step
+kill Horridon##68476 |achieve 8069/2 |goto Throne of Thunder/2 26.80,78.70
+step
+kill Kazra'jin##69134, Sul the Sandcrawler##69078, Frost King Malakk##69131, High Priestess Mar'li##69132
+Defeat the Council of Elders |achieve 8069/3 |goto Throne of Thunder/2 49.90,19.10
+step
+Last Stand of the Zandalari |achieve 8069
+step
+Congratulations, you have earned the Last Stand of the Zandalari achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Less Than Three",{
+achieveid={6683},
+patch='50004',
+keywords={"Pandaria","Raid","Heart","of","Fear","Less","Than","Three"},
+description="This guide will walk you through obtaining the Less Than Three Achievement.",
+mopready=true,
+},[[
+step
+kill Wind Lord Mel'jarak##62397
+|tip Kill him without using more than 2 crowd controlling mechanics on swarms.
+|tip Kill an Amber Shaper, then the boss.
+Earn the "Less Than Three" Achievement |achieve 6683
+step
+_Congratulations!_
+You Earned the "Less Than Three" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Like an Arrow to the Face",{
+achieveid={6553},
+patch='50004',
+keywords={"Pandaria","Raid","Heart","of","Fear","Like","an","Arrow","to","the","Face"},
+description="This guide will walk you through obtaining the Like an Arrow to the Face Achievement.",
+mopready=true,
+},[[
+step
+kill Garalon##62164
+|tip Kill Garalon without destroying any of his legs.
+|tip Use single target dps abilities to accomplish this.
+|tip Be sure to remove any items that cause AoE damage.
+Earn the "Like an Arrow to the Face" Achievement |achieve 6553
+step
+_Congratulations!_
+You Earned the "Like an Arrow to the Face" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Millions of Years of Evolution vs. My Fist",{
+achieveid={8123},
+patch='50200',
+description="Kill the World Boss Oondasta",
+mopready=true,
+},[[
+step
+For this achievement, you must be in a group of 10+ people.
+Oondasta is a world boss, so he may not be available right away. You may need to wait for him to respawn.
+|confirm
+step
+kill Oondasta##69161 |achieve 8123 |goto Isle of Giants 50.50,59.40
+step
+Congratulations, you have achieved the _Millions of Years of Evolution vs. My Fist_ achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\The Mind-Killer",{
+achieveid={6825},
+patch='50004',
+keywords={"Pandaria","Raid","Terrace","of","Endless","Springs","The","Mind-Killer"},
+description="This guide will walk you through obtaining The Mind-Killer Achievement.",
+mopready=true,
+},[[
+step
+kill Sha of Fear##60999
+|tip Stand in in the Light Wall at all times.
+|tip When the Crossbowmen are spawned, avoid them and their Dread Bolt spell.
+|tip DPS the Sha of Fear as quickly as possible.
+Earn "The Mind-Killer" Achievement |achieve 6825
+step
+_Congratulations!_
+You Earned "The Mind-Killer" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Must Love Dogs",{
+achieveid={6823},
+patch='50004',
+keywords={"Pandaria","Raid","Mogu'shan","Vaults","Must","Love","Dogs"},
+description="This guide will walk you through obtaining the Must Love Dogs Achievement.",
+mopready=true,
+},[[
+step
+Kill the Stone Guard encounter
+|tip Defeat this encounter while accompanied by a dog battle pet.
+|tip Use the Perky Pug, Core Hound Pup, Fox Kit or Crate of Kidnapped Puppies to accomplish this.
+|tip If a raid member dies, they must be battle ressed AND resummon their battle pet or the achievement will fail.
+Earn the "Must Love Dogs" Achievement |achieve 6823
+step
+_Congratulations!_
+You Earned the "Must Love Dogs" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Overzealous",{
+achieveid={6936},
+patch='50004',
+keywords={"Pandaria","Raid","Heart","of","Fear","Overzealous"},
+description="This guide will walk you through obtaining the Overzealous Achievement.",
+mopready=true,
+},[[
+step
+kill Imperial Vizier Zor'lok##62980
+|tip Everyone in the raid will need to be afflicted with the Zealous Parasite debuff.
+|tip To get the debuff, slowly damage him until he moves to the 3rd platform.
+|tip Loot the bug on the ground for the debuff before killing Imperial Vizier Zor'lok.
+Earn the "Overzealous" Achievement |achieve 6937
+step
+_Congratulations!_
+You Earned the "Overzealous" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Power Overwhelming",{
+achieveid={6717},
+patch='50004',
+keywords={"Pandaria","Raid","Terrace","of","Endless","Springs","Power","Overwhelming"},
+description="This guide will walk you through obtaining the Power Overwhelming Achievement.",
+mopready=true,
+},[[
+step
+kill Protector Kaolan##60583
+|tip It will take 3 weeks to earn this achievement.
+|tip Kill them last for credit.
+Slay Protector Kaolan Last During the Protectors of the Endless Encounter |achieve 6717/1
+step
+kill Elder Regail##60585
+|tip It will take 3 weeks to earn this achievement.
+|tip Kill them last for credit.
+Slay Elder Regail Last During the Protectors of the Endless Encounter |achieve 6717/2
+step
+kill Elder Asani##60586
+|tip It will take 3 weeks to earn this achievement.
+|tip Kill them last for credit.
+Earn the "Power Overwhelming" Achievement |achieve 6717/3
+step
+_Congratulations!_
+You Earned the "Power Overwhelming" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Praise the Sun!",{
+achieveid={8028},
+patch='50200',
+description="Defeat Nalak, the Storm Lord, on the Isle of Thunder.",
+mopready=true,
+},[[
+step
+In order to get this achievement, you must have access to all areas of the _Isle of Thunder_.
+This mob is a _world boss_, so you will need a group of 10+ to defeat him.
+|confirm
+step
+kill Nalak##69099+ |achieve 8028 |goto Isle of Thunder/0 60.00,37.60
+step
+Congratulations, you have achieved the _Praise the Sun!_ achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Show Me Your Moves!",{
+achieveid={6455},
+patch='50004',
+keywords={"Pandaria","Raid","Mogu'shan","Vaults","Show","Me","Your","Moves!"},
+description="This guide will walk you through obtaining the Show Me Your Moves! Achievement.",
+mopready=true,
+},[[
+step
+kill Jan-xi##60400
+|tip Avoid being hit by the boss's combos.
+|tip Pay attention to the blue lines from the boss to know which way to avoid the combos.
+|tip There will be a Center Slash which you need to be directly behind him to avoid.
+|tip The Left Slash attacks players on the left, so move out of the radius.
+|tip The Rich Arch lines means you need to be away from the right side.
+|tip For Stomp, you need to be in the range of stomp in order for credit.
+|tip Stomp will appear as an "X".
+|tip If you did it correctly, you will gain access to the Opportunistic Strike ability.
+|tip Hit the boss with it then kill him.
+Earn the "Show Me Your Moves!" Achievement |achieve 6455
+step
+_Congratulations!_
+You Earned the "Show Me Your Moves!" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Sorry, Were You Looking for This?",{
+achieveid={7056},
+patch='50004',
+keywords={"Pandaria","Raid","Mogu'shan","Vaults","Sorry","Were","You","Looking","for","This?"},
+description="This guide will walk you through obtaining the Sorry, Were You Looking for This? Achievement.",
+mopready=true,
+},[[
+step
+kill Gara'jal the Spiritbinder##60143
+|tip During the encounter, activate the Ancient Mogu Artifact to earn this achievement.
+|tip You need at least 5 players, at least one with a pet that can taunt.
+|tip Have the pet set to passive, then move it on top of the boss for it to gain aggro.
+|tip No one should heal the pet.
+|tip The rest will be on standby for the Spirit Totems.
+|tip 4 Players, specifically ones who aren't controlling the pets, should move into range of the totems.
+|tip Once in range, kill they will kill the totems, entering the Spirit Realm.
+|tip The players in the spirit realm must then click the artifacts at the center of the room.
+Earn the "Sorry, Were You Looking for This?" Achievement |achieve 7056
+step
+_Congratulations!_
+You Earned the "Sorry, Were You Looking for This?" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Straight Six",{
+achieveid={6686},
+patch='50004',
+keywords={"Pandaria","Raid","Mogu'shan","Vaults","Straight","Six"},
+description="This guide will walk you through obtaining the Straight Six Achievement.",
+mopready=true,
+},[[
+step
+kill Elegon##60410
+|tip Damage Elegon until the encounter enters the pillar stage.
+|tip Kill six Empyreal Focuses within 10 seconds of each other, then kill Elegon.
+Earn the "Straight Six" Achievement |achieve 6686
+step
+_Congratulations!_
+You Earned the "Straight Six" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Swallow Your Pride",{
+achieveid={8521},
+patch='50400',
+description="This guide will walk you through how to get the Swallow Your Pride achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by defeating the Sha of Pride in Siege of Orgrimmar _after no player has gained Pride from Manifestations of Pride while Norushen is alive_
+|tip Just kill the boss as fast as possible.
+kill Sha of Pride##71734
+Swallow Your Pride |achieve 8521 |goto Siege of Orgrimmar/3 29.30,66.90
+step
+Congratulations, you have earned the Swallow Your Pride achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Timing is Everything",{
+achieveid={6922},
+patch='50004',
+keywords={"Pandaria","Raid","Heart","of","Fear","Timing","is","Everything"},
+description="This guide will walk you through obtaining the Timing is Everything Achievement.",
+mopready=true,
+},[[
+step
+kill 2 Kor'thik Reaver##63591+
+|tip Kill them within 10 seconds of each other.
+kill Grand Empress Shek'zeer##62837
+Earn the "Timing is Everything" Achievement |achieve 6922
+step
+_Congratulations!_
+You Earned the "Timing is Everything" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Raids\\Who's Got Two Green Thumbs?",{
+achieveid={6933},
+patch='50004',
+keywords={"Pandaria","Raid","Terrace","of","Endless","Springs","Who's","Got","Two","Green","Thumbs?"},
+description="This guide will walk you through obtaining the Who's Got Two Green Thumbs? Achievement.",
+mopready=true,
+},[[
+step
+kill Tsulong##62442
+|tip During the encounter, a NPC named Enchanted Plant spawns.
+|tip It takes damage during the Night Phase of the encounter.
+|tip Keep it healed up.
+|tip Kill Tsulong with the tree intact.
+Earn the "Who Has Two Green Thumbs?" Achievement |achieve 6933
+step
+_Congratulations!_
+You Earned the "Who Has Two Green Thumbs?" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Scenarios\\A Brewing Storm",{
+achieveid={7252},
+patch='50004',
+description="This guide will walk you through the A Brewing Storm Achievement. You must be level 90 for this achievement.",
+mopready=true,
+},[[
+step
+Use the _Dungeon Finder_, and click the _Scenarios_ tab to queue for _A Brewing Storm_.
+|confirm
+step
+talk Brewmaster Blanche##58740 |goto A Brewing Storm 55.30,45.00
+Let's get this lightning party started, Blanche.
+Defend the Brewing Process
+|tip Click on the Brewkegs when they light on fire to extinguish them. Avoid standing near the lightning rods when they light up.
+clicknpc Brewkeg##58916
+|confirm
+step
+talk Brewmaster Blanche##58740 goto A Brewing Storm 55.30,44.90
+Escort Blanche |goto A Brewing Storm 49.90,32.60 < 5 |c
+step
+talk Brewmaster Blanche##58740
+Let's kill some lizards, Blanche!
+kill Borokhula the Destroyer##58739  |goto A Brewing Storm 30.20,68.30
+|tip Borokhula will start to cast Swamp Smash in front of him, do not stand in it. When he begins to channel Earth Shattering, watch the ground and avoid the red circles, large spikes will come out of them. Designate one party member to add control. The adds can be quickly dispatched using the Boomer Brew Strike button on the screen, target an add and click it twice to instantly kill it.
+|achieve 7252
+step
+Congratulations, you have earned the A Brewing Storm Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Scenarios\\Arena of Annihilation",{
+achieveid={7271},
+patch='50004',
+description="This guide will help you earn the Arena of Annihilation Achievement. You must be level 90 for this achievement.",
+mopready=true,
+},[[
+step
+talk Gurgthock##63315
+accept The Arena of Annihilation##31207 |goto Proving Grounds 46.60,16.10
+step
+click Tiger Temple Gong
+kill Scar-Shell##63311 |goto Proving Grounds 48.90,17.10
+|tip Crushing Bite reduces the armor of whomever it hits by 50%. Stone Spin is a whirlwind type attack. Immediately after it finishes, Scar-Shell will gain the Dizzy debuff, increses his damage taken by 50% for a short time.
+|confirm
+step
+click Tiger Temple Gong
+kill Jol'Grum##63312 |goto Proving Grounds 48.90,17.10
+|tip Whoever is holding the attention of Jol'Grum should remain still. The tank moving causes his rage bar to build. If the bar reaches 100, he will become Angry. This is a light enrage. He will cast Headbutt on the tank which knocks them back. He will also jump to the middle and use Smash, knocking all players back.
+|confirm
+step
+click Tiger Temple Gong
+kill Little Liuyang##63313 |goto Proving Grounds 48.90,17.10
+|tip Liuyang will constantly shoot off Fireballs and paths of fire. Avoid stand in fire. At around 40%, Firewall will be cast. Run counter-clockwise while killing the Flmecoaxig Spirits. Kill them will cause a section of the firewall to vanish. There are three of them.
+kill Flamecoaxing Spirit##63539
+|confirm
+step
+click Tiger Temple Gong
+kill Chagan Firehoof##63318 |goto Proving Grounds 48.90,17.10
+|tip He will use Trailblaze on a random player, this leaves fire on the ground. Hammertime does damage to whomever is tanking.
+kill Batu##63872 |goto Proving Grounds 48.90,17.10
+|tip There is no real benefit to killing Batu, just ignore him until and kill Chagan.
+|confirm
+step
+click Tiger Temple Gong
+kill Satay Byu##64281 |goto Proving Grounds 48.90,17.10
+|tip Satay Byu will apply Slowing Poison with his basic attacks. If Slowing Poison reaches 20 stacks it will root the target in place. Speed of the Jinja will rapidly strike in front of Satay, run away from this.
+step
+talk Wodin the Troll-Servant##63314
+turnin The Arena of Annihilation##31207 |goto Proving Grounds 50.10,18.10
+|achieve 7271
+step
+Congratulations, you have earned the Arena of Annihilation Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Scenarios\\For the Swarm",{
+achieveid={8017},
+patch='50100',
+description="Defeat Commander Tel'vrak without killing any Zan'thik Swarmers in the Assault on Zan'vess scenario. You must be level 90 for this achievement.",
+mopready=true,
+},[[
+step
+Use the _Dungeon Finder_, and click the _Scenarios_ tab to queue for _Assault on Zan'vess_.
+|confirm
+step
+kill Commander Tel'vrak##67879+ |goto Assault on Zan'vess 38.70,56.50
+You cannot kill any of the mobs he summons during this fight to get the achievement.
+|achieve 8017
+step
+Congratulations, you have earned the Arena of Annihilation Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Glory of the Pandaria Hero",{
+achieveid={6927},
+patch='50004',
+description="This guide will walk you through earning the Glory of the Pandaria Hero achievement.",
+mopready=true,
+},[[
+step
+This achievement is gained by completing the following Pandaria dungeon achievements:
+|tip Use the dungeon guides to accomplish this.
+Pandaria Dungeon Hero |achieve 6927/1
+Hydrophobia |achieve 6927/2
+Cleaning Up |achieve 6927/3
+Seeds of Doubt |achieve 6927/4
+Hopocalypse Now! |achieve 6927/5
+Keep Rollin' Rollin' Rollin' |achieve 6927/6
+How Did He Get Up There? |achieve 6927/7
+Ling-Ting's Herbal Journey |achieve 6927/8
+Glintrok N' Roll |achieve 6927/9
+What Does This Button Do? |achieve 6927/10
+Quarrelsome Quilen Quintet |achieve 6927/11
+Respect |achieve 6927/12
+The Obvious Solution |achieve 6927/13
+Hate Leads to Suffering |achieve 6927/14
+Bomberman |achieve 6927/15
+Conscriptinator |achieve 6927/16
+Humane Society |achieve 6927/17
+Most Pit |achieve 6927/18
+Burning Man |achieve 6927/19
+And Stay Dead! |achieve 6927/20
+Attention to Detail |achieve 6927/21
+Rattle No More |achieve 6927/22
+Sanguinarian |achieve 6927/23
+School's Out Forever |achieve 6927/24
+Where's My Air Support? |achieve 6927/25
+Return to Sender |achieve 6927/26
+Rum with the Wind |achieve 6927/27
+Polyformic Acid Science |achieve 6927/28
+step
+Congratulations, you have earned the Glory of the Pandaria Hero achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Pandaria Dungeon Hero",{
+achieveid={6925},
+patch='50004',
+mopready=true,
+},[[
+step
+To earn this Achievement, you will need to complete the following Dungeons on _Heroic or Higher_ Difficulty:
+Heroic: Temple of the Jade Serpent |achieve 6925/1
+Heroic: Stormstout Brewery |achieve 6925/2
+Heroic: Mogu'shan Palace |achieve 6925/3
+Heroic: Shado-Pan Monastery |achieve 6925/4
+Heroic: Gate of the Setting Sun |achieve 6925/5
+Heroic: Scarlet Halls |achieve 6925/6
+Heroic: Scarlet Monastery |achieve 6925/7
+Heroic: Scholomance |achieve 6925/8
+Heroic: Siege of Niuzao Temple |achieve 6925/9
+If you need help through the dungeon, refer to one of our Dungeon Guides
+step
+Congratulations, you have completed the Pandaria Dungeon Hero Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Dungeons & Raids\\Pandaria Dungeons\\Tranquil Master",{
+achieveid={6926},
+patch='50004',
+description="This guide will walk you through earning the Tranquil Master achievement.",
+mopready=true,
+},[[
+step
+This achievement is earned by purging Pandaria of Sha corruption:
+|tip These bosses are part of Pandaria dungeons, raids, and questlines.
+Sha of Doubt (Heroic) |achieve 6926/1
+Sha of Despair |achieve 6926/2
+Sha of Violence (Heroic) |achieve 6926/3
+Sha of Hatred |achieve 6926/4
+Sha of Anger |achieve 6926/5
+Sha of Fear (Normal or Heroic) |achieve 6926/6
+|confirm |only if not achieved(6926)
+step
+This boss is found in the _Temple of the Jade Serpent_ dungeon
+The dungeon must be on _Heroic_ mode
+kill Sha of Doubt##56439
+|tip The Sha of Doubt is the last boss in the dungeon.
+Sha of Doubt (Heroic) |achieve 6926/1 |goto Temple of the Jade Serpent 60.80,59.00
+step
+talk Mei Barrelbottom##57744
+|tip If this quest is not available, complete the other quests here at Zhu's Watch.
+accept Into the Wilds##30178 |goto Krasarang Wilds/0 75.84,7.61 |only if Alliance
+accept Into the Wilds##30133 |goto Krasarang Wilds/0 75.84,7.61 |only if Horde
+|only if not achieved(6926,2)
+step
+talk Zhu's Watch Courier##59151
+Find Zhu's Watch Courier |q 30178/1 |goto Krasarang Wilds/0 66.28,30.91 |only if Alliance
+Find Zhu's Watch Courier |q 30133/1 |goto Krasarang Wilds/0 62.55,25.45 |only if Horde
+step
+talk Koro Mistwalker##58547
+turnin Into the Wilds##30178 |goto Krasarang Wilds/0 44.21,42.89 |only if Alliance
+turnin Into the Wilds##30133 |goto Krasarang Wilds/0 44.21,42.89 |only if Horde
+accept Unsafe Passage##30269 |goto Krasarang Wilds/0 44.21,42.89
+step
+talk Koro Mistwalker##58547
+Select _"I am ready, Koro."_
+|confirm |q 30269/1 |goto Krasarang Wilds/0 44.21,42.89
+step
+Follow Koro and his allies:
+talk Koro Mistwalker##58978 |goto Krasarang Wilds/0 43.80,38.31
+|confirm |q 30269
+step
+Accompany Koro to Crane Wing Refuge |q 30269/1 |goto Krasarang Wilds/0 43.84,36.59
+step
+talk Koro Mistwalker##59138
+turnin Unsafe Passage##30269 |goto Krasarang Wilds/0 40.59,33.69
+accept Blinding the Riverblades##30270 |goto Krasarang Wilds/0 40.59,33.69
+accept Tread Lightly##30694 |goto Krasarang Wilds/0 40.59,33.69
+step
+talk Anduin Wrynn##58609
+accept The Murksweats##30268 |goto Krasarang Wilds/0 40.48,34.65
+stickystart "poke_traps"
+stickystart "kill_riverblade"
+stickystart "collect_murkheads"
+step
+label "poke_traps"
+Found around this area:
+click Riverblade Spike Trap##116500+
+Poke #10# Traps |q 30694/1 |goto Krasarang Wilds/0 38.65,37.58
+step
+label "kill_riverblade"
+kill Riverblade Pathstalker##58858+
+Kill #8# Riverblade Pathstalkers |q 30270/1 |goto Krasarang Wilds/0 38.65,37.58
+step
+label "collect_murkheads"
+kill Murkscale Striker##58631+
+collect 6 Murkscale Heads##79199 |q 30268/1 |goto Krasarang Wilds/0 39.87,37.17
+step
+talk Anduin Wrynn##58609
+turnin The Murksweats##30268 |goto Krasarang Wilds/0 40.49,34.65
+step
+talk Koro Mistwalker##59138
+turnin Blinding the Riverblades##30270 |goto Krasarang Wilds/0 40.59,33.69
+turnin Tread Lightly##30694 |goto Krasarang Wilds/0 40.59,33.69
+accept Ahead on the Way##30695 |goto Krasarang Wilds/0 40.59,33.69
+accept Striking the Rain##30272 |goto Krasarang Wilds/0 40.59,33.69
+step
+talk Anduin Wrynn##59189
+accept Sha Can Awe##30271 |goto Krasarang Wilds/0 40.64,33.73
+stickystart "sha_kills"
+stickystart "hopeless_inspiration"
+step
+kill 1 Maw of Despair##59315
+Cleanse the West Pagoda |q 30695/1 |goto Krasarang Wilds/0 37.74,54.25
+step
+kill 1 Maw of Despair##59237
+Cleanse the East Pagoda |q 30695/2 |goto Krasarang Wilds/0 43.06,54.26
+step
+label "sha_kills"
+kill Incarnation of Despair##65872+, Haunt of Despair##59236+
+Slay #18# Sha Manifestations |q 30272/1 |goto Krasarang Wilds/0 39.38,46.87
+step
+label "hopeless_inspiration"
+Kill Sha enemies near Hopeless Crane Wing Defenders
+Inspire #10# Hopeless Crane Wing Defenders |q 30271/1
+step
+Next to you:
+talk Anduin Wrynn##59608
+turnin Ahead on the Way##30695
+turnin Striking the Rain##30272
+turnin Sha Can Awe##30271
+accept In the House of the Red Crane##30273
+step
+Go upstairs |goto Krasarang Wilds/0 40.40,50.11 < 20 |only if walking
+Go downstairs |goto Krasarang Wilds/0 40.43,56.05 < 10 |walk
+|confirm |q 30273
+step
+Follow the stairs down:
+talk Chi-Ji##59653
+Select _<Reach out to touch Chi-Ji.>_
+kill Sha of Despair##59651
+Sha of Despair |achieve 6926/2
+step
+talk Chi-Ji##59719
+turnin In the House of the Red Crane##30273 |goto Krasarang Wilds/0 40.42,49.22
+step
+This boss is found in the _Shado-Pan Monastery_ dungeon
+The dungeon must be on _Heroic_ mode
+kill Sha of Violence##56719
+|tip The Sha of Violence is the third boss in the dungeon.
+Sha of Violence (Heroic) |achieve 6926/3 |goto Shado-Pan Monastery 42.50,29.20
+step
+talk Taran Zhu##61066
+accept Behind the Battlefront##30884 |goto Townlong Steppes/0 76.41,82.43
+step
+talk Septi the Herbalist##61470
+accept Treatment for the Troops##30891 |goto Townlong Steppes/0 75.86,83.14
+step
+talk Taoshi##61469
+turnin Behind the Battlefront##30884 |goto Townlong Steppes/0 76.94,78.79
+accept Unwelcome Intruders##30887 |goto Townlong Steppes/0 76.94,78.79
+stickystart "get_citroncrystals"
+stickystart "kill_krikscouts"
+step
+label "get_citroncrystals"
+click Violet Citron##211721
+collect 10 Violet Citron##82342 |q 30891/1 |goto Townlong Steppes/0 77.50,76.49
+step
+label "kill_krikscouts"
+kill Krik'thik Deep-Scout##61374+
+Kill #12# Krik'thik Deep Scouts |q 30887/1 |goto Townlong Steppes/0 78.21,76.45
+step
+talk Septi the Herbalist##61470
+turnin Treatment for the Troops##30891 |goto Townlong Steppes/0 75.86,83.13
+step
+Go up the path |goto Townlong Steppes/0 76.65,83.14 < 10 |only if walking
+Continue on the path |goto Townlong Steppes/0 77.97,82.92 < 5 |only if walking
+talk Taoshi##61468
+turnin Unwelcome Intruders##30887 |goto Townlong Steppes/0 79.46,84.46
+accept Breach in the Defenses##30888 |goto Townlong Steppes/0 79.46,84.46
+accept The Restless Watch##30890 |goto Townlong Steppes/0 79.46,84.46
+step
+talk Mao the Lookout##61467
+accept Trap Setting##30889 |goto Townlong Steppes/0 79.38,84.45
+stickystart "killin_scentlayers"
+stickystart "rearm_spiketraps"
+step
+label "killin_scentlayers"
+Use the Flare to reveal hidden Scentlayers
+|tip They are marked by orange-brown clouds of smoke moving along the ground.
+use Shado-Pan Flare##81925
+kill 10 Krik'thik Scentlayer##61373+ |q 30888/1 |goto Townlong Steppes/0 81.28,83.82
+step
+label "rearm_spiketraps"
+clicknpc Shado-Pan Spike Trap##61426+
+Rearm #8# Shado-Pan Spike Traps |q 30889/1 |goto Townlong Steppes/0 81.28,83.82
+step
+talk Scout Wei-Chin##61378
+Select _"I have orders for you to return to the battlefront."_
+Deliver Orders to Scout Wei-chin |q 30890/1 |goto Townlong Steppes/0 82.20,84.13
+step
+talk Scout Long##61395
+Select _"I have orders for you to return to the battlefront."_
+Deliver Orders to Scout Long |q 30890/2 |goto Townlong Steppes/0 81.28,86.19
+step
+talk Scout Ying##61396
+Select _"I have orders for you to return to the battlefront."_
+Deliver Orders to Scout Ying |q 30890/3 |goto Townlong Steppes/0 82.53,89.57
+step
+talk Scout Jai-gan##61397
+Select _"I have orders for you to return to the battlefront."_
+Deliver Orders to Scout Jai-gan |q 30890/4 |goto Townlong Steppes/0 79.01,90.12
+step
+Follow the path up and around |goto Townlong Steppes/0 80.71,86.47 < 10 |only if walking
+talk Taoshi##61468
+turnin Breach in the Defenses##30888 |goto Townlong Steppes/0 79.46,84.47
+turnin The Restless Watch##30890 |goto Townlong Steppes/0 79.46,84.47
+accept Returning from the Pass##30960 |goto Townlong Steppes/0 79.46,84.47
+step
+talk Mao the Lookout##61467 |goto Townlong Steppes/0 79.39,84.44
+turnin Trap Setting##30889 |goto Townlong Steppes/0 79.39,84.44
+step
+Follow the path |goto Townlong Steppes/0 78.55,83.15 |only if walking
+talk Taran Zhu##61066
+turnin Returning from the Pass##30960 |goto Townlong Steppes/0 76.41,82.43
+accept The Endless Swarm##30893 |goto Townlong Steppes/0 76.41,82.43
+step
+kill Krik'thik Limbpincer##61181+
+Kill #12# Krik'thik Attackers |q 30893/1 |goto Townlong Steppes/0 74.43,86.31
+step
+talk Taran Zhu##61066
+turnin The Endless Swarm##30893 |goto Townlong Steppes/0 76.41,82.44
+step
+talk Septi the Herbalist##61470
+accept Back on Their Feet##30892 |goto Townlong Steppes/0 75.86,83.14
+accept Rummaging Through the Remains##30894 |goto Townlong Steppes/0 75.86,83.14
+stickystart "krikthiklimbs"
+step
+Use the Citron Bandages on Injured Blackguards
+use Citron-Infused Bandages##82787
+Heal #8# Injured Gao-ran Blackguards |q 30892/1 |goto Townlong Steppes/0 73.72,87.69
+step
+label "krikthiklimbs"
+click Krik'thik Limb##214820
+collect 20 Krik'thik Limb##82722 |q 30894/1 |goto Townlong Steppes/0 73.72,87.69
+step
+Go up the path |goto Townlong Steppes/0 74.17,84.97 |only if walking
+talk Septi the Herbalist##61470
+turnin Back on Their Feet##30892 |goto Townlong Steppes/0 75.86,83.13
+turnin Rummaging Through the Remains##30894 |goto Townlong Steppes/0 75.86,83.13
+step
+talk Taran Zhu##61066
+accept Improvised Ammunition##30895 |goto Townlong Steppes/0 76.41,82.44
+step
+Follow the path down |goto Townlong Steppes/0 72.94,83.81 < 10 |only if walking
+kill Agitated Nettleskin##61811+, Agitated Seedstealer##61302+
+click Dread Orb##211873
+collect 16 Volatile Dread Orb##82723 |q 30895/1 |goto Townlong Steppes/0 68.44,86.65
+step
+Go up the path |goto Townlong Steppes/0 69.81,86.24 < 10 |only if walking
+Continue up the path |goto Townlong Steppes/0 70.39,86.17 < 10 |only if walking
+Follow the path around |goto Townlong Steppes/0 71.76,83.60 < 10 |only if walking
+talk Taran Zhu##61066
+turnin Improvised Ammunition##30895 |goto Townlong Steppes/0 76.41,82.43
+accept Cutting the Swarm##30898 |goto Townlong Steppes/0 76.41,82.43
+step
+clicknpc Dragon Launcher##62024 |goto Townlong Steppes/0 73.84,85.67 < 5 |walk
+kill Krik'thik Acidslinger##62014+, Krik'thik Drone##61960+
+Slay #50# Krik'thik Drones |q 30898/1 |goto Townlong Steppes/0 74.38,86.51
+step
+talk Taoshi##62444
+turnin Cutting the Swarm##30898 |goto Townlong Steppes/0 74.22,85.04
+accept Terror of the Dread Wastes##30900 |goto Townlong Steppes/0 74.22,85.04
+step
+kill Norvakess##62324 |q 30900/1 |goto Townlong Steppes/0 74.17,87.33
+step
+talk Taran Zhu##61066
+turnin Terror of the Dread Wastes##30900 |goto Townlong Steppes/0 76.41,82.44
+accept Along the Southern Front##30901 |goto Townlong Steppes/0 76.41,82.44
+step
+talk Taoshi##62436
+|tip Ride along with Taoshi or wait for her to arrive at this spot.
+turnin Along the Southern Front##30901 |goto Townlong Steppes/0 67.32,80.85
+accept Enraged By Hatred##30970 |goto Townlong Steppes/0 67.32,80.85
+step
+talk Initiate Pao-Me##62124
+accept Taking Stock##30971 |goto Townlong Steppes/0 67.37,80.68
+stickystart "shadow_firearrows"
+step
+kill 9 Seething Fleshripper##61299+ |q 30970/1 |goto Townlong Steppes/0 66.11,81.83
+step
+label "shadow_firearrows"
+click Shado-Pan Fire Arrows##212136
+collect 120 Shado-Pan Fire Arrows##83024 |q 30971/1 |goto Townlong Steppes/0 66.11,81.83
+step
+talk Taoshi##62436
+turnin Enraged By Hatred##30970 |goto Townlong Steppes/0 67.32,80.85
+step
+talk Initiate Pao-Me##62124
+turnin Taking Stock##30971 |goto Townlong Steppes/0 67.36,80.67
+accept Joining the Fight##30972 |goto Townlong Steppes/0 67.36,80.67
+step
+talk Lao-Chin the Iron Belly##61016
+turnin Joining the Fight##30972 |goto Townlong Steppes/0 61.59,79.35
+step
+talk Taran Zhu##62273
+accept Up In Flames##30973 |goto Townlong Steppes/0 61.63,79.31
+step
+kill 10 Kor'thik Timberhusk##61355+ |q 30973/1 |goto Townlong Steppes/0 61.54,81.62
+step
+talk Taran Zhu##62273
+turnin Up In Flames##30973 |goto Townlong Steppes/0 61.63,79.32
+step
+talk Lao-Chin the Iron Belly##61016
+accept The Taking of Dusklight Bridge##30975 |goto Townlong Steppes/0 61.59,79.34
+stickystart "kor_bloodletters"
+step
+Cross the bridge |goto Townlong Steppes/0 60.81,84.08 < 10 |only if walking
+kill Hulking Kor'thik Fleshrender##62686 |q 30975/2 |goto Dread Wastes/0 45.00,10.70
+step
+label "kor_bloodletters"
+kill 12 Kor'thik Bloodletter##62680+ |q 30975/1 |goto Dread Wastes/0 45.00,10.70
+step
+Cross the bridge |goto Dread Wastes/0 45.34,8.66 < 10 |only if walking
+talk Taran Zhu##62736
+turnin The Taking of Dusklight Bridge##30975 |goto Townlong Steppes/0 61.10,83.06
+accept Joining the Hunt##30976 |goto Townlong Steppes/0 61.10,83.06
+step
+Follow Taran Zhu:
+talk Taran Zhu##62736
+turnin Joining the Hunt##30976 |goto Townlong Steppes/0 54.03,78.05
+accept In Skilled Hands##30899 |goto Townlong Steppes/0 54.03,78.05
+step
+talk Rensai Oakhide##62278
+accept Grounded Welcome##30977 |goto Townlong Steppes/0 53.92,78.12
+step
+talk Marksman Ye##62573
+accept Choking the Skies##31032 |goto Townlong Steppes/0 51.27,83.01
+stickystart "kor_fleetwing_kills"
+step
+kill Kor'thik Fleetwing##62128+
+Use the Torch to burn
+use Wu Kao Torch##83768
+Burn #10# Kor'thik Fleetwing Corpses |q 31032/1 |goto Townlong Steppes/0 51.34,84.40
+step
+label "kor_fleetwing_kills"
+kill 12 Kor'thik Fleetwing##62128+ |q 30977/1 |goto Townlong Steppes/0 51.34,84.40
+step
+talk Marksman Ye##62573
+turnin Choking the Skies##31032 |goto Townlong Steppes/0 51.26,83.02
+step
+talk Rensai Oakhide##62278
+turnin Grounded Welcome##30977 |goto Townlong Steppes/0 53.93,78.12
+step
+talk Hawkmaster Nurong##61020
+turnin In Skilled Hands##30899 |goto Townlong Steppes/0 51.66,87.25
+accept Hostile Skies##30978 |goto Townlong Steppes/0 51.66,87.25
+step
+clicknpc Nurong's Cannon##62747
+Shoot Down #50# Kor'thik Swarmers |q 30978/1 |goto Townlong Steppes/0 51.66,87.30
+Shoot Down Voress'thalik |q 30978/2 |goto Townlong Steppes/0 51.66,87.30
+step
+talk Hawkmaster Nurong##61020
+turnin Hostile Skies##30978 |goto Townlong Steppes/0 51.66,87.25
+accept Devastation Below##30979 |goto Townlong Steppes/0 51.66,87.25
+step
+Follow the winding path down |goto Townlong Steppes/0 53.07,83.54 < 10 |only if walking
+kill 1 Voress'thalik##62270 |q 30979/1 |goto Townlong Steppes/0 53.65,87.56
+|tip He walks up and down the river and may not be in this exact spot.
+step
+talk Hawkmaster Nurong##62786
+turnin Devastation Below##30979 |goto Townlong Steppes/0 53.99,86.96
+accept Heroes of the Shado-Pan##30980 |goto Townlong Steppes/0 53.99,86.96
+step
+Follow the path up |goto Townlong Steppes/0 54.12,85.35 < 10 |only if walking
+talk Taran Zhu##62274
+turnin Heroes of the Shado-Pan##30980 |goto Townlong Steppes/0 54.07,77.88
+accept Buried Beneath##31065 |goto Townlong Steppes/0 54.07,77.88
+step
+click Wu Kao Spyglass##212538
+Look Through Taoshi's Spyglass |q 31065/1 |goto Townlong Steppes/0 53.50,77.40
+step
+talk Taran Zhu##62274
+turnin Buried Beneath##31065 |goto Townlong Steppes/0 54.06,77.87
+step
+talk Taran Zhu##62274
+accept Taoshi and Korvexxis##30981 |goto Townlong Steppes/0 54.07,77.87
+accept Lao-Chin and Serevex##31063 |goto Townlong Steppes/0 54.07,77.87
+accept Nurong and Rothek##31064 |goto Townlong Steppes/0 54.07,77.87
+step
+kill Korvexxis##62579 |q 30981/1 |goto Townlong Steppes/0 46.61,83.05
+step
+Follow the path up and around |goto Townlong Steppes/0 44.12,74.82 < 10 |only if walking
+kill Serevex##62580 |q 31063/1 |goto Townlong Steppes/0 45.37,77.42
+step
+kill Rothek##62581 |q 31064/1 |goto Townlong Steppes/0 39.83,75.60
+step
+talk Taran Zhu##62274
+turnin Taoshi and Korvexxis##30981 |goto Townlong Steppes/0 47.49,78.87
+turnin Lao-Chin and Serevex##31063 |goto Townlong Steppes/0 47.49,78.87
+turnin Nurong and Rothek##31064 |goto Townlong Steppes/0 47.49,78.87
+accept The Sha of Hatred##30968 |goto Townlong Steppes/0 47.49,78.87
+step
+Enter Sik'vess Lair |goto Townlong Steppes/0 47.30,79.31 < 5 |walk
+|tip You'll have to wait for your allies to open the door.
+|confirm |q 30968
+step
+kill Sha of Hatred##62541 |q 30968/1
+|tip It is down in the Sik'vess Lair.
+Sha of Hatred |achieve 6926/4
+step
+Next to you in the Sik'vess Lair:
+talk Taoshi##62802
+turnin The Sha of Hatred##30968
+step
+kill Sha of Anger##60491
+|tip This is a rare world boss spawn and may not always be available, however, it usually respawns within a few minutes.
+Sha of Anger |achieve 6926/5 |goto Kun-Lai Summit/0 53.80,64.67
+step
+This boss is found in the _Terrace of Endless Spring_ raid
+The raid must be on _Normal_ or _Heroic_ mode
+kill Sha of Fear##60999
+|tip The Sha of Fear is the last boss of the raid.
+Sha of Fear (Normal or Heroic) |achieve 6926/6 |goto Terrace of Endless Spring/0 39.00,48.00
+step
+Congratulations, you have earned the Tranquil Master achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Ballad of Liu Lang",{
+achieveid={6856},
+patch='50004',
+description="This guide will walk you through discovering each of the lore objects in Pandaria that tell the tale of Liu Lang.",
+mopready=true,
+},[[
+step
+label "start"
+click Waiting for the Turtle##215765 |goto Krasarang Wilds 72.20,31.10
+achieve 6856/4
+step
+click A Most Famous Bill of Sale##213460 |goto Valley of the Four Winds 55.10,47.20
+achieve 6856/2
+step
+click The Birthplace of Liu Lang##213459 |goto Valley of the Four Winds 20.30,55.90
+achieve 6856/1
+step
+click The Wandering Widow##213461 |goto Valley of the Four Winds 34.60,63.90
+achieve 6856/3
+step
+Congratulations, you have earned The Ballad of Liu Lang Achievement! |only if achieved(6856)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(6856)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Between a Saurok and a Hard Place",{
+achieveid={6716},
+patch='50004',
+description="This guide will walk you through discovering each of the Saurok lore objects in Pandaria.",
+mopready=true,
+},[[
+step
+label "start"
+click The Defiant##213328 |goto The Veiled Stair/5 54.80,16.00
+achieve 6716/2
+step
+click The Saurok##213327 |goto The Jade Forest 67.70,29.40
+achieve 6716/1
+step
+click The Last Stand##213330 |goto Krasarang Wilds 32.80,29.40
+achieve 6716/4
+step
+click The Deserters##213329 |goto Dread Wastes 67.40,60.80
+achieve 6716/3
+step
+Congratulations, you have earned the Between a Saurok and a Hard Place Achievement! |only if achieved(6716)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(6716)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Champions of Lei Shen",{
+achieveid={8103},
+patch='50200',
+description="Defeat all of the Isle of Thunder rare mobs.",
+mopready=true,
+},[[
+step
+label "start"
+kill Mumta##69664 |goto Isle of Thunder 35.10,62.30
+achieve 8103/2
+step
+kill Ku'lai the Skyclaw##69996 |goto Isle of Thunder 37.70,82.80
+achieve 8103/3
+step
+kill Haywire Sunreaver Construct##50358 |goto Isle of Thunder 48.00,88.20
+|tip Sunreaver wanders around this area so some searching may be necessary.
+achieve 8103/1
+step
+kill Progenitus##69997 |goto Isle of Thunder 51.30,71.40
+|tip He's at the peak of the mountain next to a large skull.
+achieve 8103/4
+step
+kill Goda##69998 |goto Isle of Thunder 53.00,53.70
+|tip Goda wanders around this area so some searching may be necessary.
+achieve 8103/5
+step
+kill Al'tabim the All-Seeing##70000 |goto Isle of Thunder 44.80,29.70
+achieve 8103/7
+step
+kill Backbreaker Uru##70001 |goto Isle of Thunder 48.80,25.50
+achieve 8103/8
+step
+kill Lu-Ban##70002 |goto Isle of Thunder 54.40,35.50
+achieve 8103/9
+step
+kill God-Hulk Ramuk##69999 |goto Isle of Thunder 61.60,49.50
+achieve 8103/6
+step
+kill Molthor##70003 |goto Isle of Thunder 63.50,49.20
+|tip He's at the top of the pillar.
+achieve 8103/10
+step
+Congratulations, you have obtained the Champions of Lei Shen achievement! |only if achieved(8103)
+Still more kills required. Routing to the guide start. |next "start" |only if not achieved(8103)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\The Dark Heart of the Mogu",{
+achieveid={6754},
+patch='50004',
+description="This guide will walk you through discovering each of the Mogu lore objects in Pandaria.",
+mopready=true,
+},[[
+step
+label "start"
+click Spirit Binders##213333 |goto The Jade Forest 42.30,17.40
+achieve 6754/3
+step
+click The Lost Dynasty##213332 |goto Krasarang Wilds 51.00,31.70
+achieve 6754/2
+step
+click The Thunder King##213334 |goto Vale of Eternal Blossoms 40.20,77.50
+achieve 6754/4
+step
+click Valley of the Emperors##213331 |goto Kun-Lai Summit/17 58.20,70.50
+achieve 6754/1
+step
+Congratulations, you have earned The Dark Heart of the Mogu Achievement! |only if achieved(6754)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(6754)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Extreme Treasure Hunter",{
+achieveid={8726},
+patch='50400',
+description="This guide will help you find the Gleaming, Rope-Bound and Mist-Covered Treasure found in the Timeless Isle.",
+mopready=true,
+},[[
+step
+You will see _4_ pillars before you.
+You will need to jump across to the 4th pillar at [Timeless Isle 49.70,69.40] to open the chest.
+click Gleaming Treasure Chest##220901
+Gleaming Treasure Chest opened |achieve 8726/1 |goto Timeless Isle/0 51.60,73.40
+step
+You will need to traverse the ropes, jumping to another as needed.
+Reach the Stone Pillar at [54.00,47.20].
+click Rope-Bound Treasure Chest##220902
+Rope-Bound Treasure Chest opened |achieve 8726/2 |goto Timeless Isle 60.20,45.90
+step
+click Gleaming Crane Statue##220903
+When you click the statue, you'll be sent into the air and will fall slowly.
+During this time, you will  need to click the Mist-Covered Treasure.
+click Mist-Covered Treasure##12441
+Mist-Covered Treasure Chest opened |achieve 8726/3 |goto Timeless Isle 58.70,60.10
+step
+|achieve 8726
+step
+Congratulations, you have earned the _Extreme Treasure Hunter_ achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Eyes on the Ground",{
+achieveid={8725},
+patch='50400',
+description="Check for loot in suspicious places throughout the Timeless Isle.",
+mopready=true,
+},[[
+step
+click Giant Clam##223193 |goto Timeless Isle/0 18.80,20.40
+|tip This item is underwater.
+You can also find this item underwater at [25.70,14.60]
+|achieve 8725/1
+step
+click Eerie Crystal##222686 |goto Timeless Isle/22 54.20,66.40
+|achieve 8725/4
+step
+map Timeless Isle
+path	32.60,69.40	29.70,67.20	31.60,64.60
+path	33.10,66.20	43.20,66.00	41.40,69.60
+click Crane Nest##222685
+|achieve 8725/3
+step
+click Glinting Sand##222684
+|tip This item is underwater.
+|achieve 8725/2 |goto Timeless Isle/0 70.50,73.10
+step
+click Ordon Supplies##222687
+|achieve 8725/5 |goto Timeless Isle/0 53.20,74.30
+step
+click Firestorm Egg##222688
+|tip You can only get this item by carefully jumping off the mountainside to a ledge where this item is located.
+You can also find this item off the mountainside at [Timeless Isle/0 60.10,59.80]
+|achieve 8725/6 |goto Timeless Isle/0 67.50,62.50
+step
+click Fiery Altar of Ordos##222689
+|achieve 8725/7 |goto Timeless Isle/0 75.30,44.80
+step
+Congratulations, you have obtained the _Eyes on the Ground_ achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Finders Keepers",{
+achieveid={7282},
+patch='50004',
+description="This guide will walk you through collecting 5 lost treasures hidden throughout Pandaria.",
+mopready=true,
+},[[
+step
+click Wodin's Mantid Shaker##213363
+|tip The item is a rare spawn, so keep checking back if it's not there the first time you go.
+collect Wodin's Mantid Shaker##85776 |achieve 7282/1 |count 1 |goto The Jade Forest 39.40,7.30 |noordinal
+step
+Ancient Jinyu Staff
+|tip This spawns at the bottom of the river around these areas. If it's not at the first spot check the other spots.
+|tip The item is a rare spawn, so keep checking back if it's not there the first time you go.
+click Ancient Jinyu Staff##213741 |goto The Jade Forest 46.20,71.20
+click Ancient Jinyu Staff##213741 |goto The Jade Forest 47.10,67.40
+click Ancient Jinyu Staff##213741 |goto The Jade Forest 44.90,64.60
+collect Ancient Jinyu Staff##86196 |achieve 7282/1 |count 2 |noordinal
+step
+Ancient Pandaren Mining Pick
+|tip This spawns in the rocks around these areas. If it's not at the first spot check the other spots.
+|tip The item is a rare spawn, so keep checking back if it's not there the first time you go.
+click Ancient Pandaren Mining Pick##213364 |goto The Jade Forest/7 39.28,17.42
+click Ancient Pandaren Mining Pick##213364 |goto The Jade Forest/7 33.59,77.64
+click Ancient Pandaren Mining Pick##213364 |goto The Jade Forest/7 62.56,58.29
+collect Ancient Pandaren Mining Pick##85777 |achieve 7282/1 |count 3 |noordinal
+step
+Recipe: Banana Infused Rum
+Follow the path up |goto Krasarang Wilds/0 47.37,93.04 < 10 |only if walking
+click Barrel of Banana Infused Rum##214439
+|tip It is up on the crashed ship.
+|tip The item is a rare spawn, so keep checking back if it's not there the first time you go.
+collect Recipe: Banana Infused Rum##87266 |achieve 7282/1 |count 4 |goto Krasarang Wilds 52.30,88.70 |noordinal
+step
+Blade of the Poisoned Mind
+click Blade of the Poisoned Mind##213972
+|tip The item is a rare spawn, so keep checking back if it's not there the first time you go.
+collect Blade of the Poisoned Mind##86527 |achieve 7282/1 |count 5 |goto Dread Wastes 28.90,41.93 |noordinal
+step
+Congratulations, you have earned the Finders Keepers achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Fish Tales",{
+achieveid={6846},
+patch='50004',
+description="This guide will walk you through discovering each of the Jinyu lore objects in Pandaria.",
+mopready=true,
+},[[
+step
+label "start"
+click Watersmithing##215779 |goto The Jade Forest 66.00,87.60
+achieve 6846/1
+step
+click Origins##215782 |goto Krasarang Wilds 30.50,38.50
+achieve 6846/3
+step
+click Waterspeakers##215780 |goto Valley of the Four Winds 61.20,34.70
+achieve 6846/2
+step
+click Role Call##215783 |goto Kun-Lai Summit 74.50,83.50
+achieve 6846/4
+step
+Congratulations, you have earned Fish Tales Achievement! |only if achieved(6846)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(6846)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Glorious!",{
+condition_end=function() return achieved(7439) end,
+achieveid={7437,7438,7439},
+patch='50004',
+description="To earn this achievement, you will be required to kill all of the rare spawns in Pandaria.",
+mopready=true,
+},[[
+step
+label "Start"
+kill Morgrinn Crackfang##50350
+|tip Morgrinn wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Morgrinn Crackfang |achieve 7439/29 |goto The Jade Forest/0 46.60,17.00
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/29
+step
+kill Mister Ferocious##50823
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Mister Ferocious |achieve 7439/1 |goto The Jade Forest 42.60,38.80
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/1
+step
+kill Aethis##50750
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Aethis |achieve 7439/8 |goto The Jade Forest 33.40,50.80
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/8
+step
+kill Ferdinand##51078
+|tip Ferdinand wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Ferdinand |achieve 7439/50 |goto The Jade Forest 53.80,45.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/50
+step
+kill Krax'ik##50363
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Krax'ik |achieve 7439/15 |goto The Jade Forest 39.60,62.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/15
+step
+kill Kor'nas Nightsavage##50338
+|tip Kor'nas wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Kor'nas Nightsavage |achieve 7439/22 |goto The Jade Forest 44.00,75.20
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/22
+step
+kill Urobi the Walker##50808
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Urobi the Walker |achieve 7439/36 |goto The Jade Forest 57.40,71.40
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/36
+step
+Enter the cave |goto The Jade Forest/0 64.88,74.33 < 7 |walk
+kill Sarnak##50782
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Sarnak |achieve 7439/43 |goto The Jade Forest 64.60,74.20
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/43
+step
+kill Qu'nas##50352
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Qu'nas |achieve 7439/31 |goto Krasarang Wilds 67.20,23.00
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/31
+step
+kill Gaarn the Toxic##50340
+|tip Gaarn wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Gaarn the Toxic |achieve 7439/24 |goto Krasarang Wilds 56.20,35.20
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/24
+step
+kill Arness the Scale##50787
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Arness the Scale |achieve 7439/45 |goto Krasarang Wilds 56.20,46.80
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/45
+step
+kill Spriggin##50830
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Spriggin |achieve 7439/3 |goto Krasarang Wilds 52.20,88.80
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/3
+step
+kill Ruun Ghostpaw##50816
+|tip He is on the balcony.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Ruun Ghostpaw |achieve 7439/38 |goto Krasarang Wilds 41.60,55.20
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/38
+step
+kill Go-Kan##50331
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Go-Kan |achieve 7439/52 |goto Krasarang Wilds 39.60,29.80
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/52
+step
+kill Cournith Waterstrider##50768
+|tip Inside the building.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Cournith Waterstrider |achieve 7439/10 |goto Krasarang Wilds 30.60,38.20
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/10
+step
+kill Torik-Ethis##50388
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Torik-Ethis |achieve 7439/17 |goto Krasarang Wilds 15.00,35.40
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/17
+step
+kill Jonn-Dar##50351
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Jonn-Dar |achieve 7439/30 |goto Valley of the Four Winds 18.60,77.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/30
+step
+kill Nal'lak the Ripper##50364
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Nal'lak the Ripper |achieve 7439/16 |goto Valley of the Four Winds 11.00,53.00
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/16
+step
+kill Bonobos##50828
+|tip Bonobos wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Bonobos |achieve 7439/2 |goto Valley of the Four Winds 16.80,35.20
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/2
+step
+kill Major Nanners##50840
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Major Nanners |achieve 7439/7 |goto Vale of Eternal Blossoms 32.00,91.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/7
+step
+kill Sulik'shor##50339
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Sulik'shor |achieve 7439/23 |goto Valley of the Four Winds 37.00,25.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/23
+step
+kill Blackhoof##51059
+|tip Blackhoof wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Blackhoof |achieve 7439/51 |goto Valley of the Four Winds 37.80,60.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/51
+step
+kill Sele'na##50766
+|tip Sele'na wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Sele'na |achieve 7439/9 |goto Valley of the Four Winds 57.20,33.00
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/9
+step
+kill Salyin Warscout##50783
+|tip Salyin wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Salyin Warscout |achieve 7439/44 |goto Valley of the Four Winds 71.60,52.20
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/44
+step
+kill Nasra Spothide##50811
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Nasra Spothide |achieve 7439/37 |goto Valley of the Four Winds 88.60,18.00
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/37
+step
+kill Yorik Sharpeye##50336
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Yorik Sharpeye |achieve 7439/56 |goto Vale of Eternal Blossoms 87.80,44.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/56
+step
+kill Sahn Tidehunter##50780
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Sahn Tidehunter |achieve 7439/14 |goto Vale of Eternal Blossoms 69.40,30.20
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/14
+step
+Enter the cave |goto Vale of Eternal Blossoms/0 41.06,68.48 < 7 |walk
+kill Ai-Ran the Shifting Cloud##50822
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Ai-Ran the Shifting Cloud |achieve 7439/42 |goto Vale of Eternal Blossoms 42.60,69.00
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/42
+step
+kill Moldo One-Eye##50806
+|tip Moldo wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Moldo One-Eye |achieve 7439/49 |goto Vale of Eternal Blossoms 42.60,56.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/49
+step
+kill Urgolax##50359
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Urgolax |achieve 7439/35 |goto Vale of Eternal Blossoms 39.80,25.00
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/35
+step
+kill Kang the Soul Thief##50349
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Kang the Soul Thief |achieve 7439/28 |goto Vale of Eternal Blossoms 15.00,35.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/28
+step
+kill Kal'tik the Blight##50749
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Kal'tik the Blight |achieve 7439/21 |goto Vale of Eternal Blossoms 14.00,58.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/21
+step
+kill Krol the Blade##50356
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Krol the Blade |achieve 7439/34 |goto Dread Wastes 74.20,20.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/34
+step
+kill Karr the Darkener##50347
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Karr the Darkener |achieve 7439/27 |goto Dread Wastes 71.80,37.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/27
+step
+kill Nalash Verdantis##50776
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Nalash Verdantis |achieve 7439/13 |goto Dread Wastes 64.20,58.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/13
+step
+Enter the tunnel |goto Dread Wastes/0 54.84,65.78 < 7 |walk
+kill Ik-Ik the Nimble##50836
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Ik-Ik the Nimble |achieve 7439/6 |goto Dread Wastes 55.20,63.80
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/6
+step
+kill Omnis Grinlok##50805
+|tip Omnis wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Omnis Grinlok |achieve 7439/48 |goto Dread Wastes 39.20,62.40
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/48
+step
+kill Gar'lok##50739
+|tip Inside the building.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Gar'lok |achieve 7439/20 |goto Dread Wastes 37.80,29.60
+You may also be able to find him around [39.20,41.80]
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/20
+step
+kill Dak the Breaker##50334
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Dak the Breaker |achieve 7439/55 |goto Dread Wastes 25.20,28.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/55
+step
+kill Ai-Li Skymirror##50821
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Ai-Li Skymirror |achieve 7439/41 |goto Dread Wastes 34.80,23.20
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/41
+step
+kill Lith'ik the Stalker##50734
+|tip Lith'ik wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Lith'ik the Stalker |achieve 7439/19 |goto Townlong Steppes 47.80,84.00
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/19
+step
+kill Siltriss the Sharpener##50791
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Siltriss the Sharpener |achieve 7439/47 |goto Townlong Steppes 59.20,85.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/47
+step
+kill Eshelon##50772
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Eshelon |achieve 7439/12 |goto Townlong Steppes 67.80,87.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/12
+step
+Enter the cave |goto Townlong Steppes/0 67.44,73.62 < 7 |walk
+kill The Yowler##50832
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat The Yowler |achieve 7439/5 |goto Townlong Steppes 67.60,74.40
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/5
+step
+kill Norlaxx##50344
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Norlaxx |achieve 7439/26 |goto Townlong Steppes 54.00,63.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/26
+step
+kill Yul Wildpaw##50820
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Yul Wildpaw |achieve 7439/40 |goto Townlong Steppes 32.00,61.80
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/40
+step
+kill Kah'tir##50355
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Kah'tir |achieve 7439/33 |goto Townlong Steppes 63.00,35.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/33
+step
+kill Lon the Bull##50333
+|tip Lon wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Lon the Bull |achieve 7439/54 |goto Townlong Steppes 68.40,46.80
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/54
+step
+kill Ski'thik##50733
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Ski'thik |achieve 7439/18 |goto Kun-Lai Summit 36.60,79.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/18
+step
+kill Scritch##50831
+|tip Scritch wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Scritch |achieve 7439/4 |goto Kun-Lai Summit 46.20,61.80
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/4
+step
+kill Korda Torros##50332
+|tip Korda wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Korda Torros |achieve 7439/53 |goto Kun-Lai Summit 50.40,80.40
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/53
+step
+kill Havak##50354
+|tip Havak wanders around this area.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Havak |achieve 7439/32 |goto Kun-Lai Summit 58.40,73.80
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/32
+step
+kill Zai the Outcast##50769
+|tip Inside the building.
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Zai the Outcast |achieve 7439/11 |goto Kun-Lai Summit 73.86,77.25
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/11
+step
+kill Borginn Darkfist##50341
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Borginn Darkfist |achieve 7439/25 |goto Kun-Lai Summit 55.60,43.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/25
+step
+kill Ahone the Wanderer##50817
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Ahone the Wanderer |achieve 7439/39 |goto Kun-Lai Summit 40.80,42.60
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/39
+step
+kill Nessos the Oracle##50789
+|tip This mob is a rare spawn.
+|tip It might not be up.
+Defeat Nessos the Oracle |achieve 7439/46 |goto Kun-Lai Summit 63.89,13.73
+|tip
+Click here if this rare hasn't spawned |confirm |achieve 7439/46
+step
+_Congratulations!_ |only if achieved(7439)
+You Earned the "Glorious!" Achievement. |only if achieved(7439)
+|next "Start" |only if not achieved(7439)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Gods and Monsters",{
+achieveid={8051},
+patch='50200',
+description="This guide will walk you through discovering each of the lore objects in Pandaria that tell of the dark origins of the mogu.",
+mopready=true,
+},[[
+step
+label "start"
+click Agents of Order##218435 |goto Isle of Thunder 35.80,54.70
+achieve 8051/1
+step
+click The Curse and the Silence##218437 |goto Isle of Thunder 49.90,20.40
+achieve 8051/3
+step
+click Shadow Storm and Stone##218436 |goto Isle of Thunder 59.20,26.30
+achieve 8051/2
+step
+click Age of a Hundred Kings##218438 |goto Isle of Thunder 62.50,37.70
+achieve 8051/4
+step
+Congratulations, you have achieved the Gods and Monsters achievement! |only if achieved(8051)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(8051)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Heart of the Mantid Swarm",{
+achieveid={6857},
+patch='50004',
+description="This guide will walk you through discovering each of the Mantid lore objects in Pandaria.",
+mopready=true,
+},[[
+step
+label "start"
+Enter the cave here |goto Dread Wastes 53.60,15.90 < 10 |walk
+click Amber##213411 |goto Dread Wastes 52.50,10.10
+achieve 6857/3
+step
+click The Empress##213412 |goto Dread Wastes 35.50,32.60
+achieve 6857/4
+step
+click Cycle of the Mantid##213409 |goto Dread Wastes 48.40,32.80
+achieve 6857/1
+step
+click Mantid Society##213410 |goto Dread Wastes 59.90,55.10
+achieve 6857/2
+step
+Congratulations, you have earned The Heart of the Mantid Swarm Achievement! |only if achieved(6857)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(6857)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Hozen in the Mist",{
+achieveid={6850},
+patch='50004',
+description="This guide will walk you through discovering each of the Hozen lore objects in Pandaria.",
+mopready=true,
+},[[
+step
+label "start"
+click Hozen Speech##211990 |goto The Jade Forest 26.40,28.40
+achieve 6850/1
+step
+click Hozen Maturity##211993 |goto Krasarang Wilds 52.40,87.60
+achieve 6850/2
+step
+click Embracing the Passion##215785 |goto Valley of the Four Winds 83.20,21.20
+achieve 6850/3
+step
+click The Hozen Ravage##211994 |goto Kun-Lai Summit 45.80,61.90
+achieve 6850/4
+step
+Congratulations, you have earned The Hozen in the Mist Achievement! |only if achieved(6850)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(6850)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\I'm In Your Base, Killing Your Dudes",{
+achieveid={7932},
+patch='50100',
+description="This guide will walk you through killing all three of the opposing faction's champions in Krasarang Wilds.",
+mopready=true,
+},[[
+step
+label "start"
+kill Dalan Nightbreaker##68318 |goto Krasarang Wilds 85.00,27.60
+|tip Dalan Nightbreaker is a rare spawn.
+achieve 7932/1
+step
+kill Mavis Harms##68317 |goto Krasarang Wilds 84.60,31.00
+|tip Mavis Harms is a rare spawn.
+achieve 7932/2
+step
+kill Disha Fearwarden##68319 |goto Krasarang Wilds 87.40,29.20
+|tip Disha Fearwarden is a rare spawn.
+achieve 7932/3
+step
+Congratulations, you have earned the I'm In Your Base, Killing Your Dudes achievement! |only if achieved(7932)
+Still more kills required. Routing to the guide start. |next "start" |only if not achieved(7932)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Is Another Man's Treasure",{
+achieveid={7284},
+patch='50004',
+description="This guide will walk you through obtaining the Is Another Man's Treasure Achievement",
+mopready=true,
+},[[
+step
+For this achievement, you will have to gather 20 of the relics hidden throughout Pandaria
+Each one of these objects is considered a rare-spawn, so you may need to come back and reference this guide at different times in order to get 20 treasures
+confirm
+step
+click Wodin's Mantid Shaker##213363
+collect Wodin's Mantid Shaker##85776 |q 31397 |future |goto The Jade Forest 39.40,7.30
+step
+click Hammer of Ten Thunders##213742
+collect Hammer of Ten Thunders##86198 |q 31403 |future |goto The Jade Forest 41.20,13.90
+This relic can also be in the following locations:
+Location _1_ [40.20,13.70]
+Location _2_ [43.00,11.60]
+Location _3_ [41.80,17.60]
+step
+click Ancient Pandaren Mining Pick##213364
+|tip It's in this cave at a dead end next to a Mining Cart.
+collect Ancient Pandaren Mining Pick##85777 |q 31399 |future |goto The Jade Forest 44.20,28.60
+step
+clicknpc Jade Warrior Statue##64272
+collect Jade Infused Blade##86199 |q 31307 |future |goto The Jade Forest 39.20,46.60
+step
+click Ancient Jinyu Staff##213741
+|tip This relic is all around this area, so you may need to search a bit.
+collect Ancient Jinyu Staff##86196 |q 31402 |future |goto The Jade Forest 47.10,67.50
+step
+click Pandaren Fishing Spear##213653
+collect Pandaren Fishing Spear##86124 |q 31409 |future |goto Krasarang Wilds 50.80,49.30
+step
+click Barrel of Banana Infused Rum##214439
+|tip It's on top of this ship.
+collect Recipe: Banana Infused Rum##87266 |q 31411 |future |goto Krasarang Wilds 52.30,88.70
+step
+click Equipment Locker##213651
+Loot the treasure chest you find here. |q 31410 |future |goto Krasarang Wilds 42.30,92.00
+step
+talk Ghostly Pandaren Craftsman##64191
+collect Ancient Pandaren Woodcutter##86079 |q 31292 |future |goto Valley of the Four Winds 45.60,38.40
+step
+click Cache of Pilfered Goods##213649
+Loot the treasure chest you find here. |q 31406 |future |goto Valley of the Four Winds 43.60,37.40
+step
+talk Ghostly Pandaren Fisherman##64004
+collect Ancient Pandaren Fishing Charm##85973 |q 31284 |future |goto Valley of the Four Winds 46.80,24.60
+step
+click Staff of the Hidden Master##213749
+|tip This one can be hard to find. It's among the bamboo trees in this area, and it blends in with them.
+collect Staff of the Hidden Master##86218 |q 31407 |future |goto Valley of the Four Winds 17.50,35.70
+step
+_Enter_ the cave |goto Kun-Lai Summit/0 73.13,73.54 < 7 |walk
+_Follow_ the path |goto Kun-Lai Summit/9 25.96,62.13 < 7 |walk
+_Follow_ the path down |goto Kun-Lai Summit/9 58.91,34.62 < 7 |walk
+click Sprite's Cloth Chest##213751
+Loot the treasure chest you find here |q 31412 |future |goto Kun-Lai Summit/9 55.23,70.24
+step
+click Stash of Yaungol Weapons##213842
+collect Sturdy Yaungol Spear##88723 |q 31421 |future |goto Kun-Lai Summit 71.20,62.60
+step
+_Enter_ the cave |goto Kun-Lai Summit/11 56.53,15.96 < 10 |walk
+_Jump down_ here |goto Kun-Lai Summit/11 50.63,33.22 < 7 |walk
+click Hozen Warrior Spear##213768
+|tip It is sticking out of the larger boulder in the water in the chamber to the west.
+collect Hozen Warrior Spear##86394 |q 31413 |future |goto Kun-Lai Summit/12 23.88,68.65
+step
+click Tablet of Ren Yun##213765
+collect Tablet of Ren Yun##86393 |q 31417 |future |goto Kun-Lai Summit 44.70,52.40
+step
+_Enter_ the cave here |goto Kun-Lai Summit 37.50,78.00 < 15 |walk
+clicknpc Frozen Trail Packer##64227
+collect Kafa Press##86125 |q 31304 |future |goto Kun-Lai Summit 35.20,76.40
+step
+click Yaungol Fire Carrier##213960
+collect Yaungol Fire Carrier##86518 |q 31425 |future |goto Townlong Steppes 66.20,44.70
+step
+click Malik's Stalwart Spear##213964
+collect Malik's Stalwart Spear##86520 |q 31430 |future |goto Dread Wastes 48.80,30.00
+step
+click Amber Encased Necklace##213966
+collect Lucid Amulet of the Agile Mind##86521 |q 31431 |future |goto Dread Wastes 33.00,30.10
+step
+click Blade of the Poisoned Mind##213972
+collect Blade of the Poisoned Mind##86527 |q 31438 |future |goto Dread Wastes 28.90,41.90
+step
+click Bloodsoaked Chitin Fragment##213970
+collect Bloodsoaked Chitin Fragment##86525 |q 31436 |future |goto Dread Wastes 25.90,50.30
+step
+click Dissector's Staff of Mutation##213969
+collect Dissector's Staff of Mutation##86524 |q 31435 |future |goto Dread Wastes 30.20,90.80
+step
+clicknpc Glinting Rapana Whelk##65552
+|tip It's a small snail roaming around this area, you may need to search for it.
+collect Manipulator's Talisman##86529 |q 31432 |future |goto Dread Wastes 42.20,63.80
+step
+click Swarmkeeper's Medallion##213971
+collect Swarmkeeper's Medallion##86526 |q 31437 |future |goto Dread Wastes 54.30,56.50
+step
+click Swarming Cleaver of Ka'roz##213968
+collect Swarming Cleaver of Ka'roz##86523 |q 31434 |future |goto Dread Wastes 56.70,77.70
+step
+click Blade of the Prime##213967
+collect Blade of the Prime##86522 |q 31433 |future |goto Dread Wastes 66.30,66.50
+step
+click Wind-Reaver's Dagger of Quick Strikes##213962
+collect Wind-Reaver's Dagger of Quick Strikes##86519 |q 31666 |future |goto Dread Wastes 71.80,36.10
+step
+|achieve 7284
+step
+Congratulations, you have obtained the Another Man's Treasure achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Killing Time",{
+achieveid={8712},
+patch='50400',
+description="This guide will walk you through defeating all of the creatures of the Timeless Isle.",
+mopready=true,
+},[[
+step
+label "start"
+kill Ancient Spineclaw##72766 |goto Timeless Isle/0 27.70,74.10
+achieve 8712/20
+step
+kill Elder Great Turtle##72765 |goto Timeless Isle/0 23.50,55.80
+achieve 8712/28
+kill Great Turtle##72764 |goto Timeless Isle/0 23.50,55.80
+achieve 8712/16
+kill Great Turtle Hatchling##72763 |goto Timeless Isle/0 23.50,55.80
+achieve 8712/3
+step
+kill Jademist Dancer##72767 |goto Timeless Isle/0 26.30,29.70
+achieve 8712/14
+step
+kill Windfeather Chick##71143 |goto Timeless Isle/0 38.70,38.30
+achieve 8712/2
+kill Windfeather Nestkeeper##72761 |goto Timeless Isle/0 38.70,38.30
+achieve 8712/5
+kill Ironfur Grazer##72843 |goto Timeless Isle/0 38.70,38.30
+achieve 8712/6
+kill Ironfur Great Bull##72844 |goto Timeless Isle/0 38.70,38.30
+achieve 8712/17
+kill Ironfur Herdling##72842 |goto Timeless Isle/0 38.70,38.30
+achieve 8712/4
+step
+kill Brilliant Windfeather##72762 |goto Timeless Isle/0 37.70,43.00
+achieve 8712/15
+step
+kill Damp Shambler##72771 |goto Timeless Isle/22 65.80,19.40
+achieve 8712/18
+kill Foreboding Flame##73162 |goto Timeless Isle/22 65.80,19.40
+achieve 8712/13
+step
+kill Crag Stalker##72807 |goto Timeless Isle/0 50.20,54.70
+achieve 8712/10
+kill Primal Stalker##72805 |goto Timeless Isle/0 50.20,54.70
+achieve 8712/19
+kill Death Adder##72841 |goto Timeless Isle/0 50.20,54.70
+achieve 8712/22
+step
+kill Eroded Cliffdweller##72809 |goto Timeless Isle/0 57.70,52.60
+achieve 8712/29
+step
+kill Gulp Frog##72777 |goto Timeless Isle/0 66.40,69.20
+achieve 8712/21
+step
+kill Spectral Windwalker##73021 |goto Timeless Isle/0 38.00,77.60
+achieve 8712/9
+kill Spectral Brewmaster##73018 |goto Timeless Isle/0 38.00,77.60
+achieve 8712/7
+kill Spectral Mistweaver##73025 |goto Timeless Isle/0 38.00,77.60
+achieve 8712/8
+step
+kill Spotted Swarmer##72908 |goto Timeless Isle/0 41.20,76.60
+achieve 8712/1
+step
+kill Ordon Candlekeeper##72875 |goto Timeless Isle/0 54.80,77.10
+achieve 8712/12
+kill Ordon Oathguard##72892 |goto Timeless Isle/0 54.80,77.10
+achieve 8712/24
+kill Ordon Fire-Watcher##72894 |goto Timeless Isle/0 54.80,77.10
+achieve 8712/23
+step
+kill Burning Berserker##72895 |goto Timeless Isle/0 68.60,58.20
+achieve 8712/25
+kill Crimsonscale Firestorm##72876 |goto Timeless Isle/0 68.60,58.20
+achieve 8712/27
+kill Ashleaf Sprite##72877 |goto Timeless Isle/0 68.60,58.20
+achieve 8712/11
+step
+kill Blazebound Chanter##72897 |goto Timeless Isle/0 68.50,36.50
+achieve 8712/30
+kill Eternal Kilnmaster##72896
+achieve 8712/31
+step
+kill Molten Guardian##72888 |goto Timeless Isle/0 56.20,57.30
+achieve 8712/26
+step
+kill High Priest of Ordos##72898 |goto Timeless Isle/0 56.90,35.40
+achieve 8712/32
+step
+Congratulations, you have earned the Killing Time Achievement! |only if achieved(8712)
+Still more kills required. Routing to the guide start. |next "start" |only if not achieved(8712)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Legend of the Brewfathers",{
+achieveid={7230},
+patch='50004',
+description="This guide will walk you through discovering each of the three Brewfather Shrines in Pandaria.",
+mopready=true,
+},[[
+step
+label "start"
+click Xin Wo Yin the Broken Hearted##213512 |goto The Jade Forest 37.30,30.10
+achieve 7230/2
+step
+click Quan Tou Kuo the Two Fisted##213407 |goto Krasarang Wilds 81.40,11.50
+achieve 7230/1
+step
+click Ren Yun the Blind##213438 |goto Kun-Lai Summit 44.70,52.40
+achieve 7230/3
+step
+Congratulations, you have earned the Legend of the Brewfathers Achievement! |only if achieved(7230)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(7230)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Legend of the Past",{
+achieveid={8723},
+patch='50400',
+description="This guide will walk you through finding one of the lost pandaren artifacts on the Timeless Isle.",
+mopready=true,
+},[[
+step
+map Timeless Isle
+path follow smart; loop on; ants straight; dist 5
+path	31.90,61.60	33.80,54.50	22.00,38.00
+path	32.60,32.80	37.70,41.10	42.80,55.40
+path	48.00,51.20	55.30,50.30	63.10,45.30
+path	65.40,51.70	68.40,60.40	64.60,72.40
+path	52.20,62.60	50.40,71.70	47.30,80.80
+path	39.40,77.80	25.00,71.90
+click Cloudstrike Family Helm##222796
+|tip Follow the provided path and check each location for the Cloudstrike Family Helm.
+|achieve 8723
+step
+Congratulations, you have earned the Legend of the Past achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Lost and Found",{
+achieveid={7281},
+patch='50004',
+description="This guide will walk you through obtaining The Lost And Found Achievement",
+mopready=true,
+},[[
+step
+click Wodin's Mantid Shaker##213363
+|tip The item is a rare spawn, so keep checking back if it's not there the first time you go.
+collect Wodin's Mantid Shaker##85776 |goto The Jade Forest 39.40,7.30
+step
+Congratulations, you have earned the Lost and Found Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Pandaria Explorer",{
+description="Earn the following Pandaria exploration achievements:\n\nExplore Dread Wastes\nExplore Krasarang Wilds\n"..
+"Explore Jade Forest\nExplore Kun-Lai Summit\nExplore Townlong Steppes\nExplore Vale of Eternal Blossoms\n"..
+"Explore Valley of the Four Winds",
+condition_end=function() return achieved(6974) end,
+achieveid={6974},
+patch='50004',
+mopready=true,
+},[[
+leechsteps "Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Jade Forest" 1-17
+leechsteps "Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Valley of the Four Winds" 1-18
+leechsteps "Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Krasarang Wilds" 1-16
+leechsteps "Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Kun-Lai Summit" 1-14
+leechsteps "Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Townlong Steppes" 1-11
+leechsteps "Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Dread Wastes" 1-12
+leechsteps "Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Vale of Eternal Blossoms" 1-11
+step
+_Congratulations!_
+You Earned the "Pandaria Explorer" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Dread Wastes",{
+description="Explore Dread Wastes, revealing the following covered areas of the world map:\n\n Kypari Vor\n"..
+"Rikkitun Village\nHeart of Fear\nThe Clutches of Shek'zeer\nTerrace of Gurthan\nZan'vess\n"..
+"Writhingwood\nKlaxxi'vess\nKypari Zar\nThe Sunset Brewgarden\nSoggy's Gamble\nThe Briny Muck",
+condition_end=function() return achieved(6978) end,
+achieveid={6978},
+patch='50004',
+mopready=true,
+},[[
+step
+Discover Kypari Vor |achieve 6978/3 |goto Dread Wastes 63.20,18.40
+step
+Discover The Sunset Brewgarden |achieve 6978/10 |goto Dread Wastes 50.50,12.20
+step
+Discover Rikkitun Village |achieve 6978/5 |goto Dread Wastes 34.60,20.00
+step
+Discover Heart of Fear |achieve 6978/1 |goto Dread Wastes 39.60,35.00
+step
+Discover The Clutches of Shek'zeer |achieve 6978/9 |goto Dread Wastes 46.20,34.50
+step
+Discover Klaxxi'vess |achieve 6978/2 |goto Dread Wastes 53.60,34.90
+step
+Discover The Briny Muck |achieve 6978/8 |goto Dread Wastes 38.70,62.20
+step
+Discover Zan'vess |achieve 6978/12 |goto Dread Wastes 30.50,73.60
+step
+Discover Soggy's Gamble |achieve 6978/6 |goto Dread Wastes 55.90,70.30
+step
+Discover Kypari Zar |achieve 6978/4 |goto Dread Wastes 59.20,60.60
+step
+Discover Writhingwood |achieve 6978/11 |goto Dread Wastes 66.00,42.20
+step
+Discover Terace of Gurthan |achieve 6978/7 |goto Dread Wastes 68.30,30.40
+step
+|achieve 6978
+step
+_Congratulations!_
+You Earned the "Explore Dread Wastes" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Jade Forest",{
+description="Explore Jade Forest, revealing the following covered areas of the world map:\n\n Tian Monastery\n"..
+"Dreamer's Pavillion\nPearl Lake\nGreenstone Quarry\nTemple of the Jade Serpent\nCamp Nooka Nooka\n"..
+"Serpent's Heart\nGarrosh'ar Point\nHoneydew Village\nDawn's Blossom\nTerrace of Ten Thunders\n"..
+"Emperor's Omen\nNectarbreeze Orchard\nGrookin Hill\nSlingtail Pits\nThe Arboretum\nWindward Isle",
+condition_end=function() return achieved(6351) end,
+achieveid={6351},
+patch='50004',
+mopready=true,
+},[[
+step
+Discover Nectarbreeze Orchard |achieve 6351/8 |goto The Jade Forest 40.00,73.00
+step
+Discover Garrosh'ar Point |achieve 6351/15 |goto The Jade Forest 46.00,90.00
+step
+Discover Dreamer's Pavillion |achieve 6351/3 |goto The Jade Forest 52.10,90.80
+step
+Discover Slingtail Pits |achieve 6351/12 |goto The Jade Forest 52.00,82.00
+step
+Discover Pearl Lake |achieve 6351/5 |goto The Jade Forest 58.00,80.00
+step
+Discover Temple of the Jade Serpent |achieve 6351/13 |goto The Jade Forest 57.00,57.00
+step
+Discover Serpent's Heart |achieve 6351/11 |goto The Jade Forest 47.00,60.00
+step
+Discover Dawn's Blossom |achieve 6351/2 |goto The Jade Forest 48.00,45.00
+step
+Discover The Arboretum |achieve 6351/14 |goto The Jade Forest 57.00,44.00
+step
+Discover Windward Isle |achieve 6351/16 |goto The Jade Forest 65.00,30.00
+step
+Discover Emperor's Omen |achieve 6351/4 |goto The Jade Forest 50.00,26.20
+step
+Discover Greenstone Quarry |achieve 6351/7 |goto The Jade Forest 46.00,29.00
+step
+Discover Tian Monastery |achieve 6351/1 |goto The Jade Forest 41.20,21.50
+step
+Discover Terrace of Ten Thunders |achieve 6351/10 |goto The Jade Forest 40.00,13.00
+step
+Discover Honeydew Village |achieve 6351/17 |goto The Jade Forest 29.00,13.00
+step
+Discover Camp Nooka Nooka |achieve 6351/9 |goto The Jade Forest 25.00,37.00
+step
+Discover Grookin Hill |achieve 6351/6 |goto The Jade Forest 25.00,48.00
+step
+|achieve 6351
+step
+_Congratulations!_
+You Earned the "Explore Jade Forest" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Krasarang Wilds",{
+description="Explore Krasarang Wilds, revealing the following covered areas of the world map:\n\n Anglers Wharf\n"..
+"Dojani River\nKrasarang Cove\nNayeli Lagoon\nRuins of Dojan\nTemple of the Red Crane\nUnga Ingoo\n"..
+"The Forbidden Jungle\nCradle of Chi-Ji\nFallsong Village\nThe Krasari Ruins\nCrane Wing Refuge\n"..
+"Ruins of Korja\nThe Deepwild\nThe Southern Isles\nZhu's Watch",
+condition_end=function() return achieved(6975) end,
+achieveid={6975},
+patch='50004',
+mopready=true,
+},[[
+step
+Discover Zhu's Watch |achieve 6975/16 |goto Krasarang Wilds 76.60,8.70
+step
+Discover Krasarang Cove |achieve 6975/5 |goto Krasarang Wilds 80.60,25.60
+step
+Discover The Krasari Ruins |achieve 6975/6 |goto Krasarang Wilds 68.50,22.80
+step
+Discover Dojani River |achieve 6975/3 |goto Krasarang Wilds 65.30,32.90
+step
+Discover Anglers Wharf |achieve 6975/1 |goto Krasarang Wilds 68.00,44.20
+step
+Discover Ruins of Dojan |achieve 6975/9 |goto Krasarang Wilds 53.90,37.40
+step
+Discover The Deepwild |achieve 6975/12 |goto Krasarang Wilds 45.50,31.80
+step
+Discover Crane Wing Refuge |achieve 6975/8 |goto Krasarang Wilds 40.00,32.50
+step
+Discover Temple of the Red Crane |achieve 6975/11 |goto Krasarang Wilds 39.10,56.80
+step
+Discover Unga Ingoo |achieve 6975/15 |goto Krasarang Wilds 43.30,90.20
+step
+Discover Nayeli Lagoon |achieve 6975/7 |goto Krasarang Wilds 40.70,82.90
+step
+Discover Cradle of Chi-Ji |achieve 6975/2 |goto Krasarang Wilds 31.20,63.20
+step
+Discover The Southern Isle |achieve 6975/14 |goto Krasarang Wilds 12.70,59.90
+step
+Discover Ruins of Korja |achieve 6975/10 |goto Krasarang Wilds 24.00,47.10
+step
+Discover Fallsong Village |achieve 6975/4 |goto Krasarang Wilds 30.20,38.30
+step
+Discover The Forbidden Jungle |achieve 6975/13 |goto Krasarang Wilds 14.10,39.00
+step
+|achieve 6975
+step
+_Congratulations!_
+You Earned the "Explore Krasarang Wilds" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Kun-Lai Summit",{
+description="Explore , revealing the following covered areas of the world map:\n\n Binan Village\n"..
+"Gate of the August Celestials\nKota Peak\nMount Neverest\nPeak of Serenity\nTemple of "..
+"the White Tiger\nValley of Emperors\nFirebough Nook\nIsle of Reckoning\nMogujia\nMuskpaw Ranch\n"..
+"Shado-Pan Monastery\nThe Burlap Trail\nZouchin Village",
+condition_end=function() return achieved(6976) end,
+achieveid={6976},
+patch='50004',
+mopready=true,
+},[[
+step
+Discover Binan Village |achieve 6976/1 |goto Kun-Lai Summit 71.80,92.20
+step
+Discover Muskpaw Ranch |achieve 6976/8 |goto Kun-Lai Summit 68.10,73.20
+step
+Discover Temple of the White Tiger |achieve 6976/11 |goto Kun-Lai Summit 68.60,46.60
+step
+Discover Isle of Reckoning |achieve 6976/4 |goto Kun-Lai Summit 75.50,11.90
+step
+Discover Zouchin Village |achieve 6976/14 |goto Kun-Lai Summit 62.40,29.40
+step
+Discover Valley of Emperors |achieve 6976/13 |goto Kun-Lai Summit 53.40,48.30
+step
+Discover Peak of Serenity |achieve 6976/9 |goto Kun-Lai Summit 49.30,42.90
+step
+Discover Shado-Pan Monastery |achieve 6976/10 |goto Kun-Lai Summit 36.70,47.90
+step
+Discover Mount Neverest |achieve 6976/7 |goto Kun-Lai Summit 44.50,55.90
+step
+Discover Burlap Trail |achieve 6976/12 |goto Kun-Lai Summit 55.40,65.90
+step
+Discover Mogujia |achieve 6976/6 |goto Kun-Lai Summit 58.00,74.80
+step
+Discover Gate of the August Celestials |achieve 6976/3 |goto Kun-Lai Summit 55.50,92.00
+step
+Discover Firebough Nook |achieve 6976/2 |goto Kun-Lai Summit 45.40,86.20
+step
+Discover Kota Peak |achieve 6976/5 |goto Kun-Lai Summit 38.00,75.10
+step
+|achieve 6976
+step
+_Congratulations!_
+You Earned the "Explore Kun-Lai Summit" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Townlong Steppes",{
+description="Explore Townlong Steppes, revealing the following covered areas of the world map:\n\n Gao-Ran Battlefront\n"..
+"Rensai's Watchpost\nFire Camp Osul\nShado-Pan Garrison\nSik'vess\nThe Sumprushes\nKri'vess\nNiuzao Temple\n"..
+"Hatred's Vice\nShan'ze Dao\nSra'vess",
+condition_end=function() return achieved(6977) end,
+achieveid={6977},
+patch='50004',
+mopready=true,
+},[[
+step
+Discover Fire Camp Osul |achieve 6977/5 |goto Townlong Steppes 67.30,44.90
+step
+Discover Kri'vess |achieve 6977/2 |goto Townlong Steppes 56.10,53.50
+step
+Discover Niuzao Temple |achieve 6977/4 |goto Townlong Steppes 39.30,62.00
+step
+Discover Shan'ze Dao |achieve 6977/8 |goto Townlong Steppes 28.60,25.80
+step
+Discover Sra'vess |achieve 6977/10 |goto Townlong Steppes 26.30,39.10
+step
+Discover Shado-Pan Garrison |achieve 6977/7 |goto Townlong Steppes 49.20,71.00
+step
+Discover Sik'vess |achieve 6977/9 |goto Townlong Steppes 44.60,77.50
+step
+Discover Rensai's Watchpost |achieve 6977/3 |goto Townlong Steppes 54.30,79.00
+step
+Discover The Sumprushes |achieve 6977/11 |goto Townlong Steppes 71.30,70.50
+step
+Discover Hatred's Vice |achieve 6977/6 |goto Townlong Steppes 82.50,72.40
+step
+Discover Gao-Ran Battlefront |achieve 6977/1 |future |goto Townlong Steppes 75.50,82.50
+step
+|achieve 6977
+step
+_Congratulations!_
+You Earned the "Explore Townlong Steppes" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Vale of Eternal Blossoms",{
+description="Explore Vale of Eternal Blossoms, revealing the following covered areas of the world map:\n\n Ruins of Guo-Lai\n"..
+"Mogu'shan Palace\nThe Golden Stair\nThe Golden Pagoda\nShrine of Two Moons\nThe Five Sisters\nMistfall Village\n"..
+"Setting Sun Garrison\nShrine of Seven Stars\nTu Shen Burial Ground\nWhitepetal Lake",
+condition_end=function() return achieved(6979) end,
+achieveid={6979},
+patch='50004',
+mopready=true,
+},[[
+step
+Discover Shrine of Seven Stars |achieve 6979/6 |goto Vale of Eternal Blossoms 86.40,62.50
+step
+Discover Mogu'shan Palace |achieve 6979/3 |goto Vale of Eternal Blossoms 79.10,36.10
+step
+Discover Shrine of Two Moons |achieve 6979/9 |goto Vale of Eternal Blossoms 62.00,22.60
+step
+Discover The Golden Pagoda |achieve 6979/7 |goto Vale of Eternal Blossoms 56.70,43.20
+step
+Discover The Golden Stair |achieve 6979/5 |goto Vale of Eternal Blossoms 44.20,15.20
+step
+Discover Whitepetal Lake |achieve 6979/10 |goto Vale of Eternal Blossoms 40.50,47.00
+step
+Discover Ruins of Guo-Lai |achieve 6979/1 |goto Vale of Eternal Blossoms 26.60,37.20
+step
+Discover The Five Sisters |achieve 6979/11 |goto Vale of Eternal Blossoms 17.40,47.90
+step
+Discover Setting Sun Garrison |achieve 6979/4 |goto Vale of Eternal Blossoms 18.50,71.70
+step
+Discover Mistfall Village |achieve 6979/2 |goto Vale of Eternal Blossoms 36.30,72.00
+step
+Discover Tu Shen Burial Ground |achieve 6979/8 |goto Vale of Eternal Blossoms 48.30,69.10
+step
+|achieve 6979
+step
+_Congratulations!_
+You Earned the "Explore Vale of Eternal Blossoms" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Explore Valley of the Four Winds",{
+description="Explore Valley of the Four Winds, revealing the following covered areas of the world map:\n\n Nesingwary Safari\n"..
+"Winds' Edge\nGilded Fan\nHalfhill\nKunzen Village\nPools of Purity\nSilken Fields\nStormstout Brewery\n"..
+"Thunderfoot Ranch\nDustback Gorge\nThe Imperial Granary\nStoneplow\nMudmug's Place\nPaoquan Hollow\nThe Heartland\n"..
+"Rumbling Terrace\nSinging Marshes\nZhu's Descent",
+condition_end=function() return achieved(6969) end,
+achieveid={6969},
+patch='50004',
+mopready=true,
+},[[
+step
+Discover Thunderfoot Ranch |achieve 6969/17 |goto Valley of the Four Winds 75.70,24.90
+step
+Discover Pools of Purity |achieve 6969/11 |goto Valley of the Four Winds 60.70,27.60
+step
+Discover Mudmug's Place |achieve 6969/8 |goto Valley of the Four Winds 68.60,43.30
+step
+Discover Zhu's Descent |achieve 6969/18 |goto Valley of the Four Winds 81.53,47.92
+step
+Discover Rumbling Terrace |achieve 6969/12 |goto Valley of the Four Winds 73.20,58.30
+step
+Discover Silken Fields |achieve 6969/13 |goto Valley of the Four Winds 65.20,57.40
+step
+Discover Halfhill |achieve 6969/5 |goto Valley of the Four Winds 56.10,49.80
+step
+Discover Gilded Fan |achieve 6969/3 |goto Valley of the Four Winds 54.20,38.70
+step
+Discover Heartland |achieve 6969/16 |goto Valley of the Four Winds 40.40,43.10
+step
+Discover Kunzen Village |achieve 6969/7 |goto Valley of the Four Winds 33.10,23.50
+step
+Discover Paoquan Hollow |achieve 6969/10 |goto Valley of the Four Winds 16.60,38.70
+step
+Discover Singing Marshes |achieve 6969/14 |goto Valley of the Four Winds 25.00,43.60
+step
+Discover Stoneplow |achieve 6969/6 |goto Valley of the Four Winds 19.00,57.00
+step
+Discover Dustback Gorge |achieve 6969/2 |goto Valley of the Four Winds 13.00,75.50
+step
+Discover Nesingwary Safari |achieve 6969/9 |goto Valley of the Four Winds 16.10,82.70
+step
+Discover Stormstout Brewery |achieve 6969/15 |goto Valley of the Four Winds 35.90,68.00
+step
+Discover The Imperial Granary |achieve 6969/4 |goto Valley of the Four Winds 52.40,63.00
+step
+Discover Winds' Edge |achieve 6969/1 |goto Valley of the Four Winds 50.10,75.10
+step
+|achieve 6969
+step
+_Congratulations!_
+You Earned the "Explore Valley of the Four Winds" Achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Pilgrimage",{
+achieveid={8724},
+patch='50400',
+description="This guide will instruct you on where to find Time-Lost Shrines in the Timeless Isle.",
+mopready=true,
+},[[
+step
+For this achievement, you will need to obtain 4 buffs from Time-Lost Shrines, found all over the Timeless Isle.
+You will be provided with a path which leads to 9 shrines found throughout the Timeless Isle.
+All of them won't always be active.
+|confirm
+step
+Follow the path to the provided shrines.
+click Time-Lost Shrine##222776
+|achieve 8724/1
+|achieve 8724/2
+|achieve 8724/3
+|achieve 8724/4
+map Timeless Isle
+path	30.10,45.70	26.80,52.20	30.50,62.60
+path	27.90,72.00	37.40,74.40	49.70,70.40
+path	66.10,72.30	63.90,50.70	35.00,29.60
+step
+|achieve 8724
+step
+Congratulations, you have earned the _Pilgrimage_ achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Restore Balance",{
+achieveid={7381},
+patch='50004',
+description="This guide will walk you through obtaining the Restore Balance Achievement",
+mopready=true,
+},[[
+step
+Take the path and go up the stairs here |goto The Jade Forest 31.60,33.80 < 30
+Follow the path up |goto The Jade Forest 32.80,33.80 < 30
+click Broken Incense Burner |achieve 7381 |goto The Jade Forest 34.10,33.50
+step
+Congratulations, you have obtained the Restore Balance achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Riches of Pandaria",{
+condition_end=function() return achieved(7997) end,
+achieveid={7996,7995,7994,7997},
+patch='50100',
+description="Find all of the Treasures of Pandaria",
+mopready=true,
+},[[
+step
+label "start"
+click Lucky Pandaren Coin##213368 |goto The Jade Forest/0 31.96,27.76
+Loot the Lucky Pandaren Coin |q 31401 |future
+step
+click Ancient Pandaren Tea Pot##213366 |goto The Jade Forest/0 26.21,32.35
+Loot the Ancient Pandaren Tea Pot |q 31400 |future
+step
+click Pandaren Ritual Stone##213748 |goto The Jade Forest/0 23.49,35.05
+Loot the Pandaren Ritual Stone |q 31404 |future
+step
+click Statue of Xuen##213771 |goto Kun-Lai Summit/0 72.01,33.97
+|tip This is a tiny statue of a tiger at the bottom of a pond here.
+Loot the Statue of Xuen |q 31416 |future
+step
+Enter the cave |goto Kun-Lai Summit/0 63.94,49.86 < 20 |walk
+Follow the path down |goto Kun-Lai Summit/0 63.92,46.71 < 10 |walk
+click Ancient Mogu Tablet##214438 |goto Kun-Lai Summit/0 64.21,45.11
+|tip The Path of Conquerors cave is at the end of a dirt road at the base of the mountain here.
+|tip Inside the cave behind a mogu statue.
+Loot the Ancient Mogu Tablet |q 31420 |future
+step
+Enter the cave |goto Kun-Lai Summit/8 70.40,86.80 < 20 |walk
+Follow the path down |goto Kun-Lai Summit/8 51.64,43.66 < 15 |walk
+Follow the path up |goto Kun-Lai Summit/8 32.01,32.36 < 7 |walk
+click Stolen Sprite Treasure##213770 |goto Kun-Lai Summit/8 41.69,44.17
+|tip Inside the cave.
+Loot from the Stolen Sprite Treasure |q 31415 |future
+step
+Enter the cave |goto Kun-Lai Summit/0 52.32,50.97 < 10 |walk
+click Rikktik's Tiny Chest##213793 |goto Kun-Lai Summit/0 52.57,51.54
+Loot from Rikktik's Tiny Chest |q 31419 |future
+step
+Enter the cave |goto Kun-Lai Summit/0 50.30,61.64 < 7 |walk
+Follow the path |goto Kun-Lai Summit/10 75.89,61.72 < 7 |walk
+Follow the path |goto Kun-Lai Summit/10 54.15,62.11 < 7 |walk
+Follow the path |goto Kun-Lai Summit/10 33.40,30.58 < 7 |walk
+click Hozen Treasure Cache##213769 |goto Kun-Lai Summit/10 51.99,27.35
+|tip This item is a chest inside Knucklethump Hole cave just past a yeti named Old Poot Poot.
+|tip There are hostile hozen mobs inside the cave.
+Loot from the Hozen Treasure Cache |q 31414 |future
+step
+click Terracotta Head##213782 |goto Kun-Lai Summit/0 58.02,74.94
+|tip This is a stone head lying on the ground around this area.
+|tip This item has multiple spawn points inside the ruins of Mogujia.
+Loot the Terracotta Head |q 31422 |future
+step
+click Lost Adventurer's Belongings##213774 |goto Kun-Lai Summit/0 36.74,79.83
+|tip This item is located in the wreckage next to where the rare Ski'thik spawns on the mountain.
+Loot from the Lost Adventurer's Belongings |q 31418 |future
+step
+click Abandoned Crate of Goods##213961 |goto Townlong Steppes/0 62.82,34.05
+|tip Inside the small, round tent.
+Loot from the Abandoned Crate of Goods |q 31427 |future
+step
+click Hardened Sap of Kri'vess##213959 |goto Townlong Steppes/0 55.28,57.45
+|tip This item has multiple spawn points around the roots of the giant Kri'vess tree.
+|tip Search on the ground all around the giant tree roots to find this item.
+Loot the Hardened Sap of Kri'vess |q 31424 |future
+step
+Enter the cave |goto Townlong Steppes/13 18.54,68.59 < 15 |walk
+Follow the path down |goto Townlong Steppes/13 28.41,68.24 < 10 |walk
+Follow the path |goto Townlong Steppes/13 51.56,58.94 < 7 |walk
+click Fragment of Dread##213956 |goto Townlong Steppes/13 56.52,64.55
+|tip Inside the cave.
+|tip There are hostile sha mobs you may have to kill.
+Loot the Fragment of Dread |q 31423 |future
+step
+click Amber Encased Moth##213844 |goto Townlong Steppes/0 65.83,86.09
+Loot the Amber Encased Moth |q 31426 |future
+|tip It is a tiny, sparkling orb here.
+step
+Jump down here |goto Valley of the Four Winds/0 27.20,31.30 < 4 |only if walking
+Jump down here |goto Valley of the Four Winds/0 26.52,32.27 < 4 |only if walking
+Jump down here |goto Valley of the Four Winds/0 26.12,32.38 < 4 |only if walking
+Follow the path down |goto Valley of the Four Winds/0 24.59,31.33 < 4 |only if walking
+Jump down carefully here |goto Valley of the Four Winds/0 24.34,30.96 < 4 |only if walking
+Enter the Skiggit's Lair cave |goto Valley of the Four Winds/0 23.26,30.55 < 4 |walk
+click Virmen Treasure Cache##213650 |goto Valley of the Four Winds/0 23.72,28.32
+|tip Inside the cave.
+|tip The Lair of Skiggit cave is high on the side of a mountain here, reachable by jumping down from Skyrange to the East, or via flying mount.
+Loot from the Virmen Treasure Cache |q 31405 |future
+step
+click The Hammer of Folly##213845 |goto The Veiled Stair/0 74.92,76.48
+Loot the Hammer of Folly |q 31428 |future
+step
+Follow the path |goto Krasarang Wilds/0 70.85,9.76 < 10 |walk
+Enter the cave |goto Valley of the Four Winds/0 76.99,57.23 < 10 |walk
+Follow the path |goto Valley of the Four Winds/0 76.62,56.06 < 7 |walk
+click Saurok Stone Tablet##213750 |goto Valley of the Four Winds/0 75.00,55.15
+|tip The map shows this item located in the Valley of the Four Winds, but you enter the cave from below the cliff in Krasarang Wilds.
+|tip You are able to use a flying mount inside this cave.
+Loot the Saurok Stone Tablet |q 31408 |future
+step
+Enter the wrecked ship
+click Ship's Locker##213362 |goto Pandaria/0 70.14,74.51
+|tip Under water, on the bottom floor of the wrecked ship.
+Loot from the Ship's Locker |q 31396 |future
+step
+Congratulations, you have obtained the Riches of Pandaria achievement! |only if achieved(7997)
+Still more treasure required. Routing to the guide start. |next "start" |only if not achieved(7997)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Rolo's Riddle",{
+achieveid={8730},
+patch='50400',
+description="This guide will instruct you on how to solve Rolo's Riddle in the Timeless Isle.",
+mopready=true,
+},[[
+step
+click Glinting Sand##222684
+|tip You can find this along the shoreline all over the Timeless Isle.
+collect Rolo's Riddle##102225 |n
+|tip You likely won't get it on your first try.
+Use Rolo's Riddle. |use Rolo's Riddle##102225
+accept Rolo's Riddle##32974 |goto Timeless Isle/0 39.00,92.50
+step
+click Mound of Dirt##216161
+turnin Rolo's Riddle##32974 |goto Timeless Isle/0 49.40,69.40
+accept Rolo's Riddle##32975 |goto Timeless Isle/0 49.40,69.40
+step
+click Mound of Dirt##216161
+turnin Rolo's Riddle##32975 |goto Timeless Isle/0 34.60,26.70
+accept Rolo's Riddle##32976 |goto Timeless Isle/0 34.60,26.70
+step
+kill Highwind Albatross##73531+ |goto Timeless Isle/0 33.80,55.00
+Shortly after engaging one, it will pick you up and start to fly off.
+|tip Be sure not to kill it.
+When the Highwind Albatross is over the lake, attack it.
+Move up the hill to the provided coordinates.
+clicknpc Rolo's Treasure##72755
+turnin Rolo's Riddle##32976 |goto Timeless Isle/0 66.00,23.20
+step
+|achieve 8730
+step
+Congratulations, you have earned the _Rolo's Riddle_ achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Rumbles of Thunder",{
+achieveid={8050},
+patch='50200',
+description="This guide will walk you through discovering each of the lore objects on the Isle of Thunder that tell of Lei-Shen, the Thunder King.",
+mopready=true,
+},[[
+step
+label "start"
+click The Pandaren Problem##218434 |goto Isle of Thunder/0 60.70,68.70
+achieve 8050/4
+step
+click The Sacred Mount##218432 |goto Isle of Thunder/0 47.00,59.90
+achieve 8050/2
+step
+click Unity at a Price##218433 |goto Isle of Thunder/0 34.90,65.50
+achieve 8050/3
+step
+click Lei-Shen##218431 |goto Isle of Thunder/0 40.20,40.70
+achieve 8050/1
+step
+Congratulations, you have earned the Rumbles of Thunder achievement! |only if achieved(8050)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(8050)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\The Seven Burdens of Shaohao",{
+achieveid={6855},
+patch='50004',
+description="This guide will walk you through discovering each of the lore objects that tell the tale of Shaohao, Last Emperor of Pandaria.",
+mopready=true,
+},[[
+step
+label "start"
+click The Emperor's Burden - Part 1##215799 |goto The Jade Forest 47.10,45.20
+achieve 6855/1
+step
+click The Emperor's Burden - Part 3##213421 |goto The Jade Forest 55.90,56.80
+achieve 6855/3
+step
+Enter the Temple here |goto Krasarang Wilds 40.40,51.70<10
+Go up the stairs |goto Krasarang Wilds 41.20,55.80<10
+click The Emperor's Burden - Part 4##213422 |goto Krasarang Wilds 40.50,56.60
+achieve 6855/4
+step
+click The Emperor's Burden - Part 8##213456 |goto Vale of Eternal Blossoms 68.80,44.30
+achieve 6855/8
+step
+click The Emperor's Burden - Part 6##213443 |goto Kun-Lai Summit 67.80,48.40
+achieve 6855/6
+step
+click The Emperor's Burden - Part 2##215797 |goto Kun-Lai Summit 43.84,51.20
+achieve 6855/2
+step
+click The Emperor's Burden - Part 7##213455 |goto Kun-Lai Summit 41.00,42.40
+achieve 6855/7
+step
+click The Emperor's Burden - Part 5##213445 |goto Townlong Steppes 37.80,62.90
+achieve 6855/5
+step
+Congratulations, you have earned The Seven Burdens of Shaohao Achievement! |only if achieved(6855)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(6855)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\The Song of the Yaungol",{
+achieveid={6847},
+patch='50004',
+description="This guide will walk you through discovering each of the Yaungol lore objects in Pandaria.",
+mopready=true,
+},[[
+step
+label "start"
+click Yaungoil##215798
+achieve 6847/3 |goto Kun-Lai Summit 71.70,63.00
+step
+click Yaungol Tactics##213417
+achieve 6847/1 |goto Kun-Lai Summit 50.30,79.30
+step
+click Dominance##213418
+achieve 6847/2 |goto Townlong Steppes 65.40,50.00
+step
+click Trapped in a Strange Land##213420
+achieve 6847/4 |goto Townlong Steppes 84.10,72.90
+step
+Congratulations, you have earned The Song of the Yaungol Achievement! |only if achieved(6847)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(6847)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Timeless Champion",{
+achieveid={8714},
+patch='50400',
+description="Defeat all of the rare creatures of the Timeless Isle listed below.",
+mopready=true,
+},[[
+step
+This achievement requires you to kill every _rare spawn_ on the Timeless Isle.
+Most of the spawns are on a timer, so you will need to wait for them to respawn. If there are other conditions, they are listed with the mob.
+|tip It's recommended that you have at least 1-2 other people helping you with this, as some of the rare spawns have a lot of health.
+|confirm
+step
+kill Monstrous Spineclaw##73166 |goto Timeless Isle/0 26.90,76.40
+|tip This mob can spawn all along the shore, as it takes place of the spawn of any Ancient Spineclaw in this area.
+|achieve 8714/17
+step
+kill Great Turtle Furyshell##73161 |goto Timeless Isle/0 25.60,55.50
+|tip Furyshell can be found in multiple locations on the western coast between the Horde and Alliance camps.
+|achieve 8714/3
+step
+click Suspiciously Empty Shell
+kill Chelon##72045 |goto Timeless Isle/0 25.20,35.70
+|achieve 8714/8
+step
+kill Ironfur Steelhorn##73160 |goto Timeless Isle/0 37.30,43.00
+|tip He can spawn in the place of any of the steelhorns in this area.
+|achieve 8714/2
+step
+kill Emerald Gander##73158
+|tip Spawns all around the lower forest, can appear in the same location as any of the pink cranes.
+|achieve 8714/1 |goto Timeless Isle/0 40.70,68.80
+step
+kill Spirit of Jadefire##72769
+|tip Various spawn points in the Cavern of Lost Spirits.
+|achieve 8714/12 |goto Timeless Isle/22 56.00,30.70
+step
+kill Rock Moss##73157
+|achieve 8714/20 |goto Timeless Isle/22 45.40,29.40
+step
+kill Tsavo'ka##72808
+|achieve 8714/16 |goto Timeless Isle/0 54.60,44.30
+step
+|goto Timeless Isle/0 59.20,48.30
+Wait for the cave-in, then click the hammer that spawns here. It may take a minute for the hammer to spawn, but it shouldn't be too long.
+|confirm
+step
+clicknpc Cave-In##73329
+kill Spelurk##71864
+|achieve 8714/9 |goto Timeless Isle/0 59.10,48.60
+step
+kill Golganarr##72970
+|achieve 8714/28 |goto Timeless Isle/0 62.50,63.50
+step
+kill Bufo##72775
+|tip Bufo can spawn in the place of any Gulp Frog in this area.
+|achieve 8714/14 |goto Timeless Isle/0 62.70,74.60
+step
+kill Stinkbraid##73704
+|tip On the bow of the pirate ship between the two small islands in the southeastern part of the zone.
+|achieve 8714/19 |goto Timeless Isle/0 71.40,82.70
+step
+kill Rattleskew##72048
+|tip Rattleskew is Underwater in the southeastern part of the zone. Shows up as "Battle of the Barnacle" on map. He will spawn after several waves of ghost pirates have been defeated.
+|achieve 8714/11 |goto Timeless Isle/0 60.70,88.00
+step
+kill Zesqua##72245
+|achieve 8714/5 |goto Timeless Isle/0 46.90,87.30
+step
+talk Fin Longpaw##72151 |goto Timeless Isle/0 34.00,83.80
+Ask him to fish up Karkanos for you.
+|confirm
+step
+kill Karkanos##72193
+|achieve 8714/7 |goto Timeless Isle/0 34.20,84.70
+step
+kill Gu'chi the Swarmbringer##72909
+|tip He walks around the village here, so some searching may be necessary.
+|achieve 8714/4 |goto Timeless Isle/0 40.40,78.00
+step
+kill Skunky Brew Alemental##71908+ |goto Timeless Isle/0 38.00,77.60
+|tip You will have to wait for these to spawn as a random event. After killing 10, Zhu-Gon will spawn.
+|confirm
+step
+kill Zhu-Gon the Sour##71919+
+|achieve 8714/6 |goto Timeless Isle/0 38.00,77.60
+step
+kill Cranegnasher##73854
+|tip In order to get Cranegnasher to spawn, you will need to kite a Fishgorged Crane over the corpse of the Fishgorged Crane already on the ground. Once the crane is killed in that location, Cranegnasher will appear.
+|achieve 8714/10 |goto Timeless Isle/0 44.50,69.00
+step
+kill Imperial Python##73163
+|tip All around the lower forest, can appear in the same location as any other Death Adder.
+|achieve 8714/18 |goto Timeless Isle 44.40,65.50
+step
+kill Jakur of Ordon##73169
+|achieve 8714/22 |goto Timeless Isle/0 51.50,83.30
+step
+kill Watcher Osu##73170
+|achieve 8714/21 |goto Timeless Isle/0 57.50,77.10
+step
+kill Champion of the Black Flame##73171
+|tip The all 3 walk up and down this path here, some searching may be necessary.
+|achieve 8714/23 |goto Timeless Isle/0 70.90,49.90
+step
+kill Huolon##73167
+|achieve 8714/27 |goto Timeless Isle/0 72.90,48.70
+step
+kill Leafmender##73277
+|achieve 8714/13 |goto Timeless Isle/0 67.30,44.10
+step
+kill Cinderfall##73175
+|tip On the bridge up above.
+|achieve 8714/24 |goto Timeless Isle/0 54.00,52.40
+step
+kill Garnia##73282
+|achieve 8714/15 |goto Timeless Isle/0 64.80,28.80
+step
+kill Flintlord Gairan##73172
+|achieve 8714/26 |goto Timeless Isle 48.20,38.40
+step
+kill Urdur the Cauterizer##73173
+|achieve 8714/25 |goto Timeless Isle/0 45.40,26.60
+step
+kill Evermaw##73279
+He swims in a circle around the isle. He's very fast, so you will either need some kind of water-walking, or the Cursed Swabby Helmet in order to fight him.
+He has also been found around the following coordinates:
+[14.50,56.50]
+[16.10,63.90]
+[33.30,2.60]
+[63.40,6.90]
+[79.60,30.40]
+[79.00,70.00]
+[75.00,84.00]
+[55.00,91.00]
+[30.00,89.00]
+collect 1 Mist-Filled Spirit Lantern##104115
+|tip This is a guaranteed drop.
+|achieve 8714/29 |goto Timeless Isle/0 14.10,37.50
+step
+Use the _Mist-Filled Spirit Lantern_ to summon the Dread Ship Vazuvius. |use Mist-Filled Spirit Lantern##104115
+kill Dread Ship Vazuvius##73281 |goto Timeless Isle/0 26.20,23.80
+|achieve 8714/30
+step
+Congratulations, you have obtained the _Timeless Champion_ achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Timeless Legends",{
+achieveid={8784},
+patch='50400',
+description="This guide will walk you through finding the four lost pandaren artifacts on the Timeless Isle.",
+mopready=true,
+},[[
+step
+map Timeless Isle
+path follow smart; loop on; ants straight; dist 5
+path	31.90,61.60	33.80,54.50	22.00,38.00
+path	32.60,32.80	37.70,41.10	42.80,55.40
+path	48.00,51.20	55.30,50.30	65.40,51.70
+path	64.60,72.40	52.20,62.60	50.40,71.70
+path	47.30,80.80	39.40,77.80	25.00,71.90
+Follow the path, checking each location for the following items:
+click Cloudstrike Family Helm##222796 |achieve 8784/1
+click Flameheart Shawl##223537 |achieve 8784/2
+click Riverspeaker's Trident##223538 |achieve 8784/3
+click Snowdrift Tiger Talons##223539 |achieve 8784/4
+|tip They are small items on the ground that can spawn at these locations.
+step
+Congratulations, you have earned the Timeless Legend achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Timeless Nutriment",{
+achieveid={8722},
+patch='50400',
+description="Consume all of the sources of Timeless Nutriment on the Timeless Isle.",
+mopready=true,
+},[[
+step
+click Sand-Covered Egg##221690
+|achieve 8722/2 |goto Timeless Isle/0 23.30,51.70
+step
+click Ripe Crispfruit##221689
+|achieve 8722/1 |goto Timeless Isle/0 35.70,42.40
+step
+click Charged Crystal##221725
+|tip On the ground under the bridge.
+|achieve 8722/3 |goto Timeless Isle/0 59.30,55.20
+step
+click Southsea Firebrew##223228
+|achieve 8722/7 |goto Timeless Isle/0 66.50,74.00
+step
+click Huge Yak Roast##221747
+|achieve 8722/4 |goto Timeless Isle/0 52.20,75.20
+step
+click Roasted Seed##221764
+|achieve 8722/5 |goto Timeless Isle/0 70.30,55.10
+step
+click Fire Poppy##221763
+|achieve 8722/6 |goto Timeless Isle/0 59.80,31.80
+step
+Congratulations, you have obtained the _Timeless Nutriment_ achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Treasure, Treasure Everywhere",{
+achieveid={8729},
+patch='50400',
+description="This guide will instruct you on how to gather Treasures located in the Timeless Isle.",
+mopready=true,
+},[[
+step
+Follow the provided path for Moss-Covered Chests.
+map Timeless Isle
+path loop off
+path	36.70,34.10	27.30,39.00	30.70,36.50
+path	25.50,27.20	22.40,35.40	24.60,38.50
+path	21.30,50.40	25.20,53.80	25.70,45.90
+path	22.30,68.10	26.90,68.80	31.00,76.30
+path	35.30,76.40	38.80,71.60	39.80,79.50
+path	34.80,84.30	43.60,84.20	46.90,53.70
+path	46.70,46.80	51.10,45.80	55.60,44.30
+path	58.00,50.60	65.60,47.80	64.10,59.40
+path	64.90,75.60	60.20,66.00	49.70,65.70
+path	53.10,70.90	52.70,62.70	61.70,88.50
+Moss-Covered Chest opened. |achieve 8729/1
+step
+|goto Timeless Isle/0 31.80,55.20
+Wait for a _Highwind Albatross_ to fly overhead here, and attack it once. It will pick you up in its mouth and fly around the island. When you get to where you would like to go, attack it until you kill it and you will land safely on the ground.
+|confirm
+step
+There will be 4 locations to find the _Sturdy Chests_.
+You will need to ride an Albatross to reach [28.20,35.20].
+You will also need an Albatross to reach [26.80,64.90]
+This chest will be located between two trees at [Timeless Isle/0 64.70,70.50]
+This chest is found inside of a cave at [Timeless Isle/0 59.20,49.50]
+Sturdy Chest opened. |achieve 8729/4
+step
+There are two spots to find the Smoldering Chests, both of which are listed below.
+[69.50,33.10]
+[54.10,78.20]
+Smouldering Chest opened. |achieve 8729/5
+step
+Skull-Covered Chest opened. |achieve 8729/2 |goto Timeless Isle/22 62.90,34.40
+step
+|goto Timeless Isle/0 31.80,55.20
+Wait for a _Highwind Albatross_ to fly overhead here, and attack it once. It will pick you up in its mouth and fly around the island. When you get to where you would like to go, attack it until you kill it and you will land safely on the ground.
+|confirm
+step
+Blazing Chest opened. |achieve 8729/3 |goto Timeless Isle/0 47.60,27.60
+step
+|achieve 8729
+step
+Congratulations, you have earned the _Treasure, Treasure Everywhere_ achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Wanderers, Dreamers, and You",{
+achieveid={7518},
+patch='50004',
+description="This guide will walk you through obtaining the Wanderers, Dreamers, and You Achievement",
+mopready=true,
+},[[
+step
+This achievement requires that you are online on a Sunday during the Wanderer's Festival Event
+The opening ceremony begins at 9pm PST, and the closing ceremony begins at 11pm PST
+confirm
+step
+Attend either the opening or closing ceremony of the Wanderer's Festival |achieve 7518 |goto Krasarang Wilds 72.70,30.70
+step
+Congratulations, you have obtained the Wanderers, Dreamers, and You achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\What is Worth Fighting For",{
+achieveid={6858},
+patch='50004',
+description="This guide will walk you through discovering each of the Monk lore objects in Pandaria.",
+mopready=true,
+},[[
+step
+label "start"
+click The First Monks##213415
+achieve 6858/3 |goto The Jade Forest 35.70,30.50
+step
+click Pandaren Fighting Tactics##213413
+achieve 6858/1 |goto Valley of the Four Winds 18.80,31.70
+step
+click Together We Are Strong##213416
+achieve 6858/4 |goto Vale of Eternal Blossoms 26.60,21.50
+step
+click Always Remember##213414
+achieve 6858/2 |goto Vale of Eternal Blossoms 52.90,68.60
+step
+click Victory in Kun-Lai##213511
+achieve 6858/5 |goto Kun-Lai Summit 63.00,40.80
+step
+Congratulations, you have earned the What is Worth Fighting For Achievement! |only if achieved(6858)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(6858)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Where There's Pirates, There's Booty",{
+achieveid={8727},
+patch='50400',
+description="This guide will instruct you on how to gather Treasures located in the Timeless Isle.",
+mopready=true,
+},[[
+step
+This will be at the bottom of the sunken ship at the provided coordinates.
+kill Cursed Hozen Swabby##71920+
+collect 1 Barnacle Encrusted Key##104015 |n
+click Sunken Treasure##232066
+Sunken Treasure |achieve 8727/1 |goto Timeless Isle 40.40,93.00
+step
+The Blackguard's Jetsam is at [Timeless Isle/0 22.60,58.90]
+|tip this is the cave entrance
+click Blackguard's Jetsam##220986
+Blackguard's Jetsam |achieve 8727/2 |goto Timeless Isle 17.20,57.30 |n
+step
+You will need to jump up on the ledge here and climb the rope across.
+Jump down to the beam, then go to [71.30,80.00]
+click Gleaming Treasure Satchel##221036
+Gleaming Treasure Satchel |achieve 8727/3 |goto Timeless Isle/0 71.90,82.60 |n
+step
+|achieve 8727
+step
+Congratulations, you have earned the _Where There's Pirates, There's Booty_ achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\The Zandalari Prophecy",{
+achieveid={8049},
+patch='50200',
+description="This guide will walk you through discovering each of the lore objects on the Isle of Thunder that tell of the Zandalari and their dark prophecy.",
+mopready=true,
+},[[
+step
+label "start"
+click Coming of Age##218427
+achieve 8049/1 |goto Isle of Thunder/0 35.30,70.20
+step
+click Shadows of the Loa##218429
+achieve 8049/3 |goto Isle of Thunder/0 36.30,70.30
+step
+click The Dark Prohet Zul##218430
+achieve 8049/4 |goto Isle of Thunder/0 52.60,41.40
+step
+click For Council and King##218428
+achieve 8049/2 |goto Isle of Thunder/0 68.80,45.70
+step
+Congratulations, you have achieved the The Zandalari Prophecy achievement! |only if achieved(8049)
+Still more exploration required. Routing to the guide start. |next "start" |only if not achieved(8049)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Zarhym Altogether",{
+achieveid={8743},
+patch='50400',
+description="Help Zarhym find his body in the Cavern of Lost Spirits on Timeless Isle.",
+mopready=true,
+},[[
+step
+talk Zarhym##71876 |goto Timeless Isle/22 53.50,57.20
+Tell him you're ready to enter the spirit world
+|confirm
+step
+Avoid all of the evil spirits as you make your way to the end. If one sees you, it will pull you out of the spirit world and you will fail the event.
+click Zarhym's Body##222768 |goto Timeless Isle/22 54.00,30.90
+|tip If you fail this, you will have to wait a day to complete it, as it is only available to players once every day.
+|achieve 8743
+step
+Congratulations, you have earned the _Zarhym Altogether_ achievement.
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Exploration\\Mists of Pandaria\\Zul'Again",{
+achieveid={8078},
+patch='50200',
+description="This guide will walk you through killing 10 Zandalari Warscouts and 5 Zandalari Warbringers.",
+mopready=true,
+},[[
+stickystart "tracker"
+step
+label "start"
+map The Jade Forest
+path follow strict; loop off; ants curved; dist 10
+path	43.60,17.20	46.60,18.60	48.80,21.40
+Follow the path, killing any Warscouts you see |goto The Jade Forest 48.80,21.40<10 |noway |c |next
+kill Zandalari Warbringer##69769+, Zandalari Warscout##69768+
+step
+map The Jade Forest
+path follow strict; loop off; ants curved; dist 10
+path	53.00,19.60	53.60,25.40	54.20,27.00
+path	53.00,31.20	53.00,36.20	50.80,36.80
+Check the first location for the Warbringer and continue on hunting scouts |goto The Jade Forest 50.80,36.80<10 |noway |c |next
+kill Zandalari Warbringer##69769+, Zandalari Warscout##69768+
+step
+map Krasarang Wilds
+path follow strict; loop off; ants curved; dist 10
+path	45.20,56.20	42.00,59.60
+Follow the path, killing any Warscouts you see |goto Krasarang Wilds 42.00,59.60<10 |noway |c |next
+kill Zandalari Warbringer##69769+, Zandalari Warscout##69768+
+step
+map Krasarang Wilds
+path follow strict; loop off; ants curved; dist 10
+path	38.80,67.60	37.60,63.20	36.20,59.00
+Check the first location for the Warbringer and continue on hunting scouts |goto Krasarang Wilds 36.20,59.00<10 |noway |c |next
+kill Zandalari Warbringer##69769+, Zandalari Warscout##69768+
+step
+map Dread Wastes
+path follow strict; loop off; ants curved; dist 10
+path	62.00,60.60	60.20,62.00	59.80,66.40
+path	51.80,66.80
+Follow the path, killing any Warscouts you see |goto Dread Wastes 51.80,66.80<10 |noway |c |next
+kill Zandalari Warbringer##69769+, Zandalari Warscout##69768+
+step
+map Dread Wastes
+path follow strict; loop off; ants curved; dist 10
+path	47.20,61.60	45.60,56.20	41.40,50.60
+Check the first location for the Warbringer and continue on hunting scouts |goto Dread Wastes 41.40,50.60<10 |noway |c |next
+kill Zandalari Warbringer##69769+, Zandalari Warscout##69768+
+step
+map Townlong Steppes
+path follow strict; loop off; ants curved; dist 10
+path	49.00,84.20	47.40,87.60	44.80,89.00
+path	40.80,89.80
+Follow the path, killing any Warscouts you see |goto Townlong Steppes 40.80,89.80<10 |noway |c |next
+kill Zandalari Warbringer##69769+, Zandalari Warscout##69768+
+step
+map Townlong Steppes
+path follow strict; loop off; ants curved; dist 10
+path	36.60,85.60	39.60,81.00	40.60,77.20
+path	44.60,74.80	49.40,73.40
+Check the first location for the Warbringer and continue on hunting scouts |goto Townlong Steppes 49.40,73.40<10 |noway |c |next
+kill Zandalari Warbringer##69769+, Zandalari Warscout##69768+
+step
+map Kun-Lai Summit
+path follow strict; loop off; ants curved; dist 10
+path	64.40,63.60	68.20,64.60	72.60,66.40
+Follow the path, killing any Warscouts you see |goto Kun-Lai Summit 72.60,66.40<10 |noway |c |next
+kill Zandalari Warbringer##69769+, Zandalari Warscout##69768+
+step
+map Kun-Lai Summit
+path follow strict; loop off; ants curved; dist 10
+path	75.00,67.60	71.60,72.60	69.00,78.00
+path	67.60,86.20
+Check the first location for the Warbringer and continue on hunting scouts |goto Kun-Lai Summit 67.60,86.20<10 |noway |c |next
+kill Zandalari Warbringer##69769+, Zandalari Warscout##69768+
+step
+Congratulations, you have obtained the Zul'Again achievement! |only if achieved(8078)
+Still more kills required. Routing to the guide start. |next "start" |only if not achieved(8078)
+step
+label "tracker"
+Kill #10# Zandalari Warscouts |achieve 8078/1
+Kill #5# Zandalari Warbringers |achieve 8078/2
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Feats of Strength\\Mounts\\I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One",{
+achieveid={8092},
+patch='50200',
+description="Knock a Zandalari Beastcaller from his flying mount",
+mopready=true,
+},[[
+step
+For this achievement, you will likely need to have at least 2 people who have _Heroic Level Dungeon Gear_.
+If you are soloing, avoid _Primal_ enemies, as they hit very hard.
+This achievement will take quite a while to obtain, so you may want to come back and do this in bursts.
+|confirm
+step
+kill Primal Direhorn##70016+, Primal Direhorn Hatchling##70012+, Young Primal Devilsaur##69993+, Primal Devilsaur##70011+, Young Primal Devilsaur##69993+, Pterrorwing Skyscreamer##70020+
+collect 9999 Giant Dinosaur Bone##94288
+step
+Enter the cave here. |goto Isle of Giants/0 27.40,58.00 |c
+step
+talk Ku'ma##70022
+turnin A Mountain of Giant Dinosaur Bones##32617 |goto Isle of Giants/0 32.70,53.90
+step
+collect Reins of the Bone-White Primal Raptor##94290
+learn Bone-White Primal Raptor##138640 |use Reins of the Bone-White Primal Raptor##94290 |achieve 8092
+step
+Congratulations, you have obtained the _I've Got 9999 Problems but a Bone-White Primal Raptor Ain't One_ achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Double Agent",{
+achieveid={7380},
+patch='50004',
+description="Reach maximum level on both an Alliance and a Horde character.",
+mopready=true,
+},[[
+step
+To earn this achievement you will need to level both an Alliance and a Horde character to level max level
+Reach max level with an Alliance and a Horde character |achieve 7380
+step
+Congratulations, you have earned the Double Agent achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Dynamic Duo",{
+achieveid={7382},
+patch='50004',
+description="Reach maximum level on two characters.",
+mopready=true,
+},[[
+step
+To earn this achievement you will need to level 2 characters to max level
+Keep in mind that raising at least one Alliance and Horde character to max level will get you the Double Agent achievement
+Raise two characters to max level |achieve 7382
+step
+Congratulations, you have earned the Dynamic Duo achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Got My Mind On My Money",{
+condition_end=function() return achieved(5456) end,
+achieveid={5455,1181,1180,1178,1177,1176,5456,5456},
+patch='40003',
+description="Loot 200,000 gold.",
+mopready=true,
+},[[
+step
+This achievement will require a lot of time, so you may want to come back to this achievement several times.
+|confirm
+step
+Enter the cave here |goto Twilight Highlands 37.50,88.60 < 10 |walk
+|only if not ZGV.guidesets['AchievementsAMoP']
+step
+kill Twilight Miner##46610+, Depths Overseer##46579+
+Loot 200,000 Gold |achieve 6753/1 |goto Twilight Highlands 34.50,86.30
+|only if not ZGV.guidesets['AchievementsHMoP']
+step
+kill Zandalari Stoneshield##69223+, Zandalari Jaguar Warrior##69171+, Zandalari Commoner##69170+, Zandalari Beastcaller##69065+
+Loot 200,000 Gold |achieve 6753/1 |goto Isle of Thunder 35.00,73.30
+|only if ZGV.guidesets['AchievementsHMoP']
+step
+Congratulations, you have achieved the _Got Mind On My Money_ achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Mystically Epic",{
+achieveid={6349},
+patch='50004',
+description="Equip items in each slot that have at least an item level of 476",
+mopready=true,
+},[[
+step
+For this achievement you will need to simply equip an Epic (purple) item of at least item level 476 in all your Armor and Weapon slots
+For rings and trinkets you can just equip one ring or trinket in both slots seperately
+You can either purchase these items from the Auction House or run dungeons and raids for them
+confirm
+step
+Your progress will be tracked per slot below:
+Head |achieve 6349/1
+Neck |achieve 6349/2
+Shoulder |achieve 6349/3
+Chest |achieve 6349/4
+Waist |achieve 6349/5
+Legs |achieve 6349/6
+Feet |achieve 6349/7
+Wrist |achieve 6349/8
+Hands |achieve 6349/9
+Left Ring |achieve 6349/10
+Right Ring |achieve 6349/11
+First Trinket |achieve 6349/12
+Second Trinket |achieve 6349/13
+Cloak |achieve 6349/14
+Weapon |achieve 6349/15
+step
+Congratulations, you have earned the Mystically Epic achievement! |only if achieved(6349)
+You still have gear to equip please refer back to the list. |only if not achieved(6349)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Mystically Superior",{
+achieveid={6348},
+patch='50004',
+description="Equip a superior item in every slot with a minimum item level of 450.",
+mopready=true,
+},[[
+step
+For this achievement you will need to simply equip a Superior (blue) item of at least item level 450 in all your Armor and Weapon slots
+For rings and trinkets you can just equip one ring or trinket in both slots seperately
+You can either purchase these items from the Auction House or run dungeons and quests for them
+confirm
+step
+Your progress will be tracked per slot below:
+Head |achieve 6348/1
+Neck |achieve 6348/2
+Shoulder |achieve 6348/3
+Chest |achieve 6348/4
+Waist |achieve 6348/5
+Legs |achieve 6348/6
+Feet |achieve 6348/7
+Wrist |achieve 6348/8
+Hands |achieve 6348/9
+Left Ring |achieve 6348/10
+Right Ring |achieve 6348/11
+First Trinket |achieve 6348/12
+Second Trinket |achieve 6348/13
+Cloak |achieve 6348/14
+Weapon |achieve 6348/15
+step
+Congratulations, you have earned the Mystically Superior achievement! |only if achieved(6348)
+You still have gear to equip please refer back to the list. |only if not achieved(6348)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Pandaren Cuisine",{
+achieveid={7329},
+patch='50004',
+description="This guide will walk you through obtaining the Pandaren Cuisine achievement.",
+mopready=true,
+},[[
+step
+In order to get this achievement, it is suggested that you have a _Cooking_ skill of at least 525, and a Fishing skill of at least 500.
+If you don't have cooking, you may be able to buy all of the items needed from the _Auction House_.
+confirm
+step
+Equip your Fishing Pole, if it's not already equipped |use Fishing Pole##6256
+Stand anywhere on the shore.
+Use your Fishing skill to fish in the water |cast Fishing##7620
+collect 3 Golden Carp##74866 |goto Valley of the Four Winds 58.90,47.10
+step
+talk Sungshin Ironpaw##64231
+learn Sliced Peaches##125117 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 1 Pandaren Peach##74660 |n
+create 1 Sliced Peaches##125117,Cooking,1 total |n
+Eat the _Sliced Peaches_ you just created. |use Sliced Peaches##86057 |achieve 7329/1 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Perfectly Cooked Instant Noodles##125067 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 1 Instant Noodles##74854 |n
+create 1 Perfectly Cooked Instant Noodles##125067,Cooking,1 total |n
+Eat the _Perfectly Cooked Instant Noodles_ you just created. |use Perfectly Cooked Instant Noodles##86026 |achieve 7329/2 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Toasted Fish Jerky##124225 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+create 1 Toasted Fish Jerky##124225,Cooking,1 total |n
+Eat the _Toasted Fish Jerky_ you just created. |use Toasted Fish Jerky##81402 |achieve 7329/3 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Dried Needle Mushrooms##124227 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 1 Needle Mushrooms##85583 |n
+create 1 Dried Needle Mushrooms##124227,Cooking,1 total |n
+Eat the _Dried Needle Mushrooms_ you just created. |use Dried Needle Mushrooms##81404 |achieve 7329/4 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Pounded Rice Cake##124223 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 1 Rice##74851 |n
+create 1 Pounded Rice Cake##124223,Cooking,1 total |n
+Eat the _Pounded Rice Cake_ you just created. |use Pounded Rice Cake##81400 |achieve 7329/5 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Yak Cheese Curds##124224 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 1 Yak Milk##74852 |n
+create 1 Yak Cheese Curds##124224,Cooking,1 total |n
+Eat the _Yak Cheese Curds_ you just created. |use Yak Cheese Curds##81401 |achieve 7329/6 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Dried Peaches##124226 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 1 Pandaren Peach##74660 |n
+create 1 Dried Peaches##124226,Cooking,1 total |n
+Eat the _Dried Peaches_ you just created. |use Dried Peaches##81403 |achieve 7329/7 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Boiled Silkworm Pupa##124228 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 1 Silkworm Pupa##85584 |n
+create 1 Boiled Silkworm Pupa##124226,Cooking,1 total |n
+Eat the _Boiled Silkworm Pupa_ you just created. |use Boiled Silkworm Pupa##81405 |achieve 7329/8 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Roasted Barley Tea##125078 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 1 Barley##74832 |n
+create 1 Roasted Barley Tea##125078,Cooking,1 total |n
+Drink the _Roasted Barley Tea_ you just created. |use Roasted Barley Tea##81406 |achieve 7329/9 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Blanched Needle Mushrooms##124233 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 2 Needle Mushrooms##85583 |n
+create 1 Blanched Needle Mushrooms##124233,Cooking,1 total |n
+Eat the _Blanched Needle Mushrooms_ you just created. |use Blanched Needle Mushrooms##81412 |achieve 7329/10 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Red Bean Bun##124229 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 1 Red Beans##85585 |n
+create 1 Red Bean Bun##124229,Cooking,1 total |n
+Eat the _Red Bean Bun_ you just created. |use Red Bean Bun##81408 |achieve 7329/11 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Tangy Yogurt##124230 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 1 Yak Milk##74852 |n
+buy 1 Pandaren Peach##74660 |n
+create 1 Tangy Yogurt##124230,Cooking,1 total |n
+Eat the _Tangy Yogurt_ you just created. |use Tangy Yogurt##81409 |achieve 7329/12 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Peach Pie##124232 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 2 Pandaren Peach##74660 |n
+create 1 Peach Pie##124232,Cooking,1 total
+Eat the _Peach Pie_ you just created. |use Peach Pie##81411 |achieve 7329/13 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Skewered Peanut Chicken##124234 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 1 Farm Chicken##74659 |n
+create 1 Skewered Peanut Chicken##124234,Cooking,1 total |n
+Eat the _Skewered Peanut Chicken_ you just created. |use Skewered Peanut Chicken##81413 |achieve 7329/14 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Pearl Milk Tea##125080 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 2 Yak Milk##74852 |n
+create 1 Pearl Milk Tea##125080,Cooking,1 total |n
+Drink the _Pearl Milk Tea_ you just created. |use Pearl Milk Tea##81414 |achieve 7329/15 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+learn Green Curry Fish##124321 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Sungshin Ironpaw##64231
+buy 1 Rice##74851 |n
+create 1 Green Curry Fish##124231,Cooking,1 total |n
+Eat the _Green Curry Fish_ you just created. |use Green Curry Fish##81410 |achieve 7329/16 |goto Valley of the Four Winds 53.60,51.20
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Pandaren Delicacies",{
+achieveid={7330},
+patch='50004',
+description="Sample 24 foods exclusive to Pandaria.",
+mopready=true,
+},[[
+step
+For this achievement, you will have to 24 brand new foods introduced with the Mists of Pandaria.
+These can either be obtained through the Auction House, other players or by creating them yourself.
+Note that most of these recipies are obtained through being exalted with _The Tillers_.
+confirm
+step
+This is a list of the items you will need to collect and eat:
+Rice Pudding |achieve 7330/1
+Sauteed Carrots |achieve 7330/2
+Ginseng Tea |achieve 7330/3
+Swirling Mist Soup |achieve 7330/4
+Shrimp Dumplings |achieve 7330/5
+Wildfowl Roast |achieve 7330/6
+Charbroiled Tiger Steak |achieve 7330/7
+Golden Carp Consomme |achieve 7330/8
+Fish Cake |achieve 7330/9
+Valley Stir Fry |achieve 7330/10
+Jade Witch Brew |achieve 7330/11
+Wildfowl Ginseng Soup |achieve 7330/12
+Braised Turtle |achieve 7330/13
+Fire Spirit Salmon |achieve 7330/14
+Twin Fish Platter |achieve 7330/15
+Eternal Blossom Fish |achieve 7330/16
+Sea Mist Rice Noodles |achieve 7330/17
+Spicy Vegetable Chips |achieve 7330/18
+Mad Brewer's Breakfast |achieve 7330/19
+Spicy Salmon |achieve 7330/20
+Mogu Fish Stew |achieve 7330/21
+Steamed Crab Suprirse |achieve 7330/22
+Chun Tian Spring Rolls |achieve 7330/23
+Black Pepper Ribs and Shrimp |achieve 7330/24
+Click here to farm and create these yourself. |confirm |next "create"
+Click here to obtain them through other means. |confirm |next "player_ah"
+step
+label "player_ah"
+#include "auctioneer"
+buy 1 Rice Pudding##86069 |complete itemcount(86069) >= 1
+buy 1 Sauteed Carrots##74643 |complete itemcount(74643) >= 1
+buy 1 Ginseng Tea##75026 |complete itemcount(75026) >= 1
+buy 1 Swirling Mist Soup##74644 |complete itemcount(74644) >= 1
+buy 1 Shrimp Dumplings##74651 |complete itemcount(74651) >= 1
+buy 1 Wildfowl Roast##74654 |complete itemcount(74654) >= 1
+buy 1 Charbroiled Tiger Steak##74642 |complete itemcount(74642) >= 1
+buy 1 Golden Carp Consomme##74636 |complete itemcount(74636) >= 1
+buy 1 Fish Cake##74641 |complete itemcount(74641) >= 1
+buy 1 Valley Stir Fry##74647 |complete itemcount(74647) >= 1
+buy 1 Jade Witch Brew##75037 |complete itemcount(75037) >= 1
+buy 1 Wildfowl Ginseng Soup##86070 |complete itemcount(86070) >= 1
+buy 1 Braised Turtle##74649 |complete itemcount(74649) >= 1
+buy 1 Fire Spirit Salmon##74652 |complete itemcount(74652) >= 1
+buy 1 Twin Fish Platter##74655 |complete itemcount(74655) >= 1
+buy 1 Eternal Blossom Fish##74645 |complete itemcount(74645) >= 1
+buy 1 Sea Mist Rice Noodles##74648 |complete itemcount(74648) >= 1
+buy 1 Spicy Vegetable Chips##86074 |complete itemcount(86074) >= 1
+buy 1 Mad Brewer's Breakfast##75038 |complete itemcount(75038) >= 1
+buy 1 Spicy Salmon##86073 |complete itemcount(86073) >= 1
+buy 1 Mogu Fish Stew##74650 |complete itemcount(74650) >= 1
+buy 1 Steamed Crab Surprise##74653 |complete itemcount(74653) >= 1
+buy 1 Chun Tian Spring Rolls##74656 |complete itemcount(74656) >= 1
+buy 1 Black Pepper Ribs and Shrimp##74646 |complete itemcount(74646) >= 1
+|next "eat"
+step
+label "create"
+This is a list of all the materials you will need
+The items listed here are from vendors
+3 Black Pepper
+2 Ginseng
+2 Rice
+3 Rice Flour
+30 Scallions
+1 Yak Milk
+confirm
+step
+The Items showed here are from using _Ironpaw Tokens_
+You will get 25 per token for the items listem below
+25 Green Cabbage
+30 Jade Squash
+32 Juicycrunch Carrot
+25 Mogu Pumpkin
+75 Pink Turnip
+25 Red Blossom Leek
+30 Striped Melon
+25 White Turnip
+30 Witchberries
+confirm
+step
+These items are also from _Ironpaw Tokens_
+You will only get 5 per token for meats and fish:
+5 Mushan Ribs
+5 Raw Crab Meat
+5 Raw Crocolisk Belly
+6 Raw Tiger Steak
+6 Raw Turtle Meat
+3 Wildfowl Breast
+2 Jade Lungfish
+6 Giant Mantis Shrimp
+4 Golden Carp
+1 Reef Octopus
+11 Emperor Salmon
+2 Krasarang Paddlefish
+5 Tiger Gourami
+5 Jewel Danio
+5 Redbelly Mandarin
+confirm
+step
+You will need to farm _Ironpaw Tokens_ to trade for most of these items
+_Nam Ironpaw_ in Valley of the Four Winds
+You can use _Ironpaw Tokens_ to buy some of the materials needed for the recipies
+confirm
+step
+He sells Green Cabbage, Jade Squash, Juciycrunch Carrots, Mogu Pumpkin, Pink Turnips, Red Blossom Leeks, Striped Melons, White Turnips and Witchberries in stacks of 25 per 1 Ironpaw Token
+The Rest of the materials, excluding Black Pepper, Ginseng, Rice, Rice Flour, Scallions and Yak Milk, he sells in stacks of 5 per 1 Ironpaw Token
+confirm
+step
+label "token_start"
+You earn tokens by turning in _Bundles of Groceries_ as a _Repeatable Quest_
+You can farm any cooking ingredient and turn it into _Bundle of Groceries_
+|tip Farming 20 pieces of meat or 100 vegetables will get you one token. One token buys 5 pieces of meat or 25 vegetables of your choice
+For a good location to farm vegetables for tokens, click here |confirm |next "farm_veggie"
+Or
+For a good location to farm meat for tokens, click here |confirm |next "farm_meat"
+Or
+If you have ingredients to turn in for tokens, click here |confirm |next "token_end"
+Or
+Click here to turn in _Spirit of Harmony's_ for Cooking Tokens |confirm |next "spirit"
+step
+label "spirit"
+talk Danky##66685
+buy Ironpaw Token##402+ |n |goto Vale of Eternal Blossoms 61.70,21.70
+You have _{curcount(402)} Tokens_
+You need _{_G.ceil(_G.max(0,  ((15-itemcount(74839))/37)-curcount(402)))} Tokens_ to buy the ingredients you need
+|tip Remember, 1 Token will buy you 25 vegetables or 5 pieces of meat of your choice.
+Click here when you are ready to buy Sacks of Meat with your Tokens |confirm |next "buy"
+step
+label "farm_veggie"
+kill Slingtail Treeleaper##61562+
+These won't give you all vegetables, but you can gain a lot of Striped Melon and Jade Squash to turn in for tokens
+You will need 100 of a vegetable to turn in for one token
+You have enough Squash to turn in for _{_G.floor(_G.max(0, itemcount(74847)/20))} Tokens_
+You have enough Melon to turn in for _{_G.floor(_G.max(0, itemcount(74848)/20))} Tokens_
+|tip Remember, 1 Token will buy you 25 vegetables or 5 pieces of meat of your choice.
+collect Jade Squash##74847 |n |goto The Jade Forest 53.90,81.40
+collect Striped Melon##74848 |n |goto The Jade Forest 53.90,81.40
+confirm |next "token_end"
+step
+label "farm_meat"
+kill Coldbite Crocolisk##62023
+You will need stacks of 20 meat to turn in for one token
+You have enough meat to turn in for _{_G.floor(_G.max(0, (itemcount(75014)/20)))} Tokens_
+|tip Remember, 1 Token will buy you 25 vegetables or 5 pieces of meat.
+collect Raw Crocolisk Belly##75014 |n |goto Dread Wastes 65.60,58.20
+confirm |next "token_end"
+step
+label "token_end"
+talk Merchant Cheng##64940
+Buy Empty containers and fill with any ingredients you have |goto Valley of the Four Winds 53.00,52.40
+Once you are ready to turn in for tokens, click here |confirm |next "repeat"
+step
+label "repeat"
+talk Nam Ironpaw##64395
+accept Replenishing the Pantry##31535 |repeatable |goto Valley of the Four Winds 53.50,51.20
+step
+talk Nam Ironpaw##64395
+turnin Replenishing the Pantry##31535 |repeatable |next "repeat" |goto Valley of the Four Winds 53.50,51.20
+|next |only if default
+step
+label "buy"
+talk Sungshin Ironpaw##64231
+buy 3 Black Pepper##74661 |complete itemcount(74661) >= 3 |goto Valley of the Four Winds 53.60,51.20
+buy 2 Ginseng##74845 |complete itemcount(74845) >= 2 |goto Valley of the Four Winds 53.60,51.20
+buy 2 Rice##74851 |complete itemcount(74851) >= 2 |goto Valley of the Four Winds 53.60,51.20
+buy 3 Rice Flour##74662 |complete itemcount(74662) >= 3 |goto Valley of the Four Winds 53.60,51.20
+buy 30 Scallions##74843 |complete itemcount(74843) >= 30 |goto Valley of the Four Winds 53.60,51.20
+buy 1 Yak Milk##74852 |complete itemcount(74852) >= 1 |goto Valley of the Four Winds 53.60,51.20
+step
+talk Nam Ironpaw##64395
+buy 1 Sack of Green Cabbages##87706 |complete itemcount(87706) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 2 Sack of Jade Squash##87713 |complete itemcount(87713) >= 2 |goto Valley of the Four Winds 53.50,51.20
+buy 2 Sack of Juicycrunch Carrots##87707 |complete itemcount(87707) >= 2 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack Mogu Pumpkins##87708 |complete itemcount(87708) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 3 Sack of Pink Turnips##87715 |complete itemcount(87715) >= 3 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of Red Blossom Leeks##87710 |complete itemcount(87710) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 2 Striped Melon##74848 |complete itemcount(74848) >= 2 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of White Turnips##87716 |complete itemcount(87716) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 2 Sack of Witchberries##87712 |complete itemcount(87712) >= 2 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of Mushan Ribs##87702 |complete itemcount(87702) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of Raw Crab Meat##87704 |complete itemcount(87704) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of Crocolisk Belly##87730 |complete itemcount(87730) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 2 Sack of Raw Tiger Steaks##87701 |complete itemcount(87701) >= 2 |goto Valley of the Four Winds 53.50,51.20
+buy 2 Sack of Raw Turtle Meat##87703 |complete itemcount(87703) >= 2 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of Wildfowl Breasts##87705 |complete itemcount(87705) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of Jade Lungfish##87721 |complete itemcount(87721) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 2 Sack of Giant Mantis Shrimp##87722 |complete itemcount(87722) >= 2 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of Golden Carp##87729 |complete itemcount(87729) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of Reef Octopus##87727 |complete itemcount(87727) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 3 Sack of Emperor Salmon##87723 |complete itemcount(87723) >= 3 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of Krasarang Paddlefish##87728 |complete itemcount(87728) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of Tiger Gourami##87725 |complete itemcount(87725) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of Jewel Danio##87726 |complete itemcount(87726) >= 1 |goto Valley of the Four Winds 53.50,51.20
+buy 1 Sack of Redbelly Mandarin##87724 |complete itemcount(87724) >= 1 |goto Valley of the Four Winds 53.50,51.20
+step
+label "create"
+create 1 Fish Cake##104297,Cooking,1 total
+step
+create 1 Golden Carp Consomme##104237,Cooking,1 total
+step
+create 1 Rice Pudding##125122,Cooking,1 total
+step
+create 1 Wildfowl Ginseng Soup##125121,Cooking,1 total
+step
+create 1 Spicy Salmon##125120,Cooking,1 total
+This recipie is from Bobo Ironpaw
+step
+create 1 Spicy Vegetable Chips##125123,Cooking,1 total
+This recipie is from Bobo Ironpaw
+step
+create 1 Ginseng Tea##124052,Cooking,1 total
+This recipie is from Kol Ironpaw
+step
+create	1 Jade Witch Brew##124053,Cooking,1 total
+This recipie is from Kol Ironpaw
+step
+create 1 Mad Brewer's Breakfast##124054,Cooking,1 total
+This recipie is from Kol Ironpaw
+step
+create 1 Black Pepper Ribs and Shrimp##104300,Cooking,1 total
+This recipie is from Jian Ironpaw
+step
+create 1 Charbroiled Tiger Steak##104298,Cooking,1 total
+This recipie is from Jian Ironpaw
+step
+create 1 Eternal Blossom Fish##104299,Cooking,1 total
+This recipie is from Jian Ironpaw
+step
+create 1 Chun Tian Spring Rolls##104312,Cooking,1 total
+This recipie is from Mei Mei Ironpaw
+step
+create 1 Twin Fish Platter##104311,Cooking,1 total
+This recipie is from Mei Mei Ironpaw
+step
+create 1 Wildfowl Roast##104310,Cooking,1 total
+This recipie is from Mei Mei Ironpaw
+step
+create 1 Braised Turtle##104305,Cooking,1 total
+This recipie is from Yan Ironpaw
+step
+create 1 Mogu Fish Stew##104306,Cooking,1 total
+This recipie is from Yan Ironpaw
+step
+create 1 Swirling Mist Soup##104304,Cooking,1 total
+This recipie is from Yan Ironpaw
+step
+create 1 Fire Spirit Salmon##104308,Cooking,1 total
+This recipie is from Anthea Ironpaw
+step
+create 1 Shrimp Dumplings##104307,Cooking,1 total
+This recipie is from Anthea Ironpaw
+step
+create 1 Steamed Crab Surprise##104309,Cooking,1 total
+This recipie is from Anthea Ironpaw
+step
+create 1 Sauteed Carrots##104301,Cooking,1 total
+step
+create 1 Sea Mist Rice Noodles##104303,Cooking,1 total
+step
+create 1 Valley Stir Fry##104302,Cooking,1 total
+step
+label "eat"
+Eat Rice Pudding |achieve 7330/1 |use Rice Pudding##86069
+step
+Eat Sauteed Carrots |achieve 7330/2 |use Sauteed Carrots##74643
+step
+Drink Ginseng Tea |achieve 7330/3 |use Ginseng Tea##75026
+step
+Eat Swirling Mist Soup |achieve 7330/4 |use Swirling Mist Soup##74644
+step
+Eat Shrimp Dumplings |achieve 7330/5 |use Shrimp Dumplings##74651
+step
+Eat Wildfowl Roast |achieve 7330/6 |use Wildfowl Roast##74654
+step
+Eat Charbroiled Tiger Steak |achieve 7330/7 |use Charbroiled Tiger Steak##74642
+step
+Eat Golden Carp Consomme |achieve 7330/8 |use Golden Carp Consomme##74636
+step
+Eat a Fish Cake |achieve 7330/9 |use Fish Cake##74641
+step
+Eat Valley Stir Fry |achieve 7330/10 |use Valley Stir Fry##74647
+step
+Drink Jade Witch Brew |achieve 7330/11 |use Jade Witch Brew##75037
+step
+Eat Wildfowl Ginseng Soup |achieve 7330/12 |use Wildfowl Ginseng Soup##86070
+step
+Eat Braised Turtle |achieve 7330/13 |use Braised Turtle##74649
+step
+Eat Fire Spirit Salmon |achieve 7330/14 |use Fire Spirit Salmon##74652
+step
+Eat Twin Fish Platter |achieve 7330/15 |use Twin Fish Platter##74655
+step
+Eat Eternal Blossom Fish |achieve 7330/16 |use Eternal Blossom Fish##74645
+step
+Eat Sea Mist Rice Noodles |achieve 7330/17 |use Sea Mist Rice Noodles##74648
+step
+Eat Spicy Vegetable Chips |achieve 7330/18 |use Spicy Vegetable Chips##86074
+step
+Drink Mad Brewer's Breakfast |achieve 7330/19 |use Mad Brewer's Breakfast##75038
+step
+Eat Spicy Salmon |achieve 7330/20 |use Spicy Salmon##86073
+step
+Eat Mogu Fish Stew |achieve 7330/21 |use Mogu Fish Stew##74650
+step
+Eat Steamed Crab Surprise |achieve 7330/22 |use Steamed Crab Surprise##74653
+step
+Eat Chun Tian Spring Rolls |achieve 7330/23 |use Chun Tian Spring Rolls##74656
+step
+Eat Black Pepper Ribs and Shrimp |achieve 7330/24 |use Black Pepper Ribs and Shrimp##74646
+step
+Earn the Pandaren Delicacies Achievement |achieve 7330
+step
+Congratulations, you have earned the Pandaren Delicacies Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Quintessential Quintet",{
+achieveid={7384},
+patch='50004',
+description="Reach maximum level on five characters.",
+mopready=true,
+},[[
+step
+To earn this achievement you will need to level 5 characters to level max level
+Keep in mind that raising at least one Alliance and Horde character to max level will get you the Double Agent achievement
+Raise five characters to level max level |achieve 7384
+step
+Congratulations, you have earned the Quintessential Quintet achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Terrific Trio",{
+achieveid={7383},
+patch='50004',
+description="Reach maximum level on three characters.",
+mopready=true,
+},[[
+step
+To earn this achievement you will need to level 3 characters to level max level
+Keep in mind that raising at least one Alliance and Horde character to max level will get you the Double Agent achievement
+Raise three characters to level max level |achieve 7383
+step
+Congratulations, you have earned the Terrific Trio achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\To All the Squirrels I Once Caressed?",{
+achieveid={6350},
+patch='50004',
+description="This guide will walk you through /loving all the critters in Pandaria.",
+mopready=true,
+},[[
+step
+label "start"
+clicknpc Shrine Fly##59770 |script DoEmote("LOVE")
+|tip Use the Love emote on a Shrine Fly.
+Love a Shrine Fly |achieve 6350/15 |goto The Jade Forest/0 36.78,58.65
+step
+clicknpc Leopard Tree Frog##64774 |script DoEmote("LOVE")
+|tip Use the Love emote on a Leopard Tree Frog.
+Love a Leopard Tree Frog |achieve 6350/9 |goto The Jade Forest/0 36.28,59.02
+step
+clicknpc Coral Adder##59356 |script DoEmote("LOVE")
+|tip Use the Love emote on a Coral Adder.
+Love a Coral Adder |achieve 6350/4 |goto The Jade Forest/0 63.95,84.90
+You can find more around: [64.85,84.34]
+step
+clicknpc Sifang Otter##64787 |script DoEmote("LOVE")
+|tip Use the Love emote on a Sifang Otter.
+|tip If you do not see the Sifang Otter along the coast here, try alternate coordinates below in Valley of the Four Winds.
+Love a Sifang Otter |achieve 6350/16 |goto Krasarang Wilds/0 86.24,8.81
+You can find more around:
+[86.31,11.91]
+[86.30,14.28]
+[Valley of the Four Winds/0 82.43,39.06]
+[Valley of the Four Winds/0 81.46,36.45]
+step
+clicknpc Malayan Quillrat##64784 |script DoEmote("LOVE")
+|tip Use the Love emote on a Malayan Quillrat.
+Love a Malayan Quillrat |achieve 6350/11 |goto Krasarang Wilds/0 84.62,22.23
+step
+clicknpc Luyu Moth##63289 |script DoEmote("LOVE")
+|tip Use the Love emote on a Luyu Moth.
+Love a Luyu Moth |achieve 6350/10 |goto Krasarang Wilds/0 84.25,21.39
+You can find more around: [81.21,20.70]
+step
+clicknpc Amethyst Spiderling##64798 |script DoEmote("LOVE")
+|tip Use the Love emote on an Amethyst Spiderling.
+Love an Amethyst Spiderling |achieve 6350/1 |goto Krasarang Wilds/0 80.84,19.10
+You can find more around: [78.81,19.60]
+step
+clicknpc Bandicoon##64782 |script DoEmote("LOVE")
+|tip Use the Love emote on a Bandicoon.
+Love a Bandicoon |achieve 6350/2 |goto Valley of the Four Winds/0 86.65,45.87
+step
+clicknpc Marsh Fiddler##64786 |script DoEmote("LOVE")
+|tip Use the Love emote on a Marsh Fiddler.
+Love a Marsh Fiddler |achieve 6350/12 |goto Valley of the Four Winds/0 67.87,35.36
+You can find more around:
+[67.96,32.96]
+step
+clicknpc Dancing Water Skimmer##65209 |script DoEmote("LOVE")
+|tip Use the Love emote on a Dancing Water Skimmer.
+Love a Dancing Water Skimmer |achieve 6350/5 |goto Vale of Eternal Blossoms/0 71.90,31.52
+step
+clicknpc Gilded Moth##65205 |script DoEmote("LOVE")
+|tip Use the Love emote on a Gilded Moth.
+Love a Gilded Moth |achieve 6350/7 |goto Vale of Eternal Blossoms/0 75.42,25.13
+step
+clicknpc Golden Civet##65206 |script DoEmote("LOVE")
+|tip Use the Love emote on a Golden Civet.
+Love a Golden Civet |achieve 6350/8 |goto Vale of Eternal Blossoms/0 73.77,23.93
+step
+clicknpc Yakrat##64802 |script DoEmote("LOVE")
+|tip Use the Love emote on a Yakrat.
+Love a Yakrat |achieve 6350/17 |goto Townlong Steppes/0 69.52,51.90
+You can find more around:
+[68.99,50.58]
+[75.34,82.42]
+step
+clicknpc Mongoose##65190 |script DoEmote("LOVE")
+|tip Use the Love emote on a Mongoose.
+Love a Mongoose |achieve 6350/13 |goto Townlong Steppes/0 76.19,72.69
+You can find more around:
+[81.33,81.40]
+[78.81,64.26]
+step
+clicknpc Clouded Hedgehog##64803 |script DoEmote("LOVE")
+|tip Use the Love emote on a Clouded Hedgehog.
+Love a Clouded Hedgehog |achieve 6350/3 |goto Townlong Steppes/0 77.74,89.83
+You can find more around:
+[80.86,89.62]
+step
+clicknpc Resilient Roach##64807 |script DoEmote("LOVE")
+|tip Use the Love emote on a Resilient Roach.
+Love a Resilient Roach |achieve 6350/14 |goto Dread Wastes/0 62.88,47.88
+You can find more around: [57.25,46.24]
+step
+clicknpc Emperor Crab##67057 |script DoEmote("LOVE")
+|tip Use the Love emote on an Emperor Crab.
+|tip They are in the deeper water off the coast, but you can click them while flying above the water.
+Love an Emperor Crab |achieve 6350/6 |goto Dread Wastes/0 54.87,80.91
+step
+Congratulations, you have obtained the To All the Squirrels I Once Caressed? achievement! |only if achieved(6350)
+Still more love required. Routing to the guide start. |next "start" |only if not achieved(6350)
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\A Rare Catch",{
+achieveid={7462},
+patch='50004',
+description="Capture a Rare Quality Battle Pet",
+mopready=true,
+},[[
+step
+The _Adders_ in this area are level 1. Challenge one to a pet battle and capture it.
+Run around this area challenging pets to a Pet Battle until you find one that is of a _Rare_ quality according to the guide. Battle it until it is below 35% and capture it.
+Capture a rare-quality Battle Pet. |achieve 7462 |goto Durotar 45.40,25.70
+step
+Congratulations, you have earned the _A Rare Catch_ Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\An Uncommon Find",{
+achieveid={7465},
+patch='50004',
+description="Capture an Uncommon Quality Battle Pet",
+mopready=true,
+},[[
+step
+The _Adders_ in this area are level 1. Challenge one to a pet battle and capture it.
+Run around this area challenging pets to a Pet Battle until you find one that is of a _Uncommon_ quality according to the guide. Battle it until it is below 35% and capture it.
+Capture an uncommon-quality Battle Pet. |achieve 7465 |goto Durotar 45.40,25.70
+step
+Congratulations, you have earned the _An Uncommon Find_ Achievement!
+]])
+ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Building a Team",{
+achieveid={6555},
+patch='50004',
+description="Capture 25 battle pets.",
+mopready=true,
+},[[
+step
+For this achievement, you will need to _capture 25 pets in Pet Battles_.
+Go to any area where there are different pets, challenge them to pet battles, and capture them when they are below 35% health.
+Earn the _Building a Team_ achievement |achieve 6555
+step
+Congratulations, you have earned the _Building a Team_ Achievement!
+]])
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Celestial Family",{
 achieveid={8519},
 patch='50400',
 description="Complete the Celestial Tournament Scenario",
+mopready=true,
 },[[
 step
 label "start"
@@ -164,6 +5241,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Crazy
 achieveid={8397},
 patch='50400',
 description="Obtain 20 of the cats listed below.",
+mopready=true,
 },[[
 step
 This guide will help you obtain 20 different cat pets for the achievement and title.
@@ -601,6 +5679,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Going
 achieveid={6556},
 patch='50004',
 description="Capture 50 battle pets.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to _capture 50 pets in Pet Battles_.
@@ -613,6 +5692,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\He's 
 achieveid={6554},
 patch='50004',
 description="Capture 10 battle pets.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to _capture 10 pets in Pet Battles_.
@@ -625,6 +5705,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Maste
 achieveid={6557},
 patch='50004',
 description="Capture 100 battle pets.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to _capture 100 pets in Pet Battles_.
@@ -637,6 +5718,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Panda
 achieveid={6589},
 patch='50004',
 description="Catch every battle pet in Pandaria.",
+mopready=true,
 },[[
 step
 Capturing pets in Pandaria will require level 25 pets so train up!
@@ -813,6 +5895,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Raidi
 achieveid={7934},
 patch='50100',
 description="This guide will walk you through several old world raids in order to attain 12 rare pets and an achievement.",
+mopready=true,
 },[[
 step
 label "Leashes 1"
@@ -1252,6 +6335,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Raidi
 achieveid={8293},
 patch='50300',
 description="This guide will walk you through several old world raids in order to attain 10 rare pets and an achievement.",
+mopready=true,
 },[[
 step
 label "Leashes 2"
@@ -1631,6 +6715,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Raidi
 achieveid={9824},
 patch='60100',
 description="This guide will walk you through several old world raids in order to attain 12 rare pets and an achievement.",
+mopready=true,
 },[[
 step
 label "Leashes 3"
@@ -2231,6 +7316,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Raidi
 achieveid={11320},
 patch='70200',
 description="This guide will walk you through several old world raids in order to attain 16 rare pets and an achievement.",
+mopready=true,
 },[[
 step
 label "Leashes 4"
@@ -3179,6 +8265,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\That 
 achieveid={6571},
 patch='50004',
 description="Capture a battle pet below 5% health.",
+mopready=true,
 },[[
 step
 For this Achievement, you will need to _Capture a Battle Pet below 5% Health_.
@@ -3195,6 +8282,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Zen P
 achieveid={7436},
 patch='50004',
 description="Capture 200 battle pets.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to _capture 200 pets in Pet Battles_.
@@ -3207,6 +8295,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Big Ci
 achieveid={6622},
 patch='50004',
 description="Win a pet battle in every Alliance and Horde capital city.",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will need to complete the following tasks:
@@ -3220,6 +8309,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Big Ci
 achieveid={6584},
 patch='50004',
 description="Win a pet battle in every Alliance capital city.",
+mopready=true,
 },[[
 step
 For this achievement, you will have to win a battle in each of the Alliance capitals.
@@ -3249,6 +8339,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Big Ci
 achieveid={6621},
 patch='50004',
 description="Win a pet battle in every Horde capital city.",
+mopready=true,
 },[[
 step
 For this achievement, you will have to face either a player or a random critter in the Capitals of the Horde.
@@ -3272,6 +8363,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Cat Fi
 achieveid={6594},
 patch='50004',
 description="Win 10 pet battles.",
+mopready=true,
 },[[
 step
 This achievement simply requires that you _win 10 pet battles_.
@@ -3284,6 +8376,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\The Ce
 achieveid={8410},
 patch='50400',
 description="Complete the Celestial Tournament Scenario",
+mopready=true,
 },[[
 step
 label "start"
@@ -3401,6 +8494,7 @@ condition_end=function() return achieved(8301) end,
 achieveid={8297,8298,8300,8301,8301},
 patch='50300',
 description="This guide will walk you through earning the Trainer title.",
+mopready=true,
 },[[
 step
 This guide consists of 4 achievements in total, all of which are related to using the _Find Battle_ feature using only level 25 pets.
@@ -3432,6 +8526,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Experi
 achieveid={6593},
 patch='50004',
 description="Win 50 pet battles.",
+mopready=true,
 },[[
 step
 This achievement will require that you _win 50 pet battles_.
@@ -3444,6 +8539,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Experi
 achieveid={6596},
 patch='50004',
 description="Win 50 PvP pet battles.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to win 50 battles against _Another Player_.
@@ -3457,6 +8553,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Grand 
 achieveid={6591},
 patch='50004',
 description="Win 1000 pet battles.",
+mopready=true,
 },[[
 step
 This achievement simply requires that you _win 1000 pet battles_.
@@ -3469,6 +8566,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Grand 
 achieveid={6598},
 patch='50004',
 description="Win 1000 PvP pet battles.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to win 1000 battles against _Another Player_.
@@ -3482,6 +8580,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Legend
 achieveid={6592},
 patch='50004',
 description="Win 5000 pet battles.",
+mopready=true,
 },[[
 step
 This achievement simply requires that you _win 5000 pet battles_.
@@ -3494,6 +8593,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Legend
 achieveid={6599},
 patch='50004',
 description="Win 5000 PvP pet battles.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to win 5000 battles against _Another Player_.
@@ -3506,6 +8606,7 @@ Congratulations, you have earned the Legendary Pet Brawler Achievement!
 ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Local Pet Mauler",{
 achieveid={6558},
 patch='50004',
+mopready=true,
 },[[
 step
 Battle in Durotar |achieve 6558/1 |goto Durotar 36.90,26.20
@@ -3543,6 +8644,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Master
 achieveid={8518},
 patch='50400',
 description="Complete the Celestial Tournament Scenario",
+mopready=true,
 },[[
 step
 label "start"
@@ -3661,6 +8763,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Master
 achieveid={6462},
 patch='50004',
 description="Win 250 pet battles.",
+mopready=true,
 },[[
 step
 This achievement simply requires that you _win 250 pet battles_.
@@ -3673,6 +8776,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Master
 achieveid={6597},
 patch='50004',
 description="Win 250 PvP pet battles.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to win 250 battles against _Another Player_.
@@ -3686,6 +8790,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\No Tim
 achieveid={6620},
 patch='50004',
 description="Win 5 consecutive PvP battles without any pets dying.",
+mopready=true,
 },[[
 step
 This achievement requires that you face players in the new _Pet Battle System_.
@@ -3700,6 +8805,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Pet Br
 achieveid={6595},
 patch='50004',
 description="Win 10 PvP pet battles.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to win 10 battles against _Another Player_.
@@ -3713,6 +8819,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Take '
 achieveid={6851},
 patch='50004',
 description="battle",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will have to fight one of each type of battle pet
@@ -3744,6 +8851,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle\\Win St
 achieveid={6619},
 patch='50004',
 description="Win 25 consecutive pet battles.",
+mopready=true,
 },[[
 step
 Win 25 pet battles in a row.
@@ -3757,6 +8865,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Level\\All Gro
 achieveid={7433},
 patch='50004',
 description="Raise a pet to level 25.",
+mopready=true,
 },[[
 step
 For this Achievement, you will need to _Raise a Battle Pet to Level 25_.
@@ -3769,6 +8878,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Level\\Growing
 achieveid={7433},
 patch='50004',
 description="Raise a pet to level 10.",
+mopready=true,
 },[[
 step
 For this Achievement, you will need to _Raise a Battle Pet to Level 10_.
@@ -3781,6 +8891,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Level\\Just a 
 achieveid={6566},
 patch='50004',
 description="Raise a pet to level 5.",
+mopready=true,
 },[[
 step
 For this Achievement, you will need to _Raise a Battle Pet to Level 5_.
@@ -3793,6 +8904,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Level\\Newbie"
 achieveid={7433},
 patch='50004',
 description="Raise a pet to level 3.",
+mopready=true,
 },[[
 step
 For this Achievement, you will need to _Raise a Battle Pet to Level 3_.
@@ -3805,6 +8917,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Level\\Old Tim
 achieveid={7433},
 patch='50004',
 description="Raise a pet to level 20.",
+mopready=true,
 },[[
 step
 For this Achievement, you will need to _Raise a Battle Pet to Level 20_.
@@ -3817,6 +8930,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Level\\Time fo
 achieveid={7433},
 patch='50004',
 description="Raise a pet to level 15.",
+mopready=true,
 },[[
 step
 For this Achievement, you will need to _Raise a Battle Pet to Level 15_.
@@ -3829,6 +8943,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Battle Master"
 achieveid={7483},
 patch='50004',
 description="Earn 200 pet battle achievement points.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to _earn 200 Pet Battle Achievement Points_.
@@ -3841,6 +8956,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Fabled Pandare
 achieveid={8080},
 patch='50200',
 description="Complete the Beasts of Fable questline",
+mopready=true,
 },[[
 step
 In order to attain this pet, you will need to complete the Battle Pet Questline and defeat the 10 Fabled beasts.
@@ -3860,6 +8976,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\I Choose You",
 achieveid={7908},
 patch='50100',
 description="Defeat Grand Master Aki",
+mopready=true,
 },[[
 step
 In order to attain this pet, you will need to complete the Battle Pet Questline.
@@ -3873,6 +8990,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\The Longest Da
 achieveid={8348},
 patch='50300',
 description="This achievement requires that you complete all of the pet battle daily quests in a single day. This achievement requires that you complete the Battle Pet Questline before attempting this achievement.",
+mopready=true,
 },[[
 step
 In order to complete this achievement, you must have level 25 pets, and you must have already completed the Battle Pet Questline.
@@ -4397,6 +9515,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Time to Open a
 achieveid={7521},
 patch='50004',
 description="Earn 400 pet battle achievement points.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to _earn 400 Pet Battle Achievement Points_.
@@ -4409,6 +9528,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Trainer Extrao
 achieveid={7482},
 patch='50004',
 description="Earn 100 pet battle achievement points.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to _earn 100 Pet Battle Achievement Points_.
@@ -4435,6 +9555,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Ultimate Train
 achieveid={6600},
 patch='50004',
 description="Earn 300 pet battle achievement points.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to _earn 300 Pet Battle Achievement Points_.
@@ -4447,6 +9568,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\Going
 achieveid={7500},
 patch='50004',
 description="Obtain a companion pet.",
+mopready=true,
 },[[
 step
 The _Adders_ in this area are level 1. Challenge one to a pet battle and capture it.
@@ -4482,6 +9604,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Pet Battles\\Collect\\That'
 achieveid={7501},
 patch='50004',
 description="Obtain a companion pet.",
+mopready=true,
 },[[
 step
 The _Adders_ in this area are level 1. Challenge one to a pet battle and capture it.
@@ -4517,6 +9640,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Player vs. Player\\The Time
 achieveid={8716},
 patch='50400',
 description="Use the Censer of Eternal Agony obtained from Speaker Gulan on the Timeless Isle.",
+mopready=true,
 },[[
 step
 label "start"
@@ -4539,6 +9663,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Player vs. Player\\The Time
 achieveid={8720},
 patch='50400',
 description="This guide will instruct you on how to get the Kilnmaster Achievement, which takes place in the Timeless Isle.",
+mopready=true,
 },[[
 step
 Be warned that this mount may require that you do some PVP combat.
@@ -4567,6 +9692,7 @@ condition_end=function() return achieved(7328) end,
 achieveid={1795,1796,1797,1798,1799,5471,7328},
 patch='50004',
 description="This guide will show you how to learn 240 cooking recipes.",
+mopready=true,
 },[[
 step
 There are 47 Recipes here to help complete your Ironpaw Chef Achievement.
@@ -4653,6 +9779,7 @@ achieveid={7305},
 patch='50004',
 keywords={"Cooking","Master","of","the","Brew"},
 description="This guide will walk you through completing the \"Master of the Brew\" Achievement.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to reach level 75 Way of the Brew cooking on a single character
@@ -4667,6 +9794,7 @@ achieveid={7300},
 patch='50004',
 keywords={"Cooking","Master","of","the","Grill"},
 description="This guide will walk you through completing the \"Master of the Grill\" Achievement.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to reach level 75 Way of the Grill cooking on a single character
@@ -4681,6 +9809,7 @@ achieveid={7304},
 patch='50004',
 keywords={"Cooking","Master","of","the","Oven"},
 description="This guide will walk you through completing the \"Master of the Oven\" Achievement.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to reach level 75 Way of the Oven cooking on a single character
@@ -4694,6 +9823,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\Maste
 achieveid={7306},
 patch='50004',
 description="This guide will walk you through becoming the Master of Pandaren Cooking.",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will have to level your cooking skill.
@@ -4714,6 +9844,7 @@ achieveid={7302},
 patch='50004',
 keywords={"Cooking","Master","of","the","Pot"},
 description="This guide will walk you through completing the \"Master of the Pot\" Achievement.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to reach level 75 Way of the Pot cooking on a single character
@@ -4728,6 +9859,7 @@ achieveid={7303},
 patch='50004',
 keywords={"Cooking","Master","of","the","Steamer"},
 description="This guide will walk you through completing the \"Master of the Steamer\" Achievement.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to reach level 75 Way of the Steamer cooking on a single character
@@ -4742,6 +9874,7 @@ achieveid={7301},
 patch='50004',
 keywords={"Cooking","Master","of","the","Wok"},
 description="This guide will walk you through completing the \"Master of the Wok\" Achievement.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to reach level 75 Way of the Wok cooking on a single character
@@ -4755,6 +9888,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Cooking\\The P
 achieveid={7326},
 patch='50004',
 description="This guide will walk you through the Pandaren Gourmet achievement. This guide consists of 2 achievements.",
+mopready=true,
 },[[
 step
 For this achievement, you will have to create 30 brand new foods introduced with the Mists of Pandaria. It is recommended that you are already level 75 in Pandaria cooking.
@@ -5006,6 +10140,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Professions\\Fishing\\The P
 achieveid={7611},
 patch='50004',
 description="This guide will walk you through The Pandarian Angler",
+mopready=true,
 },[[
 step
 Equip your Fishing Pole, if it's not already equipped |use Fishing Pole##6256
@@ -5066,6 +10201,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7318},
 patch='50004',
 description="This guide will walk you through completing the \"A Taste of History\" achievement.",
+mopready=true,
 },[[
 step
 label "start"
@@ -5114,6 +10250,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7294},
 patch='50004',
 description="Successfully harvest your first special crop",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will need to be revered with the Tillers faction.
@@ -5159,6 +10296,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7296},
 patch='50004',
 description="This guide will walk you through obtaining the Ain't Lost No More Achievement.",
+mopready=true,
 },[[
 step
 For this achievement you must be _Exalted_ with _The Tillers_, and _Best Friends_ with all of the _Tillers NPCs_.
@@ -5228,6 +10366,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7312},
 patch='50004',
 description="This guide will walk you through obtaining the Amber is the Color of My Energy Achievement.",
+mopready=true,
 },[[
 step
 For this achievement you must be at least _Revered_ with _The Klaxxi_ and completed all of the Dread Wastes Leveling/Loremaster quests.
@@ -5395,6 +10534,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8112},
 patch='50200',
 description="Scare away the rare blue Hatchling Sycreamer",
+mopready=true,
 },[[
 step
 Run next to Hatchlings to scare them away until you find the rare blue one.
@@ -5407,6 +10547,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8118},
 patch='50200',
 description="Knock a Zandalari Beastcaller from his flying mount",
+mopready=true,
 },[[
 step
 For this achievement, you will need to attack a _Zandalari Beastcaller_ while he is riding on his flying mount in order to knock him off.
@@ -5422,6 +10563,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7287},
 patch='50004',
 description="Defeat every challenger at the cradle of Chi-ji.",
+mopready=true,
 },[[
 step
 label "startaug"
@@ -5590,6 +10732,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7323},
 patch='50004',
 description="Use a Mogu Statue's Crushing Slam to kill another opponent.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to have a _Mogu Statue_ defeat another another opponent using the ability _Crushing Slam_.
@@ -5607,6 +10750,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8105},
 patch='50200',
 description="This guide will walk you through completing the \"The Crumble Bundle\" achievement.",
+mopready=true,
 },[[
 step
 label "start"
@@ -5840,6 +10984,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7310},
 patch='50004',
 description="This guide will walk you through obtaining the Defender of Gods Achievement.",
+mopready=true,
 },[[
 step
 For this achievement you must be at least _Revered_ with _The Shado-Pan_.
@@ -5880,6 +11025,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8120},
 patch='50200',
 description="Destroy the Priceless Zandalari Vase using the Loa-Infused Bloodhorn's charge attack.",
+mopready=true,
 },[[
 step
 kill Loa-Infused Bloodhorn##69193+
@@ -5892,6 +11038,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7320},
 patch='50004',
 description="This guide will walk you through obtaining the Dog Pile Achievement.",
+mopready=true,
 },[[
 step
 For this achievement you must be at least _Honored_ with _The Golden Lotus_.
@@ -5919,6 +11066,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={6540},
 patch='50004',
 description="This guide will walk you through completing the \"Dread Haste Makes Dread Waste\" achievement.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to _complete the 4 storylines in The Dread Wastes_
@@ -5937,6 +11085,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7285},
 patch='50004',
 description="Complete 25 daily quests in pandaria in a single daily reset period.",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will need to have unlocked several daily hubs.
@@ -6034,6 +11183,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7286},
 patch='50004',
 description="Defeat Brewmaster Chani, The Streetfighter, Clever Ashyo, Ken-Ken Kang Bramblestaff, The Wrestler, Master Boom Boom, Master Windfur Hackiss, Healiss and Tankiss at the Temple of the White Tiger.",
+mopready=true,
 },[[
 step
 label "rev"
@@ -6169,6 +11319,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7309},
 patch='50004',
 description="kill 15 or more Gai-Cho combatants with a single Highly Explosive Oil Barrel",
+mopready=true,
 },[[
 step
 This achievement requires you to do a daily for the Shado-Pan.
@@ -6200,6 +11351,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8117},
 patch='50200',
 description="Finish off an opposing player with a Sunreaver or Kirin Tor ward.",
+mopready=true,
 },[[
 step
 For this achievement, you must battle an opposing player near your base on the Isle of the Thunder King. Once they are close to death, activate a ward nearby to cause a killing blow.
@@ -6213,6 +11365,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7298},
 patch='50004',
 description="Complete 15 Shado-Pan daily quests with each of the Shadow-Pan Heroes.",
+mopready=true,
 },[[
 step
 For this achievement you must be at least _Revered_ with _The Shado-Pan_.
@@ -6243,6 +11396,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7292},
 patch='50004',
 description="This guide will walk you through obtaining the Green Acres Achievement.",
+mopready=true,
 },[[
 step
 #include "Tillers_Quests"
@@ -6251,6 +11405,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7290},
 patch='50004',
 description="This guide will walk you through obtaining the How to Strain Your Dragon Achievement.",
+mopready=true,
 },[[
 step
 For this achievement you must be at least _Revered_ with _The Order of the Cloud Serpent_.
@@ -6289,6 +11444,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7291},
 patch='50004',
 description="This guide will walk you through obtaining the In a Trail of Smoke Achievement.",
+mopready=true,
 },[[
 step
 For this achievement you must be at least _Revered_ with _The Order of the Cloud Serpent_.
@@ -6330,6 +11486,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8028},
 patch='50200',
 description="Defeat Nalak, the Storm Lord, on the Isle of Thunder. In order to get this achievement, you must have access to all areas of the _Isle of Thunder_. They are unlocked in stages on a server-wide basis, through completion of daily quests taking place on the Isle. As soon as the realm has made enough concerted progress, this achievement's solo scenarios will be unlocked.",
+mopready=true,
 },[[
 step
 label "start"
@@ -6594,6 +11751,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8101},
 patch='50200',
 description="This guide will walk you through completing the \"It Was Worth Every Ritual Stone\" achievement.",
+mopready=true,
 },[[
 step
 For this, you will need to defeat all of the Isle of Thunder summonable bosses
@@ -6624,6 +11782,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7308},
 patch='50004',
 description="Complete each of the Shado-Pan Blackguard daily quests without taking any damage from monsters.",
+mopready=true,
 },[[
 step
 In order to earn the achievement _Know Your Role_ you will need to complete Complete each of the Shado-Pan Blackguard daily quests without taking any damage from monsters.
@@ -6679,6 +11838,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7295},
 patch='50004',
 description="Harvest every vegetable on a high-forecast day.",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will need to be revered with the Tillers faction.
@@ -6718,6 +11878,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7299},
 patch='50004',
 description="Complete each set of the Shado-Pan daily quests without a Shado-Pan companion of leaving the Townlong Steppes.",
+mopready=true,
 },[[
 step
 In order to earn this achievement you will need to complete every set of Shado-Pan daily quests without a companion and without leaving Townlong.
@@ -6741,6 +11902,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={6536},
 patch='50004',
 description="This guide will walk you through completing the \"Mighty Roamin' Krasaranger\" achievement.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to _complete the 10 storylines in Kun-Lai Summit_
@@ -6761,6 +11923,7 @@ achieveid={8110},
 patch='50200',
 keywords={"Gogu"},
 description="This guide will walk you through completing the \"The Mogu Have Gotta Go-gu\" achievement.",
+mopready=true,
 },[[
 step
 kill Shan'ze Gravekeeper##69235+, Shan'ze Thundercaller##69264+, Shan'ze Soulripper##0, Shan'ze Gravekeeper##69235+, Risen Ancestor##69237, Ancient Stone Conqueror##69238+
@@ -6788,6 +11951,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7317},
 patch='50004',
 description="Defeat the following powerful enemies within the vale of eternal blossoms.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to kill 16 unique enemies.
@@ -6852,6 +12016,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7324},
 patch='50004',
 description="This guide will walk you through completing the \"One Step at a Time\" achievement.",
+mopready=true,
 },[[
 step
 label "start"
@@ -6968,6 +12133,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={6539},
 patch='50004',
 description="This guide will walk you through completing the \"One Steppe Forward, Two Steppes Back\" achievement.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to _complete the 5 storylines in Townlong Steppes_
@@ -6987,6 +12153,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8119},
 patch='50200',
 description="In the Court of Bones, summon and defeat all of the ancient mogu listed below.",
+mopready=true,
 },[[
 step
 We suggest you are in a group of at least 2-3 people for this achievement.
@@ -7007,6 +12174,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7316},
 patch='50004',
 description="Bomb the following targets during the daily quest 'Dark Skies'.",
+mopready=true,
 },[[
 step
 This achievement requires the quest "Dark Skies" and bombing several NPCs that spawn randomly.
@@ -7071,6 +12239,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8100},
 patch='50200',
 description="This guide will walk you through completing the \"Pay to Slay\" achievement.",
+mopready=true,
 },[[
 step
 For this, you will need to farm _"Shan'ze Ritual Stones"_
@@ -7091,6 +12260,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8114},
 patch='50200',
 description="Survive for 90 seconds on the pillars in the Swollen Vault.",
+mopready=true,
 },[[
 step
 goto Isle of Thunder/0 62.30,40.30
@@ -7106,6 +12276,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7297},
 patch='50004',
 description="This guide will walk you through obtaining the Proven Strength Achievement.",
+mopready=true,
 },[[
 step
 For this achievement you must be at least _Revered_ with _The Shado-Pan_.
@@ -7227,6 +12398,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={6301},
 patch='50004',
 description="This guide will walk you through completing the \"Rally the Valley\" achievement.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to _complete the 10 storylines in Valley of the Four Winds_
@@ -7247,6 +12419,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8107},
 patch='50200',
 description="Crush 200 Ihgaluk Roaches within 1 minute",
+mopready=true,
 },[[
 step
 For this achievement, you must run over 200 roaches in Ihgaluk within 1 minute. It is recommended that you have multiple people with you when attempting this achievement
@@ -7262,6 +12435,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7319},
 patch='50004',
 description="Complete the following survival ring challenges without taking any damage.",
+mopready=true,
 },[[
 step
 For this achievement you will need to survive both the _Survival Ring: Blades_ and Survival Ring: Flame_ daily quests for 90 seconds without taking damage.
@@ -7315,6 +12489,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7322},
 patch='50004',
 description="Complete the Serpent Spine roll course in 70 seconds or less.",
+mopready=true,
 },[[
 step
 This achievement requires that you be _Revered_ with the _Golden Lotus_ faction.
@@ -7370,6 +12545,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7502},
 patch='50004',
 description="Defeat the Ik'Thik Colossus.",
+mopready=true,
 },[[
 #include "Marista_Hub"
 step
@@ -7381,6 +12557,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7289},
 patch='50004',
 description="This guide will walk you through obtaining the Shadow Hopper achievement.",
+mopready=true,
 },[[
 step
 In order to complete this achievement, you must be at least _Revered_ with the _Order of the Cloud Serpent_
@@ -7414,6 +12591,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7307},
 patch='50004',
 description="Complete a full set of Shado-Pan Wu Kao daily quests while only killing the exact number of mantid required.",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will need to kill an exact number of enemies that a quest tells you to, and then turn in the quest.
@@ -7439,6 +12617,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={6538},
 patch='50004',
 description="This guide will walk you through completing the \"Slum It in the Summit\" achievement.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to _complete the 10 storylines in Kun-Lai Summit_
@@ -7463,6 +12642,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8115},
 patch='50200',
 description="Defeat Metal Lord Mono-Han with 10 stacks of Power Surge.",
+mopready=true,
 },[[
 step
 In order to get this achievement, you must have access to stage 4 of the _Isle of Thunder_.
@@ -7482,6 +12662,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7321},
 patch='50004',
 description="Kill 60 Krik'Thik hivlings with a single Shadow Pan touch.",
+mopready=true,
 },[[
 step
 Routing to proper section |next "achieve" |only if rep("Golden Lotus")>=Revered
@@ -7548,6 +12729,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7313},
 patch='50004',
 description="Complete 5 Klaxxi daily quests with each of the following buffs.",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will need to have unlocked the _Klaxxi Dailies_ via The Dread Wastes leveling guide.
@@ -7581,6 +12763,7 @@ achieveid={8121},
 patch='50200',
 keywords={"Stormbreaker"},
 description="This guide will walk you through completing the \"Stormbreaker\" achievement.",
+mopready=true,
 },[[
 step
 Reference our _"Isle of Thunder"_ guide to earn this achievement |confirm |next "Achievement Guides\\Quests\\Mists of Pandaria\\Isle of Thunder"
@@ -7641,6 +12824,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7314},
 patch='50004',
 description="Grow a Kunchong to full size and take it on a rampage.",
+mopready=true,
 },[[
 step
 In order to unlock the dailies required for this achievement, you will need to complete the _Dread Wastes_ Leveling guide.
@@ -7666,6 +12850,7 @@ condition_end=function() return achieved(8109) end,
 achieveid={8110,8109},
 patch='50200',
 description="In the Court of Bones, summon and defeat all of the ancient mogu listed below.",
+mopready=true,
 },[[
 step
 We suggest you are in a group of at least 2 people for this achievement.
@@ -7695,6 +12880,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8111},
 patch='50200',
 description="Enjoy the effects of a Zandalari Potion and the Mighty Loa buff at the same time.",
+mopready=true,
 },[[
 step
 kill Drakkari God-Hulk##69200+
@@ -7707,6 +12893,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8104},
 patch='50200',
 description="Find a Trove of the Thunder King",
+mopready=true,
 },[[
 step
 click Trove of the Thunder King##218593
@@ -7718,6 +12905,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7293},
 patch='50004',
 description="This guide will walk you through obtaining the Green Acres Achievement.",
+mopready=true,
 },[[
 step
 #include "Tillers_Quests"
@@ -7737,6 +12925,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={6534},
 patch='50004',
 description="This guide will walk you through completing the \"Upjade Complete\" achievement.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to _complete the 12 storylines in the Jade Forest_
@@ -7763,6 +12952,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8108},
 patch='50200',
 description="/bow before the following forms of Kroshik.",
+mopready=true,
 },[[
 step
 This achievement requires that you visit _Ihgaluk Crag_ multiple times over several days, as the phases of _Kroshik_ change at certain increments.
@@ -7795,6 +12985,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={7288},
 patch='50004',
 description="This guide will walk you through obtaining the Yak Attack achievement.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to do dailies for the _August Celestials_.
@@ -7814,6 +13005,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8116},
 patch='50200',
 description="Kill Fleshcrafter Hoku without killing any of the Possessed Blood that spawns during the fight.",
+mopready=true,
 },[[
 step
 For this achievement, you will likely need to have at least 2 people who have _Heroic Level Dungeon Gear_.
@@ -7830,6 +13022,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Mists of Pandaria\\
 achieveid={8212},
 patch='50200',
 description="Loot the rare books listed from Zandalari trolls on the Isle of Thunder",
+mopready=true,
 },[[
 step
 In order to attain thi, you will need to grind mobs in Zu'Tual on the Isle of Thunder.
@@ -7850,6 +13043,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Quests\\Loremaster of Panda
 achieveid={6541},
 patch='50004',
 description="Complete all the storyline achievements in all the zones of the game.",
+mopready=true,
 },[[
 step
 Use the Pandaria Leveling Guides to complete Loremaster:
@@ -7868,6 +13062,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Reputation\\Mists of Pandar
 achieveid={8206},
 patch='50200',
 description="Become exalted with the Dominance Offensive",
+mopready=true,
 },[[
 step
 For this achievement, you must become _Exalted_ with the _Dominance Offensive_.
@@ -7911,6 +13106,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Reputation\\Mists of Pandar
 achieveid={8209},
 patch='50200',
 description="Become exalted with the Sunreaver Onslaught",
+mopready=true,
 },[[
 step
 'For this achievement, you must become _Exalted_ with the _Sunreaver Onslaught_.
@@ -7946,6 +13142,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7252},
 patch='50004',
 description="This guide will walk you through the A Brewing Storm Achievement.",
+mopready=true,
 },[[
 step
 Use the _Dungeon Finder_, and click the _Scenarios_ tab to queue for _A Brewing Storm_.
@@ -7974,6 +13171,7 @@ dungeon=937,
 achieveid={8319},
 patch='50300',
 description="Pick up 3 special artifacts in the Dark Heart scenario.",
+mopready=true,
 },[[
 step
 talk Grizzle Gearslip##70956 |goto Dark Heart of Pandaria 53.20,67.50
@@ -7998,6 +13196,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7271},
 patch='50004',
 description="This guide will help you earn the Arena of Annihilation Achievement. You must be level 90 for this achievement.",
+mopready=true,
 },[[
 step
 talk Gurgthock##63315
@@ -8040,6 +13239,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7273},
 patch='50004',
 description="This guide will walk you through defeating Little Liuyang without anyone taking damage from a Flame Wall in the Arena of Annihilation scenario.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8066,6 +13266,7 @@ dungeon=884,
 achieveid={6931},
 patch='50004',
 description="This achievement takes place entirely in the scenario Brewmoon Festival.",
+mopready=true,
 },[[
 step
 label "start"
@@ -8126,6 +13327,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7989},
 patch='50100',
 description="This guide will walk you through aiding the construction of the Jinyu defenses in the scenario, 'A Little Patience'.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8145,6 +13347,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7990},
 patch='50100',
 description="This guide will walk you through aiding in the construction of the Dwarf defenses in the scenario, 'A Little Patience'.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8164,6 +13367,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7257},
 patch='50004',
 description="This guide will walk you through defeating Borokhula the Destroyer in A Brewing Storm without getting hit by his Swamp Smash.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8190,6 +13394,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7276},
 patch='50004',
 description="This guide will walk you through defeating the Abomination of Anger in the Crypt of Forgotten Kings scenario without anyone taking damage from the red clouds.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8224,6 +13429,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={8295},
 patch='50300',
 description="This guide will walk you through completing the Secrets of Ragefire scenario without any member of the Gob Squad taking damage.",
+mopready=true,
 },[[
 step
 You will need to run this instance multiple times in order to earn this achievement
@@ -8284,6 +13490,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={8368},
 patch='50300',
 description="This guide will walk you through defeating the Abomination of Anger in the Crypt of Forgotten Kings scenario with 20 stacks of Uncontrolled Anger.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8319,6 +13526,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={8017},
 patch='50100',
 description="Defeat Commander Tel'vrak without killing any Zan'thik Swarmers in the Assault on Zan'vess scenario. You must be level 90 for this achievement.",
+mopready=true,
 },[[
 step
 Use the _Dungeon Finder_, and click the _Scenarios_ tab to queue for _Assault on Zan'vess_.
@@ -8335,6 +13543,7 @@ dungeon=939,
 achieveid={8329},
 patch='50300',
 description="Use every basket of Shimmerweed in a single Blood in the Snow scenario run.",
+mopready=true,
 },[[
 step
 You will have a chance to get these as you go through the scenario, so make sure you pay attention to them.
@@ -8390,6 +13599,7 @@ dungeon=939,
 achieveid={8330},
 patch='50300',
 description="Don't let Hekima cast Hekima's Wisdom during the Blood in the Snow scenario.",
+mopready=true,
 },[[
 step
 For this achievement, you must have a stun/interrupt ability or be with someoone who does.
@@ -8427,6 +13637,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7992},
 patch='50100',
 description="This guide will walk you through aiding in the construction of the Night Elf defenses in the scenario, 'A Little Patience'.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8446,6 +13657,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7272},
 patch='50004',
 description="This guide will walk you through defeating all final bosses - Cloudbender Kobo, Maki Waterblade, and Satay Byu - in the Arena of Annihilation scenario.",
+mopready=true,
 },[[
 step
 You will need to run this instance multiple times in order to earn this achievement
@@ -8487,6 +13699,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 description="This guide will walk you through steping on a floor trap in the Crypt of Forgotten Kings scenario.",
 achieveid={7275},
 patch='50004',
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8503,6 +13716,7 @@ dungeon=938,
 achieveid={8347},
 patch='50300',
 description="Complete the Battle on the High Seas Scenario without any member of your party getting hit by cannon fire at any point.",
+mopready=true,
 },[[
 step
 During the entire _Battle on the High Seas_ Scenario, there will be red circles that spawn underneath you and your party.
@@ -8517,6 +13731,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7232},
 patch='50004',
 description="This achievement takes place entirely in the scenario Theramore's Fall.",
+mopready=true,
 },[[
 step
 Queue for Unga Ingoo Scenario
@@ -8549,6 +13764,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7529},
 patch='50004',
 description="This achievement takes place entirely in the scenario Theramore's Fall.",
+mopready=true,
 },[[
 step
 This achievement takes place during _Stage 3_ of _Theramore's Fall_.
@@ -8567,6 +13783,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7239},
 patch='50004',
 description="This achievement takes place entirely in the scenario Unga Ingoo.",
+mopready=true,
 },[[
 step
 In order to earn this achievement, you will need to prevent Captain Ook from picking up an orange during your encounter with him.
@@ -8583,6 +13800,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7248},
 patch='50004',
 description="This achievement takes place entirely in the scenario Unga Ingoo.",
+mopready=true,
 },[[
 step
 This achievement takes place during the Scenario _Unga Ingoo_.
@@ -8608,6 +13826,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7987},
 patch='50100',
 description="This guide will walk you through destroying all remaining eggs before Broodmaster Noshi reaches 20% health in the Dagger in the Dark Scenario.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8646,6 +13865,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7530},
 patch='50004',
 description="This achievement takes place entirely in the scenario Theramore's Fall.",
+mopready=true,
 },[[
 step
 This achievement takes place during _Stage 3_ of _Theramore's Fall_.
@@ -8665,6 +13885,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7258},
 patch='50004',
 description="This guide will walk you through finishing A Brewing Storm with all six Thunderpaw Guardians still alive.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8691,6 +13912,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7267},
 patch='50004',
 description="This achievement takes place entirely in the scenario Greenstone Village.",
+mopready=true,
 },[[
 step
 This achievement takes place during _Stage 3_ of the Greenstone Village scenario.
@@ -8708,6 +13930,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7261},
 patch='50004',
 description="This guide will walk you through brewing the Boomer Brew without anyone in your party being hit by lightning during A Brewing Storm.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8726,6 +13949,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={6943},
 patch='50004',
 description="This guide will walk you through completing 100 scenarios.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8739,6 +13963,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7266},
 patch='50004',
 description="This achievement takes place entirely in the scenario Greenstone Village.",
+mopready=true,
 },[[
 step
 This achievement takes place after _Stage 3_ of the Greenstone Village scenario.
@@ -8754,6 +13979,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7231},
 patch='50004',
 description="This achievement takes place entirely in the scenario Unga Ingoo.",
+mopready=true,
 },[[
 step
 This achievement takes place during _Stage 2_ of the scenario _Unga Ingoo_.
@@ -8767,6 +13993,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={8015},
 patch='50100',
 description="This achievement takes place entirely in the scenario Lion's Landing.",
+mopready=true,
 },[[
 step
 This achievement takes place at the final stage, or after the scenario _Lion's Landing_ is completed.
@@ -8794,6 +14021,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7984},
 patch='50100',
 description="This guide will walk you through killing 3 of the Darkhatched Lizard-Lord's reinforcements using his Water Jets ability in the Dagger in the Dark Scenario.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8834,6 +14062,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7993},
 patch='50100',
 description="This guide will walk you through aiding Master Brownstone in the construction of the Pandaren defenses in the scenario, 'A Little Patience'.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8853,6 +14082,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7991},
 patch='50100',
 description="This guide will walk you through aiding in the construction of the Gnome defenses in the scenario, 'A Little Patience'.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8872,6 +14102,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={6930},
 patch='50004',
 description="This guide will walk you through completing the Brewmoon Festival scenario without any Bataari invaders setting the village on fire.",
+mopready=true,
 },[[
 step
 talk Lorewalker Fu##78709 |goto Vale of Eternal Blossoms 83.00,30.60
@@ -8890,6 +14121,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\Scenarios\\Mists of Pandari
 achieveid={7986},
 patch='50100',
 description="This achievement takes place entirely in the scenario Dagger in the Dark.",
+mopready=true,
 },[[
 step
 This achievement takes place during _Stage 8_ in the Dagger in the Dark Scenario.
@@ -8908,6 +14140,7 @@ achieveid={9590},
 patch='60001',
 keywords={"Scenario"},
 description="This guide will walk you through completing the \"You're Doing it Wrong\" Achievement.",
+mopready=true,
 },[[
 step
 To earn this achievement, you will need to complete a Proving Grounds scenario while using the wrong specialization
@@ -8936,6 +14169,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\World Events\\Brawler's Gui
 achieveid={7944},
 patch='50100',
 description="Hit an angry spectator in the head with an Expired Blackout Brew.",
+mopready=true,
 },[[
 step
 talk Esme Sunshadow##68794
@@ -8951,6 +14185,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\World Events\\Brawler's Gui
 achieveid={8342},
 patch='50300',
 description="Reach rank 10 with the Brawler's Guild.",
+mopready=true,
 },[[
 step
 In order to obtain this achievement, you must gather all of the Challenge Cards for the Brawler's Guild
@@ -9135,6 +14370,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\World Events\\Brawler's Gui
 achieveid={8343},
 patch='50300',
 description="Reach rank 10 with the Brawler's Guild during Mists of Pandaria.",
+mopready=true,
 },[[
 step
 This achievement was gained by defeating the Brawler's Guild bosses during Mists of Pandaria
@@ -9145,6 +14381,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\World Events\\Brawler's Gui
 achieveid={7945},
 patch='50100',
 description="Reach rank 10 with the Brawler's Guild.",
+mopready=true,
 },[[
 step
 You will need another player to help you with this.
@@ -9168,6 +14405,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\World Events\\Brawler's Gui
 achieveid={7943},
 patch='50100',
 description="Cheer a player on after they have won a brawl.",
+mopready=true,
 },[[
 step
 Wait for someone else to enter in a brawl. As soon as the winner has been declared, cheer for them
@@ -9181,6 +14419,7 @@ condition_end=function() return achieved(8338) end,
 achieveid={7948,8020,7939,7942,8337,8338},
 patch='50300',
 description="Reach rank 10 with the Brawler's Guild.",
+mopready=true,
 },[[
 This achievement can _no longer be earned_
 |tip This achievement was earned by reaching Rank 10 with Bizmo's Brawlpub during the Pandaria campaign.
@@ -9189,6 +14428,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\World Events\\Brawler's Gui
 achieveid={8022},
 patch='50100',
 description="Reach rank 10 with the Brawler's Guild.",
+mopready=true,
 },[[
 step
 For this achievement, you will need to complete the entire Brawler's Guild questline through rank 8.
@@ -9258,6 +14498,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\World Events\\Brawler's Gui
 achieveid={7950},
 patch='50100',
 description="Reach rank 10 with the Brawler's Guild.",
+mopready=true,
 },[[
 step
 For this achievement, you will either need to come to the Brawler's Guild during peak hours on your server, or get help from friends and guildmates
@@ -9275,6 +14516,7 @@ description="This guide will walk you through earning the Glory of the Pandaria 
 achieveid={6932},
 patch='50004',
 keywords={"Mists, of, Pandaria, Heroic, Mogu'shan, Vaults, Heart, of, Fear, Terrace, of, Endless, Springs"},
+mopready=true,
 },[[
 step
 Earn the "Must Love Dogs" Achievement |achieve 6823
@@ -9397,3 +14639,4 @@ step
 _Congratulations!_
 You Earned the "Glory of the Pandaria Raider" Achievement.
 ]])
+ZGV.BETAEND()

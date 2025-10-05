@@ -1,6 +1,8 @@
 local Goal = ZGV.GoalProto
 local GOALTYPES = ZGV.GOALTYPES
 
+local ZGV=ZGV
+
 local ParseID = ZGV.Parser.ParseID
 local L = ZGV.L
 

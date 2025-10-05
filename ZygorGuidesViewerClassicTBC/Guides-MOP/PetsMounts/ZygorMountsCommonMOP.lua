@@ -65,29 +65,6 @@ step
 use the Reins of the Bone-White Primal Raptor##94290
 learnmount Bone-White Primal Raptor##138640
 ]])
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Miscellaneous\\Crimson Deathcharger",{
-keywords={"crimson","death","charger","ground","mount"},
-mounts={73313},
-patch='unknown',
-mounttype='Ground',
-model={25279},
-description="This guide will teach you how to acquire the Crimson Deathcharger mount.",
-mopready=true,
-},[[
-step
-This mount is a reward given to players that complete the quest line to acquire the legendary Shadowmourne
-|tip Shadowmourne's quest line takes several months to complete and is not all soloable.
-|tip Only Paladins, Death Knights, and Warriors can complete this quest and obtain Shadowmourne.
-|tip This mount can also be bought on the auction house.
-confirm |or
-'|complete hasmount(73313) |or
-step
-collect Reins of the Crimson Deathcharger##52200 |or
-'|complete hasmount(73313) |or
-step
-use Reins of the Crimson Deathcharger##52200
-learnmount Reins of the Crimson Deathcharger##73313
-]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Player vs. Player Mounts\\Ashhide Mushan Beast",{
 keywords={"ashhide","mushan","beast","ground","mount"},
 mounts={148428},
@@ -1102,7 +1079,7 @@ achieve 8537 |or|complete hasmount(148392)
 '|complete hasmount(148392) |or
 step
 collect Reins of Galakras##104208 |or
-|tip You can find it in your mailbox.
+|tip Find it in your mailbox, or unwrap it in your mount list interface.
 '|complete hasmount(148392) |or
 step
 use the Reins of Galakras##104208
@@ -1168,25 +1145,6 @@ collect Warforged Nightmare##112326 |or
 step
 use the Warforged Nightmare##112326
 learnmount Warforged Nightmare##163024
-]])
-ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Dropped Mounts\\Heavenly Onyx Cloud Serpent",{
-keywords={"heavenly","onyx","cloud","serpent","sha","of","anger","flying","mount"},
-model={43689},
-mounts={127158},
-patch='50400',
-mounttype='Flying',
-description="This guide will teach you how to acquire the Heavenly Onyx Cloud Serpent mount.",
-mopready=true,
-},[[
-step
-kill Sha of Anger##60491
-|tip It has about a 10-20 minute respawn timer.
-collect Reins of the Heavenly Onyx Cloud Serpent##87771 |goto Kun-Lai Summit/0 54.47,63.22 |or
-|tip This has an extremely low drop rate.
-'|complete hasmount(127158) |or
-step
-use the Reins of the Heavenly Onyx Cloud Serpent##87771
-learnmount Heavenly Onyx Cloud Serpent##127158
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Dropped Mounts\\Thundering Cobalt Cloud Serpent",{
 keywords={"heavenly","onyx","cloud","serpent","sha","of","anger","flying","mount"},
@@ -1893,6 +1851,7 @@ Press _I_ and queue for the Mogu'shan Vaults or enter the raid normally |goto Mo
 step
 kill Elegon##60410
 |tip Use the "Mogu'shan Vaults" raid guide to accomplish this.
+Click Here to Load the Mogu'shan Vaults raid guide |confirm |loadguide "Dungeon Guides\\Pandaria Raids\\Mogu'shan Vaults"
 click Cache of Pure Energy##214383
 collect 1 Reins of the Astral Cloud Serpent##87777 |or
 |tip This has about a 3% drop rate.

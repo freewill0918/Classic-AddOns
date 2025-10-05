@@ -57,8 +57,10 @@ ZGV.IsClassicHardcore =  C_Seasons and (ZGV.IsClassic and C_Seasons.HasActiveSea
 ZGV.IsClassicAnniv =  C_Seasons and (ZGV.IsClassic and C_Seasons.HasActiveSeason() and (C_Seasons.GetActiveSeason()==Enum.SeasonID.Fresh or C_Seasons.GetActiveSeason()==Enum.SeasonID.FreshHardcore))
 ZGV.IsClassicAnnivHardcore =  C_Seasons and (ZGV.IsClassic and C_Seasons.HasActiveSeason() and C_Seasons.GetActiveSeason()==Enum.SeasonID.FreshHardcore)
 
--- remix gets rechecked during OnEnable since PGTSID does not return proper values on load
-ZGV.IsPandariaRemix =  PlayerGetTimerunningSeasonID and PlayerGetTimerunningSeasonID() == Constants.TimerunningConsts.TIMERUNNING_SEASON_PANDARIA
+ZGV.IsPandariaRemix =  (C_TimerunningUI and C_TimerunningUI.GetActiveTimerunningSeasonID) and C_TimerunningUI.GetActiveTimerunningSeasonID() == Constants.TimerunningConsts.TIMERUNNING_SEASON_PANDARIA
+ZGV.IsLegionRemix =  (C_TimerunningUI and C_TimerunningUI.GetActiveTimerunningSeasonID) and C_TimerunningUI.GetActiveTimerunningSeasonID() == Constants.TimerunningConsts.TIMERUNNING_SEASON_LEGION
+
+ZGV.IsServerRemix = ZGV.IsPandariaRemix or  ZGV.IsLegionRemix
 
 ZGV.CLASSIC_SCALE_ADJUST = ZGV.IsRetail and 1 or UIParent:GetEffectiveScale()
 
@@ -543,7 +545,6 @@ function ZGV:OnEnable()  --PLAYER_LOGIN
 	self:Debug("&startup Enabled in %.2f ms",debugprofilestop()-t1)
 
 	self.loading=""
-	ZGV.IsPandariaRemix =  PlayerGetTimerunningSeasonID and PlayerGetTimerunningSeasonID() == Constants.TimerunningConsts.TIMERUNNING_SEASON_PANDARIA
 end
 
 function ZGV:OnDisable()
@@ -2662,7 +2663,7 @@ function ZGV:DoUpdateFrame(full,onupdate)
 		local nomoredisplayed=false
 
 		
-		local stickies
+		local stickies,changed
 		if self.db.profile.stickyon and (self.db.profile.stickydisplay==3 or self.db.profile.stickydisplay==4) and not showallsteps then
 			stickies,changed = self:GetStickiesAt(firststep,laststep)
 			if changed then
@@ -2811,12 +2812,13 @@ end
 local resizing
 function ZGV:ResizeFrame(source)
 	if not self.Frame or not self.db then return end
+	if InCombatLockdown() then return end
 
 	-- protect from self-calling, and reset it the next frame
 	if resizing then return end
 	resizing=true
-	C_Timer.After(0.001,function() resizing=false self.frameNeedsResizing=0 end)
-	
+	C_Timer.After(0.001,function() resizing=false self.frameNeedsResizing=0 end)	
+
 	--[[
 	if self.frameNeedsResizing then
 		if self.frameNeedsResizing>0 then self.frameNeedsResizing = self.frameNeedsResizing - 1 end

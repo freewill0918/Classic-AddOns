@@ -3,6 +3,7 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Horde" then return end
 if ZGV:DoMutex("PetsHMOP") then return end
 ZygorGuidesViewer.GuideMenuTier = "TRI"
+ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts\\Battle Pets\\Aquatic Pets\\Aqua Strider")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Battle Pets\\Aquatic Pets\\Fishy")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Battle Pets\\Beast Pets\\Sumprush Rodent")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Battle Pets\\Elemental Pets\\Pandaren Air Spirit")

@@ -396,7 +396,7 @@ function widget:PrepareResults()
 		end)
 
 		-- add bag headers
-		local lastclass,lastowner
+		local lastclass,lastowner,lastbag
 		for i,item in ipairs(self.display) do
 			local itembag = item.bag
 			local itemowner = item.owner

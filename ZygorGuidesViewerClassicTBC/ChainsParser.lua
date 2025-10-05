@@ -110,7 +110,7 @@ function ZGV:ParseQuestChains_yielding(text,Chains)
 	index = 1
 	ZGV:Debug("&startup Starting parsing quest chains; "..maxlines.." lines")
 
-	debug_chunks={}
+	local debug_chunks={}
 
 	while (index<#text) do
 		local st,en,line=strfind(text,"%s*(.-)%s*\n",index)

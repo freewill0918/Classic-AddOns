@@ -88,26 +88,32 @@ turnin Say, There Wouldn't Happen to be a Souvenir This Year, Would There?##1219
 step
 talk Glodrak Huntsniper##11431
 accept Catch the Wild Wolpertinger!##11431 |goto Durotar/0 41.23,18.53
+|only if GetCurrentRegion() ~= 3
 step
 talk Glodrak Huntsniper##11431
 Select _"What if I don't like drinking... is there another way I can help out?"_
 Select _"I'd like a pair of Synthebrew Goggles."_
 collect Synthebrew Goggles##46735 |goto Durotar/0 41.23,18.53 |q 11431
+|only if haveq(11431) or completedq(11431)
 step
 Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11431
+|only if haveq(11431) or completedq(11431)
 step
 clicknpc Wild Wolpertinger##23487
 use the Wolpertinger Net##32907
 |tip They look like rabbits with antlers and wings running around on the ground around this area.
 collect 5 Stunned Wolpertinger##32906 |q 11431/1 |goto Durotar/0 42.25,16.84
 You can find more around here [goto Durotar/0 45.30,18.58]
+|only if haveq(11431) or completedq(11431)
 step
 Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11431
 |tip Remove the Synthebrew Goggles and re-equip your helm.
+|only if haveq(11431) or completedq(11431)
 step
 talk Glodrak Huntsniper##11431
-turnin Catch the Wild Wolpertinger!##11431 |goto Durotar/0 41.23,18.53
-accept Pink Elekks On Parade##11120 |goto Durotar/0 41.23,18.53
+turnin Catch the Wild Wolpertinger!##11431 |goto Durotar/0 41.23,18.53 |only if haveq(11431) or completedq(11431)
+accept Pink Elekks On Parade##11120 |goto Durotar/0 41.23,18.53 |only if completedq(11431)
+|only if haveq(11431) or completedq(11431)
 step
 talk Blix Fixwidget##24495
 turnin A New Supplier of Souvenirs##29396 |goto Durotar/0 40.32,17.89
@@ -115,46 +121,59 @@ step
 Go to Tirisfal Glades |goto Undercity/0 66.12,13.46 < 50 |c |q 11120
 |tip Upstairs in the ruins of Lordaeron.
 |tip Go to this spot before you equip the goggles.
+|only if haveq(11120) or completedq(11120)
 step
 Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11120
+|only if haveq(11120) or completedq(11120)
 step
 use the Elekk Dispersion Ray##32960
 |tip Make sure you have the Synthebrew Goggles equipped.
 |tip They are found above Undercity, in Tirisfal Glades.
 kill 3 Tirisfal Pink Elekk##23530 |q 11120/3 |goto Undercity/0 66.12,13.46
+|only if haveq(11120) or completedq(11120)
 step
 Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11120
 |tip Remove the Synthebrew Goggles and re-equip your helm.
+|only if haveq(11120) or completedq(11120)
 step
 Go to Eversong Woods |goto Eversong Woods/0 56.97,53.14 < 100 |c |q 11120
 |tip Go to this spot before you equip the goggles.
+|only if haveq(11120) or completedq(11120)
 step
 Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11120
+|only if haveq(11120) or completedq(11120)
 step
 use Elekk Dispersion Ray##32960
 |tip Make sure you have the Synthebrew Goggles equipped.
 kill 3 Eversong Pink Elekk##23531 |q 11120/1 |goto Eversong Woods/0 56.97,53.14
+|only if haveq(11120) or completedq(11120)
 step
 Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11120
 |tip Remove the Synthebrew Goggles and re-equip your helm.
+|only if haveq(11120) or completedq(11120)
 step
 Go to Thunder Bluff |goto Thunder Bluff/0 32.33,70.85 < 100 |c |q 11120
 |tip Go to this spot before you equip the goggles.
+|only if haveq(11120) or completedq(11120)
 step
 Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11120
+|only if haveq(11120) or completedq(11120)
 step
 use Elekk Dispersion Ray##32960
 |tip Make sure you have the Synthebrew Goggles equipped.
 kill 3 Mulgore Pink Elekk##23529 |q 11120/2 |goto Thunder Bluff/0 32.33,70.85
+|only if haveq(11120) or completedq(11120)
 step
 Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11120
 |tip Remove the Synthebrew Goggles and re-equip your helm.
+|only if haveq(11120) or completedq(11120)
 step
 talk Glodrak Huntsniper##11431
 turnin Pink Elekks On Parade##11120 |goto Durotar/0 41.23,18.53
+|only if haveq(11120) or completedq(11120)
 step
-Reach Level 75 |ding 75
-|tip Coren Direbrew is level 82 elite.
+Reach Level 80 |ding 80
+|tip Coren Direbrew is level 87 elite.
 step
 talk Brewfest Spy##26719
 |tip Queue for Coren Direbrew.
@@ -169,6 +188,7 @@ step
 kill Coren Direbrew##23872
 |tip Someone with the daily quest "Insult Coren Direbrew" can talk to him to make him hostile.
 |tip This quest is available in the Grim Guzzler in Blackrock Depths.
+|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Brewfest Dailies",{
 mopready=true,
@@ -3626,7 +3646,7 @@ talk Javnir Nashak##15012
 accept Honoring a Hero##8150 |goto Durotar/0 46.25,15.10
 step
 use Grom's Tribute##19851
-Place a Tribute at Grom's Monument |q 8150/1 |goto Ashenvale 82.85,79.04
+Place a Tribute at Grom's Monument |q 8150/1 |goto Ashenvale/0 82.85,79.04
 step
 talk Javnir Nashak##15012
 turnin Honoring a Hero##8150 |goto Durotar/0 46.25,15.10

@@ -380,7 +380,7 @@ label "Free_Twilight_Servitors"
 talk Twilight Servitor##39644+
 |tip They look like various friendly NPCs.
 |tip Inside and outside the cave. |notinsticky
-Choose _<Administor the draught.>_
+Choose _<Administor the draught.>_ |gossip 112150
 Free #8# Twilight Servitors |q 25298/1 |goto Mount Hyjal/0 26.85,36.35
 step
 label "Slay_Minions_Of_Gargol"
@@ -526,7 +526,10 @@ talk Elizil Wintermoth##41860
 fpath Grove of Aessina |goto Mount Hyjal/0 19.60,36.38
 step
 talk Tyrus Blackhorn##39933
-Select _"Yes, Blackhorn. I've been sent to request your aid, if you are willing."_
+Select _"Yes, Blackhorn. I've been sent to request your aid, if you are willing."_ |gossip 112159
+Select _"You'll be destroyed if the Twilight's Hammer brings this mountain down!"_ |gossip 112164
+Select _"Will you help us to defeat them?"_ |gossip 112168
+|tip Feel free to select a different dialog options - it does not affect the outcome.
 Persuade Blackhorn |q 25404/1 |goto Mount Hyjal/0 22.26,44.92
 step
 talk Tyrus Blackhorn##39933
@@ -769,7 +772,10 @@ Capture Marion Wormwing |q 25731/1 |goto Mount Hyjal/0 38.33,44.14
 step
 talk Marion Wormwing##41112
 |tip She will be where you defeated her.
-Select _"Why are you stealing eggs?"_
+Select _"Why are you stealing eggs?"_ |gossip 112233
+Select _"Who? Who are you giving the eggs to?"_ |gossip 112234
+Select _"Brood of the Earth-Warder... you answer to a black dragon? Give me a name!"_ |gossip 112235
+Select _"<Ask Thisalee to release the harpy.>"_ |gossip 112237
 Interrogate Marion Wormwing |q 25731/2 |goto Mount Hyjal/0 38.33,44.14
 step
 use the Enormous Bird Call##55211
@@ -985,7 +991,7 @@ label "Rescue_Lost_Wardens"
 talk Lost Warden##41499+
 |tip They look like dead night elves.
 |tip You can also find them inside building.
-Select _"On your feet, soldier. The ancients are with us, and the mountain is healed!"_
+Select _"On your feet, soldier. The ancients are with us, and the mountain is healed!"_ |gossip 112283
 Rescue #8# Lost Wardens |q 25881/1 |goto Mount Hyjal/0 51.14,54.66
 step
 label "Kill_Twilight_Scorchlords"
@@ -1203,7 +1209,7 @@ Wear the Ogre Disguise |havebuff Seeds of Discord##75724 |goto Mount Hyjal/0 77.
 step
 talk Karr'gonn##40489
 |tip Inside the building.
-Select _"Boss, one of the boys is causing some trouble outside."_
+Select _"Boss, one of the boys is causing some trouble outside."_ |gossip 112199
 Watch the dialogue
 kill High Cultist Azennios##40491 |q 25308/1 |goto Mount Hyjal/0 76.55,49.08
 step
@@ -1219,7 +1225,7 @@ accept Grudge Match##25496 |goto Mount Hyjal/0 90.15,56.39
 step
 talk Gromm'ko##40409
 |tip Inside the building.
-Select _"Instructor Devoran sends a contender against your raptor."_
+Select _"Instructor Devoran sends a contender against your raptor."_ |gossip 112194
 kill Gromm'ko##40409
 |tip He will attack you after your Spawn of Smolderos kills his raptor.
 Complete the Grudge Match |q 25496/1 |goto Mount Hyjal/0 77.79,51.44
@@ -1401,7 +1407,7 @@ talk Cenarius##41631
 |tip Inside the cave.
 |tip If another player has already started the battle, he won't be here.
 |tip Join the battle to kill Ragnaros, if he's not here.
-Select _"I am ready to begin the battle against Ragnaros."_
+Select _"I am ready to begin the battle against Ragnaros."_ |gossip 112204
 Watch the dialogue
 Follow Cenarius into Battle |goto Mount Hyjal/0 44.66,79.15 > 20 |c |q 25551
 step
@@ -1622,7 +1628,7 @@ turnin Gimme Shelter!##25587 |goto Kelp'thar Forest/0 57.12,28.78
 accept Ain't Too Proud to Beg##25598 |goto Kelp'thar Forest/0 57.12,28.78
 step
 talk Captain Samir##39669
-Select _"Make for that cave to the west. It's safe and dry."_
+Select _"Make for that cave to the west. It's safe and dry."_ |gossip 112214
 Rescue Mack and Samir |q 25598/1 |goto Kelp'thar Forest/0 48.28,39.57
 step
 click Sunken Crate##202871
@@ -1735,7 +1741,7 @@ talk Erunak Stonespeaker##40105
 turnin A Desperate Plea##25638 |goto Kelp'thar Forest/0 46.33,46.91
 accept Undersea Sanctuary##25794 |goto Kelp'thar Forest/0 46.33,46.91
 step
-use Erunak's Scrying Orb##56020 |q 25794/1
+use Erunak's Scrying Orb##56020 |q 25794/1 |goto Kelp'thar Forest/0 46.31,46.66
 step
 talk Erunak Stonespeaker##40105
 turnin Undersea Sanctuary##25794 |goto Kelp'thar Forest/0 46.33,46.91
@@ -1781,7 +1787,12 @@ accept Debriefing##26007 |goto Kelp'thar Forest/0 63.86,59.94
 step
 talk Gurrok##41885
 |tip Inside the underwater cave.
-Select _"Tell me your name, orc."_
+Select _"Tell me your name, orc."_ |gossip 112317
+Select _"How did you get down here?"_ |gossip 112318
+Select _"Tell us about your captors, Gurrok."_ |gossip 112319
+Select _"How were you able to get away?"_ |gossip 112321
+Select _"Did you see Nazgrim and his troops?"_ |gossip 112320
+Select _"What is there to report of these beasts, Gurrok? How do we defeat them?"_ |gossip 112322
 Debrief Gurrok |q 26007/1 |goto Kelp'thar Forest/0 63.98,59.80
 step
 talk Erunak Stonespeaker##41341
@@ -1901,6 +1912,71 @@ talk Moanah Stormhoof##41347
 |tip Inside the underwater cave.
 turnin Decompression##26008 |goto Kelp'thar Forest/0 63.89,59.38
 step
+|tip There are a few side-quests that are starting from the dropped items in this area.
+|tip One of them is from the local 82 elite giant. The other 2 from Giblins and their local boss Giblingle.
+|tip All should be accessible at this point, yet elite may be a challenge and the rest may take a while to drop.
+|tip If you do not feel like going through it, just skip this part and you can start with the next area near by.
+Skip |confirm |next "SkippedDropItems"
+_Or_
+Continue |confirm |next "FarmItems"
+stickystart "Giblin Collector Farm1"
+|only if itemcount(54639) < 1 and itemcount(55186) < 1 and itemcount(62138) < 1
+step
+label "FarmItems"
+kill Gilblingle##41183 |goto Kelp'thar Forest/0 51.60, 51.60
+collect Waterlogged Journal##54639
+|only if itemcount(54639) < 1 and not completedq(25503)
+step
+label "Giblin Collector Farm1"
+kill Gilblin Collector##41017+
+collect Lady La-La's Necklace##55186
+|only if itemcount(55186) < 1 and not completedq(25419)
+step
+use Lady La-La's Necklace##55186
+accept Lady La-La's Medallion##25419
+stickystart "Giblin Collector Farm2"
+|only if itemcount(55186) > 0
+step
+label "Giblin Collector Farm2"
+kill Gilblin Collector##41017+
+collect Medallion Fragment##55188
+|only if itemcount(55188) < 5 and haveq(25419)
+step
+|tip Create medalion
+use Medalion Fragment##55188
+|only if itemcount(55188) >= 5 and haveq(25419)
+step
+_Click the Complete Quest Box:_
+turnin Lady La-La's Medallion##25419
+|only if readyq(25419)
+step
+use Waterlogged Journal##54639
+accept Blackfin's Booty##25503
+|only if itemcount(54639) > 0
+step
+kill Blackfin##40466
+collect Gilblingle's Map##54640
+|only if itemcount(54639) > 0 and haveq(25503) and itemcount(54640) < 1
+step
+click Sandy Mound##202916 |goto Kelp'thar Forest/0 55.10 54.90
+turnin Blackfin's Booty##25503
+|only if readyq(25503)
+step
+kill Gnash##40987 |goto Kelp'thar Forest/0 51.40,42.42
+|goto Kelp'thar Forest/0 56.12,54.75
+|tip It is the elite giant that walks in this area
+|only if itemcount(62138) < 1 and not completedq(27687)
+step
+use Gnash's Head##62138
+accept An Opened Can of Whoop Gnash##27687
+|only if itemcount(62138) > 0
+step
+|tip Enter Smugler's Scar |goto Kelp'thar Forest/0 53.31,35.20
+talk Captain Samir##39884 |goto Kelp'thar Forest/0 57.33,28.90
+turnin An Opened Can of Whoop Gnash##27687
+|only if itemcount(62138) > 0 and haveq(27687)
+step
+label "SkippedDropItems"
 Leave the underwater cave |goto Kelp'thar Forest/0 61.03,64.14 < 30 |walk |only if subzone("Deepmist Grotto")
 Enter the underwater cave in the side of the cliff |goto Kelp'thar Forest/0 48.30,72.50 < 30 |walk
 talk Farseer Gadra##39226
@@ -1910,7 +1986,7 @@ accept The Looming Threat##25334 |goto Shimmering Expanse/0 56.02,13.69
 step
 talk Farseer Gadra##39226
 |tip Inside the underwater cave.
-Select _"I am ready to join you in the vision, Farseer."_
+Select _"I am ready to join you in the vision, Farseer."_ |gossip 112367
 Enter the Spirit Vision |havebuff Spirit Vision##74385 |goto Shimmering Expanse/0 56.02,13.69 |q 25334
 step
 Watch the dialogue
@@ -2090,7 +2166,7 @@ accept Nespirah##25890 |goto Shimmering Expanse/0 49.23,42.57
 step
 talk Swift Seahorse##40873
 |tip Inside the underwater cave.
-Select _"I need to get to Nespirah."_
+Select _"I need to get to Nespirah."_ |gossip 113196
 Begin Traveling to Nespirah |invehicle |goto Shimmering Expanse/0 49.52,41.21 |q 25890
 step
 Travel to Nespirah |outvehicle |goto Shimmering Expanse/0 51.79,48.54 |q 25890 |notravel
@@ -2109,7 +2185,7 @@ accept Making Contact##25900 |goto Shimmering Expanse/0 51.62,52.23
 step
 talk Earthmender Duarn##41531
 |tip Inside Nespirah.
-Select _"Whenever you're ready, Duarn."_
+Select _"Whenever you're ready, Duarn."_ |gossip 112284
 Watch the dialogue
 Speak with Earthmender Duarn |q 25900/1 |goto Shimmering Expanse/0 51.62,52.23
 step
@@ -2158,7 +2234,7 @@ accept Breaking Through##25990 |goto Shimmering Expanse/0 51.62,52.23
 step
 talk Earthmender Duarn##41531
 |tip Inside Nespirah.
-Select _"Let's speak with Nespirah."_
+Select _"Let's speak with Nespirah."_ |gossip 112285
 Watch the dialogue
 Speak with Earthmender Duarn |q 25990/1 |goto Shimmering Expanse/0 51.62,52.23
 step
@@ -2498,7 +2574,7 @@ turnin Clear Goals##25959 |goto Shimmering Expanse/0 39.75,53.95
 accept Swift Action##25963 |goto Shimmering Expanse/0 39.75,53.95
 step
 talk Fiasco Sizzlegrin##40918
-Select _"I'm ready to begin the assault on the terrace."_
+Select _"I'm ready to begin the assault on the terrace."_ |gossip 112289
 Speak to Fiasco Sizzlegrin |q 25963/1 |goto Shimmering Expanse/0 39.47,54.68
 step
 Begin the Assault on the Terrace |invehicle |goto Shimmering Expanse/0 32.91,69.23 |q 25963
@@ -2524,7 +2600,7 @@ Scout the Northwestern Terrace |q 25965/2 |goto Shimmering Expanse/0 31.10,71.80
 step
 talk Injured Assault Volunteer##41281+
 |tip They look like friendly NPCs laying on the ground.
-Select _"The way to the rendevous point is mostly clear. You should get moving."_
+Select _"The way to the rendevous point is mostly clear. You should get moving."_ |gossip 112245
 Rescue #6# Injured Assault Volunteers |q 25964/1 |goto Shimmering Expanse/0 37.23,78.68
 step
 talk Captain Vilethorn##40916
@@ -2545,15 +2621,15 @@ talk Lady Naz'jar##42076
 accept By Her Lady's Word##25858 |goto Shimmering Expanse/0 29.00,78.44
 step
 talk Fathom-Lord Zin'jatar##42072
-Select _"I am to hunt the Crucible of Nazsharin. Do you have warriors to assist me?"_
+Select _"I am to hunt the Crucible of Nazsharin. Do you have warriors to assist me?"_ |gossip 112274
 Speak to Fathom-Lord Zin'jatar |q 25858/1 |goto Shimmering Expanse/0 34.42,78.65
 step
 talk Overseer Idra'kess##41455
-Select _"I am to hunt the Crucible of Nazsharin. Do you have warriors to assist me?"_
+Select _"I am to hunt the Crucible of Nazsharin. Do you have warriors to assist me?"_ |gossip 112275
 Speak to Overseer Idra'kess |q 25858/3 |goto Shimmering Expanse/0 36.84,79.75
 step
 talk Lady Sira'kess##42071
-Select _"I am to hunt the Crucible of Nazsharin. Do you have warriors to assist me?"_
+Select _"I am to hunt the Crucible of Nazsharin. Do you have warriors to assist me?"_ |gossip 112276
 Speak to Lady Sira'kess |q 25858/2 |goto Shimmering Expanse/0 39.22,77.99
 step
 talk Fathom-Stalker Azjentus##42074
@@ -2692,13 +2768,12 @@ stickystart "Gather_Sirakess_Tide_Priestesses"
 stickystart "Relieve_Nazjar_Honor_Guards"
 step
 talk Fathom-Caller Azrajar##41980
-Select _"Yes, Fathom-Caller. The Mistress awaits."_
+Select _"Yes, Fathom-Caller. The Mistress awaits."_ |gossip 112331
 Gather Fathom-Caller Azrajar |q 25896/2 |goto Shimmering Expanse/0 33.07,60.96
 step
 label "Gather_Sirakess_Tide_Priestesses"
 talk Sira'kess Tide Priestess##41985+
 |tip They look like nagas inside pink bubbles.
-Select _"Lady Sira'kess has sent for you. You are needed for the ritual."_
 Gather #6# Sira'kess Tide Priestesses |q 25896/1 |goto Shimmering Expanse/0 33.08,72.44
 step
 label "Relieve_Nazjar_Honor_Guards"
@@ -2834,15 +2909,20 @@ turnin Secure Seabrush##26124 |goto Abyssal Depths/0 51.53,60.76
 step
 click Fuel Sampling Station##203461
 |tip Inside the underwater cave.
-Choose _"Let's get started!"_
+Choose _"Let's get started!"_ |gossip 112341
 |tip Choose "Hammerhead Oil Sample" 3 Times.
 |tip Choose "Remora Oil Sample" 2 Times.
-Choose _"Mix the samples together!_"
+Select _"Hammerhead Oil Sample"_ |gossip 112363
+Select _"Hammerhead Oil Sample"_ |gossip 112344
+Select _"Hammerhead Oil Sample"_ |gossip 112348
+Select _"Remora Oil Sample"_ |gossip 112351
+Select _"Remora Oil Sample"_ |gossip 112355
+Choose _"Mix the samples together!_" |gossip 112359
 collect Promising Fuel Sample##56833 |q 26126 |goto Abyssal Depths/0 51.50,60.46
 step
 talk Fiasco Sizzlegrin##41669
 |tip Inside the underwater cave.
-Select _"Here, I made a Promising Fuel Sample. Three parts hammerhead and two parts remora."_
+Select _"Here, I made a Promising Fuel Sample. Three parts hammerhead and two parts remora."_ |gossip 112305
 Create the Perfect Bio-fuel |q 26126/1 |goto Abyssal Depths/0 51.46,60.77
 step
 talk Fiasco Sizzlegrin##41669
@@ -3161,8 +3241,7 @@ accept Defending the Rift##26194 |goto Abyssal Depths/0 51.57,60.90
 step
 talk Erunak Stonespeaker##41600
 |tip Inside the underwater cave.
-Select _"I am prepared, Erunak. Let's go!"_
-Travel to the Battle for the Abyssal Breach |condition subzone("Abyssal Breach") |goto Abyssal Depths/0 51.57,60.90 |q 26194
+Travel to the Battle for the Abyssal Breach |condition subzone("Abyssal Breach") |goto Abyssal Depths/0 62.87,52.65 |q 26194
 step
 Watch the dialogue
 |tip Follow your allies through the battle and help them fight.
@@ -3170,6 +3249,11 @@ Fight in the Battle for the Abyssal Breach |q 26194/1
 step
 talk Legionnaire Nazgrim##44540
 turnin Defending the Rift##26194 |goto Abyssal Depths/0 69.76,34.41
+step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Merciless Head##56254
+|only if itemcount(56254) > 0
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Cataclysm 80-85\\Deepholm (82-83)",{
 mopready=true,
@@ -5546,10 +5630,10 @@ accept Unfamiliar Waters##26311 |goto Orgrimmar/1 47.94,71.03
 step
 talk Herezegor Flametusk##42638
 |tip Inside the building.
-Select _"The Dragonmaw can be great again. Help our conquest of the Twilight Highlands - can you give me a map?"_
+Select _"The Dragonmaw can be great again. Help our conquest of the Twilight Highlands - can you give me a map?"_ |gossip 112399
 Kill the enemies that attack
 talk Herezegor Flametusk##42638
-Select _"Yes, a map of the coastal approaches."_
+Select _"Yes, a map of the coastal approaches."_ |gossip 112400
 collect Twilight Highlands Coastal Chart##58141 |q 26311/1 |goto Orgrimmar/1 71.03,50.82
 step
 talk Sauranok the Mystic##42637
@@ -5603,7 +5687,7 @@ collect Induction Samophlange##58224 |q 26361/1 |goto Azshara/0 55.31,49.90
 step
 talk Bilgewater Foreman##42777
 |tip He looks like a goblin that walks around this area.
-Select _"Nobody shorts Garrosh Hellscream. You finish those ships - and finish them right - or this gets personal."_
+Select _"Nobody shorts Garrosh Hellscream. You finish those ships - and finish them right - or this gets personal."_ |gossip 112402
 kill Bilgewater Foreman##42777
 Intimidate a Bilgewater Foreman |q 26337/1 |goto Azshara/0 56.46,52.34
 step
@@ -5654,7 +5738,7 @@ step
 talk Gregor##43191
 |tip Inside the building.
 Watch the dialogue
-Select _"Our warriors are dying. Do you have medical supplies I can take back with me?"_
+Select _"Our warriors are dying. Do you have medical supplies I can take back with me?"_ |gossip 112438
 Persuade the Medicine Man |q 26538/1 |goto Twilight Highlands/0 76.53,49.46
 step
 talk Gregor##43191
@@ -5754,7 +5838,10 @@ step
 talk Suspicious Peon##44160
 |tip Inside the tower, on the ground floor.
 |tip Up on the plateau.
-Select _"Has a secret cult infiltrated the Orgrimmar skyway?"_
+Select _"Has a secret cult infiltrated the Orgrimmar skyway?"_ |gossip 112523
+Select _"I didn't say Twilight's Hammer. YOU said Twilight's Hammer."_ |gossip 112524
+Select _"I know all about your cult master."_ |gossip 112525
+Select _"So it's true? Sauranok IS guilty of treason!"_ |gossip 112526
 Reveal Sauranok's Guilt |q 26830/1 |goto Orgrimmar/1 43.60,63.62
 step
 Watch the dialogue
@@ -6138,7 +6225,7 @@ turnin The Demon Chain##28123 |goto Twilight Highlands/0 54.35,43.85
 accept Fury Unbound##28133 |goto Twilight Highlands/0 54.35,43.85
 step
 talk Zaela##47671
-Select _"I am ready to fight Torth!"_
+Select _"I am ready to fight Torth!"_ |gossip 113174
 kill Torth##47669 |q 28133/1 |goto Twilight Highlands/0 36.42,38.12
 step
 talk Zaela##47671
@@ -6196,7 +6283,7 @@ accept Night Terrors##28170 |goto Twilight Highlands/0 36.39,37.98
 step
 talk Uchek##47826
 |tip Inside the cave.
-Select _"I am ready, Uchek!"_
+Select _"I am ready, Uchek!"_ |gossip 113186
 Enter the Spirit Realm |havebuff Spirit Realm##88981 |q 28170 |goto Twilight Highlands/0 35.05,36.63
 step
 use The Light of Souls##67537
@@ -6571,7 +6658,7 @@ talk Innkeeper Krum##49747
 home Crushblow |goto Twilight Highlands/0 45.07,76.75 |q 27491
 step
 talk Jon-Jon Jellyneck##45947
-Select _"Jon-Jon, I'm here to lead your wind rider squad and drop off the Kor'kron assassins."_
+Select _"Jon-Jon, I'm here to lead your wind rider squad and drop off the Kor'kron assassins."_ |gossip 112820
 Get Your Wind Rider Squad |q 27491/1 |goto Twilight Highlands/0 45.74,76.05
 stickystart "Slay_Bloodeye_Clan_Ogres_And_Ettins"
 step
@@ -6635,7 +6722,7 @@ turnin Four Heads are Better than None##27501 |goto Twilight Highlands/0 45.31,7
 accept Up to the Citadel##27503 |goto Twilight Highlands/0 45.31,75.35
 step
 talk Kor'kron Squad Commander##46117
-Select _"I'm ready, commander, let's head up."_
+Select _"I'm ready, commander, let's head up."_ |gossip 112823
 Speak to the Squad Commander |q 27503/1 |goto Twilight Highlands/0 38.93,64.01
 step
 Watch the dialogue
@@ -6773,7 +6860,7 @@ turnin Back to the Elementium Depths##27712 |goto Twilight Highlands/0 37.56,88.
 accept Mr. Goldmine's Wild Ride##28885 |goto Twilight Highlands/0 37.56,88.73
 step
 talk Initiate Goldmine##46243
-Select _"Mr. Goldmine, I'm ready for that wild ride."_
+Select _"Mr. Goldmine, I'm ready for that wild ride."_ |gossip 112854
 Speak to Goldmine to Get in the Cart |q 28885/1 |goto Twilight Highlands/0 37.56,88.73
 step
 Watch the dialogue

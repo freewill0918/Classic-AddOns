@@ -40,6 +40,7 @@ step
 clicknpc Gunship Turret##66677
 |tip On the {o}lower level of the ship{}.
 Enter the Turret |invehicle |goto The Jade Forest/0 31.53,11.01 |q 31765
+|tip If Gunship Turrents are not having this option, check if you can already turn in the quest (2 steps later)
 step
 Kill Thunder Hold enemies around this area
 |tip They are on the ground to the {o}east{}.
@@ -410,6 +411,7 @@ step
 talk Jeek Jeek##63748
 accept Wicked Wikkets##31241 |goto The Jade Forest/0 28.18,38.97
 step
+Go to the cave entrance |goto The Jade Forest/0 33.32,42.74 < 15
 kill Kher Shan##56329 |q 29924/1 |goto The Jade Forest/0 33.35,41.65
 |tip Inside the small cave.
 step
@@ -610,7 +612,7 @@ turnin Guerrillas in our Midst##29943
 accept Burning Down the House##29966
 step
 use Nazgrim's Grog##76336
-|tip Up on the mountain.
+|tip Up on the mountain. |goto The Jade Forest/0 30.46,52.68 <15
 Destroy the Alliance Camp |q 29966/1 |goto The Jade Forest 29.44,54.20
 step
 talk Rivett Clutchpop##56406
@@ -655,6 +657,9 @@ step
 talk Peiji Goldendraft##55809
 |tip Inside the building.
 Speak with Peiji Goldendraft |q 31230/2 |goto The Jade Forest 45.72,43.70
+step
+talk Peiji Goldendraft##55809
+home The Drunken Hozen |goto The Jade Forest/0 45.72,43.69
 step
 talk Master Windfur##59160
 |tip Inside the building.
@@ -1128,6 +1133,7 @@ step
 Complete #12# Practice Strikes |q 29623/1 |goto The Jade Forest/0 41.40,27.90
 |tip Watch the {o}Tian Instructor{} as he {o}makes motions{}.
 |tip Use the abilities to {o}mimic his motions{}.
+|tip Repeat your motions AFTER Tian Students (not right after Instructor).
 step
 talk Instructor Xann##54917
 turnin Perfection##29623 |goto The Jade Forest/0 41.60,28.33
@@ -1426,6 +1432,12 @@ talk Shao the Defiant##55009
 turnin Unbound##29587 |goto The Jade Forest/0 41.00,73.97
 turnin Getting Down to Business##29670 |goto The Jade Forest/0 41.00,73.97
 step
+|tip If you can fly in Pandaria, just fly to the top of the mountain.
+|tip otherwise use Hearthstone and local flight master to get to that location.
+use Hearthstone##6948
+talk Keg Runner Lee##59186  |goto The Jade Forest/0 47.05,46.24 <10
+Select _"Show me where I can fly."_ |gossip 88152
+|tip Fly to the Serpent's Overlook
 use the Cho Family Heirloom##80071
 |tip At the top of the mountain.
 Watch the dialogue
@@ -6390,6 +6402,708 @@ step
 talk Kil'ruk the Wind-Reaver##62538
 turnin The Scent of Blood##31179 |goto Dread Wastes/0 55.06,35.85
 ]])
+ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Dominance Offensive",{
+startlevel=90,
+description="This guide will take you through quests for the Dominance Offensive.",
+patch='50500',
+mopready=true
+},[[
+step
+talk Sunwalker Dezco##64566
+accept Meet the Scout##32249 |goto Vale of Eternal Blossoms/0 61.00,22.81
+step
+talk Scout Rokla##67812
+turnin Meet the Scout##32249 |goto Krasarang Wilds/0 8.73,64.36
+step
+Watch the dialogue
+talk Garrosh Hellscream##62092
+|tip He will eventually reach the beach.
+accept The Might of the Warchief##32250 |goto Krasarang Wilds/0 8.67,64.45
+stickystart "Slay_Alliance_Troops"
+step
+talk Blood Guard Gro'tash##67927
+|tip Kill any enemies he is attacking.
+Find Blood Guard Gro'tash |q 32250/2 |goto Krasarang Wilds/0 10.70,53.16
+step
+talk Grizzle Gearslip##67926
+|tip Kill any enemies he is attacking.
+Find Grizzle Gearslip |q 32250/3 |goto Krasarang Wilds/0 15.73,57.76
+step
+label "Slay_Alliance_Troops"
+kill Alliance Sentinel##67900, Alliance Footman##67901, Alliance Priest##67902
+Slay #25# Alliance |q 32250/1 |goto Krasarang Wilds/0 11.51,61.24
+step
+_Next to you:_
+talk Garrosh Hellscream##62092
+turnin The Might of the Warchief##32250 |goto Krasarang Wilds/0 11.51,61.24
+accept Domination Point##32108 |goto Krasarang Wilds/0 11.51,61.24
+step
+click Signal Fire##216274
+turnin Domination Point##32108 |goto Krasarang Wilds/0 8.46,63.92
+step
+talk Kromthar##67785
+fpath Domination Point |goto Krasarang Wilds/0 9.69,52.51
+step
+Complete the _"Dagger in the Dark"_ Scenario
+|tip Refer to the scenario guide to accomplish this.
+Click Here to Load the "Dagger in the Dark" Scenario Guide |loadguide "Dungeon Guides\\Pandaria Scenarios\\Dagger in the Dark"
+|tip
+Click here if you have completed the scenario |confirm
+step
+Reach 950/6000 Friendly with the Dominance Offensive Faction |complete repval("Dominance Offensive",Friendly) >= 950
+step
+talk General Nazgrim##67939
+accept Rise Of An Empire##32256 |goto Krasarang Wilds/0 10.38,53.71
+step
+talk Tak-Tak##68681
+Select _"Take me to the Shrine of Two Moons."_ |gossip 130592
+Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32256
+step
+Watch the dialogue
+Reach The Golden Terrace |outvehicle |goto Vale of Eternal Blossoms/0 59.10,20.19 |q 32256 |notravel
+step
+Find Garrosh at the Shrine of Two Moons |q 32256/1 |goto Shrine of Two Moons/2 32.20,84.59
+|tip Upstairs inside the building.
+step
+talk Garrosh Hellscream##67840
+|tip Upstairs inside the building.
+turnin Rise Of An Empire##32256 |goto Shrine of Two Moons/2 32.20,84.59
+accept Buried Secrets##32242 |goto Shrine of Two Moons/2 32.20,84.59
+step
+talk Fanlyr Silverthorn##67834
+turnin Buried Secrets##32242 |goto Vale of Eternal Blossoms/0 20.95,15.58
+accept Voice of the Gods##32257 |goto Vale of Eternal Blossoms/0 20.95,15.58
+step
+click Mercurial Guardian
+Investigate the Mercurial Guardian |q 32257/1 |goto Vale of Eternal Blossoms/0 18.11,11.85
+step
+kill Mercurial Guardian##67833
+|tip It will come to life and attack you.
+collect Ancient Korune Tablet##92425 |q 32257/2 |goto Vale of Eternal Blossoms/0 18.11,11.85
+step
+talk Fanlyr Silverthorn##67834
+turnin Voice of the Gods##32257 |goto Vale of Eternal Blossoms/0 20.95,15.58
+step
+Reach 4900/6000 Friendly with the Dominance Offensive Faction |complete repval("Dominance Offensive",Friendly) >= 4900
+step
+talk Messenger Grummle##67865
+accept Someone You Should See##32284 |goto Krasarang Wilds/0 10.69,53.69
+step
+talk Tak-Tak##68681
+Select _"Take me to Binan Village."_ |gossip 40754
+Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32284
+step
+Watch the dialogue
+Reach Binan Village |outvehicle |goto Kun-Lai Summit/0 72.44,94.11 |q 32284 |notravel
+step
+Find Chen Stormstout at Binan Village |q 32284/1 |goto Kun-Lai Summit/0 71.66,93.22
+|tip Inside the building.
+step
+talk Chen Stormstout##67866
+|tip Inside the building.
+turnin Someone You Should See##32284 |goto Kun-Lai Summit/0 71.66,93.22
+accept Regeneration Takes Time##32318 |goto Kun-Lai Summit/0 71.66,93.22
+step
+Kill enemies around this area |kill Summit Sprite##68026,Sinister Needle##68027
+|tip All over the cliffs.
+collect 10 Sturdy Needle##92499 |q 32318/1 |goto Kun-Lai Summit/0 21.85,41.49
+step
+talk Chen Stormstout##67866
+|tip Inside the building.
+turnin Regeneration Takes Time##32318 |goto Kun-Lai Summit/0 71.66,93.22
+step
+talk Vol'jin##68023
+|tip Inside the building.
+accept Find Thrall!##32319 |goto Kun-Lai Summit/0 71.63,93.20
+step
+use Vol'jin's Hearthstone##92510
+Use Vol'jin's Hearthstone |q 32319/1 |goto Kun-Lai Summit/0 71.63,93.20
+step
+talk Thrall##68025
+turnin Find Thrall!##32319 |goto Valley of Trials/0 44.61,66.73
+accept The Horde Is Family##32320 |goto Valley of Trials/0 44.61,66.73
+step
+kill Kor'kron Soulbreaker##68342
+|tip Stay close to thrall and follow him to the Echo Isles.
+|tip The Kor'kron Soulbreaker will attack you after they talk.
+Escort Thrall to the Echo Isles |q 32320/1 |goto Echo Isles/0 38.51,46.45
+step
+talk Thrall##68025
+turnin The Horde Is Family##32320 |goto Echo Isles/0 38.39,46.47
+accept De-Subjugation##32372 |goto Echo Isles/0 38.39,46.47
+stickystart "Kill_Kor'kron_Overseers"
+stickystart "Kill_Kor'kron_Subjugators"
+step
+kill Gul'tar the Subjugator##68048 |q 32372/3 |goto Echo Isles/0 61.86,66.25
+|tip Inside the building.
+|tip He is elite, but easy to kill.
+|tip You will get help from other NPCs during the battle.
+step
+label "Kill_Kor'kron_Overseers"
+kill 10 Kor'kron Overseer##68041 |q 32372/1 |goto Echo Isles/0 56.53,51.82
+step
+label "Kill_Kor'kron_Subjugators"
+kill 5 Kor'kron Subjugator##68044 |q 32372/2 |goto Echo Isles/0 56.53,51.82
+step
+talk Thrall##68025
+turnin De-Subjugation##32372 |goto Echo Isles/0 58.59,62.02
+step
+click Portal to Domination Point
+Take the Portal to Domination Point |complete subzone("Domination Point") or completedq(32190) |goto Echo Isles/0 58.86,61.16
+step
+Reach 2850/12000 Honored with the Dominance Offensive Faction |complete repval("Dominance Offensive",Honored) >= 2850
+step
+talk General Nazgrim##67939
+accept To Mogujia##32190 |goto Krasarang Wilds 10.40,53.70
+step
+talk Tak-Tak##68681
+Select _"Take me to Mogujia."_ |gossip 40753
+Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds 9.90,52.40 |q 32190
+step
+Watch the dialogue
+Take Tak-Tak's kite to Mogujia |q 32190/1 |goto Kun-Lai Summit/0 57.40,78.80 |notravel
+step
+talk Lor'themar Theron##67581
+turnin To Mogujia##32190 |goto Kun-Lai Summit/0 57.07,79.01
+accept Bloodlines##32192 |goto Kun-Lai Summit/0 57.07,79.01
+step
+talk Fanlyr Silverthorn##67603
+accept Ancient Guardians##32191 |goto Kun-Lai Summit/0 57.12,78.59
+accept The Korune##32244 |goto Kun-Lai Summit/0 57.12,78.59
+stickystart "Free_Blood_elves"
+stickystart "Kill_Korune_Guardians"
+step
+kill Korune Spellweaver##67752
+|tip Loot it from the spellweaver.
+collect Korune Codex##92072 |q 32244/1 |goto Kun-Lai Summit/0 58.12,70.92
+step
+label "Free_Blood_elves"
+kill Korune Warden##67587+
+|tip They are next to floating captive Blood Elves.
+Free #6# Blood Elves |q 32192/1 |goto Kun-Lai Summit/0 58.13,75.19
+step
+label "Kill_Korune_Guardians"
+kill 5 Korune Guardian##67574+ |q 32191/1 |goto Kun-Lai Summit/0 58.13,75.19
+step
+talk Fanlyr Silverthorn##67603
+turnin Ancient Guardians##32191 |goto Kun-Lai Summit/0 57.12,78.59
+turnin The Korune##32244 |goto Kun-Lai Summit/0 57.12,78.59
+step
+talk Lor'themar Theron##67581
+turnin Bloodlines##32192 |goto Kun-Lai Summit/0 57.07,79.01
+step
+Reach 6800/12000 Honored with the Dominance Offensive Faction |complete repval("Dominance Offensive",Honored) >= 6800
+step
+talk General Nazgrim##67939
+accept To the Valley!##32376 |goto Krasarang Wilds/0 10.38,53.71
+step
+talk Tak-Tak##68681
+Select _"Take me to the Valley of Emperors."_ |gossip 40752
+Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32376
+step
+Watch the dialogue
+Find Your "Friend From Silvermoon" |q 32376/1 |goto Kun-Lai Summit/0 53.84,49.01 |notravel
+step
+talk Lor'themar Theron##68370
+turnin To the Valley!##32376 |goto Kun-Lai Summit/0 53.83,49.23
+accept Legacy of the Korune##32379 |goto Kun-Lai Summit/0 53.83,49.23
+accept Clearing a Path##32378 |goto Kun-Lai Summit/0 53.83,49.23
+stickystart "Collect_Sealed_Korune_Artifact"
+stickystart "Slay_Korune_Mogu"
+step
+click Legacy of the Korune
+collect Legacy of the Korune##92802 |q 32379/2 |goto Kun-Lai Summit/0 56.93,47.74
+step
+kill Korune Mutilator##68401+
+collect Korune Orders##92801 |q 32379/1 |goto Kun-Lai Summit/0 55.43,47.25
+step
+label "Collect_Sealed_Korune_Artifact"
+kill Korune Sha-weaver##68410+
+collect Sealed Korune Artifact##92803 |q 32379/3 |goto Kun-Lai Summit/0 55.43,47.25
+step
+label "Slay_Korune_Mogu"
+Kill Korune enemies around this area |kill Korune Sha-weaver##68410,Korune Mutilator##68401
+Slay #10# Korune Enemies |q 32378/1 |goto Kun-Lai Summit/0 55.43,47.25
+step
+talk Lor'themar Theron##68370
+turnin Clearing a Path##32378 |goto Kun-Lai Summit/0 53.83,49.23
+turnin Legacy of the Korune##32379 |goto Kun-Lai Summit/0 53.83,49.23
+accept Trapping the Leader##32384 |goto Kun-Lai Summit/0 53.83,49.23
+step
+Enter the tomb here |goto Kun-Lai Summit/0 55.91,46.15 < 15 |walk
+kill Shan Kien##68378
+|tip Inside the tomb.
+Weaken Shan Kien |q 32384/1 |goto Kun-Lai Summit/0 56.74,44.10
+step
+talk Lor'themar Theron##68370
+turnin Trapping the Leader##32384 |goto Kun-Lai Summit/0 53.83,49.23
+step
+Reach 10750/12000 Honored with the Dominance Offensive Faction |complete repval("Dominance Offensive",Honored) >= 10750
+step
+talk General Nazgrim##67939
+accept Echoes of Thunder##32351 |goto Krasarang Wilds/0 10.38,53.71
+step
+talk Tak-Tak##68681
+Select _"Take me to the Shrine of Two Moons."_ |gossip 40755
+Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32351
+step
+Watch the dialogue
+Reach the Shrine of Two Moons |outvehicle |goto Vale of Eternal Blossoms/0 59.10,20.30 |q 32351 |notravel
+step
+Find Baine Bloodhoof at the Shrine of Two Moons |q 32351/1 |goto Shrine of Two Moons/2 68.58,43.85
+|tip Upstairs inside the building.
+step
+talk Baine Bloodhoof##68287
+|tip Upstairs inside the building.
+turnin Echoes of Thunder##32351 |goto Shrine of Two Moons/2 68.58,43.85
+accept A Gathering Storm##32352 |goto Shrine of Two Moons/2 68.58,43.85
+step
+clicknpc Sha-Touched Grunt##68284+
+|tip They look like black and white NPCs laying on the ground on shifting patches of black inside the building.
+kill Sha-Touched Grunt##68284+
+Save #6# Sha-Touched Grunts |q 32352/1 |goto Shrine of Two Moons/1 51.12,62.76
+step
+talk Garrosh Hellscream##67840
+|tip Upstairs inside the building.
+turnin A Gathering Storm##32352 |goto Shrine of Two Moons/2 65.38,46.37
+step
+Reach 2700/12000 Revered with the Dominance Offensive Faction |complete repval("Dominance Offensive",Revered) >= 2700
+step
+talk General Nazgrim##67939
+accept Get My Results!##32329 |goto Krasarang Wilds/0 10.38,53.71
+step
+click Portal to Silvermoon City
+Take the Portal to Silvermoon City |q 32329/1 |goto Krasarang Wilds/0 10.32,53.64
+step
+talk Lor'themar Theron##16802
+turnin Get My Results!##32329 |goto Silvermoon City/0 53.81,20.26
+accept What's in the Box?##32330 |goto Silvermoon City/0 53.81,20.26
+step
+talk Arcanis Mechanica##68430
+Locate the Arcanis Mechanica |q 32330/1 |goto Silvermoon City/0 86.60,32.70
+step
+talk Archmage Aethas Sunreaver##68086
+|tip Jump down the hole in the upper rome.
+Select _"Lor'themar wants a status update on the experiment."_ |gossip 41499
+Speak with Archmage Aethas Sunreaver |q 32330/2 |goto Silvermoon City/0 92.24,37.82
+step
+talk Grand Magister Rommath##68085
+Select _"Lor'themar wants a status update on the experiment."_ |gossip 41500
+Speak with Grand Magister Rommath |q 32330/3 |goto Silvermoon City/0 92.32,37.15
+step
+click Intensifier Disc
+|tip On the face of the large box.
+Watch the dialogue
+kill Concentrated Sha##68259 |q 32330/4 |goto Silvermoon City/0 92.46,37.57
+step
+talk Lor'themar Theron##68084
+turnin What's in the Box?##32330 |goto Silvermoon City/0 91.13,37.52
+step
+click Portal to Domination Point
+Return to Domination Point |complete subzone("Domination Point") or completedq(32363) |goto Silvermoon City/0 86.37,32.92
+step
+Reach 6650/12000 Revered with the Dominance Offensive Faction |complete repval("Dominance Offensive",Revered) >= 6650
+step
+talk General Nazgrim##67939
+accept The Kun-Lai Expedition##32363 |goto Krasarang Wilds/0 10.38,53.71
+step
+talk Tak-Tak##68681
+Select _"Take me to Garrosh'ar Advance."_ |gossip 40750
+Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32363
+step
+Watch the dialogue
+Take Tak-Tak's Kite to Garrosh'ar Advance |q 32363/1 |goto Kun-Lai Summit/0 60.58,55.09 |notravel
+step
+talk Baine Bloodhoof##68287
+turnin The Kun-Lai Expedition##32363 |goto Kun-Lai Summit/0 60.35,55.14
+accept Ties with the Past##32448 |goto Kun-Lai Summit/0 60.35,55.14
+step
+Enter the cave |goto Kun-Lai Summit/0 63.20,42.18 < 20
+kill Varatus the Conqueror##68907
+|tip Inside the cave.
+collect Spirit Essence of Varatus##93212 |q 32448/1 |goto Kun-Lai Summit/0 63.92,45.12
+step
+talk Baine Bloodhoof##68287
+turnin Ties with the Past##32448 |goto Kun-Lai Summit/0 60.35,55.14
+accept Memory Wine##32368 |goto Kun-Lai Summit/0 60.35,55.14
+step
+use the Memory Wine##92756
+Drink the Memory Wine |q 32368/1 |goto Kun-Lai Summit/0 60.35,55.14
+step
+Watch the dialogue
+Witness Shan Kien's Past |q 32368/2
+step
+talk Baine Bloodhoof##68287
+turnin Memory Wine##32368 |goto Kun-Lai Summit/0 60.35,55.14
+step
+Reach 8665/12000 Revered with the Dominance Offensive Faction |complete repval("Dominance Offensive",Revered) >= 8665
+step
+talk General Nazgrim##67939
+accept The Ruins of Korune##32391 |goto Krasarang Wilds/0 10.38,53.71
+step
+talk Tak-Tak##68681
+Select _"Take me to the Ruins of Korune."_ |gossip 40749
+Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32391
+step
+Watch the dialogue
+Take Tak-Tak's Kite to the Ruins of Korune |q 32391/1 |goto Kun-Lai Summit/0 32.72,25.82 |notravel
+step
+talk Ishi##68337
+turnin The Ruins of Korune##32391 |goto Kun-Lai Summit/0 32.88,26.35
+accept The Divine Bell##32392 |goto Kun-Lai Summit/0 32.88,26.35
+step
+Follow the path |goto Kun-Lai Summit/20 39.70,58.24 < 10 |walk
+|tip Walk on blue tiles only, avoiding the yellow and red tiles, and tiles with arrows on them.
+|tip Avoid big round red circles on the ground.
+|tip Large Mogu statues will slam the ground in front of them after a few seconds.
+|tip Each area where you encounter Sarannha, enemies will jump out and attack you.
+kill Sarannha Skyglaive##68472 |q 32392/1 |goto Kun-Lai Summit/21 60.40,23.49
+|tip Downstairs inside the building.
+step
+talk Ishi##68337
+turnin The Divine Bell##32392 |goto Kun-Lai Summit/21 61.79,25.59
+step
+Reach 15500/12000 Revered with the Dominance Offensive Faction |complete repval("Dominance Offensive",Revered) >= 15500
+step
+talk General Nazgrim##67939
+accept Insertion##32326 |goto Krasarang Wilds/0 10.38,53.71
+step
+click Sunreaver Portal: Darnassus
+Take the Portal to Darnassus |q 32326/1 |goto Krasarang Wilds/0 9.77,53.30
+step
+talk Fanlyr Silverthorn##68077
+turnin Insertion##32326 |goto Teldrassil/0 40.06,50.44
+accept The Darnassus Mission##32327 |goto Teldrassil/0 40.06,50.44
+step
+talk Fanlyr Silverthorn##68077
+Select _"Yes."_ |gossip 40875
+|tip You will gain a steal buff allowing you to infiltrate the hostile city safely.
+Become a Darnassus Invader |complete hasbuff(134053) or completedq(32327) |goto Teldrassil/0 40.06,50.44
+step
+Find the Cenarion Enclave |q 32327/1 |goto Darnassus/0 38.18,33.37
+|tip Go down inside the tree.
+|tip Avoid going near guards, who will see through your invisibility.
+step
+extraaction Sunreavers' Portal-Charm##134055
+|tip Use this ability if you get in trouble.
+|tip It will teleport you back to Fanlyr.
+|tip It appears as a button on your screen.
+click Divine Bell##216678
+|tip Down inside the tree.
+|tip Avoid going near guards, who will see through your invisibility.
+|tip You can safely walk within 5 yards or so of them.
+|tip You will be teleported back to Fanlyr once you locate the bell.
+Locate the Devine Bell |q 32327/2 |goto Darnassus/0 39.91,39.69
+step
+extraaction Sunreavers' Portal-Charm##134055
+|tip Use it to teleport you back to Fanlyr.
+|tip It appears as a button on your screen.
+Teleport back to Teldrassil |complete subzone("Teldrassil") or completedq(32327)
+step
+talk Fanlyr Silverthorn##68077
+turnin The Darnassus Mission##32327 |goto Teldrassil/0 40.06,50.44
+accept Victorious Return##32328 |goto Teldrassil/0 40.06,50.44
+step
+click Portal: Domination Point
+Return to Domination Point |complete subzone("Domination Point") or completedq(32328) |goto Teldrassil/0 40.01,50.55
+step
+talk General Nazgrim##67939
+turnin Victorious Return##32328 |goto Krasarang Wilds/0 10.38,53.71
+step
+Reach 18500/12000 Revered with the Dominance Offensive Faction |complete repval("Dominance Offensive",Revered) >= 18500
+step
+talk General Nazgrim##67939
+accept The Situation in Dalaran##32402 |goto Krasarang Wilds/0 10.38,53.71
+step
+talk Tak-Tak##68681
+Select _"Take me to Garrosh'ar Advance."_ |gossip 40750
+Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32402
+step
+talk Kromthar##67785
+Select _"I need to get to Dalaran."_ |gossip 40692
+Obtain a Ride to Dalaran |q 32402/1 |goto Krasarang Wilds/0 9.69,52.51 |notravel
+step
+Watch the dialogue
+Arrive In Dalaran |complete subzone("The Underbelly") or completedq(32402)
+step
+talk Grand Magister Rommath##68586
+turnin The Situation in Dalaran##32402 |goto Dalaran/1 31.46,50.09
+accept It Starts in the Sewers##32403 |goto Dalaran/1 31.46,50.09
+step
+talk Sunreaver Citizen##68695
+|tip You can find them all over the sewer.
+Select _"It's not safe here anymore. You need to evacuate Dalaran."_ |gossip 40739
+Evacuate #9# Sunreaver Citizens |q 32403/1 |goto Dalaran/1 38.89,50.59
+step
+talk Grand Magister Rommath##68586
+turnin It Starts in the Sewers##32403 |goto Dalaran/1 45.61,53.60
+accept Violence in the Arena##32404 |goto Dalaran/1 45.61,53.60
+stickystart "Kill_Silver_Covenant_Spellbows"
+step
+kill 6 Silver Covenant Enforcer##68042 |q 32404/1 |goto Dalaran/1 48.88,45.58
+step
+label "Kill_Silver_Covenant_Spellbows"
+kill 4 Silver Covenant Spellbow##68043 |q 32404/2 |goto Dalaran/1 48.88,45.58
+step
+talk Grand Magister Rommath##68586
+turnin Violence in the Arena##32404 |goto Dalaran/1 54.52,27.97
+accept Hand of the Silver Covenant##32405 |goto Dalaran/1 54.52,27.97
+step
+kill Sorin Magehand##32405 |q 32405/1 |goto Dalaran/1 62.68,13.08
+step
+talk Grand Magister Rommath##68586
+turnin Hand of the Silver Covenant##32405 |goto Dalaran/1 64.63,48.67
+accept A Tactical Assault##32406 |goto Dalaran/1 64.63,48.67
+step
+Run up the ramp |goto Dalaran/1 65.37,46.89 < 2 |walk
+Leave the Dalaran Sewers |goto Dalaran/1 60.75,48.24 < 1000 |c |noway |q 32406
+step
+talk Grand Magister Rommath##68586
+|tip Run through the building with Rommath.
+turnin A Tactical Assault##32406 |goto Dalaran/1 50.58,48.09
+accept The Silver Covenant's Stronghold##32408 |goto Dalaran/1 50.58,48.09
+accept The Kirin Tor's True Colors##32409 |goto Dalaran/1 50.58,48.09
+accept Krasus' Landing##32410 |goto Dalaran/1 50.58,48.09
+stickystart "Slay_Stormwind_Troops"
+step
+kill Arcanist Rathaella##68049 |q 32408/1 |goto Dalaran/1 36.15,64.06
+step
+kill Lieutenant Corwin##68047 |q 32409/1 |goto Dalaran/1 46.11,19.67
+|tip He walks around this area.
+step
+label "Slay_Stormwind_Troops"
+Kill Stormwind enemies around this area |kill Stormwind Footman##68707,Stormwind Cleric##68708
+Slay #10# Stormwind Troops |q 32409/2 |goto Dalaran/1 49.45,26.43
+step
+clicknpc Sunreaver Dragonhawk##68728
+Free #6# Sunreaver Dragonhawks |q 32410/1 |goto Dalaran/1 72.68,45.65
+step
+talk Grand Magister Rommath##68586
+turnin The Silver Covenant's Stronghold##32408 |goto Dalaran/1 50.58,48.09
+turnin The Kirin Tor's True Colors##32409 |goto Dalaran/1 50.58,48.09
+turnin Krasus' Landing##32410 |goto Dalaran/1 50.58,48.09
+accept The Remaining Sunreavers##32411 |goto Dalaran/1 50.58,48.09
+step
+use the Tear of the Sin'dorei##93124
+|tip Upstairs inside the building.
+Rescue Magister Surdiel |q 32411/4 |goto Dalaran/1 58.70,27.82
+step
+use the Tear of the Sin'dorei##93124
+|tip Upstairs inside the building.
+Rescue High Arcanist Savor |q 32411/2 |goto Dalaran/1 60.36,14.16
+step
+use the Tear of the Sin'dorei##93124
+|tip Inside the building.
+Rescue Magistrix Vesara |q 32411/5 |goto Dalaran/1 65.78,23.06
+step
+use the Tear of the Sin'dorei##93124
+|tip Inside the building.
+Rescue Uda the Beast |q 32411/1 |goto Dalaran/1 70.08,34.35
+step
+use the Tear of the Sin'dorei##93124
+|tip Upstairs inside the building.
+Rescue Magister Hathorel |q 32411/3 |goto Dalaran/1 66.95,35.36
+step
+talk Grand Magister Rommath##68586
+turnin The Remaining Sunreavers##32411 |goto Dalaran/1 50.58,48.09
+accept One Last Grasp##32412 |goto Dalaran/1 50.58,48.09
+step
+kill Mage-Commander Zuros##68632 |q 32412/1 |goto Dalaran/1 29.48,48.39
+|tip Inside the building.
+step
+Watch the dialogue
+click Rommath's Portal
+|tip Inside the building.
+Return to the Sewers |complete subzone("Cantrips & Crowsm") or completedq(32412) |goto Dalaran/1 29.00,48.29
+step
+Escape from Dalaran |q 32412/2 |goto Dalaran/1 8.96,88.64
+|tip Jump out of the sewer.
+|tip A Dragonhawk will catch you before you die.
+step
+talk Lor'themar Theron##16802
+turnin One Last Grasp##32412 |goto Silvermoon City/0 71.02,41.26
+step
+click Portal to Domination Point
+Return to Domination Point |complete subzone("Domination Point") or completedq(32398) |goto Silvermoon City/0 70.28,41.68
+step
+talk General Nazgrim##67939
+accept The Bell Speaks##32398 |goto Krasarang Wilds/0 10.38,53.71
+step
+talk Tak-Tak##68681
+Select _"Take me to Emperor's Reach."_ |gossip 40748
+Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32398
+step
+Watch the dialogue
+Take Tak-Tak's Kite to Emperor's Reach |q 32398/1 |goto Kun-Lai Summit/0 55.92,33.83 |notravel
+step
+talk Malkorok##67844
+turnin The Bell Speaks##32398 |goto Kun-Lai Summit/0 55.89,34.07
+accept Breath of Darkest Shadow##32399 |goto Kun-Lai Summit/0 55.89,34.07
+step
+Watch the dialogue
+kill Kor'kron Reaver##68940+
+|tip Wait until the Horde become afflicted by the Sha.
+|tip Once the Juggernauts are defeated, Ishi will get possessed.
+kill Ishi##68225 |q 32399/1 |goto Kun-Lai Summit/0 55.82,31.93
+|tip Run through gold orbs for healing.
+|tip Stay out of shadow areas on the ground.
+step
+Watch the dialogue
+kill Anduin Wrynn##68224 |q 32399/2 |goto Kun-Lai Summit/0 56.01,31.92
+|tip Garrosh will break free and defeat him.
+step
+talk Garrosh Hellscream##68223
+turnin Breath of Darkest Shadow##32399 |goto Kun-Lai Summit/0 55.96,32.00
+]])
+ZGV.BETASTART()
+ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Trial of the Black Prince",{
+condition_end="achieved(7533)",
+description="Prove your worth to Wrathion and acquire a sha-touched gem upgrade.",
+},[[
+step
+talk Kurong Caskhead##64047
+accept Stranger in a Strange Land##31488 |goto Shrine of Two Moons/1 62.2,13.2
+step
+turnin Wrathion##64616
+|tip Inside the building.
+turnin Stranger in a Strange Land##31488 |goto The Veiled Stair/0 54.6,72.6
+accept A Legend in the Making##31454 |goto The Veiled Stair/0 54.6,72.6
+step
+Share a Drink with Wrathion |q 31454/1 |goto The Veiled Stair/0 54.6,72.6
+step
+turnin Wrathion##64616
+|tip Inside the building.
+turnin A Legend in the Making##31454 |goto The Veiled Stair/0 54.6,72.6
+accept The Strength of One's Foes##31473 |goto The Veiled Stair/0 54.5,72.6
+accept Trial of the Black Prince##31468 |goto The Veiled Stair/0 54.5,72.6
+stickystart "Collect_Sigil_of_Wisdom"
+stickystart "Reach_Honored_with_the_Black_Prince"
+step
+collect 10 Sigil of Power##87208 |q 31473/1
+|tip You will need to gather these from raids.
+|tip Mogu'shan Vaults, Heart of Fear, and Terrace of Endless Spring bosses drop these.
+step
+label "Collect_Sigil_of_Wisdom"
+collect 10 Sigil of Wisdom##87209 |q 31473/2
+|tip You will need to gather these from raids. |notinsticky
+|tip Mogu'shan Vaults, Heart of Fear, and Terrace of Endless Spring bosses drop these. |notinsticky
+step
+label "Reach_Honored_with_the_Black_Prince"
+kill Krik'thik Needler##63976, Krik'thik Locust-Guard##63974
+Reach Honored with the Black Prince. |q 31468/1 |goto Vale of Eternal Blossoms/0 11.5,58.4
+|tip This will take a lot of grinding.
+|tip You start out Neutral with The Black Prince, and you will have to gain about 6,200 rep in order to reach Honored.
+step
+talk Wrathion##64616
+|tip Inside the building.
+turnin The Strength of One's Foes##31473 |goto The Veiled Stair/0 54.5,72.6
+turnin Trial of the Black Prince##31468 |goto The Veiled Stair/0 54.5,72.6
+accept Fear Itself##31481 |goto The Veiled Stair/0 54.5,72.6
+step
+This will require you to go into the _Terrace of Endless Spring_ and take down the _Sha of Fear_.
+|tip You can use the Raid finder to take down this boss.
+|confirm
+step
+kill Sha of Fear##60999
+|tip You can kill it on any raid difficulty.
+collect Chimera of Fear##87210 |q 31481/1 |goto Terrace of Endless Spring/0 39.1,48.3
+|tip Loot it from the Sha of Fear.
+step
+talk Wrathion##64616
+|tip Inside the building.
+turnin Fear Itself##31481 |goto The Veiled Stair/0 54.5,72.6
+accept Breath of the Black Prince##31482 |goto The Veiled Stair/0 54.5,72.6
+step
+talk Wrathion##64616
+|tip Inside the building.
+accept Incoming...##31483 |goto The Veiled Stair/0 54.5,72.6
+step
+talk Sunwalker Dezco##64566
+accept Meet the Scout##32249 |goto Vale of Eternal Blossoms/0 62.92,28.17
+step
+talk Scout Rokla##67812
+turnin Meet the Scout##32249 |goto Krasarang Wilds/0 8.73,64.36
+step
+Watch the dialogue
+talk Garrosh Hellscream##62092
+|tip He will eventually reach the beach.
+accept The Might of the Warchief##32250 |goto Krasarang Wilds/0 8.67,64.45
+stickystart "Slay_Alliance_Troops"
+step
+talk Blood Guard Gro'tash##67927
+|tip Kill any enemies he is attacking.
+Find Blood Guard Gro'tash |q 32250/2 |goto Krasarang Wilds/0 10.70,53.16
+step
+talk Grizzle Gearslip##67926
+|tip Kill any enemies he is attacking.
+Find Grizzle Gearslip |q 32250/3 |goto Krasarang Wilds/0 15.73,57.76
+step
+label "Slay_Alliance_Troops"
+kill Alliance Sentinel##67900, Alliance Footman##67901, Alliance Priest##67902
+Slay #25# Alliance |q 32250/1 |goto Krasarang Wilds/0 11.51,61.24
+step
+_Next to you:_
+talk Garrosh Hellscream##62092
+turnin The Might of the Warchief##32250 |goto Krasarang Wilds/0 11.51,61.24
+accept Domination Point##32108 |goto Krasarang Wilds/0 11.51,61.24
+step
+click Signal Fire##216274
+turnin Domination Point##32108 |goto Krasarang Wilds/0 8.46,63.92
+step
+talk Kromthar##67785
+fpath Domination Point |goto Krasarang Wilds/0 9.69,52.51
+step
+talk Wrathion##64616
+|tip Inside the building.
+turnin Incoming...##31483 |goto The Veiled Stair/0 54.5,72.6
+accept A Test of Valor##32476 |goto The Veiled Stair/0 54.5,72.6
+accept The Measure of a Leader##32427 |goto The Veiled Stair/0 54.5,72.6
+step
+talk Wrathion##64616
+Talk to Wrathion about the Horde |q 32427/1 |goto The Veiled Stair/0 54.5,72.6
+step
+talk Wrathion##64616
+turnin The Measure of a Leader##32427 |goto The Veiled Stair/0 54.5,72.6
+accept The Prince's Pursuit##32429 |goto The Veiled Stair/0 54.5,72.6
+step
+kill Lion's Landing Priest##67512, Dwarven Mortar Team Engineer##67545, Shieldwall Rifleman##67297, Shieldwall Vindicator##67296, Shieldwall Footman##67304, Thane Stonehearth##67636
+Earn Revered Status with The Black Prince |q 32429/1 |goto Krasarang Wilds/0 82.3,25.6
+step
+talk Wrathion##64616
+turnin The Prince's Pursuit##32429 |goto The Veiled Stair/0 54.5,72.6
+step
+Earn 3,000 Valor |q 32476/1
+|tip You will need to acquire 3,000 Valor Points from the time you pick up the A Test of Valor quest.
+|tip This quest will take around 3 weeks to complete if you hit the valor cap every week.
+|tip Previous valor points you acquired before accepting this quest will not count.
+step
+talk Wrathion##64616
+turnin A Test of Valor##32476 |goto The Veiled Stair/0 54.5,72.6
+accept Glory to the Horde##32431 |goto The Veiled Stair/0 54.5,72.6
+accept A Change of Command##32430 |goto The Veiled Stair/0 54.5,72.6
+label "Win_a_Battle_at_Silvershard_Mines"
+step
+Win a Battle at Temple of Kotmogu |q 32431/1
+|tip Open your PvP menu and queue up for either Temple of Kotmogu or Silvershard Mines.
+|tip You will need to win a battle at both locations to complete this quest.
+step
+label "Win_a_Battle_at_Silvershard_Mines"
+Win a Battle at Silvershard Mines |q 32431/2
+|tip Open your PvP menu and queue up for either Temple of Kotmogu or Silvershard Mines. |notinsticky
+|tip You will need to win a battle at both locations to complete this quest. |notinsticky
+step
+kill High Marshal Twinbraid##67801 |q 32430/1 |goto Krasarang Wilds 86.6,25.4
+|tip You may need help with this.
+step
+talk Wrathion##64616
+turnin Glory to the Horde##32431 |goto The Veiled Stair/0 54.5,72.6
+turnin A Change of Command##32430 |goto The Veiled Stair/0 54.5,72.6
+accept The Soul of the Horde##32432 |goto The Veiled Stair/0 54.5,72.6
+step
+talk Wrathion##64616
+turnin The Soul of the Horde##32432 |goto The Veiled Stair/0 54.9,72.6
+]])
+ZGV.BETAEND()
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Peak of Serenity\\Monk Daily",{
 image=ZGV.IMAGESDIR.."WanderingIsle",
 monkquest=1,

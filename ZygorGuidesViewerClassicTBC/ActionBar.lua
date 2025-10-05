@@ -39,6 +39,10 @@ local function OnEvent(self, event)
 
 	-- only events registered here are for updating action bar, so no need to handle them separately
 	ActionBar:SetActionButtons()
+
+	if event=="ZGV_STEP_CHANGED" and not ZGV.skipping and ActionBar.Frame.snapped then
+		ZGV:ScheduleTimer(function() ActionBar:SavePosition() end,0.1)
+	end
 end
 
 local function DragStart(self)
@@ -272,7 +276,12 @@ function ActionBar:CreateFrame()
 				GameTooltip:Hide()
 				end
 			)
+			:SetScript("OnDragStart", function(self)
+				if InCombatLockdown() or self.Lockdown then return end
+				self:StartMoving()
+			end)
 			:SetScript("OnDragStop", function(self)
+				if InCombatLockdown() or self.Lockdown then return end
 				self:StopMovingOrSizing()
 				ActionBar:SavePosition()
 			end)
@@ -307,11 +316,11 @@ function ActionBar:CreateFrame()
 		.__END
 
 		if ZGV.db.profile.actionbar_anchor then
-			ActionBar.Frame.snapped = false
 			ZGV.F.SetFrameAnchor(ActionBar.Frame,ZGV.db.profile.actionbar_anchor)
+			ActionBar.Frame.snapped = ZGV.db.profile.actionbar_anchor_snapped
 		else
 			ActionBar.Frame.snapped = true
-			ActionBar.Frame:SetPoint("BOTTOMLEFT",ZGV.Frame,"TOPLEFT",0,10)
+			ActionBar:SavePosition()
 		end
 	end
 
@@ -341,12 +350,14 @@ function ActionBar.Frame_OnUpdate(self)
 		else
 			self.snapped=false
 		end
+	elseif ZGV.framemoving and ActionBar.Frame.snapped then
+		-- if we are snapped, and main frame is dragged, update our position
+		ActionBar:SavePosition()
 	end
 end
 
 
 
-local old_x,old_y
 function ActionBar:SavePosition()
 	if self.SnapTimer then ZGV:CancelTimer(self.SnapTimer) end
 	if InCombatLockdown() or self.Lockdown then
@@ -356,22 +367,23 @@ function ActionBar:SavePosition()
 		return
 	end
 
+	local ssc = self.Frame:GetEffectiveScale()
+	local zsc = ZGV.Frame:GetEffectiveScale()
+	local zl,zt = ZGV.Frame:GetLeft()*zsc, ZGV.Frame:GetTop()*zsc
+	self.Frame:ClearAllPoints()
 
 	if self.Frame.snapped then
-		self.Frame:ClearAllPoints()
-		self.Frame:SetPoint("BOTTOMLEFT",ZGV.Frame,"TOPLEFT",0,10)
-		ZGV.db.profile.actionbar_anchor=nil
+		-- do not anchor to zgv frame - causes action blocked when trying to refresh main frame during combat
+		-- instead anchor to uiparent where we would be positioned
+		self.Frame:SetPoint("BOTTOMLEFT",UIParent,"BOTTOMLEFT",(zl/ssc),(zt+SNAP_Y)/ssc)
 	else
-		local ssc = self.Frame:GetEffectiveScale()
 		local x,y = GetCursorPosition()
-		local l,b = x-self.Frame.drag_offset_x, y-self.Frame.drag_offset_y
-		local zsc = ZGV.Frame:GetEffectiveScale()
-		local zl,zt = ZGV.Frame:GetLeft()*zsc, ZGV.Frame:GetTop()*zsc
-		self.Frame:ClearAllPoints()
-		self.Frame:SetPoint("BOTTOMLEFT",self.Frame:GetParent(),"BOTTOMLEFT",l/ssc,b/ssc)
-
-		ZGV.F.SaveFrameAnchor(self.Frame,"actionbar_anchor")
+		local l,b = x-(self.Frame.drag_offset_x or 0), y-(self.Frame.drag_offset_y or 0)
+		self.Frame:SetPoint("BOTTOMLEFT",UIParent,"BOTTOMLEFT",l/ssc,b/ssc)
 	end
+
+	ZGV.db.profile.actionbar_anchor_snapped = self.Frame.snapped 
+	ZGV.F.SaveFrameAnchor(self.Frame,"actionbar_anchor")
 end
 
 

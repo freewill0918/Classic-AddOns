@@ -3553,7 +3553,7 @@ Allow Enemies to Kill You
 Die on Purpose |complete isdead |goto Eversong Woods 27.14,59.02 |q 8885
 step
 talk Spirit Healer##6491
-Select _"Return me to life."_
+Select _"Return me to life."_ |gossip 88335
 Resurrect at the Spirit Healer |complete not isdead |goto Eversong Woods 44.33,71.19 |q 8885 |zombiewalk
 step
 talk Magistrix Landra Dawnstrider##16210
@@ -3725,7 +3725,8 @@ step
 Locate Prospector Anvilward |goto Eversong Woods 44.57,53.30 < 7 |c |q 8483
 step
 talk Prospector Anvilward##15420
-Select _"I need a moment of your time, sir."_
+Select _"I need a moment of your time, sir."_ |gossip 91302
+Select _"Why... yes, of course.  I've something to show you right inside this building, Mr. Anvilward."_ |gossip 91301
 Begin Following Prospector Anvilward |goto Eversong Woods 44.57,53.30 > 10 |q 8483
 step
 Watch the dialogue
@@ -3745,32 +3746,6 @@ buy Suntouched Special Reserve##22775 |q 9067/1 |goto Silvermoon City 79.51,58.5
 step
 talk Instructor Antheol##15970
 turnin Swift Discipline##9066 |goto Eversong Woods/0 55.70,54.51
-step
-Enter the building |goto Silvermoon City 75.65,44.91 < 10 |walk
-talk Talionia##16647
-|tip Downstairs inside the building.
-accept The Stone##9529 |goto Silvermoon City 74.39,47.15
-|only if BloodElf Warlock
-step
-click Voidstone
-turnin The Stone##9529 |goto Ghostlands 43.66,15.98
-accept The Rune of Summoning##9619 |goto Ghostlands 43.66,15.98
-|only if BloodElf Warlock
-step
-Follow the shore along the river |goto Eversong Woods 44.26,91.08 < 40 |only if walking
-Follow the path down |goto Ghostlands 29.35,7.87 < 30 |only if walking
-use the Voidstone##23732
-|tip Use it near the pink symbol on the ground.
-|tip All way at the top of the building.
-|tip Inside the building.
-kill Summoned Voidwalker##5676 |q 9619/1 |goto Ghostlands 27.00,15.25
-|only if BloodElf Warlock
-step
-Enter the building |goto Silvermoon City 75.65,44.91 < 10 |walk
-talk Talionia##16647
-|tip Downstairs inside the building.
-turnin The Rune of Summoning##9619 |goto Silvermoon City 74.39,47.15
-|only if BloodElf Warlock
 step
 talk Zalene Firstlight##16443
 |tip Inside the building.
@@ -4300,7 +4275,7 @@ Allow Enemies to Kill You
 Die on Purpose |havebuff Ghost##8326 |goto Ghostlands 12.41,25.66 |q 9163
 step
 talk Spirit Healer##6491
-Select _"Return me to life."_
+Select _"Return me to life."_ |gossip 88335
 Resurrect at the Spirit Healer |nobuff Ghost##8326 |goto Ghostlands 43.87,25.74 |q 9163 |zombiewalk
 step
 talk Arcanist Vandril##16197
@@ -4595,7 +4570,8 @@ kill Jurion the Deceiver##16248 |q 9170/3 |goto Ghostlands 32.09,74.45
 step
 talk Apothecary Enith##16208
 |tip Inside the crypt.
-Choose _<Administer the restorative draught.>_
+Choose _<Administer the restorative draught.>_ |gossip 91625
+Select _"A bit ungrateful, aren't we?  The way out is clear, flee quickly!"_ |gossip 91567
 Rescue Apothecary Enith |q 9164/1 |goto Ghostlands 32.14,73.95
 step
 Leave the crypt and enter the building |goto Ghostlands 29.95,87.79 < 10 |walk
@@ -4612,7 +4588,8 @@ Click Here if He's Not Here |confirm |q 9170 |or
 step
 talk Ranger Vedoran##16209
 |tip Downstairs inside the building.
-Choose _<Administer the restorative draught.>_
+Choose _<Administer the restorative draught.>_ |gossip 91546
+Select _"You're free to go now.  The way out is safe."_ |gossip 91545
 Rescue Ranger Vedoran |q 9164/3 |goto Ghostlands 32.79,89.92
 step
 Enter the building |goto Ghostlands 35.06,87.96 < 10 |walk
@@ -4624,7 +4601,8 @@ Follow the path up |goto Ghostlands 37.63,84.74 < 30 |only if walking
 Follow the path up and enter the building |goto Ghostlands 39.77,83.43 < 10 |walk
 talk Apprentice Varnis##16206
 |tip Inside the building.
-Choose _<Administer the restorative draught.>_
+Choose _<Administer the restorative draught.>_ |gossip 91627
+Select _"You're free to go now.  The way out is safe."_ |gossip 91628
 Rescue Ranger Vedoran |q 9164/2 |goto Ghostlands 40.98,83.22
 step
 kill Borgoth the Bloodletter##16247 |q 9170/2 |goto Ghostlands 41.26,83.04
@@ -4640,7 +4618,7 @@ Allow Enemies to Kill You
 Die on Purpose |havebuff Ghost##8326 |goto Ghostlands 35.04,80.32 |q 9170
 step
 talk Spirit Healer##6491
-Select _"Return me to life."_
+Select _"Return me to life."_ |gossip 88335
 Resurrect at the Spirit Healer |nobuff Ghost##8326 |goto Ghostlands 61.45,56.97 |q 9170 |zombiewalk
 step
 Enter the building |goto Ghostlands 54.75,49.44 < 10 |walk
@@ -4664,6 +4642,11 @@ Follow the path |goto Undercity 52.25,64.25 < 10 |walk
 talk Lady Sylvanas Windrunner##10181
 turnin Journey to Undercity##9180 |goto Undercity 58.05,91.79 |only if BloodElf
 turnin Journey to Undercity##9177 |goto Undercity 58.05,91.79 |only if not BloodElf
+step
+talk Ambassador Sunsorrow##16287 |goto Undercity/0 57.56,90.55 |only if BloodElf
+Select _"What is it that you have for me, ambassador?"_ |gossip 91547
+collect Lament of the Highborne##30632 |only if BloodElf
+|tip You may discard Lament of the Highborne, if you will need space in your bags. It provides the text of the song and its translation.
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Eastern Kingdoms (1-60)\\Tirisfal Glades (5-11)",{
 mopready=true,
@@ -5717,19 +5700,24 @@ clicknpc Skeletal Steed##47445
 Watch the dialogue
 talk Dumass##47444
 |tip He will run up to you.
-Select _"Maybe you should go take a nap or something. I don't know if I have any work for you."_
+Select _"Maybe you should go take a nap or something. I don't know if I have any work for you."_ |gossip 113155
+Select _"Wait a minute. It looks like something just came up. Yes, right here on this sheet of paper. You need to head southeast to the Azurelode Mine and report to Captain Keyton. Southeast is that way *you point southeast*."_ |gossip 113154
 Dispense the First Quest |q 28096/1 |goto Hillsbrad Foothills 29.34,63.44
 step
 Watch the dialogue
 talk Kingslayer Orkus##47443
 |tip He will fly up to you on a mount.
-Select _"Umm... Apparently there is some trouble at Southshore. Something about worgen insurgents. Maybe you could help with them?"_
+Select _"Umm... Apparently there is some trouble at Southshore. Something about worgen insurgents. Maybe you could help with them?"_ |gossip 113158
+Select _"None."_ |gossip 113157
+Select _"Right, thanks. Just go ahead and head southeast. More south than east. Probably off the coast."_ |gossip 113156
 Dispense the Second Quest |q 28096/2 |goto Hillsbrad Foothills 29.34,63.44
 step
 Watch the dialogue
 talk Johnny Awesome##47442
 |tip He will walk up to you on a mount.
-Select _"Well, we are having some problems at the Sludge Fields, located northeast of here. Warden Stillwater could use your help."_
+Select _"Well, we are having some problems at the Sludge Fields, located northeast of here. Warden Stillwater could use your help."_ |gossip 113161
+Select _"That's all."_ |gossip 113160
+Select _"THAT'S ALL, JOHNNY AWESOME. TAKE IT OR LEAVE IT!"_ |gossip 113159
 Dispense the Third Quest |q 28096/3 |goto Hillsbrad Foothills 29.34,63.44
 step
 talk High Executor Darthalia##2215
@@ -5992,7 +5980,7 @@ turnin Can You Smell What the Lok'tar is Cooking?##28344 |goto Hillsbrad Foothil
 accept *Gurgle* HELP! *Gurgle*##28345 |goto Hillsbrad Foothills 49.57,74.40
 step
 talk Kingslayer Orkus##48218
-Select _"Your feet are touching the ground, Orkus. This is shallow water. Just stand up and walk to shore."_
+Select _"Your feet are touching the ground, Orkus. This is shallow water. Just stand up and walk to shore."_ |gossip 113238
 Watch the dialogue
 Safely Escort Orkus Out of the Water |q 28345/1 |goto Hillsbrad Foothills 49.57,74.40
 step
@@ -6077,7 +6065,7 @@ Locate the Stormpike Battle Master |goto Hillsbrad Foothills 27.35,87.35 < 15 |c
 step
 Watch the dialogue
 talk Kingslayer Orkus##48503
-Select _"I'm ready, Orkus. Let's do this!"_
+Select _"I'm ready, Orkus. Let's do this!"_ |gossip 113249
 kill Stormpike Battle Master##48515
 |tip Kingslayer Orkus will kill him nearby.
 |tip Loot him after he's killed.
@@ -6224,13 +6212,13 @@ talk Lilith##49035
 accept Deception and Trickery##28604
 step
 talk Instructor Rufus##48922
-Select _"Dirty, stinkin' Wildhammer. You know these dwarves only consider you as half a dwarf, right? What does that make you? A gnome?"_
+Select _"Dirty, stinkin' Wildhammer. You know these dwarves only consider you as half a dwarf, right? What does that make you? A gnome?"_ |gossip 113280
 kill Instructor Rufus##48922 |q 28603/1 |goto Hillsbrad Foothills 44.51,49.07
 step
 kill Captain Crudbeard##48924 |q 28603/3 |goto Hillsbrad Foothills 44.31,50.48
 step
 talk Drill Sergeant Magnus##48923
-Select _"I guess it's true then. I didn't want to believe that you were a yellow-bellied snow licker, but there's no doubt about it now."_
+Select _"I guess it's true then. I didn't want to believe that you were a yellow-bellied snow licker, but there's no doubt about it now."_ |gossip 113281
 kill Drill Sergeant Magnus##48923 |q 28603/2 |goto Hillsbrad Foothills 43.43,49.92
 step
 _Click the Complete Quest Box:_
@@ -6454,8 +6442,8 @@ turnin Shakes O'Breen##26336 |goto Arathi Highlands 25.93,83.86
 step
 Equip the Goggles of Gem Hunting |equipped Goggles of Gem Hunting##4491 |q 26051
 step
-talk Goutgut##42088
-turnin Hello Lolo##26083 |goto Arathi Highlands 12.82,34.07
+talk Lolo the Lookout##2766 |goto Arathi Highlands/0 25.45,85.20
+turnin Hello Lolo##26083
 stickystart "Kill_Daggerspine_Sorceresses"
 stickystart "Kill_Daggerspine_Raiders"
 step
@@ -6607,10 +6595,10 @@ mopready=true,
 next="Leveling Guides\\Eastern Kingdoms (1-60)\\Western Plaguelands (34-39)",
 },[[
 step
-Run through the tunnel to the Hinterlands |goto Arathi Highlands 37.00,29.38 < 15 |only if walking
-talk Kellen Kuhn##43573
-fpath Hiri'watha Research Station |goto The Hinterlands 32.45,58.07
-step
+talk Urda##2851 |goto Arathi Highlands/0 68.16,33.39
+Select _"Take me to Revantusk Village."_ |gossip 112418
+|tip Land in Revantusk Village
+|goto The Hinterlands/0 81.70,81.89 < 15
 talk Gorkas##4314
 fpath Revantusk Village |goto The Hinterlands 81.70,81.75
 step
@@ -6815,7 +6803,7 @@ accept Ongo'longo's Revenge##26367 |goto The Hinterlands 67.82,66.51
 step
 talk Kotonga##42624 |goto The Hinterlands 67.79,66.28
 |tip Under the canopy.
-Select _"Send me to Akil'darah at the middle terrace."_
+Select _"Send me to Akil'darah at the middle terrace."_ |gossip 112397
 Teleport to the Middle Terrace |goto The Hinterlands 58.51,67.27 < 30 |noway |c |q 26308
 stickystart "Kill_Vilebranch_Soul_Eaters"
 stickystart "Kill_Vilebranch_Blood_Drinkers"
@@ -6841,7 +6829,7 @@ step
 Run up the stairs |goto The Hinterlands 62.10,71.37 < 15 |only if walking
 Run up the stairs |goto The Hinterlands 59.92,70.20 < 15 |only if walking
 click Totem of Akil'darah##204002 |goto The Hinterlands 58.51,67.18
-Choose _"Akil'darah, return me to my allies."_
+Choose _"Akil'darah, return me to my allies."_ |gossip 112396
 Return to Kotonga |goto The Hinterlands 67.79,66.28 < 30 |noway |c |q 26308
 step
 talk Eliza Darkgrin##42622
@@ -6857,7 +6845,7 @@ accept Summit of Fate##26363 |goto The Hinterlands 67.82,66.51
 step
 talk Kotonga##42624 |goto The Hinterlands 67.79,66.28
 |tip Under the canopy.
-Select _"Send me to Akil'darah at the middle terrace."_
+Select _"Send me to Akil'darah at the middle terrace."_ |gossip 112397
 Teleport to the Middle Terrace |goto The Hinterlands 58.51,67.27 < 30 |noway |c |q 26363
 step
 clicknpc Sacrificed Vilebranch##42857+
@@ -6871,7 +6859,7 @@ collect 6 Shadra-Spawn Venom Sample##58239 |q 26368/1 |goto The Hinterlands 58.5
 step
 Leave the cave |goto The Hinterlands 58.54,79.29 < 15 |walk |only if subzone("Jintha'Alor") and indoors()
 click Totem of Akil'darah##204002 |goto The Hinterlands 58.50,67.20
-Choose _Akil'darah, return me to my allies._
+Choose _Akil'darah, return me to my allies._ |gossip 112396
 Return to Kotonga |goto The Hinterlands 67.79,66.28 < 30 |noway |c |q 26368
 step
 talk Eliza Darkgrin##42622
@@ -6885,7 +6873,7 @@ accept Hunt the Keeper##26369 |goto The Hinterlands 67.82,66.51
 step
 talk Kotonga##42624 |goto The Hinterlands 67.79,66.28
 |tip Under the canopy.
-Select _"Send me to Akil'darah at the middle terrace."_
+Select _"Send me to Akil'darah at the middle terrace."_ |gossip 112397
 Teleport to the Middle Terrace |goto The Hinterlands 58.51,67.27 < 30 |noway |c |q 26369
 step
 Enter the cave |goto The Hinterlands 58.54,79.29 < 15 |walk
@@ -6895,7 +6883,7 @@ collect Tablet of Shadra##58241 |q 26369/1 |goto The Hinterlands 57.48,86.46
 step
 Leave the cave |goto The Hinterlands 58.54,79.29 < 15 |walk |only if subzone("Jintha'Alor") and indoors()
 click Totem of Akil'darah##204002 |goto The Hinterlands 58.50,67.20
-Choose _Akil'darah, return me to my allies._
+Choose _Akil'darah, return me to my allies._ |gossip 112396
 Return to Kotonga |goto The Hinterlands 67.79,66.28 < 30 |noway |c |q 26369
 step
 talk Primal Torntusk##42642
@@ -6905,6 +6893,9 @@ step
 talk Eliza Darkgrin##42622
 |tip Under the canopy.
 accept Darkcleric Marnal##26384 |goto The Hinterlands 67.65,66.60
+step
+talk Kellen Kuhn##43573
+fpath Hiri'watha Research Station |goto The Hinterlands 32.45,58.07
 step
 talk Bitsy##43739
 home Hiri'watha Research Station |goto The Hinterlands 31.80,57.99 |q 28508 |future
@@ -6979,8 +6970,13 @@ talk Darkcleric Marnal##42898
 turnin Shadra the Venom Queen##26419 |goto The Hinterlands 31.86,58.38
 accept The Battle for Andorhal##28508 |goto The Hinterlands 31.86,58.38
 step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Tablet of Shadra##58241
+|only if itemcount(58241) > 0
+step
 talk Kellen Kuhn##43573
-Select _"I need a bat, Kellen. I'm headed to Western Plaguelands. The Dark Lady needs me!"_
+Select _"I need a bat, Kellen. I'm headed to Western Plaguelands. The Dark Lady needs me!"_ |gossip 113257
 Begin Flying to Andorhal |invehicle |goto The Hinterlands 32.45,58.08 |q 28508
 step
 Fly to Andorhal, Western Plaguelands |outvehicle |goto Western Plaguelands/0 46.60,64.70 |q 28508 |notravel
@@ -8338,6 +8334,8 @@ turnin The Endless Flow##26922 |goto Western Plaguelands 47.31,64.41
 accept Araj the Summoner##26925 |goto Western Plaguelands 47.31,64.41
 step
 kill Araj the Summoner##1852
+use Jearl's Hand Grenades##60678
+|tip use the grenades on skeletons
 click Araj's Phylactery##177241
 |tip It looks like a purple and green jar that appears after you kill Araj.
 collect Araj's Phylactery Shard##17114 |q 26925/1 |goto Western Plaguelands 45.22,69.27
@@ -8599,7 +8597,7 @@ talk Lieutenant Myner##45157
 accept It's About Time!##27156 | goto Western Plaguelands 43.21,15.93
 step
 talk Hearthglen Trainee##45162+
-Select _"Lieutenant Myner asked me to challenge you to a duel."_
+Select _"Lieutenant Myner asked me to challenge you to a duel."_ |gossip 112644
 kill Hearthglen Trainee##45162+
 Challenge and Defeat #7# Hearthglen Trainees |q 27156/1 |goto Western Plaguelands 43.04,16.26
 step
@@ -8638,7 +8636,7 @@ _Click the Complete Quest Box:_
 turnin Taelan Fordring's Legacy##27151
 accept Unusual Behavior... Even For Gnolls##27152
 step
-kill Moldfang##45155 |q 27152/2 |goto Western Plaguelands 57.67,36.08
+kill Moldfang##45155 |q 27152/1 |goto Western Plaguelands 57.67,36.08
 step
 _Click the Complete Quest Box:_
 turnin Unusual Behavior... Even For Gnolls##27152
@@ -8646,21 +8644,21 @@ accept The Good People of Hearthglen##27153
 step
 talk Bree Ironstock##45150
 |tip Inside the building.
-Select _"Hello, ma'am.  Heard any interesting rumors lately?"_
+Select _"Hello, ma'am.  Heard any interesting rumors lately?"_ |gossip 112641
 Speak with Bree Ironstock |q 27153/3 |goto Western Plaguelands 43.72,17.29
 step
 talk High Cleric Alphus##45151
 |tip Inside the building.
-Select _"I'm looking for someone who may have stolen some supplies from Hearthglen.  Have any leads for me?"_
+Select _"I'm looking for someone who may have stolen some supplies from Hearthglen.  Have any leads for me?"_ |gossip 112642
 Speak with High Cleric Alphus |q 27153/4 |goto Western Plaguelands 42.13,18.18
 step
 talk Morris Vant##45148
 |tip Inside the building.
-Select _"Have you noticed anything strange lately?  Any new customers in the blacksmith shop?"_
+Select _"Have you noticed anything strange lately?  Any new customers in the blacksmith shop?"_ |gossip 112637
 Speak with Morris Vant |q 27153/1 |goto Western Plaguelands 44.38,13.51
 step
 talk Outfitter Mendelev##45149
-Select _"Have you noticed anything strange lately?  Any new customers, buying anything suspicious?"_
+Select _"Have you noticed anything strange lately?  Any new customers, buying anything suspicious?"_ |gossip 112639
 Speak with Outfitter Mendelev |q 27153/2 |goto Western Plaguelands 44.81,12.43
 step
 _Click the Complete Quest Box:_
@@ -8669,7 +8667,7 @@ accept Bagging Bisp##27154
 step
 talk Magus Bisp##45152
 |tip At the top of the tower.
-Select _"I was just wondering what you knew about the gnolls to the south.  Someone has been giving them supplies to practice necromancy."_
+Select _"I was just wondering what you knew about the gnolls to the south.  Someone has been giving them supplies to practice necromancy."_ |gossip 112643
 kill Magus Bisp##45152
 "Speak with" Magus Bisp |q 27154/1 |goto Western Plaguelands 45.84,18.35
 step
@@ -8894,7 +8892,7 @@ Gain Gidwin's Weapon Oil |havebuff Gidwin's Weapon Oil##85613 |or |q 27373 |goto
 Gain Tarenar's Talisman |havebuff Tarenar's Talisman##85614 |or |q 27373 |goto Eastern Plaguelands 8.80,66.60
 step
 clicknpc Fiona's Caravan##45400
-Choose _"Ride Fiona's Caravan to its next destination."_
+Choose _"Ride Fiona's Caravan to its next destination."_ |gossip 112748
 Begin Riding Fiona's Caravan |invehicle |goto Eastern Plaguelands 8.80,66.60 |q 27373
 step
 Ride Fiona's Caravan |q 27373/1 |goto Eastern Plaguelands 34.72,68.58 |notravel
@@ -8917,7 +8915,7 @@ accept Little Pamela##27383 |goto Eastern Plaguelands 35.60,68.90
 step
 talk Argus Highbeacon##45451
 |tip He walks around at the top of the tower.
-Select _"Are you interested in joining our caravan?  We're headed to Light's Hope Chapel."_
+Select _"Are you interested in joining our caravan?  We're headed to Light's Hope Chapel."_ |gossip 112745
 Find a Traveling Companion |q 27381/1 |goto Eastern Plaguelands 35.90,69.30
 step
 talk Argus Highbeacon##45451
@@ -8968,7 +8966,7 @@ accept Cenarion Tenacity##27544 |goto Eastern Plaguelands 35.02,68.14
 step
 talk Carlin Redpath##11063
 |tip Inside the tower.
-Select _"Carlin, do you have the extended Annals of Darrowshire?"_
+Select _"Carlin, do you have the extended Annals of Darrowshire?"_ |gossip 111489
 collect Extended Annals of Darrowshire##13202 |q 27388/1 |goto Eastern Plaguelands 35.60,68.90
 stickystart "Kill_Plaguebats"
 step
@@ -9070,7 +9068,7 @@ talk Fiona##45417
 accept The Trek Continues##27448 |goto Eastern Plaguelands 34.85,69.14
 step
 clicknpc Fiona's Caravan##45400
-Choose _"Ride Fiona's Caravan to its next destination."_
+Choose _"Ride Fiona's Caravan to its next destination."_ |gossip 112749
 Begin Riding Fiona's Caravan |invehicle |goto Eastern Plaguelands 35.00,69.30 |q 27448
 step
 Ride in Fiona's Caravan |q 27448/1 |goto Eastern Plaguelands 52.61,53.92 |notravel
@@ -9153,7 +9151,7 @@ use the Death Cultist Disguise##61283
 Wear the Death Cultist Disguise |havebuff Death Cultist Disguise##85141 |goto Eastern Plaguelands 61.70,75.50 |q 27454
 step
 click Mereldar Plague Cauldron##205485
-Choose _"Throw in an entire flask."_
+Choose _"Throw in an entire flask."_ |gossip 112758
 Disturb the Mereldar Plague Cauldron |q 27454/1 |goto Eastern Plaguelands 62.40,76.40
 step
 talk Betina Bigglezink##11035
@@ -9422,7 +9420,7 @@ turnin Impatience##27488 |goto Eastern Plaguelands 61.60,43.20
 accept Nobody to Blame but Myself##27489
 step
 clicknpc Fiona's Caravan##45400
-Choose _"Ride Fiona's Caravan to its next destination."_
+Choose _"Ride Fiona's Caravan to its next destination."_ |gossip 112750
 Begin Riding Fiona's Caravan |invehicle |goto Eastern Plaguelands 61.60,42.50 |q 27489
 step
 Ride Fiona's Caravan to Northpass Tower |q 27489/1 |goto Eastern Plaguelands 50.51,20.67 |notravel
@@ -9601,7 +9599,7 @@ talk Fiona##45417
 turnin Journey's End##27527 |goto Eastern Plaguelands 73.70,52.10
 step
 talk Beezil Linkspanner##46022
-Select _"You know, if you're looking for a place to hide out, you're free to join us in our caravan."_
+Select _"You know, if you're looking for a place to hide out, you're free to join us in our caravan."_ |gossip 112821
 Earn the "Full Caravan" Achievement |achieve 5442 |goto Eastern Plaguelands 73.80,52.36
 |only if rep('Gadgetzan') > Hated
 ]])
@@ -9848,13 +9846,13 @@ step
 talk The Warden##46768
 |tip Follow the path around.
 |tip Inside the underground building.
-Choose _<Place the pawn in the indentation.>_
+Choose _<Place the pawn in the indentation.>_ |gossip 112862
 kill The Warden##46768
 Thoroughly Investigate The Warden |q 27887/1 |goto Badlands 50.30,52.60
 step
 talk The Sentinel##46769
 |tip Inside the underground building.
-Choose _<Place the pawn in the indentation.>_
+Choose _<Place the pawn in the indentation.>_ |gossip 112863
 kill The Sentinel##46769
 Thoroughly Investigate The Sentinel |q 27887/2 |goto Badlands 50.29,51.59
 step
@@ -9915,7 +9913,7 @@ accept The Day that Deathwing Came: What Really Happened##27715 |goto Badlands 2
 step
 talk Human Admirer##47124
 |tip You can talk to any of the 4 Admirers.
-Select _"Hop in, baby."_
+Select _"Hop in!"_ |gossip 113120
 Choose an Admirer to Save |q 27715/1 |goto Badlands 26.30,62.40
 step
 Ride to the End of the Canyon |q 27715/2 |goto Badlands 42.20,43.60 |notravel
@@ -9962,26 +9960,32 @@ _Next to you:_
 talk Gargal##47022
 accept Gargal, the Behemoth##27893
 step
+cast Amakkar's Kidney Shot##87608 |q 27891/1
 Use Amakkar's Kidney Shot |q 27891/1 |goto Badlands 17.65,45.35
 |tip Use Amakkar's Kidney Shot ability on any enemy around this area.
 |tip Your followers' abilities appear as buttons above your action bars.
 step
+cast Jurrix's Fiery Blast##87612 |q 27892/1
 Use Jurrix's Fiery Blast |q 27892/1 |goto Badlands 17.65,45.35
 |tip Use Jurrix's Fiery Blast ability on any enemy around this area.
 |tip Your followers' abilities appear as buttons above your action bars.
 step
+cast Gargal's Mighty Shout##87614 |q 27893/2
 Use Gargal's Mighty Shout |q 27893/2 |goto Badlands 17.65,45.35
 |tip Use Gargal's Mighty Shout ability on any enemy around this area.
 |tip Your followers' abilities appear as buttons above your action bars.
 step
+cast Amakkar's Pocket Potion##87609 |q 27891/2
 Use Amakkar's Pocket Potion |q 27891/2 |goto Badlands 17.65,45.35
 |tip Use Amakkar's Pocket Potion ability.
 |tip Your followers' abilities appear as buttons above your action bars.
 step
+cast Jurrix's Time Warp##87596 |q 27892/2
 Use Jurrix's Time Warp |q 27892/2 |goto Badlands 17.65,45.35
 |tip Use Jurrix's Time Warp ability.
 |tip Your followers' abilities appear as buttons above your action bars.
 step
+cast Gargal's Shield Wall##87607 |q 27893/1
 Use Gargal's Shield Wall |q 27893/1 |goto Badlands 17.65,45.35
 |tip Use Gargal's Shield Wall ability.
 |tip Your followers' abilities appear as buttons above your action bars.
@@ -37828,6 +37832,7 @@ step
 talk Kor'kron Squad Leader##31833
 |tip This is an escort quest.
 |tip If he's not here, someone may be escorting him.
+|tip There may be more than one Kor'kron Squad Leader - talk to the one with the quest exclamation mark!
 |tip Wait for him to respawn.
 accept Assault by Ground##13301 |goto Icecrown/0 58.37,46.15
 stickystart "Slay_Ymirheim_Vrykul"
@@ -37849,7 +37854,7 @@ step
 talk Saronite Mine Slave##31397+
 |tip They look like friendly NPCs mining all throughout Saronite Mines.
 |tip Be careful to avoid Foreman Thaldrin, an elite enemy near the back of the mine.
-Select _"Go on, you're free. Get out of here!"_
+Select _"Go on, you're free. Get out of here!"_ |gossip 94618
 |tip Some of them may attack you.
 Rescue #10# Saronite Mine Slaves |q 13302/1 |goto Icecrown/0 56.82,57.47
 |only if haveq(13302) or completedq(13302)
@@ -37902,7 +37907,7 @@ talk Dying Berserker##31273+
 |tip They look like horde soldiers laying on the ground.
 |tip You won't be able to talk to them if they are already dead.
 |tip You can find them all around the Broken Front Area.
-Select _"Hold on, friend. Tell me what happened here."_
+Select _"Hold on, friend. Tell me what happened here."_ |gossip 94485
 Question the Dying Berserker |q 13228/1 |goto Icecrown 68.97,67.23
 step
 talk Dying Berserker##31273
@@ -37920,7 +37925,7 @@ turnin A Hero Remains##13072 |goto Icecrown 79.79,71.76
 accept The Keeper's Favor##13073 |goto Icecrown 79.79,71.76
 step
 talk Arch Druid Lilliandra##30630
-Select _"It's a pleasure to meet you as well, Archdruid. I am on a task from Tirion and time is short, might I trouble you for a portal to Moonglade?"_
+Select _"It's a pleasure to meet you as well, Archdruid. I am on a task from Tirion and time is short, might I trouble you for a portal to Moonglade?"_ |gossip 94726
 clicknpc Moonglade Portal##32790
 |tip It appears nearby.
 |tip You can use your Teleport Moonglade spell instead if you like.  |only Druid
@@ -38027,25 +38032,25 @@ accept Eliminate the Competition##12955 |goto Icecrown/0 43.63,25.13
 stickystart "Challenge_And_Defeat_Mjordin_Combatants"
 step
 talk Efrem the Faithful##30081
-Select _"I challenge you to a duel, Scarlet scum!"_
+Select _"I challenge you to a duel, Scarlet scum!"_ |gossip 93528
 kill Efrem the Faithful##30081
 |tip He will eventually surrender.
 Defeat Efrem the Faithful |q 12955/2 |goto Icecrown/0 37.86,25.12
 step
 talk Tinky Wickwhistle##30162
-Select _"Sorry, Tinky, but I can't afford you as a distraction while I'm doing what needs to be done here."_
+Select _"Sorry, Tinky, but I can't afford you as a distraction while I'm doing what needs to be done here."_ |gossip 93534
 kill Tinky Wickwhistle##30162
 |tip She will eventually surrender.
 Defeat Tinky Wickwhistle |q 12955/4 |goto Icecrown/0 36.14,23.57
 step
 talk Sigrid Iceborn##30086
-Select _"I've heard that vrykul women cannot fight at all. If you wish to prove me wrong, you can try."_
+Select _"I've heard that vrykul women cannot fight at all. If you wish to prove me wrong, you can try."_ |gossip 93529
 kill Sigrid Iceborn##30086
 |tip She will eventually surrender.
 Defeat Sigrid Iceborn |q 12955/1 |goto Icecrown/0 37.07,22.47
 step
 talk Onu'zun##30180
-Select _"I have bad news for you Onu'zun: I'm gonna have to cut short your dreams!"_
+Select _"I have bad news for you Onu'zun: I'm gonna have to cut short your dreams!"_ |gossip 93700
 kill Onu'zun##30180
 |tip He will eventually surrender.
 Defeat Onu'zun |q 12955/3 |goto Icecrown/0 37.86,22.93
@@ -38310,7 +38315,13 @@ accept The Story Thus Far...##12807 |goto Icecrown/0 19.54,48.15
 step
 talk Lord-Commander Arete##29344
 |tip On the platform on the side of the cliff.
-Select _"Lord-Commander, I would hear your tale."_
+Select _"Lord-Commander, I would hear your tale."_ |gossip 93183
+Select _"<You nod slightly but do not complete the motion as the lord-commander narrows his eyes before he continues.>"_ |gossip 93184
+Select _"I thought that they now called themselves the Scarlet Onslaught?"_ |gossip 93186
+Select _"Where did the grand admiral go?"_ |gossip 93188
+Select _"That's fine. When do I start?"_ |gossip 93190
+Select _"Let's finish this!"_ |gossip 93192
+Select _"That's quite a tale, lord-commander."_ |gossip 93194
 Listen to Lord-Commander Arete's Tale |q 12807/1 |goto Icecrown/0 19.54,48.15
 step
 talk Lord-Commander Arete##29344
@@ -38425,6 +38436,8 @@ talk Lord-Commander Arete##29344
 |tip On the platform on the side of the cliff.
 turnin In Strict Confidence##12840 |goto Icecrown/0 19.54,48.15
 step
+|tip You may use Bone Gryphon in this quest or do the kills without it.
+use Bone Gryphon##40600
 kill 10 Onslaught Gryphon Rider##29333 |q 12815/1 |goto Icecrown/0 8.26,43.23
 |tip They look like humans flying on white birds.
 |tip You can find them all around the Onslaught Harbor area.
@@ -38440,7 +38453,7 @@ click Eye of the Lich King##192861
 |tip It looks like a floating blue orb.
 |tip Inside the building.
 |tip Follow the path around to get to it.
-Choose _"Grasp the Eye of the Lich King and focus your will upon it to scry for important information."_
+Choose _"Grasp the Eye of the Lich King and focus your will upon it to scry for important information."_ |gossip 94081
 Watch the dialogue
 Gain Information for The Bone Witch |q 13121/1 |goto Icecrown/0 26.20,62.30
 step
@@ -38820,7 +38833,7 @@ talk Keritose Bloodblade##30946
 accept Parting Gifts##13168 |goto Icecrown/0 44.06,24.54
 step
 click Eye of Dominion##193424
-Choose _<Seize control of an Eidolon Watcher through the eye.>_
+Choose _<Seize control of an Eidolon Watcher through the eye.>_ |gossip 94445
 Seize Control of an Eidolon Watcher |q 13168/1 |goto Icecrown/0 44.13,24.71
 step
 Release the Eidolon Watcher |outvehicle |q 13168
@@ -38833,7 +38846,7 @@ accept Honor is for the Weak##13170 |goto Icecrown/0 44.06,24.54
 accept From Whence They Came##13171 |goto Icecrown/0 44.06,24.54
 step
 click Eye of Dominion##193424
-Choose _<Seize control of an Eidolon Watcher through the eye.>_
+Choose _<Seize control of an Eidolon Watcher through the eye.>_ |gossip 94445
 Seize Control of an Eidolon Watcher |invehicle |goto Icecrown/0 44.13,24.71 |q 13169
 stickystart "Assassinate_Restless_Lookouts"
 stickystart "Banish_Scourge_Crystals"
@@ -38869,7 +38882,7 @@ accept Seeds of Chaos##13172 |goto Icecrown/0 44.06,24.54
 accept Amidst the Confusion##13174 |goto Icecrown/0 44.06,24.54
 step
 talk Keritose Bloodblade##30946
-Select _"I am prepared to join the assault, Keritose. Do you have a skeletal gryphon ready for me?"_
+Select _"I am prepared to join the assault, Keritose. Do you have a skeletal gryphon ready for me?"_ |gossip 94454
 Join the Assault |invehicle |goto Icecrown/0 44.06,24.54 |q 13172
 step
 Kill enemies around this area
@@ -38913,7 +38926,7 @@ talk Slumbering Mjordin##30718+
 |tip They look like upright sleeping vrykul along the walls inside the building.
 |tip You can find them all around the Halls of the Ancestors area.
 |tip It's random, but you will eventually find Iskalder.
-Choose _"Waken the slumbering mjordin to see if it is really the ancient hero, Iskalder."_
+Choose _"Waken the slumbering mjordin to see if it is really the ancient hero, Iskalder."_ |gossip 94082
 use The Bone Witch's Amulet##43166
 |tip Use it on Iskalder once you find him.
 |tip He will begin following you.
@@ -39041,7 +39054,7 @@ turnin Putting Olakin Back Together Again##13220 |goto Icecrown/0 35.39,66.32
 accept The Flesh Giant Champion##13235 |goto Icecrown/0 35.39,66.32
 step
 talk Margrave Dhakar##31306
-Select _"Let's kill this... thing... and get this over with."_
+Select _"Let's kill this... thing... and get this over with."_ |gossip 94275
 Watch the dialogue
 |tip Your allies will help you fight.
 kill Morbidus##30698 |q 13235/1 |goto Icecrown/0 29.75,61.26
@@ -39092,7 +39105,7 @@ accept Matchmaker##13147 |goto Icecrown/0 54.15,71.17
 accept Stunning View##13160 |goto Icecrown/0 54.15,71.17
 step
 click Eye of Dominion##193424
-Choose _<Seize control of a Lithe Stalker through the eye.>_
+Choose _<Seize control of a Lithe Stalker through the eye.>_ |gossip 94455
 Seize Control of a Lithe Stalker |invehicle |goto Icecrown/0 54.25,70.62 |q 13146
 step
 Chain Scourge Bombs
@@ -39210,7 +39223,6 @@ talk Chief Engineer Copperclaw##30825
 |tip Downstairs inside the airship, near the rear of the airship.
 |tip To get downstairs, run down the ramps on either side of the main deck.
 turnin Volatility##13261 |only if haveq(13261) or completedq(13261)
-accept Green Technology##13379
 stickystart "Collect_Orbs_Of_Illusion"
 step
 kill Overseer Faedris##32250 |q 13354/1 |goto Icecrown/0 53.89,46.84
@@ -39246,33 +39258,6 @@ kill Overseer Jhaeqon##32285 |q 13354/2 |goto Icecrown/0 54.72,32.62
 step
 kill Overseer Veraj##32263 |q 13354/3 |goto Icecrown/0 53.68,29.20
 |tip Under the canopy.
-step
-talk Fringe Engineer Tezzla##32430
-|tip On the platform above the bridge.
-|tip It may take a few seconds for her to appear.
-turnin Green Technology##13379 |goto Icecrown/0 53.99,36.88
-accept Fringe Science Benefits##13373 |goto Icecrown/0 53.99,36.88
-step
-talk Rizzy Ratchwiggle##31839
-|tip On the platform above the bridge.
-Select _"Give me a bomber!"_
-Borrow a Bomber |invehicle |goto Icecrown/0 53.99,36.70 |q 13373
-step
-_As You Fly:_
-Kill enemies around this area
-|tip Use the abilities on your action bar.
-|tip Bomb the enemies on the ground.
-|tip Shoot rockets at the flying gargoyle enemies.
-Slay #40# Bombardment Infantry |q 13373/1 |goto Icecrown/0 58.95,41.21
-Slay #8# Bombardment Captains |q 13373/2 |goto Icecrown/0 58.95,41.21
-Slay #15# Gargoyle Ambushers |q 13373/3 |goto Icecrown/0 58.95,41.21
-step
-Return to Fringe Engineer Tezzla |outvehicle |goto Icecrown/0 53.99,36.88 |q 13373 |notravel
-step
-talk Fringe Engineer Tezzla##32430
-|tip On the platform above the bridge.
-|tip It may take a few seconds for her to appear.
-turnin Fringe Science Benefits##13373 |goto Icecrown/0 53.99,36.88
 step
 _NOTE:_
 map Icecrown/0
@@ -39465,7 +39450,7 @@ collect Writhing Mass##44304 |goto Icecrown/0 52.32,34.80 |q 13357
 |only if haveq(13357) or completedq(13357)
 step
 use the Writhing Mass##44304
-|tip Use it next to one 1 of the 3 cauldrons around this area.
+|tip Use it next to one of the 3 cauldrons around this area.
 |tip Each of the cauldrons will give you a different stat buff for 2 hours, depending on the smoke color.
 |tip Purple = Spell Power.
 |tip Green = Stamina.
@@ -39539,7 +39524,7 @@ Locate Highlord Tirion Fordring |goto Icecrown/0 44.41,76.21 < 15 |c |q 13364
 step
 talk Highlord Tirion Fordring##32239
 |tip Outside the building, next to a blue bonfire.
-Select _"I'm ready, Highlord."_
+Select _"I'm ready, Highlord."_ |gossip 94489
 Begin Following Highlord Tirion Fordring |goto Icecrown/0 44.41,76.21 > 15 |c |q 13364
 step
 Watch the dialogue

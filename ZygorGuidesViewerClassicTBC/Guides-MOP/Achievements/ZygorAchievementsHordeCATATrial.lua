@@ -10,6 +10,7 @@ patch='30002',
 description="To earn this achievement, you will have to craft or purchase a Mechano-Hog. "..
 "Crafting this mount requires the Northrend Engineering profession. You may also purchase it from "..
 "the Auction House.",
+mopready=true,
 },[[
 step
 Click Here to Craft with Northrend Engineering |next "Craft_Mechano-Hog" |confirm |only if skill("Engineering") >= 1 |achieve 2097 |or
@@ -395,6 +396,7 @@ description="Earn the following Eastern Kingdoms exploration achievements:\n\nEx
 "Explore Blasted Lands\nExplore Dun Morogh\nExplore Hillsbrad Foothills\nExplore Redridge Mountains\n"..
 "Explore Eversong Woods\nExplore Silverpine Forest\nExplore Northern Stranglethorn\nExplore Swamp of Sorrows\n"..
 "Explore Westfall\nExplore Deadwind Pass\nExplore Eastern Plaguelands",
+mopready=true,
 },[[
 leechsteps "Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore the Cape of Stranglethorn" 1-10
 leechsteps "Achievement Guides\\Exploration\\Eastern Kingdoms\\Explore Northern Stranglethorn" 1-16
@@ -434,6 +436,7 @@ description="Explore Arathi Highlands, revealing the following covered areas of 
 "Circle of West Binding\nStromgarde Keep\nCircle of Inner Binding\nBoulderfist Hall\nCircle of Outer Binding\n"..
 "Go'Shek Farm\nCircle of East Binding\nNorthfold Manor\nGalen's Fall\nFaldir's Cove\nThandol Span\n"..
 "Refuge Pointe\nWitherbark Village\nDabyrie's Farmstead\nHammerfall",
+mopready=true,
 },[[
 step
 Discover Thandol Span |achieve 761/8 |goto Arathi Highlands 41.30,91.00
@@ -480,6 +483,7 @@ patch='30003',
 description="Explore Badlands, revealing the following covered areas of the world map:\n\nLethlor Ravine\n"..
 "Uldaman\nScar of the Worldbreaker\nAngor Fortress\nBloodwatcher Point\nAgmond's End\n"..
 "Camp Cagg\nThe Dustbowl\nCamp Kosh\nNew Kargath",
+mopready=true,
 },[[
 step
 Discover Lethlor Ravine |achieve 765/1 |goto Badlands 68.00,48.20
@@ -515,6 +519,7 @@ description="Explore Blasted Lands, revealing the following covered areas of the
 "Nethergarde Keep\nThe Dark Portal\nDreadmaul Post\nRise of the Defiler\nSunveil Excursion\nThe Red "..
 "Reaches\nNethergarde Supply Camps\nSerpent's Coil\nAltar of Storms\nThe Tainted Scar\nShattershore\n"..
 "Surwich\nThe Tainted Forest",
+mopready=true,
 },[[
 step
 Discover Dreadmaul Hold |achieve 766/1 |goto Blasted Lands 39.50,12.90
@@ -557,6 +562,7 @@ patch='30002',
 description="Explore Burning Steppes, revealing the following covered areas of the world map:\n\nDreadmaul Rock\n"..
 "Terror Wing Path\nRuins of Thaurissan\nBlackrock Stronghold\nAltar of Storms\nMorgan's Vigil\n"..
 "Blackrock Pass\nBlack Tooth Hovel\nThe Whelping Downs\nBlackrock Mountain",
+mopready=true,
 },[[
 step
 Discover Blackrock Pass |achieve 775/4 |goto Burning Steppes 66.70,77.50
@@ -591,6 +597,7 @@ patch='40003',
 description="Explore the Cape of Stranglethorn, revealing the following covered areas of the world map:\n\nBooty Bay\n"..
 "Gurubashi Arena\nJaquero Isle\nNek'mani Wellspring\nRuins of Jubuwal\nCrystalvein Mine\nHardwrench Hideaway"..
 "\nMistvale Valley\nRuins of Aboraz\nThe Wild Shore",
+mopready=true,
 },[[
 step
 Discover Booty Bay |achieve 4995/1 |goto The Cape of Stranglethorn 39.70,71.00
@@ -624,6 +631,7 @@ achieveid={777},
 patch='30002',
 description="Explore Deadwind Pass, revealing the following covered areas of the world map:\n\nKarazhan\n"..
 "Deadman's Crossing\nThe Vice",
+mopready=true,
 },[[
 step
 Discover Deadman's Crossing |achieve 777/1 |goto Deadwind Pass 45.10,35.80
@@ -645,6 +653,7 @@ description="Explore Dun Morogh, revealing the following covered areas of the wo
 "Frostmane Front\nIronforge Airfield\nKharanos\nAmberstill Ranch\nGol'Bolar Quarry\nFrostmane Hold\n"..
 "Gates of Ironforge\nColdridge Valley\nNew Tinkertown\nShimmer Ridge\nThe Tundrid Hills\nIceflow Lake"..
 "\nHelm's Bed Lake\nNorth Gate Outpost",
+mopready=true,
 },[[
 step
 Discover Helm's Bed Lake |achieve 627/10 |goto Dun Morogh 84.10,51.80
@@ -690,6 +699,7 @@ description="Explore Duskwood, revealing the following covered areas of the worl
 "Raven Hill\nVul'Gol Ogre Mound\nThe Yorgen Farmstead\nThe Rotting Orchard\nDarkshire\nThe "..
 "Darkened Bank\nAddle's Stead\nRaven Hill Cemetery\nTwilight Grove\nBrightwood Grove\nTranquil "..
 "Gardens Cemetery\nManor Mistmantle",
+mopready=true,
 },[[
 step
 Discover The Hushed Bank |achieve 778/1 |goto Duskwood 10.10,44.30
@@ -732,6 +742,7 @@ description="Explore Eastern Plaguelands, revealing the following covered areas 
 "Blackwood Lake\nZul'Mashar\nQuel'Lithien Lodge\nPlaguewood\nRuins of the Scarlet Enclave\nThe Marris Stead\n"..
 "Crown Guard Tower\nDarrowshire\nCorin's Crossing\nTyr's Hand\nThe Infectis Scar\nEastwall Tower\nNorthdale\n"..
 "Northpass Tower\nTerrordale\nStratholme",
+mopready=true,
 },[[
 step
 Discover Darrowshire |achieve 771/6 |goto Eastern Plaguelands 35.10,84.20
@@ -792,6 +803,7 @@ patch='30002',
 description="Explore Elwynn Forest, revealing the following covered areas of the world map:\n\nNorthshire Valley\n"..
 "Goldshire\nJerod's Landing\nBrackwell Pumpkin Patch\nRidgepoint Tower\nStone Cairn Lake\nWestbrook Garrison\n"..
 "Fargodeep Mine\nTower of Azora\nEastvale Logging Camp\nCrystal Lake",
+mopready=true,
 },[[
 step
 Discover Eastvale Logging Camp |achieve 776/8 |goto Elwynn Forest 83.50,66.90
@@ -830,6 +842,7 @@ description="Explore Eversong Woods, revealing the following covered areas of th
 "\nAzurebreeze Coast\nGoldenbough Pass\nRunestone Falithas\nSaltheril's Haven\nThuron's Livery\nZeb'Watha\n"..
 "Ruins of Silvermoon\nSunsail Anchorage\nEast Sanctum\nStillwhisper Pond\nFairbreeze Village\nTor'Watha\n"..
 "Silvermoon City\nElrendar Falls\nLake Elrendar\nRunestone Shan'dor\nGolden Strand\nTranquil Shore",
+mopready=true,
 },[[
 step
 Discover The Scorched Grove |achieve 859/13 |goto Eversong Woods 36.20,86.00
@@ -895,6 +908,7 @@ description="Explore Ghostlands, revealing the following covered areas of the wo
 "Goldenmist Village\nSanctum of the Moon\nDawnstar Spire\nHowling Ziggurat\nZeb'Nowa\nWindrunner Spire"..
 "\nElrendar Crossing\nSuncrown Village\nWindrunner Village\nSanctum of the Sun\nFarstrider Enclave\n"..
 "Deatholme\nAmani Pass\nBleeding Ziggurat\nThalassian Pass",
+mopready=true,
 },[[
 step
 Discover Thalassian Pass |achieve 858/16 |goto Ghostlands 48.20,84.30
@@ -943,6 +957,7 @@ description="Explore Hillsbrad Foothills, revealing the following covered areas 
 "\nRuins of Alterac\nSlaughter Hollow\nSouthpoint Gate\nTarren Mill\nThe Sludge Fields\nBrazie Farmstead\n"..
 "Crushridge Hold\nDalaran Crater\nDarrow Hill\nDurnholde Keep\nGavin's Naze\nMisty Shore\nPurgation Isle\n"..
 "Ruins of Southshore\nSofera's Naze\nStrahnbrad\nThe Headland\nThe Uplands",
+mopready=true,
 },[[
 step
 Discover Durnholde Keep |achieve 772/10 |goto Hillsbrad Foothills 68.30,60.00
@@ -1009,6 +1024,7 @@ patch='30002',
 description="Explore The Hinterlands, revealing the following covered areas of the world map:\n\nAerie Peak\n"..
 "Zun'watha\nShadra'Alor\nAgol'watha\nThe Altar of Zul\nSkulk Rock\nJintha'Alor\nPlaguemist Ravine\n"..
 "Quel'Danil Lodge\nValorwind Lake\nThe Creeping Ruin\nSeradane\nShaol'watha\nThe Overlook Cliffs",
+mopready=true,
 },[[
 step
 Discover Aerie Peak |achieve 773/1 |goto The Hinterlands 13.90,45.00
@@ -1049,6 +1065,7 @@ condition_end=function() return achieved(868) end,
 achieveid={868},
 patch='30003',
 description="Explore Isle of Quel'Danas, revealing the covered areas of the world map.",
+mopready=true,
 },[[
 step
 Explore Isle of Quel'Danas |achieve 868 |goto Isle of Quel'Danas 47.40,30.60
@@ -1063,6 +1080,7 @@ patch='30002',
 description="Explore Loch Modan, revealing the following covered areas of the world map:\n\nThe Loch\n"..
 "Mo'grosh Stronghold\nNorth Gate Pass\nIronband's Excavation Site\nThelsamar\nValley of Kings\n"..
 "Stonewrought Dam\nSilver Stream Mine\nThe Farstrider Lodge\nGrizzlepaw Ridge\nStonesplinter Valley",
+mopready=true,
 },[[
 step
 Discover Valley of Kings |achieve 779/11 |goto Loch Modan 20.30,78.50
@@ -1100,6 +1118,7 @@ description="Explore Northern Stranglethorn, revealing the following covered are
 "Grom'gol Base Camp\nBambala\nRebel Camp\nKal'ai Ruins\nMosh'Ogg Ogre Mound\nBal'lal Ruins\nBalia'mah Ruins\n"..
 "Ruins of Zul'Kunda\nFort Livingston\nNesingwary's Expedition\nKurzen's Compound\nMizjah Ruins\nThe Vile Reef\n"..
 "Lake Nazferiti\nZul'Gurub",
+mopready=true,
 },[[
 step
 Discover Lake Nazferiti |achieve 781/12 |goto Northern Stranglethorn 51.48,34.05
@@ -1146,6 +1165,7 @@ patch='30002',
 description="Explore Redridge Mountains, revealing the following covered areas of the world map:\n\nLakeshire\n"..
 "Three Corners\nRedridge Canyons\nStonewatch Falls\nRender's Camp\nGalardell Valley\nCamp Everstill\n"..
 "Lake Everstill\nLakeridge Highway\nAlther's Mill\nRender's Valley\nStonewatch Keep\nShalewind Canyon",
+mopready=true,
 },[[
 step
 Discover Lakeridge Highway |achieve 780/4 |goto Redridge Mountains 38.20,68.50
@@ -1186,6 +1206,7 @@ patch='30002',
 description="Explore Searing Gorge, revealing the following covered areas of the world map:\n\nFirewatch Ridge\n"..
 "Blackchar Cave\nGrimesilt Dig Site\nThorium Point\nThe Cauldron\nThe Sea of Cinders\nDustfire Valley"..
 "\nBlackrock Mountain",
+mopready=true,
 },[[
 step
 Discover Blackrock Mountain |achieve 774/8 |goto Searing Gorge 39.90,82.90
@@ -1217,6 +1238,7 @@ description="Explore Silverpine Forest, revealing the following covered areas of
 "The Forsaken Front\nNorth Tide's Beachhead\nValgan's Field\nDeep Elem Mine\nForsaken High Command\n"..
 "Ambermill\nForsaken Rear Guard\nThe Decrepit Fields\nThe Skittering Dark\nFenris Isle\nThe Sepulcher\n"..
 "Olsen's Farthing\nShadowfang Keep\nNorth Tide's Run",
+mopready=true,
 },[[
 step
 Discover The Battlefront |achieve 769/1 |goto Silverpine Forest 46.10,79.50
@@ -1261,6 +1283,7 @@ patch='30002',
 description="Explore Swamp of Sorrows, revealing the following covered areas of the world map:\n\nMisty Valley\n"..
 "Splinterspear Junction\nStonard\nStagalbog\nBogpaddle\nPurespring Cavern\nThe Harborage\nSorrowmurk\n"..
 "The Shifting Mire\nPool of Tears\nMisty Reed Strand\nMarshtide Watch",
+mopready=true,
 },[[
 step
 Discover Stagalbog |achieve 782/7 |goto Swamp of Sorrows 67.80,74.90
@@ -1300,6 +1323,7 @@ description="Explore Tirisfal Glades, revealing the following covered areas of t
 "Agamand Mills\nCold Hearth Manor\nGarren's Haunt\nBalnir Farmstead\nScarlet Watch Post\nThe Bulwark\n"..
 "Ruins of Lordaeron\nSolliden Farmstead\nNightmare Vale\nBrill\nBrightwater Lake\nCrusader Outpost\n"..
 "Venomweb Vale\nScarlet Monastery Entrance\nCalston Estate",
+mopready=true,
 },[[
 step
 Discover Deathknell |achieve 768/1 |goto Tirisfal Glades 32.20,63.80
@@ -1346,6 +1370,7 @@ patch='30002',
 description="Explore Western Plaguelands, revealing the following covered areas of the world map:\n\nDarrowmere Lake\n"..
 "Sorrow Hill\nThe Bulwark\nDalson's Farm\nNorthridge Lumber Camp\nRedpine Dell\nThe Weeping Cave\nCaer Darrow"..
 "\nAndorhal\nFelstone Field\nThe Writhing Haunt\nHearthglen\nGahrron's Withering\nThondroril River",
+mopready=true,
 },[[
 step
 Discover The Bulwark |achieve 770/5 |goto Western Plaguelands 27.00,57.70
@@ -1389,6 +1414,7 @@ description="Explore Westfall, revealing the following covered areas of the worl
 "Furlbrow's Pumpkin Farm\nJangolode Mine\nThe Dead Acre\nAlexston Farmstead\nThe Dust Plains\n"..
 "The Dagger Hills\nSaldean's Farm\nThe Jansen Stead\nThe Molsen Farm\nDemont's Place\nMoonbrook\n"..
 "The Raging Chasm",
+mopready=true,
 },[[
 step
 Discover The Dagger Hills |achieve 802/11 |goto Westfall 44.90,82.00
@@ -1430,6 +1456,7 @@ description="Explore Wetlands, revealing the following covered areas of the worl
 "Bluegill Marsh\nSundown Marsh\nIronbeard's Tomb\nAngerfang Encampment\nGreenwarden's Grove\n"..
 "Direforge Hill\nSlabchisel's Survey\nBlack Channel Marsh\nWhelgar's Excavation Site\nSaltspray Glen\n"..
 "Dun Modr\nThelgen Rock\nMosshide Fen\nDun Algaz\nRaptor Ridge",
+mopready=true,
 },[[
 step
 Discover Raptor Ridge |achieve 841/16 |goto Wetlands 67.90,34.90
@@ -1477,6 +1504,7 @@ description="Explore Ashenvale, revealing the following covered areas of the wor
 "The Zoram Strand\nSilverwind Refuge\nThistlefur Village\nAstranaar\nThe Howling Vale\nSatyrnaar\n"..
 "Fallen Sky Lake\nWarsong Lumber Camp\nOrendil's Retreat\nThunder Peak\nThe Shrine of Aessina\n"..
 "Maestra's Post\nThe Ruins of Stardust\nRaynewood Retreat\nSplintertree Post\nBough Shadow\nFelfire Hill",
+mopready=true,
 },[[
 step
 Discover Silverwind Refuge |achieve 845/3 |goto Ashenvale 50.15,67.08
@@ -1529,6 +1557,7 @@ description="Explore Azshara, revealing the following covered areas of the world
 "Rear Gate\nSouthridge Beach\nLake Mennar\nStorm Cliffs\nThe Shattered Strand\nBitter Reaches\n"..
 "Ruins of Arkkoran\nThe Secret Lab\nBlackmaw Hold\nRuins of Eldarath\nRavencrest Monument\n"..
 "The Ruined Reaches",
+mopready=true,
 },[[
 step
 Discover Darnassian Base Camp |achieve 852/7 |goto Azshara 52.25,26.95
@@ -1578,6 +1607,7 @@ description="Explore Azuremyst Isle, revealing the following covered areas of th
 "Azure Watch\nEmberglade\nGeezle's Camp\nOdesyus' Landing\nPod Wreckage\nSilvermyst Isle\nThe Exodar\n"..
 "Wrathscale Point\nAmmen Ford\nBristlelimb Village\nFairbridge Strand\nMoongraze Woods\nPod Cluster\n"..
 "Silting Shore\nStillpine Hold\nValaar's Berth",
+mopready=true,
 },[[
 step
 Discover Valaar's Berth |achieve 860/16 |goto Azuremyst Isle 23.70,54.00
@@ -1629,6 +1659,7 @@ description="Explore Bloodmyst Isle, revealing the following covered areas of th
 "Wrathscale Lair\nAxxarien\nBladewood\nBlood Watch\nKessel's Crossing\nMystwood\nRagefeather Ridge\n"..
 "Talon Stand\nThe Bloodcursed Reef\nThe Crimson Reach\nThe Foul Pool\nThe Lost Fold\nThe Warp Piston\n"..
 "Vindicator's Rest\nWyrmscar Island",
+mopready=true,
 },[[
 step
 Discover Kessel's Crossing |achieve 861/8 |goto Bloodmyst Isle 61.90,90.00
@@ -1699,6 +1730,7 @@ patch='30003',
 description="Explore Darkshore, revealing the following covered areas of the world map:\n\nLor'danel\n"..
 "Ruins of Auberdine\nShatterspear War Camp\nWithering Thicket\nThe Eye of the Vortex\nNazj'vel\n"..
 "The Master's Glaive\nShatterspear Vale\nWildbend River\nRuins of Mathystra\nAmeth'Aran",
+mopready=true,
 },[[
 step
 Discover The Master's Glaive |achieve 844/11 |goto Darkshore 40.30,86.20
@@ -1736,6 +1768,7 @@ description="Explore Desolace, revealing the following covered areas of the worl
 "Nijel's Point\nThunder Axe Fortress\nMagram Territory\nValley of Spears\nShadowprey Village\n"..
 "Mannoroc Coven\nShadowbreak Ravine\nThargad's Camp\nSargeron\nCenarion Wildlands\nRanazjar Isle\n"..
 "Kodo Graveyard\nGelkis Village\nShok'Thokar\nSlitherblade Shore",
+mopready=true,
 },[[
 step
 Discover Gelkis Village |achieve 848/12 |goto Desolace 36.10,88.60
@@ -1782,6 +1815,7 @@ patch='30003',
 description="Explore Dustwallow Marsh, revealing the following covered areas of the world map:\n\nTheramore Isle\n"..
 "Direhorn Post\nShady Rest Inn\nBrackenwall Village\nAlcaz Island\nBlackhoof Village\nDreadmurk Shore\n"..
 "Mudsprocket\nWyrmbog",
+mopready=true,
 },[[
 step
 Discover Shady Rest Inn |achieve 850/5 |goto Dustwallow Marsh 29.70,49.00
@@ -1814,6 +1848,7 @@ patch='30003',
 description="Explore Durotar, revealing the following covered areas of the world map:\n\nValley of Trials\n"..
 "Southfury Watershed\nEcho Isles\nRazor Hill\nThunder Ridge\nSkull Rock\nNorthwatch Foothold\n"..
 "Sen'jin Village\nTiragarde Keep\nRazormane Grounds\nDrygulch Ravine\nOrgrimmar",
+mopready=true,
 },[[
 step
 Discover Orgrimmar |achieve 728/12 |goto Orgrimmar 45.40,8.50
@@ -1852,6 +1887,7 @@ patch='30003',
 description="Explore Felwood, revealing the following covered areas of the world map:\n\nFelpaw Village\n"..
 "Irontree Woods\nShatter Scar Vale\nJaedenar\nJadefire Glen\nDeadwood Village\nTalonbranch Glade\n"..
 "Jadefire Run\nBloodvenom Falls\nRuins of Constellas\nEmerald Sanctuary\nMorlos'Aran",
+mopready=true,
 },[[
 step
 Discover Felpaw Village |achieve 853/1 |goto Felwood 61.20,11.50
@@ -1891,6 +1927,7 @@ description="Explore Feralas, revealing the following covered areas of the world
 "The Twin Colossals\nDire Maul\nRuins of Isildien\nCamp Mojache\nGordunni Outpost\nFeral Scar Vale"..
 "\nFeathermoon Stronghold\nRuins of Feathermoon\nThe Forgotten Coast\nThe Writhing Deep\nGrimtotem "..
 "Compound\nDarkmist Ruins",
+mopready=true,
 },[[
 step
 Discover The Writhing Deep |achieve 849/8 |goto Feralas 75.90,62.40
@@ -1930,6 +1967,7 @@ achieveid={855},
 patch='30001',
 description="Explore Moonglade, revealing the following covered areas of the world map:\n\nNighthaven\n"..
 "Lake Elune'ara\nShrine of Remulos\nStormrage Barrow Dens",
+mopready=true,
 },[[
 step
 Discover Stormrage Barrow Dens |achieve 855/4 |goto Moonglade 67.80,53.80
@@ -1953,6 +1991,7 @@ description="Explore Mulgore, revealing the following covered areas of the world
 "Bloodhoof Village\nThe Rolling Plains\nRavaged Caravan\nThunderhorn Water Well\nRed Rocks\n"..
 "Wildmane Water Well\nPalemane Rock\nWinterhoof Water Well\nThe Venture Co. Mine\nWindfury Ridge\n"..
 "The Golden Plains\nBael'dun Digsite",
+mopready=true,
 },[[
 step
 Discover Bael'dun Digsite |achieve 736/10 |goto Mulgore 32.30,50.60
@@ -1994,6 +2033,7 @@ description="Explore Northern Barrens, revealing the following covered areas of 
 "Boulder Lode Mine\nThe Mor'shan Rampart\nDreadmist Peak\nThe Forgotten Pools\nFar Watch Post\n"..
 "The Crossroads\nLushwater Oasis\nThe Sludge Fen\nThe Dry Hills\nGrol'dom Farm\nThorn Hill\n"..
 "The Stagnant Oasis\nThe Merchant Coast",
+mopready=true,
 },[[
 step
 Discover Boulder Lode Mine |achieve 750/1 |goto The Barrens 67.20,12.10
@@ -2036,6 +2076,7 @@ patch='30008',
 description="Explore Silithus, revealing the following covered areas of the world map:\n\nHive'Regal\n"..
 "The Crystal Vale\nCenarion Hold\nSouthwind Village\nHive'Ashi\nHive'Zora\nThe Scarab Wall\n"..
 "Valor's Rest",
+mopready=true,
 },[[
 step
 Discover Hive'Regal |achieve 856/5 |goto Silithus 60.00,71.70
@@ -2066,6 +2107,7 @@ patch='40003',
 description="Explore Southern Barrens, revealing the following covered areas of the world map:\n\nBael Modan\n"..
 "Forward Command\nHonor's Stand\nNorthwatch Hold\nRuins of Taurajo\nVendetta Point\nFrazzlecraz Motherlode\n"..
 "Battlescar\nHunter's Hill\nRazorfen Kraul\nThe Overgrowth",
+mopready=true,
 },[[
 step
 Discover Northwatch Hold |achieve 4996/7 |goto Southern Barrens 68.80,49.10
@@ -2103,6 +2145,7 @@ description="Explore Stonetalon Mountains, revealing the following covered areas
 "Ruins of Eldre'thar\nUnearthed Grounds\nWindshear Hold\nMalaka'jin\nBoulderslide Ravine\nWindshear Crag\n"..
 "The Charred Vale\nStonetalon Peak\nKrom'gar Fortress\nThal'darah Overlook\nWebwinder Hollow\nCliffwalker Post\n"..
 "Webwinder Path\nGreatwood Vale\nSun Rock Retreat\nMirkfallon Lake",
+mopready=true,
 },[[
 step
 Discover Malaka'jin |achieve 847/9 |goto Stonetalon Mountains 72.60,92.40
@@ -2152,6 +2195,7 @@ description="Explore Tanaris, revealing the following covered areas of the world
 "Gadgetzan\nValley of the Watchers\nThe Noxious Lair\nSouthbreak Shore\nEastmoon Ruins\nZul'Farrak\n"..
 "Southmoon Ruins\nSandsorrow Watch\nLost Rigger Cove\nBroken Pillar\nDunemaul Compound\nThe Gaping Chasm"..
 "\nLand's End Beach\nThistleshrub Valley\nCaverns of Time",
+mopready=true,
 },[[
 step
 Discover Zul'Farrak |achieve 851/15 |goto Tanaris 37.30,14.30
@@ -2198,6 +2242,7 @@ patch='30003',
 description="Explore Teldrassil, revealing the following covered areas of the world map:\n\nShadowglen\n"..
 "Dolanaar\nGnarlpine Hold\nPools of Arlithrien\nThe Oracle Glade\nDarnassus\nThe Cleft\n"..
 "Ban'ethil Hollow\nLake Al'Ameth\nStarbreeze Village\nWellspring Lake\nRut'theran Village",
+mopready=true,
 },[[
 step
 Discover Lake Al'Ameth |achieve 842/6 |goto Teldrassil 55.00,61.00
@@ -2236,6 +2281,7 @@ patch='30003',
 description="Explore Thousand Needles, revealing the following covered areas of the world map:\n\nThe Great Lift\n"..
 "Sunken Dig Site\nThe Twilight Withering\nWestreach Summit\nFreewind Post\nThe Shimmering Deep\nHighperch\n"..
 "Razorfen Downs\nSouthsea Holdfast\nTwilight Bulwark\nDarkcloud Pinnacle\nSplithoof Heights",
+mopready=true,
 },[[
 step
 Discover Razorfen Downs |achieve 846/2 |goto Thousand Needles 51.70,30.00
@@ -2274,6 +2320,7 @@ patch='30003',
 description="Explore Un'Goro Crater, revealing the following covered areas of the world map:\n\nMossy Pile\n"..
 "Fire Plume Ridge\nMarshal's Stand\nThe Roiling Gardens\nGolakka Hot Springs\nThe Slithering Scar\n"..
 "Ironstone Plateau\nFungal Rock\nThe Screaming Reaches\nTerror Run\nThe Marshlands\nLakkari Tar Pits",
+mopready=true,
 },[[
 step
 Discover Ironstone Plateau |achieve 854/11 |goto Un'Goro Crater 77.10,39.20
@@ -2312,6 +2359,7 @@ patch='30003',
 description="Explore Winterspring, revealing the following covered areas of the world map:\n\nLake Kel'Theril\n"..
 "Frostfire Hot Springs\nMazthoril\nOwl Wing Thicket\nWinterfall Village\nFrostsaber Rock\nEverlook\n"..
 "Timbermaw Post\nStarfall Village\nIce Thistle Hills\nThe Hidden Grove\nFrostwhisper Gorge",
+mopready=true,
 },[[
 step
 Discover Frostwhisper Gorge |achieve 857/12 |goto Winterspring 59.80,85.50
@@ -2352,6 +2400,7 @@ description="Earn the following Kalimdor exploration achievements:\n\nExplore Du
 "Explore Desolace\nExplore Feralas\nExplore Azshara\nExplore Un'Goro Crater\nExplore Silithus\nExplore "..
 "Mulgore\nExplore Azuremyst Isle\nExplore Winterspring\nExplore Darkshore\nExplore Stonetalon Mountains\n"..
 "Explore Ashenvale\nExplore Dustwallow Marsh\nExplore Tanaris\nExplore Felwood\nExplore Moonglade",
+mopready=true,
 },[[
 leechsteps "Achievement Guides\\Exploration\\Kalimdor\\Explore Durotar" 1-12
 leechsteps "Achievement Guides\\Exploration\\Cataclysm\\Explore Vashj'ir" 1-51
@@ -2392,6 +2441,7 @@ description="Explore Blade's Edge Mountains, revealing the following covered are
 "Gruul's Lair\nMok'Nathal Village\nRazor Ridge\nSkald\nCrystal Spine\nVeil Lashh\nVekhaar Stand\n"..
 "Bladed Gulch\nBloodmaul Camp\nBroken Wilds\nDeath's Door\nForge Camp: Terror\nGrishnath\nJagged "..
 "Ridge\nRaven's Wood\nRuuan Weald\nSylvanaar\nThunderlord Stronghold\nVeil Ruuan\nVortex Summit",
+mopready=true,
 },[[
 step
 Discover Forge Camp: Terror |achieve 865/10 |goto Blade's Edge Mountains 29.10,81.00
@@ -2459,6 +2509,7 @@ description="Explore Hellfire Peninsula, revealing the following covered areas o
 "Falcon Watch\nHonor Hold\nPools of Aggonar\nTemple of Telhamat\nThrallmar\nFallen Sky Ridge\n"..
 "Zeth'Gor\nThe Warp Fields\nExpedition Armory\nHellfire Citadel\nMag'har Post\nRuins of Sha'naar\n"..
 "The Legion Front\nThrone of Kil'jaeden\nDen of Haal'esh\nVoid Ridge\nForge Camp: Mageddon",
+mopready=true,
 },[[
 step
 Discover The Stair of Destiny |achieve 862/1 |goto Hellfire Peninsula 87.70,50.30
@@ -2511,6 +2562,7 @@ description="Explore Nagrand, revealing the following covered areas of the world
 "Southwind Cleft\nWindyreed Pass\nZangar Ridge\nGaradar\nKil'sorrow Fortress\nSpirit Fields\n"..
 "Telaar\nThrone of the Elements\nBurning Blade Ruins\nForge Camp: Hate\nThe Twilight Ridge\n"..
 "Windyreed Village",
+mopready=true,
 },[[
 step
 Discover Windyreed Village |achieve 866/18 |goto Nagrand 74.30,52.90
@@ -2565,6 +2617,7 @@ description="Explore Netherstorm, revealing the following covered areas of the w
 "Sunfury Hold\nGyro-Plank Bridge\nEthereum Staging Grounds\nForge Base: Oblivion\nManaforge B'naar"..
 "Manaforge Duro\nManaforge Ultris\nTempest Keep\nArklon Ruins\nKirin'Var Village\nRuins of Enkaat\n"..
 "The Stormspire\nEco-Dome Farfield\nSocrethar's Seat\nEco-Dome Midrealm",
+mopready=true,
 },[[
 step
 Discover Manaforge B'naar |achieve 843/2 |goto Netherstorm 23.50,72.90
@@ -2623,6 +2676,7 @@ patch='30003',
 description="Explore Shadowmoon Valley, revealing the following covered areas of the world map:\n\nCoilskar Point\n"..
 "Legion Hold\nShadowmoon Village\nThe Deathforge\nWarden's Cage\nAltar of Sha'tar\nNetherwing Fields\n"..
 "Eclipse Point\nNetherwing Ledge\nThe Black Temple\nThe Hand of Gul'dan\nWildhammer Stronghold\nIllidari Point",
+mopready=true,
 },[[
 step
 Discover Legion Hold |achieve 864/3 |goto Shadowmoon Valley 24.10,39.20
@@ -2664,6 +2718,7 @@ description="Explore Terokkar Forest, revealing the following covered areas of t
 "Cenarion Thicket\nGrangol'var Village\nTuurem\nRaastok Glade\nRazorthorn Shelf\nAuchenai Grounds\nSkettis\n"..
 "Refugee Caravan\nShadow Tomb\nVeil Rhaze\nAllerian Stronghold\nFirewing Point\nStonebreaker Hold\nCarrion "..
 "Hill\nShattrath City\nThe Barrier Hills\nBonechewer Ruins\nRing of Observance\nDerelict Caravan\nWrithing Mound",
+mopready=true,
 },[[
 step
 Discover Razorthorn Shelf |achieve 867/11 |goto Terokkar Forest 55.00,20.00
@@ -2721,6 +2776,7 @@ description="Explore Zangarmarsh, revealing the following covered areas of the w
 "Feralfen Village\nMarshlight Lake\nTelredor\nThe Lagoon\nUmbrafen Village\nAngo'rosh Stronghold\n"..
 "Orebor Harborage\nZabra'jin\nAngo'rosh Grounds\nHewn Bog\nQuagg Ridge\nTwin Spire Ruins\nSporeggar\n"..
 "The Dead Mire\nBloodscale Grounds\nThe Spawning Glen\nDarkcrest Shore",
+mopready=true,
 },[[
 step
 Discover Darkcrest Shore |achieve 863/18 |goto Zangarmarsh 70.60,79.90
@@ -2771,6 +2827,7 @@ patch='30001',
 description="Earn the following Outland exploration achievements:\n\nExplore Hellfire Peninsula\nExplore Terokkar Forest\n"..
 "Explore Blade's Edge Mountains\nExplore Shadowmoon Valley\nExplore Zangarmarsh\nExplore Netherstorm\n"..
 "Explore Nagrand",
+mopready=true,
 },[[
 leechsteps "Achievement Guides\\Exploration\\Outland\\Explore Hellfire Peninsula" 1-18
 leechsteps "Achievement Guides\\Exploration\\Outland\\Explore Terokkar Forest" 1-21
@@ -2791,6 +2848,7 @@ patch='30008',
 description="Explore Borean Tundra, revealing the following covered areas of the world map:\n\nRiplash Strand\n"..
 "Temple City of En'kilah\nGarrosh's Landing\nColdarra\nAmber Ledge\nThe Dens of the Dying\nKaskala\n"..
 "Steeljaw's Caravan\nValiance Keep\nBor'gorok Outpost\nThe Geyser Fields\nWarsong Hold\nDeath's Stand",
+mopready=true,
 },[[
 step
 Discover Valiance Keep |achieve 1264/11 |goto Borean Tundra 57.70,69.30
@@ -2831,6 +2889,7 @@ patch='30008',
 description="Explore Crystalsong Forest, revealing the following covered areas of the world map:\n\nViolet Stand\n"..
 "Windrunner's Overlook\nSunreaver's Command\nThe Azure Front\nThe Decrepit Flow\nThe Unbound Thicket\n"..
 "Forlorn Woods\nThe Great Tree",
+mopready=true,
 },[[
 step
 Discover The Azure Front |achieve 1457/1 |goto Crystalsong Forest 26.40,61.40
@@ -2862,6 +2921,7 @@ description="Explore Dragonblight, revealing the following covered areas of the 
 "Obsidian Dragonshrine\nNaxxramas\nIcemist Village\nColdwind Heights\nWestwind Refugee Camp\nLake Indu'le\n"..
 "Agmar's Hammer\nThe Forgotten Shore\nScarlet Point\nAngrathar the Wrath Gate\nEmerald Dragonshrine\n"..
 "New Hearthglen\nLight's Trust\nWyrmrest Temple\nThe Crystal Vice\nVenomspite",
+mopready=true,
 },[[
 step
 Discover Angrathar the Wrath Gate |achieve 1265/10 |goto Dragonblight 36.00,15.00
@@ -2911,6 +2971,7 @@ description="Explore Grizzly Hills, revealing the following covered areas of the
 "Conquest Hold\nBlue Sky Logging Grounds\nWestfall Brigade Encampment\nGranite Springs\nVoldrune\n"..
 "Rage Fang Shrine\nVenture Bay\nAmberpine Lodge\nCamp Oneqwah\nDrak'Tharon Keep\nDun Argol\n"..
 "Grizzlemaw\nThor Modan",
+mopready=true,
 },[[
 step
 Discover Drak'Tharon Keep |achieve 1266/2 |goto Grizzly Hills 17.50,23.60
@@ -2954,6 +3015,7 @@ description="Explore Howling Fjord, revealing the following covered areas of the
 "Kamagua\nVengeance Landing\nScalawag Point\nGjalerbron\nGiant's Run\nIvald's Ruin\nNew Agamand\n"..
 "The Twisted Glade\nWestguard Keep\nBaleheim\nCauldros Isle\nBaelgun's Excavation Site\nSkorn\n"..
 "Apothecary Camp\nSteel Gate\nNifflevar\nEmber Clutch\nFort Wildervar\nUtgarde Keep\nHalgrind\n",
+mopready=true,
 },[[
 step
 Discover Gjalerbron |achieve 1263/9 |goto Howling Fjord 36.60,9.50
@@ -3011,6 +3073,7 @@ description="Explore Icecrown, revealing the following covered areas of the worl
 "Onslaught Harbor\nAldur'thar: The Desolation Gate\nThe Fleshwerks\nCorp'rethar: The Horror Gate\n"..
 "Sindragosa's Fall\nValley of Echoes\nThe Conflagration\nJotunheim\nThe Shadow Vault\nScourgeholme\n"..
 "Icecrown Citadel\nThe Broken Front\nYmirheim\nValhalas",
+mopready=true,
 },[[
 step
 Discover Onslaught Harbor |achieve 1270/3 |goto Icecrown 8.90,42.90
@@ -3055,6 +3118,7 @@ patch='30002',
 description="Explore Sholazar Basin, revealing the following covered areas of the world map:\n\nThe Mosslight Pillar\n"..
 "Makers' Perch\nRainspeaker Canopy\nThe Avalanche\nKartak's Hold\nThe Savage Thicket\nMakers' Overlook\n"..
 "The Suntouched Pillar\nThe Lifeblood Pillar\nThe Glimmering Pillar\nThe Stormwright's Shelf",
+mopready=true,
 },[[
 step
 Discover Makers' Overlook |achieve 1268/4 |goto Sholazar Basin 81.00,55.40
@@ -3094,6 +3158,7 @@ description="Explore Storm Peaks, revealing the following covered areas of the w
 "Brunnhildar Village\nValkyrion\nSparksocket Minefield\nTemple of Life\nThunderfall\nUlduar\n"..
 "Snowdrift Plains\nFrosthold\nNarvir's Cradle\nBor's Breath\nTerrace of the Makers\nNidavelir\n"..
 "Engine of the Makers\nTemple of Storms\nGarm's Bane",
+mopready=true,
 },[[
 step
 Discover Sparksocket Minefield |achieve 1269/7 |goto The Storm Peaks 35.10,84.00
@@ -3140,6 +3205,7 @@ patch='30008',
 description="Explore Zul'Drak, revealing the following covered areas of the world map:\n\nAltar of Rhunok\n"..
 "Ampitheater of Anguish\nGundrak\nAltar of Mam'toth\nDrak'Sotra Fields\nAltar of Quetz'lun\nZeramas\n"..
 "Altar of Har'koa\nAltar of Sseratus\nLight's Breach\nVoltarus\nZim'Torga\nKolramas\nThrym's End",
+mopready=true,
 },[[
 step
 Discover Thrym's End |achieve 1267/12 |goto Zul'Drak 17.00,57.30
@@ -3182,6 +3248,7 @@ patch='30002',
 description="Earn the following Northrend exploration achievements:\n\nExplore Borean Tundra\nExplore Dragonblight\n"..
 "Explore Zul'Drak\nExplore Crystalsong Forest\nExplore Icecrown\nExplore Howling Fjord\nExplore Grizzly Hills\n"..
 "Explore Sholazar Basin\nExplore Storm Peaks",
+mopready=true,
 },[[
 leechsteps "Achievement Guides\\Exploration\\Northrend\\Explore Borean Tundra" 1-13
 leechsteps "Achievement Guides\\Exploration\\Northrend\\Explore Sholazar Basin" 1-12
@@ -3202,6 +3269,7 @@ achieveid={4868},
 patch='40003',
 description="Earn the following Cataclysm exploration achievements:\n\nExplore Twilight Highlands\nExplore Deepholm\n"..
 "Explore Hyjal\nExplore Vashj'ir\nExplore Uldum",
+mopready=true,
 },[[
 leechsteps "Achievement Guides\\Exploration\\Cataclysm\\Explore Hyjal" 1-11
 leechsteps "Achievement Guides\\Exploration\\Cataclysm\\Explore Vashj'ir" 1-51
@@ -3220,6 +3288,7 @@ description="Explore Deepholm, revealing the following covered areas of the worl
 "Deathwing's Fall\nStorm's Fury Wreckage\nThe Pale Roost\nThe Quaking Fields\nStonehearth\n"..
 "Needlerock Chasm\nMasters' Gate\nTemple of Earth\nTherazane's Throne\nTwilight Overlook\n"..
 "Crimson Expanse",
+mopready=true,
 },[[
 step
 Explore the Temple of Earth |achieve 4864/6 |goto Deepholm/0 48.94,53.28
@@ -3258,6 +3327,7 @@ patch='40003',
 description="Explore Hyjal, revealing the following covered areas of the world map:\n\nRim of the World\n"..
 "Ashen Lake\nGates of Sothann\nSethria's Roost\nThe Flamewake\nThe Throne of Flame\nNordrassil\n"..
 "The Circle of Cinders\nDarkwhisper Gorge\nShrine of Goldrinn\nThe Scorched Plain",
+mopready=true,
 },[[
 step
 Explore Nordrassil |achieve 4863/6 |goto Mount Hyjal/0 62,25
@@ -3297,6 +3367,7 @@ description="Explore Twilight Highlands, revealing the following covered areas o
 "The Maw of Madness\nCrucible of Carnage\nDragonmaw Pass\nDunwald Ruins\nGlopgut's Hollow\nThundermar\n"..
 "Highland Forest\nGrim Batol\nRuins of Drakgor\nThe Black Breach\nThe Krazzworks\nVermillion Redoubt\n"..
 "Wyrms' Bend",
+mopready=true,
 },[[
 step
 Explore Highbank |achieve 4866/11 |goto Twilight Highlands/0 77.04,74.73
@@ -3367,6 +3438,7 @@ description="Explore Uldum, revealing the following covered areas of the world m
 "Orsis\nTemple of Uldum\nThe Gate of Unending Cycles\nThe Trail of Devastation\nObelisk of the Sun\n"..
 "Cradle of the Ancients\nLost City of the Tol'vir\nObelisk of the Moon\nNahom\nTombs of the Precursors\n"..
 "Ramkahen\nRuins of Ammon\nTahret Grounds\nThe Cursed Landing\nVir'naal Dam",
+mopready=true,
 },[[
 step
 Explore Ramkahen |achieve 4865/12 |goto Uldum/0 54.91,34.24
@@ -3427,6 +3499,7 @@ description="Explore Vashj'ir, revealing the following covered areas of the worl
 "Seafarer's Tomb\nThe Skeletal Reef\nNespirah\nRuins of Vashj'ir\nSilver Tide Hollow\nL'ghorek\n"..
 "Abyssal Breach\nThe Scalding Chasm\nGnaws' Boneyard\nRuins of Thelserai Temple\nBeth'mora Ridge\n"..
 "The Clutch\nLegion's Fate\nShimmering Grotto",
+mopready=true,
 },[[
 step
 click Warchief's Command Board##207325
@@ -3609,6 +3682,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Higher Learning",{
 achieveid={1956},
 patch='30002',
 description="Read the volumes of 'The Schools of Arcane Magic' found in Dalaran.",
+mopready=true,
 },[[
 step
 _Warning:_ These books have respawn timers of about 3-4 hours (it seems to be random between those times) so this achievement may take you a while to get |tip The book you want won't always be there. Fake trash books spawn to make the achievement even harder to get, but keep at it. Make sure you click the fake trash books anyway, so the real books have a chance to spawn.
@@ -3736,6 +3810,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Friend or Fowl?",{
 achieveid={1254},
 patch='30001',
 description="This guide will walk you through slaying 15 turkeys in 3 minutes in Howling Fjord.",
+mopready=true,
 },[[
 step
 kill Fjord Turkey##24746+
@@ -3750,6 +3825,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Going Down?",{
 achieveid={964},
 patch='30001',
 description="This guide will walk you through falling 65 yards without dying.",
+mopready=true,
 },[[
 step
 |achieve 964 |goto Shattrath City/0 50.13,62.05 |only if not (Mage or Paladin or DemonHunter)
@@ -3770,6 +3846,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\It's Happy Hour So
 achieveid={1833},
 patch='30002',
 description="Drink 25 different types of beverages.",
+mopready=true,
 },[[
 step
 talk Innkeeper Gryshka##6929
@@ -3913,6 +3990,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Shave and a Haircu
 achieveid={545},
 patch='30001',
 description="Visit a Barber Shop and get your hair cut.",
+mopready=true,
 },[[
 step
 click Barbershop Chair
@@ -3929,6 +4007,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Tastes Like Chicke
 achieveid={1832},
 patch='30002',
 description="Sample 50 different kinds of Azeroth's delectable dishes.",
+mopready=true,
 },[[
 step
 talk Innkeeper Gryshka##6929
@@ -4246,6 +4325,7 @@ condition_end=function() return achieved(5548) end,
 achieveid={1206,2557,2556,5548},
 patch='40003',
 description="Show the critters of Azeroth how much you /love them. Slay the pests.",
+mopready=true,
 },[[
 step
 Use the _Love emote_ on a Rockchewer Whelk |clicknpc Rockchewer Whelk##48848 |script DoEmote("LOVE")
@@ -4433,6 +4513,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\Well Read",{
 achieveid={1244},
 patch='30001',
 description="Read books.",
+mopready=true,
 },[[
 step
 click The Betrayer Ascendant##268068 |achieve 1244/23 |goto Silvermoon City 68.60,64.10
@@ -4584,6 +4665,7 @@ ZygorGuidesViewer:RegisterGuide("Achievement Guides\\General\\You'll Feel Right 
 achieveid={5779},
 patch='40100',
 description="This guide will walk you through feeling 1000% better by eating Chocolate Cookies.",
+mopready=true,
 },[[
 step
 Use the Stormwind City Cooking Dailies guide to
