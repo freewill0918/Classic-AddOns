@@ -1,6 +1,6 @@
 # Auctionator
 
-## [292](https://github.com/Auctionator/Auctionator/tree/292) (2025-09-09)
-[Full Changelog](https://github.com/Auctionator/Auctionator/compare/291...292) 
+## [298](https://github.com/TheMouseNest/Auctionator/tree/298) (2025-10-07)
+[Full Changelog](https://github.com/TheMouseNest/Auctionator/compare/297...298) 
 
-- [Fixes #1717] Legacy AH: Fix cancelling auctions from selling tab  
+- Retail: Update toc for 11.2.5  
