@@ -170,17 +170,16 @@
 			for tier = 1, MAX_NUM_TALENT_TIERS do
 				local tierAvailable, selectedTalent, tierUnlockLevel = GetTalentTierInfo(tier, 1, false)
 
-				-- Only query talent info if a talent is selected in this tier
 				if (selectedTalent) then
-					local talentInfoQuery = {};
-					talentInfoQuery.tier = tier;
-					talentInfoQuery.column = selectedTalent;
-					talentInfoQuery.groupIndex = talentGroup;
-					talentInfoQuery.isInspect = false;
-					talentInfoQuery.target = "player";
+					local talentInfoQuery = {}
+					talentInfoQuery.tier = tier
+					talentInfoQuery.column = selectedTalent
+					talentInfoQuery.groupIndex = talentGroup
+					talentInfoQuery.isInspect = false
+					talentInfoQuery.target = "player"
 
 					---@type talenttierinfo
-					local talentInfo = C_SpecializationInfo.GetTalentInfo(talentInfoQuery);
+					local talentInfo = C_SpecializationInfo.GetTalentInfo(talentInfoQuery)
 					if (talentInfo) then
 						local talentId = talentInfo.talentID
 						talents = talents .. "" .. talentId .. ","
