@@ -6,6 +6,7 @@ local Env = select(2, ...)
 local CharacterMeta = {
     version     = "",
     unit        = "",
+    id          = 0,
     name        = "",
     realm       = "",
     race        = "",
@@ -40,7 +41,8 @@ end
 ---@param unit "player"|"target" Target unit. "target" would need to be inspect target.
 function CharacterMeta:SetUnit(unit)
     local name, realm = UnitFullName(unit)
-    local _, englishClass, _, englishRace = GetPlayerInfoByGUID(UnitGUID(unit))
+    self.id = UnitGUID(unit)
+    local _, englishClass, _, englishRace = GetPlayerInfoByGUID(self.id)
 
     self.version = Env.VERSION
     self.unit = unit
@@ -53,21 +55,26 @@ function CharacterMeta:SetUnit(unit)
 end
 
 ---Fill remaining data needed for export.
-function CharacterMeta:FillForExport()
+function CharacterMeta:FillForExport(isInspect)
     assert(self.unit, "Unit was not yet set!")
     if Env.IS_CLASSIC_MISTS then
-        self.talents = Env.CreateMistsTalentString()
+        self.talents = Env.CreateMistsTalentString(isInspect)
     else
         self.talents = Env.CreateTalentString()
     end
-    self.professions = Env.CreateProfessionEntry()
 
     local equipmentSet = Env.CreateEquipmentSpec()
     equipmentSet:UpdateEquippedItems(self.unit)
     self.gear = equipmentSet
 
+    local professions = Env.CreateProfessionEntry(isInspect)
+    if isInspect and #professions == 0 then
+        professions = equipmentSet:InferProfessions()
+    end
+    self.professions = professions
+
     if not Env.IS_CLASSIC_ERA then
-        self.glyphs = Env.CreateGlyphEntry()
+        self.glyphs = Env.CreateGlyphEntry(isInspect)
     end
 end
 

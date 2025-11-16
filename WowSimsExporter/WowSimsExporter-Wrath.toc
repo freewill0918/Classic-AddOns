@@ -1,7 +1,7 @@
 ## Title: WowSimsExporter |c0000ffffWOTLK|r
-## Version: v3.0.0
+## Version: v3.1.5
 ## Author: generalwrex(Natop), namreeb, coolmodi(FelixPflaum), riotdog
-## Interface: 30403
+## Interface: 30405
 ## Notes: This is an exporter written to quickly export your character to https://wowsims.github.io/wotlk/ for simulations.
 ## SavedVariables: WSEDB
 ## OptionalDeps: Ace3
@@ -14,6 +14,7 @@ embeds.xml
 extras.lua
 Shared.lua
 Conditional_Wrath.lua
+SavedDataManager.lua
 ExportStructures/ItemSpec.lua
 ExportStructures/EquipmentSpec.lua
 ExportStructures/Misc.lua

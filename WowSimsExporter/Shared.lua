@@ -5,7 +5,7 @@ Env.IS_CLASSIC_ERA_SOD = Env.IS_CLASSIC_ERA and C_Engraving.IsEngravingEnabled()
 Env.IS_CLASSIC_WRATH = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 Env.IS_CLASSIC_CATA = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
 Env.IS_CLASSIC_MISTS = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
-Env.IS_CLIENT_SUPPORTED = Env.IS_CLASSIC_ERA_SOD or Env.IS_CLASSIC_WRATH or Env.IS_CLASSIC_CATA or Env.IS_CLASSIC_MISTS
+Env.IS_CLIENT_SUPPORTED = Env.IS_CLASSIC_ERA or Env.IS_CLASSIC_ERA_SOD or Env.IS_CLASSIC_WRATH or Env.IS_CLASSIC_CATA or Env.IS_CLASSIC_MISTS
 
 if Env.IS_CLASSIC_MISTS then
     Env.VERSION = C_AddOns.GetAddOnMetadata(select(1, ...), "Version")
@@ -19,25 +19,35 @@ Env.supportedClientNames = {
     "Classic: Mists of Pandaria",
     "Classic: Cataclysm",
     "Classic: WotLK",
-    "Classic: SoD (Export may work for Era, but sim is made for SoD only!)",
+    "Classic: SoD",
+    "Classic: Era/Anniversary",
 }
 
--- This is needed because classic has no way to get Ids for professions.
--- GetSkillLineInfo() only returns localized values. GetSpellInfo() also does.
--- These spells are NOT the skill line, but have the same name in english,
--- So they should probably end up with the same translation.
--- engName is what the sim uses.
-Env.professionNames = {
-    [GetSpellInfo(2018)] = { skillLine = 164, engName = "Blacksmithing" },
-    [GetSpellInfo(3104)] = { skillLine = 165, engName = "Leatherworking" },
-    [GetSpellInfo(2259)] = { skillLine = 171, engName = "Alchemy" },
-    [GetSpellInfo(9134)] = { skillLine = 182, engName = "Herbalism" },
-    [GetSpellInfo(2575)] = { skillLine = 186, engName = "Mining" },
-    [GetSpellInfo(3908)] = { skillLine = 197, engName = "Tailoring" },
-    [GetSpellInfo(12656)] = { skillLine = 202, engName = "Engineering" },
-    [GetSpellInfo(7412)] = { skillLine = 333, engName = "Enchanting" },
-    [GetSpellInfo(8617)] = { skillLine = 393, engName = "Skinning" },
+-- SkillLine.db2
+local professionSkillLineIDs = {
+    Blacksmithing  = 164,
+    Leatherworking = 165,
+    Alchemy        = 171,
+    Herbalism      = 182,
+    Mining         = 186,
+    Tailoring      = 197,
+    Engineering    = 202,
+    Enchanting     = 333,
+    Skinning       = 393,
+    Jewelcrafting  = 755,
+    Inscription    = 773,
 }
+
+Env.professionNames = {}
+for engName, skillLine in pairs(professionSkillLineIDs) do
+    local localizedName = C_TradeSkillUI.GetTradeSkillDisplayName(skillLine)
+    if localizedName then
+        Env.professionNames[localizedName] = {
+            skillLine = skillLine,
+            engName = engName
+        }
+    end
+end
 
 local statToStatId = {
     str = 1,
@@ -199,22 +209,33 @@ end
 local specializations = {}
 
 ---Try to find spec. Returns empty strings if spec could not be found.
----@param unit "player"|"target"
+---@param unit string "player" or the inspected unit
 ---@return string specName The name of the spec, e.g. "feral".
 ---@return string specUrl The URL part of the spec, e.g. "feral_druid"
 function Env.GetSpec(unit)
     local playerClass = select(2, UnitClass(unit))
 
     if specializations[playerClass] then
-        local spentTalentPoints
-
-        if not Env.IS_CLASSIC_MISTS then
+        if Env.IS_CLASSIC_MISTS then
+            local activeSpec, specId
+            if unit =="player" then
+                activeSpec = C_SpecializationInfo.GetSpecialization()
+                specId, _ = C_SpecializationInfo.GetSpecializationInfo(activeSpec)
+            else
+                specId = GetInspectSpecialization(unit)
+            end
+            for _, specData in pairs(specializations[playerClass]) do
+                if specData.specId == specId then
+                    return specData.spec, specData.url
+                end
+            end
+        else
+            local spentTalentPoints
             spentTalentPoints = CountSpentTalentsPerTree(unit == "target")
-        end
-
-        for _, specData in pairs(specializations[playerClass]) do
-            if specData.isCurrentSpec(spentTalentPoints) then
-                return specData.spec, specData.url
+            for _, specData in pairs(specializations[playerClass]) do
+                if specData.isCurrentSpec(spentTalentPoints) then
+                    return specData.spec, specData.url
+                end
             end
         end
     end
@@ -227,13 +248,15 @@ end
 ---@param spec string The name of the spec, e.g. "feral".
 ---@param url string The URL part of the spec, e.g. "feral_druid"
 ---@param checkFunc fun(spentTanlents:number[]):boolean
-function Env.AddSpec(playerClass, spec, url, checkFunc)
+---@param specId integer|nil The SpecializationID of the spec
+function Env.AddSpec(playerClass, spec, url, checkFunc, specId)
     playerClass = playerClass:upper()
     specializations[playerClass] = specializations[playerClass] or {}
     table.insert(specializations[playerClass], {
         spec = spec,
         url = url,
         isCurrentSpec = checkFunc,
+        specId = specId,
     })
 end
 
@@ -331,13 +354,14 @@ function Env.GetHandTinker(unit)
         local region = regions[i]
         if region and region:GetObjectType() == "FontString" then
             local text = region:GetText()
-            if text and text:find(use_localized..".+1.?920.+"..cooldown_m_localized) then
+            -- some client have wierd character as separator, so hopefuly .?.? picks them all
+            if text and text:find(use_localized..".+1.?.?920.+"..cooldown_m_localized) then
                 return 4898 -- Synapse Srping
             end
-            if text and text:find(use_localized..".+2.?880.+"..cooldown_m_localized) then
+            if text and text:find(use_localized..".+2.?.?880.+"..cooldown_m_localized) then
                 return 4697 -- Phase Fingers
             end
-            if text and text:find(use_localized..".+42.?000.+63.?000.+"..cooldown_s_localized) then
+            if text and text:find(use_localized..".+42.?.?000.+63.?.?000.+"..cooldown_s_localized) then
                 return 4698 -- Incendiary Fireworks Launcher
             end
         end
