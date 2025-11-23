@@ -1,30 +1,29 @@
 # DBM - Core
 
-## [12.0.4](https://github.com/DeadlyBossMods/DeadlyBossMods/tree/12.0.4) (2025-11-14)
-[Full Changelog](https://github.com/DeadlyBossMods/DeadlyBossMods/compare/12.0.3...12.0.4) [Previous Releases](https://github.com/DeadlyBossMods/DeadlyBossMods/releases)
+## [12.0.6](https://github.com/DeadlyBossMods/DeadlyBossMods/tree/12.0.6) (2025-11-19)
+[Full Changelog](https://github.com/DeadlyBossMods/DeadlyBossMods/compare/12.0.5...12.0.6) [Previous Releases](https://github.com/DeadlyBossMods/DeadlyBossMods/releases)
 
-- add caveat notice to filter  
-- squeeze in an additional fitler options  
-- Update localization.es.lua (#1805)  
 - prep new tag  
-- Fix bug where the difficulty wouldn't be shown when joining a group when you're already in a group  
-- mop toc bumps for new PTR  
-- Variance: timer Update method now handles variant totalTime (#1799)  
-- Update localization.es.lua (#1801)  
-- Update koKR (#1803)  
+- Update localization.br.lua (#1810)  
+- Update localization.br.lua (#1812)  
+- Update localization.ru.lua (#1807)  
+- Update koKR (#1806)  
     Co-authored-by: Adam <MysticalOS@users.noreply.github.com>  
     Co-authored-by: Artemis <QartemisT@gmail.com>  
-- Update localization.ru.lua (#1804)  
-- actually at this point this one line is redundant  
-- Don't report difficulty on joining delve or follower group  
-    Don't report difficulty when joining queued content in general  
-    Once again attempt to always report difficulty on joining groups that aren't one of above, but with a better antispam throttle to avoid it being reported twice.  
-- final iteration that's best compromise on some of remaining issues.  
-- simplify, solving luaLS  
-- Make sure message is branded for clarification of source of message  
-- improvements to klast  
-- Add feature to announce when raid or dungeon difficulty change (while in a group). Raid option on by default and dungeon option off by default.  
-    Inspiration for addition is that often. players don't notice the difficulty is set incorrectly when they join a pug group and lose time by zoning into zone before it is set correctly. In addition, they also often don't notice when the difficulty has been changed to correct one either and don't zone in right away. This change is aimed at making those often overlooked chat messages far more prominant with DBMs typical alert style.  
-- adjust some message language for TTS on fractillus and soul hunters to be less directive in situations they went against common weak auras  
-- Core/Timer: fix count voice when timer is started again before expiring (#1800)  
+- Update localization.fr.lua (#1811)  
+- Update localization.es.lua (#1809)  
+- Update localization.es.lua (#1808)  
+- fix redundant line from copy/paste  
+- Timer update for Midnight  
+     - Fix pausing and unpausing state detection  
+     - Added support for inline icons for tank/healer/dps/ and deadly using the new icon masks api (when available)  
+     - Added support for color by type on role based bars (when available)  
+     - Added support for audio countdowns on deadly flagged ability (when available)  
+- Fix bar pause and unpause  
+- fix timeline hiding for new build  
+- preliminary fixes for todays build that changed timeline api a little  
+- Also hide it if it's currently visible  
+- don't set affixes module as 12.0.0 compatible, and reduce load zones to just the 7 dungeons in season 15  
+- Fix Hide Blizzard Timeline option not working  
+- Disable some GUID checs in midnight within timer objects  
 - bump alpha  

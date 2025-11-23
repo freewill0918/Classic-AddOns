@@ -36,7 +36,7 @@ end)
 
 mod.options = {
 	type = "group",
-	name = L["Sexy Map"],
+	name = name,
 	args = {
 		lock = {
 			order = 1,
@@ -410,7 +410,7 @@ function mod:PLAYER_LOGIN()
 
 	-- Setup config
 	LibStub("AceConfigRegistry-3.0"):RegisterOptionsTable(name, mod.options, true)
-	local _, categoryID = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(name, L["SexyMap"])
+	local _, categoryID = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(name)
 
 	-- Configure slash handler
 	SlashCmdList.SexyMap = function()
@@ -598,6 +598,6 @@ end
 
 function mod:RegisterModuleOptions(modName, optionTbl, displayName)
 	LibStub("AceConfigRegistry-3.0"):RegisterOptionsTable(name..modName, optionTbl, true)
-	LibStub("AceConfigDialog-3.0"):AddToBlizOptions(name..modName, displayName, L["SexyMap"])
+	LibStub("AceConfigDialog-3.0"):AddToBlizOptions(name..modName, displayName, name)
 end
 
