@@ -560,8 +560,7 @@ local function TransmogButton_Refresh(self)
 end
 
 local function TransmogButton_OnClick(self, button)
-    if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then return end -- 暫時修正 for SoD
-	AtlasLoot.db.GUI.transmogHighlighter = not AtlasLoot.db.GUI.transmogHighlighter
+    AtlasLoot.db.GUI.transmogHighlighter = not AtlasLoot.db.GUI.transmogHighlighter
     TransmogButton_Refresh(self)
 end
 

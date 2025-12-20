@@ -1559,9 +1559,8 @@ if AtlasLoot:GameVersion_GE(AtlasLoot.MOP_VERSION_NUM) then
 
         -- Celestial Dungeons
         ["Tier14CelestialTierTokens"] = {
-            -- Helm and Shoulders after ToES release
-            -- 89273, 89274, 89275, 0, -- Helm
-            -- 89276, 89277, 89278, 0, -- Shoulders
+            89273, 89274, 89275, 0, -- Helm
+            89276, 89277, 89278, 0, -- Shoulders
             89264, 89265, 89266, 0, -- Chest
             89270, 89271, 89272, 0, -- Gloves
             89267, 89268, 89269, 0, -- Legs
@@ -1633,8 +1632,8 @@ function Token.GetClassItemsForToken(tokenItemID, className)
 end
 
 -- TOKEN_TYPE_ADD_ITEM_DESCRIPTION
---@debug@
+--[==[@debug@
 function Token.GetFullTokenTable()
     return TOKEN
 end
---@end-debug@
+--@end-debug@]==]

@@ -13,7 +13,7 @@ local format, sfind, slower = string.format, string.find, string.lower
 
 -- WoW
 local GetTime = GetTime
-local Transmog = AtlasLoot.Transmog and AtlasLoot.Transmog:New() or nil -- 暫時修正 for SoD
+local Transmog = AtlasLoot.Transmog:New()
 
 local LastRefresh = GetTime()
 local PAGE_NAME_PAGE = "%s [%d/%d]"
@@ -150,8 +150,7 @@ local function TransmogCallback(button, collected)
 end
 
 function ItemFrame.OnTransMogUpdate()
-    if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then return end -- 暫時修正 for SoD
-	if AtlasLoot.db.GUI.transmogHighlighter then
+    if AtlasLoot.db.GUI.transmogHighlighter then
         Transmog:Clear()
         local button
         for i = 1,30 do

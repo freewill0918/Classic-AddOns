@@ -1,6 +1,6 @@
-## Interface: 50500
+## Interface: 50503
 ## Author: Snowflame0
-## Version: v5.0.4
+## Version: v5.2.0
 ## Dependencies: AtlasLootClassic
 ## LoadOnDemand: 1
 
@@ -26,13 +26,10 @@
 ## Notes-ptBR: Módulo de dados de AtlasLoot
 ## Notes-ruRU: Модуль данных AtlasLoot
 ## Notes-zhCN: AtlasLoot 数据模块
+## Notes-zhTW: AtlasLoot data module
 
 ## X-Category: Map
 ## X-License: GPL v2
-
-## Title-zhTW: |cffB973FF[裝備]|r 副本戰利品查詢-資料
-## Notes-zhTW: AtlasLootClassic - Data |n|n資料模組。
-## DefaultState: disabled
 
 core.lua
 

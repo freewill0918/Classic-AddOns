@@ -189,7 +189,8 @@ function BuyEmAll:MerchantItemButton_OnModifiedClick(frame, button)
             local currencyID = tonumber(strmatch(self.itemLink, "currency:(%d+):"));
             local totalMax = 0;
             if currencyID then
-                totalMax = select(6, GetCurrencyInfo(currencyID));
+                local currencyData = GetCurrencyInfo(currencyID);
+                totalMax = type(currencyData) == "table" and currencyData.maxQuantity or select(6, GetCurrencyInfo(currencyID));
             end
             if (totalMax == 0) then -- 0 meaning no set maximum, so set how much one can fit super high.
                 self.fit = 10000000;
@@ -234,8 +235,9 @@ function BuyEmAll:MerchantItemButton_OnModifiedClick(frame, button)
             self.stack = self.preset;
             local currencyID = tonumber(strmatch(self.itemLink, "currency:(%d+):"));
             if currencyID then
-                local totalMax = select(6, GetCurrencyInfo(currencyID));
-                local currentAmount = select(2, GetCurrencyInfo(currencyID));
+                local currencyData = GetCurrencyInfo(currencyID);
+                local totalMax = type(currencyData) == "table" and currencyData.maxQuantity or select(6, GetCurrencyInfo(currencyID));
+                local currentAmount = type(currencyData) == "table" and currencyData.quantity or select(2, GetCurrencyInfo(currencyID));
                 if (totalMax == 0) then
                     self.fit = 10000000;
                     self.partialFit = 0;
