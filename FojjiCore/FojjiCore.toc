@@ -2,7 +2,8 @@
 ## Title: Fojji Core
 ## RequiredDeps: WeakAuras
 ## SavedVariables: FTSavedVars
-## Version: 1.5.8
+## Version: 1.6.4
+## X-Wago-ID: XKq9B5Ky
 embeds.xml
 
 # Libs

@@ -1,0 +1,19 @@
+## Interface: 30405
+## Title: Fojji Core
+## RequiredDeps: WeakAuras
+## SavedVariables: FTSavedVars
+## Version: 1.6.4
+## X-Wago-ID: XKq9B5Ky
+embeds.xml
+
+# Libs
+libs\LibStub\LibStub.lua
+libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+libs\LibClassicSwingTimerAPI\LibClassicSwingTimerAPI.lua
+
+# Core files
+Media.lua
+Range.lua
+Scripts.lua
+Sync.lua
+Timers.lua
