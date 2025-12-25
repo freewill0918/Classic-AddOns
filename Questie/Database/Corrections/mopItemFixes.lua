@@ -1162,6 +1162,9 @@ function MopItemFixes.Load()
         [92425] = { -- Ancient Korune Tablet
             [itemKeys.npcDrops] = {67833},
         },
+        [92441] = { -- The Codex of Xerrath
+            [itemKeys.startQuest] = 32295,
+        },
         [92474] = { -- Extra-Waxy Alliance Ears
             [itemKeys.npcDrops] = {67296,67297,67304,67317,67441},
         },
@@ -1263,6 +1266,9 @@ function MopItemFixes.Load()
         [94221] = { -- Shan'ze Ritual Stone
             [itemKeys.npcDrops] = {50358,69664,69996,69997,69998,69999,70000,70001,70002,70003,70530},
             [itemKeys.objectDrops] = {218593},
+        },
+        [94605] = { -- Wild Pterrorwing Hatchling
+            [itemKeys.npcDrops] = {69428},
         },
         [95383] = { -- Pristine Banner of the Mantid Empire
             [itemKeys.startQuest] = 32686,

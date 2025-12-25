@@ -288,14 +288,10 @@ QuestieInit.Stages[3] = function() -- run as a coroutine
     QuestieCombatQueue.Initialize()
 
     -- Initialize the tracker
-    coYield()
     QuestieTracker.Initialize()
     Hooks:HookQuestLogTitle()
     coYield()
-    -- TODO: Re-enable for every expansion once Blizzard fixes their issues on TBC
-    if (not Questie.IsTBC) then
-        ChatFilter:RegisterEvents()
-    end
+    ChatFilter:RegisterEvents()
 
     local dateToday = date("%y-%m-%d")
 
@@ -326,6 +322,9 @@ QuestieInit.Stages[3] = function() -- run as a coroutine
     end
 
     Questie.started = true
+
+    -- We only update this if Questie fully loads to make sure we don't update it on crashes/fast reloads
+    QuestieLib.UpdateLastKnownDailyReset()
 
     -- register events that rely on questie being initialized
     EventHandler:RegisterLateEvents()

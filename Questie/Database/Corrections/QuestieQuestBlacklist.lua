@@ -6338,6 +6338,8 @@ function QuestieQuestBlacklist:Load()
         [32013] = true, -- Not in the game
         [32014] = true, -- Not in the game
         [32015] = true, -- Not in the game
+        [32016] = true, -- Elder Charms of Good Fortune -- Removed with ToT
+        [32017] = true, -- Elder Charms of Good Fortune -- Removed with ToT
         [32112] = true, -- Hidden quest
         [32113] = true, -- Hidden quest
         [32114] = true, -- Hidden quest
@@ -6862,8 +6864,8 @@ function QuestieQuestBlacklist:Load()
         [32471] = true, -- Apple Crushing [PH]
         [32472] = true, -- Frighten Pterodactyls [PH]
         [32482] = true, -- Test Your Chicken Guardian [PH]
-        [32683] = true, -- So You Want to Be a Blacksmith...
-        [32726] = true, -- So You Want to Be a Blacksmith...
+        -- [32683] = true, -- So You Want to Be a Blacksmith...
+        -- [32726] = true, -- So You Want to Be a Blacksmith...
         [33121] = true, -- DEPRECATED The Celestial Tournament
         [33122] = true, -- DEPRECATED Great Job, You Won
         [33354] = true, -- Den Mother's Demise

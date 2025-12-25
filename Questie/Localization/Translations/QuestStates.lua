@@ -54,7 +54,7 @@ local questStateLocales = {
     },
     ["Event"] = {
         ["enUS"] = true,
-        ["deDE"] = "Event",
+        ["deDE"] = true,
         ["esES"] = "Evento",
         ["esMX"] = "Evento",
         ["frFR"] = "Évènement",
@@ -243,6 +243,18 @@ local questStateLocales = {
         ["ruRU"] = (Expansions.Current == Expansions.Era and "Элитный") or "Группа",
         ["zhCN"] = "精英",
         ["zhTW"] = (Expansions.Current == Expansions.Era and "精英") or "團體",
+    },
+    ["Escort"] = {
+        ["enUS"] = true,
+        ["deDE"] = "Eskorte",
+        ["esES"] = "Escolta",
+        ["esMX"] = "Escolta",
+        ["frFR"] = "Escorte",
+        ["koKR"] = "호위",
+        ["ptBR"] = "Escolta",
+        ["ruRU"] = "Сопровождение",
+        ["zhCN"] = "护送",
+        ["zhTW"] = "護送",
     },
 }
 

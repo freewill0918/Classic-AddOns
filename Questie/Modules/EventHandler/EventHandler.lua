@@ -60,6 +60,7 @@ local questAcceptedMessage = string.gsub(ERR_QUEST_ACCEPTED_S, "(%%s)", "(.+)")
 local questCompletedMessage = string.gsub(ERR_QUEST_COMPLETE_S, "(%%s)", "(.+)")
 
 local trackerMinimizedByDungeon = false
+local trackerHiddenByDungeon = false
 
 
 --* Calculated in _EventHandler:PlayerLogin()
@@ -126,6 +127,7 @@ function EventHandler:RegisterLateEvents()
         QuestEventHandler.QuestAccepted(questLogIndex, questId)
     end)
     Questie:RegisterEvent("QUEST_DETAIL", function() -- When the quest is presented!
+        AvailableQuests.HideNotAvailableQuestsFromNPC(false)
         AutoQuesting.OnQuestDetail()
         if Questie.IsSoD or Questie.db.profile.enableBugHintsForAllFlavors then
             QuestieDebugOffer.QuestDialog()
@@ -133,6 +135,7 @@ function EventHandler:RegisterLateEvents()
     end)
     Questie:RegisterEvent("QUEST_PROGRESS", AutoQuesting.OnQuestProgress)
     Questie:RegisterEvent("GOSSIP_SHOW", function()
+        AvailableQuests.HideNotAvailableQuestsFromNPC(true)
         AutoQuesting.OnGossipShow()
         QuestgiverFrame.GossipMark()
     end)
@@ -141,8 +144,10 @@ function EventHandler:RegisterLateEvents()
         QuestgiverFrame.GreetingMark()
     end)
     Questie:RegisterEvent("QUEST_ACCEPT_CONFIRM", AutoQuesting.OnQuestAcceptConfirm) -- If an escort quest is taken by people close by
-    Questie:RegisterEvent("GOSSIP_CLOSED", AutoQuesting.OnGossipClosed)              -- Called twice when the stopping to talk to an NPC
-    Questie:RegisterEvent("QUEST_COMPLETE", function()                               -- When complete window shows
+    Questie:RegisterEvent("GOSSIP_CLOSED", function() -- Called twice when the stopping to talk to an NPC
+        AutoQuesting.OnGossipClosed()
+    end)
+    Questie:RegisterEvent("QUEST_COMPLETE", function() -- When complete window shows
         AutoQuesting.OnQuestComplete()
         if Questie.IsSoD or Questie.db.profile.enableBugHintsForAllFlavors then
             QuestieDebugOffer.QuestDialog()
@@ -167,27 +172,47 @@ function EventHandler:RegisterLateEvents()
         if isInInstance then
             C_Timer.After(8, function()
                 Questie:Debug(Questie.DEBUG_DEVELOP, "[EVENT] ZONE_CHANGED_NEW_AREA: Entering Instance")
-                if Questie.db.profile.hideTrackerInDungeons then
+                if Questie.db.profile.minimizeTrackerInDungeons then
                     trackerMinimizedByDungeon = true
 
                     QuestieCombatQueue:Queue(function()
                         QuestieTracker:Collapse()
                     end)
                 end
-            end)
 
-            -- We only want this to fire outside of an instance if the player isn't dead and we need to reset the Tracker
-        elseif (not Questie.db.char.isTrackerExpanded and not UnitIsGhost("player")) and trackerMinimizedByDungeon == true then
-            C_Timer.After(8, function()
-                Questie:Debug(Questie.DEBUG_DEVELOP, "[EVENT] ZONE_CHANGED_NEW_AREA: Exiting Instance")
+                -- Handle complete hiding in dungeons
                 if Questie.db.profile.hideTrackerInDungeons then
-                    trackerMinimizedByDungeon = false
-
-                    QuestieCombatQueue:Queue(function()
-                        QuestieTracker:Expand()
-                    end)
+                    Questie:Debug(Questie.DEBUG_DEVELOP, "[EVENT] ZONE_CHANGED_NEW_AREA: Hiding tracker completely in dungeon")
+                    trackerHiddenByDungeon = true
+                    QuestieTracker:Hide()
                 end
             end)
+
+        else
+            -- Handle exiting instances for both minimize and hide
+            if trackerMinimizedByDungeon == true then
+                C_Timer.After(8, function()
+                    Questie:Debug(Questie.DEBUG_DEVELOP, "[EVENT] ZONE_CHANGED_NEW_AREA: Exiting Instance - Minimize")
+                    if Questie.db.profile.minimizeTrackerInDungeons and (not Questie.db.char.isTrackerExpanded and not UnitIsGhost("player")) then
+                        trackerMinimizedByDungeon = false
+
+                        QuestieCombatQueue:Queue(function()
+                            QuestieTracker:Expand()
+                        end)
+                    end
+                end)
+            end
+
+            -- Handle complete hiding when exiting dungeons
+            if trackerHiddenByDungeon == true then
+                C_Timer.After(8, function()
+                    Questie:Debug(Questie.DEBUG_DEVELOP, "[EVENT] ZONE_CHANGED_NEW_AREA: Exiting Instance - Complete Hide")
+                    if Questie.db.profile.hideTrackerInDungeons then
+                        trackerHiddenByDungeon = false
+                        QuestieTracker:Show()
+                    end
+                end)
+            end
         end
     end)
 
@@ -196,12 +221,9 @@ function EventHandler:RegisterLateEvents()
         Questie:RegisterEvent("PET_BATTLE_OPENING_START", function()
             Questie:Debug(Questie.DEBUG_DEVELOP, "[EVENT] PET_BATTLE_OPENING_START")
             if Questie.db.profile.trackerEnabled and Questie.db.profile.hideTrackerInPetBattles then
-                local baseFrame = TrackerBaseFrame.baseFrame
-                if baseFrame and baseFrame:IsShown() then
-                    QuestieCombatQueue:Queue(function()
-                        baseFrame:Hide()
-                    end)
-                end
+                QuestieCombatQueue:Queue(function()
+                    QuestieTracker:Hide()
+                end)
             end
         end)
 
@@ -209,11 +231,7 @@ function EventHandler:RegisterLateEvents()
             Questie:Debug(Questie.DEBUG_DEVELOP, "[EVENT] PET_BATTLE_CLOSE")
             if Questie.db.profile.trackerEnabled and Questie.db.profile.hideTrackerInPetBattles then
                 QuestieCombatQueue:Queue(function()
-                    local baseFrame = TrackerBaseFrame.baseFrame
-                    if baseFrame and not baseFrame:IsShown() then
-                        baseFrame:Show()
-                        QuestieTracker:Update()
-                    end
+                    QuestieTracker:Show()
                 end)
             end
         end)
@@ -223,12 +241,9 @@ function EventHandler:RegisterLateEvents()
             Questie:Debug(Questie.DEBUG_DEVELOP, "[EVENT] PET_BATTLE_PET_CHANGED")
             -- Ensure tracker stays hidden during pet changes/deaths
             if Questie.db.profile.trackerEnabled and Questie.db.profile.hideTrackerInPetBattles and C_PetBattles and C_PetBattles.IsInBattle() then
-                local baseFrame = TrackerBaseFrame.baseFrame
-                if baseFrame and baseFrame:IsShown() then
-                    QuestieCombatQueue:Queue(function()
-                        baseFrame:Hide()
-                    end)
-                end
+                QuestieCombatQueue:Queue(function()
+                    QuestieTracker:Hide()
+                end)
             end
         end)
 
@@ -236,12 +251,9 @@ function EventHandler:RegisterLateEvents()
             Questie:Debug(Questie.DEBUG_DEVELOP, "[EVENT] PET_BATTLE_PET_ROUND_PLAYBACK_COMPLETE")
             -- Ensure tracker stays hidden during battle round transitions
             if Questie.db.profile.trackerEnabled and Questie.db.profile.hideTrackerInPetBattles and C_PetBattles and C_PetBattles.IsInBattle() then
-                local baseFrame = TrackerBaseFrame.baseFrame
-                if baseFrame and baseFrame:IsShown() then
-                    QuestieCombatQueue:Queue(function()
-                        baseFrame:Hide()
-                    end)
-                end
+                QuestieCombatQueue:Queue(function()
+                    QuestieTracker:Hide()
+                end)
             end
         end)
     end
@@ -310,7 +322,7 @@ function EventHandler:RegisterLateEvents()
     end
 
     if Expansions.Current >= Expansions.Cata and Questie.db.profile.trackerEnabled then
-       -- This is fired pretty often when an auto complete quest frame is showing. We want the default one to be hidden though.
+        -- This is fired pretty often when an auto complete quest frame is showing. We want the default one to be hidden though.
         Questie:RegisterEvent("UPDATE_ALL_UI_WIDGETS", function()
             QuestieCombatQueue:Queue(WatchFrameHook.Hide)
         end)
@@ -570,18 +582,25 @@ function _EventHandler:ChatMsgCompatFactionChange()
     end
 end
 
-local trackerHiddenByCombat, optionsHiddenByCombat, journeyHiddenByCombat = false, false, false
+local trackerMinimizedByCombat, trackerHiddenByCombat = false, false
+local optionsHiddenByCombat, journeyHiddenByCombat = false, false
 function _EventHandler:PlayerRegenDisabled()
     Questie:Debug(Questie.DEBUG_DEVELOP, "[EVENT] PLAYER_REGEN_DISABLED")
 
     -- Let's make sure the frame exists - might be nil if player is in combat upon login
     if QuestieTracker then
-        if Questie.db.profile.hideTrackerInCombat and Questie.db.char.isTrackerExpanded and (not trackerHiddenByCombat) then
-            trackerHiddenByCombat = true
+        if Questie.db.profile.minimizeTrackerInCombat and Questie.db.char.isTrackerExpanded and (not trackerMinimizedByCombat) then
+            trackerMinimizedByCombat = true
             QuestieTracker:Collapse()
         end
 
-        if IsInInstance() and Questie.db.profile.hideTrackerInDungeons then
+        -- Handle complete hiding in combat
+        if Questie.db.profile.hideTrackerInCombat and (not trackerHiddenByCombat) then
+            trackerHiddenByCombat = true
+            QuestieTracker:Hide()
+        end
+
+        if IsInInstance() and Questie.db.profile.minimizeTrackerInDungeons then
             QuestieTracker:Collapse()
         end
     end
@@ -605,15 +624,23 @@ end
 
 function _EventHandler:PlayerRegenEnabled()
     Questie:Debug(Questie.DEBUG_DEVELOP, "[EVENT] PLAYER_REGEN_ENABLED")
-    if Questie.db.profile.hideTrackerInCombat and trackerHiddenByCombat then
-        if (not Questie.db.profile.hideTrackerInDungeons) or (not IsInInstance()) then
-            trackerHiddenByCombat = false
+    if Questie.db.profile.minimizeTrackerInCombat and trackerMinimizedByCombat then
+        if (not Questie.db.profile.minimizeTrackerInDungeons) or (not IsInInstance()) then
+            trackerMinimizedByCombat = false
             QuestieTracker:Expand()
         end
 
         QuestieCombatQueue:Queue(function()
             QuestieTracker:Update()
         end)
+    end
+
+    -- Handle complete hiding in combat
+    if Questie.db.profile.hideTrackerInCombat and trackerHiddenByCombat then
+        if (not Questie.db.profile.hideTrackerInDungeons) or (not IsInInstance()) then
+            trackerHiddenByCombat = false
+            QuestieTracker:Show()
+        end
     end
 
     if optionsHiddenByCombat then
