@@ -648,3 +648,6 @@ L["Sep"] = "Sep";
 L["Oct"] = "Oct";
 L["Nov"] = "Nov";
 L["Dec"] = "Déc";
+
+L["by"] = "par";
+L["For help or suggestions"] = "Aide ou suggestions";

@@ -22,7 +22,7 @@ NIT.options = {
 		},
 		authorText = {
 			type = "description",
-			name = "|TInterface\\AddOns\\NovaInstanceTracker\\Media\\nitLogo32:32:32:0:20|t |cFF9CD6DEby Novaspark-Arugal|r  |cFF00C800-|r  |cFFFFFF00For help or suggestions discord.gg/RTKMfTmkdj|r",
+			name = "|TInterface\\AddOns\\NovaInstanceTracker\\Media\\nitLogo32:32:32:0:20|t |cFF9CD6DE" .. L["by"] .. " Novaspark-Arugal|r  |cFF00C800-|r  |cFFFFFF00" .. L["For help or suggestions"] .. " discord.gg/RTKMfTmkdj|r",
 			fontSize = "medium",
 			order = 2,
 		},

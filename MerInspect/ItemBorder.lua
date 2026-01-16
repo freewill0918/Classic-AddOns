@@ -58,7 +58,7 @@ LibEvent:attachTrigger("SET_ITEM_ANGULARBORDER", function(self, frame, quality, 
         quality = nil
     end
 
-    if (quality and type(quality) == "number") then
+    if (quality and type(quality) == "number" and quality >= 0) then
         -- 使用新版API（兼容舊版）
         local GetItemQualityColor = C_Item and C_Item.GetItemQualityColor or GetItemQualityColor
         local r, g, b = GetItemQualityColor(quality)

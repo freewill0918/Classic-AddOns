@@ -3220,7 +3220,7 @@ NIT.trackItemsMAGE = {
 	},
 };
 
-if (NIT.isTBC or NIT.isPrepatch) then
+if (NIT.isTBC or NIT.isTBCPrepatch) then
 	NIT.trackItemsDRUID = {
 		[1] = {
 			id = 22148,

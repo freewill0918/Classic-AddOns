@@ -11,6 +11,9 @@ if (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC) then
 elseif (WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC) then
 	NIT.isTBC = true;
 	NIT.expansionNum = 2;
+	if (GetRealmName() ~= "Classic Beta PvE" and GetServerTime() < 1770220800) then --Wed Feb 04 2026 16:00:00 GMT.
+		NIT.isTBCPrepatch = true;
+	end
 elseif (WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC) then
 	NIT.isWrath = true;
 	NIT.expansionNum = 3;

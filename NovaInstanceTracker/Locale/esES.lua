@@ -632,3 +632,6 @@ L["World Boss"] = "Jefe del mundo";
 
 L["autoCelestialBuffReminder"] = "Obtén el beneficio Celestial de %s";
 L["NPC"] = "PNJ";
+
+L["by"] = "por";
+L["For help or suggestions"] = "Ayuda o sugerencias";

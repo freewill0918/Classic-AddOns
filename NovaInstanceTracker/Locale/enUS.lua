@@ -643,3 +643,6 @@ L["World Boss"] = "World Boss";
 
 L["autoCelestialBuffReminder"] = "Get Celestial Dungeon buff from %s.";
 L["NPC"] = "NPC";
+
+L["by"] = "by";
+L["For help or suggestions"] = "For help or suggestions";
