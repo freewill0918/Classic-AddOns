@@ -9,6 +9,9 @@ local ipairs, tremove = ipairs, table.remove
 -- Checks if a given value is in an array.
 ---@return boolean found
 function tableUtils.checkEntry(t, val)
+	if not t then
+		return false
+	end
 	for _, v in ipairs(t) do
 		if v == val then
 			return true

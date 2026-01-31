@@ -215,6 +215,9 @@ end
 local f = CreateFrame("Frame")
 f:RegisterEvent("CHAT_MSG_SYSTEM")
 f:SetScript('OnEvent', function(self, event, msg)
+	if (issecretvalue and issecretvalue(msg)) then
+		return;
+	end
 	local instance, success;
 	local text = "";
 	if (string.match(msg, string.gsub(INSTANCE_RESET_SUCCESS, "%%s", ".+"))) then
@@ -719,7 +722,10 @@ function NIT:explode(div, str, count)
 end
 
 function NIT:openConfig()
-	Settings.OpenToCategory("NovaInstanceTracker");
+	--No longer accepts name as of 12.0, becaus why not..
+	--Settings.OpenToCategory("NovaInstanceTracker");
+	--The name field here is the id, not the name, further confusion.
+	Settings.OpenToCategory(self.NITOptions.name);
 end
 
 function NIT:isInArena()

@@ -39,6 +39,8 @@ local IsQuestFlaggedCompleted = IsQuestFlaggedCompleted or C_QuestLog.IsQuestFla
 local GetQuestInfo = C_QuestLog.GetQuestInfo or C_QuestLog.GetTitleForQuestID;
 local GetSpellInfo = NIT.GetSpellInfo;
 local GetItemCount = GetItemCount or C_Item.GetItemCount;
+local InviteUnit = InviteUnit or C_PartyInfo.InviteUnit;
+local LeaveParty = LeaveParty or C_PartyInfo.LeaveParty;
 NIT.currentInstanceID = 0;
 --This is for a system that records before and after honor for bgs honor gained calced.
 --Didn't have to end up using it becaus another way was worked out that didn't work at the start of expansion.
@@ -212,7 +214,9 @@ f:RegisterEvent("CHAT_MSG_ADDON");
 f:RegisterEvent("PLAYER_UNGHOST");
 f:RegisterEvent("PLAYER_LEAVING_WORLD");
 f:RegisterEvent("ADDONS_UNLOADING");
-f:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
+if (not NIT.isRetail) then
+	f:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
+end
 f:RegisterEvent("PLAYER_TARGET_CHANGED");
 f:RegisterEvent("UPDATE_MOUSEOVER_UNIT");
 f:RegisterEvent("NAME_PLATE_UNIT_ADDED");
@@ -264,7 +268,9 @@ end
 f:RegisterEvent("UPDATE_INSTANCE_INFO");
 f:RegisterEvent("PLAYER_GUILD_UPDATE");
 f:SetScript('OnEvent', function(self, event, ...)
-	if (event == "PLAYER_LEAVING_WORLD" ) then
+	if (event == "COMBAT_LOG_EVENT_UNFILTERED") then
+		NIT:combatLogEventUnfiltered(...);
+	elseif (event == "PLAYER_LEAVING_WORLD" ) then
 		doGUID = nil;
 		if (UnitIsGhost("player")) then
 			isGhost = true;
@@ -329,8 +335,6 @@ f:SetScript('OnEvent', function(self, event, ...)
 			isGhost = false;
 		end)
 		NIT:throddleEventByFunc(event, 2, "recordDurabilityData", ...);
-	elseif (event == "COMBAT_LOG_EVENT_UNFILTERED") then
-		NIT:combatLogEventUnfiltered(...);
 	elseif (event == "UNIT_TARGET" or event == "PLAYER_TARGET_CHANGED") then
 		NIT:parseGUID("target", nil, "target");
 		if (NIT.inInstance and NIT.expansionNum > 4) then
@@ -524,6 +528,9 @@ f:SetScript('OnEvent', function(self, event, ...)
 		end
 	elseif (event == "CHAT_MSG_SYSTEM") then
 		local text = ...;
+		if (issecretvalue and issecretvalue(text)) then
+			return;
+		end
 		if (string.match(text, INSTANCE_SAVED)) then
 			C_Timer.After(1, function()
 				NIT:recordLockoutData();
@@ -1210,6 +1217,7 @@ end
 
 --This frame is only used for same instance detection and disabled after first event after entering.
 --Changed to it's own frame for disabling to see if it makes a performance difference.
+--This frame doesn't register the combat log in retail anymore, blocked by blizzard.
 local instanceDetectionFrame = CreateFrame("Frame");
 instanceDetectionFrame:SetScript('OnEvent', function(self, event, ...)
 	local _, subEvent, _, sourceGUID, _, _, _, destGUID = CombatLogGetCurrentEventInfo();
@@ -1221,6 +1229,17 @@ instanceDetectionFrame:SetScript('OnEvent', function(self, event, ...)
 			NIT:parseGUID(nil, destGUID, "combatlogDestGUID");
 			instanceDetectionFrame:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
 		end
+	end
+end)
+
+--Same as above, but for unit casts, had to be added for midnight addon nerfs, can only get zone ID from a cast now.
+local instanceCastDetectionFrame = CreateFrame("Frame");
+instanceCastDetectionFrame:SetScript('OnEvent', function(self, event, ...)
+	local unit, castGUID = ...;
+	if (not issecretvalue or not issecretvalue(castGUID)) then
+		NIT:parseGUID(nil, castGUID, "castGUID", true);
+		instanceCastDetectionFrame:UnregisterEvent("UNIT_SPELLCAST_START");
+		instanceCastDetectionFrame:UnregisterEvent("UNIT_SPELLCAST_SUCCEEDED");
 	end
 end)
 
@@ -1637,7 +1656,11 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 			end
 			NIT:pushInstanceEntered(instanceName, instanceID, type, isReload, isLogon);
 			doneFirstGUIDCheck = nil;
-			instanceDetectionFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
+			if (not NIT.isRetail) then
+				instanceDetectionFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
+			end
+			instanceCastDetectionFrame:RegisterEvent("UNIT_SPELLCAST_START");
+			instanceCastDetectionFrame:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
 		end
 		C_Timer.After(1, function()
 			NIT:recordGroupInfo();
@@ -1998,7 +2021,10 @@ function NIT:removeInstanceCount(instanceID)
 end
 
 NIT.lastNpcID = 999999999;
-function NIT:parseGUID(unit, GUID, source)
+function NIT:parseGUID(unit, GUID, source, isCast)
+	if (not isCast) then
+		return;
+	end
 	--Don't merge pvp instances, zoneids can come from temporary pets with a creature guid.
 	if (NIT.data.instances[1] and NIT.data.instances[1].isPvp) then
 		return;
@@ -2007,9 +2033,10 @@ function NIT:parseGUID(unit, GUID, source)
 		GUID = UnitGUID(unit);
 	end
 	if (GUID and doGUID and NIT.inInstance and (not string.match(source, "combatlog") or GetServerTime() - NIT.inInstance > 2)) then
+		--We now handle casts here too, castGUID and creatures are the same structure with the zoneID in the same spot, so just modified this a bit to work.
 		local unitType, _, _, _, zoneID, npcID = strsplit("-", GUID);
 		local zoneID = tonumber(zoneID);
-		if (unitType ~= "Creature" or NIT.companionCreatures[tonumber(npcID)]) then
+		if ((unitType ~= "Creature" and unitType ~= "Cast") or NIT.companionCreatures[tonumber(npcID)]) then
 			--NIT:debug("not a creature");
 			return;
 		end
@@ -2028,10 +2055,6 @@ function NIT:parseGUID(unit, GUID, source)
 			--Only merge if current GUID isn't set (first GUID of the instance).
 			if (NIT.data.instances[2] and NIT.data.instances[2]["zoneID"] and NIT.data.instances[2]["zoneID"] == zoneID
 					and not NIT.data.instances[1].zoneID) then
-					--and (not NIT.data.instances[1].zoneID or NIT.data.instances[1].zoneID < 1)) then
-					
-			--Oirignal version
-			--if (NIT.data.instances[2] and NIT.data.instances[2]["zoneID"] and NIT.data.instances[2]["zoneID"] == zoneID) then
 				if (NIT.db.global.detectSameInstance) then
 					--NIT:debug("OldGUID:", NIT.data.instances[2].GUID, "NewGUID:", GUID, source);
 					--NIT:debug("OldZoneID:", NIT.data.instances[2]["zoneID"], "NewZoneID:", zoneID, source);
@@ -2047,7 +2070,7 @@ function NIT:parseGUID(unit, GUID, source)
 						end
 					end)
 				end
-			elseif (NIT.lastNpcID == npcID or (not NIT.data.instances[1].zoneID or NIT.data.instances[1].zoneID < 1)) then
+			elseif ((npcID and NIT.lastNpcID == npcID) or (not NIT.data.instances[1].zoneID or NIT.data.instances[1].zoneID < 1)) then
 				--Set new zoneID if we get the same zoneid from 2 mobs in a row the same or one isn't set yet.
 				NIT.data.instances[1].zoneID = zoneID;
 				NIT.data.instances[1].GUID = GUID;
@@ -3105,6 +3128,9 @@ end
 local f = CreateFrame("Frame")
 f:RegisterEvent("CHAT_MSG_SYSTEM")
 f:SetScript('OnEvent', function(self, event, msg)
+	if (issecretvalue and issecretvalue(msg)) then
+		return;
+	end
 	if (string.match(msg, DAILY_QUESTS_RESET)) then
 		C_Timer.After(10, function()
 			NIT:resetWeeklyAndDailyData();
