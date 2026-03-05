@@ -34,6 +34,9 @@ local detailsFramework = DetailsFramework
 --[[global]] DETAILS_SEGMENTTYPE_MYTHICDUNGEON_BOSSTRASH = 15
 --[[global]] DETAILS_SEGMENTTYPE_MYTHICDUNGEON_BOSSWIPE = 16
 
+--[[global]] DETAILS_SEGMENTTYPE_ID = "ID"
+--[[global]] DETAILS_SEGMENTTYPE_TYPE = "Type"
+
 --[[global]] DETAILS_SEGMENTTYPE_PVP_ARENA = 20
 --[[global]] DETAILS_SEGMENTTYPE_PVP_BATTLEGROUND = 21
 
@@ -672,6 +675,10 @@ local segmentTypeToString = {
 			return Loc ["STRING_SEGMENT_TRASH"]
 		end
 
+		if combatType == DETAILS_SEGMENTTYPE_TRAININGDUMMY then
+			return Loc["STRING_TRAINING_DUMMY"]
+		end
+
 		if (self.enemy) then
 			return self.enemy
 		end
@@ -683,7 +690,6 @@ local segmentTypeToString = {
 				return newName
 			end
 		end
-
 		local segmentId = self:GetSegmentSlotId()
 		return Loc["STRING_FIGHTNUMBER"] .. segmentId
 	end
@@ -1265,6 +1271,30 @@ local segmentTypeToString = {
 		end
 	end
 
+	function Details:HasCombatWithSessionId(combatSessionId)
+		local segmentsTable = Details:GetCombatSegments()
+		for i = 1, #segmentsTable do
+			---@type combat
+			local thisCombat = segmentsTable[i]
+			if (thisCombat.combatSessionId == combatSessionId) then
+				return true
+			end
+		end
+		return false
+	end
+
+	function Details:GetCombatWithSessionId(combatSessionId)
+		local segmentsTable = Details:GetCombatSegments()
+		for i = 1, #segmentsTable do
+			---@type combat
+			local thisCombat = segmentsTable[i]
+			if (thisCombat.combatSessionId == combatSessionId) then
+				return thisCombat, i
+			end
+		end
+		return nil, nil
+	end
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --internals
 
@@ -1289,6 +1319,7 @@ end
 ---@return combat
 function classCombat:NovaTabela(bTimeStarted, overallCombatObject, combatId, ...) --~init
 	---@type combat
+	---@diagnostic disable-next-line: missing-fields
 	local combatObject = {}
 
 	combatObject[1] = classActorContainer:NovoContainer(Details.container_type.CONTAINER_DAMAGE_CLASS,	combatObject, combatId) --Damage
@@ -1307,7 +1338,11 @@ function classCombat:NovaTabela(bTimeStarted, overallCombatObject, combatId, ...
 	--try discover if is a pvp combat
 	local sourceGUID, sourceName, sourceFlags, targetGUID, targetName, targetFlags = ...
 
-	if (targetGUID) then
+	if not targetGUID and detailsFramework.IsAddonApocalypseWow() then
+		targetGUID = Details222.BParser.GetPlayerTargetGUID()
+	end
+
+	if (targetGUID and issecretvalue and not issecretvalue(targetGUID)) then
 		local npcId = Details:GetNpcIdFromGuid(targetGUID)
 		if (npcId) then
 			if (Details222.TrainingDummiesNpcId[npcId]) then
@@ -1386,9 +1421,10 @@ function classCombat:NovaTabela(bTimeStarted, overallCombatObject, combatId, ...
 		n = 1 --event counter
 	}
 
-	local zoneName, _, _, _, _, _, _, zoneMapID = GetInstanceInfo()
+	local zoneName, instanceType, _, _, _, _, _, zoneMapID = GetInstanceInfo()
 	combatObject.zoneName = zoneName
 	combatObject.mapId = zoneMapID
+	combatObject.instance_type = instanceType
 
 	--a tabela sem o tempo de inicio � a tabela descartavel do inicio do addon
 	if (bTimeStarted) then

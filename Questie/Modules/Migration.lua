@@ -155,6 +155,12 @@ local migrationFunctions = {
         Questie.db.profile.trackerBackdropColor = {r = 0, g = 0, b = 0, a = alpha}
         Questie.db.profile.trackerBackdropAlpha = nil
     end,
+    [23] = function()
+        Questie.db.profile.enableTooltipDroprates = true
+    end,
+    [24] = function()
+        Questie.db.profile.trackerWidthRatio = 0.20
+    end,
 }
 
 function Migration:Migrate()

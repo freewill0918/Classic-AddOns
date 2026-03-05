@@ -1,6 +1,6 @@
 # Details! Damage Meter
 
-## [Details.20251225.14203.166](https://github.com/Tercioo/Details-Damage-Meter/tree/Details.20251225.14203.166) (2025-12-26)
-[Full Changelog](https://github.com/Tercioo/Details-Damage-Meter/compare/Details.20251224.14202.166...Details.20251225.14203.166) 
+## [Details.20260301.14700.170](https://github.com/Tercioo/Details-Damage-Meter/tree/Details.20260301.14700.170) (2026-03-01)
+[Full Changelog](https://github.com/Tercioo/Details-Damage-Meter/compare/Details.20260301.14699.170...Details.20260301.14700.170) 
 
-- Fix bug on classic pandaria  
+- Proper version up  

@@ -104,7 +104,7 @@ function QuestieLib:GetRGBForObjective(objective)
     end
 
     if not objective.Collected or type(objective.Collected) ~= "number" then
-        return FloatRGBToHex(0.8, 0.8, 0.8)
+        return FloatRGBToHex(0.937, 0.937, 0.937)
     end
 
     local float = objective.Collected / objective.Needed
@@ -114,15 +114,14 @@ function QuestieLib:GetRGBForObjective(objective)
         return "|cFFEEEEEE"
     elseif trackerColor == "whiteAndGreen" then
         -- White and Green
-        return objective.Collected == objective.Needed and RGBToHex(76, 255, 76) or FloatRGBToHex(0.8, 0.8, 0.8)
+        return objective.Collected == objective.Needed and RGBToHex(40, 255, 40) or FloatRGBToHex(0.937, 0.937, 0.937)
     elseif trackerColor == "whiteToGreen" then
         -- White to Green
-        return FloatRGBToHex(0.8 - float / 2, 0.8 + float / 3, 0.8 - float / 2)
+        return FloatRGBToHex(0.937 - float / 1.282, 0.937 + float / 15.873, 0.937 - float / 1.282)
     else
         -- Red to Green
-        if float < .50 then return FloatRGBToHex(1, 0 + float / .5, 0) end
-        if float == .50 then return FloatRGBToHex(1, 1, 0) end
-        if float > .50 then return FloatRGBToHex(1 - float / 2, 1, 0) end
+        if float <= .50 then return FloatRGBToHex(1, 0 + float * 2, 0) end
+        if float > .50 then return FloatRGBToHex(1.843 - float / 0.593, 1, (float * 2 - 1) * 0.157) end
     end
 end
 
@@ -138,20 +137,20 @@ function QuestieLib:GetColoredQuestName(questId, showLevel, showState)
     end
 
     if Questie.db.profile.enableTooltipsQuestID then
-        name = name .. " (" .. questId .. ")"
+        name = name .. " " .. l10n("(") .. questId .. l10n(")")
     end
 
     if showState then
         local isComplete = QuestieDB.IsComplete(questId)
 
         if isComplete == -1 then
-            name = name .. " " .. Questie:Colorize("(" .. l10n("Failed") .. ")", "red")
+            name = name .. " " .. Questie:Colorize(l10n("(") .. l10n("Failed") .. l10n(")"), "red")
         elseif isComplete == 1 then
-            name = name .. " " .. Questie:Colorize("(" .. l10n("Complete") .. ")", "green")
+            name = name .. " " .. Questie:Colorize(l10n("(") .. l10n("Complete") .. l10n(")"), "green")
 
-        -- Quests treated as complete - zero objectives or synthetic objectives
+            -- Quests treated as complete - zero objectives or synthetic objectives
         elseif isComplete == 0 and QuestieDB.GetQuest(questId).isComplete == true then
-            name = name .. " " .. Questie:Colorize("(" .. l10n("Complete") .. ")", "green")
+            name = name .. " " .. Questie:Colorize(l10n("(") .. l10n("Complete") .. l10n(")"), "green")
         end
     end
 
@@ -217,49 +216,56 @@ function QuestieLib.GetTbcLevel(questId, playerLevel)
     return questLevel, requiredLevel, QuestieDB.QueryQuestSingle(questId, "requiredMaxLevel");
 end
 
+---Returns the quest type suffix character (e.g., "+" for Elite, "D" for Dungeon)
+---@param questId QuestId
+---@return string suffix @The suffix character for the quest type
+function QuestieLib:GetQuestTypeSuffix(questId)
+    local questTagId, questTagName = QuestieDB.GetQuestTagInfo(questId)
+
+    if not questTagId or not questTagName then
+        return ""
+    end
+
+    local questTagIds = QuestieDB.questTagIds
+    local langCode = l10n:GetUILocale()
+    local isMultiByteLocale = langCode == "zhCN" or langCode == "zhTW" or langCode == "koKR" or langCode == "ruRU"
+
+    if questTagId == questTagIds.ELITE then
+        return "+"
+    elseif questTagId == questTagIds.PVP or questTagId == questTagIds.CLASS or questTagId == questTagIds.ESCORT then
+        return ""
+    elseif questTagId == questTagIds.LEGENDARY then
+        return "++"
+    elseif isMultiByteLocale then
+        if questTagId == questTagIds.RAID or questTagId == questTagIds.RAID_10 or questTagId == questTagIds.RAID_25 then
+            return "R"
+        elseif questTagId == questTagIds.DUNGEON then
+            return "D"
+        elseif questTagId == questTagIds.HEROIC then
+            return "H"
+        elseif questTagId == questTagIds.SCENARIO then
+            return "S"
+        elseif questTagId == questTagIds.ACCOUNT then
+            return "A"
+        elseif questTagId == questTagIds.CELESTIAL then
+            return "C"
+        else
+            return ""
+        end
+    else
+        -- Fallback: use first character of quest tag name for unknown tags
+        -- This preserves backward compatibility with existing UI/tests
+        return stringSub(questTagName, 1, 1)
+    end
+end
+
 ---@param questId QuestId
 ---@param level Level @The quest level
 ---@return string levelString @String of format "[40+]"
 function QuestieLib:GetLevelString(questId, level)
-    local questTagId, questTagName = QuestieDB.GetQuestTagInfo(questId)
     local levelString = tostring(level)
-
-    if (not questTagId) or (not questTagName) then
-        return "[" .. levelString .. "] "
-    end
-
-    local questTagIds = QuestieDB.questTagIds
-
-    local char = stringSub(questTagName, 1, 1)
-    local langCode = l10n:GetUILocale()
-    -- the string.sub above doesn't work for multi byte characters
-    local isMultiByteLocale = langCode == "zhCN" or langCode == "zhTW" or langCode == "koKR" or langCode == "ruRU"
-
-    if questTagId == questTagIds.ELITE then
-        char = "+"
-    elseif questTagId == questTagIds.PVP or questTagId == questTagIds.CLASS then
-        char = ""
-    elseif questTagId == questTagIds.LEGENDARY then
-        char = "++"
-    elseif isMultiByteLocale then
-        if questTagId == questTagIds.RAID or questTagId == questTagIds.RAID_10 or questTagId == questTagIds.RAID_25 then
-            char = "R"
-        elseif questTagId == questTagIds.DUNGEON then
-            char = "D"
-        elseif questTagId == questTagIds.HEROIC then
-            char = "H"
-        elseif questTagId == questTagIds.SCENARIO then
-            char = "S"
-        elseif questTagId == questTagIds.ACCOUNT then
-            char = "A"
-        elseif questTagId == questTagIds.CELESTIAL then
-            char = "C"
-        else
-            char = ""
-        end
-    end
-
-    return "[" .. levelString .. char .. "] "
+    local suffix = QuestieLib:GetQuestTypeSuffix(questId)
+    return "[" .. levelString .. suffix .. "] "
 end
 
 function QuestieLib:GetRaceString(raceMask)
@@ -275,18 +281,19 @@ function QuestieLib:GetRaceString(raceMask)
         local raceString = ""
         local raceTable = QuestieLib:UnpackBinary(raceMask)
         local stringTable = {
-            l10n('Human'),
-            l10n('Orc'),
-            l10n('Dwarf'),
-            l10n('Nightelf'),
-            l10n('Undead'),
-            l10n('Tauren'),
-            l10n('Gnome'),
-            l10n('Troll'),
-            l10n('Goblin'),
-            l10n('Blood Elf'),
-            l10n('Draenei'),
-            l10n('Worgen'),
+            l10n("Human"),
+            l10n("Orc"),
+            l10n("Dwarf"),
+            l10n("Night Elf"),
+            l10n("Undead"),
+            l10n("Tauren"),
+            l10n("Gnome"),
+            l10n("Troll"),
+            l10n("Goblin"),
+            l10n("Blood Elf"),
+            l10n("Draenei"),
+            l10n("Worgen"),
+            l10n("Pandaren"),
         }
         local firstRun = true
         for k, v in pairs(raceTable) do
@@ -315,7 +322,7 @@ function QuestieLib:CacheItemNames(questId)
                         function()
                             local itemName = item:GetItemName()
                             if not QuestieDB.itemDataOverrides[objectiveDB.Id] then
-                                QuestieDB.itemDataOverrides[objectiveDB.Id] = { itemName, { questId }, {}, {} }
+                                QuestieDB.itemDataOverrides[objectiveDB.Id] = {itemName, {questId}, {}, {}}
                             else
                                 QuestieDB.itemDataOverrides[objectiveDB.Id][1] = itemName
                             end
@@ -391,18 +398,45 @@ function QuestieLib:SanitizePattern(pattern)
     return sanitize_cache[pattern]
 end
 
-function QuestieLib:SortQuestIDsByLevel(quests)
-    local sortedQuestsByLevel = {}
+local suffixPriority = {
+    [""] = 1, -- No suffix (normal quests) - should come first
+    ["+"] = 2, -- Elite
+    ["S"] = 3, -- Scenario
+    ["D"] = 4, -- Dungeon
+    ["H"] = 5, -- Heroic
+    ["R"] = 6, -- Raid
+    ["++"] = 7, -- Legendary
+    ["A"] = 8, -- Account
+    ["C"] = 9, -- Celestial
+}
 
-    local function compareTablesByIndex(a, b)
+local function compareQuestsByLevelAndType(a, b)
+    if a[1] ~= b[1] then
         return a[1] < b[1]
     end
 
-    for q in pairs(quests) do
-        local questLevel, _ = QuestieLib.GetTbcLevel(q);
-        tinsert(sortedQuestsByLevel, { questLevel or 0, q })
+    -- if levels are the same, compare by suffix priority
+    local suffixA = a[3] or ""
+    local suffixB = b[3] or ""
+    local priorityA = suffixPriority[suffixA] or 999
+    local priorityB = suffixPriority[suffixB] or 999
+
+    if priorityA ~= priorityB then
+        return priorityA < priorityB
     end
-    table.sort(sortedQuestsByLevel, compareTablesByIndex)
+
+    return a[2] < b[2]
+end
+
+function QuestieLib:SortQuestIDsByLevel(quests)
+    local sortedQuestsByLevel = {}
+
+    for q in pairs(quests) do
+        local questLevel, _ = QuestieLib.GetTbcLevel(q)
+        local suffix = QuestieLib:GetQuestTypeSuffix(q)
+        tinsert(sortedQuestsByLevel, {questLevel or 0, q, suffix})
+    end
+    table.sort(sortedQuestsByLevel, compareQuestsByLevelAndType)
 
     return sortedQuestsByLevel
 end
@@ -500,7 +534,7 @@ end
 
 ---@return table A table of the handed parameters plus the 'n' field with the size of the table
 function QuestieLib.tpack(...)
-    return { n = select("#", ...), ... }
+    return {n = select("#", ...), ...}
 end
 
 --- Wow's own unpack stops at first nil. this version is not speed optimized.
@@ -613,7 +647,7 @@ function QuestieLib:TextWrap(line, prefix, combineTrailing, desiredWidth)
             --This combines a trailing word to the previous line if it is the only word of the line
             --We check lastSpaceIndex here because the logic will be faulty (chinese client)
             if (row == numberOfRows - 1 and combineTrailing and lastSpaceIndex) then
-                --Get the last line, in it's full
+                --Get the last line, in its full
                 local lastLine = string.sub(useLine, endIndex - 2, strlen(useLine))
 
                 --Does the line not contain any space we combine it into the previous line
@@ -637,7 +671,7 @@ function QuestieLib:TextWrap(line, prefix, combineTrailing, desiredWidth)
         --Line was not wrapped, return the string as is.
         textWrapObjectiveFontString:Hide()
         useLine = prefix .. line
-        return { useLine }
+        return {useLine}
     end
 end
 
@@ -693,6 +727,33 @@ function QuestieLib.UpdateLastKnownDailyReset()
     local realmName = GetRealmName()
 
     Questie.db.global.lastKnownDailyReset[realmName] = GetServerTime() + GetQuestResetTime()
+end
+
+---@param timeStamp number
+---@return string|osdate formattedDate The date formatted based on the player's locale
+function QuestieLib.FormatDate(timeStamp)
+    local langCode = l10n:GetUILocale()
+
+    local weekDay = CALENDAR_WEEKDAY_NAMES[tonumber(date("%w", timeStamp)) + 1]
+    local monthName = CALENDAR_FULLDATE_MONTH_NAMES[tonumber(date("%m", timeStamp))]
+
+    if langCode == "deDE" then
+        return date(weekDay .. ", %d. " .. monthName .. " %Y um %H:%M", timeStamp)
+    elseif langCode == "esES" or langCode == "esMX" then
+        return date(weekDay .. ", %d de " .. monthName .. " de %Y a las %H:%M", timeStamp)
+    elseif langCode == "frFR" then
+        return date(weekDay .. " %d " .. monthName .. " %Y à %H:%M", timeStamp)
+    elseif langCode == "koKR" then
+        return date("%Y년 " .. monthName .. " %d일" .. " " .. weekDay .." %H:%M", timeStamp)
+    elseif langCode == "ptBR" then
+        return date(weekDay .. ", %d de " .. monthName .. " de %Y às %H:%M", timeStamp)
+    elseif langCode == "ruRU" then
+        return date(weekDay .. ", %d " .. monthName .. " %Y, %H:%M", timeStamp)
+    elseif langCode == "zhCN" or langCode == "zhTW" then
+        return date("%Y年" .. monthName .. "%d日 " .. weekDay .. " %H:%M", timeStamp)
+    end
+
+    return date(weekDay .. ", " .. monthName .. " %d, %Y at %H:%M", timeStamp)
 end
 
 return QuestieLib

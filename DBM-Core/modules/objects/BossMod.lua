@@ -203,11 +203,17 @@ end
 
 function bossModPrototype:EnableMod()
 	self.Options.Enabled = true
+	private.updateFunctionsDirty = true
+	-- Ensure scheduler is running if this mod has an update handler
+	if private.updateFunctions[self] then
+		scheduler:StartScheduler()
+	end
 end
 
 function bossModPrototype:DisableMod()
 	self:Stop()
 	self.Options.Enabled = false
+	private.updateFunctionsDirty = true
 end
 
 ---@param killNameplates boolean? Should only be called by trash mods. Bosses should never call this
@@ -235,12 +241,14 @@ function bossModPrototype:RegisterOnUpdateHandler(func, interval)
 	self.elapsed = 0
 	self.updateInterval = interval or 0
 	private.updateFunctions[self] = func
+	private.updateFunctionsDirty = true
 end
 
 function bossModPrototype:UnregisterOnUpdateHandler()
 	self.elapsed = nil
 	self.updateInterval = nil
-	table.wipe(private.updateFunctions)
+	private.updateFunctions[self] = nil
+	private.updateFunctionsDirty = true
 end
 
 ---Set the stage number.
@@ -890,19 +898,47 @@ function bossModPrototype:GetFromTimersTable(table, difficultyName, phase, spell
 end
 
 
---Function to actually register specific media to specific auras
----@param auraspellId number ID of Private aura we're actually monitoring (if it doesn't match option key, put option key in altOptionId)
----@param voice VPSound|any voice pack media path
----@param voiceVersion number Required voice pack verion (if not met, falls back to default special warning sounds)
----@param altOptionId number? Used if auraspellId doesn't match option key (usually happens when registering multiple ids for a single spell)
-function bossModPrototype:EnablePrivateAuraSound(auraspellId, voice, voiceVersion, altOptionId)
-	if DBM.Options.DontPlayPrivateAuraSound then return end
-	local optionId = altOptionId or auraspellId
-	if optionId and self.Options["PrivateAuraSound" .. optionId] then
-		if not self.paSounds then self.paSounds = {} end
-		local soundId = self.Options["PrivateAuraSound" .. optionId .. "SWSound"] or DBM.Options.SpecialWarningSound--Shouldn't be nil value, but just in case options fail to load, fallback to default SW1 sound
+----------------------------------
+--  Private/Secret API Methods  --
+----------------------------------
+do
+	-- Helper function to register a private aura sound for a single spell ID
+	---@param self DBMMod
+	---@param spellId number
+	---@param media number|string
+	local function registerPrivateAuraSound(self, spellId, media)
+		local soundSetting = DBM.Options.UseSoundChannel or "Master"
+		--Absolute media path is still a number, so at this point we know it's file data Id, we need to set soundFileID
+		if type(media) == "number" then
+			self.paSounds[#self.paSounds + 1] = C_UnitAuras.AddPrivateAuraAppliedSound({
+				spellID = spellId,
+				unitToken = "player",
+				soundFileID = media,
+				outputChannel = soundSetting,
+			})
+		else--It's a string, so it's not an ID, we need to set soundFileName instead
+			self.paSounds[#self.paSounds + 1] = C_UnitAuras.AddPrivateAuraAppliedSound({
+				spellID = spellId,
+				unitToken = "player",
+				--Another cause of LuaLS being stupid for some reason
+				---@diagnostic disable-next-line: assign-type-mismatch
+				soundFileName = media,
+				outputChannel = soundSetting,
+			})
+		end
+	end
+
+	---Function to check valid voice pack sound
+	---@param self DBMMod
+	---@param optionType string "SpecialWarningSound" or "PrivateAuraSound"
+	---@param optionId number
+	---@param voice VPSound voice pack media path
+	---@param voiceVersion number
+	---@param customOption string? Used when event supports hardcoded warnings and needs different option table lookup
+	---@return number|string
+	local function checkValidVPSound(self, optionType, optionId, voice, voiceVersion, customOption)
+		local soundId = customOption and self.Options[customOption .. "SWSound"] or self.Options[optionType .. optionId .. "SWSound"] or DBM.Options.SpecialWarningSound--Shouldn't be nil value, but just in case options fail to load, fallback to default SW1 sound
 		local mediaPath
-		--Check valid voice pack sound
 		local chosenVoice = DBM.Options.ChosenVoicePack2
 		if chosenVoice ~= "None" and not private.voiceSessionDisabled and voiceVersion <= private.swFilterDisabled then
 			local isVoicePackUsed
@@ -918,34 +954,168 @@ function bossModPrototype:EnablePrivateAuraSound(auraspellId, voice, voiceVersio
 		else
 			mediaPath = type(soundId) == "number" and DBM.Options["SpecialWarningSound" .. (soundId == 1 and "" or soundId)] or soundId
 		end
-		--Absolute media path is still a number, so at this point we know it's file data Id, we need to set soundFileID
-		if type(mediaPath) == "number" then
-			self.paSounds[#self.paSounds + 1] = C_UnitAuras.AddPrivateAuraAppliedSound({
-				spellID = auraspellId,
-				unitToken = "player",
-				soundFileID = mediaPath,
-				outputChannel = "master",
-			})
-		else--It's a string, so it's not an ID, we need to set soundFileName instead
-			self.paSounds[#self.paSounds + 1] = C_UnitAuras.AddPrivateAuraAppliedSound({
-				spellID = auraspellId,
-				unitToken = "player",
-				--Another cause of LuaLS being stupid for some reason
-				---@diagnostic disable-next-line: assign-type-mismatch
-				soundFileName = mediaPath,
-				outputChannel = "master",
-			})
+		--LuaLS does some bullshit where it thinks it can an impossible bool, so we have to force set it here
+		---@cast mediaPath number|string
+		return mediaPath
+	end
+
+	--Function to actually register specific media to specific auras
+	---@param auraspellId number|table ID of Private aura we're actually monitoring (if it doesn't match option key, put option key in altOptionId)
+	---@param voice VPSound voice pack media path
+	---@param voiceVersion number Required voice pack verion (if not met, falls back to default special warning sounds)
+	function bossModPrototype:EnablePrivateAuraSound(auraspellId, voice, voiceVersion)
+		if DBM.Options.DontPlayPrivateAuraSound then return end
+		local optionId
+		if type(auraspellId) == "table" then
+			optionId = auraspellId[1]
+		else
+			optionId = auraspellId
+		end
+		if optionId and self.Options["PrivateAuraSound" .. optionId] then
+			if not self.paSounds then self.paSounds = {} end
+			local mediaPath = checkValidVPSound(self, "PrivateAuraSound", optionId, voice, voiceVersion)
+			--Multi spellId aura
+			if mediaPath == "None" then return end--Don't register if media path is none, even if option is enabled
+			if type(auraspellId) == "table" then
+				for _, spellId in ipairs(auraspellId) do
+					registerPrivateAuraSound(self, spellId, mediaPath)
+				end
+			else
+				--Single spellId aura
+				registerPrivateAuraSound(self, auraspellId, mediaPath)
+			end
 		end
 	end
-end
 
---TODO, add ability to remove specific ID only with this function. I'm not so good with tables though so gotta figure it out later
-function bossModPrototype:DisablePrivateAuraSounds()
-	if DBM.Options.DontPlayPrivateAuraSound then return end
-	for _, id in next, self.paSounds do
-		C_UnitAuras.RemovePrivateAuraAppliedSound(id)
+	function bossModPrototype:DisablePrivateAuraSounds()
+		if self.paSounds then
+			for _, id in next, self.paSounds do
+				C_UnitAuras.RemovePrivateAuraAppliedSound(id)
+			end
+			self.paSounds = nil
+		end
 	end
-	self.paSounds = nil
+
+	---Event for registering timeline options to encounter events
+	---@param optionId number spellId or JournalId that must match option ID
+	---@param encounterEventId number|table EncounterEventID from EncounterEvent.db2 that matches event we're targetting
+	---@param customOption string? Used when event supports hardcoded timers and needs different option table lookup
+	function bossModPrototype:EnableTimelineOptions(optionId, encounterEventId, customOption)
+		if optionId and (customOption and self.Options[customOption] or self.Options["CustomTimerOption" .. optionId]) then
+			--Set Color
+			local colorType = customOption and self.Options[customOption .. "TColor"] or self.Options["CustomTimerOption" .. optionId .. "TColor"] or 0
+			local timerRed, timerGreen, timerBlue = DBT:GetColorForType(colorType)
+			if type(encounterEventId) == "table" then
+				for _, id in ipairs(encounterEventId) do
+					C_EncounterEvents.SetEventColor(id, {r = timerRed, g = timerGreen, b = timerBlue})
+				end
+			else
+				C_EncounterEvents.SetEventColor(encounterEventId, {r = timerRed, g = timerGreen, b = timerBlue})
+			end
+			--Set Countdown
+			local timerCountdown = not DBM.Options.DontPlayCountdowns and (customOption and self.Options[customOption .. "CVoice"] or self.Options["CustomTimerOption" .. optionId .. "CVoice"]) or 0
+			if timerCountdown ~= 0 then
+				if not self.tlTimerEvents then self.tlTimerEvents = {} end
+				if type(timerCountdown) == "string" then
+					path = timerCountdown.."fivecount.ogg"
+				elseif timerCountdown == 2 then
+					path = "Interface\\AddOns\\DBM-Core\\Sounds\\Kolt\\fivecount.ogg"
+				elseif timerCountdown == 3 then
+					path = "Interface\\AddOns\\DBM-Core\\Sounds\\Smooth\\fivecount.ogg"
+				elseif timerCountdown == 1 then
+					path = "Interface\\AddOns\\DBM-Core\\Sounds\\Corsica\\fivecount.ogg"
+				end
+				--Unlike private aura sounds, this api accepts both file data ID AND path
+				local soundSetting = DBM.Options.UseSoundChannel or "Master"
+				if type(encounterEventId) == "table" then
+					for _, id in ipairs(encounterEventId) do
+						if not self.tlTimerEvents[id] then
+							--Another ignore that has to be added due to wow API extension bugs
+							---@diagnostic disable-next-line: assign-type-mismatch
+							C_EncounterEvents.SetEventSound(id, 2, {file = path, channel = soundSetting, volume = 1})
+							self.tlTimerEvents[id] = true
+						else
+							DBM:Debug("|cffff0000Timeline option for " .. optionId .. " already set for encounter event id: " .. id .. "|r", 1)
+						end
+					end
+				else
+					if not self.tlTimerEvents[encounterEventId] then
+						---@diagnostic disable-next-line: assign-type-mismatch
+						C_EncounterEvents.SetEventSound(encounterEventId, 2, {file = path, channel = soundSetting, volume = 1})
+						self.tlTimerEvents[encounterEventId] = true
+					else
+						DBM:Debug("|cffff0000Timeline option for " .. optionId .. " already set for encounter event id: " .. encounterEventId .. "|r", 1)
+					end
+				end
+			end
+		end
+	end
+
+	--Called automatically on combat end to clear any custom timeline countdown sounds
+	function bossModPrototype:DisableTimelineOptions()
+		--Note. Currently this doesn't wipe color since we don't want to wipe default generic colors until blizzard
+		--adds function that lets us set a default color to use when a custom one isn't set since we set defaults
+		--for ALL events on login as a workaround right now
+		if self.tlTimerEvents then
+			for encounterEventId in next, self.tlTimerEvents do
+				C_EncounterEvents.SetEventSound(encounterEventId, 2, nil)
+			end
+			self.tlTimerEvents = nil
+		end
+	end
+
+	---Event for registering timeline options to encounter events
+	---@param optionId number spellId or JournalId that must match option ID
+	---@param encounterEventId number|table EncounterEventID from EncounterEvent.db2 that matches event we're targetting
+	---@param voice VPSound voice pack media path
+	---@param voiceVersion number Required voice pack verion (if not met, falls back to default special warning sounds)
+	---@param color warningColorType? ColorId 1-4
+	---@param overrideType number? Used when we explicitely need to set sound to play on a specific type of event (0 - Text Event, 1 - Timer Finished, 2 - 5 seconds before Timer Finished)
+	---@param customOption string? Used when event supports hardcoded warnings and needs different option table lookup
+	function bossModPrototype:EnableAlertOptions(optionId, encounterEventId, voice, voiceVersion, color, overrideType, customOption)
+		--Use same global disable as special warning sounds (since UI is indistinguishable between custom alert sounds and special warning sounds, might as well just have one global disable for both)
+		if DBM.Options.DontPlaySpecialWarningSound then return end
+		--Filter tank specific voice alerts for non tanks if tank filter enabled
+		if (voice == "changemt" or voice == "tauntboss") and not self:IsTank() then return end
+		if optionId then
+			--if optionId and (customOption and self.Options[customOption] or self.Options["CustomTimerOption" .. optionId]) then
+			local enabled = customOption and self.Options[customOption] or self.Options["CustomAlertOption" .. optionId]
+			local mediaPath = checkValidVPSound(self, "CustomAlertOption", optionId, voice, voiceVersion, customOption)
+			if enabled and mediaPath ~= "None" then
+				if not self.tlSoundEvents then
+					self.tlSoundEvents = {}
+					self:DisableSpecialWarningSounds()
+				end
+				local soundSetting = DBM.Options.UseSoundChannel or "Master"
+				--Unlike private aura sounds, this api accepts both file data ID AND path
+				if type(encounterEventId) == "table" then
+					for _, id in ipairs(encounterEventId) do
+						--Once again working around bugs in Wow Api extension
+						---@diagnostic disable-next-line: assign-type-mismatch
+						C_EncounterEvents.SetEventSound(id, overrideType or 1, {file = mediaPath, channel = soundSetting, volume = 1})
+						self.tlSoundEvents[id] = true
+					end
+				else
+					--Once again working around bugs in Wow Api extension
+					---@diagnostic disable-next-line: assign-type-mismatch
+					C_EncounterEvents.SetEventSound(encounterEventId, overrideType or 1, {file = mediaPath, channel = soundSetting, volume = 1})
+					self.tlSoundEvents[encounterEventId] = true
+				end
+				--TODO, add color api when blizzard adds it. Right now it's unused but still setup in mods.
+			end
+		end
+	end
+
+	--Called automatically on combat end to clear any custom timeline/warning alert sounds
+	function bossModPrototype:DisableAlertOptions()
+		if self.tlSoundEvents then
+			for encounterEventId in next, self.tlSoundEvents do
+				C_EncounterEvents.SetEventSound(encounterEventId, 1, nil)
+				C_EncounterEvents.SetEventSound(encounterEventId, 0, nil)
+			end
+			self.tlSoundEvents = nil
+		end
+	end
 end
 
 ---@param t number

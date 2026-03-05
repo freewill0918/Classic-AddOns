@@ -17,8 +17,25 @@ function QuestieTBCObjectFixes:Load()
         [1739] = { -- Syndicate Documents
             [objectKeys.questStarts] = {},
         },
+        [5619] = { -- Flawed Power Stone
+            [objectKeys.questStarts] = {926},
+            [objectKeys.questEnds] = {926},
+        },
+        [5621] = { -- Flawed Power Stones
+            [objectKeys.questStarts] = {926},
+            [objectKeys.questEnds] = {926},
+        },
+        [21015] = { -- Hoofprints
+            [objectKeys.questStarts] = {},
+        },
+        [21016] = { -- Hoofprints
+            [objectKeys.questStarts] = {},
+        },
         [142122] = {
             [objectKeys.questStarts] = {2781,2875},
+        },
+        [156561] = { -- Wanted Poster
+            [objectKeys.questStarts] = {176},
         },
         [177281] = {
             [objectKeys.spawns] = {[zoneIDs.ZANGARMARSH]={{80.32,65.06}}},
@@ -51,6 +68,11 @@ function QuestieTBCObjectFixes:Load()
         [181781] = {
             [objectKeys.spawns] = {[zoneIDs.BLOODMYST_ISLE]={{41,30}}},
             [objectKeys.zoneID] = zoneIDs.BLOODMYST_ISLE,
+        },
+        [181849] = { -- Ravager Cage
+            [objectKeys.name] = "Ravager Cage",
+            [objectKeys.spawns] = {[zoneIDs.AZUREMYST_ISLE]={{54.03,9.95}}},
+            [objectKeys.zoneID] = zoneIDs.AZUREMYST_ISLE,
         },
         [181897] = {
             [objectKeys.spawns] = {[zoneIDs.BLOODMYST_ISLE]={{68.3,21.7},{69.98,26.3},{70.6,16.5},{71.4,11.7},{71.4,28.2},{72.7,21.4},{74.7,16.3},{75,8.7},{75.4,19.1},{75.7,28.4},{75.54,13.85},{76,24.8},{76.8,21.4}}},
@@ -155,9 +177,6 @@ function QuestieTBCObjectFixes:Load()
         [186189] = {
             [objectKeys.name] = "Alcohol-Free Brewfest Sampler",
         },
-        [186273] = {
-            [objectKeys.spawns] = {[zoneIDs.DUSTWALLOW_MARSH]={{61.7,18.2}}},
-        },
         [186420] = { -- Syndicate Documents
             [objectKeys.questStarts] = {510,511},
         },
@@ -172,6 +191,9 @@ function QuestieTBCObjectFixes:Load()
         },
         [187078] = {
             [objectKeys.spawns] = {[zoneIDs.ISLE_OF_QUEL_DANAS]={{46.5,35.5},{48.63,35.37},{48.89,39.15},{49.14,29.53},{50.32,38.27},{50.34,42.36},{53.77,36.21},}},
+        },
+        [187273] = { -- Suspicious Hoofprint
+            [objectKeys.questStarts] = {1268,1284},
         },
         [187260] = {
             [objectKeys.spawns] = {[zoneIDs.FELWOOD]={{34.82,52.95}}}, -- TBC only Mailbox
@@ -798,7 +820,6 @@ function QuestieTBCObjectFixes:Load()
         -- For TBC fixes 410001-419999
         [410001] = {
             [objectKeys.name] = "Mailbox",
-            [objectKeys.questStarts] = {9672},
             [objectKeys.spawns] = {[zoneIDs.BLOODMYST_ISLE]={{55.2,59.2}}},
             [objectKeys.zoneID] = zoneIDs.BLOODMYST_ISLE,
         },
@@ -896,6 +917,27 @@ function QuestieTBCObjectFixes:Load()
             [objectKeys.name] = "Blackhoof Cage",
             [objectKeys.spawns] = {[zoneIDs.DUSTWALLOW_MARSH]={{40.7,11.9},{40.89,12.43},{40.63,11.5},{41.62,10.8},{41.93,13.22},{41.48,12.98},{42.39,11.76}}},
             [objectKeys.zoneID] = zoneIDs.DUSTWALLOW_MARSH,
+        },
+        [410021] = { -- Cenarion Thicket Moonwell
+            [objectKeys.name] = "Moonwell",
+            [objectKeys.questStarts] = {},
+            [objectKeys.questEnds] = {},
+            [objectKeys.spawns] = {[zoneIDs.TEROKKAR_FOREST]={{45.1, 23.6}}},
+            [objectKeys.zoneID] = zoneIDs.TEROKKAR_FOREST,
+        },
+        [410022] = { -- Evergrove Moonwell
+            [objectKeys.name] = "Moonwell",
+            [objectKeys.questStarts] = {},
+            [objectKeys.questEnds] = {},
+            [objectKeys.spawns] = {[zoneIDs.BLADES_EDGE_MOUNTAINS]={{62.0, 39.2}}},
+            [objectKeys.zoneID] = zoneIDs.BLADES_EDGE_MOUNTAINS,
+        },
+        [410023] = { -- Ghostlands Moonwell
+            [objectKeys.name] = "Moonwell",
+            [objectKeys.questStarts] = {},
+            [objectKeys.questEnds] = {},
+            [objectKeys.spawns] = {[zoneIDs.GHOSTLANDS]={{13.17,26.59}}},
+            [objectKeys.zoneID] = zoneIDs.GHOSTLANDS,
         },
     }
 end

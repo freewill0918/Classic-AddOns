@@ -137,6 +137,8 @@ L.Slider_BarOffSetX 		= "Sfasamento X: %d"
 L.Slider_BarOffSetY 		= "Sfasamento Y: %d"
 L.Slider_BarWidth 			= "Lunghezza Barra: %d"
 L.Slider_BarScale 			= "Scala Barra: %0.2f"
+L.BarSaturation				= "Saturazione barra per timer piccoli: %0.2f"
+L.MidnightNote				= "Nota: A causa delle restrizioni API in Midnight. DBM non può supportare colori di inizio e fine differenti. Verrà usato solo il colore di inizio."
 --Types
 L.BarStartColorAdd			= "Colore inizio (Add)"
 L.BarEndColorAdd			= "Colore fine (Add)"
@@ -303,7 +305,6 @@ L.Area_HideBlizzard					= "Disabilita e Nascondi altre Seccature Blizzard"
 L.HideBossEmoteFrame				= "Nascondi il riquadro delle emote del boss raid durante i combattimenti con i boss"
 L.HideWatchFrame					= "Nascondi il riquadro degli obiettivi durante i combattimenti con i boss se non vengono tracciati successi e se non sei in un Mythic+"
 L.HideQuestTooltips					= "Nascondi gli obiettivi delle missioni dai tooltip durante i combattimenti con i boss"--Attualmente nascosto (NYI)
-L.HideTooltips						= "Nascondi completamente i tooltip durante i combattimenti con i boss"
 L.HideBlizzardTimeline				= "Nascondi la Timeline Raid di Blizzard durante i combattimenti con i boss"
 
 L.Panel_ExtraFeatures		= "Funzionalità Aggiuntive"

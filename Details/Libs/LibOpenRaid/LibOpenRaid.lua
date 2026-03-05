@@ -40,6 +40,17 @@ local canRegisterEvents = function()
     return toc <= 119999
 end
 
+local canSendCommNow = function()
+    if toc <= 119999 then
+        return true
+    else
+        if InCombatLockdown() or UnitAffectingCombat("player") then
+            return false
+        end
+        return true
+    end
+end
+
 ---@alias castername string
 ---@alias castspellid string
 ---@alias schedulename string
@@ -64,7 +75,7 @@ end
 
 local major = "LibOpenRaid-1.0"
 
-local CONST_LIB_VERSION = 173
+local CONST_LIB_VERSION = 175
 
 if (LIB_OPEN_RAID_MAX_VERSION) then
     if (CONST_LIB_VERSION <= LIB_OPEN_RAID_MAX_VERSION) then
@@ -441,8 +452,10 @@ end
         end
     end
 
-    openRaidLib.commHandler.eventFrame:RegisterEvent("CHAT_MSG_ADDON_LOGGED")
-    openRaidLib.commHandler.eventFrame:SetScript("OnEvent", openRaidLib.commHandler.OnReceiveSafeComm)
+    if canRegisterEvents() then
+        openRaidLib.commHandler.eventFrame:RegisterEvent("CHAT_MSG_ADDON_LOGGED")
+        openRaidLib.commHandler.eventFrame:SetScript("OnEvent", openRaidLib.commHandler.OnReceiveSafeComm)
+    end
 
     function openRaidLib.commHandler.aceComm.OnReceiveComm(event, prefix, text, channel, sender, target, zoneChannelID, localID, name, instanceID, bIsSafe)
         --check if the data belong to us
@@ -550,7 +563,10 @@ end
     local receivingMsgInParts = {}
 
     local debugCommReception = CreateFrame("frame")
-    debugCommReception:RegisterEvent("CHAT_MSG_ADDON_LOGGED")
+    if canRegisterEvents() then
+        debugCommReception:RegisterEvent("CHAT_MSG_ADDON_LOGGED")
+    end
+
     debugCommReception:SetScript("OnEvent", function(self, event, prefix, text, channel, sender, target, zoneChannelID, localID, name, instanceID)
         if (prefix == CONST_COMM_PREFIX_LOGGED) then
             local chunkNumber, totalChunks, data = text:match("^%$(%d+)%$(%d+)(.*)")
@@ -610,6 +626,10 @@ end
     --0x2: to raid
     --0x4: to guild
     local sendData = function(dataEncoded, channel, bIsSafe, plainText)
+        if not canSendCommNow() then
+            return
+        end
+
         local aceComm = LibStub:GetLibrary("AceComm-3.0", true)
         if (aceComm) then
             if (bIsSafe) then
@@ -684,6 +704,10 @@ end
     end
 
     function openRaidLib.commHandler.SendCommData(data, flags, bIsSafe)
+        if not canSendCommNow() then
+            return
+        end
+
         local LibDeflate = LibStub:GetLibrary("LibDeflate")
         local dataCompressed = LibDeflate:CompressDeflate(data, {level = 9})
         local dataEncoded = LibDeflate:EncodeForWoWAddonChannel(dataCompressed)
@@ -1219,7 +1243,9 @@ end
     }
     openRaidLib.eventFunctions = eventFunctions
 
-    eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+    if canRegisterEvents() then
+        eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+    end
 
     eventFrame:SetScript("OnEvent", function(self, event, ...)
         local eventCallbackFunc = eventFunctions[event]
@@ -2999,8 +3025,11 @@ openRaidLib.commHandler.RegisterORComm(CONST_COMM_COOLDOWNREQUEST_PREFIX, openRa
     end
 
     local bagUpdateEventFrame = _G["OpenRaidBagUpdateFrame"] or CreateFrame("frame", "OpenRaidBagUpdateFrame")
-    bagUpdateEventFrame:RegisterEvent("BAG_UPDATE")
-    bagUpdateEventFrame:RegisterEvent("ITEM_CHANGED")
+    --if canRegisterEvents() then
+        bagUpdateEventFrame:RegisterEvent("BAG_UPDATE")
+        bagUpdateEventFrame:RegisterEvent("ITEM_CHANGED")
+    --end
+
     bagUpdateEventFrame:SetScript("OnEvent", function(bagUpdateEventFrame, event, ...)
         if (openRaidLib.KeystoneInfoManager.KeystoneChangedTimer) then
             return

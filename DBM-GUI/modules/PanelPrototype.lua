@@ -496,7 +496,7 @@ do
 				local isNewDropdown = frame.mytype == "dropdown2"
 				frame:SetPoint("LEFT", button, "RIGHT", isNewDropdown and 2 or -20, 2)
 				frame2:SetPoint("LEFT", frame, "RIGHT", isNewDropdown and 4 or 18, 0)
-			else
+			else--Special warning option
 				frame = self:CreateDropdown(nil, sounds, mod, modvar .. "SWSound", function(value)
 					mod.Options[modvar .. "SWSound"] = value
 					DBM:PlaySpecialWarningSound(value, true)
@@ -538,9 +538,9 @@ do
 					local _, contentType, contentID = strsplit(":", data)
 					if contentType == "2" then
 						local spellName, spellDesc = DBM:EJ_GetSectionInfo(tonumber(contentID))
-						GameTooltip:AddLine(spellName or CL.UNKNOWN, 255, 255, 255, 0)
+						GameTooltip:AddLine(spellName or CL.UNKNOWN, 255, 255, 255, false)
 						GameTooltip:AddLine(" ")
-						GameTooltip:AddLine(spellDesc or CL.UNKNOWN, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1)
+						GameTooltip:AddLine(spellDesc or CL.UNKNOWN, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, true)
 					end
 				end
 				GameTooltip:Show()

@@ -17,7 +17,7 @@ function QuestieWotlkNpcFixes:Load()
 
     return {
         [376] = { -- High Priestess Laurena
-            [npcKeys.questStarts] = {5634,64031,64034,64035,64037,64038,70397,70398,70401,70411,70865,70870,78140,78157,78164,78166},
+            [npcKeys.questStarts] = {5631,5634,64031,64034,64035,64037,64038,70397,70398,70401,70411,70865,70870,78140,78157,78164,78166},
             [npcKeys.questEnds] = {5640,5678,64028,64031,64034,64035,70395,70397,70398,70401,70870,78136,78140,78157,78164},
         },
         [658] = {
@@ -133,7 +133,7 @@ function QuestieWotlkNpcFixes:Load()
             [npcKeys.questEnds] = {64028,64031,64034,64035,70395,70397,70398,70401,70870,78136,78140,78157,78164},
         },
         [5885] = { -- Deino
-            [npcKeys.questStarts] = {1944,1945,1947,2861,64048,64050,64052,64063,64064,70734,70735,70736,70737,70865,70869,78167,78168},
+            [npcKeys.questStarts] = {1944,1945,1947,1953,2861,64048,64050,64052,64063,64064,70734,70735,70736,70737,70865,70869,78167,78168},
             [npcKeys.questEnds] = {1943,1944,64046,64048,64050,64052,70396,70734,70735,70736,70869,78137,78167},
         },
         [5994] = { -- Zayus
@@ -199,7 +199,7 @@ function QuestieWotlkNpcFixes:Load()
             [npcKeys.zoneID] = zoneIDs.EASTERN_PLAGUELANDS,
         },
         [11406] = { -- High Priest Rohan
-            [npcKeys.questStarts] = {7639,8254},
+            [npcKeys.questStarts] = {5633,7639,8254},
         },
         [11407] = { -- Var'jun
             [npcKeys.questStarts] = {},
@@ -316,7 +316,7 @@ function QuestieWotlkNpcFixes:Load()
             },
             [npcKeys.questStarts] = {8870},
         },
-        [15895] = {
+        [15895] = { -- Lunar Festival Harbinger
             [npcKeys.spawns] = {
                 [zoneIDs.DARNASSUS]={{32.59,12}},
                 [zoneIDs.UNDERCITY]={{65.62,36.0}},
@@ -398,10 +398,7 @@ function QuestieWotlkNpcFixes:Load()
             [npcKeys.questEnds] = {10960,64139,64140,64141,64142,64143,64144,64145},
         },
         [17219] = { -- Sulaa
-            [npcKeys.questStarts] = {9462,9500,9551,14111},
-        },
-        [17663] = {
-            [npcKeys.name] = "Maatparm",
+            [npcKeys.questStarts] = {9462,9502,9551,14111},
         },
         [17718] = {
             [npcKeys.questStarts] = {9684,9681},
@@ -3741,6 +3738,10 @@ function QuestieWotlkNpcFixes:LoadFactionFixes()
     }
 
     local npcFixesAlliance = {
+        [6492] = { -- Rift Spawn
+            [npcKeys.spawns] = {[zoneIDs.STORMWIND_CITY] = {{51.32,92.34},{50.83,92.63},{51.61,94.5},{51.21,95.73},{50.99,95.58},{51.3,93.34}}},
+            [npcKeys.zoneID] = zoneIDs.STORMWIND_CITY,
+        },
         [15898] = {
             [npcKeys.spawns] = {
                 [zoneIDs.STORMWIND_CITY]={{37.32,64.04}},

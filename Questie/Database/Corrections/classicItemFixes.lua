@@ -270,7 +270,7 @@ function QuestieItemFixes:Load()
             [itemKeys.objectDrops] = {},
         },
         [4589] = { -- Long Elegant Feather
-            [itemKeys.npcDrops] = {2347, 2651, 2657, 2658, 2659},
+            [itemKeys.npcDrops] = {2347, 2473, 2474, 2651, 2657, 2658, 2659, 5300, 6375},
         },
         [4611] = { -- Blue Pearl
             [itemKeys.npcDrops] = {},
@@ -299,6 +299,9 @@ function QuestieItemFixes:Load()
         [4532] = { -- Trelane's Ember Agate
             [itemKeys.objectDrops] = {2718},
         },
+        [4703] = { -- Broken Tools
+            [itemKeys.objectDrops] = {17190},
+        },
         [4806] = { -- Plainstrider Scale
             [itemKeys.npcDrops] = {2956, 2957, 3068},
         },
@@ -314,6 +317,9 @@ function QuestieItemFixes:Load()
             [itemKeys.relatedQuests] = {793, 717},
             [itemKeys.npcDrops] = {},
         },
+        [4851] = { -- Dirt-stained Map
+            [itemKeys.startQuest] = 781,
+        },
         [4854] = { -- Demon Scarred Cloak
             [itemKeys.npcDrops] = {3056},
         },
@@ -325,7 +331,7 @@ function QuestieItemFixes:Load()
         [4986] = { -- Flawed Power Stone
             [itemKeys.relatedQuests] = {924, 926},
             [itemKeys.npcDrops] = {},
-            [itemKeys.objectDrops] = {5621},
+            [itemKeys.objectDrops] = {5619,5620,5621},
         },
         [5051] = { -- Dig Rat
             [itemKeys.relatedQuests] = {862},
@@ -335,6 +341,9 @@ function QuestieItemFixes:Load()
         },
         [5058] = { -- Silithid Egg
             [itemKeys.npcDrops] = {},
+        },
+        [5060] = { -- Thieves' Tools
+            [itemKeys.vendors] = {1325,1326,1457,2622,3090,3135,3334,3490,3542,3551,3561,3969,4585,5139,5169,6779,7166,10364,15175},
         },
         [5068] = { -- Dried Seeds
             [itemKeys.relatedQuests] = {877},
@@ -402,10 +411,7 @@ function QuestieItemFixes:Load()
             [itemKeys.relatedQuests] = {},
             [itemKeys.npcDrops] = {3919, 3834},
             [itemKeys.objectDrops] = {},
-        },
-        [5519] = { -- Iron Pommel
-            [itemKeys.npcDrops] = {3928},
-            [itemKeys.objectDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
         },
         [5535] = { -- Compendium of the Fallen
             [itemKeys.objectDrops] = {19283},
@@ -543,6 +549,9 @@ function QuestieItemFixes:Load()
         [7228] = { -- Tigule's Strawberry Ice Cream
             [itemKeys.name] = "Tigule\'s Strawberry Ice Cream",
         },
+        [7247] = { -- Chest of Containment Coffers
+            [itemKeys.class] = itemClasses.QUEST,
+        },
         [7268] = { -- Xavian Water Sample (#1097)
             [itemKeys.relatedQuests] = {1944},
             [itemKeys.npcDrops] = {},
@@ -592,8 +601,12 @@ function QuestieItemFixes:Load()
         [7910] = { -- Star Ruby
             [itemKeys.npcDrops] = {},
         },
-        [7923] = { -- Defias Tower Key
-            [itemKeys.npcDrops] = {7051},
+        [7968] = { -- Southsea Treasure
+            [itemKeys.npcDrops] = {7168},
+        },
+        [7970] = { -- E.C.A.C.
+            [itemKeys.vendors] = {7166},
+            [itemKeys.class] = itemClasses.QUEST,
         },
         [7972] = { -- Ichor of Undeath
             [itemKeys.npcDrops] = {1488, 1489, 1783, 1784, 1785, 1787, 1788, 1789, 1791, 1793, 1794, 1795, 1796, 1802, 1804, 1805, 3094, 4472, 4474, 4475, 6116, 6117, 7370, 7523, 7524, 7864, 8523, 8524, 8525, 8526, 8527, 8528, 8529, 8530, 8531, 8532, 8538, 8539, 8540, 8541, 8542, 8543, 8545, 10500, 10580, 10816, 11873, 12262, 12263, 12377, 12378, 12379, 12380},
@@ -1003,6 +1016,9 @@ function QuestieItemFixes:Load()
         [15874] = { -- Soft-shelled Clam
             [itemKeys.npcDrops] = {12347},
         },
+        [15885] = { -- Pendant of the Sea Lion
+            [itemKeys.objectDrops] = {15885},
+        },
         [15924] = { -- Soft-shelled Clam Meat
             [itemKeys.objectDrops] = {177784},
             [itemKeys.npcDrops] = {12347},
@@ -1035,6 +1051,57 @@ function QuestieItemFixes:Load()
             [itemKeys.relatedQuests] = {6504},
             [itemKeys.npcDrops] = {},
             [itemKeys.objectDrops] = {},
+        },
+        [16645] = { -- Shredder Operating Manual - Page 1
+            [itemKeys.npcDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [16646] = { -- Shredder Operating Manual - Page 2
+            [itemKeys.npcDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [16647] = { -- Shredder Operating Manual - Page 3
+            [itemKeys.npcDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [16648] = { -- Shredder Operating Manual - Page 4
+            [itemKeys.npcDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [16649] = { -- Shredder Operating Manual - Page 5
+            [itemKeys.npcDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [16650] = { -- Shredder Operating Manual - Page 6
+            [itemKeys.npcDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [16651] = { -- Shredder Operating Manual - Page 7
+            [itemKeys.npcDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [16652] = { -- Shredder Operating Manual - Page 8
+            [itemKeys.npcDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [16653] = { -- Shredder Operating Manual - Page 9
+            [itemKeys.npcDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [16654] = { -- Shredder Operating Manual - Page 10
+            [itemKeys.npcDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [16655] = { -- Shredder Operating Manual - Page 11
+            [itemKeys.npcDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [16656] = { -- Shredder Operating Manual - Page 12
+            [itemKeys.npcDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [16742] = { -- Warsong Saw Blades
+            [itemKeys.npcDrops] = {12724},
         },
         [16763] = { -- Warsong Runner Update
             [itemKeys.relatedQuests] = {6543, 6545},
@@ -1316,37 +1383,55 @@ function QuestieItemFixes:Load()
             [itemKeys.relatedQuests] = {8867},
             [itemKeys.npcDrops] = {15898},
             [itemKeys.objectDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
         },
         [21558] = { -- Small Blue Rocket
             [itemKeys.relatedQuests] = {8867},
             [itemKeys.npcDrops] = {15898},
             [itemKeys.objectDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
         },
         [21559] = { -- Small Green Rocket
             [itemKeys.relatedQuests] = {8867},
             [itemKeys.npcDrops] = {15898},
             [itemKeys.objectDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
         },
         [21571] = { -- Blue Rocket Cluster
             [itemKeys.relatedQuests] = {8867},
             [itemKeys.npcDrops] = {15898},
             [itemKeys.objectDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
         },
         [21574] = { -- Green Rocket Cluster
             [itemKeys.relatedQuests] = {8867},
             [itemKeys.npcDrops] = {15898},
             [itemKeys.objectDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
         },
         [21576] = { -- Red Rocket Cluster
             [itemKeys.relatedQuests] = {8867},
             [itemKeys.npcDrops] = {15898},
             [itemKeys.objectDrops] = {},
+            [itemKeys.class] = itemClasses.QUEST,
         },
         [21711] = { -- Lunar Festival Invitation
             [itemKeys.class] = itemClasses.QUEST,
         },
+        [21829] = { -- Perfume Bottle
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [21833] = { -- Cologne Bottle
+            [itemKeys.class] = itemClasses.QUEST,
+        },
         [22094] = { -- Bloodkelp
             [itemKeys.npcDrops] = {4364, 4366, 4368, 4370, 4371, 16072},
+        },
+        [22163] = { -- Pledge of Friendship: Undercity
+            [itemKeys.npcDrops] = {5624},
+        },
+        [22178] = { -- Pledge of Friendship: Stormwind
+            [itemKeys.npcDrops] = {68,1976},
         },
         [22229] = { -- Soul Ashes of the Banished (#2344)
             [itemKeys.npcDrops] = {7068, 7069, 7071, 7072, 7075},
@@ -1433,16 +1518,16 @@ function QuestieItemFixes:LoadFactionFixes()
     local itemKeys = QuestieDB.itemKeys
 
     local itemFixesHorde = {
+        [3713] = { -- Soothing Spices
+            [itemKeys.relatedQuests] = {7321, 1218},
+            [itemKeys.npcDrops] = {2397, 8307},
+            [itemKeys.objectDrops] = {},
+        },
         [15882] = { -- Half Pendant of Aquatic Endurance
             [itemKeys.objectDrops] = {177790},
         },
         [15883] = { -- Half Pendant of Aquatic Agility
             [itemKeys.objectDrops] = {177794},
-        },
-        [3713] = { -- Soothing Spices
-            [itemKeys.relatedQuests] = {7321, 1218},
-            [itemKeys.npcDrops] = {2397, 8307},
-            [itemKeys.objectDrops] = {},
         },
         [20810] = { -- Signed Field Duty Papers
             [itemKeys.npcDrops] = {15612},
@@ -1450,17 +1535,17 @@ function QuestieItemFixes:LoadFactionFixes()
     }
 
     local itemFixesAlliance = {
-        [15882] = { -- Half Pendant of Aquatic Endurance
-            [itemKeys.objectDrops] = {177844},
-        },
-        [15883] = { -- Half Pendant of Aquatic Agility
-            [itemKeys.objectDrops] = {177792},
-        },
         [3713] = { -- Soothing Spices
             [itemKeys.name] = "Soothing Spices",
             [itemKeys.relatedQuests] = {555, 1218},
             [itemKeys.npcDrops] = {2381, 4897},
             [itemKeys.objectDrops] = {},
+        },
+        [15882] = { -- Half Pendant of Aquatic Endurance
+            [itemKeys.objectDrops] = {177844},
+        },
+        [15883] = { -- Half Pendant of Aquatic Agility
+            [itemKeys.objectDrops] = {177792},
         },
         [20810] = { -- Signed Field Duty Papers
             [itemKeys.npcDrops] = {15440},

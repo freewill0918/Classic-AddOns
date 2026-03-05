@@ -278,7 +278,7 @@ DETAILS_SEGMENTTYPE_TRAININGDUMMY = true
 ---@field phase number the current phase of the encounter
 ---@field kill boolean if the encounter was a kill or a wipe
 
----@class details
+---@class details 
 ---@field encounter_table table store the encounter data for the current encounter
 ---@field boss1_health_percent number store the health percentage (one to zero) of the boss1
 ---@field pets table<guid, petinfo> store the pet guid as the key and the petinfo as the value
@@ -288,6 +288,7 @@ DETAILS_SEGMENTTYPE_TRAININGDUMMY = true
 ---@field container_type table<containertype, string> [containertype] = "damage" or "heal" or "energy" or "utility"
 ---@field TextureAtlas table<atlasname, df_atlasinfo>
 ---@field playername string
+---@field damage_meter_type number
 ---@field breakdown_general profile_breakdown_settings
 ---@field DefaultTooltipIconSize number default size of the icons in the tooltip, this also dictates the size of each line in the tooltip
 ---@field Format fun(self: details, number: number) : string
@@ -297,7 +298,11 @@ DETAILS_SEGMENTTYPE_TRAININGDUMMY = true
 ---@field GetCurrentEncounterInfo fun(self: details) : details_encounter_table
 ---@field GetAllInstances fun(self: details) : instance[] return a table with all the instances
 ---@field GetCoreVersion fun(self: details) : number return the core version, this is used to check API version for scripts and plugins
+---@field RefreshMainWindow fun(self: details, instance:instance|number?, forceUpdate:boolean?) refresh a window or all main windows if -1 is passed into instance
 ---@field 
+---@field GetCombatWithSessionId fun(self: details, combatSessionId: string) : combat|nil
+---@field HasCombatWithSessionId fun(self: details, combatSessionId: string) : boolean
+---@field InstanceCallDetailsFunc fun(self: details, func:fun(object:nil, instance:instance, ...), ...) call a function on all opened instances
 ---@field GetItemLevelFromGuid fun(self: details, guid: guid) : number return the item level of the player, if the player is not found, return 0
 ---@field GenerateActorInfo fun(self: details, actor: actor, errorText:string, bIncludeStack:boolean) : table<string, boolean|string|number> generates a table with the main attributes of the actor, this is mainly for debug purposes
 ---@field DumpActorInfo fun(self: details, actor: actor) open a window showig the main attributes of an actor, this is mainly for debug purposes
@@ -322,7 +327,7 @@ DETAILS_SEGMENTTYPE_TRAININGDUMMY = true
 ---@field GetRoleIcon fun(self: details, role: role) : string, number, number, number, number return the path to a texture file and the texture coordinates for the given role
 ---@field GetSpecIcon fun(self: details, spec: number, useAlpha: boolean) : string, number, number, number, number return the path to a texture file and the texture coordinates for the given spec
 ---@field GetActiveWindowFromBreakdownWindow fun(self: details) : instance return the window (instance) that requested to open the player breakdown window
----@field OpenBreakdownWindow fun(self: details, instanceObject: instance, actorObject: actor, bFromAttributeChange: boolean?, bIsRefresh: boolean?, bIsShiftKeyDown: boolean?, bIsControlKeyDown: boolean?)
+---@field OpenBreakdownWindow fun(self: details, instanceObject: instance, actorObject: actor, bFromAttributeChange: boolean?, bIsRefresh: boolean?, bIsShiftKeyDown: boolean?, bIsControlKeyDown: boolean?, bIgnoreOverrides:boolean?, mainAttributeOverride:number?, subAttributeOverride:number?)
 ---@field GetActorObjectFromBreakdownWindow fun(self: details) : actor return the actor object that is currently shown in the breakdown window
 ---@field GetDisplayTypeFromBreakdownWindow fun(self: details) : number, number return the attribute and subattribute display type of the breakdown window
 ---@field GetCombatFromBreakdownWindow fun(self: details) : combat return the combat beaing used in the breakdown window
@@ -412,6 +417,7 @@ DETAILS_SEGMENTTYPE_TRAININGDUMMY = true
 ---@field bloodlust number[]? combat time of when the player received a bloodlust/heroism
 ---@field bloodlust_overall number[]? exists only in segments that received a merge, uses time()
 ---@field compressed_charts table store chart data
+---@field combatSessionId string
 ---@field 
 ---@field __call table
 ---@field __index table
@@ -704,9 +710,18 @@ DETAILS_SEGMENTTYPE_TRAININGDUMMY = true
 ---@field freezed boolean
 ---@field sub_atributo_last table
 ---@field row_info table
+---@field blzWindow blzwindow
 ---@field show_interrupt_casts boolean
+---@field baseframe frame
+---@field use_multi_fontstrings boolean
+---@field sessionId number the sessionId to use with C_DamageMeter API
+---@field sessionType number the sessionType to use with C_DamageMeter API
+---@field _postponing_switch boolean?
+---@field last_interaction number?
+---@field auto_current boolean?
 ---@field
----@field
+---@field GetCombatTime fun(instance: instance) : number get the combat time of the currently showing combat segment
+---@field CheckForSecretsAndAspects fun(self: instance)
 ---@field GetActorBySubDisplayAndRank fun(self: instance, displayid: attributeid, subDisplay: attributeid, rank: number) : actor
 ---@field GetSize fun(instance: instance) : width, height
 ---@field GetInstanceGroup fun() : table
@@ -724,13 +739,37 @@ DETAILS_SEGMENTTYPE_TRAININGDUMMY = true
 ---@field RefreshCombat fun(instance: instance)
 ---@field Freeze fun(instance: instance)
 ---@field UnFreeze fun(instance: instance)
+---@field GetAttributeType fun(instance: instance) : number
+---@field GetSources fun(instance: instance) : damagemeter_combat_source[]
 ---@field SetSegment fun(instance: instance, segment: segmentid, force: boolean|nil)
----@field SetDisplay fun(instance: instance, segmentId: segmentid?, attributeId: attributeid?, subAttributeId: attributeid?, modeId: modeid?)
+---@field SetDisplay fun(instance: instance, segmentId: segmentid?, attributeId: attributeid?, subAttributeId: attributeid?, modeId: modeid?, quickMode:boolean?)
 ---@field GetDisplay fun(instance: instance) : attributeid, attributeid
 ---@field IsShowing fun(instance: instance, segmentId: segmentid, displayId: attributeid, subDisplayId: attributeid) : boolean
 ---@field ResetWindow fun(instance: instance, resetType: number|nil, segmentId: segmentid|nil)
 ---@field RefreshData fun(instance: instance, force: boolean|nil)
 ---@field RefreshWindow fun(instance: instance, force: boolean|nil)
+---@field GetNewSegmentId fun(instance: instance) : number
+---@field SetNewSegmentId fun(instance: instance, sessionId: number, bForceRefresh: boolean?)
+---@field GetSegmentType fun(instance: instance) : number
+---@field SetSegmentType fun(instance: instance, sessionType: number, bForceRefresh: boolean?)
+---@field GetSegmentObject fun(instance: instance) : damagemeter_combat_session
+---@field GetSourceActorFromName fun(instance: instance, name: string) : actor
+
+---@class sessioncache : table
+---@field startTime number
+---@field endTime number?
+---@field startUnixTime number
+---@field endUnixTime number?
+---@field startDate string
+---@field endDate string?
+---@field sessionId number
+---@field added boolean?
+---@field detailsId string?
+---@field sessionName string?
+---@field encounterId number?
+---@field encounterName string?
+---@field encounterData encounterdata?
+---@field alreadyAdded boolean
 
 ---@class trinketdata : table
 ---@field itemName string
@@ -1065,6 +1104,7 @@ DETAILS_SEGMENTTYPE_TRAININGDUMMY = true
 ---@field InstanceDifficulty instancedifficulty
 ---@field ContextManager contextmanager
 ---@field AllInOneWindow details_allinonewindow
+---@field BParser bparser
 
 ---@class profile_breakdown_settings : table
 ---@field font_size number

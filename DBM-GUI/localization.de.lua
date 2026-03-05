@@ -284,7 +284,6 @@ L.Area_HideBlizzard					= "Disable & Hide other Blizzard Annoyances"
 L.HideBossEmoteFrame				= "Hide raid boss emote frame during boss fights"
 L.HideWatchFrame					= "Hide watch (objectives) frame during boss fights if no achievements are being tracked and if not in a Mythic+"
 L.HideQuestTooltips					= "Hide quest objectives from tooltips during boss fights"--Currently hidden (NYI)
-L.HideTooltips						= "Completely hide tooltips during boss fights"
 L.HideBlizzardTimeline				= "Blende die Blizzard-Schlachtzugszeitlinie während Bosskämpfen aus"
 
 L.Panel_ExtraFeatures		= "Sonstige Funktionen"
@@ -319,9 +318,6 @@ L.Area_Advanced				= "Erweiterte Einstellungen"
 L.FakeBW					= "Bei Versionsprüfungen als \"BigWigs\" ausgeben, statt als DBM (nützlich für Gilden, die die Nutzung von \"BigWigs\" erzwingen)"
 --
 L.Area_Tooltip				= "Tooltip-Integration"
-L.EnableTooltip				= "DBM Statistiken zu Tooltips von Bossen hinzufügen"
-L.EnableTooltipInCombat		= "Zeige Tooltip-Informationen während Kämpfen"
-L.EnableTooltipHeader		= "Zeige DBM Kopfzeile in Tooltip"
 
 
 L.Panel_Profile				= "Profile"
@@ -424,6 +420,8 @@ L.EventEngagePT="Sound für Pull-Timer"
 L.Area_ColorBytype="Leitfaden für das Färben von Balken nach Typ"
 L.Panel_ColorByType="Färben nach Typ"
 L.BarSaturation="Balkensättigung für kleine Timer (falls große Timer deaktiviert sind): %0.2f"
+L.MidnightNote="Hinweis: Aufgrund von API-Einschränkungen in Midnight. DBM kann nicht unterschiedliche Start- und Endfarben unterstützen. Es wird nur die Startfarbe verwendet."
+
 L.CBTGeneric="Generisch"
 L.CBTAdd="Weiter Gegner (Adds)"
 L.CBTAOE="Flächenschaden (AOE)"

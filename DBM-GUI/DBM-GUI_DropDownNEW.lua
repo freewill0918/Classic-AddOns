@@ -5,6 +5,13 @@ local DBM_GUI = DBM_GUI
 
 local defaultFont, defaultFontSize = GameFontHighlightSmall:GetFont()
 
+---@class DBMDropDownTmp: Button
+---@field isSelectedCallbackFn function|nil
+---@field onSelectionChangedCallback function|nil
+---@field valueGetter function|nil
+---@field OnSelectionChanged fun(self: DBMDropDown, callback: function)
+---@field IsSelectedCallback fun(self: DBMDropDown, callback: function)
+---@diagnostic disable-next-line: undefined-field, assign-type-mismatch -- self.frame comes from a subclass of DBM_GUI, DropdownButton isn't defined in ketho.wow-api
 local dropdownPrototype = CreateFrame("DropdownButton")
 
 -- For lazily loaded dropdowns: pass a single dropdown entry, for normal dropdowns pass a single value or name
@@ -12,6 +19,7 @@ function dropdownPrototype:SetSelectedValue(selected)
 	if type(selected) == "table" then -- Force value to whatever was given no matter if it exists
 		self.value = selected.value
 		self.text = selected.text
+		---@diagnostic disable-next-line: undefined-field
 		self:GenerateMenu()
 		if self.onSelectionChangedCallback then
 			self:onSelectionChangedCallback(selected)
@@ -21,6 +29,7 @@ function dropdownPrototype:SetSelectedValue(selected)
 			if v.value ~= nil and v.value == selected or v.text == selected then
 				self.value = v.value
 				self.text = v.text
+				---@diagnostic disable-next-line: undefined-field
 				self:GenerateMenu()
 				if self.onSelectionChangedCallback then
 					self:onSelectionChangedCallback(v)
@@ -34,6 +43,9 @@ end
 function dropdownPrototype:OnSelectionChanged(callback)
 	self.onSelectionChangedCallback = callback
 end
+function dropdownPrototype:IsSelectedCallback(callback)
+	self.isSelectedCallbackFn = callback
+end
 
 function dropdownPrototype:RefreshLazyValues()
 	if not self.valueGetter then
@@ -42,9 +54,22 @@ function dropdownPrototype:RefreshLazyValues()
 	self.values = self:valueGetter()
 end
 
+-- Based off `MenuTemplates.AttachBasicButton`
+local function AttachBasicButton(parent, width, height)
+	local button = parent:AttachFrame("Button")
+	button:SetFrameStrata(parent:GetFrameStrata())
+
+	button:Show()
+	button:SetMouseClickEnabled(true)
+	button:SetMouseMotionEnabled(true)
+	button:SetSize(width or 16, height or 16)
+
+	return button;
+end
+
 -- values can either be a table or a function, if it's a function it gets called every time the dropdown is opened to populate the values
 ---@diagnostic disable-next-line: duplicate-set-field
-function DBM_GUI:CreateDropdown(title, values, vartype, var, callfunc, width, height, parent, overrideText)
+function DBM_GUI:CreateDropdown(title, values, vartype, var, callfunc, width, height, parent, overrideText, dropdownType)
 	if type(values) == "table" then
 		for _, entry in next, values do
 			entry.text = entry.text or "Missing entry.text"
@@ -52,6 +77,13 @@ function DBM_GUI:CreateDropdown(title, values, vartype, var, callfunc, width, he
 		end
 	end
 	---@class DBMDropDown: Button
+	---@field myheight number
+	---@field onSelectionChangedCallback function|nil
+	---@field isSelectedCallbackFn function|nil
+	---@field OnSelectionChanged fun(self: DBMDropDown, callback: function)
+	---@field IsSelectedCallback fun(self: DBMDropDown, callback: function)
+	---@field SetSelectedValue fun(self: DBMDropDown, selected: any)
+	---@field RefreshLazyValues fun(self: DBMDropDown)
 	---@diagnostic disable-next-line: undefined-field, assign-type-mismatch -- self.frame comes from a subclass of DBM_GUI, DropdownButton isn't defined in ketho.wow-api
 	local dropdown = CreateFrame("DropdownButton", "DBM_GUI_DropDown" .. self:GetNewID(), parent or self.frame, "WowStyle1DropdownTemplate")
 	setmetatable(dropdown, {
@@ -73,6 +105,9 @@ function DBM_GUI:CreateDropdown(title, values, vartype, var, callfunc, width, he
 	end
 
 	local IsSelected = function(v)
+		if dropdown.isSelectedCallbackFn then
+			return dropdown:isSelectedCallbackFn(v)
+		end
 		return v.value == dropdown.value or v.text == dropdown.text
 	end
 	local SetSelected = function(v)
@@ -105,7 +140,12 @@ function DBM_GUI:CreateDropdown(title, values, vartype, var, callfunc, width, he
 		end
 
 		for _, v in ipairs(dropdown.values) do
-			local radio = rootDescription:CreateRadio(v.text, IsSelected, SetSelected, v)
+			local radio
+			if dropdownType == 'checkbox' then
+				radio = rootDescription:CreateCheckbox(v.text, IsSelected, SetSelected, v)
+			else
+				radio = rootDescription:CreateRadio(v.text, IsSelected, SetSelected, v)
+			end
 			if v.font or v.flag then
 				radio.font = CreateFont("DBM_FONT_" .. v.text)
 				radio.font:SetFont(v.font and v.value or defaultFont, v.fontsize or defaultFontSize, v.flag and v.value or "")
@@ -132,7 +172,7 @@ function DBM_GUI:CreateDropdown(title, values, vartype, var, callfunc, width, he
 						return
 					end
 					if not button.playBtn then
-						button.playBtn = MenuTemplates.AttachBasicButton(button, 16, 16)
+						button.playBtn = AttachBasicButton(button, 16, 16)
 						button.playBtn:SetPoint("RIGHT", -5, 0)
 						local tex = button.playBtn:AttachTexture()
 						tex:SetAllPoints()
@@ -145,9 +185,11 @@ function DBM_GUI:CreateDropdown(title, values, vartype, var, callfunc, width, he
 							tex:SetVertexColor(0.8, 0.8, 0.8)
 						end)
 					end
-					MenuTemplates.SetUtilityButtonClickHandler(button.playBtn, function()
-						DBM:PlaySoundFile(v.value)
-					end)
+					if MenuTemplates.SetUtilityButtonClickHandler then
+						MenuTemplates.SetUtilityButtonClickHandler(button.playBtn, function()
+							DBM:PlaySoundFile(v.value)
+						end)
+					end
 					button.playBtn:Show()
 				end)
 			end
