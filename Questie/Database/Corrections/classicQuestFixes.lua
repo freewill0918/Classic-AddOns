@@ -50,7 +50,7 @@ function QuestieQuestFixes:Load()
     return {
         [5] = {
             [questKeys.preQuestSingle] = {},
-            [questKeys.breadcrumbs] = {163} -- #1198
+            [questKeys.breadcrumbs] = {163}, -- #1198
         },
         [7] = { -- Kobold Camp Cleanup
             [questKeys.nextQuestInChain] = 15,
@@ -96,6 +96,9 @@ function QuestieQuestFixes:Load()
         [46] = {
             [questKeys.preQuestSingle] = {39},
         },
+        [63] = {
+            [questKeys.requiredSourceItems] = {6637},
+        },
         [76] = {
             [questKeys.nextQuestInChain] = 239,
         },
@@ -105,8 +108,8 @@ function QuestieQuestFixes:Load()
         [95] = {
             [questKeys.breadcrumbs] = {164},
         },
-        [100] = {
-            [questKeys.childQuests] = {1103}, -- #1658
+        [96] = {
+            [questKeys.exclusiveTo] = {},
         },
         [109] = {
             [questKeys.startedBy] = {{233,237,240,261,294,963}}, -- #2158
@@ -120,6 +123,9 @@ function QuestieQuestFixes:Load()
         [121] = { -- Messenger to Stormwind
             [questKeys.nextQuestInChain] = 143,
         },
+        [125] = { -- The Lost Tools
+            [questKeys.nextQuestInChain] = 89,
+        },
         [142] = {
             [questKeys.nextQuestInChain] = 155,
         },
@@ -128,7 +134,7 @@ function QuestieQuestFixes:Load()
         },
         [148] = {
             [questKeys.preQuestSingle] = {},
-            [questKeys.breadcrumbs] = {165} -- #1173
+            [questKeys.breadcrumbs] = {165}, -- #1173
         },
         [155] = {
             [questKeys.triggerEnd] = {"Escort The Defias Traitor to discover where VanCleef is hiding", {[zoneIDs.WESTFALL]={{42.55,71.53}}}},
@@ -267,7 +273,7 @@ function QuestieQuestFixes:Load()
         [409] = {
             [questKeys.requiredSourceItems] = {3080},
         },
-        [410] = { -- the dormant shade
+        [410] = { -- The Dormant Shade
             [questKeys.preQuestSingle] = {366}, -- #638
             [questKeys.exclusiveTo] = {411}, -- #752
         },
@@ -288,7 +294,7 @@ function QuestieQuestFixes:Load()
             [questKeys.preQuestSingle] = {}, -- #1843
             [questKeys.breadcrumbs] = {428},
         },
-        [431] = { -- candles of beckoning
+        [431] = { -- Candles Of Beckoning
             [questKeys.preQuestSingle] = {366}, -- #638
             [questKeys.exclusiveTo] = {411}, -- #752
         },
@@ -523,8 +529,13 @@ function QuestieQuestFixes:Load()
         [760] = {
             [questKeys.triggerEnd] = {"Cleanse the Wildmane Well", {[zoneIDs.MULGORE]={{42.75, 14.16}}}},
         },
-        [763] = {
+        [763] = { -- Rites of the Earthmother
+            [questKeys.breadcrumbForQuestId] = 767,
             [questKeys.nextQuestInChain] = 767,
+        },
+        [767] = { -- Rite of Vision
+            [questKeys.preQuestSingle] = {},
+            [questKeys.breadcrumbs] = {763},
         },
         [769] = {
             [questKeys.preQuestSingle] = {},
@@ -619,7 +630,6 @@ function QuestieQuestFixes:Load()
         },
         [926] = {
             [questKeys.parentQuest] = 924, -- #806
-            [questKeys.preQuestSingle] = {809}, -- #606
         },
         [927] = { -- The Moss-twined Heart
             [questKeys.nextQuestInChain] = 941,
@@ -668,10 +678,15 @@ function QuestieQuestFixes:Load()
         },
         [961] = {
             [questKeys.finishedBy] = {{3616}},
-            [questKeys.preQuestSingle] = nil,
-            [questKeys.exclusiveTo] = nil,
+            [questKeys.preQuestSingle] = {},
+            [questKeys.exclusiveTo] = {},
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
             [questKeys.parentQuest] = 950, -- workaround, can't mimic ingame 100%
+        },
+        [972] = { -- Water Sapta
+            [questKeys.exclusiveTo] = {},
+            [questKeys.preQuestSingle] = {220},
+            [questKeys.availableUntilCompleted] = 96,
         },
         [976] = {
             [questKeys.triggerEnd] = {"Protect Feero Ironhand", {[zoneIDs.DARKSHORE]={{43.54,94.39}}}},
@@ -713,7 +728,6 @@ function QuestieQuestFixes:Load()
         },
         [1011] = {
             [questKeys.preQuestSingle] = {},
-            [questKeys.breadcrumbs] = {4581},
         },
         [1015] = {
             [questKeys.exclusiveTo] = {1047,1019},
@@ -797,8 +811,10 @@ function QuestieQuestFixes:Load()
             [questKeys.breadcrumbForQuestId] = 353, -- #2364
         },
         [1103] = {
-            [questKeys.preQuestSingle] = {}, -- #1658
-            [questKeys.parentQuest] = 100, -- #1658
+            [questKeys.preQuestSingle] = {63},
+            [questKeys.parentQuest] = 0,
+            [questKeys.availableUntilCompleted] = 96,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [1106] = {
             [questKeys.preQuestSingle] = {},
@@ -876,7 +892,7 @@ function QuestieQuestFixes:Load()
         },
         [1204] = {
             [questKeys.preQuestSingle] = {},
-            [questKeys.breadcrumbs] = {1260} -- #938
+            [questKeys.breadcrumbs] = {1260}, -- #938
         },
         [1206] = {
             [questKeys.objectivesText] = {"Bring 40 Unpopped Darkmist Eyes to \"Swamp Eye\" Jarl at the Swamplight Manor.",},
@@ -1022,31 +1038,37 @@ function QuestieQuestFixes:Load()
         [1448] = {
             [questKeys.triggerEnd] = {"Search for the Temple of Atal'Hakkar", {[zoneIDs.SWAMP_OF_SORROWS]={{70.2,45.2},{66.6,48.1},{73.6,48.1},{64.9,53.3},{75.4,53.3},{66.6,58.4},{73.6,58.4},{70.2,60.5}}}},
         },
-        [1462] = {
-            [questKeys.parentQuest] = 1521, -- #6723
+        [1462] = { -- Earth Sapta
+            [questKeys.preQuestSingle] = {1520},
             [questKeys.objectivesText] = {},
+            [questKeys.parentQuest] = 0,
+            [questKeys.availableUntilCompleted] = 1521,
         },
-        [1463] = {
-            [questKeys.parentQuest] = 1518, -- #6723
+        [1463] = { -- Earth Sapta
+            [questKeys.preQuestSingle] = {1517},
             [questKeys.objectivesText] = {},
+            [questKeys.parentQuest] = 0,
+            [questKeys.availableUntilCompleted] = 1518,
         },
-        [1464] = {
+        [1464] = { -- Fire Sapta
+            [questKeys.preQuestSingle] = {1525},
             [questKeys.objectivesText] = {},
+            [questKeys.parentQuest] = 0,
+            [questKeys.availableUntilCompleted] = 1526,
         },
         [1470] = {
             [questKeys.exclusiveTo] = {1485}, -- #999
         },
-        [1471] = {
-            [questKeys.exclusiveTo] = {1504}, -- #1542
+        [1471] = { -- The Binding
             [questKeys.requiredSourceItems] = {},
+            [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_EVENT, l10n("Summon the Voidwalker"), 0, {{"object", 37097}}}},
         },
         [1472] = {
             [questKeys.exclusiveTo] = {},
             [questKeys.nextQuestInChain] = 0,
         },
-        [1473] = {
+        [1473] = { -- Creature of the Void
             [questKeys.preQuestSingle] = {},
-            [questKeys.exclusiveTo] = {1501},
             [questKeys.breadcrumbs] = {1478},
         },
         [1474] = {
@@ -1056,8 +1078,7 @@ function QuestieQuestFixes:Load()
         [1477] = {
             [questKeys.breadcrumbForQuestId] = 1395, -- #1727
         },
-        [1478] = {
-            [questKeys.exclusiveTo] = {1506}, -- #1427
+        [1478] = { -- Halgar's Summons
             [questKeys.breadcrumbForQuestId] = 1473,
         },
         [1479] = {
@@ -1077,25 +1098,28 @@ function QuestieQuestFixes:Load()
             [questKeys.breadcrumbs] = {1505},
             [questKeys.exclusiveTo] = {1819},
         },
-        [1501] = {
+        [1499] = { -- Vile Familiars
+            [questKeys.preQuestSingle] = {1470,1485},
+        },
+        [1501] = { -- Creature of the Void
             [questKeys.preQuestSingle] = {},
-            [questKeys.exclusiveTo] = {1473},
             [questKeys.breadcrumbs] = {1506},
+            [questKeys.requiredRaces] = raceIDs.ORC,
         },
         [1502] = { -- Thun'grim Firegaze
             [questKeys.preQuestSingle] = {1498,1819},
         },
-        [1504] = {
-            [questKeys.exclusiveTo] = {1471}, -- #1542
+        [1504] = { -- The Binding
             [questKeys.requiredSourceItems] = {},
+            [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_EVENT, l10n("Summon the Voidwalker"), 0, {{"object", 105576}}}},
+            [questKeys.requiredRaces] = raceIDs.ORC,
         },
         [1505] = { -- Veteran Uzzek
             [questKeys.startedBy] = {{3041,3063,3169,3354}},
             [questKeys.breadcrumbForQuestId] = 1498,
             [questKeys.exclusiveTo] = {1819},
         },
-        [1506] = {
-            [questKeys.exclusiveTo] = {1478}, -- #1427
+        [1506] = { -- Gan'rul's Summons
             [questKeys.breadcrumbForQuestId] = 1501,
         },
         [1507] = {
@@ -1114,7 +1138,7 @@ function QuestieQuestFixes:Load()
             [questKeys.childQuests] = {}, -- #6723
         },
         [1518] = {
-            [questKeys.childQuests] = {1463}, -- #6723
+            [questKeys.requiredSourceItems] = {6635},
         },
         [1519] = {
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE, -- #6723
@@ -1126,6 +1150,7 @@ function QuestieQuestFixes:Load()
         },
         [1521] = {
             [questKeys.childQuests] = {1462}, -- #6723
+            [questKeys.requiredSourceItems] = {6635},
         },
         [1522] = {
             [questKeys.breadcrumbForQuestId] = 1524,
@@ -1137,6 +1162,10 @@ function QuestieQuestFixes:Load()
         [1524] = {
             [questKeys.preQuestSingle] = {},
             [questKeys.breadcrumbs] = {1522,1523,2983,2984},
+        },
+        [1526] = {
+            [questKeys.requiredSourceItems] = {6636},
+            [questKeys.childQuests] = {},
         },
         [1528] = {
             [questKeys.breadcrumbForQuestId] = 1530,
@@ -1209,9 +1238,13 @@ function QuestieQuestFixes:Load()
         [1654] = {
             [questKeys.childQuests] = {1442,1655},
         },
-        [1655] = {
+        [1655] = { -- Bailor's Ore Shipment
+            [questKeys.preQuestSingle] = {1653},
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
             [questKeys.parentQuest] = 1654,
+        },
+        [1658] = { -- Crashing the Wickerman Festival
+            [questKeys.name] = "Crashing the Wickerman Festival",
         },
         [1661] = {
             [questKeys.exclusiveTo] = {4485,4486},
@@ -1476,7 +1509,7 @@ function QuestieQuestFixes:Load()
             [questKeys.startedBy] = {{328,1228,7312}},
             [questKeys.breadcrumbForQuestId] = 1920, -- #1328
         },
-        [1920] = {
+        [1920] = { -- Investigate the Blue Recluse
             [questKeys.preQuestSingle] = {},
             [questKeys.breadcrumbs] = {1919}, -- #1328
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_EVENT, l10n("Use Cantation of Manifestation to reveal Rift Spawn. Use Chest of Containment Coffers on stunned Rift Spawn"), 0, {{"monster", 6492}}}},
@@ -1689,6 +1722,9 @@ function QuestieQuestFixes:Load()
         [2744] = {
             [questKeys.objectives] = {{{7783,nil,Questie.ICON_TYPE_TALK}}},
         },
+        [2746] = { -- Items of Some Consequence
+            [questKeys.nextQuestInChain] = 434,
+        },
         [2755] = {
             [questKeys.objectives] = {{{7790,nil,Questie.ICON_TYPE_EVENT}}},
         },
@@ -1731,7 +1767,7 @@ function QuestieQuestFixes:Load()
             [questKeys.parentQuest] = 0,
         },
         [2843] = {
-            [questKeys.triggerEnd] = {"Goblin Transponder", {[zoneIDs.STRANGLETHORN_VALE]={{27.56,77.42}}}},
+            [questKeys.objectives] = {{{7853,nil,Questie.ICON_TYPE_EVENT}}},
         },
         [2845] = {
             [questKeys.triggerEnd] = {"Take Shay Leafrunner to Rockbiter's camp", {[zoneIDs.FERALAS]={{42.33,21.85}}}},
@@ -2301,10 +2337,6 @@ function QuestieQuestFixes:Load()
         [4542] = {
             [questKeys.breadcrumbForQuestId] = 4841,
         },
-        [4581] = {
-            [questKeys.nextQuestInChain] = 1011,
-            [questKeys.breadcrumbForQuestId] = 1011,
-        },
         [4601] = {
             [questKeys.exclusiveTo] = {2951,4602},
         },
@@ -2416,7 +2448,7 @@ function QuestieQuestFixes:Load()
             [questKeys.triggerEnd] = {"Wait for Menara Voidrender to complete your item", {[zoneIDs.THE_BARRENS]={{62.52,35.47}}}},
         },
         [4811] = {
-            [questKeys.triggerEnd] = {"Locate the large, red crystal on Darkshore's eastern mountain range",{[zoneIDs.DARKSHORE]={{47.24,48.68}}}}, -- #1373
+            [questKeys.objectives] = {nil,{{175524,nil,Questie.ICON_TYPE_EVENT}}},
         },
         [4841] = {
             [questKeys.preQuestSingle] = {},
@@ -2812,17 +2844,17 @@ function QuestieQuestFixes:Load()
         [5644] = { -- Devouring Plague (Thunder Bluff)
             [questKeys.startedBy] = {{3044}},
         },
-        [5645] = { -- A Lack of Fear (Stormwind)
+        [5645] = { -- A Lack of Fear (Stormwind City)
             [questKeys.startedBy] = {{376}},
         },
         [5646] = { -- Devouring Plague (Orgrimmar)
             [questKeys.startedBy] = {{6018}},
         },
-        [5647] = { -- A Lack of Fear
+        [5647] = { -- A Lack of Fear (Darnassus)
             [questKeys.startedBy] = {{11401}}, -- #2424
         },
         [5648] = { -- Garments of Spirituality
-            [questKeys.objectives] = {{{12427,nil,Questie.ICON_TYPE_INTERACT}}},
+            [questKeys.objectives] = {{{12430,nil,Questie.ICON_TYPE_INTERACT}}},
             [questKeys.preQuestSingle] = {},
             [questKeys.breadcrumbs] = {5649},
         },
@@ -2866,7 +2898,10 @@ function QuestieQuestFixes:Load()
             [questKeys.startedBy] = {{11401}},
             [questKeys.objectivesText] = {},
         },
-        [5676] = { -- Arcane Feedback (Stormwind)
+        [5674] = { -- Elune's Grace (Stormwind City)
+            [questKeys.startedBy] = {{11397}},
+        },
+        [5676] = { -- Arcane Feedback (Stormwind City)
             [questKeys.startedBy] = {{376}},
             [questKeys.exclusiveTo] = {5677,5678},
             [questKeys.objectivesText] = {},
@@ -3159,14 +3194,14 @@ function QuestieQuestFixes:Load()
             [questKeys.questFlags] = 0,
             [questKeys.specialFlags] = 0,
         },
-        [6132] = {
-            [questKeys.triggerEnd] = {"Melizza Brimbuzzle escorted to safety", {[zoneIDs.DESOLACE]={{40.15,61.58}}}},
-        },
         [6124] = { -- Curing the Sick
             [questKeys.objectives] = {{{12298,nil,Questie.ICON_TYPE_INTERACT}}},
         },
         [6129] = { -- Curing the Sick
             [questKeys.objectives] = {{{12296,nil,Questie.ICON_TYPE_INTERACT}}},
+        },
+        [6132] = {
+            [questKeys.triggerEnd] = {"Melizza Brimbuzzle escorted to safety", {[zoneIDs.DESOLACE]={{40.15,61.58}}}},
         },
         [6134] = {
             [questKeys.extraObjectives] = {{{[zoneIDs.DESOLACE]={{63.71,91.9}}}, Questie.ICON_TYPE_EVENT, l10n("Place the Crate of Ghost Magnets"),}},
@@ -3315,6 +3350,7 @@ function QuestieQuestFixes:Load()
         },
         [6661] = {
             [questKeys.objectives] = {{{13016,nil,Questie.ICON_TYPE_INTERACT}}},
+            [questKeys.nextQuestInChain] = 6662,
         },
         [6681] = { -- The Manor, Ravenholdt
             [questKeys.startedBy] = {{332,918,3327,3328,3401,4214,4215,4163,4582,4583,4584,5165,5166,5167},nil,{17126}}, -- #7244
@@ -3524,7 +3560,7 @@ function QuestieQuestFixes:Load()
         },
         [7488] = {
             [questKeys.preQuestSingle] = {},
-            [questKeys.breadcrumbs] = {7494} -- #1740
+            [questKeys.breadcrumbs] = {7494}, -- #1740
         },
         [7489] = {
             [questKeys.preQuestSingle] = {},
@@ -3543,6 +3579,7 @@ function QuestieQuestFixes:Load()
         },
         [7507] = {
             [questKeys.name] = "Nostro's Compendium",
+            [questKeys.objectivesText] = {"Return Nostro's Compendium of Dragon Slaying to the Athenaeum."},
             [questKeys.requiredClasses] = classIDs.WARRIOR + classIDs.PALADIN,
             [questKeys.nextQuestInChain] = 7508,
         },
@@ -3961,7 +3998,7 @@ function QuestieQuestFixes:Load()
         [8251] = {
             [questKeys.preQuestSingle] = {},
         },
-        [8254] = {
+        [8254] = { -- Cenarion Aid
             [questKeys.startedBy] = {{5489,6018,11406}},
         },
         [8258] = {
@@ -5663,7 +5700,7 @@ function QuestieQuestFixes:LoadFactionFixes()
             [questKeys.startedBy] = {{5753,5815}},
             [questKeys.requiredRaces] = raceIDs.NONE,
         },
-        [8254] = {
+        [8254] = { -- Cenarion Aid
             [questKeys.startedBy] = {{6018}},
         },
         [8928] = {
@@ -5715,7 +5752,7 @@ function QuestieQuestFixes:LoadFactionFixes()
             [questKeys.startedBy] = {{5520,6382}},
             [questKeys.requiredRaces] = raceIDs.NONE,
         },
-        [8254] = {
+        [8254] = { -- Cenarion Aid
             [questKeys.startedBy] = {{5489,11406}},
         },
         [8928] = {

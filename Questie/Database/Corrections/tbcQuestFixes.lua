@@ -133,6 +133,9 @@ function QuestieTBCQuestFixes:Load()
         [759] = {
             [questKeys.requiredRaces] = raceIDs.TAUREN,
         },
+        [794] = { -- Burning Blade Medallion
+            [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+        },
         [870] = {
             [questKeys.triggerEnd] = {"Explore the waters of the Forgotten Pools", {[zoneIDs.THE_BARRENS]={{45.06,22.56}}}},
         },
@@ -208,10 +211,6 @@ function QuestieTBCQuestFixes:Load()
         [1093] = { -- Super Reaper 6000
             [questKeys.requiredRaces] = raceIDs.NONE,
         },
-        [1103] = {
-            [questKeys.preQuestSingle] = {100},
-            [questKeys.parentQuest] = 0,
-        },
         [1109] = {
             [questKeys.requiredLevel] = 22,
             [questKeys.questLevel] = 26,
@@ -250,20 +249,60 @@ function QuestieTBCQuestFixes:Load()
         [1468] = {
             [questKeys.questLevel] = -1,
         },
+        [1470] = { -- Piercing the Veil
+            [questKeys.exclusiveTo] = {1485,8344},
+        },
+        [1473] = { -- Creature of the Void
+            [questKeys.breadcrumbs] = {1478,10789},
+        },
+        [1478] = { -- Halgar's Summons
+            [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+            [questKeys.exclusiveTo] = {},
+        },
         [1479] = {
             [questKeys.questLevel] = -1,
+        },
+        [1485] = { -- Vile Familiars
+            [questKeys.exclusiveTo] = {1470,8344},
         },
         [1486] = {
             [questKeys.requiredRaces] = raceIDs.NONE,
         },
-        [1506] = {
+        [1499] = { -- Vile Familiars
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+            [questKeys.preQuestSingle] = {1470,1485,8344},
         },
-        [1507] = {
-            [questKeys.requiredRaces] = raceIDs.ORC + raceIDs.UNDEAD,
+        [1501] = { -- Creature of the Void
+            [questKeys.breadcrumbs] = {1506,10790},
+        },
+        [1506] = { -- Gan'rul's Summons
+            [questKeys.exclusiveTo] = {},
+            [questKeys.breadcrumbForQuestId] = 1501,
+            [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
         },
         [1508] = {
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+        },
+        [1516] = { -- Call of Earth
+            [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+        },
+        [1517] = { -- Call of Earth
+            [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+        },
+        [1518] = { -- Call of Earth
+            [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+        },
+        [1520] = { -- Call of Earth
+            [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+        },
+        [1521] = { -- Call of Earth
+            [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+        },
+        [1528] = { -- Call of Water
+            [questKeys.exclusiveTo] = {1529,2985,2986},
+        },
+        [1529] = { -- Call of Water
+            [questKeys.exclusiveTo] = {1528,2985,2986},
         },
         [1558] = {
             [questKeys.questLevel] = -1,
@@ -283,6 +322,7 @@ function QuestieTBCQuestFixes:Load()
             [questKeys.preQuestSingle] = {1639,1678,1683,9582},
         },
         [1678] = { -- Vejrek
+            [questKeys.questLevel] = -1,
             [questKeys.exclusiveTo] = {1639,1683,9582},
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE, -- TBC+
         },
@@ -485,6 +525,12 @@ function QuestieTBCQuestFixes:Load()
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
+        [2985] = { -- Call of Water
+            [questKeys.exclusiveTo] = {1528,1529,2986},
+        },
+        [2986] = { -- Call of Water
+            [questKeys.exclusiveTo] = {1528,1529,2985},
+        },
         [2989] = {
             [questKeys.triggerEnd] = {"Search the Altar of Zul", {[zoneIDs.THE_HINTERLANDS]={{48.86,68.42}}}},
         },
@@ -530,7 +576,7 @@ function QuestieTBCQuestFixes:Load()
         [3116] = {
             [questKeys.requiredRaces] = raceIDs.NIGHT_ELF,
         },
-        [3117] = {
+        [3117] = { -- Etched Sigil
             [questKeys.requiredRaces] = raceIDs.NIGHT_ELF,
         },
         [3118] = {
@@ -686,8 +732,126 @@ function QuestieTBCQuestFixes:Load()
         [5640] = { -- Desperate Prayer (Darnassus)
             [questKeys.questLevel] = -1,
         },
-        [5649] = {
+        [5641] = { -- A Lack of Fear (Ironforge)
+            [questKeys.name] = "A Lack of Fear",
+            [questKeys.finishedBy] = {{11406}},
+            [questKeys.requiredRaces] = raceIDs.DWARF,
+            [questKeys.exclusiveTo] = {5645,5647},
+        },
+        [5642] = { -- Shadowguard (Thunder Bluff)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5643,5680},
+        },
+        [5643] = { -- Shadowguard (Undercity)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5642,5680},
+        },
+        [5644] = { -- Devouring Plague (Thunder Bluff)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5646,5679},
+        },
+        [5645] = { -- A Lack of Fear (Stormwind City)
+            [questKeys.name] = "A Lack of Fear",
+            [questKeys.finishedBy] = {{11406}},
+            [questKeys.requiredRaces] = raceIDs.DWARF,
+            [questKeys.exclusiveTo] = {5641,5647},
+        },
+        [5646] = { -- Devouring Plague (Orgrimmar)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5644,5679},
+        },
+        [5647] = { -- A Lack of Fear (Darnassus)
+            [questKeys.name] = "A Lack of Fear",
+            [questKeys.finishedBy] = {{11406}},
+            [questKeys.requiredRaces] = raceIDs.DWARF,
+            [questKeys.exclusiveTo] = {5641,5645},
+        },
+        [5648] = { -- Garments of Spirituality
             [questKeys.requiredLevel] = 5,
+        },
+        [5649] = { -- In Favor of Spirituality
+            [questKeys.requiredLevel] = 5,
+        },
+        [5650] = { -- Garments of Darkness
+            [questKeys.requiredLevel] = 5,
+        },
+        [5651] = { -- In Favor of Darkness
+            [questKeys.requiredLevel] = 5,
+        },
+        [5652] = { -- Hex of Weakness (Orgrimmar)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5654,5655,5656,5657},
+        },
+        [5654] = { -- Hex of Weakness (Durotar)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5652,5655,5656,5657},
+        },
+        [5655] = { -- Hex of Weakness (Mulgore)
+            [questKeys.finishedBy] = {{6018}},
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5652,5654,5656,5657},
+        },
+        [5656] = { -- Hex of Weakness (Thunder Bluff)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5652,5654,5655,5657},
+        },
+        [5657] = { -- Hex of Weakness (Undercity)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5652,5654,5655,5656},
+        },
+        [5658] = { -- Touch of Weakness (Undercity)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5660,5661,5662,5663},
+        },
+        [5660] = { -- Touch of Weakness (Durotar)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5658,5661,5662,5663},
+        },
+        [5661] = { -- Touch of Weakness (Mulgore)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5658,5660,5662,5663},
+        },
+        [5662] = { -- Touch of Weakness (Orgrimmar)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5658,5660,5661,5663},
+        },
+        [5663] = { -- Touch of Weakness (Thunder Bluff)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5658,5660,5661,5662},
+        },
+        [5672] = { -- Elune's Grace (Darnassus)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5673,5674,5675},
+        },
+        [5673] = { -- Elune's Grace (Stormwind City)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5672,5674,5675},
+        },
+        [5674] = { -- Elune's Grace (Stormwind City)
+            [questKeys.finishedBy] = {{11401}},
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5672,5673,5675},
+        },
+        [5675] = { -- Elune's Grace (Ironforge)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5672,5673,5674},
+        },
+        [5676] = { -- Arcane Feedback (Stormwind City)
+            [questKeys.questLevel] = -1,
+        },
+        [5677] = { -- Arcane Feedback (Ironforge)
+            [questKeys.questLevel] = -1,
+        },
+        [5678] = { -- Arcane Feedback (Darnassus)
+            [questKeys.questLevel] = -1,
+        },
+        [5679] = { -- Devouring Plague (Undercity)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5644,5646},
+        },
+        [5680] = { -- Shadowguard (Orgrimmar)
+            [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {5642,5643},
         },
         [5726] = { -- Hidden Enemies
             [questKeys.nextQuestInChain] = 5727,
@@ -700,6 +864,7 @@ function QuestieTBCQuestFixes:Load()
         },
         [6126] = { -- Lessons Anew
             [questKeys.preQuestSingle] = {},
+            [questKeys.questLevel] = -1,
         },
         [6185] = {
             [questKeys.triggerEnd] = {"The Blightcaller Uncovered", {[zoneIDs.EASTERN_PLAGUELANDS]={{27.4,75.14}}}},
@@ -809,6 +974,9 @@ function QuestieTBCQuestFixes:Load()
         [8122] = {
             [questKeys.triggerEnd] = {"Hold Five Bases in Arathi Basin", {[zoneIDs.ARATHI_HIGHLANDS]={{73.2,30}}}},
         },
+        [8233] = { -- A Simple Request
+            [questKeys.requiredRaces] = raceIDs.NONE,
+        },
         [8249] = { -- Junkboxes Needed
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
@@ -853,8 +1021,9 @@ function QuestieTBCQuestFixes:Load()
         [8338] = {
             [questKeys.requiredRaces] = raceIDs.BLOOD_ELF,
         },
-        [8344] = {
+        [8344] = { -- Windows to the Source
             [questKeys.requiredRaces] = raceIDs.BLOOD_ELF,
+            [questKeys.exclusiveTo] = {1470,1485},
         },
         [8345] = {
             [questKeys.requiredRaces] = raceIDs.BLOOD_ELF,
@@ -968,6 +1137,12 @@ function QuestieTBCQuestFixes:Load()
         },
         [8562] = { -- Conqueror's Breastplate
             [questKeys.preQuestSingle] = {8579},
+        },
+        [8563] = { -- Warlock Training
+            [questKeys.requiredRaces] = raceIDs.BLOOD_ELF,
+        },
+        [8564] = { -- Priest Training
+            [questKeys.requiredRaces] = raceIDs.BLOOD_ELF,
         },
         [8572] = {
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
@@ -1494,6 +1669,11 @@ function QuestieTBCQuestFixes:Load()
         [9258] = { -- The Scorched Grove
             [questKeys.breadcrumbForQuestId] = 8473,
         },
+        [9267] = { -- Mending Old Wounds
+            [questKeys.requiredLevel] = 15,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+        },
         [9279] = { -- You Survived!
             [questKeys.breadcrumbForQuestId] = 9280,
         },
@@ -1507,24 +1687,24 @@ function QuestieTBCQuestFixes:Load()
         [9283] = { -- Rescue the Survivors!
             [questKeys.objectives] = {{{16483,nil,Questie.ICON_TYPE_INTERACT}}},
         },
-        [9287] = {
+        [9287] = { -- Paladin Training
             [questKeys.preQuestSingle] = {9280},
         },
-        [9288] = {
+        [9288] = { -- Hunter Training
             [questKeys.requiredRaces] = raceIDs.DRAENEI,
             [questKeys.preQuestSingle] = {9280},
         },
-        [9289] = {
+        [9289] = { -- Warrior Training
             [questKeys.preQuestSingle] = {9280},
             [questKeys.requiredRaces] = raceIDs.DRAENEI,
         },
-        [9290] = {
+        [9290] = { -- Mage Training
             [questKeys.startedBy] = {{16500}},
             [questKeys.finishedBy] = {{16500}},
             [questKeys.preQuestSingle] = {9280},
             [questKeys.requiredRaces] = raceIDs.DRAENEI,
         },
-        [9291] = {
+        [9291] = { -- Priest Training
             [questKeys.startedBy] = {{16502}},
             [questKeys.finishedBy] = {{16502}},
             [questKeys.requiredRaces] = raceIDs.DRAENEI,
@@ -1592,7 +1772,10 @@ function QuestieTBCQuestFixes:Load()
         [9383] = {
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_LOOT, l10n("Use the Sanctified Crystal against a wounded Uncontrolled Voidwalker"), 0, {{"monster", 16975}}}},
         },
-        [9392] = {
+        [9392] = { -- Rogue Training
+            [questKeys.requiredRaces] = raceIDs.BLOOD_ELF,
+        },
+        [9393] = { -- Hunter Training
             [questKeys.requiredRaces] = raceIDs.BLOOD_ELF,
         },
         [9394] = { -- Where's Wyllithen?
@@ -1664,9 +1847,26 @@ function QuestieTBCQuestFixes:Load()
         [9460] = { -- Combining Forces
             [questKeys.objectives] = {nil,nil,{{23686,nil,Questie.ICON_TYPE_INTERACT}}}, -- has to be pickpocketed, using interact icon
         },
-        [9467] = {
+        [9462] = { -- Call of Fire
+            [questKeys.startedBy] = {{17219,23127}},
+            [questKeys.breadcrumbForQuestId] = 9464,
+            [questKeys.requiredRaces] = raceIDs.DRAENEI,
+        },
+        [9464] = { -- Call of Fire
+            [questKeys.breadcrumbs] = {9462},
+            [questKeys.requiredRaces] = raceIDs.DRAENEI,
+        },
+        [9465] = { -- Call of Fire
+            [questKeys.requiredRaces] = raceIDs.DRAENEI,
+        },
+        [9467] = { -- Call of Fire
             [questKeys.requiredSourceItems] = {24335},
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_OBJECT, l10n("Summon Hauteur using the Ritual Torch"), 0, {{"object", 181672}}}},
+            [questKeys.requiredRaces] = raceIDs.DRAENEI,
+            [questKeys.nextQuestInChain] = 9468,
+        },
+        [9468] = { -- Call of Fire
+            [questKeys.requiredRaces] = raceIDs.DRAENEI,
         },
         [9472] = {
             [questKeys.requiredSourceItems] = {29112},
@@ -1690,6 +1890,7 @@ function QuestieTBCQuestFixes:Load()
         },
         [9489] = {
             [questKeys.requiredRaces] = raceIDs.BLOOD_ELF,
+            [questKeys.objectives] = {{{15938,nil,Questie.ICON_TYPE_INTERACT}}},
         },
         [9491] = { -- Greed
             [questKeys.preQuestSingle] = {},
@@ -1723,12 +1924,17 @@ function QuestieTBCQuestFixes:Load()
         [9500] = { -- Call of Water
             [questKeys.startedBy] = {{17212}},
             [questKeys.questLevel] = -1,
+            [questKeys.exclusiveTo] = {9502,10490},
+            [questKeys.breadcrumbForQuestId] = 9501,
         },
         [9501] = { -- Call of Water
             [questKeys.questLevel] = -1,
+            [questKeys.breadcrumbs] = {9500,9502,10490},
         },
         [9502] = { -- Call of Water
-            [questKeys.startedBy] = {{17219}},
+            [questKeys.startedBy] = {{17219,23127}},
+            [questKeys.exclusiveTo] = {9500,10490},
+            [questKeys.breadcrumbForQuestId] = 9501,
         },
         [9503] = { -- Call of Water
             [questKeys.questLevel] = -1,
@@ -1769,6 +1975,9 @@ function QuestieTBCQuestFixes:Load()
         [9528] = {
             [questKeys.triggerEnd] = {"Magwin Escorted to Safety", {[zoneIDs.AZUREMYST_ISLE]={{16.38,94.14}}}},
         },
+        [9529] = { -- The Stone
+            [questKeys.breadcrumbs] = {10788},
+        },
         [9531] = {
             [questKeys.objectives] = {nil,{{181694}}},
         },
@@ -1786,9 +1995,23 @@ function QuestieTBCQuestFixes:Load()
         [9545] = {
             [questKeys.objectives] = {{{16852,nil,Questie.ICON_TYPE_INTERACT}}},
         },
+        [9547] = { -- Call of Air
+            [questKeys.startedBy] = {{17212}},
+            [questKeys.breadcrumbForQuestId] = 9552,
+        },
         [9549] = { -- Artifacts of the Blacksilt
             [questKeys.preQuestSingle] = {},
             [questKeys.breadcrumbs] = {10063},
+        },
+        [9551] = { -- Call of Air
+            [questKeys.startedBy] = {{17219,23127}},
+            [questKeys.breadcrumbForQuestId] = 9552,
+        },
+        [9552] = { -- Call of Air
+            [questKeys.breadcrumbs] = {9547,9551,10491},
+        },
+        [9555] = { -- Call of Fire
+            [questKeys.requiredRaces] = raceIDs.DRAENEI,
         },
         [9558] = {
             [questKeys.preQuestSingle] = {10143,10483},
@@ -1801,6 +2024,7 @@ function QuestieTBCQuestFixes:Load()
         },
         [9564] = {
             [questKeys.preQuestSingle] = {9559},
+            [questKeys.availableStartingWith] = 9562,
         },
         [9565] = {
             [questKeys.preQuestGroup] = {},
@@ -1843,14 +2067,14 @@ function QuestieTBCQuestFixes:Load()
         [9590] = { -- The Blood is Life
             [questKeys.zoneOrSort] = zoneIDs.HELLFIRE_CITADEL,
         },
-        [9591] = {
+        [9591] = { -- Taming the Beast
             [questKeys.breadcrumbs] = {9757},
             [questKeys.objectives] = {{{17217,nil,Questie.ICON_TYPE_INTERACT}}},
         },
-        [9592] = {
+        [9592] = { -- Taming the Beast
             [questKeys.objectives] = {{{17374,nil,Questie.ICON_TYPE_INTERACT}}},
         },
-        [9593] = {
+        [9593] = { -- Taming the Beast
             [questKeys.objectives] = {{{17203,nil,Questie.ICON_TYPE_INTERACT}}},
         },
         [9594] = {
@@ -1886,8 +2110,9 @@ function QuestieTBCQuestFixes:Load()
             [questKeys.startedBy] = {{3038,3171,3407,16673}},
             [questKeys.breadcrumbForQuestId] = 9484,
         },
-        [9619] = {
+        [9619] = { -- The Rune of Summoning
             [questKeys.requiredSourceItems] = {},
+            [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_EVENT, l10n("Summon the Voidwalker"), 0, {{"object", 181670}}}},
         },
         [9622] = { -- Warn Your People
             [questKeys.preQuestSingle] = {},
@@ -2045,7 +2270,7 @@ function QuestieTBCQuestFixes:Load()
         [9756] = {
             [questKeys.objectives] = {{{17824,nil,Questie.ICON_TYPE_TALK}}},
         },
-        [9757] = {
+        [9757] = { -- Seek Huntress Kella Nightbow
             [questKeys.requiredRaces] = raceIDs.DRAENEI,
             [questKeys.breadcrumbForQuestId] = 9591,
         },
@@ -2938,6 +3163,13 @@ function QuestieTBCQuestFixes:Load()
         [10488] = {
             [questKeys.objectives] = {{{20748,nil,Questie.ICON_TYPE_INTERACT}}},
         },
+        [10490] = { -- Call of Water
+            [questKeys.exclusiveTo] = {9500,9502},
+            [questKeys.breadcrumbForQuestId] = 9501,
+        },
+        [10491] = { -- Call of Air
+            [questKeys.breadcrumbForQuestId] = 9552,
+        },
         [10506] = {
             [questKeys.objectives] = {{{20058,nil,Questie.ICON_TYPE_INTERACT}}},
         },
@@ -3045,8 +3277,8 @@ function QuestieTBCQuestFixes:Load()
         [10598] = {
             [questKeys.objectives] = {{{21512,nil,Questie.ICON_TYPE_EVENT}}},
         },
-        [10605] = {
-            [questKeys.exclusiveTo] = {1472,1507},
+        [10605] = { -- Carendin Summons
+            [questKeys.nextQuestInChain] = 0,
         },
         [10606] = { -- The Art of Fel Reaver Maintenance
             [questKeys.objectives] = {nil,nil,{{30713},{30712}}},
@@ -3217,18 +3449,22 @@ function QuestieTBCQuestFixes:Load()
             [questKeys.objectives] = {{{22268,nil,Questie.ICON_TYPE_EVENT}}},
         },
         [10725] = {
+            [questKeys.exclusiveTo] = {10726,10727,10728},
             [questKeys.nextQuestInChain] = 11031,
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [10726] = {
+            [questKeys.exclusiveTo] = {10725,10727,10728},
             [questKeys.nextQuestInChain] = 11034,
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [10727] = {
+            [questKeys.exclusiveTo] = {10725,10726,10728},
             [questKeys.nextQuestInChain] = 11033,
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [10728] = {
+            [questKeys.exclusiveTo] = {10725,10726,10727},
             [questKeys.nextQuestInChain] = 11032,
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
@@ -3245,27 +3481,35 @@ function QuestieTBCQuestFixes:Load()
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [10733] = {
+            [questKeys.exclusiveTo] = {10734,10735,10736},
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [10734] = {
+            [questKeys.exclusiveTo] = {10733,10735,10736},
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [10735] = {
+            [questKeys.exclusiveTo] = {10733,10734,10736},
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [10736] = {
+            [questKeys.exclusiveTo] = {10733,10734,10735},
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [10738] = {
+            [questKeys.exclusiveTo] = {10739,10740,10741},
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [10739] = {
+            [questKeys.exclusiveTo] = {10738,10740,10741},
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [10740] = {
+            [questKeys.exclusiveTo] = {10738,10739,10741},
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [10741] = {
+            [questKeys.exclusiveTo] = {10738,10739,10740},
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [10742] = {
@@ -3295,8 +3539,17 @@ function QuestieTBCQuestFixes:Load()
         [10782] = {
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_EVENT, l10n("Equip the Unfinished Headpiece, travel to the Altar of Damnation, and use it while standing near Gul'dan."), 0, {{"monster", 17008}}}},
         },
-        [10788] = {
+        [10788] = { -- Return to Talionia
             [questKeys.startedBy] = {{5675,5875}},
+            [questKeys.breadcrumbForQuestId] = 9529,
+        },
+        [10789] = { -- Return to Carendin Halgar
+            [questKeys.startedBy] = {{5875,16647}},
+            [questKeys.breadcrumbForQuestId] = 1473,
+        },
+        [10790] = { -- Return to Gan'rul Bloodeye
+            [questKeys.startedBy] = {{5675,16647}},
+            [questKeys.breadcrumbForQuestId] = 1501,
         },
         [10791] = {
             [questKeys.objectives] = {{{18384,nil,Questie.ICON_TYPE_INTERACT}}},
@@ -3752,18 +4005,22 @@ function QuestieTBCQuestFixes:Load()
         },
         [11031] = {
             [questKeys.preQuestSingle] = {10725},
+            [questKeys.exclusiveTo] = {10726,10727,10728},
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [11032] = {
             [questKeys.preQuestSingle] = {10728},
+            [questKeys.exclusiveTo] = {10725,10726,10727},
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [11033] = {
             [questKeys.preQuestSingle] = {10727},
+            [questKeys.exclusiveTo] = {10725,10726,10728},
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [11034] = {
             [questKeys.preQuestSingle] = {10726},
+            [questKeys.exclusiveTo] = {10725,10727,10728},
             [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
         },
         [11035] = {
@@ -5974,7 +6231,7 @@ function QuestieTBCQuestFixes:Load()
             [questKeys.exclusiveTo] = {12513},
             [questKeys.startedBy] = {{28126}},
             [questKeys.finishedBy] = {{28126}},
-            [questKeys.requiredRaces] = raceIDs.ORC + raceIDs.NIGHT_ELF + raceIDs.DRAENEI + raceIDs.TROLL + raceIDs.TAUREN + raceIDs.UNDEAD + raceIDs.BLOOD_ELF,
+            [questKeys.requiredRaces] = raceIDs.ALL_HORDE + raceIDs.ALL_ALLIANCE - raceIDs.GNOME - raceIDs.HUMAN - raceIDs.DWARF, -- future proof
         },
 
         -- Below are quests that were not originally in TBC or in a different form
@@ -6090,6 +6347,30 @@ function QuestieTBCQuestFixes:Load()
         },
         [93824] = {
             [questKeys.name] = "A Grand Delivery",
+            [questKeys.startedBy] = {{17249}},
+            [questKeys.finishedBy] = {{17249}},
+            [questKeys.requiredLevel] = 1,
+            [questKeys.questLevel] = 70,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.requiredClasses] = classIDs.NONE,
+            [questKeys.objectivesText] = {},
+            [questKeys.objectives] = {},
+            [questKeys.zoneOrSort] = sortKeys.SPECIAL,
+        },
+        [96253] = { -- An Unexpected Delivery
+            [questKeys.name] = "An Unexpected Delivery",
+            [questKeys.startedBy] = {{5111,6735,6740,6741,6746,6929,16618,16739,17630,19046,19232}},
+            [questKeys.finishedBy] = {{5111,6735,6740,6741,6746,6929,16618,16739,17630,19046,19232}},
+            [questKeys.requiredLevel] = 1,
+            [questKeys.questLevel] = 70,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.requiredClasses] = classIDs.NONE,
+            [questKeys.objectivesText] = {},
+            [questKeys.objectives] = {},
+            [questKeys.zoneOrSort] = sortKeys.SPECIAL,
+        },
+        [96254] = { -- An Unexpected Delivery
+            [questKeys.name] = "An Unexpected Delivery",
             [questKeys.startedBy] = {{17249}},
             [questKeys.finishedBy] = {{17249}},
             [questKeys.requiredLevel] = 1,

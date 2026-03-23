@@ -122,6 +122,9 @@ function QuestieNPCFixes:Load()
         [822] = { -- Young Forest Bear
             [npcKeys.spawns] = {[zoneIDs.ELWYNN_FOREST]={{22.4,75.6},{22.6,75.4},{22.8,75.6},{24.8,82.4},{25,82.8},{25,83.8},{25.4,90.4},{25.4,91},{25.6,82.4},{25.8,84.4},{25.8,85.2},{26.2,89},{26.2,89.6},{26.2,90.6},{26.6,89.6},{26.6,90.8},{26.8,89},{27.4,81.4},{27.8,81.6},{28,81.4},{28.8,81},{35.6,87.8},{35.8,88.6},{36.6,88.6},{38.4,89.4},{38.4,89.6},{38.6,89},{38.6,89.6},{43.2,80.8},{43.4,80.4},{44.2,77},{44.2,81},{44.4,77.8},{44.6,77.8},{45.4,86.4},{45.6,76},{45.6,77},{45.8,85.4},{46,86.2},{47,80},{47.2,79.4},{47.8,76.6},{48.8,82.6},{49.2,74.6},{49.2,76},{49.4,81.6},{50.2,73.8},{53.2,84},{53.4,83.2},{53.8,83.8},{54,75.2},{54,75.6},{56.4,75},{57.2,76.4},{57.6,75.4},{58.8,68.2},{60.4,75.4},{60.4,79.2},{60.4,79.8},{60.4,80.8},{60.6,75.6},{60.6,79.4},{61,75.2},{61,79.6},{62.8,77.6},{63.4,76.4},{63.4,76.8},{63.4,79.4},{63.4,79.6},{63.6,76.4},{63.6,79.2},{64.4,62.6},{64.8,63.4},{65.4,78},{65.6,78.6},{65.8,77.4},{65.8,78},{68.2,64.4},{68.8,65.4},{69,65.6},{69.2,64.2},{70.4,74.4},{70.4,74.8},{70.8,74.6},{71,74.4},{71.4,61.2},{71.8,60.4},{71.8,61.2},{71.8,61.8},{72.6,60.2},{73.4,80.4},{73.4,81},{73.4,81.6},{73.6,81.4},{74.4,68.2},{74.6,66.4},{75,67},{75,67.6},{75.6,68.2},{76.8,76.6},{77,76.4},{77.2,60.6},{77.8,60.4},{78.2,61.6},{78.2,79.6},{78.4,61.4},{78.4,79.2},{78.6,61.6},{78.8,60.4},{78.8,61},{78.8,84.2},{79.6,82.8},{81.2,77.2},{81.4,58.4},{81.4,58.8},{81.6,58.4},{81.8,59},{82,59.6},{82.6,59},{82.8,84},{86,77.2},{86.4,63.4},{86.4,63.6},{86.4,64.8},{87.2,64.2},{87.4,64.8},{87.4,66},{87.4,69.4},{87.4,69.8},{87.6,64.4},{87.6,64.8},{87.6,65.8},{87.6,69},{88.4,77},{88.8,77.4},{88.8,77.8}}},
         },
+        [773] = { -- Krazek
+            [npcKeys.spawns] = {[zoneIDs.STRANGLETHORN_VALE] = {{26.95,77.21}}},
+        },
         [775] = { -- Kurzen's Agent
             [npcKeys.zoneID] = zoneIDs.STRANGLETHORN_VALE,
             [npcKeys.spawns] = {[zoneIDs.STRANGLETHORN_VALE] = {{40.38,8.35}}},
@@ -217,15 +220,19 @@ function QuestieNPCFixes:Load()
         [1721] = { -- Nikova Raskol
             [npcKeys.zoneID] = zoneIDs.STORMWIND_CITY,
             [npcKeys.spawns] = {[zoneIDs.STORMWIND_CITY] = {{73.34,50.7}}},
-            [npcKeys.waypoints] = {[zoneIDs.STORMWIND_CITY]={{{70.26,40.3},{70.93,41.1},{71.47,42.0},{72.18,43.06},{72.69,43.74},{73.02,44.76},{73.28,45.54},{73.22,46.21},{73.57,46.53},{73.57,46.53},{72.85,46.81},{72.47,48.95},{72.47,49.72},{73.34,50.7},{72.57,49.9},{71.26,49.69},{68.81,48.66},{66.63,44.9},{65.69,43.28},{66.57,41.67},{68.1,39.87},{68.76,39.44},{69.25,40.16},{69.25,40.16},{69.8,39.55},{70.26,40.3}}}},
+            [npcKeys.waypoints] = {[zoneIDs.STORMWIND_CITY] = {{{70.26,40.3},{70.93,41.1},{71.47,42.0},{72.18,43.06},{72.69,43.74},{73.02,44.76},{73.28,45.54},{73.22,46.21},{73.57,46.53},{73.57,46.53},{72.85,46.81},{72.47,48.95},{72.47,49.72},{73.34,50.7},{72.57,49.9},{71.26,49.69},{68.81,48.66},{66.63,44.9},{65.69,43.28},{66.57,41.67},{68.1,39.87},{68.76,39.44},{69.25,40.16},{69.25,40.16},{69.8,39.55},{70.26,40.3}}}},
+        },
+        [1754] = { -- Lord Gregor Lescovar
+            [npcKeys.spawns] = {[zoneIDs.STORMWIND_CITY] = {{68.09,13.81}}},
+            [npcKeys.waypoints] = {},
         },
         [1755] = { -- Marzon the Silent Blade
+            [npcKeys.spawns] = {[zoneIDs.STORMWIND_CITY] = {{67.75,14.08}}},
             [npcKeys.zoneID] = zoneIDs.STORMWIND_CITY,
-            [npcKeys.spawns] = {[zoneIDs.STORMWIND_CITY] = {{68.22,14.34}}},
         },
         [1853] = { -- Darkmaster Gandling
-            [npcKeys.zoneID] = zoneIDs.SCHOLOMANCE,
             [npcKeys.spawns] = {[zoneIDs.SCHOLOMANCE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.SCHOLOMANCE,
         },
         [1892] = { -- Moonrage Watcher
             [npcKeys.zoneID] = zoneIDs.SILVERPINE_FOREST,
@@ -564,6 +571,9 @@ function QuestieNPCFixes:Load()
             [npcKeys.questStarts] = {65610},
             [npcKeys.questEnds] = {65601},
         },
+        [3394] = { -- Barak Kodobane
+            [npcKeys.waypoints] = {},
+        },
         [3395] = { -- Verog the Dervish
             [npcKeys.zoneID] = zoneIDs.THE_BARRENS,
             [npcKeys.spawns] = {[zoneIDs.THE_BARRENS] = {{53.06,41.74}}},
@@ -723,7 +733,7 @@ function QuestieNPCFixes:Load()
             [npcKeys.waypoints] = {[zoneIDs.STONETALON_MOUNTAINS]={{{67.2,46.69},{66.44,46.95},{66.01,45.73},{65.79,45.08},{65.11,44.76},{63.71,45.05},{63.77,45.99},{63.37,46.14},{63.47,46.55},{64.7,46.43},{64.79,47.69},{65.2,48.34},{65.94,48.57},{66.29,49.62},{66.61,49.61},{66.85,48.84},{67.28,49.21},{68.25,49.51},{68.44,49.55},{68.9,48.35},{69.14,47.32},{69.38,46.52},{70.04,47.47},{70.24,48.58},{70.97,48.65},{71.16,48.27},{71.24,47.04},{71.44,45.68},{71.27,44.91},{71.25,43.55}}}},
         },
         [4090] = { -- Astarii Starseeker
-            [npcKeys.questStarts] = {5674}, -- Doesn't actually start 5674, but that quest is blacklisted until it can be proven who starts that quest
+            [npcKeys.questStarts] = {},
         },
         [4091] = { -- Jandria
             [npcKeys.questStarts] = {},
@@ -1051,7 +1061,7 @@ function QuestieNPCFixes:Load()
         },
         [5543] = { -- Clarice Foster
             [npcKeys.spawns] = {[zoneIDs.THUNDER_BLUFF]={{27.2,24.4}}},
-            [npcKeys.waypoints] = {[zoneIDs.THUNDER_BLUFF]={{{27.2,24.4},{27.4,24.6},{28,25.2},{28.4,25.6},{28.4,26.8},{28.6,25.8},{28.6,26.6}}}},
+            [npcKeys.waypoints] = {},
         },
         [5600] = { -- Khan Dez'hepah
             [npcKeys.spawns] = {[zoneIDs.DESOLACE]={{73.2,41.8},{73.4,43},{74,43.6},{74.4,44.8},{73.6,46.6},{73,47.8},{74.6,48.8}}},
@@ -1075,6 +1085,9 @@ function QuestieNPCFixes:Load()
                 [zoneIDs.STORMWIND_CITY] = {{25.2,77.52}},
                 [zoneIDs.ORGRIMMAR] = {{49.73,50.14}},
             },
+        },
+        [5688] = { -- Innkeeper Renee
+            [npcKeys.spawns] = {[zoneIDs.TIRISFAL_GLADES] = {{61.72,52.05}}},
         },
         [5693] = { -- Godrick Farsan
             [npcKeys.questStarts] = {1476,65593},
@@ -1116,6 +1129,9 @@ function QuestieNPCFixes:Load()
         [5895] = { -- Minor Manifestation of Water
             [npcKeys.zoneID] = zoneIDs.SILVERPINE_FOREST,
             [npcKeys.spawns] = {[zoneIDs.SILVERPINE_FOREST] = {{38.65,44.58}}},
+        },
+        [5901] = { -- Islen Waterseer
+            [npcKeys.waypoints] = {},
         },
         [5906] = { -- Xanis Flameweaver
             [npcKeys.questStarts] = {1523,1529,1532},
@@ -1219,6 +1235,9 @@ function QuestieNPCFixes:Load()
         [6575] = { -- Scarlet Trainee
             [npcKeys.zoneID] = zoneIDs.SCARLET_MONASTERY,
             [npcKeys.spawns] = {[zoneIDs.SCARLET_MONASTERY] = {{-1,-1}}},
+        },
+        [6577] = { -- Bingles Blastenheimer
+            [npcKeys.waypoints] = {},
         },
         [6746] = { -- Innkeeper Pala
             [npcKeys.questStarts] = {3762,5926,8360},
@@ -1907,6 +1926,9 @@ function QuestieNPCFixes:Load()
             [npcKeys.zoneID] = zoneIDs.WESTERN_PLAGUELANDS,
             [npcKeys.spawns] = {[zoneIDs.WESTERN_PLAGUELANDS] = {{69.01,72.8}}},
         },
+        [11397] = { -- Nara Meideros
+            [npcKeys.questStarts] = {5632,5638,5674},
+        },
         [11401] = { -- Priestess Alathea
             [npcKeys.questStarts] = {5627,5640,5647,5672,5678},
         },
@@ -2103,6 +2125,9 @@ function QuestieNPCFixes:Load()
         [12860] = { -- Duriel Moonfire
             [npcKeys.zoneID] = zoneIDs.ASHENVALE,
             [npcKeys.spawns] = {[zoneIDs.ASHENVALE] = {{64.63,75.34}}},
+        },
+        [12862] = { -- Warsong Scout
+            [npcKeys.waypoints] = {},
         },
         [12865] = { -- Ambassador Malcin
             [npcKeys.spawns] = {[zoneIDs.THE_BARRENS]={{46.2,90.2},{47.8,90.6},{48,92.4},{48.2,92.6},{48.4,95.4},{48.4,95.6},{48.6,95.4},{48.6,95.6}}},

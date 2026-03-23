@@ -337,6 +337,13 @@ function announcePrototype:SetText(customName)
 	self.spellName = spellName
 end
 
+---Update icon on object and nothing else.
+---<br>Does not change spellId/spellkey associated with weakauras/callbacks
+---@param altSpellId string|number
+function announcePrototype:UpdateIcon(altSpellId)
+	self.icon = DBM:ParseSpellIcon(altSpellId, self.announceType, self.icon)
+end
+
 ---Not to be confused with SetText, which only sets the text of object.
 ---<br>This changes actual ID so announce callback also swaps ID for WAs
 ---@param altSpellId string|number
@@ -377,9 +384,10 @@ end
 ---@param voice VPSound voice pack media path
 ---@param voiceVersion number Required voice pack verion (if not met, falls back to default special warning sounds)
 ---@param color warningColorType? ColorId 1-4
-function announcePrototype:SetAlert(encounterEventId, voice, voiceVersion, color)
+---@param overrideType number? Optional override type for the alert
+function announcePrototype:SetAlert(encounterEventId, voice, voiceVersion, color, overrideType)
 	if self.option and self.mod.Options[self.option] then
-		self.mod:EnableAlertOptions(self.spellId, encounterEventId, voice, voiceVersion, color, nil, self.option)
+		self.mod:EnableAlertOptions(self.spellId, encounterEventId, voice, voiceVersion, color, overrideType, self.option)
 	end
 end
 

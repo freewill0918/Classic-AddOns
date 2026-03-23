@@ -22,8 +22,6 @@ private.hardCodedTimers = {
 --{ Name = "shouldShowChatMessage", Type = "bool", Nilable = false },
 --{ Name = "shouldShowWarning", Type = "bool", Nilable = false },
 function DBM:ENCOUNTER_WARNING(encounterWarningInfo)
-	if self.Options.IgnoreBlizzAPI then return end--Set by modules, not core options to filter blizz events for hard coded mods
-	if self.Options.HideDBMWarnings then return end
 	--Secrets
 	local text = encounterWarningInfo.text
 	local casterName = encounterWarningInfo.casterName
@@ -38,7 +36,12 @@ function DBM:ENCOUNTER_WARNING(encounterWarningInfo)
 			    formattedTargetName = classColor:WrapTextInColorCode(formattedTargetName);
 			end
 		end
+		self:Debug("|cffffff00ENCOUNTER_WARNING: |r fired for text: "..text.." with casterName: "..casterName.." and targetName: "..formattedTargetName.." and targetGUID: "..targetGUID, 2, nil, nil, true)
+	else
+		self:Debug("|cffffff00ENCOUNTER_WARNING: |r fired for text: "..text.." with casterName: "..casterName, 2, nil, nil, true)
 	end
+	if self.Options.IgnoreBlizzAPI and self.Options.DebugLevel ~= 3 then return end--Set by modules, not core options to filter blizz events for hard coded mods
+	if self.Options.HideDBMWarnings then return end
 	local iconFileID = encounterWarningInfo.iconFileID
 	--Non secrets
 	local severity = encounterWarningInfo.severity--0 low, 1 medium, 2 critical
@@ -58,20 +61,22 @@ end
 --TODO, use EncounterTimelineIconMasks to get icon mask from
 --/run C_EncounterTimeline.AddEditModeEvents()
 function DBM:ENCOUNTER_TIMELINE_EVENT_ADDED(eventInfo, remaining)
-	if self.Options.IgnoreBlizzAPI then return end--Set by modules, not core options to filter blizz events for hard coded mods
-	local source = eventInfo.source--(0-Encounter, 1-Script, 2-EditMode)
-	if self.Options.HideDBMBars then return end
-	if self.Options.DontShowBossTimers and source == 0 then return end
-	if self.Options.DontShowUserTimers and source == 1 then return end
 	local eventID = eventInfo.id
 	local eventState = C_EncounterTimeline.GetEventState(eventID)
 	local duration = remaining or eventInfo.duration
+	local durationRounded = math.floor(duration + 0.5)
 	local maxQueueDuration = eventInfo.maxQueueDuration
 	--Secrets
 	local spellId = eventInfo.spellID
 	local spellName = eventInfo.spellName or C_Spell.GetSpellName(spellId)--Spell name associated with this event. For script events, this may instead be the contents of the 'overrideName' field if it wasn't empty."
+	if self.Options.IgnoreBlizzAPI and self.Options.DebugLevel ~= 3 then return end--Set by modules, not core options to filter blizz events for hard coded mods
+	local source = eventInfo.source--(0-Encounter, 1-Script, 2-EditMode)
+	if self.Options.HideDBMBars then return end
+	if self.Options.DontShowBossTimers and source == 0 then return end
+	if self.Options.DontShowUserTimers and source == 1 then return end
 	local iconId = eventInfo.iconFileID
 	local color = eventInfo.color--Color table { r = 1, g = 1, b = 1 }
+	self:Debug("|cffffff00ENCOUNTER_TIMELINE_EVENT_ADDED: |r fired for spellID: "..C_ColorUtil.WrapTextInColor(spellId, color).." with spellName: "..C_ColorUtil.WrapTextInColor(spellName, color).." and duration: "..C_ColorUtil.WrapTextInColor(tostring(durationRounded), color).." and state: "..tostring(eventState), 3, nil, nil, true)
 	--Hacky workaround to de-white blizzard timers out of combat that do not have eventIds (such as test mode)
 	if not DBT.Options.ColorByType or not self:hasanysecretvalues(color.r, color.g, color.b) then--Any color that's not secret should be safe to nil out since it's not an EncounterEvent timer
 		color = nil
@@ -91,7 +96,6 @@ function DBM:ENCOUNTER_TIMELINE_EVENT_ADDED(eventInfo, remaining)
 	else
 		DBT:CreateBar(duration, eventID, iconId, nil, nil, color, nil, nil, nil, nil, nil, nil, nil, nil, spellName, true, eventState == 1)--barState 1 is "paused"
 	end
-	self:Debug("ENCOUNTER_TIMELINE_EVENT_ADDED fired for spellID: "..tostring(spellId).." with spellName: "..tostring(spellName).." and duration: "..tostring(duration).." and state: "..tostring(eventState), 3)
 end
 
 
@@ -108,8 +112,8 @@ function DBM:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(eventID)
 	else
 		bar = DBT:GetBar(eventID)
 	end
+	local eventState = C_EncounterTimeline.GetEventState(eventID)
 	if bar then
-		local eventState = C_EncounterTimeline.GetEventState(eventID)
 		if eventState == 1 then
 			bar:Pause()
 		elseif eventState == 0 then
@@ -119,6 +123,7 @@ function DBM:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(eventID)
 			private.hardCodedTimers[eventID] = nil
 		end
 	end
+	self:Debug("|cffffff00ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED: |r fired for eventID: "..tostring(eventID).." with state: "..tostring(eventState), 3, nil, nil, true)
 end
 
 function DBM:ENCOUNTER_TIMELINE_EVENT_REMOVED(eventID)

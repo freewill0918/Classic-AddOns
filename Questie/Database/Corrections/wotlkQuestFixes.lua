@@ -85,6 +85,9 @@ function QuestieWotlkQuestFixes:Load()
         [768] = {
             [questKeys.requiredSkill] = {393,1},
         },
+        [792] = {
+            [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+        },
         [836] = {
             [questKeys.triggerEnd] = {"Escort OOX-09/HL to safety", {[zoneIDs.THE_HINTERLANDS]={{57.81,50.2}}}},
         },
@@ -198,6 +201,9 @@ function QuestieWotlkQuestFixes:Load()
         },
         [2879] = {
             [questKeys.requiredSourceItems] = {9255,9256,9257,9258},
+        },
+        [2986] = { -- Call of Water
+            [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
         },
         [3161] = {
             [questKeys.requiredSourceItems] = {},
@@ -330,6 +336,9 @@ function QuestieWotlkQuestFixes:Load()
         },
         [5721] = {
             [questKeys.extraObjectives] = {{{[zoneIDs.EASTERN_PLAGUELANDS]={{35.01,84.05}}}, Questie.ICON_TYPE_EVENT, l10n("Place the Relic Bundle in the Town Square."),}},
+        },
+        [6070] = { -- The Hunter's Path
+            [questKeys.finishedBy] = {{3171}},
         },
         [6185] = {
             [questKeys.triggerEnd] = {"The Blightcaller Uncovered", {[zoneIDs.EASTERN_PLAGUELANDS]={{23.4,67.8}}}},
@@ -521,8 +530,14 @@ function QuestieWotlkQuestFixes:Load()
         [9460] = { -- Combining Forces
             [questKeys.requiredRaces] = raceIDs.BLOOD_ELF,
         },
+        [9461] = { -- Call of Fire
+            [questKeys.requiredRaces] = raceIDs.DRAENEI,
+        },
         [9491] = { -- Greed
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+        },
+        [9502] = { -- Call of Water
+            [questKeys.requiredRaces] = raceIDs.DRAENEI,
         },
         [9532] = { -- Find Keltus Darkleaf
             [questKeys.requiredRaces] = raceIDs.BLOOD_ELF,
@@ -2336,6 +2351,7 @@ function QuestieWotlkQuestFixes:Load()
         },
         [12509] = {
             [questKeys.parentQuest] = 12501,
+            [questKeys.objectives] = {{{28090,nil,Questie.ICON_TYPE_TALK}}},
         },
         [12512] = {
             [questKeys.objectives] = {nil,nil,nil,nil,{{{28133,28136},28133},{{28141,28142},28141},{{28143,28148},28143}}},

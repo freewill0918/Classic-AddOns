@@ -10,15 +10,16 @@ L.TranslationBy 					= nil -- your name here, localizers!
 L.Website							= "Please follow MysticalOS for news/updates |cFF73C2FBhttps://allmylinks.com/mysticalos|r. Thanks for years of support!"
 L.WebsiteButton						= "Website"
 
-L.OTabBosses						= "Boss Options"--Deprecated and will be deleted once tabs no longer use this
-L.OTabRaids							= "Raids"--Just pve raids
-L.OTabDungeons						= "Dungeons"--Just dungeons
+L.OTabRaids							= "Raids"
+L.OTabDungeons						= "Dungeons"
 L.OTabWorld							= "World Bosses"--Since there are so many world mods, enough to get their own tab
 L.OTabScenarios						= "Scenarios"--Future use, will be used for scenarios and delves, likely after there are more than 2 mods (so probably 12.x or later)
 L.OTabPlugins						= "Other"--Scenarios, PVP, Delves (11.x), Solo/Challenge content (torghast, mage tower, etc)
 L.OTabOptions						= "Core Options"
 L.OTabTools							= "Tools"--Such as break timer button, durability checks, latency checks, keystone checks (in future)
 L.OTabAbout							= "About"
+L.SearchMatch						= "%d match"
+L.SearchMatches						= "%d matches"
 
 --Main Tab, Tools checks
 L.Tools_LatencyCheck				= "Latency Check"
@@ -309,7 +310,7 @@ L.Area_ChatAlerts					= "Additional Alert Options"
 L.RoleSpecAlert						= "Show alert message on raid join when your loot spec does not match current spec"
 L.CheckGear							= "Show gear alert message during pull (when your equipped ilvl is much lower than bag ilvl (40+) or main weapon is not equipped)"
 L.WorldBossAlert					= "Show alert message when world bosses might have been engaged on your realm by guildies or friends (inaccurate if sender is CRZed)"
-L.WorldBuffAlert					= "Show alert message and timer when world buff RP has been started on your realm (Disabled in SOD)"
+L.WorldBuffAlert					= "Show alert message and timer when world buff RP has been started on your realm"
 L.RaidDiffChangedAlert				= "Show alert message when raid difficulty is changed"
 L.RaidDiffChangedRaidOnly			= "Only show raid difficulty change alert when in a raid group (Caveat: it won't report difficulty on join if not converted to raid yet)"
 L.DungeonDiffChangedAlert			= "Show alert message when dungeon difficulty is changed"
@@ -325,6 +326,8 @@ L.CountdownVoice2					= "Set secondary voice for count sounds"
 L.CountdownVoice3					= "Set tertiary voice for count sounds"
 L.PullVoice							= "Set voice for pull timers"
 L.VoicePackChoice					= "Set voice pack for spoken alerts"
+L.CountdownStartTime				= "Set countdown start time for Blizzard timers"
+L.CountStart						= "%d seconds remaining"
 L.MissingVoicePack					= "Missing Voice Pack (%s)"
 L.Area_CountdownOptions				= "Countdown Options"
 L.Area_VoicePackReplace				= "Voice Pack Replacement Options (which sounds voice packs, when enabled, mute and replace)"
@@ -374,6 +377,13 @@ L.Slider_BarOffSetY 				= "Offset Y: %d"--Reused in other regions like Private A
 L.Slider_BarWidth 					= "Bar width: %d"
 L.Slider_BarScale 					= "Bar scale: %0.2f"
 L.BarSaturation						= "Bar saturation for small timers (When huge bars are disabled): %0.2f"
+L.BarBackgroundColor				= "Background color"
+L.BarBackgroundOpacity				= "Background opacity: %0.2f"
+L.EnableBarBorder					= "Enable bar border"
+L.BarBorderSize						= "Border size: %0.1f"
+L.BarBorderColor					= "Border color"
+L.Slider_TextOffSetX				= "Text offset X: %d"
+L.Slider_TextOffSetY				= "Text offset Y: %d"
 L.MidnightNote						= "Note: Due to API restrictions in Midnight. DBM is unable to support having different start and end colors. Only start color will be used."
 
 --Types
