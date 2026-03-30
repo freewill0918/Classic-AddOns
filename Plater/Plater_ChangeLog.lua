@@ -8,6 +8,70 @@ function Plater.GetChangelogTable()
 	if (not Plater.ChangeLogTable) then
 		Plater.ChangeLogTable = {
 
+			{1773961544, "Bug Fix", "Mar 19th, 2026", "Fix 'no tank aggro' detection for Midnight.", "cont1nuity"},
+			{1773961544, "Bug Fix", "Mar 19th, 2026", "Adding option to hide cast bar border shield for unitnrerruptible casts.", "cont1nuity"},
+			{1773961544, "Bug Fix", "Mar 19th, 2026", "Fix the border on aura icons (a bit).", "cont1nuity"},
+			{1773961544, "Backend Change", "Mar 19th, 2026", "Hide realm names on friendly players in raids in Midnight.", "cont1nuity"},
+			{1773961544, "Bug Fix", "Mar 17th, 2026", "Fix cast bar border shield for unitnrerruptible casts.", "cont1nuity"},
+			{1773961544, "Backend Change", "Mar 14th, 2026", "Hide realm names on friendly players in raids.", "cont1nuity"},
+			
+			{1772438164, "Bug Fix", "Mar 13th, 2026", "Fixing shield indicators not showing correctly.", "httpsx"},
+			{1772438164, "Bug Fix", "Mar 11th, 2026", "Fixing incorrect aura border colors.", "cont1nuity"},
+			{1772438164, "Backend Change", "Mar 10th, 2026", "Additions and fixes for the Designer.", "Terciob"},
+			{1772438164, "Bug Fix", "Mar 9th, 2026", "Fixing cast bar icon size not adjusting correctly in some cases.", "cont1nuity"},
+			{1772438164, "Bug Fix", "Mar 9th, 2026", "Fixing cast bar shield icon for not interruptible casts not showing correctly.", "cont1nuity"},
+			{1772438164, "Bug Fix", "Mar 9th, 2026", "Additional fixes for font overrides.", "httpsx"},
+			{1772438164, "Bug Fix", "Mar 7th, 2026", "Fixing some cases of threat colors not showing correctly.", "cont1nuity"},
+			{1772438164, "Bug Fix", "Mar 4th, 2026", "Fixing font override options not working correctly.", "cont1nuity"},
+			{1772438164, "Backend Change", "Mar 3rd, 2026", "Hiding unneeded or disabled options.", "cont1nuity"},
+						
+			{1772438164, "Backend Change", "Mar 3rd, 2026", "Hiding Friendly NPCs healthbars works in dungeons now.", "cont1nuity"},
+			{1772438164, "Backend Change", "Mar 3rd, 2026", "Blizard font override is working now.", "cont1nuity"},
+
+			{1772438164, "Bug Fix", "Mar 2nd, 2026", "Fixing an issue with now secret soft-interact information.", "cont1nuity"},
+			{1772438164, "Backend Change", "Mar 2nd, 2026", "Removing several no longer used options for Midnight from the options panel.", "cont1nuity"},
+			{1772438164, "Bug Fix", "Feb 28th, 2026", "Fixing an issue with tank recognition in TBC.", "cont1nuity"},
+			{1772438164, "Bug Fix", "Feb 26th, 2026", "Fixing some color refresh issues.", "cont1nuity"},
+			{1772438164, "Backend Change", "Feb 24th, 2026", "Adding option to select the execute range alpha value.", "cont1nuity"},
+			{1772438164, "Backend Change", "Feb 24th, 2026", "Adding option for 'Empowered' cast color.", "cont1nuity"},
+			{1772438164, "Backend Change", "Feb 23rd, 2026", "The 'Only Damaged' option for friendly players is no longer available in Midnight.", "cont1nuity"},
+			{1772438164, "Bug Fix", "Feb 23rd, 2026", "Fixing Midnight CC aura tracking filter option.", "cont1nuity"},
+			{1772438164, "Backend Change", "Feb 20th, 2026", "Additions and fixes for the Designer.", "Terciob"},
+			
+			{1771544564, "Bug Fix", "Feb 20th, 2026", "Fixed an issue with pet recognition erroring out in some cases.", "cont1nuity"},
+			{1771544564, "Bug Fix", "Feb 20th, 2026", "Fixed issues around blizzards new threat secrecy.", "cont1nuity"},
+			{1771544564, "Bug Fix", "Feb 16th, 2026", "Fixed a bug regarding health updates for non-retail clients.", "cont1nuity"},
+			{1771544564, "Bug Fix", "Feb 16th, 2026", "Fixed friendly player auto toggle.", "cont1nuity"},
+			{1771544564, "Backend Change", "Feb 16th, 2026", "Adding 'Blizzard Nameplate' type buff filter which copies blizzard nameplate behavior.", "cont1nuity"},
+
+			{1771095494, "Backend Change", "Feb 13th, 2026", "Adding 'Blizzard Nameplate' type aura filter which copies blizzard nameplate behavior.", "cont1nuity"},
+			{1771095494, "Backend Change", "Feb 11th, 2026", "General improvements and compatibility for Midnight.", "cont1nuity"},
+			{1771095494, "Backend Change", "Feb 11th, 2026", "Improvements for aura filters, aura colors and Buff Special in Midnight.", "cont1nuity"},
+			{1771095494, "Backend Change", "Feb 11th, 2026", "Basic absorb shield implemtation.", "cont1nuity"},
+			{1771095494, "Bug Fix", "Feb 9th, 2026", "Fixed some errors related to non-retal game versions.", "cont1nuity"},
+			{1771095494, "Bug Fix", "Feb 7th, 2026", "Fixed an issue with tank role recognition in classic game versions.", "cont1nuity"},
+			{1771095494, "Bug Fix", "Jan 28th, 2026", "Fixed aura sorting for Midnight.", "cont1nuity"},
+			{1771095494, "Backend Change", "Jan 28th, 2026", "Added option for health bar animation in Midnight.", "cont1nuity"},
+			{1771095494, "Backend Change", "Jan 28th, 2026", "Switched to 'Max width' for certain texts to cut off at the set width of the text.", "cont1nuity"},
+			
+			{1769439797, "Bug Fix", "Jan 27th, 2026", "Fixed issues regarding scaling and threat overrides for unit type coloring which were introduced with prior versions.", "cont1nuity"},
+			{1769439797, "Bug Fix", "Jan 26th, 2026", "Numerous fixes to address Midnight compatibility.", "cont1nuity"},
+			
+			{1768418220, "New Feature", "Jan 15th, 2026", "Unit type coloring option to not override threat colors.", "cont1nuity"},
+			
+			{1768418220, "Backend Change", "Jan 14th, 2026", "More support for Midnight (work in progress, still...), prepatch ready.", "cont1nuity"},
+			{1768418220, "New Feature", "Jan 14th, 2026", "Cast Bar 'Important' coloring for Midnight.", "cont1nuity"},
+			{1768418220, "New Feature", "Jan 13th, 2026", "Unit name text max length options.", "cont1nuity"},
+			{1768418220, "New Feature", "Jan 12th, 2026", "Unit type coloring.", "cont1nuity"},
+			{1768418220, "Backend Change", "Jan 12th, 2026", "Performance improvements for auras.", "cont1nuity"},
+			{1768418220, "New Feature", "Jan 12th, 2026", "Adding '/plater uninstall' command to reset related CVars and disable Plater on the current character.", "cont1nuity"},
+			{1768418220, "Backend Change", "Jan 9th, 2026", "Adding TBC compatibility flag.", "cont1nuity"},
+			
+			{1764718947, "Backend Change", "Dec 3rd, 2025", "More support for Midnight (work in progress).", "cont1nuity"},
+			
+			{1764011311, "Backend Change", "Oct 21st, 2025", "Initial support for Midnight (work in progress).", "cont1nuity"},
+			{1764011311, "Bug Fix", "Oct 22nd, 2025", "Fixing nameplate alpha for nameplates which are in the fade-in animation when being shown.", "cont1nuity"},
+			
 			{1758569637, "Bug Fix", "Sept 26th, 2025", "Fixing soft-interact icons on classic and era.", "cont1nuity"},
 			{1758569637, "New Feature", "Sept 22nd, 2025", "Adding combat auto toggle option for 'Always Show Nameplates'.", "cont1nuity"},
 			{1758569637, "Bug Fix", "Sept 14th, 2025", "Adding 'Dispatch' as rogue execute in MoP.", "cont1nuity"},

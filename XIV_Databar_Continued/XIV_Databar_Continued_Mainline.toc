@@ -1,7 +1,7 @@
-## Interface: 110205, 110207
+## Interface: 120001
 ## Title: XIV_Databar Continued
 ## Author: ZelionGG
-## Version: 3.8
+## Version: 5.3-fix1
 ## IconTexture: Interface\Addons\XIV_Databar_Continued\icon.png
 ## AddonCompartmentFunc: XIV_Databar_Continued_OnAddonCompartmentClick
 
@@ -15,15 +15,12 @@
 ## X-WoWI-ID: 26826
 ## X-Wago-ID: WqKQVaGx
 
-## Title-zhTW: |cff0099FF[介面]|r 功能資訊列
-## Notes-zhTW: XIV_Databar Continued |n|n在畫面最下方顯示一排遊戲功能小圖示，取代原本的微型選單和背包按鈕。還會顯示時間、耐久度、天賦、專業、兌換通貨、金錢、傳送和系統資訊等等。可以自行選擇要顯示哪些資訊、調整位置和顏色。|n|n|cffffd200使用方法: |r從Esc>選項>插件>資訊列，進行設定。
-## Category-zhTW: 介面
-
-## embeds.xml
-Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+embeds.xml
 
 locales\locales.xml
 core.lua
+options.lua
+Core\compat.lua
 Core\modules\load_modules.xml
 
 Core\utils\changelog\Load_Changelog.xml

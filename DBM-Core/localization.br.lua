@@ -522,7 +522,7 @@ L.AUTO_TIMER_OPTIONS.castcount 			= "Exibir cronômetro (com contagem) para o la
 L.AUTO_TIMER_OPTIONS.castsource 		= "Exibir cronômetro (com fonte) para o lançamento de $spell:%s"
 L.AUTO_TIMER_OPTIONS.active				= "Exibir cronômetro para a duração de $spell:%s"
 L.AUTO_TIMER_OPTIONS.fades				= "Exibir cronômetro para quando $spell:%s desvanecerá dos jogadores"
-L.AUTO_TIMER_OPTIONS.ai					= "Exibir cronômetro IA para recarga de $spell:%s"
+L.AUTO_TIMER_OPTIONS.ai					= "Exibir cronômetro IA para a recarga de $spell:%s"
 
 L.AUTO_TIMER_OPTIONS.cd					= "Exibir cronômetro para a recarga de $spell:%s"
 L.AUTO_TIMER_OPTIONS.cdcount			= "Exibir cronômetro para a recarga de $spell:%s"
@@ -622,6 +622,9 @@ L.AUTO_SPEEDCLEAR_OPTION_TEXT 			= "Exibir cronômetro para limpeza mais rápida
 L.AUTO_PRIVATEAURA_OPTION_TEXT			= "Reproduzir alertas sonoros de auras privadas do DBM para $spell:%s neste encontro"
 L.AUTO_PRIVATEAURA_OPTION_TARGET_TEXT	= "Reproduzir alertas sonoros de auras privadas do DBM quando você for alvo de $spell:%s"
 L.AUTO_PRIVATEAURA_OPTION_GTFO_TEXT		= "Reproduzir alertas sonoros de auras privadas do DBM quando você precisar se afastar de $spell:%s"
+L.AUTO_PRIVATEAURA_OPTION_POST_TEXT   	= "Reproduzir alertas sonoros de auras privadas do DBM para efeitos persistentes de $spell:%s."
+L.AUTO_CUSTOMTIMER_OPTION_TEXT        	= "Exibir cronômetro para $spell:%s"
+L.AUTO_CUSTOMALERT_OPTION_TEXT        	= "Definir alerta sonoro quando $spell:%s estiver prestes a ser lançado"
 
 -- New special warnings
 L.MOVE_WARNING_BAR 						= "Anúncio móvel"

@@ -1,9 +1,9 @@
 # <DBM Media> Countpack Overwatch
 
-## [1.4.48](https://github.com/DeadlyBossMods/DBM-CountPack-Overwatch/tree/1.4.48) (2025-07-01)
-[Full Changelog](https://github.com/DeadlyBossMods/DBM-CountPack-Overwatch/compare/1.4.47...1.4.48) [Previous Releases](https://github.com/DeadlyBossMods/DBM-CountPack-Overwatch/releases)
+## [1.4.50](https://github.com/DeadlyBossMods/DBM-CountPack-Overwatch/tree/1.4.50) (2026-03-13)
+[Full Changelog](https://github.com/DeadlyBossMods/DBM-CountPack-Overwatch/compare/1.4.49...1.4.50) [Previous Releases](https://github.com/DeadlyBossMods/DBM-CountPack-Overwatch/releases)
 
-- Add mists support  
-- Add 11.2 TOC  
-- Fix outdated media pack tocs  
-- toc bumps for ptr  
+- update to midnight compatible api  
+- five/three count audio files for Mystical  
+- five/three count audio files for Mystical  
+- toc cleanup  

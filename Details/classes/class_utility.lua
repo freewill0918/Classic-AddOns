@@ -199,9 +199,11 @@ function Details.ShowDeathTooltip2(instance, lineFrame) --~death
 
 	for i = #events, 1, -1 do
 		local ev = events[i]
-		GameCooltip:AddLine(format("%s (%s)", ev.spellName, ev.sourceName or UNKNOWN), format("-%d", ev.amount), 1, "white", "white")
-		local spellInfo = C_Spell.GetSpellInfo(ev.spellId)
-		GameCooltip:AddIcon(spellInfo.iconID, 1, 1, 18, 18, .1, .9, .1, .9)
+		GameCooltip:AddLine(format("%s (%s)", ev.spellName or UNKNOWN, ev.sourceName or UNKNOWN), format("-%d", ev.amount), 1, "white", "white")
+		if ev.spellId then
+			local spellInfo = C_Spell.GetSpellInfo(ev.spellId)
+			GameCooltip:AddIcon(spellInfo.iconID, 1, 1, 18, 18, .1, .9, .1, .9)
+		end
 		if i == 1 then
 			GameCooltip:AddStatusBar(0, 1, 1, 1, 1, 1, false)
 		else
@@ -228,7 +230,11 @@ end
 
 function Details.ShowDeathTooltip(instance, lineFrame, combatObject, deathTable) --~death
 	local events = deathTable[1]
-	events = detailsFramework.table.reverse(events)
+
+	if detailsFramework.IsAddonApocalypseWow() then
+		events = detailsFramework.table.reverse(events)
+	end
+
 	local timeOfDeath = deathTable[2]
 	local maxHP = max(deathTable[5], 0.001)
 	local battleress = false
@@ -761,13 +767,13 @@ end
 
 function atributo_misc:RefreshWindow(instance, combatObject, bIsForceRefresh, bIsExport)
 	if detailsFramework.IsAddonApocalypseWow() then
-		if Details:IsUsingBlizzardAPI() then
+		if Details:IsUsingBlizzardAPI(instance) then
 			Details222.BParser.UpdateAppocalypse(instance, bIsForceRefresh)
 			return
 		end
 	end
 
-	if not Details222.UpdateIsAllowed() then return end --temporary stop updates in th new dlc
+	--if not Details222.UpdateIsAllowed() then return end --temporary stop updates in th new dlc
 
 	---@type actorcontainer
 	local utilityActorContainer = combatObject[class_type]

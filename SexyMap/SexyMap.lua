@@ -322,35 +322,6 @@ function mod:ADDON_LOADED(addon)
 			SexyMap2DB = {}
 		end
 
-		-- XXX 9.0.1
-		for character, tbl in next, SexyMap2DB do
-			if tbl.borders and tbl.borders.backdrop and tbl.borders.backdrop.settings then
-				local tex = tbl.borders.backdrop.settings.bgFile
-				if type(tex) == "string" then
-					if tex == "Interface\\Addons\\SexyMap\\media\\rusticbg" then
-						tbl.borders.backdrop.settings.bgFile = 249644
-					elseif tex == "Interface\\Addons\\SexyMap\\media\\ruinsbg" then
-						tbl.borders.backdrop.settings.bgFile = 191258
-					end
-				end
-			end
-		end
-		if SexyMap2DB.presets then
-			for name, tbl in next, SexyMap2DB.presets do
-				if tbl.backdrop and tbl.backdrop.settings then
-					local tex = tbl.backdrop.settings.bgFile
-					if type(tex) == "string" then
-						if tex == "Interface\\Addons\\SexyMap\\media\\rusticbg" then
-							tbl.backdrop.settings.bgFile = 249644
-						elseif tex == "Interface\\Addons\\SexyMap\\media\\ruinsbg" then
-							tbl.backdrop.settings.bgFile = 191258
-						end
-					end
-				end
-			end
-		end
-		-- XXX end
-
 		local char = UnitName("player").."-"..GetRealmName()
 		if not SexyMap2DB[char] then
 			SexyMap2DB[char] = {}
@@ -392,6 +363,14 @@ function mod:ADDON_LOADED(addon)
 end
 mod.frame:RegisterEvent("ADDON_LOADED")
 
+-- 12.0.1 minimap clicks workaround
+local hijackClicksFrame = CreateFrame("Frame")
+hijackClicksFrame:SetParent(Minimap)
+hijackClicksFrame:SetPoint("CENTER", Minimap, "CENTER")
+hijackClicksFrame:Show()
+hijackClicksFrame:EnableMouse(true)
+hijackClicksFrame:SetPassThroughButtons("LeftButton")
+hijackClicksFrame:SetPropagateMouseMotion(true)
 function mod:PLAYER_LOGIN()
 	mod.frame:UnregisterEvent("PLAYER_LOGIN")
 
@@ -406,11 +385,10 @@ function mod:PLAYER_LOGIN()
 	SLASH_SexyMap1 = "/minimap"
 	SLASH_SexyMap2 = "/sexymap"
 
-	Minimap:SetScript("OnMouseUp", function(frame, button)
+	hijackClicksFrame:SetSize(140, 140)
+	hijackClicksFrame:SetScript("OnMouseUp", function(_, button)
 		if button == "RightButton" and mod.db.rightClickToConfig then
 			SlashCmdList.SexyMap()
-		else
-			Minimap:OnClick()
 		end
 	end)
 
@@ -619,14 +597,20 @@ function public:SetPoint(point, anchor, relPoint, x, y)
 	mod.frame.SetPoint(Minimap, point, anchor, relPoint, x, y)
 end
 
--- SexyMap:Restore()
-function public:Restore()
+-- SexyMap:EnterHUD() -- Call this when you want to enter HUD mode
+function public:EnterHUD()
+	hijackClicksFrame:Hide()
+end
+
+-- SexyMap:ExitHUD() -- Call this when you want to exit HUD mode
+function public:ExitHUD()
 	mod.frame.ClearAllPoints(Minimap)
 	mod.frame.SetPoint(Minimap, mod.db.point, UIParent, mod.db.relpoint, mod.db.x, mod.db.y)
 	mod.frame.SetScale(Minimap, mod.db.scale or (MinimapNorthTag and 1 or 1.1))
 	Minimap:SetClampedToScreen(mod.db.clamp)
 	Minimap:SetSize(140, 140)
 	Minimap:SetMovable(not mod.db.lock)
+	hijackClicksFrame:Show()
 end
 
 SexyMap = setmetatable({}, { __index = public, __newindex = function() end, __metatable = false })

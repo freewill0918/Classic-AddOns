@@ -1,12 +1,15 @@
-local AddOnName, XIVBar = ...;
+---@class XIVBar
+local XIVBar = select(2, ...);
 local _G = _G;
 local xb = XIVBar;
 local L = XIVBar.L;
 
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded or IsAddOnLoaded
+
 local TravelModule = xb:NewModule("TravelModule", 'AceEvent-3.0')
 
 function TravelModule:GetName()
-    return L['Travel'];
+    return L["TRAVEL"];
 end
 
 function TravelModule:OnInitialize()
@@ -23,7 +26,7 @@ function TravelModule:OnInitialize()
 end
 
 -- Skin Support for ElvUI/TukUI
--- Make sure to disable "Tooltip" in the Skins section of ElvUI together with 
+-- Make sure to disable "Tooltip" in the Skins section of ElvUI together with
 -- unchecking "Use ElvUI for tooltips" in XIV options to not have ElvUI fuck with tooltips
 function TravelModule:SkinFrame(frame, name)
     if self.useElvUI then
@@ -36,12 +39,12 @@ function TravelModule:SkinFrame(frame, name)
 
         local close = _G[name .. "CloseButton"] or frame.CloseButton
         if close and close.SetAlpha then
-            if ElvUI then
-                ElvUI[1]:GetModule('Skins'):HandleCloseButton(close)
+            if _G.ElvUI then
+                _G.ElvUI[1]:GetModule('Skins'):HandleCloseButton(close)
             end
 
-            if Tukui and Tukui[1] and Tukui[1].SkinCloseButton then
-                Tukui[1].SkinCloseButton(close)
+            if _G.Tukui and _G.Tukui[1] and _G.Tukui[1].SkinCloseButton then
+                _G.Tukui[1].SkinCloseButton(close)
             end
             close:SetAlpha(1)
         end
@@ -81,9 +84,6 @@ function TravelModule:CreateFrames()
     -- self.portPopup = self.portPopup or
     --                      CreateFrame('BUTTON', 'portPopup', self.portButton,
     --         BackdropTemplateMixin and 'BackdropTemplate')
-
-    if not self.useElvUI then
-    end
 end
 
 function TravelModule:RegisterFrameEvents()
@@ -163,7 +163,7 @@ end
 
 function TravelModule:FormatCooldown(cdTime)
     if cdTime <= 0 then
-        return L['Ready']
+        return L["READY"]
     end
     local hours = string.format("%02.f", math.floor(cdTime / 3600))
     local minutes = string.format("%02.f", math.floor(cdTime / 60 - (hours * 60)))
@@ -188,13 +188,11 @@ function TravelModule:SetHearthColor()
         self.hearthText:SetTextColor(unpack(xb:HoverColors()))
     else
         self.hearthIcon:SetVertexColor(xb:GetColor('normal'))
-        local hearthName = ''
         local hearthActive = true
-        for i, v in ipairs(self.hearthstones) do
+        for _, v in ipairs(self.hearthstones) do
             if IsUsableItem(v) then
                 if C_Container.GetItemCooldown(v) == 0 then
-                    local name, _ = GetItemInfo(v)
-                    hearthName = name
+                    local hearthName = GetItemInfo(v)
                     if hearthName ~= nil then
                         hearthActive = true
                         self.hearthButton:SetAttribute("macrotext", "/cast " .. hearthName)
@@ -204,8 +202,8 @@ function TravelModule:SetHearthColor()
             end -- if toy/item
             if IsPlayerSpell(v) then
                 if GetSpellCooldown(v) == 0 then
-                    local name, _ = GetSpellInfo(v)
-                    hearthName = name
+                    local spellInfo = GetSpellInfo(v)
+                    local hearthName = spellInfo and spellInfo.name
                     hearthActive = true
                     self.hearthButton:SetAttribute("macrotext", "/cast " .. hearthName)
                 end
@@ -286,7 +284,7 @@ end
 --     self.portOptionString:SetFont(xb:GetFont(db.text.fontSize + self.optionTextExtra))
 --     local r, g, b, _ = unpack(xb:HoverColors())
 --     self.portOptionString:SetTextColor(r, g, b, 1)
---     self.portOptionString:SetText(L['Port Options'])
+--     self.portOptionString:SetText(L["PORT_OPTIONS"])
 --     self.portOptionString:SetPoint('TOP', 0, -(xb.constants.popupPadding))
 --     self.portOptionString:SetPoint('CENTER')
 
@@ -440,6 +438,13 @@ function TravelModule:Refresh()
     --     totalWidth = totalWidth + self.portButton:GetWidth()
     -- end
     self.hearthFrame:SetSize(totalWidth, xb:GetHeight())
+
+    if xb:ApplyModuleFreePlacement('travel', self.hearthFrame) then
+        self.hearthFrame:Show()
+        return
+    end
+
+    self.hearthFrame:ClearAllPoints()
     self.hearthFrame:SetPoint("RIGHT", -(db.general.barPadding), 0)
     self.hearthFrame:Show()
 end
@@ -449,7 +454,7 @@ function TravelModule:ShowTooltip()
     --     GameTooltip:SetOwner(self.portButton, 'ANCHOR_' .. xb.miniTextPosition)
     --     GameTooltip:ClearLines()
     --     local r, g, b, _ = unpack(xb:HoverColors())
-    --     GameTooltip:AddLine("|cFFFFFFFF[|r" .. L['Travel Cooldowns'] .. "|cFFFFFFFF]|r", r, g, b)
+    --     GameTooltip:AddLine("|cFFFFFFFF[|r" .. L["TRAVEL_COOLDOWNS"] .. "|cFFFFFFFF]|r", r, g, b)
     --     for i, v in pairs(self.portOptions) do
     --         if IsUsableItem(v.portId) or IsPlayerSpell(v.portId) then
     --             if IsUsableItem(v.portId) then
@@ -465,7 +470,7 @@ function TravelModule:ShowTooltip()
     --         end
     --     end
     --     GameTooltip:AddLine(" ")
-    --     GameTooltip:AddDoubleLine('<' .. L['Right-Click'] .. '>', L['Change Port Option'], r, g, b, 1, 1, 1)
+    --     GameTooltip:AddDoubleLine('<' .. L["RIGHT_CLICK"] .. '>', L["CHANGE_PORT_OPTION"], r, g, b, 1, 1, 1)
     --     GameTooltip:Show()
     -- end
 end

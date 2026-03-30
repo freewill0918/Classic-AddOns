@@ -1,30 +1,28 @@
-tag cf1d8b0bebacf004c31bd45a9bb9537b942779f2 v2.3.4
-Author:	skyler-code <skylerh15@github.com>
-Date:	Sat Nov 22 01:39:46 2025 -0600
+tag bebf42de8af0136ddd1179cced08b78de1628def v2.3.9
+Author:	brues-code <5278969+brues-code@users.noreply.github.com>
+Date:	Fri Feb 20 12:18:46 2026 -0600
 
-commit 20cc23420b6c59aa5bc9cffe98fbed4fe810bd31
-Author: skyler-code <skylerh15@github.com>
-Date:   Fri Nov 21 00:16:16 2025 -0600
+commit 298ba30a2528e089fb37100672f4ba555e273e72
+Author: brues-code <5278969+brues-code@users.noreply.github.com>
+Date:   Fri Feb 20 12:15:21 2026 -0600
 
-    use specids in conversion
+    tooltip scan: verify that stats actually exist on item
 
-commit 56fa186440048f99b120caa7082dea93b8578c06
-Author: skyler-code <skylerh15@github.com>
-Date:   Thu Nov 20 20:55:00 2025 -0600
+commit fdee8ad403bff0725474b7d88ea1bee136f797a1
+Author: brues-code <5278969+brues-code@users.noreply.github.com>
+Date:   Fri Feb 20 11:46:34 2026 -0600
 
-    Haste Breakpoint Cleanup
-    
-    No longer need "FirstHasteBreak", "SecondHasteBreak", etc. enums
+    Workaround for https://github.com/ClassicWoWCommunity/mop-classic-bugs/issues/2642
 
-commit 4472439e4a727d45d34498bfa9a3f2013b309e03
-Author: skyler-code <skylerh15@github.com>
-Date:   Thu Nov 20 15:26:09 2025 -0600
+commit 10b79ba6a2e5bb01fada86aaf61dcfffcfcf2aa7
+Author: brues-code <5278969+brues-code@users.noreply.github.com>
+Date:   Fri Feb 20 11:24:26 2026 -0600
 
-    HPal haste breakpoint corrections
+    tooltip scan cleanup
 
-commit bda38057ba783fd7e6623b94f3cad48976a6f08f
-Author: skyler-code <skylerh15@github.com>
-Date:   Wed Nov 19 23:00:14 2025 -0600
+commit cd8cca128e8fadc255b0d72787689dc94abaf987
+Author: brues-code <5278969+brues-code@users.noreply.github.com>
+Date:   Thu Feb 19 19:47:52 2026 -0600
 
-    Caught error when new user uses algo compare
+    item stat detection issue
 

@@ -1,6 +1,6 @@
 ﻿
 	----------------------------------------------------------------------
-	-- 	Leatrix Maps 5.1.09 (14th November 2025)
+	-- 	Leatrix Maps 5.1.29 (25th March 2026)
 	----------------------------------------------------------------------
 
 	-- 10:Func, 20:Comm, 30:Evnt, 40:Panl
@@ -12,7 +12,7 @@
 	local LeaMapsLC, LeaMapsCB, LeaDropList, LeaConfigList, LeaLockList = {}, {}, {}, {}, {}
 
 	-- Version
-	LeaMapsLC["AddonVer"] = "5.1.09"
+	LeaMapsLC["AddonVer"] = "5.1.29"
 
 	-- Get locale table
 	local void, Leatrix_Maps = ...
@@ -2466,7 +2466,7 @@
 		----------------------------------------------------------------------
 		-- Create panel in game options panel
 		----------------------------------------------------------------------
---[[
+
 		do
 
 			local interPanel = CreateFrame("FRAME")
@@ -2514,7 +2514,7 @@
 			Settings.RegisterAddOnCategory(category)
 
 		end
---]]
+
 		----------------------------------------------------------------------
 		-- Add zone map dropdown to main panel
 		----------------------------------------------------------------------
@@ -3026,7 +3026,7 @@
 	function LeaMapsLC:MakeSL(frame, field, label, caption, low, high, step, x, y, form)
 
 		-- Create slider control
-		local Slider = CreateFrame("Slider", "LeaMapsGlobalSlider" .. field, frame, "UISliderTemplate")
+		local Slider = CreateFrame("Slider", nil, frame, "LeaMapsConfigurationPanelSliderTemplate") -- Old is UISliderTemplate
 		LeaMapsCB[field] = Slider
 		Slider:SetMinMaxValues(low, high)
 		Slider:SetValueStep(step)
@@ -3418,7 +3418,7 @@
 			LeaMapsLC:LoadVarNum("BattleMapY", 83, -5000, 5000)			-- Battlefield map Y axis
 
 			LeaMapsLC:LoadVarNum("ZoneMapMenu", 1, 1, 3)				-- Zone map dropdown menu
-			LeaMapsLC:LoadVarChk("ShowMinimapIcon", "Off")				-- Show minimap button
+			LeaMapsLC:LoadVarChk("ShowMinimapIcon", "On")				-- Show minimap button
 			LeaMapsLC:LoadVarChk("UseEnglishLanguage", "Off")			-- Use English language
 
 			-- Panel

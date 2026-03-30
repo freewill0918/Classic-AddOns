@@ -1,6 +1,6 @@
 local SharedMedia = LibStub("LibSharedMedia-3.0")
 FojjiCore = {}
-FojjiCore_Version = "1.6.4"
+FojjiCore_Version = "1.6.7"
 
 -- Get Font
 function FojjiCore:GetFontFromAura(auraName)

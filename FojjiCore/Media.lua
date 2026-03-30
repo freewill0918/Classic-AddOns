@@ -111,6 +111,8 @@ LSM:Register("sound", "fojjiMeme |cFFFF0000TetsuDeadActually|r", [[Interface\Add
 LSM:Register("sound", "fojjiMeme |cFFFF0000JoardeeLosingMyMind|r", [[Interface\Addons\FojjiCore\sound\JoardeeLosingMyMind.ogg]])
 LSM:Register("sound", "fojjiMeme |cFFFF0000JoardeeImAFuckingGamer|r", [[Interface\Addons\FojjiCore\sound\JoardeeImAFuckingGamer.ogg]])
 LSM:Register("sound", "fojjiMeme |cFFFF0000JoardeeMassiveThingOnAss|r", [[Interface\Addons\FojjiCore\sound\JoardeeMassiveThingOnAss.ogg]])
+LSM:Register("sound", "fojjiMeme |cFFFF0000Run|r", [[Interface\Addons\FojjiCore\sound\Run.ogg]])
+LSM:Register("sound", "fojjiMeme |cFFFF0000ShadeChant|r", [[Interface\Addons\FojjiCore\sound\ShadeChant.ogg]])
 
 -- -----
 --   STATUSBAR

@@ -1,16 +1,22 @@
-local AddOnName, XIVBar = ...;
+---@class XIVBar
+local XIVBar = select(2, ...);
 local _G = _G;
 local xb = XIVBar;
 local L = XIVBar.L;
+local compat = xb.compat
+local features = compat.features and compat.features.microMenu or {}
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 
 local MenuModule = xb:NewModule("MenuModule", 'AceEvent-3.0')
 
 function MenuModule:GetName()
-    return L['Micromenu'];
+    return L["MICROMENU"];
 end
 
+local TitleIconVersion_Small = Enum.TitleIconVersion and Enum.TitleIconVersion.Small
+
 function MenuModule:OnInitialize()
-    self.LTip = LibStub('LibQTip-1.0')
+    self.LTip = LibStub('LibQTip-2.0')
     self.mediaFolder = xb.constants.mediaPath .. 'microbar\\'
     self.icons = {}
     self.modifiers = {SHIFT_KEY_TEXT, ALT_KEY_TEXT, CTRL_KEY_TEXT}
@@ -18,6 +24,7 @@ function MenuModule:OnInitialize()
     self.text = {}
     self.bgTexture = {}
     self.functions = {}
+    self.guildMotd = nil
     self.menuWidth = 0
     self.iconSize = xb:GetHeight();
     self:CreateClickFunctions()
@@ -32,74 +39,106 @@ function MenuModule:OnInitialize()
             text = BNET_CLIENT_APP
         },
         W3 = {
-            text = L['Warcraft 3 Reforged']
+            text = 'Warcraft 3 Reforged'
         },
         WoW = {
-            text = ''
+            text = CINEMATIC_NAME_1
         },
         GRY = {
-            text = L['Warcraft Arclight Rumble']
+            text = 'Warcraft Arclight Rumble'
         },
         S1 = {
-            text = L['Starcraft Remastered']
+            text = 'Starcraft Remastered'
         },
         S2 = {
-            text = L['Starcraft 2']
+            text = 'Starcraft 2'
         },
         OSI = {
-            text = L['Diablo II: Resurrected']
+            text = 'Diablo II: Resurrected'
         },
         D3 = {
-            text = L['Diablo 3']
+            text = 'Diablo 3'
         },
-		Fen = {
-			text = L['Diablo 4']
-		},
+        Fen = {
+            text = 'Diablo 4'
+        },
         ANBS = {
-            text = L['Diablo Immortal']
+            text = 'Diablo Immortal'
         },
-		
         WTCG = {
-            text = L['Hearthstone']
+            text = 'Hearthstone'
         },
         Hero = {
-            text = L['Heroes of the Storm']
+            text = 'Heroes of the Storm'
         },
         Pro = {
-            text = L['Overwatch']
+            text = 'Overwatch'
         },
         DST2 = {
-            text = L['Destiny 2']
+            text = 'Destiny 2'
         },
         VIPR = {
-            text = L['Call of Duty: BO4']
+            text = 'Call of Duty: BO4'
         },
         ODIN = {
-            text = L['Call of Duty: MW']
+            text = 'Call of Duty: MW'
         },
         LAZR = {
-            text = L['Call of Duty: MW2']
+            text = 'Call of Duty: MW2'
         },
         AUKS = {
-            text = L['Call of Duty: MW2']
+            text = 'Call of Duty: MW2'
         },
         ZEUS = {
-            text = L['Call of Duty: BOCW']
+            text = 'Call of Duty: BOCW'
         },
         FORE = {
-            text = L['Call of Duty: Vanguard']
+            text = 'Call of Duty: Vanguard'
         },
         RTRO = {
-            text = L['Blizzard Arcade Collection']
+            text = 'Blizzard Arcade Collection'
         },
         WLBY = {
-            text = L['Crash Bandicoot 4']
+            text = 'Crash Bandicoot 4'
         }
     }
+
+    local buttonEntries = {
+        { key = 'menu',   binding = 'TOGGLEGAMEMENU',         label = MAINMENU_BUTTON },
+        { key = 'chat',   binding = 'TOGGLECHATMENU',         label = CHAT_MENU },
+        { key = 'guild',  binding = 'TOGGLEGUILD',            label = GUILD },
+        { key = 'social', binding = 'TOGGLESOCIAL',           label = SOCIAL_LABEL },
+        { key = 'char',   binding = 'TOGGLECHARACTER0',       label = CHARACTER_BUTTON },
+        { key = 'spell',  binding = 'TOGGLESPELLBOOK',        label = SPELLBOOK },
+        { key = 'talent', binding = 'TOGGLETALENTS',          label = TALENTS_BUTTON },
+        { key = 'ach',    binding = 'TOGGLEACHIEVEMENT',      label = ACHIEVEMENTS,        feature = features.achievements },
+        { key = 'quest',  binding = 'TOGGLEQUESTLOG',         label = QUEST_LOG },
+        { key = 'lfg',    binding = 'TOGGLEGROUPFINDER',      label = DUNGEONS_BUTTON },
+        { key = 'journal',binding = 'TOGGLEENCOUNTERJOURNAL', label = ADVENTURE_JOURNAL,   feature = features.journal },
+        { key = 'pvp',    binding = 'TOGGLECHARACTER4',       label = PLAYER_V_PLAYER },
+        { key = 'pet',    binding = 'TOGGLECOLLECTIONS',      label = COLLECTIONS,         feature = features.pet },
+        { key = 'shop',   binding = 'TOGGLESTORE',            label = BLIZZARD_STORE,      feature = features.shop },
+        { key = 'help',   binding = 'TOGGLEHELP',             label = HELP_BUTTON },
+    }
+
+    self.buttonInfo = {}
+    for _, info in ipairs(buttonEntries) do
+        if info.feature == nil or info.feature then
+            table.insert(self.buttonInfo, info)
+        end
+    end
+
+    -- Build helpers
+    self.buttonOrder = {}
+    self.buttonInfoByKey = {}
+    for _, info in ipairs(self.buttonInfo) do
+        self.buttonOrder[#self.buttonOrder+1] = info.key
+        self.buttonInfoByKey[info.key] = info
+    end
 end
 
 -- Skin Support for ElvUI/TukUI
--- Make sure to disable "Tooltip" in the Skins section of ElvUI together with 
+-- Make sure to disable "Tooltip" in the Skins section of ElvUI together with
 -- unchecking "Use ElvUI for tooltips" in XIV options to not have ElvUI fuck with tooltips
 function MenuModule:SkinFrame(frame, name)
     if xb.db.profile.general.useElvUI and (IsAddOnLoaded('ElvUI') or IsAddOnLoaded('Tukui')) then
@@ -112,14 +151,93 @@ function MenuModule:SkinFrame(frame, name)
 
         local close = _G[name .. "CloseButton"] or frame.CloseButton
         if close and close.SetAlpha then
-            if ElvUI then
-                ElvUI[1]:GetModule('Skins'):HandleCloseButton(close)
+            if _G.ElvUI then
+                _G.ElvUI[1]:GetModule('Skins'):HandleCloseButton(close)
             end
 
-            if Tukui and Tukui[1] and Tukui[1].SkinCloseButton then
-                Tukui[1].SkinCloseButton(close)
+            if _G.Tukui and _G.Tukui[1] and _G.Tukui[1].SkinCloseButton then
+                _G.Tukui[1].SkinCloseButton(close)
             end
             close:SetAlpha(1)
+        end
+    end
+end
+
+function MenuModule:ToggleBlizzardMicroMenu(force)
+    local hide = xb.db.profile.modules.microMenu.disableBlizzardMicroMenu
+    if force ~= nil then
+        hide = force
+    end
+
+    if InCombatLockdown() then
+        self:RegisterEvent('PLAYER_REGEN_ENABLED', function()
+            self:ToggleBlizzardMicroMenu(force)
+            self:UnregisterEvent('PLAYER_REGEN_ENABLED')
+        end)
+        return
+    end
+
+    self.hiddenByXIV = self.hiddenByXIV or {}
+
+    local frames = {
+        _G.MicroMenuContainer,
+        _G.MainMenuBarMicroButtons,
+        _G.MicroButtonAndBagsBar,
+    }
+
+    for _, frame in ipairs(frames) do
+        if frame then
+            if hide then
+                if frame:IsShown() then
+                    frame:Hide()
+                    self.hiddenByXIV[frame] = true
+                end
+            else
+                if self.hiddenByXIV[frame] then
+                    frame:Show()
+                    self.hiddenByXIV[frame] = nil
+                end
+            end
+        end
+    end
+
+    local keepQueueStatus = xb.db.profile.modules.microMenu.keepQueueStatusIcon
+    local queueButton = _G.QueueStatusButton
+    if queueButton then
+        if not self.queueStatusOriginalParent then
+            self.queueStatusOriginalParent = queueButton:GetParent()
+            self.queueStatusOriginalPoint = {queueButton:GetPoint(1)}
+        end
+        if hide and keepQueueStatus then
+            if not self.queueStatusOriginalParent then
+                self.queueStatusOriginalParent = queueButton:GetParent()
+                self.queueStatusOriginalPoint = {queueButton:GetPoint(1)}
+            end
+
+            local left, bottom = queueButton:GetLeft(), queueButton:GetBottom()
+
+            queueButton:SetParent(UIParent)
+            queueButton:ClearAllPoints()
+            if left and bottom then
+                queueButton:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", left, bottom)
+            elseif self.queueStatusOriginalPoint and self.queueStatusOriginalPoint[1] then
+                queueButton:SetPoint(unpack(self.queueStatusOriginalPoint))
+            end
+        elseif hide and not keepQueueStatus then
+            if self.queueStatusOriginalParent then
+                queueButton:SetParent(self.queueStatusOriginalParent)
+                if self.queueStatusOriginalPoint and self.queueStatusOriginalPoint[1] then
+                    queueButton:ClearAllPoints()
+                    queueButton:SetPoint(unpack(self.queueStatusOriginalPoint))
+                end
+            end
+            queueButton:Hide()
+        elseif not hide and self.queueStatusOriginalParent then
+            queueButton:SetParent(self.queueStatusOriginalParent)
+            if self.queueStatusOriginalPoint and self.queueStatusOriginalPoint[1] then
+                queueButton:ClearAllPoints()
+                queueButton:SetPoint(unpack(self.queueStatusOriginalPoint))
+            end
         end
     end
 end
@@ -129,11 +247,12 @@ function MenuModule:OnEnable()
         return;
     end
     if self.microMenuFrame == nil then
-        self.microMenuFrame = CreateFrame("FRAME", L['Micromenu'], xb:GetFrame('bar'))
+        self.microMenuFrame = CreateFrame("FRAME", L["MICROMENU"], xb:GetFrame('bar'))
         xb:RegisterFrame('microMenuFrame', self.microMenuFrame)
     end
 
     self.microMenuFrame:Show()
+    self:ToggleBlizzardMicroMenu()
 
     if not self.frames.menu then
         self:CreateFrames()
@@ -145,6 +264,7 @@ end
 
 function MenuModule:OnDisable()
     self.microMenuFrame:Hide()
+    self:ToggleBlizzardMicroMenu(false)
     self:UnregisterFrameEvents()
     xb:Refresh()
 end
@@ -155,9 +275,9 @@ function MenuModule:Refresh()
         return;
     end
 
-    if self.frames.menu == nil then
-        return;
-    end
+    self:ToggleBlizzardMicroMenu()
+
+    if not next(self.frames) then return end
 
     if InCombatLockdown() then
         self:RegisterEvent('PLAYER_REGEN_ENABLED', function()
@@ -167,27 +287,36 @@ function MenuModule:Refresh()
         return
     end
 
+    self:ApplyCombatState()
+
     -- get the user's designated modifier for the social and guild tooltip hover function
     self.modifier = self.modifiers[xb.db.profile.modules.microMenu.modifierTooltip]
 
     self.iconSize = xb:GetHeight()
 
-    local colors = xb.db.profile.color
-    local totalWidth = 0;
-    for name, frame in pairs(self.frames) do
-        self:IconDefaults(name)
-        if name == 'menu' then
-            frame:SetPoint("LEFT", xb.db.profile.modules.microMenu.iconSpacing, 0)
-            totalWidth = totalWidth + frame:GetWidth() + xb.db.profile.modules.microMenu.iconSpacing
-        elseif frame:GetParent():GetName() == 'menu' then
-            frame:SetPoint("LEFT", frame:GetParent(), "RIGHT", xb.db.profile.modules.microMenu.mainMenuSpacing, 0)
-            totalWidth = totalWidth + frame:GetWidth() + xb.db.profile.modules.microMenu.mainMenuSpacing
-        else
-            frame:SetPoint("LEFT", frame:GetParent(), "RIGHT", xb.db.profile.modules.microMenu.iconSpacing, 0)
-            totalWidth = totalWidth + frame:GetWidth() + xb.db.profile.modules.microMenu.iconSpacing
+    local mm = xb.db.profile.modules.microMenu
+    local totalWidth, prev = 0, nil
+    for _, key in ipairs(self.buttonOrder) do
+        local frame = self.frames[key]
+        if frame then
+            self:IconDefaults(key)
+            if not prev then
+                frame:SetPoint("LEFT", mm.iconSpacing, 0)
+                totalWidth = totalWidth + frame:GetWidth() + mm.iconSpacing
+            else
+                local spacing = (prev == self.frames.menu) and mm.mainMenuSpacing or mm.iconSpacing
+                frame:SetPoint("LEFT", prev, "RIGHT", spacing, 0)
+                totalWidth = totalWidth + frame:GetWidth() + spacing
+            end
+            prev = frame
         end
     end
-    self.microMenuFrame:SetPoint("LEFT", xb.db.profile.general.barPadding, 0)
+
+    if not xb:ApplyModuleFreePlacement('microMenu', self.microMenuFrame) then
+        self.microMenuFrame:ClearAllPoints()
+        self.microMenuFrame:SetPoint("LEFT", xb.db.profile.general.barPadding, 0)
+    end
+
     self.microMenuFrame:SetSize(totalWidth, xb:GetHeight())
 
     for name, frame in pairs(self.text) do
@@ -218,149 +347,182 @@ function MenuModule:UpdateMenu()
 end
 
 function MenuModule:CreateFrames()
-    parentFrame = xb:GetFrame('microMenuFrame')
+    local parentFrame = xb:GetFrame('microMenuFrame')
     local mm = xb.db.profile.modules.microMenu
+    self.actionTypes = {}
+    local buttons = {
+        {
+            key = 'menu',
+            frameName = 'XIVBar_MenuButton',
+        },
+        {
+            key = 'chat', frameName = 'XIVBar_ChatButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            micro = ChatFrameMenuButton,
+        },
+        {
+            key = 'guild', frameName = 'XIVBar_GuildButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            micro = GuildMicroButton,
+            extra = function(frame)
+                self.text.guild = frame:CreateFontString(nil, 'OVERLAY')
+                self.bgTexture.guild = frame:CreateTexture(nil, 'OVERLAY')
+            end
+        },
+        {
+            key = 'social', frameName = 'XIVBar_SocialButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            micro = FriendsMicroButton,
+            extra = function(frame)
+                self.text.social = frame:CreateFontString(nil, 'OVERLAY')
+                self.bgTexture.social = frame:CreateTexture(nil, 'OVERLAY')
+            end
+        },
+        {
+            key = 'char', frameName = 'XIVBar_CharacterButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            micro = CharacterMicroButton,
+        },
+        {
+            key = 'spell', frameName = 'XIVBar_SpellButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            micro = SpellbookMicroButton,
+        },
+        {
+            key = 'talent', frameName = 'XIVBar_TalentButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            micro = TalentMicroButton,
+        },
+        {
+            key = 'ach', frameName = 'XIVBar_AchievementButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            micro = AchievementMicroButton,
+        },
+        {
+            key = 'quest', frameName = 'XIVBar_QuestButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            micro = QuestLogMicroButton,
+        },
+        {
+            key = 'lfg', frameName = 'XIVBar_LFGButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            macro = "/click LFDMicroButton\n/click PVEFrameTab1",
+        },
+        {
+            key = 'journal', frameName = 'XIVBar_JournalButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            micro = EJMicroButton,
+        },
+        {
+            key = 'pvp', frameName = 'XIVBar_PVPButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            macro = "/click LFDMicroButton\n/click PVEFrameTab2",
+        },
+        {
+            key = 'pet', frameName = 'XIVBar_PetButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            micro = CollectionsMicroButton,
+        },
+        {
+            key = 'shop', frameName = 'XIVBar_ShopButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            micro = StoreMicroButton,
+        },
+        {
+            key = 'help', frameName = 'XIVBar_HelpButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            micro = HelpMicroButton,
+        },
+    }
 
-    if mm.menu then
-        self.frames.menu = CreateFrame("BUTTON", "menu", parentFrame)
-        parentFrame = self.frames.menu
-    else
-        if self.frames.menu then
-            self.frames.menu = nil
+    for _, cfg in ipairs(buttons) do
+        local enabled = mm[cfg.key]
+        if enabled then
+            local frame = CreateFrame('BUTTON', cfg.frameName or cfg.key, parentFrame, cfg.template)
+            self.frames[cfg.key] = frame
+
+            local actionType = cfg.macro and 'macro' or (cfg.micro and 'click' or nil)
+
+            if cfg.macro then
+                frame:SetAttribute('*macrotext1', cfg.macro)
+            elseif cfg.micro then
+                frame:SetAttribute('*clickbutton1', cfg.micro)
+            end
+
+            frame:SetAttribute('useOnKeyDown', false)
+            if cfg.setup then cfg.setup(frame) end
+            if cfg.extra then cfg.extra(frame) end
+
+            if actionType then
+                frame:SetAttribute('*type1', actionType)
+                frame:EnableMouse(true)
+                self.actionTypes[cfg.key] = actionType
+                if not mm.combatEn then
+                    RegisterStateDriver(frame, 'combatlock', '[combat] combat; nocombat')
+                    frame:SetAttribute('_onstate-combatlock', string.format([[if newstate == 'combat' then
+                            self:SetAttribute('*type1', nil)
+                            self:EnableMouse(false)
+                        else
+                            self:SetAttribute('*type1', '%s')
+                            self:EnableMouse(true)
+                        end]], actionType))
+                else
+                    UnregisterStateDriver(frame, 'combatlock')
+                end
+            end
+
+            parentFrame = frame
+        else
+            if self.frames[cfg.key] then
+                self.frames[cfg.key] = nil
+            end
+            if cfg.key == 'guild' then
+                self.text.guild = nil
+                self.bgTexture.guild = nil
+            elseif cfg.key == 'social' then
+                self.text.social = nil
+                self.bgTexture.social = nil
+            end
         end
     end
 
-    if (WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC) and mm.chat then -- 經典時期暫時不顯示聊天選單按鈕
-        self.frames.chat = CreateFrame("BUTTON", "chat", parentFrame)
-        parentFrame = self.frames.chat
-    else
-        if self.frames.chat then
-            self.frames.chat = nil
-        end
+    -- Sélection d'onglet sécurisée pour Spell/Talent via PlayerSpellsMicroButton
+    if self.frames.spell then
+        self.frames.spell:HookScript('PostClick', function()
+            self.playerSpellsTargetTab = 3 -- Spellbook
+        end)
+    end
+    if self.frames.talent then
+        self.frames.talent:HookScript('PostClick', function()
+            self.playerSpellsTargetTab = 1 -- Talents
+        end)
+    end
+    if not self.playerSpellsHooked and PlayerSpellsFrame and PlayerSpellsFrame.HookScript then
+        self.playerSpellsHooked = true
+        PlayerSpellsFrame:HookScript('OnShow', function()
+            local tab = self.playerSpellsTargetTab
+            if tab and PlayerSpellsFrame.SetTab then
+                PlayerSpellsFrame:SetTab(tab)
+            end
+        end)
     end
 
-    if mm.guild then
-        self.frames.guild = CreateFrame("BUTTON", "guild", parentFrame)
-        parentFrame = self.frames.guild
-        self.text.guild = self.frames.guild:CreateFontString(nil, 'OVERLAY')
-        self.bgTexture.guild = self.frames.guild:CreateTexture(nil, "OVERLAY")
-    else
-        if self.frames.guild then
-            self.frames.guild = nil
-            self.text.guild = nil
-            self.bgTexture.guild = nil
-        end
+    self:ApplyCombatState()
+end
+
+function MenuModule:ApplyCombatState()
+    local mm = xb.db.profile.modules.microMenu
+    if InCombatLockdown() then
+        self:RegisterEvent('PLAYER_REGEN_ENABLED', function()
+            self:ApplyCombatState()
+            self:UnregisterEvent('PLAYER_REGEN_ENABLED')
+        end)
+        return
     end
 
-    if mm.social then
-        self.frames.social = CreateFrame("BUTTON", "social", parentFrame)
-        parentFrame = self.frames.social
-        self.text.social = self.frames.social:CreateFontString(nil, 'OVERLAY')
-        self.bgTexture.social = self.frames.social:CreateTexture(nil, "OVERLAY")
-    else
-        if self.frames.social then
-            self.frames.social = nil
-            self.text.social = nil
-            self.bgTexture.social = nil
-        end
-    end
-
-    if mm.char then
-        self.frames.char = CreateFrame("BUTTON", "char", parentFrame)
-        parentFrame = self.frames.char
-    else
-        if self.frames.char then
-            self.frames.char = nil
-        end
-    end
-
-    if mm.spell then
-        self.frames.spell = CreateFrame("BUTTON", "spell", parentFrame)
-        parentFrame = self.frames.spell
-    else
-        if self.frames.spell then
-            self.frames.spell = nil
-        end
-    end
-
-    if mm.talent then
-        self.frames.talent = CreateFrame("BUTTON", "talent", parentFrame)
-        parentFrame = self.frames.talent
-    else
-        if self.frames.talent then
-            self.frames.talent = nil
-        end
-    end
-
-    if mm.ach and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
-		self.frames.ach = CreateFrame("BUTTON", "ach", parentFrame)
-		parentFrame = self.frames.ach
-	else
-		if self.frames.ach then
-			self.frames.ach = nil
-		end
-	end
-
-    if mm.quest then
-        self.frames.quest = CreateFrame("BUTTON", "quest", parentFrame)
-        parentFrame = self.frames.quest
-    else
-        if self.frames.quest then
-            self.frames.quest = nil
-        end
-    end
-
-	if mm.lfg and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then	
-		self.frames.lfg = CreateFrame("BUTTON", "lfg", parentFrame)
-		parentFrame = self.frames.lfg
-	else
-		if self.frames.lfg then
-			self.frames.lfg = nil
-		end
-	end
-
-    --   if mm.journal then
-    --     self.frames.journal = CreateFrame("BUTTON", "journal", parentFrame)
-    --     parentFrame = self.frames.journal
-    --   else
-    --     if self.frames.journal then
-    --       self.frames.journal = nil
-    --     end
-    --   end
-
-	if mm.pvp and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
-		self.frames.pvp = CreateFrame("BUTTON", "pvp", parentFrame)
-		parentFrame = self.frames.pvp
-	else
-		if self.frames.pvp then
-			self.frames.pvp = nil
-		end
-	end
-
-	if mm.pet and WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
-		self.frames.pet = CreateFrame("BUTTON", "pet", parentFrame)
-		parentFrame = self.frames.pet
-	else
-		if self.frames.pet then
-			self.frames.pet = nil
-		end
-	end
-
-    if mm.shop then
-        self.frames.shop = CreateFrame("BUTTON", "shop", parentFrame)
-        parentFrame = self.frames.shop
-    else
-        if self.frames.shop then
-            self.frames.shop = nil
-        end
-    end
-
-    if mm.help then
-        self.frames.help = CreateFrame("BUTTON", "help", parentFrame)
-        parentFrame = self.frames.help
-    else
-        if self.frames.help then
-            self.frames.help = nil
+    for name, frame in pairs(self.frames) do
+        local actionType = self.actionTypes and self.actionTypes[name]
+        if frame and actionType then
+            if not mm.combatEn then
+                RegisterStateDriver(frame, 'combatlock', '[combat] combat; nocombat')
+                frame:SetAttribute('_onstate-combatlock', string.format([[if newstate == 'combat' then
+                        self:SetAttribute('*type1', nil)
+                        self:EnableMouse(false)
+                    else
+                        self:SetAttribute('*type1', '%s')
+                        self:EnableMouse(true)
+                    end]], actionType))
+            else
+                UnregisterStateDriver(frame, 'combatlock')
+                frame:SetAttribute('*type1', actionType)
+                frame:EnableMouse(true)
+            end
         end
     end
 end
@@ -375,7 +537,6 @@ function MenuModule:CreateIcons()
 end
 
 function MenuModule:IconDefaults(name)
-    local colors = xb.db.profile.color
     if self.frames[name] == nil then
         return;
     end
@@ -436,9 +597,19 @@ function MenuModule:UnregisterFrameEvents()
     self:UnregisterEvent('FRIENDLIST_UPDATE')
 end
 
+function MenuModule:UpdateGuildMOTD(_, motd)
+    if type(motd) == 'string' and motd ~= '' then
+        self.guildMotd = motd
+    end
+end
+
 -- called on refresh, guild related events and profile changes to social text
-function MenuModule:UpdateGuildText()
+function MenuModule:UpdateGuildText(event)
     local db = xb.db.profile.modules.microMenu -- shortcut to access profile variables
+
+    if not self.text.guild or not self.bgTexture.guild then
+        return
+    end
 
     -- if the guild icon is disabled, don't do anything
     if not db.guild then
@@ -455,7 +626,15 @@ function MenuModule:UpdateGuildText()
     if db.hideSocialText or not db.guild then
         return
     end -- don't do anything if social text or the guild icon are not displayed
-    C_GuildInfo.GuildRoster() -- requests an update to guild roster information from blizzbois
+
+    if event == 'GUILD_ROSTER_UPDATE' and not InCombatLockdown() then
+        local motd = GetGuildRosterMOTD()
+        self.guildMotd = type(motd) == 'string' and motd or nil
+    end
+
+    if not InCombatLockdown() then
+        C_GuildInfo.GuildRoster() -- requests an update to guild roster information from blizzbois
+    end
 
     -- get the number of online guild members and set social text to that number
     local _, onlineMembers = GetNumGuildMembers()
@@ -515,6 +694,7 @@ function MenuModule:DefaultHover(name)
             self.tipHover = (name == 'social')
             self.gtipHover = (name == 'guild')
         end
+        self:ShowButtonTooltip(name)
     end
 end
 
@@ -526,7 +706,80 @@ function MenuModule:DefaultLeave(name)
         if self.icons[name] ~= nil then
             self.icons[name]:SetVertexColor(xb:GetColor('normal'))
         end
+        GameTooltip:Hide()
     end
+end
+
+function MenuModule:GetButtonTooltipText(name)
+    local info = (self.buttonInfoByKey and self.buttonInfoByKey[name]) or (self.buttonInfo and self.buttonInfo[name])
+    if not info or not info.label then return nil end
+    local label, binding = info.label, info.binding
+
+    if binding then
+        local key1, key2 = GetBindingKey(binding)
+        local keys = {}
+        if key1 and key1 ~= '' then keys[#keys+1] = GetBindingText(key1, nil, false) end
+        if key2 and key2 ~= '' then keys[#keys+1] = GetBindingText(key2, nil, false) end
+        if #keys > 0 then
+            return string.format('|cFFFFFFFF%s|r |cFFFFD200(%s)|r', label, table.concat(keys, ' / '))
+        end
+    end
+
+    return string.format('|cFFFFFFFF%s|r', label)
+end
+
+function MenuModule:ShowButtonTooltip(name)
+    if name == 'social' or name == 'guild' then
+        return
+    end
+
+    local frame = self.frames[name]
+    if not frame then
+        return
+    end
+
+    -- Specific tooltip for the Menu item
+    if name == 'menu' then
+        local r, g, b = unpack(xb:HoverColors())
+        local info = self.buttonInfoByKey and self.buttonInfoByKey[name]
+        local keyText
+        if info and info.binding and xb.db.profile.modules.microMenu.showAccessibilityTooltips then
+            local k1, k2 = GetBindingKey(info.binding)
+            local keys = {}
+            if k1 and k1 ~= '' then keys[#keys+1] = GetBindingText(k1, nil, false) end
+            if k2 and k2 ~= '' then keys[#keys+1] = GetBindingText(k2, nil, false) end
+            if #keys > 0 then
+                keyText = table.concat(keys, ' / ')
+            end
+        end
+
+        GameTooltip:SetOwner(frame, 'ANCHOR_' .. xb.miniTextPosition)
+        GameTooltip:ClearLines()
+        local header = '|cFFFFFFFF[|r' .. MAINMENU_BUTTON .. '|cFFFFFFFF]|r'
+        if keyText then
+            header = header .. ' |cFFFFD200(' .. keyText .. ')|r'
+        end
+        GameTooltip:AddLine(header, r, g, b)
+        GameTooltip:AddLine(' ')
+        GameTooltip:AddDoubleLine('<' .. L["LEFT_CLICK"] .. '>', '|cFFFFFFFF' .. MAINMENU_BUTTON .. '|r', r, g, b, 1, 1, 1)
+        GameTooltip:AddDoubleLine('<' .. L["RIGHT_CLICK"] .. '>', '|cFFFFFFFF' .. ADDONS .. '|r', r, g, b, 1, 1, 1)
+        GameTooltip:AddDoubleLine('<' .. SHIFT_KEY_TEXT .. '+' .. L["RIGHT_CLICK"] .. '>', '|cFFFFFFFF' .. RELOADUI .. '|r', r, g, b, 1, 1, 1)
+        GameTooltip:Show()
+        return
+    end
+
+    if not xb.db.profile.modules.microMenu.showAccessibilityTooltips then
+        return
+    end
+
+    local text = self:GetButtonTooltipText(name)
+    if not text then
+        return
+    end
+    GameTooltip:SetOwner(frame, 'ANCHOR_' .. xb.miniTextPosition)
+    GameTooltip:ClearLines()
+    GameTooltip:AddLine(text)
+    GameTooltip:Show()
 end
 
 function MenuModule:SocialHover(hoverFunc)
@@ -546,13 +799,15 @@ function MenuModule:SocialHover(hoverFunc)
         end
 
         -- if the social tooltip already exists, deletus fetus it
-        if self.LTip:IsAcquired("SocialToolTip") then
-            self.LTip:Release(self.LTip:Acquire("SocialToolTip"))
+        if self.LTip:IsAcquiredTooltip("SocialToolTip") then
+            local existingTooltip = self.LTip:AcquireTooltip("SocialToolTip", 2, "LEFT", "RIGHT")
+            self.LTip:ReleaseTooltip(existingTooltip)
         end
 
         -- declare our LTip tooltip with 2 columns and mouse interaction when hovering/leaving/updating the tooltip
-        local tooltip = self.LTip:Acquire("SocialToolTip", 2, "LEFT", "RIGHT")
+        local tooltip = self.LTip:AcquireTooltip("SocialToolTip", 2, "LEFT", "RIGHT")
         tooltip:EnableMouse(true)
+        xb:RegisterMouseoverHoldFrame(tooltip, true)
         tooltip:SetScript("OnEnter", function()
             self.tipHover = true
         end)
@@ -561,7 +816,7 @@ function MenuModule:SocialHover(hoverFunc)
         end)
         tooltip:SetScript("OnUpdate", function()
             if not self.tipHover and not self.lineHover then
-                tooltip:Release()
+                self.LTip:ReleaseTooltip(tooltip)
             end
         end)
         MenuModule:SkinFrame(tooltip, "SocialToolTip")
@@ -573,220 +828,163 @@ function MenuModule:SocialHover(hoverFunc)
 
         -- ties the 'Social' and '<Left-Click>' etc. in the tooltip to the addon's hovercolors
         local r, g, b = unpack(xb:HoverColors())
+        local socialKey
+        if xb.db.profile.modules.microMenu.showAccessibilityTooltips then
+            local info = self.buttonInfoByKey and self.buttonInfoByKey.social
+            if info and info.binding then
+                local k1, k2 = GetBindingKey(info.binding)
+                local keys = {}
+                if k1 and k1 ~= '' then keys[#keys+1] = GetBindingText(k1, nil, false) end
+                if k2 and k2 ~= '' then keys[#keys+1] = GetBindingText(k2, nil, false) end
+                if #keys > 0 then
+                    socialKey = '|cFFFFD200(' .. table.concat(keys, ' / ') .. ')|r'
+                end
+            end
+        end
 
         -- if any friends are online add the [Social] section and an empty line to the tooltip
         if (totalOnlineFriends + totalBNOnlineFriends) > 0 then
             tooltip:SmartAnchorTo(MenuModule.frames.social)
-            tooltip:AddHeader('|cFFFFFFFF[|r' .. SOCIAL_LABEL .. '|cFFFFFFFF]|r')
-            tooltip:SetCellTextColor(1, 1, r, g, b, 1)
-            tooltip:AddLine(' ', ' ')
+            local headerText = '|cFFFFFFFF[|r' .. SOCIAL_LABEL .. '|cFFFFFFFF]|r'
+            if socialKey then
+                headerText = headerText .. ' ' .. socialKey
+            end
+            local headerRow = tooltip:AddHeadingRow(headerText)
+            headerRow:SetTextColor(r, g, b, 1)
+            tooltip:AddRow(' ', ' ')
         end
-		
-		-- 名字顯示職業顏色用的對照表
-		local colorHex
-		local classLocTable = {
-			["死亡騎士"] = "DEATHKNIGHT",
-			["惡魔獵人"] = "DEMONHUNTER",
-			["德魯伊"] = "DRUID",
-			["喚能師"] = "EVOKER",
-			["獵人"] = "HUNTER",
-			["法師"] = "MAGE",
-			["武僧"] = "MONK",
-			["聖騎士"] = "PALADIN",
-			["牧師"] = "PRIEST",
-			["盜賊"] = "ROGUE",
-			["薩滿"] = "SHAMAN",
-			["術士"] = "WARLOCK",
-			["戰士"] = "WARRIOR",
-		}
-		
-		-- 我目前正在玩的魔獸版本
-		-- local myWowProjectID = WOW_PROJECT_MISTS_CLASSIC
-		-- local _, _, _, buildInfo = GetBuildInfo()
-		-- if (buildInfo < 20000) then
-		-- 	myWowProjectID = WOW_PROJECT_CLASSIC
-		-- end
 
-        -- 戰網好友
-		-- executes if there are any online bnet friends
-        -- totalBNOnlineFriends = nil
+        -- executes if there are any online bnet friends
         if totalBNOnlineFriends then
             -- iterate through every bnet friend - get their info and add the friend as an interactable line in the tooltip
             for i = 1, BNGetNumFriends() do
                 local friendAccInfo = C_BattleNet.GetFriendAccountInfo(i)
-                -- local gameAccount = friendAccInfo.gameAccountInfo
+                if friendAccInfo then
+                    local gameAccount = friendAccInfo.gameAccountInfo
 
-                -- executes if the friend is online
-                if friendAccInfo and friendAccInfo.gameAccountInfo.isOnline then
-					local gameAccount = friendAccInfo.gameAccountInfo
-                    -- if the friend has no battle tag, set it to 'No Tag'
-                    if not friendAccInfo.battleTag then
-                        friendAccInfo.battleTag = '[' .. L['No Tag'] .. ']'
-                    end
-
-                    local charName = gameAccount.characterName -- gets the friend's character name
-                    local gameClient = gameAccount.clientProgram -- the application that the friend is online with - can be any game or 'App'/'Mobile'
-                    local realmName = gameAccount.realmName -- gets the realm name the friend's char is on
-                    local faction = gameAccount.factionName -- gets the friend's currently logged in char's faction
-                    local zone = ""
-                    if (gameAccount.areaName) then
-                        zone = gameAccount.areaName -- zone name to be displayed when the friend is playing retail WoW
-                    end
-                    local richPresence = gameAccount.richPresence -- rich presence is used here to determine whether a friend logged into WoW is playing classic
-                    local isWoW = false -- tracks whether the friend is playing WoW or not, default being that the friend isn't
-                    local isClassic = false -- tracks whether the friend is logged into classic or not, default being that the friend isn't
-                    local statusIcon = FRIENDS_TEXTURE_ONLINE -- get icon for online friends, might later be changed to afk/dnd icons
-                    local socialIcon = BNet_GetClientEmbeddedAtlas(gameClient, 16) -- get icon for the friend's application
-                    local gameName = MenuModule.socialIcons[gameClient].text -- name of the application the friend is currently using - can be any game or 'App'/'Mobile'
-                    local note = friendAccInfo.note -- note of the friend, if there is no note it's an empty string
-                    local charNameFormat = '' -- format in which the friend's character is displayed - is '' if not playing WoW, 'Char - Realm' or 'FACTION - Char' if playing WoW
-
-                    -- 遊戲圖示
-					if faction and gameAccount.wowProjectID == WOW_PROJECT_ID then
-						socialIcon = "|TInterface\\FriendsFrame\\PlusManz-"..faction..":16|t"
-					else
-						if C_Texture.IsTitleIconTextureReady(gameAccount.clientProgram, Enum.TitleIconVersion.Small) then
-							C_Texture.GetTitleIconTexture(gameAccount.clientProgram, Enum.TitleIconVersion.Small, function(success, texture)
-								if success then
-									socialIcon = BNet_GetClientEmbeddedTexture(texture, 32, 32, 0).." ";
-								end
-							end);
-						end
-					end
-
-					-- if the friend is afk, set the icon left to the friend's name to afk
-                    if friendAccInfo.isAFK or gameAccount.isGameAFK then
-                        statusIcon = FRIENDS_TEXTURE_AFK
-                    end
-                    -- if the friend is set to 'do not disturb', set the icon left to the friend's name to dnd
-                    if friendAccInfo.isDND or gameAccount.isGameBusy then
-                        statusIcon = FRIENDS_TEXTURE_DND
-                    end
-                    -- if the friend has a note, color and display it
-                    if note ~= '' then
-                        note = "(|cffecd672" .. note .. "|r)"
-                    end
-
-                    -- if the friend is playing World of Warcraft - note that this is true for both retail and classic. yes, blizzard is retarded.
-                    if gameClient == BNET_CLIENT_WOW then
-                        --[[
-						isWoW = true
-                        isClassic = true
-                        -- checks if the friend is logged into classic or retail
-                        if not richPresence:find(L['Classic']) then
-                            isClassic = false
-                            -- friend is playing retail WoW and is of the same faction as the player, or faction is nil which for some reason happens sometimes
-                        elseif (not faction) or (faction == playerFaction) then
-                            charNameFormat = "(|cffecd672" .. (charName or L['No Info']) .. "-" ..
-                                                 (realmName or L['No Info']) .. "|r)"
-                            -- friend is playing retail WoW but is playing on the player's opposite faction
-                        else
-                            local factionColors = {
-                                ['Alliance'] = "ff008ee8",
-                                ['Horde'] = "ffc80000"
-                            }
-                            charNameFormat = "(|c" .. factionColors[faction] .. L[faction] .. "|r - |cffecd672" ..
-                                                 (charName or L['No Info']) .. "|r)"
+                    -- executes if the friend is online
+                    if gameAccount.isOnline then
+                        -- if the friend has no battle tag, set it to 'No Tag'
+                        if not friendAccInfo.battleTag then
+                            friendAccInfo.battleTag = '[' .. L["NO_TAG"] .. ']'
                         end
-						--]]
-						
-						-- 名字顯示職業顏色
-						local className = gameAccount.className
-						local characterLevel = gameAccount.characterLevel
-						
-						colorHex = "ffffffff"
-						if classLocTable[className] then
-							colorHex = RAID_CLASS_COLORS[classLocTable[className]].colorStr
-						end
-						if characterLevel == 0 then
-							characterLevel = UNKNOWN
-						end
-						
-						charNameFormat = characterLevel.." |c"..colorHex..charName
-						
-						if realmName then 
-							charNameFormat = charNameFormat.."-"..realmName.."|r"
-						end
-						if (zone and zone ~= '') then
-							zone = "@"..zone
-						else
-							zone = ''
-						end
-						
-						-- if gameAccount.wowProjectID == 2 then
-						--	zone = zone .. L["Classic"]
-							-- isClassic = true
-						-- end
-						
-						charNameFormat = charNameFormat.." |cff999999"..zone.."|r"
-						
-                    end
 
-                    -- clientsList contains all game related clients a bnet friend can have - being on mobile or just in the app is excluded from this list
-                    -- local clientsList = {BNET_CLIENT_WOW, BNET_CLIENT_SC2, BNET_CLIENT_D3, BNET_CLIENT_FEN,
-                    --                     BNET_CLIENT_WTCG, BNET_CLIENT_HEROES, BNET_CLIENT_OVERWATCH, BNET_CLIENT_SC,
-                    --                     BNET_CLIENT_DESTINY2, BNET_CLIENT_COD, BNET_CLIENT_COD_MW, BNET_CLIENT_COD_MW2,
-                    --                     BNET_CLIENT_COD_BOCW, BNET_CLIENT_WC3}
-
-                    -- set up tooltip line for the friend unless he's not logged into a game and 'hide bnet app friends' is true
-                    -- if tContains(clientsList, gameClient) or not xb.db.profile.modules.microMenu.hideAppContact then
-					-- 隱藏戰網 app 或其他遊戲好友
-					if ((not xb.db.profile.modules.microMenu.hideAppContact) and (not xb.db.profile.modules.microMenu.hideOtherGameContact)) -- 戰網和其他遊戲都不隱藏
-						or ((xb.db.profile.modules.microMenu.hideAppContact) and (not xb.db.profile.modules.microMenu.hideOtherGameContact) and ((gameClient ~= "App") and (gameClient ~= "BSAp"))) -- 只隱藏戰網
-						or ((not xb.db.profile.modules.microMenu.hideAppContact) and (xb.db.profile.modules.microMenu.hideOtherGameContact) and ((gameClient == "App") or (gameClient == "BSAp") or (gameAccount.wowProjectID == WOW_PROJECT_ID))) -- 只隱藏其他遊戲
-						or ((xb.db.profile.modules.microMenu.hideAppContact) and (xb.db.profile.modules.microMenu.hideOtherGameContact) and (gameAccount.wowProjectID == WOW_PROJECT_ID)) then -- 戰網和其他遊戲都隱藏
-                        -- lineLeft displays status icon, bnet name and the friend's note
-                        -- local lineLeft = string.format("|T%s:16|t|cff82c5ff %s|r %s", statusIcon,
-                        --    friendAccInfo.accountName, note)
-                        -- local lineRight = ''
-
-                        -- friend is not playing wow, format is "GameName [Icon]"
-                        -- if not isWoW then
-                        --    lineRight = string.format("%s %s", gameName, socialIcon)
-                            -- friend is playing classic WoW, format is "WoW Classic [Icon]"
-                        -- elseif isClassic then
-                        --    lineRight = string.format("%s %s %s", charNameFormat, zone, socialIcon)
-                            -- friend is playing retail WoW, format is "(Name-Realm) Zone [Icon]"
-                        -- else
-                        --    lineRight = string.format("%s %s", "Retail - " .. richPresence, socialIcon)
-                        -- end
-
-						local lineLeft = string.format("|T%s:16|t %s", statusIcon, charNameFormat)
-						local lineRight = string.format("%s |cff82c5ff%s|r %s %s", note, friendAccInfo.battleTag, gameName, socialIcon)
-
-                        -- add left and right line to the tooltip
-                        tooltip:AddLine(lineLeft, lineRight)
-                        -- set up mouse events when the player hovers over/clicks on/leaves the friend's line in the tooltip
-                        tooltip:SetLineScript(tooltip:GetLineCount(), "OnEnter", function()
-                            self.lineHover = true
-                        end)
-                        tooltip:SetLineScript(tooltip:GetLineCount(), "OnLeave", function()
-                            self.lineHover = false
-                        end)
-                        tooltip:SetLineScript(tooltip:GetLineCount(), "OnMouseUp", function(self, _, button)
-                            -- player left clicks on the friend, checks whether a modifier was used or not after
-                            if button == "LeftButton" then
-                                -- player pressed SHIFT/ALT/CTRL when left clicking the friend
-                                if modifierFunc() then
-                                    -- invite to group / raid if possible
-                                    if CanGroupWithAccount(friendAccInfo.bnetAccountID) then
-                                        InviteUnit(charName) -- 暫時修正
-                                        -- InviteToGroup(charName .. "-" .. realmName)
-                                    end
-                                    -- player did not use a modifier when left clicking on the friend, send a bnet whisper
-                                else
-                                    ChatFrame_SendBNetTell(friendAccInfo.accountName)
+                        local clientIcon = ''
+                        if C_Texture.GetTitleIconTexture then
+                            C_Texture.GetTitleIconTexture(gameAccount.clientProgram, TitleIconVersion_Small, function(success, texture)
+                                if success then
+                                    local fullText = _G.BNet_GetValidatedCharacterNameWithClientEmbeddedTexture(gameAccount.characterName, friendAccInfo.battleTag, texture, 32, 32, 16)
+                                    -- Hacky Trick : Extract only the icon part (first part before any character name)
+                                    clientIcon = fullText:match("(|T.-|t)")
                                 end
+                            end)
+                        end
 
-                                -- player right clicked on the friend, send an ingame whisper if the player is not playing classic or of the opposite faction
-                            elseif button == "RightButton" then
-                                if (not isClassic and charName and faction == playerFaction) then
-                                    ChatFrame_SendTell(charName .. "-" .. realmName)
-                                end
+                        local charName = gameAccount.characterName -- gets the friend's character name
+                        local gameClient = gameAccount.clientProgram -- the application that the friend is online with - can be any game or 'App'/'Mobile'
+                        local realmName = gameAccount.realmName or gameAccount.richPresence:match("^.-%-%s*(.+)$") -- gets the realm name the friend's char is on
+                        local faction = gameAccount.factionName -- gets the friend's currently logged in char's faction
+                        local zone = gameAccount.areaName or gameAccount.richPresence:match("^(.*)%s%-%s.+$") -- zone name to be displayed when the friend is playing retail WoW
+                        local richPresence = gameAccount.richPresence -- rich presence is used here to determine whether a friend logged into WoW is playing classic
+                        local isWoW = false -- tracks whether the friend is playing WoW or not, default being that the friend isn't
+                        local isClassic = false -- tracks whether the friend is logged into classic or not, default being that the friend isn't
+                        local statusIcon = FRIENDS_TEXTURE_ONLINE -- get icon for online friends, might later be changed to afk/dnd icons
+                        local socialIcon = clientIcon -- get icon for the friend's application
+                        local gameName = MenuModule.socialIcons[gameClient].text -- name of the application the friend is currently using - can be any game or 'App'/'Mobile'
+                        local note = friendAccInfo.note -- note of the friend, if there is no note it's an empty string
+                        local charNameFormat = '' -- format in which the friend's character is displayed - is '' if not playing WoW, 'Char - Realm' or 'FACTION - Char' if playing WoW
+
+                        -- if the friend is afk, set the icon left to the friend's name to afk
+                        if friendAccInfo.isAFK or gameAccount.isGameAFK then
+                            statusIcon = FRIENDS_TEXTURE_AFK
+                        end
+                        -- if the friend is set to 'do not disturb', set the icon left to the friend's name to dnd
+                        if friendAccInfo.isDND or gameAccount.isGameBusy then
+                            statusIcon = FRIENDS_TEXTURE_DND
+                        end
+                        -- if the friend has a note, color and display it
+                        if note ~= '' then
+                            note = "(|cffecd672" .. note .. "|r)"
+                        end
+
+                        -- if the friend is playing World of Warcraft - note that this is true for both retail and classic. yes, blizzard is retarded.
+                        if gameClient == BNET_CLIENT_WOW then
+                            isWoW = true
+                            -- checks if the friend is logged into classic or retail
+                            if richPresence and richPresence:find(L["CLASSIC"]) then
+                                isClassic = true
+                                -- friend is playing retail WoW and is of the same faction as the player, or faction is nil which for some reason happens sometimes
+                            elseif (not faction) or (faction == playerFaction) then
+                                charNameFormat = "(|cffecd672" .. (charName or L["NO_INFO"]) .. "-" ..
+                                                     (realmName or L["NO_INFO"]) .. "|r)"
+                                -- friend is playing retail WoW but is playing on the player's opposite faction
+                            else
+                                local factionColors = {
+                                    ['Alliance'] = "ff008ee8",
+                                    ['Horde'] = "ffc80000"
+                                }
+                                charNameFormat = "(|c" .. factionColors[faction] .. L[faction] .. "|r - |cffecd672" ..
+                                                     (charName or L["NO_INFO"]) .. "|r)"
                             end
-                        end)
-                    end -- optApp
-                end -- isOnline
+                        end
+
+                        -- clientsList contains all game related clients a bnet friend can have - being on mobile or just in the app is excluded from this list
+                        local clientsList = {BNET_CLIENT_WOW, BNET_CLIENT_SC2, BNET_CLIENT_D3, BNET_CLIENT_FEN,
+                                             BNET_CLIENT_WTCG, BNET_CLIENT_HEROES, BNET_CLIENT_OVERWATCH, BNET_CLIENT_SC,
+                                             BNET_CLIENT_DESTINY2, BNET_CLIENT_COD, BNET_CLIENT_COD_MW, BNET_CLIENT_COD_MW2,
+                                             BNET_CLIENT_COD_BOCW, BNET_CLIENT_WC3}
+
+                        -- set up tooltip line for the friend unless he's not logged into a game and 'hide bnet app friends' is true
+                        if tContains(clientsList, gameClient) or not xb.db.profile.modules.microMenu.hideAppContact then
+                            -- lineLeft displays status icon, bnet name and the friend's note
+                            local lineLeft = string.format("|T%s:16|t|cff82c5ff %s|r %s", statusIcon,
+                                friendAccInfo.accountName, note)
+                            local lineRight
+
+                            -- friend is not playing wow, format is "GameName [Icon]"
+                            if not isWoW then
+                                lineRight = string.format("%s %s", gameName, socialIcon)
+                                -- friend is playing classic WoW, format is "WoW Classic [Icon]"
+                            elseif isClassic then
+                                lineRight = string.format("%s %s", richPresence, socialIcon)
+                                -- friend is playing retail WoW, format is "(Name-Realm) Zone [Icon]"
+                            else
+                                lineRight = string.format("%s %s %s", charNameFormat, zone or L["NO_INFO"], socialIcon)
+                            end
+
+                            -- add left and right line to the tooltip
+                            local lineRow = tooltip:AddRow(lineLeft, lineRight)
+                            -- set up mouse events when the player hovers over/clicks on/leaves the friend's line in the tooltip
+                            lineRow:SetScript("OnEnter", function()
+                                self.lineHover = true
+                            end)
+                            lineRow:SetScript("OnLeave", function()
+                                self.lineHover = false
+                            end)
+                            lineRow:SetScript("OnMouseUp", function(_, _, button)
+                                -- player left clicks on the friend, checks whether a modifier was used or not after
+                                if button == "LeftButton" then
+                                    -- player pressed SHIFT/ALT/CTRL when left clicking the friend
+                                    if modifierFunc() then
+                                        -- invite to group / raid if possible
+                                        if CanGroupWithAccount(friendAccInfo.bnetAccountID) then
+                                            C_PartyInfo.InviteUnit(charName .. "-" .. realmName)
+                                            -- InviteToGroup(charName .. "-" .. realmName)
+                                        end
+                                        -- player did not use a modifier when left clicking on the friend, send a bnet whisper
+                                    else
+                                        compat.SendBNetWhisper(friendAccInfo.bnetAccountID, friendAccInfo.accountName)
+                                    end
+                                    -- player right clicked on the friend, send an ingame whisper if the player is not playing classic or of the opposite faction
+                                elseif button == "RightButton" then
+                                    if (not isClassic and charName and faction == playerFaction) then
+                                        ChatFrame_SendTell(charName .. "-" .. realmName)
+                                    end
+                                end
+                            end)
+                        end -- optApp
+                    end -- isOnline
+                end -- friendAccInfo
             end -- for in BNGetNumFriends
         end -- totalBNOnlineFriends
 
@@ -818,15 +1016,15 @@ function MenuModule:SocialHover(hoverFunc)
                     local lineRight = string.format("%s", friendInfo.area)
 
                     -- add left and right line to the tooltip
-                    tooltip:AddLine(lineLeft, lineRight)
+                    local lineRow = tooltip:AddRow(lineLeft, lineRight)
                     -- set up mouse events when the player hovers over/clicks on/leaves the friend's line in the tooltip
-                    tooltip:SetLineScript(tooltip:GetLineCount(), "OnEnter", function()
+                    lineRow:SetScript("OnEnter", function()
                         self.lineHover = true
                     end)
-                    tooltip:SetLineScript(tooltip:GetLineCount(), "OnLeave", function()
+                    lineRow:SetScript("OnLeave", function()
                         self.lineHover = false
                     end)
-                    tooltip:SetLineScript(tooltip:GetLineCount(), "OnMouseUp", function(self, _, button)
+                    lineRow:SetScript("OnMouseUp", function(_, _, button)
                         -- if there is no realm name in the friend's name, the friend is playing on the same realm as the player
                         if not name:find('%u%U*-%u%U') then
                             local homeRealm = GetRealmName()
@@ -839,7 +1037,7 @@ function MenuModule:SocialHover(hoverFunc)
                             ChatFrame_SendTell(name)
                             -- player SHIFT/ALT/CTRL + left clicked on the friend, attempt to invite to group / raid
                         elseif button == "LeftButton" and modifierFunc() then
-                            InviteUnit(name) -- 暫時修正
+                            C_PartyInfo.InviteUnit(name)
                         end
                     end)
                 end -- isOnline
@@ -847,15 +1045,14 @@ function MenuModule:SocialHover(hoverFunc)
         end -- totalOnlineFriends
 
         -- add section under the friends list for (modifiers) + left/right click and what each action does
-        tooltip:AddLine(' ', ' ')
-        tooltip:AddLine('<' .. L['Left-Click'] .. '>', L['Whisper BNet'])
-        tooltip:SetCellTextColor(tooltip:GetLineCount(), 1, r, g, b, 1)
-        tooltip:AddLine('<' .. self.modifier .. '+' .. L['Left-Click'] .. '>', CALENDAR_INVITELIST_INVITETORAID)
-        tooltip:SetCellTextColor(tooltip:GetLineCount(), 1, r, g, b, 1)
-        tooltip:AddLine('<' .. L['Right-Click'] .. '>', L['Whisper Character'])
-        tooltip:SetCellTextColor(tooltip:GetLineCount(), 1, r, g, b, 1)
+        tooltip:AddRow(' ', ' ')
+        local row1 = tooltip:AddRow('<' .. L["LEFT_CLICK"] .. '>', L["WHISPER_BNET"])
+        row1:SetTextColor(r, g, b, 1)
+        local row2 = tooltip:AddRow('<' .. self.modifier .. '+' .. L["LEFT_CLICK"] .. '>', CALENDAR_INVITELIST_INVITETORAID)
+        row2:SetTextColor(r, g, b, 1)
+        local row3 = tooltip:AddRow('<' .. L["RIGHT_CLICK"] .. '>', L["WHISPER_CHARACTER"])
+        row3:SetTextColor(r, g, b, 1)
         -- if any bnet or non-bnet friends are online, set the tooltip to show
-        -- totalBNOnlineFriends = 0   
         if (totalOnlineFriends + totalBNOnlineFriends) > 0 then
             tooltip:Show()
         end
@@ -885,13 +1082,15 @@ function MenuModule:GuildHover(hoverFunc)
         end
 
         -- if the guild tooltip already exists, deletus fetus it
-        if self.LTip:IsAcquired("GuildToolTip") then
-            self.LTip:Release(self.LTip:Acquire("GuildToolTip"))
+        if self.LTip:IsAcquiredTooltip("GuildToolTip") then
+            local existingTooltip = self.LTip:AcquireTooltip("GuildToolTip", 2, "LEFT", "RIGHT")
+            self.LTip:ReleaseTooltip(existingTooltip)
         end
 
         -- declare our LTip tooltip with 2 columns and mouse interaction when hovering/leaving/updating the tooltip
-        local tooltip = self.LTip:Acquire("GuildToolTip", 2, "LEFT", "RIGHT")
+        local tooltip = self.LTip:AcquireTooltip("GuildToolTip", 2, "LEFT", "RIGHT")
         tooltip:EnableMouse(true)
+        xb:RegisterMouseoverHoldFrame(tooltip, true)
         tooltip:SetScript("OnEnter", function()
             self.gtipHover = true
         end)
@@ -900,12 +1099,14 @@ function MenuModule:GuildHover(hoverFunc)
         end)
         tooltip:SetScript("OnUpdate", function()
             if not self.gtipHover and not self.glineHover then
-                tooltip:Release()
+                self.LTip:ReleaseTooltip(tooltip)
             end
         end)
         MenuModule:SkinFrame(tooltip, "GuildToolTip")
 
-        C_GuildInfo.GuildRoster() -- requests an update to guild roster information from blizzbois
+        if not InCombatLockdown() then
+            C_GuildInfo.GuildRoster() -- requests an update to guild roster information from blizzbois
+        end
         tooltip:SmartAnchorTo(MenuModule.frames.guild)
 
         -- ties the 'Guild' and '<Left-Click>' etc. in the tooltip to the addon's hovercolors
@@ -913,54 +1114,60 @@ function MenuModule:GuildHover(hoverFunc)
 
         -- get guild info and create first tooltip line, left is [Guild], right is GuildName
         local gName = GetGuildInfo('player')
-        tooltip:AddHeader('|cFFFFFFFF[|r' .. GUILD .. '|cFFFFFFFF]|r', '|cff00ff00' .. gName .. '|r')
-        tooltip:SetCellTextColor(1, 1, r, g, b, 1)
-        tooltip:SetCellTextColor(1, 2, r, g, b, 1)
-        tooltip:AddLine(' ', ' ')
+        local headerRow = tooltip:AddHeadingRow('|cFFFFFFFF[|r' .. GUILD .. '|cFFFFFFFF]|r', '|cff00ff00' .. gName .. '|r')
+        headerRow:SetTextColor(r, g, b, 1)
+        tooltip:AddRow(' ', ' ')
 
         if xb.db.profile.modules.microMenu.showGMOTD then
-            local motd = GetGuildRosterMOTD()
-            if motd ~= '' then
-                tooltip:AddLine('|cff00ff00' .. motd .. '|r', ' ') -- REVISION LATER: shorten guild motd if too long
+            local motd = self.guildMotd
+            if type(motd) == 'string' and motd ~= '' then
+                tooltip:AddRow('|cff00ff00' .. motd .. '|r', ' ') -- REVISION LATER: shorten guild motd if too long
             end
         end
 
         local totalGuild, _ = GetNumGuildMembers()
         for i = 0, totalGuild do
-            local name, _, _, level, _, zone, note, _, isOnline, status, class, _, _, isMobile, _ =
+            local name, _, _, level, _, zone, note, _, isOnline, status, class, _, _, _, _ =
                 GetGuildRosterInfo(i)
             if isOnline then
-                local colorHex = RAID_CLASS_COLORS[class].colorStr
+                local classColor = class and RAID_CLASS_COLORS[class]
+                local colorHex = classColor and classColor.colorStr or 'ffffffff'
 
-                -- determine afk/dnd/online status of guild members
+                local statusText = ''
                 if status == 1 then
-                    status = DEFAULT_AFK_MESSAGE;
+                    statusText = DEFAULT_AFK_MESSAGE
                 elseif status == 2 then
-                    status = DEFAULT_DND_MESSAGE;
-                else
-                    status = ''
+                    statusText = DEFAULT_DND_MESSAGE
                 end
 
-                -- name given by Blizzard is CharName-RealmName, truncate to CharName
-                local charName = name:match('[^-]+')
+                local charName = name and name:match('[^-]+')
+
+                note = note or ''
+                zone = zone or L["NO_INFO"]
 
                 if note ~= '' then
                     note = '|cffffffff(|r' .. note .. '|cffffffff)|r'
                 end
-                local lineLeft = string.format('%s |c%s%s|r %s |cffecd672%s|r', level, colorHex,
-                    charName or name or L['No Info'], status, note)
-                local lineRight = string.format('%s|cffffffff %s', (isMobile and '|cffffffa0[M]|r ' or ''), zone or '')
-                tooltip:AddLine(lineLeft, lineRight)
-                tooltip:SetLineScript(tooltip:GetLineCount(), 'OnEnter', function()
+
+                local lineLeft = string.format('%s |c%s%s|r %s |cffecd672%s|r',
+                    level or '',
+                    colorHex,
+                    charName or name or L["NO_INFO"],
+                    statusText or '',
+                    note
+                )
+                local lineRight = string.format("|cffffffff%s|r", zone)
+                local lineRow = tooltip:AddRow(lineLeft, lineRight)
+                lineRow:SetScript('OnEnter', function()
                     self.glineHover = true
                 end)
-                tooltip:SetLineScript(tooltip:GetLineCount(), 'OnLeave', function()
+                lineRow:SetScript('OnLeave', function()
                     self.glineHover = false
                 end)
-                tooltip:SetLineScript(tooltip:GetLineCount(), 'OnMouseUp', function(self, _, button)
+                lineRow:SetScript('OnMouseUp', function(_, _, button)
                     if button == 'LeftButton' then
                         if modifierFunc() then
-                            InviteUnit("" .. charName .. "")
+                            C_PartyInfo.InviteUnit(name)
                         else
                             ChatFrame_OpenChat(SLASH_SMART_WHISPER1 .. ' ' .. name .. ' ')
                         end
@@ -969,11 +1176,11 @@ function MenuModule:GuildHover(hoverFunc)
             end
         end
         -- add section under member list for (modifiers) + left/right click and what each section does
-        tooltip:AddLine(' ', ' ')
-        tooltip:AddLine('<' .. L['Left-Click'] .. '>', L['Whisper Character'])
-        tooltip:SetCellTextColor(tooltip:GetLineCount(), 1, r, g, b, 1)
-        tooltip:AddLine('<' .. self.modifier .. '+' .. L['Left-Click'] .. '>', CALENDAR_INVITELIST_INVITETORAID)
-        tooltip:SetCellTextColor(tooltip:GetLineCount(), 1, r, g, b, 1)
+        tooltip:AddRow(' ', ' ')
+        local grow1 = tooltip:AddRow('<' .. L["LEFT_CLICK"] .. '>', L["WHISPER_CHARACTER"])
+        grow1:SetTextColor(r, g, b, 1)
+        local grow2 = tooltip:AddRow('<' .. self.modifier .. '+' .. L["LEFT_CLICK"] .. '>', CALENDAR_INVITELIST_INVITETORAID)
+        grow2:SetTextColor(r, g, b, 1)
         tooltip:Show()
         hoverFunc()
     end
@@ -984,56 +1191,36 @@ function MenuModule:CreateClickFunctions()
         return;
     end
 
-    self.functions.menu = function(self, button, down)
-        if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
+    self.functions.menu = function(_, button, down)
+        if InCombatLockdown() and not xb.db.profile.modules.microMenu.combatEn then
             return;
         end
-        if button == "LeftButton" then
+        if button == "LeftButton" and not InCombatLockdown() then
             ToggleFrame(GameMenuFrame)
         elseif button == "RightButton" then
             if IsShiftKeyDown() then
-                ReloadUI()
+                C_UI.Reload()
             else
+                if InCombatLockdown() then return; end
                 ToggleFrame(AddonList)
             end
-        elseif button == "MiddleButton" then
-            -- ToggleFrame(GameMenuFrame)
-            XIVBar:ToggleConfig()
         end
     end; -- menu
 
-    self.functions.chat = function(self, button, down)
-        if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
+    self.functions.chat = function(_, button, down)
+        if InCombatLockdown() then
             return;
         end
         if button == "LeftButton" then
-            if ChatMenu:IsVisible() then
-                ChatMenu:Hide()
-            else
-                ChatFrame_ToggleMenu()
+            if compat and compat.ToggleChatMenu then
+                compat.ToggleChatMenu()
+            elseif _G.ChatFrameMenuButton and _G.ChatFrameMenuButton.OpenMenu then
+                _G.ChatFrameMenuButton:OpenMenu()
             end
         end
     end; -- chat
 
-    self.functions.guild = function(self, button, down)
-        if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
-            return;
-        end
-        if button == "LeftButton" then
-            ToggleFriendsFrame(3)
-        end
-    end; -- guild
-
-    self.functions.social = function(self, button, down)
-        if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
-            return;
-        end
-        if button == "LeftButton" then
-            ToggleFriendsFrame(1)
-        end
-    end; -- social
-
-    self.functions.char = function(self, button, down)
+    self.functions.char = function(_, button, down)
         if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
             return;
         end
@@ -1041,103 +1228,16 @@ function MenuModule:CreateClickFunctions()
             ToggleCharacter("PaperDollFrame")
         end
     end; -- char
-
-    self.functions.spell = function(self, button, down)
-        if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
-            return;
-        end
-        if button == "LeftButton" then
-            ToggleFrame(SpellBookFrame)
-        end
-    end; -- spell
-
-    self.functions.talent = function(self, button, down)
-        if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
-            return;
-        end
-        if button == "LeftButton" then
-            ToggleTalentFrame()
-        end
-    end; -- talent
-
-    --   self.functions.journal = function(self, button, down)
-    --     if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then return; end
-    --     if button == "LeftButton" then
-    --   		ToggleEncounterJournal()
-    --   	end
-    --   end; --journal
-   
-	self.functions.lfg = function(self, button, down)
-		if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
-			return;
-		end
-		if button == "LeftButton" then
-			PVEFrame_ToggleFrame()
-		end
-	end; -- lfg
-
-	self.functions.pet = function(self, button, down)
-		if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
-			return;
-		end
-		if button == "LeftButton" then
-			-- PetPaperDollFrame_SetTab(3)
-			-- ToggleCharacter("PetPaperDollFrame")
-			ToggleCollectionsJournal()
-		end
-	end; -- pet
-
-	self.functions.ach = function(self, button, down)
-		if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
-			return;
-		end
-		if button == "LeftButton" then
-			ToggleAchievementFrame()
-		end
-	end; -- ach
-
-    self.functions.quest = function(self, button, down)
-        if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
-            return;
-        end
-        if button == "LeftButton" then
-            ToggleQuestLog()
-        end
-    end; -- quest
-
-	self.functions.pvp = function(self, button, down)
-		if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
-			return;
-		end
-		if button == "LeftButton" then
-			TogglePVPFrame()
-		end
-	end; -- pvp
-
-    self.functions.shop = function(self, button, down)
-        if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
-            return;
-        end
-        if button == "LeftButton" then
-            ToggleStoreUI()
-        end
-    end; -- shop
-
-    self.functions.help = function(self, button, down)
-        if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
-            return;
-        end
-        if button == "LeftButton" then
-            ToggleHelpFrame()
-        end
-    end; -- help
 end
 
 function MenuModule:GetDefaultOptions()
     return 'microMenu', {
         enabled = true,
         showTooltips = true,
-        combatEn = true,
+        showAccessibilityTooltips = false,
+        disableBlizzardMicroMenu = false,
+        keepQueueStatusIcon = false,
+        combatEn = false,
         mainMenuSpacing = 2,
         iconSpacing = 2,
         modifierTooltip = 1,
@@ -1151,16 +1251,15 @@ function MenuModule:GetDefaultOptions()
         char = true,
         spell = true,
         talent = true,
-        ach = true,
+        ach = features.achievements and true or false,
         quest = true,
         lfg = true,
-        journal = true,
+        journal = features.journal and true or false,
         pvp = true,
-        pet = true,
-        shop = true,
+        pet = features.pet and true or false,
+        shop = features.shop and true or false,
         help = true,
-        hideAppContact = true,
-        hideOtherGameContact = false
+        hideAppContact = false
     }
 end
 
@@ -1173,6 +1272,7 @@ function MenuModule:GetConfig()
                 name = ENABLE,
                 order = 0,
                 type = "toggle",
+                width = "full",
                 get = function()
                     return xb.db.profile.modules.microMenu.enabled;
                 end,
@@ -1187,7 +1287,7 @@ function MenuModule:GetConfig()
             },
 
             showTooltips = {
-                name = L['Show Social Tooltips'],
+                name = L["SHOW_SOCIAL_TOOLTIPS"],
                 order = 1,
                 type = "toggle",
                 get = function()
@@ -1199,8 +1299,69 @@ function MenuModule:GetConfig()
                 end
             },
 
+            showAccessibilityTooltips = {
+                name = L["SHOW_ACCESSIBILITY_TOOLTIPS"],
+                order = 1.25,
+                type = "toggle",
+                get = function()
+                    return xb.db.profile.modules.microMenu.showAccessibilityTooltips;
+                end,
+                set = function(_, val)
+                    xb.db.profile.modules.microMenu.showAccessibilityTooltips = val;
+                    self:Refresh();
+                end
+            },
+
+            blizzardMicroMenu = {
+                type = "group",
+                name = L["BLIZZARD_MICROMENU"],
+                order = 1.5,
+                inline = true,
+                args = {
+                    disableBlizzardMicroMenu = {
+                        name = L["DISABLE_BLIZZARD_MICROMENU"],
+                        order = 1,
+                        type = "toggle",
+                        width = "full",
+                        get = function()
+                            return xb.db.profile.modules.microMenu.disableBlizzardMicroMenu
+                        end,
+                        set = function(_, val)
+                            xb.db.profile.modules.microMenu.disableBlizzardMicroMenu = val
+                            self:ToggleBlizzardMicroMenu()
+                            self:Refresh()
+                        end
+                    },
+
+                    keepQueueStatusIcon = {
+                        name = L["KEEP_QUEUE_STATUS_ICON"],
+                        order = 2,
+                        type = "toggle",
+                        width = "full",
+                        disabled = function()
+                            return not xb.db.profile.modules.microMenu.disableBlizzardMicroMenu
+                        end,
+                        get = function()
+                            return xb.db.profile.modules.microMenu.keepQueueStatusIcon
+                        end,
+                        set = function(_, val)
+                            xb.db.profile.modules.microMenu.keepQueueStatusIcon = val
+                            self:ToggleBlizzardMicroMenu()
+                            self:Refresh()
+                        end
+                    },
+
+                    blizzardMicroMenuDisclaimer = {
+                        name = "|TInterface\\DialogFrame\\UI-Dialog-Icon-AlertNew:16:16:0:0|t " .. L["BLIZZARD_MICROMENU_DISCLAIMER"],
+                        order = 3,
+                        type = "description",
+                        width = "full"
+                    },
+                }
+            },
+
             appFriendsHide = {
-                name = L["Hide BNet App Friends"],
+                name = L["HIDE_BNET_APP_FRIENDS"],
                 type = "toggle",
                 order = 2,
                 get = function()
@@ -1213,7 +1374,7 @@ function MenuModule:GetConfig()
             },
 
             combatEn = {
-                name = L['Enable in combat'],
+                name = 'Enable in combat',
                 order = 3,
                 type = "toggle",
                 get = function()
@@ -1224,23 +1385,10 @@ function MenuModule:GetConfig()
                     self:Refresh();
                 end
             },
-			
-			otherGameFriendsHide = {
-                name = L["Hide Friends Playing Other Games"] ,
-                type = "toggle",
-                order = 4,
-                get = function()
-                    return xb.db.profile.modules.microMenu.hideOtherGameContact
-                end,
-                set = function(_, val)
-                    xb.db.profile.modules.microMenu.hideOtherGameContact = val;
-                    self:Refresh();
-                end
-            },
 
             mainMenuSpacing = {
-                name = L['Main Menu Icon Right Spacing'],
-                order = 5,
+                name = L["MAIN_MENU_ICON_RIGHT_SPACING"],
+                order = 4,
                 type = "range",
                 min = 2,
                 max = 20,
@@ -1255,8 +1403,8 @@ function MenuModule:GetConfig()
             },
 
             iconSpacing = {
-                name = L['Icon Spacing'],
-                order = 6,
+                name = L["ICON_SPACING"],
+                order = 5,
                 type = "range",
                 min = 2,
                 max = 20,
@@ -1271,9 +1419,9 @@ function MenuModule:GetConfig()
             },
 
             showGMOTD = {
-                name = L["GMOTD in Tooltip"],
+                name = L["GMOTD_IN_TOOLTIP"],
                 type = "toggle",
-                order = 7,
+                order = 6,
                 get = function()
                     return xb.db.profile.modules.microMenu.showGMOTD
                 end,
@@ -1284,8 +1432,8 @@ function MenuModule:GetConfig()
             },
 
             modifierTooltip = {
-                name = L["Modifier for friend invite"],
-                order = 8,
+                name = L["FRIEND_INVITE_MODIFIER"],
+                order = 7,
                 type = "select",
                 values = {SHIFT_KEY_TEXT, ALT_KEY_TEXT, CTRL_KEY_TEXT},
                 style = "dropdown",
@@ -1302,8 +1450,8 @@ function MenuModule:GetConfig()
             },
 
             hideSocialText = {
-                name = L['Hide Social Text'],
-                order = 9,
+                name = L["HIDE_SOCIAL_TEXT"],
+                order = 8,
                 type = "toggle",
                 get = function()
                     return xb.db.profile.modules.microMenu.hideSocialText;
@@ -1315,8 +1463,8 @@ function MenuModule:GetConfig()
             },
 
             osSocialText = {
-                name = L['Social Text Offset'],
-                order = 10,
+                name = L["SOCIAL_TEXT_OFFSET"],
+                order = 9,
                 type = "range",
                 min = 0,
                 max = 20,
@@ -1332,13 +1480,12 @@ function MenuModule:GetConfig()
 
             buttons = {
                 type = 'group',
-                name = L['Show/Hide Buttons'],
-                order = 1,
+                name = L["SHOW_HIDE_BUTTONS"],
+                order = 10,
                 inline = true,
                 args = {
                     menu = {
-                        name = L['Show Menu Button'],
-                        disabled = true,
+                        name = L["SHOW_MENU_BUTTON"],
                         order = 1,
                         type = "toggle",
                         get = function()
@@ -1346,11 +1493,12 @@ function MenuModule:GetConfig()
                         end,
                         set = function(_, val)
                             xb.db.profile.modules.microMenu.menu = val;
+                            self:UpdateMenu();
                             self:Refresh();
                         end
                     },
                     chat = {
-                        name = L['Show Chat Button'],
+                        name = L["SHOW_CHAT_BUTTON"],
                         order = 2,
                         type = "toggle",
                         get = function()
@@ -1363,7 +1511,7 @@ function MenuModule:GetConfig()
                         end
                     },
                     guild = {
-                        name = L['Show Guild Button'],
+                        name = L["SHOW_GUILD_BUTTON"],
                         order = 3,
                         type = "toggle",
                         get = function()
@@ -1376,7 +1524,7 @@ function MenuModule:GetConfig()
                         end
                     },
                     social = {
-                        name = L['Show Social Button'],
+                        name = L["SHOW_SOCIAL_BUTTON"],
                         order = 4,
                         type = "toggle",
                         get = function()
@@ -1389,7 +1537,7 @@ function MenuModule:GetConfig()
                         end
                     },
                     char = {
-                        name = L['Show Character Button'],
+                        name = L["SHOW_CHARACTER_BUTTON"],
                         order = 5,
                         type = "toggle",
                         get = function()
@@ -1402,7 +1550,7 @@ function MenuModule:GetConfig()
                         end
                     },
                     spell = {
-                        name = L['Show Spellbook Button'],
+                        name = L["SHOW_SPELLBOOK_BUTTON"],
                         order = 6,
                         type = "toggle",
                         get = function()
@@ -1415,7 +1563,7 @@ function MenuModule:GetConfig()
                         end
                     },
                     talent = {
-                        name = L['Show Talents Button'],
+                        name = L["SHOW_TALENTS_BUTTON"],
                         order = 7,
                         type = "toggle",
                         get = function()
@@ -1427,21 +1575,21 @@ function MenuModule:GetConfig()
                             self:Refresh();
                         end
                     },
-                    lfg = {
-                        name = L['Show LFG Button'],
-                        order = 10,
+                    ach = features.achievements and {
+                        name = L["SHOW_ACHIEVEMENTS_BUTTON"],
+                        order = 8,
                         type = "toggle",
                         get = function()
-                            return xb.db.profile.modules.microMenu.lfg;
+                            return xb.db.profile.modules.microMenu.ach;
                         end,
                         set = function(_, val)
-                            xb.db.profile.modules.microMenu.lfg = val;
+                            xb.db.profile.modules.microMenu.ach = val;
                             self:UpdateMenu();
                             self:Refresh();
                         end
-                    },
+                    } or nil,
                     quest = {
-                        name = L['Show Quests Button'],
+                        name = L["SHOW_QUESTS_BUTTON"],
                         order = 9,
                         type = "toggle",
                         get = function()
@@ -1453,10 +1601,61 @@ function MenuModule:GetConfig()
                             self:Refresh();
                         end
                     },
-
-                    shop = {
-                        name = L['Show Shop Button'],
-                        order = 14,
+                    lfg = {
+                        name = L["SHOW_LFG_BUTTON"],
+                        order = 10,
+                        type = "toggle",
+                        get = function()
+                            return xb.db.profile.modules.microMenu.lfg;
+                        end,
+                        set = function(_, val)
+                            xb.db.profile.modules.microMenu.lfg = val;
+                            self:UpdateMenu();
+                            self:Refresh();
+                        end
+                    },
+                    journal = features.journal and {
+                        name = L["SHOW_JOURNAL_BUTTON"],
+                        order = 11,
+                        type = "toggle",
+                        get = function()
+                            return xb.db.profile.modules.microMenu.journal;
+                        end,
+                        set = function(_, val)
+                            xb.db.profile.modules.microMenu.journal = val;
+                            self:UpdateMenu();
+                            self:Refresh();
+                        end
+                    } or nil,
+                    pvp = {
+                        name = L["SHOW_PVP_BUTTON"],
+                        order = 12,
+                        type = "toggle",
+                        get = function()
+                            return xb.db.profile.modules.microMenu.pvp;
+                        end,
+                        set = function(_, val)
+                            xb.db.profile.modules.microMenu.pvp = val;
+                            self:UpdateMenu();
+                            self:Refresh();
+                        end
+                    },
+                    pet = features.pet and {
+                        name = L["SHOW_PETS_BUTTON"],
+                        order = 13,
+                        type = "toggle",
+                        get = function()
+                            return xb.db.profile.modules.microMenu.pet;
+                        end,
+                        set = function(_, val)
+                            xb.db.profile.modules.microMenu.pet = val;
+                            self:UpdateMenu();
+                            self:Refresh();
+                        end
+                    } or nil,
+                    shop = features.shop and {
+                        name = L["SHOW_SHOP_BUTTON"],
+                        order = 15,
                         type = "toggle",
                         get = function()
                             return xb.db.profile.modules.microMenu.shop;
@@ -1466,10 +1665,10 @@ function MenuModule:GetConfig()
                             self:UpdateMenu();
                             self:Refresh();
                         end
-                    },
+                    } or nil,
                     help = {
-                        name = L['Show Help Button'],
-                        order = 15,
+                        name = L["SHOW_HELP_BUTTON"],
+                        order = 16,
                         type = "toggle",
                         get = function()
                             return xb.db.profile.modules.microMenu.help;

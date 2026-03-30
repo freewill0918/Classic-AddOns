@@ -1,0 +1,18 @@
+## Interface: 20505
+## Title: Fojji Core
+## RequiredDeps: WeakAuras
+## SavedVariables: FTSavedVars
+## Version: 1.6.7
+## X-Wago-ID: XKq9B5Ky
+embeds.xml
+
+# Libs
+libs\LibStub\LibStub.lua
+libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+
+# Core files
+Media.lua
+Range.lua
+Scripts.lua
+Sync.lua
+Timers.lua
