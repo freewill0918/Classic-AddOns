@@ -3,41 +3,40 @@ local AddOnName, _ = ...
 local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
 ---@class XIV_DatabarLocale : table<string, boolean|string>
 local L ---@type XIV_DatabarLocale
-L = AceLocale:NewLocale(AddOnName, "zhTW", false, false)
+L = AceLocale:NewLocale(AddOnName, "ruRU", false, false)
 if not L then return end
 
 -- NOTE: Strings needing translation are marked with `-- TODO: To Translate`.
 -- Some strings are sourced from BlizzardInterfaceResources:
--- https://github.com/Ketho/BlizzardInterfaceResources/blob/live/Resources/GlobalStrings/deDE.lua
+-- https://github.com/Ketho/BlizzardInterfaceResources/blob/live/Resources/GlobalStrings/ruRU.lua
 
-L["MODULES"] = "功能模組"
-L["LEFT_CLICK"] = "左鍵"
-L["RIGHT_CLICK"] = "右鍵"
-L["k"] = "千" -- short for 1000
-L["M"] = "百萬" -- short for 1000000
-L["B"] = "十億" -- short for 1000000000
-L["L"] = "本地" -- For the local ping
-L["W"] = "世界" -- For the world ping
-L["w"] = "萬"	-- short for 10000, used in zhCN and zhTW
-L["e"] = "億" -- short for 100000000
-L["c"] = "兆" -- short for 1000000000000
+L["MODULES"] = "Модули"
+L["LEFT_CLICK"] = "Левая кнопка мыши"
+L["RIGHT_CLICK"] = "Правая кнопка мыши"
+L["k"] = "Тыс."
+L["M"] = "Млн."
+L["B"] = "Млрд."
+L["L"] = "Л"
+L["W"] = "Г"
 
 -- General
-L["POSITIONING"] = "位置"
-L["BAR_POSITION"] = "資訊列位置"
-L["TOP"] = "上"
-L["BOTTOM"] = "下"
-L["BAR_COLOR"] = "資訊列顏色"
-L["USE_CLASS_COLOR"] = "使用職業顏色"
-L["MISCELLANEOUS"] = "其他"
-L["HIDE_IN_COMBAT"] = "戰鬥中隱藏"
+L["POSITIONING"] = "Позиция"
+L["BAR_POSITION"] = "Положение полосы"
+L["TOP"] = "Вверху"
+L["BOTTOM"] = "Внизу"
+L["BAR_COLOR"] = "Цвет полосы"
+L["USE_CLASS_COLOR"] = "Использовать цвет класса для полосы"
+L["MISCELLANEOUS"] = "Разное"
+L["HIDE_IN_COMBAT"] = "Прятать полосу во время боя"
 L["HIDE_IN_FLIGHT"] = "Hide when in flight" -- TODO: To Translate
-L["BAR_PADDING"] = "資訊列內距"
-L["MODULE_SPACING"] = "模組間距"
-L["BAR_MARGIN"] = "資訊列間距"
-L["BAR_MARGIN_DESC"] = "資訊列模組最左邊和最右邊的間距"
-L["HIDE_ORDER_HALL_BAR"] = "隱藏職業大廳列"
-L["USE_ELVUI_FOR_TOOLTIPS"] = "使用ElvUI浮動提示"
+L["SHOW_ON_MOUSEOVER"] = "Show on mouseover" -- TODO: To Translate
+L["SHOW_ON_MOUSEOVER_DESC"] = "Show the bar only when you mouseover it" -- TODO: To Translate
+L["BAR_PADDING"] = "Заполнение"
+L["MODULE_SPACING"] = "Расстояние между модулями"
+L["BAR_MARGIN"] = "Маржа бара" -- TODO: To Translate ?
+L["BAR_MARGIN_DESC"] = "Leftmost and rightmost margin of the bar modules" -- TODO: To Translate
+L["HIDE_ORDER_HALL_BAR"] = "Прятать полосу оплота класса"
+L["USE_ELVUI_FOR_TOOLTIPS"] = "Используйте ElvUI для подсказок"
 L["LOCK_BAR"] = "Lock Bar" -- TODO: To Translate
 L["LOCK_BAR_DESC"] = "Lock the bar to prevent dragging" -- TODO: To Translate
 L["BAR_FULLSCREEN_DESC"] = "Makes the bar span the entire screen width" -- TODO: To Translate
@@ -63,31 +62,30 @@ L["RECAPTURE_INITIAL_POSITIONS"] = "Re-capture initial positions" -- TODO: To Tr
 L["RECAPTURE_INITIAL_POSITIONS_DESC"] = "Capture the current anchored positions as the new initial free placement positions" -- TODO: To Translate
 
 -- Positioning Options
-L["BAR_WIDTH"] = "資訊列寬度"
-L["LEFT"] = "左"
-L["CENTER"] = "中"
-L["RIGHT"] = "右"
+L["BAR_WIDTH"] = "Ширина полосы"
+L["LEFT"] = "Слева"
+L["CENTER"] = "По центру"
+L["RIGHT"] = "Справа"
 
 -- Media
-L["FONT"] = "字體"
-L["SMALL_FONT_SIZE"] = "小字體大小"
-L["TEXT_STYLE"] = "文字樣式"
+L["FONT"] = "Шрифт"
+L["SMALL_FONT_SIZE"] = "Размер маленького шрифта"
+L["TEXT_STYLE"] = "Стиль текста"
 
 -- Text Colors
-L["COLORS"] = "顏色"
-L["TEXT_COLORS"] = "文字顏色"
-L["NORMAL"] = "平時"
-L["INACTIVE"] = "未使用時"
-L["USE_CLASS_COLOR_TEXT"] = "使用職業顏色"
-L["USE_CLASS_COLOR_TEXT_DESC"] = "顏色選擇器中只能設定透明度"
-L["USE_CLASS_COLORS_FOR_HOVER"] = "使用職業顏色"
-L["HOVER"] = "滑鼠指向時"
+L["COLORS"] = "Цвета"
+L["TEXT_COLORS"] = "Цвета текста"
+L["NORMAL"] = "Обычный"
+L["INACTIVE"] = "Неактивно"
+L["USE_CLASS_COLOR_TEXT"] = "Использовать цвет класса для текста"
+L["USE_CLASS_COLOR_TEXT_DESC"] = "В выборе цвета можно указать только прозрачность"
+L["USE_CLASS_COLORS_FOR_HOVER"] = "Использовать цвет класса при наведении"
+L["HOVER"] = "По наведению"
 
 -------------------- MODULES ---------------------------
 
-L["Social"] = "好友"
-L["MICROMENU"] = "微型選單"
-L["SHOW_SOCIAL_TOOLTIPS"] = "顯示公會/好友名單"
+L["MICROMENU"] = "Микроменю"
+L["SHOW_SOCIAL_TOOLTIPS"] = "Показывать подсказки гильдии и друзей"
 L["SHOW_ACCESSIBILITY_TOOLTIPS"] = "Show Accessibility Tooltips" -- TODO: To Translate
 L["BLIZZARD_MICROMENU"] = "Blizzard Micromenu" -- TODO: To Translate
 L["DISABLE_BLIZZARD_MICROMENU"] = "Disable Blizzard Micromenu" -- TODO: To Translate
@@ -96,58 +94,57 @@ L["BLIZZARD_MICROMENU_DISCLAIMER"] = 'This option is disabled because an externa
 L["BLIZZARD_BAGS_BAR"] = "Blizzard Bags Bar" -- TODO: To Translate
 L["DISABLE_BLIZZARD_BAGS_BAR"] = "Disable Blizzard Bags Bar" -- TODO: To Translate
 L["BLIZZARD_BAGS_BAR_DISCLAIMER"] = 'This option is disabled because an external bar manager was detected: %s.' -- TODO: To Translate
-L["MAIN_MENU_ICON_RIGHT_SPACING"] = "主選單圖示右方間距"
-L["ICON_SPACING"] = "圖示間距"
-L["HIDE_BNET_APP_FRIENDS"] = "隱藏戰網 app 好友"
-L["OPEN_GUILD_PAGE"] = "開啟公會視窗"
-L["NO_TAG"] = "沒有 Tag"
-L["WHISPER_BNET"] = "密語 Battle Tag"
-L["WHISPER_CHARACTER"] = "密語伺服器角色"
-L["HIDE_SOCIAL_TEXT"] = "隱藏人數"
-L["SOCIAL_TEXT_OFFSET"] = "人數文字位置偏移"
-L["GMOTD_IN_TOOLTIP"] = "顯示公會今日資訊"
-L["FRIEND_INVITE_MODIFIER"] = "組隊邀請的組合鍵"
-L["SHOW_HIDE_BUTTONS"] = "顯示/隱藏按鈕"
-L["SHOW_MENU_BUTTON"] = "顯示選單按鈕"
-L["SHOW_CHAT_BUTTON"] = "顯示聊天按鈕"
-L["SHOW_GUILD_BUTTON"] = "顯示公會按鈕"
-L["SHOW_SOCIAL_BUTTON"] = "顯示好友按鈕"
-L["SHOW_CHARACTER_BUTTON"] = "顯示角色按鈕"
-L["SHOW_SPELLBOOK_BUTTON"] = "顯示法術書按鈕"
+L["MAIN_MENU_ICON_RIGHT_SPACING"] = "Расстояние от кнопки меню до других кнопок"
+L["ICON_SPACING"] = "Расстояние между кнопками"
+L["HIDE_BNET_APP_FRIENDS"] = "Hide BNet App Friends" -- TODO: To Translate
+L["OPEN_GUILD_PAGE"] = "Открыть страницу гильдии"
+L["NO_TAG"] = "Нет Battletag"
+L["WHISPER_BNET"] = "Шепнуть по Battle.Net"
+L["WHISPER_CHARACTER"] = "Шепнуть персонажу"
+L["HIDE_SOCIAL_TEXT"] = "Скрыть количество онлайна гильдии и друзей"
+L["SOCIAL_TEXT_OFFSET"] = "Смещение текста в социальных сетях"
+L["GMOTD_IN_TOOLTIP"] = "Сообщение дня гильдии в подсказке"
+L["FRIEND_INVITE_MODIFIER"] = "Модификатор для приглашения друзей"
+L["SHOW_HIDE_BUTTONS"] = "Показать/скрыть кнопки"
+L["SHOW_MENU_BUTTON"] = "Меню"
+L["SHOW_CHAT_BUTTON"] = "Выбор чата"
+L["SHOW_GUILD_BUTTON"] = "Гильдия"
+L["SHOW_SOCIAL_BUTTON"] = "Общение"
+L["SHOW_CHARACTER_BUTTON"] = "Информация о персонаже"
+L["SHOW_SPELLBOOK_BUTTON"] = "Способности"
 L["SHOW_PROFESSIONS_BUTTON"] = "Show " .. (PROFESSIONS_BUTTON or "Professions") .. " Button" -- TODO: To Translate
-L["SHOW_TALENTS_BUTTON"] = "顯示天賦按鈕"
-L["SHOW_ACHIEVEMENTS_BUTTON"] = "顯示成就按鈕"
-L["SHOW_QUESTS_BUTTON"] = "顯示任務按鈕"
-L["SHOW_LFG_BUTTON"] = "顯示隊伍搜尋器按鈕"
-L["SHOW_JOURNAL_BUTTON"] = "顯示冒險指南按鈕"
-L["SHOW_PVP_BUTTON"] = "顯示 PVP 按鈕"
-L["SHOW_PETS_BUTTON"] = "顯示收藏按鈕"
-L["SHOW_SHOP_BUTTON"] = "顯示遊戲商城按鈕"
-L["SHOW_HELP_BUTTON"] = "顯示客服支援按鈕"
+L["SHOW_TALENTS_BUTTON"] = "Специализация и таланты"
+L["SHOW_ACHIEVEMENTS_BUTTON"] = "Достижения"
+L["SHOW_QUESTS_BUTTON"] = "Журнал заданий"
+L["SHOW_LFG_BUTTON"] = "Поиск группы"
+L["SHOW_JOURNAL_BUTTON"] = "Путеводитель по приключениям"
+L["SHOW_PVP_BUTTON"] = "Игрок против игрока"
+L["SHOW_PETS_BUTTON"] = "Коллекции"
+L["SHOW_SHOP_BUTTON"] = "Магазин"
+L["SHOW_HELP_BUTTON"] = "Помощь"
 L["SHOW_HOUSING_BUTTON"] = "Show Housing Button" -- TODO: translate
-L["NO_INFO"] = "沒有資訊"
-L["CLASSIC"] = "經典版"
+L["NO_INFO"] = "Нет информации"
 L["Alliance"] = FACTION_ALLIANCE
 L["Horde"] = FACTION_HORDE
 
-L["DURABILITY_WARNING_THRESHOLD"] = "裝備耐久度警告門檻"
-L["SHOW_ITEM_LEVEL"] = "顯示物品等級"
-L["SHOW_COORDINATES"] = "顯示座標"
+L["DURABILITY_WARNING_THRESHOLD"] = "Порог предупреждения о долговечности"
+L["SHOW_ITEM_LEVEL"] = "Показать уровень элемента"
+L["SHOW_COORDINATES"] = "Показать координаты"
 
 -- Master Volume
-L["MASTER_VOLUME"] = "主音量"
-L["VOLUME_STEP"] = "每點一下調整的值"
+L["MASTER_VOLUME"] = "Громкость игры"
+L["VOLUME_STEP"] = "Шаг изменения громкости"
 L["ENABLE_MOUSE_WHEEL"] = "Enable Mouse Wheel" -- TODO: To Translate
 
 -- Clock
-L["TIME_FORMAT"] = "時間格式"
-L["USE_SERVER_TIME"] = "使用伺服器時間"
-L["NEW_EVENT"] = "新活動!"
-L["LOCAL_TIME"] = "本地時間"
-L["REALM_TIME"] = "伺服器時間"
-L["OPEN_CALENDAR"] = "開啟行事曆"
-L["OPEN_CLOCK"] = "開啟時鐘"
-L["HIDE_EVENT_TEXT"] = "隱藏活動文字"
+L["TIME_FORMAT"] = "Формат времени"
+L["USE_SERVER_TIME"] = "Использовать серверное время"
+L["NEW_EVENT"] = "Новое событие!"
+L["LOCAL_TIME"] = "Местное время"
+L["REALM_TIME"] = "Серверное время"
+L["OPEN_CALENDAR"] = "Открыть календарь"
+L["OPEN_CLOCK"] = "Открыть часы"
+L["HIDE_EVENT_TEXT"] = "Скрыть текст событий"
 L["REST_ICON"] = "Rest Icon" -- TODO: To Translate
 L["SHOW_REST_ICON"] = "Show Rest Icon" -- TODO: To Translate
 L["TEXTURE"] = "Texture" -- TODO: To Translate
@@ -160,36 +157,36 @@ L["POSITION"] = "Position" -- TODO: To Translate
 L["CUSTOM_TEXTURE_COLOR"] = "Custom Color" -- TODO: To Translate
 L["COLOR"] = "Color" -- TODO: To Translate
 
-L["TRAVEL"] = "旅行傳送"
-L["PORT_OPTIONS"] = "傳送選項"
-L["READY"] = "完成"
-L["TRAVEL_COOLDOWNS"] = "旅行傳送冷卻"
-L["CHANGE_PORT_OPTION"] = "變更傳送選項"
+L["TRAVEL"] = "Перемещение"
+L["PORT_OPTIONS"] = "Назначение телепорта"
+L["READY"] = "Готово"
+L["TRAVEL_COOLDOWNS"] = "Способности для перемещения"
+L["CHANGE_PORT_OPTION"] = "Изменить назначение телепорта"
 
 -- Gold
 L["REGISTERED_CHARACTERS"] = "Registered characters" -- TODO: To Translate
 L["SHOW_FREE_BAG_SPACE"] = "Show Free Bag Space" -- TODO: To Translate
 L["SHOW_OTHER_REALMS"] = "Show Other Realms" -- TODO: To Translate
-L["ALWAYS_SHOW_SILVER_COPPER"] = "總是顯示銀和銅"
-L["SHORTEN_GOLD"] = "金額縮寫"
-L["TOGGLE_BAGS"] = "打開/關閉背包"
-L["SESSION_TOTAL"] = "本次登入總計"
-L["DAILY_TOTAL"] = "本日總計"
+L["ALWAYS_SHOW_SILVER_COPPER"] = "Всегда показывать серебро и медь"
+L["SHORTEN_GOLD"] = "Сокращать число золота"
+L["TOGGLE_BAGS"] = "Переключить видимость сумок"
+L["SESSION_TOTAL"] = "Всего за сессию"
+L["DAILY_TOTAL"] = "Daily Total" -- TODO: To Translate
 L["SHOW_WARBAND_BANK_GOLD"] = "Show " .. (ACCOUNT_BANK_PANEL_TITLE or "Warband Bank") .. " Gold" -- TODO: To Translate
-L["GOLD_ROUNDED_VALUES"] = "只顯示金的部分"
+L["GOLD_ROUNDED_VALUES"] = "Gold rounded values" -- TODO: To Translate
 L["HIDE_CHAR_UNDER_THRESHOLD"] = "Hide Characters Under Threshold" -- TODO: To Translate
 L["HIDE_CHAR_UNDER_THRESHOLD_AMOUNT"] = "Threshold" -- TODO: To Translate
 
 -- Currency
-L["SHOW_XP_BAR_BELOW_MAX_LEVEL"] = "未滿等時顯示經驗條"
-L["CLASS_COLORS_XP_BAR"] = "使用職業顏色"
-L["SHOW_TOOLTIPS"] = "顯示滑鼠提示"
-L["TEXT_ON_RIGHT"] = "文字在右側"
+L["SHOW_XP_BAR_BELOW_MAX_LEVEL"] = "Показывать полоску опыта персонажам, не достигшим максимального уровня"
+L["CLASS_COLORS_XP_BAR"] = "Использовать цвет класса для полоски опыта"
+L["SHOW_TOOLTIPS"] = "Показывать подсказки"
+L["TEXT_ON_RIGHT"] = "Текст справа"
 L["BAR_CURRENCY_SELECT"] = "Currencies displayed on the bar" -- TODO: To Translate
-L["FIRST_CURRENCY"] = "第一種兌換通貨"
-L["SECOND_CURRENCY"] = "第二種兌換通貨"
-L["THIRD_CURRENCY"] = "第三種兌換通貨"
-L["RESTED"] = "休息加成"
+L["FIRST_CURRENCY"] = "Валюта №1"
+L["SECOND_CURRENCY"] = "Валюта №2"
+L["THIRD_CURRENCY"] = "Валюта №3"
+L["RESTED"] = "Отдых"
 L["SHOW_MORE_CURRENCIES"] = "Show More Currencies on Shift+Hover" -- TODO: To Translate
 L["MAX_CURRENCIES_SHOWN"] = "Max currencies shown when holding Shift" -- TODO: To Translate
 L["ONLY_SHOW_MODULE_ICON"] = "Only Show Module Icon" -- TODO: To Translate
@@ -200,13 +197,13 @@ L["UNSELECT_ALL"] = "Unselect All" -- TODO: To Translate
 L["OPEN_XIV_CURRENCY_OPTIONS"] = "Open XIV's Currency Options" -- TODO: To Translate
 
 -- System
-L["WORLD_PING"] = "顯示世界延遲"
-L["ADDONS_NUMBER_TO_SHOW"] = "顯示的插件數目"
-L["ADDONS_IN_TOOLTIP"] = "顯示插件數目"
-L["SHOW_ALL_ADDONS"] = "按住 Shift 顯示全部"
-L["MEMORY_USAGE"] = "記憶體使用量"
-L["GARBAGE_COLLECT"] = "清理記憶體"
-L["CLEANED"] = "已清理"
+L["WORLD_PING"] = "Показывать задержку сервера"
+L["ADDONS_NUMBER_TO_SHOW"] = "Сколько аддонов показывать"
+L["ADDONS_IN_TOOLTIP"] = "Сколько аддонов показывать"
+L["SHOW_ALL_ADDONS"] = "Показывать все аддоны по нажатию кнопки Shift"
+L["MEMORY_USAGE"] = "Использование памяти"
+L["GARBAGE_COLLECT"] = "Очистить память"
+L["CLEANED"] = "Очищено"
 
 -- Reputation
 L["OPEN_REPUTATION"] = "Open " .. (REPUTATION or "Reputation") -- TODO: To Translate
@@ -219,22 +216,21 @@ L["PROGRESS"] = "Progress" -- TODO: To Translate
 L["RANK"] = "Rank" -- TODO: To Translate
 L["PARAGON"] = "Paragon" -- TODO: To Translate
 
-L["USE_CLASS_COLORS"] = "使用職業顏色"
-L["COOLDOWNS"] = "冷卻時間"
-L["TOGGLE_PROFESSION_FRAME"] = "打開/關閉專業視窗"
-L["TOGGLE_PROFESSION_SPELLBOOK"] = "打開/關閉專業技能書"
+L["USE_CLASS_COLORS"] = "Использовать цвет класса"
+L["COOLDOWNS"] = "Кулдауны"
+L["TOGGLE_PROFESSION_FRAME"] = 'Показать кадр профессии'
+L["TOGGLE_PROFESSION_SPELLBOOK"] = 'показать книгу заклинаний профессии'
 
-L["SET_SPECIALIZATION"] = "切換專精"
-L["SET_LOADOUT"] = "切換天賦配置"
-L["SET_LOOT_SPECIALIZATION"] = "切換優先拾取的專精"
-L["CURRENT_SPECIALIZATION"] = "目前職業專精"
-L["CURRENT_LOOT_SPECIALIZATION"] = "目前優先拾取的專精"
-L["ENABLE_LOADOUT_SWITCHER"] = "啟用切換天賦配置"
-L["TALENT_MINIMUM_WIDTH"] = "天賦最小寬度"
-L["OPEN_ARTIFACT"] = "檢視神兵武器"
-L["REMAINING"] = "還需要"
-L["AVAILABLE_RANKS"] = "神兵武器等級"
-L["ARTIFACT_KNOWLEDGE"] = "神兵知識等級"
+L["SET_SPECIALIZATION"] = "Выбрать специализацию"
+L["SET_LOADOUT"] = "Set Loadout" -- TODO: To Translate
+L["SET_LOOT_SPECIALIZATION"] = "Выбрать специализацию для добычи"
+L["CURRENT_SPECIALIZATION"] = "Текущая специализация"
+L["CURRENT_LOOT_SPECIALIZATION"] = "Текущая специализация для добычи"
+L["TALENT_MINIMUM_WIDTH"] = "Минимальная ширина модуля талантов"
+L["OPEN_ARTIFACT"] = "Открыть меню артефакта"
+L["REMAINING"] = "Осталось"
+L["AVAILABLE_RANKS"] = "Доступно уровней"
+L["ARTIFACT_KNOWLEDGE"] = "Знание артефакта"
 
 L["SHOW_BUTTON_TEXT"] = "Show Button Text" -- TODO: To Translate
 
@@ -245,12 +241,12 @@ L["ONLY_SHOW_CURRENT_SEASON"] = "Only show current season" -- TODO: To Translate
 L["MYTHIC_PLUS_TELEPORTS"] = "Mythic+ Teleports" -- TODO: To Translate
 L["HIDE_M_PLUS_TELEPORTS_TEXT"] = "Hide M+ Teleports text" -- TODO: To Translate
 L["SHOW_MYTHIC_PLUS_TELEPORTS"] = "Show Mythic+ Teleports" -- TODO: To Translate
-L["USE_RANDOM_HEARTHSTONE"] = "使用隨機爐石"
-local retrievingData = "正在讀取資料..."
+L["USE_RANDOM_HEARTHSTONE"] = "Use Random Hearthstone" -- TODO: To Translate
+local retrievingData = "Получение данных..."
 L["RETRIEVING_DATA"] = retrievingData
-L["EMPTY_HEARTHSTONES_LIST"] = "如果你在下方的清單中看到 '" .. retrievingData .. "'，只需切換分頁或重新開啟此選單即可重新整理資料。"
-L["HEARTHSTONES_SELECT"] = "選擇爐石"
-L["HEARTHSTONES_SELECT_DESC"] = "選擇要使用哪個爐石 (如果選擇了多個爐石，請勾選 \"使用隨機爐石\" 選項)"
+L["EMPTY_HEARTHSTONES_LIST"] = "Если вы видите '" .. retrievingData .. "' в списке ниже, просто переключите вкладку или откройте это меню заново, чтобы обновить данные."
+L["HEARTHSTONES_SELECT"] = "Hearthstones Select" -- TODO: To Translate
+L["HEARTHSTONES_SELECT_DESC"] = "Select which hearthstones to use (be careful if you select multiple hearthstones, you might want to check the 'Hearthstones Select' option)" -- TODO: To Translate
 L["HIDE_HEARTHSTONE_BUTTON"] = "Hide Hearthstone Button" -- TODO: To Translate
 L["HIDE_PORT_BUTTON"] = "Hide Port Button" -- TODO: To Translate
 L["HIDE_HOME_BUTTON"] = "Hide Home Button" -- TODO: To Translate
@@ -286,39 +282,6 @@ L["The War Within"] = true
 L["Midnight"] = true
 L["CURRENT_SEASON"] = true
 
--- Additional
-L["XIV Bar Continued"] = "資訊列"  -- used for config menu
-L["Profiles"] = "設定檔"
-L["Money"] = "金錢"
-L["Enable in combat"] = "戰鬥中可使用"
-L["REGISTERED_CHARACTERS"] = "記錄的角色"
-L["Overwatch"] = "鬥陣特攻"
-L["Heroes of the Storm"] = "暴雪英霸"
-L["HEARTHSTONE"] = "爐石戰記"
-L["Starcraft 2"] = "星海爭霸II"
-L["Diablo 3"] = "暗黑破壞神III"
-L["Starcraft Remastered"] = "星海爭霸 高畫質重製版"
-L["Destiny 2"] = "天命 2"
-L["Call of Duty: BO4"] = "決勝時刻: 黑色行動4"
-L["Call of Duty: MW"] = "決勝時刻: 現代戰爭"
-L["Call of Duty: MW2"] = "決勝時刻: 現代戰爭2"
-L["Call of Duty: BOCW"] = "決勝時刻: 黑色行動冷戰"
-L["Call of Duty: Vanguard"] = "決勝時刻: 先鋒"
-L["HIDE_IN_FLIGHT"] = "使用鳥點飛行時隱藏"
-L["SHOW_ON_MOUSEOVER"] = "Show on mouseover" -- TODO: To Translate
-L["SHOW_ON_MOUSEOVER_DESC"] = "Show the bar only when you mouseover it" -- TODO: To Translate
-L["CLASSIC"] = "《經典版》"
-L["Warcraft 3 Reforged"] = "魔獸爭霸III: 淬鍊重生"
-L["Diablo II: Resurrected"] = "暗黑破壞神II: 獄火重生"
-L["Call of Duty: Vanguard"] = "決勝時刻: 先鋒"
-L["Diablo Immortal"] = "暗黑破壞神 永生不朽"
-L["Warcraft Arclight Rumble"] = "魔獸兵團"
-L["Call of Duty: Modern Warfare II"] = "決勝時刻: 現代戰爭II 2022"
-L["Diablo 4"] = "暗黑破壞神IV"
-L["Blizzard Arcade Collection"] = "暴雪遊樂場典藏系列"
-L["Crash Bandicoot 4"] = "袋狼大進擊4"
-L["Hide Friends Playing Other Games"] = "隱藏其他遊戲好友" -- used for the friend list function I added myself
-
 -- Profile Import/Export
 L["PROFILE_SHARING"] = "Profile Sharing" -- TODO: To Translate
 
@@ -339,13 +302,13 @@ L["IMPORT_PROFILE"] = "Import Profile" -- TODO: To Translate
 L["IMPORT_PROFILE_DESC"] = "Import a profile from another player" -- TODO: To Translate
 
 -- Changelog
-L["DATE_FORMAT"] = "%year%年%month%月%day%日"
-L["IMPORTANT"] = "重要"
-L["NEW"] = "新增"
-L["IMPROVEMENT"] = "改善"
+L["DATE_FORMAT"] = "%day%-%month%-%year%"
+L["IMPORTANT"] = "Важные"
+L["NEW"] = "Новые"
+L["IMPROVEMENT"] = "Улучшения"
 L["BUGFIX"] = "Bugfix" -- TODO: To Translate
-L["CHANGELOG"] = "更新記錄"
+L["CHANGELOG"] = "Журнал изменений"
 
 -- Vault Module
-L["GREAT_VAULT_DISABLED"] = "The " .. (DELVES_GREAT_VAULT_LABEL or "Great Vault") .. " is currently disabled until the next season starts." -- TODO: To Translate
-L["MAX_LEVEL_DISCLAIMER"] = "This module will only show when you reach max level." -- TODO: To Translate
+L["GREAT_VAULT_DISABLED"] = true -- TODO: To Translate
+L["MAX_LEVEL_DISCLAIMER"] = true -- TODO: To Translate
