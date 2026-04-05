@@ -210,25 +210,31 @@ function Trends:GetTrendsFromScan(silent)
 	local trenddata = {}
 	local trendquant = {}
 	local currentcounts = {}
+
+	local unified_scan = {}
 	for dataindex,dataset in ipairs(ZGV.db.factionrealm.gold_scan_data) do
 		for itemid,itemdata in pairs(dataset) do
-			if type(itemdata)=="table" then
-				trenddata[itemid] = trenddata[itemid] or {}
-				local total = 0
-				for price,count in pairs(itemdata) do
-					trenddata[itemid][price] = (trenddata[itemid][price] or 0) + count
-					total = total + count
-				end
-				trendquant[itemid] = trendquant[itemid] or {}
-				table.insert(trendquant[itemid],total)
-
-				if dataindex==1 then
-					currentcounts[itemid]=total
-				end
+			if not unified_scan[itemid] then
+				unified_scan[itemid] = itemdata
 			end
 		end
 	end
+	
+	for itemid,itemdata in pairs(unified_scan) do
+		if type(itemdata)=="table" then
+			trenddata[itemid] = trenddata[itemid] or {}
+			local total = 0
+			for price,count in pairs(itemdata) do
+				trenddata[itemid][price] = (trenddata[itemid][price] or 0) + count
+				total = total + count
+			end
+			trendquant[itemid] = trendquant[itemid] or {}
+			table.insert(trendquant[itemid],total)
 
+			currentcounts[itemid]=total
+		end
+	end
+	
 	for itemid,itemdata in pairs(trenddata) do
 		local totalcount=0
 		for price,count in pairs(itemdata) do

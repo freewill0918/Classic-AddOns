@@ -1,12 +1,9 @@
 # LiteButtonAuras
 
-## [11.1.7-6](https://github.com/xod-wow/LiteButtonAuras/tree/11.1.7-6) (2025-07-27)
-[Full Changelog](https://github.com/xod-wow/LiteButtonAuras/compare/11.1.7-5...11.1.7-6) [Previous Releases](https://github.com/xod-wow/LiteButtonAuras/releases)
+## [11.2.7-5](https://github.com/xod-wow/LiteButtonAuras/tree/11.2.7-5) (2026-01-16)
+[Full Changelog](https://github.com/xod-wow/LiteButtonAuras/compare/11.2.7-4...11.2.7-5) [Previous Releases](https://github.com/xod-wow/LiteButtonAuras/releases)
 
-- Luacheck fixups  
-- - Allow setting glow texture  
-    - Change Masque mechanism to automatically use its AutoCast-Mask  
-    - "Defaults" buttons in options for font/anchors/glow  
-- Allow specifying ability/target/player for ignores #43  
-- Expose glow alpha option #41  
-- Fix setting options from commandline  
+- Add Raise Dead totem back into Mists  
+- All game versions have C\_Item and C\_Spell now  
+- Separate game version specific SpellData  
+- Luacheck updates  

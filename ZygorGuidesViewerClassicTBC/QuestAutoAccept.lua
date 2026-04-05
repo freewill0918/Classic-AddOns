@@ -280,7 +280,7 @@ function QuestAuto:Complete()
 			elseif ZGV.CurrentStep then  -- let's be picky
 				local id = GetQuestID()
 				for i,goal in ipairs(getCurrentStepGoals()) do
-					if (goal.quest and goal.quest.id==id) or (goal.autoturninany and goal.autoturninany[id]) then
+					if ((goal.quest and goal.quest.id==id) or (goal.autoturninany and goal.autoturninany[id])) and not goal.noautoaccept then
 						ZGV:Print(L['autocomplete_turnin'])
 						GetQuestReward(reward)
 						break

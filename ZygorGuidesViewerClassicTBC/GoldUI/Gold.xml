@@ -7,8 +7,6 @@
 	<Script file="Goldguide-View.lua" />
 	<Script file="Goldguide-Auctions.lua" />
 	<Script file="Goldguide-Farming.lua" />
-	<Script file="Goldguide-Gathering.lua" />
-	<Script file="Goldguide-Crafting.lua" />
 	<Script file="Goldguide-Info.lua" />
 	<Script file="Goldguide-Help.lua" />
 

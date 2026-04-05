@@ -28,19 +28,19 @@ step
 talk Uthan Stillwater##5938
 Train Apprentice Fishing |skillmax Fishing,75 |goto Mulgore/0 44.51,60.66
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Mulgore/0 44.49,61.24 |only if default |or
+|equipped Fishing Pole##6256 |goto Mulgore/0 44.49,61.24 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Mulgore/0 44.49,61.24 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Mulgore/0 44.49,61.24 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Mulgore/0 44.49,61.24 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Mulgore/0 44.49,61.24 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Mulgore/0 44.49,61.24 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Mulgore/0 44.49,61.24 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Mulgore/0 44.49,61.24 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Mulgore/0 44.49,61.24 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Mulgore/0 44.49,61.24 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Mulgore/0 44.49,61.24 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Mulgore/0 44.49,61.24 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+|equipped Arcanite Fishing Pole##19970 |goto Mulgore/0 44.49,61.24 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |goto Mulgore/0 44.49,61.24 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |goto Mulgore/0 44.49,61.24 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |goto Mulgore/0 44.49,61.24 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |goto Mulgore/0 44.49,61.24 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |goto Mulgore/0 44.49,61.24 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Mulgore/0 44.49,61.24 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Mulgore/0 44.49,61.24 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |goto Mulgore/0 44.49,61.24 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |goto Mulgore/0 44.49,61.24 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |goto Mulgore/0 44.49,61.24 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete skill("Fishing") >= 75 |or
 step
 cast Fishing##33095
@@ -69,19 +69,19 @@ step
 talk Uthan Stillwater##5938
 Train Journeyman Fishing |skillmax Fishing,150 |goto Mulgore/0 44.51,60.66
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Thunder Bluff/0 41.47,57.15 |only if default |or
+|equipped Fishing Pole##6256 |goto Thunder Bluff/0 41.47,57.15 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+|equipped Arcanite Fishing Pole##19970 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete skill("Fishing") >= 125 |or
 step
 cast Fishing##33095
@@ -99,19 +99,19 @@ buy 40 Bright Baubles##6532 |goto Thunder Bluff/0 55.79,47.06 |or
 |tip Save these, you will need them for future steps.
 '|complete skill("Fishing") >= 225 |or
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Thunder Bluff/0 41.47,57.15 |only if default |or
+|equipped Fishing Pole##6256 |goto Thunder Bluff/0 41.47,57.15 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+|equipped Arcanite Fishing Pole##19970 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |goto Thunder Bluff/0 41.47,57.15 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete skill("Fishing") >= 165 |or
 step
 cast Fishing##33095
@@ -199,25 +199,25 @@ step
 talk Aska Mistrunner##3026
 Train Expert Cooking |skillmax Cooking,225 |goto Thunder Bluff/0 50.74,53.11
 step
-Enter the building |goto The Cape of Stranglethorn/0 42.80,68.97 < 7 |walk
+Enter the building |goto Stranglethorn Vale/0 42.80,68.97 < 7 |walk
 talk Kelsey Yance##2664
 |tip Inside the building.
-buy Recipe: Mithril Head Trout##17062 |goto The Cape of Stranglethorn/0 28.23,74.34
+buy Recipe: Mithril Head Trout##17062 |goto Stranglethorn Vale/0 28.23,74.34
 |tip Save these, you will need them later.
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto The Cape of Stranglethorn/0 39.47,66.91 |only if default |or
+|equipped Fishing Pole##6256 |goto Stranglethorn Vale/0 39.47,66.91 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+|equipped Arcanite Fishing Pole##19970 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |goto Stranglethorn Vale/0 39.83,18.55 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete skill("Fishing") >= 225 |or
 step
 cast Fishing##33095
@@ -229,7 +229,7 @@ use the Bright Baubles##6532
 |tip It will grant you +75 Fishing skill for 10 minutes.
 |tip Try to keep one of these active whenever you are fishing.
 |tip If you have a better bait, you can use that instead.
-Reach Skill 225 in Fishing |skill Fishing,225 |goto The Cape of Stranglethorn/0 39.47,66.91
+Reach Skill 225 in Fishing |skill Fishing,225 |goto Stranglethorn Vale/0 39.47,66.91
 stickystart "Collect_Mithril_Head_Trout_225"
 step
 cast Fishing##33095
@@ -241,7 +241,7 @@ use the Bright Baubles##6532
 |tip It will grant you +75 Fishing skill for 10 minutes.
 |tip Try to keep one of these active whenever you are fishing.
 |tip If you have a better bait, you can use that instead.
-collect 80 Raw Bristle Whisker Catfish##6308 |goto The Cape of Stranglethorn/0 39.47,66.91 |or
+collect 80 Raw Bristle Whisker Catfish##6308 |goto Stranglethorn Vale/0 39.47,66.91 |or
 |tip This total is approximate.
 |tip You may need more or less than the indicated amount.
 '|complete skill("Cooking") >= 175 |or
@@ -256,7 +256,7 @@ use the Bright Baubles##6532 |notinsticky
 |tip It will grant you +75 Fishing skill for 10 minutes. |notinsticky
 |tip Try to keep one of these active whenever you are fishing. |notinsticky
 |tip If you have a better bait, you can use that instead. |notinsticky
-collect 80 Raw Mithril Head Trout##8365 |goto The Cape of Stranglethorn/0 39.47,66.91 |or
+collect 80 Raw Mithril Head Trout##8365 |goto Stranglethorn Vale/0 39.47,66.91 |or
 |tip This total is approximate. |notinsticky
 |tip You may need more or less than the indicated amount. |notinsticky
 '|complete skill("Cooking") >= 225 |or
@@ -264,7 +264,7 @@ step
 '|cast Fishing##33095
 cast Basic Campfire##818
 |tip Stand next to the Basic Campfire.
-create 80 Bristle Whisker Catfish##7755,Cooking,175 |goto The Cape of Stranglethorn/0 42.62,72.76
+create 80 Bristle Whisker Catfish##7755,Cooking,175 |goto Stranglethorn Vale/0 42.62,72.76
 |tip You may need to create more or less of these.
 |tip Fish more Bristle Whisker Catfish if needed.
 step
@@ -275,7 +275,7 @@ step
 '|cast Fishing##33095
 cast Basic Campfire##818
 |tip Stand next to the Basic Campfire.
-create 80 Mithril Head Trout##20916,Cooking,225 |goto The Cape of Stranglethorn/0 42.62,72.76
+create 80 Mithril Head Trout##20916,Cooking,225 |goto Stranglethorn Vale/0 42.62,72.76
 |tip You may need to create more or less of these.
 |tip Fish more Raw Mithril Head Trout if needed.
 step
@@ -300,19 +300,19 @@ accept Nat Pagle, Angler Extreme##6607 |goto Dustwallow Marsh/0 58.55,60.21
 |tip If you skip it, you will catch more junk and spend more time fishing.
 Click Here To Skip Nat Pagle, Angler Extreme |confirm |next "Skip_Nat_Pagle_Quest"
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Feralas/0 62.38,52.50 |only if default |or
+|equipped Fishing Pole##6256 |goto Feralas/0 62.38,52.50 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Feralas/0 62.38,52.50 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Feralas/0 62.38,52.50 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Feralas/0 62.38,52.50 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Feralas/0 62.38,52.50 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Feralas/0 62.38,52.50 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Feralas/0 62.38,52.50 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Feralas/0 62.38,52.50 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Feralas/0 62.38,52.50 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Feralas/0 62.38,52.50 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Feralas/0 62.38,52.50 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Feralas/0 62.38,52.50 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+|equipped Arcanite Fishing Pole##19970 |goto Feralas/0 62.38,52.50 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |goto Feralas/0 62.38,52.50 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |goto Feralas/0 62.38,52.50 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |goto Feralas/0 62.38,52.50 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |goto Feralas/0 62.38,52.50 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |goto Feralas/0 62.38,52.50 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Feralas/0 62.38,52.50 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Feralas/0 62.38,52.50 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |goto Feralas/0 62.38,52.50 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |goto Feralas/0 62.38,52.50 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |goto Feralas/0 62.38,52.50 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete completedq(6607,1) |or
 step
 cast Fishing##33095
@@ -327,19 +327,19 @@ use the Bright Baubles##6532
 collect Feralas Ahi##16967 |q 6607/1 |goto Feralas/0 62.38,52.50
 |tip You will eventually catch one.
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Desolace/0 38.96,22.70 |only if default |or
+|equipped Fishing Pole##6256 |goto Desolace/0 38.96,22.70 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Desolace/0 38.96,22.70 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Desolace/0 38.96,22.70 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Desolace/0 38.96,22.70 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Desolace/0 38.96,22.70 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Desolace/0 38.96,22.70 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Desolace/0 38.96,22.70 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Desolace/0 38.96,22.70 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Desolace/0 38.96,22.70 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Desolace/0 38.96,22.70 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Desolace/0 38.96,22.70 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Desolace/0 38.96,22.70 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+|equipped Arcanite Fishing Pole##19970 |goto Desolace/0 38.96,22.70 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |goto Desolace/0 38.96,22.70 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |goto Desolace/0 38.96,22.70 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |goto Desolace/0 38.96,22.70 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |goto Desolace/0 38.96,22.70 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |goto Desolace/0 38.96,22.70 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Desolace/0 38.96,22.70 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Desolace/0 38.96,22.70 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |goto Desolace/0 38.96,22.70 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |goto Desolace/0 38.96,22.70 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |goto Desolace/0 38.96,22.70 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete completedq(6607,3) |or
 step
 cast Fishing##33095
@@ -354,19 +354,19 @@ use the Bright Baubles##6532
 collect Sar'theris Striker##16968 |q 6607/3 |goto Desolace/0 36.30,33.40
 |tip You will eventually catch one.
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto The Cape of Stranglethorn/0 39.47,66.91 |only if default |or
+|equipped Fishing Pole##6256 |goto Stranglethorn Vale/0 39.47,66.91 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+|equipped Arcanite Fishing Pole##19970 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |goto Stranglethorn Vale/0 24.58,65.80 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete completedq(6607,4) |or
 step
 cast Fishing##33095
@@ -378,22 +378,22 @@ use the Bright Baubles##6532
 |tip It will grant you +75 Fishing skill for 10 minutes.
 |tip Try to keep one of these active whenever you are fishing.
 |tip If you have a better bait, you can use that instead.
-collect Savage Coast Blue Sailfin##16969 |q 6607/4 |goto The Cape of Stranglethorn/0 39.47,66.91
+collect Savage Coast Blue Sailfin##16969 |q 6607/4 |goto Stranglethorn Vale/0 39.47,66.91
 |tip You will eventually catch one.
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Swamp of Sorrows/0 |only if default |or
+|equipped Fishing Pole##6256 |goto Swamp of Sorrows/0 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Swamp of Sorrows/0 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Swamp of Sorrows/0 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Swamp of Sorrows/0 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Swamp of Sorrows/0 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Swamp of Sorrows/0 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Swamp of Sorrows/0 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Swamp of Sorrows/0 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Swamp of Sorrows/0 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Swamp of Sorrows/0 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Swamp of Sorrows/0 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Swamp of Sorrows/0 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+|equipped Arcanite Fishing Pole##19970 |goto Swamp of Sorrows/0 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |goto Swamp of Sorrows/0 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |goto Swamp of Sorrows/0 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |goto Swamp of Sorrows/0 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |goto Swamp of Sorrows/0 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |goto Swamp of Sorrows/0 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Swamp of Sorrows/0 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Swamp of Sorrows/0 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |goto Swamp of Sorrows/0 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |goto Swamp of Sorrows/0 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |goto Swamp of Sorrows/0 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete completedq(6607,2) |or
 step
 cast Fishing##33095
@@ -420,19 +420,19 @@ buy 20 Bright Baubles##6532 |goto Feralas/0 74.49,42.73 |complete skill("Cooking
 buy Recipe: Baked Salmon##13949 |goto Feralas/0 74.49,42.73 |complete knowspell(18247)
 |tip Save this, you will need it later.
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Feralas/0 75.67,44.12 |only if default |or
+|equipped Fishing Pole##6256 |goto Feralas/0 75.67,44.12 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Feralas/0 75.67,44.12 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Feralas/0 75.67,44.12 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Feralas/0 75.67,44.12 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Feralas/0 75.67,44.12 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Feralas/0 75.67,44.12 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Feralas/0 75.67,44.12 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Feralas/0 75.67,44.12 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Feralas/0 75.67,44.12 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Feralas/0 75.67,44.12 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Feralas/0 75.67,44.12 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Feralas/0 75.67,44.12 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+|equipped Arcanite Fishing Pole##19970 |goto Feralas/0 75.67,44.12 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |goto Feralas/0 75.67,44.12 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |goto Feralas/0 75.67,44.12 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |goto Feralas/0 75.67,44.12 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |goto Feralas/0 75.67,44.12 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |goto Feralas/0 75.67,44.12 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Feralas/0 75.67,44.12 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Feralas/0 75.67,44.12 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |goto Feralas/0 75.67,44.12 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |goto Feralas/0 75.67,44.12 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |goto Feralas/0 75.67,44.12 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete skill("Fishing") >= 255 |or
 step
 cast Fishing##33095
@@ -467,19 +467,19 @@ create 45 Mithril Head Trout##20916,Cooking,245 |goto Feralas/0 75.67,44.12
 |tip You may need to create more or less of these.
 |tip Fish more Raw Mithril Head Trout if needed.
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Feralas/0 49.98,14.57 |only if default |or
+|equipped Fishing Pole##6256 |goto Feralas/0 49.98,14.57 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Feralas/0 49.98,14.57 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Feralas/0 49.98,14.57 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Feralas/0 49.98,14.57 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Feralas/0 49.98,14.57 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Feralas/0 49.98,14.57 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Feralas/0 49.98,14.57 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Feralas/0 49.98,14.57 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Feralas/0 49.98,14.57 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Feralas/0 49.98,14.57 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Feralas/0 49.98,14.57 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Feralas/0 49.98,14.57 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+|equipped Arcanite Fishing Pole##19970 |goto Feralas/0 49.98,14.57 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |goto Feralas/0 49.98,14.57 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |goto Feralas/0 49.98,14.57 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |goto Feralas/0 49.98,14.57 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |goto Feralas/0 49.98,14.57 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |goto Feralas/0 49.98,14.57 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Feralas/0 49.98,14.57 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Feralas/0 49.98,14.57 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |goto Feralas/0 49.98,14.57 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |goto Feralas/0 49.98,14.57 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |goto Feralas/0 49.98,14.57 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete skill("Fishing") >= 275 |or
 step
 cast Fishing##33095
@@ -551,19 +551,19 @@ buy Recipe: Golden Fish Sticks##27699 |goto Terokkar Forest/0 48.74,46.04 |or
 |tip Save this, you will need it later.
 '|complete skill("Cooking") >= 350 |or
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Terokkar Forest/0 39.33,22.16 |only if default |or
+|equipped Fishing Pole##6256 |goto Terokkar Forest/0 39.33,22.16 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+|equipped Arcanite Fishing Pole##19970 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |goto Terokkar Forest/0 39.33,22.16 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete skill("Fishing") >= 320 |or
 step
 cast Fishing##33095
@@ -662,19 +662,19 @@ talk Barnabas Frye##24341
 buy 20 Bright Baubles##6532 |goto Howling Fjord/0 79.49,30.47 |or
 '|complete skill("Fishing") >= 360 |or
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256 |goto Howling Fjord/0 79.51,27.15 |only if default |or
+|equipped Fishing Pole##6256 |goto Howling Fjord/0 79.51,27.15 |only if default |or
 |tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
-Equip an Arcanite Fishing Pole |equipped Arcanite Fishing Pole##19970 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
-Equip a Big Iron Fishing Pole |equipped Big Iron Fishing Pole##6367 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
-Equip a Blump Family Fishing Pole |equipped Blump Family Fishing Pole##12225 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(12225) >= 1 |or
-Equip a Bone Fishing Pole |equipped Bone Fishing Pole##45991 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
-Equip a Darkwood Fishing Pole |equipped Darkwood Fishing Pole##6366 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
-Equip a Jeweled Fishing Pole |equipped Jeweled Fishing Pole##45992 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
-Equip a Mastercraft Kalu'ak Fishing Pole |equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
-Equip Nat Pagle's Extreme Angler FC-5000 |equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
-Equip a Nat's Lucky Fishing Pole |equipped Nat's Lucky Fishing Pole##45858 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
-Equip Seth's Graphite Fishing Pole |equipped Seth's Graphite Fishing Pole##25978 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
-Equip a Strong Fishing Pole |equipped Strong Fishing Pole##6365 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+|equipped Arcanite Fishing Pole##19970 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |goto Howling Fjord/0 79.51,27.15 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 '|complete skill("Fishing") >= 360 |or
 step
 cast Fishing##33095
@@ -845,11 +845,194 @@ _<Create 25 Severed Sagefish Head>_
 |tip You may need to make more to reach 525.
 Reach 525 Cooking |skill Cooking,525
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Chunk of Boar Meat",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Bear Meat",{
 mopready=true,
+meta={goldtype="route",levelreq=10},
+items={3173},
+maps={"Darkshore"},
 },[[
 step
-map Durotar
+map Darkshore/0
+path follow smart; loop on; ants straight; dist 30
+path	52.68,29.04	53.63,28.56	54.89,28.97	55.40,26.27	54.61,24.75
+path	52.72,25.51
+Kill Bear enemies along this path
+collect Bear Meat##3173 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Big Bear Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=20},
+items={3730},
+maps={"Hillsbrad Foothills"},
+},[[
+step
+map Hillsbrad Foothills/0
+path follow smart; loop on; ants straight; dist 30
+path	64.70,74.38	63.16,71.79	59.89,67.40	59.56,70.91	60.56,73.40
+path	63.82,76.34
+Kill Bear enemies around this area
+collect Big Bear Meat##3730 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Boar Ribs",{
+mopready=true,
+meta={goldtype="route",levelreq=1},
+items={2677},
+maps={"Durotar"},
+},[[
+step
+map Durotar/0
+path follow smart; loop on; ants curved; dist 20
+path	46.24,14.08	48.40,14.33	50.51,15.71	52.85,17.40	54.84,19.11
+path	55.64,21.23	56.27,24.65	56.55,26.49	56.33,30.28	54.76,33.37
+path	53.53,36.24	54.76,39.35	52.82,40.55	51.94,42.55	50.48,43.99
+path	48.46,44.47	47.22,43.35	45.66,40.85	45.03,36.20	43.31,33.15
+path	41.31,32.48	39.48,33.32	37.75,32.49	36.98,29.96	37.26,26.34
+path	37.94,23.38	40.00,20.80	40.35,17.61	42.55,17.05	44.72,17.22
+path	45.61,15.87
+Kill Boar enemies around this area
+collect Boar Ribs##2677 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Buzzard Wing",{
+mopready=true,
+meta={goldtype="route",levelreq=30},
+items={3404},
+maps={"Desolace"},
+},[[
+step
+map Desolace/0
+path follow smart; loop on; ants straight; dist 30
+path	70.84,30.47	71.26,28.17	70.74,25.26	69.85,22.02	68.46,20.37
+path	66.75,19.37	64.49,18.94	60.82,18.93	58.94,20.10	59.54,24.35
+path	61.77,28.24	63.91,30.59
+Kill Dread Swoop enemies around this area
+collect Buzzard Wing##3404 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Clam Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={5503},
+maps={"Westfall"},
+},[[
+step
+Kill Murloc enemies around this area
+|tip They are found all along the coastline.
+collect Small Barnacled Clam##5523 |n
+use the Small Barnacled Clam##5523
+collect Clam Meat##5503 |n |goto Westfall/0 37.26,15.67
+|tip They are inside of the Small Barnacled Clams.
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Coyote Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={2673},
+maps={"Westfall"},
+},[[
+step
+map Westfall/0
+path follow smart; loop on; ants straight; dist 30
+path	62.45,42.12	61.05,38.49	59.20,30.20	58.69,26.18	58.85,22.18
+path	55.99,22.99	53.72,26.55	51.15,26.31	48.14,25.64	47.04,19.68
+path	44.81,17.52	42.78,19.23	41.83,24.14	41.27,26.78	45.37,30.33
+path	49.58,30.72	53.39,28.48	55.63,29.25
+Kill Coyote enemies along this path
+collect Coyote Meat##2673 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crag Boar Rib",{
+mopready=true,
+meta={goldtype="route",levelreq=1},
+items={2886},
+maps={"Dun Morogh"},
+},[[
+step
+map Dun Morogh/0
+path follow smart; loop on; dist 20
+path	48.31,47.26	50.56,47.82	52.50,48.96	51.18,50.98	50.25,52.44
+path	49.29,54.42	48.28,56.64	48.54,58.79	48.34,61.32	47.52,63.19
+path	45.85,63.76	45.37,63.31	46.29,61.25	46.73,58.19	46.92,56.16
+path	46.51,54.00	46.40,50.75	47.10,49.38	47.15,47.78
+Kill Boar enemies along this path
+collect Crag Boar Rib##2886 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crawler Claw",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={2675},
+maps={"Westfall"},
+},[[
+step
+map Westfall/0
+path follow smart; loop off; dist 20
+path	51.32,9.67	49.06,10.01	44.72,8.70	41.78,10.34	38.85,13.51
+path	36.20,18.29	33.45,22.08	31.88,24.30
+Kill Crawler enemies around this area
+|tip You can find more further down the coast.
+collect Crawler Claw##2675 |n
+'|goto Westfall/0 31.88,24.30 < 20 |noway |c
+step
+map Westfall/0
+path follow smart; loop off; dist 20
+path	31.88,24.30	33.45,22.08	36.20,18.29	38.85,13.51	41.78,10.34
+path	44.72,8.70	49.06,10.01	51.32,9.67
+Kill Crawler enemies around this area
+|tip You can find more further down the coast.
+collect Crawler Claw##2675 |n
+'|goto Westfall/0 51.32,9.67 < 20 |noway |c
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crawler Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={2674},
+maps={"Westfall"},
+},[[
+step
+map Westfall/0
+path follow smart; loop off; dist 20
+path	51.32,9.67	49.06,10.01	44.72,8.70	41.78,10.34	38.85,13.51
+path	36.20,18.29	33.45,22.08	31.88,24.30
+Kill Crawler enemies around this area
+|tip You can find more further down the coast.
+collect Crawler Meat##2674 |n
+'|goto Westfall/0 31.88,24.30 < 20 |noway |c
+step
+map Westfall/0
+path follow smart; loop off; dist 20
+path	31.88,24.30	33.45,22.08	36.20,18.29	38.85,13.51	41.78,10.34
+path	44.72,8.70	49.06,10.01	51.32,9.67
+Kill Crawler enemies around this area
+|tip You can find more further down the coast.
+collect Crawler Meat##2674 |n
+'|goto Westfall/0 51.32,9.67 < 20 |noway |c
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crocolisk Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={2924},
+maps={"Loch Modan"},
+},[[
+step
+map Loch Modan/0
+path follow smart; loop on; ants straight; dist 30
+path	49.06,59.58	48.77,63.11	50.96,65.26	53.77,64.51	58.07,57.86
+path	60.49,54.10	61.08,49.23	56.79,48.99
+Kill Crocolisk enemies along this path
+collect Crocolisk Meat##2924 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Chunk of Boar Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=1},
+items={769},
+maps={"Durotar"},
+},[[
+step
+map Durotar/0
 path follow smart; loop on; ants curved; dist 20
 path	46.24,14.08	48.40,14.33	50.51,15.71	52.85,17.40	54.84,19.11
 path	55.64,21.23	56.27,24.65	56.55,26.49	56.33,30.28	54.76,33.37
@@ -862,39 +1045,153 @@ Kill Boar enemies around this area
 collect Chunk of Boar Meat##769 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Small Egg",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Giant Clam Meat",{
 mopready=true,
+meta={goldtype="route",levelreq=25},
+items={4655},
+maps={"Northern Stranglethorn"},
 },[[
 step
-map Mulgore
-path follow smart; loop on; ants curved; dist 20
-path	57.20,68.00	58.60,64.20	60.00,59.80	56.60,57.80	57.60,55.00
-path	58.40,52.80	57.60,48.60	56.60,45.40	53.80,45.80	51.40,43.00
-path	51.00,40.40	52.40,38.20	52.20,34.40	49.20,36.20	47.20,41.60
-path	45.40,42.80	42.40,39.60	42.40,43.40	38.00,41.40	35.00,41.40
-path	36.60,45.80	41.60,48.60	42.80,53.00	43.60,49.60	46.60,50.20
-path	48.09,53.39	51.19,58.92	53.62,62.28
-Kill Swoop enemies along this path
-collect Small Egg##6889 |n
+click Giant Clam##2744+
+|tip They look like large shells underwater around this area.
+|tip Elixirs of Water Breathing are very helpful while farming these.
+collect Giant Clam Meat##4655 |n |goto Northern Stranglethorn/0 25.51,47.88
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Stringy Wolf Meat",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Gooey Spider Leg",{
 mopready=true,
+meta={goldtype="route",levelreq=20},
+items={2251},
+maps={"Duskwood"},
 },[[
 step
-map Tirisfal Glades/0
-path follow smart; loop off; ants straight; dist 30
-path    80.68,45.82    82.41,48.34    83.55,52.54    83.71,47.68    84.56,45.34
-path    85.40,42.49    83.66,41.14
-kill Ravenous Darkhound##1549+
-collect Stringy Wolf Meat##2672 |n
+label "Path_One"
+map Duskwood/0
+path follow smart; loop off; dist 20
+path	75.39,23.25	75.70,20.27	72.81,20.02	68.45,21.26	66.04,20.18
+path	64.38,23.56	62.25,25.40	58.25,19.25	55.59,20.51	53.13,20.33
+path	50.65,16.19	48.36,17.34	46.63,16.65
+Kill Spider enemies along this path
+collect Gooey Spider Leg##2251 |n
+'|goto Duskwood/0 46.63,16.65 < 20 |noway |c
+step
+map Duskwood/0
+path follow smart; loop off; dist 20
+path	46.63,16.65	48.36,17.34	50.65,16.19	53.13,20.33	55.59,20.51
+path	58.25,19.25	62.25,25.40	64.38,23.56	66.04,20.18	68.45,21.26
+path	72.81,20.02	75.70,20.27	75.39,23.25
+Kill Spider enemies along this path
+collect Gooey Spider Leg##2251 |n
+'|goto Duskwood/0 75.39,23.25 < 20 |noway |c |next "Path_One"
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Goretusk Liver",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={723},
+maps={"Westfall"},
+},[[
+step
+map Westfall/0
+path follow smart; loop on; ants straight; dist 30
+path	62.45,42.12	61.05,38.49	59.20,30.20	58.69,26.18	58.85,22.18
+path	55.99,22.99	53.72,26.55	51.15,26.31	48.14,25.64	47.04,19.68
+path	44.81,17.52	42.78,19.23	41.83,24.14	41.27,26.78	45.37,30.33
+path	49.58,30.72	53.39,28.48	55.63,29.25
+Kill Goretusk enemies along this path
+collect Goretusk Liver##723 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Goretusk Snout",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={731},
+maps={"Westfall"},
+},[[
+step
+map Westfall/0
+path follow smart; loop on; ants straight; dist 30
+path	62.45,42.12	61.05,38.49	59.20,30.20	58.69,26.18	58.85,22.18
+path	55.99,22.99	53.72,26.55	51.15,26.31	48.14,25.64	47.04,19.68
+path	44.81,17.52	42.78,19.23	41.83,24.14	41.27,26.78	45.37,30.33
+path	49.58,30.72	53.39,28.48	55.63,29.25
+Kill Goretusk enemies along this path
+collect Goretusk Snout##731 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Kodo Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=1},
+items={5467},
+maps={"Mulgore"},
+},[[
+step
+map Mulgore/0
+path follow smart; loop on; ants straight; dist 30
+path	49.12,35.54	53.57,32.31	55.04,23.61	51.99,19.91	50.11,23.99
+path	43.16,44.22	40.74,55.63	43.54,54.67	48.21,50.36	52.81,46.41
+Kill Kodo enemies along this path
+collect Kodo Meat##5467 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Lean Wolf Flank",{
+mopready=true,
+meta={goldtype="route",levelreq=20},
+items={1015},
+maps={"Duskwood"},
+},[[
+step
+label "Path_One"
+map Duskwood
+path follow smart; loop off; dist 20
+path	63.16,28.80	64.53,25.32	66.25,22.72	68.11,20.39	65.79,19.10
+path	63.93,18.00	61.85,17.35	61.24,19.93	59.17,22.31	57.44,22.15
+path	55.99,19.56	54.52,17.35	52.93,14.73	51.60,17.10	50.35,19.66
+path	49.58,17.59	48.56,16.46	46.52,16.89	44.73,18.76	43.31,20.29
+path	41.58,18.79	39.78,19.76	37.72,19.38	36.39,21.44	37.40,24.54
+path	35.14,24.60	32.82,24.47	31.96,27.24	29.31,27.36	27.36,26.54
+path	25.34,27.61	22.46,25.92	20.45,25.75	18.66,23.98	16.18,27.47
+path	14.08,27.45	12.25,30.98	10.25,32.63
+Kill Wolf enemies around this area
+collect Lean Wolf Flank##1015 |n
+'|goto Duskwood 10.25,32.63 < 20 |noway |c
+step
+map Duskwood
+path follow smart; loop off; dist 20
+path	10.25,32.63	12.25,30.98	14.08,27.45	16.18,27.47	18.66,23.98
+path	20.45,25.75	22.46,25.92	25.34,27.61	27.36,26.54	29.31,27.36
+path	31.96,27.24	32.82,24.47	35.14,24.60	37.40,24.54	36.39,21.44
+path	37.72,19.38	39.78,19.76	41.58,18.79	43.31,20.29	44.73,18.76
+path	46.52,16.89	48.56,16.46	49.58,17.59	50.35,19.66	51.60,17.10
+path	52.93,14.73	54.52,17.35	55.99,19.56	59.17,22.31	61.24,19.93
+path	61.85,17.35	63.93,18.00	65.79,19.10	68.11,20.39	66.25,22.72
+path	64.53,25.32	63.16,28.80
+Kill Wolf enemies around this area
+collect Lean Wolf Flank##1015 |n
+'|goto Duskwood 63.16,28.80 < 20 |noway |c |next "Path_One"
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Lion Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=30},
+items={3731},
+maps={"Southern Barrens"},
+},[[
+step
+map Southern Barrens/0
+path follow smart; loop on; ants straight; dist 30
+path	46.99,56.84	48.17,53.40	50.17,53.66	46.94,47.61	46.95,45.34
+path	44.16,46.63
+Kill Plains Prowlers and Pridemanes
+collect Lion Meat##3731 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Meaty Bat Wing",{
 mopready=true,
+meta={goldtype="route",levelreq=1},
+items={12223},
+maps={"Tirisfal Glades"},
 },[[
 step
-map Tirisfal Glades
+map Tirisfal Glades/0
 path follow smart; loop on; ants curved; dist 20
 path	64.52,58.29	68.11,58.97	70.15,60.79	71.25,63.52	72.94,65.59
 path	74.00,67.56	75.53,71.12	77.00,71.91	78.54,72.64	80.23,70.82
@@ -909,8 +1206,94 @@ Kill Bat enemies along this path
 collect Meaty Bat Wing##12223 |n
 '|confirm
 ]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Murloc Eye",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={730},
+maps={"Westfall"},
+},[[
+step
+Kill Murloc enemies around this area
+|tip They spawn all along the coast, so you can move down to get more.
+collect Murloc Eye##730 |n |goto Westfall 55.73,9.49
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Murloc Fin",{
+mopready=true,
+meta={goldtype="route",levelreq=15},
+items={1468},
+maps={"Redridge Mountains"},
+},[[
+step
+Kill Murloc enemies around this area
+collect Murloc Fin##1468 |goto Redridge Mountains/0 52.03,47.88 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Mystery Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=30},
+items={12037},
+maps={"Desolace"},
+},[[
+step
+map Desolace/0
+path follow smart; loop on; ants straight; dist 30
+path	70.84,30.47	71.26,28.17	70.74,25.26	69.85,22.02	68.46,20.37
+path	66.75,19.37	64.49,18.94	60.82,18.93	58.94,20.10	59.54,24.35
+path	61.77,28.24	63.91,30.59
+Kill animal enemies around this area
+collect Mystery Meat##12037 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Raptor Egg",{
+mopready=true,
+meta={goldtype="route",levelreq=25},
+items={3685},
+maps={"Northern Stranglethorn"},
+},[[
+step
+map Northern Stranglethorn/0
+path follow smart; loop on; ants straight; dist 30
+path	25.65,30.22	27.84,30.72	29.96,31.83	31.18,32.26	32.43,30.42
+path	31.93,27.74
+Kill Raptor enemies around this area
+collect Raptor Egg##3685 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Raptor Flesh",{
+mopready=true,
+meta={goldtype="route",levelreq=25},
+items={12184},
+maps={"Northern Stranglethorn"},
+},[[
+step
+map Northern Stranglethorn/0
+path follow smart; loop on; ants straight; dist 30
+path	31.76,32.48	30.35,30.75	28.47,30.17	25.99,29.81
+Kill Raptor enemies around this area
+collect Raptor Flesh##12184 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Red Wolf Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=30},
+items={12203},
+maps={"The Hinterlands"},
+},[[
+step
+map The Hinterlands/0
+path follow smart; loop on; ants curved; dist 20
+path	16.99,49.54	14.76,51.94	16.34,54.97	19.20,54.81	21.00,55.69
+path	22.67,53.75	24.13,52.68	22.29,51.46	20.61,50.68	19.10,49.49
+kill Mangy Silvermane##2923+
+collect Red Wolf Meat##12203 |n
+'|confirm
+]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Scorpid Stinger",{
 mopready=true,
+meta={goldtype="route",levelreq=1},
+items={5466},
+maps={"Durotar"},
 },[[
 step
 map Durotar/0
@@ -921,61 +1304,84 @@ Kill Scorpid enemies along this path
 collect Scorpid Stinger##5466 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Tender Crocolisk Meat",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Small Egg",{
 mopready=true,
+meta={goldtype="route",levelreq=1},
+items={6889},
+maps={"Mulgore"},
 },[[
 step
-label "Path_One"
-map Dustwallow Marsh
-path follow smart; loop off; dist 20
-path	42.01,28.23	41.27,30.48	40.81,32.17	39.51,33.86	38.27,35.06
-path	39.30,36.33	40.52,36.90	41.08,38.12	42.23,39.13	42.29,41.27
-path	40.44,41.83	39.76,43.93	39.29,45.36	38.51,45.82	37.54,46.50
-path	36.53,47.94	35.50,49.39	36.60,52.40	38.28,53.98	40.81,54.72
-path	41.62,55.99	40.68,58.48	40.53,61.02
-Kill Drywallow enemies along this path
-collect Tender Crocolisk Meat##3667 |n
-'|goto Dustwallow Marsh 40.53,61.02 < 20 |noway |c
-step
-map Dustwallow Marsh
-path follow smart; loop off; dist 20
-path	40.53,61.02	40.68,58.48	41.62,55.99	40.81,54.72	38.28,53.98
-path	36.60,52.40	35.50,49.39	36.53,47.94	37.54,46.50	38.51,45.82
-path	39.29,45.36	39.76,43.93	40.44,41.83	42.29,41.27	42.23,39.13
-path	41.08,38.12	40.52,36.90	39.30,36.33	38.27,35.06	39.51,33.86
-path	40.81,32.17	41.27,30.48	42.01,28.23
-Kill Drywallow enemies along this path
-collect Tender Crocolisk Meat##3667 |n
-'|goto Dustwallow Marsh 42.01,28.23 < 20 |noway |c |next "Path_One"
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Red Wolf Meat",{
-mopready=true,
-},[[
-step
-map The Hinterlands
+map Mulgore/0
 path follow smart; loop on; ants curved; dist 20
-path	16.99,49.54	14.76,51.94	16.34,54.97	19.20,54.81	21.00,55.69
-path	22.67,53.75	24.13,52.68	22.29,51.46	20.61,50.68	19.10,49.49
-kill Mangy Silvermane##2923+
-collect Red Wolf Meat##12203 |n
+path	57.20,68.00	58.60,64.20	60.00,59.80	56.60,57.80	57.60,55.00
+path	58.40,52.80	57.60,48.60	56.60,45.40	53.80,45.80	51.40,43.00
+path	51.00,40.40	52.40,38.20	52.20,34.40	49.20,36.20	47.20,41.60
+path	45.40,42.80	42.40,39.60	42.40,43.40	38.00,41.40	35.00,41.40
+path	36.60,45.80	41.60,48.60	42.80,53.00	43.60,49.60	46.60,50.20
+path	48.09,53.39	51.19,58.92	53.62,62.28
+Kill Swoop enemies along this path
+collect Small Egg##6889 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Coyote Meat",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Small Spider Leg",{
 mopready=true,
+meta={goldtype="route",levelreq=1},
+items={5465},
+maps={"Teldrassil"},
 },[[
 step
-map Westfall/0
+map Teldrassil
+path follow smart; loop on; dist 20
+path	61.26,54.48	59.86,54.83	58.84,56.13	57.82,55.52	56.99,57.22
+path	55.71,58.31	54.17,58.29	51.90,56.43	51.01,57.05	51.06,58.72
+path	51.50,61.70	51.21,65.25	51.97,66.36	53.49,68.85	53.68,66.50
+path	54.51,65.63	55.15,63.62	56.43,62.23	57.59,61.30	58.39,61.25
+path	59.64,62.24	61.03,61.51	62.34,60.71	62.85,58.55	62.70,56.22
+path	62.20,55.24
+kill Webwood Lurker##1998+
+collect Small Spider Leg##5465 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Soft Frenzy Flesh",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={5468},
+maps={"Silverpine Forest"},
+},[[
+step
+map Silverpine Forest/0
 path follow smart; loop on; ants straight; dist 30
-path	62.45,42.12	61.05,38.49	59.20,30.20	58.69,26.18	58.85,22.18
-path	55.99,22.99	53.72,26.55	51.15,26.31	48.14,25.64	47.04,19.68
-path	44.81,17.52	42.78,19.23	41.83,24.14	41.27,26.78	45.37,30.33
-path	49.58,30.72	53.39,28.48	55.63,29.25
-Kill Coyote enemies along this path
-collect Coyote Meat##2673 |n
+path	30.44,14.12	31.11,19.26	32.16,21.49	33.37,22.75	34.22,25.17
+path	32.71,28.99	33.19,33.41	34.03,37.43	35.04,42.09	35.58,47.06
+path	35.64,51.82	36.25,59.88	37.65,67.26
+kill Reef Frenzy##2173+
+|tip They are underwater along this path.
+collect Soft Frenzy Flesh##5468 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Spider Ichor",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={3174},
+maps={"Loch Modan"},
+},[[
+step
+map Loch Modan/0
+path follow smart; loop on; ants straight; dist 30
+path	27.50,18.10	30.27,19.59	29.15,24.55	29.84,29.06	32.14,30.71
+path	35.13,29.65	37.20,31.58	36.37,35.45	35.03,38.40	33.26,40.88
+path	32.40,45.35	33.05,47.42	34.34,51.88	36.47,52.74	39.14,50.95
+path	39.83,54.29	42.01,58.27	44.93,63.94	42.50,52.70	39.15,41.38
+path	38.83,33.13	40.40,23.18	40.43,17.42
+Kill Lurker enemies along this path
+collect Spider Ichor##3174 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Strider Meat",{
 mopready=true,
+meta={goldtype="route",levelreq=1},
+items={5469},
+maps={"Mulgore"},
 },[[
 step
 map Mulgore/0
@@ -989,136 +1395,46 @@ Kill Plainstrider enemies along this path
 collect Strider Meat##5469 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Kodo Meat",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Stringy Vulture Meat",{
 mopready=true,
+meta={goldtype="route",levelreq=10},
+items={729},
+maps={"Westfall"},
 },[[
 step
-map Mulgore/0
+map Westfall/0
 path follow smart; loop on; ants straight; dist 30
-path	49.12,35.54	53.57,32.31	55.04,23.61	51.99,19.91	50.11,23.99
-path	43.16,44.22	40.74,55.63	43.54,54.67	48.21,50.36	52.81,46.41
-Kill Kodo enemies along this path
-collect Kodo Meat##5467 |n
+path	62.45,42.12	61.05,38.49	59.20,30.20	58.69,26.18	58.85,22.18
+path	55.99,22.99	53.72,26.55	51.15,26.31	48.14,25.64	47.04,19.68
+path	44.81,17.52	42.78,19.23	41.83,24.14	41.27,26.78	45.37,30.33
+path	49.58,30.72	53.39,28.48	55.63,29.25
+Kill Vulture enemies along this path
+collect Stringy Vulture Meat##729 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Bear Meat",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Stringy Wolf Meat",{
 mopready=true,
+meta={goldtype="route",levelreq=1},
+items={2672},
+maps={"Tirisfal Glades"},
 },[[
 step
-map Darkshore/0
-path follow smart; loop on; ants straight; dist 30
-path	52.68,29.04	53.63,28.56	54.89,28.97	55.40,26.27	54.61,24.75
-path	52.72,25.51
-Kill Bear enemies along this path
-collect Bear Meat##3173 |n
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crawler Meat",{
-mopready=true,
-},[[
-step
-map Westfall
-path follow smart; loop off; dist 20
-path	51.32,9.67	49.06,10.01	44.72,8.70	41.78,10.34	38.85,13.51
-path	36.20,18.29	33.45,22.08	31.88,24.30
-Kill Crawler enemies around this area
-|tip You can find more further down the coast.
-collect Crawler Meat##2674 |n
-'|goto Westfall 31.88,24.30 < 20 |noway |c
-step
-map Westfall
-path follow smart; loop off; dist 20
-path	31.88,24.30	33.45,22.08	36.20,18.29	38.85,13.51	41.78,10.34
-path	44.72,8.70	49.06,10.01	51.32,9.67
-Kill Crawler enemies around this area
-|tip You can find more further down the coast.
-collect Crawler Meat##2674 |n
-'|goto Westfall 51.32,9.67 < 20 |noway |c
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crawler Claw",{
-mopready=true,
-},[[
-step
-map Westfall
-path follow smart; loop off; dist 20
-path	51.32,9.67	49.06,10.01	44.72,8.70	41.78,10.34	38.85,13.51
-path	36.20,18.29	33.45,22.08	31.88,24.30
-Kill Crawler enemies around this area
-|tip You can find more further down the coast.
-collect Crawler Claw##2675 |n
-'|goto Westfall 31.88,24.30 < 20 |noway |c
-step
-map Westfall
-path follow smart; loop off; dist 20
-path	31.88,24.30	33.45,22.08	36.20,18.29	38.85,13.51	41.78,10.34
-path	44.72,8.70	49.06,10.01	51.32,9.67
-Kill Crawler enemies around this area
-|tip You can find more further down the coast.
-collect Crawler Claw##2675 |n
-'|goto Westfall 51.32,9.67 < 20 |noway |c
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Clam Meat",{
-mopready=true,
-},[[
-step
-Kill Murloc enemies around this area
-|tip They are found all along the coastline.
-collect Small Barnacled Clam##5523 |n
-use the Small Barnacled Clam##5523
-collect Clam Meat##5503 |n |goto Westfall 37.26,15.67
-|tip They are inside of the Small Barnacled Clams.
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Murloc Fin",{
-mopready=true,
-},[[
-step
-goto Redridge Mountains/0 52.03,47.88
-Kill Murloc enemies around this area
-collect Murloc Fin##1468 |n
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Big Bear Meat",{
-mopready=true,
-},[[
-step
-map Hillsbrad Foothills/0
-path follow smart; loop on; ants straight; dist 30
-path	64.70,74.38	63.16,71.79	59.89,67.40	59.56,70.91	60.56,73.40
-path	63.82,76.34
-Kill Bear enemies around this area
-collect Big Bear Meat##3730 |n
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Raptor Egg",{
-mopready=true,
-},[[
-step
-map Northern Stranglethorn/0
-path follow smart; loop on; ants straight; dist 30
-path	25.65,30.22	27.84,30.72	29.96,31.83	31.18,32.26	32.43,30.42
-path	31.93,27.74
-Kill Raptor enemies around this area
-collect Raptor Egg##3685 |n
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Thunder Lizard Tail",{
-mopready=true,
-},[[
-step
-map Southern Barrens/0
-path follow smart; loop on; ants straight; dist 30
-path	44.77,43.44	46.30,45.67	47.60,49.00	44.66,49.35	43.60,49.51
-path	42.36,46.91
-Kill Stormsnout enemies around this area
-collect Thunder Lizard Tail##5470 |n
+map Tirisfal Glades/0
+path follow smart; loop off; ants straight; dist 30
+path    80.68,45.82    82.41,48.34    83.55,52.54    83.71,47.68    84.56,45.34
+path    85.40,42.49    83.66,41.14
+kill Ravenous Darkhound##1549+
+collect Stringy Wolf Meat##2672 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Tangy Clam Meat",{
 mopready=true,
+meta={goldtype="route",levelreq=20},
+items={5504},
+maps={"Wetlands"},
 },[[
 step
-map Wetlands
+map Wetlands/0
 path follow smart; loop on; dist 20
 path	15.21,40.13	17.36,39.06	19.36,38.16	22.88,37.14	24.91,36.76
 path	24.41,33.77	23.10,33.59	21.34,34.34	19.64,31.98	18.24,31.36
@@ -1130,56 +1446,85 @@ use the Thick-shelled Clam##5524
 collect Tangy Clam Meat##5504 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Lion Meat",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Tender Crocolisk Meat",{
 mopready=true,
+meta={goldtype="route",levelreq=35},
+items={3667},
+maps={"Dustwallow Marsh"},
+},[[
+step
+label "Path_One"
+map Dustwallow Marsh/0
+path follow smart; loop off; dist 20
+path	42.01,28.23	41.27,30.48	40.81,32.17	39.51,33.86	38.27,35.06
+path	39.30,36.33	40.52,36.90	41.08,38.12	42.23,39.13	42.29,41.27
+path	40.44,41.83	39.76,43.93	39.29,45.36	38.51,45.82	37.54,46.50
+path	36.53,47.94	35.50,49.39	36.60,52.40	38.28,53.98	40.81,54.72
+path	41.62,55.99	40.68,58.48	40.53,61.02
+Kill Drywallow enemies along this path
+collect Tender Crocolisk Meat##3667 |n
+'|goto Dustwallow Marsh/0 40.53,61.02 < 20 |noway |c
+step
+map Dustwallow Marsh/0
+path follow smart; loop off; dist 20
+path	40.53,61.02	40.68,58.48	41.62,55.99	40.81,54.72	38.28,53.98
+path	36.60,52.40	35.50,49.39	36.53,47.94	37.54,46.50	38.51,45.82
+path	39.29,45.36	39.76,43.93	40.44,41.83	42.29,41.27	42.23,39.13
+path	41.08,38.12	40.52,36.90	39.30,36.33	38.27,35.06	39.51,33.86
+path	40.81,32.17	41.27,30.48	42.01,28.23
+Kill Drywallow enemies along this path
+collect Tender Crocolisk Meat##3667 |n
+'|goto Dustwallow Marsh/0 42.01,28.23 < 20 |noway |c |next "Path_One"
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Thunder Lizard Tail",{
+mopready=true,
+meta={goldtype="route",levelreq=30},
+items={5470},
+maps={"Southern Barrens"},
 },[[
 step
 map Southern Barrens/0
 path follow smart; loop on; ants straight; dist 30
-path	46.99,56.84	48.17,53.40	50.17,53.66	46.94,47.61	46.95,45.34
-path	44.16,46.63
-Kill Plains Prowlers and Pridemanes
-collect Lion Meat##3731 |n
+path	44.77,43.44	46.30,45.67	47.60,49.00	44.66,49.35	43.60,49.51
+path	42.36,46.91
+Kill Stormsnout enemies around this area
+collect Thunder Lizard Tail##5470 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Gooey Spider Leg",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Tiger Meat",{
 mopready=true,
+meta={goldtype="route",levelreq=25},
+items={12202},
+maps={"Northern Stranglethorn"},
 },[[
 step
-label "Path_One"
-map Duskwood
-path follow smart; loop off; dist 20
-path	75.39,23.25	75.70,20.27	72.81,20.02	68.45,21.26	66.04,20.18
-path	64.38,23.56	62.25,25.40	58.25,19.25	55.59,20.51	53.13,20.33
-path	50.65,16.19	48.36,17.34	46.63,16.65
-Kill Spider enemies along this path
-collect Gooey Spider Leg##2251 |n
-'|goto Duskwood 46.63,16.65 < 20 |noway |c
-step
-map Duskwood
-path follow smart; loop off; dist 20
-path	46.63,16.65	48.36,17.34	50.65,16.19	53.13,20.33	55.59,20.51
-path	58.25,19.25	62.25,25.40	64.38,23.56	66.04,20.18	68.45,21.26
-path	72.81,20.02	75.70,20.27	75.39,23.25
-Kill Spider enemies along this path
-collect Gooey Spider Leg##2251 |n
-'|goto Duskwood 75.39,23.25 < 20 |noway |c |next "Path_One"
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Mystery Meat",{
-mopready=true,
-},[[
-step
-map Desolace/0
+map Northern Stranglethorn/0
 path follow smart; loop on; ants straight; dist 30
-path	70.84,30.47	71.26,28.17	70.74,25.26	69.85,22.02	68.46,20.37
-path	66.75,19.37	64.49,18.94	60.82,18.93	58.94,20.10	59.54,24.35
-path	61.77,28.24	63.91,30.59
-Kill animal enemies around this area
-collect Mystery Meat##12037 |n
+path	38.88,28.11	37.12,31.47	36.33,32.84	37.16,34.47	37.94,35.40
+path	38.99,34.74	39.68,33.27
+Kill Tiger enemies around this area
+collect Tiger Meat##12202 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Tough Condor Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=15},
+items={1080},
+maps={"Redridge Mountains"},
+},[[
+step
+map Redridge Mountains/0
+path follow smart; loop on; ants straight; dist 30
+path    45.10,68.18    47.20,66.59    52.63,66.79    57.89,66.94
+Kill Condor enemies along this path
+collect Tough Condor Meat##1080 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Turtle Meat",{
 mopready=true,
+meta={goldtype="route",levelreq=20},
+items={3712},
+maps={"Hillsbrad Foothills"},
 },[[
 step
 map Hillsbrad Foothills/0
@@ -1193,72 +1538,85 @@ Kill Snapjaw enemies along this path
 collect Turtle Meat##3712 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Tiger Meat",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Breath of Wind",{
 mopready=true,
+meta={goldtype="route",levelreq=55},
+items={7081},
+maps={"Silithus"},
 },[[
 step
-map Northern Stranglethorn/0
-path follow smart; loop on; ants straight; dist 30
-path	38.88,28.11	37.12,31.47	36.33,32.84	37.16,34.47	37.94,35.40
-path	38.99,34.74	39.68,33.27
-Kill Tiger enemies around this area
-collect Tiger Meat##12202 |n
+kill Dust Stormer##11744+
+collect Breath of Wind##7081 |n |goto Silithus/0 36.49,19.44
+|tip These have a low drop rate.
+You can find more around [28.75,24.40]
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Raptor Flesh",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Core of Earth",{
 mopready=true,
+meta={goldtype="route",levelreq=55},
+items={7075},
+maps={"Silithus"},
 },[[
 step
-map Northern Stranglethorn/0
-path follow smart; loop on; ants straight; dist 30
-path	31.76,32.48	30.35,30.75	28.47,30.17	25.99,29.81
-Kill Raptor enemies around this area
-collect Raptor Flesh##12184 |n
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Buzzard Wing",{
-mopready=true,
-},[[
-step
-map Desolace/0
-path follow smart; loop on; ants straight; dist 30
-path	70.84,30.47	71.26,28.17	70.74,25.26	69.85,22.02	68.46,20.37
-path	66.75,19.37	64.49,18.94	60.82,18.93	58.94,20.10	59.54,24.35
-path	61.77,28.24	63.91,30.59
-Kill Dread Swoop enemies around this area
-collect Buzzard Wing##3404 |n
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Giant Clam Meat",{
-mopready=true,
-},[[
-step
-click Giant Clam##2744+
-|tip They look like large shells underwater around this area.
-|tip Elixirs of Water Breathing are very helpful while farming these.
-collect Giant Clam Meat##4655 |n |goto Northern Stranglethorn/0  25.51,47.88
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Living Essence",{
-mopready=true,
-},[[
-step
-Kill Tar enemies around this area
-collect Living Essence##12803 |n |goto Un'Goro Crater 46.46,17.23
+kill Desert Rumbler##11746+
+collect Core of Earth##7075 |n |goto Silithus/0 31.27,14.03
 |tip These have a low drop rate.
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Essence of Fire",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Elemental Air",{
 mopready=true,
+meta={goldtype="route",levelreq=55},
+items={7069},
+maps={"Silithus"},
+},[[
+step
+kill Dust Stormer##11744+
+collect Elemental Air##7069 |n |goto Silithus/0 36.49,19.44
+|tip These have a low drop rate.
+You can find more around [28.75,24.40]
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Elemental Earth",{
+mopready=true,
+meta={goldtype="route",levelreq=50},
+items={7067},
+maps={"Burning Steppes"},
+},[[
+step
+kill Obsidian Elemental##7031+
+collect Elemental Earth##7067 |n |goto Burning Steppes/0 15.92,43.11
+|tip These have a low drop rate.
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Elemental Fire",{
+mopready=true,
+meta={goldtype="route",levelreq=50},
+items={7068},
+maps={"Un'Goro Crater"},
 },[[
 step
 Kill Fire Elementals around this area
-collect Essence of Fire##7078 |n |goto Un'Goro Crater/0 49.29,47.07
+collect Elemental Fire##7068 |n |goto Un'Goro Crater/0 49.29,47.07
+|tip These have a low drop rate.
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Elemental Water",{
+mopready=true,
+meta={goldtype="route",levelreq=52},
+items={7070},
+maps={"Swamp of Sorrows"},
+},[[
+step
+Kill Purespring Elementals around this area
+collect Elemental Water##7070 |n |goto Swamp of Sorrows/0 18.08,57.82
 |tip These have a low drop rate.
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Essence of Air",{
 mopready=true,
+meta={goldtype="route",levelreq=55},
+items={7082},
+maps={"Silithus"},
 },[[
 step
 kill Dust Stormer##11744+
@@ -1269,6 +1627,9 @@ You can find more around [28.75,24.40]
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Essence of Earth",{
 mopready=true,
+meta={goldtype="route",levelreq=55},
+items={7076},
+maps={"Silithus"},
 },[[
 step
 kill Desert Rumbler##11746+
@@ -1276,85 +1637,109 @@ collect Essence of Earth##7076 |n |goto Silithus/0 31.27,14.03
 |tip These have a low drop rate.
 '|confirm
 ]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Essence of Fire",{
+mopready=true,
+meta={goldtype="route",levelreq=50},
+items={7078},
+maps={"Un'Goro Crater"},
+},[[
+step
+Kill Fire Elementals around this area
+collect Essence of Fire##7078 |n |goto Un'Goro Crater/0 49.29,47.07
+|tip These have a low drop rate.
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Essence of Undeath",{
+mopready=true,
+meta={goldtype="route",levelreq=40},
+items={12808},
+maps={"Eastern Plaguelands"},
+},[[
+step
+Kill Scarlet enemies in the area
+collect Essence of Undeath##12808 |n |goto Eastern Plaguelands/0 75.88,75.17
+|tip These have a low drop rate.
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Essence of Water",{
+mopready=true,
+meta={goldtype="route",levelreq=52},
+items={7080},
+maps={"Swamp of Sorrows"},
+},[[
+step
+Kill Purespring Elementals around this area
+collect Essence of Water##7080 |n |goto Swamp of Sorrows/0 18.08,57.82
+|tip These have a low drop rate.
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Globe of Water",{
+mopready=true,
+meta={goldtype="route",levelreq=52},
+items={7079},
+maps={"Swamp of Sorrows"},
+},[[
+step
+Kill Purespring Elementals around this area
+collect Globe of Water##7079 |n |goto Swamp of Sorrows/0 18.08,57.82
+|tip These have a low drop rate.
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Heart of Fire",{
+mopready=true,
+meta={goldtype="route",levelreq=50},
+items={7077},
+maps={"Un'Goro Crater"},
+},[[
+step
+Kill Fire Elementals around this area
+collect Essence of Fire##7077 |n |goto Un'Goro Crater/0 49.29,47.07
+|tip These have a low drop rate.
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Heart of the Wild",{
+mopready=true,
+meta={goldtype="route",levelreq=50},
+items={10286},
+maps={"Un'Goro Crater"},
+},[[
+step
+Kill Tar enemies around this area
+collect Heart of the Wild##10286 |n |goto Un'Goro Crater/0 45.10,17.69
+|tip These have a low drop rate.
+'|confirm
+]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Ichor of Undeath",{
 mopready=true,
+meta={goldtype="route",levelreq=50},
+items={7972},
+maps={"Winterspring"},
 },[[
 step
 Kill Highborne enemies around this area
-collect Ichor of Undeath##7972 |n |goto Winterspring 52.59,40.68
+collect Ichor of Undeath##7972 |n |goto Winterspring/0 52.59,40.68
 |tip These have a low drop rate.
 You can find more around: |notinsticky
 [53.62,42.09]
 [56.02,44.24]
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Heart of Fire",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Living Essence",{
 mopready=true,
+meta={goldtype="route",levelreq=50},
+items={12803},
+maps={"Un'Goro Crater"},
 },[[
 step
-Kill Fire Elementals around this area
-collect Essence of Fire##7078 |n |goto Un'Goro Crater/0 49.29,47.07
+Kill Tar enemies around this area
+collect Living Essence##12803 |n |goto Un'Goro Crater/0 46.46,17.23
 |tip These have a low drop rate.
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Globe of Water",{
-mopready=true,
-},[[
-step
-Kill Purespring Elementals around this area
-collect Essence of Water##7080 |n |goto Swamp of Sorrows/0 18.08,57.82
-|tip These have a low drop rate.
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Core of Earth",{
-mopready=true,
-},[[
-step
-kill Desert Rumbler##11746+
-collect Essence of Earth##7076 |n |goto Silithus/0 31.27,14.03
-|tip These have a low drop rate.
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Breath of Wind",{
-mopready=true,
-},[[
-step
-kill Dust Stormer##11744+
-collect Essence of Air##7082 |n |goto Silithus/0 36.49,19.44
-|tip These have a low drop rate.
-You can find more around [28.75,24.40]
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Elemental Fire",{
-mopready=true,
-},[[
-step
-Kill Fire Elementals around this area
-collect Essence of Fire##7078 |n |goto Un'Goro Crater/0 49.29,47.07
-|tip These have a low drop rate.
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Elemental Water",{
-mopready=true,
-},[[
-step
-Kill Purespring Elementals around this area
-collect Essence of Water##7080 |n |goto Swamp of Sorrows/0 18.08,57.82
-|tip These have a low drop rate.
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Elements\\Farming Guides\\Elemental Air",{
-mopready=true,
-},[[
-step
-kill Dust Stormer##11744+
-collect Essence of Air##7082 |n |goto Silithus/0 36.49,19.44
-|tip These have a low drop rate.
-You can find more around [28.75,24.40]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Strange Dust",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={10940},
 },[[
 step
 Disenchant level 5-20 green weapons and armor
@@ -1365,6 +1750,8 @@ collect Strange Dust##10940 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Magic Essence",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={10938},
 },[[
 step
 Disenchant level 3-12 green weapons and armor
@@ -1375,6 +1762,8 @@ collect Lesser Magic Essence##10938 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Magic Essence",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={10939},
 },[[
 step
 Disenchant level 9-21 green weapons and armor
@@ -1386,6 +1775,8 @@ collect Greater Magic Essence##10939 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Eternal Essence",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={16202},
 },[[
 step
 Disenchant level 40-50 green weapons and armor
@@ -1396,6 +1787,8 @@ collect Lesser Eternal Essence##16202 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Eternal Essence",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={16203},
 },[[
 step
 Disenchant level 45-60 green weapons and armor
@@ -1407,6 +1800,8 @@ collect Greater Eternal Essence##16203 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Small Brilliant Shard",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={14343},
 },[[
 step
 Disenchant level 38-50 blue and green weapons and armor
@@ -1417,6 +1812,8 @@ collect Small Brilliant Shard##14343 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Large Brilliant Shard",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={14344},
 },[[
 step
 Disenchant level 50-58 blue weapons and armor
@@ -1427,6 +1824,8 @@ collect Large Brilliant Shard##14344 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Illusion Dust",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={16204},
 },[[
 step
 Disenchant level 45-60 green weapons and armor
@@ -1437,6 +1836,8 @@ collect Illusion Dust##16204 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Astral Essence",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={10998},
 },[[
 step
 Disenchant level 20-25 green weapons and armor
@@ -1446,6 +1847,8 @@ collect Lesser Astral Essence##10998 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Astral Essence",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={11082},
 },[[
 step
 Disenchant level 20-30 green weapons and armor
@@ -1455,6 +1858,8 @@ collect Greater Astral Essence##11082 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Soul Dust",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={11083},
 },[[
 step
 Disenchant level 25-35 green weapons and armor
@@ -1464,6 +1869,8 @@ collect Soul Dust##11083 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Mystic Essence",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={11134},
 },[[
 step
 Disenchant level 30-35 green weapons and armor
@@ -1473,6 +1880,8 @@ collect Lesser Mystic Essence##11134 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Mystic Essence",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={11135},
 },[[
 step
 Disenchant level 35-40 green weapons and armor
@@ -1482,6 +1891,8 @@ collect Greater Mystic Essence##11135 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Vision Dust",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={11137},
 },[[
 step
 Disenchant level 35-45 green weapons and armor
@@ -1489,26 +1900,10 @@ Disenchant level 35-45 green weapons and armor
 collect Vision Dust##11137 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Dream Dust",{
-mopready=true,
-},[[
-step
-Disenchant level 45-55 green weapons and armor
-|tip You can disenchant old gear or buy some off the Auction House.
-collect Dream Dust##11176 |n
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Nether Essence",{
-mopready=true,
-},[[
-step
-Disenchant level 45-50 green weapons and armor
-|tip You can disenchant old gear or buy some off the Auction House.
-collect Greater Nether Essence##11175 |n
-'|confirm
-]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Nether Essence",{
 mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={11174},
 },[[
 step
 Disenchant level 40-45 green weapons and armor
@@ -1516,23 +1911,49 @@ Disenchant level 40-45 green weapons and armor
 collect Lesser Nether Essence##11174 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Golden Darter",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Nether Essence",{
 mopready=true,
-condition_suggested=function() return skill('Fishing') >= 355 end,
-condition_valid=function() return skill('Fishing') >= 355 end,
-condition_valid_msg="Your Fishing skill must be at least 355 to fish Golden Darter.",
-description="Golden Darter can be fished in Terokkar Forest.",
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={11175},
 },[[
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256
-|tip A Fishing Pole can be purchased near most Fishing profession trainers.
-'|equipped Strong Fishing Pole##6365 |or
-'|equipped Blump Family Fishing Pole##12225 |or
-'|equipped Arcanite Fishing Pole##19970 |or
-'|equipped Darkwood Fishing Pole##6366 |or
-'|equipped Big Iron Fishing Pole##6367 |or
-'|equipped Nat Pagle's Extreme Angler FC-5000##19022 |or
-'|equipped Seth's Graphite Fishing Pole##25978 |or
+Disenchant level 45-50 green weapons and armor
+|tip You can disenchant old gear or buy some off the Auction House.
+collect Greater Nether Essence##11175 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Dream Dust",{
+mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={11176},
+},[[
+step
+Disenchant level 45-55 green weapons and armor
+|tip You can disenchant old gear or buy some off the Auction House.
+collect Dream Dust##11176 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Golden Darter",{
+mopready=true,
+description="Golden Darter can be fished in Terokkar Forest.",
+meta={goldtype="route",skillreq={fishing=300},levelreq=62},
+items={27438},
+maps={"Terokkar Forest"},
+},[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 cast Fishing##33095
 |tip Fish in the water.
@@ -1543,21 +1964,25 @@ collect Golden Darter##27438 |goto Terokkar Forest/0 51.32,41.91 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Figluster's Mudfish",{
 mopready=true,
-condition_suggested=function() return skill('Fishing') >= 355 end,
-condition_valid=function() return skill('Fishing') >= 355 end,
-condition_valid_msg="Your Fishing skill must be at least 355 to fish Figluster's Mudfish.",
 description="Figluster's Mudfish can be fished in Nagrand.",
+meta={goldtype="route",skillreq={fishing=300},levelreq=64},
+items={27435},
+maps={"Nagrand"},
 },[[
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256
-|tip A Fishing Pole can be purchased near most Fishing profession trainers.
-'|equipped Strong Fishing Pole##6365 |or
-'|equipped Blump Family Fishing Pole##12225 |or
-'|equipped Arcanite Fishing Pole##19970 |or
-'|equipped Darkwood Fishing Pole##6366 |or
-'|equipped Big Iron Fishing Pole##6367 |or
-'|equipped Nat Pagle's Extreme Angler FC-5000##19022 |or
-'|equipped Seth's Graphite Fishing Pole##25978 |or
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 cast Fishing##33095
 |tip Fish in the water.
@@ -1568,21 +1993,25 @@ collect Figluster's Mudfish##27435 |goto Nagrand/0 57.97,32.98 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Icefin Bluefish",{
 mopready=true,
-condition_suggested=function() return skill('Fishing') >= 355 end,
-condition_valid=function() return skill('Fishing') >= 355 end,
-condition_valid_msg="Your Fishing skill must be at least 355 to fish Icefin Bluefish.",
 description="Icefin Bluefish can be fished in Nagrand.",
+meta={goldtype="route",skillreq={fishing=300},levelreq=64},
+items={27437},
+maps={"Nagrand"},
 },[[
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256
-|tip A Fishing Pole can be purchased near most Fishing profession trainers.
-'|equipped Strong Fishing Pole##6365 |or
-'|equipped Blump Family Fishing Pole##12225 |or
-'|equipped Arcanite Fishing Pole##19970 |or
-'|equipped Darkwood Fishing Pole##6366 |or
-'|equipped Big Iron Fishing Pole##6367 |or
-'|equipped Nat Pagle's Extreme Angler FC-5000##19022 |or
-'|equipped Seth's Graphite Fishing Pole##25978 |or
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 cast Fishing##33095
 |tip Fish in the water.
@@ -1591,25 +2020,127 @@ cast Fishing##33095
 collect Icefin Bluefish##27437 |goto Nagrand/0 57.97,32.98 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Brilliant Smallfish",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Loch Frenzy",{
 mopready=true,
+meta={goldtype="route",skillreq={fishing=1},levelreq=10},
+items={6317},
+maps={"Loch Modan"},
 },[[
 step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+step
+cast Fishing##33095
+|tip Fish in the water.
+|tip You must have a Fishing Pole equipped to fish.
+collect Raw Loch Frenzy##6317 |n |goto Loch Modan/0 55.08,68.10
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Brilliant Smallfish",{
+mopready=true,
+meta={goldtype="route",skillreq={fishing=1},levelreq=1},
+items={6291},
+maps={"Mulgore"},
+},[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+step
 Fish in the open water
-collect Raw Brilliant Smallfish##6291 |n |goto Mulgore 48.60,52.66
+collect Raw Brilliant Smallfish##6291 |n |goto Mulgore/0 48.60,52.66
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Slitherskin Mackerel",{
 mopready=true,
+meta={goldtype="route",skillreq={fishing=1},levelreq=1},
+items={6303},
+maps={"Durotar"},
 },[[
 step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+step
 Fish in the open water
-collect Raw Slitherskin Mackerel##6303 |n |goto Durotar 56.41,10.85
+collect Raw Slitherskin Mackerel##6303 |n |goto Durotar/0 56.41,10.85
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Rainbow Fin Albacore",{
+mopready=true,
+meta={goldtype="route",skillreq={fishing=1},levelreq=10},
+items={6361},
+maps={"The Barrens"},
+},[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+step
+Fish in the Open Water
+collect Raw Rainbow Fin Albacore##6361 |n |goto The Barrens/0 68.65,36.15
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Longjaw Mud Snapper",{
 mopready=true,
+meta={goldtype="route",skillreq={fishing=1},levelreq=1},
+items={6289},
+maps={"Orgrimmar"},
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 Fish in the Open Water
 collect Raw Longjaw Mud Snapper##6289 |n |goto Orgrimmar/1 69.75,30.12
@@ -1617,26 +2148,52 @@ collect Raw Longjaw Mud Snapper##6289 |n |goto Orgrimmar/1 69.75,30.12
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Bristle Whisker Catfish",{
 mopready=true,
+meta={goldtype="route",skillreq={fishing=1},levelreq=1},
+items={6308},
+maps={"Orgrimmar"},
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 Fish in the Open Water
 collect Raw Bristle Whisker Catfish##6308 |n |goto Orgrimmar/1 69.75,30.12
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Rainbow Fin Albacore",{
-mopready=true,
-},[[
-step
-Fish in the Open Water
-collect Raw Rainbow Fin Albacore##6361 |n |goto The Barrens 68.65,36.15
-'|confirm
-]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Sagefish",{
 mopready=true,
+meta={goldtype="route",skillreq={fishing=1},levelreq=20},
+items={21071},
+maps={"Hillsbrad Foothills"},
 },[[
 step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+step
 Fish from Sagefish Schools in the water around this area
-collect Raw Sagefish##21071 |n |goto Hillsbrad Foothills 61.38,42.49
+collect Raw Sagefish##21071 |n |goto Hillsbrad Foothills/0 61.38,42.49
 |tip Follow the river north for more schools.
 |tip You will need level 100 Fishing to catch these.
 You can find more around [42.70,13.29]
@@ -1644,37 +2201,91 @@ You can find more around [42.70,13.29]
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Mithril Head Trout",{
 mopready=true,
+meta={goldtype="route",skillreq={fishing=1},levelreq=30},
+items={8365},
+maps={"Desolace"},
 },[[
 step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+step
 Fish in the Open Water
-collect Raw Mithril Head Trout##8365 |n |goto Desolace 21.47,74.18
+collect Raw Mithril Head Trout##8365 |n |goto Desolace/0 21.47,74.18
 |tip You will need level 130 Fishing to catch these.
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Rockscale Cod",{
 mopready=true,
+meta={goldtype="route",skillreq={fishing=1},levelreq=30},
+items={6362},
+maps={"Stranglethorn Vale"},
 },[[
 step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+step
 Fish in the Open Water
-collect Raw Rockscale Cod##6362 |n |goto The Cape of Stranglethorn/0 35.81,53.43
+collect Raw Rockscale Cod##6362 |n |goto Stranglethorn Vale/0 35.81,53.43
 |tip You will need level 130 Fishing to catch these.
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Raw Sunscale Salmon",{
 mopready=true,
+meta={goldtype="route",skillreq={fishing=1},levelreq=35},
+items={13760},
+maps={"Feralas"},
 },[[
 step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
+step
 Fish in the Open Water
-collect Raw Sunscale Salmon##13760 |n |goto Feralas 75.58,44.52
+collect Raw Sunscale Salmon##13760 |n |goto Feralas/0 75.58,44.52
 |tip You will need level 205 Fishing to catch these.
 |tip This fish can only be caught during the day; they cannot be caught between midnight and 6 AM server time.
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Silverleaf",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=1},levelreq=1},
+items={765},
+maps={"Tirisfal Glades"},
 },[[
 step
-map Tirisfal Glades
+map Tirisfal Glades/0
 path follow smart; loop on; ants curved; dist 20
 path	51.54,54.24	50.24,56.05	47.60,53.12	45.65,51.89	46.96,47.83
 path	44.74,46.19	42.79,42.59	41.45,40.79	39.11,40.30	38.92,43.20
@@ -1690,9 +2301,12 @@ collect Silverleaf##765 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Peacebloom",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=1},levelreq=1},
+items={2447},
+maps={"Tirisfal Glades"},
 },[[
 step
-map Tirisfal Glades
+map Tirisfal Glades/0
 path follow smart; loop on; ants curved; dist 20
 path	51.54,54.24	50.24,56.05	47.60,53.12	45.65,51.89	46.96,47.83
 path	44.74,46.19	42.79,42.59	41.45,40.79	39.11,40.30	38.92,43.20
@@ -1708,9 +2322,12 @@ collect Peacebloom##2447 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Earthroot",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=1},levelreq=1},
+items={2449},
+maps={"Mulgore"},
 },[[
 step
-map Mulgore
+map Mulgore/0
 path follow smart; loop on; ants curved; dist 20
 path	35.22,70.19	34.72,69.90	34.64,69.25	35.05,67.37	35.10,65.67
 path	35.38,64.19	34.56,61.98	34.63,60.89	35.38,59.65	35.01,57.60
@@ -1721,9 +2338,9 @@ path	34.43,43.11	33.13,43.15	31.31,42.10	31.75,40.60	32.81,40.41
 path	33.40,40.69	34.14,40.11	34.71,38.48	34.60,36.52	34.37,34.32
 path	33.86,32.15	32.88,30.48	31.85,28.84	29.70,27.05	29.25,25.10
 path	29.00,23.41	29.26,20.35	31.05,19.76	31.99,19.31
-map Thunder Bluff
+map Thunder Bluff/0
 path	23.68,3.44
-map Mulgore
+map Mulgore/0
 path	35.83,16.33	37.25,14.62	37.67,13.01	36.13,11.11	36.32,9.79
 path	37.09,9.17	37.49,8.53	38.02,6.70	38.55,5.62	40.57,7.25
 path	41.31,8.18	43.97,8.03	45.51,7.75	46.82,7.87	49.28,7.68
@@ -1740,15 +2357,17 @@ path	51.02,70.96	49.19,72.26	47.46,72.23	45.51,71.36	44.21,71.55
 path	41.73,73.67	39.26,74.40	37.01,73.52
 Click herbs as you follow the path around this area
 |tip Track them on your minimap with "Find Herbs".
-|tip You will need at least 15 Herbalism skill to gather these.
 collect Earthroot##2449 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Briarthorn",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=1},levelreq=10},
+items={2450},
+maps={"Silverpine Forest"},
 },[[
 step
 label "Path_One"
-map Silverpine Forest
+map Silverpine Forest/0
 path follow smart; loop off; dist 20
 path	49.04,32.38	49.42,35.61	49.42,37.96	49.76,40.18	50.52,43.34
 path	52.66,43.16	54.51,44.07	52.79,45.65	51.98,49.91	52.04,52.85
@@ -1759,11 +2378,10 @@ path	66.96,79.79
 Click herbs as you follow the path around this area
 |tip Briarthorn can share a spawn with other herbs in the area, so pick them all.
 |tip Track them on your minimap with "Find Herbs".
-|tip You will need at least 70 Herbalism skill to gather these.
 collect Briarthorn##2450 |n
-'|goto Silverpine Forest 66.96,79.79 < 20 |noway |c
+'|goto Silverpine Forest/0 66.96,79.79 < 20 |noway |c
 step
-map Silverpine Forest
+map Silverpine Forest/0
 path follow smart; loop off; dist 20
 path	66.96,79.79	64.26,78.75	61.93,77.46	59.65,77.20	56.82,76.43
 path	54.65,74.35	54.34,71.81	54.77,66.89	56.16,64.50	58.05,62.07
@@ -1774,53 +2392,33 @@ path	49.04,32.38
 Click herbs as you follow the path around this area
 |tip Briarthorn can share a spawn with other herbs in the area, so pick them all.
 |tip Track them on your minimap with "Find Herbs".
-|tip You will need at least 70 Herbalism skill to gather these.
 collect Briarthorn##2450 |n
-'|goto Silverpine Forest 49.04,32.38 < 20 |noway |c |next "Path_One"
+'|goto Silverpine Forest/0 49.04,32.38 < 20 |noway |c |next "Path_One"
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Swiftthistle",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Grave Moss",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=105},levelreq=20},
+items={3369},
+maps={"Wetlands"},
 },[[
 step
-label "Path_One"
-map Silverpine Forest
-path follow smart; loop off; dist 20
-path	49.04,32.38	49.42,35.61	49.42,37.96	49.76,40.18	50.52,43.34
-path	52.66,43.16	54.51,44.07	52.79,45.65	51.98,49.91	52.04,52.85
-path	51.86,56.81	52.43,59.23	51.75,62.42	54.26,63.98	55.27,61.88
-path	56.68,60.37	58.05,62.07	56.16,64.50	54.77,66.89	54.34,71.81
-path	54.65,74.35	56.82,76.43	59.65,77.20	61.93,77.46	64.26,78.75
-path	66.96,79.79
-Click herbs as you follow the path around this area
-|tip Briarthorn can share a spawn with other herbs in the area, so pick them all.
-|tip Swiftthistle has a chance to be gathered from Briarthorn and Mageroyal.
+Click herbs around this area
 |tip Track them on your minimap with "Find Herbs".
-|tip You will need at least 70 Herbalism skill to gather these.
-collect Swiftthistle##2452 |n
-'|goto Silverpine Forest 66.96,79.79 < 20 |noway |c
-step
-map Silverpine Forest
-path follow smart; loop off; dist 20
-path	66.96,79.79	64.26,78.75	61.93,77.46	59.65,77.20	56.82,76.43
-path	54.65,74.35	54.34,71.81	54.77,66.89	56.16,64.50	58.05,62.07
-path	56.68,60.37	55.27,61.88	54.26,63.98	51.75,62.42	52.43,59.23
-path	51.86,56.81	52.04,52.85	51.98,49.91	52.79,45.65	54.51,44.07
-path	52.66,43.16	50.52,43.34	49.76,40.18	49.42,37.96	49.42,35.61
-path	49.04,32.38
-Click herbs as you follow the path around this area
-|tip Briarthorn can share a spawn with other herbs in the area, so pick them all.
-|tip Swiftthistle has a chance to be gathered from Briarthorn and Mageroyal.
-|tip Track them on your minimap with "Find Herbs".
-|tip You will need at least 70 Herbalism skill to gather these.
-collect Swiftthistle##2452 |n
-'|goto Silverpine Forest 49.04,32.38 < 20 |noway |c |next "Path_One"
+|tip They spawn in this small area.
+|tip You will need at least 105 Herbalism skill to gather these.
+collect Grave Moss##3369 |n |goto Wetlands/0 44.07,26.40
+You can find more inside the crypt at [44.27,25.39]
+'|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Liferoot",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=150},levelreq=20},
+items={3357},
+maps={"Wetlands"},
 },[[
 step
 label "Path_One"
-map Wetlands
+map Wetlands/0
 path follow smart; loop off; dist 20
 path	39.88,29.56	42.39,32.16	44.42,36.02	50.85,37.60	53.92,41.52
 path	55.96,45.32	59.97,50.83	61.97,56.83	64.42,68.06	63.29,74.88
@@ -1828,9 +2426,9 @@ Click herbs as you follow the path around this area
 |tip Track them on your minimap with "Find Herbs".
 |tip You will need at least 150 Herbalism skill to gather these.
 collect Liferoot##3357 |n
-'|goto Wetlands 63.29,74.88 < 20 |noway |c
+'|goto Wetlands/0 63.29,74.88 < 20 |noway |c
 step
-map Wetlands
+map Wetlands/0
 path follow smart; loop off; dist 20
 path	63.29,74.88	64.42,68.06	61.97,56.83	59.97,50.83	55.96,45.32
 path	53.92,41.52	50.85,37.60	44.42,36.02	42.39,32.16	39.88,29.56
@@ -1838,13 +2436,16 @@ Click herbs as you follow the path around this area
 |tip Track them on your minimap with "Find Herbs".
 |tip You will need at least 150 Herbalism skill to gather these.
 collect Liferoot##3357 |n
-'|goto Wetlands 39.88,29.56 < 20 |noway |c |next "Path_One"
+'|goto Wetlands/0 39.88,29.56 < 20 |noway |c |next "Path_One"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Fadeleaf",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=150},levelreq=30},
+items={3818},
+maps={"Stranglethorn Vale"},
 },[[
 step
-map The Cape of Stranglethorn/0
+map Stranglethorn Vale/0
 path follow smart; loop on; ants straight; dist 30
 path	49.45,10.57	48.12,15.04	49.07,18.49	46.62,19.50	42.69,17.68
 path	43.11,22.88	41.16,27.28	44.83,34.99	45.80,43.54	40.95,44.14
@@ -1855,16 +2456,19 @@ path	62.14,27.41
 Click herbs as you follow the path around this area
 |tip Track them on your minimap with "Find Herbs".
 |tip Watch out for horde guards along the main road.
-|tip You will need at least 160 Herbalism skill to gather these.
+|tip You will need at least 150 Herbalism skill to gather these.
 collect Fadeleaf##3818 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Wildvine",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=210},levelreq=30},
+items={8153},
+maps={"The Hinterlands"},
 },[[
 step
 Kill Vilebranch Enemies around this area
-collect Wildvine##8153 |n |goto The Hinterlands 66.46,71.42
+collect Wildvine##8153 |n |goto The Hinterlands/0 66.46,71.42
 |tip They have a 10% chance to be gathered from Purple Lotus around the Altar.
 |tip Track them on your minimap with "Find Herbs".
 |tip You will need at least 210 Herbalism skill to gather these.
@@ -1872,9 +2476,12 @@ collect Wildvine##8153 |n |goto The Hinterlands 66.46,71.42
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Blindweed",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=235},levelreq=52},
+items={8839},
+maps={"Swamp of Sorrows"},
 },[[
 step
-map Swamp of Sorrows
+map Swamp of Sorrows/0
 path follow smart; loop on; ants curved; dist 20
 path	23.34,47.48	26.00,39.24	28.21,37.10	31.38,35.00	36.11,36.48
 path	38.30,35.54	40.98,35.26	42.49,39.06	44.13,40.53	46.07,41.10
@@ -1897,9 +2504,12 @@ collect Blindweed##8839 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Ghost Mushroom",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=245},levelreq=30},
+items={8845},
+maps={"The Hinterlands"},
 },[[
 step
-map The Hinterlands
+map The Hinterlands/0
 path follow smart; loop on; ants curved; dist 20
 path	57.75,46.26	59.21,44.51	59.83,40.90	57.54,38.67	55.82,38.52
 path	54.48,40.89	54.34,43.82	55.65,46.02
@@ -1912,9 +2522,12 @@ collect Ghost Mushroom##8845 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Mountain Silversage",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=280},levelreq=50},
+items={13465},
+maps={"Un'Goro Crater"},
 },[[
 step
-map Un'Goro Crater
+map Un'Goro Crater/0
 path follow smart; loop on; ants curved; dist 20
 path	69.50,80.51	66.73,78.96	62.06,80.45	60.17,83.38	57.90,84.92
 path	56.43,85.63	52.59,86.79	50.45,85.64	47.59,86.84	44.06,85.48
@@ -1938,9 +2551,12 @@ collect Mountain Silversage##13465 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Icecap",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=270},levelreq=50},
+items={13467},
+maps={"Winterspring"},
 },[[
 step
-map Winterspring
+map Winterspring/0
 path follow smart; loop on; ants curved; dist 20
 path	51.15,36.38	49.02,37.97	47.29,38.82	46.26,37.85	44.98,36.98
 path	43.34,37.35	42.00,36.66	40.04,36.95	37.55,36.29	37.03,38.50
@@ -1954,16 +2570,19 @@ path	55.09,43.38	56.62,42.13	57.86,40.63	58.81,39.07	58.04,36.73
 path	56.38,36.22	54.08,33.77
 Click herbs as you follow the path around this area
 |tip Track them on your minimap with "Find Herbs".
-|tip You will need at least 290 Herbalism skill to gather these.
+|tip You will need at least 270 Herbalism skill to gather these.
 collect Icecap##13467 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Black Lotus",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=300},levelreq=50},
+items={13468},
+maps={"Burning Steppes"},
 },[[
 step
 label "Path_One"
-map Burning Steppes
+map Burning Steppes/0
 path follow smart; loop off; dist 20
 path	75.56,48.10	67.51,44.35	65.55,42.14	64.07,37.82	63.48,37.82
 path	60.30,40.06	49.65,36.46	46.29,34.47	43.06,33.76	41.88,37.36
@@ -1976,9 +2595,9 @@ Click herbs as you follow the path around this area
 collect Black Lotus##13468 |n
 |tip These are extremely rare.
 |tip Pick other herbs on the path to have a chance to spawn them.
-'|goto Burning Steppes 15.35,30.51 < 20 |noway |c
+'|goto Burning Steppes/0 15.35,30.51 < 20 |noway |c
 step
-map Burning Steppes
+map Burning Steppes/0
 path follow smart; loop off; dist 20
 path	15.35,30.51	15.42,34.23	15.47,40.51	18.10,44.02	22.87,50.09
 path	25.14,54.29	27.13,61.16	31.73,57.80	33.34,55.11	35.84,48.89
@@ -1991,10 +2610,13 @@ Click herbs as you follow the path around this area
 collect Black Lotus##13468 |n
 |tip These are extremely rare.
 |tip Pick other herbs on the path to have a chance to spawn them.
-'|goto Burning Steppes 75.56,48.10 < 20 |noway |c |next "Path_One"
+'|goto Burning Steppes/0 75.56,48.10 < 20 |noway |c |next "Path_One"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Mageroyal",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=1},levelreq=10},
+items={785},
+maps={"The Barrens"},
 },[[
 step
 map The Barrens/0
@@ -2015,6 +2637,9 @@ collect Mageroyal##785 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Stranglekelp",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=85},levelreq=20},
+items={3820},
+maps={"Wetlands"},
 },[[
 step
 label "Path_One"
@@ -2032,8 +2657,51 @@ Click herbs as you follow the path around this area
 collect Stranglekelp##3820 |n
 '|confirm
 ]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Swiftthistle",{
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=1},levelreq=10},
+items={2452},
+maps={"Silverpine Forest"},
+},[[
+step
+label "Path_One"
+map Silverpine Forest/0
+path follow smart; loop off; dist 20
+path	49.04,32.38	49.42,35.61	49.42,37.96	49.76,40.18	50.52,43.34
+path	52.66,43.16	54.51,44.07	52.79,45.65	51.98,49.91	52.04,52.85
+path	51.86,56.81	52.43,59.23	51.75,62.42	54.26,63.98	55.27,61.88
+path	56.68,60.37	58.05,62.07	56.16,64.50	54.77,66.89	54.34,71.81
+path	54.65,74.35	56.82,76.43	59.65,77.20	61.93,77.46	64.26,78.75
+path	66.96,79.79
+Click herbs as you follow the path around this area
+|tip Briarthorn can share a spawn with other herbs in the area, so pick them all.
+|tip Swiftthistle has a chance to be gathered from Briarthorn and Mageroyal.
+|tip Track them on your minimap with "Find Herbs".
+|tip You will need at least 70 Herbalism skill to gather these.
+collect Swiftthistle##2452 |n
+'|goto Silverpine Forest/0 66.96,79.79 < 20 |noway |c
+step
+map Silverpine Forest/0
+path follow smart; loop off; dist 20
+path	66.96,79.79	64.26,78.75	61.93,77.46	59.65,77.20	56.82,76.43
+path	54.65,74.35	54.34,71.81	54.77,66.89	56.16,64.50	58.05,62.07
+path	56.68,60.37	55.27,61.88	54.26,63.98	51.75,62.42	52.43,59.23
+path	51.86,56.81	52.04,52.85	51.98,49.91	52.79,45.65	54.51,44.07
+path	52.66,43.16	50.52,43.34	49.76,40.18	49.42,37.96	49.42,35.61
+path	49.04,32.38
+Click herbs as you follow the path around this area
+|tip Briarthorn can share a spawn with other herbs in the area, so pick them all.
+|tip Swiftthistle has a chance to be gathered from Briarthorn and Mageroyal.
+|tip Track them on your minimap with "Find Herbs".
+|tip You will need at least 70 Herbalism skill to gather these.
+collect Swiftthistle##2452 |n
+'|goto Silverpine Forest/0 49.04,32.38 < 20 |noway |c |next "Path_One"
+]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Bruiseweed",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=1},levelreq=25},
+items={2453},
+maps={"Stonetalon Mountains"},
 },[[
 step
 label "Bruiseweed_1"
@@ -2052,6 +2720,9 @@ collect Bruiseweed##2453 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Wild Steelbloom",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=115},levelreq=30},
+items={3355},
+maps={"Northern Stranglethorn"},
 },[[
 step
 map Northern Stranglethorn/0
@@ -2068,20 +2739,11 @@ Click herbs as you follow the path around this area
 collect Wild Steelbloom##3355 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Grave Moss",{
-mopready=true,
-},[[
-step
-Click herbs around this area
-|tip Track them on your minimap with "Find Herbs".
-|tip They spawn in this small area.
-|tip You will need at least 120 Herbalism skill to gather these.
-collect Grave Moss##3369 |n |goto Wetlands 44.07,26.40
-You can find more inside the crypt at [44.27,25.39]
-'|confirm
-]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Kingsblood",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=125},levelreq=35},
+items={3356},
+maps={"Western Plaguelands"},
 },[[
 step
 map Western Plaguelands/0
@@ -2092,12 +2754,15 @@ path	63.60,56.06	56.61,60.11	52.61,67.55	46.40,59.23	37.91,62.21
 path	33.73,62.71
 Click herbs as you follow the path around this area
 |tip Track them on your minimap with "Find Herbs".
-|tip You will need at least 170 Herbalism skill to gather these.
+|tip You will need at least 125 Herbalism skill to gather these.
 collect Kingsblood##3356 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Goldthorn",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=150},levelreq=25},
+items={3821},
+maps={"Northern Stranglethorn"},
 },[[
 step
 map Northern Stranglethorn/0
@@ -2111,12 +2776,15 @@ path	54.08,48.34	54.17,57.96	55.21,62.17	57.42,61.55	59.86,63.63
 path	63.26,66.36	61.63,61.17	59.25,58.85	59.51,51.62
 Click herbs as you follow the path around this area
 |tip Track them on your minimap with "Find Herbs".
-|tip You will need at least 170 Herbalism skill to gather these.
+|tip You will need at least 150 Herbalism skill to gather these.
 collect Goldthorn##3821 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Khadgar's Whisker",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=160},levelreq=35},
+items={3358},
+maps={"Western Plaguelands"},
 },[[
 step
 map Western Plaguelands/0
@@ -2127,12 +2795,15 @@ path	63.60,56.06	56.61,60.11	52.61,67.55	46.40,59.23	37.91,62.21
 path	33.73,62.71
 Click herbs as you follow the path around this area
 |tip Track them on your minimap with "Find Herbs".
-|tip You will need at least 185 Herbalism skill to gather these.
+|tip You will need at least 160 Herbalism skill to gather these.
 collect Khadgar's Whisker##3358 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Dragon's Teeth",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=195},levelreq=45},
+items={3819},
+maps={"Badlands"},
 },[[
 step
 map Badlands/0
@@ -2147,6 +2818,9 @@ collect Dragon's Teeth##3819 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Firebloom",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=205},levelreq=47},
+items={4625},
+maps={"Searing Gorge"},
 },[[
 step
 map Searing Gorge/0
@@ -2165,6 +2839,9 @@ collect Firebloom##4625 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Purple Lotus",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=210},levelreq=45},
+items={8831},
+maps={"Felwood"},
 },[[
 step
 label "Start_Path"
@@ -2224,6 +2901,9 @@ collect Purple Lotus##8831 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Sungrass",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=230},levelreq=47},
+items={8838},
+maps={"Searing Gorge"},
 },[[
 step
 map Searing Gorge/0
@@ -2242,6 +2922,9 @@ collect Sungrass##8838 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Gromsblood",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=250},levelreq=45},
+items={8846},
+maps={"Felwood"},
 },[[
 step
 map Felwood/0
@@ -2268,6 +2951,9 @@ collect Gromsblood##8846 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Golden Sansam",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=260},levelreq=52},
+items={13464},
+maps={"Swamp of Sorrows"},
 },[[
 step
 map Swamp of Sorrows/0
@@ -2284,6 +2970,9 @@ collect Golden Sansam##13464 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Dreamfoil",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=270},levelreq=45},
+items={13463},
+maps={"Felwood"},
 },[[
 step
 map Felwood/0
@@ -2308,8 +2997,11 @@ Click herbs as you follow the path around this area
 collect Dreamfoil##13463 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Sorrowbloom",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Sorrowmoss",{
 mopready=true,
+meta={goldtype="route",skillreq={herbalism=285},levelreq=52},
+items={13466},
+maps={"Swamp of Sorrows"},
 },[[
 step
 map Swamp of Sorrows/0
@@ -2329,14 +3021,17 @@ path	65.76,20.96	68.69,20.85
 Click herbs as you follow the path around this area
 |tip Track them on your minimap with "Find Herbs".
 |tip You will need at least 285 Herbalism skill to gather these.
-collect Sorrowbloom##13466 |n
+collect Sorrowmoss##13466 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Copper Ore",{
 mopready=true,
+meta={goldtype="route",skillreq={mining=1},levelreq=1},
+items={2770},
+maps={"Durotar"},
 },[[
 step
-map Durotar
+map Durotar/0
 path follow smart; loop on; ants curved; dist 20
 path	50.96,17.00	52.99,18.09	54.60,19.05	55.40,21.06	55.71,23.38
 path	56.28,25.33	55.89,27.78	54.64,27.62	55.10,30.09	58.12,29.94
@@ -2344,16 +3039,19 @@ path	55.62,32.75	55.97,36.63	55.71,40.53	57.32,42.00	59.26,41.50
 path	57.59,43.98	55.27,48.14	50.81,48.20	48.51,43.33	47.83,39.78
 path	46.87,34.69	45.55,32.24	45.61,27.19	46.52,23.35	48.07,21.59
 path	49.70,21.37	49.54,18.59
-Click ore as you follow the path around this area
+click Copper Vein##1731+
 |tip Track them on your minimap with "Find Minerals".
 collect Copper Ore##2770 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Rough Stone",{
 mopready=true,
+meta={goldtype="route",skillreq={mining=1},levelreq=1},
+items={2835},
+maps={"Durotar"},
 },[[
 step
-map Durotar
+map Durotar/0
 path follow smart; loop on; ants curved; dist 20
 path	50.96,17.00	52.99,18.09	54.60,19.05	55.40,21.06	55.71,23.38
 path	56.28,25.33	55.89,27.78	54.64,27.62	55.10,30.09	58.12,29.94
@@ -2361,16 +3059,134 @@ path	55.62,32.75	55.97,36.63	55.71,40.53	57.32,42.00	59.26,41.50
 path	57.59,43.98	55.27,48.14	50.81,48.20	48.51,43.33	47.83,39.78
 path	46.87,34.69	45.55,32.24	45.61,27.19	46.52,23.35	48.07,21.59
 path	49.70,21.37	49.54,18.59
-Click ore as you follow the path around this area
+click Copper Vein##1731+
 |tip Track them on your minimap with "Find Minerals".
 collect Rough Stone##2835 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Iron Ore",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Tin Ore",{
 mopready=true,
+meta={goldtype="route",skillreq={mining=50},levelreq=20},
+items={2771},
+maps={"Ashenvale"},
 },[[
 step
-map Feralas
+map Kalimdor/0
+path follow smart; loop on; ants straight; dist 30
+path	44.89,34.26	44.33,34.72
+map Ashenvale/0
+path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
+path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
+path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
+path	44.49,70.63	51.56,74.31	55.59,75.26	55.32,68.67	56.36,64.09
+path	58.46,65.61	62.13,64.77	63.83,65.27	65.66,69.02	71.90,71.98
+path	75.32,75.93	75.51,69.19	82.44,71.50	81.58,49.07	79.19,47.72
+path	76.14,51.73	70.40,54.04	69.08,52.18	65.23,55.56	66.82,47.07
+path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
+path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
+path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
+path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
+click Tin Vein##1732+
+|tip Track them on your minimap with "Find Minerals".
+|tip You will need level 50 Mining to collect these.
+collect Tin Ore##2771 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Coarse Stone",{
+mopready=true,
+meta={goldtype="route",skillreq={mining=50},levelreq=20},
+items={2836},
+maps={"Ashenvale"},
+},[[
+step
+map Kalimdor/0
+path follow smart; loop on; ants straight; dist 30
+path	44.89,34.26	44.33,34.72
+map Ashenvale/0
+path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
+path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
+path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
+path	44.49,70.63	51.56,74.31	55.59,75.26	55.32,68.67	56.36,64.09
+path	58.46,65.61	62.13,64.77	63.83,65.27	65.66,69.02	71.90,71.98
+path	75.32,75.93	75.51,69.19	82.44,71.50	81.58,49.07	79.19,47.72
+path	76.14,51.73	70.40,54.04	69.08,52.18	65.23,55.56	66.82,47.07
+path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
+path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
+path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
+path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
+click Tin Vein##1732+
+|tip Track them on your minimap with "Find Minerals".
+|tip You will need level 50 Mining to collect these.
+collect Coarse Stone##2836 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Silver Ore",{
+mopready=true,
+meta={goldtype="route",skillreq={mining=50},levelreq=20},
+items={2775},
+maps={"Ashenvale"},
+},[[
+step
+map Kalimdor/0
+path follow smart; loop on; ants straight; dist 30
+path	44.89,34.26	44.33,34.72
+map Ashenvale/0
+path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
+path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
+path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
+path	44.49,70.63	51.56,74.31	55.59,75.26	55.32,68.67	56.36,64.09
+path	58.46,65.61	62.13,64.77	63.83,65.27	65.66,69.02	71.90,71.98
+path	75.32,75.93	75.51,69.19	82.44,71.50	81.58,49.07	79.19,47.72
+path	76.14,51.73	70.40,54.04	69.08,52.18	65.23,55.56	66.82,47.07
+path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
+path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
+path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
+path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
+click Silver Vein##1733+
+|tip Track them on your minimap with "Find Minerals".
+|tip You will need level 50 Mining to collect these.
+collect Silver Ore##2775 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Moss Agate",{
+mopready=true,
+meta={goldtype="route",skillreq={mining=50},levelreq=20},
+items={1206},
+maps={"Ashenvale"},
+},[[
+step
+map Kalimdor/0
+path follow smart; loop on; ants straight; dist 30
+path	44.89,34.26	44.33,34.72
+map Ashenvale/0
+path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
+path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
+path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
+path	44.49,70.63	51.56,74.31	55.59,75.26	55.32,68.67	56.36,64.09
+path	58.46,65.61	62.13,64.77	63.83,65.27	65.66,69.02	71.90,71.98
+path	75.32,75.93	75.51,69.19	82.44,71.50	81.58,49.07	79.19,47.72
+path	76.14,51.73	70.40,54.04	69.08,52.18	65.23,55.56	66.82,47.07
+path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
+path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
+path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
+path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
+click Tin Vein##1732+
+click Silver Vein##1733+
+Click ore as you follow the path around this area
+|tip Track them on your minimap with "Find Minerals".
+|tip You will need level 50 Mining to collect these.
+collect Moss Agate##1206 |n
+|tip These are a rare drop from Tin and Silver Ore nodes.
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Iron Ore",{
+mopready=true,
+meta={goldtype="route",skillreq={mining=100},levelreq=30},
+items={2772},
+maps={"Feralas"},
+},[[
+step
+map Feralas/0
 path	follow loose; loop on; ants curved; dist 20
 path	 84.90,39.90	81.80,39.30	79.20,37.20
 path	75.30,35.50	71.50,34.70	68.40,39.70
@@ -2393,17 +3209,20 @@ path	61.00,59.10	64.10,58.70	63.70,61.00
 path	65.80,63.50	68.10,61.50	71.60,65.10
 path	77.20,62.10	75.90,53.50	76.20,49.60
 path	79.50,46.20	84.00,45.60	82.50,43.10
-Click ore as you follow the path around this area
+click Iron Deposit##1735+
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 125 Mining to collect these.
+|tip You will need level 100 Mining to collect these.
 collect Iron Ore##2772 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Heavy Stone",{
 mopready=true,
+meta={goldtype="route",skillreq={mining=1},levelreq=30},
+items={2838},
+maps={"Feralas"},
 },[[
 step
-map Feralas
+map Feralas/0
 path	follow loose; loop on; ants curved; dist 20
 path	 84.90,39.90	81.80,39.30	79.20,37.20
 path	75.30,35.50	71.50,34.70	68.40,39.70
@@ -2426,17 +3245,20 @@ path	61.00,59.10	64.10,58.70	63.70,61.00
 path	65.80,63.50	68.10,61.50	71.60,65.10
 path	77.20,62.10	75.90,53.50	76.20,49.60
 path	79.50,46.20	84.00,45.60	82.50,43.10
-Click ore as you follow the path around this area
+click Iron Deposit##1735+
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 125 Mining to collect these.
+|tip You will need level 100 Mining to collect these.
 collect Heavy Stone##2838 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Gold Ore",{
 mopready=true,
+meta={goldtype="route",skillreq={mining=115},levelreq=30},
+items={2776},
+maps={"Feralas"},
 },[[
 step
-map Feralas
+map Feralas/0
 path	follow loose; loop on; ants curved; dist 20
 path	 84.90,39.90	81.80,39.30	79.20,37.20
 path	75.30,35.50	71.50,34.70	68.40,39.70
@@ -2459,14 +3281,17 @@ path	61.00,59.10	64.10,58.70	63.70,61.00
 path	65.80,63.50	68.10,61.50	71.60,65.10
 path	77.20,62.10	75.90,53.50	76.20,49.60
 path	79.50,46.20	84.00,45.60	82.50,43.10
-Click ore as you follow the path around this area
+click Gold Vein##1734+
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 155 Mining to collect these.
+|tip You will need level 115 Mining to collect these.
 collect Gold Ore##2776 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Mithril Ore",{
 mopready=true,
+meta={goldtype="route",skillreq={mining=150},levelreq=30},
+items={3858},
+maps={"The Hinterlands"},
 },[[
 step
 label "Begin_Farming_Mithril_Ore"
@@ -2490,7 +3315,7 @@ path	32.47,73.37	30.82,71.94	31.27,70.10	32.37,70.01	33.90,68.55
 click Mithril Deposit##2040+
 |tip They look like gray rocks with large white crystals along the path.
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 175 Mining to collect these.
+|tip You will need level 150 Mining to collect these.
 collect Mithril Ore##3858 |n
 '|goto The Hinterlands/0 33.90,68.55 < 30 |c |noway
 step
@@ -2509,6 +3334,9 @@ collect Mithril Ore##3858 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Solid Stone",{
 mopready=true,
+meta={goldtype="route",skillreq={mining=150},levelreq=30},
+items={7912},
+maps={"The Hinterlands"},
 },[[
 step
 label "Begin_Farming_Solid_Stone"
@@ -2532,7 +3360,7 @@ path	32.47,73.37	30.82,71.94	31.27,70.10	32.37,70.01	33.90,68.55
 click Mithril Deposit##2040+
 |tip They look like gray rocks with large white crystals along the path.
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 175 Mining to collect these.
+|tip You will need level 150 Mining to collect these.
 collect Solid Stone##7912 |n
 '|goto The Hinterlands/0 33.90,68.55 < 30 |c |noway
 step
@@ -2551,6 +3379,9 @@ collect Solid Stone##7912 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Truesilver Ore",{
 mopready=true,
+meta={goldtype="route",skillreq={mining=150},levelreq=30},
+items={7911},
+maps={"The Hinterlands"},
 },[[
 step
 label "Begin_Farming_Truesilver_Ore"
@@ -2574,7 +3405,7 @@ path	32.47,73.37	30.82,71.94	31.27,70.10	32.37,70.01	33.90,68.55
 click Truesilver Deposit##2047+
 |tip They look like gray rocks with large white crystals along the path.
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 230 Mining to collect these.
+|tip You will need level 165 Mining to collect these.
 collect Truesilver Ore##7911 |n
 '|goto The Hinterlands/0 33.90,68.55 < 30 |c |noway
 step
@@ -2587,23 +3418,26 @@ path	21.44,56.49
 click Truesilver Deposit##2047+
 |tip They look like gray rocks with large white crystals along the path.
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 230 Mining to collect these.
+|tip You will need level 165 Mining to collect these.
 collect Truesilver Ore##7911 |n
 '|goto The Hinterlands/0 21.44,56.49 < 30 |c |noway |next "Begin_Farming_Truesilver_Ore"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Dark Iron Ore",{
 mopready=true,
+meta={goldtype="route",skillreq={mining=175},levelreq=50},
+items={11370},
+maps={"Burning Steppes"},
 },[[
 step
-map Burning Steppes
+map Burning Steppes/0
 path follow smart; loop on; ants curved; dist 20
 path	47.24,33.58	57.79,36.68	60.09,40.49	60.24,30.28	62.87,24.54
 path	64.47,23.32	65.45,24.20	64.95,33.28	71.55,39.13	79.50,25.16
 path	93.16,52.72	85.24,62.18	74.63,61.27	74.12,55.90	68.15,59.00
 path	64.92,57.85	62.02,54.94	47.51,59.50	43.25,60.21
-Click ore as you follow the path around this area
+click Dark Iron Deposit##165658+
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 230 Mining to collect these.
+|tip You will need level 175 Mining to collect these.
 |tip These are a rare spawn.
 |tip However, they can be found more consistently inside the Blackrock Depths dungeon and Molten Core raid.
 collect Dark Iron Ore##11370 |n
@@ -2611,9 +3445,12 @@ collect Dark Iron Ore##11370 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Thorium Ore",{
 mopready=true,
+meta={goldtype="route",skillreq={mining=200},levelreq=50},
+items={10620},
+maps={"Un'Goro Crater"},
 },[[
 step
-map Un'Goro Crater
+map Un'Goro Crater/0
 path follow smart; loop on; ants curved; dist 20
 path	66.46,78.95	64.56,79.71	61.79,84.21	59.34,84.18	57.63,86.04
 path	54.50,86.69	51.13,86.82	48.27,87.30	45.98,86.58	42.89,85.00
@@ -2627,17 +3464,21 @@ path	64.19,19.90	65.99,21.01	68.51,20.26	71.19,20.89	71.21,23.75
 path	71.75,28.19	74.76,32.46	75.06,37.15	76.32,43.15	76.67,48.32
 path	77.05,53.09	76.56,57.02	75.35,61.97	74.66,68.05	72.92,70.46
 path	71.39,73.80	71.00,79.21	68.32,79.90
-Click ore as you follow the path around this area
+click Thorium Vein##324+
+click Rich Thorium Vein##175404+
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 245 Mining to collect these.
+|tip You will need level 200 Mining to collect these.
 collect Thorium Ore##10620 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Dense Stone",{
 mopready=true,
+meta={goldtype="route",skillreq={mining=200},levelreq=50},
+items={12365},
+maps={"Un'Goro Crater"},
 },[[
 step
-map Un'Goro Crater
+map Un'Goro Crater/0
 path follow smart; loop on; ants curved; dist 20
 path	66.46,78.95	64.56,79.71	61.79,84.21	59.34,84.18	57.63,86.04
 path	54.50,86.69	51.13,86.82	48.27,87.30	45.98,86.58	42.89,85.00
@@ -2651,150 +3492,36 @@ path	64.19,19.90	65.99,21.01	68.51,20.26	71.19,20.89	71.21,23.75
 path	71.75,28.19	74.76,32.46	75.06,37.15	76.32,43.15	76.67,48.32
 path	77.05,53.09	76.56,57.02	75.35,61.97	74.66,68.05	72.92,70.46
 path	71.39,73.80	71.00,79.21	68.32,79.90
-Click ore as you follow the path around this area
+click Thorium Vein##324+
+click Rich Thorium Vein##175404+
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 245 Mining to collect these.
+|tip You will need level 200 Mining to collect these.
 collect Dense Stone##12365 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Guardian Stone",{
 mopready=true,
+meta={goldtype="route",skillreq={mining=200},levelreq=50},
+items={12365},
+maps={"Un'Goro Crater"},
 },[[
 step
-map Un'Goro Crater
+map Un'Goro Crater/0
 path follow smart; loop on; ants curved; dist 20
 path	40.24,18.78	37.48,20.20	33.48,23.57	40.40,25.92	43.96,29.92
 path	44.56,36.72	43.43,40.74	44.16,43.79	48.24,41.64	51.27,39.78
 path	56.65,39.87	54.16,36.20	55.85,31.39	57.79,26.10	56.20,21.10
 path	56.97,14.88	53.59,13.78	51.39,17.24	48.13,13.45
-Kill Stone Guardians as you follow the path around this area
+kill Stone Guardian##6560+
 |tip These are level 60-61 Elite enemies.
 collect Guardian Stone##12809 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Elementium Ore",{
-mopready=true,
-},[[
-step
-Follow the path up |goto Searing Gorge 33.53,75.22 < 20 |only if walking
-Enter Blackrock Mountain |goto Searing Gorge 34.76,83.98 < 7 |walk
-Run up the chain |goto Eastern Kingdoms 48.73,63.79 < 5 |walk
-Jump down here |goto Eastern Kingdoms 48.77,63.67 < 5 |walk
-Follow the path up |goto Eastern Kingdoms 48.83,63.66 < 5 |walk
-Enter the building |goto Eastern Kingdoms 48.91,63.92 < 5 |walk
-click Orb of Command##179879 |goto Eastern Kingdoms 48.92,64.47
-Teleport to Blackwing Lair |goto Blackwing Lair 0.00,0.00 < 1000 |noway |c
-|tip You must be attuned to enter the raid.
-step
-Inside the Blackwing Lair Raid:
-kill Blackwing Technician##13996+
-collect Elementium Ore##18562 |n
-|tip These have a low drop rate.
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Tin Ore",{
-mopready=true,
-},[[
-step
-map Kalimdor/0
-path follow smart; loop on; ants straight; dist 30
-path	44.89,34.26	44.33,34.72
-map Ashenvale
-path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
-path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
-path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
-path	44.49,70.63	51.56,74.31	55.59,75.26	55.32,68.67	56.36,64.09
-path	58.46,65.61	62.13,64.77	63.83,65.27	65.66,69.02	71.90,71.98
-path	75.32,75.93	75.51,69.19	82.44,71.50	81.58,49.07	79.19,47.72
-path	76.14,51.73	70.40,54.04	69.08,52.18	65.23,55.56	66.82,47.07
-path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
-path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
-path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
-path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
-Click ore as you follow the path around this area
-|tip Track them on your minimap with "Find Minerals".
-|tip You will need level 65 Mining to collect these.
-collect Tin Ore##2771 |n
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Coarse Stone",{
-mopready=true,
-},[[
-step
-map Kalimdor/0
-path follow smart; loop on; ants straight; dist 30
-path	44.89,34.26	44.33,34.72
-map Ashenvale
-path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
-path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
-path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
-path	44.49,70.63	51.56,74.31	55.59,75.26	55.32,68.67	56.36,64.09
-path	58.46,65.61	62.13,64.77	63.83,65.27	65.66,69.02	71.90,71.98
-path	75.32,75.93	75.51,69.19	82.44,71.50	81.58,49.07	79.19,47.72
-path	76.14,51.73	70.40,54.04	69.08,52.18	65.23,55.56	66.82,47.07
-path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
-path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
-path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
-path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
-Click ore as you follow the path around this area
-|tip Track them on your minimap with "Find Minerals".
-|tip You will need level 65 Mining to collect these.
-collect Coarse Stone##2836 |n
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Silver Ore",{
-mopready=true,
-},[[
-step
-map Kalimdor/0
-path follow smart; loop on; ants straight; dist 30
-path	44.89,34.26	44.33,34.72
-map Ashenvale
-path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
-path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
-path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
-path	44.49,70.63	51.56,74.31	55.59,75.26	55.32,68.67	56.36,64.09
-path	58.46,65.61	62.13,64.77	63.83,65.27	65.66,69.02	71.90,71.98
-path	75.32,75.93	75.51,69.19	82.44,71.50	81.58,49.07	79.19,47.72
-path	76.14,51.73	70.40,54.04	69.08,52.18	65.23,55.56	66.82,47.07
-path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
-path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
-path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
-path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
-Click ore as you follow the path around this area
-|tip Track them on your minimap with "Find Minerals".
-|tip You will need level 75 Mining to collect these.
-collect Silver Ore##2775 |n
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Moss Agate",{
-mopready=true,
-},[[
-step
-map Kalimdor/0
-path follow smart; loop on; ants straight; dist 30
-path	44.89,34.26	44.33,34.72
-map Ashenvale
-path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
-path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
-path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
-path	44.49,70.63	51.56,74.31	55.59,75.26	55.32,68.67	56.36,64.09
-path	58.46,65.61	62.13,64.77	63.83,65.27	65.66,69.02	71.90,71.98
-path	75.32,75.93	75.51,69.19	82.44,71.50	81.58,49.07	79.19,47.72
-path	76.14,51.73	70.40,54.04	69.08,52.18	65.23,55.56	66.82,47.07
-path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
-path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
-path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
-path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
-Click ore as you follow the path around this area
-|tip Track them on your minimap with "Find Minerals".
-|tip You will need level 65 Mining to collect Tin Ore nodes and 75 to collect Silver Ore nodes.
-collect Moss Agate##1206 |n
-|tip These are a rare drop from Tin and Silver Ore nodes.
-'|confirm
-]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Green Whelp Scale",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=30},
+items={7392},
+maps={"Feralas"},
 },[[
 step
 map Feralas/0
@@ -2810,6 +3537,9 @@ collect Green Whelp Scale##7392 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Black Whelp Scale",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=20},
+items={7286},
+maps={"Wetlands"},
 },[[
 step
 map Wetlands/0
@@ -2824,6 +3554,9 @@ collect Black Whelp Scale##7286 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Ruined Leather Scraps",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=1},
+items={2934},
+maps={"Durotar"},
 },[[
 step
 map Durotar/0
@@ -2837,6 +3570,9 @@ collect Ruined Leather Scraps##2934 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Light Leather",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=1},
+items={2318},
+maps={"Durotar"},
 },[[
 step
 map Durotar/0
@@ -2850,6 +3586,9 @@ collect Light Leather##2318 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Slimy Murloc Scale",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=20},
+items={5784},
+maps={"Ashenvale"},
 },[[
 step
 Enter the Blackfathom Deeps dungeon:
@@ -2859,6 +3598,9 @@ collect Slimy Murloc Scale##5784 |n |goto Ashenvale/0 14.44,14.28
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Medium Hide",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=20},
+items={4232},
+maps={"Wetlands"},
 },[[
 step
 step
@@ -2869,21 +3611,22 @@ path	75.75,43.09	74.34,47.16	71.58,47.06	68.67,46.65	66.43,42.33
 path	68.50,37.57
 Kill Raptor and Dragonkin enemies in the area.
 |tip Skin their corpses.
-|tip You will need level 115 Skinning to collect these.
 collect Medium Hide##4232 |n
 |tip These have a low drop rate.
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Heavy Leather",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=35},
+items={4234},
+maps={"Dustwallow Marsh"},
 },[[
 step
 Kill enemies around this area
 |tip Only beast enemies will be skinnable.
 |tip You cannot skin the spiders.
 |tip Skin their corpses.
-|tip You will need level 185 Skinning to collect these.
-collect Heavy Leather##4234 |n |goto Dustwallow Marsh 40.73,58.37
+collect Heavy Leather##4234 |n |goto Dustwallow Marsh/0 40.73,58.37
 You can find more around: |notinsticky
 [43.35,50.06]
 [40.42,41.57]
@@ -2891,6 +3634,9 @@ You can find more around: |notinsticky
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Raptor Hide",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=25},
+items={4461},
+maps={"Northern Stranglethorn"},
 },[[
 step
 map Northern Stranglethorn/0
@@ -2903,31 +3649,54 @@ collect Raptor Hide##4461 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Heavy Hide",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=30},
+items={4235},
+maps={"The Hinterlands"},
 },[[
 step
 Kill enemies around this area
 |tip Skin their corpses.
-|tip You will need level 205 Skinning to collect these.
-collect Heavy Hide##4235 |n |goto The Hinterlands 16.19,50.97
+collect Heavy Hide##4235 |n |goto The Hinterlands/0 16.19,50.97
 |tip These have a low drop rate.
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Turtle Scale",{
+mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=45},
+items={8167},
+maps={"Tanaris"},
+},[[
+step
+kill Steeljaw Snapper##14123+
+|tip Skin their corpses.
+collect Turtle Scale##8167 |n |goto Tanaris/0 67.22,25.77
+You can find more around: |notinsticky
+[67.57,28.82]
+[67.85,35.25]
+[68.10,39.75]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Thick Murloc Scale",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=35},
+items={5785},
+maps={"Dustwallow Marsh"},
 },[[
 step
 Kill Mirefin enemies around this area
-collect Thick Murloc Scale##5785 |n |goto Dustwallow Marsh 58.78,9.45
+collect Thick Murloc Scale##5785 |n |goto Dustwallow Marsh/0 58.78,9.45
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Thick Leather",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=50},
+items={4304},
+maps={"Un'Goro Crater"},
 },[[
 step
 Kill Ravasaur enemies around this area
 |tip Skin their corpses.
-|tip You will need level 250 Skinning to collect these.
-collect Thick Leather##4304 |n |goto Un'Goro Crater 67.37,72.59
+collect Thick Leather##4304 |n |goto Un'Goro Crater/0 67.37,72.59
 You can find more around: |notinsticky
 [65.75,64.16]
 [70.21,55.33]
@@ -2935,13 +3704,15 @@ You can find more around: |notinsticky
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Thick Hide",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=50},
+items={8169},
+maps={"Un'Goro Crater"},
 },[[
 step
 Kill enemies around this area
 |tip Only beast enemies will be skinnable.
 |tip Skin their corpses.
-|tip You will need level 245 Skinning to collect these.
-collect Thick Hide##8169 |n |goto Un'Goro Crater 67.37,72.59
+collect Thick Hide##8169 |n |goto Un'Goro Crater/0 67.37,72.59
 |tip These have a low drop rate.
 You can find more around: |notinsticky
 [65.75,64.16]
@@ -2950,6 +3721,9 @@ You can find more around: |notinsticky
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Worn Dragonscale",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=52},
+items={8165},
+maps={"Swamp of Sorrows"},
 },[[
 step
 Enter the Sunken Temple dungeon:
@@ -2959,16 +3733,34 @@ collect Worn Dragonscale##8165 |n |goto Swamp of Sorrows/0 69.63,53.77
 |tip These have a low drop rate.
 '|confirm
 ]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Scorpid Scale",{
+mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=45},
+items={8154},
+maps={"Tanaris"},
+},[[
+step
+map Desolace/0
+path follow smart; loop on; ants straight; dist 30
+path	70.84,30.47	71.26,28.17	70.74,25.26	69.85,22.02	68.46,20.37
+path	66.75,19.37	64.49,18.94	60.82,18.93	58.94,20.10	59.54,24.35
+path	61.77,28.24	63.91,30.59
+Kill scorpions along the path.
+collect Scorpid Scale##8154 |n |goto Tanaris/0 50.93,42.32
+'|confirm
+]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Devilsaur Leather",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=50},
+items={15417},
+maps={"Un'Goro Crater"},
 },[[
 step
 Kill Devilsaur enemies around this area
 |tip Skin their corpses.
 |tip These are level 54-56 Elite enemies.
 |tip It is recommended you clear the area of other enemies before fighting the Devilsaur.
-|tip You will need level 270 Skinning to collect these.
-collect Devilsaur Leather##15417 |n |goto Un'Goro Crater 34.25,38.82
+collect Devilsaur Leather##15417 |n |goto Un'Goro Crater/0 34.25,38.82
 You can find more around: |notinsticky
 [40.02,62.25]
 [57.66,70.17]
@@ -2979,18 +3771,23 @@ You can find more around: |notinsticky
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Rugged Leather",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=50},
+items={8170},
+maps={"Winterspring"},
 },[[
 step
 Kill Ice Thistle enemies around this area
 |tip You can find more inside the cave.
 |tip Skin their corpses.
-|tip You will need level 275 Skinning to collect these.
-collect Rugged Leather##8170 |n |goto Winterspring 64.81,54.76
+collect Rugged Leather##8170 |n |goto Winterspring/0 64.81,54.76
 You can find more inside the cave at [66.87,54.64]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Green Dragonscale",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=52},
+items={15412},
+maps={"Swamp of Sorrows"},
 },[[
 step
 Enter the Sunken Temple dungeon:
@@ -3002,36 +3799,42 @@ collect Green Dragonscale##15412 |n |goto Swamp of Sorrows/0 69.63,53.77
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Rugged Hide",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=50},
+items={8171},
+maps={"Winterspring"},
 },[[
 step
 Kill Ice Thistle enemies around this area
 |tip You can find more inside the cave.
 |tip Skin their corpses.
-|tip You will need level 275 Skinning to collect these.
-collect Rugged Hide##8171 |n |goto Winterspring 66.43,44.38
+collect Rugged Hide##8171 |n |goto Winterspring/0 66.43,44.38
 |tip These have a low drop rate.
 You can find more inside the cave at [67.67,41.72]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Black Dragonscale",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=47},
+items={15416},
+maps={"Searing Gorge"},
 },[[
 step
 Enter the Blackwing Lair raid:
 Kill all enemies within the raid
 |tip Skin their corpses.
-|tip Level 61's require 305 Skinning, level 62's require 310 Skinning, and bosses require 315 Skinning.
 collect Black Dragonscale##15416 |n |goto Searing Gorge/0 40.57,95.81
 |tip These have a low drop rate.
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Heavy Scorpid Scale",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=55},
+items={15408},
+maps={"Silithus"},
 },[[
 step
 Kill Stonelash enemies around this area
 |tip Skin their corpses.
-|tip You will need level 270 Skinning to collect these.
 collect Heavy Scorpid Scale##15408 |n |goto Silithus/0 31.40,38.23
 You can find more around: |notinsticky
 [26.71,43.66]
@@ -3044,20 +3847,11 @@ You can find more around: |notinsticky
 [40.32,81.44]
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Core Leather",{
-mopready=true,
-},[[
-step
-Enter the Molten Core Raid:
-Kill Ancient Core Hounds and Magmadar
-|tip They are trash mobs found throughout the raid and the second raid boss.
-|tip Skin their corpses.
-|tip Level 61's require 305 Skinning, level 62's require 310 Skinning, and bosses require 315 Skinning.
-collect Core Leather##17012 |n
-'|confirm
-]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Light Hide",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=10},
+items={783},
+maps={"The Barrens"},
 },[[
 step
 map The Barrens/0
@@ -3067,51 +3861,28 @@ path    65.33,60.84    63.81,59.02    62.10,58.77    62.09,60.83    60.43,65.42
 Kill enemies as you follow the path around this area
 |tip Only beast enemies will be skinnable.
 |tip Skin their corpses.
-|tip You will need level 100 Skinning to collect these.
 collect Light Hide##783 |n
 |tip These have a low drop rate.
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Medium Leather",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=20},
+items={2319},
+maps={"Hillsbrad Foothills"},
 },[[
 step
 Kill Yeti enemies around this area
 |tip Skin their corpses.
 |tip You can find more inside the cave.
-|tip You will need level 155 Skinning to collect these.
-collect Medium Leather##2319 |n |goto Hillsbrad Foothills 46.64,54.41
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Turtle Scale",{
-mopready=true,
-},[[
-step
-kill Steeljaw Snapper##14123+
-|tip Skin their corpses.
-|tip You will need level 210 Skinning to collect these.
-collect Turtle Scale##8167 |n |goto Tanaris/0 67.22,25.77
-You can find more around: |notinsticky
-[67.57,28.82]
-[67.85,35.25]
-[68.10,39.75]
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Scorpid Scale",{
-mopready=true,
-},[[
-step
-map Desolace/0
-path follow smart; loop on; ants straight; dist 30
-path	70.84,30.47	71.26,28.17	70.74,25.26	69.85,22.02	68.46,20.37
-path	66.75,19.37	64.49,18.94	60.82,18.93	58.94,20.10	59.54,24.35
-path	61.77,28.24	63.91,30.59
-Kill scorpions along the path.
-collect Scorpid Scale##8154 |n |goto Tanaris/0 50.93,42.32
+collect Medium Leather##2319 |n |goto Hillsbrad Foothills/0 46.64,54.41
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Warbear Leather",{
 mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=55},
+items={15419},
+maps={"Blasted Lands"},
 },[[
 step
 map Blasted Lands/0
@@ -3120,19 +3891,21 @@ path	39.25,54.66	37.83,52.57	36.22,52.53	35.97,55.35	35.83,57.39
 path	37.08,58.93	37.94,61.85	39.78,59.69
 kill Tainted Black Bear##42336+
 |tip Skin their corpses.
-|tip You will need level 275 Skinning to collect these.
 collect Warbear Leather##15419 |n
 |tip These have a low drop rate.
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Linen Cloth",{
 mopready=true,
+meta={goldtype="route",levelreq=10},
+items={2589},
+maps={"Ragefire Chasm"},
 },[[
 step
 map Orgrimmar/1
 path follow smart; loop off; ants straight; dist 30
 path    55.36,51.28
-map Orgrimmar
+map Orgrimmar/0
 path    72.79,16.11    66.23,37.63    66.87,50.90
 Enter the Ragefire Chasm dungeon
 |tip You may need a group for this.
@@ -3141,8 +3914,34 @@ Kill Ragefire enemies throughout the dungeon
 collect Linen Cloth##2589 |n
 '|confirm
 ]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Wool Cloth",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={2592},
+maps={"The Barrens"},
+},[[
+step
+Kill Venture Co. enemies around this area
+|tip You can find more inside the mine.
+collect Wool Cloth##2592 |n |goto The Barrens/0 66.28,13.05
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Mageweave Cloth",{
+mopready=true,
+meta={goldtype="route",levelreq=45},
+items={4338},
+maps={"Tanaris"},
+},[[
+step
+Kill Dunemaul enemies around this area
+collect Mageweave Cloth##4338 |n |goto Tanaris/0 40.50,55.50
+'|confirm
+]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Runecloth",{
 mopready=true,
+meta={goldtype="route",levelreq=55},
+items={14047},
+maps={"Silithus"},
 },[[
 step
 Kill Twilight enemies around this area
@@ -3152,36 +3951,48 @@ You can find more around [33.53,34.87]
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Felcloth",{
 mopready=true,
+meta={goldtype="route",levelreq=45},
+items={14256},
+maps={"Felwood"},
 },[[
 step
 Kill Jadefire enemies around this area
-collect Felcloth##14256 |n |goto Felwood 37.17,67.00
+collect Felcloth##14256 |n |goto Felwood/0 37.17,67.00
 You can find more around [32.71,66.66]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Spider's Silk",{
 mopready=true,
+meta={goldtype="route",levelreq=20},
+items={3182},
+maps={"Wetlands"},
 },[[
 step
 Enter the cave |goto Wetlands 52.79,62.90 < 20 |walk
 Kill enemies around this area
 |tip Inside the cave.
-collect Spider's Silk##3182 |n |goto Wetlands 48.51,60.67
+collect Spider's Silk##3182 |n |goto Wetlands/0 48.51,60.67
 |tip These have a low drop rate.
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Shadow Silk",{
 mopready=true,
+meta={goldtype="route",levelreq=52},
+items={10285},
+maps={"Swamp of Sorrows"},
 },[[
 step
 Kill spider enemies in the area
-collect Shadow Silk##10285 |n |goto Swamp of Sorrows 58.74,62.39
+collect Shadow Silk##10285 |n |goto Swamp of Sorrows/0 58.74,62.39
 |tip These have a low drop rate.
 You can find more around [66.70,68.65]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Ironweb Spider Silk",{
 mopready=true,
+meta={goldtype="route",levelreq=55},
+items={14227},
+maps={"Silithus"},
 },[[
 step
 map Silithus/0
@@ -3194,99 +4005,24 @@ collect Ironweb Spider Silk##14227 |n
 |tip These have a low drop rate.
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Wool Cloth",{
-mopready=true,
-},[[
-step
-Kill Venture Co. enemies around this area
-|tip You can find more inside the mine.
-collect Wool Cloth##2592 |n |goto The Barrens/0 66.28,13.05
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Silk Cloth",{
-mopready=true,
-},[[
-step
-Kill Grimtotem enemies around this area
-|tip You can find more inside the cave.
-collect 804 Silk Cloth##4306 |goto Thousand Needles 13.26,5.84 |or
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Mageweave Cloth",{
-mopready=true,
-},[[
-step
-Kill Dunemaul enemies around this area
-collect Mageweave Cloth##4338 |n |goto Tanaris/0 40.50,55.50
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Mooncloth",{
-mopready=true,
-},[[
-step
-label "Farm_Felcloth"
-Kill Jadefire enemies around this area
-collect Felcloth##14256 |n |goto Felwood 37.17,67.00
-Click here to transmute Felcloth into Mooncloth |confirm
-|tip It only takes 2 Felcloth to make a Mooncloth, but it requires a rare Tailoring pattern and has a 4 day cooldown.
-step
-collect Mooncloth##14342 |n |goto Ashenvale 60.19,72.90
-|tip This spell has a 4 day cooldown.
-Click here to farm more Felcloth |confirm |next "Farm_Felcloth"
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Thick Spider's Silk",{
-mopready=true,
-},[[
-step
-Kill Spider enemies around this area
-|tip You can find more inside the nearby cave
-collect Thick Spider's Silk##4337 |n |goto Dustwallow Marsh/0 34.67,22.20
-|tip These have a low drop rate.
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Righteous Orb",{
-mopready=true,
-},[[
-step
-Enter the Stratholme Dungeon
-|tip You will need to join and form a group for this.
-Click Here Once You Have Entered the Dungeon |confirm
-step
-Make your way to the Crusaders' Square
-|tip It will be to the left of the rat gate.
-Kill Crimson enemies around this area
-|tip All Crimson enemies in The Scarlet Bastion have a chance to drop the orb.
-collect Righteous Orb##12811 |n
-]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Demonic Rune",{
 mopready=true,
+meta={goldtype="route",levelreq=45},
+items={12662},
+maps={"Felwood"},
 },[[
 step
-Follow the path up |goto Felwood 38.44,59.39 < 20 |only if walking
-Continue following the path |goto Felwood 37.63,60.96 < 20 |only if walking
-Continue following the path |goto Felwood 36.04,61.32 < 20 |only if walking
-Enter the building |goto Felwood 36.20,58.53 < 20 |walk
+Enter the building |goto Felwood/0 36.20,58.53 < 20 |walk
 Kill Jaedenar enemies around this area
-collect Demonic Rune##12662 |n |goto Felwood 37.61,54.67
-|tip These have a low drop rate.
-'|confirm
-]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Dark Rune",{
-mopready=true,
-},[[
-step
-Enter the Scholomance Dungeon
-|tip You will need to join and form a group for this.
-Click Here Once You Have Entered the Dungeon |confirm
-step
-Kill enemies around this area
-|tip Scholomance Necromancers and Scholomance Dark Summoners are the only enemies besides bosses that will drop them.
-collect Dark Rune##20520 |n
+collect Demonic Rune##12662 |n |goto Felwood/0 37.61,54.67
 |tip These have a low drop rate.
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Sharp Claw",{
 mopready=true,
+meta={goldtype="route",levelreq=10},
+items={5635},
+maps={"Ghostlands"},
 },[[
 step
 map Ghostlands/0
@@ -3299,35 +4035,26 @@ collect Sharp Claw##5635 |n
 |tip These have a low drop rate.
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Ogre Tannin",{
-mopready=true,
-},[[
-step
-Enter the Dire Maul West Dungeon Entrance
-|tip You will need to join and form a group for this.
-Click Here Once You Have Entered the Dungeon |confirm
-step
-click Ogre Tannin Basket##179499
-|tip It will be up the ramp past the broken trap.
-|tip Once up the first ramp, it will be in the far northwest corner of the room.
-|tip Only one person will be able to loot it.
-collect Ogre Tannin##18240 |n
-'|confirm
-]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Small Venom Sac",{
 mopready=true,
+meta={goldtype="route",levelreq=10},
+items={1475},
+maps={"Silverpine Forest"},
 },[[
 step
-Enter the mine |goto Silverpine Forest 35.64,13.54 < 20 |walk
+Enter the mine |goto Silverpine Forest/0 35.64,13.54 < 20 |walk
 Kill enemies around this area
 |tip Inside the mine.
 |tip You can find more outside the mine.
-collect Small Venom Sac##1475 |n |goto Silverpine Forest 35.38,8.06
+collect Small Venom Sac##1475 |n |goto Silverpine Forest/0 35.38,8.06
 |tip These have a low drop rate.
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Huge Venom Sac",{
 mopready=true,
+meta={goldtype="route",levelreq=55},
+items={19441},
+maps={"Silithus"},
 },[[
 step
 map Silithus/0
@@ -3340,11 +4067,34 @@ collect Huge Venom Sac##19441 |n
 |tip These have a low drop rate.
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Black Pearl",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Iridescent Pearl",{
 mopready=true,
+meta={goldtype="route",levelreq=20},
+items={5500},
+maps={"Wetlands"},
 },[[
 step
-map The Hinterlands
+map Wetlands/0
+path follow smart; loop on; ants curved; dist 20
+path	15.21,40.13	17.36,39.06	19.36,38.16	22.88,37.14	24.91,36.76
+path	24.41,33.77	23.10,33.59	21.34,34.34	19.64,31.98	18.24,31.36
+path	16.84,29.42	15.14,30.74	14.96,33.33	14.32,35.71	13.91,38.13
+path	14.03,40.90
+Kill Bluegill enemies around this area
+collect Thick-shelled Clam##5524 |n
+use the Thick-shelled Clam##5524
+collect Iridescent Pearl##5500 |n
+|tip These have a low drop rate.
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Black Pearl",{
+mopready=true,
+meta={goldtype="route",levelreq=30},
+items={7971},
+maps={"The Hinterlands"},
+},[[
+step
+map The Hinterlands/0
 path follow smart; loop on; ants curved; dist 20
 path	77.17,61.30	76.67,63.69	75.25,66.52	74.76,70.67	76.93,70.62
 path	78.28,68.54	78.37,65.51	79.09,61.95	80.38,59.45	81.70,56.06
@@ -3358,9 +4108,12 @@ collect Black Pearl##7971 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Golden Pearl",{
 mopready=true,
+meta={goldtype="route",levelreq=30},
+items={13926},
+maps={"The Hinterlands"},
 },[[
 step
-map The Hinterlands
+map The Hinterlands/0
 path follow smart; loop on; ants curved; dist 20
 path	77.17,61.30	76.67,63.69	75.25,66.52	74.76,70.67	76.93,70.62
 path	78.28,68.54	78.37,65.51	79.09,61.95	80.38,59.45	81.70,56.06
@@ -3372,11 +4125,30 @@ collect Golden Pearl##13926 |n
 |tip These have a low drop rate.
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Zesty Clam Meat",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Giant Egg",{
 mopready=true,
+meta={goldtype="route",levelreq=45},
+items={12207},
+maps={"Tanaris"},
 },[[
 step
-map The Hinterlands
+Kill Roc enemies around this area
+|tip They are found all around the zone.
+collect Giant Egg##12207 |n |goto Tanaris/0 49.30,36.17
+You can find more around: |notinsticky
+[45.55,38.57]
+[44.01,40.45]
+[47.27,46.81]
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Zesty Clam Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=30},
+items={7974},
+maps={"The Hinterlands"},
+},[[
+step
+map The Hinterlands/0
 path follow smart; loop on; ants curved; dist 20
 path	77.17,61.30	76.67,63.69	75.25,66.52	74.76,70.67	76.93,70.62
 path	78.28,68.54	78.37,65.51	79.09,61.95	80.38,59.45	81.70,56.06
@@ -3387,33 +4159,45 @@ use the Big-mouth Clam##7973
 collect Zesty Clam Meat##7974 |n
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Iridescent Pearl",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Silk Cloth",{
 mopready=true,
+meta={goldtype="route",levelreq=40},
+items={4306},
+maps={"Thousand Needles"},
 },[[
 step
-map Wetlands
-path follow smart; loop on; ants curved; dist 20
-path	15.21,40.13	17.36,39.06	19.36,38.16	22.88,37.14	24.91,36.76
-path	24.41,33.77	23.10,33.59	21.34,34.34	19.64,31.98	18.24,31.36
-path	16.84,29.42	15.14,30.74	14.96,33.33	14.32,35.71	13.91,38.13
-path	14.03,40.90
-Kill Bluegill enemies around this area
-collect Thick-shelled Clam##5524 |n
-use the Thick-shelled Clam##5524
-collect Iridescent Pearl##5500 |n
-|tip These have a low drop rate.
+Kill Grimtotem enemies around this area
+|tip You can find more inside the cave.
+collect 804 Silk Cloth##4306 |goto Thousand Needles/0 13.26,5.84 |or
 '|confirm
 ]])
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Dropped\\Farming Guides\\Giant Egg",{
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Mooncloth",{
 mopready=true,
+meta={goldtype="route",levelreq=45},
+items={14342},
+maps={"Felwood"},
 },[[
 step
-Kill Roc enemies around this area
-|tip They are found all around the zone.
-collect Giant Egg##12207 |n |goto Tanaris/0 49.30,36.17
-You can find more around: |notinsticky
-[45.55,38.57]
-[44.01,40.45]
-[47.27,46.81]
+label "Farm_Felcloth"
+Kill Jadefire enemies around this area
+collect Felcloth##14256 |n |goto Felwood/0 37.17,67.00
+Click here to transmute Felcloth into Mooncloth |confirm
+|tip It only takes 2 Felcloth to make a Mooncloth, but it requires a rare Tailoring pattern and has a 4 day cooldown.
+step
+collect Mooncloth##14342 |n |goto Ashenvale/0 60.19,72.90
+|tip This spell has a 4 day cooldown.
+Click here to farm more Felcloth |confirm |next "Farm_Felcloth"
+]])
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Thick Spider's Silk",{
+mopready=true,
+meta={goldtype="route",levelreq=35},
+items={4337},
+maps={"Dustwallow Marsh"},
+},[[
+step
+Kill Spider enemies around this area
+|tip You can find more inside the nearby cave
+collect Thick Spider's Silk##4337 |n |goto Dustwallow Marsh/0 34.67,22.20
+|tip These have a low drop rate.
 '|confirm
 ]])

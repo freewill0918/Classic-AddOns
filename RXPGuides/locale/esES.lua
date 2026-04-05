@@ -40,8 +40,6 @@ L["I just leveled from %d to %d in %s"] = "Acabo de subir de nivel de %d a %d en
 L["I just leveled up to %d"] = "Acabo de subir al nivel %d"
 L["There's a new addon version (%s) available"] = "Hay una nueva versión del addon (%s) disponible"
 L["There's a new version (%s) available for %s"] = "Hay una nueva versión (%s) disponible para %s"
-L["Completed step %d - %s"] = "Paso completado %d - %s"
-L["Collected step %d - %s"] = "Paso recopilado %d - %s"
 L["Flying to %s ETA %s"] = "Volando a %s, tiempo estimado: %s"
 L["Describe your issue:"] = "Describe tu problema:"
 L["Do not edit below this line"] = "No edites debajo de esta línea"
@@ -106,3 +104,7 @@ L["Development"] = "Desarrollo"
 -- SettingsPanel.lua
 L["Please restart your game client and try again"] = "Por favor, reinicia el juego e inténtalo de nuevo"
 L["Failed to Import Guides: Invalid Import String"] = "Error al importar guías: cadena de importación inválida"
+
+-- Targeting
+L["Maximize Nameplate Distance"] = "Maximizar Distancia de Placas de Nombre"
+L["Automatically maximize nameplate visibility distance for better target detection (Requires reload)"] = "Maximiza automáticamente la distancia de visibilidad de las placas de nombre para una mejor detección de objetivos (Requiere recarga)"

@@ -1,5 +1,5 @@
 local myname, ns = ...
-local myfullname = "物品等級"
+local myfullname = C_AddOns.GetAddOnMetadata(myname, "Title")
 
 local isClassic = WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE
 
@@ -197,14 +197,16 @@ do
 end
 local function makeCheckboxList(parent, checkboxes, previous, callback)
     for _, data in ipairs(checkboxes) do
-        local control
-        if data[1] then
-            control = makeCheckbox(parent, data[1], data[2], data[3], callback)
-        else
-            control = makeTitle(parent, data[2])
+        if data then
+            local control
+            if data[1] then
+                control = makeCheckbox(parent, data[1], data[2], data[3], callback)
+            else
+                control = makeTitle(parent, data[2])
+            end
+            control:SetPoint("TOPLEFT", previous, "BOTTOMLEFT", 0, -4)
+            previous = control
         end
-        control:SetPoint("TOPLEFT", previous, "BOTTOMLEFT", 0, -4)
-        previous = control
     end
     return previous
 end
@@ -261,15 +263,15 @@ local function makeConfigPanel(id, name, parent, parentname)
         category, layout = Settings.RegisterCanvasLayoutCategory(frame, name)
         Settings.RegisterAddOnCategory(category)
     end
-    category.ID = id
     layout:AddAnchorPoint("TOPLEFT", 10, -10)
     layout:AddAnchorPoint("BOTTOMRIGHT", -10, 10)
 
     frame:Hide()
-    return frame
+    return frame, category
 end
 
 -- actual config panel:
+local categoryID
 function ns:SetupConfig()
     local demoButtons = {}
     local function refresh(_, value)
@@ -281,45 +283,49 @@ function ns:SetupConfig()
     end
 
     do
-        local frame = makeConfigPanel(myname, myfullname)
+        local frame, category = makeConfigPanel(myname, myfullname)
+        categoryID = category:GetID()
         local title = makeTitle(frame, SHOW_ITEM_LEVEL)
         title:SetPoint("TOPLEFT", frame)
 
+        local biggerCharacterSheet = LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_WRATH_OF_THE_LICH_KING
         local checkboxes = {
             {"bags", BAGSLOTTEXT},
             {"character", ORDER_HALL_EQUIPMENT_SLOTS},
-            {"flyout", "裝備欄位彈出式選單"},
+            biggerCharacterSheet and {"character_inset", "   show levels inside the frame", "Instead of being overlaid on the item"},
+            {"flyout", "Equipment flyouts"},
             {"inspect", INSPECT},
+            biggerCharacterSheet and {"inspect_inset", "   show levels inside the frame", "Instead of being overlaid on the item"},
             {"loot", LOOT},
-            {"characteravg", "角色平均物品等級"},
-            {"inspectavg", "觀察平均物品等級"},
+            {"characteravg", "Character average item level"},
+            {"inspectavg", "Inspect average item level"},
         }
         if isClassic or ns.db.tooltip then
-            table.insert(checkboxes, {"tooltip", "物品浮動提示資訊", "在浮動提示資訊中加入物品等級"})
+            table.insert(checkboxes, {"tooltip", "Item tooltips", "Add the item level to tooltips"})
         end
 
         local last = makeCheckboxList(frame, checkboxes, title, refresh)
 
         last = makeCheckboxList(frame, {
-            {false, "可選擇\n(哪些東西要顯示物品等級)"},
-            {"equipment", "可裝備的物品"},
-            {"battlepets", "戰寵"},
-            {"reagents", "製造材料"},
-            {"misc", "其他所有東西"},
+            {false, "Selectiveness"},
+            {"equipment", "Show on equippable items"},
+            {"battlepets", "Show on battle pets"},
+            {"reagents", "Show on crafting reagents"},
+            {"misc", "Show on anything else"},
         }, last, refresh)
 
         local values = {}
         for label, value in pairs(Enum.ItemQuality) do
             values[value] = label
         end
-        local quality = makeDropdown(frame, "quality", "要顯示的最低物品品質", values, refresh)
+        local quality = makeDropdown(frame, "quality", "Minimum item quality to show", values, refresh)
         quality:SetPoint("TOPLEFT", last, "BOTTOMLEFT", 0, -4)
 
         -- Settings.OpenToCategory(myname)
     end
 
     do
-        local frame = makeConfigPanel(myname.."_appearance", APPEARANCE_LABEL, myname, myfullname)
+        local frame = makeConfigPanel(myname.."_appearance", APPEARANCE_LABEL, categoryID, myfullname)
         local demo = CreateFrame("Frame", nil, frame)
 
         demo:SetPoint("TOPLEFT", frame)
@@ -351,37 +357,37 @@ function ns:SetupConfig()
         for k,v in pairs(ns.Fonts) do
             fonts[k] = k
         end
-        local font = makeDropdown(frame, "font", "字體", fonts, refresh)
+        local font = makeDropdown(frame, "font", "Font", fonts, refresh)
         font:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
 
         local positions = {}
         for k,v in pairs(ns.PositionOffsets) do
             positions[k] = k
         end
-        local position = makeDropdown(frame, "position", "物品等級的位置", positions, refresh)
+        local position = makeDropdown(frame, "position", "Position of item level", positions, refresh)
         position:SetPoint("TOPLEFT", font, "BOTTOMLEFT", 0, -4)
-        local positionup = makeDropdown(frame, "positionup", "升級提示的位置", positions, refresh)
+        local positionup = makeDropdown(frame, "positionup", "Position of upgrade indicator", positions, refresh)
         positionup:SetPoint("TOPLEFT", position, "BOTTOMLEFT", 0, -4)
 
-        local positionmissing = makeDropdown(frame, "positionmissing", "缺少提示的位置", positions, refresh)
+        local positionmissing = makeDropdown(frame, "positionmissing", "Position of missing indicator", positions, refresh)
         positionmissing:SetPoint("TOPLEFT", positionup, "BOTTOMLEFT", 0, -4)
-        local scaleup = makeSlider(frame, "scaleup", "升級提示的大小", 0.5, 3, 0.1, nil, refresh, true)
+        local scaleup = makeSlider(frame, "scaleup", "Size of upgrade indicator", 0.5, 3, 0.1, nil, refresh, true)
         scaleup:SetPoint("TOPLEFT", positionmissing, "BOTTOMLEFT", 0, -4)
 
-        local positionbound = makeDropdown(frame, "positionbound", "靈魂綁定提示的位置", positions, refresh)
+        local positionbound = makeDropdown(frame, "positionbound", "Position of soulbound indicator", positions, refresh)
         positionbound:SetPoint("TOPLEFT", scaleup, "BOTTOMLEFT", 0, -4)
-        local scalebound = makeSlider(frame, "scalebound", "靈魂綁定提示的大小", 0.5, 3, 0.1, nil, refresh, true)
+        local scalebound = makeSlider(frame, "scalebound", "Size of soulbound indicator", 0.5, 3, 0.1, nil, refresh, true)
         scalebound:SetPoint("TOPLEFT", positionbound, "BOTTOMLEFT", 0, -4)
 
         makeCheckboxList(frame, {
             {false, DISPLAY_HEADER},
-            {"itemlevel", SHOW_ITEM_LEVEL, "你確定要停用這個插件的核心功能"},
-            {"upgrades", ("升級物品的提示 (%s)"):format(ns.upgradeString)},
-            {"missinggems", ("物品沒有寶石的提示 (%s)"):format(ns.gemString)},
-            {"missingenchants", ("物品沒有附魔的提示 (%s)"):format(ns.enchantString)},
-            {"missingcharacter", "...只在自己的角色視窗顯示缺少寶石/附魔?"},
-            {"bound", ("%s的提示 (%s)"):format(ITEM_SOULBOUND, CreateAtlasMarkup(ns.soulboundAtlas)), "只有你能控制的物品才會顯示，像是背包和角色視窗。"},
-            {"color", "用品質顏色顯示物品等級"},
+            {"itemlevel", SHOW_ITEM_LEVEL, "Do you want to disable the core feature of this addon? Maybe."},
+            {"upgrades", ("Flag upgrade items (%s)"):format(ns.upgradeString)},
+            {"missinggems", ("Flag items missing gems (%s)"):format(ns.gemString)},
+            {"missingenchants", ("Flag items missing enchants (%s)"):format(ns.enchantString)},
+            {"missingcharacter", "...missing gems/enchants on the character frame only?"},
+            {"bound", ("Flag items that are %s (%s)"):format(ITEM_SOULBOUND, CreateAtlasMarkup(ns.soulboundAtlas)), "Only on items you control; bags and character"},
+            {"color", "Color item level by item quality"},
         }, scalebound, refresh)
     end
 end
@@ -404,7 +410,7 @@ SlashCmdList[myname:upper()] = function(msg)
             end
         end
         if type(quality) ~= "number" then
-            return ns.Print("提供的物品品質無效，必須為名稱或數字 0-8")
+            return ns.Print("Invalid item quality provided, should be a name or a number 0-8")
         end
         ns.db.quality = quality
         return ns.Print("quality = ", _G["ITEM_QUALITY" .. ns.db.quality .. "_DESC"])
@@ -413,7 +419,7 @@ SlashCmdList[myname:upper()] = function(msg)
         ns.db[msg] = not ns.db[msg]
         return ns.Print(msg, '=', ns.db[msg] and YES or NO)
     end
-    if msg == "" then
-        Settings.OpenToCategory(myname)
+    if msg == "" and categoryID then
+        Settings.OpenToCategory(categoryID)
     end
 end

@@ -9,6 +9,7 @@
 	<Script file="ZygorGuidesViewer.lua"/>
 	<Script file="Tooltips.lua"/>
 	<Script file="Licence.lua"/>
+	<Script file="Modules.lua"/>
 
 	<Script file="Ver.lua"/>
 	<Script file="Class.lua"/>

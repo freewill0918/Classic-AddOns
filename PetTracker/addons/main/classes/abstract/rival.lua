@@ -1,5 +1,5 @@
 --[[
-Copyright 2012-2025 João Cardoso
+Copyright 2012-2026 João Cardoso
 All Rights Reserved
 --]]
 
@@ -13,7 +13,7 @@ local C = LibStub('C_Everywhere')
 function Rival:New(id)
 	local data = Addon.RivalInfo[id]
 	if data then
-		local name, model, map, quest, gold, items, currencies, pets = data:match('^([^:]+):(%w%w%w%w)(%w%w)(%w%w%w)(%w)([^:]*):([^:]*):(.*)$')
+		local name, model, map, quest, gold, items, currencies, pets = data:match('^([^:]+):(%w%w%w%w)(%w%w%w)(%w%w%w)(%w)([^:]*):([^:]*):(.*)$')
 		local tooltip = C.TooltipInfo.GetHyperlink(('unit:Creature-0-0-0-0-%d'):format(id))
 		local rival = self:Bind {
 			id = id, items = items, currencies = currencies,
@@ -64,8 +64,10 @@ function Rival:GetLocation()
 	local map = self:GetMap()
 	if map then
 		local position = Addon.Rivals[map][self.id]
-		local x, y = position:match('(%w%w)(%w%w)')
-		return tonumber(x, 36) / 1000, tonumber(y, 36) / 1000
+		if position then
+			local x, y = position:match('(%w%w)(%w%w)')
+			return tonumber(x, 36) / 1000, tonumber(y, 36) / 1000
+		end
 	end
 end
 
@@ -87,7 +89,7 @@ end
 function Rival:GetRewards()
 	local rewards = {}
 
-	for id, count in self.items:gmatch('(%w%w%w%w)(%w)') do
+	for id, count in self.items:gmatch('(%w%w%w%w%w)(%w)') do
 		id = tonumber(id, 36)
 
 		tinsert(rewards, {
@@ -97,7 +99,7 @@ function Rival:GetRewards()
 		})
 	end
 
-	for id, count in self.currencies:gmatch('(%w%w)(%w)') do
+	for id, count in self.currencies:gmatch('(%w%w%w)(%w)') do
 		id = tonumber(id, 36)
 		count = tonumber(count, 36)
 
@@ -115,27 +117,28 @@ end
 --[[ Overrides ]]--
 
 function Rival:GetAbstract()
-	local text = self.name .. ' ' .. self:GetMapName() .. ' ' .. self:GetCompleteState()
+	local parts = {self.name, self:GetMapName(), self:GetCompleteState()}
 
 	for i, pet in ipairs(self) do
-		text = text .. ' ' .. pet:GetName() .. ' ' .. pet:GetTypeName()
+		tinsert(parts, pet:GetName())
+		tinsert(parts, pet:GetTypeName())
 	end
 
-	for id in self.items:gmatch('(%w%w%w%w)%w') do
+	for id in self.items:gmatch('(%w%w%w%w%w)%w') do
 		local name = C.Item.GetItemInfo(tonumber(id, 36))
 		if name then
-			text = text .. ' ' .. name
+			tinsert(parts, name)
 		end
 	end
 
-	for id in self.currencies:gmatch('(%w%w)%w') do
+	for id in self.currencies:gmatch('(%w%w%w)%w') do
 		local currency = C.CurrencyInfo.GetCurrencyInfo(tonumber(id, 36))
 		if currency.name then
-			text = text .. ' ' .. currency.name
+			tinsert(parts, currency.name)
 		end
 	end
 
-	return text
+	return table.concat(parts, ' ')
 end
 
 function Rival:GetType()
@@ -161,6 +164,11 @@ for _, key in pairs {'Level', 'Quality'} do
 			value = value + pet['Get' .. key](pet)
 		end
 
-		return floor(value / #self + .5)
+		local t= floor(value / #self + .5)
+		if key == 'Quality' and t > 6 then
+			dump(self)
+			print(self.name, t)
+		end
+		return t
 	end
 end

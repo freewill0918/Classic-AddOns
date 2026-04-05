@@ -1,7 +1,7 @@
 # Simple Item Level
 
-## [v56](https://github.com/kemayo/wow-simpleitemlevel/tree/v56) (2025-09-15)
-[Full Changelog](https://github.com/kemayo/wow-simpleitemlevel/compare/v55...v56) [Previous Releases](https://github.com/kemayo/wow-simpleitemlevel/releases)
+## [v65](https://github.com/kemayo/wow-simpleitemlevel/tree/v65) (2026-03-23)
+[Full Changelog](https://github.com/kemayo/wow-simpleitemlevel/compare/v64...v65) [Previous Releases](https://github.com/kemayo/wow-simpleitemlevel/releases)
 
-- Remove a debug print in the equipment flyout  
-- Update the readme  
+- Baganator integration: respect display settings  
+- Update retail enchantable slots  

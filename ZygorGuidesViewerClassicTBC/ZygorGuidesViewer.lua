@@ -58,9 +58,34 @@ ZGV.IsClassicAnniv =  C_Seasons and (ZGV.IsClassic and C_Seasons.HasActiveSeason
 ZGV.IsClassicAnnivHardcore =  C_Seasons and (ZGV.IsClassic and C_Seasons.HasActiveSeason() and C_Seasons.GetActiveSeason()==Enum.SeasonID.FreshHardcore)
 
 ZGV.IsPandariaRemix =  (C_TimerunningUI and C_TimerunningUI.GetActiveTimerunningSeasonID) and C_TimerunningUI.GetActiveTimerunningSeasonID() == Constants.TimerunningConsts.TIMERUNNING_SEASON_PANDARIA
-ZGV.IsLegionRemix =  (C_TimerunningUI and C_TimerunningUI.GetActiveTimerunningSeasonID) and C_TimerunningUI.GetActiveTimerunningSeasonID() == Constants.TimerunningConsts.TIMERUNNING_SEASON_LEGION
+ZGV.IsLegionRemix =  function() return PlayerGetTimerunningSeasonID and PlayerGetTimerunningSeasonID() == Constants.TimerunningConsts.TIMERUNNING_SEASON_LEGION end
 
-ZGV.IsServerRemix = ZGV.IsPandariaRemix or  ZGV.IsLegionRemix
+function ZGV:GetFlavourVersion()
+	local flavour,variant="?",""
+	
+	if ZGV.IsClassic then flavour="Classic" end
+	if ZGV.IsClassicTBC then flavour="ClassicTBC" end
+	if ZGV.IsClassicWOTLK then flavour="ClassicWOTLK" end
+	if ZGV.IsClassicCATA then flavour="ClassicCATA" end
+	if ZGV.IsClassicMOP then flavour="ClassicMOP" end
+	if ZGV.IsRetail then flavour="Retail" end
+	
+	if ZGV.IsClassicSoM then variant="SoM" end
+	if ZGV.IsClassicSoD then variant="SoD" end
+	if ZGV.IsClassicHardcore then variant="Hardcore" end
+	if ZGV.IsClassicAnniv then variant="Anniv" end
+	if ZGV.IsClassicAnnivHardcore then variant="AnnivHardcore" end
+	if ZGV.IsPandariaRemix then variant="PandariaRemix" end
+	if ZGV.IsLegionRemix() then variant="LegionRemix" end
+
+	return {
+		flavour=flavour,
+		variant=variant,
+		projectID=WOW_PROJECT_ID,
+		seasonID=(C_Seasons and C_Seasons.GetActiveSeason()) or 0,
+		timerunningID=PlayerGetTimerunningSeasonID and PlayerGetTimerunningSeasonID() or 0
+	}
+end
 
 ZGV.CLASSIC_SCALE_ADJUST = ZGV.IsRetail and 1 or UIParent:GetEffectiveScale()
 
@@ -1463,6 +1488,11 @@ end
 function ZGV:SetGuide(name,step,source,silent,prevguide)
 	if not name then return end
 
+	-- if we already had something active, gracefully exit it
+	if ZGV.CurrentStep then
+		ZGV.CurrentStep:OnLeave()
+	end
+
 	step=step or 1
 	--self:Debug("SetGuide "..name.." ("..tostring(step)..")")
 
@@ -1959,6 +1989,7 @@ end
 function ZGV:TrackQuest(id)
 	if tonumber(GetCVar("autoQuestWatch"))==0 then return end
 	if ZGV.IsClassicCATA then return end -- SetSuperTrackedQuestID on cata crashes game
+	if ZGV.IsClassicMOP then return end -- and on classic mop as well
 
 	local q = ZGV.questsbyid[id]
 	if not q or not q.inlog then return end
@@ -2514,7 +2545,7 @@ function ZGV:GetStickiesAt(stepnum,laststepnum) -- was stepnum,show_complete but
 	wipe(getstickies_temp)
 	if step.stickies then
 		for _,stickystep in ipairs(step.stickies) do
-			if (stickystep.num>laststepnum) and not stickystep:IsComplete() and stickystep:CanBeSticky() then
+			if (stickystep.num>laststepnum) and ((not stickystep:IsComplete() and stickystep:CanBeSticky()) or self.db.profile.alwaysshowstickies) then
 				tinsert(getstickies_temp,stickystep)
 			end
 		end
@@ -2812,7 +2843,7 @@ end
 local resizing
 function ZGV:ResizeFrame(source)
 	if not self.Frame or not self.db then return end
-	if InCombatLockdown() then return end
+	-- if InCombatLockdown() then return end -- no longer needed, actionbuttons are now detached from viewerframe
 
 	-- protect from self-calling, and reset it the next frame
 	if resizing then return end
@@ -3268,6 +3299,17 @@ end
 function ZGV:MatchProfs(fitprof,levelmin)
 	local data = self.Professions:GetSkill(fitprof)
 	if not data then return false end
+
+	if data.placeholder then
+		-- check if they have it, but didn't scan it yet
+		for _,index in pairs({GetProfessions()}) do
+			local _, _, skillLevel, _, _, _, skillLine = GetProfessionInfo(index)
+			local skill = ZGV.Professions.tradeskills[skillLine]
+			if skill and skill.name == fitprof then
+				return skillLevel>=levelmin
+			end
+		end
+	end
 
 	if not data.active then
 		return false --We don't have this profession so forget it.
@@ -3735,8 +3777,11 @@ function ZGV:GoalOnEnter(goalframe)
 		if wayline then  GameTooltip:AddLine(wayline,1,1,1)  lines=lines+1  end
 		if tooltipline then  GameTooltip:AddLine(tooltipline,1,1,1)  lines=lines+1  end
 
-		for line=1,lines do  if _G['GameTooltipTextLeft'..line]:GetWidth()>300 then _G['GameTooltipTextLeft'..line]:SetWidth(300) end  end
-		
+		for line=1,lines do  
+			local linewidth = _G['GameTooltipTextLeft'..line]:GetWidth()
+			if not ZGV.IsSecret(linewidth) and linewidth>300 then _G['GameTooltipTextLeft'..line]:SetWidth(300) end
+		end
+
 		if hyperlink then GameTooltip:SetHyperlink(hyperlink) end
 
 		GameTooltip:Show()
@@ -3764,7 +3809,7 @@ function ZGV:GoalOnEnter(goalframe)
 		end
 	end
 
-	if (IsModifiedClick("DRESSUP") and goal.itemid and IsDressableItem("item:"..goal.itemid)) then
+	if goal:IsViableDressup() then
 		ShowInspectCursor()
 	else
 		ResetCursor()
@@ -5043,6 +5088,7 @@ end
 
 -- SECURE!
 function ZGV:MagicRaidMarker(marker)
+	if ZGV.IsRetail then return end
 	if not ZGV.db.profile.targetonclick then return ZGV end
 	
 	if not UnitExists("target") then return end
@@ -5066,6 +5112,7 @@ function ZGV:MagicRaidMarker(marker)
 	return ZGV  -- for chaining
 end
 function ZGV:MaybeClearRaidMarker(index)
+	if ZGV.IsRetail then return end
 	if not UnitExists("target") then return end
 	if GetRaidTargetIndex("target")==index then SetRaidTarget("target",0) end
 end
@@ -6065,6 +6112,7 @@ end)
 
 ZGV.UsedRaidMarkers = {}
 function ZGV.HandleRaidmarker(unit)
+	if ZGV.IsRetail then return end
 	-- nothing for us to do
 	if not ZGV.db.profile.mouseovermarkers then return end
 	if not ZGV.CurrentStep then return end
@@ -6077,7 +6125,9 @@ function ZGV.HandleRaidmarker(unit)
 	if UnitGUID("pet")==UnitGUID(unit) then return end -- don't flag own pets
 
 	local target = ZGV.GetUnitId(unit)
+	if not target then return end
 	local marker = 0
+	
 
 	local goals = {}
 	for si,step in ipairs(ZGV:GetStickiesAt(ZGV.CurrentStep.num)) do
@@ -6129,6 +6179,7 @@ function ZGV.HandleRaidmarker(unit)
 end
 
 function ZGV.ClearRaidmarker()
+	if ZGV.IsRetail then return end
 	-- don't mess with groups
 	if IsInGroup() then return end
 

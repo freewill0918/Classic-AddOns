@@ -146,19 +146,12 @@
 
 	<!-- GEAR -->
 		<Script file="Dungeons\ZygorGearAlliance.lua"/>
-		<Script file="Dungeons\ZygorGearAllianceTrial.lua"/>
 		<Script file="Dungeons\ZygorGearHorde.lua"/>
-		<Script file="Dungeons\ZygorGearHordeTrial.lua"/>
 		<Script file="Dungeons\ZygorGearCommonCLASSIC.lua"/>
-		<Script file="Dungeons\ZygorGearCommonCLASSICTrial.lua"/>
 		<Script file="Dungeons\ZygorGearCommonTBC.lua"/>
-		<Script file="Dungeons\ZygorGearCommonTBCTrial.lua"/>
 		<Script file="Dungeons\ZygorGearCommonWOTLK.lua"/>
-		<Script file="Dungeons\ZygorGearCommonWOTLKTrial.lua"/>
 		<Script file="Dungeons\ZygorGearCommonCATA.lua"/>
-		<Script file="Dungeons\ZygorGearCommonCATATrial.lua"/>
 		<Script file="Dungeons\ZygorGearCommonMOP.lua"/>
-		<Script file="Dungeons\ZygorGearCommonMOPTrial.lua"/>
 
 	<!-- PROFESSIONS -->
 		<!-- CATA -->
@@ -317,6 +310,8 @@
 	<!-- POINTS OF INTEREST -->
 		<!-- MOP -->
 		<Script file="Poi\Common.lua" />
+		<Script file="Poi\MOP_Common_Rares.lua"/>
+		<Script file="Poi\MOP_Common_Treasures.lua"/>
 
 	<!--
 	-->

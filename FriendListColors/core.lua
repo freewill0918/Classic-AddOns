@@ -1,27 +1,28 @@
-local GetAddOnMetadata = GetAddOnMetadata or C_AddOns.GetAddOnMetadata ---@diagnostic disable-line: deprecated
-
-local GameTooltip = _G.GameTooltip ---@diagnostic disable-line: undefined-field
-local InterfaceOptions_AddCategory = _G.InterfaceOptions_AddCategory ---@diagnostic disable-line: undefined-field
-local InterfaceOptionsFramePanelContainer = _G.InterfaceOptionsFramePanelContainer or _G.SettingsPanel ---@diagnostic disable-line: undefined-field
-local ReloadUI = _G.ReloadUI ---@diagnostic disable-line: undefined-field
-local FRIENDS_BUTTON_TYPE_BNET = _G.FRIENDS_BUTTON_TYPE_BNET ---@diagnostic disable-line: undefined-field
-local FRIENDS_BUTTON_TYPE_WOW = _G.FRIENDS_BUTTON_TYPE_WOW ---@diagnostic disable-line: undefined-field
+local InterfaceOptionsFramePanelContainer = InterfaceOptionsFramePanelContainer or SettingsPanel ---@type Frame
+local ReloadUI = ReloadUI or C_UI.Reload ---@type fun()
+local FRIENDS_BUTTON_TYPE_BNET = FRIENDS_BUTTON_TYPE_BNET ---@type 2
+local FRIENDS_BUTTON_TYPE_WOW = FRIENDS_BUTTON_TYPE_WOW ---@type 3
 
 local addonName = ... ---@type string
 
-local TIMERUNNING_MARKUP = CreateAtlasMarkup and CreateAtlasMarkup("timerunning-glues-icon-small", 9, 12)
+local TIMERUNNING_MARKUP = CreateAtlasMarkup and CreateAtlasMarkup("timerunning-glues-icon-small", 9, 12) ---@type string?
 
 ---@alias ChatTypeExtended ChatType|"BN_WHISPER"
 
+---@alias FriendListColorsFriendInfo BNetAccountInfoExtended|BNetGameAccountInfo|BNetAccountInfo|FriendInfo
+
+---@class ColorNS
 local Color do
 
-	---@param r number|ColorMixin
+	Color = {}
+
+	---@param r number|colorRGB
 	---@param g? number
 	---@param b? number
-	local function ColorToHex(r, g, b)
+	function Color.From(r, g, b)
 		if type(r) == "table" then
 			if r.r then
-				r, g, b = r.r, r.g, r.b ---@diagnostic disable-line: need-check-nil, undefined-field
+				r, g, b = r.r, r.g, r.b ---@diagnostic disable-line: undefined-field
 			else
 				r, g, b = unpack(r)
 			end
@@ -37,14 +38,15 @@ local Color do
 
 		cache = {}
 
-		---@diagnostic disable-next-line: undefined-field
-		local colors = (_G.CUSTOM_CLASS_COLORS or _G.RAID_CLASS_COLORS)
+		local colors = CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS ---@type table<string, colorRGB>
 
-		---@diagnostic disable-next-line: undefined-field
-		for k, v in pairs(_G.LOCALIZED_CLASS_NAMES_MALE) do cache[v] = ColorToHex(colors[k]) end
+		for k, v in pairs(LOCALIZED_CLASS_NAMES_MALE) do
+			cache[v] = Color.From(colors[k])
+		end
 
-		---@diagnostic disable-next-line: undefined-field
-		for k, v in pairs(_G.LOCALIZED_CLASS_NAMES_FEMALE) do cache[v] = ColorToHex(colors[k]) end
+		for k, v in pairs(LOCALIZED_CLASS_NAMES_FEMALE) do
+			cache[v] = Color.From(colors[k])
+		end
 
 		if WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE then
 			cache.Evoker = cache.Evoker or "33937F"
@@ -55,13 +57,9 @@ local Color do
 
 	end
 
-	Color = {}
-
-	Color.From = ColorToHex
-
-	Color.Gray = Color.From(_G.FRIENDS_GRAY_COLOR) ---@diagnostic disable-line: undefined-field
-	Color.BNet = Color.From(_G.FRIENDS_BNET_NAME_COLOR) ---@diagnostic disable-line: undefined-field
-	Color.WoW = Color.From(_G.FRIENDS_WOW_NAME_COLOR) ---@diagnostic disable-line: undefined-field
+	Color.Gray = Color.From(FRIENDS_GRAY_COLOR)
+	Color.BNet = Color.From(FRIENDS_BNET_NAME_COLOR)
+	Color.WoW = Color.From(FRIENDS_WOW_NAME_COLOR)
 
 	---@param query any
 	---@return string?
@@ -78,12 +76,13 @@ local Color do
 		if not level then
 			return
 		end
-		local color = _G.GetQuestDifficultyColor(level) ---@diagnostic disable-line: undefined-field
+		local color = GetQuestDifficultyColor(level)
 		return Color.From(color.r, color.g, color.b)
 	end
 
 end
 
+---@class UtilNS
 local Util do
 
 	Util = {}
@@ -141,13 +140,14 @@ local Util do
 			if lineID then
 				return oldName
 			end
-			return _G.GetBNPlayerLink(newName, newName, bnetIDAccount, lineID) ---@diagnostic disable-line: undefined-field
+			return GetBNPlayerLink(newName, newName, bnetIDAccount, lineID) ---@type string
 		end
 		return newName
 	end
 
 end
 
+---@class ParseNS
 local Parse do
 
 	Parse = {}
@@ -193,11 +193,10 @@ local Parse do
 		end
 
 		if not out then
-			---@diagnostic disable-next-line: undefined-field
 			local offline = not friendWrapper.data[friendWrapper.type == FRIENDS_BUTTON_TYPE_BNET and "isOnline" or "connected"]
 			if offline then
 				out = Color.Gray
-			elseif friendWrapper.type == FRIENDS_BUTTON_TYPE_BNET then ---@diagnostic disable-line: undefined-field
+			elseif friendWrapper.type == FRIENDS_BUTTON_TYPE_BNET then
 				out = Color.BNet
 			else
 				out = Color.WoW
@@ -237,7 +236,6 @@ local Parse do
 
 				if field == "accountName" or field == "name" then
 
-					---@diagnostic disable-next-line: undefined-field
 					local note = friendWrapper.data[friendWrapper.type == FRIENDS_BUTTON_TYPE_BNET and "note" or "notes"] ---@type string?
 					local alias = Parse.Note(note)
 
@@ -251,7 +249,7 @@ local Parse do
 					out = value
 				end
 
-				if (not out) or out == "" or out == 0 or out == "0" then
+				if not out or out == "" or out == 0 or out == "0" then
 					out = nil
 				end
 
@@ -334,18 +332,77 @@ local Parse do
 
 end
 
+---@class FriendsNS
 local Friends do
 
+	---@alias FriendKey
+	---| "accountName"
+	---| "afk"
+	---| "appearOffline"
+	---| "area"
+	---| "areaName"
+	---| "battleTag"
+	---| "bnet"
+	---| "bnetAccountID"
+	---| "canSummon"
+	---| "characterLevel"
+	---| "characterName"
+	---| "class"
+	---| "className"
+	---| "clientProgram"
+	---| "connected"
+	---| "customMessage"
+	---| "customMessageTime"
+	---| "dnd"
+	---| "faction"
+	---| "factionName"
+	---| "gameAccountID"
+	---| "gameAccountInfo"
+	---| "guid"
+	---| "hasFocus"
+	---| "isAFK"
+	---| "isBattleTagFriend"
+	---| "isBNet"
+	---| "isDND"
+	---| "isFavorite"
+	---| "isFriend"
+	---| "isGameAFK"
+	---| "isGameBusy"
+	---| "isInCurrentRegion"
+	---| "isOnline"
+	---| "isWowMobile"
+	---| "lastOnlineTime"
+	---| "level"
+	---| "mobile"
+	---| "name"
+	---| "note"
+	---| "notes"
+	---| "playerGuid"
+	---| "race"
+	---| "raceName"
+	---| "rafLinkType"
+	---| "realmDisplayName"
+	---| "realmID"
+	---| "realmName"
+	---| "regionID"
+	---| "richPresence"
+	---| "timerunner"
+	---| "timerunnerIcon"
+	---| "timerunningSeasonID"
+	---| "wowProjectID"
+
 	---@class BNetAccountInfoExtended : BNetGameAccountInfo, BNetAccountInfo
-	---@field bnet boolean
-	---@field isBNet boolean
-	---@field class number
-	---@field className string
-	---@field race number
-	---@field raceName string
-	---@field faction number
-	---@field timerunner number
-	---@field timerunnerIcon string
+	---@field public bnet boolean
+	---@field public isBNet boolean
+	---@field public class number
+	---@field public className string
+	---@field public race number
+	---@field public raceName string
+	---@field public faction number
+	---@field public timerunner? number
+	---@field public timerunnerIcon? string
+	---@field public mobile boolean
+	---@field public isWowMobile boolean
 
 	Friends = {}
 
@@ -359,7 +416,7 @@ local Friends do
 		if not gameAccountInfo and not accountInfo then
 			return
 		end
-		return Util.MergeTable(gameAccountInfo or {}, accountInfo or {}) ---@diagnostic disable-line: return-type-mismatch
+		return Util.MergeTable(gameAccountInfo or {}, accountInfo or {}) ---@type BNetAccountInfoExtended
 	end
 
 	---@param friendIndex number
@@ -400,7 +457,7 @@ local Friends do
 	function Friends.PackageFriendBNetCharacter(data, id)
 		for i = 1, Friends.BNGetNumFriendGameAccounts(id) do
 			local temp = Friends.BNGetFriendGameAccountInfo(id, i)
-			if temp and temp.clientProgram == _G.BNET_CLIENT_WOW then ---@diagnostic disable-line: undefined-field
+			if temp and temp.clientProgram == BNET_CLIENT_WOW then
 				for k, v in pairs(temp) do
 					data[k] = v
 				end
@@ -411,11 +468,11 @@ local Friends do
 		return data
 	end
 
-	---@param data BNetAccountInfoExtended|BNetAccountInfo|FriendInfo
+	---@param data FriendListColorsFriendInfo
 	---@param isBNet? boolean
 	function Friends.AddFieldAlias(data, isBNet)
-		---@param ... string
-		---@return string?, string?, string?
+		---@param ... FriendKey
+		---@return any, any, any
 		local function first(...)
 			local temp
 			for _, v in ipairs({...}) do
@@ -429,37 +486,39 @@ local Friends do
 		isBNet = not not isBNet
 		data.bnet = isBNet
 		data.isBNet = isBNet
-		-- data.name, data.characterName = first("characterName", "name") ---@diagnostic disable-line: assign-type-mismatch
-		data.level, data.characterLevel = first("characterLevel", "level") ---@diagnostic disable-line: assign-type-mismatch
-		data.class, data.className = first("className", "class") ---@diagnostic disable-line: assign-type-mismatch
-		data.race, data.raceName = first("raceName", "race") ---@diagnostic disable-line: assign-type-mismatch
-		data.faction, data.factionName = first("factionName", "faction") ---@diagnostic disable-line: assign-type-mismatch
-		data.area, data.areaName = first("areaName", "area") ---@diagnostic disable-line: assign-type-mismatch
-		data.connected, data.isOnline = first("isOnline", "connected") ---@diagnostic disable-line: assign-type-mismatch
-		data.mobile, data.isWowMobile = first("isWowMobile", "mobile") ---@diagnostic disable-line: assign-type-mismatch
-		data.afk, data.isAFK, data.isGameAFK = first("isGameAFK", "isAFK", "afk") ---@diagnostic disable-line: assign-type-mismatch
-		data.dnd, data.isDND, data.isGameBusy = first("isGameBusy", "isDND", "dnd") ---@diagnostic disable-line: assign-type-mismatch
-		data.timerunner = first("timerunningSeasonID") ---@diagnostic disable-line: assign-type-mismatch
+		-- data.name, data.characterName = first("characterName", "name")
+		data.level, data.characterLevel = first("characterLevel", "level")
+		data.class, data.className = first("className", "class")
+		data.race, data.raceName = first("raceName", "race")
+		data.faction, data.factionName = first("factionName", "faction")
+		data.area, data.areaName = first("areaName", "area")
+		data.connected, data.isOnline = first("isOnline", "connected")
+		data.mobile, data.isWowMobile = first("isWowMobile", "mobile")
+		data.afk, data.isAFK, data.isGameAFK = first("isGameAFK", "isAFK", "afk")
+		data.dnd, data.isDND, data.isGameBusy = first("isGameBusy", "isDND", "dnd")
+		data.timerunner = first("timerunningSeasonID")
 		data.timerunnerIcon = data.timerunner and TIMERUNNING_MARKUP
 	end
 
-	---@alias FriendType number `2`=`FRIENDS_BUTTON_TYPE_BNET` and `3`=`FRIENDS_BUTTON_TYPE_WOW`
+	---@alias FriendType
+	---| 2 `FRIENDS_BUTTON_TYPE_BNET`
+	---| 3 `FRIENDS_BUTTON_TYPE_WOW`
 
 	---@class FriendWrapper
 	---@field public type FriendType
-	---@field public data? BNetAccountInfoExtended|BNetAccountInfo|FriendInfo
+	---@field public data? FriendListColorsFriendInfo
 
 	---@param buttonType FriendType
 	---@param id number
 	---@return FriendWrapper?
 	function Friends.PackageFriend(buttonType, id)
 		local temp ---@type FriendWrapper
-		if buttonType == FRIENDS_BUTTON_TYPE_BNET then ---@diagnostic disable-line: undefined-field
+		if buttonType == FRIENDS_BUTTON_TYPE_BNET then
 			temp = {
 				type = buttonType,
 				data = Friends.PackageFriendBNetCharacter(Friends.BNGetFriendInfo(id), id),
 			}
-		elseif buttonType == FRIENDS_BUTTON_TYPE_WOW then ---@diagnostic disable-line: undefined-field
+		elseif buttonType == FRIENDS_BUTTON_TYPE_WOW then
 			temp = {
 				type = buttonType,
 				data = Friends.GetFriendInfo(id),
@@ -503,14 +562,23 @@ local Friends do
 		if type(text) ~= "string" then
 			return text
 		end
-		return (text:gsub("|HBNplayer:(.-)|h(.-)|h", function(data, displayText) return format("|HBNplayer:%s|h%s|h", data, (Friends.GetAlias("BN_WHISPER", displayText))) end))
+		return (
+			text:gsub(
+				"|HBNplayer:(.-)|h(.-)|h",
+				---@param data string
+				---@param displayText string
+				function(data, displayText)
+					return format("|HBNplayer:%s|h%s|h", data, Friends.GetAlias("BN_WHISPER", displayText))
+				end
+			)
+		)
 	end
 
 end
 
+---@class Config
 local Config = {
-	format = "[if=level][color=level]L[=level][/color] [/if][color=class][=characterName|name][/color][if=characterName] - [/if][=accountName]",
-	-- format = "[if=level][color=level]L[=level] [/color][/if][color=class][=accountName|name][if=characterName] ([=characterName])[/if][/color]",
+	format = "[if=level][color=level]L[=level] [/color][/if][=timerunnerIcon][color=class][=accountName|name][if=characterName] ([=characterName])[/if][/color]",
 	-- format = "[if=level][color=level]L[=level] [/color][/if][color=class][=accountName|characterName|name][/color]",
 	-- format = "[if=level][color=level]Lv. [=level] [/color][/if][color=class][if=characterName][=characterName] ([=accountName|battleTag])[/if][if~=characterName][=accountName|battleTag|name][/if][if=race] [=race][/if][if=class] [=class][/if][/color]",
 }
@@ -529,10 +597,10 @@ local Init do
 		local isSettingText = false
 
 		---@class ListFrameButton : Button
-		---@field buttonType number
-		---@field id number
-		---@field gameIcon Texture
-		---@field name FontString
+		---@field public buttonType number
+		---@field public id number
+		---@field public gameIcon Texture
+		---@field public name FontString
 
 		---@param self ListFrameButton
 		---@param ... any
@@ -540,8 +608,9 @@ local Init do
 			if isSettingText then
 				return
 			end
+			---@type ListFrameButton
 			---@diagnostic disable-next-line: assign-type-mismatch
-			local button = self:GetParent() ---@type ListFrameButton
+			local button = self:GetParent()
 			local buttonType, id = button.buttonType, button.id
 			if buttonType ~= FRIENDS_BUTTON_TYPE_BNET and buttonType ~= FRIENDS_BUTTON_TYPE_WOW then
 				return
@@ -552,14 +621,17 @@ local Init do
 			end
 			-- button.gameIcon:SetTexture("Interface\\Buttons\\ui-paidcharactercustomization-button")
 			-- button.gameIcon:SetTexCoord(8/128, 55/128, 72/128, 119/128)
+			local text = Parse.Format(friendWrapper, Config.format)
 			isSettingText = true
-			self:SetText(Parse.Format(friendWrapper, Config.format))
+			self:SetText(text)
 			isSettingText = false
 		end
 
 		local HookButtons do
-			---@type table<ListFrameButton, boolean>
+
+			---@type table<ListFrameButton, true?>
 			local hookedButtons = {}
+
 			---@param buttons ListFrameButton[]
 			function HookButtons(buttons)
 				for i = 1, #buttons do
@@ -570,29 +642,38 @@ local Init do
 					end
 				end
 			end
+
 		end
 
+		---@alias ScrollBoxPolyfill { GetView: fun(): { RegisterCallback: fun(self, event: string, callback: fun(event: number, widget: any, created: boolean)) } }
+
 		---@class ListFrame : Frame
-		---@field ScrollBox? ScrollFrame
-		---@field buttons? ListFrameButton[]
+		---@field public ScrollBox? ScrollFrame | ScrollBoxPolyfill
+		---@field public buttons? ListFrameButton[]
 
 		---@type ListFrame
-		local scrollFrame = _G.FriendsListFrameScrollFrame or _G.FriendsFrameFriendsScrollFrame or _G.FriendsListFrame ---@diagnostic disable-line: undefined-field
+		local scrollFrame = FriendsListFrameScrollFrame or FriendsFrameFriendsScrollFrame or FriendsListFrame
 
 		if scrollFrame.ScrollBox then
-			scrollFrame.ScrollBox:GetView():RegisterCallback(_G.ScrollBoxListMixin.Event.OnAcquiredFrame, function(_, button, created) if created then HookButtons({button}) end end) ---@diagnostic disable-line: undefined-field
+			scrollFrame.ScrollBox:GetView():RegisterCallback(
+				ScrollBoxListMixin.Event.OnAcquiredFrame,
+				function(_, button, created)
+					if created then
+						HookButtons({ button })
+					end
+				end
+			)
 		end
 
 		if scrollFrame.buttons then
 			HookButtons(scrollFrame.buttons)
 		end
 
-		if _G.ChatEdit_UpdateHeader then ---@diagnostic disable-line: undefined-field
+		if ChatEdit_UpdateHeader then
 
 			---@param editBox EditBox
 			local function ChatEdit_UpdateHeader(editBox)
 
-				---@diagnostic disable-next-line: assign-type-mismatch
 				local chatType = editBox:GetAttribute("chatType") ---@type ChatType
 				if chatType ~= "WHISPER" and chatType ~= "BN_WHISPER" then
 					return
@@ -608,14 +689,13 @@ local Init do
 					return
 				end
 
-				---@diagnostic disable-next-line: assign-type-mismatch
 				local name = editBox:GetAttribute("tellTarget") ---@type string
 				if not name then
 					return
 				end
 
 				local newName = Friends.GetAlias(chatType, name)
-				header:SetFormattedText(_G[format("CHAT_%s_SEND", chatType)], newName) ---@diagnostic disable-line: redundant-parameter
+				header:SetFormattedText(_G[format("CHAT_%s_SEND", chatType)], newName)
 
 				local headerSuffix = _G[format("%sHeaderSuffix", editBox:GetName())] ---@type Frame
 				local headerWidth = (header:GetRight() or 0) - (header:GetLeft() or 0)
@@ -634,7 +714,10 @@ local Init do
 
 		end
 
-		if _G.ChatFrame_AddMessageEventFilter then ---@diagnostic disable-line: undefined-field
+		---@type fun(event: WowEvent, filter: fun(self: Frame, event: WowEvent, text: string, name: string, ...: any))
+		local ChatFrame_AddMessageEventFilter = ChatFrame_AddMessageEventFilter or ChatFrameUtil and ChatFrameUtil.AddMessageEventFilter
+
+		if ChatFrame_AddMessageEventFilter then
 
 			---@param self Frame
 			---@param event WowEvent
@@ -651,117 +734,127 @@ local Init do
 				if not chatType then
 					return false
 				end
-				local lineID = select(9, ...)
+				local lineID = select(9, ...) ---@type number?
 				local newName = Friends.GetAlias(chatType, name, lineID)
 				return false, text, newName, ...
 			end
 
-			_G.ChatFrame_AddMessageEventFilter("CHAT_MSG_AFK", ChatFilter_AddMessage) ---@diagnostic disable-line: undefined-field
-			_G.ChatFrame_AddMessageEventFilter("CHAT_MSG_DND", ChatFilter_AddMessage) ---@diagnostic disable-line: undefined-field
-			_G.ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", ChatFilter_AddMessage) ---@diagnostic disable-line: undefined-field
-			_G.ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER_INFORM", ChatFilter_AddMessage) ---@diagnostic disable-line: undefined-field
+			ChatFrame_AddMessageEventFilter("CHAT_MSG_AFK", ChatFilter_AddMessage)
+			ChatFrame_AddMessageEventFilter("CHAT_MSG_DND", ChatFilter_AddMessage)
+			ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", ChatFilter_AddMessage)
+			ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER_INFORM", ChatFilter_AddMessage)
 
 			-- bnet names can't be modified with a simple chat event filter, and there are also issues when doing it the hard-way
 			-- as replacing the special escape patterns used for bnet names can also malform the chat frame irreversably...
 
-			-- _G.ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER", ChatFilter_AddMessage) ---@diagnostic disable-line: undefined-field
-			-- _G.ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER_INFORM", ChatFilter_AddMessage) ---@diagnostic disable-line: undefined-field
+			-- ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER", ChatFilter_AddMessage)
+			-- ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER_INFORM", ChatFilter_AddMessage)
 
-			-- if _G.FCF_OpenTemporaryWindow then ---@diagnostic disable-line: undefined-field
+			--[[
 
-			-- 	---@class HistoryBufferElement
-			-- 	---@field message string
+			---@type fun(chatType: ChatTypeExtended, chatTarget: string, sourceChatFrame: Frame, selectWindow: Frame)
+			local FCF_OpenTemporaryWindow = FCF_OpenTemporaryWindow
 
-			-- 	---@class HistoryBuffer
-			-- 	---@field headIndex number
-			-- 	---@field maxElements number
-			-- 	---@field elements HistoryBufferElement[]
-			-- 	---@field PushFront fun(self: HistoryBuffer)
+			if FCF_OpenTemporaryWindow then
 
-			-- 	---@class ChatFrame : Frame
-			-- 	---@field historyBuffer HistoryBuffer
+				---@class HistoryBufferElement
+				---@field public message string
 
-			-- 	---@param self HistoryBuffer
-			-- 	local function PushFront(self)
-			-- 		local count = self.headIndex
-			-- 		if count == 0 then
-			-- 			count = self.maxElements
-			-- 		end
-			-- 		local element = self.elements[count]
-			-- 		if not element then
-			-- 			return
-			-- 		end
-			-- 		local text = element.message
-			-- 		if not text or text == "" then
-			-- 			return
-			-- 		end
-			-- 		element.message = Util.EditTextReplaceNames(text)
-			-- 	end
+				---@class HistoryBuffer
+				---@field public headIndex number
+				---@field public maxElements number
+				---@field public elements HistoryBufferElement[]
+				---@field public PushFront fun(self: HistoryBuffer)
 
-			-- 	---@type table<ChatFrame, boolean>
-			-- 	local chatFrameHooks = {}
-			-- 	local lastChatFrameHookIndex = 1
+				---@class ChatFrame : Frame
+				---@field public historyBuffer HistoryBuffer
 
-			-- 	for i = 1, 100 do
+				---@param self HistoryBuffer
+				local function PushFront(self)
+					local count = self.headIndex
+					if count == 0 then
+						count = self.maxElements
+					end
+					local element = self.elements[count]
+					if not element then
+						return
+					end
+					local text = element.message
+					if not text or text == "" then
+						return
+					end
+					element.message = Util.EditTextReplaceNames(text)
+				end
 
-			-- 		local chatFrame = _G[format("ChatFrame%d", i)] ---@type ChatFrame
-			-- 		if not chatFrame then
-			-- 			lastChatFrameHookIndex = i
-			-- 			break
-			-- 		end
+				---@type table<ChatFrame, boolean>
+				local chatFrameHooks = {}
+				local lastChatFrameHookIndex = 1
 
-			-- 		if i ~= 2 and (not chatFrameHooks[chatFrame]) then
-			-- 			chatFrameHooks[chatFrame] = true
-			-- 			local historyBuffer = chatFrame.historyBuffer
-			-- 			hooksecurefunc(historyBuffer, "PushFront", PushFront)
-			-- 			-- local count = historyBuffer.headIndex
-			-- 			-- for j = 1, count do
-			-- 			-- 	local element = historyBuffer.elements[j]
-			-- 			-- 	local text = element and element.message
-			-- 			-- 	if text and text ~= "" then
-			-- 			-- 		element.message = Friends.EditTextReplaceNames(text)
-			-- 			-- 	end
-			-- 			-- end
-			-- 		end
+				for i = 1, 100 do
 
-			-- 	end
+					local chatFrame = _G[format("ChatFrame%d", i)] ---@type ChatFrame
+					if not chatFrame then
+						lastChatFrameHookIndex = i
+						break
+					end
 
-			-- 	local function FCF_OpenTemporaryWindow()
-			-- 		for i = lastChatFrameHookIndex, 100 do
+					if i ~= 2 and not chatFrameHooks[chatFrame] then
+						chatFrameHooks[chatFrame] = true
+						local historyBuffer = chatFrame.historyBuffer
+						hooksecurefunc(historyBuffer, "PushFront", PushFront)
+						-- local count = historyBuffer.headIndex
+						-- for j = 1, count do
+						-- 	local element = historyBuffer.elements[j]
+						-- 	local text = element and element.message
+						-- 	if text and text ~= "" then
+						-- 		element.message = Friends.EditTextReplaceNames(text)
+						-- 	end
+						-- end
+					end
 
-			-- 			local chatFrame = _G[format("ChatFrame%d", i)] ---@type ChatFrame
-			-- 			if not chatFrame then
-			-- 				lastChatFrameHookIndex = i
-			-- 				break
-			-- 			end
+				end
 
-			-- 			if not chatFrameHooks[chatFrame] then
-			-- 				chatFrameHooks[chatFrame] = true
-			-- 				hooksecurefunc(chatFrame.historyBuffer, "PushFront", PushFront)
-			-- 			end
+				local function _FCF_OpenTemporaryWindow()
+					for i = lastChatFrameHookIndex, 100 do
 
-			-- 		end
-			-- 	end
+						local chatFrame = _G[format("ChatFrame%d", i)] ---@type ChatFrame
+						if not chatFrame then
+							lastChatFrameHookIndex = i
+							break
+						end
 
-			-- 	hooksecurefunc("FCF_OpenTemporaryWindow", FCF_OpenTemporaryWindow)
+						if not chatFrameHooks[chatFrame] then
+							chatFrameHooks[chatFrame] = true
+							hooksecurefunc(chatFrame.historyBuffer, "PushFront", PushFront)
+						end
 
-			-- end
+					end
+				end
+
+				hooksecurefunc("FCF_OpenTemporaryWindow", _FCF_OpenTemporaryWindow)
+
+			end
+
+			--]]
 
 		end
 
-		if _G.QuickJoinToastButton then ---@diagnostic disable-line: undefined-field
+		---@type { Toast: { Text: FontString }, Toast2: { Text: FontString } }
+		local QuickJoinToastButton = QuickJoinToastButton
+
+		if QuickJoinToastButton then
 
 			---@class QuickJoinFrameButtonEntryDisplayMember : Button
 
 			---@class QuickJoinFrameButtonEntry
-			---@field displayedMembers QuickJoinFrameButtonEntryDisplayMember[]
+			---@field public displayedMembers QuickJoinFrameButtonEntryDisplayMember[]
 
 			---@class QuickJoinFrameButtonMember : Button
 
 			---@class QuickJoinFrameButton : Button
-			---@field SetEntry fun(self: QuickJoinFrameButton)
-			---@field entry QuickJoinFrameButtonEntry
-			---@field Members QuickJoinFrameButtonMember[]
+			---@field public SetEntry fun(self: QuickJoinFrameButton)
+			---@field public entry QuickJoinFrameButtonEntry
+			---@field public Members QuickJoinFrameButtonMember[]
 
 			---@param self QuickJoinFrameButton
 			local function QuickJoinButtonSetEntry(self)
@@ -772,14 +865,17 @@ local Init do
 					local member = self.Members[i]
 					local text = member:GetText()
 					if text and text ~= "" then
-						member:SetText(Friends.ReplaceName(text))
+						text = Friends.ReplaceName(text)
+						member:SetText(text)
 					end
 				end
 			end
 
 			local QuickJoinHookButtons do
+
 				---@type table<QuickJoinFrameButton, boolean>
 				local hookedButtons = {}
+
 				---@param buttons QuickJoinFrameButton[]
 				function QuickJoinHookButtons(buttons)
 					for i = 1, #buttons do
@@ -790,17 +886,25 @@ local Init do
 						end
 					end
 				end
+
 			end
 
 			---@class QuickJoinFrame : Frame
-			---@field ScrollBox? ScrollFrame
-			---@field buttons? QuickJoinFrameButton[]
+			---@field public ScrollBox? ScrollFrame | ScrollBoxPolyfill
+			---@field public buttons? QuickJoinFrameButton[]
 
 			---@type QuickJoinFrame
-			local quickJoinScrollFrame = _G.QuickJoinFrame ---@diagnostic disable-line: undefined-field
+			local quickJoinScrollFrame = QuickJoinFrame
 
 			if quickJoinScrollFrame.ScrollBox then
-				quickJoinScrollFrame.ScrollBox:GetView():RegisterCallback(_G.ScrollBoxListMixin.Event.OnAcquiredFrame, function(_, button, created) if created then QuickJoinHookButtons({button}) end end) ---@diagnostic disable-line: undefined-field
+				quickJoinScrollFrame.ScrollBox:GetView():RegisterCallback(
+					ScrollBoxListMixin.Event.OnAcquiredFrame,
+					function(_, button, created)
+						if created then
+							QuickJoinHookButtons({ button })
+						end
+					end
+				)
 			end
 
 			if quickJoinScrollFrame.buttons then
@@ -813,16 +917,17 @@ local Init do
 			---@param self Button
 			---@param text string
 			local function ToastSetTextHook(self, text)
-				if isToastSettingText or (not text) or text == "" then
+				if isToastSettingText or not text or text == "" then
 					return
 				end
+				text = Friends.ReplaceName(text)
 				isToastSettingText = true
-				self:SetText(Friends.ReplaceName(text))
+				self:SetText(text)
 				isToastSettingText = false
 			end
 
-			hooksecurefunc(_G.QuickJoinToastButton.Toast.Text, "SetText", ToastSetTextHook) ---@diagnostic disable-line: undefined-field
-			hooksecurefunc(_G.QuickJoinToastButton.Toast2.Text, "SetText", ToastSetTextHook) ---@diagnostic disable-line: undefined-field
+			hooksecurefunc(QuickJoinToastButton.Toast.Text, "SetText", ToastSetTextHook)
+			hooksecurefunc(QuickJoinToastButton.Toast2.Text, "SetText", ToastSetTextHook)
 
 		end
 
@@ -836,14 +941,15 @@ local Init do
 		---@param format string
 		---@param isBNet? boolean
 		local function ExampleFriend(format, isBNet)
+			---@type FriendWrapper
 			---@diagnostic disable-next-line: missing-fields
-			local friendWrapper = {} ---@type FriendWrapper
+			local friendWrapper = {}
 			local maxLevel = GetMaxLevelForExpansionLevel(GetExpansionLevel())
 			if isBNet then
 				---@type BNetAccountInfoExtended
 				---@diagnostic disable-next-line: missing-fields
 				local data = {
-					accountName = "戰網名稱",
+					accountName = "Ola Nordmann",
 					appearOffline = false,
 					battleTag = "Ola#1234",
 					bnetAccountID = 1234,
@@ -856,12 +962,12 @@ local Init do
 					isFriend = true,
 					lastOnlineTime = 0,
 					note = "This is a sample bnet note.",
-					rafLinkType = _G.Enum.RafLinkType.Friend,
+					rafLinkType = Enum.RafLinkType.Friend,
 					-- BNetGameAccountInfo (gameAccountInfo)
 					areaName = "Oribos",
 					canSummon = false,
 					characterLevel = maxLevel,
-					characterName = "角色名字",
+					characterName = "Carl",
 					className = "Mage",
 					clientProgram = "BNET_CLIENT_WOW",
 					factionName = "Horde",
@@ -879,10 +985,10 @@ local Init do
 					realmName = "TarrenMill",
 					regionID = 1,
 					richPresence = "Oribos - TarrenMill",
-					wowProjectID = _G.WOW_PROJECT_MAINLINE,
+					wowProjectID = WOW_PROJECT_MAINLINE,
 					timerunningSeasonID = 1,
 				}
-				friendWrapper.type = FRIENDS_BUTTON_TYPE_BNET ---@diagnostic disable-line: undefined-field
+				friendWrapper.type = FRIENDS_BUTTON_TYPE_BNET
 				friendWrapper.data = data
 			else
 				---@type FriendInfo
@@ -898,9 +1004,9 @@ local Init do
 					mobile = false,
 					name = "Carl",
 					notes = "This is a sample friend note.",
-					rafLinkType = _G.Enum.RafLinkType.Friend,
+					rafLinkType = Enum.RafLinkType.Friend,
 				}
-				friendWrapper.type = FRIENDS_BUTTON_TYPE_WOW ---@diagnostic disable-line: undefined-field
+				friendWrapper.type = FRIENDS_BUTTON_TYPE_WOW
 				friendWrapper.data = data
 			end
 			Friends.AddFieldAlias(friendWrapper.data, isBNet)
@@ -961,11 +1067,11 @@ local Init do
 		}
 
 		local syntaxExamples = [[
-  [=accountName||name]
-  [if=bnet][=battleTag] - [=name][/if]
-  [if~=bnet][=name][/if]
-  [color=class][=characterName||name][/color]
-  [color=level][=level][/color]
+[=accountName||name]
+[if=bnet][=battleTag] - [=name][/if]
+[if~=bnet][=name][/if]
+[color=class][=characterName||name][/color]
+[color=level][=level][/color]
 ]]
 
 		---@class FriendsListColorsInterfaceOptionItem
@@ -987,12 +1093,12 @@ local Init do
 		---@type FriendsListColorsInterfaceOption[]
 		local optionGroups = {
 			{
-				label = "格式",
-				description = "自訂好友名單的顯示內容。\n\n戰網好友可以使用的變數:  " ..
+				label = "Format",
+				description = "Customize the appearance of your friends list.\n\nList of variables for BNet friends:  " ..
 					"|cffFFFF00" .. table.concat(varNamesBNet, "|r  |cffFFFF00") .. "|r" ..
-					"\n\n角色好友可以使用的變數:  " ..
+					"\n\nList of variables for World of Warcraft friends:  " ..
 					"|cffFFFF00" .. table.concat(varNamesWoW, "|r  |cffFFFF00") .. "|r" ..
-					"\n\n語法範例:\n" .. syntaxExamples,
+					"\n\nSyntax examples:\n" .. syntaxExamples,
 				options = {
 					{
 						text = true,
@@ -1082,11 +1188,11 @@ local Init do
 						self:SetText(temp)
 					end,
 					focusGain = function(self)
-						optionGroups[1].options[4].widget:SetText("\r\n|cffFFFF00請記得按 Enter 鍵儲存變更!|r") ---@diagnostic disable-line: undefined-field
+						optionGroups[1].options[4].widget:SetText("\r\n|cffFFFF00Remember to press Enter to save your changes!|r")
 						self.backup = Config.format
 					end,
 					focusLost = function(self, cancel)
-						optionGroups[1].options[4].widget:SetText("") ---@diagnostic disable-line: undefined-field
+						optionGroups[1].options[4].widget:SetText("")
 						if not cancel then return end
 						Config.format = self.backup
 						handlers.option.text.update(optionGroups[1].options[1].widget)
@@ -1105,6 +1211,7 @@ local Init do
 		---@class PanelWidget : Frame
 		---@field public option FriendsListColorsInterfaceOptionItem
 		---@field public refresh? fun(self: PanelWidget)
+		---@field public SetText fun(self: PanelWidget, text: any)
 
 		---@class PanelTitle : PanelWidget
 
@@ -1199,13 +1306,13 @@ local Init do
 			header.label:SetText(text)
 			header.label:SetHeight(MAX_HEIGHT)
 
-			header.label:SetWordWrap(true) ---@diagnostic disable-line: redundant-parameter
+			header.label:SetWordWrap(true)
 			header.label:SetNonSpaceWrap(true)
 			header.label:SetMaxLines(20)
 
 			header:SetScript("OnUpdate", function()
 				if header:GetHeight() < MAX_HEIGHT and header.label:GetHeight() == header:GetHeight() then
-					header:SetScript("OnUpdate", nil) ---@diagnostic disable-line: param-type-mismatch
+					header:SetScript("OnUpdate", nil)
 				end
 				local height = header.label:GetStringHeight() + 5
 				header.label:SetHeight(height)
@@ -1229,10 +1336,10 @@ local Init do
 		end
 
 		---@class PanelEditBox : PanelWidget, EditBox
-		---@field Left Frame
-		---@field Middle Frame
-		---@field Right Frame
-		---@field Backdrop Frame|BackdropTemplate
+		---@field public Left Frame
+		---@field public Middle Frame
+		---@field public Right Frame
+		---@field public Backdrop Frame|BackdropTemplate
 
 		---@param anchor PanelWidget
 		---@param kind? "number"|"text"
@@ -1245,9 +1352,9 @@ local Init do
 			editbox:SetFontObject("GameFontHighlight")
 			editbox:SetSize(160, 22)
 			editbox:SetAutoFocus(false)
-			editbox:SetHyperlinksEnabled(false) ---@diagnostic disable-line: redundant-parameter
+			editbox:SetHyperlinksEnabled(false)
 			editbox:SetMultiLine(false)
-			editbox:SetIndentedWordWrap(false) ---@diagnostic disable-line: redundant-parameter
+			editbox:SetIndentedWordWrap(false)
 			editbox:SetMaxLetters(255)
 			editbox.tooltipText = tooltip
 
@@ -1256,12 +1363,12 @@ local Init do
 				editbox:SetNumeric(true)
 				editbox:SetNumber(text) ---@diagnostic disable-line: param-type-mismatch
 			else
-				editbox:SetText(text) ---@diagnostic disable-line: param-type-mismatch
+				editbox:SetText(text)
 			end
 
-			editbox:SetScript("OnEscapePressed", function() editbox:ClearFocus() end) ---@diagnostic disable-line: param-type-mismatch
-			editbox:SetScript("OnEnterPressed", function() editbox:ClearFocus() end) ---@diagnostic disable-line: param-type-mismatch
-			editbox:SetScript("OnEditFocusLost", handlers.panel.refresh) ---@diagnostic disable-line: param-type-mismatch
+			editbox:SetScript("OnEscapePressed", function() editbox:ClearFocus() end)
+			editbox:SetScript("OnEnterPressed", function() editbox:ClearFocus() end)
+			editbox:SetScript("OnEditFocusLost", handlers.panel.refresh)
 
 			editbox:SetScript("OnEnter", function() if editbox.tooltipText then GameTooltip:SetOwner(editbox, "ANCHOR_RIGHT") GameTooltip:SetText(editbox.tooltipText, nil, nil, nil, nil, true) GameTooltip:Show() end end)
 			editbox:SetScript("OnLeave", function() GameTooltip:Hide() end)
@@ -1357,7 +1464,7 @@ local Init do
 				---@type PanelWidget
 				local last
 
-				last = CreateTitle(panel.content, "彩色好友名單", GetAddOnMetadata(addonName, "Version"))
+				last = CreateTitle(panel.content, addonName, C_AddOns.GetAddOnMetadata(addonName, "Version"))
 
 				-- add options
 				do
@@ -1381,10 +1488,10 @@ local Init do
 								option.widget = last
 								last.option = option
 								last.refresh = handlers.option.text.update
-								last:HookScript("OnEditFocusGained", function(self) handlers.option.text.focusGain(self) end) ---@diagnostic disable-line: param-type-mismatch
-								last:HookScript("OnEditFocusLost", function(self) handlers.option.text.focusLost(self) end) ---@diagnostic disable-line: param-type-mismatch
-								last:HookScript("OnEscapePressed", function(self) handlers.option.text.focusLost(self, true) end) ---@diagnostic disable-line: param-type-mismatch
-								last:SetScript("OnEnterPressed", function(self) handlers.option.text.save(self) self:ClearFocus() end) ---@diagnostic disable-line: param-type-mismatch
+								last:HookScript("OnEditFocusGained", function(self) handlers.option.text.focusGain(self) end)
+								last:HookScript("OnEditFocusLost", function(self) handlers.option.text.focusLost(self) end)
+								last:HookScript("OnEscapePressed", function(self) handlers.option.text.focusLost(self, true) end)
+								last:SetScript("OnEnterPressed", function(self) handlers.option.text.save(self) self:ClearFocus() end)
 								last:SetScale(1.5)
 								table.insert(panel.widgets, last)
 
@@ -1417,7 +1524,6 @@ local Init do
 		end
 
 		ui = CreatePanel()
-		ui.name = "好友名單"
 		local category = Settings.RegisterCanvasLayoutCategory(ui, ui.name, ui.name)
 		category.ID = ui.name
 		Settings.RegisterAddOnCategory(category)
@@ -1453,7 +1559,7 @@ local Frame do
 	end
 
 	function Frame:Init()
-		if _G.IsLoggedIn() then
+		if IsLoggedIn() then
 			Frame:ADDON_LOADED("ADDON_LOADED", addonName)
 		else
 			Frame:RegisterEvent("ADDON_LOADED")
@@ -1463,3 +1569,36 @@ local Frame do
 end
 
 Frame:Init()
+
+-- Public `FriendListColorsAPI`
+do
+
+	FriendListColorsAPI = setmetatable({}, { __metatable = false })
+
+	---@param data? FriendListColorsFriendInfo Friend data from BNet or FriendList systems. A Table KV-pair such as name, level, class, etc.
+	---@param format? string Optional format string to override the user preference from FriendListColors DB.
+	---@return string? text Formatted result string. If nil, then the input `data` or `formatString` was missing.
+	--- ```
+	--- -- Examples:
+	--- FriendListColors.Format(C_BattleNet.GetAccountInfoByGUID("GUID"), "[=name]") -- BNetInfo
+	--- FriendListColors.Format(C_BattleNet.GetFriendGameAccountInfo(1, 1), "[=name]") -- BNetAccountInfo
+	--- FriendListColors.Format(C_FriendList.GetFriendInfo("Name"), "[=name]") -- FriendList
+	--- ```
+	function FriendListColorsAPI.Format(data, format)
+		if not data or type(data) ~= "table" then
+			return ""
+		end
+		if not format or type(format) ~= "string" then
+			format = Config and Config.format
+			if not format then
+				return ""
+			end
+		end
+		local buttonType = data.isBNet and FRIENDS_BUTTON_TYPE_BNET or FRIENDS_BUTTON_TYPE_WOW
+		Friends.AddFieldAlias(data, data.isBNet)
+		---@type FriendWrapper
+		local friendWrapper = { type = buttonType, data = data }
+		return Parse.Format(friendWrapper, format)
+	end
+
+end

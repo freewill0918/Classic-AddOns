@@ -9,17 +9,17 @@ mounts={69820},
 patch='unknown',
 mounttype='unknown',
 model={30366},
-description="This guide will help you acquire the Sunwalker Kodo (Paladin only) mount.",
+description="This guide will teach you how to acquire the Sunwalker Kodo mount.",
 mopready=true,
 },[[
 step
 This mount is only available to Tauren Paladins
-|only if not Paladin
+only if not Paladin
 step
-To obtain this mount you must level a Tauren Paladin to level 10
-|tip Once your character is level 10, this mount will be rewarded automatically.
-Learn the "Sunwalker Kodo" Mount |learnmount Sunwalker Kodo##69820
-|only Paladin
+To obtain this mount you must level a Tauren Paladin to level 20
+|tip Once your character is level 20, this mount will be rewarded automatically.
+Earn the Sunwalker Kodo Mount |complete hasmount(69820)
+'|only Paladin
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Paladin\\Great Sunwalker Kodo",{
 keywords={"paladin","Great","sunwalker","kodo","ground","mount"},
@@ -27,21 +27,17 @@ mounts={69826},
 patch='unknown',
 mounttype='unknown',
 model={30501},
-description="This guide will help you acquire the Great Sunwalker Kodo (Paladin only) mount.",
+description="This guide will teach you how to acquire the Great Sunwalker Kodo mount.",
 mopready=true,
 },[[
 step
 This mount is only available to Tauren Paladins
-|only if not Paladin
+'|only if not Paladin
 step
 To obtain this mount you must level a Tauren Paladin to level 20
 |tip Once your character is level 20, this mount will be rewarded automatically.
 learnmount Great Sunwalker Kodo##69826
-|only Paladin
-step
-_Congratulations!_
-You are now the proud owner of a Great Sunwalker Kodo.
-|only Paladin
+'|only Paladin
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Paladin\\Thalassian Warhorse",{
 keywords={"paladin","Thalassian","Warhorse","ground","mount"},

@@ -14,6 +14,7 @@ local ItemScore = ZGV.ItemScore
 LibStub("AceHook-3.0"):Embed(ItemScore)
 
 local item_weapon_types = ItemScore.Item_Weapon_Types
+local item_weapon_ranged_types = ItemScore.Item_Weapon_RangedTypes or {}
 local item_armor_types = ItemScore.Item_Armor_Types
 local item_gem_types = ItemScore.Item_Gem_Types
 
@@ -391,7 +392,7 @@ function ItemScore:GetItemDetailsQueued(itemlink,force)
 
 		local CLASS_PATTERN = ITEM_CLASSES_ALLOWED:gsub("%%s","(.*)")
 		local SPEC_PATTERN = ITEM_REQ_SPECIALIZATION:gsub("%%s","(.*)")
-		local SPEC2_PATTERN = ITEM_REQ_SKILL:gsub("%%s","(.*) "..ItemScore.playerclassName)
+		local SPEC2_PATTERN = ITEM_REQ_SKILL:gsub("1%$",""):gsub("2%$",""):gsub("3%$",""):gsub("4%$",""):gsub("%%s","(.*) "..ItemScore.playerclassName)
 
 		for i,line in ipairs(tooltip) do
 			local found_class = line:match(CLASS_PATTERN) 
@@ -441,7 +442,16 @@ function ItemScore:GetItemDetailsQueued(itemlink,force)
 						if statdata.boolean and sign then
 							value="1"
 						end
-
+						
+						if itemClassID==Enum.ItemClass.Weapon then
+							if statdata.blizz == "MEELE_WEAPON_SPEED" and item_weapon_ranged_types[itemSubClassID] then
+								value=nil -- ranged weapon, don't store meele speed
+							end
+							if statdata.blizz == "RANGED_WEAPON_SPEED" and not item_weapon_ranged_types[itemSubClassID] then
+								value=nil -- meele weapon, don't store ranged speed
+							end
+						end
+				
 						if value then
 							if LARGE_NUMBER_SEPERATOR~="" then value = value:gsub("%"..LARGE_NUMBER_SEPERATOR,"") end -- remove
 							if DECIMAL_SEPERATOR~="" then value = value:gsub("%"..DECIMAL_SEPERATOR,".") end -- change to dot
@@ -693,7 +703,7 @@ function ItemScore:IsValidItem(itemlink, future, name, spec)
 	end
 
 	-- can equip at current level, cloaks are cloth, but valid for all classes
-	local useble_since_level = types[subclass] or (item.type=="INVTYPE_CLOAK" and 1)
+	local useble_since_level = (item.type=="INVTYPE_CLOAK" and 1) or types[subclass]
 
 	if not useble_since_level then
 		local validstatus = ("%s is not valid for %s %s"):format(subclass or "",playerclassName,playerspecName or "")
@@ -704,6 +714,19 @@ function ItemScore:IsValidItem(itemlink, future, name, spec)
 			item.validstatus = validstatus
 		end
 		return false, false, true, validstatus
+	elseif useble_since_level<0 then
+		local level_cap = useble_since_level * -1
+		
+		if playerlevel >= level_cap then
+			local validstatus = ("valid until level %d"):format(level_cap)
+			if not name then
+				item.validated = true
+				item.valid = false
+				item.validfuture = false
+				item.validstatus = validstatus
+			end
+			return false, true, true, validstatus
+		end
 	elseif not future and playerlevel < useble_since_level then
 		local validstatus = ("required level %d to use"):format(useble_since_level)
 		if not name then
@@ -715,7 +738,7 @@ function ItemScore:IsValidItem(itemlink, future, name, spec)
 		return false, true, true, validstatus
 	end
 
-	if ZGV.IsClassic or ZGV.IsClassicCATA then
+	if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicCATA then
 		-- do we have skill to use this
 		if (subclass~="JEWELERY") and (subclass ~= "RELIC") and (ItemScore.Skills[subclass] or 0) == 0 then
 			local validstatus = "no skill "..subclass
@@ -1034,15 +1057,17 @@ local function ItemScore_SetTooltipData(tooltip)
 
 	-- check for early exit if it is a tooltip for ah bucket list
 	local tooltipname = tooltip:GetName()
-	for i=1,50 do
-		local line = _G[tooltipname.."TextLeft"..i]
-		if line and line:GetText() then
-			if ZGV.IsRetail and line:GetText():match(AUCTION_HOUSE_BUCKET_VARIATION_EQUIPMENT_TOOLTIP) then return end
-		else
-			break
+	if ZGV.IsRetail then
+		for i=1,50 do
+			local line = _G[tooltipname.."TextLeft"..i]
+			if line and line:GetText() then
+				if line:GetText():match(AUCTION_HOUSE_BUCKET_VARIATION_EQUIPMENT_TOOLTIP) then return end
+			else
+				break
+			end
 		end
 	end
-
+	
 	if not ItemScore.TooltipPatched then
 		if not tooltip.GetItem then return end
 		local itemName,itemlink = tooltip:GetItem()
@@ -1115,7 +1140,7 @@ local function ItemScore_SetTooltipData(tooltip)
 			local futureprefix = not valid and validfuture and "Future " or ""
 			local futuresuffix = ""
 			if not valid and validfuture and item.minlevel then
-				futuresuffix = "|r in "..(item.minlevel - ItemScore.playerlevel).." levels"
+				futuresuffix = "|r in "..(item.minlevel - ItemScore.playerlevel).." levels: "
 			end
 
 			local t,v = "",""
@@ -1249,8 +1274,13 @@ local function ItemScore_SetTooltipData(tooltip)
 		end
 
 		ItemScore.TooltipPatched  = true
+
+		if tooltip.IsEmbedded then 
+			GameTooltip:Show()
+		else
+			tooltip:Show()
+		end
 	end
-	if tooltip==ItemRefTooltip then ItemRefTooltip:Show() end -- update to new height, have to do it by hand since IRT is called just once
 end
 local function ItemScore_ClearTooltipData(tooltip, ...) ItemScore.TooltipPatched = false end
 
@@ -1419,7 +1449,6 @@ tinsert(ZGV.startups,{"ItemScore",function(self)
 	if GameTooltip:HasScript("OnTooltipSetItem") then
 		GameTooltip:HookScript("OnTooltipSetItem", ItemScore_SetTooltipData)
 	else
-		-- possible taint
 		TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, ItemScore_SetTooltipData)
 	end
 	GameTooltip:HookScript("OnTooltipCleared", ItemScore_ClearTooltipData)

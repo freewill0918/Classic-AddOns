@@ -66,6 +66,8 @@ Baganator.API.RegisterCornerWidget(addonTable.Locales.ITEM_LEVEL, "item_level", 
     if not details.itemLevel then
       if details.itemLocation and C_Item.DoesItemExist(details.itemLocation) then
         details.itemLevel = C_Item.GetCurrentItemLevel(details.itemLocation)
+      elseif addonTable.Constants.IsRetail then
+        details.itemLevel = addonTable.Utilities.ExtractItemLevel(details.itemLink)
       else
         details.itemLevel = C_Item.GetDetailedItemLevelInfo(details.itemLink)
       end
@@ -96,6 +98,9 @@ do
     end
 
     if eventName == "PLAYER_LEVEL_UP" then
+      if addonTable.Constants.IsRetail then
+        addonTable.Utilities.ResetItemLevelCache()
+      end
       Baganator.API.RequestItemButtonsRefresh({Baganator.Constants.RefreshReason.ItemWidgets})
     -- Detect entering or leaving a timewalking raid instance
     elseif eventName == "PLAYER_ENTERING_WORLD" then
@@ -103,6 +108,9 @@ do
       if lastDifficultyID ~= nil and lastDifficultyID ~= newDifficultyID and (
         newDifficultyID == 33 or lastDifficultyID == 33
         ) then
+        if addonTable.Constants.IsRetail then
+          addonTable.Utilities.ResetItemLevelCache()
+        end
         Baganator.API.RequestItemButtonsRefresh({Baganator.Constants.RefreshReason.ItemWidgets})
       end
       lastDifficultyID = newDifficultyID
@@ -268,7 +276,7 @@ end, textInit)
 Baganator.API.RegisterCornerWidget(addonTable.Locales.QUANTITY, "quantity", function(_, details)
   return details.itemCount > 1
 end, function(itemButton)
-  itemButton.Count.sizeFont = false -- 自行修改，不調整物品數量文字大小
+  itemButton.Count.sizeFont = true
   return itemButton.Count
 end, nil, true)
 
@@ -328,10 +336,10 @@ addonTable.Utilities.OnAddonLoaded("CanIMogIt", function()
           return
       end
 
-      CIMI_SetIcon(self, CIMI_Update, CanIMogIt:GetTooltipText(details.itemLink))
+      CIMI_SetIcon(self, CIMI_Update, CanIMogIt:GetTooltipText(details.itemLink, details.itemLocation and details.itemLocation.bagID, details.itemLocation and details.itemLocation.slotIndex))
     end
-    CIMI_SetIcon(CIMIOverlay, CIMI_Update, CanIMogIt:GetTooltipText(details.itemLink))
-    return (IsEquipment(details.itemLink) or (C_ToyBox ~= nil and C_ToyBox.GetToyInfo(details.itemID) ~= nil) or IsPet(details.itemID) or (C_MountJournal ~= nil and C_MountJournal.GetMountFromItem(details.itemID) ~= nil))
+    CIMI_SetIcon(CIMIOverlay, CIMI_Update, CanIMogIt:GetTooltipText(details.itemLink, details.itemLocation and details.itemLocation.bagID, details.itemLocation and details.itemLocation.slotIndex))
+    return (IsEquipment(details.itemLink) or (C_ToyBox ~= nil and C_ToyBox.GetToyInfo(details.itemID) ~= nil) or IsPet(details.itemID) or (C_MountJournal ~= nil and C_MountJournal.GetMountFromItem(details.itemID) ~= nil) or (C_Item.IsDecorItem ~= nil and C_Item.IsDecorItem(details.itemID)))
   end,
   function(itemButton)
     CIMI_AddToFrame(itemButton, function() end)
@@ -356,6 +364,9 @@ addonTable.Utilities.OnAddonLoaded("CanIMogIt", function()
   RefreshFrame:RegisterEvent("NEW_MOUNT_ADDED")
   if C_EventUtils.IsEventValid("PET_JOURNAL_PET_DELETED") then
     RefreshFrame:RegisterEvent("PET_JOURNAL_PET_DELETED")
+  end
+  if C_EventUtils.IsEventValid("HOUSE_DECOR_ADDED_TO_CHEST") then
+    RefreshFrame:RegisterEvent("HOUSE_DECOR_ADDED_TO_CHEST")
   end
   RefreshFrame:SetScript("OnEvent", function()
     Callback()

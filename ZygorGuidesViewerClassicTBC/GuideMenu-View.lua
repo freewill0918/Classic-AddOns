@@ -134,6 +134,7 @@ for cat,catdata in pairs(RightColumnSubmenus) do
 end
 
 local faction=UnitFactionGroup("player"):sub(1,1)
+local class = UnitClass("player")
 
 local MIN_SEARCH_LENGTH = 3
 function GuideMenu:Open(path,iscurrent,...)
@@ -1268,7 +1269,13 @@ local function grab_showcase(element,array,source)
 			array.hash[element[1]] = true
 			return 1
 		end
-	elseif (element[1]=="item") and (element.guide or element.folder) and (not element.faction or (element.faction==faction)) and (not element.beta or ZGV.BETA) and (not element.roadmaponly) then
+	elseif (element[1]=="item") 
+		and (element.guide or element.folder) 
+		and (not element.faction or (element.faction==faction)) 
+		and (not element.beta or ZGV.BETA) 
+		and (not element.roadmaponly) 
+		and (not element.class or (element.class==class)) then
+
 		if not array.hash[element.guide or element.folder] then 
 			table.insert(array,{"item",guide=element.guide,folder=element.folder,text=element.text})
 			array.hash[element.guide or element.folder] = true

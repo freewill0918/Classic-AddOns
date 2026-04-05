@@ -474,12 +474,6 @@ function Step:OnEnter()
 	end
 	--]]
 
-	-- clear our macros
-	if not InCombatLockdown() then
-		ZGV:Debug("&step_setup Clearing macros")
-		for i=1,99 do DeleteMacro("ZGVMacro"..i) end
-	end
-
 	ZGV:Debug("&step_setup Running goals' OnEnter")
 	-- run autoscripts, set up macros, and whatnot
 	ZGV:ScheduleTimer(function ()
@@ -798,6 +792,58 @@ function Step:CycleWaypointFrom(goalnum)
 	self.current_waypoint_goal_num = goalnum
 	ZGV:Debug("&step |cffddaa88Step|r:|cff88ff88CycleWaypointFrom|r(|cffffffff%d|r)",goalnum)
 	self:CycleWaypoint(1,"nocycle",("from %d"):format(goalnum))
+end
+
+function Step:GetStepDisplayLabel()
+	local result = ""
+
+	if ZGV.db.profile.stepnumbers then
+		result = result .. L['step_num']:format(self.stepnum)
+		result = result .. " "
+
+		if self.level and self.level > 0 then
+			result = result .. L['step_level']:format(self.level or "?")
+			result = result .. " "
+		end
+	end
+
+	if self.requirement then
+		result = result .. (self:AreRequirementsMet() and "|cff44aa44" or "|cffbb0000")
+		result = result .. L["stepreq"]:format((table.concat(self.requirement,L["stepreqor"])):gsub("!([a-zA-Z ]+)",L["stepreqnot"]:format("%1")))
+		result = result .. " "
+	end
+
+	if (ZGV.CurrentGuide.beta or self.beta) then
+		result = result .. L['stepbeta']
+		result = result .. " "
+	end
+
+	if (ZGV.CurrentGuide.devonly or self.dev) then
+		result = result .. L['stepdev']
+		result = result .. " "
+	end
+
+	if ZGV.db.profile.skiptaxi or ZGV.db.profile.skiphome then
+		for i, goals in ipairs(ZGV.CurrentStep.goals) do
+			if goals.action == "fpath" and ZGV.db.profile.skiptaxi then
+				result = result .. "Skipping flightmaster due to user settings"
+			elseif goals.action == "home" and ZGV.db.profile.skiphome then
+				result = result .. "Skipping inkeeper due to user settings"
+			end
+		end
+	end
+
+	if ZGV.QuestDB.GetStepTag then
+		local message = ZGV.QuestDB:GetStepTag(self)
+		if message then
+			result = result .. message
+			result = result .. " "
+		end
+	end
+
+	if result ~= "" then
+		return result
+	end
 end
 
 function Step:GetDebugDump()

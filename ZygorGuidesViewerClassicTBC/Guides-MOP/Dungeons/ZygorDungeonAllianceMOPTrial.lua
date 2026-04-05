@@ -101,3 +101,4 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Dungeons\\T
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Raids\\Heart of Fear")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Raids\\Mogu'shan Vaults")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Raids\\Terrace of Endless Spring")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Dungeon Guides\\Pandaria Raids\\Throne of Thunder")

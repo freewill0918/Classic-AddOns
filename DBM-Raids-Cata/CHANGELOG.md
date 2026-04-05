@@ -1,9 +1,6 @@
 # <DBM Mod> Raids (Cata)
 
-## [r255](https://github.com/DeadlyBossMods/DBM-Cataclysm/tree/r255) (2025-07-01)
-[Full Changelog](https://github.com/DeadlyBossMods/DBM-Cataclysm/compare/r254...r255) [Previous Releases](https://github.com/DeadlyBossMods/DBM-Cataclysm/releases)
+## [r259](https://github.com/DeadlyBossMods/DBM-Cataclysm/tree/r259) (2026-03-22)
+[Full Changelog](https://github.com/DeadlyBossMods/DBM-Cataclysm/compare/r258...r259) [Previous Releases](https://github.com/DeadlyBossMods/DBM-Cataclysm/releases)
 
-- Add mists support  
-- remove old cata toc  
-- Add 11.2 TOC  
-- toc bumps for ptr  
+- Fix stats regression in cataclysm mods. Fixes and closes https://github.com/DeadlyBossMods/DBM-Cataclysm/issues/37  

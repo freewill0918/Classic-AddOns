@@ -1,4 +1,4 @@
-## Interface: 50501
+## Interface: 50503
 ## Title: |cffffffffZygor Guide Viewer |r|cff00ff88(MoP Classic)|r
 ## Notes: Free multi-purpose leveling guide viewer, Classic edition.
 ## Author: Zygor Guides
@@ -13,7 +13,7 @@
 ## X-Website: http://zygorguides.com/
 ## X-License: GPL
 ## IconTexture: Interface\Addons\ZygorGuidesViewerClassicTBC\Skins\addon-icon
-## Version: 2.1
+## Version: 8.1
 
 Libs\Libs.xml
 Libs-MOP\Libs.xml

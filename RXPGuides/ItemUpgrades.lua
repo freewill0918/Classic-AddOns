@@ -1,7 +1,7 @@
 local addonName, addon = ...
 local L = addon.locale.Get
 
-if not (addon.game == "CLASSIC" or addon.game == "CATA") then return end
+if not (addon.game == "CLASSIC" or addon.game == "TBC" or addon.game == "CATA") then return end
 
 local locale = GetLocale()
 
@@ -562,7 +562,7 @@ local function TooltipSetItem(tooltip, ...)
                             tinsert(lines, lineText)
                         elseif statsData['SlotCompared'] == _G.INVSLOT_OFFHAND and suffix == "OH" then
                             tinsert(lines, lineText)
-                        -- else -- ignore cross-hand comparisons in tooltip
+                            -- else -- ignore cross-hand comparisons in tooltip
                         end
                     else
                         -- Add a comparison line for every statComparison, should be 1 except for 1H weapons
@@ -572,10 +572,10 @@ local function TooltipSetItem(tooltip, ...)
             end
         else
             if statsData['Ratio'] then
-                lineText = fmt("  %s: %s / +%.2f stats EP", statsData['ItemLink'] or _G.UNKNOWN,
+                lineText = fmt("  %s: %s / +%.2f EP", statsData['ItemLink'] or _G.UNKNOWN,
                                prettyPrintRatio(statsData['Ratio']), statsData.WeightIncrease)
             elseif statsData['ItemLink'] == _G.EMPTY then
-                lineText = fmt("  %s: +%s stats EP", _G.EMPTY, statsData.WeightIncrease)
+                lineText = fmt("  %s: +%s EP", _G.EMPTY, statsData.WeightIncrease)
             end
 
             if lineText then tinsert(lines, lineText) end
@@ -629,7 +629,6 @@ function addon.itemUpgrades:Setup()
     if session.isInitialized then return end
 
     self:RegisterEvent("PLAYER_LEVEL_UP")
-    self:RegisterEvent("TRAINER_SHOW")
 
     local lookup
     -- Only load stats coming from GSheet
@@ -663,13 +662,6 @@ end
 
 -- Reset cache on levelup
 function addon.itemUpgrades:PLAYER_LEVEL_UP()
-    if not addon.settings.profile.enableItemUpgrades then return end
-
-    addon.itemUpgrades:Setup()
-end
-
--- Reset cache on trainer
-function addon.itemUpgrades:TRAINER_SHOW()
     if not addon.settings.profile.enableItemUpgrades then return end
 
     addon.itemUpgrades:Setup()
@@ -740,7 +732,12 @@ local function getSpec()
 
     for tabIndex = 1, _G.GetNumTalentTabs(false) do
         -- id, name, description, icon, pointsSpent, background, previewPointsSpent, isUnlocked
-        _, _, _, _, pointsSpent = _G.GetTalentTabInfo(tabIndex)
+        local arg3
+        _, _, arg3, _, pointsSpent = _G.GetTalentTabInfo(tabIndex)
+
+        if type(arg3) == "number" then
+            pointsSpent = arg3
+        end
 
         if pointsSpent > guessedSpec.count then
             guessedSpec.index = tabIndex
@@ -753,9 +750,7 @@ local function getSpec()
     if guessedSpec.index then
         specName = SPEC_MAP[addon.player.class][guessedSpec.index]
 
-        if addon.settings.profile.debug then
-            addon.comms.PrettyPrint("ItemUpgrades, spec guessed as %s", specName)
-        end
+        addon.comms.PrettyDebug("ItemUpgrades, spec guessed as %s", specName)
     end
 
     -- If calculated spec has no weights, then class is unsupported
@@ -786,17 +781,13 @@ function addon.itemUpgrades:ActivateSpecWeights()
 
         -- Chosen talents don't match itemUpgradeSpec
         -- Leave alone as is, don't spam user if there's a mismatch
-        if addon.settings.profile.debug then
-            addon.comms.PrettyPrint("ItemUpgrades selected spec (%s) differs from calculated spec (%s)",
-                                    addon.settings.profile.itemUpgradeSpec, spec)
-        end
+        addon.comms.PrettyDebug("ItemUpgrades selected spec (%s) differs from calculated spec (%s)",
+                                addon.settings.profile.itemUpgradeSpec, spec)
     end
 
     if not addon.settings.profile.itemUpgradeSpec then return end
 
-    if addon.settings.profile.debug then
-        addon.comms.PrettyPrint("Activating spec weights for %s", addon.settings.profile.itemUpgradeSpec)
-    end
+    addon.comms.PrettyDebug("Activating spec weights for %s", addon.settings.profile.itemUpgradeSpec)
 
     session.activeStatWeights = session.specWeights[addon.settings.profile.itemUpgradeSpec]
 
@@ -916,10 +907,8 @@ local function CalculateDPSWeight(itemData, stats, itemEquipLoc)
     if itemData.itemEquipLoc == "INVTYPE_SHIELD" then return end
 
     if not stats or not stats['ITEM_MOD_CR_SPEED_SHORT'] then
-        if addon.settings.profile.debug then
-            addon.comms.PrettyPrint("itemUpgrades CalculateDPSWeight, Speed property required %s",
-                                    itemData and itemData['itemLink'])
-        end
+        addon.comms.PrettyDebug("itemUpgrades CalculateDPSWeight, Speed property required %s",
+                                itemData and itemData['itemLink'])
         return nil
     end
 
@@ -1060,8 +1049,12 @@ function addon.itemUpgrades:GetItemData(itemLink, tooltip)
         return itemData
     end
 
-    -- itemLevel is generally 5 levels highter than required
-    if itemMinLevel > addon.player.level + 5 or itemLevel > addon.player.level + 10 then return end
+    if addon.game == "CLASSIC" then
+        -- Classic: itemLevel is generally 5 levels highter than required
+        if itemMinLevel > addon.player.level + 5 or itemLevel > addon.player.level + 10 then return end
+    else
+        if itemMinLevel > addon.player.level + 5 then return end
+    end
 
     -- Need itemID for easier code lookups
     local itemID = GetItemInfoInstant(itemLink)
@@ -1213,9 +1206,7 @@ function addon.itemUpgrades:GetItemData(itemLink, tooltip)
 end
 
 function addon.itemUpgrades:CalculateWeaponWeight(itemData, slotComparisonId)
-    if not itemData.dpsWeights then
-        return -1
-    end
+    if not itemData.dpsWeights then return -1 end
 
     for suffix, dpsData in pairs(itemData.dpsWeights or {}) do
         if slotComparisonId == SPEED_SUFFIX_SLOT_MAP[suffix] then
@@ -1412,6 +1403,9 @@ local ahSession = {
     scanPage = 0,
     scanResults = 0,
     scanType = AuctionFilterButtons["Armor"],
+    scanStatus = {
+        scanType = _G.AUCTION_CATEGORY_ARMOR
+    },
 
     selectedRow = nil
 }
@@ -1441,6 +1435,7 @@ function addon.itemUpgrades.AH:AUCTION_HOUSE_CLOSED()
     ahSession.scanPage = 0
     ahSession.scanResults = 0
     ahSession.scanType = AuctionFilterButtons["Armor"]
+    ahSession.scanStatus.scanType = _G.AUCTION_CATEGORY_ARMOR
 end
 
 -- Fired when GetItemInfo queries the server for an uncached item and the reponse has arrived.
@@ -1544,21 +1539,27 @@ function addon.itemUpgrades.AH:AUCTION_ITEM_LIST_UPDATE()
     if not ahSession.sentQuery then return end
 
     local resultCount, totalAuctions = GetNumAuctionItems("list")
+    ahSession.scanStatus.totalAuctions = totalAuctions
     -- print("AUCTION_ITEM_LIST_UPDATE", resultCount, totalAuctions)
 
     ahSession.displayFrame.scanButton:SetText(_G.SEARCHING)
 
     if resultCount == 0 or totalAuctions == 0 then
         ahSession.sentQuery = false
-        ahSession.scanPage = 0 -- TODO show scanPage on UI
+        ahSession.scanPage = 0
 
         if ahSession.scanType == AuctionFilterButtons["Armor"] then
             ahSession.scanType = AuctionFilterButtons["Weapons"] -- weapons
+
+            ahSession.scanStatus.scanType = _G.AUCTION_CATEGORY_WEAPONS
             self:Scan()
         else
             ahSession.scanType = AuctionFilterButtons["Armor"]
+            ahSession.scanStatus.scanType = _G.AUCTION_CATEGORY_ARMOR
             self:Analyze()
             ahSession.displayFrame.scanButton:SetText(_G.SEARCH)
+            _G.RXP_IU_AH_Title:SetText(ahSession.scanStatus.baseTitle)
+
             self:DisplayEmbeddedResults()
         end
 
@@ -1599,6 +1600,12 @@ function addon.itemUpgrades.AH:AUCTION_ITEM_LIST_UPDATE()
 
     ahSession.scanResults = ahSession.scanResults + resultCount
 
+    if ahSession.scanStatus.totalAuctions > 0 and ahSession.scanResults > 0 then
+        local percentage = addon.Round(ahSession.scanResults / ahSession.scanStatus.totalAuctions, 1) * 100
+
+        _G.RXP_IU_AH_Title:SetText(fmt("%s - %s (%02d%%)", ahSession.scanStatus.baseTitle, ahSession.scanStatus.scanType, percentage))
+    end
+
     self:Scan()
 end
 
@@ -1617,15 +1624,10 @@ function addon.itemUpgrades.AH:Scan()
     end
     -- print("addon.itemUpgrades.AH:Scan()", ahSession.scanType, ahSession.scanPage)
 
-    -- TODO remove debugging +15
-    -- TODO reset usable = true
-
-    local maxLevel = UnitLevel("player") -- + 15
-
     ahSession.sentQuery = true
 
     -- text, minLevel, maxLevel, page, usable, rarity, getAll, exactMatch, filterData
-    QueryAuctionItems("", maxLevel - 5, maxLevel, ahSession.scanPage, true, Enum.ItemQuality.Uncommon, false, false,
+    QueryAuctionItems("", addon.player.level - 5, addon.player.level, ahSession.scanPage, true, Enum.ItemQuality.Uncommon, false, false,
                       AuctionCategories[ahSession.scanType].filters)
 end
 
@@ -1815,11 +1817,9 @@ local function prettyPrintUpgradeColumn(data)
 end
 
 local function prettyPrintBudgetColumn(data)
-    local epPerCopper = addon.Round(data.rwpc, 2)
+    if data.ratio < 0 then return fmt("%s / +%s EP (BIS)", _G.EMPTY, addon.Round(data.weightIncrease, 2)) end
 
-    if epPerCopper == 0 then epPerCopper = addon.Round(data.rwpc, 4) end
-
-    return fmt("%s / %s EP/c (BIS/%s)", prettyPrintRatio(data.ratio), epPerCopper, _G.ICON_TAG_RAID_TARGET_STAR3)
+    return fmt("%s / +%s EP (EP/%s)", prettyPrintRatio(data.ratio), addon.Round(data.weightIncrease, 2), _G.ICON_TAG_RAID_TARGET_STAR3)
 end
 
 function addon.itemUpgrades.AH.RowOnEnter(row)
@@ -1900,6 +1900,12 @@ local function Initializer(frame, data)
     end
 end
 
+local function CustomFactory(factory, node)
+    local data = node:GetData()
+    local template = data.Template
+    factory(template, Initializer)
+end
+
 function addon.itemUpgrades.AH:CreateEmbeddedGui()
     if ahSession.displayFrame then return end
 
@@ -1913,15 +1919,19 @@ function addon.itemUpgrades.AH:CreateEmbeddedGui()
     ahSession.displayFrame:SetPoint("TOPLEFT", attachment, "TOPLEFT")
     ahSession.displayFrame:SetPoint("BOTTOMRIGHT", attachment, "BOTTOMRIGHT")
 
-    _G.RXP_IU_AH_Title:SetText(fmt("%s - %s", addon.title, _G.MINIMAP_TRACKING_AUCTIONEER))
+    ahSession.scanStatus.baseTitle = fmt("%s - %s", addon.title, _G.MINIMAP_TRACKING_AUCTIONEER)
+    _G.RXP_IU_AH_Title:SetText(ahSession.scanStatus.baseTitle)
 
     local ScrollBar = ahSession.displayFrame.ScrollBox.ScrollBar
     ScrollBar:SetHideIfUnscrollable(false)
 
     local DataProvider = CreateDataProvider()
     local ScrollView = CreateScrollBoxListLinearView()
+
+    ScrollView:SetElementFactory(CustomFactory)
     ScrollView:SetDataProvider(DataProvider)
     ScrollView:SetElementExtent(19 + 37 * 2)
+
     ahSession.displayFrame.DataProvider = DataProvider
 
     ScrollUtil.InitScrollBoxListWithScrollBar(ahSession.displayFrame.ScrollBox, ScrollBar, ScrollView)

@@ -1,11 +1,11 @@
 --[[
-Copyright 2012-2025 João Cardoso
+Copyright 2012-2026 João Cardoso
 All Rights Reserved
 --]]
 
-local ADDON, Addon = (...):match('[^_]+'), _G[(...):match('[^_]+')]
-local Journal = Addon:NewModule('RivalsJournal', _G[ADDON .. 'RivalsJournal'], 'MutexDelay-1.0')
-local L = LibStub('AceLocale-3.0'):GetLocale(ADDON)
+local Addon = _G[(...):match('[^_]+')]
+local Journal = Addon:NewModule('RivalsJournal', PetTrackerRivalsJournal, 'MutexDelay-1.0')
+local L = LibStub('AceLocale-3.0'):GetLocale('PetTracker')
 
 
 --[[ Startup ]]--
@@ -17,7 +17,7 @@ end
 
 function Journal:OnStartup()
 	PetJournalTutorialButton:Hide()
-	HybridScrollFrame_CreateButtons(self.List, ADDON..'RivalEntry', 44, 0)
+	HybridScrollFrame_CreateButtons(self.List, 'PetTrackerRivalEntry', 44, 0)
 
 	self.OnStartup = nop
 	self.Inset:Hide()
@@ -26,7 +26,7 @@ function Journal:OnStartup()
 	self.Count.Label:SetText(L.TotalRivals)
 	self.Count.Number:SetText(#Addon.RivalOrder)
 	self.SearchBox:SetText(Addon.sets.rivalSearch or '')
-	self.SearchBox:SetScript('OnTextChanged', function() self:Search(self.SearchBox:GetText()) end)
+	self.SearchBox:HookScript('OnTextChanged', function() self:Search(self.SearchBox:GetText()) end)
 
 	self.Tab1.tip = TEAM
 	self.Tab1.Icon:SetTexture('Interface/Icons/ability_hunter_pet_goto')
@@ -75,7 +75,7 @@ function Journal:OnStartup()
 	shade:AddMaskTexture(mask)
 
 	for i = 1, 4 do
-		local loot = CreateFrame('ItemButton', '$parentLoot' .. i, self.Card, ADDON..'Reward')
+		local loot = CreateFrame('ItemButton', '$parentLoot' .. i, self.Card, 'PetTrackerReward')
 		loot:SetPoint('TOPRIGHT', -58 + 45 * (i % 2), - 45 * ceil(i/2))
 		loot.Count:Show()
 
@@ -91,7 +91,7 @@ function Journal:OnStartup()
 	end
 
 	self:SetScript('OnShow', self.OnShow)
-	self:SetScript('OnHide', self.UnregisterAll)
+	self:SetScript('OnHide', self.OnHide)
 	self:SetRival(Addon.Rival(Addon.RivalOrder[1]))
 	self:SetTab(1)
 	self:OnShow()
@@ -99,8 +99,20 @@ end
 
 function Journal:OnShow()
 	self:RegisterEvent('TOOLTIP_DATA_UPDATE', self.Delay, 0, 'Refresh')
+
 	if WardrobeCollectionFrame.InfoButton then
 		WardrobeCollectionFrame.InfoButton:Hide()
+	end
+	if MountJournal.ToggleDynamicFlightFlyoutButton then
+		MountJournal.ToggleDynamicFlightFlyoutButton:Hide()
+	end
+end
+
+function Journal:OnHide()
+	self:UnregisterAll()
+
+	if MountJournal:IsShown() and MountJournal.ToggleDynamicFlightFlyoutButton then
+		MountJournal.ToggleDynamicFlightFlyoutButton:Show()
 	end
 end
 
@@ -117,8 +129,6 @@ function Journal:Search(text)
 	Addon.sets.rivalSearch = text
 
 	self:Open()
-	self.SearchBox:SetText(text)
-	self.SearchBox.Instructions:SetShown(text == '')
 	self.List:update()
 end
 
@@ -273,7 +283,7 @@ function Journal.Map:Display(rival)
 		scroll:SetPanTarget(Clamp(x, minX, maxX), Clamp(y, minY, maxY))
 
 		self.Destination = Addon.RivalPin(self, 1, x,y, rival)
-		self.Destination:SetCanvasScale(scale)
+		self.Destination:SetCanvasScale(1.0 / scale)
 	end
 end
 

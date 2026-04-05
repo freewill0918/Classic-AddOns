@@ -10,6 +10,14 @@ Inventory.Items = {}
 
 local PlayerName = UnitName("player")
 
+local Zygor_GetMerchantItemInfo = function(index) 
+	if GetMerchantItemInfo then return GetMerchantItemInfo(index) end
+
+	local info = C_MerchantFrame.GetItemInfo(index);
+	if info then
+		return info.name, info.texture, info.price, info.stackCount, info.numAvailable, info.isPurchasable, info.isUsable, info.hasExtendedCost, info.currencyID, info.spellID;
+	end
+end
 
 -- Move viewer next to vendor frame if covered by it.
 -- Called from vendor goaltype
@@ -317,35 +325,36 @@ function Inventory:FindItemsToBuy()
 	ZGV:Debug("Trying to find items to buy")
 
 	-- calculate space needed and find items at vendor
+	local found = false -- to handle items that are buyable with gold, but cost 0c
 	for index=1,GetMerchantNumItems() do while(1) do 
-		local merchItemName,_,costForOne,merchantStack,numAvail = GetMerchantItemInfo(index)
+		local merchItemName,_,costForOne,merchantStack,numAvail,_,_,hasExtendedCost = Zygor_GetMerchantItemInfo(index)
+		if hasExtendedCost then break end -- item is not buyable with gold. abort
+
 		local itemlink = GetMerchantItemLink(index)
 		local itemid = itemlink and ZGV.ItemLink.GetItemID(itemlink)
-		if not itemid then break end
+		if not itemid then break end -- no details, abort
 
 		local item = self.ItemsToBuy[itemid]
-		if not item then break end
+		if not item then break end -- we do not need this, abort
 
 		local maxStack = GetMerchantItemMaxStack(index)
-		-- 
 
-			-- do not do what the line that was removed was doing. bad juju. 
 		if item.amount%maxStack == 0 then 
 			neededSlots = neededSlots + floor(item.amount/maxStack)
 		else 
 			neededSlots = neededSlots + floor(item.amount/maxStack) + 1 
 		end
 
-		if costForOne==0 then break end -- item is not buyable with gold. abort
-		if numAvail~=-1 and numAvail < item.amount then ZGV:Print(L['loot_autobuynostock']:format(name,item.amount)) return end
+		if numAvail~=-1 and numAvail < item.amount then ZGV:Print(L['loot_autobuynostock']:format(name,item.amount)) return end -- not enough, aaaabort
 		
 		totalCost = totalCost + item.amount*(costForOne/merchantStack)
 
 		self.ItemsToBuy[itemid].index = index
 		self.ItemsToBuy[itemid].maxStack = maxStack
+		found = true
 		break
 	end end
-	if totalCost <= 0 then return end -- items dont exist in this step or are of a different type than gold
+	if totalCost <= 0 and not found then return end -- items dont exist in this step or are of a different type than gold
 	
 	ZGV:Debug("Found items")
 

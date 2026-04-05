@@ -1042,18 +1042,15 @@ end
 
 function NIT:checkNewVersion()
 	--NIT.db.global.versions = {}; --To test.
-	local newVersionNotes = 2.08;
+	local newVersionNotes = 2.17;
 	if (NIT.version and NIT.version == newVersionNotes) then
 		if (not NIT.db.global.versions[NIT.version]) then
-			if (NIT.isMOP) then
+			--if (NIT.isMOP) then
 				local notes = {
-					"Added arena type (2v2/3v3/5v5) and rating changes to the instance log for expansions without teams (MoP+).",
-					"Improved a bunch of other stuff with arena log entries.",
-					"Fixed some issues with recording rep gains that gave a bonus amount (like account wide MoP unlocks).",
-					"Fixed ret paladin auto celestial buff, it chooses melee but can be changed to magical in options (they seem to do about the same dmg for rets?).",
+					"Fixed an issue with the wrong xp per hour being displayed while still inside a dungeon.",
 				};
 				loadNewVersionFrame(NIT.version, notes, "Nova Instance Tracker", "Interface\\AddOns\\NovaInstanceTracker\\Media\\portal", 30, 200);
-			end
+			--end
 			--Wipe old data.
 			NIT.db.global.versions = {};
 			--Set this version has been loaded before.

@@ -8,6 +8,8 @@
     <Script file="Guides/Classic-Alliance-1-13_Human.lua"/>
     <Script file="Guides/Classic-Alliance-1-14_DwarfGnome.lua"/>
     <Script file="Guides/Classic-Alliance-11-20.lua"/>
+	<Script file="Guides/Era.lua"/>
+	<Script file="Guides/RestedXP Alliance Boosted 58-60.lua"/>
     <Script file="Guides/Classic-Horde-01-12_Durotar.lua"/>
     <Script file="Guides/Classic-Horde-01-14_Undead.lua"/>
     <Script file="Guides/Classic-Horde-1-12_Mulgore.lua"/>
@@ -27,6 +29,7 @@
 	<Script file="Guides/SurvivalGuide/H-Classic-Horde-1-13_Mulgore.lua"/>
 	<Script file="Guides/SurvivalGuide/H-Classic-Horde-13-15_Silverpine.lua"/>
 	<Script file="Guides/SurvivalGuide/H-Classic-Horde-15-23_Barrens.lua"/>
+	<Script file="Guides/SurvivalGuide/Hardcore.lua"/>
 
 	<Script file="Guides/SoD/Neutral.lua"/>
 	<Script file="Guides/SoD/Rogue.lua"/>
@@ -41,6 +44,7 @@
 	<Script file="Guides/SoD/Shaman.lua"/>
 	<Script file="Guides/SoD/Horde.lua"/>
 	<Script file="Guides/SoD/Attunements.lua"/>
+	<Script file="Guides/SoD/SOD.lua"/>	
 	
 	<Script file="Guides/SoD/Incursions.lua"/>
 	

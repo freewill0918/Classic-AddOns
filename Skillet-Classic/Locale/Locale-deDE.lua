@@ -38,8 +38,8 @@ L["alts"] = "Materialien bei Twinks"
 L["Appearance"] = "Aussehen"
 L["APPEARANCEDESC"] = "Einstellungen, die das Aussehen von Skillet ändern"
 L["Auction"] = "Auktion"
-L["bank"] = "Bank"
 L["Bank"] = "Bank"
+L["bank"] = "Bank"
 L["Blizzard"] = "Blizzard"
 L["Buy Reagents"] = "Materialien kaufen"
 L["buyable"] = "Kaufbar"
@@ -57,8 +57,7 @@ L["can be created from reagents on other characters"] = "herstellbar durch Mater
 L["can be created with reagents bought at vendor"] = "herstellbar durch Materialien die bei einem Händler erworben werden können"
 L["Changing profession to"] = "Beruf wechseln zu"
 L["CLAMPTOSCREENDESC"] = "Zwinge Fenster auf den Vordergrund."
---[[Translation missing --]]
-L["CLAMPTOSCREENNAME"] = "Clamp frames to screen"
+L["CLAMPTOSCREENNAME"] = "Rahmen auf dem Bildschirm halten"
 L["Clear"] = "Leeren"
 L["Click"] = "Klicke"
 L["click here to add a note"] = "Hier klicken, um eine Notiz hinzuzufügen"
@@ -70,8 +69,7 @@ L["CONFIRMQUEUECLEARDESC"] = "Benutze Alt-Linksklick anstelle von Linksklick um 
 L["CONFIRMQUEUECLEARNAME"] = "Benutze Alt-Klick zum leeren der Warteschlange"
 L["Conflict with the addon TradeSkillMaster"] = "Konflikt mit dem Addon TradeSkillMaster"
 L["Copy"] = "Kopieren"
---[[Translation missing --]]
-L["Cost"] = "Cost"
+L["Cost"] = "Kosten"
 L["Could not find bag space for"] = "Kein Taschenplatz frei für"
 L["craftable"] = "herstellbar"
 L["CRAFTBUTTONSDESC"] = "Schaltflächen anderer Berufe im Fenster anzeigen"
@@ -101,14 +99,17 @@ L["Enabled"] = "Aktiviert"
 L["Enchant"] = "Verzaubern"
 L["ENCHANTSCROLLSDESC"] = "Benutze VZ-Schriftrollen als Namen."
 L["ENCHANTSCROLLSNAME"] = "Benutze VZ-Schriftrollen für Verzauberungen."
+--[[Translation missing --]]
+L["ENHANCHEDCHANCEDISPLAYDESC"] = "Always display skill up percentage"
+--[[Translation missing --]]
+L["ENHANCHEDCHANCEDISPLAYNAME"] = "Display Skill Up Chance"
 L["ENHANCHEDRECIPEDISPLAYDESC"] = "Wenn aktiviert, werden an Rezeptnamen ein oder mehrere '+' Symbole angehängt, in Abhängigkeit von der Schwierigkeit des Rezepts."
 L["ENHANCHEDRECIPEDISPLAYNAME"] = "Rezeptschwierigkeit als Text anzeigen"
 L["Expand all groups"] = "Alle Gruppen ausklappen"
 L["Features"] = "Optionen"
 L["FEATURESDESC"] = "Optionale Funktionen die ein- oder ausgeschaltet werden können."
 L["Filter"] = "Filter"
---[[Translation missing --]]
-L["Filter recipes by source"] = "Filter recipes by source"
+L["Filter recipes by source"] = "Filtere Rezepte nach Quelle"
 --[[Translation missing --]]
 L["FLASHONEMPTYQUEUEDESC"] = "Flash icon when the queue is empty"
 --[[Translation missing --]]
@@ -128,16 +129,15 @@ L["From Selection"] = "Von Auswahl"
 L["Glyph "] = "Glyphe "
 L["Gold earned"] = "Erhaltenes Gold"
 L["Grouping"] = "Gliederung"
---[[Translation missing --]]
-L["Guild bank"] = "Guild bank"
+L["Guild bank"] = [=[Gildenbank
+]=]
 L["has cooldown of"] = "hat eine Abklingzeit von"
 L["have"] = "hat"
 L["Hide trivial"] = "Graue verstecken"
 L["Hide uncraftable"] = "Nur herstellbare"
 L["HIDEBLIZZARDFRAMEDESC"] = "Blende das Blizzard Tradeskill Fenster aus, wenn das Skillet Fenster angezeigt wird"
 L["HIDEBLIZZARDFRAMENAME"] = "Blizzard Fenster ausblenden"
---[[Translation missing --]]
-L["HIGHERVELLUMDESC"] = "Use a higher level of vellum when correct vellum is unavailable."
+L["HIGHERVELLUMDESC"] = "Verwenden Sie ein höherwertiges Pergament, wenn kein geeignetes Pergament verfügbar ist."
 --[[Translation missing --]]
 L["HIGHERVELLUMNAME"] = "Use higher vellum"
 L["Ignore"] = "Ignorieren"

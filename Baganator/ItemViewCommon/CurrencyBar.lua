@@ -14,8 +14,6 @@ end
 
 function BaganatorCurrencyWidgetMixin:OnLoad()
   self.currencyPool = CreateFontStringPool(self, "BACKGROUND", 0, "GameFontHighlight")
-  -- Using an (in)secure button to avoid taint of the transfer functionality
-  -- when accessing currency panel
   self.currencyButtons = CreateFramePool("Button", self, nil, nil, false, function(b)
     if b.setup then
       return
@@ -109,7 +107,12 @@ local function ShowCurrencies(self, character)
       if strlenutf8(currencyText) > 5 then
         currencyText = AbbreviateNumbers(count)
       end
-      currencyText = currencyText .. " " .. CreateTextureMarkup(C_CurrencyInfo.GetCurrencyInfo(details.currencyID).iconFileID, 14, 14, 12, 12, 0.08, 0.96, 0.08, 0.96)
+      local currencyInfo = C_CurrencyInfo.GetCurrencyInfo(details.currencyID)
+      if currencyInfo then
+        currencyText = currencyText .. " " .. CreateTextureMarkup(currencyInfo.iconFileID, 14, 14, 12, 12, 0.08, 0.96, 0.08, 0.96)
+      else
+        currencyText = currencyText .. " ??"
+      end
       fontString:SetText(currencyText)
 
       if GameTooltip.SetCurrencyByID then

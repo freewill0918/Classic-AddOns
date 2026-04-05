@@ -1,6 +1,6 @@
 # Syndicator
 
-## [252](https://github.com/TheMouseNest/Syndicator/tree/252) (2025-12-08)
-[Full Changelog](https://github.com/TheMouseNest/Syndicator/compare/251...252) 
+## [265](https://github.com/TheMouseNest/Syndicator/tree/265) (2026-03-18)
+[Full Changelog](https://github.com/TheMouseNest/Syndicator/compare/264...265) [Previous Releases](https://github.com/TheMouseNest/Syndicator/releases)
 
-- [Fixes #583] Classic: Fix stat changing English translations in China's Titan  
+- Fix "active season" keyword including last season gear  

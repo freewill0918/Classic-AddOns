@@ -30,7 +30,7 @@ L["hourShort"] = "h"; --Used in short timers like 1h30m (single letter only, usu
 L["dayShort"] = "d"; --Used in short timers like 1d8h (single letter only, usually the first letter of days).
 L["startsIn"] = "Comienza en %s"; --"Starts in 1hour".
 L["endsIn"] = "Termina en %s"; --"Ends in 1hour".
-L["versionOutOfDate"] = "Nova Instance Tracker está desactualizado, por favor actualiza en https://www.curseforge.com/wow/addons/nova-instance-tracker";
+L["versionOutOfDate"] = "Nova Instance Tracker está desactualizado, actualízalo en https://www.curseforge.com/wow/addons/nova-instance-tracker";
 L["Options"] = "Opciones";
 L["Reset Data"] = "Restablecer datos"; --A button to Reset data.
 

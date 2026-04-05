@@ -590,6 +590,52 @@ L["missingArgentDawnTrinket"] = "%s trinket reminder %s isn't equipped." --Argen
 L["argentDawnTrinketReminderTitle"] = "Argent Dawn Trinket Reminder";
 L["argentDawnTrinketReminderDesc"] = "Argent Dawn trinket reminder in chat if you enter Scholomance/Stratholme with the trinket in bags and not exalted.";
 
+L["skipRealMsgIfCappedTitle"] = "No msg if capped";
+L["skipRealMsgIfCappedDesc"] = "Skip the Tarnished Undermine Real loot msg if we're capped at 150 tokens already.";
+
+L["Live Side"] = "Live Side";
+L["Undead Side"] = "Undead Side";
+L["East"] = "East";
+L["West"] = "West";
+L["North"] = "North";
+L["Upper"] = "Upper";
+L["Lower"] = "Lower";
+
+L["lootTheItem"] = "Loot the %s"; --Example: Loot the Tarnished Undermine Real
 L["Qiraji Lord's Insignia"] = "Insignien des Qirajilords";
 
+L["soundsLootReminderTitle"] = "Loot Reminder Sound";
+L["soundsLootReminderDesc"] = "Pick which sound to play when a loot reminder is displayed.";
+
+L["lootReminderMysRelicTitle"] = "Mysterious Relics";
+L["lootReminderMysRelicDesc"] = "Show middle of the screen/chat window msgs when someone loots a Mysterious Relic in Karazhan Crypts.";
+
+L["lootReminderMysRelicPartyTitle"] = "Mys Relic Party Msg";
+L["lootReminderMysRelicPartyDesc"] = "Do a party chat message when someone loots a Mysterious Relic in Karazhan Crypts.";
+
 L["Remnants of Valor"] = "Überreste der Tapferkeit";
+
+L["autoTwilightBuffReminder"] = "Get Twilight Dungeon buff from %s.";
+
+L["douseDisclaimer"] = "Note: This douses module uses best guess based on\nlast boss killed and other factors, could be inaccurate.";
+L["Not Doused"] = "Not Doused";
+L["Doused"] = "Doused";
+L["Aqual Quintessence"] = "Aqual Quintessence";
+
+L["Magmadar"] = "Magmadar";
+L["Gehennas"] = "Gehennas";
+L["Garr"] = "Garr";
+L["Baron Geddon"] = "Baron Geddon";
+L["Shazzrah"] = "Shazzrah";
+L["Sulfuron Harbinger"] = "Sulfuron Harbinger";
+L["Golemagg the Incinerator"] = "Golemagg the Incinerator";
+
+L["of level"] = "of level"; --This for XP display during a dung (23.4% of level)
+
+L["World Boss"] = "World Boss";
+
+L["autoCelestialBuffReminder"] = "Get Celestial Dungeon buff from %s.";
+L["NPC"] = "NPC";
+
+L["by"] = "by";
+L["For help or suggestions"] = "For help or suggestions";

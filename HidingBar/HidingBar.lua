@@ -1,5 +1,5 @@
 local addon, ns = ...
-local L, config, UIParent = ns.L, ns.config, UIParent
+local L, config, UIParent, pcall = ns.L, ns.config, UIParent, pcall
 local hb = CreateFrame("FRAME", addon.."Addon")
 local cover = CreateFrame("FRAME")
 cover:Hide()
@@ -31,6 +31,7 @@ local ignoreFrameNamePattern = {
 
 
 local function void() end
+local issecretvalue = issecretvalue or void
 
 local function enter(btn, _, eventFrame)
 	local bar = hb.GetParent(btn)
@@ -134,6 +135,15 @@ end
 -------------------------------------------
 -- MASQUE
 -------------------------------------------
+function hb.isMsqEnabled(btn)
+	return btn._MSQ_CFG and btn._MSQ_CFG.Enabled
+end
+
+function hb.getMsqIcon(btn)
+	return btn._MSQ_CFG and btn._MSQ_CFG.Regions.Icon
+end
+
+
 if MSQ then
 	local _, defSkin = MSQ:GetDefaultSkin()
 	local defNormal = defSkin.Normal
@@ -170,7 +180,7 @@ if MSQ then
 
 	local prevCoord, curCoord, MSQ_Coord = {}, {}, {}
 	function hb:MSQ_CoordUpdate(btn)
-		local icon = btn.__MSQ_Icon
+		local icon = self.getMsqIcon(btn)
 		if not icon then return end
 		if not MSQ_Coord[icon] then MSQ_Coord[icon] = {} end
 		for i = 1, 8 do
@@ -227,12 +237,12 @@ if MSQ then
 			ULy = ULy + mULy * left
 		end
 
-		config.noIcon.SetTexCoord(self, ULx, ULy, LLx, LLy, URx, URy, LRx, LRy)
+		pcall(config.noIcon.SetTexCoord, self, ULx, ULy, LLx, LLy, URx, URy, LRx, LRy)
 	end
 
 
 	function hb:MSQ_Button_Update(btn)
-		if not btn.__MSQ_Enabled then return end
+		if not self.isMsqEnabled(btn) then return end
 		local data = self.MSQ_Button_Data[btn]
 		if data then
 			if data._Border then
@@ -325,7 +335,7 @@ if MSQ then
 				data._Highlight.SetTexture = void
 			end
 			if data._IconCircleMask then
-				btn.__MSQ_Icon:RemoveMaskTexture(data._IconCircleMask)
+				self.getMsqIcon(btn):RemoveMaskTexture(data._IconCircleMask)
 				data._IconCircleMask = nil
 			end
 			if not next(data) then
@@ -674,15 +684,6 @@ function hb:init()
 	})
 
 	if self.pConfig.grabMinimap then
-		local ldbiTbl = ldbi:GetButtonList()
-		for i = 1, #ldbiTbl do
-			local button = ldbi:GetMinimapButton(ldbiTbl[i])
-			if self:ignoreCheck(self.GetName(button)) then
-				self.minimapButtons[button[0]] = button
-				self:setHooks(button)
-			end
-		end
-
 		self:grabMinimapAddonsButtons(Minimap)
 		self:grabMinimapAddonsButtons(MinimapBackdrop)
 		ldbi.RegisterCallback(self, "LibDBIcon_IconCreated", "ldbi_add")
@@ -1137,9 +1138,13 @@ end
 
 
 function hb:grabMinimapAddonsButtons(parentFrame)
+	local pw, ph = parentFrame:GetSize()
 	for _, child in ipairs({self.GetChildren(parentFrame)}) do
 		local width, height = self.GetSize(child)
-		if math.max(width, height) > 16 and math.abs(width - height) < 5 and not self.IsProtected(child) then
+		if not self.IsProtected(child)
+		and pw * .5 > width and ph * .5 > height
+		and math.max(width, height) > 16 and math.abs(width - height) < 5
+		then
 			self:addMButton(child)
 		end
 	end
@@ -1153,14 +1158,10 @@ function hb:addMButton(button, force, MSQ_Group)
 		or self.HasScript(button, "OnMouseUp") and self.GetScript(button, "OnMouseUp")
 		or self.HasScript(button, "OnMouseDown") and self.GetScript(button, "OnMouseDown")
 		or force then
-			local btn = self.minimapButtons[button[0]]
-			self.minimapButtons[button[0]] = nil
-			if btn ~= button then
-				self:setHooks(button)
-			end
+			self:setHooks(button)
 
 			local btnData = self:getMBtnSettings(button)
-			if self.MSQ_MButton and not button.__MSQ_Addon and not (btnData and btnData[6]) then
+			if self.MSQ_MButton and not button._MSQ_CFG and not (btnData and btnData[6]) then
 				self:setMButtonRegions(button, nil, MSQ_Group)
 			end
 
@@ -1771,7 +1772,7 @@ function hidingBarMixin:updateTooltipPosition(eventFrame)
 		local vPoint, vRPoint, hPoint
 		local tHeight = tooltip:GetHeight()
 
-		if issecretvalue and issecretvalue(tHeight) -- midnight
+		if issecretvalue(tHeight) -- midnight
 		or self:GetTop() + tHeight + 10 < UIParent:GetHeight() then
 			vPoint = "BOTTOM"
 			vRPoint = "TOP"
@@ -2553,7 +2554,7 @@ end
 
 
 do
-	local GetMouseFoci, pcall, region = GetMouseFoci, pcall
+	local GetMouseFoci, region = GetMouseFoci
 	local menuManager = Menu.GetManager()
 	local menus = {}
 	local function addMenu(menu) menus[#menus + 1] = menu end
@@ -2587,7 +2588,7 @@ do
 				return self.GetParent(noEventFrames[frame]) == self
 			end
 			status, numPoints = pcall(self.GetNumPoints, frame)
-			if status then
+			if status and not issecretvalue(numPoints) then
 				for i = 1, numPoints do
 					local status, _, rFrame = pcall(self.GetPoint, frame, i)
 					if status and noEventFrames[rFrame] then

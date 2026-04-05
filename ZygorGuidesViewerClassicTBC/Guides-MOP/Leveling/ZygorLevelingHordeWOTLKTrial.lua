@@ -6138,9 +6138,9 @@ talk Gotura Fourwinds##35068
 accept Preserving the Barrens##26642 |goto Orgrimmar/1 47.64,71.21
 step
 talk Neeru Fireblade##3216
-|tip Inside the building, inside The Drag.
-turnin Neeru Fireblade##25263 |goto Orgrimmar/1 58.18,54.62
-accept Ak'Zeloth##25264 |goto Orgrimmar/1 58.18,54.62
+|tip Inside the cave under Orgrimmar called the Cleft of Shadow.
+turnin Neeru Fireblade##25263 |goto Orgrimmar/2 58.21,54.63
+accept Ak'Zeloth##25264 |goto Orgrimmar/2 58.21,54.63
 step
 talk Takrin Pathseeker##3336
 accept Conscript of the Horde##840 |goto Durotar 50.85,43.59

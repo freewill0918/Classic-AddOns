@@ -1,5 +1,5 @@
 local addonName, addon = ...
-
+local L = addon.locale.Get
 local _G = _G
 
 local HBD = LibStub("HereBeDragons-2.0")
@@ -24,6 +24,8 @@ local function IsInInstance()
         return true
     end
 end
+
+addon.IsInInstance = IsInInstance
 
 addon.enabledFrames["arrowFrame"] = af
 af.IsFeatureEnabled = function ()
@@ -117,7 +119,7 @@ function addon.DrawArrow(self)
     if dist ~= self.distance then
         self.distance = dist
         local step = element.step
-        local title = step and (step.arrowtext or step.title or step.index and ("Step "..step.index))
+        local title = step and (step.arrowtext or step.title or step.index and (L"Step "..step.index))
         if element.title then
             for RXP_ in string.gmatch(element.title, "RXP_[A-Z]+_") do
                 element.title = element.title:gsub(RXP_, addon.guideTextColors[RXP_] or
@@ -146,11 +148,9 @@ local function PinOnEnter(self)
     if self.lineData then
         showTooltip = pin.step and pin.step.showTooltip and pin.step.elements
         if addon.settings.profile.debug then
-            local line = self.lineData
             self:SetAlpha(0.5)
-            print("Line start point:", line.sX, ",", line.sY)
-            print("Line end point:", line.fX, ",", line.fY)
         end
+
         if showTooltip then
             local element = self.lineData.element
             for line in lineMapFramePool:EnumerateActive() do
@@ -182,7 +182,7 @@ local function PinOnEnter(self)
                 hiddentext = false
             end
             text = parent.mapTooltip or parent.tooltipText or hiddentext or parent.text or ""
-            local title = step.mapTooltip or step.title or step.index and ("Step " .. step.index) or step.tip and "Tip"
+            local title = step.mapTooltip or step.title or step.index and (L"Step " .. step.index) or step.tip and L"Tip"
             if title and title ~= lastStep then
                 _G.GameTooltip:AddLine(addon.ReplaceNpcIds(icon..title),unpack(addon.colors.mapPins))
                 lastStep = title
@@ -195,7 +195,7 @@ local function PinOnEnter(self)
                 hiddentext = false
             end
             text = element.mapTooltip or element.tooltipText or hiddentext or step.text or ""
-            local title = step.mapTooltip or step.title or step.index and ("Step " .. step.index) or step.tip and "Tip"
+            local title = step.mapTooltip or step.title or step.index and (L"Step " .. step.index) or step.tip and L"Tip"
             if title and step ~= lastStep then
                 _G.GameTooltip:AddLine(addon.ReplaceNpcIds(icon..title),unpack(addon.colors.mapPins))
                 lastStep = title
@@ -969,14 +969,16 @@ local function addMiniMapPins(pins)
     end
 end
 
-local corpseWP = { title = "Corpse", generated = 1, wpHash = 0 }
+local corpseWP = { title = L"Corpse", generated = 1, wpHash = 0 }
 
 local function IsDeathSkip()
     if not addon.SpiritHealerWorld then return false end
     for _, step in pairs(addon.RXPFrame.activeSteps) do
-        for _, element in pairs(step.elements) do
-            if element.tag == "deathskip" then
-                return true
+        if step.elements then
+            for _, element in pairs(step.elements) do
+                if element.tag == "deathskip" then
+                    return true
+                end
             end
         end
     end
@@ -1011,6 +1013,7 @@ local function updateArrowData()
                 and not addon.hideArrow
                 and addon.settings.profile.showEnabled
             )
+
             af.dist, af.orientation, af.element = 0, 0, element
             af.forceUpdate = true
             return true
@@ -1025,7 +1028,7 @@ local function updateArrowData()
         for _, e in pairs(aw) do
             skip = skip
                 or (e.step and e.step.ignorecorpse)
-                or (not e.textOnly and guideName == "41-43 Badlands")
+                or (not e.textOnly and guideName == L"41-43 Badlands")
         end
 
         if not skip and HBD then
@@ -1046,7 +1049,7 @@ local function updateArrowData()
                     if bestWX then
                         corpseWP.x, corpseWP.y, corpseWP.zone, corpseWP.mapID = nil, nil, nil, nil
                         corpseWP.wx, corpseWP.wy, corpseWP.instance = bestWX, bestWY, inst
-                        corpseWP.title = "Spirit Healer"
+                        corpseWP.title = L"Spirit Healer"
                         if ProcessWaypoint(corpseWP) then return end
                     end
                 end
@@ -1061,7 +1064,7 @@ local function updateArrowData()
                     if wx and inst then
                         corpseWP.x, corpseWP.y, corpseWP.zone, corpseWP.mapID = nil, nil, nil, nil
                         corpseWP.wx, corpseWP.wy, corpseWP.instance = wx, wy, inst
-                        corpseWP.title = "Corpse"
+                        corpseWP.title = L"Corpse"
                         if ProcessWaypoint(corpseWP) then return end
                     end
                 end
@@ -1238,9 +1241,9 @@ function addon.UpdateGotoSteps()
                         isActive = false
                     else
                         element.hidden = false
-                        if hidden and addon.settings.profile.debug then
-                            print(format("%d: Waypoint activation\n  goto = %.2f,%.2f (%d/%d,%.4f,%.4f)", i,
-                                element.x, element.y, element.zone or 0, element.instance, element.wx, element.wy ))
+                        if hidden then
+                            addon.comms.PrettyDebug("%d: Waypoint activation\n  goto = %.2f,%.2f (%d/%d,%.4f,%.4f)", i,
+                                element.x, element.y, element.zone or 0, element.instance, element.wx, element.wy )
                         end
                     end
                 end
@@ -1295,9 +1298,9 @@ function addon.UpdateGotoSteps()
                                     addon.StartTimer(element.timer,element.timerText)
                                 end
                             end
-                            if enabled and addon.settings.profile.debug and element.skip then
-                                print(format("%d: Waypoint reached\n  goto = %.2f,%.2f (%d/%d,%.4f,%.4f)", i,
-                                       element.x, element.y, element.zone or 0, element.instance, element.wx, element.wy ))
+                            if enabled and element.skip then
+                                addon.comms.PrettyDebug("%d: Waypoint reached\n  goto = %.2f,%.2f (%d/%d,%.4f,%.4f)", i,
+                                       element.x, element.y, element.zone or 0, element.instance, element.wx, element.wy )
                             end
                         elseif element.persistent then
                             element.hidden = false

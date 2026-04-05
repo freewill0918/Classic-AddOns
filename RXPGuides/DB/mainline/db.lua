@@ -50,15 +50,34 @@ local defaultGuideList = {
     [1165] = "RestedXP Speed Leveling\\a) ZandalariTroll Intro",
     ["Vulpera"] = "RestedXP Speed Leveling\\a) Vulpera Intro", -- changed from duplicate 85 (org)
     [672]  = "RestedXP Speed Leveling\\a) DH Intro",
-    [627] = "Legion RestedXP Legion Remix\\a) Intro",
+    [627] = "RestedXP Legion Remix\\a) Intro",
+    [2451] = "RestedXP Speed Leveling\\a) Arathi Highlands Returning Player"
 }
 
+do
+    local faction = UnitFactionGroup("player")
+    if faction == "Alliance" then
+        defaultGuideList[3445] = "RestedXP Speed Leveling\\a) Exile's Reach Alliance"
+    elseif faction == "Horde" then
+        defaultGuideList[3445] = "RestedXP Speed Leveling\\a) Exile's Reach Horde"
+    end
+end
+
 function addon.GetDefaultGuide()
-    local login = addon.tracker.state.login
-    local played = difftime(time(),login.time) + login.totalTimePlayed
-    if played < 120 then
-        local HBD = LibStub("HereBeDragons-2.0")
-        local zone = HBD:GetPlayerZone()
+    local played
+
+    if addon.tracker.state and addon.tracker.state.login then
+        if not addon.tracker.waitingForTimePlayed then
+            local login = addon.tracker.state.login
+            played = difftime(time(), login.time) + login.totalTimePlayed
+        end
+    end
+
+    local HBD = LibStub("HereBeDragons-2.0")
+    local zone = HBD:GetPlayerZone()
+    if not played then
+        C_Timer.After(5,addon.LoadDefaultGuide)
+    elseif played < 120 or zone == 2451 then
         local exilesreach = C_Map.GetAreaInfo(3455)
         local default
         if zone then

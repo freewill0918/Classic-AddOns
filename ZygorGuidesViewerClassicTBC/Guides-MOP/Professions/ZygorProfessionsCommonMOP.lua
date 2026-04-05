@@ -1147,9 +1147,11 @@ _<Create 5 Banquet of the Wok>_
 Reach Cooking Skill 600 |complete skill("Cooking") >= 600
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Fool's Cap",{
-mopready=true,
 description="Fool's Cap can be gathered from the Dread Wastes.",
-condition_end=function() return skill('Pandaria Herbalism') >= 50 end,
+meta={goldtype="route",skillreq={herbalism=525},levelreq=89},
+items={79011},
+maps={"Dread Wastes"},
+mopready=true,
 },[[
 step
 map Dread Wastes/0
@@ -1172,9 +1174,11 @@ collect Fool's Cap##79011 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Golden Lotus",{
-mopready=true,
 description="Golden Lotus can be gathered from The Jade Forest in Pandaria.",
-condition_end=function() return skill('Pandaria Herbalism') >= 50 end,
+meta={goldtype="route",skillreq={herbalism=525},levelreq=85},
+items={72238},
+maps={"The Jade Forest"},
+mopready=true,
 },[[
 step
 map The Jade Forest/0
@@ -1217,9 +1221,11 @@ collect Golden Lotus##72238 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Green Tea Leaf",{
-mopready=true,
 description="Green Tea Leaf can be gathered from The Jade Forest.",
-condition_end=function() return skill('Pandaria Herbalism') >= 50 end,
+meta={goldtype="route",skillreq={herbalism=525},levelreq=85},
+items={72234},
+maps={"The Jade Forest"},
+mopready=true,
 },[[
 step
 map The Jade Forest/0
@@ -1260,9 +1266,11 @@ collect Green Tea Leaf##72234 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Rain Poppy",{
-mopready=true,
 description="Rain Poppy can be gathered from The Jade Forest.",
-condition_end=function() return skill('Pandaria Herbalism') >= 50 end,
+meta={goldtype="route",skillreq={herbalism=525},levelreq=85},
+items={72237},
+maps={"The Jade Forest"},
+mopready=true,
 },[[
 step
 map The Jade Forest/0
@@ -1285,9 +1293,11 @@ collect Rain Poppy##72237 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Silkweed",{
-mopready=true,
 description="Silkweed can be gathered from Valley of the Four Winds.",
-condition_end=function() return skill('Pandaria Herbalism') >= 50 end,
+meta={goldtype="route",skillreq={herbalism=525},levelreq=86},
+items={72235},
+maps={"Valley of the Four Winds"},
+mopready=true,
 },[[
 step
 map Valley of the Four Winds/0
@@ -1311,9 +1321,11 @@ collect Silkweed##72235 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Snow Lily",{
-mopready=true,
 description="Snow Lily can be gathered from Kun-Lai Summit.",
-condition_end=function() return skill('Pandaria Herbalism') >= 50 end,
+meta={goldtype="route",skillreq={herbalism=525},levelreq=87},
+items={79010},
+maps={"Kun-Lai Summit"},
+mopready=true,
 },[[
 step
 map Kun-Lai Summit/0
@@ -1340,9 +1352,11 @@ collect Snow Lily##79010 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Ghost Iron",{
-mopready=true,
 description="Ghost Iron can be gathered from Krasarang Wilds.",
-condition_end=function() return skill('Pandaria Mining') >= 50 end,
+meta={goldtype="route",skillreq={mining=525},levelreq=86},
+items={72092},
+maps={"Krasarang Wilds"},
+mopready=true,
 },[[
 step
 map Krasarang Wilds/0
@@ -1372,9 +1386,11 @@ collect Ghost Iron Ore##72092 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Kyparite",{
-mopready=true,
 description="Kyparite can be gathered from the Dread Wastes.",
-condition_end=function() return skill('Pandaria Mining') >= 50 end,
+meta={goldtype="route",skillreq={mining=525},levelreq=89},
+items={72093},
+maps={"Dread Wastes"},
+mopready=true,
 },[[
 step
 map Dread Wastes/0
@@ -1395,9 +1411,11 @@ collect Kyparite Ore##72093 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Trillium",{
-mopready=true,
 description="Trillium can be gathered from Townlong Steppes.",
-condition_end=function() return skill('Pandaria Mining') >= 50 end,
+meta={goldtype="route",skillreq={mining=525},levelreq=88},
+items={{72103},{72094}},
+maps={"Townlong Steppes"},
+mopready=true,
 },[[
 step
 map Townlong Steppes/0
@@ -1430,9 +1448,11 @@ collect Black Trillium Ore##72094 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Exotic Leather",{
-mopready=true,
 description="Exotic Leather can be gathered from Dread Wastes.",
-condition_end=function() return skill('Pandaria Skinning') >= 50 end,
+meta={goldtype="route",skillreq={skinning=500},levelreq=89},
+items={72120},
+maps={"Dread Wastes"},
+mopready=true,
 },[[
 step
 map Dread Wastes/0
@@ -1445,8 +1465,11 @@ collect Exotic Leather##72120 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Spirit of Harmony",{
-mopready=true,
 description="Eternal shadow can be gathered from Kun-Lai Summit.",
+meta={goldtype="route",levelreq=87},
+items={{89112},{76061}},
+maps={"Kun-Lai Summit"},
+mopready=true,
 },[[
 step
 Enter the cave |goto Kun-Lai Summit/0 59.14,52.83 < 10

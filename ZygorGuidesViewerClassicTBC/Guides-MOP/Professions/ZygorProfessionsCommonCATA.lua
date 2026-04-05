@@ -3,8 +3,11 @@ if not ZygorGuidesViewer then return end
 if ZGV:DoMutex("ProfessionsC") then return end
 ZygorGuidesViewer.GuideMenuTier = "CLA"
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Air",{
+description="Primal Air can be gathered from Shadowmoon Valley.",
 mopready=true,
-description="Primal Air can be gathered from Shadowmoon Valley, Outland.",
+meta={goldtype="route",levelreq=67},
+items={{22572},{22451}},
+maps={"Shadowmoon Valley"},
 },[[
 step
 label "Start"
@@ -29,8 +32,11 @@ collect Mote of Air##22572 |n
 '|goto Shadowmoon Valley/0 55.35,71.72 < 30 |c |noway |next "Start"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Earth",{
-mopready=true,
 description="Primal Earth can be gathered from Nagrand.",
+mopready=true,
+meta={goldtype="route",levelreq=64},
+items={{22573},{22452}},
+maps={"Nagrand"},
 },[[
 step
 label "Start"
@@ -55,8 +61,11 @@ collect Mote of Earth##22573 |n
 '|goto Nagrand/0 46.19,77.20 < 30 |c |noway |next "Start"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Fire",{
-mopready=true,
 description="Primal Fire can be gathered from Hellfire Peninsula.",
+mopready=true,
+meta={goldtype="route",levelreq=67},
+items={{22574},{21884}},
+maps={"Shadowmoon Valley"},
 },[[
 step
 label "Start"
@@ -78,8 +87,11 @@ collect Mote of Fire##22574 |n
 '|goto Shadowmoon Valley/0 49.04,34.47 |noway |c |next "Start"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Life",{
-mopready=true,
 description="Primal Life can be gathered from Zangarmarsh in Outland.",
+mopready=true,
+meta={goldtype="route",levelreq=60},
+items={{22575},{21886}},
+maps={"Zangarmarsh"},
 },[[
 step
 map Zangarmarsh/0
@@ -94,8 +106,11 @@ collect Mote of Life##22575 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Mana",{
-mopready=true,
 description="Primal Mana can be gathered from the Netherstorm in Outland.",
+mopready=true,
+meta={goldtype="route",levelreq=67},
+items={{22576},{22457}},
+maps={"Netherstorm"},
 },[[
 step
 Kill enemies around this area
@@ -108,8 +123,11 @@ collect Mote of Mana##22576 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Shadow",{
-mopready=true,
 description="Primal Shadow can be gathered from Hellfire Peninsula.",
+mopready=true,
+meta={goldtype="route",levelreq=58},
+items={{22577},{22456}},
+maps={"Hellfire Peninsula"},
 },[[
 step
 label "Start"
@@ -132,8 +150,11 @@ collect Mote of Shadow##22577 |n
 '|goto Hellfire Peninsula/0 76.12,63.56 < 30 |c |noway |next "Start"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Primal Water",{
+description="Primal Water can be gathered from Nagrand.",
 mopready=true,
-description="Primal Water can be gathered from Black Temple or Skettis, Terrokar Forest.",
+meta={goldtype="route",levelreq=64},
+items={{99999999999},{21885}},
+maps={"Nagrand"},
 },[[
 step
 map Nagrand/0
@@ -146,8 +167,11 @@ collect Mote of Water##22578 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Professions Guides\\General Farming Guides\\Volatile Life",{
-mopready=true,
 description="Volatile Life can be gathered from Herbs.",
+mopready=true,
+meta={goldtype="route",levelreq=80},
+items={99999999999},
+maps={"Mount Hyjal"},
 },[[
 step
 label "Volatile_Life_Main_Menu"
@@ -231,8 +255,11 @@ Click Here To Change Your Herb Route |confirm |next "Volatile_Life_Main_Menu"
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Volatile Fire",{
-mopready=true,
 description="Volatile Fire can be gathered from Twilight Highlands in the Eastern Kingdoms.",
+mopready=true,
+meta={goldtype="route",levelreq=84},
+items={99999999999},
+maps={"Twilight Highlands"},
 },[[
 step
 map Twilight Highlands/0
@@ -243,8 +270,11 @@ collect Volatile Fire##52325 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Volatile Earth",{
-mopready=true,
 description="Volatile Earth can be gathered from Mount Hyjal in Kalimdor.",
+mopready=true,
+meta={goldtype="route",levelreq=80},
+items={99999999999},
+maps={"Mount Hyjal"},
 },[[
 step
 map Mount Hyjal/0
@@ -256,8 +286,11 @@ collect Volatile Earth##52327 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Volatile Water",{
-mopready=true,
 description="Volatile Water can be gathered from Twilight Highlands in the Eastern Kingdoms.",
+mopready=true,
+meta={goldtype="route",levelreq=84},
+items={99999999999},
+maps={"Twilight Highlands"},
 },[[
 step
 map Twilight Highlands/0
@@ -270,8 +303,11 @@ collect Volatile Water##52326 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Volatile Air",{
-mopready=true,
 description="Volatile Air can be gathered from Twilight Highlands in the Eastern Kingdoms.",
+mopready=true,
+meta={goldtype="route",levelreq=84},
+items={99999999999},
+maps={"Twilight Highlands"},
 },[[
 step
 map Twilight Highlands/0
@@ -282,8 +318,11 @@ collect Volatile Air##52328 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Air",{
-mopready=true,
 description="Eternal Air can be gathered from Borean Tundra in Northrend.",
+mopready=true,
+meta={goldtype="route",levelreq=68},
+items={{35623},{37700}},
+maps={"Borean Tundra"},
 },[[
 step
 kill Enraged Tempest##25415+
@@ -294,8 +333,11 @@ You can find more around here [42.86,10.29]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Earth",{
-mopready=true,
 description="Eternal Earth can be gathered from Howling Fjord in Northrend.",
+mopready=true,
+meta={goldtype="route",levelreq=68},
+items={{35624},{37701}},
+maps={"Howling Fjord"},
 },[[
 step
 Kill enemies around this area
@@ -305,8 +347,11 @@ collect Eternal Earth##35624 |n |goto Howling Fjord/0 73.29,73.38
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Fire",{
-mopready=true,
 description="Eternal Fire can be gathered from The Storm Peaks in Northrend.",
+mopready=true,
+meta={goldtype="route",levelreq=77},
+items={{36860},{37702}},
+maps={"The Storm Peaks"},
 },[[
 step
 Enter the cave |goto The Storm Peaks/0 62.45,41.33
@@ -316,8 +361,11 @@ collect Eternal Fire##36860 |goto The Storm Peaks/0 61.34,39.39 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Life",{
-mopready=true,
 description="Eternal Life can be gathered from the Howling Fjord in Northrend.",
+mopready=true,
+meta={goldtype="route",levelreq=68},
+items={{35625},{37704}},
+maps={"Howling Fjord"},
 },[[
 step
 kill Thornvine Creeper##23874+
@@ -329,8 +377,11 @@ You can find more around here [55.22,16.30]
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Shadow",{
-mopready=true,
 description="Eternal shadow can be gathered from Dragonblight in Northrend.",
+mopready=true,
+meta={goldtype="route",levelreq=71},
+items={{35627},{37703}},
+maps={"Dragonblight"},
 },[[
 step
 Enter the cave |goto Dragonblight/0 74.61,23.24 < 10
@@ -340,8 +391,11 @@ collect Eternal Shadow##35627 |n |goto Dragonblight/0 75.06,20.80
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Water",{
-mopready=true,
 description="Eternal Water can be gathered from Dragonblight in Northrend.",
+mopready=true,
+meta={goldtype="route",levelreq=71},
+items={{35622},{37705}},
+maps={"Dragonblight"},
 },[[
 step
 kill Ice Revenant##26283+
@@ -351,10 +405,9 @@ collect Eternal Water##35622 |n |goto Dragonblight/0 67.43,52.76
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Knothide Leather",{
 mopready=true,
-condition_suggested=function() return skill('Skinning') >= 335 end,
-condition_valid=function() return skill('Skinning') >= 335 end,
-condition_valid_msg="Your Skinning skill must be at least 335 to gather Knothide Leather.",
-description="Knothide Leather can be gathered in Netherstorm.",
+meta={goldtype="route",skillreq={skinning=1},levelreq=67},
+items={21887},
+maps={"Netherstorm"},
 },[[
 step
 map Netherstorm/0
@@ -370,10 +423,9 @@ collect Knothide Leather##21887 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Thick Clefthoof Leather",{
 mopready=true,
-condition_suggested=function() return skill('Skinning') >= 310 end,
-condition_valid=function() return skill('Skinning') >= 310 end,
-condition_valid_msg="Your Skinning skill must be at least 335 to gather Thick Clefthoof Leather.",
-description="Thick Clefthoof Leather can be gathered in Nagrand.",
+meta={goldtype="route",skillreq={skinning=1},levelreq=64},
+items={25708},
+maps={"Nagrand"},
 },[[
 step
 map Nagrand/0
@@ -388,10 +440,9 @@ collect Thick Clefthoof Leather##25708 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Fel Hide",{
 mopready=true,
-condition_suggested=function() return skill('Skinning') >= 335 end,
-condition_valid=function() return skill('Skinning') >= 335 end,
-condition_valid_msg="Your Skinning skill must be at least 335 to gather Fel Hide.",
-description="Fel Hide can be gathered in Netherstorm.",
+meta={goldtype="route",skillreq={skinning=1},levelreq=67},
+items={25707},
+maps={"Netherstorm"},
 },[[
 step
 map Netherstorm/0
@@ -406,10 +457,9 @@ collect Fel Hide##25707 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Fel Scales",{
 mopready=true,
-condition_suggested=function() return skill('Skinning') >= 295 end,
-condition_valid=function() return skill('Skinning') >= 295 end,
-condition_valid_msg="Your Skinning skill must be at least 295 to gather Fel Scales.",
-description="Fel Scales can be gathered in Hellfire Peninsula.",
+meta={goldtype="route",skillreq={skinning=1},levelreq=58},
+items={25700},
+maps={"Hellfire Peninsula"},
 },[[
 step
 label "Begin_Farming_Fel_Scales"
@@ -446,10 +496,9 @@ collect Fel Scales##25700 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Nether Dragonscale",{
 mopready=true,
-condition_suggested=function() return skill('Skinning') >= 330 end,
-condition_valid=function() return skill('Skinning') >= 330 end,
-condition_valid_msg="Your Skinning skill must be at least 330 to gather Nether Dragonscales.",
-description="Nether Dragonscales can be gathered in Blade's Edge Mountains.",
+meta={goldtype="route",skillreq={skinning=1},levelreq=65},
+items={29548},
+maps={"Blade's Edge Mountains"},
 },[[
 step
 map Blade's Edge Mountains/0
@@ -469,10 +518,9 @@ collect Nether Dragonscale##29548 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Wind Scales",{
 mopready=true,
-condition_suggested=function() return skill('Skinning') >= 335 end,
-condition_valid=function() return skill('Skinning') >= 335 end,
-condition_valid_msg="Your Skinning skill must be at least 335 to gather Wind Scales.",
-description="Wind Scales can be gathered in Shadowmoon Valley.",
+meta={goldtype="route",skillreq={skinning=1},levelreq=67},
+items={29547},
+maps={"Shadowmoon Valley"},
 },[[
 step
 map Shadowmoon Valley/0
@@ -490,10 +538,9 @@ collect Wind Scales##29547 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Cobra Scales",{
 mopready=true,
-condition_suggested=function() return skill('Skinning') >= 345 end,
-condition_valid=function() return skill('Skinning') >= 345 end,
-condition_valid_msg="Your Skinning skill must be at least 345 to gather Cobra Scales.",
-description="Cobra Scales can be gathered in Nagrand.",
+meta={goldtype="route",skillreq={skinning=1},levelreq=64},
+items={29539},
+maps={"Nagrand"},
 },[[
 step
 label "Start_Farming_Cobra_Scales"
@@ -526,8 +573,11 @@ collect Cobra Scales##29539 |n
 '|goto Nagrand/0 18.01,38.64 < 30 |c |noway |next "Start_Farming_Cobra_Scales"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Blackened Dragonscale",{
-mopready=true,
 description="Blackened Dragonscale can be gathered from Twilight Highlands in Eastern Kingdoms.",
+mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=84},
+items={52979},
+maps={"Twilight Highlands"},
 },[[
 step
 Kill enemies around this area.
@@ -537,8 +587,11 @@ collect Blackened Dragonscale##52979 |n |goto Twilight Highlands/0 65.48,74.22
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Borean Leather",{
-mopready=true,
 description="Borean Leather can be gathered from Sholazar Basin.",
+mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=76},
+items={33568},
+maps={"Sholazar Basin"},
 },[[
 step
 map Sholazar Basin/0
@@ -551,8 +604,11 @@ collect Borean Leather##33568 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Nerubian Chitin",{
-mopready=true,
 description="Shal'dorei Silk can be gathered from Icecrown.",
+mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=77},
+items={38558},
+maps={"Icecrown"},
 },[[
 step
 map Icecrown/0
@@ -564,8 +620,11 @@ collect Nerubian Chitin##38558 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Savage Leather",{
-mopready=true,
 description="Savage Leather can be gathered from Twilight Highlands.",
+mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=84},
+items={52976},
+maps={"Twilight Highlands"},
 },[[
 step
 map Twilight Highlands/0
@@ -579,8 +638,11 @@ collect Savage Leather##52976 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Deepsea Scale",{
+description="Deepsea Scale can be gathered from King Crawlers in Feralas.",
 mopready=true,
-description="Deepsea Scale can be gathered from King Crawlers in Kalimdor.",
+meta={goldtype="route",skillreq={skinning=1},levelreq=35},
+items={52982},
+maps={"Feralas"},
 },[[
 step
 kill King Crawler##51714+
@@ -590,10 +652,9 @@ collect Deepsea Scale##52982 |n |goto Feralas/0 68.99,75.51
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Felweed",{
 mopready=true,
-description="Felweed can be gathered from Terokkar Forest.",
-condition_suggested=function() return skill('Herbalism') >= 300 end,
-condition_valid=function() return skill('Herbalism') >= 300 end,
-condition_valid_msg="Your Herbalism skill must be at least 300 to gather Felweed.",
+meta={goldtype="route",skillreq={herbalism=300},levelreq=62},
+items={22785},
+maps={"Terokkar Forest"},
 },[[
 step
 map Terokkar Forest/0
@@ -616,11 +677,11 @@ collect Felweed##22785 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Ancient Lichen",{
-mopready=true,
 description="Ancient Lichen can be gathered from mobs in Zangarmarsh or from various dungeons.",
-condition_suggested=function() return skill('Herbalism') >= 340 end,
-condition_valid=function() return skill('Herbalism') >= 340 end,
-condition_valid_msg="Your Herbalism skill must be at least 340 to gather Ancient Lichen.",
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=300},levelreq=60},
+items={22790},
+maps={"Zangarmarsh"},
 },[[
 step
 map Zangarmarsh/0
@@ -634,11 +695,11 @@ collect Ancient Lichen##22790 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Dreaming Glory",{
-mopready=true,
 description="Dreaming Glory can be gathered from Terokkar Forest.",
-condition_suggested=function() return skill('Herbalism') >= 315 end,
-condition_valid=function() return skill('Herbalism') >= 315 end,
-condition_valid_msg="Your Herbalism skill must be at least 315 to gather Dreaming Glory.",
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=300},levelreq=62},
+items={22786},
+maps={"Terokkar Forest"},
 },[[
 step
 map Terokkar Forest/0
@@ -661,11 +722,11 @@ collect Dreaming Glory##22786 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Fel Lotus",{
-mopready=true,
 description="Fel Lotus can be gathered from Nightmare Vine in Shadowmoon Valley or any other Outland herb.",
-condition_suggested=function() return skill('Herbalism') >= 300 end,
-condition_valid=function() return skill('Herbalism') >= 300 end,
-condition_valid_msg="Your Herbalism skill must be at least 300 to gather Fel Lotus.",
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=300},levelreq=67},
+items={22794},
+maps={"Shadowmoon Valley"},
 },[[
 step
 map Shadowmoon Valley/0
@@ -685,11 +746,11 @@ collect Fel Lotus##22794 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Mana Thistle",{
-mopready=true,
 description="Mana Thistle can be gathered from Terokkar Forest and Shadowmoon Valley.",
-condition_suggested=function() return skill('Herbalism') >= 375 end,
-condition_valid=function() return skill('Herbalism') >= 375 end,
-condition_valid_msg="Your Herbalism skill must be at least 375 to gather Mana Thistle.",
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=300},levelreq=62},
+items={22793},
+maps={"Terokkar Forest"},
 },[[
 step
 label "Start_Path"
@@ -724,11 +785,11 @@ collect Mana Thistle##22793 |n
 Farm Along the Path |goto Shadowmoon Valley/0 74.60,86.41 < 30 |noway |c |next "Start_Path"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Netherbloom",{
-mopready=true,
 description="Netherbloom can be gathered from Netherstorm.",
-condition_suggested=function() return skill('Herbalism') >= 350 end,
-condition_valid=function() return skill('Herbalism') >= 350 end,
-condition_valid_msg="Your Herbalism skill must be at least 350 to gather Netherbloom.",
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=300},levelreq=67},
+items={22791},
+maps={"Netherstorm"},
 },[[
 step
 map Netherstorm/0
@@ -764,11 +825,11 @@ collect Netherbloom##22791 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Nightmare Vine",{
-mopready=true,
 description="Nightmare Vine can be gathered from Shadowmoon Valley.",
-condition_suggested=function() return skill('Herbalism') >= 365 end,
-condition_valid=function() return skill('Herbalism') >= 365 end,
-condition_valid_msg="Your Herbalism skill must be at least 365 to gather Nightmare Vine.",
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=300},levelreq=67},
+items={22792},
+maps={"Shadowmoon Valley"},
 },[[
 step
 map Shadowmoon Valley/0
@@ -787,11 +848,11 @@ collect Nightmare Vine##22792 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Ragveil",{
-mopready=true,
 description="Ragveil can be gathered from Zangarmarsh.",
-condition_suggested=function() return skill('Herbalism') >= 325 end,
-condition_valid=function() return skill('Herbalism') >= 325 end,
-condition_valid_msg="Your Herbalism skill must be at least 325 to gather Ragveil.",
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=300},levelreq=60},
+items={22787},
+maps={"Zangarmarsh"},
 },[[
 step
 map Zangarmarsh/0
@@ -820,11 +881,11 @@ collect Ragveil##22787 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Terocone",{
-mopready=true,
 description="Terocone can be gathered from Terokkar Forest.",
-condition_suggested=function() return skill('Herbalism') >= 325 end,
-condition_valid=function() return skill('Herbalism') >= 325 end,
-condition_valid_msg="Your Herbalism skill must be at least 325 to gather Terocone.",
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=300},levelreq=62},
+items={22789},
+maps={"Terokkar Forest"},
 },[[
 step
 map Terokkar Forest/0
@@ -848,6 +909,10 @@ collect Terocone##22789 |n
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Frost Lotus",{
 description="Frost Lotus can be gathered from The Storm Peaks.",
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=375},levelreq=77},
+items={36906},
+maps={"The Storm Peaks"},
 },[[
 step
 map The Storm Peaks/0
@@ -879,8 +944,11 @@ collect Frost Lotus##36906 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Goldclover",{
-mopready=true,
 description="Goldclover can be gathered from Borean Tundra.",
+meta={goldtype="route",skillreq={herbalism=375},levelreq=68},
+items={36901},
+maps={"Borean Tundra"},
+mopready=true,
 },[[
 step
 map Borean Tundra/0
@@ -894,8 +962,11 @@ collect Goldclover##36901 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Icethorn",{
-mopready=true,
 description="Icethorn can be gathered from The Storm Peaks.",
+meta={goldtype="route",skillreq={herbalism=375},levelreq=77},
+items={36906},
+maps={"The Storm Peaks"},
+mopready=true,
 },[[
 step
 map The Storm Peaks/0
@@ -926,8 +997,11 @@ collect Icethorn##36906 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Lichbloom",{
-mopready=true,
 description="Lichbloom can be gathered from The Storm Peaks.",
+meta={goldtype="route",skillreq={herbalism=375},levelreq=77},
+items={36905},
+maps={"The Storm Peaks"},
+mopready=true,
 },[[
 step
 map The Storm Peaks/0
@@ -958,8 +1032,11 @@ collect Lichbloom##36905 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Talandra's Rose",{
-mopready=true,
 description="Talandra's Rose can be gathered from Zul'Drak.",
+meta={goldtype="route",skillreq={herbalism=375},levelreq=74},
+items={36907},
+maps={"Zul'Drak"},
+mopready=true,
 },[[
 step
 map Zul'Drak/0
@@ -986,8 +1063,11 @@ collect Talandra's Rose##36907 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Adder's Tongue",{
-mopready=true,
 description="Adder's Tongue can be gathered from Sholazar Basin.",
+meta={goldtype="route",skillreq={herbalism=375},levelreq=76},
+items={36903},
+maps={"Sholazar Basin"},
+mopready=true,
 },[[
 step
 map Sholazar Basin/0
@@ -1008,8 +1088,11 @@ collect Adder's Tongue##36903 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Tiger Lily",{
-mopready=true,
 description="Tiger Lily can be gathered from Sholazar Basin.",
+meta={goldtype="route",skillreq={herbalism=375},levelreq=76},
+items={36904},
+maps={"Sholazar Basin"},
+mopready=true,
 },[[
 step
 map Sholazar Basin/0
@@ -1025,8 +1108,11 @@ collect Tiger Lily##36904 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Azshara's Veil",{
-mopready=true,
 description="Azshara's Veil can be gathered from the Shimmering Expanse.",
+meta={goldtype="route",skillreq={herbalism=425},levelreq=80},
+items={52985},
+maps={"Shimmering Expanse"},
+mopready=true,
 },[[
 step
 map Shimmering Expanse/0
@@ -1049,13 +1135,12 @@ collect Azshara's Veil##52985 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Azshara's Veil",{
-mopready=true,
 description="Azshara's Veil can be gathered from the Shimmering Expanse.",
+meta={goldtype="route",skillreq={herbalism=425},levelreq=80},
+items={52985},
+maps={"Shimmering Expanse"},
+mopready=true,
 },[[
-step
-You need 425 Herbalism to gather Azshara's Veil.
-Click Here To Level Your Herbalism |confirm
-|only if skill("Herbalism") < 425
 step
 map Shimmering Expanse/0
 path follow smart; loop on; ants curved
@@ -1077,13 +1162,12 @@ collect Azshara's Veil##52985 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Cinderbloom",{
-mopready=true,
 description="Cinderbloom can be gathered from Mount Hyjal.",
+meta={goldtype="route",skillreq={herbalism=425},levelreq=80},
+items={52983},
+maps={"Mount Hyjal"},
+mopready=true,
 },[[
-step
-You need 425 Herbalism to gather Cinderbloom.
-Click Here To Level Your Herbalism |confirm
-|only if skill("Herbalism") < 425
 step
 map Mount Hyjal/0
 path follow smart; loop on; ants curved; dist 60
@@ -1102,13 +1186,12 @@ collect Cinderbloom##52983 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Heartblossom",{
-mopready=true,
 description="Heartblossom can be gathered from Deepholm.",
+meta={goldtype="route",skillreq={herbalism=425},levelreq=82},
+items={52986},
+maps={"Deepholm"},
+mopready=true,
 },[[
-step
-You need 475 Herbalism to gather Heartblossom.
-Click Here To Level Your Herbalism |confirm
-|only if skill("Herbalism") < 475
 step
 map Deepholm/0
 path follow smart; loop on; ants curved; dist 60
@@ -1124,13 +1207,12 @@ collect Heartblossom##52986 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Stormvine",{
-mopready=true,
 description="Stormvine can be gathered from the Shimmering Expanse.",
+meta={goldtype="route",skillreq={herbalism=425},levelreq=80},
+items={52984},
+maps={"Shimmering Expanse"},
+mopready=true,
 },[[
-step
-You need 425 Herbalism to gather Stormvine.
-Click Here To Level Your Herbalism |confirm
-|only if skill("Herbalism") < 425
 step
 map Shimmering Expanse/0
 path follow smart; loop on; ants curved
@@ -1152,13 +1234,12 @@ collect Stormvine##52984 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Twilight Jasmine",{
-mopready=true,
 description="Twilight Jasmine can be gathered from Twilight Highlands.",
+meta={goldtype="route",skillreq={herbalism=425},levelreq=84},
+items={52987},
+maps={"Twilight Highlands"},
+mopready=true,
 },[[
-step
-You need 525 Herbalism to gather Twilight Jasmine.
-Click Here To Level Your Herbalism |confirm
-|only if skill("Herbalism") < 525
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants curved
@@ -1190,13 +1271,12 @@ collect Twilight Jasmine##52987 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Whiptail",{
-mopready=true,
 description="Whiptail can be gathered from Uldum.",
+meta={goldtype="route",skillreq={herbalism=425},levelreq=83},
+items={52988},
+maps={"Uldum"},
+mopready=true,
 },[[
-step
-You need 500 Herbalism to gather Whiptail.
-Click Here To Level Your Herbalism |confirm
-|only if skill("Herbalism") < 500
 step
 map Uldum/0
 path follow smart; loop on; ants curved; dist 60
@@ -1209,8 +1289,10 @@ collect Whiptail##52988 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Arcane Dust",{
-mopready=true,
 description="Disenchant items to gather Enchanting materials.",
+meta={goldtype="route",skillreq={enchanting=1},levelreq=1},
+items={22445},
+mopready=true,
 },[[
 step
 Disenchant item level 60 or higher green armor and weapons
@@ -1220,8 +1302,10 @@ collect Arcane Dust##22445 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Planar Essence",{
-mopready=true,
 description="Disenchant items to gather Enchanting materials.",
+meta={goldtype="route",skillreq={enchanting=1},levelreq=1},
+items={22447},
+mopready=true,
 },[[
 step
 Disenchant item level 60 or higher green armor and weapons
@@ -1233,8 +1317,10 @@ collect Lesser Planar Essence##22447 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Planar Essence",{
-mopready=true,
 description="Disenchant items to gather Enchanting materials.",
+meta={goldtype="route",skillreq={enchanting=1},levelreq=1},
+items={22446},
+mopready=true,
 },[[
 step
 Disenchant item level 60 or higher green armor and weapons
@@ -1246,8 +1332,10 @@ collect Greater Planar Essence##22446 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Large Prismatic Shard",{
-mopready=true,
 description="Disenchant items to gather Enchanting materials.",
+meta={goldtype="route",skillreq={enchanting=1},levelreq=1},
+items={22449},
+mopready=true,
 },[[
 step
 Disenchant item level 67 or higher blue armor and weapons
@@ -1256,8 +1344,10 @@ collect Large Prismatic Shard##22449 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Small Prismatic Shard",{
-mopready=true,
 description="Disenchant items to gather Enchanting materials.",
+meta={goldtype="route",skillreq={enchanting=1},levelreq=1},
+items={22448},
+mopready=true,
 },[[
 step
 Disenchant item level 58 or higher blue armor and weapons
@@ -1268,8 +1358,10 @@ collect Small Prismatic Shard##22448 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Hypnotic Dust",{
-mopready=true,
 description="Hypnotic Dust can be gathered from Uncommon item level 272 to 333 items.",
+meta={goldtype="route",skillreq={enchanting=1},levelreq=1},
+items={52555},
+mopready=true,
 },[[
 step
 You can disenchant item level 272-333 Uncommon Items to gain Hypnotic Dust.
@@ -1278,8 +1370,10 @@ collect Hypnotic Dust##52555 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Celestial Essence",{
-mopready=true,
 description="Lesser Celestial Essence can be gathered from Uncommon item level 272 to 333 items.",
+meta={goldtype="route",skillreq={enchanting=1},levelreq=1},
+items={52718},
+mopready=true,
 },[[
 step
 You can disenchant item level 272-333 Uncommon Items to gain Lesser Celestial Essence.
@@ -1288,8 +1382,10 @@ collect Lesser Celestial Essence##52718 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Celestial Essence",{
-mopready=true,
 description="Greater Celestial Essence can be gathered from Uncommon item level 300 to 333 items.",
+meta={goldtype="route",skillreq={enchanting=1},levelreq=1},
+items={52719},
+mopready=true,
 },[[
 step
 You can disenchant item level 300-333 Uncommon Items to gain Greater Celestial Essence.
@@ -1298,8 +1394,10 @@ collect Greater Celestial Essence##52719 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Maelstrom Crystal",{
-mopready=true,
 description="Maelstrom Crystal can be gathered from Epic item level 318 to 333 items.",
+meta={goldtype="route",skillreq={enchanting=1},levelreq=1},
+items={52722},
+mopready=true,
 },[[
 step
 You can disenchant item level 318-333 Epic Items to gain Maelstrom Crystal.
@@ -1307,8 +1405,10 @@ collect Maelstrom Crystal##52722 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Heavenly Shard",{
-mopready=true,
 description="Heavenly Shard can be gathered from Rare item level 318 to 333 items.",
+meta={goldtype="route",skillreq={enchanting=1},levelreq=1},
+items={52722},
+mopready=true,
 },[[
 step
 You can disenchant item level 318-333 Rare Items to gain Heavenly Shard.
@@ -1316,13 +1416,11 @@ collect Heavenly Shard##52722 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Inscription\\Farming Guides\\Ashen Pigment",{
-mopready=true,
 description="Whiptail can be gathered from Uldum.",
+meta={goldtype="route",skillreq={inscription=1},levelreq=1},
+items={61979},
+mopready=true,
 },[[
-step
-You need 425 Inscription to gather Ashen Pigment.
-Click Here To Level Your Inscription |confirm
-|only if skill("Inscription") < 425
 step
 Mill 5 Azshara's Veil, 5 Cinderbloom, 5 Heartblossom, 5 Stormvine, 5 Twilight Jasmine, or 5 Whiptail for Pigments.
 |tip Twilight Jasmine and Whiptail give the most Pigments, but are often more expensive.
@@ -1331,13 +1429,11 @@ collect Ashen Pigment##61979 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Inscription\\Farming Guides\\Burning Embers",{
-mopready=true,
 description="Whiptail can be gathered from Uldum.",
+meta={goldtype="route",skillreq={inscription=1},levelreq=1},
+items={61980},
+mopready=true,
 },[[
-step
-You need 425 Inscription to gather Burning Embers.
-Click Here To Level Your Inscription |confirm
-|only if skill("Inscription") < 425
 step
 Mill 5 Azshara's Veil, 5 Cinderbloom, 5 Heartblossom, 5 Stormvine, 5 Twilight Jasmine, or 5 Whiptail for Burning Embers.
 |tip Twilight Jasmine and Whiptail give the most Burning Embers, but are often more expensive.
@@ -1346,11 +1442,11 @@ collect Burning Embers##61980 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Adamantite Ore",{
-mopready=true,
-condition_suggested=function() return skill('Mining') >= 325 end,
-condition_valid=function() return skill('Mining') >= 325 end,
-condition_valid_msg="Your Mining skill must be at least 325 to gather Adamantite Ore.",
 description="Adamantite Ore can be gathered in Nagrand.",
+meta={goldtype="route",skillreq={mining=1},levelreq=64},
+items={23425},
+maps={"Nagrand"},
+mopready=true,
 },[[
 step
 map Nagrand/0
@@ -1378,11 +1474,11 @@ collect Adamantite Ore##23425 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Fel Iron Ore",{
-mopready=true,
-condition_suggested=function() return skill('Mining') >= 300 end,
-condition_valid=function() return skill('Mining') >= 300 end,
-condition_valid_msg="Your Mining skill must be at least 300 to gather Fel Iron Ore.",
 description="Fel Iron Ore can be gathered in Hellfire Penninsula.",
+meta={goldtype="route",skillreq={mining=1},levelreq=58},
+items={23424},
+maps={"Hellfire Peninsula"},
+mopready=true,
 },[[
 step
 map Hellfire Peninsula/0
@@ -1404,11 +1500,11 @@ collect Fel Iron Ore##23424 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Khorium Ore",{
-mopready=true,
-condition_suggested=function() return skill('Mining') >= 375 end,
-condition_valid=function() return skill('Mining') >= 375 end,
-condition_valid_msg="Your Mining skill must be at least 375 to gather Khorium Ore.",
 description="Khorium Ore can be gathered in Nagrand.",
+meta={goldtype="route",skillreq={mining=1},levelreq=64},
+items={23426},
+maps={"Nagrand"},
+mopready=true,
 },[[
 step
 map Nagrand/0
@@ -1434,8 +1530,11 @@ collect Khorium Ore##23426 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Cobalt Ore",{
-mopready=true,
 description="Cobalt can be gathered from Howling Fjord.",
+meta={goldtype="route",skillreq={mining=1},levelreq=68},
+items={36909},
+maps={"Howling Fjord"},
+mopready=true,
 },[[
 step
 map Howling Fjord/0
@@ -1471,8 +1570,11 @@ collect Cobalt Ore##36909 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Saronite Ore",{
-mopready=true,
 description="Saronite can be gathered from Sholazar Basin.",
+meta={goldtype="route",skillreq={mining=1},levelreq=76},
+items={36912},
+maps={"Sholazar Basin"},
+mopready=true,
 },[[
 step
 map Sholazar Basin/0
@@ -1504,8 +1606,11 @@ collect Saronite Ore##36912 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Titanium Ore",{
-mopready=true,
 description="Titanium can be gathered from Icecrown.",
+meta={goldtype="route",skillreq={mining=1},levelreq=77},
+items={36910},
+maps={"Icecrown"},
+mopready=true,
 },[[
 step
 map Icecrown/0
@@ -1530,13 +1635,12 @@ collect Titanium Ore##36910 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Elementium (Twilight Highlands)",{
-mopready=true,
 description="Elementium can be gathered from Twilight Highlands. This route is less effecient than Uldum but often has less competition.",
+meta={goldtype="route",skillreq={mining=1},levelreq=84},
+items={52185},
+maps={"Twilight Highlands"},
+mopready=true,
 },[[
-step
-You need 475 Mining to gather Elementium.
-Click Here To Level Your Mining |confirm
-|only if skill("Mining") < 475
 step
 map Twilight Highlands/0
 path follow smart; loop on; ants curved
@@ -1562,13 +1666,12 @@ collect Elementium Ore##52185 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Elementium (Uldum)",{
-mopready=true,
 description="Elementium can be gathered from Uldum. This has the most potential Elementium per hour but is often more contested.",
+meta={goldtype="route",skillreq={mining=1},levelreq=83},
+items={52185},
+maps={"Uldum"},
+mopready=true,
 },[[
-step
-You need 475 Mining to gather Elementium.
-Click Here To Level Your Mining |confirm
-|only if skill("Mining") < 475
 step
 map Uldum/0
 path follow smart; loop on; ants curved
@@ -1600,13 +1703,12 @@ collect Elementium Ore##52185 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Obsidium",{
-mopready=true,
 description="Obsidium can be gathered from Mount Hyjal.",
+meta={goldtype="route",skillreq={mining=1},levelreq=80},
+items={53038},
+maps={"Mount Hyjal"},
+mopready=true,
 },[[
-step
-You need 450 Mining to gather Obsidium.
-Click Here To Level Your Mining |confirm |loadguide "Profession Guides\\Mining\\Mining (1-525)"
-|only if skill("Mining") < 450
 step
 map Mount Hyjal/0
 path follow smart; loop on; ants curved; dist 60
@@ -1626,13 +1728,12 @@ collect Obsidium Ore##53038 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Pyrite",{
-mopready=true,
 description="Pyrite can be gathered from Uldum.",
+meta={goldtype="route",skillreq={mining=1},levelreq=83},
+items={52183},
+maps={"Uldum"},
+mopready=true,
 },[[
-step
-You need 525 Mining to gather Pyrite.
-Click Here To Level Your Mining |confirm
-|only if skill("Mining") < 525
 step
 map Uldum/0
 path follow smart; loop on; ants curved
@@ -1665,8 +1766,11 @@ collect Pyrite Ore##52183 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Shadow Pearl",{
+description="Shadow Pearls can be gathered in Zangarmarsh.",
+meta={goldtype="route",levelreq=60},
+items={24479},
+maps={"Zangarmarsh"},
 mopready=true,
-description="Shadow Pearls can be gathered in Shadowmoon Valley.",
 },[[
 step
 Kill Bloodscale enemies around this area
@@ -1680,189 +1784,179 @@ You can find more around: |notinsticky
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Carnelian",{
-mopready=true,
 description="Carnelian can be prospected from ore.",
+meta={goldtype="route",skillreq={jewelcrafting=425},levelreq=1},
+items={61980},
+mopready=true,
 },[[
-step
-You need 450 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
-Click Here To Level Your Jewelcrafting |confirm
-|only if skill("Jewelcrafting") < 450
 step
 Prospect 5 Obsidium Ore or 5 Elementium Ore for a chance at Carnelian.
 |tip Elementium Ore gives the most Rare gems, but is often more expensive.
+|tip You need 425 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
 cast Prospecting##31252
 collect Carnelian##61980 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Nightstone",{
-mopready=true,
 description="Nightstone can be prospected from ore.",
+meta={goldtype="route",skillreq={jewelcrafting=425},levelreq=1},
+items={52180},
+mopready=true,
 },[[
-step
-You need 450 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
-Click Here To Level Your Jewelcrafting |confirm
-|only if skill("Jewelcrafting") < 450
 step
 Prospect 5 Obsidium Ore or 5 Elementium Ore for a chance at Nightstone.
 |tip Elementium Ore gives the most Rare gems, but is often more expensive.
+|tip You need 425 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
 cast Prospecting##31252
 collect Nightstone##52180 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Hessonite",{
-mopready=true,
 description="Hessonite can be prospected from ore.",
+meta={goldtype="route",skillreq={jewelcrafting=425},levelreq=1},
+items={52181},
+mopready=true,
 },[[
-step
-You need 450 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
-Click Here To Level Your Jewelcrafting |confirm
-|only if skill("Jewelcrafting") < 450
 step
 Prospect 5 Obsidium Ore or 5 Elementium Ore for a chance at Hessonite.
 |tip Elementium Ore gives the most Rare gems, but is often more expensive.
+|tip You need 425 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
 cast Prospecting##31252
 collect Hessonite##52181 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Zephyrite",{
-mopready=true,
 description="Zephyrite can be prospected from ore.",
+meta={goldtype="route",skillreq={jewelcrafting=425},levelreq=1},
+items={52178},
+mopready=true,
 },[[
-step
-You need 450 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
-Click Here To Level Your Jewelcrafting |confirm
-|only if skill("Jewelcrafting") < 450
 step
 Prospect 5 Obsidium Ore or 5 Elementium Ore for Zephyrite.
 |tip Elementium Ore gives the most Rare gems, but is often more expensive.
+|tip You need 425 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
 cast Prospecting##31252
 collect Zephyrite##52178 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Alicite",{
-mopready=true,
 description="Zephyrite can be prospected from ore.",
+meta={goldtype="route",skillreq={jewelcrafting=425},levelreq=1},
+items={52179},
+mopready=true,
 },[[
-step
-You need 450 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
-Click Here To Level Your Jewelcrafting |confirm
-|only if skill("Jewelcrafting") < 450
 step
 Prospect 5 Obsidium Ore or 5 Elementium Ore for Alicite.
 |tip Elementium Ore gives the most Rare gems, but is often more expensive.
+|tip You need 425 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
 cast Prospecting##31252
 collect Alicite##52179 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Jasper",{
-mopready=true,
 description="Jasper can be prospected from ore.",
+meta={goldtype="route",skillreq={jewelcrafting=425},levelreq=1},
+items={52182},
+mopready=true,
 },[[
-step
-You need 450 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
-Click Here To Level Your Jewelcrafting |confirm
-|only if skill("Jewelcrafting") < 450
 step
 Prospect 5 Obsidium Ore or 5 Elementium Ore for Jasper.
 |tip Elementium Ore gives the most Rare gems, but is often more expensive.
+|tip You need 425 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
 cast Prospecting##31252
 collect Jasper##52182 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Inferno Ruby",{
-mopready=true,
 description="Inferno Ruby can be prospected from ore.",
+meta={goldtype="route",skillreq={jewelcrafting=425},levelreq=1},
+items={52190},
+mopready=true,
 },[[
-step
-You need 450 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
-Click Here To Level Your Jewelcrafting |confirm
-|only if skill("Jewelcrafting") < 450
 step
 Prospect 5 Obsidium Ore or 5 Elementium Ore for Inferno Ruby.
 |tip Elementium Ore gives the most Rare gems, but is often more expensive.
+|tip You need 425 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
 cast Prospecting##31252
 collect Inferno Ruby##52190 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Dream Emerald",{
-mopready=true,
 description="Dream Emerald can be prospected from ore.",
+meta={goldtype="route",skillreq={jewelcrafting=425},levelreq=1},
+items={52192},
+mopready=true,
 },[[
-step
-You need 450 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
-Click Here To Level Your Jewelcrafting |confirm
-|only if skill("Jewelcrafting") < 450
 step
 Prospect 5 Obsidium Ore or 5 Elementium Ore for Dream Emerald.
 |tip Elementium Ore gives the most Rare gems, but is often more expensive.
+|tip You need 425 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
 cast Prospecting##31252
 collect Dream Emerald##52192 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Demonseye",{
-mopready=true,
 description="Demonseye can be prospected from ore.",
+meta={goldtype="route",skillreq={jewelcrafting=425},levelreq=1},
+items={52194},
+mopready=true,
 },[[
-step
-You need 450 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
-Click Here To Level Your Jewelcrafting |confirm
-|only if skill("Jewelcrafting") < 450
 step
 Prospect 5 Obsidium Ore or 5 Elementium Ore for Demonseye.
 |tip Elementium Ore gives the most Rare gems, but is often more expensive.
+|tip You need 425 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
 cast Prospecting##31252
 collect Demonseye##52194 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Amberjewel",{
-mopready=true,
 description="Amberjewel can be prospected from ore.",
+meta={goldtype="route",skillreq={jewelcrafting=425},levelreq=1},
+items={52195},
+mopready=true,
 },[[
-step
-You need 450 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
-Click Here To Level Your Jewelcrafting |confirm
-|only if skill("Jewelcrafting") < 450
 step
 Prospect 5 Obsidium Ore or 5 Elementium Ore for Amberjewel.
 |tip Elementium Ore gives the most Rare gems, but is often more expensive.
+|tip You need 425 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
 cast Prospecting##31252
 collect Amberjewel##52195 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Ocean Sapphire",{
-mopready=true,
 description="Ocean Sapphire can be prospected from ore.",
+meta={goldtype="route",skillreq={jewelcrafting=425},levelreq=1},
+items={52191},
+mopready=true,
 },[[
-step
-You need 450 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
-Click Here To Level Your Jewelcrafting |confirm
-|only if skill("Jewelcrafting") < 450
 step
 Prospect 5 Obsidium Ore or 5 Elementium Ore for Ocean Sapphire.
 |tip Elementium Ore gives the most Rare gems, but is often more expensive.
+|tip You need 425 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
 cast Prospecting##31252
 collect Ocean Sapphire##52191 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Ember Topaz",{
-mopready=true,
 description="Ember Topaz can be prospected from ore.",
+meta={goldtype="route",skillreq={jewelcrafting=425},levelreq=1},
+items={52191},
+mopready=true,
 },[[
-step
-You need 450 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
-Click Here To Level Your Jewelcrafting |confirm
-|only if skill("Jewelcrafting") < 450
 step
 Prospect 5 Obsidium Ore or 5 Elementium Ore for Ember Topaz.
 |tip Elementium Ore gives the most Rare gems, but is often more expensive.
+|tip You need 425 Jewelcrafting to prospect Obsidium Ore, and 475 to prospect Elementium.
 cast Prospecting##31252
 collect Ember Topaz##52191 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Jewelcrafting\\Farming Guides\\Jaggal Pearl",{
+description="Jaggal Pearls can be farmed in Zangarmarsh.",
+meta={goldtype="route",levelreq=60},
+items={24478},
+maps={"Zangarmarsh"},
 mopready=true,
-condition_suggested=function() return skill('Jewelcrafting') >= 325 end,
-description="Jaggal Pearls can be farmed in Nagrand.",
 },[[
 step
 Kill Bloodscale enemies around this area
@@ -1874,22 +1968,26 @@ collect Jaggal Pearl##24478 |goto Zangarmarsh/0 26.92,39.35 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Barbed Gill Trout",{
-mopready=true,
-condition_suggested=function() return skill('Fishing') >= 305 end,
-condition_valid=function() return skill('Fishing') >= 305 end,
-condition_valid_msg="Your Fishing skill must be at least 305 to fish Barbed Gill Trout.",
 description="Barbed Gill Trout can be fished in Zangarmarsh.",
+meta={goldtype="route",skillreq={fishing=300},levelreq=60},
+items={27422},
+maps={"Zangarmarsh"},
+mopready=true,
 },[[
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256
-|tip A Fishing Pole can be purchased near most Fishing profession trainers.
-'|equipped Strong Fishing Pole##6365 |or
-'|equipped Blump Family Fishing Pole##12225 |or
-'|equipped Arcanite Fishing Pole##19970 |or
-'|equipped Darkwood Fishing Pole##6366 |or
-'|equipped Big Iron Fishing Pole##6367 |or
-'|equipped Nat Pagle's Extreme Angler FC-5000##19022 |or
-'|equipped Seth's Graphite Fishing Pole##25978 |or
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 cast Fishing##33095
 |tip Fish in the water.
@@ -1899,22 +1997,26 @@ collect Barbed Gill Trout##27422 |goto Zangarmarsh/0 78.95,71.48 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Spotted Feltail",{
-mopready=true,
-condition_suggested=function() return skill('Fishing') >= 305 end,
-condition_valid=function() return skill('Fishing') >= 305 end,
-condition_valid_msg="Your Fishing skill must be at least 305 to fish Spotted Feltail.",
 description="Spotted Feltail can be fished in Zangarmarsh.",
+meta={goldtype="route",skillreq={fishing=300},levelreq=60},
+items={27425},
+maps={"Zangarmarsh"},
+mopready=true,
 },[[
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256
-|tip A Fishing Pole can be purchased near most Fishing profession trainers.
-'|equipped Strong Fishing Pole##6365 |or
-'|equipped Blump Family Fishing Pole##12225 |or
-'|equipped Arcanite Fishing Pole##19970 |or
-'|equipped Darkwood Fishing Pole##6366 |or
-'|equipped Big Iron Fishing Pole##6367 |or
-'|equipped Nat Pagle's Extreme Angler FC-5000##19022 |or
-'|equipped Seth's Graphite Fishing Pole##25978 |or
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 cast Fishing##33095
 |tip Fish in the water.
@@ -1924,22 +2026,26 @@ collect Spotted Feltail##27425 |goto Zangarmarsh/0 78.95,71.48 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Zangarian Sporefish",{
+description="Zangarian Sporefish can be fished in Zangarmarsh.",
+meta={goldtype="route",skillreq={fishing=300},levelreq=60},
+items={27429},
+maps={"Zangarmarsh"},
 mopready=true,
-condition_suggested=function() return skill('Fishing') >= 305 end,
-condition_valid=function() return skill('Fishing') >= 305 end,
-condition_valid_msg="Your Fishing skill must be at least 305 to fish Zangarian Sporefish.",
-description="Zangarian Sporefish can be fished in Nagrand.",
 },[[
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256
-|tip A Fishing Pole can be purchased near most Fishing profession trainers.
-'|equipped Strong Fishing Pole##6365 |or
-'|equipped Blump Family Fishing Pole##12225 |or
-'|equipped Arcanite Fishing Pole##19970 |or
-'|equipped Darkwood Fishing Pole##6366 |or
-'|equipped Big Iron Fishing Pole##6367 |or
-'|equipped Nat Pagle's Extreme Angler FC-5000##19022 |or
-'|equipped Seth's Graphite Fishing Pole##25978 |or
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 cast Fishing##33095
 |tip Fish in the water.
@@ -1949,22 +2055,26 @@ collect Zangarian Sporefish##27429 |goto Zangarmarsh/0 78.95,71.48 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Furious Crawdad",{
-mopready=true,
-condition_suggested=function() return skill('Fishing') >= 430 end,
-condition_valid=function() return skill('Fishing') >= 430 end,
-condition_valid_msg="Your Fishing skill must be at least 430 to fish Furious Crawdad.",
 description="Furious Crawdad can be fished in Terokkar Forest from Highland Mixed Schools.",
+meta={goldtype="route",skillreq={fishing=300},levelreq=62},
+items={27439},
+maps={"Terokkar Forest"},
+mopready=true,
 },[[
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256
-|tip A Fishing Pole can be purchased near most Fishing profession trainers.
-'|equipped Strong Fishing Pole##6365 |or
-'|equipped Blump Family Fishing Pole##12225 |or
-'|equipped Arcanite Fishing Pole##19970 |or
-'|equipped Darkwood Fishing Pole##6366 |or
-'|equipped Big Iron Fishing Pole##6367 |or
-'|equipped Nat Pagle's Extreme Angler FC-5000##19022 |or
-'|equipped Seth's Graphite Fishing Pole##25978 |or
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 label "Start_Farming_Furious_Crawdad"
 map Terokkar Forest/0
@@ -2000,22 +2110,26 @@ collect Furious Crawdad##27439 |n
 '|goto Terokkar Forest/0 45.14,40.51 < 30 |c |noway |next "Start_Farming_Furious_Crawdad"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Bloodfin Catfish",{
-mopready=true,
-condition_suggested=function() return skill('Fishing') >= 300 end,
-condition_valid=function() return skill('Fishing') >= 300 end,
-condition_valid_msg="Your Fishing skill must be at least 300 to fish Bloodfin Catfish.",
 description="Bloodfin Catfish can be fished in Deadwind Pass.",
+meta={goldtype="route",skillreq={fishing=1},levelreq=55},
+items={33823},
+maps={"Deadwind Pass"},
+mopready=true,
 },[[
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256
-|tip A Fishing Pole can be purchased near most Fishing profession trainers.
-'|equipped Strong Fishing Pole##6365 |or
-'|equipped Blump Family Fishing Pole##12225 |or
-'|equipped Arcanite Fishing Pole##19970 |or
-'|equipped Darkwood Fishing Pole##6366 |or
-'|equipped Big Iron Fishing Pole##6367 |or
-'|equipped Nat Pagle's Extreme Angler FC-5000##19022 |or
-'|equipped Seth's Graphite Fishing Pole##25978 |or
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 cast Fishing##33095
 |tip Fish in the water.
@@ -2025,22 +2139,26 @@ collect Bloodfin Catfish##33823 |goto Deadwind Pass/0 52.79,73.82 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Crescent-Tail Skullfish",{
-mopready=true,
-condition_suggested=function() return skill('Fishing') >= 300 end,
-condition_valid=function() return skill('Fishing') >= 300 end,
-condition_valid_msg="Your Fishing skill must be at least 300 to fish Crescent-Tail Skullfish.",
 description="Crescent-Tail Skullfish can be fished in Deadwind Pass.",
+meta={goldtype="route",skillreq={fishing=1},levelreq=55},
+items={33824},
+maps={"Deadwind Pass"},
+mopready=true,
 },[[
 step
-Equip a Fishing Pole |equipped Fishing Pole##6256
-|tip A Fishing Pole can be purchased near most Fishing profession trainers.
-'|equipped Strong Fishing Pole##6365 |or
-'|equipped Blump Family Fishing Pole##12225 |or
-'|equipped Arcanite Fishing Pole##19970 |or
-'|equipped Darkwood Fishing Pole##6366 |or
-'|equipped Big Iron Fishing Pole##6367 |or
-'|equipped Nat Pagle's Extreme Angler FC-5000##19022 |or
-'|equipped Seth's Graphite Fishing Pole##25978 |or
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 cast Fishing##33095
 |tip Fish in the water.
@@ -2050,9 +2168,26 @@ collect Crescent-Tail Skullfish##33824 |goto Deadwind Pass/0 52.79,73.82 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Albino Cavefish",{
-mopready=true,
 description="Albino Cavefish can be fished from Deepholm.",
+meta={goldtype="route",skillreq={fishing=400},levelreq=82},
+items={53065},
+maps={"Deepholm"},
+mopready=true,
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 label "albino_route_1"
 Fish in any Albino Cavefish Schools you find |cast Fishing##131474
@@ -2079,27 +2214,78 @@ collect Albino Cavefish##53065 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Algaefin Rockfish",{
-mopready=true,
 description="Algaefin Rockfish can be fished from open coastal water.",
+meta={goldtype="route",skillreq={fishing=400},levelreq=84},
+items={53071},
+maps={"Twilight Highlands"},
+mopready=true,
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 Fish in open coastal water in any Cataclysm Zone |cast Fishing##131474
 collect Algaefin Rockfish##53071 |n |goto Twilight Highlands/0 73.80,43.90
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Striped Lurker",{
-mopready=true,
 description="Striped Lurker can be fished from open water.",
+meta={goldtype="route",skillreq={fishing=400},levelreq=84},
+items={53067},
+maps={"Twilight Highlands"},
+mopready=true,
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 Fish in open water in any Cataclysm Zone |cast Fishing##131474
 collect Striped Lurker##53067 |n |goto Twilight Highlands/0 65.80,43.30
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Blackbelly Mudfish",{
-mopready=true,
 description="Blackbelly Mudfish can be fished from schools in Uldum.",
+meta={goldtype="route",skillreq={fishing=400},levelreq=83},
+items={53065},
+maps={"Uldum"},
+mopready=true,
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 Fish in any Blackbelly Mudfish Schools you find |cast Fishing##131474
 map Uldum/0
@@ -2111,18 +2297,52 @@ collect Blackbelly Mudfish##53065 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Sharptooth",{
-mopready=true,
 description="Sharptooth can be fished from open water.",
+meta={goldtype="route",skillreq={fishing=400},levelreq=84},
+items={53062},
+maps={"Twilight Highlands"},
+mopready=true,
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 Fish in open water in any Cataclysm Zone |cast Fishing##131474
 collect Sharptooth##53062 |n |goto Twilight Highlands/0 65.80,43.30
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Mountain Trout",{
-mopready=true,
 description="Mountain Trout can be fished from Hyjal.",
+meta={goldtype="route",skillreq={fishing=400},levelreq=80},
+items={53063},
+maps={"Mount Hyjal"},
+mopready=true,
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 label "mountain_route_1"
 Fish in any Mountain Trout Schools you find |cast Fishing##131474
@@ -2145,18 +2365,52 @@ collect Mountain Trout##53063 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Lavascale Catfish",{
-mopready=true,
 description="Lavascale Catfish can be fished from open water in Uldum or Deepholm.",
+meta={goldtype="route",skillreq={fishing=400},levelreq=83},
+items={53068},
+maps={"Uldum"},
+mopready=true,
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 Fish in open water in Uldum or Deepholm |cast Fishing##131474
 collect Lavascale Catfish##53068 |n |goto Uldum/0 54.36,37.70
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Fathom Eel",{
-mopready=true,
 description="Fathom Eel can be fished from Uldum.",
+meta={goldtype="route",skillreq={fishing=400},levelreq=83},
+items={53070},
+maps={"Uldum"},
+mopready=true,
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 Fish in any Fathom Eel Swarms you find |cast Fishing##131474
 map Uldum/0
@@ -2171,9 +2425,26 @@ collect Fathom Eel##53070 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Deepsea Sagefish",{
-mopready=true,
 description="Deepsea Sagefish can be fished from schools in Twilight Highlands",
+meta={goldtype="route",skillreq={fishing=400},levelreq=84},
+items={53070},
+maps={"Twilight Highlands"},
+mopready=true,
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 Fish in any Deepsea Sagefish Schools you find |cast Fishing##131474
 map Twilight Highlands/0
@@ -2187,9 +2458,26 @@ collect Deepsea Sagefish##53070 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Highland Guppy",{
-mopready=true,
 description="Highland Guppy can be fished from schools in Twilight Highlands",
+meta={goldtype="route",skillreq={fishing=400},levelreq=84},
+items={53064},
+maps={"Twilight Highlands"},
+mopready=true,
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 Fish in any Highland Guppy Schools you find |cast Fishing##131474
 map Twilight Highlands/0
@@ -2203,40 +2491,55 @@ collect Highland Guppy##53064 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Fishing\\Farming Guides\\Pygmy Suckerfish",{
-mopready=true,
 description="Pygmy Suckerfish can be fished from schools in Crystalsong Forest",
+meta={goldtype="route",skillreq={fishing=400},levelreq=77},
+items={40199},
+maps={"Crystalsong Forest"},
+mopready=true,
 },[[
+step
+|equipped Fishing Pole##6256 |only if default |or
+|tip A Fishing Pole can be purchased near most Fishing profession trainers. |only if default |or
+|equipped Arcanite Fishing Pole##19970 |only if itemcount(19970) >= 1 and skill("Fishing") >= 300 |or
+|equipped Big Iron Fishing Pole##6367 |only if itemcount(6367) >= 1 and skill("Fishing") >= 100 |or
+|equipped Blump Family Fishing Pole##12225 |only if itemcount(12225) >= 1 |or
+|equipped Bone Fishing Pole##45991 |only if itemcount(45991) >= 1 and skill("Fishing") >= 300 |or
+|equipped Darkwood Fishing Pole##6366 |only if itemcount(6366) >= 1 and skill("Fishing") >= 50 |or
+|equipped Jeweled Fishing Pole##45992 |only if itemcount(45992) >= 1 and skill("Fishing") >= 300 |or
+|equipped Mastercraft Kalu'ak Fishing Pole##44050 |only if itemcount(44050) >= 1 and skill("Fishing") >= 300 |or
+|equipped Nat Pagle's Extreme Angler FC-5000##19022 |only if itemcount(19022) >= 1 and skill("Fishing") >= 100 |or
+|equipped Nat's Lucky Fishing Pole##45858 |only if itemcount(45858) >= 1 and skill("Fishing") >= 225 |or
+|equipped Seth's Graphite Fishing Pole##25978 |only if itemcount(25978) >= 1 and skill("Fishing") >= 200 |or
+|equipped Strong Fishing Pole##6365 |only if itemcount(6365) >= 1 and skill("Fishing") >= 10 |or
 step
 label "route_1"
 cast Fishing##131474
-Follow the path, fishing at each pool |goto Crystalsong Forest 49.40,56.60 < 20 |noway |c |or |next "route_2"
-map Crystalsong Forest
+Follow the path, fishing at each pool
+map Crystalsong Forest/0
 path follow smart; loop off; ants curved; dist 20
 path	17.70,21.30	21.40,30.50	24.60,42.10
 path	33.00,45.50	35.60,49.40	40.20,54.90
 path	49.40,56.60
-collect 48 Pygmy Suckerfish##40199 |n
+collect Pygmy Suckerfish##40199 |n
+'|goto Crystalsong Forest/0 49.40,56.60 < 20 |noway |c |or |next "route_2"
 step
 label "route_2"
 cast Fishing##131474
-Follow the path, fishing at each pool |goto Crystalsong Forest 17.70,21.30 < 20 |noway |c |or |next "route_1"
-map Crystalsong Forest
+Follow the path, fishing at each pool
+map Crystalsong Forest/0
 path follow smart; loop off; ants curved; dist 20
 path	49.40,56.60	40.20,54.90	35.60,49.40
 path	33.00,45.50	24.60,42.10	21.40,30.50
 path	17.70,21.30
-|goldcollect 156 Glassfin Minnow##41814 |or
-|goldcollect 48 Pygmy Suckerfish##40199 |n
-|goldtracker
-Click here to sell items |confirm |next "Sell"
-step
-label "Sell"
-#include "auctioneer"
+collect Pygmy Suckerfish##40199 |n
+'|goto Crystalsong Forest/0 17.70,21.30 < 20 |noway |c |or |next "route_1"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Bat Flesh",{
-mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Bat Flesh can be farmed in Ghostlands.",
+meta={goldtype="route",levelreq=10},
+items={27669},
+maps={"Ghostlands"},
+mopready=true,
 },[[
 step
 map Ghostlands/0
@@ -2255,9 +2558,11 @@ collect Bat Flesh##27669 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Bear Flank",{
+description="Bear Flank can be farmed in Western Plaguelands.",
+meta={goldtype="route",levelreq=35},
+items={35562},
+maps={"Western Plaguelands"},
 mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
-description="Bear Flank can be farmed in Nagrand.",
 },[[
 step
 map Western Plaguelands/0
@@ -2272,9 +2577,11 @@ collect Bear Flank##35562 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Buzzard Meat",{
+description="Buzzard Meat can be farmed in Hellfire Peninsula.",
+meta={goldtype="route",levelreq=58},
+items={27671},
+maps={"Hellfire Peninsula"},
 mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
-description="Buzzard Meat can be farmed in Nagrand.",
 },[[
 step
 Kill Bonestripper enemies around this area
@@ -2287,9 +2594,11 @@ You can find more around:
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Chunk o' Basilisk",{
-mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Chunk o' Basilisk can be farmed in Zangarmarsh.",
+meta={goldtype="route",levelreq=60},
+items={27677},
+maps={"Zangarmarsh"},
+mopready=true,
 },[[
 step
 label "Start_Farming_Chunk_o_Basilisk"
@@ -2312,9 +2621,11 @@ collect Chunk o' Basilisk##27677 |n
 '|goto Zangarmarsh/0 74.34,28.90 < 30 |c |noway |next "Start_Farming_Chunk_o_Basilisk"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Clefthoof Meat",{
-mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Clefthoof Meat can be farmed in Nagrand.",
+meta={goldtype="route",levelreq=64},
+items={27678},
+maps={"Nagrand"},
+mopready=true,
 },[[
 step
 map Nagrand/0
@@ -2335,9 +2646,11 @@ collect Clefthoof Meat##27678 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Jaggal Clam Meat",{
-mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Jaggal Clam Meat can be farmed in Zangarmarsh.",
+meta={goldtype="route",levelreq=60},
+items={24477},
+maps={"Zangarmarsh"},
+mopready=true,
 },[[
 step
 Kill Bloodscale enemies around this area
@@ -2348,9 +2661,11 @@ collect Jaggal Clam Meat##24477 |goto Zangarmarsh/0 26.92,39.35 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Raptor Ribs",{
-mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Raptor Ribs can be farmed in Blade's Edge Mountains.",
+meta={goldtype="route",levelreq=65},
+items={31670},
+maps={"Blade's Edge Mountains"},
+mopready=true,
 },[[
 step
 label "Start_Farming_Raptor_Ribs"
@@ -2379,9 +2694,11 @@ collect Raptor Ribs##31670 |n
 '|goto Blade's Edge Mountains/0 75.24,23.15 < 30 |c |noway |next "Start_Farming_Raptor_Ribs"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Serpent Flesh",{
-mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Serpent Flesh can be farmed in Blade's Edge Mountains.",
+meta={goldtype="route",levelreq=65},
+items={31671},
+maps={"Blade's Edge Mountains"},
+mopready=true,
 },[[
 step
 label "Start_Farming_Serpent_Flesh"
@@ -2410,9 +2727,11 @@ collect Serpent Flesh##31671 |n
 '|goto Blade's Edge Mountains/0 75.24,23.15 < 30 |c |noway |next "Start_Farming_Serpent_Flesh"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Strange Spores",{
-mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Strange Spores can be farmed in Zangarmarsh.",
+meta={goldtype="route",levelreq=60},
+items={27676},
+maps={"Zangarmarsh"},
+mopready=true,
 },[[
 step
 map Zangarmarsh/0
@@ -2434,9 +2753,11 @@ collect Strange Spores##27676 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Talbuk Venison",{
-mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Talbuk Venison can be farmed in Nagrand.",
+meta={goldtype="route",levelreq=64},
+items={27682},
+maps={"Nagrand"},
+mopready=true,
 },[[
 step
 map Nagrand/0
@@ -2457,9 +2778,11 @@ collect Talbuk Venison##27682 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Warped Flesh",{
-mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Warped Flesh can be farmed in Terokkar Forest.",
+meta={goldtype="route",levelreq=62},
+items={27681},
+maps={"Terokkar Forest"},
+mopready=true,
 },[[
 step
 map Terokkar Forest/0
@@ -2478,9 +2801,11 @@ collect Warped Flesh##27681 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crunchy Spider Leg",{
-mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Crunchy Spider Legs can be farmed in Ghostlands.",
+meta={goldtype="route",levelreq=10},
+items={22644},
+maps={"Ghostlands"},
+mopready=true,
 },[[
 step
 map Ghostlands/0
@@ -2499,9 +2824,11 @@ collect Crunchy Spider Leg##22644 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Lynx Meat",{
+description="Lynx Meat can be farmed in Eversong Woods.",
+meta={goldtype="route",levelreq=1},
+items={27668},
+maps={"Eversong Woods"},
 mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
-description="Lynx Meat can be farmed in Nagrand.",
 },[[
 step
 map Eversong Woods/0
@@ -2519,9 +2846,11 @@ collect Lynx Meat##27668 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Moongraze Stag Tenderloin",{
-mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Moongraze Stag Tenderloins can be farmed on Azuremyst Isle.",
+meta={goldtype="route",levelreq=1},
+items={23676},
+maps={"Azuremyst Isle"},
+mopready=true,
 },[[
 step
 map Azuremyst Isle/0
@@ -2544,9 +2873,11 @@ collect Moongraze Stag Tenderloin##23676 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Jaggal Clam Meat",{
-mopready=true,
-condition_suggested=function() return skill('Cooking') >= 325 end,
 description="Jaggal Clam Meat can be farmed in Zangarmarsh.",
+meta={goldtype="route",levelreq=60},
+items={24477},
+maps={"Zangarmarsh"},
+mopready=true,
 },[[
 step
 Kill Bloodscale enemies around this area
@@ -2557,8 +2888,11 @@ collect Jaggal Clam Meat##24477 |goto Zangarmarsh/0 26.92,39.35 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Ravager Flesh",{
-mopready=true,
 description="Ravager Flesh can be gathered from the western Hellfire Peninsula.",
+meta={goldtype="route",levelreq=58},
+items={27674},
+maps={"Hellfire Peninsula"},
+mopready=true,
 },[[
 step
 Kill Thornfang enemies around this area
@@ -2567,8 +2901,11 @@ collect Ravager Flesh##27674 |n |goto Hellfire Peninsula/0 10.26,51.72
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Talbuk Venison",{
-mopready=true,
 description="Talbuk Venison can be gathered from central Nagrand.",
+meta={goldtype="route",levelreq=64},
+items={27682},
+maps={"Nagrand"},
+mopready=true,
 },[[
 step
 map Nagrand/0
@@ -2581,8 +2918,11 @@ collect Talbuk Venison##27682 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Raptor Ribs",{
-mopready=true,
 description="Raptor Ribs can be gathered from the eastern Blade's Edge Mountains.",
+meta={goldtype="route",levelreq=65},
+items={31670},
+maps={"Blade's Edge Mountains"},
+mopready=true,
 },[[
 step
 map Blade's Edge Mountains/0
@@ -2595,8 +2935,11 @@ collect Raptor Ribs##31670 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Giant Turtle Tongue",{
-mopready=true,
 description="Giant Turtle Tongue can be farmed in Kelp'thar Forest",
+meta={goldtype="route",levelreq=80},
+items={62781},
+maps={"Kelp'thar Forest"},
+mopready=true,
 },[[
 step
 kill Speckled Sea Turtle##40223+
@@ -2606,8 +2949,11 @@ You can find more here:
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Snake Eye",{
-mopready=true,
 description="Snake Eye can be farmed in Kelp'thar Forest",
+meta={goldtype="route",levelreq=80},
+items={62780},
+maps={"Kelp'thar Forest"},
+mopready=true,
 },[[
 step
 kill Brinescale Serpent##39948+
@@ -2615,8 +2961,11 @@ collect Snake Eye##62780 |n |goto Kelp'thar Forest/0 56.28,37.89
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crocolisk Tail",{
-mopready=true,
 description="Crocolisk Tail can be farmed in Uldum",
+meta={goldtype="route",levelreq=83},
+items={62784},
+maps={"Uldum"},
+mopready=true,
 },[[
 step
 map Uldum/0
@@ -2629,8 +2978,11 @@ collect Crocolisk Tail##62784 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Dragon Flank",{
-mopready=true,
 description="Dragon Flank can be farmed in Twilight Highlands",
+meta={goldtype="route",levelreq=84},
+items={62782},
+maps={"Twilight Highlands"},
+mopready=true,
 },[[
 step
 map Twilight Highlands/0
@@ -2642,8 +2994,11 @@ collect Dragon Flank##62782 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Basilisk Liver",{
-mopready=true,
 description="Basilisk Liver can be farmed in Deepholm",
+meta={goldtype="route",levelreq=82},
+items={62783},
+maps={"Deepholm"},
+mopready=true,
 },[[
 step
 map Deepholm/0
@@ -2655,8 +3010,11 @@ collect Basilisk Liver##62783 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Shoveltusk Flank",{
-mopready=true,
 description="Shoveltusk Flanks can be gathered from Howling Fjord.",
+meta={goldtype="route",levelreq=68},
+items={43009},
+maps={"Howling Fjord"},
+mopready=true,
 },[[
 step
 map Howling Fjord/0
@@ -2669,8 +3027,11 @@ collect Shoveltusk Flank##43009 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Netherweave Cloth",{
-mopready=true,
 description="Gather Netherweave Cloth in Shadowmoon Valley.",
+meta={goldtype="route",levelreq=67},
+items={21877},
+maps={"Shadowmoon Valley"},
+mopready=true,
 },[[
 step
 label "Legion_Hold"
@@ -2693,8 +3054,11 @@ collect Netherweave Cloth##21877 |n
 Click Here to Continue |confirm |next "Legion_Hold"
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Netherweb Spider Silk",{
+description="Gather Netherweave Cloth in Terokkar Forest.",
+meta={goldtype="route",levelreq=62},
+items={21881},
+maps={"Terokkar Forest"},
 mopready=true,
-description="Gather Netherweave Cloth in Shadowmoon Valley.",
 },[[
 step
 Kill Dreadfang enemies around this area
@@ -2702,8 +3066,11 @@ collect Netherweb Spider Silk##21881 |n |goto Terokkar Forest/0 53.64,57.86
 You can find more around here [52.22,78.65]
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Embersilk Cloth",{
-mopready=true,
 description="Embersilk Cloth can be gathered from humanoids in Deepholm.",
+meta={goldtype="route",levelreq=82},
+items={53010},
+maps={"Deepholm"},
+mopready=true,
 },[[
 step
 map Deepholm/0

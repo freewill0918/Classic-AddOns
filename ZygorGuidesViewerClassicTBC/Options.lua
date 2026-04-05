@@ -592,10 +592,10 @@ function ZGV:Options_DefineOptionTables()
 			end,
 			width="double", 
 		})
-		if ZGV.DEV then
-			AddOption('zgvhideindungeons',{ type = 'toggle', name="Hide viewer when entering dungeons and raids", width = "full", _default = false })
-			AddOption('showafterdungeons',{ type = 'toggle', name="Show viewer again when leaving", indent = 20, width = "full", _default = true, disabled = function() return not self.db.profile.zgvhideindungeons end })
-		end
+
+		AddOption('zgvhideindungeons',{ type = 'toggle', name="Hide viewer when entering dungeons and raids", width = "full", _default = false })
+		AddOption('showafterdungeons',{ type = 'toggle', name="Show viewer again when leaving", indent = 20, width = "full", _default = true, disabled = function() return not self.db.profile.zgvhideindungeons end })
+
 		AddOption('hideincombat',{ type = 'toggle', width="double", _default = false, set = function(i,v) Setter_Simple(i,v) ZGV.Pointer:SetCombatHiding(v) ZGV.ActionBar:SetCombatHiding() end,})
 		AddOption('hidebarincombat',{ 
 			type = 'toggle', 
@@ -636,20 +636,18 @@ function ZGV:Options_DefineOptionTables()
 			AddOption('showvendor',{ type = 'toggle', width = "full", _default=true, set = function(i,v) Setter_Simple(i,v) ZGV:UpdateFrame() end })
 			AddOption('showtrainer',{ type = 'toggle', width = "full", _default=true, set = function(i,v) Setter_Simple(i,v) ZGV:UpdateFrame() end })
 		end
-		--[[
-		if ZGV.DEV then
+
 			AddOption('skiphome',{
 				type = 'toggle',
 				_default = false,
 				width="full",
 			})
-			AddOption('',{
+		AddOption('skiptaxi',{
 				type = 'toggle',
 				_default = false,
 				width="full",
 			})
-		end
-		--]]
+
 		AddOptionSpace()
 			AddOption('showinlinetravel',{ type = 'toggle', width = "full", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV:ShowWaypoints() ZGV:UpdateFrame() end })
 			
@@ -748,18 +746,20 @@ function ZGV:Options_DefineOptionTables()
 		    hidden=function() return not IsInGuild() or CanGuildBankRepair() or ZGV.db.profile.autorepair<=2 end
 		})
 
+		--[[	Auto-cancel removed because of an intermittent CancelCinematic bug
 		AddOptionSpace()
 
 		AddOptionSpace()
 			AddOption('',{ type = 'description', name=L['opt_header_others'], font=ZGV.font_dialog_gray})
 			AddOption('autoskipcutscenes', {type = 'toggle', width="double", _default=false,})
+		--]]
 	end
 
 	AddOptionGroup("actionbuttons","Action Buttons","zgactionbuttons")  	---- OPTIONS: Action Buttons
 	do
-		AddOption('enable_actionbuttons',{  type = 'toggle',  
+		AddOption('enable_actionbar',{  type = 'toggle',  
 			get = function() 
-				return self.db.profile.enable_actionbuttons 
+				return self.db.profile.enable_actionbar 
 			end,  
 			set = function(i,v)
 				Setter_Simple(i,v)
@@ -774,19 +774,20 @@ function ZGV:Options_DefineOptionTables()
 			width="double",
 		})
 
-		AddOption('enable_actionbar',{  type = 'toggle',  
-			get = function() 
-				return self.db.profile.enable_actionbar
-			end,  
+		AddOption('actionbar_direction',{
+			type = 'select',
+			width="145",
+			values = {
+					[1]=("Left"),
+					[2]=("Right"),
+				},
+			_default = 2,
+			disabled = function() return not self.db.profile.enable_actionbar end,
 			set = function(i,v)
 				Setter_Simple(i,v)
-				ZGV.ActionBar:ToggleFrame()
+				ZGV.ActionBar:CheckDirection()
 			end,
-			_default=true,
-			width="SINGLE",
-			disabled = function() return not self.db.profile.enable_actionbuttons end,
 		})
-
 
 		AddOptionSep()
 		local framescales={0.625, 0.750, 0.875, 1.000, 1.125, 1.250, 1.375, 1.500, 1.625, 1.750}
@@ -806,7 +807,7 @@ function ZGV:Options_DefineOptionTables()
 			_default=4,
 			width="single", 
 			_inline=true,
-			disabled = function() return not self.db.profile.enable_actionbuttons end,
+			disabled = function() return not self.db.profile.enable_actionbar end,
 		})
 		AddOptionSpace()
 
@@ -819,7 +820,7 @@ function ZGV:Options_DefineOptionTables()
 				Setter_Simple(i,v)
 				ZGV.ActionBar:SetActionButtons()
 			end,
-			disabled = function() return not self.db.profile.enable_actionbuttons end,
+			disabled = function() return not self.db.profile.enable_actionbar end,
 		})
 		AddOption('actionbar_talk',{ 
 			type = 'toggle', 
@@ -829,7 +830,7 @@ function ZGV:Options_DefineOptionTables()
 				Setter_Simple(i,v)
 				ZGV.ActionBar:SetActionButtons()
 			end,
-			disabled = function() return not self.db.profile.enable_actionbuttons end,
+			disabled = function() return not self.db.profile.enable_actionbar end,
 		})
 		AddOption('actionbar_kill',{ 
 			type = 'toggle', 
@@ -839,7 +840,7 @@ function ZGV:Options_DefineOptionTables()
 				Setter_Simple(i,v)
 				ZGV.ActionBar:SetActionButtons()
 			end,
-			disabled = function() return not self.db.profile.enable_actionbuttons end,
+			disabled = function() return not self.db.profile.enable_actionbar end,
 		})
 
 		AddOption('actionbar_trash',{ 
@@ -850,7 +851,7 @@ function ZGV:Options_DefineOptionTables()
 				Setter_Simple(i,v)
 				ZGV.ActionBar:SetActionButtons()
 			end,
-			disabled = function() return not self.db.profile.enable_actionbuttons end,
+			disabled = function() return not self.db.profile.enable_actionbar end,
 		})
 
 		AddOptionSpace()
@@ -858,7 +859,7 @@ function ZGV:Options_DefineOptionTables()
 			type = 'toggle', 
 			_default = true, 
 			width = "full", 
-			disabled = function() return not self.db.profile.enable_actionbuttons end,
+			disabled = function() return not self.db.profile.enable_actionbar end,
 		})
 	end
 
@@ -1034,7 +1035,7 @@ function ZGV:Options_DefineOptionTables()
 			AddOption('travelusespells',     { type = 'toggle', width = "double", hidden = function() return ZGV.db.global.travelmode~=4 end, _default=true,  set=Setter_Travel, indent=20,})
 		EndSubgroup()
 	
-		AddOption('travelprefertaxi',     { type = 'toggle', width = "double", _default=true, set=Setter_Travel, })
+		AddOption('travelprefertaxi',     { type = 'toggle', width = "double", _default=not ZGV.IsRetail, set=Setter_Travel, })
 	end
 
 	AddOptionGroup("maps","Maps","zgmaps")  	---- OPTIONS: Maps
@@ -1266,6 +1267,115 @@ function ZGV:Options_DefineOptionTables()
 		end})
 		
 		AddOptionSpace()
+
+		AddOption('autogearpopup',{ type = 'toggle', width="double", disabled = function() return not self.db.profile.autogear end, _default=true})
+
+		AddOptionSpace()
+		AddOption('questitemselector',{ type = 'toggle', width="double", _default=true})
+		AddOption('autoselectitem',{ type = 'toggle', width="double", _default=false, disabled = function() return not self.db.profile.questitemselector end, indent=20 })
+		AddOption('autogearauto',{ type='toggle', width="full", _default=false, disabled=function() return not self.db.profile.autogear end })
+		if ZGV.IsRetail or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then 
+			AddOption('autogear_keepheirlooms',{ type = 'toggle', width="double", _default=false, disabled = function() return not self.db.profile.autogear end})
+		end
+
+		AddOption('itemscore_tooltips',{ type = 'toggle',width="full", _default=true, set = Setter_Simple, disabled=function() return not self.db.profile.autogear end})
+		--[[hidden--]]AddOption('itemscore_tooltips_azerite',{ type = 'toggle',width="full", _default=true, indent=20, set = Setter_Simple, disabled=function() return not (self.db.profile.autogear and self.db.profile.itemscore_tooltips) end, hidden=true})
+
+		
+		AddOption('sep00devdisp',{ type="header", name="Gear Finder"})
+		--AddOption('',{ type = "description", name = L["opt_gear_sources"]:format(), font=ZGV.font_dialog })
+		AddOption('autogear_finder',{type = 'toggle', width = "full", _default = true, set = function(i,v) 
+			Setter_Simple(i,v)
+			ZGV.ItemScore.GearFinder:UpdateSystemTab()
+		end})
+		AddOptionSpace()
+		AddOption('',{ type = "description", name = L["opt_gear_sources_dungeons"]:format(), font=ZGV.font_dialog_gray, width="full", disabled=function() return not self.db.profile.autogear_finder end })
+			AddOption('gear_1',{ name=PLAYER_DIFFICULTY1,  type='toggle', width="100", _default=true, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
+			AddOption('gear_2',{ name=PLAYER_DIFFICULTY2,  type='toggle', width="100", _default=true, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
+			if ZGV.IsRetail then
+				AddOption('gear_23',{ name=PLAYER_DIFFICULTY6,  type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
+				AddOption('gear_24',{ name=PLAYER_DIFFICULTY_TIMEWALKER,  type='toggle', width="120", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
+				AddOption('gear_8',{ name="Mythic+",  type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
+				AddOption('gear_8_level',{
+					name="Mythic difficulty",
+					--name="Mythic upgrade level",
+					type = 'select',
+					style = 'slider',
+					values={ 
+						[2]="+2", 
+						[3]="+3", 
+						[4]="+4", 
+						[5]="+5", 
+						[6]="+6", 
+						[7]="+7", 
+						[8]="+8", 
+						[9]="+9", 
+						[10]= "+10", 
+						[11]= "+11", 
+						[12]= "+12   ", 
+					},
+					_default=2,
+					width=400,
+					hidden=function() return not self.db.profile.gear_8 end,
+					set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not (self.db.profile.autogear_finder and self.db.profile.gear_8) end, })
+			end
+			if ZGV.IsClassicWOTLK then 
+				AddOptionSpace()
+				AddOption('gear_91',{ name="Titan Rune Alpha", type='toggle', width="100", _default=false, 
+					set = function(i,v) 
+						Setter_Simple(i,v) 
+						ZGV.ItemScore.GearFinder:ClearResults() 
+						ZGV.ItemScore.GearFinder:SetTitanRune() 
+					end, 
+					width="double", 
+					disabled=function() return not self.db.profile.autogear end, }) 
+				AddOption('gear_92',{ name="Titan Rune Beta", type='toggle', width="100", _default=false, 
+					set = function(i,v) 
+						Setter_Simple(i,v) 
+						ZGV.ItemScore.GearFinder:ClearResults() 
+						ZGV.ItemScore.GearFinder:SetTitanRune() 
+					end, 
+					width="double", 
+					disabled=function() return not self.db.profile.autogear end, }) 
+			end
+
+		AddOptionSpace()
+		AddOption('',{ type = "description", name = L["opt_gear_sources_raids"]:format(), font=ZGV.font_dialog_gray, width="full" })
+			if ZGV.IsRetail then 
+				AddOption('gear_17',{ name=PLAYER_DIFFICULTY3, type='toggle', width="100", _default=true, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, }) 
+				AddOption('gear_14',{ name=PLAYER_DIFFICULTY1, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.db.profile.gear_3=v ZGV.db.profile.gear_4=v ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, }) -- also setting filters for prelfr raids 
+				AddOption('gear_15',{ name=PLAYER_DIFFICULTY2, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.db.profile.gear_5=v ZGV.db.profile.gear_6=v ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, }) 
+				AddOption('gear_16',{ name=PLAYER_DIFFICULTY6, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.db.profile.gear_7=v ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, }) 
+			end
+			if ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
+				AddOption('gear_3',{ name=RAID_DIFFICULTY1, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
+				--AddOption('gear_5',{ name=RAID_DIFFICULTY3, type='toggle', width="150", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear end, }) 
+				AddOption('gear_4',{ name=RAID_DIFFICULTY2, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
+				--AddOption('gear_6',{ name=RAID_DIFFICULTY4, type='toggle', width="150", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear end, }) 
+			end
+			if ZGV.IsClassic or ZGV.IsClassicTBC then
+				AddOption('gear_14',{ name=PLAYER_DIFFICULTY1, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.db.profile.gear_3=v ZGV.db.profile.gear_4=v ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, }) -- also setting filters for prelfr raids 
+			end
+
+			AddOptionSpace()
+
+		AddOptionSpace()
+
+		AddOption('clearnotupgrades',{
+			type = 'execute',	
+			func=function ()
+				if ZGV.IsRetail then
+					wipe(ZGV.db.char.badupgrade[GetSpecialization() or 1])
+				else
+					wipe(ZGV.db.char.badupgrade[ZGV.db.char.gear_selected_build or 1])
+				end
+				ZGV:Print(L['opt_itemscore_ae_clearednotupgrade'])
+			     end,
+			 width='single',
+			 disabled=function() return not self.db.profile.autogear end,
+		})
+
+		AddOptionSpace()
 		AddOption('markupgrades',{ type = 'toggle',width="full", _default=true, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.Upgrades:RefreshBags() end, disabled = function() return not self.db.profile.autogear end,})
 		AddOption('upgradebest',{
 			type = 'select',
@@ -1359,27 +1469,10 @@ function ZGV:Options_DefineOptionTables()
 			width="single",
 			_inline=true,
 			disabled = function() return not (self.db.profile.autogear and self.db.profile.markupgrades) end,
-		})
-		AddOptionSpace()
-
-		AddOption('autogearpopup',{ type = 'toggle', width="double", disabled = function() return not self.db.profile.autogear end, _default=true})
+		})	
 
 		AddOptionSpace()
-		AddOption('questitemselector',{ type = 'toggle', width="double", _default=true})
-		AddOption('autoselectitem',{ type = 'toggle', width="double", _default=false, disabled = function() return not self.db.profile.questitemselector end, indent=20 })
-		AddOption('autogearauto',{ type='toggle', width="full", _default=false, disabled=function() return not self.db.profile.autogear end })
-		if ZGV.IsRetail or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then 
-			AddOption('autogear_keepheirlooms',{ type = 'toggle', width="double", _default=false, disabled = function() return not self.db.profile.autogear end})
-		end
-
-		AddOption('itemscore_tooltips',{ type = 'toggle',width="full", _default=true, set = Setter_Simple, disabled=function() return not self.db.profile.autogear end})
-		--[[hidden--]]AddOption('itemscore_tooltips_azerite',{ type = 'toggle',width="full", _default=true, indent=20, set = Setter_Simple, disabled=function() return not (self.db.profile.autogear and self.db.profile.itemscore_tooltips) end, hidden=true})
-
-		AddOptionSpace()
-		
 		AddOption('badupgradehotkey',{ type = 'toggle', width="full", _default=true, disabled = function() return not (self.db.profile.autogear and self.db.profile.markupgrades) end,})
-		AddOptionSpace()
-
 		--AddOption('sep00badupgrade',{ type="header", name="Bad upgrade reporting" })
 			
 		local modifierkeys = {{"IsShiftKeyDown","Shift"},{"IsControlKeyDown","Control"},{"IsAltKeyDown","Alt"}}
@@ -1428,100 +1521,6 @@ function ZGV:Options_DefineOptionTables()
 			_inline=true,
 			_default = "RightButton",
 			disabled = function() return not (self.db.profile.autogear and self.db.profile.markupgrades and self.db.profile.badupgradehotkey) end,
-		})
-		
-		AddOption('sep00devdisp',{ type="header", name="Gear Finder"})
-		--AddOption('',{ type = "description", name = L["opt_gear_sources"]:format(), font=ZGV.font_dialog })
-		AddOptionSpace()
-		AddOption('autogear_finder',{type = 'toggle', width = "full", _default = true, set = function(i,v) 
-			Setter_Simple(i,v)
-			ZGV.ItemScore.GearFinder:UpdateSystemTab()
-		end})
-		AddOptionSpace()
-		AddOption('',{ type = "description", name = L["opt_gear_sources_dungeons"]:format(), font=ZGV.font_dialog_gray, width="full", disabled=function() return not self.db.profile.autogear_finder end })
-			AddOption('gear_1',{ name=PLAYER_DIFFICULTY1,  type='toggle', width="100", _default=true, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
-			AddOption('gear_2',{ name=PLAYER_DIFFICULTY2,  type='toggle', width="100", _default=true, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
-			if ZGV.IsRetail then
-				AddOption('gear_23',{ name=PLAYER_DIFFICULTY6,  type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
-				AddOption('gear_24',{ name=PLAYER_DIFFICULTY_TIMEWALKER,  type='toggle', width="120", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
-				AddOption('gear_8',{ name="Mythic+",  type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
-				AddOption('gear_8_level',{
-					name="Mythic difficulty",
-					--name="Mythic upgrade level",
-					type = 'select',
-					style = 'slider',
-					values={ 
-						[2]="+2", 
-						[3]="+3", 
-						[4]="+4", 
-						[5]="+5", 
-						[6]="+6", 
-						[7]="+7", 
-						[8]="+8", 
-						[9]="+9", 
-						[10]= "+10", 
-						[11]= "+11", 
-						[12]= "+12   ", 
-					},
-					_default=2,
-					width=400,
-					hidden=function() return not self.db.profile.gear_8 end,
-					set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not (self.db.profile.autogear_finder and self.db.profile.gear_8) end, })
-			end
-			if ZGV.IsClassicWOTLK then 
-				AddOptionSpace()
-				AddOption('gear_91',{ name="Titan Rune Alpha", type='toggle', width="100", _default=false, 
-					set = function(i,v) 
-						Setter_Simple(i,v) 
-						ZGV.ItemScore.GearFinder:ClearResults() 
-						ZGV.ItemScore.GearFinder:SetTitanRune() 
-					end, 
-					width="double", 
-					disabled=function() return not self.db.profile.autogear end, }) 
-				AddOption('gear_92',{ name="Titan Rune Beta", type='toggle', width="100", _default=false, 
-					set = function(i,v) 
-						Setter_Simple(i,v) 
-						ZGV.ItemScore.GearFinder:ClearResults() 
-						ZGV.ItemScore.GearFinder:SetTitanRune() 
-					end, 
-					width="double", 
-					disabled=function() return not self.db.profile.autogear end, }) 
-			end
-
-		AddOptionSpace()
-		AddOption('',{ type = "description", name = L["opt_gear_sources_raids"]:format(), font=ZGV.font_dialog_gray, width="full" })
-			if ZGV.IsRetail then 
-				AddOption('gear_17',{ name=PLAYER_DIFFICULTY3, type='toggle', width="100", _default=true, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, }) 
-				AddOption('gear_14',{ name=PLAYER_DIFFICULTY1, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.db.profile.gear_3=v ZGV.db.profile.gear_4=v ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, }) -- also setting filters for prelfr raids 
-				AddOption('gear_15',{ name=PLAYER_DIFFICULTY2, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.db.profile.gear_5=v ZGV.db.profile.gear_6=v ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, }) 
-				AddOption('gear_16',{ name=PLAYER_DIFFICULTY6, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.db.profile.gear_7=v ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, }) 
-			end
-			if ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
-				AddOption('gear_3',{ name=RAID_DIFFICULTY1, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
-				--AddOption('gear_5',{ name=RAID_DIFFICULTY3, type='toggle', width="150", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear end, }) 
-				AddOption('gear_4',{ name=RAID_DIFFICULTY2, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, })
-				--AddOption('gear_6',{ name=RAID_DIFFICULTY4, type='toggle', width="150", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear end, }) 
-			end
-			if ZGV.IsClassic then
-				AddOption('gear_14',{ name=PLAYER_DIFFICULTY1, type='toggle', width="100", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.db.profile.gear_3=v ZGV.db.profile.gear_4=v ZGV.ItemScore.GearFinder:ClearResults() end, disabled=function() return not self.db.profile.autogear_finder end, }) -- also setting filters for prelfr raids 
-			end
-
-			AddOptionSpace()
-
-		AddOptionSpace()
-
-		AddOption('clearnotupgrades',{
-			type = 'execute',	
-			func=function ()
-				if ZGV.IsRetail then
-					wipe(ZGV.db.char.badupgrade[GetSpecialization() or 1])
-				else
-					wipe(ZGV.db.char.badupgrade[ZGV.db.char.gear_selected_build or 1])
-				end
-				ZGV:Print(L['opt_itemscore_ae_clearednotupgrade'])
-			     end,
-			 width='single',
-			 disabled=function() return not self.db.profile.autogear end,
 		})
 	end
 
@@ -2235,8 +2234,8 @@ function ZGV:Options_DefineOptionTables()
 		end	
 		if not ZGV.IsRetail then
 			AddOption('showbagspace',{ type = 'toggle', width = "full", _default=false, set = function(i,v) Setter_Simple(i,v) ZGV.Inventory:UpdateBagspaceText() end,})
+			AddOption('mouseovermarkers',{ type = 'toggle', width = "full", _default=true})
 		end
-		AddOption('mouseovermarkers',{ type = 'toggle', width = "full", _default=true})
 
 
 		AddOption('',{ type = 'description', name="Rating", font=ZGV.font_dialog_gray})
@@ -2403,7 +2402,10 @@ function ZGV:Options_DefineOptionTables()
 			--ZGV.db:ResetProfile()
 			local reset_tables = {"menu","display","navi","poi","notification","gear","itemscore","gold","enhancements"}
 			for i,v in pairs(reset_tables) do
+			--Spoo(ZGV.optiontables)
+				if ZGV.optiontables[v] then
 				ResetToDefaults(ZGV.optiontables[v])
+			end
 			end
 
 			ZGV.db.char.gear_selected_spec = GetSpecialization() or 1
@@ -2599,6 +2601,7 @@ function ZGV:Options_DefineOptionTables()
 		do
 			AddOption('loadguidesfully',{ name = "Load full guides at startup", desc = "Horribly increases startup time, but loads and checks all guides.\nRestart for this to take effect.", type = 'toggle', width = "full", })
 			AddOption('showwrongsteps',{ name = "Ignore step/line conditions", type = "toggle", width = "full", })
+			AddOption('alwaysshowstickies',{ name = "Always show stickies", type = "toggle", width = "full", })
 			--AddOption('shownpcdebug',{ name = "Show NPC Debug button", type="toggle", width = "full", set = function(i,v)  Setter_Simple(i,v)  ZGV:NPCDebugUpdate()  end  })
 			AddOption('debug_frame',{
 				name = "Debug Output Frame",
@@ -2642,14 +2645,8 @@ function ZGV:Options_DefineOptionTables()
 			AddOption('debug_display',{ name = "Show Zygor developers information", type="toggle", width = "full", _default = false,
 				set = function(i,v) 
 					Setter_Simple(i,v)  
-					ZGV.Pointer.OverlayFrame.ZygorCoordsDEV:SetShown(v)
-					if ZGV.DEV then
-						ZGV.Pointer.OverlayFrame.LibRoverButton:SetShown(v)
-						ZGV.Pointer.OverlayFrame.PointerDebugButton:SetShown(v)
-						ZGV.Pointer.OverlayFrame.PathDebugButton:SetShown(v)
-						ZGV.Pointer.OverlayFrame.WQDebugButton:SetShown(v)
-						ZGV.Pointer.OverlayFrame.RemapDebugButton:SetShown(v)
-					end
+					ZGV.Testing.SetPointerDebugState(v)
+
 					ZGV.Frame.Border.TitleBar.DevLabel:SetShown(v)
 					if LibTaxi.TaxiFrameButton then
 						LibTaxi.TaxiFrameButton:SetShown(v)
@@ -3511,7 +3508,7 @@ function ZGV:Options_DefineOptionTables()
 					type = 'execute', 
 					name="Get all info", 
 					width=140, 
-					disabled=function() return not LootDumper.Events or LootDumper.GotAllInstancesInfo end, 
+					disabled=function() return not LootDumper.Events end, 
 					func=function(info,val) LootDumper:GetAllInstancesInfo() end
 				})
 				
@@ -3525,6 +3522,7 @@ function ZGV:Options_DefineOptionTables()
 						table.wipe(LootDumper.LFGtoMap)
 						LootDumper.Instances = nil
 						LootDumper.LFGtoMap = nil
+						LootDumper.GotAllInstancesInfo = false
 						LootDumper:GetInstances()
 						LootDumper:MapLFGtoMap()
 					end
@@ -3532,10 +3530,37 @@ function ZGV:Options_DefineOptionTables()
 				AddOptionSpace()
 
 				ZGV.db.profile.lootdumper_select_instance = nil
+				ZGV.db.profile.lootdumper_select_instance_tier = nil
+				AddOption('lootdumper_select_instance_tier',{
+					type = "select",
+					name="",
+					values = function() 
+						local results = {}
+						for i,v in ipairs(LootDumper.dungeonTierTable) do
+							results[i]=v[1]
+						end
+						results[0]="All"
+						return results
+					end,
+					disabled=function() return not LootDumper.Events end, 
+					_inline=true
+				})
 				AddOption('lootdumper_select_instance',{
 					type = "select",
 					name="",
-					values = function() return LootDumper.OptionsMap or {} end,
+					values = function()
+						if not LootDumper.OptionsMap then return {} end
+						
+						if not ZGV.db.profile.lootdumper_select_instance_tier or ZGV.db.profile.lootdumper_select_instance_tier==0 then return LootDumper.OptionsMap end
+						
+						local results = {}
+						for i,v in ipairs(LootDumper.OptionsMap) do
+							if v.TierID==ZGV.db.profile.lootdumper_select_instance_tier then
+								table.insert(results,v)
+							end
+						end
+						return results
+					end,
 					disabled=function() return not LootDumper.Events end, 
 					set = function(i,v)
 						Setter_Simple(i,v) 
@@ -4485,6 +4510,7 @@ local defaults = {
 		reportedupgrades = {},
 		talentbuilds = {},
 		guideflags = {},
+		playerhouse = {},
 	},
 	factionrealm = {
 		characters = {},

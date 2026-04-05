@@ -15,4 +15,5 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Leveling Guides\\Pandaria (85-90)\\T
 ZGV.BETAEND()
 ZygorGuidesViewer:RegisterGuidePlaceholder("Leveling Guides\\Pandaria (85-90)\\Peak of Serenity\\Monk Daily")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Leveling Guides\\Pandaria (85-90)\\Peak of Serenity\\Monk Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Leveling Guides\\Pandaria (85-90)\\Isle of Thunder (90)")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Leveling\\Mists of Pandaria Quest Stacking\\Launch Turnin Guide")

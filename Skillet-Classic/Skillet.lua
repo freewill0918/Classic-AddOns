@@ -87,6 +87,7 @@ local defaults = {
 		use_blizzard_for_followers = false,				-- not in Classic
 		hide_blizzard_frame = true,						-- primarily for debugging
 		support_crafting = true,
+		display_skill_index = false,					-- primarily for debugging
 		ignore_change = false,							-- not in Classic
 		queue_crafts = false,
 		include_craftbuttons = true,
@@ -94,6 +95,8 @@ local defaults = {
 --		use_higher_vellum = false,
 		include_tradebuttons = true,
 		search_includes_reagents = true,
+		enhanced_recipe_display = false,
+		enhanced_chance_display = false,
 		interrupt_clears_queue = false,
 		sound_on_empty_queue = false,
 		clamp_to_screen = true,
@@ -384,6 +387,9 @@ function Skillet:OnInitialize()
 		self.db.global.NameToSpellID = {}
 		initSkillLevels = true
 	end
+	if not Skillet.SkillLevelVersion then
+		initSkillLevels = true
+	end
 	if initSkillLevels then
 		self:InitializeSkillLevels()
 	end
@@ -496,8 +502,6 @@ function Skillet:FlushPlayerData()
 	Skillet.db.realm.bankDetails[player] = {}
 	Skillet.db.realm.queueData[player] = {}
 	Skillet.db.realm.reagentsInQueue[player] = {}
-	Skillet.db.realm.modifiedInQueue[player] = {}
-	Skillet.db.realm.groupDB[player] = {}
 	Skillet.db.realm.options[player] = {}
 end
 
@@ -627,6 +631,12 @@ function Skillet:InitializeDatabase(player, clean)
 		end
 		if not self.db.realm.skillDB[player] or clean then
 			self.db.realm.skillDB[player] = {}
+		end
+		if not self.db.realm.options then
+			self.db.realm.options = {}
+		end
+		if not self.db.realm.options[player] or clean then
+			self.db.realm.options[player] = {}
 		end
 		if not self.db.realm.subClass then
 			self.db.realm.subClass = {}
@@ -767,12 +777,12 @@ function Skillet:OnEnable()
 	self:RegisterEvent("TRADE_SKILL_SHOW")
 	self:RegisterEvent("TRADE_SKILL_UPDATE")
 	self:RegisterEvent("TRADE_SKILL_NAME_UPDATE")
-	if not TSM_API then
+--	if not TSM_API then
 		self:RegisterEvent("CRAFT_CLOSE")			-- craft event (could call SkilletClose)
 		self:RegisterEvent("CRAFT_SHOW")			-- craft event (could call SkilletShow)
 		self:RegisterEvent("CRAFT_UPDATE")			-- craft event
 		self:RegisterEvent("UNIT_PET_TRAINING_POINTS")	-- craft event
-	end
+--	end
 	self:RegisterEvent("UNIT_PORTRAIT_UPDATE")		-- Not sure if this is helpful but we will track it.
 	self:RegisterEvent("SPELLS_CHANGED")			-- Not sure if this is helpful but we will track it.
 --	self:RegisterEvent("BAG_OPEN")					-- Not sure if this is helpful but we will track it.
@@ -785,10 +795,8 @@ function Skillet:OnEnable()
 --
 -- Events that replace *_SHOW and *_CLOSED by adding a PlayerInteractionType parameter
 --
-	if isWrath then
-		self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW")
-		self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE")
-	end
+	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW")
+	self:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_HIDE")
 --
 -- MERCHANT_SHOW, MERCHANT_HIDE, MERCHANT_UPDATE events needed for auto buying.
 --
@@ -855,7 +863,7 @@ function Skillet:OnEnable()
 	self:RegisterEvent("PLAYER_ENTERING_WORLD")
 	self:RegisterEvent("NEW_RECIPE_LEARNED") -- arg1 = recipeID
 	self:RegisterEvent("SKILL_LINES_CHANGED") -- replacement for CHAT_MSG_SKILL?
-	self:RegisterEvent("LEARNED_SPELL_IN_TAB") -- arg1 = professionID
+--	self:RegisterEvent("LEARNED_SPELL_IN_TAB") -- arg1 = professionID
 
 	self:RegisterEvent("ADDON_ACTION_BLOCKED")
 	self:RegisterEvent("PLAYER_REGEN_DISABLED")
@@ -1035,13 +1043,14 @@ function Skillet:TRADE_SKILL_UPDATE()
 	end
 	DA.TRACE("TRADE_SKILL_UPDATE: dataSourceChanged= "..tostring(Skillet.dataSourceChanged)..", dataScanned= "..tostring(Skillet.dataScanned))
 	if Skillet.dataSourceChanged or not Skillet.dataScanned then
-		Skillet.dataSourceChanged = false
 		Skillet:SkilletShowWindow()
+		Skillet.dataSourceChanged = false
 	end
 end
 
 function Skillet:CRAFT_UPDATE()
 	DA.TRACE("CRAFT_UPDATE")
+	if TSM_API then return end
 	Skillet.craftUpdate = Skillet.craftUpdate + 1
 	DA.TRACE("CRAFT_UPDATE: closingTrade= "..tostring(Skillet.closingTrade)..", tradeShow= "..tostring(Skillet.tradeShow)..", craftUpdate= "..tostring(Skillet.craftUpdate))
 	if Skillet.closingTrade or not Skillet.craftShow then return end
@@ -1051,8 +1060,8 @@ function Skillet:CRAFT_UPDATE()
 	end
 	DA.TRACE("CRAFT_UPDATE: dataSourceChanged= "..tostring(Skillet.dataSourceChanged)..", dataScanned= "..tostring(Skillet.dataScanned))
 	if Skillet.dataSourceChanged or not Skillet.dataScanned then
-		Skillet.dataSourceChanged = false
 		Skillet:SkilletShowWindow()
+		Skillet.dataSourceChanged = false
 	end
 end
 
@@ -1077,6 +1086,7 @@ end
 
 function Skillet:CRAFT_CLOSE()
 	DA.TRACE("CRAFT_CLOSE")
+	if TSM_API then return end
 	if not Skillet.craftShow then return end
 	if Skillet.ignoreClose then
 		Skillet.ignoreClose = false
@@ -1101,11 +1111,13 @@ function Skillet:TRADE_SKILL_SHOW()
 	end
 	Skillet.tradeShow = true
 	Skillet.isCraft = false
-	local name = GetTradeSkillLine()
-	DA.TRACE("TRADE_SKILL_SHOW: name= '"..tostring(name).."'")
+	local name, tradeID, isCraft
+	name = GetTradeSkillLine()
+	if name then tradeID = self.tradeSkillIDsByName[name] end
+	if tradeID then isCraft = self.skillIsCraft[tradeID] end
+	DA.TRACE("TRADE_SKILL_SHOW: name= '"..tostring(name).."', tradeID= "..tostring(tradeID)..", isCraft= "..tostring(isCraft))
 	DA.TRACE("TRADE_SKILL_SHOW: lastCraft= "..tostring(Skillet.lastCraft))
 	Skillet:ConfigureRecipeControls()
---	SkilletEnchantButton:Hide()				-- Hide our button
 	if not Skillet.changingTrade then		-- wait for UNIT_SPELLCAST_SUCCEEDED
 		Skillet:SkilletShow()
 	end
@@ -1113,6 +1125,7 @@ end
 
 function Skillet:CRAFT_SHOW()
 	DA.TRACE("CRAFT_SHOW")
+	if TSM_API then return end
 	if UnitAffectingCombat("player") then
 		DA.MARK3(0,"|cff8888ffSkillet|r: Combat lockdown restriction.".." Leave combat and try again.")
 		return
@@ -1142,8 +1155,11 @@ function Skillet:CRAFT_SHOW()
 	Skillet.isCraft = true
 	Skillet.hideCraftFrame = true
 	Skillet.craftUpdate = 0
-	local name = GetCraftDisplaySkillLine()
-	DA.TRACE("CRAFT_SHOW: name= '"..tostring(name).."'")
+	local name, tradeID, isCraft
+	name = GetCraftDisplaySkillLine()
+	if name then tradeID = self.tradeSkillIDsByName[name] end
+	if tradeID then isCraft = self.skillIsCraft[tradeID] end
+	DA.TRACE("CRAFT_SHOW: name= '"..tostring(name).."', tradeID= "..tostring(tradeID)..", isCraft= "..tostring(isCraft))
 	DA.TRACE("CRAFT_SHOW: lastCraft= "..tostring(Skillet.lastCraft))
 	if Skillet.lastCraft ~= Skillet.isCraft then
 		Skillet:ConfigureRecipeControls()
@@ -1178,7 +1194,6 @@ end
 function Skillet:PLAYER_INTERACTION_MANAGER_FRAME_SHOW(event,interactionType)
 	DA.TRACE("PLAYER_INTERACTION_MANAGER_FRAME_SHOW("..tostring(interactionType)..")")
 	if interactionType == Enum.PlayerInteractionType.Merchant then -- 5
---		Skillet:Skillet:MERCHANT_SHOW()
 		Skillet:MerchantShow()
 	end
 	if interactionType == Enum.PlayerInteractionType.Banker then -- 8
@@ -1343,6 +1358,8 @@ function Skillet:SkilletShow()
 					CloseCraft()
 				end
 			end
+		elseif TSM_API then
+			DA.DEBUG(1,"SkilletShow: TradeSkillMaster active")
 		end
 --
 -- Processing will continue in SkilletShowWindow when the TRADE_SKILL_UPDATE or CRAFT_UPDATE event fires
@@ -1362,14 +1379,16 @@ function Skillet:SkilletShow()
 			return
 		elseif not self:IsModKey1Down() and not UnitAffectingCombat("player") and not self.linkedSkill then
 			DA.DEBUG(1,"SkilletShow: "..tostring(self.currentTrade).." ("..tostring(name)..") is not supported")
-			DA.DEBUG(1,"SkilletShow: tradeSkillIDsByName= "..DA.DUMP(self.tradeSkillIDsByName))
+			--DA.DEBUG(1,"SkilletShow: tradeSkillIDsByName= "..DA.DUMP(self.tradeSkillIDsByName))
 		end
 		self:HideAllWindows()
-		if self.isCraft then
-			self:RestoreEnchantButton(true)
-			ShowUIPanel(CraftFrame)
-		else
-			ShowUIPanel(TradeSkillFrame)
+		if not TSM_API then
+			if self.isCraft then
+				self:RestoreEnchantButton(true)
+				ShowUIPanel(CraftFrame)
+			else
+				ShowUIPanel(TradeSkillFrame)
+			end
 		end
 	end
 end
@@ -1853,6 +1872,15 @@ function Skillet:SetTradeSkillOption(option, value, playerOverride, tradeOverrid
 			self.db.realm.options[player][trade] = {}
 		end
 		self.db.realm.options[player][trade][option] = value
+	end
+end
+local ChatEdit_InsertLink  = ChatFrameUtil and ChatFrameUtil.InsertLink or ChatEdit_InsertLink
+
+function Skillet:ChatEdit_InsertLink(link)
+	if ChatFrameUtil and ChatFrameUtil.InsertLink then
+		ChatFrameUtil.InsertLink(link)
+	else
+		ChatEdit_InsertLink(link)
 	end
 end
 

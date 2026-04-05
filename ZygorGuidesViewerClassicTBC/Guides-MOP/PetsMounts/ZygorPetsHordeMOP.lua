@@ -906,12 +906,12 @@ Defeat Goz Banefury |q 31967/3 |goto Twilight Highlands/0 56.59,56.80
 |tip Defeat him in battle pet combat.
 step
 talk Goz Banefury##66822
-turnin Goz Banefury##31974 |goto 56.59,56.80
+turnin Goz Banefury##31974 |goto Twilight Highlands/0 56.59,56.80
 |only if completedq(31970)
 step
 _Click the quest completion box that appears_
-turnin Battle Pet Tamers: Cataclysm##31967 |goto 56.59,56.80
-accept Grand Master Obalis##31970 |goto 56.59,56.80 |only if not completedq(31970)
+turnin Battle Pet Tamers: Cataclysm##31967 |goto Twilight Highlands/0 56.59,56.80
+accept Grand Master Obalis##31970 |goto Twilight Highlands/0 56.59,56.80 |only if not completedq(31970)
 step
 talk Obalis##66824
 Defeat Obalis |q 31970/1 |goto Uldum/0 56.56,41.98
@@ -966,7 +966,7 @@ Defeat Mo'ruk |q 31952/3 |goto Krasarang Wilds/0 62.23,45.91
 |tip Defeat him in battle pet combat.
 step
 talk Mo'ruk##66733
-turnin Grand Master Mo'ruk##31954 |goto 62.23,45.91
+turnin Grand Master Mo'ruk##31954 |goto Krasarang Wilds/0 62.23,45.91
 |only if completedq(31951)
 step
 talk Wastewalker Shu##66739

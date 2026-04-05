@@ -69,7 +69,7 @@ function addonTable.CustomiseDialog.Initialize()
     optionsFrame.OnDefault = function() end
     optionsFrame.OnRefresh = function() end
 
-    local category = Settings.RegisterCanvasLayoutCategory(optionsFrame, addonTable.Locales.CATEGORY_BAG) -- 修改設定選項的選單名稱
+    local category = Settings.RegisterCanvasLayoutCategory(optionsFrame, addonTable.Locales.BAGANATOR)
     category.ID = addonTable.Locales.BAGANATOR
     Settings.RegisterAddOnCategory(category)
   end

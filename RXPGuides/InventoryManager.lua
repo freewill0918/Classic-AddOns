@@ -16,13 +16,15 @@ local PickupContainerItem = C_Container and C_Container.PickupContainerItem or _
 
 local UseContainerItem = C_Container and C_Container.UseContainerItem or _G.UseContainerItem
 --local GetContainerItemLink = C_Container and C_Container.GetContainerItemLink or _G.GetContainerItemLink
---local GetItemCount = C_Item and C_Item.GetItemCount or _G.GetItemCount
+local GetItemCount = C_Item and C_Item.GetItemCount or _G.GetItemCount
 
 local GetCoinTextureString = C_CurrencyInfo and C_CurrencyInfo.GetCoinTextureString or _G.GetCoinTextureString
 
 inventoryManager.bagHook = _G.ContainerFrame_Update
 
 local GetContainerItemInfo
+
+local SSHARD = 6265
 
 if C_Container and C_Container.GetContainerItemInfo then
     GetContainerItemInfo = function(...)
@@ -123,9 +125,9 @@ local function SortQuiver()
     local colour = addon.guideTextColors["RXP_WARN_"]
     if inventoryManager.manualDelete then
         inventoryManager.manualDelete = false
-        print(format(L("RXPGuides: |c%sSorting arrows/bullets|r"),colour))
+        addon.comms.PrettyPrint(L("|c%sSorting arrows/bullets|r"), colour)
     elseif t - sortTimer > 3 then
-        print(format(L("RXPGuides: |c%sInventory is full, sorting arrows/bullets|r"),colour))
+        addon.comms.PrettyPrint(L("|c%sInventory is full, sorting arrows/bullets|r"), colour)
     end
     sortTimer = t
 
@@ -174,8 +176,43 @@ local exceptions = {
     [6196] = true,
 }
 
-local function IsJunk(id)
-    if not id then return end
+local exclusions = {
+    [6948] = true,
+    [184871] = true,
+    [260221] = true,
+    --[6265] = true, --Soul Shard
+}
+
+local GetShardCount = function()
+    local max = tonumber(addon.settings.profile.maxSoulShards) or 100
+    return GetItemCount(SSHARD) > max,max
+end
+
+local shardCount = 0
+local countStart = GetTime()
+
+local function IsJunk(id,bag)
+    if id == 6265 then
+        local bagType = 0
+        if bag then
+            _,bagType = GetContainerNumFreeSlots(bag)
+        end
+        if bit.band(bagType) == 0x4 then
+            return false
+        end
+        local pass,count = GetShardCount()
+        local gt = GetTime()
+        if countStart ~= gt then
+            countStart = gt
+            shardCount = 0
+        end
+        if pass then
+            shardCount = shardCount + 1
+        end
+        return pass and shardCount > count
+    elseif not id or exclusions[id] then
+        return false
+    end
     local discard = RXPCData.discardPile[id]
     if discard == nil then
         local _, _, quality = GetItemInfo(id)
@@ -192,15 +229,15 @@ end
 inventoryManager.IsJunk = IsJunk
 
 local function ToggleJunk(id,bag,slot)
-    if not id then return end
+    if not id or exclusions[id] then return end
     local junk = IsJunk(id)
     local _,link = GetItemInfo(id)
     local colour = addon.guideTextColors["RXP_WARN_"]
     RXPCData.discardPile[id] = not junk
     if junk then
-        print(format(L("%s: |c%sSet %s as useful|r"),addonName,colour,link))
+        addon.comms.PrettyPrint(L("|c%sSet %s as useful|r"), colour, link)
     else
-        print(format(L("%s: |c%sSet %s as junk|r"),addonName,colour,link))
+        addon.comms.PrettyPrint(L("|c%sSet %s as junk|r"), colour, link)
     end
     inventoryManager.UpdateAllBags()
     addon:SendEvent("RXP_JUNK", id, bag, slot)
@@ -221,7 +258,7 @@ local function FindJunk(deleteItem)
     for bag = BACKPACK_CONTAINER, NUM_BAG_FRAMES do
         local freeSlots, bagType = GetContainerNumFreeSlots(bag)
         --print(bagType,freeSlots,deleteItem)
-        if bagType and bagType == 0 and freeSlots and freeSlots > 0 and not deleteItem then
+        if bagType and bagType == 0 and freeSlots and freeSlots > 0 and not deleteItem and not GetShardCount() then
             return
         end
 
@@ -309,11 +346,12 @@ local function DeleteItems()
         DeleteCursorItem()
         local colour = addon.guideTextColors["RXP_WARN_"]
         local _,stack,_,_,_,_,link = GetContainerItemInfo(inventoryManager.deleteBag,inventoryManager.deleteSlot)
+        local id = GetContainerItemID(inventoryManager.deleteBag,inventoryManager.deleteSlot)
         if link then
-            if inventoryManager.manualDelete then
-                print(format(L("RXPGuides: |c%sDeleting %sx%s|r"),colour,link,stack))
+            if inventoryManager.manualDelete or id == SSHARD then
+               addon.comms.PrettyPrint(L("|c%sDeleting %sx%s|r"),colour,link,stack)
             else
-                print(format(L("RXPGuides: |c%sInventory is full, deleting %sx%s|r"),colour,link,stack))
+                addon.comms.PrettyPrint(L("|c%sInventory is full, deleting %sx%s|r"),colour,link,stack)
             end
         end
         inventoryManager.deleteBag = nil
@@ -491,7 +529,7 @@ end
 local function UpdateBagButton(button,bag,slot)
     local id = GetContainerItemID(bag, slot)
 
-    local isJunk = IsJunk(id)
+    local isJunk = IsJunk(id,bag,slot)
     --print(bag,slot,isJunk)
     if isJunk then
         ShowJunkIcon(button)
@@ -709,7 +747,7 @@ local function ProcessJunk(sellWares,override)
             local value = GetMoney() - inventoryManager.sellGoods
             local colour = addon.guideTextColors["RXP_WARN_"]
             if value > 0 then
-                print(format(L("RXPGuides: |c%sSold junk items for|r %s"),colour,GetCoinTextureString(value)))
+                addon.comms.PrettyPrint(L("|c%sSold junk items for|r %s"), colour, GetCoinTextureString(value))
             end
             inventoryManager.sellGoods = false
         end

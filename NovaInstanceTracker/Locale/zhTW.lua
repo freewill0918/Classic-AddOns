@@ -364,6 +364,163 @@ L["Arena Points"] = "競技場點數";
 L["stillInArena"] = "正在競技場中";
 L["stillInBattleground"] = "正在戰場中";
 
+L["resetAllInstancesConfirm"] = "Are you sure you want to delete all instance data from the log?";
+L["All Instance log data has been deleted."] = "All Instance log data has been deleted.";
+
+L["resetAllInstancesTitle"] = "Reset Instance Data";
+L["resetAllInstancesDesc"] = "This will reset all instance data and remove everything from the log. This does not reset trades.";
+
+L["autoCavernsArthasTitle"] = "Auto CoS Arthas";
+L["autoCavernsArthasDesc"] = "Auto dialogue owith arthas in the Culling of Strathholme in Wrath.";
+
+L["Mythic Plus"] = "Mythic Plus";
+L["mythicPlusShort"] = "Mythic+";
+
+L["noCurrentRaidLockouts"] = "No current raid lockouts.";
+
+L["weeklyQuests"] = "Weekly Quests";
+L["dailyQuests"] = "Daily Quests";
+L["monthlyQuests"] = "Monthly Quests";
+
+L["openLockouts"] = "Open Lockouts";
+
+L["autoGammaBuffDesc"] = "Gamma/Twilight Dungeons";
+
+L["autoGammaBuffTitle"] = "Auto Gamma Buff";
+L["autoGammaBuffDesc"] = "Auto get the right gamma buff for your class when you talk to the buff NPC in a Gamma Dungeon.";
+
+L["autoGammaBuffReminderTitle"] = "Gamma Buff Reminder";
+L["autoGammaBuffReminderDesc"] = "Print a msg to chat at the start of the dung remimding you to get the buff if you don't have it.";
+
+L["autoGammaBuffTypeTitle"] = "Gamma Buff Type";
+L["autoGammaBuffTypeDesc"] = "What buff type fo you want, Auto Select will auto choose between melee/ranged/healer/tank based off your spec. Or you can override it with a different selection. Buff selection is a character specific config option.";
+
+L["dungeonPopTimerTitle"] = "Dungeon Pop Timer";
+L["dungeonPopTimerDesc"] = "Show a timer on the dungeon queue pop window that shows how long left to click enter?";
+
+L["autoWrathDailiesTitle"] = "Auto Get Daily Quests";
+L["autoWrathDailiesDesc"] = "Auto get and hand in wrath daily quests from Archmage Lan'dalock in Dalaran";
+			
+L["gammaConfigWarning"] = "Gamma buff choice is character specific, if you change it on this character it won't effect your other characters.";
+L["autoGammaBuffReminder"] = "Get Gamma Dungeon buff from %s.";
+L["Sunreaver Warden"] = "Sunreaver Warden";
+L["Silver Covenant Warden"] = "Silver Covenant Warden";
+L["note"] = "Note:";
+L["Click an entry to post stats."] = "Click an entry to post stats.";
+L["Show Alts"] = "Show Alts";
+L["showAltsTooltip"] = "Show all alts in the instance log? (Lockouts are per character)";
+L["PvE"] = "PvE"; --Must be 3 letters max to fit. (PvP already exists further up)
+L["Hold to drag"] = "Hold to drag";
+L["Raid Lockouts (Including Alts)"] = "Raid Lockouts (Including Alts)";
+L["No trade logs found."] = "No trade logs found.";
+L["Today"] = "Today";
+L["Yesterday"] = "Yesterday";
+
+L["Level Log"] = "Level Log";
+L["Mouseover log entry for more info"] = "Mouseover log entry for more info";
+L["Current Level"] = "Current Level";
+L["Leveling history for"] = "Leveling history for";
+L["Unknown Time"] = "Unknown Time";
+L["Unknown Zone"] = "Unknown Zone";
+L["Zone"] = "Zone";
+L["SubZone"] = "SubZone";
+L["Ding"] = "Ding"; --Level up.
+L["Map coords"] = "Map coords";
+L["Gold owned at start of level"] = "Gold owned at start of level";
+L["Gold change during this level"] = "Gold change during this level";
+L["Quests completed during this level"] = "Quests completed during this level";
+L["Mobs that gave exp during this level"] = "Mobs that gave exp during this level";
+L["Played time this level"] = "Played time this level";
+L["Total Played"] = "Total Played";
+L["firstTimeSeeingCharPlayed"] = "First time seeing this character was at this level, played time for this level is likely wrong.";
+
+L["Left-Click"] = "Left-Click";
+L["Right-Click"] = "Right-Click";
+L["Shift Left-Click"] = "Shift Left-Click";
+L["Shift Right-Click"] = "Shift Right-Click";
+L["Middle-Click"] = "Middle-Click";
+L["Control Left-Click"] = "Ctrl Left-Click";
+
+L["Lockouts"] = "Lockouts";
+L["Instance"] = "Instance";
+L["ZoneID"] = "ZoneID";
+L["Show dungeons and raids?"] = "Show dungeons and raids?";
+L["Show battleground and arena instances?"] = "Show battleground and arena instances?";
+L["Party"] = "Party";
+L["Guild"] = "Guild";
+L["Copy Paste"] = "Copy Paste";
+L["Print"] = "Print";
+L["Post Stats for log"] = "Post Stats for log";
+L["Alts (Mouseover names for info)"] = "Alts (Mouseover names for info)";
+L["Min Level"] = "Min Level";
+L["No guild"] = "No guild";
+L["No guild rank"] = "No guild rank";
+L["Show leveling history for"] = "Show leveling history for";
+L["Test Instance"] = "Test Instance";
+L["Long"] = "Long";
+L["Medium"] = "Medium";
+L["Short"] = "Short";
+L["Chat Window"] = "Chat Window";
+L["Group Chat (Party/Raid)"] = "Group Chat (Party/Raid)";
+L["12 hour"] = "12 hour";
+L["24 hour"] = "24 hour";
+
+L["Molten Core"] = "Molten Core";
+L["Onyxia's Lair"] = "Onyxia's Lair";
+L["Blackwing Lair"] = "Blackwing Lair";
+L["Naxxramas"] = "Naxxramas";
+L["Karazhan"] = "Karazhan";
+L["The Shattered Halls"] = "The Shattered Halls";
+L["Serpentshrine Cavern"] = "Serpentshrine Cavern";
+L["The Arcatraz"] = "The Arcatraz";
+L["Black Morass"] = "Black Morass";
+L["Battle of Mount Hyjal"] = "Battle of Mount Hyjal";
+L["Black Temple"] = "Black Temple";
+L["Hellfire Citadel"] = "Hellfire Citadel";
+L["Coilfang Reservoir"] = "Coilfang Reservoir";
+L["Shadow Labyrinth"] = "Shadow Labyrinth";
+L["Auchindoun"] = "Auchindoun";
+L["Tempest Keep"] = "Tempest Keep";
+L["Caverns of Time"] = "Caverns of Time";
+L["deletedCharOnRealm"] = "Deleted character %s on realm [%s].";
+L["deletedCharOnRealmNewInfo"] = "Deleted character %s on realm [%s], recording new info.";
+
+L["Time"] = "Time";
+L["Show time?"] = "Show time?";
+L["Show Zone where trade happened?"] = "Show Zone where trade happened?";
+L["Time Ago"] = "Time Ago";
+L["Show how long ago?"] = "Show how long ago?";
+L["Records"] = "Records";
+L["How many trade records to show?"] = "How many trade records to show?";
+L["Current Hour Lockouts"] = "Current Hour Lockouts";
+L["Current Dungeon Stats"] = "Current Dungeon Stats";
+L["Log Entry"] = "Log Entry";
+L["Local Time"] = "Local Time";
+L["Server Time"] = "Server Time";
+L["Example"] = "Example";
+
+--Abbreviated days/months.
+L["Mon"] = "Mon";
+L["Tue"] = "Tue";
+L["Wed"] = "Wed";
+L["Thu"] = "Thu";
+L["Fri"] = "Fri";
+L["Sat"] = "Sat";
+L["Sun"] = "Sun";
+
+L["Jan"] = "Jan";
+L["Feb"] = "Feb";
+L["Mar"] = "Mar";
+L["Apr"] = "Apr";
+L["May"] = "May";
+L["Jun"] = "Jun";
+L["Jul"] = "Jul";
+L["Aug"] = "Aug";
+L["Sep"] = "Sep";
+L["Oct"] = "Oct";
+L["Nov"] = "Nov";
+L["Dec"] = "Dec";
+
 L["Blacksmithing"] = "鍛造";
 L["Leatherworking"] = "製皮";
 L["Alchemy"] = "鍊金術";
@@ -379,8 +536,100 @@ L["Jewelcrafting"] = "珠寶設計";
 L["Inscription"] = "銘文學";
 L["First Aid"] = "急救";
 
+L["Wrath Cooking Daily"] = "Wrath Cooking Daily";
+L["Wrath Fishing Daily"] = "Wrath Fishing Daily";
+L["Wrath Jewelcrafting Daily"] = "Wrath Jewelcrafting Daily";
+L["Cata Cooking Daily"] = "Cata Cooking Daily";
+L["Cata Fishing Daily"] = "Cata Fishing Daily";
+L["Cata Jewelcrafting Daily"] = "Cata Jewelcrafting Daily";
+
 L["Tarnished Undermine Real"] = "黯淡的幽坑城真幣";
 
-L["Qiraji Lord's Insignia"] = "Qiraji Lord's Insignia";
+L["Dungeon weeklies remaining"] = "Dungeon weeklies remaining";
 
-L["Remnants of Valor"] = "Remnants of Valor";
+L["Currency"] = "Currency";
+L["Currencies"] = "Currencies";
+
+L["instanceStatsOutputCurrencyTitle"] = "Currency";
+L["instanceStatsOutputCurrencyDesc"] = "Show what currencies were gained while inside a dungeon?";
+
+L["lootReminderDesc"] = "Loot Reminders";
+
+L["lootReminderRealTitle"] = "Tarnished Undermine Real";
+L["lootReminderRealDesc"] = "Show a reminder to loot Tarnished Undermine Real in SoD when a boss dies that can drop it.";
+
+L["lootReminderSizeTitle"] = "Text Size";
+L["lootReminderSizeDesc"] = "What size text to show on the reminder.";
+
+L["lootReminderXTitle"] = "X Position";
+L["lootReminderXDesc"] = "Adjust this for the left/right position of the reminder text.";
+
+L["lootReminderYTitle"] = "Y Position";
+L["lootReminderYDesc"] = "Adjust this for the up/down position of the reminder text.";
+
+L["Looted"] = "Looted";
+L["Not Looted"] = "Not Looted";
+L["Killed But Not Looted"] = "Killed But Not Looted";
+L["Loot the Tarnished Undermine Real"] = "Loot the Tarnished Undermine Real";
+L["Not Killed"] = "Not Killed";
+L["Loot Reminder List"] = "Loot Reminder List";
+L["Check your daily reals status"] = "Check your daily reals status"; --This string can't be any longer characters than this to fit in button.
+L["Bosses Looted"] = "Bosses Looted";
+L["Total today"] = "Total today";
+L["Total Reals"] = "Total Reals";
+
+L["Reminder"] = "Reminder";
+L["missingArgentDawnTrinket"] = "%s trinket reminder %s isn't equipped." --Argent Dawn trinket reminder [Rune of the Dawn] isn't equipped.
+
+L["argentDawnTrinketReminderTitle"] = "Argent Dawn Trinket Reminder";
+L["argentDawnTrinketReminderDesc"] = "Argent Dawn trinket reminder in chat if you enter Scholomance/Stratholme with the trinket in bags and not exalted.";
+
+L["skipRealMsgIfCappedTitle"] = "No msg if capped";
+L["skipRealMsgIfCappedDesc"] = "Skip the Tarnished Undermine Real loot msg if we're capped at 150 tokens already.";
+
+L["Live Side"] = "Live Side";
+L["Undead Side"] = "Undead Side";
+L["East"] = "East";
+L["West"] = "West";
+L["North"] = "North";
+L["Upper"] = "Upper";
+L["Lower"] = "Lower";
+
+L["lootTheItem"] = "Loot the %s"; --Example: Loot the Tarnished Undermine Real
+L["Qiraji Lord's Insignia"] = "퀴라지 군주의 휘장";
+
+L["soundsLootReminderTitle"] = "Loot Reminder Sound";
+L["soundsLootReminderDesc"] = "Pick which sound to play when a loot reminder is displayed.";
+
+L["lootReminderMysRelicTitle"] = "Mysterious Relics";
+L["lootReminderMysRelicDesc"] = "Show middle of the screen/chat window msgs when someone loots a Mysterious Relic in Karazhan Crypts.";
+
+L["lootReminderMysRelicPartyTitle"] = "Mys Relic Party Msg";
+L["lootReminderMysRelicPartyDesc"] = "Do a party chat message when someone loots a Mysterious Relic in Karazhan Crypts.";
+
+L["Remnants of Valor"] = "용맹의 잔재";
+
+L["autoTwilightBuffReminder"] = "Get Twilight Dungeon buff from %s.";
+
+L["douseDisclaimer"] = "Note: This douses module uses best guess based on\nlast boss killed and other factors, could be inaccurate.";
+L["Not Doused"] = "Not Doused";
+L["Doused"] = "Doused";
+L["Aqual Quintessence"] = "Aqual Quintessence";
+
+L["Magmadar"] = "Magmadar";
+L["Gehennas"] = "Gehennas";
+L["Garr"] = "Garr";
+L["Baron Geddon"] = "Baron Geddon";
+L["Shazzrah"] = "Shazzrah";
+L["Sulfuron Harbinger"] = "Sulfuron Harbinger";
+L["Golemagg the Incinerator"] = "Golemagg the Incinerator";
+
+L["of level"] = "of level"; --This for XP display during a dung (23.4% of level)
+
+L["World Boss"] = "World Boss";
+
+L["autoCelestialBuffReminder"] = "Get Celestial Dungeon buff from %s.";
+L["NPC"] = "NPC";
+
+L["by"] = "by";
+L["For help or suggestions"] = "For help or suggestions";

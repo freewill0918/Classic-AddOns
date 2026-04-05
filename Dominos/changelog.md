@@ -1,8 +1,37 @@
 # Dominos Changelog
 
+## 11.2.20
+
+* (Retail) Fixed an issue causing the cast bar to not disappear when canceling a channeled spell.
+
+## 11.2.19
+
+* (Retail) Fixed the reputation bar for major factions (Thanks [fediazgon](https://github.com/fediazgon))
+
+## 11.2.18
+
+* (Retail) Fix more secret errors with the cast bar by using castBarID when available.
+
+## 11.2.17
+
+* Keyboard nudging now checks your Strafe Left/Right keybindings in addition to Turn Left/Right. (Handles the Modern/Legacy control options in 12.x)
+* (TBC) Added latency information to the minimap icon, like in Vanilla (Thanks [PortalPi ](https://github.com/PortalPi))
+
+## 11.2.16
+
+* (Retail) Better handle secret icons on the cast bar.
+
+## 11.2.15
+
+* (TBC) Fixed the talent button not appearing on the menu bar
+
+## 11.2.14
+
+* (Retail) Fixed an menu bar error when entering/exiting pet battles
+
 ## 11.2.13
 
-* Fix an issue with unregistering the Blizzard stance bar that was causing errors
+* Fixed an issue with unregistering the Blizzard stance bar that was causing errors
 
 ## 11.2.12
 

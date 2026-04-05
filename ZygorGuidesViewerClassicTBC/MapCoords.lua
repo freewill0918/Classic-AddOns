@@ -92,6 +92,7 @@ local force_maptype={
 	[1699]=Enum_Zone,[1700]=Enum_Zone,			-- Sinfall both floors
 	[2005]=Enum_Micro,					-- Battle of Ardenweald scenario
 	[2016]=Enum_Micro,					-- Tazavesh is orphan, change to micro
+	[839]=Enum_Micro,					-- Lightless Cavern (Priest order hall scenario)
 
 	[391]=Enum_Zone, [393]=Enum_Zone, [394]=Enum_Zone, -- Pandaria Shrines should be zones
 	[327]=Enum_Zone, -- AQ overworld
@@ -102,6 +103,20 @@ local force_maptype={
 	[2322]=Enum_Micro,					-- Earthen Starter
 
 	[2248]=Enum_Continent,					-- Isle of Dorn needs to be a continent for ants to work both on over an underworld
+	
+	[2438]=Enum_Micro,					-- Scarlet Halls during Arator's Journey questline
+	[2541]=Enum_Micro,					-- Arcantina
+	
+}
+
+local force_parent={
+	[2526] = 2405, -- voidlands abundance/0 is on voidstorm
+	[2527] = 2405, -- voidlands abundance/1 is on voidstorm
+	
+	-- midnight main zones are on EK, or everything explodes
+	[2395] = 13,
+	[2424] = 13,
+	[2437] = 13,
 }
 
 local phasedmappairs = {
@@ -161,6 +176,9 @@ function ZGV.GetMapInfo(mapid)
 	
 	local forced_type=force_maptype[mapid]
 	if forced_type then ZGV_mapcache[mapid].mapType=forced_type end
+
+	local forced_parent=force_parent[mapid]
+	if forced_parent then ZGV_mapcache[mapid].parentMapID=forced_parent end
 	
 	handlephases(mapid)
 	return ZGV_mapcache[mapid]
@@ -187,9 +205,8 @@ function ZGV.GetMapChildren(mapID,resultsArray)
 	if not mapInfo then return resultsArray end
 	if mapInfo and mapInfo.children then return mapInfo.children end
 
-	for i,cData in pairs(C_Map.GetMapChildrenInfo(mapID)) do
+	for i,cData in pairs(C_Map.GetMapChildrenInfo(mapID,nil,true)) do -- any map type, all descendants
 		resultsArray[cData.mapID] = true
-		ZGV.GetMapChildren(cData.mapID,resultsArray)
 	end
 
 	ZGV_mapcache[mapID].children = resultsArray
@@ -388,20 +405,40 @@ end
 
 -- tests
 function MapCoords.TestMdist()
-	local tests = {
+	local CLASSIC_MAP_IDS = ZGV.IsClassic or ZGV.IsClassicTBC
+
+	local STORMWIND = CLASSIC_MAP_IDS and 1453 or 84 
+	local IRONFORGE = CLASSIC_MAP_IDS and 1455 or 87 
+	local TELDRASSIL = CLASSIC_MAP_IDS and 1446 or 57 
+
+	local tests = CLASSIC_MAP_IDS and {
 		"same map",
-		{ 84,0.5,0.5,  84,0.5,0.5, 0},
-		{ 84,0.5,0.5,  84,0.6,0.5, 173},
-		{ 84,0.5,0.5,  84,0.5,0.6, 115},
-		{ 84,0.5,0.5,  84,0.6,0.6, 208},
+		{ STORMWIND,0.5,0.5,  STORMWIND,0.5,0.5, 0},
+		{ STORMWIND,0.5,0.5,  STORMWIND,0.6,0.5, 134},
+		{ STORMWIND,0.5,0.5,  STORMWIND,0.5,0.6, 89},
+		{ STORMWIND,0.5,0.5,  STORMWIND,0.6,0.6, 161},
 		"diff map same continent",
-		{ 84,0.5,0.5,  87,0.5,0.5, 4225},
-		{ 84,0.5,0.5,  87,0.6,0.5, 4262},
-		{ 84,0.5,0.5,  87,0.5,0.6, 4178},
-		{ 84,0.5,0.5,  87,0.6,0.6, 4216},
+		{ STORMWIND,0.5,0.5,  IRONFORGE,0.5,0.5, 4297},
+		{ STORMWIND,0.5,0.5,  IRONFORGE,0.6,0.5, 4331},
+		{ STORMWIND,0.5,0.5,  IRONFORGE,0.5,0.6, 4249},
+		{ STORMWIND,0.5,0.5,  IRONFORGE,0.6,0.6, 4284},
 		"diff continent",
-		{ 84,0.5,0.5,  57,0.5,0.5, "err"},
+		{ STORMWIND,0.5,0.5,  TELDRASSIL,0.5,0.5, "err"},
+	} or { -- retail and mop
+		"same map",
+		{ STORMWIND,0.5,0.5,  STORMWIND,0.5,0.5, 0},
+		{ STORMWIND,0.5,0.5,  STORMWIND,0.6,0.5, 173},
+		{ STORMWIND,0.5,0.5,  STORMWIND,0.5,0.6, 115},
+		{ STORMWIND,0.5,0.5,  STORMWIND,0.6,0.6, 208},
+		"diff map same continent",
+		{ STORMWIND,0.5,0.5,  IRONFORGE,0.5,0.5, 4225},
+		{ STORMWIND,0.5,0.5,  IRONFORGE,0.6,0.5, 4262},
+		{ STORMWIND,0.5,0.5,  IRONFORGE,0.5,0.6, 4178},
+		{ STORMWIND,0.5,0.5,  IRONFORGE,0.6,0.6, 4216},
+		"diff continent",
+		{ STORMWIND,0.5,0.5,  TELDRASSIL,0.5,0.5, "err"},
 	}
+
 	local lastLabel,n
 	local errs={}
 	for i,test in ipairs(tests) do
@@ -412,7 +449,7 @@ function MapCoords.TestMdist()
 			n=n+1
 			local d,dx,dy,err=Mdist(test[1],test[2],test[3],test[4],test[5],test[6])
 			d=d or err
-			if (type(test[7])=="string" and type(d)~="number") or (type(test[7])=="number" and d and abs(d-test[7])<2) then
+			if (type(test[7])=="string" and type(d)~="number") or (type(test[7])=="number" and type(d)=="number" and abs(d-test[7])<2) then
 				-- silently pass
 			else
 				tinsert(errs,"Mdist test failed: '"..lastLabel.."' #"..n..", expected "..tostring(test[7])..", got "..tostring(d))
@@ -519,9 +556,21 @@ MAPDATA_XLT[2339][2274] = { 0.67,0.10, 0.15,0.10, true } -- Dornogal on Khazalga
 MAPDATA_XLT[2369] = MAPDATA_XLT[2369] or {}
 MAPDATA_XLT[2369][2248] = { 0.10,0.10, 0.13,0.10, true } -- Siren Isle on Isle of Dorn
 
+-- isle of dorn override, depending on visible map
+MAPDATA_XLT_2248_2274 = { 0.50,0.44, 0.02,0.44, true } -- Isle of Dorn on Khazalgar
+
+
 function MapCoords.Mxlt(map1,x,y,map2,oob_ok,creative)
 	if map1==map2 then return x,y end
 	if not map1 or not map2 then return false,nil,nil,"no maps" end
+	
+	if (map1==2248 or map1==2339) and map2==2274 then
+		local worldmap = WorldMapFrame and WorldMapFrame:GetMapID()
+		if (worldmap==2248 or worldmap==2339) then
+			-- if we are viewing IoD/Dorn map, do not apply overrides
+			return false
+		end
+	end
 
 	if map2==MAP_AZEROTH then
 		if map1==MAP_COSMIC then return false,nil,nil,"cosmic <-> azeroth" end

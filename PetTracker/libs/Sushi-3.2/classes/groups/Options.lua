@@ -1,5 +1,5 @@
 --[[
-Copyright 2008-2025 João Cardoso
+Copyright 2008-2026 João Cardoso
 Sushi is distributed under the terms of the GNU General Public License (or the Lesser GPL).
 This file is part of Sushi.
 
@@ -55,15 +55,10 @@ function Group:New(category, subcategory)
 	dock.OnCommit = function() group:FireCalls('OnOkay') end
 	dock:Hide()
 
-	--Settings.RegisterAddOnCategory(subcategory and
-	--	Settings.RegisterCanvasLayoutSubcategory(Group.GetCategory(category), dock, group.title) or
-	--	Settings.RegisterCanvasLayoutCategory(dock, group.title))
-	-- 暫時修正，指定 ID 以便能開啟設定
-	local newCategory = subcategory and 
-		Settings.RegisterCanvasLayoutSubcategory(Group.GetCategory(category), dock, group.title) or 
-		Settings.RegisterCanvasLayoutCategory(dock, group.title)
-	newCategory.ID = group.title
-	Settings.RegisterAddOnCategory(newCategory)
+	Settings.RegisterAddOnCategory(subcategory and
+		Settings.RegisterCanvasLayoutSubcategory(Group.GetCategory(category), dock, group.title) or
+		Settings.RegisterCanvasLayoutCategory(dock, group.title))
+
 	return group
 end
 

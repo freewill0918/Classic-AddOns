@@ -1,8 +1,10 @@
 local faction = UnitFactionGroup("player")
 if faction == "Horde" then return end
 
+if GetLocale() == "zhCN" then return end
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 << Human Mage
 #name 1-10 ADV Elwynn Forest Human Mage AoE
 #version 2
@@ -872,7 +874,7 @@ step
     .goto Elwynn Forest,42.105,65.927
     .accept 1097 >> Accept Elmore's Task
     .target +Smith Argus
-    .goto Elwynn Forest,41.706,65.544   
+    .goto Elwynn Forest,41.706,65.544
 step
     .goto Elwynn Forest,43.16,89.63
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Maybell|r inside
@@ -1158,6 +1160,7 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 << Human Mage
 #name 10-11 ADV Dun Morogh Human Mage AoE
 #version 2
@@ -1449,6 +1452,7 @@ step << skip
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 << Gnome Mage
 #name 1-10 ADV Dun Morogh Gnome Mage AoE
 #version 2
@@ -1528,7 +1532,7 @@ step
     .accept 233 >> Accept Coldridge Valley Mail Delivery
     .accept 3114 >> Accept Glyphic Memorandum
     .target Sten Stoutarm
-step 
+step
     #season 2
     #xprate <1.1
     #completewith EnterAnvilmar
@@ -1610,7 +1614,7 @@ step
     .complete 170,1 --Kill Rockjaw Trogg (x6)
     .mob +Rockjaw Trogg
     .complete 170,2 --Kill Burly Rockjaw Trogg (x6)
-    .mob +Burly Rockjaw Trogg 
+    .mob +Burly Rockjaw Trogg
     .isOnQuest 170
 step
     #label Talin
@@ -3008,6 +3012,7 @@ step << skip
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 << Alliance Mage
 #name 10-12 ADV Darkshore 1 Mage AoE
 #version 2
@@ -3564,6 +3569,7 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 << Alliance Mage
 #name 10-12 LAUNCH ADV Darkshore 1 Mage AoE
 #version 2
@@ -4131,6 +4137,7 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 << Alliance Mage
 #name 12-14 ADV Loch Modan Mage AoE
 #version 2
@@ -4739,6 +4746,7 @@ step
     .goto Stormwind City,39.17,76.58,12,0
     >>|cRXP_WARN_Jump up onto the torch, then drop down to get under Stormwind|r
     >>|cRXP_WARN_With Shadows on "Fair" or "Low", get in the middle of Derek the Dinosaur's feet (the lighter part of the dirt) just before the blue void, then walk straight forward|r
+    >>|cRXP_WARN_NOTE: There is a small chance of dying using this method. You can also walk to the Mage Tower normally if you wish|r
     .link https://youtu.be/gV8-wgQEomc >> CLICK HERE for a guide
     .goto Stormwind City,38.61,79.39,10 >>Travel toward |cRXP_FRIENDLY_Jennea|r
 step
@@ -4910,6 +4918,7 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 << Alliance Mage
 #name 14-16 ADV Darkshore 2 Mage AoE
 #version 2
@@ -5321,12 +5330,18 @@ step
     .turnin 4812 >> Turn in As Water Cascades
     .accept 4813 >> Accept The Fragments Within
 step
-    #completewith next
+    #completewith GrainSample
     >>Kill |cRXP_ENEMY_Moonstalker Runts|r and |cRXP_ENEMY_Moonstalkers|r. Loot them for their |cRXP_LOOT_Moonstalker Fangs|r
     .complete 1002,1 --Moonstalker Fang (6)
     .mob Moonstalker Runt
     .mob Moonstalker
 step
+    .goto Darkshore,44.18,36.29
+    >>Talk to |cRXP_FRIENDLY_Asterion|r
+    .turnin 957,3 >>Turn in Bashal'Aran
+    .target Asterion
+step
+    #label GrainSample
     .goto Darkshore,50.66,34.98
     >>Open the |cRXP_PICK_Blackwood Grain Stores|r. Loot it for the |cRXP_LOOT_Blackwood Grain Sample|r
     >>|cRXP_WARN_Aggro the Mobs protecting it, cast|r |T135848:0|t[Frost Nova]|cRXP_WARN_, loot the |cRXP_LOOT_Blackwood Grain Sample|r, then run away toward |cRXP_ENEMY_Den Mother|r from the mobs that spawn|r
@@ -5503,11 +5518,6 @@ step
     .subzone 442 >> Travel to Auberdine
     .isOnQuest 4763
 step
-    .goto Darkshore,44.18,36.29
-    >>Talk to |cRXP_FRIENDLY_Asterion|r
-    .turnin 957,3 >>Turn in Bashal'Aran
-    .target Asterion
-step
     .goto Darkshore,37.39,40.13
     >>Talk to |cRXP_FRIENDLY_Thundris|r
     .turnin 4763,1 >> Turn in The Blackwood Corrupted
@@ -5522,6 +5532,7 @@ step
     .goto Darkshore,38.84,43.42
     >>Talk to |cRXP_FRIENDLY_Tharnariun|r
     .turnin 2139,1 >>Turn in Tharnariun's Hope
+    .target Tharnariun Treetender
 step
     >>Talk to |cRXP_FRIENDLY_Glynda|r, |cRXP_FRIENDLY_Barithras|r, and the |cRXP_PICK_Wanted Poster|r
     .turnin 4813,2 >>Turn in The Fragments Within
@@ -5556,6 +5567,7 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 << Alliance Mage
 #name 16-18 ADV Westfall Mage AoE
 #version 2
@@ -5608,6 +5620,7 @@ step
     .goto Stormwind City,39.17,76.58,12,0
     >>|cRXP_WARN_Jump up onto the torch, then drop down to get under Stormwind|r
     >>|cRXP_WARN_With Shadows on "Fair" or "Low", get in the middle of Derek the Dinosaur's feet (the lighter part of the dirt) just before the blue void, then walk straight forward|r
+    >>|cRXP_WARN_NOTE: There is a small chance of dying using this method. You can also walk to the Mage Tower normally if you wish|r
     .link https://youtu.be/gV8-wgQEomc >> CLICK HERE for a guide
     .goto Stormwind City,38.61,79.39,10 >>Travel toward |cRXP_FRIENDLY_Jennea|r
 step
@@ -6161,6 +6174,7 @@ step
     .goto Stormwind City,39.17,76.58,12,0
     >>|cRXP_WARN_Jump up onto the torch, then drop down to get under Stormwind|r
     >>|cRXP_WARN_With Shadows on "Fair" or "Low", get in the middle of Derek the Dinosaur's feet (the lighter part of the dirt) just before the blue void, then walk straight forward|r
+    >>|cRXP_WARN_NOTE: There is a small chance of dying using this method. You can also walk to the Mage Tower normally if you wish|r
     .link https://youtu.be/gV8-wgQEomc >> CLICK HERE for a guide
     .goto Stormwind City,38.61,79.39,10 >>Travel toward |cRXP_FRIENDLY_Jennea|r
 step
@@ -6284,6 +6298,7 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 << Alliance Mage
 #name 18-20 ADV Darkshore 3 Mage AoE
 #version 2
@@ -6862,11 +6877,13 @@ step
     >>|cRXP_ENEMY_Grizzled Thistle Bears|r share spawns with |cRXP_ENEMY_Moonstalker Sires|r and |cRXP_ENEMY_Giant Foreststriders|r
     .complete 1003,1 --Grizzled Scalp (4)
     .mob Grizzled Thistle Bear
+    .use 13536
 step
     #label 525
     .goto Darkshore,41.40,80.56
     >>Click |cRXP_PICK_Buzzbox 525|r
     .turnin 1003 >> Turn in Buzzbox 525
+    .use 13536
 step
     .goto Darkshore,41.10,84.17,70,0
     .goto Darkshore,40.38,90.49,70,0
@@ -6887,6 +6904,7 @@ step
     .complete 986,1 --Fine Moonstalker Pelt (5)
     .unitscan Moonstalker Sire
     .unitscan Moonstalker Matriarch
+    .use 13536
 step
     #completewith Sleeper
     .xp 19+4635 >> Grind to 4635+/21300xp
@@ -6902,6 +6920,7 @@ step
     >>Talk to |cRXP_FRIENDLY_Liladris|r
     .turnin 5321,1 >>Turn in The Sleeper Has Awakened
     .target Liladris Moonriver
+    .use 13536
     .isOnQuest 5321
 step
     #label Delgren
@@ -6946,7 +6965,7 @@ step
 step
     >>Talk to |cRXP_FRIENDLY_Terenthis|r and |cRXP_FRIENDLY_Gershala|r
     .turnin 986 >>Turn in A Lost Master
-    .accept 993 >>Accept A Lost Master
+    --.accept 993 >>Accept A Lost Master
     .target +Terenthis
     .goto Darkshore,39.37,43.48
     .turnin 3765 >> Turn in The Corruption Abroad
@@ -7058,6 +7077,7 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 << Alliance Mage
 #name 20-22 ADV Redridge 1 Mage AoE
 #version 2
@@ -7122,11 +7142,12 @@ step
     .goto Stormwind City,39.17,76.58,12,0
     >>|cRXP_WARN_Jump up onto the torch, then drop down to get under Stormwind|r
     >>|cRXP_WARN_With Shadows on "Fair" or "Low", get in the middle of Derek the Dinosaur's feet (the lighter part of the dirt) just before the blue void, then walk straight forward|r
+    >>|cRXP_WARN_NOTE: There is a small chance of dying using this method. You can also walk to the Mage Tower normally if you wish|r
     .link https://youtu.be/gV8-wgQEomc >> CLICK HERE for a guide
     .goto Stormwind City,38.61,79.39,10 >>Travel toward |cRXP_FRIENDLY_Larimaine|r
 step
     #requires Bank1
-    .goto Stormwind City,38.61,79.39
+    .goto Stormwind City,39.69,79.56
     >>Talk to |cRXP_FRIENDLY_Larimaine|r
     .train 3561 >> Train |T135763:0|t[Teleport: Stormwind]
     >>Total Cost: 20s

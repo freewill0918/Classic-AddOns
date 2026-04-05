@@ -1,22 +1,10 @@
-lightweight tag 4003150c33be05c097b1e3397ffe7a965adace88 11.1.8
+lightweight tag 58a757f43a86ef5e5f291b9e05e4231d280b7c83 12.0.5
 Author:	Resike <resike@gmail.com>
-Date:	Sun Apr 27 15:17:46 2025 +0200
+Date:	Tue Mar 24 22:11:39 2026 +0100
 
-commit 4003150c33be05c097b1e3397ffe7a965adace88
+commit 58a757f43a86ef5e5f291b9e05e4231d280b7c83
 Author: Resike <resike@gmail.com>
-Date:   Sun Apr 27 15:17:46 2025 +0200
+Date:   Tue Mar 24 22:11:39 2026 +0100
 
-    11.1.8
-
-commit 70c5770156d75d0a5c6c2935a87231335fb60c9f
-Author: Márton Bertók <marton.bertok@me.com>
-Date:   Sun Apr 27 13:26:41 2025 +0200
-
-    Don't require mouseover for showing the menu if keepOpen is on and fix for menu frameStrata
-
-commit 70c5770156d75d0a5c6c2935a87231335fb60c9f
-Author: Márton Bertók <marton.bertok@me.com>
-Date:   Sun Apr 27 13:26:41 2025 +0200
-
-    Don't require mouseover for showing the menu if keepOpen is on and fix for menu frameStrata
+    12.0.5
 

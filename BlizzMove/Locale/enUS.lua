@@ -68,6 +68,3 @@ L["This addon makes the Blizzard windows movable."] = "This addon makes the Bliz
 L["To temporarily move a window just %s the window and drag it to where you want it for the current game session."] = "To temporarily move a window just %s the window and drag it to where you want it for the current game session."
 L["Version:"] = "Version:"
 
--- 自行加入
-L["BlizzMove"] = "BlizzMove"
-L["Blizz Move"] = "BlizzMove"

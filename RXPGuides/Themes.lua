@@ -1,14 +1,16 @@
 local addonName, addon = ...
-
+local L = addon.locale.Get
 local fmt = string.format
 
 local themes = {}
+local UnitName = addon.GetUnitName
 addon.themes = themes
 
 themes['RXP Blue'] = {
     background = {12 / 255, 12 / 255, 27 / 255, 1},
     bottomFrameBG = {18 / 255, 18 / 255, 40 / 255, 1},
     bottomFrameHighlight = {54 / 255, 62 / 255, 109 / 255, 1},
+    displayName = L("RXP Blue"),
     mapPins = {206 / 210, 123 / 210, 1, 1},
     tooltip = "|cFFCE7BFF", -- AARRGGBB
     texturePath = "Interface/AddOns/" .. addonName .. "/Textures/",
@@ -16,53 +18,50 @@ themes['RXP Blue'] = {
     textColor = {1, 1, 1},
     applicable = function() return not RXPCData.GA end,
     author = "RestedXP",
-    bgTextures = {
-        edge = "Interface/BUTTONS/WHITE8X8",
-        bottom = "Interface/BUTTONS/WHITE8X8",
-    },
+    bgTextures = {edge = "Interface/BUTTONS/WHITE8X8", bottom = "Interface/BUTTONS/WHITE8X8"},
     edges = {
         edge = "Interface/AddOns/" .. addonName .. "/Textures/rxp-borders",
-        guideName = "Interface/AddOns/" .. addonName .. "/Textures/rxp-borders",
-    },
+        guideName = "Interface/AddOns/" .. addonName .. "/Textures/rxp-borders"
+    }
 }
 
 themes['Default'] = themes['RXP Blue']
+themes['Default'].displayName = _G.DEFAULT
 
 -- Built-in themes must provide all properties
 themes['RXP Red'] = {
     background = {19 / 255, 0 / 255, 0 / 255, 1},
     bottomFrameBG = {31 / 255, 0 / 255, 0 / 255, 1},
     bottomFrameHighlight = {81 / 255, 0 / 255, 0 / 255, 1},
+    displayName = L("RXP Red"),
     mapPins = {0.9, 0.1, 0.1, 1},
     tooltip = "|c0000C1FF", -- AARRGGBB
     texturePath = "Interface/AddOns/" .. addonName .. "/Textures/Hardcore/",
     font = _G.GameFontNormal:GetFont(),
     textColor = {1, 1, 1},
-    --applicable = function() return addon.settings.profile.hardcore end,
-    --applicable = true,
+    -- applicable = function() return addon.settings.profile.hardcore end,
+    -- applicable = true,
     applicable = function() return not RXPCData.GA end,
     author = "RestedXP",
-    bgTextures = {
-        edge = "Interface/BUTTONS/WHITE8X8",
-        bottom = "Interface/BUTTONS/WHITE8X8",
-    },
+    bgTextures = {edge = "Interface/BUTTONS/WHITE8X8", bottom = "Interface/BUTTONS/WHITE8X8"},
     edges = {
         edge = "Interface/AddOns/" .. addonName .. "/Textures/Hardcore/rxp-borders",
-        guideName = "Interface/AddOns/" .. addonName .. "/Textures/Hardcore/rxp-borders",
-    },
+        guideName = "Interface/AddOns/" .. addonName .. "/Textures/Hardcore/rxp-borders"
+    }
 }
 
 themes['RXP Gold'] = {
     background = {32 / 255, 18 / 255, 0 / 255, 1},
     bottomFrameBG = {48 / 255, 27 / 255, 0 / 255, 1},
     bottomFrameHighlight = {125 / 255, 71 / 255, 0 / 255, 1},
+    displayName = L("RXP Gold"),
     mapPins = {0.95, 0.15, 0.15, 1},
     tooltip = "|c0000C1FF", -- AARRGGBB
     texturePath = "Interface/AddOns/" .. addonName .. "/Textures/GoldAssistant/",
     font = _G.GameFontNormal:GetFont(),
     textColor = {1, 1, 1},
     applicable = function() return RXPCData.GA == true end,
-    --applicable = true,
+    -- applicable = true,
     author = "RestedXP"
 }
 
@@ -71,13 +70,14 @@ themes['DarkMode'] = {
     background = {14 / 255, 14 / 255, 14 / 255, 255 / 255},
     bottomFrameBG = {19 / 255, 19 / 255, 19 / 255, 255 / 255},
     bottomFrameHighlight = {classColor.r, classColor.g, classColor.b, 128 / 255},
+    displayName = L("DarkMode"),
     mapPins = {classColor.r, classColor.g, classColor.b, 1},
     tooltip = "|c" .. classColor.colorStr,
     texturePath = "Interface/AddOns/" .. addonName .. "/Textures/DarkMode/",
     font = _G.GameFontNormal:GetFont(),
     textColor = {1, 1, 1},
     applicable = function() return not RXPCData.GA end,
-    --applicable = true,
+    -- applicable = true,
     author = "Bypass"
 }
 
@@ -85,6 +85,7 @@ themes['RXP Green'] = {
     background = {6 / 255, 23 / 255, 12 / 255, 1},
     bottomFrameBG = {9 / 255, 34 / 255, 17 / 255, 1},
     bottomFrameHighlight = {4 / 255, 113 / 255, 65 / 255, 1},
+    displayName = L("RXP Green"),
     mapPins = {0 / 255, 203 / 255, 66 / 255, 1},
     tooltip = "|cFFCE7BFF", -- AARRGGBB
     texturePath = "Interface/AddOns/" .. addonName .. "/Textures/Green/",
@@ -92,20 +93,18 @@ themes['RXP Green'] = {
     textColor = {1, 1, 1},
     applicable = function() return not RXPCData.GA end,
     author = "RestedXP",
-    bgTextures = {
-        edge = "Interface/BUTTONS/WHITE8X8",
-        bottom = "Interface/BUTTONS/WHITE8X8",
-    },
+    bgTextures = {edge = "Interface/BUTTONS/WHITE8X8", bottom = "Interface/BUTTONS/WHITE8X8"},
     edges = {
         edge = "Interface/AddOns/" .. addonName .. "/Textures/Green/rxp-borders",
-        guideName = "Interface/AddOns/" .. addonName .. "/Textures/Green/rxp-borders",
-    },
+        guideName = "Interface/AddOns/" .. addonName .. "/Textures/Green/rxp-borders"
+    }
 }
 
 addon.customThemeBase = CopyTable(themes.Default)
 addon.customThemeBase.name = "Custom"
+addon.customThemeBase.displayName = _G.CUSTOM
 addon.customThemeBase.applicable = true
-addon.customThemeBase.author = _G.UnitName("player")
+addon.customThemeBase.author = UnitName("player") or L"Unknown"
 addon.customThemeBase.bgTextures.guideName = "Interface/BUTTONS/WHITE8X8"
 
 addon.guideTextColors = {}
@@ -120,7 +119,7 @@ addon.guideTextColors.default = {
     ["RXP_BUY_"] = "FF0E8312"
 }
 
-local function themeApplies(applicable,isTable)
+local function themeApplies(applicable, isTable)
     if applicable == nil then
         return true
     elseif type(applicable) == "boolean" then
@@ -128,14 +127,13 @@ local function themeApplies(applicable,isTable)
     elseif type(applicable) == "function" then
         return applicable()
     elseif type(applicable) == "table" and not isTable then
-        return themeApplies(applicable.applicable,true)
+        return themeApplies(applicable.applicable, true)
     end
 end
 
 local function GetDefaultTheme()
 
-    if addon.currentGuide and addon.currentGuide.theme and
-                          themes[addon.currentGuide.theme] then
+    if addon.currentGuide and addon.currentGuide.theme and themes[addon.currentGuide.theme] then
         return themes[addon.currentGuide.theme]
     elseif RXPCData.GA then
         return themes["RXP Gold"]
@@ -157,16 +155,14 @@ function addon:LoadActiveTheme()
 
     -- Reset theme to default if selected goes away
 
-    if not (newTheme and themeApplies(newTheme)) then
-        newTheme = GetDefaultTheme()
-    end
+    if not (newTheme and themeApplies(newTheme)) then newTheme = GetDefaultTheme() end
 
     addon.activeTheme = newTheme
 
     local RXPFrame = addon.RXPFrame
 
     if newTheme.bgTextures then
-        for name,frame in pairs(RXPFrame.backdrop) do
+        for name, frame in pairs(RXPFrame.backdrop) do
             local texture = newTheme.bgTextures[name] or RXPFrame.defaultBackground[name]
             frame.bgFile = texture
         end
@@ -177,7 +173,7 @@ function addon:LoadActiveTheme()
     RXPFrame.backdrop.bottom.edgeFile = nil
 
     if newTheme.edges then
-        for name,texture in pairs(newTheme.edges) do
+        for name, texture in pairs(newTheme.edges) do
             local frame = RXPFrame.backdrop[name]
             frame.edgeFile = texture
         end
@@ -197,11 +193,11 @@ function addon:GetThemeOptions()
     for k, t in pairs(themes) do
         if themeApplies(t.applicable) then
             if k == 'Custom' then
-                themeOptions[k] = 'Custom'
+                themeOptions[k] = t.displayName
             elseif k == "Default" then
-                themeOptions[""] = "Default"
+                themeOptions[""] = t.displayName
             else
-                themeOptions[k] = fmt("%s by %s", k, t.author)
+                themeOptions[k] = fmt("%s by %s", t.displayName, t.author)
             end
         end
     end
@@ -213,24 +209,20 @@ function addon:RegisterTheme(theme)
     if not theme then return end
 
     if not theme['name'] or not theme['author'] then
-        self.comms.PrettyPrint("Theme missing name or author")
+        self.comms.PrettyPrint(L"Theme missing name or author")
         return
     end
 
     for k, _ in pairs(themes.Default) do
         if not theme[k] and k ~= 'name' and k ~= 'author' then
-            if self.settings.profile.debug then
-                self.comms.PrettyPrint("%s theme missing %s using default",
-                                       theme.name, k)
-            end
+            self.comms.PrettyDebug("%s theme missing %s using default", theme.name, k)
 
             theme[k] = themes.Default[k]
         end
     end
 
     if not themeApplies(theme.applicable) then
-        self.comms.PrettyPrint(
-            "%s does not apply to current mode, importing anyway", theme.name)
+        self.comms.PrettyPrint(L"%s does not apply to current mode, importing anyway", theme.name)
     end
 
     themes[theme.name] = theme
@@ -238,14 +230,10 @@ end
 
 function addon.GetTexture(name)
     -- Avoid nil concatenation
-    if not name or not (addon.activeTheme and addon.activeTheme.texturePath) then
-        return
-    end
+    if not name or not (addon.activeTheme and addon.activeTheme.texturePath) then return end
 
     -- Exclude banner from hiding custom theme colors
-    if addon.activeTheme.name == "Custom" and name == 'rxp-banner' then
-        return
-    end
+    if addon.activeTheme.name == "Custom" and name == 'rxp-banner' then return end
 
     -- Validate for non-built-in textures?
     -- https://www.wowinterface.com/forums/showpost.php?p=337605&postcount=8

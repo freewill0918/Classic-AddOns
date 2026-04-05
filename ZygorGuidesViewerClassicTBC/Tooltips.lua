@@ -54,7 +54,17 @@ else
 			line = line:gsub("|c........",""):gsub("|r","") -- strip color codes, if any
 
 			table.insert(results,line)
+
+			-- right lines
+			local line=Gratuity:GetLine(num, true)
+			if line then
+				line = line:gsub("|c........",""):gsub("|r","") -- strip color codes, if any
+				table.insert(results,line)
+			end
 		end
+
+		
+		
 		return results
 	end
 

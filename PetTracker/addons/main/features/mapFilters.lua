@@ -1,5 +1,5 @@
 --[[
-    Copyright 2012-2025 João Cardoso
+    Copyright 2012-2026 João Cardoso
     All Rights Reserved
 --]]
 
@@ -17,7 +17,7 @@ end
 function Filters:OnLoad()
     Menu.ModifyMenu('MENU_WORLD_MAP_TRACKING', function(_, drop)
         drop:CreateDivider()
-        drop:CreateTitle('|TInterface/Addons/PetTracker/art/compass:16:16|t '..L.ADDON)
+        drop:CreateTitle('|TInterface/Addons/PetTracker/art/compass:16:16|t PetTracker')
         drop:CreateCheckbox(L.Species, Addon.GetOption, Addon.ToggleOption, 'showSpecies')
 
         local edit = drop:CreateTemplate('PetTrackerMenuSearch')

@@ -120,7 +120,7 @@ function addon:PopulateCVarPanel(OptionsPanel)
   Title:SetJustifyV("TOP")
   Title:SetJustifyH("LEFT")
   Title:SetPoint("TOPLEFT", 10, -16)
-  Title:SetText("CVar 瀏覽器")
+  Title:SetText("CVar Browser")
 
   local SubText = OptionsPanel:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
   SubText:SetMaxLines(3)
@@ -129,7 +129,7 @@ function addon:PopulateCVarPanel(OptionsPanel)
   SubText:SetJustifyH("LEFT")
   SubText:SetPoint("TOPLEFT", Title, "BOTTOMLEFT", 0, -12)
   SubText:SetPoint("RIGHT", -32, 0)
-  SubText:SetText("這些選項可以調整遊戲中的各種 CVars 參數。")
+  SubText:SetText("These options allow you to modify various CVars within the game.")
 
   -- FilterBox should adjust the contents of the list frame based on the input text
   -- todo: Display grey "Search" text in the box if it's empty
@@ -153,7 +153,7 @@ function addon:PopulateCVarPanel(OptionsPanel)
   end)
 
   local CVarTable = {}
-  local ListFrame = addon:CreateListFrame(OptionsPanel, 650, 465, { { NAME, 200 }, { "說明", 260, "LEFT" }, { "數值", 100, "RIGHT" } })
+  local ListFrame = addon:CreateListFrame(OptionsPanel, 650, 465, { { NAME, 200 }, { "Description", 260, "LEFT" }, { "Value", 100, "RIGHT" } })
   ListFrame:SetPoint("TOP", FilterBox, "BOTTOM", 0, -20)
   ListFrame:SetPoint("BOTTOMLEFT", 0, 15)
   ListFrame:SetItems(CVarTable)
@@ -326,11 +326,11 @@ function addon:PopulateCVarPanel(OptionsPanel)
         if cvarTable["description"] then --and _G[ cvarTable['description'] ] then
           GameTooltip:AddLine(cvarTable["description"], 1, 1, 1, true)
         end
-        GameTooltip:AddDoubleLine("預設值:", defaultValue, 0.2, 1, 0.6, 0.2, 1, 0.6)
+        GameTooltip:AddDoubleLine("Default Value:", defaultValue, 0.2, 1, 0.6, 0.2, 1, 0.6)
 
         local modifiedBy = AdvancedInterfaceOptionsSaved.ModifiedCVars[self.value:lower()]
         if modifiedBy then
-          GameTooltip:AddDoubleLine("上次修改:", modifiedBy, 1, 0, 0, 1, 0, 0)
+          GameTooltip:AddDoubleLine("Last Modified By:", modifiedBy, 1, 0, 0, 1, 0, 0)
         end
 
         GameTooltip:Show()

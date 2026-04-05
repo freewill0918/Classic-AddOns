@@ -13,7 +13,9 @@ do
 	local function GetNPCNameFromCache(NPCid)
 		if not NPCCache[NPCid] then 
 			local tooltip = TS:GetTooltip(("unit:Creature-%d-%d-%d-%d-%d-%x"):format(0,0,0,0,NPCid,0))
-			NPCCache[NPCid] = tooltip[1]
+			if not ZGV.IsSecret(tooltip[1]) then
+				NPCCache[NPCid] = tooltip[1]
+			end
 		end
 		return NPCCache[NPCid]
 	end

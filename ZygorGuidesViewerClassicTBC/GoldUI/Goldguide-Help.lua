@@ -33,8 +33,6 @@ local SUBHEADER = "Which section would you like to learn more about?"
 local HELP_SECTIONS = {	-- Text,id
 	{"Gold Basics", "basic"},
 	{"Farming", "farming"},
-	{"Gathering", "gathering"},
-	{"Crafting", "crafting"},
 	{"Auctions", "auctions"},
 }
 
@@ -93,46 +91,6 @@ local farming_help = {
 	function() return {L['gold_14_header'],nil,L['gold_farming_14_sum'],ZGV.Frame,{"BOTTOMRIGHT",Goldguide.HelpPopup.line,"TOPRIGHT"},{"BOTTOMRIGHT",ZGV.Frame,"TOP"} } end,
 }
 
-local gathering_help = {
-	gen_help_1,
-	gen_help_2,
-	gen_help_3,	
-	gen_help_4,
-	gen_help_5,
-	function() return {L['gold_4_header'],nil,L['gold_4_sum'],Goldguide.Gathering_Frame,defaultPoint,nil,nil,function() Goldguide:SetCurrentTab("Gathering") Goldguide:HighlightGoldguideColumn() if AuctionFrame_Hide then AuctionFrame_Hide() end end } end, -- HiColumn for hitting back support
-	function() return {L['gold_no_header'],nil,L['gold_no_sum'],Goldguide.Gathering_Frame,defaultPoint,nil,nil,function() Goldguide:HighlightGoldguideColumn(Goldguide.Gathering_Frame.Entries.col_no,"no") end } end,
-	function() return {L['gold_item_header'],nil,L['gold_item_sum'],Goldguide.Gathering_Frame,defaultPoint,nil,nil,function() Goldguide:HighlightGoldguideColumn(Goldguide.Gathering_Frame.Entries.col_title,"item") end } end,
-	function() return {L['gold_zone_header'],nil,L['gold_zone_sum'],Goldguide.Gathering_Frame,defaultPoint,nil,nil,function() Goldguide:HighlightGoldguideColumn(Goldguide.Gathering_Frame.Entries.col_zone,"zone") end } end,
-	function() return {L['gold_rate_header'],nil,{L['gold_rate_sum'],8},Goldguide.Gathering_Frame,defaultPoint,nil,nil,function() Goldguide:HighlightGoldguideColumn(Goldguide.Gathering_Frame.Entries.col_rate,"rate") end } end,
-	function() return {L['gold_time_header'],nil,L['gold_time_sum'],Goldguide.Gathering_Frame,defaultPoint,nil,nil,function() Goldguide:HighlightGoldguideColumn(Goldguide.Gathering_Frame.Entries.col_disptime,"disptime") end} end,
-	function() return {L['gold_est_header'],nil,L['gold_est_sum'],Goldguide.Gathering_Frame,defaultPoint,nil,nil,function() Goldguide:HighlightGoldguideColumn(Goldguide.Gathering_Frame.Entries.col_dispgold,"dispgold") end} end,
-	function() return {L['gold_mode_header'],nil,L['gold_mode_sum'],Goldguide.Gathering_Frame,{"TOPLEFT",Goldguide.HelpPopup.line,"BOTTOMRIGHT"},{"TOPLEFT",Goldguide.Gathering_Frame.ModeDropdown.frame,"BOTTOMRIGHT"},nil,function() Goldguide:HighlightGoldguideColumn("hide") end} end,
-	function() return {L['gold_filter_header'],nil,L['gold_filter_sum'],Goldguide.Gathering_Frame,{"TOPLEFT",Goldguide.HelpPopup.line,"BOTTOMRIGHT"},{"TOPLEFT",Goldguide.Gathering_Frame.TypeDropdown.frame,"BOTTOMRIGHT"},nil,function() Goldguide:HighlightGoldguideColumn("hide") end} end,
-	function() return {L['gold_12_header'],nil,L['gold_12_sum'],Goldguide.Gathering_Frame,defaultPoint,nil,nil,function() Goldguide:HighlightGoldguideColumn() end} end,
-	function() return {L['gold_13_header'],nil,L['gold_13_sum'],Goldguide.Gathering_Frame,{"TOPLEFT",Goldguide.HelpPopup.line,"BOTTOMRIGHT"},{"TOPLEFT",Goldguide.Gathering_Frame.Entries.rows[1].loadbutton,"BOTTOMRIGHT"}, "guideload", function() Goldguide:HighlightGoldguideColumn() end} end,
-	function() return {L['gold_14_header'],nil,L['gold_Gathering_14_sum'],ZGV.Frame,{"BOTTOMRIGHT",Goldguide.HelpPopup.line,"TOPRIGHT"},{"BOTTOMRIGHT",ZGV.Frame,"TOP"} } end,
-}
-
-local crafting_help = {
-	gen_help_1,
-	gen_help_2,
-	gen_help_3,	
-	gen_help_4,
-	gen_help_5,
-	function() return {L['gold_4_header'],nil,L['gold_4_sum'],Goldguide.Crafting_Frame,defaultPoint,nil,nil,function() Goldguide:SetCurrentTab("Crafting") Goldguide:HighlightGoldguideColumn() if AuctionFrame_Hide then AuctionFrame_Hide() end end } end, -- HiColumn for hitting back support
-	function() return {L['gold_crafting_title_header'],nil,L['gold_crafting_title_sum'],Goldguide.Crafting_Frame,defaultPoint,nil,nil,function() Goldguide:HighlightGoldguideColumn(Goldguide.Crafting_Frame.Entries.col_name,"recipe") end } end,
-	function() return {L['gold_crafting_status_header'],nil,L['gold_crafting_status_sum'],Goldguide.Crafting_Frame,defaultPoint,nil,nil,function() Goldguide:HighlightGoldguideColumn(Goldguide.Crafting_Frame.Entries.col_status,"status") end } end,
-	function() return {L['gold_crafting_cost_header'],nil,L['gold_crafting_cost_sum'],Goldguide.Crafting_Frame,defaultPoint,nil,nil,function() Goldguide:HighlightGoldguideColumn(Goldguide.Crafting_Frame.Entries.col_materials,"materials") end } end,
-	function() return {L['gold_crafting_profit_header'],nil,L['gold_crafting_profit_sum'],Goldguide.Crafting_Frame,defaultPoint,nil,nil,function() Goldguide:HighlightGoldguideColumn(Goldguide.Crafting_Frame.Entries.col_profit,"profit") end } end,
-
-	function() return {L['gold_crafting_mode_header'],nil,L['gold_crafting_mode_sum'],Goldguide.Crafting_Frame,{"TOPLEFT",Goldguide.HelpPopup.line,"BOTTOMRIGHT"},{"TOPLEFT",Goldguide.Crafting_Frame.ModeDropdown.frame,"BOTTOMRIGHT"},nil,function() Goldguide:HighlightGoldguideColumn("hide") end} end,
-	function() return {L['gold_filter_header'],nil,L['gold_filter_sum'],Goldguide.Crafting_Frame,{"TOPLEFT",Goldguide.HelpPopup.line,"BOTTOMRIGHT"},{"TOPLEFT",Goldguide.Crafting_Frame.TypeDropdown.frame,"BOTTOMRIGHT"},nil,function() Goldguide:HighlightGoldguideColumn("hide") end} end,
-
-	function() return {L['gold_crafting_rows_header'],nil,L['gold_crafting_rows_sum'],Goldguide.Crafting_Frame,defaultPoint,nil,nil,function() Goldguide:HighlightGoldguideColumn() end} end,
-	function() return {L['gold_13_header'],nil,L['gold_13_sum'],Goldguide.Crafting_Frame,{"TOPLEFT",Goldguide.HelpPopup.line,"BOTTOMRIGHT"},{"TOPLEFT",Goldguide.Farming_Frame.Entries.rows[1].loadbutton,"BOTTOMRIGHT"}, "guideload", function() Goldguide:HighlightGoldguideColumn() end} end,
-	function() return {L['gold_14_header'],nil,L['gold_farming_14_sum'],ZGV.Frame,{"BOTTOMRIGHT",Goldguide.HelpPopup.line,"TOPRIGHT"},{"BOTTOMRIGHT",ZGV.Frame,"TOP"} } end,
-}
-
 local auctions_help = {
 	gen_help_1,
 	gen_help_2,
@@ -162,8 +120,6 @@ local whichToHelp = {
 	basic = basic_help,
 	goldrun = goldrun_help,
 	farming = farming_help,
-	gathering = gathering_help,
-	crafting = crafting_help,
 	auctions = auctions_help,
 }
 

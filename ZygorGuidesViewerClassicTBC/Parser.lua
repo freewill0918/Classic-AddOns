@@ -53,7 +53,7 @@ local classspecs=
 	["WARLOCK"]		= { "Affliction","Demonology","Destruction",nil,"Starter" },
 	["SHAMAN"]		= { "Elemental","Enhancement","Restoration",nil,"Starter" },
 	["DRUID"]		= { "Balance","Feral","Guardian","Restoration","Starter" },
-	["DEMONHUNTER"]		= { "Havoc","Vengeance",nil,nil,"Starter" },
+	["DEMONHUNTER"]		= { "Havoc","Vengeance","Devourer",nil,"Starter" },
 	["EVOKER"]		= { "Devastation", "Preservation", "Augmentation", nil, "Starter" },
 	["ADVENTURER"]		= { nil, nil, nil, nil, "Starter" },
 }
@@ -409,6 +409,8 @@ local TorghastDoors = {
 local last_glvl=0
 local building_states={none=0,building=1,ready=2,active=3}
 
+local buffcache = {} -- used by hasbuff to keep last known state in combat
+
 local ConditionEnv = {
 	_G = _G,
 	-- variables needing update
@@ -540,13 +542,20 @@ local ConditionEnv = {
 	end,
 
 	hasbuff = function(query,count)
-		if tonumber(query) and C_UnitAuras then -- wotlk doesn't have C_UnitAuras, so we need to fall back to looping
-			local aura = C_UnitAuras.GetPlayerAuraBySpellID(tonumber(query))
+		local spell = tonumber(query) or tonumber(query:match("spell:(%d+)"))
+		
+		if spell and C_UnitAuras then -- wotlk doesn't have C_UnitAuras, so we need to fall back to looping
+			local aura
+			if ZGV.IsRetail and InCombatLockdown() then
+				aura = buffcache[spell]
+			else
+				aura = C_UnitAuras.GetPlayerAuraBySpellID(spell)
+				buffcache[spell] = aura
+			end
 			if aura and (aura.applications or 0)>=(count or 0) then return true end
 			return false
 		else
 			local texture = tonumber(tostring(query):match("texture:(%d+)"))
-			local spell = tonumber(query) or tonumber(query:match("spell:(%d+)"))
 
 			if not (texture or spell) then return false end
 
@@ -566,6 +575,9 @@ local ConditionEnv = {
 				end
 			end
 		end
+	end,
+	havebuff = function(query,count) -- direct alias
+		return Parser.ConditionEnv.hasbuff(query,count)
 	end,
 	isevent = function(eventname)
 		return ZGV:FindEvent(eventname)
@@ -675,9 +687,16 @@ local ConditionEnv = {
 
 	
 	
-	achieved = function(achieveid,subid)
-		if type(achieveid)=="number" and not subid then return select(4,GetAchievementInfo(achieveid)) end
-		if type(achieveid)=="number" and type(subid)=="number" then return select(3,ZGV.Zygor_GetAchievementCriteriaInfo(achieveid,subid)) end
+	achieved = function(achieveid,subid,current)
+		if type(achieveid)=="number" and not subid then 
+			local index = current and 13 or 4 -- wasEarnedByMe or completed
+			return select(index,GetAchievementInfo(achieveid)) 
+		end
+		if type(achieveid)=="number" and type(subid)=="number" then 
+			local desc, ctype, completed, quantity, requiredQuantity, charName = ZGV.Zygor_GetAchievementCriteriaInfo(achieveid,subid)
+			-- if current, charName is nil 99% of time when checking on char that has compelted it. 
+			return completed and (not current or (not charName or charName==UnitName("player")))
+		end
 	end,
 	knowspell = function(spellid)
 		return IsSpellKnown(spellid)
@@ -1165,7 +1184,7 @@ local ConditionEnv = {
 		if not UnitInVehicle("player") and not UnitOnTaxi("player") then return false end
 
 		if id then
-			local guid = UnitGUID("pet")
+			local guid = UnitGUID("vehicle") or UnitGUID("pet")
 			if not guid then return false end
 			local type, zero, server_id, instance_id, zone_uid, npc_id, spawn_uid = strsplit("-",guid);
 			return (type=="Vehicle" and tonumber(npc_id)==id)
@@ -1383,7 +1402,13 @@ local ConditionEnv = {
 
 		return true
 	end,
-
+	
+	reshiipoints = function()
+		local configID = C_Traits.GetConfigIDByTreeID(1115)
+		local treeCurrencyInfo = configID and C_Traits.GetTreeCurrencyInfo(configID, 1115, true)
+		return (treeCurrencyInfo and treeCurrencyInfo[1].spent) or 0
+	end,
+	
 	clearquest = function(id) -- autoscript function
 		for goal,_ in pairs(ZGV.recentlyCompletedGoals) do 
 			if goal.questid == id then 
@@ -1513,6 +1538,7 @@ local function apply_colours(text)
 
 	return text
 end
+Parser.apply_colours = apply_colours
 
 --- parse ONE guide section into usable arrays.
 function Parser:ParseEntry(guide,fully_parse,lastparsed)
@@ -1532,7 +1558,17 @@ function Parser:ParseEntry(guide,fully_parse,lastparsed)
 
 	local prevpathvars={}
 
+	local playername = UnitName("player")
+
 	text = text .. "\n"
+
+	if ZGV.IsLegionRemix() and not guide.headerdata.legionremix then
+		-- guide is not ready 
+		text = "step\nThis is the Retail version of this guide. Legion Remix is running different version of Legion than Retail and its differences may affect this guide. Based on customer feedback, we've made this guide available to Legion Remix users, but you may run into issues. Our team is working to properly update all guides for Legion Remix.\nClick here to continue.|confirm\n"..text
+	end
+
+
+
 
 	local linecount=0
 
@@ -2270,6 +2306,8 @@ function Parser:ParseEntry(guide,fully_parse,lastparsed)
 							goal.force_nocomplete = true
 						elseif cmd=="c" then
 							goal.force_complete = true
+						elseif cmd=="h" then
+							goal.hidewhencomplete = true
 						elseif cmd=="opt" then
 							goal.optional = true
 						elseif cmd=="optional" then
@@ -2416,7 +2454,8 @@ function Parser:ParseEntry(guide,fully_parse,lastparsed)
 
 							if GOALTYPES[cmd].events then
 								-- add wrapper for onevent, so that we have constant handler we can unregister when needed
-								goal.eventfunc = function(...) GOALTYPES[cmd].onevent(goal,...) end
+								-- also make sure to trigger only for valid goals from visible steps
+								goal.eventfunc = function(...) if goal:IsVisible() and (goal.parentStep==ZGV.CurrentStep or goal.parentStep:IsCurrentlySticky()) then GOALTYPES[cmd].onevent(goal,...) end end
 							end
 						else
 
@@ -2479,6 +2518,9 @@ function Parser:ParseEntry(guide,fully_parse,lastparsed)
 
 							-- un-cloak escaped underscores
 							text = text:gsub("%%UNDER%%","_")
+							
+							-- apply player name
+							text = text:gsub("%$NAME",playername)
 
 							text = apply_colours(text)
 

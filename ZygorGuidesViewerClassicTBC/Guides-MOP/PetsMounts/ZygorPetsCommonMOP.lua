@@ -3348,168 +3348,170 @@ pet=1238,
 mopready=true,
 },[[
 step
-label "start"
+label "START_UNBORN_VAL'KYR"
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Borean Tundra/0 32.60,60.00 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Borean Tundra/0 32.60,60.00 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Borean Tundra/0 80.80,48.20 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Borean Tundra/0 80.80,48.20 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Borean Tundra/0 47.80,8.00 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Borean Tundra/0 47.80,8.00 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Sholazar Basin/0 44.60,69.20 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Sholazar Basin/0 44.60,69.20 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Sholazar Basin/0 36.80,19.40 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Sholazar Basin/0 36.80,19.40 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Sholazar Basin/0 58.50,22.00 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Sholazar Basin/0 58.50,22.00 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Icecrown/0 44.20,33.40 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Icecrown/0 44.20,33.40 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Icecrown/0 47.90,86.60 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Icecrown/0 47.90,86.60 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Icecrown/0 73.80,64.50 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Icecrown/0 73.80,64.50 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest/0 17.60,57.20 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest/0 17.60,57.20 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Dragonblight/0 26.80,54.00 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Dragonblight/0 26.80,54.00 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Dragonblight/0 82.20,65.80 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Dragonblight/0 82.20,65.80 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Dragonblight/0 65.60,35.80 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Dragonblight/0 65.60,35.80 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest/0 43.40,44.00 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest/0 43.40,44.00 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest/0 68.20,49.60 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Crystalsong Forest/0 68.20,49.60 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto The Storm Peaks/0 42.50,78.50 |next "end"
+learnpet Unborn Val'kyr##1238 |goto The Storm Peaks/0 42.50,78.50 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto The Storm Peaks/0 29.00,51.40 |next "end"
+learnpet Unborn Val'kyr##1238 |goto The Storm Peaks/0 29.00,51.40 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto The Storm Peaks/0 65.20,41.80 |next "end"
+learnpet Unborn Val'kyr##1238 |goto The Storm Peaks/0 65.20,41.80 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Zul'Drak/0 75.00,22.80 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Zul'Drak/0 75.00,22.80 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Zul'Drak/0 57.00,39.80 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Zul'Drak/0 57.00,39.80 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Zul'Drak/0 24.60,64.00 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Zul'Drak/0 24.60,64.00 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Grizzly Hills/0 25.80,56.80 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Grizzly Hills/0 25.80,56.80 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Grizzly Hills/0 61.40,18.20 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Grizzly Hills/0 61.40,18.20 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Grizzly Hills/0 79.60,51.80 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Grizzly Hills/0 79.60,51.80 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Howling Fjord/0 71.80,43.00 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Howling Fjord/0 71.80,43.00 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
 clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Howling Fjord/0 68.00,67.60 |next "end"
+learnpet Unborn Val'kyr##1238 |goto Howling Fjord/0 68.00,67.60 |next "END_UNBORN_VAL'KYR"
 Click here if the pet is not available at this location. |confirm
 step
-Challenge it to a pet battle and capture it
+clicknpc Unborn Val'kyr##71163
 |tip Reduce its health below 35% and use the "Trap" ability on your pet bar.
 |tip You may need to attempt the trap several times.
-learnpet Unborn Val'kyr##1238 |goto Howling Fjord/0 46.00,43.00 |next "end"
-Click here if the pet is not available at this location. |confirm |next "start"
+learnpet Unborn Val'kyr##1238 |goto Howling Fjord/0 46.00,43.00 |next "END_UNBORN_VAL'KYR"
+Click here if the pet is not available at this location. |confirm |next "START_UNBORN_VAL'KYR"
+step
+label "END_UNBORN_VAL'KYR"
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Battle Pets\\Undead Pets\\Wayward Spirit",{
 patch='81500',

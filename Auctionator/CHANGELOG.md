@@ -1,6 +1,7 @@
 # Auctionator
 
-## [305](https://github.com/TheMouseNest/Auctionator/tree/305) (2025-12-03)
-[Full Changelog](https://github.com/TheMouseNest/Auctionator/compare/304...305) 
+## [319](https://github.com/TheMouseNest/Auctionator/tree/319) (2026-03-13)
+[Full Changelog](https://github.com/TheMouseNest/Auctionator/compare/318...319) 
 
-- Selling: Add "Housing", and fix durations on TBC/Wrath  
+- Update version slash command  
+- Retail: Professions: Fix concentration not updating profits value  

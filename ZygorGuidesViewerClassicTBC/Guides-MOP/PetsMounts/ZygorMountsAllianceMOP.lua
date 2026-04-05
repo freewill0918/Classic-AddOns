@@ -37,8 +37,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
-|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+|tip Use the "Tushui Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
 '|complete hasmount(127287) |or
 only if not Pandaren
 step
@@ -60,8 +60,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
-|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+|tip Use the "Tushui Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
 '|complete hasmount(127288) |or
 only if not Pandaren
 step
@@ -83,8 +83,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
-|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+|tip Use the "Tushui Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
 '|complete hasmount(127295) |or
 only if not Pandaren
 step
@@ -106,8 +106,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
-|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+|tip Use the "Tushui Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
 '|complete hasmount(127302) |or
 only if not Pandaren
 step
@@ -129,8 +129,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
-|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+|tip Use the "Tushui Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
 '|complete hasmount(127308) |or
 only if not Pandaren
 step
@@ -152,16 +152,16 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
-|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+|tip Use the "Tushui Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
 '|complete hasmount(127288) |or
 only if not Pandaren
 step
 talk Old Whitenose##65068
-buy Reins of the Great Green Dragon Turtle##91005 |goto Stormwind City/0 67.74,18.43 |or
+buy Reins of the Great Green Dragon Turtle##91012 |goto Stormwind City/0 67.74,18.43 |or
 '|complete hasmount(127288) |or
 step
-use the Reins of the Great
+use the Reins of the Great Green Dragon Turtle##91012
 Green Dragon Turtle##91005
 learnmount Green Dragon Turtle##127288
 ]])
@@ -176,8 +176,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
-|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+|tip Use the "Tushui Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
 '|complete hasmount(127310) |or
 only if not Pandaren
 step
@@ -199,8 +199,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
-|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+|tip Use the "Tushui Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
 '|complete hasmount(120822) |or
 only if not Pandaren
 step
@@ -222,8 +222,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
-|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+|tip Use the "Tushui Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
 '|complete hasmount(127288) |or
 only if not Pandaren
 step
@@ -267,8 +267,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
-|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+|tip Use the "Tushui Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
 '|complete hasmount(127289) |or
 only if not Pandaren
 step
@@ -290,8 +290,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Tushui Pandaren |complete rep('Tushui Pandaren') == Exalted |or
-|tip Use the "Tushui Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Tushui Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
+|tip Use the "Tushui Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Tushui Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Tushui Pandaren"
 '|complete hasmount(127290) |or
 only if not Pandaren
 step

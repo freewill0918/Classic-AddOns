@@ -472,9 +472,10 @@ f:SetScript('OnEvent', function(self, event, ...)
 			if (not NIT.data.instances[1].mythicPlus) then
 				NIT.data.instances[1].mythicPlus = {};
 			end
-			local mapChallengeModeID, level, time, onTime, keystoneUpgradeLevels, practiceRun, oldOverallDungeonScore, newOverallDungeonScore,
-					IsMapRecord, IsAffixRecord, PrimaryAffix, isEligibleForScore, members = C_ChallengeMode.GetCompletionInfo();
 			local data = NIT.data.instances[1].mythicPlus;
+			
+			--[[local mapChallengeModeID, level, time, onTime, keystoneUpgradeLevels, practiceRun, oldOverallDungeonScore, newOverallDungeonScore,
+					IsMapRecord, IsAffixRecord, PrimaryAffix, isEligibleForScore, members = C_ChallengeMode.GetCompletionInfo();
 			data.map = mapChallengeModeID;
 			data.time = time;
 			data.timed = onTime;
@@ -486,7 +487,22 @@ f:SetScript('OnEvent', function(self, event, ...)
 			local deaths, timeLost = C_ChallengeMode.GetDeathCount();
 			data.deaths = deaths;
 			data.timeLost = timeLost;
-			--data.totalScore = C_ChallengeMode.GetOverallDungeonScore(); --Total score same as new score.
+			--data.totalScore = C_ChallengeMode.GetOverallDungeonScore(); --Total score same as new score.]]
+			
+			local info = C_ChallengeMode.GetChallengeCompletionInfo();
+			if (info) then
+				data.map = info.mapChallengeModeID;
+				data.time = info.time;
+				data.timed = info.onTime;
+				data.upgrade = info.keystoneUpgradeLevels;
+				data.oldScore = info.oldOverallDungeonScore;
+				data.newScore = info.newOverallDungeonScore;
+				data.completed = true;
+				data.newRecord = info.IsAffixRecord == true or nil;
+				local deaths, timeLost = C_ChallengeMode.GetDeathCount();
+				data.deaths = deaths;
+				data.timeLost = timeLost;
+			end
 			C_Timer.After(2, function()
 				NIT:recordKeystoneData();
 			end)
@@ -495,7 +511,7 @@ f:SetScript('OnEvent', function(self, event, ...)
 	elseif (event == "CHAT_MSG_LOOT") then
 		NIT:chatMsgLoot(...)
 	elseif (event == "ITEM_CHANGED") then
-		NIT:debug("item changed");
+		--NIT:debug("item changed");
 		C_Timer.After(1, function()
 			NIT:recordKeystoneData();
 		end)
@@ -578,6 +594,9 @@ local lootCurrencyAll = {
 
 function NIT:chatMsgLoot(...)
 	local msg = ...;
+	if (issecretvalue and issecretvalue(msg)) then
+		return;
+	end
 	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType,
 				itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice, itemClassID, itemSubClassID;
     --Get itemlink by checking all possible matches for self loot msgs and other players loot msg.
@@ -734,6 +753,9 @@ COMBATLOG_XPLOSS_FIRSTPERSON_UNNAMED = "You lose %d experience.";]]
 
 function NIT:chatMsgCombatXpGain(...)
 	local text = ...;
+	if (issecretvalue and issecretvalue(text)) then
+		return;
+	end
 	local xpGained = string.match(text, "%d+");
 	if (xpGained) then
 		if (LOCALE_koKR) then
@@ -768,6 +790,9 @@ end
 
 function NIT:chatMsgMoney(...)
 	local text = ...;
+	if (issecretvalue and issecretvalue(text)) then
+		return;
+	end
 	if (NIT.inInstance and NIT.data.instances[1]) then
 		if (NIT.data.instances[1].isPvp) then
 			return;
@@ -791,6 +816,9 @@ function NIT:chatMsgCombatFactionChange(...)
 		NIT.data.instances[1].rep = {};
 	end
 	local text = ...;
+	if (issecretvalue and issecretvalue(text)) then
+		return;
+	end
 	local repName, repAmount, decrease;
 	--local repName, repAmount = string.match(text, string.gsub(string.gsub(FACTION_STANDING_INCREASED, "%%s", "(.+)"), "%%d", "(%%d+)"));
 	--The structure of these looks strange but it's like that to work in all expansions even if a global is missing in one.
@@ -859,6 +887,9 @@ function NIT:chatMsgCombatHonorGain(...)
 		NIT.data.instances[1].honor = 0;
 	end
 	local text = ...;
+	if (issecretvalue and issecretvalue(text)) then
+		return;
+	end
 	local honorGained;
 	if (string.match(text, "%d+%.%d+")) then
 		--Decimal in cata.
@@ -904,6 +935,9 @@ function NIT:chatMsgCurrency(...)
 		return;
 	end
 	local text = ...;
+	if (issecretvalue and issecretvalue(text)) then
+		return;
+	end
 	if (not strmatch(text, "currency:")) then
 		return;
 	end
@@ -1069,48 +1103,51 @@ function NIT:recordBgStats()
 	end
 	local totalPlayers = GetNumBattlefieldScores();
 	--local mapID = C_Map.GetBestMapForUnit("player");
+	local issecretvalue = issecretvalue;
 	if (NIT.data.instances[1].type == "bg") then
 		local me = UnitName("player");
 		for i = 1, totalPlayers do
 			local name, kb, hk, deaths, honor, faction, rank, race, class, classEnglish, damage, healing = GetBattlefieldScore(i);
 			--local rankName, rankNumber = GetPVPRankInfo(rank, faction);
 			--Record me only.
-			if (name == me) then
-				instance.kb = kb;
-				instance.hk = hk;
-				instance.deaths = deaths;
-				--instance.bonusHonor = honor;
-				instance.faction = faction;
-				--instance.classEnglish = classEnglish;
-				instance.damage = damage;
-				instance.healing = healing;
-				local objectives = {};
-				if (GetNumBattlefieldStats) then
-					for j = 1, GetNumBattlefieldStats() do
-						local score = GetBattlefieldStatData(i, j);
-						if (score and score > 0) then
-							local text, icon = GetBattlefieldStatInfo(j);
-							--Icons textures end in 0 or 1 for each faction.
-							--We want to display the right color for our real faction and not same faction vs same faction wrong side.
-							--[[if (NIT.faction == "Horde") then
-								icon = icon .. "1";
-							else
-								icon = icon .. "0";
-							end]]
-							icon = icon .. faction;
-							local t = {
-								score = score,
-								text = text,
-								icon = icon,
-							};
-							table.insert(objectives, t);
-							--/run NIT.data.instances[1].objectives = {}
-							--/run NIT.data.instances[1].objectives[1] = {score = 3,text = "Flag Captures",icon = "Interface\\WorldStateFrame\\ColumnIcon-FlagCapture0"};
+			if (not issecretvalue or not issecretvalue(name)) then
+				if (name == me) then
+					instance.kb = kb;
+					instance.hk = hk;
+					instance.deaths = deaths;
+					--instance.bonusHonor = honor;
+					instance.faction = faction;
+					--instance.classEnglish = classEnglish;
+					instance.damage = damage;
+					instance.healing = healing;
+					local objectives = {};
+					if (GetNumBattlefieldStats) then
+						for j = 1, GetNumBattlefieldStats() do
+							local score = GetBattlefieldStatData(i, j);
+							if (score and score > 0) then
+								local text, icon = GetBattlefieldStatInfo(j);
+								--Icons textures end in 0 or 1 for each faction.
+								--We want to display the right color for our real faction and not same faction vs same faction wrong side.
+								--[[if (NIT.faction == "Horde") then
+									icon = icon .. "1";
+								else
+									icon = icon .. "0";
+								end]]
+								icon = icon .. faction;
+								local t = {
+									score = score,
+									text = text,
+									icon = icon,
+								};
+								table.insert(objectives, t);
+								--/run NIT.data.instances[1].objectives = {}
+								--/run NIT.data.instances[1].objectives[1] = {score = 3,text = "Flag Captures",icon = "Interface\\WorldStateFrame\\ColumnIcon-FlagCapture0"};
+							end
 						end
 					end
-				end
-				if (next(objectives)) then
-					instance.objectives = objectives;
+					if (next(objectives)) then
+						instance.objectives = objectives;
+					end
 				end
 			end
 		end
@@ -1128,46 +1165,48 @@ function NIT:recordBgStats()
 			local name, kb, hk, deaths, honor, faction, rank, race, class, classEnglish, damage, healing, ratingStart, ratingChange = GetBattlefieldScore(i);
 			--NIT:debug(GetBattlefieldScore(i));
 			--Record all players.
-			if (name) then
-				local t = {
-					kb = kb,
-					faction = faction,
-					class = classEnglish,
-					damage = damage,
-					healing = healing,
-					race = race,
-					ratingStart = ratingStart, --Do these only show in rbg?
-					ratingChange = ratingChange, --Do these only show in rbg?
-				};
-				local teamName, teamRating, newTeamRating, teamMMR = GetBattlefieldTeamInfo(faction);
-				--if (NIT.isTBC) then
-					if (teamName) then
-						t.teamName = teamName;
+			if (not issecretvalue or not issecretvalue(name)) then
+				if (name) then
+					local t = {
+						kb = kb,
+						faction = faction,
+						class = classEnglish,
+						damage = damage,
+						healing = healing,
+						race = race,
+						ratingStart = ratingStart, --Do these only show in rbg?
+						ratingChange = ratingChange, --Do these only show in rbg?
+					};
+					local teamName, teamRating, newTeamRating, teamMMR = GetBattlefieldTeamInfo(faction);
+					--if (NIT.isTBC) then
+						if (teamName) then
+							t.teamName = teamName;
+						end
+						if (teamRating) then
+							t.teamRating = teamRating;
+						end
+						if (newTeamRating) then
+							t.newTeamRating = newTeamRating;
+						end
+					--end
+					if (teamMMR) then
+						t.teamMMR = teamMMR;
 					end
-					if (teamRating) then
-						t.teamRating = teamRating;
+					if (faction == 0) then
+						if (teamName == "" and instance.purpleTeam and instance.purpleTeam[name] and instance.purpleTeam[name].teamName) then
+							--If team name is showing an empty string but we already have a team name recorded then use the already recorded name instead and don't overwrite.
+							t.teamName = instance.purpleTeam[name].teamName;
+						end
+						purpleTeam[name] = t;
+					else
+						if (teamName == "" and instance.goldTeam and instance.goldTeam[name] and instance.goldTeam[name].teamName) then
+							t.teamName = instance.goldTeam[name].teamName;
+						end
+						goldTeam[name] = t;
 					end
-					if (newTeamRating) then
-						t.newTeamRating = newTeamRating;
+					if (name == me) then
+						instance.faction = faction;
 					end
-				--end
-				if (teamMMR) then
-					t.teamMMR = teamMMR;
-				end
-				if (faction == 0) then
-					if (teamName == "" and instance.purpleTeam and instance.purpleTeam[name] and instance.purpleTeam[name].teamName) then
-						--If team name is showing an empty string but we already have a team name recorded then use the already recorded name instead and don't overwrite.
-						t.teamName = instance.purpleTeam[name].teamName;
-					end
-					purpleTeam[name] = t;
-				else
-					if (teamName == "" and instance.goldTeam and instance.goldTeam[name] and instance.goldTeam[name].teamName) then
-						t.teamName = instance.goldTeam[name].teamName;
-					end
-					goldTeam[name] = t;
-				end
-				if (name == me) then
-					instance.faction = faction;
 				end
 			end
 		end --/tinspect NIT.data.instances[1]
@@ -1301,6 +1340,9 @@ function NIT:scanDungeonSubDifficulty()
 	if (NIT.inInstance and not scanDungeonSubDifficulty and not UnitIsDead("player")) then
 		local found;
 		local guid = UnitGUID("target");
+		if (issecretvalue and issecretvalue(guid)) then
+			return;
+		end
 		if (guid and string.match(guid, "Creature")) then
 			for i = 1, 10 do
 				local name, _, _, _, _, _, _, _, _, spellID = UnitBuff("target", i);
@@ -1818,7 +1860,7 @@ function NIT:showInstanceStats(id, output, showAll, customPrefix, showDate)
 		end
 		if ((NIT.db.global.instanceStatsOutputXpPerHour or showAll) and level ~= NIT.maxLevel) then
 			if (timeSpentRaw and timeSpentRaw > 0 and tonumber(data.xpFromChat) and data.xpFromChat > 0) then
-				local xpPerHour = NIT:commaValue(NIT:round((tonumber(data.xpFromChat) / timeSpentRaw) * 3600));
+				local xpPerHour = NIT:commaValue(NIT:getAverageXpPerHour(data, id));
 				text = text .. pColor .. " " .. L["experiencePerHour"] .. ":|r " .. sColor .. xpPerHour .. "|r";
 			end
 		end
@@ -1958,7 +2000,7 @@ function NIT:showInstanceStats(id, output, showAll, customPrefix, showDate)
 		  		NIT:print("You are not in a party.");
 		  		return;
 			end
-			SendChatMessage("[NIT] " .. NIT:stripColors(prefix.. " " .. text), string.upper(output));
+			NIT:SendChatMessage("[NIT] " .. NIT:stripColors(prefix.. " " .. text), string.upper(output));
 		elseif (output == "self") then
 			NIT:print(NIT.prefixColor .. prefix.. " " .. text, nil, nil, nonClickable);
 		elseif (output == "send") then
@@ -1966,12 +2008,12 @@ function NIT:showInstanceStats(id, output, showAll, customPrefix, showDate)
 			if (NIT.db.global.instanceStatsOutputWhere == "group") then
 				if (IsInRaid()) then
 					if (NIT.db.global.showStatsInRaid) then
-		  				SendChatMessage("[NIT] " .. NIT:stripColors(prefix.. " " .. text), "RAID");
+		  				NIT:SendChatMessage("[NIT] " .. NIT:stripColors(prefix.. " " .. text), "RAID");
 		  			elseif (NIT.db.global.printRaidInstead) then
 		  				NIT:print(NIT.prefixColor .. prefix.. " " .. text, nil, nil, nonClickable);
 		  			end
 		  		elseif (IsInGroup()) then
-		  			SendChatMessage("[NIT] " .. NIT:stripColors(prefix.. " " .. text), "PARTY");
+		  			NIT:SendChatMessage("[NIT] " .. NIT:stripColors(prefix.. " " .. text), "PARTY");
 				end
 			else
 				NIT:print(NIT.prefixColor .. prefix.. " " .. text, nil, nil, nonClickable);
@@ -1983,12 +2025,12 @@ function NIT:showInstanceStats(id, output, showAll, customPrefix, showDate)
 			if (NIT.db.global.instanceStatsOutput and NIT.db.global.instanceStatsOutputWhere == "group") then
 				if (IsInRaid()) then
 					if (NIT.db.global.showStatsInRaid) then
-		  				SendChatMessage("[NIT] " .. NIT:stripColors(text), "RAID");
+		  				NIT:SendChatMessage("[NIT] " .. NIT:stripColors(text), "RAID");
 		  			elseif (NIT.db.global.printRaidInstead) then
 		  				NIT:print(text, nil, nil, nonClickable);
 		  			end
 		  		elseif (IsInGroup()) then
-		  			SendChatMessage("[NIT] " .. NIT:stripColors(text), "PARTY");
+		  			NIT:SendChatMessage("[NIT] " .. NIT:stripColors(text), "PARTY");
 				end
 			elseif (NIT.db.global.instanceStatsOutput) then
 				--NIT:print(text, nil, "[" .. NIT.lastInstanceName .. "]");
@@ -2033,6 +2075,9 @@ function NIT:parseGUID(unit, GUID, source, isCast)
 		GUID = UnitGUID(unit);
 	end
 	if (GUID and doGUID and NIT.inInstance and (not string.match(source, "combatlog") or GetServerTime() - NIT.inInstance > 2)) then
+		if (issecretvalue and issecretvalue(GUID)) then
+			return;
+		end
 		--We now handle casts here too, castGUID and creatures are the same structure with the zoneID in the same spot, so just modified this a bit to work.
 		local unitType, _, _, _, zoneID, npcID = strsplit("-", GUID);
 		local zoneID = tonumber(zoneID);
@@ -3478,6 +3523,7 @@ local currencyItems = {
     [237281] = "Elder Charm of Good Fortune",
     [237282] = "Lesser Charm of Good Fortune",
     [840010] = "August Stone Fragment",
+    [840009] = "August Stone Shard",
     [134912] = "Ironpaw Token",
     --[] = "",
     --[] = "",
@@ -4124,11 +4170,11 @@ f:RegisterEvent("TRADE_ACCEPT_UPDATE");
 f:RegisterEvent("TRADE_REQUEST_CANCEL");
 f:RegisterEvent("UI_INFO_MESSAGE");
 f:RegisterEvent("UI_ERROR_MESSAGE");
-local playerMoney, targetMoney, tradeWho, tradeWhoClass = 0, 0, "", "";
+local playerMoney, targetMoney, tradeWho, tradeWhoClass, tradeWhoRealm = 0, 0, "", "", nil;
 local doTrade;
 f:SetScript("OnEvent", function(self, event, ...)
 	if (event == "TRADE_SHOW") then
-		tradeWho = UnitName("npc");
+		tradeWho, tradeWhoRealm = UnitName("npc");
 		_, tradeWhoClass = UnitClass("npc");
 	elseif (event == "TRADE_MONEY_CHANGED") then
 		playerMoney = GetPlayerTradeMoney();
@@ -4160,17 +4206,25 @@ function NIT:doTrade()
 	end
 	if (playerMoney > 0) then
 		if (NIT.db.global.showMoneyTradedChat) then
+			local name = tradeWho;
+			if (tradeWhoRealm and tradeWhoRealm ~= GetRealmName()) then
+				name = tradeWho .. "-" .. tradeWhoRealm;
+			end
 			NIT:print("|HNITCustomLink:tradelog|h|cFF9CD6DE" .. L["gave"] .. "|r|h |r" .. NIT:getCoinString(playerMoney)
 					.. NIT.chatColor .. " |HNITCustomLink:tradelog|h|cFF9CD6DE" .. L["to"] .. "|r |c"
-					.. classColorHex .. tradeWho .. NIT.chatColor .. ".|h", nil, nil, true, true);
+					.. classColorHex .. name .. NIT.chatColor .. ".|h", nil, nil, true, true);
 		end
 		traded = true;
 	end
 	if (targetMoney > 0) then
 		if (NIT.db.global.showMoneyTradedChat) then
+			local name = tradeWho;
+			if (tradeWhoRealm and tradeWhoRealm ~= GetRealmName()) then
+				name = tradeWho .. "-" .. tradeWhoRealm;
+			end
 			NIT:print("|HNITCustomLink:tradelog|h|cFF9CD6DE" .. L["received"] .. "|r|h |r" .. NIT:getCoinString(targetMoney)
 					.. NIT.chatColor .. " |HNITCustomLink:tradelog|h|cFF9CD6DE" .. L["from"] .. "|r |c"
-					.. classColorHex .. tradeWho .. NIT.chatColor .. ".|h", nil, nil, true, true);
+					.. classColorHex .. name .. NIT.chatColor .. ".|h", nil, nil, true, true);
 		end
 		traded = true;
 	end
@@ -4188,6 +4242,7 @@ function NIT:doTrade()
 			targetMoney = targetMoney,
 			tradeWho = tradeWho,
 			tradeWhoClass = tradeWhoClass,
+			tradeWhoRealm = tradeWhoRealm,
 			where = where,
 			time = GetServerTime(),
 		};
@@ -4197,7 +4252,7 @@ function NIT:doTrade()
 end
 
 function NIT:resetCurrentTradeData()
-	playerMoney, targetMoney, tradeWho, tradeWhoClass = 0, 0, "", "";
+	playerMoney, targetMoney, tradeWho, tradeWhoClass, tradeWhoRealm = 0, 0, "", "", nil;
 end
 
 --UnitXP() seems to return nil sometimes? Right on logging out I think?

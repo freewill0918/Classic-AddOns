@@ -45,36 +45,37 @@ function Skillet:RecipeFilter(skillIndex)
 	local subClass = Skillet.db.realm.subClass[Skillet.currentPlayer][Skillet.currentTrade]
 	local invSlot = Skillet.db.realm.invSlot[Skillet.currentPlayer][Skillet.currentTrade]
 	local itemID = recipe.itemID
-	--DA.DEBUG(1,"RecipeFilter: itemID= "..tostring(itemID)..", subClass= "..tostring(subClass[itemID])..", invSlot= "..tostring(invSlot[itemID]))
-	--DA.DEBUG(1,"RecipeFilter: subClass.selected= "..tostring(subClass.selected)..", invSlot.selected= "..tostring(invSlot.selected))
 	if not ItemID and not subClass.selected and not invSlot.selected then
---
--- not initialized yet
---
-		--DA.DEBUG(1,"RecipeFilter: not initialized yet")
+		DA.DEBUG(1,"RecipeFilter: not initialized yet")
 		return false
 	end
-	if subClass.selected == "None" and invSlot.selected == "None" then
---
--- not filtering anything
---
-		--DA.DEBUG(1,"RecipeFilter: not filtering anything")
-		return false
+	if not Skillet.isCraft then
+		if subClass.selected == "None" and invSlot.selected == "None" then
+			--DA.DEBUG(1,"RecipeFilter(T): not filtering anything")
+			return false
+		end
+		DA.DEBUG(1,"RecipeFilter(T): itemID= "..tostring(itemID)..", subClass= "..tostring(subClass[itemID])..", invSlot= "..tostring(invSlot[itemID]))
+		DA.DEBUG(1,"RecipeFilter(T): subClass.selected= "..tostring(subClass.selected)..", invSlot.selected= "..tostring(invSlot.selected))
+		if subClass[itemID] == subClass.selected or invSlot[itemID] == invSlot.selected then
+			DA.DEBUG(1,"RecipeFilter(T): filtering active, "..tostring(recipe.name).." met the criteria")
+			return false
+		end
+		DA.DEBUG(1,"RecipeFilter(T): filtering active, "..tostring(recipe.name).." did not meet the criteria")
+		return true
+	else
+		if invSlot.selected == "None" then
+			--DA.DEBUG(1,"RecipeFilter(C): not filtering anything")
+			return false
+		end
+		DA.DEBUG(1,"RecipeFilter(C): itemID= "..tostring(itemID)..", invSlot= "..tostring(invSlot[itemID]))
+		DA.DEBUG(1,"RecipeFilter(C): invSlot.selected= "..tostring(invSlot.selected))
+		if invSlot[itemID] == invSlot.selected then
+			DA.DEBUG(1,"RecipeFilter(C): filtering active, "..tostring(recipe.name).." met the criteria")
+			return false
+		end
+		DA.DEBUG(1,"RecipeFilter(C): filtering active, "..tostring(recipe.name).." did not meet the criteria")
+		return true
 	end
-	DA.DEBUG(1,"RecipeFilter: itemID= "..tostring(itemID)..", subClass= "..tostring(subClass[itemID])..", invSlot= "..tostring(invSlot[itemID]))
-	DA.DEBUG(1,"RecipeFilter: subClass.selected= "..tostring(subClass.selected)..", invSlot.selected= "..tostring(invSlot.selected))
-	if subClass[itemID] == subClass.selected or invSlot[itemID] == invSlot.selected then
---
--- filtering active, return only items that meet the criteria
---
-		DA.DEBUG(1,"RecipeFilter: filtering active, "..tostring(recipe.name).." met the criteria")
-		return false
-	end
---
--- filtering active, item did not meet the criteria
---
-	DA.DEBUG(1,"RecipeFilter: filtering active, "..tostring(recipe.name).." did not meet the criteria")
-	return true
 end
 
 --
@@ -118,47 +119,70 @@ function Skillet.FilterDropDown_Initialize(menuFrame,level)
 	UIDropDownMenu_AddButton(info)
 	index = index + 1
 
-	info = UIDropDownMenu_CreateInfo()
-	info.text = L["SubClass"]
-	info.func = Skillet.FilterDropDown_OnClick
-	info.value = index
-	info.isTitle = true
-	UIDropDownMenu_AddButton(info)
-	index = index + 1
+	if not Skillet.isCraft then
+		info = UIDropDownMenu_CreateInfo()
+		info.text = L["SubClass"]
+		info.func = Skillet.FilterDropDown_OnClick
+		info.value = index
+		info.isTitle = true
+		UIDropDownMenu_AddButton(info)
+		index = index + 1
 
-	if subClass.name then
-		for n,c in pairs(subClass.name) do
-			info = UIDropDownMenu_CreateInfo()
-			info.text = "    "..(n or "")
-			info.func = Skillet.FilterDropDown_OnClick
-			info.value = index
-			info.arg1 = n
-			info.arg2 = "None"
-			if subClass.selected == n then
-				Skillet.filterSelected = index
+		if subClass.name then
+			for n,c in pairs(subClass.name) do
+				info = UIDropDownMenu_CreateInfo()
+				info.text = "    "..(n or "")
+				info.func = Skillet.FilterDropDown_OnClick
+				info.value = index
+				info.arg1 = n
+				info.arg2 = "None"
+				if subClass.selected == n then
+					Skillet.filterSelected = index
+				end
+				UIDropDownMenu_AddButton(info)
+				index = index + 1
 			end
-			UIDropDownMenu_AddButton(info)
-			index = index + 1
 		end
 	end
 
 	info = UIDropDownMenu_CreateInfo()
-	info.text = L["InvSlot"]
+	if not Skillet.isCraft then
+		info.text = L["InvSlot"]
+	else
+		info.text = L["InvSlot"]
+	end
 	info.func = Skillet.FilterDropDown_OnClick
 	info.value = index
 	info.isTitle = true
 	UIDropDownMenu_AddButton(info)
 	index = index + 1
 
-	if invSlot.name then
-		for n,c in pairs(invSlot.name) do
+	if not Skillet.isCraft then
+		if invSlot.name then
+			for n,c in pairs(invSlot.name) do
+				info = UIDropDownMenu_CreateInfo()
+				info.text = "    "..(_G[n] or "")
+				info.func = Skillet.FilterDropDown_OnClick
+				info.value = index
+				info.arg1 = "None"
+				info.arg2 = n
+				if invSlot.selected == n then
+					Skillet.filterSelected = index
+				end
+				UIDropDownMenu_AddButton(info)
+				index = index + 1
+			end
+		end
+	else
+		for n, slot in ipairs({GetCraftSlots()}) do
 			info = UIDropDownMenu_CreateInfo()
-			info.text = "    "..(_G[n] or "")
-			info.func = Skillet.FilterDropDown_OnClick
+			--DA.DEBUG(1,"FilterDropDown_Initialize: index= "..tostring(index)..", n= "..tostring(n)..", slot= "..tostring(slot))
+			info.text = "    "..(getglobal(slot) or "")
+			info.func = Skillet.CraftDropDown_OnClick
 			info.value = index
 			info.arg1 = "None"
-			info.arg2 = n
-			if invSlot.selected == n then
+			info.arg2 = slot
+			if invSlot.selected == slot then
 				Skillet.filterSelected = index
 			end
 			UIDropDownMenu_AddButton(info)
@@ -171,10 +195,50 @@ end
 -- Called when the user selects an item in the new filter drop down
 --
 function Skillet:FilterDropDown_OnClick(arg1,arg2)
-	--DA.DEBUG(0,"FilterDropDown_OnClick("..tostring(arg1)..", "..tostring(arg2)..")")
+	DA.DEBUG(0,"FilterDropDown_OnClick("..tostring(arg1)..", "..tostring(arg2).."), GetID= "..self:GetID())
 	UIDropDownMenu_SetSelectedID(SkilletFilterDropdown, self:GetID())
 	Skillet.db.realm.subClass[Skillet.currentPlayer][Skillet.currentTrade].selected = arg1
 	Skillet.db.realm.invSlot[Skillet.currentPlayer][Skillet.currentTrade].selected = arg2
 	Skillet.dataScanned = false
 	Skillet:UpdateTradeSkillWindow()
 end
+
+--
+-- Called when the user selects an item in the new filter drop down
+--
+function Skillet:CraftDropDown_OnClick(arg1,arg2)
+	DA.DEBUG(0,"CraftDropDown_OnClick("..tostring(arg1)..", "..tostring(arg2).."), GetID= "..self:GetID())
+	UIDropDownMenu_SetSelectedID(SkilletFilterDropdown, self:GetID())
+	Skillet.db.realm.subClass[Skillet.currentPlayer][Skillet.currentTrade].selected = arg1
+	Skillet.db.realm.invSlot[Skillet.currentPlayer][Skillet.currentTrade].selected = arg2
+	Skillet.dataScanned = false
+	Skillet:UpdateTradeSkillWindow()
+end
+
+Skillet.item_slot_types = {
+  ["HEADSLOT"]  = HEADSLOT,
+  ["NECKSLOT"]  = NECKSLOT,
+  ["SHOULDERSLOT"]  = SHOULDERSLOT,
+  ["SHIRTSLOT"]  = SHIRTSLOT,
+  ["CHESTSLOT"]  = CHESTSLOT,
+  ["WAISTSLOT"]  = WAISTSLOT,
+  ["LEGSSLOT"]  = LEGSSLOT,
+  ["FEETSLOT"]  = FEETSLOT,
+  ["WRISTSLOT"]  = WRISTSLOT,
+  ["HANDSSLOT"] = HANDSSLOT,
+  ["BACKSLOT"] = BACKSLOT,
+  ["MAINHANDSLOT"] = MAINHANDSLOT,
+  ["SECONDARYHANDSLOT"] = SECONDARYHANDSLOT,
+  ["RANGEDSLOT"] = RANGEDSLOT,
+  ["FINGERSLOT"] = FINGERSLOT,
+  ["TABARDSLOT"] = TABARDSLOT,
+  ["NONEQUIPSLOT"] = NONEQUIPSLOT,
+  ["FINGER0SLOT_UNIQUE"] = FINGER0SLOT_UNIQUE,
+  ["FINGER1SLOT_UNIQUE"] = FINGER1SLOT_UNIQUE,
+  ["TRINKET0SLOT_UNIQUE"] = TRINKET0SLOT_UNIQUE,
+  ["TRINKET1SLOT_UNIQUE"] = TRINKET1SLOT_UNIQUE,
+}
+
+function Skillet:ConvertSlots()
+end
+	

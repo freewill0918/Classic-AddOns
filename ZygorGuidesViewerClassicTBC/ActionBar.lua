@@ -23,7 +23,7 @@ local BAR_HEIGHT = BUTTON_SIZE+10
 local GetSpellCooldown = C_Spell.GetSpellCooldown or GetSpellCooldown
 
 local function OnEvent(self, event)
-	if not ZGV.db.profile.enable_actionbuttons then return end -- disabled
+	if not ZGV.db.profile.enable_actionbar then return end -- disabled
 	if not ZGV.ActionBar or not ZGV.ActionBar.Frame then return end -- we are too early
 	if not ZGV.CurrentStep then return end -- we will retry on step focus
 	if event=="BAG_UPDATE_DELAYED" and not ZGV.db.profile.actionbar_trash then return end -- trasher is disabled, we do not care about bag changes
@@ -40,7 +40,7 @@ local function OnEvent(self, event)
 	-- only events registered here are for updating action bar, so no need to handle them separately
 	ActionBar:SetActionButtons()
 
-	if event=="ZGV_STEP_CHANGED" and not ZGV.skipping and ActionBar.Frame.snapped then
+	if (event=="ZGV_STEP_CHANGED" or event=="ZGV_GOAL_COMPLETED" or event=="ZGV_GOAL_UNCOMPLETED") and not ZGV.skipping and ActionBar.Frame.snapped then
 		ZGV:ScheduleTimer(function() ActionBar:SavePosition() end,0.1)
 	end
 end
@@ -61,6 +61,10 @@ local function DragStart(self)
 	end
 end
 
+function ActionBar:IsExpandingRight()	--[2]=("Right") in actionbar_direction = expanding buttons to the right, anchored to the left
+	return ZGV.db.profile.actionbar_direction == 2
+end
+
 function ActionBar:Initialise()
 	ActionBar:CreateFrame()
 
@@ -70,6 +74,8 @@ function ActionBar:Initialise()
 	end
 	BINDING_HEADER_ZYGORGUIDESACTIONBAR = "Zygor Guides Viewer Action Bar"
 	ZGV:AddMessageHandler("ZGV_STEP_CHANGED",OnEvent)
+	ZGV:AddMessageHandler("ZGV_GOAL_COMPLETED",OnEvent)
+	ZGV:AddMessageHandler("ZGV_GOAL_UNCOMPLETED",OnEvent)
 	ZGV:AddMessageHandler("ZGV_STARTED_SKIPPING",OnEvent)
 	ZGV:AddMessageHandler("ZGV_STOPPED_SKIPPING",OnEvent)
 
@@ -83,9 +89,9 @@ function ActionBar:Initialise()
 		frame:SetAttribute("_onstate-combathide", "if newstate == 'show' then self:Show(); else self:Hide(); end")
 		frame:SetParent(ActionBar.Frame)
 		frame:SetSize(BUTTON_SIZE,BUTTON_SIZE)
+		frame:RegisterForClicks("AnyUp")
+		if ZGV.IsRetail or ZGV.IsClassicTBC then
 		frame:RegisterForClicks("AnyUp","AnyDown")
-		if not ZGV.IsRetail then
-			frame:RegisterForClicks("AnyUp")
 		end
 		frame:RegisterForDrag("LeftButton")
 		frame:SetScript("OnDragStart", DragStart)
@@ -193,7 +199,7 @@ function ActionBar:SetActionButtonsQueued()
 	end
 
 	for gi,goal in ipairs(goals) do
-		if goal:IsVisible() then
+		if goal:IsVisible() and not goal:IsComplete() then
 			if goal.castspell and goal.castspellid and ZGV.db.profile.actionbar_quest then
 				table.insert(actions,{"spell",goal.castspellid})
 			elseif goal.castspell and goal.extraaction  and ZGV.db.profile.actionbar_quest then
@@ -233,14 +239,24 @@ function ActionBar:SetActionButtonsQueued()
 		end -- if goal visible
 	end -- for goal in step
 
+	local usedactions = {}
+
 	local counter = 0
 	for _,data in ipairs(actions) do 
-		counter = counter + 1
-		ZGV.ActionBar:SetButton(data[1],data[2],data[3],counter) 
+		usedactions[data[1]] = usedactions[data[1]] or {}
+		if not usedactions[data[1]][data[2]] then 
+			counter = counter + 1
+			ZGV.ActionBar:SetButton(data[1],data[2],data[3],counter) 
+			usedactions[data[1]][data[2]] = true
+		end
 	end
 	for _,data in ipairs(actions_npc) do 
-		counter = counter + 1
-		ZGV.ActionBar:SetButton(data[1],data[2],data[3],counter,data.sticky) 
+		usedactions[data[1]] = usedactions[data[1]] or {}
+		if not usedactions[data[1]][data[2]] then 
+			counter = counter + 1
+			ZGV.ActionBar:SetButton(data[1],data[2],data[3],counter,data.sticky)
+			usedactions[data[1]][data[2]] = true
+		end
 	end
 
 
@@ -306,6 +322,7 @@ function ActionBar:CreateFrame()
 			.__END
 		ActionBar.Frame.close.buttonkey = "CLOSE"
 		ActionBar.Frame.close:ApplySkin()
+		ActionBar:PositionX()
 
 		ActionBar.Frame.Overlay = CHAIN(ui:Create("Frame", ActionBar.Frame))
 			:SetAllPoints()
@@ -337,16 +354,28 @@ end
 
 local SNAP_Y=5
 function ActionBar.Frame_OnUpdate(self)
+	if InCombatLockdown() or self.Lockdown then return end
+
 	if self:IsDragging() then
 		local ssc=self:GetEffectiveScale()
 		local x,y = GetCursorPosition()
 		local l,b=x-self.drag_offset_x,y-self.drag_offset_y
 		local zsc=ZGV.Frame:GetEffectiveScale()
-		local zl,zt=ZGV.Frame:GetLeft()*zsc,ZGV.Frame:GetTop()*zsc
-		if (math.abs(zl-l)<10 and math.abs((zt+SNAP_Y)-b)<10) then
+		local zt=ZGV.Frame:GetTop()*zsc
+		local zgv_width = ZGV.Frame:GetWidth()
+		local zs, zsw
+
+		local anchorLeft = ActionBar:IsExpandingRight()
+		zs  = ((anchorLeft and ZGV.Frame:GetLeft()) or ZGV.Frame:GetRight()) * zsc
+		zsw = anchorLeft and (zs + zgv_width) or zs
+
+		-- added left/right edge check
+		if ((math.abs(zs-l)<10 or math.abs((zsw)-(l+self:GetWidth()*ssc))<10) and math.abs((zt+SNAP_Y)-b)<10) then
 			self.snapped=true
 			self:ClearAllPoints()
-			self:SetPoint("BOTTOMLEFT",ZGV.Frame,"TOPLEFT",0,10)
+			-- changed the default snap to the left to condition
+			local side = ActionBar:IsExpandingRight() and "LEFT" or "RIGHT"
+			self:SetPoint("BOTTOM"..side, ZGV.Frame, "TOP"..side, 0, 10)
 		else
 			self.snapped=false
 		end
@@ -356,36 +385,55 @@ function ActionBar.Frame_OnUpdate(self)
 	end
 end
 
-
-
-function ActionBar:SavePosition()
+function ActionBar:SavePosition(options)
 	if self.SnapTimer then ZGV:CancelTimer(self.SnapTimer) end
 	if InCombatLockdown() or self.Lockdown then
 		self.SnapTimer = ZGV:ScheduleTimer(function() 
-			self:SavePosition(force)
+			self:SavePosition()
 		end, 1)
 		return
 	end
 
 	local ssc = self.Frame:GetEffectiveScale()
 	local zsc = ZGV.Frame:GetEffectiveScale()
-	local zl,zt = ZGV.Frame:GetLeft()*zsc, ZGV.Frame:GetTop()*zsc
+	local zt=ZGV.Frame:GetTop()*zsc
+	local anchorLeft = ActionBar:IsExpandingRight()
+	local zs  = ((anchorLeft and ZGV.Frame:GetLeft()) or ZGV.Frame:GetRight()) * zsc
+	local anchor = anchorLeft and "BOTTOMLEFT" or "BOTTOMRIGHT"
+	local xOffset = anchorLeft and zs or (zs - GetScreenWidth() * UIParent:GetEffectiveScale())
+
 	self.Frame:ClearAllPoints()
 
 	if self.Frame.snapped then
 		-- do not anchor to zgv frame - causes action blocked when trying to refresh main frame during combat
 		-- instead anchor to uiparent where we would be positioned
-		self.Frame:SetPoint("BOTTOMLEFT",UIParent,"BOTTOMLEFT",(zl/ssc),(zt+SNAP_Y)/ssc)
-	else
+		-- but also check direction and calculate distance from the right edge, if snapped to right
+		self.Frame:SetPoint(anchor, UIParent, anchor, xOffset/ssc, (zt+SNAP_Y)/ssc)
+	elseif not options then
 		local x,y = GetCursorPosition()
 		local l,b = x-(self.Frame.drag_offset_x or 0), y-(self.Frame.drag_offset_y or 0)
-		self.Frame:SetPoint("BOTTOMLEFT",UIParent,"BOTTOMLEFT",l/ssc,b/ssc)
+
+		local frameWidth = self.Frame:GetWidth()
+
+		if not anchorLeft then
+			self.Frame:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMLEFT", (l/ssc) + frameWidth, b/ssc)
+		else
+			self.Frame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", l/ssc, b/ssc)
+	
+		end
+	else
+		local anchorData = ZGV.db.profile.actionbar_anchor
+		local newAnchor = anchorData
+
+		newAnchor[1] = ActionBar:IsExpandingRight() and "BOTTOMLEFT" or "BOTTOMRIGHT"
+
+		ZGV.F.SetFrameAnchor(ActionBar.Frame, newAnchor)
+		ZGV.db.profile.actionbar_anchor = newAnchor
 	end
 
 	ZGV.db.profile.actionbar_anchor_snapped = self.Frame.snapped 
 	ZGV.F.SaveFrameAnchor(self.Frame,"actionbar_anchor")
 end
-
 
 function ActionBar:ApplySkin()
 	local MF = ActionBar.Frame
@@ -401,7 +449,21 @@ function ActionBar:ApplySkin()
 	MF:SetBackdropBorderColor(set_alpha(OPACITY,unpack(SkinData("ActionBarBackdropBorderColor"))))
 
 	ActionBar:SetAlpha()
-	ActionBar:SetScale() 
+	ActionBar:SetScale()
+	ActionBar:PositionX()
+end
+
+function ActionBar:PositionX()
+	ActionBar.Frame.close:ClearAllPoints()
+	local side  = (ZGV.db.profile.actionbar_direction == 1) and "RIGHT" or "LEFT"
+	local x  = (side == "RIGHT") and -5 or 5
+	ActionBar.Frame.close:SetPoint("TOP"..side, ActionBar.Frame, "TOP"..side, x, -4)
+end
+
+function ActionBar:CheckDirection()
+	ActionBar:SetActionButtons()
+	ActionBar:PositionX()
+	ActionBar:SavePosition(true)
 end
 
 function ActionBar:ToggleFrame()
@@ -417,9 +479,14 @@ function ActionBar:ToggleFrame()
 		return
 	end
 	
-	if ZGV.db.profile.enable_actionbar and ZGV.db.profile.enable_actionbuttons and ZGV.db.profile.enable_viewer then
+	if ZGV.db.profile.enable_actionbar and ZGV.db.profile.enable_viewer then
 		ActionBar.Frame:Show()
 		ActionBar:SetActionButtons()
+		ActionBar:PositionX()
+		if self.Frame.snapped then
+			-- update position, since viewer may have been moved while we were hidden
+		ActionBar:SavePosition()
+		end
 	else
 		ActionBar.Frame:Hide()
 	end
@@ -427,7 +494,7 @@ function ActionBar:ToggleFrame()
 end
 
 function ActionBar:SetButton(btype,object,fallbackname,counter,sticky) 
-	if not ZGV.db.profile.enable_actionbuttons then return end
+	if not ZGV.db.profile.enable_actionbar then return end
 	
 	if btype and not object then ZGV:Debug("ActionButton must have data defined if type is set") return end
 
@@ -495,19 +562,24 @@ function ActionBar:SetButton(btype,object,fallbackname,counter,sticky)
 		local name = ZGV.Localizers:GetTranslatedNPC(object,fallbackname)
 		macro_name = L["stepgoal_talk to"]:format(name)
 		macro_tooltip = macro_name
-		macro_text = (macro_name and "#showtooltip "..macro_name.."\n" or "").."/run ZGV:MCM(4)\n/cleartarget\n/target "..name.."\n/run ZGV:MRM()"
+		macro_text = (macro_name and "#showtooltip "..macro_name.."\n" or "").."/cleartarget\n/target "..name.."\n/tm 1"
 		zygor_texture_key = "TALK"
 	elseif btype=="clicknpc" then
 		local name = ZGV.Localizers:GetTranslatedNPC(object,fallbackname)
 		macro_name = L["stepgoal_clicknpc"]:format(name)
 		macro_tooltip = macro_name
-		macro_text = (macro_name and "#showtooltip "..macro_name.."\n" or "").."/run ZGV:MCM(4)\n/cleartarget\n/target "..name.."\n/run ZGV:MRM(6)"
+		macro_text = (macro_name and "#showtooltip "..macro_name.."\n" or "").."/cleartarget\n/target "..name.."\n/tm 6"
 		zygor_texture_key = "TALK"
 	elseif btype=="kill" then
 		local name = ZGV.Localizers:GetTranslatedNPC(object,fallbackname)
 		macro_name = L["stepgoal_kill"]:format(name)
 		macro_tooltip = macro_name
-		macro_text = (macro_name and "#showtooltip "..macro_name.."\n" or "").."/run ZGV:MCM(8)\n/cleartarget\n/target "..name.."\n/run ZGV:MRM("..(sticky and 7 or "")..")\n/cleartarget [dead]"
+		macro_text = (macro_name and "#showtooltip "..macro_name.."\n" or "").."/cleartarget\n/target "..name.."\n/cleartarget [dead]"
+		if not sticky then 
+			macro_text = macro_text .. "\n/tm 8"
+		else
+			macro_text = macro_text .. "\n/tm 7"
+		end
 		zygor_texture_key = "KILL"
 	elseif btype=="openskill" then
 		local skilldata = ZGV.Professions:GetSkillDataByName(object.tradeskill)
@@ -629,13 +701,13 @@ function ActionBar:ReanchorButtons(force)
 
 	if not ActionBar.Frame then return end
 	if not ZGV.db.profile.enable_viewer then ActionBar.Frame.Overlay:Hide() ActionBar.Frame:Hide() return end -- viewer is hidden, go away
-	if not ZGV.db.profile.enable_actionbuttons and not force then return end -- everything is disabled, abort
-	if not ZGV.db.profile.enable_actionbar and not force then return end -- we are not showing buttons, only updating macros. bail out
+	if not ZGV.db.profile.enable_actionbar and not force then return end -- everything is disabled, abort
 
 	local previous = false
 	local space = 5
 	local width = space
 	local active = false
+
 	ActionBar.Frame:Show()
 	ActionBar.Frame:SetAlpha(0.01)
 
@@ -643,12 +715,19 @@ function ActionBar:ReanchorButtons(force)
 		button:ClearAllPoints()
 	end
 
-	for _,button in ipairs(ActionBar.Buttons) do
+	-- buttons anchoring needs to follow the actionbar direction
+	for _, button in ipairs(ActionBar.Buttons) do
+		local anchorRight = not ActionBar:IsExpandingRight()
+		local side = anchorRight and "LEFT" or "RIGHT"
+		local oppSide = anchorRight and "RIGHT" or "LEFT"
+		local x = anchorRight and space or -space
+
 		if not previous then
-			button:SetPoint("TOPLEFT",ActionBar.Frame,"TOPLEFT",space,-space)
+			button:SetPoint("TOP"..side, ActionBar.Frame, "TOP"..side, x, -space)
 		else
-			button:SetPoint("TOPLEFT",previous,"TOPRIGHT",space,0)
+			button:SetPoint("TOP"..side, previous, "TOP"..oppSide, x, 0)
 		end
+
 		width = width + button:GetWidth() + space
 		previous = button
 		active = true

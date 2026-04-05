@@ -36,8 +36,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Huojin Pandaren |complete rep('Huojin Pandaren') == Exalted |or
-|tip Use the "Huojin Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Huojin Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
+|tip Use the "Huojin Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Huojin Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
 '|complete hasmount(127286) |or
 only if not Pandaren
 step
@@ -59,8 +59,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Huojin Pandaren |complete rep('Huojin Pandaren') == Exalted |or
-|tip Use the "Huojin Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Huojin Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
+|tip Use the "Huojin Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Huojin Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
 '|complete hasmount(127287) |or
 only if not Pandaren
 step
@@ -82,8 +82,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Huojin Pandaren |complete rep('Huojin Pandaren') == Exalted |or
-|tip Use the "Huojin Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Huojin Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
+|tip Use the "Huojin Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Huojin Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
 '|complete hasmount(127288) |or
 only if not Pandaren
 step
@@ -105,8 +105,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Huojin Pandaren |complete rep('Huojin Pandaren') == Exalted |or
-|tip Use the "Huojin Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Huojin Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
+|tip Use the "Huojin Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Huojin Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
 '|complete hasmount(127295) |or
 only if not Pandaren
 step
@@ -128,8 +128,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Huojin Pandaren |complete rep('Huojin Pandaren') == Exalted |or
-|tip Use the "Huojin Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Huojin Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
+|tip Use the "Huojin Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Huojin Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
 '|complete hasmount(127302) |or
 only if not Pandaren
 step
@@ -151,8 +151,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Huojin Pandaren |complete rep('Huojin Pandaren') == Exalted |or
-|tip Use the "Huojin Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Huojin Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
+|tip Use the "Huojin Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Huojin Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
 '|complete hasmount(127308) |or
 only if not Pandaren
 step
@@ -174,8 +174,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Huojin Pandaren |complete rep('Huojin Pandaren') == Exalted |or
-|tip Use the "Huojin Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Huojin Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
+|tip Use the "Huojin Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Huojin Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
 '|complete hasmount(127288) |or
 only if not Pandaren
 step
@@ -183,8 +183,7 @@ talk Turtlemaster Odai##66022
 buy Reins of the Great Green Dragon Turtle##91005 |goto Orgrimmar/1 69.84,41.15 |or
 '|complete hasmount(127288) |or
 step
-use the Reins of the Great
-Green Dragon Turtle##91005
+use the Reins of the Great Green Dragon Turtle##91005
 learnmount Green Dragon Turtle##127288
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Great Purple Dragon Turtle",{
@@ -198,8 +197,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Huojin Pandaren |complete rep('Huojin Pandaren') == Exalted |or
-|tip Use the "Huojin Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Huojin Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
+|tip Use the "Huojin Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Huojin Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
 '|complete hasmount(127310) |or
 only if not Pandaren
 step
@@ -221,8 +220,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Huojin Pandaren |complete rep('Huojin Pandaren') == Exalted |or
-|tip Use the "Huojin Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Huojin Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
+|tip Use the "Huojin Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Huojin Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
 '|complete hasmount(120822) |or
 only if not Pandaren
 step
@@ -236,7 +235,7 @@ learnmount Great Red Dragon Turtle##120822
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Green Dragon Turtle",{
 keywords={"Huojin","green","dragon","turtle","ground","mount"},
 model={43719},
-mounts={127288},
+mounts={120395},
 patch='50500',
 mounttype='Ground',
 description="This guide will teach you how to acquire the Green Dragon Turtle mount.",
@@ -244,17 +243,17 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Huojin Pandaren |complete rep('Huojin Pandaren') == Exalted |or
-|tip Use the "Huojin Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Huojin Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
-'|complete hasmount(127288) |or
+|tip Use the "Huojin Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Huojin Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
+'|complete hasmount(120395) |or
 only if not Pandaren
 step
 talk Turtlemaster Odai##66022
-buy Reins of the Green Dragon Turtle##91005 |goto Orgrimmar/1 69.84,41.15 |or
-'|complete hasmount(127288) |or
+buy Reins of the Green Dragon Turtle##82765 |goto Orgrimmar/1 69.84,41.15 |or
+'|complete hasmount(120395) |or
 step
-use the Reins of the Green Dragon Turtle##91005
-learnmount Green Dragon Turtle##127288
+use the Reins of the Green Dragon Turtle##82765
+learnmount Green Dragon Turtle##120395
 ]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Ground Mounts\\Reputation Mounts\\Purple Dragon Turtle",{
 keywords={"tushui","purple","dragon","turtle","ground","mount"},
@@ -267,8 +266,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Huojin Pandaren |complete rep('Huojin Pandaren') == Exalted |or
-|tip Use the "Huojin Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Huojin Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
+|tip Use the "Huojin Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Huojin Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
 '|complete hasmount(127289) |or
 only if not Pandaren
 step
@@ -290,8 +289,8 @@ mopready=true,
 },[[
 step
 Reach Exalted Reputation with the Huojin Pandaren |complete rep('Huojin Pandaren') == Exalted |or
-|tip Use the "Huojin Pandaren" reputation guide to accomplish this.
-Click Here to Load the "Huojin Pandaren" reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
+|tip Use the "Huojin Pandaren" Reputation guide to accomplish this.
+Click Here to Load the "Huojin Pandaren" Reputation guide |confirm |loadguide "Reputation Guides\\Mists of Pandaria Reputations\\Huojin Pandaren"
 '|complete hasmount(127290) |or
 only if not Pandaren
 step
@@ -450,7 +449,7 @@ kill Sha of Anger##60491
 |tip You may have to kill him more than once to obtain the mount item drop.
 collect Reins of the Heavenly Onyx Cloud Serpent##87771 |goto Kun-Lai Summit/0 54.47,63.22 |next "H_HEAVENLY_ONYX_END" |or
 Click Here to Complete a Celestial Challenge daily to earn currency for a chance to acquire this mount |confirm |next "H_SATCHEL_HEAVENLY_ONYX_CLOUD_SERPENT" |only if level == 90 and _G.GetAverageItemLevel()>=435
-|tip Spam-killing Sha of Anger may be the surest method to obtain this mount, but you can also obtain this pet and other mounts and pets by completing Celestial Challenge daily quests. |only if level == 90 and _G.GetAverageItemLevel()>=435
+|tip Spam-killing Sha of Anger may be the surest method to obtain this mount, but you can also obtain this mount, and other mounts and pets, by completing Celestial Challenge daily quests. |only if level == 90 and _G.GetAverageItemLevel()>=435
 |tip This has an extremely low drop rate.
 '|complete hasmount(127158) |next "H_HEAVENLY_ONYX_END" |or
 step
@@ -483,7 +482,7 @@ buy Satchel of Celestial Chance##248666 |goto Shrine of Two Moons/2 42.60,45.59
 '|complete hasmount(127158) |next "H_HEAVENLY_ONYX_END" |or
 step
 use Satchel of Celestial Chance##248666
-|tip You may need to purchase more than one satchel to acquire the pet.
+|tip You may need to purchase more than one satchel to acquire the mount.
 collect Reins of the Heavenly Onyx Cloud Serpent##87771 |next "H_HEAVENLY_ONYX_END"
 Click Here to Return to the Beginning of the Guide |confirm |next "H_SHA_OF_ANGER_KILL"
 '|complete hasmount(127158) |next "H_HEAVENLY_ONYX_END" |or

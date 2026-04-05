@@ -32,9 +32,9 @@ L["Appearance"] = "겉모양"
 L["APPEARANCEDESC"] = "Skillet 표시 방법을 제어하는 옵션"
 --[[Translation missing --]]
 L["Auction"] = "Auction"
-L["bank"] = "은행"
 --[[Translation missing --]]
 L["Bank"] = "Bank"
+L["bank"] = "은행"
 L["Blizzard"] = "블리자드"
 L["Buy Reagents"] = "재료 구입"
 L["buyable"] = "구입 가능"
@@ -100,6 +100,10 @@ L["Enchant"] = "마법부여"
 L["ENCHANTSCROLLSDESC"] = "Use the enchant scroll item for links"
 --[[Translation missing --]]
 L["ENCHANTSCROLLSNAME"] = "Use enchant scrolls"
+--[[Translation missing --]]
+L["ENHANCHEDCHANCEDISPLAYDESC"] = "Always display skill up percentage"
+--[[Translation missing --]]
+L["ENHANCHEDCHANCEDISPLAYNAME"] = "Display Skill Up Chance"
 L["ENHANCHEDRECIPEDISPLAYDESC"] = "사용하면, 레시피 이름에 난이도를 나타내는 '+' 문자가 하나 이상 붙습니다."
 L["ENHANCHEDRECIPEDISPLAYNAME"] = "레시피 난이도 문자로 표시"
 L["Expand all groups"] = "모든 그룹 펼침"

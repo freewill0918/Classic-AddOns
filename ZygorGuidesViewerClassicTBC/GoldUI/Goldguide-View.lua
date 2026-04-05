@@ -68,78 +68,34 @@ local ENTRIES_DATA = {
 local FARMING_COLUMNS = {
 	{ title="NO", width=25, headerwidth=40, titlej="LEFT", textj="LEFT", name="no"},
 	{ title="", width=15, headerwidth=0, titlej="LEFT", textj="LEFT", name="icon", type="icon" },
-	{ title="ITEM", width=230, titlej="LEFT", textj="LEFT", name="title", padding=20 },
-	{ title="ZONE", width=140, titlej="LEFT", textj="LEFT", name="zone" },
-	{ title="RATE", width=130, titlej="RIGHT", textj="RIGHT", name="rate", sortable=true, sortfunction=Goldguide.UpdateSorting },
-	{ title="TIME", width=60, titlej="RIGHT", textj="RIGHT", name="disptime", sortable=true, sortfunction=Goldguide.UpdateSorting },
-	{ title="EST. GOLD", width=110, titlej="RIGHT", textj="RIGHT", name="dispgold", sortable=true, sortfunction=Goldguide.UpdateSorting },
+	{ title="GUIDE", width=360, titlej="LEFT", textj="LEFT", name="title", padding=20 },
+	{ title="ZONE", width=220, titlej="LEFT", textj="LEFT", name="zone" },
+	{ title="SCORE", width=100, titlej="RIGHT", textj="RIGHT", name="dispgold", sortable=true, sortfunction=Goldguide.UpdateSorting },
 	{ title="", width=23, titlej="RIGHT", textj="RIGHT", name="loadbutton", type="button", iconheight=18, iconwidth=18,padding=15, iconset = "TitleButtons", iconkey="LOADGUIDE"}
 }
+
+
 
 local FARMING_TYPES = {
 	{"All","all"},
 	{"Cloths","cloth"},
 	{"Elementals","elemental"},
 	{"Food","food"},
-	{"Gems","gem"},
-	{"Misc","misc"},
+	--{"Gems","gem"},
+	--{"Misc","misc"},
+	{"Mining","mining"},
+	{"Herbalism","herbalism"},
+	{"Skinning","skinning"},
+	{"Fishing","fishing"},
 }
+if not ZGV.IsRetail then table.insert(FARMING_TYPES,{"Enchanting","enchanting"}) end
+
 
 local FARMING_TOOLTIP = {
-	{ title="Item", width=200, titlej="LEFT", textj="LEFT", name="item"},
+	{ title="Item", width=400, titlej="LEFT", textj="LEFT", name="item"},
 	{ title="Price", width=100, titlej="RIGHT", textj="RIGHT", name="price"},
-	{ title="Drops", width=50, titlej="RIGHT", textj="RIGHT", name="drops"},
-	{ title="Profit", width=100, titlej="RIGHT", textj="RIGHT", name="profit"},
 	{ title="Demand", width=60, titlej="RIGHT", textj="RIGHT", name="demand"},
-	{ title="Status", width=200, titlej="RIGHT", textj="RIGHT", name="status"},
-}
-
-
-local GATHERING_COLUMNS = {
-	{ title="NO", width=25, headerwidth=40, titlej="LEFT", textj="LEFT", name="no"},
-	{ title="", width=15, headerwidth=0, titlej="LEFT", textj="LEFT", name="icon", type="icon" },
-	{ title="ITEM", width=230, titlej="LEFT", textj="LEFT", name="title", padding=20 },
-	{ title="ZONE", width=140, titlej="LEFT", textj="LEFT", name="zone" },
-	{ title="RATE", width=130, titlej="RIGHT", textj="RIGHT", name="rate", sortable=true, sortfunction=Goldguide.UpdateSorting },
-	{ title="TIME", width=60, titlej="RIGHT", textj="RIGHT", name="disptime", sortable=true, sortfunction=Goldguide.UpdateSorting },
-	{ title="EST. GOLD", width=110, titlej="RIGHT", textj="RIGHT", name="dispgold", sortable=true, sortfunction=Goldguide.UpdateSorting },
-	{ title="", width=23, titlej="RIGHT", textj="RIGHT", name="loadbutton", type="button", iconheight=18, iconwidth=18,padding=15, iconset = "TitleButtons", iconkey="LOADGUIDE"}
-}
-
-local GATHERING_TOOLTIP = {
-	{ title="Item", width=200, titlej="LEFT", textj="LEFT", name="item"},
-	{ title="Price", width=100, titlej="RIGHT", textj="RIGHT", name="price"},
-	{ title="Drops", width=50, titlej="RIGHT", textj="RIGHT", name="drops"},
-	{ title="Profit", width=100, titlej="RIGHT", textj="RIGHT", name="profit"},
-	{ title="Demand", width=60, titlej="RIGHT", textj="RIGHT", name="demand"},
-	{ title="Status", width=200, titlej="RIGHT", textj="RIGHT", name="status"},
-}
-
-
-local CRAFTING_COLUMNS = {
-	{ title="NO", width=25, headerwidth=40, titlej="LEFT", textj="LEFT", name="no"},
-	{ title="", width=15, headerwidth=0, titlej="LEFT", textj="LEFT", name="icon", type="icon" },
-	{ title="RECIPE", width=412, titlej="LEFT", textj="LEFT", name="name", sortable=true, sortfunction=Goldguide.UpdateSorting },
-	{ title="STATUS", width=60, titlej="CENTER", textj="CENTER", name="status", font=FONTSTATUS},
-	{ title="MATERIALS", width=110, titlej="RIGHT", textj="RIGHT", name="materials", sortable=true, sortfunction=Goldguide.UpdateSorting },
-	{ title="PROFIT", width=110, titlej="RIGHT", textj="RIGHT", name="profit", sortable=true, sortfunction=Goldguide.UpdateSorting },
-	{ title="", width=23, titlej="RIGHT", textj="RIGHT", name="loadbutton", type="button", iconheight=18, iconwidth=18,padding=15, iconset = "TitleButtons", iconkey="LOADGUIDE"}
-}
-
-local CRAFTING_TOOLTIP = {
-	{ title="", width=30, titlej="LEFT", textj="RIGHT", name="count" },
-	{ title="Item", width=310, titlej="LEFT", textj="LEFT", name="item" },
-	{ title="Each", width=100, titlej="RIGHT", textj="RIGHT", name="each" },
-	{ title="Total", width=100, titlej="RIGHT", textj="RIGHT", name="total" },
-	{ title="Status", width=200, titlej="RIGHT", textj="RIGHT", name="status" },
-}
-
-local CRAFTING_SKILLS={"All","Mining","Jewelcrafting","Enchanting","Inscription","Blacksmithing","Engineering","Alchemy","Tailoring","Leatherworking","Cooking"}
-
-local CRAFTING_MODES = {
-	{"Easy",     0, "Show only items that are in demand, material cost is lower than the price of the product, and you know the recipe."},
-	{"Advanced", 1, "Show only items that are in demand, material cost is lower than the price of the product, but you do not know the recipe."},
-	{"Expert",   2, "Show all potentially profitable crafts for your profession, regardless of demand, material cost or recipe."}
+	{ title="Status", width=150, titlej="RIGHT", textj="RIGHT", name="status"},
 }
 
 local AUCTION_COLUMNS = {
@@ -303,26 +259,12 @@ function Goldguide:CreateMainFrame()
 		.__END
 		MF.HeaderFrame.Tabs[1].tabname = "Farming"
 
-		MF.HeaderFrame.Tabs[2] = CHAIN(MakeImgButton("Tab2",ZGV.IconSets.GoldGuideIcons.GATHER,nil))
+		MF.HeaderFrame.Tabs[2] = CHAIN(MakeImgButton("Tab4",ZGV.IconSets.GoldGuideIcons.AUCTION,nil))
 			:SetPoint("LEFT",MF.HeaderFrame.Tabs[1],"RIGHT",TAB_SPACE,0)
-			:SetText("Gathering")
-			:SetScript("OnClick",function(tab) Goldguide:SetCurrentTab("Gathering") end)
-		.__END
-		MF.HeaderFrame.Tabs[2].tabname = "Gathering"
-		
-		MF.HeaderFrame.Tabs[3] = CHAIN(MakeImgButton("Tab3",ZGV.IconSets.GoldGuideIcons.CRAFT,nil))
-			:SetPoint("LEFT",MF.HeaderFrame.Tabs[2],"RIGHT",TAB_SPACE,0)
-			:SetText("Crafting")
-			:SetScript("OnClick",function(tab) Goldguide:SetCurrentTab("Crafting") end)
-		.__END
-		MF.HeaderFrame.Tabs[3].tabname = "Crafting"
-
-		MF.HeaderFrame.Tabs[4] = CHAIN(MakeImgButton("Tab4",ZGV.IconSets.GoldGuideIcons.AUCTION,nil))
-			:SetPoint("LEFT",MF.HeaderFrame.Tabs[3],"RIGHT",TAB_SPACE,0)
 			:SetText("Auctions")
 			:SetScript("OnClick",function(tab) Goldguide:SetCurrentTab("Auctions") end)
 		.__END
-		MF.HeaderFrame.Tabs[4].tabname = "Auctions"
+		MF.HeaderFrame.Tabs[2].tabname = "Auctions"
 
 	MF.MenuFrame = {}
 		MF.MenuFrame.decor1 = CHAIN(ui:Create("Frame",MF))
@@ -439,13 +381,9 @@ function Goldguide:CreateMainFrame()
 		end
 
 	Goldguide.Farming_Frame   = Goldguide:MakeTable_Farming()
-	Goldguide.Gathering_Frame = Goldguide:MakeTable_Gathering()
-	Goldguide.Crafting_Frame  = Goldguide:MakeTable_Crafting()
 	Goldguide.Auctions_Frame  = Goldguide:MakeTable_Auctions()
 
 	Goldguide.FarmingTooltip = Goldguide:MakeTooltip("Farming",FARMING_TOOLTIP)
-	Goldguide.GatheringTooltip = Goldguide:MakeTooltip("Gathering",GATHERING_TOOLTIP)
-	Goldguide.CraftingTooltip = Goldguide:MakeTooltip("Crafting",CRAFTING_TOOLTIP)
 	Goldguide.AuctionTooltip = Goldguide:MakeTooltip("Auctions",AUCTION_TOOLTIP)
 
 	Goldguide:MakeInfoPages()
@@ -495,21 +433,8 @@ function Goldguide:MakeTable_Farming()
 		row:SetScript("OnLeave",function(self) ZGV.Goldguide.FarmingTooltip:Hide() end)
 	end
 
-	container.ModeDropdown = CHAIN(ui:Create("DropDown",container,DROPDOWN_STYLE,Goldguide.MainFrame.MenuFrame.decor1:GetFrameLevel()+2))
-		:SetPoint("BOTTOMRIGHT",Goldguide.MainFrame.MenuFrame.SearchEdit,"BOTTOMLEFT",-12,1)
-		:SetSize(DROPDOWN_WIDTH,DROPDOWN_HEIGHT)
-		:AddTooltip("ANCHOR_TOPLEFT",L["gold_expertmode_generictooltip"])
-	.__END
-	
-	for optnum,opt in ipairs(DEFAULT_MODES) do
-		local item = container.ModeDropdown:AddItem(opt[1],opt[2],function(item)
-			ZGV.db.profile.gold_farming_mode = item.userdata.value
-			if container:IsVisible() then Goldguide:Update() end
-		end, opt[3])
-	end
-
 	container.TypeDropdown = CHAIN(ui:Create("DropDown",container,DROPDOWN_STYLE,Goldguide.MainFrame.MenuFrame.decor1:GetFrameLevel()+2))
-		:SetPoint("BOTTOMRIGHT",Goldguide.MainFrame.MenuFrame.SearchEdit,"BOTTOMLEFT",-122,1)
+		:SetPoint("BOTTOMRIGHT",Goldguide.MainFrame.MenuFrame.SearchEdit,"BOTTOMLEFT",-12,1)
 		:SetSize(DROPDOWN_WIDTH,DROPDOWN_HEIGHT)
 		:AddTooltip("ANCHOR_TOPLEFT","Filter what sort of items are shown.")
 	.__END
@@ -521,126 +446,16 @@ function Goldguide:MakeTable_Farming()
 		end)
 	end
 
-	return container
-end
-
-function Goldguide:MakeTable_Gathering()
-	local container = CHAIN(CreateFrame("Frame", "GG_Gathering_Frame", self.MainFrame.ContentFrame ))
-		:SetPoint("TOPLEFT")
-		:SetPoint("BOTTOMRIGHT")
-		:SetHeight(100)
+	container.ValidCheckbox = CHAIN(ui:Create("ToggleButton",container))
+		:SetPoint("TOPRIGHT",container.TypeDropdown.frame,"TOPLEFT",-155,-1)
+		:SetFont(FONT,12)
+		:SetText("Show only valid tasks")
+		:SetToggle(ZGV.db.profile.gold_farming_valid)
 	.__END
-
-	container.Entries = ui:Create("ScrollTable",container,"GG_Gathering_List",FARMING_COLUMNS,ENTRIES_DATA)
-	container.Entries:SetScript("OnMouseWheel", function(self,delta)
-		Goldguide.OffsetGathering=Goldguide.OffsetGathering-delta
-		Goldguide.needToUpdate=true
+	container.ValidCheckbox:RegisterToggleCallback(function()
+		ZGV.db.profile.gold_farming_valid = container.ValidCheckbox:IsChecked()
+		if container:IsVisible() then Goldguide:Update() end
 	end)
-	container.Entries.scrollbar:SetScript("OnVerticalScroll",function(me,offset)
-		Goldguide.OffsetGathering=math.round(offset)
-		Goldguide.needToUpdate=true
-	end)
-
-	for _,row in pairs(container.Entries.rows) do
-		row.loadbutton:SetScript("OnClick",function()
-			if row.chore then ZGV:SetGuide(row.chore.guide or "GOLD\\"..row.chore.name) end
-		end)
-
-		row.loadbutton:SetScript("OnEnter",function() if row.chore then Goldguide:ShowLoadbuttonTooltip(row.loadbutton,"Load guide",row.chore.display_name) end end)
-		row.loadbutton:SetScript("OnLeave",function() Goldguide:HideLoadbuttonTooltip(row) end)
-
-		row:SetScript("OnEnter",function(self) ZGV.Goldguide.GatheringTooltip:DisplayData(row) end)
-		row:SetScript("OnLeave",function(self) ZGV.Goldguide.GatheringTooltip:Hide() end)
-	end
-
-	container.ModeDropdown = CHAIN(ui:Create("DropDown",container,DROPDOWN_STYLE,Goldguide.MainFrame.MenuFrame.decor1:GetFrameLevel()+2))
-		:SetPoint("BOTTOMRIGHT",Goldguide.MainFrame.MenuFrame.SearchEdit,"BOTTOMLEFT",-12,1)
-		:SetSize(DROPDOWN_WIDTH,DROPDOWN_HEIGHT)
-		:AddTooltip("ANCHOR_TOPLEFT",L["gold_expertmode_generictooltip"])
-	.__END
-	
-	for optnum,opt in ipairs(DEFAULT_MODES) do
-		local item = container.ModeDropdown:AddItem(opt[1],opt[2],function(item)
-			ZGV.db.profile.gold_gathering_mode = item.userdata.value
-			if container:IsVisible() then Goldguide:Update() end
-		end, opt[3])
-	end
-
-	container.TypeDropdown = CHAIN(ui:Create("DropDown",container,DROPDOWN_STYLE,Goldguide.MainFrame.MenuFrame.decor1:GetFrameLevel()+2))
-		:SetPoint("BOTTOMRIGHT",Goldguide.MainFrame.MenuFrame.SearchEdit,"BOTTOMLEFT",-122,1)
-		:SetSize(DROPDOWN_WIDTH,DROPDOWN_HEIGHT)
-		:AddTooltip("ANCHOR_TOPLEFT","Filter what sort of items are shown.")
-	.__END
-
-	for optnum,opt in ipairs(Goldguide.GATHERING_TYPES) do
-		local item = container.TypeDropdown:AddItem(opt[1],opt[2],function(item)
-			ZGV.db.profile.gold_gathering_type = item.userdata.value
-			if container:IsVisible() then Goldguide:Update() end
-		end)
-	end
-
-	return container
-end
-
-function Goldguide:MakeTable_Crafting()
-	local container = CHAIN(CreateFrame("Frame", "GG_Crafting_Frame", self.MainFrame.ContentFrame ))
-		:SetPoint("TOPLEFT")
-		:SetPoint("BOTTOMRIGHT")
-		:SetHeight(100)
-	.__END
-
-	container.Entries = ui:Create("ScrollTable",container,"GG_Crafting_List",CRAFTING_COLUMNS,ENTRIES_DATA)
-	container.Entries:SetScript("OnMouseWheel", function(self,delta)
-		Goldguide.OffsetCrafting=Goldguide.OffsetCrafting-delta
-		Goldguide.needToUpdate=true
-	end)
-	container.Entries.scrollbar:SetScript("OnVerticalScroll",function(me,offset)
-		Goldguide.OffsetCrafting=math.round(offset)
-		Goldguide.needToUpdate=true
-	end)
-
-	for _,row in pairs(container.Entries.rows) do
-		row.loadbutton:SetScript("OnClick",function() 
-			if row.chore then row.chore:GenerateGuide() end
-		end)
-
-		row.loadbutton:SetScript("OnEnter",function() if row.chore then Goldguide:ShowLoadbuttonTooltip(row.loadbutton,"Load guide",row.chore.display_name) end end)
-		row.loadbutton:SetScript("OnLeave",function() Goldguide:HideLoadbuttonTooltip(row) end)
-
-		row:SetScript("OnEnter",function(self) ZGV.Goldguide.CraftingTooltip:DisplayData(row) end)
-		row:SetScript("OnLeave",function(self) ZGV.Goldguide.CraftingTooltip:Hide() end)
-	end
-
-
-	container.ModeDropdown = CHAIN(ui:Create("DropDown",container,DROPDOWN_STYLE,Goldguide.MainFrame.MenuFrame.decor1:GetFrameLevel()+2))
-		:SetPoint("BOTTOMRIGHT",Goldguide.MainFrame.MenuFrame.SearchEdit,"BOTTOMLEFT",-12,1)
-		:SetSize(DROPDOWN_WIDTH,DROPDOWN_HEIGHT)
-		:AddTooltip("ANCHOR_TOPLEFT",L["gold_expertmode_generictooltip"])
-	.__END
-	
-	for optnum,opt in ipairs(CRAFTING_MODES) do
-		local item = container.ModeDropdown:AddItem(opt[1],opt[2],function(item)
-			ZGV.db.profile.gold_crafting_mode = item.userdata.value
-			if container:IsVisible() then Goldguide:Update() end
-		end, opt[3])
-	end
-
-	container.TypeDropdown = CHAIN(ui:Create("DropDown",container,DROPDOWN_STYLE,Goldguide.MainFrame.MenuFrame.decor1:GetFrameLevel()+2))
-		:SetPoint("BOTTOMRIGHT",Goldguide.MainFrame.MenuFrame.SearchEdit,"BOTTOMLEFT",-122,1)
-		:SetSize(DROPDOWN_WIDTH,DROPDOWN_HEIGHT)
-		:AddTooltip("ANCHOR_TOPLEFT","Filter what sort of items are shown.")
-	.__END
-		
-	for _,skillname in ipairs(CRAFTING_SKILLS) do
-		local skill = ZGV.Professions:GetSkill(skillname)
-		if skillname=="All" or skill.level>0 then
-			local skillid = (skillname=="All" and 0) or skill.parentskillID or skill.skillID
-			local item = container.TypeDropdown:AddItem(skillname,skillid,function(item)
-				ZGV.db.profile.gold_crafting_type = item.userdata.value
-				if container:IsVisible() then Goldguide:Update() end
-			end)
-		end
-	end
 
 	return container
 end
@@ -709,14 +524,10 @@ end
 function Goldguide:SetCurrentTab(title)
 	local tab=Goldguide.ActiveTab
 	if tab=="Farming" then ZGV.db.profile.gold_farming_search = Goldguide.MainFrame.MenuFrame.SearchEdit:GetText()
-	elseif tab=="Gathering" then ZGV.db.profile.gold_gathering_search = Goldguide.MainFrame.MenuFrame.SearchEdit:GetText()
-	elseif tab=="Crafting" then ZGV.db.profile.gold_crafting_search = Goldguide.MainFrame.MenuFrame.SearchEdit:GetText()
 	elseif tab=="Auctions" then ZGV.db.profile.gold_auctions_search = Goldguide.MainFrame.MenuFrame.SearchEdit:GetText()
 	end
 
 	if title=="Farming" then Goldguide.MainFrame.MenuFrame.SearchEdit:SetText(ZGV.db.profile.gold_farming_search or "")
-	elseif title=="Gathering" then Goldguide.MainFrame.MenuFrame.SearchEdit:SetText(ZGV.db.profile.gold_gathering_search or "")
-	elseif title=="Crafting" then Goldguide.MainFrame.MenuFrame.SearchEdit:SetText(ZGV.db.profile.gold_crafting_search or "")
 	elseif title=="Auctions" then Goldguide.MainFrame.MenuFrame.SearchEdit:SetText(ZGV.db.profile.gold_auctions_search or "")
 	end
 
@@ -761,21 +572,11 @@ function Goldguide:ShowWindow()
 	if not Goldguide.MainFrame then Goldguide:CreateMainFrame() end
 	Goldguide.MainFrame:DoFadeIn()
 
-	ZGV.db.profile.gold_farming_mode = ZGV.db.profile.gold_farming_mode or DEFAULT_MODES[1][2]
 	ZGV.db.profile.gold_farming_type = ZGV.db.profile.gold_farming_type or FARMING_TYPES[1][2]
-	ZGV.db.profile.gold_gathering_mode = ZGV.db.profile.gold_gathering_mode or DEFAULT_MODES[1][2]
-	ZGV.db.profile.gold_gathering_type = ZGV.db.profile.gold_gathering_type or Goldguide.GATHERING_TYPES[1][2]
-	ZGV.db.profile.gold_crafting_mode = ZGV.db.profile.gold_crafting_mode or CRAFTING_MODES[1][2]
-	ZGV.db.profile.gold_crafting_type = ZGV.db.profile.gold_crafting_type or 0
 	ZGV.db.profile.gold_auctions_mode = ZGV.db.profile.gold_auctions_mode or AUCTION_MODES[1][2]
 	ZGV.db.profile.gold_auctions_type = ZGV.db.profile.gold_auctions_type or AUCTION_TYPES[1][2]
 
-	Goldguide.Farming_Frame.ModeDropdown:SetCurrentSelectedByValue(ZGV.db.profile.gold_farming_mode)
 	Goldguide.Farming_Frame.TypeDropdown:SetCurrentSelectedByValue(ZGV.db.profile.gold_farming_type)
-	Goldguide.Gathering_Frame.ModeDropdown:SetCurrentSelectedByValue(ZGV.db.profile.gold_gathering_mode)
-	Goldguide.Gathering_Frame.TypeDropdown:SetCurrentSelectedByValue(ZGV.db.profile.gold_gathering_type)
-	Goldguide.Crafting_Frame.ModeDropdown:SetCurrentSelectedByValue(ZGV.db.profile.gold_crafting_mode)
-	Goldguide.Crafting_Frame.TypeDropdown:SetCurrentSelectedByValue(ZGV.db.profile.gold_crafting_type)
 	Goldguide.Auctions_Frame.ModeDropdown:SetCurrentSelectedByValue(ZGV.db.profile.gold_auctions_mode)
 	Goldguide.Auctions_Frame.TypeDropdown:SetCurrentSelectedByValue(ZGV.db.profile.gold_auctions_type)
 
@@ -833,13 +634,13 @@ function Goldguide:UpdateStatusBar()
 		timestamptext = L["gold_app_no_goldguide"]
 	elseif not (ZGV.Gold.servertrends and ZGV.Gold.servertrends.date) then
 		updateTitletext = "|cffff0000ALERT:|r"
-		timestamptext = L["gold_app_no_servertrends"]
+		timestamptext = L["gold_app_no_servertrends"..(ZGV.IsRetail and "" or "_classic")]
 	elseif ZGV.Gold.servertrends.date then
 		local timeSinceLast = time() -  ZGV.Gold.servertrends.date
 
 		if timeSinceLast > TRENDS_OLD * 3600 then	-- Data is old
 			updateTitletext = "|cffff0000ALERT:|r"
-			timestamptext = L["gold_app_old_servertrends"]:format(ui.GetTimeStamp(tonumber(ZGV.Gold.servertrends.date)))
+			timestamptext = L["gold_app_old_servertrends"..(ZGV.IsRetail and "" or "_classic")]:format(ui.GetTimeStamp(tonumber(ZGV.Gold.servertrends.date)))
 		end
 	end
 
@@ -912,10 +713,6 @@ function Goldguide:UpdateSortingArrows()
 	local allcolumns
 	if tab=="farming" then
 		allcolumns = FARMING_COLUMNS
-	elseif tab=="gathering" then
-		allcolumns = GATHERING_COLUMNS
-	elseif tab=="crafting" then
-		allcolumns = CRAFTING_COLUMNS
 	elseif tab=="auctions" then
 		allcolumns = AUCTION_COLUMNS
 	end

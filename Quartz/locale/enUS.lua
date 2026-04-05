@@ -349,5 +349,3 @@ L["Width"] = true
 L["X"] = true
 L["Y"] = true
 
--- 自行加入
-L["Profiles"] = true

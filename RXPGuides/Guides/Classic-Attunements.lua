@@ -1,5 +1,8 @@
+if GetLocale() == "zhCN" then return end
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
+
 << Alliance
 #group RestedXP Endgame Guides
 #subgroup Attunements
@@ -335,6 +338,8 @@ step
 ]])
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
+
 << Horde
 #group RestedXP Endgame Guides
 #subgroup Attunements
@@ -725,7 +730,7 @@ step
     .subzone 1583 >>Enter Blackrock Spire
     >>|cRXP_WARN_This is a 10-man dungeon. You or somebody in your party must have the|r |T133343:0|t[|cRXP_LOOT_Seal of Ascension|r] |cRXP_WARN_to be able to enter Upper Blackrock Spire|r
 step
-    .isQuestTurnedIn 6601 
+    .isQuestTurnedIn 6601
     >>Kill |cRXP_ENEMY_General Drakkisath|r. Loot him for |cRXP_LOOT_Blood of the Black Dragon Champion|r
     .complete 6602,1 --Blood of the Black Dragon Champion 1/1
     .mob General Drakkisath
@@ -784,6 +789,8 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
+
 #subgroup Attunements
 #group RestedXP Endgame Guides
 #name Molten Core Attunement
@@ -828,6 +835,8 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
+
 #group RestedXP Endgame Guides
 #subgroup Attunements
 #name Blackwing Lair Attunement
@@ -871,6 +880,8 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
+
 #group RestedXP Endgame Guides
 #subgroup Keys
 #name Upper Blackrock Spire Key
@@ -960,6 +971,8 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
+
 << Alliance
 #group RestedXP Endgame Guides
 #subgroup Keys
@@ -1161,7 +1174,7 @@ step
     .goto Western Plaguelands,42.665,83.774
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alchemist Arbington|r
     .turnin 5801 >>Turn in Fire Plume Forged
-    .accept 5804 >>Accept Araj's Scarab
+    .accept 5803 >>Accept Araj's Scarab
     .target Alchemist Arbington
 step
     #completewith ArajTheSummoner
@@ -1172,7 +1185,7 @@ step
     >>Kill |cRXP_ENEMY_Araj the Summonor|r. Loot |cRXP_PICK_Araj's Phylactery|r on the ground for |cRXP_LOOT_Araj's Scarab|r
     >>|cRXP_ENEMY_Araj|r |cRXP_WARN_is a strong elite. It is recommended to kill him in a group of at least 3 players|r
     .use 12650 >>|cRXP_WARN_Use an|r |T134961:0|t[Attuned Dampener] |cRXP_WARN_on him if you have one|r
-    .complete 5804,1 --Araj's Scarab (1x)
+    .complete 5803,1 --Araj's Scarab (1x)
     .mob Araj the Summonor
     .itemcount 12650,1 --Attuned Dampener
 step
@@ -1181,7 +1194,7 @@ step
     .goto Western Plaguelands,45.60,69.28
     >>Kill |cRXP_ENEMY_Araj the Summonor|r. Loot |cRXP_PICK_Araj's Phylactery|r on the ground for |cRXP_LOOT_Araj's Scarab|r
     >>|cRXP_ENEMY_Araj|r |cRXP_WARN_is a strong elite. It is recommended to kill him in a group of at least 3 players|r
-    .complete 5804,1 --Araj's Scarab (1x)
+    .complete 5803,1 --Araj's Scarab (1x)
     .mob Araj the Summonor
 step
     #hardcore
@@ -1189,7 +1202,7 @@ step
     >>Kill |cRXP_ENEMY_Araj the Summonor|r. Loot |cRXP_PICK_Araj's Phylactery|r on the ground for |cRXP_LOOT_Araj's Scarab|r
     >>|cRXP_ENEMY_Araj|r |cRXP_WARN_is a strong elite and is surrunded by many mobs, clear them carefully. It is recommended to kill him in a group of at least 4 players|r
     .use 12650 >>|cRXP_WARN_Use an|r |T134961:0|t[Attuned Dampener] |cRXP_WARN_on him if you have one|r
-    .complete 5804,1 --Araj's Scarab (1x)
+    .complete 5803,1 --Araj's Scarab (1x)
     .mob Araj the Summonor
     .itemcount 12650,1 --Attuned Dampener
 step
@@ -1198,12 +1211,12 @@ step
     .goto Western Plaguelands,45.60,69.28
     >>Kill |cRXP_ENEMY_Araj the Summonor|r. Loot |cRXP_PICK_Araj's Phylactery|r on the ground for |cRXP_LOOT_Araj's Scarab|r
     >>|cRXP_ENEMY_Araj|r |cRXP_WARN_is a strong elite and is surrunded by many mobs, clear them carefully. It is recommended to kill him in a group of at least 4 players|r
-    .complete 5804,1 --Araj's Scarab (1x)
+    .complete 5803,1 --Araj's Scarab (1x)
     .mob Araj the Summonor
 step
     .goto Western Plaguelands,42.665,83.774
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Alchemist Arbington|r
-    .turnin 5804 >>Turn in Araj's Scarab
+    .turnin 5803 >>Turn in Araj's Scarab
     .target Alchemist Arbington
 step
     .goto Western Plaguelands,42.665,83.774
@@ -1217,6 +1230,8 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
+
 << Horde
 #group RestedXP Endgame Guides
 #subgroup Keys
@@ -1301,7 +1316,7 @@ step
 step
 	.goto Western Plaguelands,26.55,56.18
 	>>Click the |cRXP_PICK_Box of Incendiaries|r by the fire
-	.collect 12814,1,5095,1 --Flame in a Bottle (1)	
+	.collect 12814,1,5095,1 --Flame in a Bottle (1)
     .isOnQuest 5095
 step
     #label ScarletDiversionsPU
@@ -1382,7 +1397,7 @@ step
     .goto Tirisfal Glades,83.28,69.23
 	>>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Dithers|r
     .turnin 964 >>Turn in Skeletal Fragments
-    .accept 5538 >>Accept Mold Rhymes With...
+    .accept 5514 >>Accept Mold Rhymes With...
 	.target Apothecary Dithers
 step
     #completewith next
@@ -1399,7 +1414,7 @@ step
     .collect 12359,2,5802,1 --Thorium Bar x2
 step
     #completewith next
-    .goto Silithus,48.69,36.67,0
+    .goto Silithus,48.69,36.67
 	>>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Runk|r
     .fly Un'Goro >>Fly to Un'Goro Crater
 	.target Runk Windtamer
@@ -1472,6 +1487,8 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
+
 #group RestedXP Endgame Guides
 #subgroup Keys
 #name Blackrock Depths Key
@@ -1534,6 +1551,8 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
+
 #group RestedXP Endgame Guides
 #subgroup Keys
 #name Dire Maul Key
@@ -1561,6 +1580,8 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
+
 #group RestedXP Endgame Guides
 #name Demon Fall Canyon Attunement
 #subgroup Attunements

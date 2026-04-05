@@ -3,6 +3,7 @@
 ----------------------------
 
 -- Jade Forest Tian Monastery
+if GetLocale() == "zhCN" then return end
 RXPGuides.RegisterGuide([[
 #retail
 #version 1
@@ -1152,7 +1153,7 @@ step
 RXPGuides.RegisterGuide([[
 #retail
 #group RestedXP Speed Leveling
-#subgroup |cFFFCDC00(10-70)|r Pandaria Remix 
+#subgroup |cFFFCDC00(10-70)|r Pandaria Remix
 #name 0
 #displayname |cFFFCDC00LEVELING|r
 #disabled
@@ -1162,11 +1163,11 @@ RXPGuides.RegisterGuide([[
 ]])
 
 -- Pandaria Remix Leveling Guide: How to Use & Essential Tips
-RXPGuides.RegisterGuide([[ 
+RXPGuides.RegisterGuide([[
 #retail
 #version 1
 #group RestedXP Speed Leveling
-#subgroup |cFFFCDC00(10-70)|r Pandaria Remix 
+#subgroup |cFFFCDC00(10-70)|r Pandaria Remix
 #name 1) Pandaria Remix Leveling Guide: How to Use & Essential Tips
 #next 2) Pandaria Remix Introduction
 #displayname |cFF00CCFF0|r - How to Use & Essential Tips |cRXP_ENEMY_(Optional)|r
@@ -1250,7 +1251,7 @@ RXPGuides.RegisterGuide([[
 #retail
 #version 1
 #group RestedXP Speed Leveling
-#subgroup |cFFFCDC00(10-70)|r Pandaria Remix 
+#subgroup |cFFFCDC00(10-70)|r Pandaria Remix
 #name 2) Pandaria Remix Introduction
 #displayname |cFF00CCFF1|r - Timeless Isle Introduction
 #title Timeless Isle Introduction
@@ -1410,8 +1411,8 @@ RXPGuides.RegisterGuide([[
 #retail
 #version 1
 #group RestedXP Speed Leveling
-#subgroup |cFFFCDC00(10-70)|r Pandaria Remix 
-#subweight -1
+#subgroup |cFFFCDC00(10-70)|r Pandaria Remix
+
 #title Jade Forest
 #name 3) Jade Forest Horde
 #displayname |cFF00CCFF2|r - Jade Forest
@@ -2174,8 +2175,8 @@ RXPGuides.RegisterGuide([[
 #retail
 #version 1
 #group RestedXP Speed Leveling
-#subgroup |cFFFCDC00(10-70)|r Pandaria Remix 
-#subweight -1
+#subgroup |cFFFCDC00(10-70)|r Pandaria Remix
+
 #name 3) Jade Forest Alliance
 #displayname |cFF00CCFF2|r - Jade Forest
 #title Jade Forest
@@ -2224,7 +2225,7 @@ step
     #completewith next
     .exitvehicle >> |cRXP_WARN_Dismount the Skyfire Gyrocopter by pressing the |r.[Exit] |cRXP_WARN_button on your action bars|r.
     *|cRXP_WARN_Alternatively, you can use this macro;|r.
-    .link /leavevehicle>> CLICK HERE FOR MACRO.
+    .macro Leave Vehicle,6656430 >>/leavevehicle
     *|cRXP_WARN_It's recommended to safe this macro for future use|r.
 step
     .goto 371,42.04,92.75
@@ -2240,7 +2241,7 @@ step
     #completewith next
     .exitvehicle >> |cRXP_WARN_Dismount the Skyfire Gyrocopter by pressing the |r.[Exit] |cRXP_WARN_button on your action bars|r.
     *|cRXP_WARN_Alternatively, you can use this macro;|r.
-    .link /leavevehicle>> CLICK HERE FOR MACRO.
+    .macro Leave Vehicle,6656430 >>/leavevehicle
     *|cRXP_WARN_It's recommended to safe this macro for future use|r.
 step
     .goto 371,43.58,90.64

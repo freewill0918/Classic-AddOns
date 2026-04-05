@@ -84,6 +84,12 @@ Telemetry.Hooks = {
 		end,
 		autostart=true,
 	},
+	{ -- VERSION
+		func=function (self)
+			self:AddEvent('VERSION',ZGV:GetFlavourVersion())
+		end,
+		autostart=true,
+	},	
 	{ -- SHUTDOWN
 		triggers={{"event","PLAYER_LOGOUT"}},
 		func=function (self)
@@ -250,7 +256,10 @@ function Miner:GetGossips()
 
 	Miner.RecentOptions = C_GossipInfo.GetOptions()
 
-	local unitguid = UnitGUID("npc") or ""
+	local unitguid = UnitGUID("npc")
+	if ZGV.IsSecret(unitguid) then return end
+	if not unitguid then return end
+
 	local npctype,npcid = unitguid:match("(%w+)%-%d+%-%d+%-%d+%-%d+%-(%d+)")
 	local npctype = npctype or "Unknown"
 	Miner.RecentOptions.source = (UnitName("npc") or "???").."##"..(tonumber(npcid) or npctype)
@@ -286,6 +295,10 @@ function Miner:GetSelectedOption(mode,param)
 
 	local text = selectedOption.name:gsub("(Quest) ",""):gsub("(Delve) ","")
 	local gossipGoal = gossipFormat:format(text,selectedOption.gossipOptionID)
+
+	local playername = UnitName("player")
+	local text = " " .. text .. " "
+	local text = text:gsub("([^%w])" .. playername .. "([^%w])", "%1$NAME%2"):sub(2, -2)
 	
 	ZGV.Telemetry:AddEvent('GOSSIP_MINED',{
 		guide = ZGV.CurrentGuide.title,
@@ -296,6 +309,7 @@ function Miner:GetSelectedOption(mode,param)
 		stepgoals = Miner.CurrentStepData.goals,
 		gossip = gossipFormat:format(text,selectedOption.gossipOptionID),
 		gossipIcon = selectedOption.icon,
+		locale = GetLocale(),
 	})
 end
 

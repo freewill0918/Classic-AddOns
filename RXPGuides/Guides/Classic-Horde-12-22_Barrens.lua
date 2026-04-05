@@ -1,8 +1,10 @@
 local faction = UnitFactionGroup("player")
 if faction == "Alliance" then return end
 
+if GetLocale() == "zhCN" then return end
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 #xprate <1.99
 << Horde
 #name 12-17 The Barrens
@@ -1227,7 +1229,8 @@ step
     .goto The Barrens,64.21,47.14,50,0
     .goto The Barrens,63.57,49.14,50,0
     .goto The Barrens,62.64,49.72,50,0
-    >>Kill |cRXP_ENEMY_Baron Longshore|r. Loot him for his |cRXP_LOOT_Head|r He can be found in one of the camps
+    >>Kill |cRXP_ENEMY_Baron Longshore|r. Loot him for his |cRXP_LOOT_Head|r
+    >>|cRXP_WARN_He can be found in one of the camps|r
     .complete 895,1 --Baron Longshore's Head (1)
     .unitscan Baron Longshore
 step
@@ -1609,7 +1612,7 @@ step
     .goto The Barrens,41.23,15.79,60,0
     .goto The Barrens,41.21,14.75,60,0
     .goto The Barrens,41.84,14.81,60,0
-    >>Kill |cRXP_ENEMY_Witching Harpies|r and |cRXP_ENEMY_Witching Roguefeathers|r. Loot them for their |cRXP_LOOT_Talons|r
+    >>Kill |cRXP_ENEMY_Witchwing Harpies|r and |cRXP_ENEMY_Witchwing Roguefeathers|r. Loot them for their |cRXP_LOOT_Talons|r
     .complete 867,1 --Witchwing Talon (8)
     .mob Witchwing Harpy
     .mob Witchwing Roguefeather
@@ -1692,22 +1695,18 @@ step << skip --!Tauren
 step
     #optional
     .abandon 5723 >> Abandon Testing an Enemy's Strength
-    .isOnQuest 5723
     .dungeon RFC
 step
     #optional
-    .abandon 5725 >> Abandon Turn in The Power to Destroy...
-    .isOnQuest 5725
+    .abandon 5725 >> Abandon The Power to Destroy...
     .dungeon RFC
 step
     #optional
     .abandon 5728 >> Abandon Hidden Enemies
-    .isOnQuest 5728
     .dungeon RFC
 step
     #optional
     .abandon 5761 >> Abandon Slaying the Beast
-    .isOnQuest 5761
     .dungeon RFC
 step << skip --!Tauren Orc !Warrior !Shaman/Troll !Warrior !Shaman
     .goto The Barrens,51.44,30.15
@@ -1806,6 +1805,7 @@ step
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Vrang|r
     >>|cRXP_FRIENDLY_Vrang|r |cRXP_WARN_sells|r |T133476:0|t[|cRXP_FRIENDLY_Heavy Spiked Mace|r] |cRXP_WARN_which is a limited supply item|r << Orc Warrior/Troll Warrior/Tauren Warrior
 	.vendor	>> Vendor trash and repair
+    .target Vrang Wildgore
     --.dungeon !RFC
 step
 	#label Samophlange
@@ -2245,7 +2245,7 @@ step << Troll Warrior/Tauren Warrior/Undead Warrior
 step << Hunter
     .goto Orgrimmar,81.17,18.69
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|t|cRXP_BUY_Talk to|r |cRXP_FRIENDLY_Zendo'jian|r|cRXP_BUY_. Buy a|r |T135490:0|t[Reinforced Bow] |cRXP_BUY_from him|r
-    .collect 3026,1,3281,1 --Collect Laminated Recurve Bow (1)
+    .collect 3026,1,3281,1 --Collect Reinforced Bow (1)
     .money <0.3588
     .itemStat 18,QUALITY,<7
     .itemStat 18,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<7.4
@@ -2264,8 +2264,8 @@ step << Warrior
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|t|cRXP_BUY_Talk to|r |cRXP_FRIENDLY_Zendo'jian|r|cRXP_BUY_. Buy a|r |T135423:0|t[Battle Axe] |cRXP_BUY_from him|r
     .collect 926,1,3281,1 --Collect Battle Axe (1)
     .money <1.021
-    .itemStat 18,QUALITY,<7
-    .itemStat 18,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
+    .itemStat 16,QUALITY,<7
+    .itemStat 16,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
     .target Zendo'jian
     .train 227,3
 step << Warrior
@@ -2274,8 +2274,8 @@ step << Warrior
     +|cRXP_WARN_Equip the|r |T135423:0|t[Battle Axe] |cRXP_WARN_when you are level 20|r
     .use 926
     .itemcount 926,1
-    .itemStat 18,QUALITY,<7
-    .itemStat 18,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
+    .itemStat 16,QUALITY,<7
+    .itemStat 16,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
     .xp >20,1
 step << Warrior
     #optional
@@ -2283,8 +2283,8 @@ step << Warrior
     +|cRXP_WARN_Equip the|r |T135423:0|t[Battle Axe]
     .use 926
     .itemcount 926,1
-    .itemStat 18,QUALITY,<7
-    .itemStat 18,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
+    .itemStat 16,QUALITY,<7
+    .itemStat 16,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
     .xp <20,1
 step << Druid/Mage
     #season 2
@@ -2378,6 +2378,7 @@ step
     .mob Echeyakee
     .use 10327
 step
+    #optional
     .goto The Barrens,52.23,31.00
     .abandon 881 >>|cRXP_WARN_If |cRXP_ENEMY_Echeyakee|r didn't spawn after using the|r |T134227:0|t[Horn of Echeyakee]|cRXP_WARN_or you didn't get the tag when it did spawn, abandon Echeyakee, then return to town and accept it again|r
     .itemcount 5100,<1 --Echeyakee's Hide (0)
@@ -2753,7 +2754,7 @@ step
     >>|cRXP_WARN_Use the |T132318:0|t[|cRXP_LOOT_Hoof of Lakota'mani|r] to start the quest|r
     >>|cRXP_WARN_He has 4 spawnpoints (marked on the map)|r
     >>|cRXP_WARN_Skip this step if you can't find him|r
-	.collect 5099,1,883,1 --Collect Hoof of Lakota'Mani
+	.collect 5099,1,883 --Collect Hoof of Lakota'Mani
 	.accept 883 >>Accept Lakota'Mani
     .use 5099
     .unitscan Lakota'mani
@@ -3059,6 +3060,7 @@ step << Druid
     .use 208687 --Rune of Lacerate (1)
     .itemcount 208687,1
 step
+    #optional
     #xprate <1.5
     #completewith CounterattackComplete
     .abandon 855 >> Abandon Centaur Bracers as you have not looted enough previously to make it worthwhile to finish
@@ -3089,7 +3091,7 @@ step
 step
     #xprate <1.5
     #completewith CounterattackComplete
-    +|cRXP_WARN_This next quest is very hard & grouping up is recommended. You can kite Warlord Krom'zar around using the building where the quest giver is|r
+    +|cRXP_WARN_This next quest is very hard & grouping up is recommended. You can kite Warlord Krom'zar around using the building where the quest giver is located|r
     +|cRXP_WARN_Skip it if you can't do this quest. You will have another opportunity to complete it at higher level|r
     .isQuestTurnedIn 852
 step
@@ -3206,6 +3208,7 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 #xprate <1.99
 << Horde
 #name 17-22 Stonetalon/Barrens/Ashenvale
@@ -3360,8 +3363,11 @@ step << Warlock/Priest/Mage
     .group 0 << Priest/Mage
 step << Warlock/Priest/Mage
     #label Besseleth1
+    #loop
+    .goto Stonetalon Mountains,54.80,71.95,0
     .goto Stonetalon Mountains,51.89,73.81,50,0
-    .goto Stonetalon Mountains,52.46,71.67
+    .goto Stonetalon Mountains,52.46,71.67,50,0
+    .goto Stonetalon Mountains,54.80,71.95,50,0
     >>Kill |cRXP_ENEMY_Besseleth|r. Loot her for for her |cRXP_LOOT_Fang|r
     >>|cRXP_WARN_Clear the area around|r |cRXP_ENEMY_Besseleth|r|cRXP_WARN_. Be careful as she webs you. Keep her permanently feared with dots|r << Warlock
     >>|cRXP_WARN_This quest is optional. If you can't do it, skip this quest. You can try it again later|r << Warlock
@@ -3684,7 +3690,7 @@ step
     .mob Stormsnout
 step
     #completewith next
-    >>Kill a lot of |cRXP_ENEMY_Bristleback Quillboars|r. Loot them for their |cRXP_LOOT_Tusks|r. Save the |T134128:0|t[|cRXP_LOOT_Blood Shards|r] you get
+    >>Kill |cRXP_ENEMY_Bristleback Quillboars|r. Loot them for their |cRXP_LOOT_Tusks|r. Save the |T134128:0|t[|cRXP_LOOT_Blood Shards|r] you get
 	.complete 878,1 --Kill Bristleback Water Seeker (x6)
     .mob +Bristleback Water Seeker
     .complete 878,2 --Kill Bristleback Thornweaver (x12)
@@ -3710,7 +3716,7 @@ step
     >>|cRXP_WARN_Use the |T132318:0|t[|cRXP_LOOT_Hoof of Lakota'mani|r] to start the quest|r
     >>|cRXP_WARN_He has 4 spawnpoints (marked on the map)|r
     >>|cRXP_WARN_Skip this step if you can't find him|r
-	.collect 5099,1,883,1 --Collect Hoof of Lakota'Mani
+	.collect 5099,1,883 --Collect Hoof of Lakota'Mani
 	.accept 883 >>Accept Lakota'Mani
     .use 5099
     .unitscan Lakota'mani
@@ -3741,7 +3747,7 @@ step
     .goto The Barrens,52.41,53.07,60,0
     .goto The Barrens,52.32,53.71,60,0
     .goto The Barrens,51.39,54.22,60,0
-    >>Kill a lot of |cRXP_ENEMY_Bristleback Quillboars|r. Loot them for their |cRXP_LOOT_Tusks|r. Save the |T134128:0|t[|cRXP_LOOT_Blood Shards|r] you get
+    >>Kill |cRXP_ENEMY_Bristleback Quillboars|r. Loot them for their |cRXP_LOOT_Tusks|r. Save the |T134128:0|t[|cRXP_LOOT_Blood Shards|r] you get
 	.complete 878,1 --Kill Bristleback Water Seeker (x6)
     .mob +Bristleback Water Seeker
     .complete 878,2 --Kill Bristleback Thornweaver (x12)
@@ -4432,7 +4438,7 @@ step
 step
     .goto The Barrens,44.55,59.27
     >>Kill |cRXP_ENEMY_Bristleback Quillboars|r. Loot them for a |T134128:0|t[|cRXP_LOOT_Blood Shard|r
-    .collect 5075 --Blood Shard (1)
+    .collect 5075,1,5052,1 --Blood Shard (1)
     .mob Bristleback Water Seeker
     .mob Bristleback Thornweaver
     .mob Bristleback Geomancer
@@ -5018,18 +5024,41 @@ step
     .goto Kalimdor,51.92,55.44
     .dungeon WC
 step
+    #optional
     #hardcore
     #completewith EnterWC
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
-    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_LOOT_Serpentbloom|r |cRXP_WARN_for everybody|r
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
     .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #hardcore
+    #completewith EnterWC
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
+    #softcore
+    #completewith EnterWC
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
     .isOnQuest 962
     .dungeon WC
 step
     #softcore
     #completewith EnterWC
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
     .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
     .isOnQuest 962
     .dungeon WC
 step
@@ -5056,14 +5085,18 @@ step
     .isOnQuest 1491
     .dungeon WC
 step
+    #label MadMagg
     #loop
+    .goto Kalimdor,51.97,55.23,0
+    .goto Kalimdor,51.82,54.86,0
+    .goto Kalimdor,52.01,55.02,0
     .goto Kalimdor,52.15,55.15,0
-    .goto Kalimdor,51.90,55.43,30,0
     .goto Kalimdor,51.97,55.23,30,0
     .goto Kalimdor,51.82,54.86,30,0
     .goto Kalimdor,52.01,55.02,30,0
     .goto Kalimdor,52.15,55.15,30,0
     >>Kill |cRXP_ENEMY_Mad Magglish|r. Loot him for the |cRXP_LOOT_99-Year-Old Port|r
+    >>|cRXP_WARN_He has a long respawn timer. Skip this step if you cannot find him|r
     .complete 959,1 --99-Year-Old Port (1)
     .mob Mad Magglish
     .isOnQuest 959
@@ -5076,21 +5109,47 @@ step
     .goto Kalimdor,52.40,55.20,30 >> Enter the WC Instance portal. Zone in
     .dungeon WC
 step
+    #optional
     #hardcore
     #completewith GlowingShard
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
-    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_LOOT_Serpentbloom|r |cRXP_WARN_for everybody|r
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
     .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
     .isOnQuest 962
     .dungeon WC
 step
+    #optional
+    #hardcore
+    #completewith GlowingShard
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
     #softcore
     #completewith GlowingShard
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
     .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
     .isOnQuest 962
     .dungeon WC
 step
+    #optional
+    #softcore
+    #completewith GlowingShard
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
     #hardcore
     #completewith GlowingShard
     >>Kill |cRXP_ENEMY_Ectoplasms|r. Loot them for their |cRXP_LOOT_Essence|r
@@ -5099,6 +5158,7 @@ step
     .isOnQuest 1491
     .dungeon WC
 step
+    #optional
     #softcore
     #completewith GlowingShard
     >>Kill |cRXP_ENEMY_Ectoplasms|r. Loot them for their |cRXP_LOOT_Essence|r
@@ -5149,20 +5209,55 @@ step
     .mob Mutanus the Devourer
     .dungeon WC
 step
+    #optional
     #completewith DeviateRaptors
     >>Kill |cRXP_ENEMY_Ectoplasms|r. Loot them for their |cRXP_LOOT_Essence|r
     .complete 1491,1 --Wailing Essence (6)
     .isOnQuest 1491
     .dungeon WC
 step
-    #completewith next
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
+    #optional
+    #hardcore
+    #completewith Ectoplasms
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
     .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
     .isOnQuest 962
     .dungeon WC
 step
-    #label DeviateRaptors
-    >>Kill |cRXP_ENEMY_Deviate Ravagers|r, |cRXP_ENEMY_Vipers|r, |cRXP_ENEMY_Shamblers|r and |cRXP_ENEMY_Dreadfangs|r
+    #optional
+    #hardcore
+    #completewith Ectoplasms
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
+    #softcore
+    #completewith Ectoplasms
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
+    #softcore
+    #completewith Ectoplasms
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
+    >>Kill |cRXP_ENEMY_Deviate Ravagers|r, |cRXP_ENEMY_Vipers|r, |cRXP_ENEMY_Shamblers|r and |cRXP_ENEMY_Dreadfangs|r. . Loot them for their |cRXP_ENEMY_Hides|r
     .complete 1487,1 --Deviate Ravager (7)
     .mob +Deviate Ravager
     .complete 1487,2 --Deviate Viper (7)
@@ -5171,11 +5266,12 @@ step
     .mob +Deviate Shambler
     .complete 1487,4 --Deviate Dreadfang (7)
     .mob +Deviate Dreadfang
+    .complete 1486,1 --Deviate Hide (20)
+    .disablecheckbox
     .isOnQuest 1487
     .isOnQuest 1486
     .dungeon WC
  step
-    #label DeviateRaptors
     >>Kill |cRXP_ENEMY_Deviate Ravagers|r, |cRXP_ENEMY_Vipers|r, |cRXP_ENEMY_Shamblers|r and |cRXP_ENEMY_Dreadfangs|r
     .complete 1487,1 --Deviate Ravager (7)
     .mob +Deviate Ravager
@@ -5189,7 +5285,7 @@ step
     .dungeon WC
 step
     #label DeviateRaptors
-    >>Kill |cRXP_ENEMY_Deviate Raptors|r
+    >>Kill |cRXP_ENEMY_Deviate Raptors|r. Loot them for their |cRXP_ENEMY_Hides|r
     .complete 1486,1 --Deviate Hide (20)
     .mob Deviate Ravager
     .mob Deviate Viper
@@ -5198,12 +5294,7 @@ step
     .isOnQuest 1486
     .dungeon WC
 step
-    #completewith next
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
-    .complete 962,1 --Serpentbloom (10)
-    .isOnQuest 962
-    .dungeon WC
-step
+    #label Ectoplasms
     >>Kill |cRXP_ENEMY_Ectoplasms|r. Loot them for their |cRXP_LOOT_Essence|r
     .complete 1491,1 --Wailing Essence (6)
     .mob Devouring Ectoplasm
@@ -5212,8 +5303,37 @@ step
     .isOnQuest 1491
     .dungeon WC
 step
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
+    #optional
+    #hardcore
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
     .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #hardcore
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
+    #softcore
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #softcore
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
     .isOnQuest 962
     .dungeon WC
 step
@@ -5359,34 +5479,22 @@ step
     .dungeon WC
 step
     #optional
-    .abandon 1486 >> Abandon Deviate Hides
-    .isOnQuest 1486
-    .dungeon WC
+    .abandon 1486 >>Abandon Deviate Hides
 step
     #optional
-    .abandon 1487 >> Abandon Deviate Eradication
-    .isOnQuest 1487
-    .dungeon WC
+    .abandon 1487 >>Abandon Deviate Eradication
 step
     #optional
-    .abandon 1491 >> Abandon Smart Drinks
-    .isOnQuest 1491
-    .dungeon WC
+    .abandon 1491 >>Abandon Smart Drinks
 step
     #optional
-    .abandon 959 >> Abandon Trouble at the Docks
-    .isOnQuest 959
-    .dungeon WC
+    .abandon 959 >>Abandon Trouble at the Docks
 step
     #optional
-    .abandon 914 >> Abandon Leaders of the Fang
-    .isOnQuest 914
-    .dungeon WC
+    .abandon 914 >>Abandon Leaders of the Fang
 step
     #optional
-    .abandon 962 >> Abandon Serpentbloom
-    .isOnQuest 962
-    .dungeon WC
+    .abandon 962 >>Abandon Serpentbloom
 step
     #xprate <1.5
     #completewith Serena
@@ -5420,11 +5528,12 @@ step
     .isQuestComplete 855
 step
     #xprate <1.5
+    #optional
     #completewith Serena
     .abandon 855 >>Abandon Centaur Bracers
 step
     #completewith CounterattackTurnin2
-    +|cRXP_WARN_This next quest is very hard & grouping up is recommended. You can kite Warlord Krom'zar around using the building where the quest giver is|r
+    +|cRXP_WARN_This next quest is very hard & grouping up is recommended. You can kite |cRXP_ENEMY_Warlord Krom'zar|r around using the building where the quest giver is located|r
 step
     .goto The Barrens,45.35,28.41
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Regthar|r
@@ -5650,8 +5759,11 @@ step << Hunter
     >>Click the |cRXP_FRIENDLY_Wanted Poster|r
     .accept 6284 >>Accept Arachnophobia
 step << Hunter
+    #loop
+    .goto Stonetalon Mountains,54.80,71.95,0
     .goto Stonetalon Mountains,51.89,73.81,50,0
-    .goto Stonetalon Mountains,52.46,71.67
+    .goto Stonetalon Mountains,52.46,71.67,50,0
+    .goto Stonetalon Mountains,54.80,71.95,50,0
     >>Kill |cRXP_ENEMY_Besseleth|r. Loot her for for her |cRXP_LOOT_Fang|r
     >>|cRXP_WARN_Clear the area around|r |cRXP_ENEMY_Besseleth|r|cRXP_WARN_. Be careful as she webs you|r
     >>|cRXP_WARN_This quest is optional. If you can't do it, skip this quest|r
@@ -6338,7 +6450,7 @@ step << Warlock
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Logmar|r
     .turnin 1511 >>Turn in Ken'zigla's Draught
     .accept 1515 >>Accept Dogran's Captivity
-    .target Grunt Logma
+    .target Grunt Logmar
 step << Warlock
     .goto The Barrens,43.31,47.88
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Dogran|r
@@ -6354,7 +6466,6 @@ step << Warlock
 step << Warlock
     .goto Orgrimmar,48.25,45.27
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Gan'rul|r
-    .trainer >> Train your class spells
     .turnin 1512 >>Turn in Love's Gift
     .accept 1513 >>Accept The Binding
     .target Gan'rul Bloodeye
@@ -6373,6 +6484,20 @@ step << Warlock
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Gan'rul|r
     .turnin 1513 >>Turn in The Binding
     .target Gan'rul Bloodeye
+step << Warlock
+    .goto Orgrimmar,48.62,46.95
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Mirket|r
+    .train 6202 >> Train your class spells
+    .target Mirket
+    .xp <22,1
+    .xp >24,1
+step << Warlock
+    #optional
+    .goto Orgrimmar,48.62,46.95
+    >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Mirket|r
+    .train 6223 >> Train your class spells
+    .target Mirket
+    .xp <24,1
 step << Rogue
     #completewith next
     .goto Orgrimmar,45.64,55.95
@@ -6626,33 +6751,28 @@ step
     #label flytoORG
 step
     #optional
-    .abandon 6421 >> Abandon Boulderslide Ravine
-    .isOnQuest 6421
+    .abandon 6421 >>Abandon Boulderslide Ravine
 step
     #optional
-    .abandon 4021 >> Abandon Counterattack!
-    .isOnQuest 4021
+    .abandon 4021 >>Abandon Counterattack!
 step
     #optional
-    .abandon 6481 >> Abandon Earthen Arise
-    .isOnQuest 6481
+    .abandon 6481 >>Abandon Earthen Arise
 step
     #optional
-    .abandon 6284 >> Abandon Arachnophobia
-    .isOnQuest 6284
+    .abandon 6284 >>Abandon Arachnophobia
 step
     #optional
-    .abandon 6641 >> Abandon Vorsha the Lasher
-    .isOnQuest 6641
+    .abandon 6641 >>Abandon Vorsha the Lasher
 step
     #optional
-    .abandon 6563 >> Abandon The Essence of Aku'Mai
-    .isOnQuest 6563
+    .abandon 6563 >>Abandon The Essence of Aku'Mai
 ]])
 
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 << Horde
 #xprate >1.99
 #name 13-20 The Barrens
@@ -8073,7 +8193,8 @@ step
     .goto The Barrens,64.21,47.14,50,0
     .goto The Barrens,63.57,49.14,50,0
     .goto The Barrens,62.64,49.72,50,0
-    >>Kill |cRXP_ENEMY_Baron Longshore|r. Loot him for his |cRXP_LOOT_Head|r He can be found in one of the camps
+    >>Kill |cRXP_ENEMY_Baron Longshore|r. Loot him for his |cRXP_LOOT_Head|r
+    >>|cRXP_WARN_He can be found in one of the camps|r
     .complete 895,1 --Baron Longshore's Head (1)
     .unitscan Baron Longshore
     .isOnQuest 895
@@ -8547,7 +8668,7 @@ step
     .goto The Barrens,41.23,15.79,60,0
     .goto The Barrens,41.21,14.75,60,0
     .goto The Barrens,41.84,14.81,60,0
-    >>Kill |cRXP_ENEMY_Witching Harpies|r and |cRXP_ENEMY_Witching Roguefeathers|r. Loot them for their |cRXP_LOOT_Talons|r
+    >>Kill |cRXP_ENEMY_Witchwing Harpies|r and |cRXP_ENEMY_Witchwing Roguefeathers|r. Loot them for their |cRXP_LOOT_Talons|r
     .complete 867,1 --Witchwing Talon (8)
     .mob Witchwing Harpy
     .mob Witchwing Roguefeather
@@ -8626,22 +8747,18 @@ step << skip --!Tauren
 step
     #optional
     .abandon 5723 >> Abandon Testing an Enemy's Strength
-    .isOnQuest 5723
     .dungeon RFC
 step
     #optional
-    .abandon 5725 >> Abandon Turn in The Power to Destroy...
-    .isOnQuest 5725
+    .abandon 5725 >> Abandon The Power to Destroy...
     .dungeon RFC
 step
     #optional
     .abandon 5728 >> Abandon Hidden Enemies
-    .isOnQuest 5728
     .dungeon RFC
 step
     #optional
     .abandon 5761 >> Abandon Slaying the Beast
-    .isOnQuest 5761
     .dungeon RFC
 step << skip --!Tauren Orc !Warrior !Shaman/Troll !Warrior !Shaman
     #xprate <2.1
@@ -8761,6 +8878,7 @@ step
     .use 10327
 step
     #xprate >2.09
+    #optional
     .goto The Barrens,52.23,31.00
     .abandon 881 >>|cRXP_WARN_If |cRXP_ENEMY_Echeyakee|r didn't spawn after using the|r |T134227:0|t[Horn of Echeyakee]|cRXP_WARN_ or you didn't get the tag when it did spawn, abandon Echeyakee, then return to town and accept it again|r
     .itemcount 5100,<1 --Echeyakee's Hide (0)
@@ -8813,6 +8931,7 @@ step
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Vrang|r
     >>|cRXP_FRIENDLY_Vrang|r |cRXP_WARN_sells|r |T133476:0|t[|cRXP_FRIENDLY_Heavy Spiked Mace|r] |cRXP_WARN_which is a limited supply item|r << Orc Warrior/Troll Warrior/Tauren Warrior
 	.vendor	>> Vendor trash and repair
+    .target Vrang Wildgore
     --.dungeon !RFC
 step
     #xprate >2.09
@@ -9221,7 +9340,7 @@ step << Orc Rogue/Troll Rogue
 step << Rogue
     #optional
     #completewith FoodandWater2
-    +Equip the |T135342:0|t[Kris]
+    +|cRXP_WARN_Equip the|r |T135342:0|t[Kris]
     .use 2209
     .itemcount 2209,1
     .itemStat 16,QUALITY,<7
@@ -9230,7 +9349,7 @@ step << Rogue
 step << Rogue
     #optional
     #completewith FoodandWater2
-    +Equip the |T135342:0|t[Kris] once you are level 19
+    +|cRXP_WARN_Equip the|r |T135342:0|t[Kris] once you are level 19
     .use 2209
     .itemcount 2209,1
     .itemStat 16,QUALITY,<7
@@ -9336,8 +9455,8 @@ step << Warrior
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|t|cRXP_BUY_Talk to|r |cRXP_FRIENDLY_Zendo'jian|r|cRXP_BUY_. Buy a|r |T135423:0|t[Battle Axe] |cRXP_BUY_from him|r
     .collect 926,1,3281,1 --Collect Battle Axe (1)
     .money <1.021
-    .itemStat 18,QUALITY,<7
-    .itemStat 18,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
+    .itemStat 16,QUALITY,<7
+    .itemStat 16,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
     .target Zendo'jian
     .train 227,3
 step << Warrior
@@ -9346,8 +9465,8 @@ step << Warrior
     +|cRXP_WARN_Equip the|r |T135423:0|t[Battle Axe] |cRXP_WARN_when you are level 20|r
     .use 926
     .itemcount 926,1
-    .itemStat 18,QUALITY,<7
-    .itemStat 18,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
+    .itemStat 16,QUALITY,<7
+    .itemStat 16,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
     .xp >20,1
 step << Warrior
     #optional
@@ -9355,8 +9474,8 @@ step << Warrior
     +|cRXP_WARN_Equip the|r |T135423:0|t[Battle Axe]
     .use 926
     .itemcount 926,1
-    .itemStat 18,QUALITY,<7
-    .itemStat 18,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
+    .itemStat 16,QUALITY,<7
+    .itemStat 16,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
     .xp <20,1
 step << Druid
     #season 2
@@ -9443,6 +9562,7 @@ step
     .mob Echeyakee
     .use 10327
 step
+    #optional
     .goto The Barrens,52.23,31.00
     .abandon 881 >>|cRXP_WARN_If |cRXP_ENEMY_Echeyakee|r didn't spawn after using the|r |T134227:0|t[Horn of Echeyakee]|cRXP_WARN_or you didn't get the tag when it did spawn, abandon Echeyakee, then return to town and accept it again|r
     .itemcount 5100,<1 --Echeyakee's Hide (0)
@@ -9869,7 +9989,7 @@ step
     >>|cRXP_WARN_Use the |T132318:0|t[|cRXP_LOOT_Hoof of Lakota'mani|r] to start the quest|r
     >>|cRXP_WARN_He has 4 spawnpoints (marked on the map)|r
     >>|cRXP_WARN_Skip this step if you can't find him|r
-	.collect 5099,1,883,1 --Collect Hoof of Lakota'Mani
+	.collect 5099,1,883 --Collect Hoof of Lakota'Mani
 	.accept 883 >>Accept Lakota'Mani
     .use 5099
     .unitscan Lakota'mani
@@ -10113,6 +10233,7 @@ step << Druid
     .itemcount 208687,1
 step
     #xprate <2.1
+    #optional
     #completewith CounterattackComplete
     .abandon 855 >> Abandon Centaur Bracers as you have not looted enough previously to make it worthwhile to finish
     .itemcount 5030,<5 --Centaur Bracers (5)
@@ -10142,7 +10263,7 @@ step
 step
     #xprate <2.1
     #completewith CounterattackComplete
-    +|cRXP_WARN_This next quest is very hard & grouping up is recommended. You can kite Warlord Krom'zar around using the building where the quest giver is|r
+    +|cRXP_WARN_This next quest is very hard & grouping up is recommended. You can kite Warlord Krom'zar around using the building where the quest giver is located|r
     +|cRXP_WARN_Skip it if you can't do this quest. You will have another opportunity to complete it at higher level|r
     .isQuestTurnedIn 852
 step
@@ -10260,6 +10381,7 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 #xprate >1.99
 << Horde
 #name 20-24 Stonetalon/Barrens
@@ -10481,8 +10603,11 @@ step
 step
     #xprate <2.1
     #label Besseleth1
+    #loop
+    .goto Stonetalon Mountains,54.80,71.95,0
     .goto Stonetalon Mountains,51.89,73.81,50,0
-    .goto Stonetalon Mountains,52.46,71.67
+    .goto Stonetalon Mountains,52.46,71.67,50,0
+    .goto Stonetalon Mountains,54.80,71.95,50,0
     >>Kill |cRXP_ENEMY_Besseleth|r. Loot her for for her |cRXP_LOOT_Fang|r
     >>|cRXP_WARN_Clear the area around|r |cRXP_ENEMY_Besseleth|r|cRXP_WARN_. Be careful as she webs you. Keep her permanently feared with dots|r << Warlock
     >>|cRXP_WARN_This quest is hard. Skip it needed|r
@@ -10910,7 +11035,7 @@ step
     .mob Stormsnout
 step
     #completewith next
-    >>Kill a lot of |cRXP_ENEMY_Bristleback Quillboars|r. Loot them for their |cRXP_LOOT_Tusks|r. Save the |T134128:0|t[|cRXP_LOOT_Blood Shards|r] you get
+    >>Kill |cRXP_ENEMY_Bristleback Quillboars|r. Loot them for their |cRXP_LOOT_Tusks|r. Save the |T134128:0|t[|cRXP_LOOT_Blood Shards|r] you get
 	.complete 878,1 --Kill Bristleback Water Seeker (x6)
     .mob +Bristleback Water Seeker
     .complete 878,2 --Kill Bristleback Thornweaver (x12)
@@ -10933,7 +11058,7 @@ step
     >>|cRXP_WARN_Use the |T132318:0|t[|cRXP_LOOT_Hoof of Lakota'mani|r] to start the quest|r
     >>|cRXP_WARN_He has 4 spawnpoints (marked on the map)|r
     >>|cRXP_WARN_Skip this step if you can't find him|r
-	.collect 5099,1,883,1 --Collect Hoof of Lakota'Mani
+	.collect 5099,1,883 --Collect Hoof of Lakota'Mani
 	.accept 883 >>Accept Lakota'Mani
     .use 5099
     .unitscan Lakota'mani
@@ -10964,7 +11089,7 @@ step
     .goto The Barrens,52.41,53.07,60,0
     .goto The Barrens,52.32,53.71,60,0
     .goto The Barrens,51.39,54.22,60,0
-    >>Kill a lot of |cRXP_ENEMY_Bristleback Quillboars|r. Loot them for their |cRXP_LOOT_Tusks|r. Save the |T134128:0|t[|cRXP_LOOT_Blood Shards|r] you get
+    >>Kill |cRXP_ENEMY_Bristleback Quillboars|r. Loot them for their |cRXP_LOOT_Tusks|r. Save the |T134128:0|t[|cRXP_LOOT_Blood Shards|r] you get
 	.complete 878,1 --Kill Bristleback Water Seeker (x6)
     .mob +Bristleback Water Seeker
     .complete 878,2 --Kill Bristleback Thornweaver (x12)
@@ -11702,11 +11827,11 @@ step << Warlock
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Logmar|r
     .turnin 1511 >>Turn in Ken'zigla's Draught
     .accept 1515 >>Accept Dogran's Captivity
-    .target Grunt Logma
+    .target Grunt Logmar
 step
     .goto The Barrens,44.55,59.27
     >>Kill |cRXP_ENEMY_Bristleback Quillboars|r. Loot them for a |T134128:0|t[|cRXP_LOOT_Blood Shard|r
-    .collect 5075 --Blood Shard (1)
+    .collect 5075,1,5052,1 --Blood Shard (1)
     .mob Bristleback Water Seeker
     .mob Bristleback Thornweaver
     .mob Bristleback Geomancer
@@ -12291,18 +12416,41 @@ step
     .goto Kalimdor,51.92,55.44
     .dungeon WC
 step
+    #optional
     #hardcore
     #completewith EnterWC
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
-    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_LOOT_Serpentbloom|r |cRXP_WARN_for everybody|r
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
     .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #hardcore
+    #completewith EnterWC
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
+    #softcore
+    #completewith EnterWC
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
     .isOnQuest 962
     .dungeon WC
 step
     #softcore
     #completewith EnterWC
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
     .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
     .isOnQuest 962
     .dungeon WC
 step
@@ -12329,14 +12477,18 @@ step
     .isOnQuest 1491
     .dungeon WC
 step
+    #label MadMagg
     #loop
+    .goto Kalimdor,51.97,55.23,0
+    .goto Kalimdor,51.82,54.86,0
+    .goto Kalimdor,52.01,55.02,0
     .goto Kalimdor,52.15,55.15,0
-    .goto Kalimdor,51.90,55.43,30,0
     .goto Kalimdor,51.97,55.23,30,0
     .goto Kalimdor,51.82,54.86,30,0
     .goto Kalimdor,52.01,55.02,30,0
     .goto Kalimdor,52.15,55.15,30,0
     >>Kill |cRXP_ENEMY_Mad Magglish|r. Loot him for the |cRXP_LOOT_99-Year-Old Port|r
+    >>|cRXP_WARN_He has a long respawn timer. Skip this step if you cannot find him|r
     .complete 959,1 --99-Year-Old Port (1)
     .mob Mad Magglish
     .isOnQuest 959
@@ -12349,21 +12501,47 @@ step
     .goto Kalimdor,52.40,55.20,30 >> Enter the WC Instance portal. Zone in
     .dungeon WC
 step
+    #optional
     #hardcore
     #completewith GlowingShard
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
-    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_LOOT_Serpentbloom|r |cRXP_WARN_for everybody|r
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
     .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
     .isOnQuest 962
     .dungeon WC
 step
+    #optional
+    #hardcore
+    #completewith GlowingShard
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
     #softcore
     #completewith GlowingShard
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
     .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
     .isOnQuest 962
     .dungeon WC
 step
+    #optional
+    #softcore
+    #completewith GlowingShard
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
     #hardcore
     #completewith GlowingShard
     >>Kill |cRXP_ENEMY_Ectoplasms|r. Loot them for their |cRXP_LOOT_Essence|r
@@ -12372,6 +12550,7 @@ step
     .isOnQuest 1491
     .dungeon WC
 step
+    #optional
     #softcore
     #completewith GlowingShard
     >>Kill |cRXP_ENEMY_Ectoplasms|r. Loot them for their |cRXP_LOOT_Essence|r
@@ -12422,19 +12601,55 @@ step
     .mob Mutanus the Devourer
     .dungeon WC
 step
+    #optional
     #completewith DeviateRaptors
     >>Kill |cRXP_ENEMY_Ectoplasms|r. Loot them for their |cRXP_LOOT_Essence|r
     .complete 1491,1 --Wailing Essence (6)
     .isOnQuest 1491
     .dungeon WC
 step
-    #completewith DeviateRaptors
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
+    #optional
+    #hardcore
+    #completewith Ectoplasms
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
     .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
     .isOnQuest 962
     .dungeon WC
 step
-    >>Kill |cRXP_ENEMY_Deviate Ravagers|r, |cRXP_ENEMY_Vipers|r, |cRXP_ENEMY_Shamblers|r and |cRXP_ENEMY_Dreadfangs|r
+    #optional
+    #hardcore
+    #completewith Ectoplasms
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
+    #softcore
+    #completewith Ectoplasms
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
+    #softcore
+    #completewith Ectoplasms
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
+    >>Kill |cRXP_ENEMY_Deviate Ravagers|r, |cRXP_ENEMY_Vipers|r, |cRXP_ENEMY_Shamblers|r and |cRXP_ENEMY_Dreadfangs|r. . Loot them for their |cRXP_ENEMY_Hides|r
     .complete 1487,1 --Deviate Ravager (7)
     .mob +Deviate Ravager
     .complete 1487,2 --Deviate Viper (7)
@@ -12444,6 +12659,7 @@ step
     .complete 1487,4 --Deviate Dreadfang (7)
     .mob +Deviate Dreadfang
     .complete 1486,1 --Deviate Hide (20)
+    .disablecheckbox
     .isOnQuest 1487
     .isOnQuest 1486
     .dungeon WC
@@ -12461,7 +12677,7 @@ step
     .dungeon WC
 step
     #label DeviateRaptors
-    >>Kill |cRXP_ENEMY_Deviate Raptors|r
+    >>Kill |cRXP_ENEMY_Deviate Raptors|r. Loot them for their |cRXP_ENEMY_Hides|r
     .complete 1486,1 --Deviate Hide (20)
     .mob Deviate Ravager
     .mob Deviate Viper
@@ -12470,12 +12686,7 @@ step
     .isOnQuest 1486
     .dungeon WC
 step
-    #completewith next
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
-    .complete 962,1 --Serpentbloom (10)
-    .isOnQuest 962
-    .dungeon WC
-step
+    #label Ectoplasms
     >>Kill |cRXP_ENEMY_Ectoplasms|r. Loot them for their |cRXP_LOOT_Essence|r
     .complete 1491,1 --Wailing Essence (6)
     .mob Devouring Ectoplasm
@@ -12484,8 +12695,39 @@ step
     .isOnQuest 1491
     .dungeon WC
 step
-    >>Loot the |cRXP_LOOT_Serpentbloom|r on the ground
+    #optional
+    #hardcore
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
     .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
+    #hardcore
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_It is recommended that maximum 3 players attempt to complete this quest if you're doing only 1 run. There aren't enough|r |cRXP_PICK_Serpentbloom|r |cRXP_WARN_for everybody|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
+    #softcore
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    >>|cRXP_WARN_Cast|r |T133939:0|t[Find Herbs] |cRXP_WARN_to see them on your minimap|r
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,<1,1
+    .isOnQuest 962
+    .dungeon WC
+step
+    #optional
+    #softcore
+    >>Loot the |cRXP_PICK_Serpentbloom|r on the ground
+    .complete 962,1 --Serpentbloom (10)
+    .skill herbalism,1,1
     .isOnQuest 962
     .dungeon WC
 step
@@ -12620,34 +12862,22 @@ step
     .dungeon WC
 step
     #optional
-    .abandon 1486 >> Abandon Deviate Hides
-    .isOnQuest 1486
-    .dungeon WC
+    .abandon 1486 >>Abandon Deviate Hides
 step
     #optional
-    .abandon 1487 >> Abandon Deviate Eradication
-    .isOnQuest 1487
-    .dungeon WC
+    .abandon 1487 >>Abandon Deviate Eradication
 step
     #optional
-    .abandon 1491 >> Abandon Smart Drinks
-    .isOnQuest 1491
-    .dungeon WC
+    .abandon 1491 >>Abandon Smart Drinks
 step
     #optional
-    .abandon 959 >> Abandon Trouble at the Docks
-    .isOnQuest 959
-    .dungeon WC
+    .abandon 959 >>Abandon Trouble at the Docks
 step
     #optional
-    .abandon 914 >> Abandon Leaders of the Fang
-    .isOnQuest 914
-    .dungeon WC
+    .abandon 914 >>Abandon Leaders of the Fang
 step
     #optional
-    .abandon 962 >> Abandon Serpentbloom
-    .isOnQuest 962
-    .dungeon WC
+    .abandon 962 >>Abandon Serpentbloom
 step
     #xprate <2.1
     #completewith Serena
@@ -12673,7 +12903,7 @@ step
 step
     #xprate <2.1
     #completewith CounterattackTurnin2
-    +|cRXP_WARN_This next quest is very hard & grouping up is recommended. You can kite Warlord Krom'zar around using the building where the quest giver is|r
+    +|cRXP_WARN_This next quest is very hard & grouping up is recommended. You can kite Warlord Krom'zar around using the building where the quest giver is located|r
 step
     #xprate <2.1
     .goto The Barrens,45.35,28.41
@@ -12709,6 +12939,7 @@ step
     .isQuestComplete 855
 step
     #xprate <2.1
+    #optional
     #completewith Serena
     .abandon 855 >>Abandon Centaur Bracers
 step
@@ -12814,7 +13045,7 @@ step
 step
     #xprate <2.1
     #completewith CounterattackTurnin3
-    +|cRXP_WARN_This next quest is very hard & grouping up is recommended. You can kite Warlord Krom'zar around using the building where the quest giver is|r
+    +|cRXP_WARN_This next quest is very hard & grouping up is recommended. You can kite Warlord Krom'zar around using the building where the quest giver is located|r
 step
     #xprate <2.1
     .goto The Barrens,45.35,28.41
@@ -12934,7 +13165,7 @@ step << Warlock
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Logmar|r
     .turnin 1511 >>Turn in Ken'zigla's Draught
     .accept 1515 >>Accept Dogran's Captivity
-    .target Grunt Logma
+    .target Grunt Logmar
 step << Warlock
     #xprate <2.1
     .goto The Barrens,43.31,47.88
@@ -13108,30 +13339,20 @@ step << Rogue
     .destroy 8066 >> |cRXP_WARN_Delete|r |T134374:0|t[Fizzule's Whistle] |cRXP_WARN_from your bags, as it's no longer needed|r
 step
     #optional
-    .abandon 6421 >> Abandon Boulderslide Ravine
-    .isOnQuest 6421
+    .abandon 6421 >>Abandon Boulderslide Ravine
 step
     #optional
-    .abandon 4021 >> Abandon Counterattack!
-    .isOnQuest 4021
+    .abandon 4021 >>Abandon Counterattack!
 step
     #optional
-    .abandon 6481 >> Abandon Earthen Arise
-    .isOnQuest 6481
+    .abandon 6481 >>Abandon Earthen Arise
 step
     #optional
-    .abandon 6284 >> Abandon Arachnophobia
-    .isOnQuest 6284
+    .abandon 6284 >>Abandon Arachnophobia
 step
     #optional
-    .abandon 6641 >> Abandon Vorsha the Lasher
-    .isOnQuest 6641
+    .abandon 6641 >>Abandon Vorsha the Lasher
 step
     #optional
-    .abandon 6563 >> Abandon The Essence of Aku'Mai
-    .isOnQuest 6563
-step
-    #optional
-    .abandon 855 >>Abandon Centaur Bracers
-    .isOnQuest 855
+    .abandon 6563 >>Abandon The Essence of Aku'Mai
 ]])

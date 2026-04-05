@@ -21,19 +21,6 @@ local FARM_INFO_CONS = {
 local FARM_INFO_DIFF_PERCENT = 20
 
 
-local GATHER_INFO_SUMMARY = "Use gathering professions to make money by farming and selling raw materials (herbs, ores, skins). This is the best method players who want to make the most gold without getting into the more complex methods."
-local GATHER_INFO_PROS = {
-	"Most profitable of the easy methods.",
-	"Low risk. Little to no gold required.",
-}
-local GATHER_INFO_CONS = {
-	"Can be slow, tedious and boring",
-	"Requires profession skills (preferably maxed out)",
-	"Profit limits (can only farm items so fast)",
-}
-local GATHER_INFO_DIFF_PERCENT = 40
-
-
 local AUCTION_INFO_SUMMARY = "Play the Auction House to make money. Buy low, sell high. The most profitable method to make gold but the hardest to master."
 local AUCTION_INFO_PROS = {
 	"Quick profit (except for long-term investments)",
@@ -45,17 +32,6 @@ local AUCTION_INFO_CONS = {
 	"Easy to mess up, difficult to master",
 }
 local AUCTION_INFO_DIFF_PERCENT = 90
-
-
-local CRAFTING_INFO_SUMMARY = "Make gold by crafting profitable items and selling them on the auction house."
-local CRAFTING_INFO_PROS = {
-	"Profit limited only by demand",
-}
-local CRAFTING_INFO_CONS = {
-	"Medium risk.",
-	"Only really profitable at max skill level.",
-}
-local CRAFTING_INFO_DIFF_PERCENT = 60
 
 
 local function GetInfoFrame(parentFrame)
@@ -266,22 +242,6 @@ function Goldguide:MakeInfoPages()
 	.__END
 	for i,con in ipairs(FARM_INFO_CONS) do MF.Infopages.Farming:AddCon(con) end
 	for i,pro in ipairs(FARM_INFO_PROS) do MF.Infopages.Farming:AddPro(pro) end
-
-	MF.Infopages.Gathering = CHAIN(GetInfoFrame(MF.ContentFrame))
-		:SetSummaryText(GATHER_INFO_SUMMARY)
-		:SetDiffBarPercent(GATHER_INFO_DIFF_PERCENT)
-		:Hide()
-	.__END
-	for i,con in ipairs(GATHER_INFO_CONS) do MF.Infopages.Gathering:AddCon(con) end
-	for i,pro in ipairs(GATHER_INFO_PROS) do MF.Infopages.Gathering:AddPro(pro) end
-
-	MF.Infopages.Crafting = CHAIN(GetInfoFrame(MF.ContentFrame))
-		:SetSummaryText(CRAFTING_INFO_SUMMARY)
-		:SetDiffBarPercent(CRAFTING_INFO_DIFF_PERCENT)
-		:Hide()
-	.__END
-	for i,con in ipairs(CRAFTING_INFO_CONS) do MF.Infopages.Crafting:AddCon(con) end
-	for i,pro in ipairs(CRAFTING_INFO_PROS) do MF.Infopages.Crafting:AddPro(pro) end
 
 	MF.Infopages.Auctions = CHAIN(GetInfoFrame(MF.ContentFrame))
 		:SetSummaryText(AUCTION_INFO_SUMMARY)

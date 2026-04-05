@@ -148,7 +148,12 @@ function LibRover_Node:DoLinkage(n2,dryrun)
 		return true,true,"direct"
 	end
 
-	if n1.c~=n2.c then return false,false,"different continents" end  -- different continents don't link.
+	if n1.c~=n2.c then
+		-- different continents don't link. (unless EK-Midnight)
+		if not ((n1.c==13 or n2.c==13) and (n1.c==2537 or n2.c==2537)) then 
+			return false,false,"different continents"
+		end
+	end
 	if n1.onlyhardwire then return false,false,"src is onlyhardwire" end
 	if n2.onlyhardwire and not n1.player then return false,false,"dest is onlyhardwire" end
 	if n2.onlyhardwire_to then return false,false,"dest is onlyhardwire_to" end
@@ -517,7 +522,12 @@ function LibRover_Node:CanFlyTo(dest,debug)
 	local dest_c = dest.c
 
 	if not dest_c then return false,debug and "no dest continent!?" end
-	if not (dest_c==self.c and dest_c>=0) then return false,debug and "not same cont" end
+	
+	if not (dest_c==self.c and dest_c>=0) then 
+		if not ((self.c==13 or dest_c==13) and (self.c==2537 or dest_c==2537)) then
+			return false,debug and "not same cont"
+		end
+	end
 
 	local dest_m = dest.m
 	-- if flightinzone[dest_m]==0 then return false,debug and "player can't fly in dest" end  -- NO. Sometimes you can fly INTO a non-flight zone!
@@ -692,6 +702,40 @@ function LibRover_Node:GetDebugNeighs()
 end
 
 
+-- update dynamic nodes. only used for nodes that are onlyhardwire, so only linking from, not to
+function LibRover_Node:Update(map,x,y)
+	local nodes_by_cont = LibRover.nodes.by_cont
+
+	if self.m ~= map then
+		-- remove node from current by_cont list
+		local current_c = self.c
+		for i,v in ipairs(nodes_by_cont[current_c]) do
+			if v==self then 
+				table.remove(nodes_by_cont[current_c],i)
+				break
+			end
+		end
+		
+		-- add to new continent
+		self.c = ZGV.GetMapContinent(map)
+		if not nodes_by_cont[self.c] then nodes_by_cont[self.c]={} end
+		table.insert(nodes_by_cont[self.c],self)	
+	end
+	
+	-- update coords
+	self.m = map
+	self.x = x
+	self.y = y
+	
+	-- refresh neighbours
+	table.wipe(self.n)
+
+	for i,v in ipairs(nodes_by_cont[self.c]) do
+		if v~=self then
+			self:DoLinkage(v)
+		end
+	end
+end
 
 function LibRover_Node:InterfaceWithLib(lib)
 	Lib=lib

@@ -9,33 +9,6 @@ _G.SimpleItemLevel = {}
 local SLOT_MAINHAND = GetInventorySlotInfo("MainHandSlot")
 local SLOT_OFFHAND = GetInventorySlotInfo("SecondaryHandSlot")
 
--- Tooltip scanning for accurate item levels (similar to Oilvl/MerInspect approach)
-local tooltipScanner = CreateFrame("GameTooltip", "SimpleItemLevelTooltipScanner", UIParent, "GameTooltipTemplate")
-
--- Function to get item level from tooltip scanning
-local function GetItemLevelFromTooltip(unit, slot)
-    if not unit or not slot then return nil end
-
-    tooltipScanner:SetOwner(UIParent, "ANCHOR_NONE")
-    tooltipScanner:ClearLines()
-    tooltipScanner:SetInventoryItem(unit, slot)
-
-    -- Scan tooltip text to find item level
-    for i = 1, 4 do
-        local line = _G["SimpleItemLevelTooltipScannerTextLeft"..i]
-        if line and line:GetText() then
-            local itemLevel = line:GetText():match(ITEM_LEVEL:gsub("%%d", "(%%d+)"))
-            if itemLevel then
-                return tonumber(itemLevel)
-            end
-        else
-            break
-        end
-    end
-
-    return nil
-end
-
 function ns.Print(...) print("|cFF33FF99".. myfullname.. "|r:", ...) end
 
 -- events
@@ -60,13 +33,12 @@ ns.upgradeString = CreateAtlasMarkup(ns.upgradeAtlas)
 ns.gemString = CreateAtlasMarkup(isClassic and "worldquest-icon-jewelcrafting" or "jailerstower-score-gem-tooltipicon") -- Professions-ChatIcon-Quality-Tier5-Cap
 ns.enchantString = RED_FONT_COLOR:WrapTextInColorCode("E")
 ns.Fonts = {
-    ["無邊框"] = GameFontHighlightSmall,
-    ["一般"] = GameFontNormalOutline,
-    ["大"] = GameFontNormalLargeOutline,
-    ["更大"] = GameFontNormalHugeOutline,
-    ["小"] = NumberFontNormal,
-    ["不消除鋸齒邊框"] = NumberFontNormalSmall,
-	["中"] = SystemFont_Outline,
+    HighlightSmall = GameFontHighlightSmall,
+    Normal = GameFontNormalOutline,
+    Large = GameFontNormalLargeOutline,
+    Huge = GameFontNormalHugeOutline,
+    NumberNormal = NumberFontNormal,
+    NumberNormalSmall = NumberFontNormalSmall,
 }
 ns.PositionOffsets = {
     TOPLEFT = {2, -2},
@@ -79,11 +51,34 @@ ns.PositionOffsets = {
     RIGHT = {-2, 0},
     CENTER = {0, 0},
 }
+if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_WRATH_OF_THE_LICH_KING then
+    -- A lot of space on the character sheet freed up here
+    local ONRIGHT = {"LEFT", "RIGHT", 8, 0}
+    local ONLEFT = {"RIGHT", "LEFT", -8, 0}
+    ns.CharacterButtonInsetPositions = {
+        CharacterMainHandSlot = {"TOPRIGHT", "TOPLEFT", -8, 0},
+        InspectMainHandSlot = {"TOPRIGHT", "TOPLEFT", -8, 0},
+        CharacterSecondaryHandSlot = {"TOPLEFT", "TOPRIGHT", 4, 0},
+        InspectSecondaryHandSlot = {"TOPLEFT", "TOPRIGHT", 4, 0},
+    }
+    for _, slot in ipairs({"Head", "Neck", "Shoulder", "Back", "Chest", "Shirt", "Tabard", "Wrist"}) do
+        ns.CharacterButtonInsetPositions["Character"..slot.."Slot"] = ONRIGHT
+        ns.CharacterButtonInsetPositions["Inspect"..slot.."Slot"] = ONRIGHT
+    end
+    for _, slot in ipairs({"Hands", "Waist", "Legs", "Feet", "Finger0", "Finger1", "Trinket0", "Trinket1"}) do
+        ns.CharacterButtonInsetPositions["Character"..slot.."Slot"] = ONLEFT
+        ns.CharacterButtonInsetPositions["Inspect"..slot.."Slot"] = ONLEFT
+    end
+else
+    ns.CharacterButtonInsetPositions = {}
+end
 
 ns.defaults = {
     -- places
     character = true,
+    character_inset = false,
     inspect = true,
+    inspect_inset = false,
     bags = true,
     loot = true,
     flyout = true,
@@ -107,11 +102,11 @@ ns.defaults = {
     -- Retail has Uncommon, BCC/Classic has Good
     quality = Enum.ItemQuality.Common or Enum.ItemQuality.Standard,
     -- appearance config
-    font = "GameFontNormal",
-    position = "TOP",
-    positionup = "BOTTOMLEFT",
+    font = "NumberNormal",
+    position = "TOPRIGHT",
+    positionup = "TOPLEFT",
     positionmissing = "LEFT",
-    positionbound = "BOTTOMRIGHT",
+    positionbound = "BOTTOMLEFT",
     scaleup = 1,
     scalebound = 1,
 }
@@ -137,7 +132,38 @@ end
 ns:RegisterEvent("ADDON_LOADED")
 
 
-local function ItemIsUpgrade(item)
+local ItemLevelFromTooltip
+do
+    local empty = {lines={}}
+    local lineType = Enum.TooltipDataLineType.ItemLevel or Enum.TooltipDataLineType.None
+    local ITEM_LEVEL_PATTERN = ITEM_LEVEL:gsub("%%d", "(%%d+)")
+    function ItemLevelFromTooltip(info)
+        for _, line in ipairs((info or empty).lines) do
+            if line.type == lineType then
+                if line.itemLevel then
+                    return line.itemLevel
+                end
+                local levelMatch = line.leftText:match(ITEM_LEVEL_PATTERN)
+                if levelMatch then
+                    return tonumber(levelMatch)
+                end
+            end
+        end
+    end
+end
+
+local function ItemFromUnitSlot(unit, slotID)
+    if unit == "player" then
+        return Item:CreateFromEquipmentSlot(slotID)
+    else
+        local itemLink = GetInventoryItemLink(unit, slotID)
+        if itemLink then return Item:CreateFromItemLink(itemLink) end
+        local itemID = GetInventoryItemID(unit, slotID)
+        if itemID then return Item:CreateFromItemID(itemID) end
+    end
+end
+
+local function ItemIsUpgrade(item, itemLevelOverride)
     if not (item and LAI:IsAppropriate(item:GetItemID())) then
         return
     end
@@ -149,7 +175,10 @@ local function ItemIsUpgrade(item)
         return
     end
     local isUpgrade
-    local itemLevel = item:GetCurrentItemLevel() or 0
+    if itemLevelOverride == true and _G.C_TooltipInfo and item:GetItemLink() then
+        itemLevelOverride = ItemLevelFromTooltip(C_TooltipInfo.GetHyperlink(item:GetItemLink()))
+    end
+    local itemLevel = type(itemLevelOverride) == "number" and itemLevelOverride or item:GetCurrentItemLevel() or 0
     local _, _, _, equipLoc, _, itemClass, itemSubClass = C_Item.GetItemInfoInstant(item:GetItemID())
     ns.ForEquippedItems(equipLoc, function(equippedItem, slot)
         -- This *isn't* async, for flow reasons, so if the equipped items
@@ -183,10 +212,13 @@ end
 ns.ItemIsUpgrade = ItemIsUpgrade
 
 -- TODO: this is a good candidate for caching results...
-local function DetailsFromItemInstant(item)
+local function DetailsFromItemInstant(item, itemLevelOverride)
     if not item or item:IsItemEmpty() then return {} end
     -- print("DetailsFromItem", item:GetItemLink())
-    local itemLevel = item:GetCurrentItemLevel()
+    if itemLevelOverride == true and _G.C_TooltipInfo and item:GetItemLink() then
+        itemLevelOverride = ItemLevelFromTooltip(C_TooltipInfo.GetHyperlink(item:GetItemLink()))
+    end
+    local itemLevel = type(itemLevelOverride) == "number" and itemLevelOverride or item:GetCurrentItemLevel() or 0
     local quality = item:GetItemQuality()
     local itemLink = item:GetItemLink()
     if itemLink and itemLink:match("battlepet:") then
@@ -205,9 +237,9 @@ local function DetailsFromItemInstant(item)
 end
 ns.DetailsFromItemInstant = DetailsFromItemInstant
 
-local function DetailsFromItem(item)
+local function DetailsFromItem(item, itemLevelOverride)
     if not item or item:IsItemEmpty() then return {} end
-    local details = DetailsFromItemInstant(item)
+    local details = DetailsFromItemInstant(item, itemLevelOverride)
     details.missingGems = ns.ItemHasEmptySlots(details.link)
     details.missingEnchants = ns.ItemIsMissingEnchants(details.link)
     details.upgrade = ItemIsUpgrade(item)
@@ -237,7 +269,7 @@ end
 ns.DetailsFromItem = DetailsFromItem
 
 ns.frames = {} -- TODO: should I make this a FramePool now?
-local function PrepareItemButton(button)
+local function PrepareItemButton(button, variant)
     if not button.simpleilvl then
         local overlayFrame = CreateFrame("FRAME", nil, button)
         overlayFrame:SetAllPoints()
@@ -262,12 +294,21 @@ local function PrepareItemButton(button)
 
         ns.frames[button] = overlayFrame
     end
+    button.simpleilvloverlay.variant = variant or button.simpleilvloverlay.variant
+    variant = button.simpleilvloverlay.variant
+
     button.simpleilvloverlay:SetFrameLevel(button:GetFrameLevel() + 1)
 
     -- Apply appearance config:
     button.simpleilvl:ClearAllPoints()
-    button.simpleilvl:SetPoint(db.position, unpack(ns.PositionOffsets[db.position]))
-    button.simpleilvl:SetFontObject(ns.Fonts[db.font] or GameFontNormalOutline)
+    local position, positionOffsets = db.position, ns.PositionOffsets[db.position]
+    if ((variant == "character" and db.character_inset) or (variant == "inspect" and db.inspect_inset)) and ns.CharacterButtonInsetPositions[button:GetName()] then
+        local point, relativePoint, x, y = unpack(ns.CharacterButtonInsetPositions[button:GetName()])
+        button.simpleilvl:SetPoint(point, button.simpleilvloverlay, relativePoint, x, y)
+    else
+        button.simpleilvl:SetPoint(db.position, unpack(ns.PositionOffsets[db.position]))
+    end
+    button.simpleilvl:SetFontObject(ns.Fonts[db.font] or NumberFontNormal)
     -- button.simpleilvl:SetJustifyH('RIGHT')
 
     button.simpleilvlup:ClearAllPoints()
@@ -381,16 +422,12 @@ local function UpdateButtonFromItem(button, item, variant, suppress, extradetail
     suppress = suppress or blank
     item:ContinueOnItemLoad(function()
         if not ShouldShowOnItem(item) then return end
-        PrepareItemButton(button)
-        local details = DetailsFromItem(item)
+        PrepareItemButton(button, variant)
+        local details = DetailsFromItem(item, extradetails and extradetails.level)
         if extradetails then
-            -- Use safe table merging
-            if MergeTable then
-                MergeTable(details, extradetails)
-            else
-                for k, v in pairs(extradetails) do
-                    details[k] = v
-                end
+            MergeTable(details, extradetails)
+            if extradetails.level then
+                details.upgrade = ItemIsUpgrade(item, extradetails.level)
             end
         end
         if not suppress.level then AddLevelToButton(button, details) end
@@ -422,19 +459,17 @@ local function AddAverageLevelToFontString(unit, fontstring)
     end
     local mainhandEquipLoc, offhandEquipLoc
     local items = {}
-    for slot = INVSLOT_FIRST_EQUIPPED, INVSLOT_LAST_EQUIPPED do
+    for slotID = INVSLOT_FIRST_EQUIPPED, INVSLOT_LAST_EQUIPPED do
         -- shirt and tabard don't count
-        if slot ~= INVSLOT_BODY and slot ~= INVSLOT_TABARD then
-            local itemID = GetInventoryItemID(unit, slot)
-            local itemLink = GetInventoryItemLink(unit, slot)
-            if itemLink or itemID then
-                local item = itemLink and Item:CreateFromItemLink(itemLink) or Item:CreateFromItemID(itemID)
+        if slotID ~= INVSLOT_BODY and slotID ~= INVSLOT_TABARD then
+            local item = ItemFromUnitSlot(unit, slotID)
+            if item and not item:IsItemEmpty() then
                 continuableContainer:AddContinuable(item)
-                table.insert(items, item)
+                items[slotID] = item
                 -- slot bookkeeping
-                local equipLoc = select(4, C_Item.GetItemInfoInstant(itemLink or itemID))
-                if slot == INVSLOT_MAINHAND then mainhandEquipLoc = equipLoc end
-                if slot == INVSLOT_OFFHAND then offhandEquipLoc = equipLoc end
+                local equipLoc = select(4, C_Item.GetItemInfoInstant(item:GetItemLink() or item:GetItemID()))
+                if slotID == INVSLOT_MAINHAND then mainhandEquipLoc = equipLoc end
+                if slotID == INVSLOT_OFFHAND then offhandEquipLoc = equipLoc end
             end
         end
     end
@@ -467,25 +502,12 @@ local function AddAverageLevelToFontString(unit, fontstring)
     -- end
     continuableContainer:ContinueOnLoad(function()
         local totalLevel = 0
-        local slotIndex = INVSLOT_FIRST_EQUIPPED
-        for _, item in ipairs(items) do
-            -- Skip shirt and tabard slots in counting
-            while slotIndex == INVSLOT_BODY or slotIndex == INVSLOT_TABARD do
-                slotIndex = slotIndex + 1
-            end
-
-            local itemLevel = item:GetCurrentItemLevel()
-            -- For non-player units, try tooltip scanning for more accurate level
-            if unit ~= "player" and slotIndex <= INVSLOT_LAST_EQUIPPED then
-                local tooltipLevel = GetItemLevelFromTooltip(unit, slotIndex)
-                if tooltipLevel and tooltipLevel > 0 then
-                    itemLevel = tooltipLevel
-                end
-            end
-
-            totalLevel = totalLevel + itemLevel
-            slotIndex = slotIndex + 1
+        for slotID, item in pairs(items) do
+            local level = unit ~= "player" and ItemLevelFromTooltip(_G.C_TooltipInfo and C_TooltipInfo.GetInventoryItem(unit, slotID)) or item:GetCurrentItemLevel()
+            totalLevel = totalLevel + level
+            -- print("item", item:GetItemLink(), item:GetCurrentItemLevel())
         end
+        -- print("total", totalLevel, "/", numSlots, "=", totalLevel / numSlots)
         fontstring:SetFormattedText(ITEM_LEVEL, totalLevel / numSlots)
         fontstring:Show()
     end)
@@ -502,26 +524,10 @@ local function UpdateItemSlotButton(button, unit)
     local slotID = button:GetID()
 
     if (slotID >= INVSLOT_FIRST_EQUIPPED and slotID <= INVSLOT_LAST_EQUIPPED) then
-        local item
-        if unit == "player" then
-            item = Item:CreateFromEquipmentSlot(slotID)
-        else
-            local itemID = GetInventoryItemID(unit, slotID)
-            local itemLink = GetInventoryItemLink(unit, slotID)
-            if itemLink or itemID then
-                item = itemLink and Item:CreateFromItemLink(itemLink) or Item:CreateFromItemID(itemID)
-            end
-        end
-        -- For inspect, try to get accurate item level using tooltip scanning
-        local extraDetails = {}
-        if unit ~= "player" and item then
-            local tooltipLevel = GetItemLevelFromTooltip(unit, slotID)
-            if tooltipLevel and tooltipLevel > 0 then
-                extraDetails.level = tooltipLevel
-            end
-        end
-
-        UpdateButtonFromItem(button, item, key, nil, extraDetails)
+        local item = ItemFromUnitSlot(unit, slotID)
+        UpdateButtonFromItem(button, item, key, nil, {
+            level = ItemLevelFromTooltip(_G.C_TooltipInfo and C_TooltipInfo.GetInventoryItem(unit, slotID))
+        })
         return item
     end
 end
@@ -697,8 +703,13 @@ do
     local function hookBankPanel(panel)
         if not panel then return end
         local update = function(frame)
+            local canUseBank = C_Bank.CanUseBank(frame:GetActiveBankType())
             for itemButton in frame:EnumerateValidItems() do
-                UpdateContainerButton(itemButton, itemButton:GetBankTabID(), itemButton:GetContainerSlotID())
+                if canUseBank then
+                    UpdateContainerButton(itemButton, itemButton:GetBankTabID(), itemButton:GetContainerSlotID())
+                else
+                    CleanButton(itemButton)
+                end
             end
         end
         -- Initial load and switching tabs
@@ -729,26 +740,6 @@ if _G.LootFrame_UpdateButton then
     end)
 else
     -- Dragonflight
-    local ITEM_LEVEL_PATTERN = ITEM_LEVEL:gsub("%%d", "(%%d+)")
-    local nope = {lines={}}
-    local lineType = Enum.TooltipDataLineType.ItemLevel or Enum.TooltipDataLineType.None
-    local function itemLevelFromLootTooltip(slot)
-        -- GetLootSlotLink doesn't give a link for the scaled item you'll
-        -- actually loot. As such, we can fall back on tooltip scanning to
-        -- extract the real level. This is only going to work on
-        -- weapons/armor, but conveniently that's the things that get scaled!
-        if not _G.C_TooltipInfo then return end -- in case we get a weird Classic update...
-        local info = C_TooltipInfo.GetLootItem(slot) or nope
-        for _, line in ipairs(info.lines) do
-            if line.type == lineType then
-                local levelMatch = line.leftText:match(ITEM_LEVEL_PATTERN)
-                if levelMatch then
-                    return tonumber(levelMatch)
-                end
-            end
-        end
-    end
-
     local function handleSlot(frame)
         if not frame.Item then return end
         CleanButton(frame.Item)
@@ -758,7 +749,11 @@ else
         local link = GetLootSlotLink(data.slotIndex)
         if link then
             UpdateButtonFromItem(frame.Item, Item:CreateFromItemLink(link), "loot", nil, {
-                level = itemLevelFromLootTooltip(data.slotIndex),
+            -- GetLootSlotLink doesn't give a link for the scaled item you'll
+            -- actually loot. As such, we can fall back on tooltip scanning to
+            -- extract the real level. This is only going to work on
+            -- weapons/armor, but conveniently that's the things that get scaled!
+                level = ItemLevelFromTooltip(_G.C_TooltipInfo and C_TooltipInfo.GetLootItem(data.slotIndex)),
             })
         end
     end
@@ -784,7 +779,7 @@ local OnTooltipSetItem = function(self)
     end
     if not item or item:IsItemEmpty() then return end
     item:ContinueOnItemLoad(function()
-		self:AddLine(ITEM_LEVEL:format(item:GetCurrentItemLevel()))
+        self:AddLine(ITEM_LEVEL:format(item:GetCurrentItemLevel()))
     end)
 end
 if _G.C_TooltipInfo then
@@ -924,7 +919,6 @@ ns:RegisterAddonHook("LiteBag", function()
 end)
 
 -- Baganator
---[[
 ns:RegisterAddonHook("Baganator", function()
     local function textInit(itemButton)
         local text = itemButton:CreateFontString(nil, "OVERLAY", "NumberFontNormal")
@@ -943,14 +937,16 @@ ns:RegisterAddonHook("Baganator", function()
             -- If we have a container-item, we should use that because it's needed for soulbound detection
             local bag, slot = button:GetParent():GetID(), button:GetID()
             -- print("SetItemDetails", details.itemLink, bag, slot)
-            if bag and slot and slot ~= 0 then
+            local fromBagslot = bag and slot and slot ~= 0
+            if fromBagslot then
                 item = Item:CreateFromBagAndSlot(bag, slot)
             elseif details.itemLink then
                 item = Item:CreateFromItemLink(details.itemLink)
             end
             if not item then return false end -- no item, go away
             if not item:IsItemDataCached() then return nil end -- item isn't cached, come back in a second
-            local data = DetailsFromItem(item)
+            if not ShouldShowOnItem(item) then return false end
+            local data = DetailsFromItem(item, not fromBagslot) -- if not from bagslot, forcibly acquire the level from the tooltip
             return callback(cornerFrame, item, data, details)
         end
     end
@@ -1003,7 +999,7 @@ ns:RegisterAddonHook("Baganator", function()
         onUpdate(function(cornerFrame, item, data, details)
             if db.missingcharacter then return false end
             local missingGems = db.missinggems and data.missingGems
-            local missingEnchants =  db.missingenchants and data.missingEnchants
+            local missingEnchants = db.missingenchants and data.missingEnchants
             if missingGems or missingEnchants then
                 cornerFrame:SetFormattedText("%s%s", missingGems and ns.gemString or "", missingEnchants and ns.enchantString or "")
                 return true
@@ -1013,7 +1009,7 @@ ns:RegisterAddonHook("Baganator", function()
         textInit, {default_position = "bottom_right", priority = 2}
     )
 end)
---]]
+
 -- helper
 
 do
@@ -1087,8 +1083,22 @@ do
         local gems = (gem1 ~= "" and 1 or 0) + (gem2 ~= "" and 1 or 0) + (gem3 ~= "" and 1 or 0) + (gem4 ~= "" and 1 or 0)
         return slots > gems
     end
+    local enchantableRings = true
+    if isClassic and LE_EXPANSION_LEVEL_CURRENT == LE_EXPANSION_MISTS_OF_PANDARIA then
+        -- MoP specifically only allows you to enchant your own rings
+        local MISTS_ENCHANTING_ID = 2489
+        local prof1, prof2 = GetProfessions()
+        if prof1 then
+            local skillName, _, skillLevel, maxSkillLevel, _, _, skillLineID, _, _, _, displayName = GetProfessionInfo(prof1)
+            enchantableRings = skillLineID == MISTS_ENCHANTING_ID
+        end
+        if prof2 and not enchantableRings then
+            local skillName, _, skillLevel, maxSkillLevel, _, _, skillLineID, _, _, _, displayName = GetProfessionInfo(prof2)
+            enchantableRings = skillLineID == MISTS_ENCHANTING_ID
+        end
+    end
     local enchantable = isClassic and {
-        INVTYPE_HEAD = true,
+        INVTYPE_HEAD = LE_EXPANSION_LEVEL_CURRENT < LE_EXPANSION_MISTS_OF_PANDARIA,
         INVTYPE_SHOULDER = true,
         INVTYPE_CHEST = true,
         INVTYPE_ROBE = true,
@@ -1096,7 +1106,7 @@ do
         INVTYPE_FEET = true,
         INVTYPE_WRIST = true,
         INVTYPE_HAND = true,
-        INVTYPE_FINGER = true,
+        INVTYPE_FINGER = enchantableRings,
         INVTYPE_CLOAK = true,
         INVTYPE_WEAPON = true,
         INVTYPE_SHIELD = true,
@@ -1108,13 +1118,13 @@ do
         INVTYPE_HOLDABLE = true,
     } or {
         -- retail
+        INVTYPE_HEAD = true,
+        INVTYPE_SHOULDER = true,
         INVTYPE_CHEST = true,
         INVTYPE_ROBE = true,
         INVTYPE_LEGS = true,
         INVTYPE_FEET = true,
-        INVTYPE_WRIST = true,
-        INVTYPE_FINGER = true,
-        INVTYPE_CLOAK = true,
+        INVTYPE_FINGER = enchantableRings,
         INVTYPE_WEAPON = true,
         INVTYPE_2HWEAPON = true,
         INVTYPE_WEAPONMAINHAND = true,
@@ -1134,5 +1144,9 @@ end
 
 ns.GetLinkValues = function(link)
     local linkType, linkOptions, displayText = LinkUtil.ExtractLink(link)
-    return linkType, strsplit(":", linkOptions)
+    if linkOptions then
+        -- If this was given a sparse link (`item:12345`) linkOptions will be nil
+        return linkType, strsplit(":", linkOptions)
+    end
+    return linkType
 end

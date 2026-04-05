@@ -10,7 +10,7 @@ local lastPlayed = 0;
 local backupPlayedTimer;
 local levelCache = UnitLevel("player");
 local playedCache, playedCacheWhen;
-local waitingForPlayed, reregisterPlayedEvent;
+local waitingForPlayed;
 
 local function getSecondsOnline()
 	return GetServerTime() - logonTime;
@@ -94,10 +94,7 @@ end
 --When leveling up.
 function NIT:requestLevelLogPlayed()
 	waitingForPlayed = true;
-	if (NIT:isTimePlayedMsgRegistered()) then
-		reregisterPlayedEvent = true;
-		NIT:unregisterTimePlayedMsg();
-	end
+	NIT:unregisterTimePlayedMsg();
 	--Backup timer incase played data fails to come back.
 	backupPlayedTimer = C_Timer.NewTimer(5, function()
 		NIT:backupPlayedTimer();
@@ -107,10 +104,7 @@ end
 
 --When logging on.
 function NIT:requestPlayedCache()
-	if (NIT:isTimePlayedMsgRegistered()) then
-		reregisterPlayedEvent = true;
-		NIT:unregisterTimePlayedMsg();
-	end
+	NIT:unregisterTimePlayedMsg();
 	RequestTimePlayed();
 end
 
@@ -134,12 +128,9 @@ function NIT:addLevelLogPlayed(timestamp)
 	else
 		--NIT:debug("Played received without level log waiting.");
 	end
-	if (reregisterPlayedEvent) then
-		reregisterPlayedEvent = nil;
-		C_Timer.After(2, function()
-			NIT:registerTimePlayedMsg();
-		end)
-	end
+	C_Timer.After(2, function()
+		NIT:registerTimePlayedMsg();
+	end)
 end
 
 --Backup incase we never receive played time, not sure why this can happen but I think it does on rare occasions?
@@ -155,12 +146,9 @@ function NIT:backupPlayedTimer()
 				NIT.data.myChars[char].levelLog[level].playedSource = "backupTimer";
 				lastPlayed = GetTime();
 				NIT:debug("Added played from backup.");
-				if (reregisterPlayedEvent) then
-					reregisterPlayedEvent = nil;
-					C_Timer.After(2, function()
-						NIT:registerTimePlayedMsg();
-					end)
-				end
+				C_Timer.After(2, function()
+					NIT:registerTimePlayedMsg();
+				end)
 			end
 		end
 		waitingForPlayed = nil;

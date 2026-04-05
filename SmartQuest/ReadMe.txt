@@ -215,3 +215,35 @@ Change Log:
 
 1.29.1
 * Updated TOC to 11.0.2
+
+1.30
+* Updated TOC to 11.0.7
+* Updated TOC for Cataclysm 4.4.1
+* Updated TOC for Classic 1.15.5
+* Fixed issues with Cataclysm Classic
+
+1.30.1
+* Updated TOC to 11.1
+* Updated TOC for Cataclysm 4.4.2
+* Updated TOC for WoW Classic 1.15.6
+
+1.30.2
+* Updated TOC to 11.1.5
+* Updated TOC for WoW Classic 1.15.7
+
+1.30.3
+* Updated TOC to 11.1.7
+* Updated TOC for Mists 5.5.0
+
+1.30.4
+* Updated TOC to 11.2
+
+1.30.5
+* Updated TOC to 12.0
+* Updated TOC for Classic 1.15.8
+* Updated TOC for TBC 2.5.5
+* Updated TOC for Wrath 3.4.5
+* Updated TOC for Mists 5.5.3
+
+1.31
+* Fixed migration problems

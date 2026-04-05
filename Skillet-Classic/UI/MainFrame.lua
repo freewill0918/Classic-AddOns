@@ -31,6 +31,7 @@ local GetItemInfo = C_Item and C_Item.GetItemInfo or GetItemInfo
 local GetItemCount = C_Item and C_Item.GetItemCount or GetItemCount
 local GetItemIcon = C_Item and C_Item.GetItemIconByID or GetItemIcon
 local GetItemQualityColor = C_Item and C_Item.GetItemQualityColor or GetItemQualityColor
+local ChatEdit_InsertLink  = ChatFrameUtil and ChatFrameUtil.InsertLink or ChatEdit_InsertLink
 
 local L = LibStub("AceLocale-3.0"):GetLocale("Skillet")
 
@@ -125,6 +126,43 @@ local pre_show_callbacks = {}
 --
 local pre_hide_callbacks = {}
 
+local function getLvlUpChance()
+--
+-- % to level up with this recipe is calculated by: (greySkill - yourSkill) / (greySkill - yellowSkill)
+--
+	local currentLevel, maxLevel = 0, 0
+	local skillRanks = Skillet:GetSkillRanks(Skillet.currentPlayer, Skillet.currentTrade)
+	if skillRanks then
+		currentLevel, maxLevel = skillRanks.rank, skillRanks.maxRank
+	end
+	local gray = SkilletRankFrame.gray
+	local yellow = SkilletRankFrame.yellow
+	if not gray then gray = SkilletRankFrame.subRanks.green:GetValue() end
+	if not yellow then yellow = SkilletRankFrame.subRanks.orange:GetValue() end
+	DA.DEBUG(0,"currentLevel= "..tostring(currentLevel)..", gray= "..tostring(gray)..", yellow= "..tostring(yellow))
+	if (currentLevel > gray) then
+		return 0
+	elseif (gray - yellow) == 0 then
+		return 100
+	else
+		local percent = ((gray - currentLevel) / ( gray - yellow )) * 100
+		if percent > 100 then
+			percent = 100
+		end
+		return percent
+	end
+end
+
+local function RankFrameMenuList(SkilletRankFrameMenu, rootDescription)
+	if Skillet.isTest then 
+		local title = "RankFrameMenuList"
+		rootDescription:CreateTitle(title);
+	end
+	rootDescription:CreateButton(L["Button 1"], function() Skillet:RankFrame_Button1() end);
+	rootDescription:CreateDivider(); -- CreateSpacer, CreateDivider
+	rootDescription:CreateButton(L["Button 2"], function() Skillet:RankFrame_Button2() end);
+end
+
 function Skillet:AddPreButtonShowCallback(method)
 	assert(method and type(method) == "function",
 		   "Usage: Skillet:AddPreButtonShowCallback(method). method must be a non-nil function")
@@ -176,6 +214,15 @@ function Skillet:StealEnchantButton()
 			CraftCreateButton:ClearAllPoints()		-- Clear all positions
 --			CraftCreateButton:SetPoint("TOPLEFT", SkilletQueueParentBase, "TOPLEFT",0, 0)	-- doesn't overlap other buttons
 			CraftCreateButton:SetPoint("TOPLEFT", SkilletEnchantButton, "TOPLEFT",0, 0)
+		end
+	end
+--
+-- Temporary
+--
+	if GetCraftSlots then
+		Skillet.db.global.getCraftSlots = {}
+		for n, s in ipairs({GetCraftSlots()}) do
+			Skillet.db.global.getCraftSlots[n] = {s, (getglobal(s) or "")}
 		end
 	end
 end
@@ -869,6 +916,10 @@ function Skillet:UpdateTradeButtons(player)
 	if not Skillet.AdditionalButtonsList then
 		self:CreateAdditionalButtonsList()
 	end
+	if not Skillet.AdditionalButton then
+		Skillet.AdditionalButton = {}
+		Skillet.AdditionalMacrotext = {}
+	end
 --
 -- Iterate thru the list of additional skills and add buttons for each one
 --
@@ -888,12 +939,22 @@ function Skillet:UpdateTradeButtons(player)
 			button = CreateFrame("Button", buttonName, frame, "SkilletTradeButtonAdditionalTemplate")
 			button:SetID(additionalSpellId)
 --
+-- For now, Thermal Anvil gets special treatment
+--
+			if additionalSpellId == 126462 then
+				button:SetAttribute("type", "macro");
+				local macrotext = Skillet:GetAutoTargetMacro(additionalSpellId)
+				button:SetAttribute("macrotext", macrotext)
+				Skillet.AdditionalMacrotext[i] = macrotext
+			else
+--
 -- no modifier - pure spell
 --
-			button:SetAttribute("type1", "spell");
-			button:SetAttribute("type2", "macro");
-			button:SetAttribute("alt-type*", "macro");
-			button:SetAttribute("spell", additionalSpellId);
+				button:SetAttribute("type1", "spell");
+				button:SetAttribute("type2", "macro");
+				button:SetAttribute("alt-type*", "macro");
+				button:SetAttribute("spell", additionalSpellId);
+			end
 		end
 		button:ClearAllPoints()
 		button:SetPoint("BOTTOMLEFT", SkilletRankFrame, "TOPLEFT", position, 3)
@@ -901,6 +962,7 @@ function Skillet:UpdateTradeButtons(player)
 		buttonIcon:SetTexture(spellIcon)
 		position = position + button:GetWidth()
 		button:Show()
+		Skillet.AdditionalButton[i] = button
 	end
 	--DA.DEBUG(3,"UpdateTradeButtons complete")
 end
@@ -947,12 +1009,21 @@ function Skillet:PluginButton_OnClick(button)
 	end
 end
 
+function Skillet:DelayUpdate()
+	Skillet.delayUpdate = false
+end
 --
 -- Updates the trade skill window whenever anything has changed,
 -- number of skills, skill type, skill level, etc
 --
 function Skillet:UpdateTradeSkillWindow()
 	DA.DEBUG(0,"UpdateTradeSkillWindow()")
+	if Skillet.db.profile.delayupdate and self.delayUpdate then
+		return
+	elseif Skillet.db.profile.delayupdate then
+		Skillet.delayUpdate = true
+		self:ScheduleTimer("DelayUpdate", 0.5)
+	end
 	self:NameEditSave()
 	if not self.currentPlayer or not self.currentTrade then 
 		DA.DEBUG(3,"leaving early, no player or no trade")
@@ -960,8 +1031,9 @@ function Skillet:UpdateTradeSkillWindow()
 	end
 	local skillListKey = self.currentPlayer..":"..self.currentTrade..":"..self.currentGroupLabel
 	local numTradeSkills = 0
-	if not self.dataScanned then
+	if not self.dataScanned or self.dataSourceChanged then
 		self.dataScanned = self:RescanTrade()
+		self.dataSourceChanged = false
 		self:SortAndFilterRecipes()
 	end
 	if not self.data.sortedSkillList or not self.data.sortedSkillList[skillListKey] then
@@ -1049,6 +1121,7 @@ function Skillet:UpdateTradeSkillWindow()
 	SkilletRankFrame:SetMinMaxValues(0, maxRank)
 	SkilletRankFrame:SetValue(rank)
 	SkilletRankFrameSkillRank:SetText(tradeName.."    "..rank.."/"..maxRank)
+	SkilletRankFrameSkillChance:Hide()
 	SkilletRankFrame.subRanks.gray:SetValue(maxRank)
 	for c,s in pairs(SkilletRankFrame.subRanks) do
 		s:SetMinMaxValues(0, maxRank)
@@ -1229,6 +1302,9 @@ function Skillet:UpdateTradeSkillWindow()
 					if level and level > 1 then
 						levelText:SetText(level)
 					end
+				elseif self.db.profile.display_skill_index then
+					levelText:SetWidth(28)
+					levelText:SetText(tostring(skillIndex))
 				end
 				text = (self:RecipeNamePrefix(skill, recipe) or "") .. (skill.name or "")
 				if recipe.reagentData and #recipe.reagentData > 0 then
@@ -1485,7 +1561,7 @@ function Skillet:SkillButton_OnEnter(button)
 			end
 		elseif self.currentTrade == 7411 and recipe.itemID == 0 then
 --
--- Wrath Enchanting tooltip is built with special API calls
+-- Enchanting tooltip is built with special API calls
 --
 			tip:AddLine(skill.name, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, false);
 			if skillIndex then
@@ -1860,6 +1936,14 @@ function Skillet:UpdateDetailsWindow(skillIndex)
 				SkilletRankFrame.subRanks.red:SetValue(orange)
 				for c,s in pairs(SkilletRankFrame.subRanks) do
 					s:Show()
+				end
+				if self.db.profile.enhanced_chance_display then
+					local chance = getLvlUpChance()
+					chance = math.floor(chance*10)/10		-- one decimal is enough
+					SkilletRankFrameSkillChance:SetText(chance.."%")
+					SkilletRankFrameSkillChance:Show()
+				else
+					SkilletRankFrameSkillChance:Hide()
 				end
 			end
 		end
@@ -2647,35 +2731,6 @@ function Skillet:PushSkill(player, tradeID, skillIndex)
 	table.insert(skillStack, entry)
 end
 
-function Skillet:getLvlUpChance()
---
--- icy: 03.03.2012:
--- according to pope (http://www.wowhead.com/spell=83949#comments)
--- % to level up with this receipt is calculated by: (greySkill - yourSkill) / (greySkill - yellowSkill)
---
-	local currentLevel, maxLevel = 0, 0
-	local skillRanks = self:GetSkillRanks(self.currentPlayer, self.currentTrade)
-	if skillRanks then
-		currentLevel, maxLevel = skillRanks.rank, skillRanks.maxRank
-	end
-	local gray = SkilletRankFrame.gray
-	local yellow = SkilletRankFrame.yellow
-	if not gray then gray = SkilletRankFrame.subRanks.green:GetValue() end
-	if not yellow then yellow = SkilletRankFrame.subRanks.orange:GetValue() end
-	--DA.DEBUG(0,"currentLevel= "..tostring(currentLevel)..", gray= "..tostring(gray)..", yellow= "..tostring(yellow))
-	if (currentLevel > gray) then
-		return 0
-	elseif (gray - yellow) == 0 then
-		return 100
-	else
-		local percent = ((gray - currentLevel) / ( gray - yellow )) * 100
-		if percent > 100 then
-			percent = 100
-		end
-		return percent
-	end
-end
-
 --
 -- Called when then mouse enters the rank status bar
 --
@@ -2694,10 +2749,7 @@ function Skillet:RankFrame_OnEnter(button)
 	if not green then green = SkilletRankFrame.subRanks.yellow:GetValue() end
 	if not yellow then yellow = SkilletRankFrame.subRanks.orange:GetValue() end
 	if not orange then orange = SkilletRankFrame.subRanks.red:GetValue() end
---
--- Lets add the chance to level up that skill with that receipt
---
-	local chance = Skillet:getLvlUpChance()
+	local chance = getLvlUpChance()
 	chance = math.floor(chance*10)/10		-- one decimal is enough
 	GameTooltip:AddLine(COLORORANGE..orange.."|r/"..COLORYELLOW..yellow.."|r/"..COLORGREEN..green.."|r/"..COLORGRAY..gray.."|r/ Chance:"..chance.."|r%")
 	GameTooltip:Show()
@@ -2707,7 +2759,54 @@ end
 -- Called when then mouse leaves the rank status bar
 --
 function Skillet:RankFrame_OnLeave(button)
+	Skillet.RankFrameExtra = false
 	GameTooltip:Hide()
+end
+
+function Skillet:RankFrame_OnMouseDown(button)
+	local mouse = GetMouseButtonClicked()
+	DA.DEBUG(3,"RankFrame_OnMouseDown("..tostring(button).."), "..tostring(mouse))
+	if (mouse == "LeftButton") then
+		if not Skillet.RankFrameExtra then
+			GameTooltip:AddLine("RankFrame_OnMouseDown")
+			Skillet.RankFrameExtra = true
+		end
+		GameTooltip:Show()
+	elseif (mouse == "RightButton") then
+		self:SkilletRankFrame_Show(button)
+	end
+end
+
+function Skillet:RankFrame_OnMouseUp(button)
+	local mouse = GetMouseButtonClicked()
+	DA.DEBUG(3,"RankFrame_OnMouseUp("..tostring(button).."), "..tostring(mouse))
+	if (mouse == "LeftButton") then
+		GameTooltip:AddLine("RankFrame_OnMouseUp")
+		GameTooltip:Show()
+	elseif (mouse == "RightButton") then
+		self:SkilletRankFrame_Show(button)
+	end
+end
+
+function Skillet:SkilletRankFrame_Show(button)
+	--DA.DEBUG(0,"SkilletRankFrame_Show("..tostring(button)..")")
+	local x, y = GetCursorPosition()
+	local uiScale = UIParent:GetEffectiveScale()
+	if not SkilletRankFrameMenu then
+		SkilletRankFrameMenu = CreateFrame("Frame", "SkilletRankFrameMenu", _G["UIParent"], "UIDropDownMenuTemplate")
+		SkilletRankFrameMenu:SetScale(uiScale)
+	end
+	self.menuButton = button
+--	GameTooltip:Hide() --hide tooltip, because it may be over the menu, sometimes it still fails
+	MenuUtil.CreateContextMenu(SkilletRankFrameMenu, RankFrameMenuList);
+end
+
+function Skillet:RankFrame_Button1()
+	DA.DEBUG(0,"RankFrame_Button1()")
+end
+
+function Skillet:RankFrame_Button2()
+	DA.DEBUG(0,"RankFrame_Button2()")
 end
 
 --

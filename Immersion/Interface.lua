@@ -1,11 +1,9 @@
 local API = {}; ImmersionAPI = API;
 -- Version
-local IS_VANILLA = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC or nil;
 local IS_RETAIL  = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE or nil;
-local IS_CLASSIC = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC or nil;
 local IS_WOW10   = (function() -- WoW10 == modern API
 	local version = select(4, GetBuildInfo())
-	if version >= 30401 or ( version >= 11404 and version <= 20000 ) then
+	if version >= 30401 or ( version >= 11404 and version <= 20505 ) then
 		return true
 	end
 end)();
@@ -309,6 +307,13 @@ function API:SelectGossipAvailableQuest(...)
 end
 
 -- Misc
+function API:IsSecretValue(value)
+	if issecretvalue then
+		return issecretvalue(value)
+	end
+	return false;
+end
+
 function API:GetUnitName(...)
 	return GetUnitName and GetUnitName(...)
 end

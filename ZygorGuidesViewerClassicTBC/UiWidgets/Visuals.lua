@@ -27,6 +27,19 @@ params:
 		...
 --]]
 
+function Visuals:CheckConditions(element)
+	if not element or type(element) ~= "table" then return false end
+
+	local faction = UnitFactionGroup("player"):sub(1,1)	--assuming element stores H or A
+	local class = UnitClass("player")
+
+	if element.faction and element.faction ~= faction then return false end
+	if element.beta and not ZGV.BETA then return false end
+	if element.class and element.class ~= class then return false end
+
+	return true
+end
+
 function Visuals:Render(data,width,parent,config)
 	local renderer = {}
 	setmetatable(renderer,{ __index=Visuals })
@@ -59,7 +72,7 @@ function Visuals:Render(data,width,parent,config)
 
 	local content_block
 	for i,element in ipairs(data) do
-		if (not element.faction or (element.faction==faction)) and (not element.beta or ZGV.BETA) then
+		if self:CheckConditions(element) then
 			local object, e_height, space,guideslist_content
 			if renderer[element[1]] then
 				object,e_height,space,guideslist_content= renderer[element[1]](renderer,element)
@@ -123,7 +136,7 @@ end
 function Visuals:GetAsString(data)
 	local output = ""
 	for i,element in ipairs(data) do
-		if (not element.faction or (element.faction==faction)) and (not element.beta or ZGV.BETA) then
+		if self:CheckConditions(element) then
 			if Visuals.AsString[element[1]] then
 				local elementtxt = Visuals.AsString[element[1]](element)
 				output = output .. elementtxt.."|n"
@@ -134,6 +147,7 @@ function Visuals:GetAsString(data)
 end
 
 local faction=UnitFactionGroup("player"):sub(1,1)
+local class = UnitClass("player")
 
 local function SetTextColors(str,gray,dev)
 	if not (gray or dev) then
@@ -614,7 +628,7 @@ Visuals.columns = function(self,element,width)
 				end
 
 			else
-				if (not colelement.faction or (colelement.faction==faction)) then	
+				if self:CheckConditions(colelement) then
 					local subobject, s_height, s_space
 					if Visuals[colelement[1]] then
 						subobject,s_height,s_space = Visuals[colelement[1]](self,current_column,colelement,c_width)
@@ -642,7 +656,7 @@ Visuals.columns = function(self,element,width)
 	else -- no columns defined, auto assign two column layout
 		for i=2,#element do -- from 2, since 1 is the "columns" keyword
 			local colelement = element[i]
-			if (not colelement.faction or (colelement.faction==faction)) then
+			if (not colelement.faction or (colelement.faction==faction)) and (not colelement.class or (colelement.class==class)) then
 				count = count + 1
 			end
 		end
@@ -668,7 +682,7 @@ Visuals.columns = function(self,element,width)
 		local validcount = 1
 		for i=2,#element do -- from 2, since 1 is the "columns" keyword
 			local colelement = element[i]
-			if (not colelement.faction or (colelement.faction==faction)) then
+			if (not colelement.faction or (colelement.faction==faction)) and (not colelement.class or (colelement.class==class)) then
 				validcount = validcount + 1
 				local subobject, s_height, s_space
 

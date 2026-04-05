@@ -1,5 +1,5 @@
 --[[
-Copyright 2012-2025 João Cardoso
+Copyright 2012-2026 João Cardoso
 All Rights Reserved
 --]]
 
@@ -11,18 +11,18 @@ local L = LibStub('AceLocale-3.0'):GetLocale(ADDON)
 --[[ Construct ]]--
 
 function Pet:New(id)
-  return self:Bind{id = id}
+	return self:Bind{id = id}
 end
 
 function Pet:Display()
-  self:Super(Pet):Display()
+	self:Super(Pet):Display()
 	CollectionsJournal_SetTab(CollectionsJournal, 2)
 
-  if self:GetID() then
-    PetJournal_SelectPet(PetJournal, self:GetID())
-  elseif self:GetSpecie() then
-    PetJournal_SelectSpecies(PetJournal, self:GetSpecie())
-  end
+	if self:GetID() then
+		PetJournal_SelectPet(PetJournal, self:GetID())
+	elseif self:GetSpecie() then
+		PetJournal_SelectSpecies(PetJournal, self:GetSpecie())
+	end
 end
 
 

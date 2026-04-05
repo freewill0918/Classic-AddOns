@@ -2717,7 +2717,7 @@ ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Hallow's End Candy
 mopready=true,
 description="Visit innkeeper candy buckets in Eastern Kingdoms, Kalimdor, and Outland "..
 "for tasty treats.",
-achieveid={970,963,969,966,5836,5837},
+achieveid={971,963,969,966,5836,5837,7601},
 patch='40405',
 },[[
 step
@@ -2924,6 +2924,7 @@ accept Candy Bucket##29008 |goto Southern Barrens/0 49.05,68.50
 step
 click Candy Bucket##208144
 |tip It's inside the inn on the second floor.
+|tip If the city is a crater, you can skip this or talk to Zidormi in the pillar of light at the entrance to the city crater to see the old version.
 '|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
 |tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
 accept Candy Bucket##12349 |goto Dustwallow Marsh/0 66.60,45.28
@@ -3355,6 +3356,139 @@ click Candy Bucket##208144
 '|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
 |tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
 accept Candy Bucket##28981 |goto Kelp'thar Forest/0 63.50,60.16
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32049 |goto The Jade Forest/0 44.80,84.36
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32033 |goto The Jade Forest/0 59.56,83.24
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32032 |goto The Jade Forest/0 54.61,63.33
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32027 |goto The Jade Forest/0 45.77,43.61
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32021 |goto The Jade Forest/0 41.68,23.14
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32031 |goto The Jade Forest/0 55.72,24.41
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32029 |goto The Jade Forest/0 48.09,34.62
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32039 |goto Kun-Lai Summit/0 72.73,92.28
+step
+click Candy Bucket##208144
+|tip You {o}must complete{} the {o}Challenge Accepted{} quest to access this candy bucket.	|only if not completedq(30514)
+|tip Complete the {o}few quests{} at {o}Binan Village{} nearby.					|only if not completedq(30514)
+|tip The {o}quests will lead you{} to Westwind Rest.						|only if not completedq(30514)
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32042 |goto Kun-Lai Summit/0 54.07,82.82
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32037 |goto Kun-Lai Summit/0 57.45,59.95
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32041 |goto Kun-Lai Summit/0 64.21,61.27
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32051 |goto Kun-Lai Summit/0 62.50,28.90
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32043 |goto Townlong Steppes/0 71.11,57.78
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32044 |goto Vale of Eternal Blossoms/0 35.14,77.78
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32052 |goto Shrine of Seven Stars/1 37.81,65.92
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32026 |goto The Veiled Stair/0 55.10,72.23
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32048 |goto Valley of the Four Winds/0 83.64,20.15
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32046 |goto Valley of the Four Winds/0 19.87,55.79
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32024 |goto Dread Wastes/0 55.93,32.27
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32023 |goto Dread Wastes/0 55.22,71.19
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32036 |goto Krasarang Wilds/0 75.92,6.87
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32034 |goto Krasarang Wilds/0 51.40,77.29
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\The Mask Task",{
 mopready=true,
@@ -3376,31 +3510,52 @@ achieveid={1040},
 patch='40300',
 condition_suggested=function() return isevent("Hallow's End") end,
 description="Ruin Hallow's End for the Horde and foil their attempts to wreck the Alliance celebration by completing the following quests:\n\n"..
-"The Power of Pine\nCrashing the Wickerman Festival",
+"A Time to Gain\nA Time to Lose\nStink Bombs Away!\nClean Up in Stormwind",
 },[[
 step
-Reach Level 25 |ding 25
-|tip You must be at least level 25 to be able to accept these quests.
-|tip Use the Leveling guides to accomplish this.
+talk Celestine of the Harvest##51665
+accept A Time to Gain##29075 |goto Elwynn Forest/0 32.04,50.51
 step
-talk Sergeant Hartman##15199
-accept The Power of Pine##8373 |goto Hillsbrad Foothills/0 50.00,57.34
+talk Keira##52064
+accept A Time to Lose##29371 |goto Elwynn Forest/0 32.08,50.60
 step
-use Stink Bomb Cleaner##20604
-|tip Use it next to a stink bomb placed by a Horde player.
-|tip They look like small metal objects surrounded by orange smoke on the ground around Southshore.
-|tip Run around Southshore and look for them, they will most likely be near the outskirts of the town.
-Clean Up a Stink Bomb in Southshore |q 8373/1 |goto Hillsbrad Foothills/0 49.58,57.65
+talk Gretchen Fenlow##51934
+accept Stink Bombs Away!##29054 |goto Elwynn Forest/0 32.35,50.88
+accept Clean Up in Stormwind##29144 |goto Elwynn Forest/0 32.35,50.88
 step
-talk Sergeant Hartman##15199
-turnin The Power of Pine##8373 |goto Hillsbrad Foothills/0 50.00,57.34
-accept Crashing the Wickerman Festival##1658 |goto Hillsbrad Foothills/0 50.00,57.34
+talk Gertrude Fenlow##52548
+Select _"I'm ready to fly, let's bomb the Undercity!"_ |gossip 113573
+Begin Your Flight to Undercity |invehicle |goto Elwynn Forest/0 32.21,50.77 |q 29054
 step
-Scout Out the Forsaken's Wickerman Festival |q 1658/1 |goto Tirisfal Glades/0 62.37,68.20
-|tip Move quick and run from the guards if they attack you.
+Reach Undercity |complete zone("Undercity") or completedq(29054)
 step
-talk Sergeant Hartman##15199
-turnin Crashing the Wickerman Festival##1658 |goto Hillsbrad Foothills/0 50.00,57.34
+Drop #25# Bombs |q 29054/1 |goto Elwynn Forest/0 32.21,50.77
+|tip Use the {o}Toss Stink Bomb{} ability on your vehicle bar to drop bombs across Undercity.
+|tip You can drop them anywhere.
+|tip If you're feeling kind, focus on dropping them in areas where Horde players can easily remove them later.
+step
+Return to Elwynn Forest |complete zone("Elwynn Forest") or zone("Stormwind City") or completedq(29054)
+|tip Use the {o}Return Home{} button on your vehicle bar.
+step
+click Bonfire
+Use the Bonfire |q 29075/1 |goto Elwynn Forest/0 32.86,49.37
+step
+use the Arcane Cleanser##69191
+|tip Use it all over Stormwind City on large orange clouds of smoke coming from the ground.
+Remove #10# Stink Bombs |q 29144/1 |goto Stormwind City/0 57.58,63.42
+step
+talk Celestine of the Harvest##51665
+turnin A Time to Gain##29075 |goto Elwynn Forest/0 32.04,50.51
+step
+talk Gretchen Fenlow##51934
+turnin Stink Bombs Away!##29054 |goto Elwynn Forest/0 32.35,50.88
+turnin Clean Up in Stormwind##29144 |goto Elwynn Forest/0 32.35,50.88
+step
+use Dousing Agent##68648
+Douse the Horde's Wickerman |q 29371/1 |goto Tirisfal Glades/0 62.37,68.20
+step
+talk Keira##52064
+turnin A Time to Lose##29371 |goto Elwynn Forest/0 32.08,50.60
 step
 Earn "Rotten Hallow" Achievement |achieve 1040
 ]])
@@ -3489,10 +3644,10 @@ accept Candy Bucket##12336 |goto Stormwind City/0 60.51,75.33
 step
 Earn the "Trick or Treat!" Achievement |achieve 972
 ]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Bring Me The Head of... Oh Wait",{
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Don't Lose Your Head, Man",{
 mopready=true,
 startlevel=75,
-achieveid={255},
+achieveid={18959},
 patch='40405',
 condition_suggested=function() return isevent("Hallow's End") end,
 description="To earn this achievement, you will have to kill the Headless Horseman.",
@@ -3507,7 +3662,7 @@ Inside the Scarlet Monastery Graveyard:
 kill Headless Horseman##23682
 |tip Enter the Scarlet Monastery Graveyard with a group.
 |tip Accept the daily in the couryard at the Pumpkin Shrine when you are ready.
-Earn the "Bring Me The Head of... Oh Wait" Achievement |achieve 255
+achieve 18959
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Out With It",{
 mopready=true,
@@ -3628,12 +3783,12 @@ achieveid={1656},
 patch='40405',
 condition_suggested=function() return isevent("Hallow's End") end,
 description="To earn this achievement, complete the following Hallow's End achievements:\n\n"..
-"Trick or Treat!\nOut With It\nBring Me The Head of... Oh Wait\nThe Savior of Hallow's End\n"..
+"Trick or Treat!\nOut With It\nDon't Lose Your Head, Man\nThe Savior of Hallow's End\n"..
 "That Sparkling Smile\nRotten Hallow\nG.N.E.R.D. Rage\nCheck Your Head\nThe Masquerade\n"..
 "Sinister Calling\nTricks and Treats of Azeroth",
 },[[
 leechsteps "Events Guides\\Hallow's End\\Achievements\\Out With It" 1-1
-leechsteps "Events Guides\\Hallow's End\\Achievements\\Bring Me The Head of... Oh Wait" 1-1
+leechsteps "Events Guides\\Hallow's End\\Achievements\\Don't Lose Your Head, Man" 1-2
 leechsteps "Events Guides\\Hallow's End\\Achievements\\The Savior of Hallow's End" 1-11
 leechsteps "Events Guides\\Hallow's End\\Achievements\\Rotten Hallow" 1-7
 leechsteps "Events Guides\\Hallow's End\\Achievements\\G.N.E.R.D. Rage" 1-1
@@ -3641,9 +3796,7 @@ leechsteps "Events Guides\\Hallow's End\\Achievements\\Check Your Head" 1-1
 leechsteps "Events Guides\\Hallow's End\\Achievements\\The Masquerade" 1-1
 leechsteps "Events Guides\\Hallow's End\\Achievements\\Sinister Calling" 1-3
 leechsteps "Events Guides\\Hallow's End\\Achievements\\That Sparkling Smile" 1-2
-leechsteps "Events Guides\\Hallow's End\\Hallow's End Candy Buckets" 1-30
-step
-Earn the "Hallowed Be Thy Name" Achievement |achieve 1656
+leechsteps "Events Guides\\Hallow's End\\Hallow's End Candy Buckets" 1-81
 ]])
 ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\The Masquerade",{
 mopready=true,

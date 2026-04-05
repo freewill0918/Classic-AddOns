@@ -1,14 +1,14 @@
 ﻿-- Pawn by Vger-Azjol-Nerub
 -- www.vgermods.com
--- © 2006-2025 Travis Spomer.  This mod is released under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license.
--- See Readme.htm for more information.
+-- © 2006-2026 Travis Spomer.  This mod is released under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license.
+-- See Readme.md for more information.
 
 --
 -- German resources
 ------------------------------------------------------------
 
 local function PawnUseThisLocalization()
-PawnLocal = 
+PawnLocal =
 {
 	["AverageItemLevelIgnoringRarityTooltipLine"] = "Durchschnittliche Gegenstandsstufe",
 	["BaseValueWord"] = "Basis",
@@ -71,7 +71,7 @@ www.vgermods.com
 /pawn debug [ an | aus ] -- Debug Infos in der Konsole anzeigen
 /pawn backup -- alle Bewertungsprofile sichern
  
-Weitere Informationen zur Anpassung von Pawn findet ihr in der Hilfedatei (Readme.htm) die mit dieser Installation ausgeliefert wird.]=],
+Weitere Informationen zur Anpassung von Pawn findet ihr in der Hilfedatei (Readme.md) die mit dieser Installation ausgeliefert wird.]=],
 	["ValueCalculationMessage"] = "   %g %s x %g pro = %g",
 	["VisibleScalesHeader"] = "%s's Wertungen",
 	["Stats"] = {
@@ -315,9 +315,7 @@ Wenn du Quest-Belohnungen oder Dungeon-Beute erwirbst, die besser als deine aktu
 		["OptionsBagUpgradeAdvisor"] = "Zeige Ratgeber für Verbesserungen in den Taschen",
 		["OptionsBagUpgradeAdvisorTooltip"] = [=[Aktiviere diese Option, wenn Pawn die Verbesserungs-Pfeile in den Taschen übernehmen soll. 
 
-Wenn aktiviert, findet Pawn Verbesserungen in deinen Taschen und markiert die Gegenstände, die eine Verbesserung für deine aktive Waage sind, mit grünen Pfeilen.
-
-Wenn deaktiviert, markiert WoW Gegenstände mit einem höheren Gegenstandswert als dem, was du gerade trägst und Pawn wird die eingebaute Funktion nicht stören.]=],
+Wenn aktiviert, findet Pawn Verbesserungen in deinen Taschen und markiert die Gegenstände, die eine Verbesserung für deine aktive Waage sind, mit grünen Pfeilen.]=],
 		["OptionsBlankLine"] = "Fügt vor den Werten eine leere Zeile ein",
 		["OptionsBlankLineTooltip"] = "Halte die Tooltips für Gegenstände besonders ordentlich, indem du diese Option aktivierst, bei der vor den Pawn-Werten eine Leerzeile eingefügt wird.",
 		["OptionsButtonHidden"] = "Verstecke ihn",
@@ -561,7 +559,7 @@ PawnLocal.TooltipParsing = {
 	["HasteRating"] = "^Anlegen: Erhöht die Tempowertung um #%.$",
 	["HasteRating2"] = "^UNUSED$",
 	["HasteRatingShort"] = "^%+?# Tempowertung$",
-	["HaventCollectedAppearance"] = "^Ihr habt diese Vorlage noch nicht gesammelt$",
+	["HaventCollectedAppearance"] = "^Ihr habt diese Vorlage noch nicht gesammelt%.?$",
 	["Healing"] = "^%+# Heilzauber$",
 	["Healing2"] = "^Anlegen: Erhöht durch Zauber und Effekte verursachte Heilung um bis zu #%.$",
 	["Healing3"] = "^%+# Heilung$",
@@ -704,10 +702,12 @@ PawnLocal.TooltipParsing = {
 
 -- Special case: weapon speed and Mail use different words on Classic.
 -- So, patch things up here.
-if VgerCore.IsClassic or VgerCore.IsBurningCrusade or VgerCore.IsWrath or VgerCore.IsCataclysm or VgerCore.IsMists then
+if VgerCore.IsClassic or VgerCore.IsBurningCrusade or VgerCore.IsWrath or VgerCore.IsCataclysm then
 	PawnLocal.Mail = "Schwere Rüstung"
 	PawnLocal.MailInfo = "Punkte, die zugewiesen werden sollen, wenn der Gegenstand Schwere Rüstung ist."
 	PawnLocal.TooltipParsing.Mail = "^Schwere Rüstung$"
+end
+if VgerCore.IsClassic or VgerCore.IsBurningCrusade or VgerCore.IsWrath or VgerCore.IsCataclysm or VgerCore.IsMists then
 	PawnLocal.TooltipParsing.Speed = "^Tempo #$"
 end
 PawnLocal.Specs =
@@ -782,9 +782,6 @@ PawnLocal.Specs =
 
 end
 
-if GetLocale() == "deDE" then
-	PawnUseThisLocalization()
-end
-
--- After using this localization or deciding that we don't need it, remove it from memory.
+-- Initiate self-destruct sequence.
+PawnUseThisLocalization()
 PawnUseThisLocalization = nil

@@ -27,7 +27,7 @@ ZGVP.tradeskills = {
 	[165] = {name="Leatherworking",crafting=true, skill=165, icon=133611},
 	[197] = {name="Tailoring",crafting=true, skill=197, icon=136249},
 	[182] = {name="Herbalism", skill=182, icon=136065},
-	[186] = {name="Mining",crafting=true, skill=186, icon=136248},
+	[186] = {name="Mining",crafting=true, nonclickable = true, skill=186, icon=136248},
 	[393] = {name="Skinning", skill=393, icon=134366},
 	[185] = {name="Cooking",crafting=true, skill=185, icon=133971},
 	[356] = {name="Fishing", skill=356, icon=136245},
@@ -188,11 +188,6 @@ function ZGV:CacheRecipes_Queued()
 	end
 	self:Debug(scanned.." "..skill.." recipes found")
 
-	local Goldguide = ZGV.Goldguide
-	if Goldguide and Goldguide.MainFrame and Goldguide.MainFrame:IsVisible() then 
-		Goldguide:InitialiseCraftingChores()
-		for _,chore in pairs(Goldguide.Chores.Crafting) do chore:CalculateDetails(true)  chore.needsRefresh=true end
-	end
 end
 
 function ZGVP:GetSkill(name)
@@ -364,13 +359,35 @@ function ZGVP:HasProfessionSlot()
 	return not (p1 and p2)
 end
 
+local cacheskill_profs = {}
 function ZGVP:HasProfessionUnscanned(name)
-	local skill = ZGV.db.char.SkillsKnown[name]
+	cacheskill_profs.prof1, cacheskill_profs.prof2, cacheskill_profs.arch, cacheskill_profs.fish, cacheskill_profs.cook, cacheskill_profs.firstAid = GetProfessions()
 
-	if not skill then return false end
+	for i,prof in pairs(cacheskill_profs) do
+		local _, _, _, _, _, _, skillline = GetProfessionInfo(prof)
+		if ZGVP.tradeskills[skillline] and ZGVP.tradeskills[skillline].name==name then 
+			if ZGVP.SkillsKnown[name] and ZGV.db.char.RecipesKnown[skillline] then
+				-- we know everything, skill is NOT unscanned
+				return false
+			else
+				-- player has it, but we do not have both data sets
+				return true
+	end
+		end
+	end
+	return false
+end
 
-	if not ZGV.db.char.RecipesKnown[skill.skillID] then return true end
 
+function ZGVP:KnowsProfessionRecipes(name)
+	cacheskill_profs.prof1, cacheskill_profs.prof2, cacheskill_profs.arch, cacheskill_profs.fish, cacheskill_profs.cook, cacheskill_profs.firstAid = GetProfessions()
+
+	for i,prof in pairs(cacheskill_profs) do
+		local _, _, _, _, _, _, skillline = GetProfessionInfo(prof)
+		if ZGVP.tradeskills[skillline] and ZGVP.tradeskills[skillline].name==name then 
+			if ZGV.db.char.RecipesKnown[skillline] then return true end
+		end
+	end
 	return false
 end
 

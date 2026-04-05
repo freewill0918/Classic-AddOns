@@ -32,9 +32,19 @@ function Foglight:ToggleOverlay()
 			local map = WorldMapFrame:GetMapID()
 			if map then
 				WorldMapFrame:Hide()
+				if ZGV.IsClassicTBC then
+					WorldMapFrame:Show()
+					if not GetCVarBool("miniWorldMap") then
+						WorldMapFrame:Maximize();
+					else
+						WorldMapFrame:Minimize();
+					end
+					WorldMapFrame:SetMapID(map)
+				else
 				OpenWorldMap(map)
 			end
 		end
+	end
 	end
 end
 
@@ -216,10 +226,8 @@ function ZygorFogLightPinMixin:RefreshOverlays(fullUpdate)
 	end
 end
 
-function ZygorFogLightPinMixin:CheckMouseButtonPassthrough()
-	-- taint prevention for blizz SetPassThroughButtons insecurities
-	return false
-end
+function ZygorFogLightPinMixin:CheckMouseButtonPassthrough() return false end
+function ZygorFogLightPinMixin.SetPassThroughButtons() end
 
 function ZygorFogLightPinMixin:OnCanvasScaleChanged()
 	if self.layerIndex ~= self:GetMap():GetCanvasContainer():GetCurrentLayerIndex() then

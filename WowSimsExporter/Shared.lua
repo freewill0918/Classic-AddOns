@@ -5,20 +5,17 @@ Env.IS_CLASSIC_ERA_SOD = Env.IS_CLASSIC_ERA and C_Engraving.IsEngravingEnabled()
 Env.IS_CLASSIC_WRATH = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 Env.IS_CLASSIC_CATA = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
 Env.IS_CLASSIC_MISTS = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
-Env.IS_CLIENT_SUPPORTED = Env.IS_CLASSIC_ERA or Env.IS_CLASSIC_ERA_SOD or Env.IS_CLASSIC_WRATH or Env.IS_CLASSIC_CATA or Env.IS_CLASSIC_MISTS
+Env.IS_CLASSIC_TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+Env.IS_CLIENT_SUPPORTED = Env.IS_CLASSIC_ERA or Env.IS_CLASSIC_ERA_SOD or Env.IS_CLASSIC_TBC or Env.IS_CLASSIC_WRATH or Env.IS_CLASSIC_CATA or Env.IS_CLASSIC_MISTS
 
-if Env.IS_CLASSIC_MISTS then
-    Env.VERSION = C_AddOns.GetAddOnMetadata(select(1, ...), "Version")
-    Env.AUTHORS = C_AddOns.GetAddOnMetadata(select(1, ...), "Author")
-else
-    Env.VERSION = GetAddOnMetadata(select(1, ...), "Version")
-    Env.AUTHORS = GetAddOnMetadata(select(1, ...), "Author")
-end
+Env.VERSION = C_AddOns.GetAddOnMetadata(select(1, ...), "Version")
+Env.AUTHORS = C_AddOns.GetAddOnMetadata(select(1, ...), "Author")
 
 Env.supportedClientNames = {
     "Classic: Mists of Pandaria",
     "Classic: Cataclysm",
     "Classic: WotLK",
+    "Classic: TBC",
     "Classic: SoD",
     "Classic: Era/Anniversary",
 }
@@ -347,7 +344,7 @@ function Env.GetHandTinker(unit)
     local regions = { WSEScanningTooltip:GetRegions() }
 
     local use_localized = ITEM_SPELL_TRIGGER_ONUSE
-    local cooldown_m_localized = ITEM_COOLDOWN_TOTAL_MIN
+    local cooldown_m_localized = ITEM_COOLDOWN_TOTAL_MIN -- korean locale uses another string : ITEM_COOLDOWN_TOTAL
     local cooldown_s_localized = ITEM_COOLDOWN_TOTAL_SEC
 
     for i = 1, #regions do
@@ -355,13 +352,13 @@ function Env.GetHandTinker(unit)
         if region and region:GetObjectType() == "FontString" then
             local text = region:GetText()
             -- some client have wierd character as separator, so hopefuly .?.? picks them all
-            if text and text:find(use_localized..".+1.?.?920.+"..cooldown_m_localized) then
+            if text and text:find(use_localized..".+1.?.?920.+") then
                 return 4898 -- Synapse Srping
             end
-            if text and text:find(use_localized..".+2.?.?880.+"..cooldown_m_localized) then
+            if text and text:find(use_localized..".+2.?.?880.+") then
                 return 4697 -- Phase Fingers
             end
-            if text and text:find(use_localized..".+42.?.?000.+63.?.?000.+"..cooldown_s_localized) then
+            if text and text:find(use_localized..".+42.?.?000.+63.?.?000.+") then
                 return 4698 -- Incendiary Fireworks Launcher
             end
         end

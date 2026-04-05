@@ -519,7 +519,7 @@ local function OptionOnMouseOver(widget, event)
 	
 	if opt.type == "multiselect" or type(desc)=="string" or type(usage)=="string" then
 		name=name or ""
-		tooltip:SetText(name, 1, .82, 0, true)
+		tooltip:SetText(name, 1, .82, 0, 1, true)
 	end
 	
 	if opt.type == "multiselect" then

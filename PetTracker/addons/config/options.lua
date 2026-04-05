@@ -1,16 +1,23 @@
 --[[
-	Copyright 2012-2025 João Cardoso
+	Copyright 2012-2026 João Cardoso
 	All Rights Reserved
 --]]
 
 local Sushi, Addon = LibStub('Sushi-3.2'), PetTracker
 local L = LibStub('AceLocale-3.0'):GetLocale('PetTracker')
-local Options = PetTracker:NewModule('Options', Sushi.OptionsGroup('|Tinterface/addons/pettracker/art/compass:16:16|t '..L.ADDON))
+local Options = PetTracker:NewModule('Options', Sushi.OptionsGroup('|Tinterface/addons/pettracker/art/compass:16:16|t PetTracker'))
 
-local PATRONS = {{title='Jenkins',people={'Gnare','Debora S Ogormanw','Johnny Rabbit','Shaun Potts'}},{title='Ambassador',people={'Julia F','Lolari ','Rafael Lins','Ptsdthegamer','Adam Mann','Bc Spear','Jury ','Swallow@area52','Peter Hollaubek','Michael Kinasz','Brian Joaquin','Lisa','M Prieto','Ronald Platz','Airdrigh','James G'}}} -- generated patron list
+local PATRONS = {{title='Jenkins',people={'Gnare','Johnny Rabbit','Debora S Ogormanw'}},{title='Ambassador',people={'Julia F','Lolari ','Ptsdthegamer','Swallow@area52','Peter Hollaubek','Jury ','Bc Spear','Adam Mann','Michael Kinasz','Ronald Platz','M Prieto','Goldpaw','Brian Joaquin','Ole Jonny Søndenå','Airdrigh','Sean Locko'}}} -- generated patron list
 local PATREON_ICON = '  |TInterface/Addons/PetTracker/art/patreon:12:12|t'
 local HELP_ICON = '  |T516770:13:13:0:0:64:64:14:50:14:50|t'
-local FOOTER = 'Copyright 2012-2025 João Cardoso'
+local FOOTER = 'Copyright 2012-2026 João Cardoso'
+
+local DISPLAY_CONDITIONS = {{key=Addon.MaxQuality, text=ALWAYS}, {key=Addon.MaxPlayerQuality, text=L.MissingRares}, {key=1, text=L.MissingPets}}
+local PET_QUALITIES = {}
+
+for i = Addon.MaxPlayerQuality, 1, -1 do
+	tinsert(PET_QUALITIES, {key = i, text = Addon:GetColor(i):WrapTextInColorCode(_G['BATTLE_PET_BREED_QUALITY'..i])})
+end
 
 
 --[[ Startup ]]--
@@ -29,6 +36,10 @@ end
 function Options:OnMain()
 	self:Add('Header', TRACKING, GameFontHighlight, true)
 	self:AddCheck('ZoneTracker')
+	if Addon.sets.zoneTracker then
+		self:AddChoice('TargetQuality', DISPLAY_CONDITIONS):SetSmall(true):SetKeys{top=8, bottom=10, left=30}
+	end
+
 	self:AddCheck('SpecieIcons')
 	self:AddCheck('RivalPortraits')
 
@@ -36,6 +47,7 @@ function Options:OnMain()
 	self:AddCheck('Switcher')
 	self:AddCheck('AlertUpgrades')
 	self:AddCheck('Forfeit')
+	self:AddChoice('MinAlertQuality', PET_QUALITIES)
 end
 
 function Options:OnHelp()
@@ -78,6 +90,12 @@ end
 
 function Options:AddCheck(id)
 	return self:AddSetting('Check', id)
+end
+
+function Options:AddChoice(id, entries)
+	local b = Options:AddSetting('DropChoice', id)
+	b:AddChoices(entries)
+	return b
 end
 
 function Options:AddSetting(class, id)

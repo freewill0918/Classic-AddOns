@@ -1248,10 +1248,7 @@ talk Nerog##46716
 |tip Inside the building.
 Train Moonglow Ink |learn Moonglow Ink##52843 |goto Orgrimmar/1 55.24,55.80
 step
-create 22 Moonglow Ink##52843,Inscription,22 total
-|tip Save these, you will need them for future steps.
-step
-create 1 Moonglow Ink##52843,Inscription,53
+create 22 Moonglow Ink##52843,Inscription,53
 |tip Save at least 22 of these; you will need them for future steps.
 step
 collect 22 Moonglow Ink##39469 |or
@@ -1303,14 +1300,11 @@ collect 42 Dusky Pigment##39334 |or
 |tip You may need more or less than the indicated amount.
 '|complete skill("Inscription") >= 80 |or
 step
-create 21 Midnight Ink##53462,Inscription,21 total
-|tip Save at least 20 of these; you will need them for future steps.
-step
-create 1 Midnight Ink##53462,Inscription,80
+create 21 Midnight Ink##53462,Inscription,80
 |tip You may need to create more or less of these.
 |tip Each additional Midnight Ink requires 2 Dusky Pigment.
 step
-collect 20 Midnight Ink##53462 |or
+collect 21 Midnight Ink##39774 |or
 |tip You collected these in a previous step.
 '|complete skill("Inscription") >= 100 |or
 step

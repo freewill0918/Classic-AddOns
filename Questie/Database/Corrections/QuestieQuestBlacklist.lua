@@ -1287,6 +1287,7 @@ function QuestieQuestBlacklist:Load()
         [78225] = true, -- Boosted character quest
         [93823] = true, -- Boosted character quest
         [93824] = true, -- Boosted character quest
+        [96253] = true, -- Boosted character quest
         [96254] = true, -- Boosted character quest
 
         -- TBC Anniversary BG quests
@@ -1662,6 +1663,7 @@ function QuestieQuestBlacklist:Load()
         [87379] = Expansions.Current >= Expansions.Wotlk, -- Proof of Demise: Threats to Azeroth (not available anymore)
         [93975] = not Questie.IsTitanReforged, -- Ragnaros Must Die! -- only present on Titan servers
         [94577] = not Questie.IsTitanReforged, -- Kael'thas Must Die! -- only present on Titan servers
+        [94579] = not Questie.IsTitanReforged, -- Patchwerk Must Die! -- only present on Titan servers
 
         --- Daily quests
         [24788] = true, -- Daily Heroic Random (1st)
@@ -5422,7 +5424,6 @@ function QuestieQuestBlacklist:Load()
         [11588] = true, -- Not in the game
         [11589] = true, -- Not in the game
         [11790] = true, -- Not in the game
-        [11875] = true, -- hiding because we use fake quests to mimic this one
         [11883] = true, -- Not in the game
         [11934] = true, -- Not in the game
         [11974] = true, -- Not in the game
@@ -6043,6 +6044,7 @@ function QuestieQuestBlacklist:Load()
         [29550] = true, -- Not in the game
         [29551] = true, -- Not in the game
         [29554] = true, -- Not in the game
+        [29557] = true, -- Not in the game
         [29561] = true, -- Not in the game
         [29569] = true, -- Not in the game
         [29572] = true, -- Not in the game
@@ -6113,6 +6115,7 @@ function QuestieQuestBlacklist:Load()
         [30009] = true, -- Not in the game
         [30019] = true, -- Not in the game
         [30020] = true, -- Not in the game
+        [30021] = true, -- Not in the game
         [30087] = true, -- Not in the game
         [30110] = true, -- Not in the game
         [30111] = true, -- Not in the game
@@ -6144,6 +6147,7 @@ function QuestieQuestBlacklist:Load()
         [30315] = true, -- Not in the game
         [30316] = true, -- Not in the game
         [30343] = true, -- Not in the game
+        [30345] = true, -- Not in the game
         [30358] = true, -- Not in the game
         [30362] = true, -- Not in the game
         [30364] = true, -- Not in the game
@@ -6152,6 +6156,7 @@ function QuestieQuestBlacklist:Load()
         [30443] = true, -- Not in the game
         [30454] = true, -- Not in the game
         [30455] = true, -- Not in the game
+        [30458] = true, -- Not in the game
         [30461] = true, -- Believe this is duplicate and not actually in game
         [30462] = true, -- Believe this is duplicate and not actually in game
         [30464] = true, -- Believe this is duplicate and not actually in game
@@ -6218,11 +6223,15 @@ function QuestieQuestBlacklist:Load()
         [30818] = true, -- Not in the game
         [30934] = true, -- Not in the game
         [30936] = true, -- Not in the game
+        [30941] = true, -- Not in the game
         [30965] = true, -- Not in the game
         [30974] = true, -- Not in the game
+        [30986] = true, -- Not in the game
+        [30990] = true, -- Not in the game
         [31016] = true, -- Not in the game
         [31017] = true, -- Not in the game
         [31025] = true, -- Not in the game
+        [31027] = true, -- Not in the game
         [31028] = true, -- Not in the game
         [31033] = true, -- Not in the game
         [31035] = true, -- Not in the game
@@ -6310,6 +6319,7 @@ function QuestieQuestBlacklist:Load()
         [31491] = true, -- Not in the game
         [31518] = true, -- Not in the game
         [31530] = true, -- Not in the game
+        [31600] = true, -- Not in the game
         [31604] = true, -- Not in the game
         [31664] = true, -- Not in the game
         [31665] = true, -- Not in the game
@@ -6410,7 +6420,9 @@ function QuestieQuestBlacklist:Load()
         [32458] = true, -- Not in the game
         [32475] = true, -- Not in the game
         [32504] = true, -- Not in the game
+        [32508] = true, -- Not in the game
         [32534] = true, -- Not in the game
+        [32622] = true, -- Hidden quest
         [32651] = true, -- Hidden quest
         [32666] = true, -- Hidden quest
         [32696] = true, -- Not in the game
@@ -6419,16 +6431,23 @@ function QuestieQuestBlacklist:Load()
         [32705] = true, -- Not in the game
         [32717] = true, -- Not in the game
         [32723] = true, -- Hidden quest
+        [32725] = true, -- Hidden quest
         [32826] = true, -- Hidden quest
         [32827] = true, -- Hidden quest
         [32832] = true, -- Not in the game
         [32860] = true, -- Hidden quest
-        [32872] = true, -- Not in the game
         [32890] = true, -- Not in the game
         [32891] = true, -- Not in the game
         [32895] = true, -- Not in the game
         [32910] = true, -- Hidden quest
         [32952] = true, -- Not in the game
+        [32995] = true, -- Not in the game
+        [32996] = true, -- Not in the game
+        [33000] = true, -- Not in the game
+        [33001] = true, -- Not in the game
+        [33002] = true, -- Not in the game
+        [33003] = true, -- Not in the game
+        [33007] = true, -- Not in the game
         [33008] = true, -- Not in the game
         [33019] = true, -- Not in the game
         [33023] = true, -- Not in the game

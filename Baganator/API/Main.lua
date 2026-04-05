@@ -176,6 +176,12 @@ do
     ["bottom_left"] = 3,
     ["bottom_right"] = 4,
   }
+  local cornersReverseMap = {
+    ["icon_top_left_corner_array"] = "top_left",
+    ["icon_top_right_corner_array"] = "top_right",
+    ["icon_bottom_left_corner_array"] = "bottom_left",
+    ["icon_bottom_right_corner_array"] = "bottom_right",
+  }
 
   local function AutoInsert(id, defaultPosition)
     local alreadyApplied = addonTable.Config.Get(addonTable.Config.Options.ICON_CORNERS_AUTO_INSERT_APPLIED)
@@ -243,6 +249,15 @@ do
     end
     return false
   end
+
+  function Baganator.API.GetCurrentCornerForWidget(id)
+    for _, key in ipairs(corners) do
+      if tIndexOf(addonTable.Config.Get(key), id) ~= nil then
+        return cornersReverseMap[key]
+      end
+    end
+    return nil
+  end
 end
 
 addonTable.API.ItemSetSources = {}
@@ -298,7 +313,7 @@ local blockedSkins = {
 }
 for _, skin in ipairs(blockedSkins) do
   if C_AddOns.DoesAddOnExist(skin) then
-    addonTable.Utilities.Message(BAGANATOR_L_LEGACY_SKIN .. RED_FONT_COLOR:WrapTextInColorCode(skin) .. BAGANATOR_L_NO_LONGER_NEEDED)
+    addonTable.Utilities.Message("You have a legacy skin. Please remove " .. RED_FONT_COLOR:WrapTextInColorCode(skin) .. " it is no longer needed - the skin is included with the Baganator package")
     C_AddOns.DisableAddOn(skin)
   end
 end

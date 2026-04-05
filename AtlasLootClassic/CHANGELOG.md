@@ -1,3 +1,9 @@
+# 5.2.1 (Jan 2, 2025)
+- Added August Stone Shard vendor items
+- Added Updated Celestial Dungeon drops
+- Fix T15 tokens
+- Holiday updates/fixes
+
 # 5.2.0 (Dec 15, 2025)
 - Game interface version update
 - Update content phase
@@ -49,36 +55,31 @@
 - Noblegarden items added
 - Several small fixes to old world loot
 - Change order of expansions to put newest one on top first
-(2025-12-15)
+(2026-01-02)
 
-[Full Changelog](https://github.com/snowflame0/AtlasLootClassic_MoP/compare/v5.0.4...v5.2.0)
+[Full Changelog](https://github.com/snowflame0/AtlasLootClassic_MoP/compare/v5.2.0...v5.2.1)
 
 ## Commits
 
-Adal (8):
+Adal (6):
 
-- Fixed phases
-- Fix #177
-- Headless Horseman update
-- Headless Horseman update
-- Fix for #171
-- Coren update
-- Prices for next events
-- Fix position
-
-Firsthunter (4):
-
-- update HH drops
-- HH loot updated
-- updated coren drop source
-- Updated coren drops to 489
+- Format
+- Two toys added
+- More Winter Veil fixes
+- Various raid fixes
+- Winter Veil fixes
+- Winter Veil update
 
 Snowflame (6):
 
-- Notes and update notification changes prep for new version
-- Added T14 patterns to source data
-- Fixed wowhead link handling
-- P1/P2 celestial dungeon loot fixes, update tooltip
-- Content phase update
-- Interface version updated
+- Update release notes and update panel
+- Clean up celestial vendor
+- Add new celestial dungeon drops and update source-mop.lua
+- Added august stone shard vendor, need to organize
+- Added august stone shard currency and items to VendorPrice
+- Fixed incorrect T15 tokens
+
+iZcr3am (1):
+
+- Update data-wrath.lua
 

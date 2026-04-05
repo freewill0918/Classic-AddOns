@@ -33,7 +33,6 @@ function Config:GetOptions()
     return {
         type = "group",
         childGroups = "tab",
-		name = L["Blizz Move"],
         args = {
             version = {
                 order = increment(),
@@ -309,7 +308,7 @@ end
 function Config:Initialize()
     self.search = "";
     self:RegisterOptions();
-    local _, categoryID = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("BlizzMove", L["BlizzMove"]);
+    local _, categoryID = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("BlizzMove", "BlizzMove");
     self.categoryID = categoryID;
 
     StaticPopupDialogs["BlizzMoveURLDialog"] = {
@@ -344,6 +343,10 @@ function Config:Initialize()
 end
 
 function Config:OpenConfig()
+    if C_SettingsUtil and C_SettingsUtil.OpenSettingsPanel and InCombatLockdown() then
+        LibStub("AceConfigDialog-3.0"):Open("BlizzMove");
+        return;
+    end
     Settings.OpenToCategory(self.categoryID);
 end
 

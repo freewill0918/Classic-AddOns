@@ -1,6 +1,7 @@
 local _,addon = ...
 if addon.gameVersion < 40000 or addon.player.faction == 'Alliance' then return end
 
+if GetLocale() == "zhCN" then return end
 RXPGuides.RegisterGuide([[
 #cata
 #mop
@@ -556,12 +557,12 @@ step
     .target Dead Soldier
     .target Sergeant Dynamo
 step
-    >>Kill |cRXP_ENEMY_Warlord Krellian|r. Loot him for the |cRXP_LOOT_SFG|r
+    >>Kill |cRXP_ENEMY_Warlord Krellian|r. Loot the |cRXP_LOOT_SFG|r on the ground after
     .complete 14470,1 --Warlord Krellian (1)
+    .mob +Warlord Krellian
     .goto 76,27.562,52.010
     .complete 14470,2 --SFG (1)
     .goto 76,27.693,51.903
-    .mob Warlord Krellian
 step
     #loop
     .goto 76,29.619,53.022,0
@@ -2660,7 +2661,7 @@ step << Warrior/Paladin
     .use 926
     .itemcount 926,1
     .itemStat 16,QUALITY,<7
-    .itemStat 18,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
+    .itemStat 16,ITEM_MOD_DAMAGE_PER_SECOND_SHORT,<15.2
 step << Shaman
     #optional
     #completewith AzsharaEnd

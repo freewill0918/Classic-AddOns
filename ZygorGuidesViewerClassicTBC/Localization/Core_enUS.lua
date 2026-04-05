@@ -47,10 +47,10 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 	["stepgoal_extraaction"] = "Cast %s",
 	["stepgoal_click"] = "Click %s",
 	["stepgoal_click_done"] = "Click %s",
-	["stepgoal_click_around"] = "Click %s around this area",
+	["stepgoal_click_around"] = "Click %s",
 	["stepgoal_clicknpc"] = "Click %s",
 	["stepgoal_clicknpc_done"] = "Click %s",
-	["stepgoal_clicknpc_around"] = "Click %s around this area",
+	["stepgoal_clicknpc_around"] = "Click %s",
 	["stepgoal_collect #"] = "Collect %s %s",
 	["stepgoal_collect #_done"] = "Collected %s %s",
 	["stepgoal_collect"] = "Collect %s",
@@ -63,6 +63,11 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 	["stepgoal_craft #_done"] = "Crafted %s %s",
 	["stepgoal_craft"] = "Craft %s",
 	["stepgoal_craft_done"] = "Crafted %s",
+	["stepgoal_craft_skill"] = " using %s",
+	["stepgoal_firstcraft"] = "First Craft %s",
+	["stepgoal_firstcraft_done"] = "Crafted First %s",
+	["stepgoal_firstcraft_skill"] = " Using %s",
+	
 	["stepgoal_create #"] = "Create %d %s",
 	["stepgoal_create"] = "Create %s",
 		--stepgoal_debugvar
@@ -84,6 +89,7 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 	["stepgoal_fpath"] = "Discover the %s Flight Path",
 	["stepgoal_fpath_done"] = "Discover the %s Ferry",
 	["stepgoal_fpath_done"] = "Discover the %s Flight Path",
+	["stepgoal_furniture"] = "Obtain %s",
 	["stepgoal_get #"] = "Collect %s %s",
 	["stepgoal_get #_done"] = "Collected %s %s",
 	["stepgoal_get"] = "Collect %s",
@@ -109,6 +115,8 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 	["stepgoal_havebuilding_ready"] = "Wait for %s Level %s to Build",
 	["stepgoal_hearth to"] = "Hearth to %s", -- used by stepgoal hearth
 	["stepgoal_home"] = "Make %s Inn Your Home",
+	["stepgoal_houselevel"] = "Reach House Level %s",
+	["stepgoal_houselevel_exp"] = "Reach House Level %s and %s XP",
 	["stepgoal_image"] = "Click Here to View the Image",
 		--stepgoal_info
 	["stepgoal_invehicle"] = "Enter the Vehicle",
@@ -123,7 +131,7 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 	["stepgoal_kill_done"] = "Killed %s",
 	["stepgoal_killboss"] = "Defeat %s",
 	["stepgoal_killboss_done"] = "Defeated %s",
-	["stepgoal_kill_around"] = "Kill %s around this area",
+	["stepgoal_kill_around"] = "Kill %s",
 	["stepgoal_bosshp"] = "Reduce %s to %d%% HP",
 	["stepgoal_learn"] = "Learn %s",
 	["stepgoal_learnmount"] = "Earn the %s Mount",
@@ -186,7 +194,7 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 	["stepgoal_scenariostage_named"] = "Complete Stage %d: %s",
 	["stepgoal_scenariostart"] = "Begin %s Scenario",
 	["stepgoal_scenariostart_unknown"] = "Begin the Scenario",
-	["stepgoal_skill"] = "Achieve %s Level %s",
+	["stepgoal_skill"] = "Reach Level %s in %s",
 	["stepgoal_skillmax"] = "Learn %s Profession",
 	["stepgoal_skillmax2"] = "Learn the %s Skill", -- pre bfa wording, not used
 	["stepgoal_specialtalent"] = "Learn %s Skill from %s.",
@@ -194,7 +202,7 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 		--stepgoal_subzone
 	["stepgoal_talk to"] = "Talk to %s", -- used by talk, talknpcs
 	["stepgoal_talk to nearest"] = "Talk to the Nearest %s",	--alternative talknpcs text
-	["stepgoal_talk_around"] = "Talk to %s around this area",
+	["stepgoal_talk_around"] = "Talk to %s",
 	["stepgoal_visit_city"] = "Go to the Nearest %s",
 	["stepgoal_:"] = ": %s",
 	["stepgoal_talk to_done"] = "Talked to %s", -- used by talk, talknpcs
@@ -526,6 +534,7 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 	opt_group_actionbuttons = "Action Buttons",
 		opt_enable_actionbuttons = "Enable Action Buttons",
 		opt_enable_actionbar = "Enable Action Bar",
+		opt_actionbar_direction = "Action Bar Expanding",
 		opt_actionbar_scale_s = "Action Bar Scale",
 		opt_framescale_s_small = "Small",
 		opt_framescale_s_large = "Large",
@@ -899,6 +908,29 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 		report_noauthor = "|cffff8888(no address available)|r",
 		report_notitle = "|cffff8888(unnamed guide)|r",
 
+	-- Checklist ---------------------------------------------------------------------------------------------------
+		checklist_tooltip_help = "This is needed for the Gold Guide and must be downloaded\noutside of the game through the Zygor Guides desktop client.\nYou can ignore this or manually check this complete if you do\nnot intend to use the Gold Guide.",
+		checklist_tooltip_auctioneer = "Click to set waypoint to nearest Auctioneer",
+		checklist_tooltip_banker = "Click to set waypoint to nearest Banker",
+		checklist_tooltip_taxi = "Click to set waypoint to nearest Flight Master",
+		checklist_tooltip_override = "Click here if you do not plan to use Gold Guide.",
+		checklist_tooltip_override2 = "Click here if you do not plan to use Profession or Farming guides.",
+		checklist_tooltip_override3 = "Click here if you do not plan to use Travel System.",
+		checklist_title = "Zygor Startup Checklist",
+		checklist_trends = "Download Gold Guide Trend Data",
+		checklist_trends_step1 = "- Use the Zygor Guides desktop client to download Trend Data.",
+		checklist_trends_step2FS = "- Click |cffff9c15here |cffffffffto reload and check for data.",
+		checklist_auction = "Scan Auction House for Gold Guide Data",
+		checklist_auction_step1 = "- Talk to an Auctioneer",
+		checklist_auction_step2 = "- Click scan button on Auction House panel",
+		checklist_bank = "Record Bank Items",
+		checklist_bank_step1 = "- Talk to a Banker",
+		checklist_prof = "Record Professions Data",
+		checklist_prof_step1 = "- Open your tradeskill window for each profession:",
+		checklist_taxi = "Record Flight Map Data",
+		checklist_taxi_step1 = "- Talk to a nearest Flight Master",
+		checklist_allset = "You're all set!",
+	
 	-- CreatureDetector ---------------------------------------------------------------------------------------------------
 		detector_tooltip_click = "<<Click>> to open the corresponding guide.",
 		detector_tooltip_hunter_click = "<<Click>> to open the list of guides.",
@@ -1077,9 +1109,11 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 	-- Goldguide-View ---------------------------------------------------------------------------------------------------
 		gold_app_no_goldguide = "You don't have the full Gold Guide installed. No trend data is available.",
 		gold_app_no_scan_data = "Current prices unknown. Please scan the Auction House to collect data.",
-		gold_app_no_servertrends = "No trend data for this realm. Speak with an Auctioneer and Scan to update.",
+		gold_app_no_servertrends = "No trend data for this realm. Use client to download it.",
+		gold_app_no_servertrends_classic = "No trend data for this realm. Speak with an Auctioneer and Scan to update.",
 		gold_app_old_scan_data = "Speak with an Auctioneer and Scan to update.",
-		gold_app_old_servertrends = "Trend data is out of date (%s). Speak with an Auctioneer and Scan to update.",
+		gold_app_old_servertrends = "Trend data is out of date (%s). Use client to update it.",
+		gold_app_old_servertrends_classic = "Trend data is out of date (%s). Speak with an Auctioneer and Scan to update.",
 		gold_clicktosort_asc = "Click to sort by: %s |cff44ff00(ascending)",
 		gold_clicktosort_desc = "Click to sort by: %s |cff44ff00(descending)",
 		gold_expertmode_easylabel = "Easy",
@@ -1399,6 +1433,7 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 		share_party_comma = ", ",
 		share_party_none = "none",
 		share_tooltip_currentslaves = "|cffaaaaaaCurrent users: %s",
+		share_tooltip_secret = "|cffffff00(sharing is disabled in instances.)|r",
 		share_tooltip_noparty = "|cffff4400(you're not in a party now.)|r",
 		share_tooltip_nozygor = "|cffff4400(no-one else in your party is using Zygor Guides.)|r",
 		share_tooltip_startmaster = "<<Click>>: share your guide with party members",
@@ -1432,6 +1467,7 @@ ZygorGuidesViewer_L("Main", "enUS", function()
 	-- ViewerFrame ---------------------------------------------------------------------------------------------------
 		frame_guide_complete = "Guide complete!",
 		frame_guide_progress = "Guide progress: %d%%",
+		frame_exp_complete = "Max level reached",
 
 		frame_guide_step = "Step: %d/%d",
 		frame_guide_stepscompleted = "Steps Completed: %d/%d",

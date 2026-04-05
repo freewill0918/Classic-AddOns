@@ -1280,3 +1280,324 @@ _Heroic_
 |tip If the Dread Spawns reach melee range on their fixated target they will die instantly no matter what, players with the orb can transfer it to another player to refixate the adds on to them.
 |confirm
 ]])
+ZygorGuidesViewer:RegisterGuide("Dungeon Guides\\Pandaria Raids\\Throne of Thunder",{
+mapid=508,
+achieveid={8070, 8071, 8072},
+patch='50200',
+condition_suggested=function() return level>=35 and level<=37 end,
+description="This guide will walk you through the Throne of Thunder raid.",
+mopready=true
+},[[
+step
+Click here if you are doing a normal clear of the instance |next "Normal ToT"
+Click here if you are doing LFR wings of this instance |next "LFR ToT Index"
+confirm
+step
+label "LFR ToT Index"
+talk Lorewalker Han##80633
+Click here if you are queueing for the First wing of Throne of Thunder (Last Stand of the Zandalari) |next "First_Wing_ToT"
+Click here if you are queueing for the Second wing of Throne of Thunder (Forgotten Depths beneath the Throne of Thunder) |next "Second_Wing_ToT"
+Click here if you are queueing for the Third wing of Throne of Thunder (Twisted Mogu Halls of Flesh-Shaping) |next "Third_Wing_ToT"
+Click here if you are queueing for the Fourth wing of Throne of Thunder (Lei Shen's Pinnacle of Storms) |next "Fourth_Wing_ToT"
+confirm
+step
+label "Normal ToT"
+Enter Throne of Thunder |goto Isle of Thunder/0 63.61,32.44 < 5
+confirm
+step
+label "First_Wing_ToT"
+map Throne of Thunder/1
+path loop off
+path	34.90,23.70	39.80,23.80	46.20,25.80
+path	53.40,25.80
+Follow the path, clearing trash as you make your way to the first boss, Jin'rokh the Breaker. |goto Throne of Thunder/1 53.40,25.80 < 5
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+kill Jin'rokh the Breaker##69465 |goto Throne of Thunder/1 59.50,25.80
+|tip Thundering Throw is usually used on the tank, throwing them at a Mogu statue, inflicting 250,000 Physical damage and dealing 200,000 Nature damage and a 5 second stun to players within an 8 yard area.
+|tip Conductive Water is a pool formed at the base of broken statues. Standing in the water increases healing by 60% and damage by 40%, but also increases damage taken from Jin'rokh's abilities by 50%.
+|tip Lightning Storm deals 70,000 damage to the raid every second for 15 seconds. Also turns Conductive Water to Electrified Water, quickly killing anyone still standing in it.
+|tip Static Burst deals 95,000-105,000 Nature damage to the raid. After 3 seconds it applies 10 stacks of Static Wounds to his current target.
+|tip Static Wound is a debuff that deals 20,000 Nature damage per stack to the affected player each time he takes melee damage. Also deals a third of this damage to nearby players.
+|tip Focused Lightning occurs on a healer or ranged DPS. Lightning moves towards the targeted player and deals 175,000 Nature damage upon reaching them, also damaging all other players within 8 yards of the initial explosion.
+|confirm
+step
+map Throne of Thunder/1
+path loop off
+path	59.50,25.80	59.50,43.60	59.50,53.50
+path	59.60,74.90	62.10,79.80	76.00,79.60
+path	83.10,79.60
+Follow the path, clearing trash as you make your way to the next boss, Horridon. |goto Throne of Thunder/1 83.10,79.60 < 5
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+Waves of adds are spawned throughout this fight. It is recommended the raid kills them and then goes back to attacking Horridon.
+When a Dinomancer dies it drops an Orb of Control. Clicking this will destroy the gate and stop the adds spawning for a short time.
+kill Horridon##68476 |goto Throne of Thunder/1 26.80,78.70
+|tip Triple Puncture deals 370,000-430,000 damage to the target and increases their damage taken from Triple Puncture by 10% per stack. Lasts 90 seconds.
+|tip Double Swipe is a frontal and rear cone attack. Avoid this by standing at Horridon's sides.
+|tip Charge is used on random players. Horridon charges at the target, immediately follwed by Double Swipe.
+|tip When Horridon is at 30% health he spawns War-God Jalak. Kill them both as fast as possible to avoid death.
+_Heroic_
+|tip In Heroic difficulty Horridon will spawn small Pink adds that will fixate on a random raid member, only the member that is fixated can see the add.
+|tip If this add hits the fixated target it will deal a damage, to prevent damage the player must run away from the fixate or periodically hit it with any ability, this will knock the add back a little bit.
+|confirm
+step
+map Throne of Thunder/2
+path loop off
+path	27.20,68.40	27.10,47.40	27.20,35.40
+path	27.20,26.00	33.50,19.40	38.00,19.40
+path	45.10,14.10
+Follow the path, clearing trash as you make your way to the final boss, the Council of Elders. |goto Throne of Thunder/2 45.10,14.10 < 5
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+_Council of Elders_ |goto Throne of Thunder/2 50.10,18.40
+kill Kazra'jin##69134
+|tip Discharge Kazra'jin stuns himself for 20 seconds, reflecting 5% damage back to attackers.
+|tip Overload Kazra'jin stuns himself for 20 seconds, reflecting 40% damage back to atteckers.
+|tip Reckless Charge deals 90,000 Nature damage to the target and all players inbetween and knocking back all players within 5 yards of where he lands.
+kill Sul the Sandcrawler##69078
+|tip Quicksand spawns a pool of quicksand under the targeted player's feet, rooting them in place and dealing Nature damage every second.
+|tip Sand Bolt inflicts 150,000-175,000 Nature damage to the target and all players within 5 yards of that target.
+|tip Sandstorm summons a sandstorm that deals 38,500 damage every second for 8 seconds.
+kill Frost King Malakk##69131
+|tip Biting Cold blasts the target with ice, inflicting 95,000 Frost damage.
+|tip Frostbite deals 110,000 Frost damage and applies 5 stacks of Frostbite.
+|tip Frigid Assault imbues Malakk's axes with ice, dealing an additional 75,000 damage to his target and stunning them if it reaches 15 stacks.
+kill High Priestess Mar'li##69132
+|tip Blessed Loa Spirit summons a Blessed Loa Spirit add that moves towards the council member with the lowest health. If reached, they are healed for 5% of their maximum health.
+|tip Shadowed Loa Spirit summons a Shadowed Loa Spirit that follows a random player. If it gets within 6 yards of them it instantly kills them.
+|tip Wrath of the Loa hits the targeted player for 150,000-160,000 damage.
+|tip Twisted Fate links 2 players' souls together, dealing 250,000 Shadow damage every 3 seconds. The damage dealt is reduces the further apart the players are.
+|tip If you are doing this on LFR this is the end of wing 1.
+|confirm
+step
+label "Second_Wing_ToT"
+map Throne of Thunder/3
+path loop off
+path	20.30,82.00	24.60,82.50
+Follow the path, clearing trash as you make your way to the first boss, Tortos. |goto Throne of Thunder/3 24.60,82.50 < 5
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+kill Tortos##67977 |goto Throne of Thunder/3 31.50,82.00
+|tip Call of Tortos summons smaller turtle adds to attack the raid. They spin around, dealing damage and a knockback to those near them.
+|tip Furious Stone Breath deals 150,000 Nature damage to the raid every 0.50 seconds for 4.50 seconds. Can be interrupted by kicking shells from dead turtle adds.
+|tip Quake Stomp  Tortos stuns the raid for 1 second, inflicting damage equal to 65% of their maximum health. This also increases the requency of Rockfalls for 8 seconds.
+|tip Snapping Bite Tortos snaps his jaws closed, dealing 510,000-540,000 damage.
+_Heroic_
+|tip Humming Crystals will spawn around the room, damaging these will apply a damage absorb you must have this absorb before Quack Stomp comes out.
+|tip Quack Stomp does 100 percent damage to all players in the raid without the damage absorb from the Humming Crystals you will die unless you have a cooldown of your own that can stop Physical damage.
+|confirm
+step
+map Throne of Thunder/3
+path loop off
+path	32.80,80.90	33.10,72.30	33.70,62.50
+path	41.70,58.70	38.30,48.60	31.80,45.20
+path	43.30,16.90	52.50,40.00	58.90,50.50
+path	55.20,71.00	63.40,57.50	69.60,48.80
+path	70.20,37.70
+Follow the path, clearing trash as you make your way to the next boss, Magaera. |goto Throne of Thunder/3 70.20,37.70 < 5
+|tip You must click the 3 gongs along this path to summon Magaera.
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+_Magaera_ |goto Throne of Thunder/3 72.10,25.30
+The only way to damage Magaera is to kill the Flaming, Frozen, and Venemous Heads that spawn.
+kill Flaming Head##70212
+|tip Cinders_targets a player, dealing 105,000 Fire damage and an additional 75,00 Fire damage every second for 30 seconds. If removed, a pool of flames is created, dealing 105,000 Fire damage every second to all players within 5 yards.
+|tip Ignite Flesh frontal cone attack that deals 125,000 Fire damage every second for 3 seconds. Also applies a DoT that burns for 30,00 Fire damage every second for 45 seconds.
+|tip Magaera's Rage occurs if no player is within melee range. It deals 250,000 Fire damage to all players within 5 yards of the targeted area.
+kill Frozen Head##70235
+|tip Arctic Freeze frontal cone that deals 125,000 Frost damage every seconds for 3 seconds. Players hit by this also get a debuff that stuns them for 20 seconds if it reaches 5 stacks.
+|tip Megaera's Rage occurs if no player is within melee range. It deals 250,000 Frost damage to all players within 5 yards of the targeted area.
+|tip Torrent of Ice channels a beam of ice at a player, inflicting 60,000 Frost damage every 0.50 seconds for 8 seconds and slowing movement speed of anyone who touches it.
+kill Venemous Head##70247
+|tip Rot Armor frontal cone that deals 127,500 Nature damage every second for 3 seconds and increases the damage taken of those affected by 10% for 45 seconds.
+|tip Megaera's Rage occurs if no player is within melee range. It deals 250,000 Nature damage to all players within 5 yards of the targeted area.
+_Heroic_
+|tip There will be one extra head that will spawn in heroic difficulty, the Arcane Head.
+|tip It will summon adds that will stun players, this stun is a channel and can be interrupted.
+|tip Diffusion is applied to players that get hit by its breathe attack, this will redirect healing to other players without this debuff.
+|confirm
+step
+map Throne of Thunder/3
+path loop off
+path	66.80,39.20	66.40,43.40	72.70,53.10
+path	Throne of Thunder/4 22.00,35.30	Throne of Thunder/4 15.60,55.50	Throne of Thunder/4 23.50,64.40
+path	Throne of Thunder/4 31.60,65.80	Throne of Thunder/4 40.40,74.60	Throne of Thunder/4 42.80,76.60
+path	Throne of Thunder/4 43.40,84.50	Throne of Thunder/4 54.30,90.00	Throne of Thunder/4 65.90,86.10
+path	Throne of Thunder/4 72.00,81.50	Throne of Thunder/4 74.90,67.30	Throne of Thunder/4 62.70,57.50
+path	Throne of Thunder/4 53.80,52.00
+Follow the path, clearing trash as you make your way to the final boss, Ji-Kun. |goto Throne of Thunder/3 53.80,52.00 < 5
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+kill Ji-Kun##69712 |goto Throne of Thunder/3 49.70,41.60
+|tip Caw Ji-Kun releases concentrated sound waves at multiple players. When they reach their targets they explode and deal 270,000-330,000 damage to all players within 8 yards.
+|tip Feed Young summons pools of food for the young, dealing damage to players standing in it.
+|tip Down Draft summons a powerful draft of air that pushes players off the platform.
+|tip Infected Talons DoT that inflicts 30,000 Nature damage every 3 seconds.
+|tip Quils deals 65,000 damage every second to all players.
+|tip If you are doing this on LFR this is the end of wing 2.
+|confirm
+step
+Click the Feather of Ji-kun |goto Throne of Thunder/4 43.20,46.50
+|tip You will get an extra action ability use this to fly up to the top of the balcony.
+Reach the Balcony |goto Throne of Thunder/4 34.50,55.10
+confirm
+step
+label "Third_Wing_ToT"
+map Throne of Thunder/5
+path loop off
+path	77.00,10.60	71.10,12.90	71.20,15.80
+path	73.90,20.40	71.40,30.80
+Follow the path, clearing trash as you make your way to the first boss, Durumu the Forgotten. |goto Throne of Thunder/5 71.40,30.80 < 5
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+kill Durumu the Forgotten##68036 |goto Throne of Thunder/5 71.10,34.40
+|tip Disentigration Beam fires of beam of energy towards the edge of the platform, killing any player it touches.
+|tip Arterial Cut applies a bleed DoT to the target.
+|tip Gaze deals 50% weapon damage to the entire raid.
+|tip Hard Stare deals 135%-165% weapon damage and applies Serious Wound to the target.
+|tip Serious Wound debuff that reduces the target's healing received by 10%.
+_Heroic_
+|tip Wall of Ice will spawn through out the fight making 3 lines of ice blocking players off, these can be attacked and destroyed do so asap.
+|tip There will be one extra eye "Evil Eye" these will put a debuff on random players dealing more and more damage to the player until dispelled.
+|tip Once dispelled a new debuff will appear summoning Wandering Eyes that will attack random players in the raid.
+|confirm
+step
+map Throne of Thunder/5
+path loop off
+path	71.10,43.20	70.90,51.20	72.10,61.40
+path	71.00,71.50	74.00,77.90	63.60,78.00
+path	57.20,78.10
+Follow the path, clearing trash as you make your way to the next boss, Primordius. |goto Throne of Thunder/5 57.20,78.10 < 5
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+kill Primordius##69017 |goto Throne of Thunder/5 57.20,78.20
+|tip Primordial Strike is a frontal cone. The tank should be the only one in front of Primordius when this occurs.
+|tip Malformed Blood is a stacking debuff usually applied to the tank. It deals 20,000 damage per stack every tick.
+|tip Each time Primordius' energy reaches 100% he gains a stacking buff that increases damage done by 10% per stack and giving additional abilities.
+|tip Erupting Pustules deals 120,000 Nature damage to players within 2.50 yards of the targeted area.
+|tip Metabolic Boost increases Primordius' attack speed by 50% and decreases his cooldowns by 50%.
+|tip Volatile Pathogen deals 60,000 damage every second for 10 seconds.
+|tip Acidic Spines deals 100,000 Nature damage to all players within 5 yards of the Primordius' target.
+|tip Caustic Gas is a cone that deals 800,000 total Nature damage split between all players affected.
+|tip Ventral Sacs deals 22,000 damage every second to the entire raid.
+_Heroic_
+|tip Vicious Horrors will spawn, if they attack a player they will deal damage every 3 seconds.
+|tip If they get near the boss they will explode dealing damage to the entire raid, try to stop this from happening.
+|confirm
+step
+map Throne of Thunder/5
+path loop off
+path	50.90,78.00	39.90,78.10	42.80,72.20
+path	42.50,61.10
+Follow the path, clearing trash as you make your way to the final boss, Dark Animus. |goto Throne of Thunder/5 42.50,61.10 < 5
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+Adds spawn throughout the fight.
+|tip Anima Golem: weak mobs, don't require anything special.
+|tip Large Anima Golem: needs to be tanked.
+|tip Massive Anima Golem should be tanked, has a large frontal cleave.
+kill Dark Animus##69427 |goto Throne of Thunder/5 43.00,57.10
+|tip Touch of the Animus affects a random player, inflicting 30,000 Fire damage every 4 seconds for the rest of the fight.
+|tip Anima Font affects a player with Touch of the Animus, causing them to shoot Anima bolts from nearby locations that deal 250,000 Fire damage.
+|tip Anima Ring summons spheres in a circle around the taget, moving inward. Players that touch the spheres consume it, increasing melee damage taken by 200% per stack.
+|tip Interrupting Jolt deals 400,000 Nature damage and inerrupts the raid's spellcasting.
+|tip If you are doing this on LFR this is the end of wing 3.
+|confirm
+step
+label "Fourth_Wing_ToT"
+map Throne of Thunder/5
+path loop off
+path	35.10,43.10	33.30,38.90	33.50,32.50
+path	43.70,31.90	46.80,27.50	46.90,18.70
+path	Throne of Thunder/6 25.50,64.50
+Follow the path, clearing trash as you make your way to the first boss, Iron Qon. |goto Throne of Thunder/6 25.50,64.50 < 5
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+kill Iron Qon##68078 |goto Throne of Thunder/6 34.60,58.90
+|tip Impale is a stacking debuff that deals normal weapon damage plus 40,000 bleeding damage every 2 seconds.
+|tip Rising Anger increases Qon's damage and attack speed by 10%.
+|tip Qon throws out lines of ice, fire, and lightning during the fight, avoid standing in these as well as tornadoes and goo.
+_Heroic_
+|tip Each Iron Qon Quilen flee at 25 percent. Once each of the 3 have fleed they will all come back at the same time.
+|confirm
+step
+map Throne of Thunder/6
+path loop off
+path	40.10,59.00	62.20,58.90	69.10,51.30
+path	73.80,44.30
+Follow the path, clearing trash as you make your way to the next boss, the Twin Consorts. |goto Throne of Thunder/6 73.80,44.30 < 5
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+_Twin Consorts_ |goto Throne of Thunder/6 78.70,38.00
+kill Lu'lin <Mistress of Solitude>##68905
+|tip Beast of Nightmares summons a Beast of Nightmares add that can only be damaged by Lu'lin's target.
+|tip Bloom Moon Lotus summons a Moon Lotus flower, which puts nearby players to sleep for 5 seconds.
+|tip Cosmic Barrage deals 175,000 damage every 0.50 seconds for 2 seconds.
+kill Suen <Mistress of Anger>##68904
+|tip Fan of Flames deals a large amount of damage to the target, also increasing Fire damage they take by 25%.
+|tip Blazing Radiance deals 35,000 Fire damage to the raid and increasing their Fire damage taken by 5%.
+|tip Flames of Passion Suen leaps at a player, dealing 46,000-54,000 Fire damage and knocking all nearby players back.
+|tip Nuclear Inferno deals 100,000 Fire damage every second for 4 seconds. While channeling, her spell deflection and dodge chance are both 100%.
+|confirm
+step
+map Throne of Thunder/6
+path loop off
+path	84.90,48.20	87.00,57.00	85.00,65.70
+path	87.40,74.10
+Follow the path, clearing trash as you make your way to the final boss, Lei Shen. |goto Throne of Thunder/6 87.40,74.10 < 5
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+|goto Throne of Thunder/7 49.80,15.40 |n
+Click and use the Displacement Pad here. |goto Throne of Thunder/7 50.70,50.90 <5 |noway |c
+step
+kill Lei Shen##68397 |goto Throne of Thunder/7 50.70,51.00
+|tip Overcharge charges the targeted player with lightning, placing a ring of lightning at their feet, with a safe spot in the very center. Players within 5-40 yards take 100,000 Nature damage and are stunned for 3 seconds.
+|tip Static Shock places a blue arrow above the targeted player and deals 400,000 total damage after 8 seconds, split between all players within 8 yards of the targeted player.
+|tip Bouncing Bolt Lei Shen throws a bolt of lightning across the platform. It creates a blue circle where it lands, spawning an add if a player doesn't stand in the circle in time.
+|tip Diffusion Chain deals 75,000 damage to the targeted player, then jumps to nearby players. Each time this hits a player it will also spawn a Diffused Lightning add.
+|tip Decapitate usually affects the tank, dealing up to 3,000,000 damage. The damage dealt is decreased the further away the target is from Lei Shen.
+|tip Thunderstruck is an AoE that deals 1,000,000 damage to all players in the targeted area. Damage dealt is decreased the further away the area is from Lei Shen.
+|tip If you are doing this on LFR this is the end of wing 4.
+confirm |next "End ToT"
+Click here if you are on Heroic difficulty and want to attempt Ra-den |next "Ra-den"
+step
+label "Ra-den"
+Click and use the Displacement Pad here. |goto Throne of Thunder/7 50.80,51.50 |n
+Arrive at Saurok's Creation Pit |goto Throne of Thunder/5 54.40,72.30 < 5 |noway |c
+step
+map Throne of Thunder/5
+path loop off
+path	54.40,72.30	56.10,76.10
+Follow the stairs down |goto Throne of Thunder/8 52.10,39.90
+|tip Opening the world map will display an ant trail guiding you through the current floor.
+confirm
+step
+kill Ra-den##69473 |goto Throne of Thunder/8 52.40,81.20
+|tip You will have a maximum have 30 attempts to kill this boss per lockout.
+_Phase 1_
+|tip He will periodically summon 2 orbs, Essence of Vita and Essence of Anima.
+|tip You want to always kill the Essence of Vita before it can reach the boss otherwise you will die.
+|tip If you get more then one set of orbs you will need cooldowns to mitigate the other Essences DOT.
+|tip Adds will periodically spawn and stay up the entire fight if not killed, kill these to avoid unnecessary damage.
+_Phase 2_
+|tip This phase starts at 40 percent, he will run into the middle and continously cast an aoe.
+|tip Orbs will come from the sides, always kill the Corrupted Animas and let the Corrupted Vitas through.
+|tip With each Corrupted Vita that gets through the aoe damage get stronger be ready for this.
+confirm |next "End ToT"
+step
+label "End ToT"
+Finished |complete true
+]])

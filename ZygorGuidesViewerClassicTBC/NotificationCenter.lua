@@ -207,7 +207,7 @@ function NC:Startup()
 		gearpop =	{iconkey="GEAR", priority=41, click=function(entry) ZGV.ItemScore.Upgrades:ShowEquipmentChangePopup() CloseDropDownForks() ZGV.NotificationCenter:RemoveEntriesByType("gearpop") end},
 		skills =	{iconkey="SKILL", priority=42, click=function() ZGV.Skills:ShowSkillPopup(nil,nil,"forceShow") end},
 
-		orientation =	{iconkey="ORIENTATION", priority=51, click=function() ZGV.Tabs:LoadGuideToTab("Leveling Guides\\Startup Guide Wizard") end},
+		orientation =	{iconkey="ORIENTATION", priority=51, click=function() ZGV.Modules.IntroWizard:Checklist() end},
 		riding =	{iconkey="RIDING", priority=52, click=function(entry) ZGV.Tabs:LoadGuideToTab(entry.data.guide) end},
 
 		options =	{iconkey="ZYGOR", priority=60, click=function(entry) ZGV:OpenOptions(entry.data.tab) end},
@@ -786,6 +786,8 @@ local capitals = {
 	[126] = "Dalaran",
 	[622] = "Stormshield",
 	[624] = "Warspear",
+	[2112] = "Valdrakken",
+	[2339] = "Dornogal",
 }
 
 function NC:OrientationTrigger()
@@ -795,13 +797,11 @@ function NC:OrientationTrigger()
 		if (self.LastMap ~= m or (self.city ~= m and (capitals[m] or capitalsCATA[m]))) then
 			if capitals[m] or  capitalsCATA[m] then
 				self.city = m
-				if ZGV.db.profile.nc_orientation and not ZGV.db.global.bannedtoasts["orientation"] and not LibTaxi:IsContinentKnown() then
+				if ZGV.db.profile.nc_orientation and not ZGV.db.global.bannedtoasts["orientation"] and not ZGV.Modules.IntroWizard:CheckAllObjectives() then
 					ZGV:ScheduleTimer(function()
 						ZGV.NotificationCenter:AddEntry("orientation","Run Startup Orientation to improve guide directions","Click to open in new tab.",{cleartype=true})
+						ZGV.db.global.bannedtoasts["orientation"] = true
 					end,2)
-				elseif ZGV.DEV then
-					ZGV:Print("User data available. Skipping Orientation Guide toast.")
-					ZGV:Debug("User data available. Skipping Orientation Guide toast.")
 				else
 					ZGV:Debug("User data available. Skipping Orientation Guide toast.")
 				end

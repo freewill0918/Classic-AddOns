@@ -108,7 +108,7 @@ function NIT:getDousesMinimapString()
 					if (data.name and data.name ~= "") then
 						local _, _, _, classColorHex = GetClassColor(data.class);
 						--Safeguard for weakauras/addons that like to overwrite and break the GetClassColor() function.
-						if (not classColorHex and v.tradeWhoClass == "SHAMAN") then
+						if (not classColorHex and data.class == "SHAMAN") then
 							classColorHex = "ff0070dd";
 						elseif (not classColorHex) then
 							classColorHex = "ffffffff";
@@ -171,6 +171,9 @@ local function gossipShow()
 	local npcGUID = UnitGUID("npc");
 	local npcID;
 	if (npcGUID) then
+		if (issecretvalue and issecretvalue(npcGUID)) then
+			return;
+		end
 		_, _, _, _, _, npcID = strsplit("-", npcGUID);
 	end
 	if (not npcID) then

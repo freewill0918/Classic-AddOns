@@ -3,810 +3,18 @@ if not ZygorGuidesViewer then return end
 if UnitFactionGroup("player")~="Alliance" then return end
 if ZGV:DoMutex("EventsA") then return end
 ZygorGuidesViewer.GuideMenuTier = "TRI"
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Brewfest Quests",{
-mopready=true,
-condition_suggested=function() return isevent("Brewfest") end,
-condition_end=function() return completedq(12491) end,
-description="This guide section will walk you through completing the quests for the Brewfest event.",
-},[[
-step
-talk Dwarf Commoner##19148
-accept Brewfest!##11441 |goto Ironforge/0 30.82,62.83
-step
-talk Ipfelkofer Ironkeg##24710
-turnin Brewfest!##11441 |goto Dun Morogh/0 55.12,38.08
-accept Welcome to Brewfest!##11442 |goto Dun Morogh/0 55.12,38.08
-step
-talk Boxey Boltspinner##27215
-accept Chug and Chuck!##12022 |goto Dun Morogh/0 54.67,38.09
-step
-click Alcohol-Free Brewfest Sampler##186189+
-|tip They look like mugs of beer on the small tables inside this tent.
-collect Alcohol-Free Brewfest Sampler##33096 |n
-use the Alcohol-Free Brewfest Sampler##33096
-|tip Face yourself towards the Self-Turning and Oscillating Utility Target behind the tent.
-Hit the S.T.O.U.T. #5# Times |q 12022/1 |goto Dun Morogh/0 54.74,37.92
-step
-talk Boxey Boltspinner##27215
-turnin Chug and Chuck!##12022 |goto Dun Morogh/0 54.67,38.09
-step
-talk Neill Ramstein##23558
-accept Now This is Ram Racing... Almost.##11318 |goto Dun Morogh/0 53.68,38.55
-step
-As you run around on the ram:
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip You have to use the Ram Racing Reins to make it run at certain speeds for 8 seconds.
-|tip To make the ram Trot for 8 seconds, use the Giddyup! ability every 2 seconds or so.
-Maintain a Trot for 8 seconds |q 11318/1
-step
-As you run around on the ram:
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip You have to use the Ram Racing Reins to make it run at certain speeds for 8 seconds.
-|tip To make the ram Canter for 8 seconds, use the Ram Racing Reins a little more often than when you made the ram Trot.
-Maintain a Canter for 8 seconds |q 11318/2
-step
-As you run around on the ram:
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip You have to use the Ram Racing Reins to make it run at certain speeds for 8 seconds.
-|tip To make the ram Gallop, just spam the Ram Racing Reins.
-Maintain a Gallop for 8 seconds |q 11318/3
-step
-Stop Riding the Ram |nobuff Rental Racing Ram##43883 |q 11318
-|tip Right-click the "Rental Racing Ram" buff on your buff bar.
-step
-talk Neill Ramstein##23558
-turnin Now This is Ram Racing... Almost.##11318 |goto Dun Morogh/0 53.68,38.55
-accept There and Back Again##11122 |goto Dun Morogh/0 53.68,38.55
-step
-map Dun Morogh/0
-path follow strictbounce; loop off; ants curved; dist 20
-path	53.55,38.69	53.66,40.23	54.59,43.32	54.57,47.45	53.93,49.28
-path	53.12,50.78
-Follow the waypoint path:
-use the Ram Racing Reins##33306
-|tip Alternate between Canter and Gallop as needed to keep your fatigue below 100 between buckets.
-|tip Ride over buckets of apples to refresh your Ram's fatigue level.
-Flynn Firebrew will throw you a keg when you get close
-Once you have a keg, run back and turn it in to Pol Amberstill
-|tip Just get near him and you will throw the keg to him.
-Deliver 3 Kegs in Under 4 Minutes |q 11122/1
-|tip If you lose your ram, return to Neill Ramstein to acquire another.
-step
-Stop Riding the Ram |nobuff Ramstein's Swift Work Ram##43880 |q 11122
-|tip Right-click the "Ramstein's Swift Work Ram" buff on your buff bar.
-step
-talk Neill Ramstein##23558
-turnin There and Back Again##11122 |goto Dun Morogh/0 53.68,38.55
-step
-talk Pol Amberstill##24468
-accept Say, There Wouldn't Happen to be a Souvenir This Year, Would There?##12193 |goto Dun Morogh/0 53.54,38.57 |or
-|tip This quest is not always available.
-Click Here if this Quest Is Not Offered |confirm |or
-step
-talk Belbi Quikswitch##23710
-turnin Say, There Wouldn't Happen to be a Souvenir This Year, Would There?##12193 |goto Dun Morogh/0 56.39,37.84
-|only if haveq(12193) or completedq(12193)
-step
-talk Pol Amberstill##24468
-accept A New Supplier of Souvenirs##29397 |goto Dun Morogh/0 53.54,38.57
-step
-talk Goldark Snipehunter##23486
-accept Catch the Wild Wolpertinger!##11117 |goto Dun Morogh/0 55.13,37.72
-|only if GetCurrentRegion() ~= 3
-step
-talk Goldark Snipehunter##23486
-Select _"What are Synthebrew Goggles?"_ |gossip 92304
-Select _"I'd like a pair of Synthebrew Goggles."_ |gossip 94708
-collect Synthebrew Goggles##46735 |goto Dun Morogh/0 55.13,37.72 |q 11117
-|only if haveq(11117) or completedq(11117)
-step
-Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11117
-|only if haveq(11117) or completedq(11117)
-step
-clicknpc Wild Wolpertinger##23487+
-use the Wolpertinger Net##32907
-|tip Use it on Wild Wolpertingers.
-|tip They look like small rabbits with antlers and wings running around on the ground around this area.
-collect 5 Stunned Wolpertinger##32906 |q 11117/1 |goto Dun Morogh/0 53.22,39.84
-|only if haveq(11117) or completedq(11117)
-step
-Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11117
-|tip Remove the Synthebrew Goggles and re-equip your helm.
-|only if haveq(11117) or completedq(11117)
-step
-talk Goldark Snipehunter##23486
-turnin Catch the Wild Wolpertinger!##11117 |goto Dun Morogh/0 55.13,37.72 |only if haveq(11117) or completedq(11117)
-accept Pink Elekks On Parade##11118 |goto Dun Morogh/0 55.13,37.72 |only if completedq(11117)
-|only if haveq(11117) or completedq(11117)
-step
-talk Belbi Quikswitch##23710
-turnin A New Supplier of Souvenirs##29397 |goto Dun Morogh/0 56.39,37.84
-step
-Go to Elwynn Forest |goto Elwynn Forest/0 33.59,51.44 < 100 |c |q 11118
-|tip Go to this spot before you equip the goggles.
-|only if haveq(11118) or completedq(11118)
-step
-Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11118
-|only if haveq(11118) or completedq(11118)
-step
-use the Elekk Dispersion Ray##32960
-|tip Use it on Elwynn Pink Elekks around this area.
-|tip They look like pink elephants with four horns around this area.
-kill 3 Elwynn Pink Elekk##23507 |q 11118/2 |goto Elwynn Forest/0 33.59,51.44
-|only if haveq(11118) or completedq(11118)
-step
-Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11118
-|tip Remove the Synthebrew Goggles and re-equip your helm.
-|only if haveq(11118) or completedq(11118)
-step
-Go to Darnassus |goto Darnassus/0 67.12,35.28 < 100 |c |q 11118
-|tip Go to this spot before you equip the goggles.
-|only if haveq(11118) or completedq(11118)
-step
-Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11118
-|only if haveq(11118) or completedq(11118)
-step
-use the Elekk Dispersion Ray##32960
-|tip Use it on Teldrassil Pink Elekks around this area.
-|tip They look like pink elephants with four horns around this area.
-kill 3 Teldrassil Pink Elekk##23527 |q 11118/3 |goto Darnassus/0 67.12,35.28
-|only if haveq(11118) or completedq(11118)
-step
-Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11118
-|tip Remove the Synthebrew Goggles and re-equip your helm.
-|only if haveq(11118) or completedq(11118)
-step
-Go to The Exodar |goto The Exodar/0 79.18,57.47 < 100 |c |q 11118
-|tip Go to this spot at the entrance to The Exodar before you equip the goggles.
-|only if haveq(11118) or completedq(11118)
-step
-Equip the Synthebrew Goggles |equipped Synthebrew Goggles##46735 |q 11118
-|only if haveq(11118) or completedq(11118)
-step
-use the Elekk Dispersion Ray##32960
-|tip Use it on Azuremyst Pink Elekks around this area.
-|tip They look like pink elephants with four horns around this area.
-kill 3 Azuremyst Pink Elekk##23528 |q 11118/1 |goto The Exodar/0 79.18,57.47
-|only if haveq(11118) or completedq(11118)
-step
-Equip your Helm |complete not goaltype("equipped",{targetid=46735}) |q 11118
-|tip Remove the Synthebrew Goggles and re-equip your helm.
-|only if haveq(11118) or completedq(11118)
-step
-talk Goldark Snipehunter##23486
-turnin Pink Elekks On Parade##11118 |goto Dun Morogh/0 55.13,37.72
-|only if haveq(11118) or completedq(11118)
-step
-Reach Level 80 |ding 80
-|tip Coren Direbrew is level 87 elite.
-step
-talk Darna Honeybock##27584
-accept Save Brewfest!##12318 |goto Dun Morogh/0 52.96,51.01
-|tip This quest is elite and will require a group.
-step
-talk Brewfest Spy##26719
-|tip Queue for Coren Direbrew.
-turnin Save Brewfest!##12318
-step
-talk Brewfest Spy##26719
-|tip Queue for Coren Direbrew.
-accept Insult Coren Direbrew##12062
-|tip This quest is elite and will require a group.
-step
-talk Coren Direbrew##23872
-|tip Inside the Grim Guzzler in the Blackrock Depths dungeon.
-turnin Insult Coren Direbrew##12062
-|tip This quest is elite and will require a group.
-step
-kill Coren Direbrew##23872
-|tip Form a group and travel to the Blackrock Depths dungeon.
-|tip Someone with the daily quest "Insult Coren Direbrew" can talk to him to make him hostile.
-|tip This quest is available in the Grim Guzzler in Blackrock Depths.
-|confirm
-step
-talk Ipfelkofer Ironkeg##24710
-turnin Direbrew's Dire Brew##12491 |goto Dun Morogh/0 55.12,38.08
-|only if haveq(12491)
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Brewfest Dailies",{
-mopready=true,
-condition_suggested=function() return isevent("Brewfest") end,
-description="This guide section will walk you through completing the daily quests for the Brewfest event.",
-},[[
-step
-Complete the "Brewfest Quests" Guide |complete completedq(11122)
-step
-label "Begin_Dailies"
-talk Neill Ramstein##23558
-Select _"Do you still need some help shipping kegs from Kharanos?"_
-Begin the Keg Run |havebuff Ramstein's Swift Work Ram##43880 |goto Dun Morogh/0 53.68,38.55
-step
-map Dun Morogh/0
-path follow strictbounce; loop off; ants curved; dist 20
-path	53.55,38.69	53.66,40.23	54.59,43.32	54.57,47.45	53.93,49.28
-path	53.12,50.78
-Follow the waypoint path:
-use the Ram Racing Reins##33306
-|tip Alternate between Canter and Gallop as needed to keep your fatigue below 100 between buckets.
-|tip Ride over buckets of apples to refresh your Ram's fatigue level.
-Flynn Firebrew will throw you a keg when you get close
-Once you have a keg, run back and turn it in to Pol Amberstill
-|tip Just get near him and you will throw the keg to him.
-Deliver as Many Kegs as you Can 4 Minutes |nobuff Ramstein's Swift Work Ram##43880
-|tip If you lose your ram, return to Neill Ramstein to acquire another.
-step
-talk Becan Barleybrew##23627
-accept Bark for the Barleybrews!##11293 |goto Dun Morogh/0 56.13,38.06 |or
-talk Daran Thunderbrew##23628
-accept Bark for the Thunderbrews!##11294 |goto Dun Morogh/0 56.58,36.91 |or
-|tip You will only be able to accept one of these quests per day.
-step
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip Keep a Trot pace most of the time and only Canter occasionally.
-|tip Your ram will become exhausted if you go too fast.
-Ride your ram into Ironforge |goto Ironforge/0 21.83,77.49 < 30 |c |q 11293
-|only if haveq(11293)
-step
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip Keep a Trot pace most of the time and only Canter occasionally.
-|tip Your ram will become exhausted if you go too fast.
-Ride your ram into Ironforge |goto Ironforge/0 21.83,77.49 |noway |c |q 11294
-|only if haveq(11294)
-step
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip Keep a Trot pace most of the time and only Canter occasionally.
-|tip Your ram will become exhausted if you go too fast.
-|tip Ride around the outer ring of Ironforge.
-Bark Outside the Bank |q 11293/1 |goto Ironforge/0 32.03,64.97
-|only if haveq(11293)
-step
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip Keep a Trot pace most of the time and only Canter occasionally.
-|tip Your ram will become exhausted if you go too fast.
-|tip Ride around the outer ring of Ironforge.
-Bark Outside the Bank |q 11294/1 |goto Ironforge/0 32.03,64.97
-|only if haveq(11294)
-step
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip Keep a Trot pace most of the time and only Canter occasionally.
-|tip Your ram will become exhausted if you go too fast.
-|tip Ride around the outer ring of Ironforge.
-Bark in the Military Ward |q 11293/2 |goto Ironforge/0 64.18,78.08 |notravel
-|only if haveq(11293)
-step
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip Keep a Trot pace most of the time and only Canter occasionally.
-|tip Your ram will become exhausted if you go too fast.
-|tip Ride around the outer ring of Ironforge.
-Bark in the Hall of Explorers |q 11293/3 |goto Ironforge/0 64.56,24.49 |notravel
-|only if haveq(11293)
-step
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip Keep a Trot pace most of the time and only Canter occasionally.
-|tip Your ram will become exhausted if you go too fast.
-|tip Ride around the outer ring of Ironforge.
-Bark in the Mystic Ward |q 11293/4 |goto Ironforge/0 28.61,15.12 |notravel
-|only if haveq(11293)
-step
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip Keep a Trot pace most of the time and only Canter occasionally.
-|tip Your ram will become exhausted if you go too fast.
-|tip Ride around the outer ring of Ironforge.
-Bark in the Military Ward |q 11294/2 |goto Ironforge/0 64.18,78.08 |notravel
-|only if haveq(11294)
-step
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip Keep a Trot pace most of the time and only Canter occasionally.
-|tip Your ram will become exhausted if you go too fast.
-|tip Ride around the outer ring of Ironforge.
-Bark in the Hall of Explorers |q 11294/3 |goto Ironforge/0 64.56,24.49 |notravel
-|only if haveq(11294)
-step
-use the Ram Racing Reins##33306
-|tip The ram runs slow by default.
-|tip Keep a Trot pace most of the time and only Canter occasionally.
-|tip Your ram will become exhausted if you go too fast.
-|tip Ride around the outer ring of Ironforge.
-Bark in the Mystic Ward |q 11294/4 |goto Ironforge/0 28.61,15.12 |notravel
-|only if haveq(11294)
-step
-Stop Riding the Ram |nobuff Rental Racing Ram##43883
-|tip Right-click the "Rental Racing Ram" buff on your buff bar.
-step
-talk Becan Barleybrew##23627
-turnin Bark for the Barleybrews!##11293 |goto Dun Morogh/0 56.13,38.06
-|only if haveq(11293)
-step
-talk Daran Thunderbrew##23628
-turnin Bark for the Thunderbrews!##11294 |goto Dun Morogh/0 56.58,36.91
-|only if haveq(11294)
-step
-Wait for the Dark Iron Defense event to start
-|tip This even occurs every 30 minutes.
-|tip You have to defend the three kegs at these locations in order to complete it.
-click Complimentary Brewfest Sampler##186189+ |goto Dun Morogh/0 55.94,37.33
-click Complimentary Brewfest Sampler##186189+ |goto Dun Morogh/0 55.94,37.33
-use the Alcohol-Free Brewfest Sampler##33096
-|tip Use it to throw it at the Dark Iron Dwarves and the Mole Machines around this area.
-click Dark Iron Mole Machine Wreckage##189989
-|tip It looks like a big metal gear laying on ground in the middle of the festival.
-|tip It appears after the Dark Iron dwarves attack the Brewfest festival, so you may have to wait for it to appear.
-accept This One Time, When I Was Drunk...##12020 |goto Dun Morogh/0 48.69,39.13 |or
-'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
-step
-talk Boxey Boltspinner##27215
-turnin This One Time, When I Was Drunk...##12020 |goto Dun Morogh/0 54.67,38.09
-step
-Reach Level 75 |ding 75 |or
-|tip Coren Direbrew is level 82 elite.
-'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
-step
-talk Darna Honeybock##27584
-accept Save Brewfest!##12318 |goto Dun Morogh/0 52.96,51.01 |or
-|tip This quest is elite and will require a group.
-'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
-step
-Enter the Blackrock Depths Dungeon with your Group |goto Blackrock Depths/1 0,0 |q 12062 |future |or
-'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
-step
-talk Brewfest Spy##26719
-|tip Queue for Coren Direbrew.
-turnin Save Brewfest!##12318 |or
-'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
-step
-talk Brewfest Spy##26719
-|tip Inside the Grim Guzzler in the Blackrock Depths dungeon.
-accept Insult Coren Direbrew##12062 |or
-|tip This quest is elite and will require a group.
-'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
-step
-talk Coren Direbrew##23872
-|tip Inside the Grim Guzzler in the Blackrock Depths dungeon.
-turnin Insult Coren Direbrew##12062 |or
-|tip This quest is elite and will require a group.
-'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
-step
-kill Coren Direbrew##23872
-|tip Form a group and travel to the Blackrock Depths dungeon.
-|tip Someone with the daily quest "Insult Coren Direbrew" can talk to him to make him hostile.
-|tip This quest is available in the Grim Guzzler in Blackrock Depths.
-Click Here to Continue |confirm |or
-'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
-step
-talk Ipfelkofer Ironkeg##24710
-turnin Direbrew's Dire Brew##12491 |goto Dun Morogh/0 55.12,38.08 |or
-'|complete not completedq(11293,11294,12020) |next "Begin_Dailies" |or
-|only if haveq(12491)
-step
-You have completed the available daily quests
-|tip This guide will reset when more become available.
-'|complete not completedq(11293,11294,12020) |next "Begin_Dailies"
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Brew of the Month",{
-mopready=true,
-condition_suggested=function() return isevent("Brewfest") end,
-condition_end=function() return achieved(2796) end,
-description="Join the Brew of the Month club.",
-},[[
-step
-collect 200 Brewfest Prize Token##37829 |or
-|tip These are earned by doing Brewfest Dailies.
-Load the "Brewfest Dailies" Guide |confirm |loadguide "Events Guides\\Brewfest\\Brewfest Dailies"
-|tip Click the line above to load the guide.
-'|complete achieved(2796) |or
-step
-talk Belbi Quikswitch##23710
-buy "Brew of the Month" Club Membership Form##37736 |goto Dun Morogh/0 56.39,37.84 |or
-'|complete achieved(2796) |or
-step
-use the "Brew of the Month" Club Membership Form##37736
-accept Brew of the Month Club##12420
-step
-Enter the building |goto Ironforge/0 20.65,53.21 < 5 |walk
-talk Larkin Thunderbrew##27478
-|tip Inside the building.
-turnin Brew of the Month Club##12420 |goto Ironforge/0 18.80,53.11
-step
-Earn the "Brew of the Month" Achievement |achieve 2796
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Brew of the Year",{
-mopready=true,
-condition_suggested=function() return isevent("Brewfest") end,
-condition_end=function() return achieved(1183) end,
-description="Sample the following beers featured in the Brew of the Month club:\n\nBinary Brew\nAutumnal Acorn Ale\n"..
-"Bartlett's Bitter Brew\nLord of Frost's Private Label\nWild Winter Pilsner\nIzzard's Ever Flavor\nAromatic Honey Brew\n"..
-"Metok's Bubble Bock\nSpringtime Stout\nBlackrock Lager\nStranglethorn Brew\nDraenic Pale Ale",
-},[[
-step
-collect 200 Brewfest Prize Token##37829 |or
-|tip These are earned by doing Brewfest Dailies.
-Load the "Brewfest Dailies" Guide |confirm |loadguide "Events Guides\\Brewfest\\Brewfest Dailies"
-|tip Click the line above to load the guide.
-'|complete achieved(2796) |or
-step
-talk Belbi Quikswitch##23710
-buy "Brew of the Month" Club Membership Form##37736 |goto Dun Morogh/0 56.39,37.84 |or
-'|complete achieved(2796) |or
-step
-use the "Brew of the Month" Club Membership Form##37736
-accept Brew of the Month Club##12420
-step
-Enter the building |goto Ironforge/0 20.65,53.21 < 5 |walk
-talk Larkin Thunderbrew##27478
-|tip Inside the building.
-turnin Brew of the Month Club##12420 |goto Ironforge/0 18.80,53.11
-step
-collect Binary Brew##37496 |or
-|tip This brew will be in your mailbox for the month of September.
-'|complete achieved(1183,5) |or
-step
-use the Binary Brew##37496
-Drink September's Brew |achieve 1183/5
-step
-collect Autumnal Acorn Ale##37497 |or
-|tip This brew will be in your mailbox for the month of October.
-'|complete achieved(1183,4) |or
-step
-use the Autumnal Acorn Ale##37497
-Drink October's Brew |achieve 1183/4
-step
-collect Bartlett's Bitter Brew##37498 |or
-|tip This brew will be in your mailbox for the month of November.
-'|complete achieved(1183,3) |or
-step
-use Bartlett's Bitter Brew##37498
-Drink November's Brew |achieve 1183/3
-step
-collect Lord of Frost's Private Label##37499 |or
-|tip This brew will be in your mailbox for the month of December.
-'|complete achieved(1183,2) |or
-step
-use Lord of Frost's Private Label##37499
-Drink December's Brew |achieve 1183/2
-step
-collect Wild Winter Pilsner##37488 |or
-|tip This brew will be in your mailbox for the month of January.
-'|complete achieved(1183,1) |or
-step
-use the Wild Winter Pilsner##37488
-Drink January's Brew |achieve 1183/1
-step
-collect Izzard's Ever Flavor##37489 |or
-|tip This brew will be in your mailbox for the month of February.
-'|complete achieved(1183,8) |or
-step
-use the Izzard's Ever Flavor##37489
-Drink February's Brew |achieve 1183/8
-step
-collect Aromatic Honey Brew##37490 |or
-|tip This brew will be in your mailbox for the month of March.
-'|complete achieved(1183,11) |or
-step
-use the Aromatic Honey Brew##37490
-Drink March's Brew |achieve 1183/11
-step
-collect Metok's Bubble Bock##37491 |or
-|tip This brew will be in your mailbox for the month of April.
-'|complete achieved(1183,12) |or
-step
-use Metok's Bubble Bock##37491
-Drink April's Brew |achieve 1183/12
-step
-collect Springtime Stout##37492 |or
-|tip This brew will be in your mailbox for the month of May.
-'|complete achieved(1183,9) |or
-step
-use the Springtime Stout##37492
-Drink May's Brew |achieve 1183/9
-step
-collect Blackrock Lager##37493 |or
-|tip This brew will be in your mailbox for the month of June.
-'|complete achieved(1183,6) |or
-step
-use the Blackrock Lager##37493
-Drink June's Brew |achieve 1183/6
-step
-collect Stranglethorn Brew##37494 |or
-|tip This brew will be in your mailbox for the month of July.
-'|complete achieved(1183,10) |or
-step
-use the Stranglethorn Brew##37494
-Drink July's Brew |achieve 1183/10
-step
-collect Draenic Pale Ale##37495 |or
-|tip This brew will be in your mailbox for the month of August.
-'|complete achieved(1183,7) |or
-step
-use the Draenic Pale Ale##37495
-Drink August's Brew |achieve 1183/7
-step
-Earn the "Brew of the Year" Achievement |achieve 1183
-|tip This achievment requires you to drink a new brew every month for a year.
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Direbrewfest",{
-mopready=true,
-condition_suggested=function() return isevent("Brewfest") end,
-condition_end=function() return achieved(295) end,
-description="Kill Coren Direbrew.",
-},[[
-step
-talk Darna Honeybock##27584
-accept Save Brewfest!##12318 |goto Dun Morogh/0 52.96,51.01 |or
-|tip This quest is elite and will require a group.
-step
-talk Brewfest Spy##26719
-|tip Queue for Coren Direbrew.
-turnin Save Brewfest!##12318 |goto Blackrock Depths/1 0.00,0.00
-accept Insult Coren Direbrew##12062 |goto Blackrock Depths/1 0.00,0.00 |or
-'|complete achieved(295) |or
-step
-talk Coren Direbrew##23872
-|tip Coren Direbrew is located in the bar.
-|tip He will attack you after turnin this quest in.
-turnin Insult Coren Direbrew##12062 |or
-'|complete achieved(295) |or
-step
-kill Coren Direbrew##23872
-Earn the "Direbrewfest" Achievement |achieve 295
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Disturbing the Peace",{
-mopready=true,
-condition_suggested=function() return isevent("Brewfest") end,
-condition_end=function() return achieved(293) end,
-description="While wearing 3 pieces of Brewfest clothing, get completely smashed and dance in Dalaran.",
-},[[
-step
-collect 350 Brewfest Prize Token##37829 |or
-|tip These are earned by doing Brewfest Dailies.
-Load the "Brewfest Dailies" Guide |confirm |loadguide "Events Guides\\Brewfest\\Brewfest Dailies"
-|tip Click the line above to load the guide.
-'|complete achieved(293) |or
-step
-talk Belbi Quikswitch##23710
-collect Blue Brewfest Hat##33968 |goto Dun Morogh/0 56.39,37.84 |or
-collect Purple Brewfest Hat##33969 |goto Dun Morogh/0 56.39,37.84 |or
-collect Green Brewfest Hat##33967 |goto Dun Morogh/0 56.39,37.84 |or
-collect Brown Brewfest Hat##33864 |goto Dun Morogh/0 56.39,37.84 |or
-|tip Purchase one of these from the vendor.
-|tip It will require 50 Brewfest Coins.
-'|complete achieved(293) |or
-step
-talk Belbi Quikswitch##23710
-collect Brewfest Dress##33863 |goto Dun Morogh/0 56.39,37.84 |or
-collect Brewfest Regalia##33862 |goto Dun Morogh/0 56.39,37.84 |or
-|tip Purchase one of these from the vendor.
-|tip It will require 200 Brewfest Coins.
-'|complete achieved(293) |or
-step
-talk Belbi Quikswitch##23710
-collect Brewfest Boots##33868 |goto Dun Morogh/0 56.39,37.84 |or
-collect Brewfest Slippers##33966 |goto Dun Morogh/0 56.39,37.84 |or
-|tip Purchase one of these from the vendor.
-|tip It will require 100 Brewfest Coins.
-'|complete achieved(293) |or
-step
-talk Arille Azuregaze##29049
-|tip Inside the building.
-buy 5 Caraway Burnwine##40042 |goto Dalaran/1 48.54,37.44 |or
-'|complete achieved(293) |or
-step
-Equip the Blue Brewfest Hat |equipped Blue Brewfest Hat##33968 |goto Dalaran/1 50.58,48.36 |only if default |or
-Equip the Purple Brewfest Hat |equipped Purple Brewfest Hat##33969 |goto Dalaran/1 50.58,48.36 |only if itemcount(33969) >= 1 |or
-Equip the Green Brewfest Hat |equipped Green Brewfest Hat##33967 |goto Dalaran/1 50.58,48.36 |only if itemcount(33967) >= 1 |or
-Equip the Brown Brewfest Hat |equipped Brown Brewfest Hat##33864 |goto Dalaran/1 50.58,48.36 |only if itemcount(33864) >= 1 |or
-'|complete achieved(293) |or
-step
-Equip the Brewfest Dress |equipped Brewfest Dress##33863 |goto Dalaran/1 50.58,48.36 |only if default |or
-Equip the Brewfest Regalia |equipped Brewfest Regalia##33862 |goto Dalaran/1 50.58,48.36 |only if itemcount(33862) >= 1 |or
-'|complete achieved(293) |or
-step
-Equip the Brewfest Boots |equipped Brewfest Boots##33868 |goto Dalaran/1 50.58,48.36 |only if default |or
-Equip the Brewfest Slippers |equipped Brewfest Slippers##33966 |goto Dalaran/1 50.58,48.36 |only if itemcount(33966) >= 1 |or
-'|complete achieved(293) |or
-step
-use the Caraway Burnwine##40042
-|tip Use them all until you are "Completely Smashed."
-Dance in Dalaran |script DoEmote("Dance")
-Earn the "Disturbing the Peace" Achievement |achieve 293 |goto Dalaran/1 50.58,48.36
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Does Your Wolpertinger Linger?",{
-mopready=true,
-condition_suggested=function() return isevent("Brewfest") end,
-condition_end=function() return achieved(1936) end,
-description="Obtain a Wolpertinger pet.",
-},[[
-step
-talk Belbi Quikswitch##23710
-buy Wolpertinger's Tankard##32233 |goto Dun Morogh/0 56.39,37.84 |or
-'|complete achieved(1936) |or
-step
-use the Wolpertinger's Tankard##32233
-Earn the "Does Your Wopertinger Linger?" Achievement |achieve 1936
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Down With The Dark Iron",{
-mopready=true,
-condition_suggested=function() return isevent("Brewfest") end,
-condition_end=function() return achieved(1186) end,
-description="Defend the Brewfest camp from the Dark Iron attack and complete the quest, \"This One Time, When I Was Drunk...\"",
-},[[
-step
-Wait for the Dark Iron Defense event to start
-|tip This even occurs every 30 minutes.
-|tip You have to defend the three kegs at these locations in order to complete it.
-click Complimentary Brewfest Sampler##186189+ |goto Dun Morogh/0 55.94,37.33
-click Complimentary Brewfest Sampler##186189+ |goto Dun Morogh/0 55.94,37.33
-use the Alcohol-Free Brewfest Sampler##33096
-|tip Use it to throw it at the Dark Iron Dwarves and the Mole Machines around this area.
-click Dark Iron Mole Machine Wreckage##189989
-|tip It looks like a big metal gear laying on ground in the middle of the festival.
-|tip It appears after the Dark Iron dwarves attack the Brewfest festival, so you may have to wait for it to appear.
-accept This One Time, When I Was Drunk...##12020 |goto Dun Morogh/0 48.69,39.13 |or
-'|complete achieved(1186) |or
-step
-talk Boxey Boltspinner##27215
-turnin This One Time, When I Was Drunk...##12020 |goto Dun Morogh/0 54.67,38.09 |or
-'|complete achieved(1186) |or
-step
-Earn the "Down With The Dark Iron" Achievement |achieve 1186
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Drunken Stupor",{
-mopready=true,
-condition_suggested=function() return isevent("Brewfest") end,
-condition_end=function() return achieved(1260) end,
-description="Fall 65 yards without dying while completely smashed during the Brewfest Holiday.",
-},[[
-step
-talk Kylene##19186
-|tip Walking around the building.
-buy 5 Flagon of Dwarven Honeymead##2594 |goto Shattrath City/0 75.11,32.27 |or
-'|complete achieved(1260) |or
-step
-use Flagon of Dwarven Honeymead##2594
-|tip Use them until you are "Completely Smashed" before jumping.
-Earn the "Drunken Stupor" Achievement |achieve 1260 |goto Shattrath City/0 50.22,62.42
-|tip You must fall at least 65 yards and not die to receive this achievement.
-|tip From this point, run off the edge and miss the platform below, landing on the ground.
-|tip You must do this while "Completely Smashed" drunk.
-|tip Paladin "Divine Shield" and Mage "Ice Block" allow you to earn this without risk of fall damage.
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Have Keg, Will Travel",{
-mopready=true,
-condition_suggested=function() return isevent("Brewfest") end,
-condition_end=function() return achieved(303) end,
-description="Obtain a Brewfest mount, or transform yours into one using Brewfest Hops.",
-},[[
-step
-collect 2 Brewfest Prize Token##37829 |or
-|tip These are earned by doing Brewfest Dailies.
-Load the "Brewfest Dailies" Guide |confirm |loadguide "Events Guides\\Brewfest\\Brewfest Dailies"
-|tip Click the line above to load the guide.
-'|complete achieved(303) |or
-step
-Reach Level 20 |ding 20
-|tip You must be level 20 to complete this achievement.
-|tip Use the leveling guides to accomplish this.
-step
-talk Belbi Quikswitch##23710
-buy Fresh Brewfest Hops##37750 |goto Dun Morogh/0 56.39,37.84 |or
-|tip You will need 2 Brewfest Prize Tokens to purchase this.
-'|complete achieved(303) |or
-step
-use the Fresh Brewfest Hops##37750
-|tip Mount up and use the hops to make your mount festive.
-Earn the "Have Keg, Will Travel" Achievement |achieve 303
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\Strange Brew",{
-mopready=true,
-condition_suggested=function() return isevent("Brewfest") end,
-condition_end=function() return achieved(1184) end,
-description="Drink the following Brewfest beers:\n\nThunderbrew Stout\nThunderbrew Ale\nThunder 45\n"..
-"Barleybrew Dark\nBarleybrew Light\nBarleybrew Clear\nOgre Mead\nMudder's Milk\nGordok Grog",
-},[[
-step
-talk Thunderbrew Apprentice##23510
-buy Thunderbrew Stout##33033 |goto Dun Morogh/0 56.59,37.00 |achieve 1184
-buy Thunderbrew Ale##33032 |goto Dun Morogh/0 56.59,37.00 |achieve 1184
-buy Thunder 45##33031 |goto Dun Morogh/0 56.59,37.00 |achieve 1184
-step
-talk Barleybrew Apprentice##23482
-buy Barleybrew Dark##33029 |goto Dun Morogh/0 56.06,38.09 |achieve 1184
-buy Barleybrew Light##33028 |goto Dun Morogh/0 56.06,38.09 |achieve 1184
-buy Barleybrew Clear##33030 |goto Dun Morogh/0 56.06,38.09 |achieve 1184
-step
-talk Gordok Brew Apprentice##23511
-buy Ogre Mead##33035 |goto Dun Morogh/0 55.47,36.68 |achieve 1184
-buy Mudder's Milk##33036 |goto Dun Morogh/0 55.47,36.68 |achieve 1184
-buy Gordok Grog##33034 |goto Dun Morogh/0 55.47,36.68 |achieve 1184
-step
-use the Thunderbrew Stout##33033
-Drink Some Thunderbrew Stout |achieve 1184/2
-step
-use the Thunderbrew Ale##33032
-Drink Some Thunderbrew Ale |achieve 1184/4
-step
-use the Thunder 45##33031
-Drink Some Thunder 45 |achieve 1184/9
-step
-use the Barleybrew Dark##33029
-Drink Some Barleybrew Dark |achieve 1184/1
-step
-use the Barleybrew Light##33028
-Drink Some Barleybrew Light |achieve 1184/8
-step
-use the Barleybrew Clear##33030
-Drink Some Barleybrew Clear |achieve 1184/3
-step
-use the Ogre Mead##33035
-Drink Some Ogre Mead |achieve 1184/5
-step
-use the Mudder's Milk##33036
-Drink Some Mudder's Milk |achieve 1184/6
-step
-use the Gordok Grog##33034
-Drink Some Gordok Grog |achieve 1184/7
-step
-Earn the "Strange Brew" Achievement |achieve 1184
-]])
-ZygorGuidesViewer:RegisterGuide("Events Guides\\Brewfest\\Achievements\\The Brewfest Diet",{
-mopready=true,
-condition_suggested=function() return isevent("Brewfest") end,
-condition_end=function() return achieved(1185) end,
-description="Eat all 8 of the following Brewfest foods:\n\nSucculent Sausage\nDried Sausage\nPickled Sausage\n"..
-"Savory Sausage\nSpiced Onion Cheese\nSpicy Smoked Sausage\nThe Essential Brewfest Pretzel\nThe Golden Link",
-},[[
-step
-talk Keiran Donoghue##23481
-buy Succulent Sausage##34064 |goto Dun Morogh/0 56.02,36.39 |achieve 1185
-buy Dried Sausage##34063 |goto Dun Morogh/0 56.02,36.39 |achieve 1185
-buy Pickled Sausage##33024 |goto Dun Morogh/0 56.02,36.39 |achieve 1185
-buy Savory Sausage##33023 |goto Dun Morogh/0 56.02,36.39 |achieve 1185
-buy Spicy Smoked Sausage##33025 |goto Dun Morogh/0 56.02,36.39 |achieve 1185
-buy The Golden Link##33026 |goto Dun Morogh/0 56.02,36.39 |achieve 1185
-step
-talk Anne Summers##23521
-buy Spiced Onion Cheese##34065 |goto Dun Morogh/0 56.46,37.71 |achieve 1185
-step
-talk Arlen Lochlan##23522
-buy The Essential Brewfest Pretzel##33043 |goto Dun Morogh/0 55.57,38.21 |achieve 1185
-step
-use The Essential Brewfest Pretzel##33043
-Eat The Essential Brewfest Pretzel |achieve 1185/2
-step
-use the Spiced Onion Cheese##34065
-Eat Some Spiced Onion Cheese |achieve 1185/4
-step
-use the Dried Sausage##34063
-Eat Some Dried Sausage |achieve 1185/7
-step
-use the Succulent Sausage##34064
-Eat Some Succulent Sausage |achieve 1185/8
-step
-use the Savory Sausage##33023
-Eat Some Savory Sausage |achieve 1185/5
-step
-use the Pickled Sausage##33024
-Eat Some Pickled Sausage |achieve 1185/6
-step
-use the Spicy Smoked Sausage##33025
-Eat Some Spicy Smoked Sausage |achieve 1185/3
-step
-use the The Golden Link##33026
-Eat The Golden Link |achieve 1185/1
-step
-Earn "The Brewfest Diet" Achievement |achieve 1185
-]])
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Brewfest Quests")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Brewfest Dailies")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Brew of the Month")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Brew of the Year")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Direbrewfest")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Disturbing the Peace")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Does Your Wolpertinger Linger?")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Down With The Dark Iron")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Drunken Stupor")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Have Keg, Will Travel")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\Strange Brew")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Brewfest\\Achievements\\The Brewfest Diet")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Children's Week\\Children's Week Stormwind Quests")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Children's Week\\Children's Week Shattrath Quests")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Children's Week\\Children's Week Dalaran Quests")
@@ -1395,21 +603,1252 @@ talk Jesper##15310
 turnin Hallow's End Treats for Jesper!##8311 |goto Elwynn Forest/0 32.03,50.39
 |next "Events Guides\\Hallow's End\\Hallow's End Daily Quests"
 ]])
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Hallow's End Daily Quests")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Hallow's End Candy Buckets")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\The Mask Task")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\Rotten Hallow")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\The Savior of Hallow's End")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\Trick or Treat!")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\Bring Me The Head of... Oh Wait")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\Out With It")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\A Mask for All Occasions")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\That Sparkling Smile")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\G.N.E.R.D. Rage")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\Check Your Head")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\Hallowed Be Thy Name")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\The Masquerade")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Hallow's End\\Achievements\\Sinister Calling")
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Hallow's End Daily Quests",{
+mopready=true,
+description="Put out fires in Razor Hill and kill the Headless Horseman.",
+patch='40405',
+},[[
+step
+label "Begin_Dailies"
+talk Human Commoner##18927
+accept Costumed Orphan Matron##11356 |goto Stormwind City/0 61.76,74.15
+step
+talk Celestine of the Harvest##51665
+accept A Time to Gain##29075 |goto Elwynn Forest/0 32.04,50.51
+step
+talk Keira##52064
+accept A Time to Lose##29371 |goto Elwynn Forest/0 32.08,50.60
+step
+talk Gretchen Fenlow##51934
+accept Stink Bombs Away!##29054 |goto Elwynn Forest/0 32.35,50.88
+accept Clean Up in Stormwind##29144 |goto Elwynn Forest/0 32.35,50.88
+step
+talk Gertrude Fenlow##52548
+Select _"I'm ready to fly, let's bomb the Undercity!"_ |gossip 113573
+Begin Your Flight to Undercity |invehicle |goto Elwynn Forest/0 32.21,50.77 |q 29054
+step
+Reach Undercity |complete zone("Undercity") or completedq(29054)
+step
+Drop #25# Bombs |q 29054/1 |goto Elwynn Forest/0 32.21,50.77
+|tip Use the {o}Toss Stink Bomb{} ability on your vehicle bar to drop bombs across Undercity.
+|tip You can drop them anywhere.
+|tip If you're feeling kind, focus on dropping them in areas where Horde players can easily remove them later.
+step
+Return to Elwynn Forest |complete zone("Elwynn Forest") or zone("Stormwind City") or completedq(29054)
+|tip Use the {o}Return Home{} button on your vehicle bar.
+step
+click Bonfire
+Use the Bonfire |q 29075/1 |goto Elwynn Forest/0 32.86,49.37
+step
+use the Arcane Cleanser##69191
+|tip Use it all over Stormwind City on large orange clouds of smoke coming from the ground.
+Remove #10# Stink Bombs |q 29144/1 |goto Stormwind City/0 57.58,63.42
+step
+talk Celestine of the Harvest##51665
+turnin A Time to Gain##29075 |goto Elwynn Forest/0 32.04,50.51
+step
+talk Gretchen Fenlow##51934
+turnin Stink Bombs Away!##29054 |goto Elwynn Forest/0 32.35,50.88
+turnin Clean Up in Stormwind##29144 |goto Elwynn Forest/0 32.35,50.88
+step
+talk Costumed Orphan Matron##24519
+turnin Costumed Orphan Matron##11356 |goto Elwynn Forest/0 42.62,64.39
+step
+talk Costumed Orphan Matron##24519
+accept Stop the Fires!##11131 |goto Elwynn Forest/0 42.62,64.39 |or
+accept "Let the Fires Come!"##12135 |goto Elwynn Forest/0 42.62,64.39 |or
+|tip You will only be able to accept one of these quests.
+|tip The quest offered depends on whether Goldshire is under attack or not.
+step
+click Water Barrel |goto Elwynn Forest/0 42.51,64.49
+|tip Click the Water Barrel to pick up a bucket of water.
+collect Water Bucket##32971 |n
+use the Water Bucket##32971
+|tip Throw the buckets at the fires on top of buildings around this area.
+Put Out the Fires |q 11131/1 |goto Elwynn Forest/0 42.43,65.63
+|only if haveq(11131) or completedq(11131)
+step
+click Water Barrel |goto Elwynn Forest/0 42.51,64.49
+|tip Click the Water Barrel to pick up a bucket of water.
+collect Water Bucket##32971 |n
+use the Water Bucket##32971
+|tip Throw the buckets at the fires on top of buildings around this area.
+Put Out the Fires |q 12135/1 |goto Elwynn Forest/0 42.43,65.63
+|only if haveq(12135) or completedq(12135)
+step
+talk Large Jack-O'-Lantern
+accept Smash the Pumpkin##12133 |goto Elwynn Forest/0 42.39,65.87
+|tip This will only be available after the Headless Horseman is defeated.
+step
+talk Costumed Orphan Matron##24519
+turnin Stop the Fires!##11131 |goto Elwynn Forest/0 42.62,64.39 |only if haveq(11131) or completedq(11131) |or
+turnin "Let the Fires Come!"##12135 |goto Elwynn Forest/0 42.62,64.39 |only if haveq(12135) or completedq(12135) |or
+turnin Smash the Pumpkin##12133 |goto Elwynn Forest/0 42.62,64.39 |only if haveq(12133) or completedq(12133)
+step
+use Dousing Agent##68648
+Douse the Horde's Wickerman |q 29371/1 |goto Tirisfal Glades/0 62.37,68.20
+step
+talk Keira##52064
+turnin A Time to Lose##29371 |goto Elwynn Forest/0 32.08,50.60
+step
+Reach Level 75 |ding 75 |or
+|tip You must be at least level 75 to be able to kill the Headless Horseman.
+|tip Use the Leveling guides to accomplish this.
+'|complete not completedq(11131,12135,11404) |next "Begin_Dailies" |or
+step
+click Pumpkin Shrine
+|tip It's in the courtyard of the Scarlet Monastery Graveyard dungeon.
+|tip You will need a full group for this.
+accept Call the Headless Horseman##11404 |or
+'|complete not completedq(11131,12135,11404) |next "Begin_Dailies" |or
+step
+click Loosely Turned Soil
+|tip In front of the crypt behind the Pumpkin Shine.
+kill Headless Horseman##23682
+|tip He will fly down shortly after disturbing the soil.
+|tip When he reaches 1% health, his head will fly off.
+|tip Burn the head down to make it rejoin his body.
+|tip You will need to do this twice.
+|tip After the second time, he will start spawning 4 pumpkins every 30 seconds.
+|tip Group them up and AoE them down.
+|tip Kill his head the third time it separates to defeat him.
+confirm |or
+'|complete not completedq(11131,12135,11404) |next "Begin_Dailies" |or
+step
+click Pumpkin Shrine
+turnin Call the Headless Horseman##11404 |or
+'|complete not completedq(11131,12135,11404) |next "Begin_Dailies" |or
+step
+You have completed the availble daily quests for Hallow's End
+|tip This guide will reset when more become available.
+'|complete not completedq(11131,12135,11404) |next "Begin_Dailies" |or
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Hallow's End Candy Buckets",{
+mopready=true,
+description="Visit innkeeper candy buckets in Eastern Kingdoms, Kalimdor, and Outland "..
+"for tasty treats.",
+achieveid={971,963,969,966,5836,5837,7601},
+patch='40405',
+},[[
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12336 |goto Stormwind City/0 60.52,75.32
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12286 |goto Elwynn Forest/0 43.74,65.89
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12342 |goto Redridge Mountains/0 26.47,41.50
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28955 |goto Badlands/0 65.86,35.65
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28956 |goto Badlands/0 20.86,56.31
+step
+click Candy Bucket##208144
+|tip It's on the top level of the tower.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28965 |goto Searing Gorge/0 39.49,66.04
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12332 |goto Dun Morogh/0 54.49,50.77
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12335 |goto Ironforge/0 18.34,50.97
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12339 |goto Loch Modan/0 35.54,48.49
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28963 |goto Loch Modan/0 83.02,63.53
+step
+click Candy Bucket##208144
+|tip It's on the bottom floor.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28980 |goto Twilight Highlands/0 79.48,78.54
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28977 |goto Twilight Highlands/0 60.35,58.24
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28979 |goto Twilight Highlands/0 43.50,57.27
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28978 |goto Twilight Highlands/0 49.60,30.36
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12343 |goto Wetlands/0 10.82,60.96
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28990 |goto Wetlands/0 26.07,25.99
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28991 |goto Wetlands/0 58.21,39.20
+step
+click Candy Bucket##208144
+|tip It's inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28954 |goto Arathi Highlands/0 40.06,49.09
+step
+click Candy Bucket##208144
+|tip Upstairs inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12351 |goto The Hinterlands/0 14.19,44.60
+step
+click Candy Bucket##208144
+|tip It's inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28970 |goto The Hinterlands/0 66.16,44.43
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12402 |goto Eastern Plaguelands/0 75.57,52.31
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28988 |goto Western Plaguelands/0 43.39,84.38
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12340 |goto Westfall/0 52.91,53.74
+If you do not find the Candy Bucket here then it will be located at [56.79,47.27]
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12344 |goto Duskwood/0 73.80,44.26
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28968 |goto Swamp of Sorrows/0 28.93,32.40
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28967 |goto Swamp of Sorrows/0 71.65,14.10
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28960 |goto Blasted Lands/0 60.69,14.08
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28961 |goto Blasted Lands/0 44.35,87.59
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28964 |goto Northern Stranglethorn/0 53.16,66.98
+step
+click Candy Bucket##208144
+|tip It's on the bottom floor of the tavern.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12397 |goto The Cape of Stranglethorn/0 40.91,73.72
+step
+Ride the Boat to The Barrens |complete zone("The Barrens") or completedq(12396) |goto The Cape of Stranglethorn/0 38.94,66.96
+|tip Wait for the boat to take you to Kalimdor.
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12396 |goto The Barrens/0 67.33,74.66
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29006 |goto Southern Barrens/0 39.01,10.99
+step
+click Candy Bucket##208144
+|tip It's inside the base of the tower.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29007 |goto Southern Barrens/0 65.60,46.54
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29008 |goto Southern Barrens/0 49.05,68.50
+step
+click Candy Bucket##208144
+|tip It's inside the inn on the second floor.
+|tip If the city is a crater, you can skip this or talk to Zidormi in the pillar of light at the entrance to the city crater to see the old version.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12349 |goto Dustwallow Marsh/0 66.60,45.28
+step
+click Candy Bucket##208144
+|tip It's inside the inn on the second floor.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12398 |goto Dustwallow Marsh/0 41.86,74.09
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12399 |goto Tanaris/0 52.56,27.10
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29014 |goto Tanaris/0 55.70,60.96
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29017 |goto Uldum/0 54.68,33.01
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29018 |goto Un'Goro Crater/0 55.27,62.11
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29016 |goto Uldum/0 26.59,7.23
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12401 |goto Silithus/0 55.47,36.78
+step
+click Candy Bucket##208144
+|tip It's inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12350 |goto Feralas/0 46.33,45.19
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28952 |goto Feralas/0 51.07,17.82
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28993 |goto Desolace/0 56.72,50.13
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12348 |goto Desolace/0 66.33,6.59
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29010 |goto Stonetalon Mountains/0 71.02,79.08
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29011 |goto Stonetalon Mountains/0 59.05,56.33
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29013 |goto Stonetalon Mountains/0 31.53,60.66
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29012 |goto Stonetalon Mountains/0 39.48,32.81
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12345 |goto Ashenvale/0 37.01,49.26
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29000 |goto Mount Hyjal/0 18.63,37.32
+step
+click Candy Bucket##208144
+|tip It's under the ramp.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29001 |goto Mount Hyjal/0 42.68,45.71
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28999 |goto Mount Hyjal/0 63.05,24.14
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12400 |goto Winterspring/0 59.83,51.21
+step
+click Candy Bucket##208144
+|tip It's inside the big tree.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28995 |goto Felwood/0 61.86,26.71
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28994 |goto Felwood/0 44.58,28.98
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28951 |goto Darkshore/0 50.79,18.89
+step
+Go up the ramp |goto The Exodar/0 56.38,31.15 < 15 |walk
+click Candy Bucket##208144
+|tip Inside the building inside The Exodar.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12337 |goto The Exodar/0 59.23,18.48
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12333 |goto Azuremyst Isle/0 48.49,49.05
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12341 |goto Bloodmyst Isle/0 55.69,59.96
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12334 |goto Darnassus/0 62.27,33.15
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12331 |goto Teldrassil/0 55.36,52.29
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12404 |goto Shattrath City/0 56.31,81.95
+only if rep ('The Scryers')>=Neutral
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12404 |goto Shattrath City/0 28.23,49.07
+only if rep ('The Aldor')>=Neutral
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12357 |goto Nagrand/0 54.19,75.88
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12356 |goto Terokkar Forest/0 56.60,53.22
+step
+click Candy Bucket##208144
+|tip It's inside the inn back in the corner.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12360 |goto Shadowmoon Valley/0 37.01,58.29
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12409 |goto Shadowmoon Valley/0 56.37,59.82
+only if rep ('The Scryers')>=Neutral
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12409 |goto Shadowmoon Valley/0 61.00,28.17
+only if rep ('The Aldor')>=Neutral
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12352 |goto Hellfire Peninsula/0 54.27,63.66
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12353 |goto Hellfire Peninsula/0 23.42,36.38
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12403 |goto Zangarmarsh/0 78.45,62.88
+step
+click Candy Bucket##208144
+|tip It's inside the inn atop the giant mushroom.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12354 |goto Zangarmarsh/0 67.16,48.94
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12355 |goto Zangarmarsh/0 41.90,26.17
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12358 |goto Blade's Edge Mountains/0 35.83,63.74
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12359 |goto Blade's Edge Mountains/0 61.05,68.08
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12406 |goto Blade's Edge Mountains/0 62.90,38.33
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12407 |goto Netherstorm/0 32.02,64.44
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12408 |goto Netherstorm/0 43.31,36.10
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13436 |goto Borean Tundra/0 58.52,67.87
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13460 |goto Borean Tundra/0 78.45,49.16
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13437 |goto Borean Tundra/0 57.12,18.81
+step
+click Candy Bucket##208144
+|tip It's under the tent.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12950 |goto Sholazar Basin/0 26.61,59.20
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13438 |goto Dragonblight/0 28.95,56.22
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13459 |goto Dragonblight/0 48.12,74.66
+step
+click Candy Bucket##208144
+|tip It's on the bottom floor.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13456 |goto Dragonblight/0 60.15,53.45
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13439 |goto Dragonblight/0 77.50,51.28
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12944 |goto Grizzly Hills/0 31.94,60.22
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12945 |goto Grizzly Hills/0 59.64,26.36
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13435 |goto Howling Fjord/0 60.47,15.90
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13433 |goto Howling Fjord/0 58.32,62.82
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13434 |goto Howling Fjord/0 30.83,41.43
+step
+click Candy Bucket##208144
+|tip It's inside the underground inn.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13452 |goto Howling Fjord/0 25.44,59.82
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12941 |goto Zul'Drak/0 40.87,66.04
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##12940 |goto Zul'Drak/0 59.33,57.20
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13461 |goto The Storm Peaks/0 41.07,85.85
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13448 |goto The Storm Peaks/0 28.72,74.29
+step
+click Candy Bucket##208144
+|tip It's inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13462 |goto The Storm Peaks/0 30.92,37.16
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13463 |goto Dalaran/1 48.14,41.31
+step
+click Candy Bucket##208144
+|tip It's under the stairs.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13473 |goto Dalaran/1 42.35,63.07
+step
+click Candy Bucket##208144
+|tip It's in the side room on the left.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##13472 |goto Dalaran/1 38.20,59.61
+step
+For the last buckets, you will need to level through Cataclysm
+|tip Complete the Vashj'ir leveling guide to unlock all of the various areas of that zone.
+|tip Complete the beginning of the Deepholm leveling guide to gain access to Deepholm.
+|confirm
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##29020 |goto Deepholm/0 47.35,51.71
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28985 |goto Abyssal Depths/0 54.67,72.11
+Enter the cave here [60.07,79.40]
+|tip Swim underwater into the cave if you do not have the flight path.
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28983 |goto Shimmering Expanse/0 49.72,57.39
+Enter the cave here [47.17,57.42]
+|tip Swim underwater into the cave if you do not have the flight path.
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28982 |goto Shimmering Expanse/0 49.18,41.87
+Enter the cave here [50.07,39.35]
+|tip Swim underwater into the cave if you do not have the flight path.
+step
+Enter the cave |goto Kelp'thar Forest/0 61.48,63.54 < 20 |walk
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##28981 |goto Kelp'thar Forest/0 63.50,60.16
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32049 |goto The Jade Forest/0 44.80,84.36
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32033 |goto The Jade Forest/0 59.56,83.24
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32032 |goto The Jade Forest/0 54.61,63.33
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32027 |goto The Jade Forest/0 45.77,43.61
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32021 |goto The Jade Forest/0 41.68,23.14
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32031 |goto The Jade Forest/0 55.72,24.41
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32029 |goto The Jade Forest/0 48.09,34.62
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32039 |goto Kun-Lai Summit/0 72.73,92.28
+step
+click Candy Bucket##208144
+|tip You {o}must complete{} the {o}Challenge Accepted{} quest to access this candy bucket.	|only if not completedq(30514)
+|tip Complete the {o}few quests{} at {o}Binan Village{} nearby.					|only if not completedq(30514)
+|tip The {o}quests will lead you{} to Westwind Rest.						|only if not completedq(30514)
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32042 |goto Kun-Lai Summit/0 54.07,82.82
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32037 |goto Kun-Lai Summit/0 57.45,59.95
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32041 |goto Kun-Lai Summit/0 64.21,61.27
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32051 |goto Kun-Lai Summit/0 62.50,28.90
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32043 |goto Townlong Steppes/0 71.11,57.78
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32044 |goto Vale of Eternal Blossoms/0 35.14,77.78
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32052 |goto Shrine of Seven Stars/1 37.81,65.92
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32026 |goto The Veiled Stair/0 55.10,72.23
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32048 |goto Valley of the Four Winds/0 83.64,20.15
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32046 |goto Valley of the Four Winds/0 19.87,55.79
+step
+click Candy Bucket##208144
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32024 |goto Dread Wastes/0 55.93,32.27
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32023 |goto Dread Wastes/0 55.22,71.19
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32036 |goto Krasarang Wilds/0 75.92,6.87
+step
+click Candy Bucket##208144
+|tip Inside the building.
+'|use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+accept Candy Bucket##32034 |goto Krasarang Wilds/0 51.40,77.29
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\The Mask Task",{
+mopready=true,
+startlevel=1,
+achieveid={979},
+patch='40405',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="To earn this achievement, you will need to obtain a Flimsy Mask during Hallow's End.",
+},[[
+step
+Earn "The Mask Task" Achievement |achieve 979
+|tip Obtain any type of flimsy mask by Trick or Treating hourly.
+|tip You also have a chance to obtain one from the Crudely Wrapped Gift from daily fire quests.
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Rotten Hallow",{
+mopready=true,
+startlevel=25,
+achieveid={1040},
+patch='40300',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="Ruin Hallow's End for the Horde and foil their attempts to wreck the Alliance celebration by completing the following quests:\n\n"..
+"A Time to Gain\nA Time to Lose\nStink Bombs Away!\nClean Up in Stormwind",
+},[[
+step
+talk Celestine of the Harvest##51665
+accept A Time to Gain##29075 |goto Elwynn Forest/0 32.04,50.51
+step
+talk Keira##52064
+accept A Time to Lose##29371 |goto Elwynn Forest/0 32.08,50.60
+step
+talk Gretchen Fenlow##51934
+accept Stink Bombs Away!##29054 |goto Elwynn Forest/0 32.35,50.88
+accept Clean Up in Stormwind##29144 |goto Elwynn Forest/0 32.35,50.88
+step
+talk Gertrude Fenlow##52548
+Select _"I'm ready to fly, let's bomb the Undercity!"_ |gossip 113573
+Begin Your Flight to Undercity |invehicle |goto Elwynn Forest/0 32.21,50.77 |q 29054
+step
+Reach Undercity |complete zone("Undercity") or completedq(29054)
+step
+Drop #25# Bombs |q 29054/1 |goto Elwynn Forest/0 32.21,50.77
+|tip Use the {o}Toss Stink Bomb{} ability on your vehicle bar to drop bombs across Undercity.
+|tip You can drop them anywhere.
+|tip If you're feeling kind, focus on dropping them in areas where Horde players can easily remove them later.
+step
+Return to Elwynn Forest |complete zone("Elwynn Forest") or zone("Stormwind City") or completedq(29054)
+|tip Use the {o}Return Home{} button on your vehicle bar.
+step
+click Bonfire
+Use the Bonfire |q 29075/1 |goto Elwynn Forest/0 32.86,49.37
+step
+use the Arcane Cleanser##69191
+|tip Use it all over Stormwind City on large orange clouds of smoke coming from the ground.
+Remove #10# Stink Bombs |q 29144/1 |goto Stormwind City/0 57.58,63.42
+step
+talk Celestine of the Harvest##51665
+turnin A Time to Gain##29075 |goto Elwynn Forest/0 32.04,50.51
+step
+talk Gretchen Fenlow##51934
+turnin Stink Bombs Away!##29054 |goto Elwynn Forest/0 32.35,50.88
+turnin Clean Up in Stormwind##29144 |goto Elwynn Forest/0 32.35,50.88
+step
+use Dousing Agent##68648
+Douse the Horde's Wickerman |q 29371/1 |goto Tirisfal Glades/0 62.37,68.20
+step
+talk Keira##52064
+turnin A Time to Lose##29371 |goto Elwynn Forest/0 32.08,50.60
+step
+Earn "Rotten Hallow" Achievement |achieve 1040
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\The Savior of Hallow's End",{
+mopready=true,
+startlevel=1,
+achieveid={289},
+patch='40405',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="To earn this achievement, complete one of the quests to save a village from the Headless Horseman.",
+},[[
+step
+talk Human Commoner##18927
+accept Costumed Orphan Matron##11356 |goto Stormwind City/0 61.75,74.13
+step
+talk Costumed Orphan Matron##24519
+turnin Costumed Orphan Matron##11356 |goto Elwynn Forest/0 Elwynn Forest/0 42.62,64.39
+accept Fire Brigade Practice##11360 |goto Elwynn Forest/0 42.62,64.39
+|tip You may need to wait for the Horseman's assault to stop.
+step
+click Water Barrel |goto Elwynn Forest/0 42.51,64.49
+|tip Click the Water Barrel to pick up a bucket of water.
+collect Water Bucket##32971 |n
+use the Water Bucket##32971
+|tip Throw the buckets at the fires on top of buildings around this area.
+|tip You may have to wait a short amount of time for the Horseman to attack.
+Put Out #5# Fires |q 11360/1 |goto Elwynn Forest/0 42.43,65.63
+step
+talk Large Jack-O'-Lantern
+accept Smash the Pumpkin##12133 |goto Elwynn Forest/0 42.39,65.87
+|tip This will only be available after the Headless Horseman is defeated.
+|tip You can skip this step if it does not drop.
+step
+talk Costumed Orphan Matron##24519
+turnin Fire Brigade Practice##11360 |goto Elwynn Forest/0 42.62,64.39
+turnin Smash the Pumpkin##12133 |goto Elwynn Forest/0 42.62,64.39 |only if haveq(12133) or completedq(12133)
+step
+talk Costumed Orphan Matron##24519
+accept Stop the Fires!##11131 |goto Elwynn Forest/0 42.62,64.39 |or
+accept "Let the Fires Come!"##12135 |goto Elwynn Forest/0 42.62,64.39 |or
+|tip You will only be able to accept one of these quests.
+|tip The quest offered depends on whether Goldshire is under attack or not.
+step
+click Water Barrel |goto Elwynn Forest/0 42.51,64.49
+|tip Click the Water Barrel to pick up a bucket of water.
+collect Water Bucket##32971 |n
+use the Water Bucket##32971
+|tip Throw the buckets at the fires on top of buildings around this area.
+Put Out the Fires |q 11131/1 |goto Elwynn Forest/0 42.43,65.63
+|only if haveq(11131) or completedq(11131)
+step
+click Water Barrel |goto Elwynn Forest/0 42.51,64.49
+|tip Click the Water Barrel to pick up a bucket of water.
+collect Water Bucket##32971 |n
+use the Water Bucket##32971
+|tip Throw the buckets at the fires on top of buildings around this area.
+Put Out the Fires |q 12135/1 |goto Elwynn Forest/0 42.43,65.63
+|only if haveq(12135) or completedq(12135)
+step
+talk Large Jack-O'-Lantern
+accept Smash the Pumpkin##12133 |goto Elwynn Forest/0 42.39,65.87
+|tip This will only be available after the Headless Horseman is defeated.
+step
+talk Costumed Orphan Matron##24519
+turnin Stop the Fires!##11131 |goto Elwynn Forest/0 42.62,64.39 |only if haveq(11131) or completedq(11131) |or
+turnin "Let the Fires Come!"##12135 |goto Elwynn Forest/0 42.62,64.39 |only if haveq(12135) or completedq(12135) |or
+turnin Smash the Pumpkin##12133 |goto Elwynn Forest/0 42.62,64.39 |only if haveq(12133) or completedq(12133)
+|only if haveq(11131,12135,12133) or completedq(11131,12135,12133)
+step
+Earn "The Savior of Hallow's End" Achievement |achieve 289
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Trick or Treat!",{
+mopready=true,
+startlevel=1,
+achieveid={972},
+patch='40405',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="To earn this achievement you will visit a single candy bucket.",
+},[[
+step
+click Candy Bucket
+|tip Inside the building.
+use the Handful of Candy##37586 |only if itemcount(37586) >= 1
+accept Candy Bucket##12336 |goto Stormwind City/0 60.51,75.33
+|tip If you cannot complete this quest because of a "Duplicate item found" message, open the Handful of Treats item in your bags and take out the contents.
+step
+Earn the "Trick or Treat!" Achievement |achieve 972
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Don't Lose Your Head, Man",{
+mopready=true,
+startlevel=75,
+achieveid={18959},
+patch='40405',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="To earn this achievement, you will have to kill the Headless Horseman.",
+},[[
+step
+Reach Level 75 |ding 75
+|tip You will need to be level 75 to summon the Horseman yourself.
+|tip You can be any level and skip this if someone can summon for you.
+|tip Use the leveling guides to accomplish this.
+step
+Inside the Scarlet Monastery Graveyard:
+kill Headless Horseman##23682
+|tip Enter the Scarlet Monastery Graveyard with a group.
+|tip Accept the daily in the couryard at the Pumpkin Shrine when you are ready.
+achieve 18959
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Out With It",{
+mopready=true,
+startlevel=1,
+achieveid={288},
+patch='40405',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="To earn this achievement you will have to eat so many Tricky Treats that you get an upset tummy.",
+},[[
+step
+use the Tricky Treat##33226
+|tip You get these by completing Hallows End quests.
+|tip Keep using your Tricky Treats quickly until you puke.
+|tip You will need at least 2-3 Tricky Treats.
+|tip Use the "Hallow's End Candy Buckets" guide to collect treats.
+Earn the "Out With It" Achievement |achieve 288
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\A Mask for All Occasions",{
+mopready=true,
+startlevel=1,
+achieveid={284},
+patch='40405',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="To earn this achievement, collect the following 24 masks:\n\n"..
+"Blood Elf Male/Female\nDraenei Male/Female\nDwarf Male/Female\nGnome Male/Female\n"..
+"Human Male/Female\nNight Elf Male/Female\nOrc Male/Female\nTauren Male/Female\n"..
+"Troll Male/Female\nUndead Male/Female",
+},[[
+step
+Obtain a Flimsy Male Orc Mask |achieve 284/1 |only if not achieved(284,1)
+Obtain a Flimsy Male Blood Elf Mask |achieve 284/2 |only if not achieved(284,2)
+Obtain a Flimsy Female Orc Mask |achieve 284/3 |only if not achieved(284,3)
+Obtain a Flimsy Female Human Mask |achieve 284/4 |only if not achieved(284,4)
+Obtain a Flimsy Female Gnome Mask |achieve 284/5 |only if not achieved(284,5)
+Obtain a Flimsy Female Draenei Mask |achieve 284/6 |only if not achieved(284,6)
+Obtain a Flimsy Male Troll Mask |achieve 284/7 |only if not achieved(284,7)
+Obtain a Flimsy Female Undead Mask |achieve 284/8 |only if not achieved(284,8)
+Obtain a Flimsy Female Troll Mask |achieve 284/9 |only if not achieved(284,9)
+Obtain a Flimsy Female Blood Elf Mask |achieve 284/10 |only if not achieved(284,10)
+Obtain a Flimsy Male Undead Mask |achieve 284/11 |only if not achieved(284,11)
+Obtain a Flimsy Male Draenei Mask |achieve 284/12 |only if not achieved(284,12)
+Obtain a Flimsy Female Night Elf Mask |achieve 284/13 |only if not achieved(284,13)
+Obtain a Flimsy Male Night Elf Mask |achieve 284/14 |only if not achieved(284,14)
+Obtain a Flimsy Male Gnome Mask |achieve 284/15 |only if not achieved(284,15)
+Obtain a Flimsy Male Tauren Mask |achieve 284/16 |only if not achieved(284,16)
+Obtain a Flimsy Male Human Mask |achieve 284/17 |only if not achieved(284,17)
+Obtain a Flimsy Male Dwarf Mask |achieve 284/18 |only if not achieved(284,18)
+Obtain a Flimsy Female Tauren Mask |achieve 284/19 |only if not achieved(284,19)
+Obtain a Flimsy Female Dwarf Mask |achieve 284/20 |only if not achieved(284,20)
+|tip Obtain all flimsy masks by Trick or Treating hourly.
+|tip You also have a chance to obtain one from the Crudely Wrapped Gift from daily fire quests.
+Earn the "A Mask for All Occasions" Achievement |achieve 284
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\That Sparkling Smile",{
+mopready=true,
+startlevel=1,
+achieveid={981},
+patch='40405',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="To earn this achievement you will need to show off your sparkling smile by using a Tooth Pick.",
+},[[
+step
+collect 1 Tooth Pick##37604
+|tip These drop from the Headless Horseman.
+|tip They have a small chance to drop from the Treat Bag from Trick or Treating hourly.
+|tip The also have a small chance to drop from the Crudely Wrapped Gift reward from the "Putting out the Fires" daily quest
+step
+use the Tooth Pick##37604
+Earn the "That Sparkling Smile" Achievement |achieve 981
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\G.N.E.R.D. Rage",{
+mopready=true,
+startlevel=1,
+achieveid={1261},
+patch='40405',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="Earn 50 Honorable Hills while Under the Influence of the G.N.E.R.D. Buff.",
+},[[
+step
+use G.N.E.R.D.S.##37583
+|tip You can collect these from Handfuls of Candy after Trick or Treating.
+|tip Use them every 30 minutes while PvPing to keep the buff on.
+|tip If you don't have the buff active while killing players, you won't get credit.
+Do any type of PvP of your choice
+|tip You must be killing players that give you honor.
+Earn #50# Honorable Hills while Under the Influence of the G.N.E.R.D. Buff |achieve 1261
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Check Your Head",{
+mopready=true,
+startlevel=1,
+achieveid={291},
+patch='40405',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="To earn this achievement you have to use Weighted Jack-o'-Lanterns to put pumpkin heads on each of the races listed below:\n\n"..
+"Blood Elf\nDraenei\nDwarf\nGnome\nHuman\nNight Elf\nOrc\nTauren\nTroll\nUndead",
+},[[
+step
+use the Weighted Jack-o'-Lantern##34068
+|tip You receive Weighted Jack-o'-Lanterns by doing the Hallow's End daily quests and killing the Headless Horseman.
+|tip Make sure the player doesn't already have a jack-o-lantern on their head or you won't get credit.
+|tip Use your Weighted Jack-o'-Lanterns on the following races:
+Undead |achieve 291/1 |goto Dalaran/1 49.38,28.50 |only if not achieved(291,1)
+Troll |achieve 291/2 |goto Dalaran/1 49.38,28.50 |only if not achieved(291,2)
+Tauren |achieve 291/3 |goto Dalaran/1 49.38,28.50 |only if not achieved(291,3)
+Orc |achieve 291/4 |goto Dalaran/1 49.38,28.50 |only if not achieved(291,4)
+Night Elf |achieve 291/5 |goto Dalaran/1 49.00,61.36 |only if not achieved(291,5)
+Human |achieve 291/6 |goto Dalaran/1 49.00,61.36 |only if not achieved(291,6)
+Draenei |achieve 291/7 |goto Dalaran/1 49.00,61.36 |only if not achieved(291,7)
+Blood Elf |achieve 291/8 |goto Dalaran/1 49.38,28.50 |only if not achieved(291,8)
+Gnome |achieve 291/9 |goto Dalaran/1 49.00,61.36 |only if not achieved(291,9)
+Dwarf |achieve 291/10 |goto Dalaran/1 49.00,61.36 |only if not achieved(291,10)
+Earn the "Check Your Head" Achievement |achieve 291
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Hallowed Be Thy Name",{
+mopready=true,
+startlevel=1,
+achieveid={1656},
+patch='40405',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="To earn this achievement, complete the following Hallow's End achievements:\n\n"..
+"Trick or Treat!\nOut With It\nDon't Lose Your Head, Man\nThe Savior of Hallow's End\n"..
+"That Sparkling Smile\nRotten Hallow\nG.N.E.R.D. Rage\nCheck Your Head\nThe Masquerade\n"..
+"Sinister Calling\nTricks and Treats of Azeroth",
+},[[
+leechsteps "Events Guides\\Hallow's End\\Achievements\\Out With It" 1-1
+leechsteps "Events Guides\\Hallow's End\\Achievements\\Don't Lose Your Head, Man" 1-2
+leechsteps "Events Guides\\Hallow's End\\Achievements\\The Savior of Hallow's End" 1-11
+leechsteps "Events Guides\\Hallow's End\\Achievements\\Rotten Hallow" 1-7
+leechsteps "Events Guides\\Hallow's End\\Achievements\\G.N.E.R.D. Rage" 1-1
+leechsteps "Events Guides\\Hallow's End\\Achievements\\Check Your Head" 1-1
+leechsteps "Events Guides\\Hallow's End\\Achievements\\The Masquerade" 1-1
+leechsteps "Events Guides\\Hallow's End\\Achievements\\Sinister Calling" 1-3
+leechsteps "Events Guides\\Hallow's End\\Achievements\\That Sparkling Smile" 1-2
+leechsteps "Events Guides\\Hallow's End\\Hallow's End Candy Buckets" 1-81
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\The Masquerade",{
+mopready=true,
+startlevel=1,
+achieveid={283},
+patch='40405',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="To earn this achievement you will have to get transformed by the Hallowed Wands listed below:\n\n"..
+"Hallowed Wand - Bat\nHallowed Wand - Ghost\nHallowed Wand - Leper Gnome\nHallowed Wand - Ninja\n"..
+"Hallowed Wand - Pirate\nHallowed Wand - Skeleton\nHallowed Wand - Wisp",
+},[[
+step
+Transform into a Bat |achieve 283/1 |only if not achieved(283,1)
+Transform into a Ghost |achieve 283/2 |only if not achieved(283,2)
+Transform into a Leper Gnome |achieve 283/3 |only if not achieved(283,3)
+Transform into a Ninja |achieve 283/4 |only if not achieved(283,4)
+Transform into a Pirate |achieve 283/5 |only if not achieved(283,5)
+Transform into a Skeleton |achieve 283/6 |only if not achieved(283,6)
+Transform into a Wisp |achieve 283/7 |only if not achieved(283,7)
+|tip Have other players use Hallowed Wands on you while in a party to transform.
+|tip Find someone to team up with or ask around in Dalaran.
+]])
+ZygorGuidesViewer:RegisterGuide("Events Guides\\Hallow's End\\Achievements\\Sinister Calling",{
+mopready=true,
+startlevel=1,
+achieveid={292},
+patch='40405',
+condition_suggested=function() return isevent("Hallow's End") end,
+description="To earn this achievement, you will need to obtain a Sinister Squashling pet and Hallowed Helm.",
+},[[
+step
+collect 1 Sinister Squashling##33154
+collect 1 Hallowed Helm##33292
+|tip These drop from the Headless Horseman.
+|tip They have a very small chance to drop from the Treat Bag from Trick or Treating hourly.
+step
+use the Sinister Squashling##33154
+Obtain a Sinister Squashling Pet |achieve 292/1
+step
+use the Hallowed Helm##33292
+Obtain a Hallowed Helm |achieve 292/2
+]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Harvest Festival\\Harvest Festival Quest")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Feast of Winter Veil Quests")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Events Guides\\Feast of Winter Veil\\Achievements\\'Tis the Season")

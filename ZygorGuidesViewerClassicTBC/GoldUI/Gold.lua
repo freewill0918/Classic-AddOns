@@ -317,18 +317,6 @@ function Gold:GetMoney()
 	return ZGV.db.profile.fakegoldcheck and tonumber(ZGV.db.profile.fakegold) or GetMoney()
 end
 
--- FAKE GOLD GUIDE, just to enable the GOLD section.
---ZGV.GuideMenuTier = "TRI"
---ZGV:RegisterGuide("GOLD\\Fake Guide",{
---	condition_valid=function() return false end,
---	condition_visible=function() return false end,
---	meta={goldtype="misc",itemtype="misc"}
---},[[
---	step
---		'Dummy guide.
---]])
---ZGV.GuideMenuTier = nil
-
 function Gold:Debug(s,...)
 	return ZGV:Debug("&gold "..s,...)
 end
@@ -336,9 +324,12 @@ end
 tinsert(ZGV.startups,{"Gold",function(self)
 	ZGV.F.dig_set(ZGV.db.profile,"debug_flags","gold","color","ffffdd00")
 	if ZGV.db.profile.debug_flags.gold.enabled==nil then ZGV.db.profile.debug_flags.gold.enabled=true end
+
+	-- Create empty gold group, just to enable the GOLD section in menu.
+	ZGV:FindOrCreateGroup(ZGV.registered_groups,"GOLD")
 end,id="gold",after="guides_loaded"})
 
-function Gold:LastScan(min)	--in minutes
+function Gold:LastScan(min,forced)	--in minutes
 	local ScanDataBase
 	if ZGV.IsClassic or ZGV.IsClassicTBC or ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then 
 		ScanDatabase = ZGV.db.factionrealm
@@ -347,7 +338,7 @@ function Gold:LastScan(min)	--in minutes
 	end
 	if ScanDatabase.LastScan and (time()-ScanDatabase.LastScan)<(min*60) then
 		ZGV.db.profile.auction_enable=ZGV.ATWereEnabled
-		ZGV.Gold.Appraiser:HideWindow()
+		--ZGV.Gold.Appraiser:HideWindow()
 		ZGV.ATWereEnabled=nil
 		return true
 	end

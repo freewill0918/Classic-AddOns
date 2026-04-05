@@ -153,19 +153,19 @@ ItemScore.rules = {
 	["ROGUE"] = {
 		[1] = {
 			name = "Assassination",
-			itemtypes={ DAGGER=2, BOW=1,CROSSBOW=1,GUN=1,THROWN=1, LEATHER=1 },
+			itemtypes={ DAGGER=1,LEATHER=1 },
 			stats = { DPS=7.70, STRENGTH=2.67, AGILITY=6.94, MASTERY=2.92, HASTE=2.48, CRIT=2.88, HIT=1.55, EXPERTISE=1.02, ATTACK_POWER=2.52 },
 			caps = { HIT=7.5, EXPERTISE=7.5 },
 		},
 		[2] = {
 			name = "Combat",
-			itemtypes={ DAGGER=2,FIST=2,AXE=2,MACE=2,SWORD=2, BOW=1,CROSSBOW=1,GUN=1,THROWN=1, LEATHER=1 },
+			itemtypes={ DAGGER=1,FIST=1,AXE=1,MACE=1,SWORD=1,LEATHER=1 },
 			stats = { DPS=6.89, STRENGTH=1.68, AGILITY=4.76, HASTE=2.41, HIT=1.46, EXPERTISE=0.19, CRIT=1.81, MASTERY=1.99, ATTACK_POWER=1.63 },
 			caps = { HIT=7.5, EXPERTISE=7.5 },
 		},
 		[3] = {
 			name = "Subtlety",
-			itemtypes={ DAGGER=2,FIST=2,AXE=2,MACE=2,SWORD=2, BOW=1,CROSSBOW=1,GUN=1,THROWN=1, LEATHER=1 },
+			itemtypes={ DAGGER=1,FIST=1,AXE=1,MACE=1,SWORD=1,LEATHER=1 },
 			stats = { DPS=9.39, STRENGTH=1.78, AGILITY=6.76, HASTE=2.48, CRIT=2.70, HIT=1.44, EXPERTISE=3.85, MASTERY=1.92, ATTACK_POWER=1.72 },
 			caps = { HIT=7.5, EXPERTISE=7.5 },
 		},

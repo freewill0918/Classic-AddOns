@@ -1,14 +1,14 @@
 local name,addon = ...
 local data={}
 addon.LibTaxiData = data
-data.taxipoints = {
+data.taxipoints = {}
 
 
 
 --------------------
 ---   KALIMDOR   ---
 --------------------
-[12]={
+data.taxipoints[12]={
 	['Ashenvale']={
 		{name="Astranaar",faction="A",npc="Daelyshia",npcid=4267,x=34.4,y=48.0},
 		{name="Blackfathom Camp",faction="A",npc="Solais",npcid=34374,x=18.1,y=20.6},
@@ -165,14 +165,14 @@ data.taxipoints = {
 		{name="Everlook",faction="A",npc="Maethrya",npcid=11138,x=61.0,y=48.6,factionid=577,factionstanding=3},
 		{name="Everlook",faction="H",npc="Yugrek",npcid=11139,x=58.8,y=48.3,factionid=577,factionstanding=3},
 	},
-},
+}
 
 
 
 ----------------------------
 ---   EASTERN KINGDOMS   ---
 ----------------------------
-[13]={
+data.taxipoints[13]={
 	['Abyssal Depths']={
 		{name="Darkbreak Cove",faction="A",npc="Swift Seahorse",npcid=40866,x=56.9,y=75.5,taxioperator="seahorse"},
 		{name="Tenebrous Cavern",faction="H",npc="Swift Seahorse",npcid=40873,x=53.9,y=59.6,taxioperator="seahorse"},
@@ -349,14 +349,14 @@ data.taxipoints = {
 		{name="Slabchisel's Survey",faction="A",npc="Elgin Baelor",npcid=41321,x=56.9,y=71.1},
 		{name="Whelgar's Retreat",faction="A",npc="Damon Baelor",npcid=41323,x=38.8,y=39.0},
 	},
-},
+}
 
 
 
 -------------------
 ---   OUTLAND   ---
 -------------------
-[102]={
+data.taxipoints[102]={
 	['Blade\'s Edge Mountains']={
 		{name="Evergrove",faction="B",npc="Fhyn Leafshadow",npcid=22216,x=61.7,y=39.6},
 		{name="Skyguard Outpost",faction="B",factionid=1031,factionstanding=6,npc="Skyguard Handler Irena",npcid=23413,x=28.2,y=52.0,taxioperator="skyguard"},
@@ -404,7 +404,7 @@ data.taxipoints = {
 		{name="Telredor",faction="A",npc="Munci",npcid=18788,x=67.8,y=51.5},
 		{name="Zabra'jin",faction="H",npc="Du'ga",npcid=18791,x=33.1,y=51.1},
 	},
-},
+}
 
 
 
@@ -412,7 +412,7 @@ data.taxipoints = {
 ---------------------
 ---   NORTHREND   ---
 ---------------------
-[113]={
+data.taxipoints[113]={
 	['Borean Tundra']={
 		{name="Valiance Keep",faction="A",npc="Tomas Riverwell",npcid=26879,x=59.0,y=68.3},
 		{name="Warsong Hold",faction="H",npc="Turida Coldwind",npcid=25288,x=40.4,y=51.4},
@@ -493,12 +493,12 @@ data.taxipoints = {
 		{name="Zim'Torga",faction="B",npc="Maaka",npcid=28624,x=60.0,y=56.7},
 		{name="Gundrak",faction="B",npc="Rafae",npcid=30569,x=70.5,y=23.3},
 	},
-},
+}
 
 ------------------------------------------------
 -----     PANDARIA (MISTS OF PANDARIA)     -----
 ------------------------------------------------
-[424]={
+data.taxipoints[424]={
 
 	['The Jade Forest']={
 		{name="Dawn's Blossom",faction="B",npc="Keg Runner Lee",npcid=59186,x=47.0,y=46.2},
@@ -573,7 +573,7 @@ data.taxipoints = {
 		{name="Huojin Landing",faction="H",npc="Chi-Ro the Skytamer",npcid=71939,x=21.9,y=39.7},
 	},
 }
-}
+
 
 
 
@@ -585,7 +585,7 @@ data.taxipoints = {
 
 
 
-data.flightcost = {
+data.flightcost = {}
 
 
 
@@ -599,7 +599,7 @@ data.flightcost = {
 --------------------------------------------------
 -----     KALIMDOR (VANILLA + CATACLYSM)     -----
 --------------------------------------------------
-[12]={
+data.flightcost[12]={
 	{
 		tag = "462:603",
 		nodeID = 28,
@@ -1803,7 +1803,7 @@ data.flightcost = {
 			[360] = 73, -- Cliffwalker Post, Stonetalon Mountains
 		},
 	},
-},
+}
 
 
 
@@ -1826,7 +1826,7 @@ data.flightcost = {
 ----------------------------------------------------------
 -----     EASTERN KINGDOMS (VANILLA + CATACLYSM)     -----
 ----------------------------------------------------------
-[13]={
+data.flightcost[13]={
 	{
 		tag = "390:623",
 		name = " Forsaken High Command, Silverpine Forest",
@@ -3089,7 +3089,7 @@ data.flightcost = {
 			[213] = 251, -- Shattered Sun Staging Area
 		},
 	},
-},
+}
 
 
 
@@ -3099,7 +3099,7 @@ data.flightcost = {
 -----     OUTLAND (THE BURNING CRUSADE)     -----
 -------------------------------------------------
 -- early beta has mapID set to 102. should be 101. If so, update Lib:GetMapContinent
-[102]={
+data.flightcost[102]={
 	{
 		tag = "554:234",
 		nodeID = 121,
@@ -3434,7 +3434,7 @@ data.flightcost = {
 			[151] = 112, -- Swamprat Post, Zangarmarsh
 		},
 	},
-},
+}
 
 
 
@@ -3448,7 +3448,7 @@ data.flightcost = {
 ------------------------------------------------------
 -----     NORTHREND (WRATH OF THE LICH KING)     -----
 ------------------------------------------------------
-[113]={
+data.flightcost[113]={
 	{
 		tag = "453:491",
 		nodeID = 256,
@@ -4120,7 +4120,7 @@ data.flightcost = {
 			[331] = 53, -- Gundrak, Zul'Drak
 		},
 	},
-},
+}
 
 
 
@@ -4135,7 +4135,7 @@ data.flightcost = {
 ------------------------------------------------
 -----     PANDARIA (MISTS OF PANDARIA)     -----
 ------------------------------------------------
-[424]={
+data.flightcost[424]={
 	{
 		tag = "463:856",
 		name = "Beeble's Wreck, Isle of Giants",
@@ -4744,6 +4744,5 @@ data.flightcost = {
 			[1221] = 50, -- ?
 		},
 	},
-},
-
 }
+

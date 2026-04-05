@@ -9,12 +9,12 @@ local ICON_OVERRIDES = {
 }
 
 local CAST_BAR_COLORS = {
-    default = {1, 0.7, 0},
-    failed = {1, 0, 0},
-    harm = {0.63, 0.36, 0.94},
-    help = {0.31, 0.78, 0.47},
-    spell = {0, 1, 0},
-    uninterruptible = {0.63, 0.63, 0.63}
+    default = { 1, 0.7, 0 },
+    failed = { 1, 0, 0 },
+    harm = { 0.63, 0.36, 0.94 },
+    help = { 0.31, 0.78, 0.47 },
+    spell = { 0, 1, 0 },
+    uninterruptible = { 0.63, 0.63, 0.63 }
 }
 
 local LATENCY_BAR_ALPHA = 0.5
@@ -35,7 +35,8 @@ if C_SpellBook and C_SpellBook.GetSpellBookSkillLineInfo then
         local spellID
 
         repeat
-            local spell = C_SpellBook.GetSpellBookItemInfo(math.random(1, offset + numSlots), Enum.SpellBookSpellBank.Player)
+            local spell = C_SpellBook.GetSpellBookItemInfo(math.random(1, offset + numSlots),
+                Enum.SpellBookSpellBank.Player)
             spellID = spell.spellID
         until spellID
 
@@ -72,7 +73,7 @@ local CastBar = Dominos:CreateClass("Frame", Dominos.Frame)
 function CastBar:New(id, units, ...)
     local bar = CastBar.proto.New(self, id, ...)
 
-    bar.units = type(units) == "table" and units or {units}
+    bar.units = type(units) == "table" and units or { units }
     bar:Layout()
     bar:RegisterEvents()
 
@@ -94,7 +95,7 @@ end)
 
 CastBar:Extend("OnLoadSettings", function(self)
     if not self.sets.display then
-        self.sets.display = {icon = false, time = true, border = true, latency = true}
+        self.sets.display = { icon = false, time = true, border = true, latency = true }
     end
 
     self:SetProperty("font", self:GetFontID())
@@ -125,7 +126,7 @@ function CastBar:GetDefaults()
 
         displayLayer = 'HIGH',
 
-        display = {icon = false, time = true, border = true, latency = true, spark = true}
+        display = { icon = false, time = true, border = true, latency = true, spark = true }
     }
 end
 
@@ -168,20 +169,29 @@ end
 -- Channel cast GUIDs can sometimes be nil, so we use "nil" as a default to
 -- identify those casts. I would prefer using spellID, but that value is secret
 -- post Midnight
-function CastBar:UNIT_SPELLCAST_CHANNEL_START(event, unit, castID, spellID)
-
-    if castID == nil then
+function CastBar:UNIT_SPELLCAST_CHANNEL_START(event, unitTarget, castGUID, spellID, castBarID)
+    local castID
+    if castBarID then
+        castID = castBarID
+    elseif castGUID then
+        castID = castGUID
+    else
         castID = "nil"
     end
 
-    self:SetProperty("unit", unit)
     self:SetProperty("castID", castID)
+    self:SetProperty("unit", unitTarget)
 
     self:UpdateChanneling()
 end
 
-function CastBar:UNIT_SPELLCAST_CHANNEL_UPDATE(event, unit, castID, spellID)
-    if castID == nil then
+function CastBar:UNIT_SPELLCAST_CHANNEL_UPDATE(event, unitTarget, castGUID, spellID, castBarID)
+    local castID
+    if castBarID then
+        castID = castBarID
+    elseif castGUID then
+        castID = castGUID
+    else
         castID = "nil"
     end
 
@@ -193,8 +203,13 @@ function CastBar:UNIT_SPELLCAST_CHANNEL_UPDATE(event, unit, castID, spellID)
     self:UpdateChanneling()
 end
 
-function CastBar:UNIT_SPELLCAST_CHANNEL_STOP(event, unit, castID, spellID)
-    if castID == nil then
+function CastBar:UNIT_SPELLCAST_CHANNEL_STOP(event, unitTarget, castGUID, spellID, interruptedBy, castBarID)
+    local castID
+    if castBarID then
+        castID = castBarID
+    elseif castGUID then
+        castID = castGUID
+    else
         castID = "nil"
     end
 
@@ -206,19 +221,29 @@ function CastBar:UNIT_SPELLCAST_CHANNEL_STOP(event, unit, castID, spellID)
 end
 
 -- empower events
-function CastBar:UNIT_SPELLCAST_EMPOWER_START(event, unit, castID, spellID)
-    if castID == nil then
+function CastBar:UNIT_SPELLCAST_EMPOWER_START(event, unitTarget, castGUID, spellID, castBarID)
+    local castID
+    if castBarID then
+        castID = castBarID
+    elseif castGUID then
+        castID = castGUID
+    else
         castID = "nil"
     end
 
     self:SetProperty("castID", castID)
-    self:SetProperty("unit", unit)
+    self:SetProperty("unit", unitTarget)
 
     self:UpdateEmpowering()
 end
 
-function CastBar:UNIT_SPELLCAST_EMPOWER_UPDATE(event, unit, castID, spellID)
-    if castID == nil then
+function CastBar:UNIT_SPELLCAST_EMPOWER_UPDATE(event, unitTarget, castGUID, spellID, castBarID)
+    local castID
+    if castBarID then
+        castID = castBarID
+    elseif castGUID then
+        castID = castGUID
+    else
         castID = "nil"
     end
 
@@ -229,8 +254,13 @@ function CastBar:UNIT_SPELLCAST_EMPOWER_UPDATE(event, unit, castID, spellID)
     self:UpdateEmpowering()
 end
 
-function CastBar:UNIT_SPELLCAST_EMPOWER_STOP(event, unit, castID, spellID)
-    if castID == nil then
+function CastBar:UNIT_SPELLCAST_EMPOWER_STOP(event, unitTarget, castGUID, spellID, castBarID)
+    local castID
+    if castBarID then
+        castID = castBarID
+    elseif castGUID then
+        castID = castGUID
+    else
         castID = "nil"
     end
 
@@ -242,18 +272,32 @@ function CastBar:UNIT_SPELLCAST_EMPOWER_STOP(event, unit, castID, spellID)
 end
 
 -- spellcast events
-function CastBar:UNIT_SPELLCAST_START(event, unit, castID, spellID)
-    if castID == nil then
-        return
+function CastBar:UNIT_SPELLCAST_START(event, unitTarget, castGUID, spellID, castBarID)
+    local castID
+    if castBarID then
+        castID = castBarID
+    elseif castGUID then
+        castID = castGUID
+    else
+        castID = "nil"
     end
 
     self:SetProperty("castID", castID)
-    self:SetProperty("unit", unit)
+    self:SetProperty("unit", unitTarget)
 
     self:UpdateCasting()
 end
 
-function CastBar:UNIT_SPELLCAST_STOP(event, unit, castID, spellID)
+function CastBar:UNIT_SPELLCAST_STOP(event, unitTarget, castGUID, spellID, castBarID)
+    local castID
+    if castBarID then
+        castID = castBarID
+    elseif castGUID then
+        castID = castGUID
+    else
+        castID = "nil"
+    end
+
     if castID ~= self:GetProperty("castID") then
         return
     end
@@ -261,7 +305,16 @@ function CastBar:UNIT_SPELLCAST_STOP(event, unit, castID, spellID)
     self:SetProperty("state", "stopped")
 end
 
-function CastBar:UNIT_SPELLCAST_FAILED(event, unit, castID, spellID)
+function CastBar:UNIT_SPELLCAST_FAILED(event, unitTarget, castGUID, spellID, castBarID)
+    local castID
+    if castBarID then
+        castID = castBarID
+    elseif castGUID then
+        castID = castGUID
+    else
+        castID = "nil"
+    end
+
     if castID ~= self:GetProperty("castID") then
         return
     end
@@ -272,7 +325,16 @@ end
 
 CastBar.UNIT_SPELLCAST_FAILED_QUIET = CastBar.UNIT_SPELLCAST_FAILED
 
-function CastBar:UNIT_SPELLCAST_INTERRUPTED(event, unit, castID, spellID)
+function CastBar:UNIT_SPELLCAST_INTERRUPTED(event, unitTarget, castGUID, spellID, castBarID)
+    local castID
+    if castBarID then
+        castID = castBarID
+    elseif castGUID then
+        castID = castGUID
+    else
+        castID = "nil"
+    end
+
     if castID ~= self:GetProperty("castID") then
         return
     end
@@ -281,7 +343,16 @@ function CastBar:UNIT_SPELLCAST_INTERRUPTED(event, unit, castID, spellID)
     self:SetProperty("state", "interrupted")
 end
 
-function CastBar:UNIT_SPELLCAST_DELAYED(event, unit, castID, spellID)
+function CastBar:UNIT_SPELLCAST_DELAYED(event, unitTarget, castGUID, spellID, castBarID)
+    local castID
+    if castBarID then
+        castID = castBarID
+    elseif castGUID then
+        castID = castGUID
+    else
+        castID = "nil"
+    end
+
     if castID ~= self:GetProperty("castID") then
         return
     end
@@ -320,8 +391,18 @@ function CastBar:label_update(text)
     self.timer:SetLabel(text)
 end
 
-function CastBar:icon_update(textureID)
-    self.timer:SetIcon(textureID and ICON_OVERRIDES[textureID] or textureID)
+if type(canaccessvalue) == "function" then
+    function CastBar:icon_update(textureID)
+        if canaccessvalue(textureID) then
+            self.timer:SetIcon(textureID and ICON_OVERRIDES[textureID] or textureID)
+        else
+            self.timer:SetIcon(textureID)
+        end
+    end
+else
+    function CastBar:icon_update(textureID)
+        self.timer:SetIcon(textureID and ICON_OVERRIDES[textureID] or textureID)
+    end
 end
 
 function CastBar:reaction_update(reaction)
@@ -458,7 +539,8 @@ end
 
 function CastBar:UpdateEmpowering()
     local unit = self:GetProperty("unit")
-    local name, _, textureID, startTimeMs, endTimeMs, _, notInterruptible, spellID, _, numEmpowerStages = UnitChannelInfo(unit)
+    local name, _, textureID, startTimeMs, endTimeMs, _, notInterruptible, spellID, _, numEmpowerStages = UnitChannelInfo(
+        unit)
 
     if name then
         numEmpowerStages = tonumber(numEmpowerStages) or 0
@@ -478,7 +560,7 @@ function CastBar:UpdateEmpowering()
 
         -- HACK: use hardcoded values in Midnight because the return of
         -- GetUnitEmpowerHoldAtMaxTime is currently a secret
-		if numEmpowerStages > 0 then
+        if numEmpowerStages > 0 then
             local holdTimeMs = GetUnitEmpowerHoldAtMaxTime(unit)
             if (issecretvalue and issecretvalue(holdTimeMs)) then
                 local fakeHoldTimeMs = unit == "player" and 1000 or 0
@@ -488,7 +570,7 @@ function CastBar:UpdateEmpowering()
             end
         else
             endTime = endTimeMs / 1000
-		end
+        end
 
         self.timer:Start(time - startTime, 0, endTime - startTime)
 
@@ -711,7 +793,7 @@ end
 function CastBar:AddLayoutPanel(menu)
     local panel = menu:NewPanel(LibStub("AceLocale-3.0"):GetLocale("Dominos-Config").Layout)
 
-    panel.widthSlider = panel:NewSlider{
+    panel.widthSlider = panel:NewSlider {
         name = L.Width,
         min = 1,
         max = function()
@@ -725,7 +807,7 @@ function CastBar:AddLayoutPanel(menu)
         end
     }
 
-    panel.heightSlider = panel:NewSlider{
+    panel.heightSlider = panel:NewSlider {
         name = L.Height,
         min = 1,
         max = function()
@@ -745,7 +827,7 @@ end
 function CastBar:AddDisplayPanel(menu)
     local panel = menu:NewPanel(L.Display)
 
-    panel:NewCheckButton{
+    panel:NewCheckButton {
         name = L["UseSpellReactionColors"],
         tooltip = L["UseSpellReactionColorsTip"],
         get = function()
@@ -756,8 +838,8 @@ function CastBar:AddDisplayPanel(menu)
         end
     }
 
-    for _, part in ipairs {"border", "icon", "spark", "time", "latency"} do
-        panel:NewCheckButton{
+    for _, part in ipairs { "border", "icon", "spark", "time", "latency" } do
+        panel:NewCheckButton {
             name = L["Display_" .. part],
             get = function()
                 return panel.owner:Displaying(part)
@@ -768,7 +850,7 @@ function CastBar:AddDisplayPanel(menu)
         }
     end
 
-    panel.latencySlider = panel:NewSlider{
+    panel.latencySlider = panel:NewSlider {
         name = L.LatencyPadding,
         min = 0,
         max = function()
@@ -786,7 +868,7 @@ end
 function CastBar:AddFontPanel(menu)
     local panel = menu:NewPanel(L.Font)
 
-    panel.fontSelector = Dominos.Options.FontSelector:New{
+    panel.fontSelector = Dominos.Options.FontSelector:New {
         parent = panel,
         get = function()
             return panel.owner:GetFontID()
@@ -800,7 +882,7 @@ end
 function CastBar:AddTexturePanel(menu)
     local panel = menu:NewPanel(L.Texture)
 
-    panel.textureSelector = Dominos.Options.TextureSelector:New{
+    panel.textureSelector = Dominos.Options.TextureSelector:New {
         parent = panel,
         get = function()
             return panel.owner:GetTextureID()

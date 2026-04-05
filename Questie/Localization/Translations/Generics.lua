@@ -95,7 +95,7 @@ local genericsLocales = {
         ["koKR"] = "다시 보이지 않기",
         ["ptBR"] = "Não mostrar novamente",
         ["ruRU"] = "Не отображать снова",
-        ["zhCN"] = "不在显示",
+        ["zhCN"] = "不再显示",
         ["zhTW"] = "不再顯示",
     },
     ["Auto"] = {
@@ -166,7 +166,7 @@ local genericsLocales = {
         ["frFR"] = "exp",
         ["koKR"] = "경험치",
         ["ptBR"] = "exp",
-        ["ruRU"] = " опыта",
+        ["ruRU"] = "опыта",
         ["zhCN"] = "经验",
         ["zhTW"] = "經驗值",
     },
@@ -455,7 +455,7 @@ local genericsLocales = {
         ["koKR"] = "수행 가능",
         ["ptBR"] = "Fazível",
         ["ruRU"] = "Выполнимые",
-        ["zhCN"] = "可行",
+        ["zhCN"] = "可完成",
         ["zhTW"] = "可行",
     },
     ["Challenge Mode"] = {

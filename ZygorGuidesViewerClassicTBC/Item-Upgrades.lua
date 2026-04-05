@@ -907,7 +907,7 @@ function Upgrades:AttachBagButton()
 		Upgrades.BagButton:SetPoint("TOPLEFT",ContainerFrameCombinedBags,"TOPLEFT",25,-30)
 		Upgrades.BagButton:SetFrameStrata("HIGH")
 		Upgrades.BagButton:SetSize(32,32)
-	elseif ZGV.IsClassic or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
+	elseif ZGV.IsClassic or ZGV.IsClassicCATA or ZGV.IsClassicMOP or ZGV.IsClassicTBC then
 		Upgrades.BagButton:SetParent(ContainerFrame1)
 		Upgrades.BagButton:SetPoint("TOPRIGHT",ContainerFrame1CloseButton,"TOPRIGHT",-5,-25)
 		Upgrades.BagButton:SetFrameStrata("HIGH")

@@ -217,23 +217,23 @@ local function Zygor_GetAchievementCriteriaInfo(achieveid, criteria)
 	if GACI_cache[achieveid] and GACI_cache[achieveid][criteria] then -- we have it cached
 		local crit = GACI_cache[achieveid][criteria]
 		if (start-crit.last)<1000 then -- and it is still fresh (witihn 1 second)
-			return crit.desc, crit.ctype, crit.completed, crit.quantity, crit.requiredQuantity
+			return crit.desc, crit.ctype, crit.completed, crit.quantity, crit.requiredQuantity, crit.charName
 		end
 	end
 
 	--local desc, ctype, completed, quantity, requiredQuantity  = GetAchievementCriteriaInfo(achieveid, criteria)
-	local success, desc, ctype, completed, quantity, requiredQuantity  = pcall(GetAchievementCriteriaInfo, achieveid, criteria) -- 2019, blizz broke some achieves, so we need to have error handling
+	local success, desc, ctype, completed, quantity, requiredQuantity, charName  = pcall(GetAchievementCriteriaInfo, achieveid, criteria) -- 2019, blizz broke some achieves, so we need to have error handling
 	if not success then
-		success, desc, ctype, completed, quantity, requiredQuantity = pcall(GetAchievementCriteriaInfoByID, achieveid, criteria)
+		success, desc, ctype, completed, quantity, requiredQuantity, charName = pcall(GetAchievementCriteriaInfoByID, achieveid, criteria)
 	end
 	if not success then return "blizzard error",0,0,0,1 end
 
 	local stop = debugprofilestop()
 	if (stop-start)>1 then -- Single call took more than 1ms. That is insane. Cache it. (we are looking at your, Variety is the spice of life)
 		GACI_cache[achieveid] = GACI_cache[achieveid] or {}
-		GACI_cache[achieveid][criteria] = {desc=desc, ctype=ctype, completed=completed, quantity=quantity, requiredQuantity=requiredQuantity, last=stop}
+		GACI_cache[achieveid][criteria] = {desc=desc, ctype=ctype, completed=completed, quantity=quantity, requiredQuantity=requiredQuantity, charName=charName, last=stop}
 	end
-	return desc, ctype, completed, quantity, requiredQuantity
+	return desc, ctype, completed, quantity, requiredQuantity, charName
 end
 ZGV.Zygor_GetAchievementCriteriaInfo = Zygor_GetAchievementCriteriaInfo
 
@@ -730,6 +730,7 @@ GOALTYPES['buy'] = {
 	end,
 	iscomplete = GOALTYPES['get'].iscomplete,
 	events = {"GOSSIP_SHOW"},
+	onenterevent = "GOSSIP_SHOW",
 	onevent = function(self, _, event, ...)
 		if not ZGV.db.profile.autogossip then return end
 		if self.noautogossip then return end
@@ -782,7 +783,10 @@ GOALTYPES['avoid'] = {
 GOALTYPES['collect'] = {
 	parse = function(self,params)
 		self.action="get"  -- obvious? not really: 'get' is aliased by 'collect'. This forces it to BE 'get'.
-		return GOALTYPES['get'].parse(self,params)
+		GOALTYPES['get'].parse(self,params)
+		if self.targets then
+			self.skipquality = true
+		end
 	end,
 	iscomplete = GOALTYPES['get'].iscomplete,
 	-- gettext complex; still in Goal:GetText()
@@ -885,6 +889,7 @@ GOALTYPES['learn'] = {
 GOALTYPES['learnmount'] = {
 	parse = function(self,params)
 		self.spell,self.spellid = ParseID(params)
+		self.mountspellid = self.spellid
 	end,
 	iscomplete = function(self)
 		return ZGV.Parser.ConditionEnv.hasmount(self.spellid), true
@@ -952,9 +957,7 @@ GOALTYPES['activepet'] = {
 		self.pet,self.petid = ParseID(params)
 	end,
 	iscomplete = function(self)
-		local guid = UnitGUID("pet")
-		if not guid then return false end
-		local _,_,_,_,_,npcpetid = strsplit("-",guid)
+		local npcpetid = ZGV.GetUnitId("pet")
 		return npcpetid==self.petid, true
 	end,
 	gettext = function(self) return L["stepgoal_activepet"]:format(COLOR_ITEM(self.pet or self.petid)) end,
@@ -1047,7 +1050,7 @@ GOALTYPES['turnin'] = {
 		local completed = quest and quest.inlog -- if 0 goals, we are ready
 		if quest and quest.goals then
 			for _,goal in pairs(quest.goals) do -- otherwise we check all partials
-				completed = completed and (goal.complete or goal.optional)
+				completed = completed and (goal.complete or goal.optional or goal.unknown)
 			end
 		end
 
@@ -1417,13 +1420,13 @@ GOALTYPES['talk'] = {
 		self.target,self.targetid = nil,nil
 		if not self.npc and not self.npcid then return "no npc" end
 		if self.targets and self.targetcommon then
-			self.targetcommon = self.targetcommon.." npcs"
+			self.targetcommon = self.targetcommon.." NPCs"
 		end
 	end,
 	gettext = function(self,complete,complete_extra,goalcountnow,goalcountneeded,remaining,brief) 
 		local text
 		if self.targets and #self.targets>1 then
-			text = L["stepgoal_talk_around"]:format(self.targetcommon or "npcs")
+			text = L["stepgoal_talk_around"]:format(COLOR_NPC(self.targetcommon or "NPCs"))
 		else
 			text = (brief and "%s" or L["stepgoal_talk to"..(complete and "_done" or "")]):format(COLOR_NPC(plural(ZGV.Localizers:GetTranslatedNPC(tonumber(self.useid or self.npcid),self.usename or self.npc),self.plural)))
 		end
@@ -1436,25 +1439,23 @@ GOALTYPES['gossip'] = {
 	parse = function(self,params)
 		self.gossipids = ParseRanges(params,"askeys")
 	end,
-	onenter = function(self)
-		-- trigger when entering step in case gossip was already visible
-		GOALTYPES['gossip'].onevent(self,_,"GOSSIP_SHOW")
-	end,
 	events = {"GOSSIP_SHOW"},
+	onenterevent = "GOSSIP_SHOW",
 	onevent = function(self, _, event, ...)
 		if not ZGV.db.profile.autogossip then return end
 		if self.noautogossip then return end
 
 		if event=="GOSSIP_SHOW" then 
-			local gossips = C_GossipInfo.GetOptions()
-			if not gossips then return end
+			C_Timer.After(0,function() -- wait for next frame, since some npcs do not report all gossips on event
+				local gossips = C_GossipInfo.GetOptions()
+				if not gossips then return end
 
-			for i,v in ipairs(gossips) do
-				if self.gossipids[v.gossipOptionID] then
-					EventRegistry:TriggerEvent("ZygorGossip", v.gossipOptionID)
-					C_GossipInfo.SelectOption(v.gossipOptionID)
+				for i,v in ipairs(gossips) do
+					if self.gossipids[v.gossipOptionID] then
+						C_GossipInfo.SelectOption(v.gossipOptionID)
+					end
 				end
-			end
+			end)
 		end
 	end,
 }
@@ -1467,6 +1468,7 @@ GOALTYPES['vendor'] = {
 		if not self.npc and not self.npcid then return "no npc" end
 	end,
 	events = {"MERCHANT_SHOW","MERCHANT_CLOSED"},
+	onenterevent = "MERCHANT_SHOW",
 	onevent = function(self, _, event, ...)
 		ZGV:ScheduleTimer(function()
 			if MerchantFrame and MerchantFrame:IsVisible() then -- from MERCHANT_SHOW and INIT
@@ -1484,10 +1486,12 @@ GOALTYPES['vendor'] = {
 	iscomplete = function(self)
 		return self.actioncompleted,self.required or ZGV.db.profile.showvendor
 	end,
+	skippable = function(self)
+		return not ZGV.db.profile.showvendor and not self.required and self.skipoptional
+	end,
 	onenter = function(self)
 		self.actioncompleted = false
 		self.propernpc = false
-		GOALTYPES['vendor'].onevent(self,_,"INIT")
 	end,
 	gettext = function(self,complete,complete_extra,goalcountnow,goalcountneeded,remaining,brief) return (brief and "%s" or L["stepgoal_vendor"..(complete and "_done" or "")]):format(COLOR_NPC(plural(ZGV.Localizers:GetTranslatedNPC(tonumber(self.useid or self.npcid),self.usename or self.npc),self.plural))) end,
 }
@@ -1500,6 +1504,7 @@ GOALTYPES['trainer'] = {
 		if not self.npc and not self.npcid then return "no npc" end
 	end,
 	events = {"TRAINER_SHOW","TRAINER_CLOSED"},
+	onenterevent = "TRAINER_SHOW",
 	onevent = function(self, _, event, ...)
 		ZGV:ScheduleTimer(function()
 			if ClassTrainerFrame and ClassTrainerFrame:IsVisible() then -- from TRAINER_SHOW and INIT
@@ -1517,10 +1522,12 @@ GOALTYPES['trainer'] = {
 	iscomplete = function(self)
 		return self.actioncompleted,self.required or ZGV.db.profile.showtrainer
 	end,
+	skippable = function(self)
+		return not ZGV.db.profile.showtrainer and not self.required and self.skipoptional
+	end,
 	onenter = function(self)
 		self.actioncompleted = false
 		self.propernpc = false
-		GOALTYPES['trainer'].onevent(self,_,"TRAINER_SHOW")
 	end,
 	gettext = function(self,complete,complete_extra,goalcountnow,goalcountneeded,remaining,brief) return (brief and "%s" or L["stepgoal_trainer"..(complete and "_done" or "")]):format(COLOR_NPC(plural(ZGV.Localizers:GetTranslatedNPC(tonumber(self.useid or self.npcid),self.usename or self.npc),self.plural))) end,
 }
@@ -1536,8 +1543,15 @@ GOALTYPES['skill'] = {
 		local skill = ZGV.Professions:GetSkill(self.skill)
 		return skill and (skill.level or 0)>=self.skilllevel,skill and (skill.max or 0)>=self.skilllevel
 	end,
-	gettext = function(self) return L["stepgoal_skill"]:format(COLOR_ITEM(ZGV.Professions.LocaleSkills[self.skill]),self.skilllevel) end,
+	gettext = function(self) return L["stepgoal_skill"]:format(self.skilllevel,ZGV.Professions.LocaleSkills[self.skill]) end,
 }
+GOALTYPES['reachskill'] = {
+	parse = function(self,params)
+		GOALTYPES['skill'].parse(self,params)
+		self.action="skill"  -- full alias, including action
+	end,
+}
+
 
 GOALTYPES['skillmax'] = {
 	parse = function(self,params)
@@ -1637,6 +1651,60 @@ GOALTYPES['create'] = {
 		end
 	end,
 	-- gettext complex; still in Goal:GetText()
+}
+
+GOALTYPES['craft'] = {
+	parse = function(self,params)
+		local target,skill  = params:match("^([A-Z].-##%d+%+?),%s*(.+)")
+		if not skill then target = params end
+		
+		GOALTYPES['_item'].parse(self,target)
+		self.item,self.itemid = self.target,self.targetid
+		self.target,self.targetid = nil,nil
+		
+		self.skillname = skill
+		local skill = ZGV.Professions:GetSkill(self.skillname)
+		self.skill = skill.skillID
+		self.skillparent = skill.parentskillID
+		self.skillname = skill.name or self.skillname
+		
+		self.force_nocomplete = true
+	end,
+	onclick = function(self)
+		if self.skill then 
+			C_TradeSkillUI.OpenTradeSkill(self.skillparent)
+			EventRegistry:TriggerEvent("Professions.SelectSkillLine", {professionID=self.skill})
+		end
+	end,
+	gettext = function(self,complete,complete_extra,goalcountnow,goalcountneeded,remaining,brief) 
+		local text = GenericText(brief,self.action,COLOR_ITEM,remaining or self.count,self.item,true,self.plural,complete and "_done" or "",self.the)
+
+		if self.skillname then
+			text = text .. L["stepgoal_craft_skill"]:format(COLOR_ITEM(self.skillname))
+		end
+		return text
+	end,
+}
+
+GOALTYPES['firstcraft'] = {
+	parse = function(self,params)  -- spellname##spellid,Profession
+		GOALTYPES['craft'].parse(self,params)
+		local info = C_TradeSkillUI.GetRecipeInfo(self.itemid)
+		self.item = info and info.name
+		self.force_nocomplete = false
+	end,
+	onclick = GOALTYPES['craft'].onclick,
+	iscomplete = function(self)
+		return not C_TradeSkillUI.IsRecipeFirstCraft(self.itemid),true
+	end,
+	gettext = function(self,complete,complete_extra,goalcountnow,goalcountneeded,remaining,brief) 
+		local text = GenericText(brief,self.action,COLOR_ITEM,remaining or self.count,self.item,true,self.plural,complete and "_done" or "",self.the)
+
+		if self.skillname then
+			text = text .. L["stepgoal_craft_skill"]:format(COLOR_ITEM(self.skillname))
+		end
+		return text
+	end,
 }
 
 GOALTYPES['condition'] = {
@@ -1896,7 +1964,7 @@ GOALTYPES['click'] = {
 	gettext = function(self,complete,complete_extra,goalcountnow,goalcountneeded,remaining,brief) 
 		local text
 		if self.targets and #self.targets>1 then
-			text = L["stepgoal_click_around"]:format(self.targetcommon or "objects")
+			text = L["stepgoal_click_around"]:format(COLOR_ITEM(self.targetcommon or "objects"))
 		else
 			text = GenericText(brief,self.action,COLOR_ITEM,remaining or self.count,self.target,true,self.plural,complete and "_done" or "",self.the)
 		end
@@ -1913,13 +1981,13 @@ GOALTYPES['clicknpc'] = {
 		self.npc,self.npcid = self.target,self.targetid
 		self.target,self.targetid = nil,nil
 		if self.targets and self.targetcommon then
-			self.targetcommon = self.targetcommon.." npcs"
+			self.targetcommon = self.targetcommon.." NPCs"
 		end
 	end,
 	gettext = function(self,complete,complete_extra,goalcountnow,goalcountneeded,remaining,brief) 
 		local text
 		if self.targets and #self.targets>1 then
-			text = L["stepgoal_clicknpc_around"]:format(self.targetcommon or "npcs")
+			text = L["stepgoal_clicknpc_around"]:format(COLOR_ITEM(self.targetcommon or "NPCs"))
 		else
 			text = GenericText(brief,self.action,COLOR_ITEM,remaining or self.count,self.npcid and ZGV.Localizers:GetTranslatedNPC(tonumber(self.useid or self.npcid),self.usename or self.npc),	true,self.plural,complete and "_done" or "")
 		end
@@ -1990,7 +2058,6 @@ GOALTYPES['home'] = {
 		if not self.param then return "no parameter" end
 	end,
 	iscomplete = function(self)
-		if ZGV.db.profile.skiphome then return true end
 		local bind = GetBindLocation("player")
 		local engname = BZR[bind] or bind or ""
 		return engname == self.param,true
@@ -1999,6 +2066,7 @@ GOALTYPES['home'] = {
 		--return ZGV.recentlyHomeChanged, true
 	end,
 	events = {"GOSSIP_SHOW"},
+	onenterevent = "GOSSIP_SHOW",
 	onevent = function(self, _, event, ...)
 		if not ZGV.db.profile.autogossip then return end
 		if self.noautogossip then return end
@@ -2300,6 +2368,13 @@ GOALTYPES['goto'] = {
 			return
 		end
 
+		local pointname = params:match("^@(%S+)")
+		if pointname then
+			self.pointname = pointname
+			params = params:gsub("@"..pointname,"")
+		end
+
+
 		local params2,title = params:match('^(.-)%s*"(.*)"')
 		if title then params=params2 end
 
@@ -2380,6 +2455,18 @@ GOALTYPES['at'] = GOALTYPES['goto']
 
 GOALTYPES['mapmarker'] = {
 	parse = GOALTYPES['goto'].parse,
+	gettext = function(self,complete,complete_extra,goalcountnow,goalcountneeded,remaining,brief)
+		-- regular Goal:GetText() doesn't use this, since mapmarkers are hidden by default, but it is used by map tooltips
+		if self.generatedtext then return self.generatedtext end
+		self.generatedtext = ""
+		for i,sgoal in ipairs(self.parentStep.goals) do
+			if (sgoal:GetText()~="" or sgoal.text~="") and not (sgoal.action=="mapmarker" or sgoal.action=="goto" or sgoal.tooltip) then
+				self.generatedtext = self.generatedtext .. (sgoal.text or sgoal:GetText()) .. "\n"
+			end
+		end
+		self.generatedtext = self.generatedtext:gsub("\n$","") -- strip trailing newline
+		return self.generatedtext
+	end,
 }
 
 GOALTYPES['notinsticky'] = {
@@ -2464,7 +2551,6 @@ GOALTYPES['fpath'] = {
 		self.taxiident = self.fpathnodeid or self.fpathnodetag or self.fpathname or self.fpath
 	end,
 	iscomplete = function(self)
-		if ZGV.db.profile.skiptaxi then return true end
 		return ZGV.db.char.taxis[self.taxiident], true
 	end,
 	gettext = function(self) return L["stepgoal_fpath"]:format(COLOR_LOC(self.fpathname or self.fpath)) end,
@@ -3023,14 +3109,16 @@ GOALTYPES['discover'] = {
 
 GOALTYPES['playerchoice'] = {
 	parse = function(self,params)
+		local par,fallback = params:match("^(.+)%s*@%s*(.+)$")
+		if par then
+			self.fallback = fallback
+			params = par
+		end
 		self.option,self.optionID = ParseID(params)
 		self.picked = false
 	end,
 	events = {"PLAYER_CHOICE_UPDATE"},
-	onenter = function(self)
-		-- trigger when entering step in case gossip was already visible
-		GOALTYPES['playerchoice'].onevent(self,_,"PLAYER_CHOICE_UPDATE")
-	end,
+	onenterevent = "PLAYER_CHOICE_UPDATE",
 	onevent = function(self, _, event)
 		if not ZGV.db.profile.autogossip then return end
 		if self.noautogossip then return end
@@ -3045,6 +3133,20 @@ GOALTYPES['playerchoice'] = {
 						--self.picked = true
 						C_PlayerChoice.SendPlayerChoiceResponse(button.id)
 						HideUIPanel(PlayerChoiceFrame)
+						return
+					end
+				end
+			end
+			if not self.fallback then return end
+			-- fallback to numbers or text match
+			for i,option in ipairs(choices.options) do
+				if i==tonumber(self.fallback) then
+					local button = option.buttons[1]
+					if button then
+						--self.picked = true
+						C_PlayerChoice.SendPlayerChoiceResponse(button.id)
+						HideUIPanel(PlayerChoiceFrame)
+						return
 					end
 				end
 			end
@@ -3056,6 +3158,58 @@ GOALTYPES['playerchoice'] = {
 	gettext = function(self) return self.option or "" end,
 }
 
+
+GOALTYPES['furniture'] = { 
+	parse = GOALTYPES['_item'].parse,
+	iscomplete = function(self)
+		if not self.targetid then return false,true end -- no known item... what the...
+
+		local info = C_HousingCatalog.GetCatalogEntryInfoByItem(self.targetid,true)
+		if not info then return false,true end
+
+		local owned = info.quantity + info.remainingRedeemable + info.numPlaced
+
+		return owned>0,true
+	end,
+	gettext = function(self) return L["stepgoal_furniture"]:format(self.target) end,
+}
+
+GOALTYPES['houselevel'] = {
+	parse = function(self,params)
+		self.level,self.exp = params:match("([0-9]*),([0-9]*)")
+		if self.exp then
+			self.level = tonumber(self.level)
+			self.exp = tonumber(self.exp)
+		else
+		self.level = tonumber(params)
+		end
+		if not self.level then return "'houselevel': invalid level value" end
+	end,
+	iscomplete = function(self)
+		local house = ZGV.Modules.Housing
+		local level = house.Level or 0
+		local exp = house.Exp or 0
+		local maxexp = house.ExpNeeded
+
+		if level<self.level-1 then
+			return false,true, norm_nums(0,100)
+		elseif floor(level)>self.level then
+			return true,true
+		elseif floor(level)>=self.level and exp>=(self.exp or 0) then
+			return true,true
+		else
+			return false,true, norm_nums(exp,self.exp or maxexp)
+		end
+	end,
+	gettext = function(self,complete,complete_extra,goalcountnow,goalcountneeded,remaining,brief)
+		local text = L["stepgoal_houselevel"]:format(COLOR_NPC(self.level))
+		if self.exp then
+			text = L["stepgoal_houselevel_exp"]:format(COLOR_NPC(self.level),COLOR_NPC(self.exp))
+		end
+
+		return text	
+	end,
+}
 
 --[[
 
@@ -3078,6 +3232,8 @@ function Goal:GetStatus()
 	-- FIRST impossible (gray), THEN obsolete (blue).
 	if isbad then return "warning" end
 	if not possible then return "impossible" end
+	if ZGV.db.profile.skiptaxi and self.action == "fpath" then return "impossible" end
+	if ZGV.db.profile.skiphome and self.action == "home" then return "impossible" end
 	if ZGV.db.profile.skipobsolete and not self.parentStep.parentGuide.noobsolete and self:IsObsolete() then return "obsolete" end
 	-- only possible and progressing is left.
 	return "incomplete",numdone,numneeded
@@ -3148,6 +3304,11 @@ function Goal:IsVisible()
 			return self.condition_visible()
 		end
 	end
+
+	if self.hidewhencomplete then
+		return not self:IsComplete()
+	end
+	
 	return true
 end
 
@@ -3318,6 +3479,12 @@ function Goal:IsComplete()
 		numdone,numneeded = norm_nums(numdone,numneeded)
 		if not numdone and not numneeded then  numdone,numneeded = iscomplete and 1 or 0,1  end
 		if iscomplete and numneeded==1 then numdone=1 end
+		
+		if GOAL.skippable and GOAL.skippable(self) then 
+			fallthrough_ispossible = false
+			ispossible = false
+		end
+	
 		return
 			iscomplete,
 			ispossible or self.future or fallthrough_ispossible,
@@ -3572,7 +3739,7 @@ function Goal:AutoTranslate()
 			end
 			--self.L=true
 			--ZGV:Debug("Translated: '"..tostring(self.action).."' "..tostring(self.target).." ("..(self.Lretries or 'all').." retries left)")
-		elseif self.action=="collect" or self.action=="goldcollect" or self.action=="get" or self.action=="buy" or self.action=="use" or self.action=="equipped" then
+		elseif self.action=="collect" or self.action=="goldcollect" or self.action=="get" or self.action=="buy" or self.action=="use" or self.action=="equipped" or self.action=="furniture" then
 			local item = ZGV:GetItemInfo(self.targetid)
 			if item then
 				self.target=item
@@ -3619,7 +3786,6 @@ function Goal:AutoTranslate()
 	if self.useid  then
 		-- alternative name for generic npcs
 		local npc,tooltip=ZGV.Localizers:GetTranslatedNPC(tonumber(self.useid),self.usename)
-		print("autotranslate npc",npc)
 		self.usename = npc or self.usename
 	end
 
@@ -3840,14 +4006,9 @@ function Goal:GetText(showcompleteness,brief,showtotals,nocolor)
 
 	elseif self.action=='kill' then
 		local mobname=ZGV.Localizers:GetTranslatedNPC(tonumber(self.useid or self.targetid),self.usename or self.target)
-		if self.targets then
-			for i=2,#self.targets do
-				mobname = mobname .. "|r, " .. COLOR_MONSTER(self.targets[i][1])
-			end
-		end
 
 		if self.targets and #self.targets>1 then
-			text = L["stepgoal_kill_around"]:format(self.targetcommon or "enemies")
+			text = L["stepgoal_kill_around"]:format(COLOR_MONSTER(self.targetcommon or "enemies"))
 		else
 			text = GenericText(brief,self.action,COLOR_MONSTER,remaining or self.count,mobname or self.target,not self.count or self.count==1,self.plural,(complete and "_done" or ""))
 		end
@@ -3862,7 +4023,7 @@ function Goal:GetText(showcompleteness,brief,showtotals,nocolor)
 		goalcountneeded = goalcountneeded or self.count or 1
 		remaining = remaining or goalcountneeded-goalcountnow
 		if remaining<1 then remaining=goalcountneeded end
-		text = GenericText(brief,self.action,COLOR_ITEM,remaining or self.count,self.target,not self.count or self.count==1,self.plural or remaining~=1,(complete and "_done" or ""))
+		text = GenericText(brief,self.action,COLOR_ITEM,remaining or self.count,self.target,not self.count or self.count==1 or self.displaystyle=="hidden",self.plural or remaining~=1,(complete and "_done" or ""))
 		if (self.bank or 0)>0 then
 			text = text .. L["stepgoal_get_bank"]:format(self.bank)
 		end
@@ -4150,7 +4311,7 @@ function Goal:GetText(showcompleteness,brief,showtotals,nocolor)
 
 
 	-- add item quality info
-	if ZGV.IsRetail then
+	if ZGV.IsRetail and not self.skipquality then
 		if (self.action=='get' or self.action=='craft' or self.action=='farm') and self.targetid then
 			reagentquality = C_TradeSkillUI.GetItemReagentQualityByItemInfo(self.targetid )
 			if reagentquality then 
@@ -4413,6 +4574,8 @@ function Goal:OnEnter()
 
 	-- The second, shared with macros, is a clickable button.
 	-- So, let's make a macro!
+	-- Let's not. Macros are protected in Midnight, and we already handle this via actionbuttons
+	--[=[
 	if (self.script or self.macrosrc)
 	and self.action~="confirm" -- don't make macros for click lines!
 	and (not self.macro or not GetMacroInfo(self.macro)) --[[and ZGV.db.profile.tweaks_domacros--]] then
@@ -4455,8 +4618,15 @@ function Goal:OnEnter()
 			ZGV:Debug("&step_setup goal %d macro: tried to set up, but we're in combat.",self.num)
 		end
 	end
+	--]=]
 
-	if GOALTYPES[self.action] and GOALTYPES[self.action].onenter then return GOALTYPES[self.action].onenter(self) end
+	if GOALTYPES[self.action] and GOALTYPES[self.action].onenter then 
+		GOALTYPES[self.action].onenter(self) 
+	end
+
+	if GOALTYPES[self.action] and GOALTYPES[self.action].onenterevent then 
+		GOALTYPES[self.action].onevent(self,_,GOALTYPES[self.action].onenterevent)
+	end
 
 	self.fake_complete = nil
 end
@@ -4488,13 +4658,52 @@ function Goal:CanBeIndentHidden()
 	return (all and (complete or not completable)) or (#children==0 and complete)
 end
 
+function Goal:IsViableDressup()
+	if not IsModifiedClick("DRESSUP") then return false end
+
+	local DressupCheck = IsDressableItem or C_Item and C_Item.IsDressableItemByID
+	
+	if self.mountspellid then
+		if C_MountJournal and C_MountJournal.GetMountFromSpellthen then return true end
+	elseif self.petid then
+		if C_PetJournal and C_PetJournal.GetPetInfoBySpeciesID then return true end
+	elseif self.itemid  then
+		return DressupCheck("item:"..self.itemid)
+	elseif self.action=="equipped" and self.targetid then
+		return DressupCheck("item:"..self.targetid)
+	end
+	
+	return false
+end
+
+
+function Goal:PerformDressup()
+	if self.mountspellid then
+		if not C_MountJournal then return end
+		local mountID = C_MountJournal.GetMountFromSpell(self.mountspellid)
+		local mountLink = C_MountJournal.GetMountLink(self.mountspellid)
+		if mountID and mountLink then
+			DressUpMount(mountID,nil,true,mountLink)
+		end
+	elseif self.petid then
+		local displayID = select(12,C_PetJournal.GetPetInfoBySpeciesID(self.petid))
+		if displayID then
+			DressUpBattlePet(nil, displayID, self.petid, "")
+		end
+	elseif self.itemid then
+		DressUpItemLink("item:"..self.itemid)
+	elseif self.action=="equipped" and self.targetid then
+		DressUpItemLink("item:"..self.targetid)
+	end
+
+	-- DressUpTransmogLink
+	-- DressUpVisual
+end
+
 function Goal:OnClick(button)
 	if ZGV.GOALTYPES[self.action] and ZGV.GOALTYPES[self.action].onclick then ZGV.GOALTYPES[self.action].onclick(self) end
 
-	if IsModifiedClick("DRESSUP") and self.itemid and IsDressableItem("item:"..self.itemid) then
-		DressUpItemLink("item:"..self.itemid)
-		return
-	end
+	if self:IsViableDressup() then self:PerformDressup() end
 
 	-- Clicked goal? Set waypoint, and set map if it's open.
 	if self.x and not self.force_noway  and not self.parentStep:IsCurrentlySticky()  then
@@ -4506,7 +4715,13 @@ function Goal:OnClick(button)
 		ZGV:Debug("Goal %d clicked.",self.num)
 		ZGV.Pointer:ClearWaypoints("manual")
 
-		if WorldMapFrame:IsShown() then OpenWorldMap(self.map) end
+		if WorldMapFrame:IsShown() then 
+			if WorldMapFrame.SetMapID then
+				WorldMapFrame:SetMapID(self.map)
+			else
+				OpenWorldMap(self.map)
+			end
+		end
 
 		if self.action=="mapmarker" then
 			local way = ZGV.Pointer:SetWaypoint(self.mapmarker.map,self.mapmarker.x,self.mapmarker.y, self.mapmarker, false)

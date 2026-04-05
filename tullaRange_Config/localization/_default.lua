@@ -15,7 +15,5 @@ L.Opacity = OPACITY
 L.Red = 'Red'
 L.unusable = 'Unusable'
 
-L.AddonNameLoc = "tullaRange"
-
 -- fallback to the key if a value is not present
 Addon.L = setmetatable(L, { __index = function(_, k) return k end })

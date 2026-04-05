@@ -8289,10 +8289,10 @@ mopready=true,
 next="Leveling Guides\\Outland (60-70)\\Zangarmarsh (62-64)",
 },[[
 step
-Enter the building |goto Blasted Lands/0 64.16,17.12 < 10 |walk
+Enter the building |goto Blasted Lands/0 59.92,15.38 < 10 |walk
 talk Bernie Heisten##3546
 |tip Inside the building.
-buy Nethergarde Bitter##23848 |goto Blasted Lands/0 63.51,17.01 |q 9563 |future
+buy Nethergarde Bitter##23848 |goto Blasted Lands/0 59.40,14.87 |q 9563 |future
 step
 talk Watch Commander Relthorn Netherwane##16841
 accept Through the Dark Portal##10119 |goto Blasted Lands/0 58.32,55.90 |only if ZGV.IsClassicTBC
@@ -8307,7 +8307,7 @@ turnin Arrival in Outland##10288 |goto Hellfire Peninsula/0 87.36,52.42
 accept Journey to Honor Hold##10140 |goto Hellfire Peninsula/0 87.36,52.42
 step
 talk Amish Wildhammer##18931
-Select _"Send me to Honor Hold!"_
+Select _"Send me to Honor Hold!"_ |gossip 91764
 Begin Flying to Honor Hold |invehicle |goto Hellfire Peninsula/0 87.36,52.42 |q 10140
 step
 Fly to Honor Hold |outvehicle |goto Hellfire Peninsula/0 54.66,62.67 |q 10140 |notravel
@@ -8444,7 +8444,7 @@ turnin Disrupt Their Reinforcements##10144 |goto Hellfire Peninsula/0 71.34,62.7
 accept Mission: The Murketh and Shaadraz Gateways##10146 |goto Hellfire Peninsula/0 71.34,62.77
 step
 talk Wing Commander Dabir'ee##19409
-Select _"I'm on a bombing mission for Forward Commander Kingston. I need a gryphon destroyer!"_
+Select _"I'm on a bombing mission for Forward Commander Kingston. I need a gryphon destroyer!"_ |gossip 92184
 Begin the Bombing Mission |invehicle |goto Hellfire Peninsula/0 71.40,62.48 |q 10146
 step
 use the Seaforium PU-36 Explosive Nether Modulator##28038
@@ -8498,7 +8498,7 @@ turnin Warlord of the Bleeding Hollow##10485 |goto Hellfire Peninsula/0 70.96,63
 accept Return to Honor Hold##10903 |goto Hellfire Peninsula/0 70.96,63.37
 step
 talk Wing Commander Dabir'ee##19409
-Select _"Send me to Shatter Point!"_
+Select _"Send me to Shatter Point!"_ |gossip 92185
 Begin Flying to Shatter Point |invehicle |goto Hellfire Peninsula/0 71.40,62.48 |q 10340
 step
 Fly to Shatter Point |outvehicle |goto Hellfire Peninsula/0 78.51,35.05 |q 10340 |notravel
@@ -8523,7 +8523,7 @@ collect Area 52 Special##28132 |goto Hellfire Peninsula/0 79.34,33.86 |q 10163 |
 |tip Then, accept the quest again from this NPC to get the item again.
 step
 talk Gryphoneer Windbellow##20235
-Select _"Send me to the Abyssal Shelf!"_
+Select _"Send me to the Abyssal Shelf!"_ |gossip 92179
 Begin Flying to the Abyssal Shelf |invehicle |goto Hellfire Peninsula/0 78.25,34.46 |q 10163
 stickystart "Destroy_Fel_Cannons"
 stickystart "Slay_Ganarg_Peons"
@@ -8557,7 +8557,7 @@ turnin Mission: The Abyssal Shelf##10163 |goto Hellfire Peninsula/0 79.34,33.86
 accept Go to the Front##10382 |goto Hellfire Peninsula/0 79.34,33.86
 step
 talk Gryphoneer Windbellow##20235
-Select _"Send me to Honor Point!"_
+Select _"Send me to Honor Point!"_ |gossip 92180
 Begin Flying to Honor Point |invehicle |goto Hellfire Peninsula/0 78.25,34.46 |q 10382
 step
 Fly to Honor Point |outvehicle |goto Hellfire Peninsula/0 68.72,28.22 |q 10382 |notravel
@@ -8601,7 +8601,7 @@ collect Burning Legion Missive##29588 |n
 use Burning Legion Missive##29588
 accept The Dark Missive ##10395 |goto Hellfire Peninsula/0 53.09,26.47
 step
-click Forge Camp: Portal Glyph
+click Rune of Spite##182935
 |tip It looks like a floating rune inside the demon structure.
 Close the Burning Legion Gate |q 10397/2 |goto Hellfire Peninsula/0 53.04,27.71
 step
@@ -8709,6 +8709,8 @@ step
 talk Hargen Bronzewing##35100
 Learn Expert Riding |learnspell 34090 |goto Hellfire Peninsula/0 54.28,62.69
 |tip This is heavily recommended as it will let you fly around the zone.
+|only if not knowspell(34090) |and
+|only if not knowspell(90265)
 step
 Enter the building |goto Hellfire Peninsula/0 56.24,65.69 < 10 |walk
 talk Warp-Scryer Kryv##16839
@@ -8897,7 +8899,7 @@ accept The Exorcism of Colonel Jules##10935 |goto Hellfire Peninsula/0 54.32,63.
 step
 talk Anchorite Barada##22431
 |tip Upstairs inside the building.
-Select _"I am ready, Anchorite. Let us begin the exorcism."_
+Select _"I am ready, Anchorite. Let us begin the exorcism."_ |gossip 92510
 Click Here After Talking to Him |confirm |goto Hellfire Peninsula/0 53.93,63.55 |q 10935
 step
 Watch the dialogue
@@ -9092,19 +9094,19 @@ step
 Enter the building |goto Hellfire Peninsula/0 15.44,58.79 < 7 |walk
 talk Akoru the Firecaller##20678
 |tip Inside the building.
-Select _"Walk free, elder. Bring the spirits back to your tribe."_
+Select _"Walk free, elder. Bring the spirits back to your tribe."_ |gossip 92083
 Free Akoru |q 10368/2 |goto Hellfire Peninsula/0 15.59,58.75
 step
 Enter the building |goto Hellfire Peninsula/0 13.03,58.64 < 7 |walk
 talk Aylaan the Waterwaker##20679
 |tip Inside the building.
-Select _"Walk free, elder. Bring the spirits back to your tribe."_
+Select _"Walk free, elder. Bring the spirits back to your tribe."_ |gossip 92081
 Free Aylaan |q 10368/3 |goto Hellfire Peninsula/0 13.00,58.43
 step
 Enter the building |goto Hellfire Peninsula/0 13.29,60.77 < 7 |walk
 talk Morod the Windstirrer##20677
 |tip Inside the building.
-Select _"Walk free, elder. Bring the spirits back to your tribe."_
+Select _"Walk free, elder. Bring the spirits back to your tribe."_ |gossip 92082
 Free Morod |q 10368/1 |goto Hellfire Peninsula/0 13.13,61.04
 step
 Enter the building |goto Hellfire Peninsula/0 16.18,64.76 < 7 |walk
@@ -9149,7 +9151,7 @@ talk Mirren Longbeard##16851
 turnin Gaining Mirren's Trust##9563 |goto Hellfire Peninsula/0 23.97,72.35
 accept The Finest Down##9420 |goto Hellfire Peninsula/0 23.97,72.35
 step
-kill Quillfang Ravager##16932, Quillfang Skitterer##16933
+kill Quillfang Skitterer##19189, Quillfang Ravager##16934
 Slay #10# Quillfang Ravagers |q 9385/1 |goto Hellfire Peninsula/0 22.70,67.85
 stickystart "Kill_Haaleshi_Windwalkers"
 stickystart "Kill_Haaleshi_Talonguards"
@@ -9164,7 +9166,7 @@ use Avruu's Orb##23580
 accept Avruu's Orb##9418 |goto Hellfire Peninsula/0 25.66,76.40
 step
 click Haal'eshi Altar##181606
-Choose _"Place Avruu's Orb on the Altar."_
+Choose _"Place Avruu's Orb on the Altar."_ |gossip 94149
 kill Aeranas##17085
 |tip He will eventually surrender.
 talk Aeranas##17085
@@ -9260,12 +9262,12 @@ use the Sanctified Crystal##23417
 click Glowing Crystal##181574
 |tip It will appear above the Uncontrolled Voidwalker's corpse after you use the Sanctified Crystal.
 collect Glowing Sanctified Crystal##23442 |q 9383/1 |goto Hellfire Peninsula/0 46.31,83.29
-You can find more around [46.31,83.29]
+You can find more around [Hellfire Peninsula/0 50.19,83.18]
 step
 label "Collect_Condensed_Voidwalker_Essences"
 kill Uncontrolled Voidwalker##16975, Rogue Voidwalker##16974
 collect 10 Condensed Voidwalker Essence##23218 |q 9351/1 |goto Hellfire Peninsula/0 46.31,83.29
-You can find more around [46.31,83.29]
+You can find more around [Hellfire Peninsula/0 50.19,83.18]
 |only if haveq(9351) or completedq(9351)
 step
 talk "Screaming" Screed Luckheed##19367
@@ -9627,11 +9629,6 @@ Run up the stairs |goto Zangarmarsh/0 41.71,29.92 < 20 |only if walking
 talk Halu##22485
 fpath Orebor Harborage |goto Zangarmarsh/0 41.28,29.00
 step
-Enter the building |goto Zangarmarsh/0 42.10,26.66 < 10 |walk
-talk Innkeeper Kerp##18908
-|tip Inside the building.
-home Orebor Harborage |goto Zangarmarsh/0 41.86,26.23 |q 9801 |future
-step
 talk Timothy Daniels##18019
 accept Secrets of the Daggerfen##9848 |goto Zangarmarsh/0 41.21,28.67
 step
@@ -9700,6 +9697,11 @@ turnin Ango'rosh Encroachment##9835 |goto Zangarmarsh/0 41.94,27.19
 accept Overlord Gorefist##9839 |goto Zangarmarsh/0 41.94,27.19 |only if (completedq(9835) or haveq(9835))
 turnin Wanted: Chieftain Mummaki##10116 |goto Zangarmarsh/0 41.94,27.19
 turnin Daggerfen Deviance##10115 |goto Zangarmarsh/0 41.94,27.19
+step
+Enter the building |goto Zangarmarsh/0 42.10,26.66 < 10 |walk
+talk Innkeeper Kerp##18908
+|tip Inside the building.
+home Orebor Harborage |goto Zangarmarsh/0 41.86,26.23 |q 9801 |future
 step
 talk Maktu##18010
 accept Natural Armor##9834 |goto Zangarmarsh/0 41.61,27.29
@@ -9784,6 +9786,7 @@ step
 talk Fahssn##17923
 |tip Walks around.
 accept Sporeggar##9919 |goto Zangarmarsh/0 19.07,63.86
+|tip If he wouldn't have this quest ready, kill a few {o}Starving Bog Lords{} & {o}Starving Fungal Giants{}, to get your reputation to friendly. You can find them west from here.
 step
 talk Watcher Leesa'oh##17831
 turnin The Count of the Marshes##9911 |goto Zangarmarsh/0 23.32,66.21
@@ -9875,6 +9878,16 @@ step
 talk Vindicator Idaar##18004
 accept The Fate of Tuurem##9793 |goto Zangarmarsh/0 68.34,50.08
 step
+label "UNINDENTIFIED_PLANTS"
+talk Lauranna Thar'well##17909 |goto Zangarmarsh/0 80.32,64.17
+accept Identify Plant Parts##9784 |repeatable
+|only if (itemcount(24401) >= 10) and (rep("Cenarion Expedition") < Honored)
+step
+talk Lauranna Thar'well##17909 |goto Zangarmarsh/0 80.32,64.17
+turnin Identify Plant Parts##9784
+'|next UNINDENTIFIED_PLANTS
+|only if (itemcount(24401) >= 10) and (rep("Cenarion Expedition") < Honored)
+step
 talk Lauranna Thar'well##17909
 turnin Saving the Sporeloks##10096 |goto Zangarmarsh/0 80.32,64.17
 step
@@ -9887,12 +9900,12 @@ accept Blessings of the Ancients##9785 |goto Zangarmarsh/0 80.37,64.72
 step
 talk Ashyen##17900
 |tip It looks like a large tree that walks around this area.
-Select _"Grant me your mark, wise ancient."_
+Select _"Grant me your mark, wise ancient."_ |gossip 91227
 Receive the Mark of Lore |q 9785/1 |goto Zangarmarsh/0 81.09,63.91
 step
 talk Keleth##17901
 |tip It looks like a large tree that walks around this area.
-Select _"Grant me your mark, mighty ancient."_
+Select _"Grant me your mark, mighty ancient."_ |gossip 91231
 Receive the Mark of War |q 9785/2 |goto Zangarmarsh/0 78.98,67.42
 step
 talk Windcaller Blackhoof##18070
@@ -11398,16 +11411,6 @@ kill Binder Murdis##24334 |q 11348/2 |goto Howling Fjord/0 71.85,24.56
 step
 talk Prospector Belvar##24328
 turnin The Rune of Command##11348 |goto Howling Fjord/0 62.28,17.21
-step
-Enter the building |goto Howling Fjord/0 60.61,15.89 < 10 |walk
-talk Christina Daniels##24057
-|tip Inside the building.
-home Fort Wildervar |goto Howling Fjord/0 60.48,15.86
-step
-Enter the building |goto Howling Fjord/0 30.90,41.91 < 10 |walk
-talk Innkeeper Celeste Goodhutch##23937
-|tip Inside the building.
-home Westguard Inn |goto Howling Fjord/0 30.86,41.45
 step
 talk Sapper Steelring##23976
 turnin Leader of the Deranged##11240 |goto Howling Fjord/0 29.11,41.78

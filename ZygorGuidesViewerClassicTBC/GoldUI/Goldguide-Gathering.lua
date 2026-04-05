@@ -21,6 +21,7 @@ Goldguide.GATHERING_TYPES = {
 		"zandalari_herbalism",
 		"shadowlands_herbalism",
 		"dragon_isles_herbalism",
+		"khaz_algar_herbalism",
 	}},
 
 	{"Mining","mining",{
@@ -34,6 +35,7 @@ Goldguide.GATHERING_TYPES = {
 		"zandalari_mining",
 		"shadowlands_mining",
 		"dragon_isles_mining",
+		"khaz_algar_mining",
 	}},
 	
 	{"Skinning","skinning",{
@@ -47,6 +49,7 @@ Goldguide.GATHERING_TYPES = {
 		"zandalari_skinning",
 		"shadowlands_skinning",
 		"dragon_isles_skinning",
+		"khaz_algar_skinning",
 	}},
 
 	{"Fishing","fishing",{
@@ -60,6 +63,7 @@ Goldguide.GATHERING_TYPES = {
 		"zandalari_fishing",
 		"shadowlands_fishing",
 		"dragon_isles_fishing",
+		"khaz_algar_fishing",
 	}},
 
 	{"Enchanting","enchanting",{
@@ -73,6 +77,7 @@ Goldguide.GATHERING_TYPES = {
 		"zandalari_enchanting",
 		"shadowlands_enchanting",
 		"dragon_isles_enchanting",
+		"khaz_algar_enchanting",
 	}},
 }
 

@@ -107,8 +107,7 @@ function ZGV:SanitizeMapFloor(m,f)
 end
 
 
-local ControlFrame_Mixin = {}
-function ControlFrame_Mixin:OnEvent(event,...)
+function Pointer:OnEvent(event,...)
 	if event=="TAXIMAP_OPENED" then
 		if not ZGV.db.profile.highlighttaxi then return end
 		if not LibRover.RESULTS
@@ -127,6 +126,20 @@ function ControlFrame_Mixin:OnEvent(event,...)
 		end
 	elseif event=="ZGV_INITIAL_GUIDE_LOADED" then
 		Pointer:LoadSavedPoints()
+	elseif event=="GOSSIP_SHOW" then
+		if not ZGV.db.profile.autogossip then return end
+		if not (Pointer.ArrowFrame and Pointer.ArrowFrame.waypoint and Pointer.ArrowFrame.waypoint.pathnode) then return end
+		local gossipID = tonumber(Pointer.ArrowFrame.waypoint.pathnode.gossip)
+		if not gossipID then return end
+
+		local gossips = C_GossipInfo.GetOptions()
+		if not gossips then return end
+
+		for _,gossip in ipairs(gossips) do
+			if gossip.gossipOptionID == gossipID then
+				C_GossipInfo.SelectOption(gossip.gossipOptionID)
+			end
+		end
 	end
 end
 
@@ -342,12 +355,10 @@ function Pointer:Startup()
 	end
 
 	
-	self.ControlFrame = Mixin(CreateFrame("FRAME"),ControlFrame_Mixin)
-	CHAINC(self.ControlFrame)
-		:SetScript("OnEvent",self.ControlFrame.OnEvent)
-		:RegisterEvent("TAXIMAP_OPENED")
-	ZGV:AddMessageHandler("ZGV_STEP_CHANGED",self.ControlFrame.OnEvent)
-	ZGV:AddMessageHandler("ZGV_INITIAL_GUIDE_LOADED",self.ControlFrame.OnEvent)
+	ZGV:AddEventHandler("TAXIMAP_OPENED",self.OnEvent)
+	ZGV:AddMessageHandler("ZGV_STEP_CHANGED",self.OnEvent)
+	ZGV:AddMessageHandler("ZGV_INITIAL_GUIDE_LOADED",self.OnEvent)
+	ZGV:AddEventHandler("GOSSIP_SHOW",self.OnEvent)
 
 	if ZGV.IsRetail then
 		EventRegistry:RegisterCallback("MapCanvas.MapSet", function() ZGV:ScheduleTimer(function() Pointer:HighlightFlightMapDestination() end,0) end, FlightMapFrame);
@@ -420,7 +431,7 @@ Pointer.Icons = {
 	graydot = { tex={file="mapicons",coords={0.5,1,0,0.5},r=0.7,g=0.7,b=0.7}, size=30, minisize=35, rotates=false, edgetex={file="mapicons",coords={0,0.5,0.5,1},r=1,g=1,b=1}, zedgesize=1, spinner=true, desat=1, onminimap="always" },
 	arrow = { tex={file="mapicons",coords={0.5,1,0.5,1},r=1,g=1,b=1}, size=30, minisize=30, rotates=true, edgetex={file="mapicons",coords={0,0.5,0.5,1},r=1,g=1,b=1}, zedgesize=1 },
 	greendotbig = { tex={file="mapicons",coords={0.0,0.5,0.0,0.5},r=254/255,g=97/255,b=0/255}, size=40, alpha=1.0, minisize=25, minimap_alpha=1.0, rotates=false, edgetex={file="mapicons",coords={0,0.5,0.5,1},r=1,g=1,b=1}, edgesize=20, onminimap="always" },  -- actually orange
-	secondarydot = { tex={file="mapicons",coords={0.0,0.5,0.0,0.5},r=216/255,g=106/255,b=38/255}, size=30, alpha=1.0, minisize=25, minimap_alpha=1.0, rotates=false, edgetex={file="mapicons",coords={0,0.5,0.5,1},r=1,g=1,b=1}, edgesize=20, onminimap="always" },  -- actually orange
+	secondarydot = { tex={file="mapicons",coords={0.0,0.5,0.0,0.5},r=254/255,g=97/255,b=0/255}, size=30, alpha=1.0, minisize=25, minimap_alpha=1.0, rotates=false, edgetex={file="mapicons",coords={0,0.5,0.5,1},r=1,g=1,b=1}, edgesize=20, onminimap="always" },  -- actually orange
 	
 	ant =	     { tex={file="mapicons",coords={0,0.5,0,0.5},r=1,g=1,b=1},     alpha=0.8, size=20, minisize=15, rotates=false, edgetex=nil, edgesize=1 },
 	ant_taxi =   { tex={file="mapicons",coords={0,0.5,0,0.5},r=0.4,g=1,b=0},   alpha=0.8, size=20, minisize=15, rotates=false, edgetex=nil, edgesize=1 },
@@ -1076,6 +1087,7 @@ function Pointer:MakeMarkerFrames(marker,markertype)
 		:SetScript("OnClick",ZGV.Pointer.frame_worldmap_functions.OnClick)
 			:RegisterForClicks("AnyUp","AnyDown")
 		:SetScript("OnEvent",ZGV.Pointer.frame_worldmap_functions.OnEvent)
+			:RegisterEvent("MODIFIER_STATE_CHANGED")
 			:RegisterEvent("PLAYER_ENTERING_WORLD")
 			:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 		marker.frame_worldmap.spinner:SetTexture(ZGV.DIR.."\\Skins\\loading")
@@ -1488,7 +1500,7 @@ function Pointer:SetupArrow()
 			:SetPushedTexture("Interface\\Buttons\\CheckButtonHilight")
 			:SetAttribute("_onstate-combathide", "if newstate == 'show' then self:Show(); else self:Hide(); end")
 			.__END
-		if ZGV.IsRetail then
+		if ZGV.IsRetail or ZGV.IsClassicTBC then
 			self.ArrowFrame.ArrowIcon:RegisterForClicks("LeftButtonUp","LeftButtonDown")
 		end
 
@@ -1632,15 +1644,13 @@ function Pointer.frame_minimap_functions.OnEnter(self,arg,tip)
 	if self.waypoint and (self.icon:IsVisible() or (self.arrow and self.arrow:IsVisible())) then
 		tip = tip or GameTooltip
 		ShowTooltip(self,tip)
-		if not (self.waypoint.tooltipdata or self.waypoint.tooltipfunc) then
-			tip:AddLine(L['waypoint_tip_distance']:format(FormatDistance(self.dist or self.dist_tmp)))
-		end
 
 		if self.waypoint.type=="manual" or self.waypoint.surrogate_for and self.waypoint.surrogate_for.type=="manual" then
 			tip:AddLine(L['waypoint_tip_clearmanual'])
 		end
 
 		if ZGV.db.profile.debug_display then
+			tip:AddLine(L['waypoint_tip_distance']:format(FormatDistance(self.dist or self.dist_tmp)))
 			if self.waypoint.type=="route" and self.waypoint.pathnode.type~="end" then
 				tip:AddLine("|cffff0000DEBUG:|r |cffddff00Right-click|r for menu")
 			end
@@ -1665,6 +1675,11 @@ end
 
 function Pointer.frame_minimap_functions.OnLeave(self)
 	if self.waypoint.passive then return end
+	
+	-- we may have switched the first line font object. restore it
+	GameTooltipTextLeft1:SetFontObject(GameTooltipHeaderText); 
+	GameTooltipTextRight1:SetFontObject(GameTooltipHeaderText);
+
 	GameTooltip:Hide()
 	self.hastooltip=false
 	if ZGV.DEV then self.icon:SetVertexColor(self.waypoint.icon.tex.r or 1,self.waypoint.icon.tex.g or 1,self.waypoint.icon.tex.b or 1,self.waypoint.icon.tex.a or 1) end
@@ -1901,6 +1916,11 @@ end
 function Pointer.frame_worldmap_functions.OnLeave(self)
 	if not self.waypoint then return end
 	if self.waypoint and self.waypoint.passive then return end
+
+	-- we may have switched the first line font object. restore it
+	GameTooltipTextLeft1:SetFontObject(GameTooltipHeaderText); 
+	GameTooltipTextRight1:SetFontObject(GameTooltipHeaderText);
+
 	GameTooltip:Hide()
 
 	--WorldMapPOIFrame.allowBlobTooltip = WorldMapPOIFrame.old_allowBlobTooltip  -- TODO: reimplement? whatever this was?
@@ -1916,6 +1936,20 @@ function Pointer.frame_worldmap_functions.OnEvent(self,event,...)
 	--ZGV:Print("WORLDMAP ONEVENT "..event)
 	if event == "PLAYER_ENTERING_WORLD" or event=="ZONE_CHANGED_NEW_AREA" then
 		if way then way:UpdateMiniMapIcon() end
+	--end
+
+	elseif event=="MODIFIER_STATE_CHANGED" then
+		local key,state = ...
+
+		if (key=="LCTRL" or key=="RCTRL") and GameTooltip:IsShown() then
+			if GameTooltip:IsShown() then
+				local pin = GameTooltip:GetOwner()
+				if pin and pin.tooltipfunc then
+					GameTooltip:Hide()
+					pin.tooltipfunc(pin)
+				end
+			end
+		end
 	end
 end
 
@@ -2544,9 +2578,21 @@ function Pointer.ArrowFrame_ShowSpellArrow(self,waypoint)
 	local spell = node.spell or (node.link and node.link.spell)
 	local item = node.item or (node.link and node.link.item)
 	local toy = node.toy or (node.link and node.link.toy)
+	local initfunc = node.initfunc or (node.link and node.link.initfunc)
+
 	local arrivaltoy = node.arrivaltoy or (node.link and node.link.arrivaltoy)
 	local arrivaltoytext = node.arrivaltoytext or (node.link and node.link.arrivaltoytext)
 	local cooltime,cooldur,coolactive = LibRover:GetCooldownWithoutGCD((spell and "spell") or (item and "item"),item or spell)
+
+	local cooldownfunc = node.cooldownfunc or (node.link and node.link.cooldownfunc)
+	local cooldownInfo = cooldownfunc and cooldownfunc()
+	if cooldownInfo then
+		cooltime = cooldownInfo.startTime
+		cooldur = cooldownInfo.duration
+		coolactive = cooldownInfo.isEnabled
+	end		
+
+	local atlas = node.atlas or (node.link and node.link.atlas)
 
 	if safe then
 		--if mode=="hearth" then
@@ -2559,6 +2605,17 @@ function Pointer.ArrowFrame_ShowSpellArrow(self,waypoint)
 				name,texture = spellData.name, spellData.iconID
 				icon:SetAttribute("type","spell")
 				icon:SetAttribute("spell",name)
+				icon.spellname = name
+				icon.spellid = spell
+				
+				-- special handling for zen pilgrimage. blizzard doesn't unset pilgrimage override spell properly after first usage, so the spell used by CastSpellByName 
+				-- (which is triggered via actionbar type spell) is different version of ZP with spell id 293866, which doesn't work
+				-- this has been a blizzard error for over a year, and is unlikely to be fixed.
+				-- as a workaround check if player has ZP somewhere on their action bars, and reuse the actionID from there
+				if spell==126892 and Pointer.PilgrimageAction then
+					icon:SetAttribute("type","action")
+					icon:SetAttribute("action",Pointer.PilgrimageAction)
+				end
 		elseif toy then
 				_,name,texture,_ = C_ToyBox.GetToyInfo(item)
 				icon:SetAttribute("type","toy")
@@ -2579,10 +2636,15 @@ function Pointer.ArrowFrame_ShowSpellArrow(self,waypoint)
 			else
 				arrivaltoytext = nil
 			end
+		elseif initfunc then
+			for field,value in pairs(initfunc()) do
+				icon:SetAttribute(field,value)
+			end
 		end
 		icon.cooldown:SetCooldown(cooltime,cooldur,coolactive and 1 or 0)
-	end
-	if texture then
+	end		
+
+	if texture or atlas then
 		icon:Show()
 		icon.item = item
 		if equiptype then -- We need to equip this item to use it
@@ -2594,15 +2656,19 @@ function Pointer.ArrowFrame_ShowSpellArrow(self,waypoint)
 			end
 		end
 		icon.texture:SetAllPoints(true)
-		icon.texture:SetTexture(texture)
-
+		if texture then
+			icon.texture:SetTexture(texture)
+		else
+			icon.texture:SetAtlas(atlas)
+		end
+		
 		self:ShowNothing()
 		local pretext
 
 		if cooltime>0 then
 			local time = Pointer.FormatTime(cooltime+cooldur-GetTime())
 			local spellData = spell and GetSpellInfo(spell)
-			pretext = L['pointer_arrow_itemcooldown']:format(time,(item or arrivaltoy) and ZGV:GetItemInfo(item or arrivaltoy) or (spellData and spellData.name)) .. "\n"
+			pretext = L['pointer_arrow_itemcooldown']:format(time,(item or arrivaltoy) and ZGV:GetItemInfo(item or arrivaltoy) or (spellData and spellData.name) or (initfunc and node.title)) .. "\n"
 			--else
 			--	pretext = L['pointer_arrow_itemuse']:format(ZGV:GetItemInfo(item)) .. "\n"
 		end
@@ -3830,7 +3896,7 @@ end
 function Pointer:IsCorpseArrowNeeded() -- small utility against bulky ifs, NB: waypointer-independent
 	if LibRover.initializing and not LibRover.ready then return false end -- wait for LR to finish loading
 	-- uses arrow, is dead, not in pvp zone, and not feign death
-	return ZGV.db.profile.corpsearrow and UnitIsDeadOrGhost("player") and select(2, IsInInstance()) ~= "pvp" and not (IsActiveBattlefieldArena and IsActiveBattlefieldArena()) and not ZGV.Parser.ConditionEnv.hasbuff("spell:5384")
+	return ZGV.db.profile.corpsearrow and UnitIsDeadOrGhost("player") and select(2, IsInInstance()) ~= "pvp" and not (IsActiveBattlefieldArena and IsActiveBattlefieldArena()) and not ZGV.Parser.ConditionEnv.hasbuff(5384)
 end
 
 local DoCorpseCheckRetry = 10
@@ -5017,7 +5083,7 @@ local temp_setwaypoint_data={}
 -- keywords: valid data fields
 local copy_fields = {title=1,arrowtitle=1,arrowicon=1,text=1,pathnode=1,map=1,x=1,y=1,["type"]=1,icon=1,iconoverride=1,pathnode=1,radius=1,
 	waypoint_zone=1, waypoint_realzone=1, waypoint_subzone=1, waypoint_minizone=1, waypoint_region=1, waypoint_indoors=1, player=1, ant_icon=1,noskip=1,
-	poiNum=1,OnNear=1,OnFar=1,OnUpdate=1,isNear=1,nearRange=1, OnClick=1, onminimap=1, onworldmap=1, overworld=1, tooltipdata=1, storedData=1, customs=1, tooltipfunc=1, poi=1 }
+	poiNum=1,OnNear=1,OnFar=1,OnUpdate=1,isNear=1,nearRange=1, OnClick=1, onminimap=1, onworldmap=1, overworld=1, tooltipdata=1, storedData=1, customs=1, tooltipfunc=1, poi=1, pointname=1 }
 local dont_copy_Goal_fields = { OnClick=1 } -- I hate myself for this.
 	
 local function set_waypoints(points,worldsize,minisize,ptype,setname)
@@ -5476,6 +5542,8 @@ local function PathFoundHandler(state,path,ext,reason)
 	if state~="progress" then Pointer:Debug("&_PUSH PathFoundHandler! state=%s",state) end
 
 	if state=="success" then
+		Pointer:HandleZenPilgrimage()
+
 		if ext and ext.token and ext.token~=ZGV.Pointer.DestinationWaypoint then Pointer:Debug("&_POP Found wrong path!") return end
 		Pointer:ClearSet("route")
 		local future_waypoints = {--[[follow="pathfind",--]]loop=false,ants="straight",coords={},follow="route"}
@@ -5656,6 +5724,22 @@ function Pointer:FindTravelPath(way)
 	if type(way)=="table" then
 		--self:ShowArrow(way) --#optimizetravel
 		if way.type=="route" then return end
+
+		-- if waypoint is using named node goto @name Map x,y syntax, and named node exists, point to it instead of fallback coords
+		local namednode = way.pointname and LibRover.nodes.id[way.pointname]
+		if namednode then
+			way.x = namednode.x
+			way.y = namednode.y
+			way.m = namednode.m
+			
+			-- since named point can be on different coords, update the goal as well
+			if way.goal then
+				way.goal.x = namednode.x
+				way.goal.y = namednode.y
+				way.goal.map = namednode.m
+			end
+		end
+		
 		self.DestinationWaypoint = way
 		local display_zone = way.waypoint_minizone or way.waypoint_subzone
 		ZGV:Debug("&pointer FindTravelPath to %s (%s)",waypoint_tostring(way),(not ZGV.db.profile.pathfinding or (way.goal and way.goal.waypoint_notravel)) and "direct" or "pathing")
@@ -5884,6 +5968,7 @@ end
 --end)
 
 function Pointer:LoadSavedPoints()
+	Pointer.SavePointsStarted = true
 	if ZGV.db.char.pointsetsmanual[1] then
 		local point = ZGV.db.char.pointsetsmanual[1]
 		local waydata = {
@@ -5900,7 +5985,6 @@ function Pointer:LoadSavedPoints()
 		Pointer:SetWaypoint(point.m,point.x,point.y,waydata)
 	end
 	self:Debug("Loaded saved manual waypoints")
-	Pointer.SavePointsStarted = true
 end
 
 function Pointer:Debug(msg,...)
@@ -5924,6 +6008,61 @@ function Pointer:TestPOIs()
 		},
 		"poi"
 	)
+end
+
+function Pointer:HandleZenPilgrimage()
+	local pilgrimage = 126892
+	if UnitClassBase("player")~="MONK" then return false,"wrong class" end
+	if not IsSpellKnown(pilgrimage) then return false,"unknown spell" end
+	if Pointer.PilgrimageAction==false then return false,"gave up" end -- we already checked, no place for the spell
+ 
+	-- check if pilgimage is anywhere
+
+	-- we know actionID, make sure it is not changed. 
+	-- (ten times faster than FindSpellActionButtons)
+	if Pointer.PilgrimageAction then
+		local actiontype,actionspell = GetActionInfo(Pointer.PilgrimageAction)
+		if actiontype=="spell" and actionspell==pilgrimage then 
+			return true
+		end
+	end
+
+	-- is it present anywhere?
+	local actionIDs = C_ActionBar.FindSpellActionButtons(pilgrimage)
+	if actionIDs then
+		Pointer.PilgrimageAction = actionIDs[1]
+		return true
+	end
+
+	-- is there anywhere we can put it on?
+	local ActionBarButtonNames = {
+		"MultiBar7",
+		"MultiBar6",
+		"MultiBar5",
+		-- other bars are enabled or filled by default, do not use them
+	}
+
+	if GetCursorInfo() then return false,"cursor in use" end
+	for _, actionBar in ipairs(ActionBarButtonNames) do
+		if _G[actionBar] and not _G[actionBar]:IsVisible() then
+			for i = 1, NUM_ACTIONBAR_BUTTONS do
+				local button = _G[actionBar.."Button"..i]
+				if button then
+					local actionType, actionSpellID = GetActionInfo(button.action)
+					if not action then
+						-- empty button on a hidden actionbar. drop pilgrimage there
+						C_Spell.PickupSpell(pilgrimage)
+						PlaceAction(button.action)
+						Pointer.PilgrimageAction = button.action
+						return true
+					end
+				end
+			end
+		end
+	end
+	Pointer.PilgrimageAction = false
+	return false
+
 end
 
 
@@ -6423,8 +6562,44 @@ function Pointer:ShowMapMarkers()
 		if goal.action=="mapmarker" and (not goal.condition_visible or goal.condition_visible()) then
 			if not goal.mapmarker then
 				local point = {}
-				local text = goal.waytitle or goal.text
-				point.title = text and "|cffffffff"..text.."|r"
+				point.tooltipfunc = function(pin)
+					GameTooltip:SetOwner(pin,"ANCHOR_TOP")
+					GameTooltip:ClearLines()
+
+					if not pin.tooltipfunc then
+						pin.tooltipfunc = point.tooltipfunc
+					end
+
+					-- make first line use regular font
+					GameTooltipTextLeft1:SetFontObject(GameTooltipText);
+					GameTooltipTextRight1:SetFontObject(GameTooltipText);
+					
+					if goal.waytitle or goal.text then 
+						GameTooltip:AddLine(goal.waytitle or goal.text)
+					else
+						local text=""
+						for i,sgoal in ipairs(goal.parentStep.goals) do
+							if (sgoal:GetText()~="" or sgoal.text~="") and not (sgoal.action=="mapmarker" or sgoal.action=="goto" or sgoal.tooltip) then
+								GameTooltip:AddLine(sgoal:GetText() or sgoal.text)
+							end
+						end
+					end
+
+					if IsControlKeyDown() and ZGV.DEV then
+						local x = tonumber(goal.x)
+						local y = tonumber(goal.y)
+
+						if x and y then
+							local cx = x * 100
+							local cy = y * 100
+
+							GameTooltip:AddLine(" ")
+							GameTooltip:AddLine(string.format("Coords: %.2f, %.2f", cx, cy), 1, 1, 1)
+						end
+					end
+
+					GameTooltip:Show()
+				end
 				point.icon = ZGV.Pointer.Icons[goal.mapicon or "secondarydot"] -- graydot, arrow,crosshair
 				point.iconoverride = true
 				point.map = goal.map

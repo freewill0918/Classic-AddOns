@@ -107,14 +107,14 @@ function E:Init() -- Runs after our saved variables are loaded and cvars have be
   AceConfigRegistry:RegisterOptionsTable("AdvancedInterfaceOptions_Nameplate", addon:CreateNameplateOptions())
   AceConfigRegistry:RegisterOptionsTable("AdvancedInterfaceOptions_cVar", addon:CreateCVarOptions())
 
-  local categoryFrame, mainCategoryID = AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions", "進階選項")
-  AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_Camera", "鏡頭", "進階選項")
-  AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_Chat", "聊天", "進階選項")
-  AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_Combat", "戰鬥", "進階選項")
-  AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_FloatingCombatText", "浮動戰鬥文字", "進階選項")
-  AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_StatusText", "狀態文字", "進階選項")
-  AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_Nameplate", "名條", "進階選項")
-  local cVarFrame, cVarCategoryID = AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_cVar", "CVar 瀏覽器", "進階選項")
+  local categoryFrame, mainCategoryID = AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions", "AdvancedInterfaceOptions")
+  AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_Camera", "Camera", "AdvancedInterfaceOptions")
+  AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_Chat", "Chat", "AdvancedInterfaceOptions")
+  AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_Combat", "Combat", "AdvancedInterfaceOptions")
+  AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_FloatingCombatText", "Floating Combat Text", "AdvancedInterfaceOptions")
+  AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_StatusText", "Status Text", "AdvancedInterfaceOptions")
+  AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_Nameplate", "Nameplates", "AdvancedInterfaceOptions")
+  local cVarFrame, cVarCategoryID = AceConfigDialog:AddToBlizOptions("AdvancedInterfaceOptions_cVar", "CVar Browser", "AdvancedInterfaceOptions")
 
   -- Inject our custom cVar browser into the panel created by Ace3
   addon:PopulateCVarPanel(cVarFrame)
@@ -127,7 +127,7 @@ function E:Init() -- Runs after our saved variables are loaded and cvars have be
     if not InCombatLockdown() then
       Settings.OpenToCategory(mainCategoryID)
     else
-      DEFAULT_CHAT_FRAME:AddMessage("進階介面選項: 戰鬥中無法修改介面選項。")
+      DEFAULT_CHAT_FRAME:AddMessage(format("%s: Can't modify interface options in combat", addonName))
     end
   end
   SLASH_AIO1 = "/aio"
@@ -147,7 +147,7 @@ function E:Init() -- Runs after our saved variables are loaded and cvars have be
         end
       end
     else
-      DEFAULT_CHAT_FRAME:AddMessage("進階介面選項: 戰鬥中無法修改介面選項。")
+      DEFAULT_CHAT_FRAME:AddMessage(format("%s: Can't modify interface options in combat", addonName))
     end
   end
   SLASH_CVAR1 = "/cvar"
@@ -219,9 +219,9 @@ end
 
 -- Button to reset all of our settings back to their defaults
 StaticPopupDialogs["AIO_RESET_EVERYTHING"] = {
-  text = '在文字框內輸入 "IRREVERSIBLE" 來重置所有 CVars 遊戲參數設定，恢復成預設值。',
-  button1 = "確定",
-  button2 = "取消",
+  text = 'Type "IRREVERSIBLE" into the text box to reset all CVars to their default settings',
+  button1 = "Confirm",
+  button2 = "Cancel",
   hasEditBox = true,
   OnShow = function(self)
     self.button1:SetEnabled(false)
@@ -234,7 +234,7 @@ StaticPopupDialogs["AIO_RESET_EVERYTHING"] = {
       local cvar = info.command
       local current, default = GetCVarInfo(cvar)
       if current ~= default then
-        print(format("|cffaaaaff%s|r 的值從 |cffffaaaa%s|r 變成 |cffaaffaa%s|r", tostring(cvar), tostring(current), tostring(default)))
+        print(format("|cffaaaaff%s|r reset from |cffffaaaa%s|r to |cffaaffaa%s|r", tostring(cvar), tostring(current), tostring(default)))
         addon:SetCVar(cvar, default)
       end
     end
@@ -277,13 +277,13 @@ function addon.BackupSettings()
     cvars = cvarBackup,
   }
 
-  print(format("進階介面選項: 已備份 %d 個自訂的 CVar 遊戲參數設定!", settingCount))
+  print(format("AIO: Backed up %d customized CVar settings!", settingCount))
 end
 
 StaticPopupDialogs["AIO_BACKUP_SETTINGS"] = {
-  text = "是否要儲存目前的 CVar 遊戲參數設定，以便日後能夠還原設定?",
-  button1 = "備份設定",
-  button2 = "取消",
+  text = "Save current CVar settings to restore later?",
+  button1 = "Backup Settings",
+  button2 = "Cancel",
   OnAccept = addon.BackupSettings,
   timeout = 0,
   whileDead = true,
@@ -302,13 +302,13 @@ function addon.RestoreSettings()
       if backupValue then
         -- Restore value from backup
         if currentValue ~= backupValue then
-          print(format("|cffaaaaff%s|r 的值從 |cffffaaaa%s|r 變成 |cffaaffaa%s|r", cvar, tostring(currentValue), tostring(backupValue)))
+          print(format("|cffaaaaff%s|r changed from |cffffaaaa%s|r to |cffaaffaa%s|r", cvar, tostring(currentValue), tostring(backupValue)))
           addon:SetCVar(cvar, backupValue)
         end
       else
         -- TODO: If CVar isn't in backup and isn't set to default value, should we reset to default or ignore it?
         if currentValue ~= defaultValue then
-          print(format("|cffaaaaff%s|r 的值從 |cffffaaaa%s|r 變成 |cffaaffaa%s|r", cvar, tostring(currentValue), tostring(defaultValue)))
+          print(format("|cffaaaaff%s|r changed from |cffffaaaa%s|r to |cffaaffaa%s|r", cvar, tostring(currentValue), tostring(defaultValue)))
           addon:SetCVar(cvar, defaultValue)
         end
       end
@@ -317,9 +317,9 @@ function addon.RestoreSettings()
 end
 
 StaticPopupDialogs["AIO_RESTORE_SETTINGS"] = {
-  text = "是否要從備份還原 CVar 遊戲參數設定?\n注意: 此動作無法復原!",
-  button1 = "還原設定",
-  button2 = "取消",
+  text = "Restore CVar settings from backup?\nNote: This can't be undone!",
+  button1 = "Restore Settings",
+  button2 = "Cancel",
   OnAccept = addon.RestoreSettings,
   OnShow = function(self)
     -- Disable accept button if we don't have any backups

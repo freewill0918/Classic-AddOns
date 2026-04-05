@@ -1651,6 +1651,9 @@ clicknpc Jian##56253
 |tip It walks around this area.
 Find Jian |q 29914/1 |goto Valley of the Four Winds/0 70.39,24.05
 step
+talk Kim of the Mountain Winds##62658
+fpath Grassy Cline |goto Valley of the Four Winds/0 70.82,24.10
+step
 clicknpc Smelly##56255
 |tip It looks like a {o}pink pig{}.
 |tip It walks around this area.
@@ -3423,7 +3426,8 @@ accept The Fall of Shai Hu##30855
 step
 kill Shai Hu##61069 |q 30855/1 |goto Kun-Lai Summit/0 71.24,82.53
 |tip You will {o}lose 5% of your health every 5 seconds{}.
-|tip Kill {o}Explosive Hatred enemies{} near him to {o}hurt him{}.
+|tip Kill {o}Explosive Hatred enemies{} near him to {o}remove his shield{}.
+|tip Keep in mind to land a killing blow yourself for the kill to count.
 step
 talk Waterspeaker Gorai##60973
 turnin The Fall of Shai Hu##30855 |goto Kun-Lai Summit/0 74.91,88.58
@@ -3612,8 +3616,9 @@ turnin Pandaren Prisoners##30655 |goto Kun-Lai Summit/0 62.31,80.63
 turnin The Ordo Warbringer##30661 |goto Kun-Lai Summit/0 62.31,80.63
 accept The Shado-Pan##31453 |goto Kun-Lai Summit/0 62.31,80.63
 step
-talk Elder Shiao##63535
-accept Beyond the Wall##31695 |goto Kun-Lai Summit/0 62.34,79.61
+talk Mai the Sleepy##62883 |goto Kun-Lai Summit/0 62.73,80.49
+Select _"Make this inn your home."_ |gossip 93527
+home Eastwind Rest
 step
 talk Farmhand Ko##63751
 accept Muskpaw Ranch##31457 |goto Kun-Lai Summit/0 62.54,79.44
@@ -4000,7 +4005,7 @@ step
 Run down the mountain and run through the tunnel |goto Kun-Lai Summit/0 63.94,49.59 < 30 |only if walking
 talk Shin Whispercloud##61380
 Select _"I'm ready to leave."_ |gossip 126192
-Speak to Anduin at the Gate of the August Celestials |q 30935/2 |goto Kun-Lai Summit/0 63.32,40.22
+Speak to Shin Whispercloud to access Zouchin Province |q 30935/2 |goto Kun-Lai Summit/0 63.32,40.22
 step
 Begin Flying to the Zouchin Province |invehicle |goto Kun-Lai Summit/0 63.32,40.22 |q 30935
 step
@@ -4194,12 +4199,16 @@ step
 talk Mishi##65858
 Select _"I'm ready to leave."_ |gossip 130074
 Begin Flying to Zouchin Village |invehicle |goto Kun-Lai Summit/0 76.17,11.45 |q 31228
+|tip If Mishi would not be visible there, run up the stairs where the Prophet Khar'zul was and check again for Mishi next (tends to vanish if Khar'zul is not the last kill on the list).
 step
 Fly to Zouchin Village |outvehicle |goto Kun-Lai Summit/0 63.93,29.51 |q 31228 |notravel
 step
 talk Lorewalker Cho##63784
 |tip Inside the building.
 turnin Prophet Khar'zul##31228 |goto Kun-Lai Summit/0 62.32,29.06
+step
+talk Elder Shiao##63535
+accept Beyond the Wall##31695 |goto Kun-Lai Summit/0 62.34,79.61
 step
 talk Brother Lintpocket##59701
 accept The Burlap Trail: To Burlap Waystation##30592 |goto Kun-Lai Summit/0 58.09,61.47
@@ -6049,6 +6058,7 @@ step
 Leave the building |goto Dread Wastes/0 43.05,14.02 < 10 |walk |only if subzone("Kor'vess") and indoors()
 clicknpc Withered Husk##62876+
 |tip They look like {o}dead trees chopped in half{}.
+|tip You can do it from your mount!
 collect 8 Fragrant Corewood##84118 |q 31073/1 |goto Dread Wastes/0 46.29,13.10
 step
 label "Slay_Korthik_Mantids"
@@ -6192,7 +6202,7 @@ step
 label "Bait_Crab_Pots"
 kill Sea Monarch##63470+
 |tip They look like {o}large fish{} underwater.
-collect Sea Monarch Chunks##85230+ |n
+collect 2 Sea Monarch Chunks##85230 |n
 click Empty Crab Pot+
 |tip They look like {o}red and brown cages{} underwater.
 |tip You need {o}2 Sea Monarch Chunks{} to bait {o}each crab pot{}.
@@ -6456,7 +6466,7 @@ talk General Nazgrim##67939
 accept Rise Of An Empire##32256 |goto Krasarang Wilds/0 10.38,53.71
 step
 talk Tak-Tak##68681
-Select _"Take me to the Shrine of Two Moons."_ |gossip 130592
+Select _"Take me to the Valley of Emperors."_ |gossip 130595
 Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32256
 step
 Watch the dialogue
@@ -6490,7 +6500,7 @@ talk Messenger Grummle##67865
 accept Someone You Should See##32284 |goto Krasarang Wilds/0 10.69,53.69
 step
 talk Tak-Tak##68681
-Select _"Take me to Binan Village."_ |gossip 40754
+Select _"Take me to Binan Village."_ |gossip 130593
 Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32284
 step
 Watch the dialogue
@@ -6506,7 +6516,7 @@ accept Regeneration Takes Time##32318 |goto Kun-Lai Summit/0 71.66,93.22
 step
 Kill enemies around this area |kill Summit Sprite##68026,Sinister Needle##68027
 |tip All over the cliffs.
-collect 10 Sturdy Needle##92499 |q 32318/1 |goto Kun-Lai Summit/0 21.85,41.49
+collect 10 Sturdy Needle##92499 |q 32318/1 |goto Kun-Lai Summit/0 77.56,91.52
 step
 talk Chen Stormstout##67866
 |tip Inside the building.
@@ -6557,7 +6567,7 @@ talk General Nazgrim##67939
 accept To Mogujia##32190 |goto Krasarang Wilds 10.40,53.70
 step
 talk Tak-Tak##68681
-Select _"Take me to Mogujia."_ |gossip 40753
+Select _"Take me to Mogujia."_ |gossip 130594
 Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds 9.90,52.40 |q 32190
 step
 Watch the dialogue
@@ -6644,7 +6654,7 @@ talk General Nazgrim##67939
 accept Echoes of Thunder##32351 |goto Krasarang Wilds/0 10.38,53.71
 step
 talk Tak-Tak##68681
-Select _"Take me to the Shrine of Two Moons."_ |gossip 40755
+Select _"Take me to the Shrine of Two Moons."_ |gossip 130596
 Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32351
 step
 Watch the dialogue
@@ -6672,9 +6682,6 @@ step
 talk General Nazgrim##67939
 accept Get My Results!##32329 |goto Krasarang Wilds/0 10.38,53.71
 step
-click Portal to Silvermoon City
-Take the Portal to Silvermoon City |q 32329/1 |goto Krasarang Wilds/0 10.32,53.64
-step
 talk Lor'themar Theron##16802
 turnin Get My Results!##32329 |goto Silvermoon City/0 53.81,20.26
 accept What's in the Box?##32330 |goto Silvermoon City/0 53.81,20.26
@@ -6684,11 +6691,11 @@ Locate the Arcanis Mechanica |q 32330/1 |goto Silvermoon City/0 86.60,32.70
 step
 talk Archmage Aethas Sunreaver##68086
 |tip Jump down the hole in the upper rome.
-Select _"Lor'themar wants a status update on the experiment."_ |gossip 41499
+Select _"Lor'themar wants a status update on the experiment."_ |gossip 130521
 Speak with Archmage Aethas Sunreaver |q 32330/2 |goto Silvermoon City/0 92.24,37.82
 step
 talk Grand Magister Rommath##68085
-Select _"Lor'themar wants a status update on the experiment."_ |gossip 41500
+Select _"Lor'themar wants a status update on the experiment."_ |gossip 130522
 Speak with Grand Magister Rommath |q 32330/3 |goto Silvermoon City/0 92.32,37.15
 step
 click Intensifier Disc
@@ -6708,7 +6715,7 @@ talk General Nazgrim##67939
 accept The Kun-Lai Expedition##32363 |goto Krasarang Wilds/0 10.38,53.71
 step
 talk Tak-Tak##68681
-Select _"Take me to Garrosh'ar Advance."_ |gossip 40750
+Select _"Take me to Garrosh'ar Advance."_ |gossip 130597
 Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32363
 step
 Watch the dialogue
@@ -6742,7 +6749,7 @@ talk General Nazgrim##67939
 accept The Ruins of Korune##32391 |goto Krasarang Wilds/0 10.38,53.71
 step
 talk Tak-Tak##68681
-Select _"Take me to the Ruins of Korune."_ |gossip 40749
+Select _"Take me to the Ruins of Korune."_ |gossip 130598
 Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32391
 step
 Watch the dialogue
@@ -6776,7 +6783,7 @@ turnin Insertion##32326 |goto Teldrassil/0 40.06,50.44
 accept The Darnassus Mission##32327 |goto Teldrassil/0 40.06,50.44
 step
 talk Fanlyr Silverthorn##68077
-Select _"Yes."_ |gossip 40875
+Select _"Yes."_ |gossip 130507
 |tip You will gain a steal buff allowing you to infiltrate the hostile city safely.
 Become a Darnassus Invader |complete hasbuff(134053) or completedq(32327) |goto Teldrassil/0 40.06,50.44
 step
@@ -6816,7 +6823,7 @@ talk General Nazgrim##67939
 accept The Situation in Dalaran##32402 |goto Krasarang Wilds/0 10.38,53.71
 step
 talk Tak-Tak##68681
-Select _"Take me to Garrosh'ar Advance."_ |gossip 40750
+Select _"I need to get to Dalaran."_ |gossip 130606
 Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32402
 step
 talk Kromthar##67785
@@ -6827,96 +6834,94 @@ Watch the dialogue
 Arrive In Dalaran |complete subzone("The Underbelly") or completedq(32402)
 step
 talk Grand Magister Rommath##68586
-turnin The Situation in Dalaran##32402 |goto Dalaran/1 31.46,50.09
-accept It Starts in the Sewers##32403 |goto Dalaran/1 31.46,50.09
+turnin The Situation in Dalaran##32402 |goto Dalaran P Sewers/0 31.45,50.12
+accept It Starts in the Sewers##32403 |goto Dalaran P Sewers/0 31.46,50.09
 step
 talk Sunreaver Citizen##68695
 |tip You can find them all over the sewer.
-Select _"It's not safe here anymore. You need to evacuate Dalaran."_ |gossip 40739
-Evacuate #9# Sunreaver Citizens |q 32403/1 |goto Dalaran/1 38.89,50.59
+Select _"It's not safe here anymore. You need to evacuate Dalaran."_ |gossip 130603
+Evacuate #9# Sunreaver Citizens |q 32403/1 |goto Dalaran P Sewers/0 38.89,50.59
 step
 talk Grand Magister Rommath##68586
-turnin It Starts in the Sewers##32403 |goto Dalaran/1 45.61,53.60
-accept Violence in the Arena##32404 |goto Dalaran/1 45.61,53.60
+turnin It Starts in the Sewers##32403 |goto Dalaran P Sewers/0 45.61,53.55
+accept Violence in the Arena##32404 |goto Dalaran P Sewers/0 45.61,53.55
 stickystart "Kill_Silver_Covenant_Spellbows"
 step
-kill 6 Silver Covenant Enforcer##68042 |q 32404/1 |goto Dalaran/1 48.88,45.58
+kill 6 Silver Covenant Enforcer##68042 |q 32404/1 |goto Dalaran P Sewers/0 48.88,45.58
 step
 label "Kill_Silver_Covenant_Spellbows"
-kill 4 Silver Covenant Spellbow##68043 |q 32404/2 |goto Dalaran/1 48.88,45.58
+kill 4 Silver Covenant Spellbow##68043 |q 32404/2 |goto Dalaran P Sewers/0 47.06,45.25
 step
 talk Grand Magister Rommath##68586
-turnin Violence in the Arena##32404 |goto Dalaran/1 54.52,27.97
-accept Hand of the Silver Covenant##32405 |goto Dalaran/1 54.52,27.97
+turnin Violence in the Arena##32404 |goto Dalaran P Sewers/0 54.52,27.97
+accept Hand of the Silver Covenant##32405 |goto Dalaran P Sewers/0 54.52,27.97
 step
-kill Sorin Magehand##32405 |q 32405/1 |goto Dalaran/1 62.68,13.08
+kill Sorin Magehand##32405 |q 32405/1 |goto Dalaran P Sewers/0 62.68,13.08
 step
 talk Grand Magister Rommath##68586
-turnin Hand of the Silver Covenant##32405 |goto Dalaran/1 64.63,48.67
-accept A Tactical Assault##32406 |goto Dalaran/1 64.63,48.67
+turnin Hand of the Silver Covenant##32405 |goto Dalaran P Sewers/0 64.63,48.67
+accept A Tactical Assault##32406 |goto Dalaran P Sewers/0 64.63,48.67
 step
-Run up the ramp |goto Dalaran/1 65.37,46.89 < 2 |walk
-Leave the Dalaran Sewers |goto Dalaran/1 60.75,48.24 < 1000 |c |noway |q 32406
-step
+Leave the Dalaran Sewers |goto Dalaran P Sewers/0 65.39,46.86 < 10
 talk Grand Magister Rommath##68586
 |tip Run through the building with Rommath.
-turnin A Tactical Assault##32406 |goto Dalaran/1 50.58,48.09
-accept The Silver Covenant's Stronghold##32408 |goto Dalaran/1 50.58,48.09
-accept The Kirin Tor's True Colors##32409 |goto Dalaran/1 50.58,48.09
-accept Krasus' Landing##32410 |goto Dalaran/1 50.58,48.09
+turnin A Tactical Assault##32406 |goto Dalaran P/0 50.58,48.09
+accept The Silver Covenant's Stronghold##32408 |goto Dalaran P/0 50.58,48.09
+accept The Kirin Tor's True Colors##32409 |goto Dalaran P/0 50.58,48.09
+accept Krasus' Landing##32410 |goto Dalaran P/0 50.58,48.09
 stickystart "Slay_Stormwind_Troops"
 step
-kill Arcanist Rathaella##68049 |q 32408/1 |goto Dalaran/1 36.15,64.06
+kill Arcanist Rathaella##68049 |q 32408/1 |goto Dalaran P/0 36.15,64.06
 step
-kill Lieutenant Corwin##68047 |q 32409/1 |goto Dalaran/1 46.11,19.67
+kill Lieutenant Corwin##68047 |q 32409/1 |goto Dalaran P/0 46.11,19.67
 |tip He walks around this area.
 step
 label "Slay_Stormwind_Troops"
 Kill Stormwind enemies around this area |kill Stormwind Footman##68707,Stormwind Cleric##68708
-Slay #10# Stormwind Troops |q 32409/2 |goto Dalaran/1 49.45,26.43
+Slay #10# Stormwind Troops |q 32409/2 |goto Dalaran P/0 49.45,26.43
 step
 clicknpc Sunreaver Dragonhawk##68728
-Free #6# Sunreaver Dragonhawks |q 32410/1 |goto Dalaran/1 72.68,45.65
+Free #6# Sunreaver Dragonhawks |q 32410/1 |goto Dalaran P/0 72.68,45.65
 step
 talk Grand Magister Rommath##68586
-turnin The Silver Covenant's Stronghold##32408 |goto Dalaran/1 50.58,48.09
-turnin The Kirin Tor's True Colors##32409 |goto Dalaran/1 50.58,48.09
-turnin Krasus' Landing##32410 |goto Dalaran/1 50.58,48.09
-accept The Remaining Sunreavers##32411 |goto Dalaran/1 50.58,48.09
+turnin The Silver Covenant's Stronghold##32408 |goto Dalaran P/0 50.58,48.09
+turnin The Kirin Tor's True Colors##32409 |goto Dalaran P/0 50.58,48.09
+turnin Krasus' Landing##32410 |goto Dalaran P/0 50.58,48.09
+accept The Remaining Sunreavers##32411 |goto Dalaran P/0 50.58,48.09
 step
 use the Tear of the Sin'dorei##93124
 |tip Upstairs inside the building.
-Rescue Magister Surdiel |q 32411/4 |goto Dalaran/1 58.70,27.82
+Rescue Magister Surdiel |q 32411/4 |goto Dalaran P/0 58.70,27.82
 step
 use the Tear of the Sin'dorei##93124
 |tip Upstairs inside the building.
-Rescue High Arcanist Savor |q 32411/2 |goto Dalaran/1 60.36,14.16
+Rescue High Arcanist Savor |q 32411/2 |goto Dalaran P/0 60.36,14.16
 step
 use the Tear of the Sin'dorei##93124
 |tip Inside the building.
-Rescue Magistrix Vesara |q 32411/5 |goto Dalaran/1 65.78,23.06
+Rescue Magistrix Vesara |q 32411/5 |goto Dalaran P/0 65.78,23.06
 step
 use the Tear of the Sin'dorei##93124
 |tip Inside the building.
-Rescue Uda the Beast |q 32411/1 |goto Dalaran/1 70.08,34.35
+Rescue Uda the Beast |q 32411/1 |goto Dalaran P/0 70.08,34.35
 step
 use the Tear of the Sin'dorei##93124
 |tip Upstairs inside the building.
-Rescue Magister Hathorel |q 32411/3 |goto Dalaran/1 66.95,35.36
+Rescue Magister Hathorel |q 32411/3 |goto Dalaran P/0 66.95,35.36
 step
 talk Grand Magister Rommath##68586
-turnin The Remaining Sunreavers##32411 |goto Dalaran/1 50.58,48.09
-accept One Last Grasp##32412 |goto Dalaran/1 50.58,48.09
+turnin The Remaining Sunreavers##32411 |goto Dalaran P/0 50.58,48.09
+accept One Last Grasp##32412 |goto Dalaran P/0 50.58,48.09
 step
-kill Mage-Commander Zuros##68632 |q 32412/1 |goto Dalaran/1 29.48,48.39
+kill Mage-Commander Zuros##68632 |q 32412/1 |goto Dalaran P/0 29.48,48.39
 |tip Inside the building.
 step
 Watch the dialogue
 click Rommath's Portal
 |tip Inside the building.
-Return to the Sewers |complete subzone("Cantrips & Crowsm") or completedq(32412) |goto Dalaran/1 29.00,48.29
+Return to the Sewers |complete subzone("Cantrips & Crows") or completedq(32412) |goto Dalaran P/0 29.00,48.29
 step
-Escape from Dalaran |q 32412/2 |goto Dalaran/1 8.96,88.64
+Escape from Dalaran |q 32412/2 |goto Dalaran P Sewers/0 8.96,88.64
 |tip Jump out of the sewer.
 |tip A Dragonhawk will catch you before you die.
 step
@@ -6930,7 +6935,7 @@ talk General Nazgrim##67939
 accept The Bell Speaks##32398 |goto Krasarang Wilds/0 10.38,53.71
 step
 talk Tak-Tak##68681
-Select _"Take me to Emperor's Reach."_ |gossip 40748
+Select _"Take me to Emperor's Reach."_ |gossip 130599
 Ride Tak-Tak's Kite |invehicle |goto Krasarang Wilds/0 9.90,52.40 |q 32398
 step
 Watch the dialogue
@@ -7102,6 +7107,86 @@ accept The Soul of the Horde##32432 |goto The Veiled Stair/0 54.5,72.6
 step
 talk Wrathion##64616
 turnin The Soul of the Horde##32432 |goto The Veiled Stair/0 54.9,72.6
+step
+talk Wrathion##64616
+accept Meet Me Upstairs##32590 |goto The Veiled Stair/0 54.5,72.6
+step
+talk Wrathion##64616 |tip Upstairs in this Tavern.
+turnin Meet Me Upstairs##32590 |goto The Veiled Stair/0 54.6,71.8
+accept Secrets of the First Empire##32591 |goto The Veiled Stair/0 54.6,71.8
+accept I Need a Champion##32592 |goto The Veiled Stair/0 54.6,71.8
+step
+buy 40 Trillium Bar##102167 |next "done"
+|tip You can either buy these materials from the auction house or farm them:
+Click Here to Farm These Materials Yourself |confirm |next |only if skill("Mining") >= 600
+step
+map Townlong Steppes
+path	61.6,76.3	59.6,68.3	59.2,58.7
+path	63.3,51.7	62.2,44.1	66.8,39.5
+path	73.2,46.9	73.2,55.5	75.0,62.7
+path	70.5,67.1	68.5,70.7
+collect 80 Black Trillium Ore##72094 |q 32592
+collect 80 White Trillium Ore##72103 |q 32592
+|tip Follow the path Mining along the way.
+step
+create 40 Trillium Bar##102167 |goto Vale of Eternal Blossoms/3 71.5,51.0 |q 32592
+step
+label "done"
+collect 20 Secrets of the Empire##94593 |q 32592
+|tip You will need to run Throne of Thunder and kill bosses to obtain these.
+|tip You can go through the raid finder to get these items.
+step
+kill Animated Warrior##67473+, Shan'ze Bloodseeker##69431+, Shan'ze Animator##70069+
+Reach Exalted with The Black Prince |q 32592/1 |goto Isle of Thunder 43.0,55.2
+step
+talk Wrathion##64616
+turnin Secrets of the First Empire##32591 |goto The Veiled Stair/0 54.5,72.6
+turnin I Need a Champion##32592 |goto The Veiled Stair/0 54.5,72.6
+accept The Thunder Forge##32593 |goto The Veiled Stair/0 54.5,72.6
+step
+Unlock the Thunder Forge |q 32593/1
+|tip Use the Isle of Thunder guide to progress to this point.
+|loadguide "Leveling Guides\\Pandaria (85-90)\\Isle of Thunder (90)"
+step
+talk Wrathion##64616
+|tip Tell him you're ready to go.
+Complete Wrathion's Task |q 32593/2 |goto The Veiled Stair/0 54.5,72.6
+|tip Complete the scenario.
+step
+talk Wrathion##64616
+turnin The Thunder Forge##32593 |goto The Veiled Stair/0 54.5,72.6
+accept Spirit of the Storm Lord##32594 |goto The Veiled Stair/0 54.5,72.6
+step
+use the Lightning Lance##95432
+|tip Use it on Nalak.
+kill Nalak##69099
+collect Tempered Lightning Lance##95433 |goto Isle of Thunder 60.0,37.4
+step
+talk Wrathion##64616
+turnin Spirit of the Storm Lord##32594 |goto The Veiled Stair/0 54.5,72.6
+accept The Crown of Heaven##32595 |goto The Veiled Stair/0 54.5,72.6
+step
+talk Wrathion##64616
+turnin The Crown of Heaven##32595 |goto The Veiled Stair/0 75.2,76.4
+step
+talk Wrathion##64616
+accept Echoes of the Titans##32596 |goto The Veiled Stair/0 54.5,72.6
+accept Heart of the Thunder King##32597 |goto The Veiled Stair/0 54.5,72.6
+stickystart "Collect_Heart_of_the_Thunder_King"
+step
+collect 12 Titan Runestone##94594 |q 32596/1
+|tip You will need to run Throne of Thunder and kill bosses to obtain these.
+|tip You will need to kill Lei Shen in the Throne of Thunder for the Heart of the Thunder King.
+|tip You can go through the raid finder to get these items.
+step
+label "Collect_Heart_of_the_Thunder_King"
+collect Heart of the Thunder King##94867 |q 32597/1
+|tip You will need to kill Lei Shen in the Throne of Thunder for the Heart of the Thunder King.
+|tip You can go through the raid finder to get this item. |notinsticky
+step
+talk Wrathion##64616
+turnin Echoes of the Titans##32596 |goto The Veiled Stair/0 54.5,72.6
+turnin Heart of the Thunder King##32597 |goto The Veiled Stair/0 54.5,72.6
 ]])
 ZGV.BETAEND()
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Peak of Serenity\\Monk Daily",{
@@ -7383,6 +7468,331 @@ step
 talk Master Hight##66260
 |tip Inside the building.
 turnin Complete Your Training: The Final Test##31844 |goto Kun-Lai Summit/0 48.59,42.70
+]])
+ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Pandaria (85-90)\\Isle of Thunder (90)",{
+achieveid={8028},
+startlevel=90,
+patch='50001',
+description="This guide will help you unlock the Isle of Thunder.",
+mopready=true
+},[[
+step
+accept Thunder Calls##32678 |goto Vale of Eternal Blossoms/0 62.02,25.71
+|tip You should accept this quest automatically.
+step
+talk Scout Captain Elsia##70358
+turnin Thunder Calls##32678 |goto Townlong Steppes/0 50.79,73.39
+accept The Storm Gathers##32680 |goto Townlong Steppes/0 50.79,73.39
+step
+talk Scout Captain Elsia##70358
+Select _"I'm ready to go."_ |gossip 130725
+Speak with Elsia |q 32680/1 |goto Townlong Steppes/0 50.79,73.39
+step
+Watch the dialogue
+Begin Flying with Elsia |invehicle |q 32680
+step
+Watch the dialogue
+Discover the Isle of Thunder |q 32680/2
+step
+Watch the dialogue
+Land on The Crimson Treader |outvehicle |goto Isle of Thunder/0 28.39,52.33 |q 32680
+step
+talk Lor'themar Theron##67990
+turnin The Storm Gathers##32680
+step
+talk Lor'themar Theron##67990
+accept The Assault on Zeb'tula##32212 |goto Isle of Thunder/0 28.36,52.41
+|tip This quest may not be available.
+|tip If that's the case, continue with daily quests.
+step
+talk Lor'themar Theron##67990
+|tip He walks a short distance on the ship.
+Select _"I am ready! [Queue for solo instance.]"_ |gossip 130672
+Speak to Lor'themar Theron |q 32212/1 |goto Isle of Thunder/0 28.36,52.41
+step
+Enter the The Assault on Zeb'tula Scenario |scenariostart |q 32212
+|tip Accept the invitation that pops up.
+step
+clicknpc Sunreaver Bloodhawk##69487
+|tip On the deck of the ship.
+Ride the Sunreaver Bloodhawk |scenariogoal 1/22673 |goto Isle of Thunder Scenario/0 28.50,52.34 |q 32212
+step
+Watch the dialogue
+Fly with Scout Captain Elsia |scenariogoal 1/22654 |goto Isle of Thunder Scenario/0 42.69,50.50 |q 32212
+step
+Rendezvous with Scout Captain Elsia |scenariostage 1 |goto Isle of Thunder Scenario/0 42.69,50.50 |q 32212
+step
+kill Zeb'tula Raptor##69658, Zeb'tula Beastcaller##69657
+|tip Kill the enemies that attack you.
+Survive the Ambush |scenariogoal 2/22655 |goto Isle of Thunder Scenario/0 42.69,50.50 |q 32212
+step
+Survive the Ambush |scenariostage 2 |goto Isle of Thunder Scenario/0 42.69,50.50 |q 32212
+step
+kill Zeb'tula Stoneshield##69517, Zandalari Barricade##69516, Zeb'tula Spearanger##69518
+Destroy the Barricades and Defenders  |scenariogoal 3/22656 |goto Isle of Thunder Scenario/0 38.92,43.35 |q 32212
+step
+Destroy the Barricades |scenariostage 3 |q 32212
+step
+kill Kresh the Ripper##69474 |scenariogoal 4/22657 |goto Isle of Thunder Scenario/0 38.71,38.55 |q 32212
+step
+kill Kresh the Ripper##69474  |scenariostage 4 |goto Isle of Thunder Scenario/0 38.71,38.55 |q 32212
+step
+kill Arcanital Tula'chek##69475 |scenariogoal 5/22659 |goto Isle of Thunder Scenario/0 32.71,35.27 |q 32212
+|tip Move him out of the yellow bubbles the mask places on the ground and move into them yourself for damage reduction and silence immunity.
+step
+Kill Arcanital Tula'chek and His Spirit Mask |scenariostage 5 |goto Isle of Thunder Scenario/0 32.71,35.27 |q 32212
+step
+Watch the dialogue
+Return to Dawnseeker's Promontory |complete subzone("Dawnseeker Promontory") |q 32212
+step
+talk Lor'themar Theron##67990
+turnin The Assault on Zeb'tula##32212 |goto Isle of Thunder/0 32.51,35.58
+step
+talk Lor'themar Theron##67990
+accept Tear Down This Wall!##32276 |goto Isle of Thunder/0 32.51,35.58
+|tip This quest may not be available.
+|tip If that's the case, continue with daily quests.
+step
+talk Lor'themar Theron##67990
+Select _"I'm ready to tear down the wall! [Queue for solo instance.]"_ |gossip 130673
+Speak to Lor'themar Theron to Begin your Mission |q 32276/1 |goto Isle of Thunder/0 32.51,35.58
+step
+Enter the Tear Down This Wall! Scenario |scenariostart |q 32276
+|tip Accept the invitation that pops up.
+step
+click Heavy Explosives##218197
+Acquire the Heavy Explosives |scenariogoal 1/22696 |goto Isle of Thunder Scenario/0 48.41,50.99 |q 32276
+step
+Acquire the Heavy Explosives |scenariostage 1 |goto Isle of Thunder Scenario/0 48.41,50.99 |q 32276
+step
+talk Scout Captain Elsia##69565
+Select _"Here are the explosives, Elsia."_ |gossip 130692
+Deliver the Explosives to Elsia |scenariogoal 2/22700 |goto Isle of Thunder Scenario/0 55.81,57.75 |q 32276
+step
+Deliver the Explosives to Elsia |scenariostage 2 |goto Isle of Thunder Scenario/0 55.81,57.75 |q 32276
+step
+Watch the dialogue
+|tip Wait for Elsia to set the explosives.
+click Heavy Explosives
+Detonate the Heavy Explosives |scenariogoal 3/22702 |goto Isle of Thunder Scenario/0 56.26,56.08 |q 32276
+step
+Detonate the Heavy Explosives |scenariostage 3 |goto Isle of Thunder Scenario/0 56.26,56.08 |q 32276
+step
+kill War-God Al'chukla##69755 |scenariogoal 4/23004 |goto Isle of Thunder Scenario/0 54.73,45.83 |q 32276
+step
+Secure the Lower City |scenariostage 4 |q 32276
+step
+click Portal to Isle of Thunder
+Return to the Dawnseeker's Promontory |complete subzone("Dawnseeker's Promontory") |goto Isle of Thunder Scenario/0 54.09,46.27 |q 32276
+step
+talk Lor'themar Theron##67990
+turnin Tear Down This Wall!##32276 |goto Isle of Thunder/0 32.51,35.58
+step
+talk Lor'themar Theron##67990
+accept To the Skies!##32277 |goto Isle of Thunder/0 32.51,35.58
+|tip This quest may not be available.
+|tip If that's the case, continue with daily quests.
+step
+talk Lor'themar Theron##67990
+Select _"I am ready! [Queue for solo instance.]"_ |gossip 130675
+Speak to Lor'themar Theron to Begin your Mission |q 32277/1 |goto Isle of Thunder/0 32.51,35.58
+step
+Enter the To the Skies! Scenario |scenariostart |q 32277
+|tip Accept the invitation that pops up.
+step
+Watch the Dialogue
+clicknpc Thunderwing##69509
+Mount the Thunderwing |scenariogoal 1/22666 |goto Isle of Thunder Scenario/0 32.24,34.33 |q 32277
+step
+Watch the Dialogue
+Approach the Mine Entrace |scenariogoal 1/22667 |goto Isle of Thunder Scenario/0 53.70,19.46 |q 32277 |notravel
+step
+Approach the Mine Entrace |scenariostage 1 |goto Isle of Thunder Scenario/0 53.70,19.46 |q 32277
+step
+extraaction Jump!##137263
+|tip Use the button on the screen to jump to a beastcaller's Thunderwing.
+kill Zandalari Beastcaller##69521+
+|tip Kill the waves of enemies that attack you and wait to land on the ground after.
+Defeat your Attackers! |scenariogoal 2/22668 |q 32277
+step
+Defeat your Attackers! |scenariostage 2 |q 32277
+step
+kill Beastmaster Horaki##69559 |scenariogoal 3/22669 |goto Isle of Thunder Scenario/0 47.82,25.63 |q 32277
+|tip Move out of areas targeted on the ground.
+step
+Defeat Beastmaster Horaki |scenariostage 3 |goto Isle of Thunder Scenario/0 47.82,25.63 |q 32277
+step
+Watch the dialogue
+talk Taoshi##69810
+|tip She will jump down to this spot.
+Select _"Alright. Let's go."_ |gossip 130699
+Join with Taoshi |scenariogoal 4/22738 |goto Isle of Thunder Scenario/0 49.31,26.00 |q 32277
+step
+Join with Taoshi |scenariostage 4 |goto Isle of Thunder Scenario/0 49.31,26.00 |q 32277
+step
+Watch Taoshi Get Rid of the Cave-in |scenariogoal 5/22740 |goto Isle of Thunder Scenario/0 49.22,25.57 |q 32277
+step
+Follow the path |goto Isle of Thunder Scenario/1 44.65,41.46 < 20 |walk
+Make your Way to the Mine Entrance |scenariogoal 5/22741 |goto Isle of Thunder Scenario/1 32.33,58.00 |q 32277
+step
+Make your Way to the Mine Entrance |scenariostage 5 |goto Isle of Thunder Scenario/1 32.33,58.00 |q 32277
+step
+kill Slavemaster Shiaxu##69923 |scenariogoal 6/22672 |goto Isle of Thunder Scenario/1 28.18,67.47 |q 32277
+step
+Unlock the Mine Door |scenariogoal 6/22739 |goto Isle of Thunder Scenario/1 28.18,67.47 |q 32277
+|tip This should happen automatically.
+step
+Unlock the Mine Door |scenariostage 6 |goto Isle of Thunder Scenario/1 28.18,67.47 |q 32277
+|tip This should happen automatically.
+step
+click Portal to Isle of Thunder
+Return to the Dawnseeker's Promontory |complete subzone("Dawnseeker's Promontory") |goto Isle of Thunder Scenario/1 31.40,77.65 |q 32277
+step
+talk Lor'themar Theron##67990
+turnin To the Skies!##32277 |goto Isle of Thunder/0 32.51,35.58
+step
+talk Taoshi##70297
+accept Decisive Action##32278 |goto Isle of Thunder/0 32.89,32.68
+|tip This quest may not be available.
+|tip If that's the case, continue with daily quests.
+step
+talk Taoshi##70297
+Select _"I'm with you. Let's break into that shipyard! [Queue for solo instance.]"_ |gossip 130724
+|tip Accept the invitation that pops up.
+Infiltrate Stormsea Landing |scenariostart |goto Isle of Thunder/0 32.89,32.68 |q 32278
+step
+Watch the dialogue
+clicknpc Thunderwing##69458
+Mount the Thunderwing |invehicle |goto Isle of Thunder Scenario/0 63.29,54.35 |q 32278
+step
+Watch the dialogue
+Intercept the Zandalari Patrol |scenariogoal 1/22661 |q 32278
+step
+Watch the dialogue
+Intercept the Zandalari Patrol |scenariostage 1 |q 32278
+step
+Deactvate #10# Sentry Totems |scenariogoal 2/23007 |goto Isle of Thunder Scenario/0 62.35,41.39 |q 32278
+|tip Use the "Smoke Bomb" ability on your vehicle bar.
+|tip Sentry Totems are at the center of the circles.
+|tip Destroy a clear path from the ship, up the hill to the courtyard.
+step
+Deactvate #10# Sentry Totems |scenariostage 2 |q 32278
+step
+Watch the dialogue
+Reach the Ship |outvehicle |goto Isle of Thunder Scenario/0 68.99,45.00 |notravel |q 32278
+stickystart "Trap_Siege_Weapons"
+step
+kill Veteran Wingrider##69552+
+|tip Stay close to Taoshi to maintain stealth.
+|tip The red circle around you is the radius in which enemies can see you while facing you.
+|tip Follow Taoshi and neutralize the enemies with a red arrow above their head.
+extraaction Knock Out##137311
+Neutralize #7# Marked Crew Members |scenariogoal 3/23003 |goto Isle of Thunder Scenario/0 67.29,46.79 |q 32278
+step
+label "Trap_Siege_Weapons"
+Trap #4# Siege Weapons |scenariogoal 3/22663 |goto Isle of Thunder Scenario/0 67.29,46.79 |q 32278
+|tip Taoshi will do this automatically when she gets near them.
+step
+Neutralize the Defenses |scenariostage 3 |q 32278
+step
+Go down into the ship |goto Isle of Thunder Scenario/0 68.60,45.63 < 4 |walk
+kill Captain Halu'kal##69482 |scenariogoal 4/22664 |goto Isle of Thunder Scenario/0 67.13,47.47 |q 32278
+|tip Follow Taoshi down into the ship.
+|tip The captain will wake up and attack you.
+|tip Kill any enemies that wake up and move out of stuff on the ground.
+step
+kill Captain Halu'kal##69482 |scenariostage 4 |goto Isle of Thunder Scenario/0 67.13,47.47 |q 32278
+step
+Leave the ship |goto Isle of Thunder Scenario/0 67.21,45.36 < 10 |walk
+Locate Hu'seng the Gatekeeper |scenariogoal 5/22665 |goto Isle of Thunder Scenario/0 59.04,43.76 |q 32278
+|tip Stay near Taoshi to maintain your stealth.
+|tip Make your way up the hill and into the courtyard along the path you cleared with the smoke bombs.
+|tip Avoid the blue circles on the ground that will reveal your location.
+step
+Locate Hu'seng the Gatekeeper |scenariostage 5 |goto Isle of Thunder Scenario/0 59.04,43.76 |q 32278
+step
+kill Hu'seng the Gatekeeper##69483 |scenariogoal 6/22667 |goto Isle of Thunder Scenario/0 59.04,43.76 |q 32278
+step
+collect Gatekeeper's Orb##94918 |scenariogoal 6/22810 |goto Isle of Thunder Scenario/0 59.04,43.76 |q 32278
+|tip Loot it from Hu'seng the Gatekeeper's corpse.
+step
+Light Up the Night |scenariostage 6 |goto Isle of Thunder Scenario/0 59.04,43.76 |q 32278
+step
+click Deactivated Access Generator
+Open the Gate |scenariogoal 7/22809 |goto Isle of Thunder Scenario/0 58.37,42.78 |q 32278
+step
+Open the Gate |scenariostage 7 |goto Isle of Thunder Scenario/0 58.37,42.78 |q 32278
+step
+click Portal to Dawnseeker's Promontory
+Return to the Dawnseeker's Promontory |complete subzone("Dawnseeker's Promontory") |goto Isle of Thunder Scenario/0 57.79,41.87 |q 32278
+step
+talk Lor'themar Theron##67990
+turnin Decisive Action##32278 |goto Isle of Thunder/0 32.51,35.58
+accept The Fall of Shan Bu##32279 |goto Isle of Thunder/0 32.51,35.58
+|tip This quest may not be available.
+|tip If that's the case, continue with daily quests.
+step
+talk Lor'themar Theron##67990
+Select _"I am ready to launch the assault [Queue for solo instance.]"_ |gossip 130674
+Speak to Lor'themar Theron |q 32279/1 |goto Isle of Thunder/0 32.51,35.58
+step
+Enter The Fall of Shan Bu Scenario |scenariostart |q 32279
+|tip Accept the invitation that pops up.
+step
+talk Scout Captain Elsia##69620
+Select _"I am ready."_ |gossip 130702
+Speak with your Assault Leader |scenariogoal 1/22742 |goto Isle of Thunder Scenario/0 56.07,39.20 |q 32279
+step
+Watch the dialogue
+|tip Elsia will open the doors.
+Enter the Courtyard |scenariogoal 1/22799 |goto Isle of Thunder Scenario/0 57.09,40.83 |q 32279
+step
+kill 14 Zandalari Stoneshield##69527 |scenariogoal 1/22675 |goto Isle of Thunder Scenario/0 58.07,40.75 |q 32279
+step
+Retake the Bloodied Crossing |scenariostage 1 |q 32279
+step
+kill 2 Palace Gatekeeper##69510 |scenariogoal 2/22685 |goto Isle of Thunder Scenario/0 58.06,40.81 |q 32279
+step
+kill 2 Palace Gatekeeper##69510 |scenariostage 2 |q 32279
+step
+Watch the dialogue
+|tip Taran Zhu will open the door.
+Follow Taran Zhu into the Courtyard |scenariogoal 3/22807 |goto Isle of Thunder Scenario/0 59.76,38.05 |q 32279
+step
+kill Quilen Guardian##69506, Zandalari Stoneshield##69865, Shan'ze Electrocutioner##69525
+|tip Taran Zhu will remove the barrier.
+|tip Stand in the light for healing.
+Slay #8# Zandalari and Mogu |scenariogoal 3/22734 |goto Isle of Thunder Scenario/0 59.76,38.05 |q 32279
+step
+Defeat Zandalri and Mogu |scenariostage 3 |q 32279
+step
+kill Shan Bu##69534 |scenariogoal 4/22683 |goto Isle of Thunder Scenario/0 60.34,37.30 |q 32279
+|tip Move out of areas targeted on the ground.
+|tip Kill any minor adds that attack.
+|tip Stand in the light for healing.
+step
+kill Shan Bu##69534 |scenariostage 4 |q 32279
+step
+click Portal to the Isle of Thunder
+Return to the Dawnseeker's Promontory |complete subzone("Dawnseeker's Promontory") |goto Isle of Thunder Scenario/0 56.82,40.44 |q 32279
+step
+talk Lor'themar Theron##67990
+turnin The Fall of Shan Bu##32279 |goto Isle of Thunder/0 32.50,35.50
+accept Allies in the Shadows##32709 |goto Isle of Thunder/0 32.50,35.50
+step
+talk Taran Zhu##70160
+|tip Inside the cave.
+turnin Allies in the Shadows##32709 |goto Isle of Thunder/0 51.42,46.08
+accept Secrets in the Isle of Thunder##32707 |goto Isle of Thunder/0 51.42,46.08
+step
+collect 3 Shan'ze Ritual Stone##94221 |q 32707/1
+|tip You can loot these from rares on Isle of Thunder.
+|tip These can be looted once per week.
+step
+talk Taran Zhu##70160
+|tip Inside the cave.
+turnin Secrets in the Isle of Thunder##32707 |goto Isle of Thunder/0 51.42,46.08
+accept Setting the Trap##32708 |goto Isle of Thunder/0 51.42,46.08
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling\\Mists of Pandaria Quest Stacking\\Launch Turnin Guide",{
 author="support@zygorguides.com",

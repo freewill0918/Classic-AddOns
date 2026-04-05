@@ -3093,7 +3093,7 @@ accept A Witness to History##31512 |or |goto Kun-Lai Summit/0 68.78,43.12
 |only if Alliance
 step
 talk Anduin Wrynn##64848
-Select _"Let's find out!"_ |gossip 41177
+Select _"Let's find out!"_ |gossip 129781
 Speak to Anduin at the Gate of the August Celestials |q 31512/1 |goto Kun-Lai Summit/0 55.10,91.74
 |only if Alliance
 step
@@ -3122,7 +3122,8 @@ accept The Shrine of Seven Stars##30631 |goto Vale of Eternal Blossoms/0 56.73,4
 step
 Run up the ramp |goto Vale of Eternal Blossoms/0 75.41,29.76 < 10 |only if walking
 talk Jaluu the Generous##59908
-Select _"Have you seen anything suspicious?"_ |gossip 134508
+Select _"Have you seen anything suspicious?"_ |gossip 134508 |only if Horde
+Select _"Have you seen anything suspicious?"_ |gossip 134507 |only if Alliance
 |tip You will be attacked after the dialogue.
 Speak to Jaluu the Generous |q 30649/1 |goto Vale of Eternal Blossoms/0 74.16,42.62 |only if Horde
 Speak to Jaluu the Generous |q 30631/1 |goto Vale of Eternal Blossoms/0 74.16,42.62 |only if Alliance
@@ -3147,15 +3148,18 @@ Speak to Madam Vee Luo |q 30649/3 |goto Shrine of Two Moons/1 68.45,47.61
 step
 talk Elder Lin##64029
 |tip Beneath the platform.
+Select _"What is this place?"_ |gossip 129726
 Speak to Elder Lin|q 30631/4 |goto Vale of Eternal Blossoms/0 85.22,62.87
 |only if Alliance
 step
 talk Kuru the Light-Hearted##59961
+Select _"How are the refugees settling in?"_ |gossip 126095
 Speak to Kuru the Light-Hearted |q 30631/2 |goto Vale of Eternal Blossoms/0 85.83,60.89
 |only if Alliance
 step
 talk Matron Vi Vinh##64149
 |tip Inside the building.
+Select _"What can I find here in the city?"_ |gossip 129857
 Speak to Matron Vi Vinh |q 30631/3 |goto Shrine of Seven Stars/1 36.36,66.73
 |only if Alliance
 step
@@ -3184,6 +3188,7 @@ step
 Follow Lao Softfoot
 |tip Stop when he does.
 |tip Stay within the circle around him.
+use Explosive Keg##80484
 Plant the Explosives |q 30634/2 |goto Vale of Eternal Blossoms/0 27.49,16.10
 step
 label "Slay_8_Shao-Tien Precursor"
@@ -3191,7 +3196,7 @@ kill Shao-Tien Precursor##59914+
 Slay #8# Shao-Tien Precursors |q 30633/1 |goto Vale of Eternal Blossoms/0 31.10,30.85
 step
 talk Kun Autumnlight##58471
-turnin Barring Entry##30634 |goto Vale of Eternal Blossoms/0 57.21,43.71
+turnin Barring Entry##30634 |goto Vale of Eternal Blossoms/0 33.66,38.40
 step
 talk Anji Autumnlight##58465
 turnin Out with the Scouts##30633 |goto Vale of Eternal Blossoms/0 33.98,38.00

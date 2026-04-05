@@ -4,9 +4,11 @@ if faction == "Horde" then return end
 ----Start of <1.5x Westfall----
 ----Night Elves and Hunters stay in Darkshore and Grind----
 
+if GetLocale() == "zhCN" then return end
 RXPGuides.RegisterGuide([[
 #xprate <1.5
 #classic
+#tbc
 #season 0,1
 #version 1
 << Alliance
@@ -727,13 +729,15 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 #season 0,1
 #version 1
 << Alliance
 #group RestedXP Alliance 1-20
 #name 14-16 Darkshore
 #displayname 11-16 Darkshore << NightElf
-#displayname 15-16 Darkshore << !NightElf
+#displayname 13-16 Darkshore << Dwarf Hunter
+#displayname 15-16 Darkshore << !NightElf/!Dwarf Hunter
 #next 16-19 Darkshore
 
 
@@ -979,6 +983,7 @@ step
     .unitscan Rabid Thistle Bear
     .use 7586
 step
+    #label FurlbogCamp
     .goto Darkshore,38.90,53.59
     >>Run toward the edge of the Furbolg Camp
     .complete 984,1 -- Find a corrupt furbolg camp
@@ -1004,6 +1009,7 @@ step << NightElf
     .goto 1439,36.091,51.501,60,0
     .xp 11+7300 >> Grind to 7300+/8800xp
 step
+    #label invisThistle
     #optional
     #requires RabidThistle
 --XXREQ Placeholder invis step until multiple requires per step
@@ -1504,7 +1510,7 @@ step
     #xprate <1.5
     #completewith RedCrystal
     >>Kill |cRXP_ENEMY_Moonkin|r. Loot them for their |T132832:0|t|cRXP_LOOT_[Small Eggs]|r
-    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_later|r  |cRXP_WARN_to 10 later|r
+    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_to 10 later|r
     .collect 6889,10,2178,1,0x20,cooking --Small Egg (1-9)
     .mob Young Moonkin
     .mob Raging Moonkin
@@ -1515,7 +1521,7 @@ step
     #xprate <1.5
     #completewith AuberdineTurnin2 << NightElf/Hunter/Druid/Warrior
     >>Kill |cRXP_ENEMY_Moonkin|r. Loot them for their |T132832:0|t|cRXP_LOOT_[Small Eggs]|r
-    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_later|r  |cRXP_WARN_to 50 later|r
+    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_to 50 later|r
     >>|cRXP_WARN_Don't go out of your way to farm this now. Just remember to hold onto the eggs and start thinking how many skillups u still need to reach 50 cooking|r
     .collect 6889,50,90,1,0x20,cooking --Small Egg (10-49)
     .mob Young Moonkin
@@ -1528,7 +1534,7 @@ step
     #season 0
     #completewith LateTurtleStart
     >>Kill |cRXP_ENEMY_Moonkin|r. Loot them for their |T132832:0|t|cRXP_LOOT_[Small Eggs]|r
-    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_later|r  |cRXP_WARN_to 50 later|r
+    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_to 50 later|r
     >>|cRXP_WARN_Don't go out of your way to farm this now. Just remember to hold onto the eggs and start thinking how many skillups u still need to reach 50 cooking|r
     .collect 6889,50,90,1,0x20,cooking --Small Egg (10-49)
     .mob Young Moonkin
@@ -1663,7 +1669,7 @@ step << NightElf/Hunter/Druid/Warrior
     #optional
     #completewith EarlyCrystalEnd
     >>Kill |cRXP_ENEMY_Moonkin|r. Loot them for their |T132832:0|t|cRXP_LOOT_[Small Eggs]|r
-    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_later|r  |cRXP_WARN_to 10 later|r
+    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_to 10 later|r
     .collect 6889,10,2178,1,0x20,cooking --Small Egg (1-9)
     .mob Young Moonkin
     .mob Raging Moonkin
@@ -1676,7 +1682,7 @@ step << NightElf/Hunter/Druid/Warrior
     #completewith EarlyCrystalEnd
     #season 0
     >>Kill |cRXP_ENEMY_Moonkin|r. Loot them for their |T132832:0|t|cRXP_LOOT_[Small Eggs]|r
-    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_later|r  |cRXP_WARN_to 50 later|r
+    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_to 50 later|r
     >>|cRXP_WARN_Don't go out of your way to farm this now. Just remember to hold onto the eggs and start thinking how many skillups u still need to reach 50 cooking|r
     .collect 6889,50,90,1,0x20,cooking --Small Egg (10-49)
     .mob Young Moonkin
@@ -1731,7 +1737,7 @@ step << NightElf/Hunter/Druid/Warrior
     .goto 1439,43.101,44.400,60,0
     .goto 1439,45.322,44.756,60,0
     >>Kill |cRXP_ENEMY_Moonkin|r. Loot them for their |T132832:0|t|cRXP_LOOT_[Small Eggs]|r
-    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_later|r  |cRXP_WARN_to 10 later|r
+    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_to 10 later|r
     .collect 6889,10,2178,1,0x20,cooking --Small Egg (1-9)
     .mob Young Moonkin
     .mob Raging Moonkin
@@ -1987,7 +1993,7 @@ step
     .goto 1439,43.101,44.400,60,0
     .goto 1439,45.322,44.756,60,0
     >>Kill |cRXP_ENEMY_Moonkin|r. Loot them for their |T132832:0|t|cRXP_LOOT_[Small Eggs]|r
-    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_later|r  |cRXP_WARN_to 10 later|r
+    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_to 10 later|r
     .collect 6889,10,2178,1,0x20,cooking --Small Egg (1-9)
     .mob Young Moonkin
     .mob Raging Moonkin
@@ -2481,7 +2487,7 @@ step
     #optional
     #completewith BoatSeaCreature
     >>Kill |cRXP_ENEMY_Moonkin|r. Loot them for their |T132832:0|t|cRXP_LOOT_[Small Eggs]|r
-    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_later|r  |cRXP_WARN_to 50 later|r
+    >>|cRXP_WARN_This will be used to level your|r |T133971:0|t[Cooking] |cRXP_WARN_to 50 later|r
     >>|cRXP_WARN_Don't go out of your way to farm this now. Just remember to hold onto the eggs and start thinking how many skillups u still need to reach 50 cooking|r
     .collect 6889,50,90,1,0x20,cooking --Small Egg (10-49)
     .mob Young Moonkin
@@ -2778,6 +2784,7 @@ step << Druid
     >>|cRXP_WARN_Use the|r |T134776:0|t[Empty Cliffspring Falls Sampler] |cRXP_WARN_in the water at the entrance of the Cliffspring River Cave|r
     .complete 6122,1 --Filled Cliffspring Falls Sampler (1)
 step
+    #label CaveMushrooms
     .goto Darkshore,55.45,36.23,12,0
     .goto Darkshore,55.70,36.30,12,0
     .goto Darkshore,55.89,35.40,12,0
@@ -2925,8 +2932,10 @@ step
 step << NightElf !Druid
     .goto 1439,36.767,44.285
     #season 0
+    #optional
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Laird|r
     .accept 6343 >> Accept Return to Nessa
+    .isQuestAvailable 6343
     .target Laird
 step
     #optional
@@ -2949,6 +2958,7 @@ step
 step
     #optional
     #season 0
+    #label End
     .goto 1439,36.701,45.122,8,0
     .goto 1439,36.621,45.596
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Gwennyth Bly'Leggonde|r
@@ -3074,6 +3084,7 @@ step << Druid
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 #season 0,1
 #version 1
 << Alliance
@@ -3267,9 +3278,15 @@ step
     .isOnQuest 1002
 step
     #season 0
-    #completewith OnuGrove
+    #loop
+    .waypoint Darkshore,39.03,67.32,0
+    .waypoint Darkshore,42.54,67.76,0
+    .waypoint Darkshore,39.99,78.46,0
+    .waypoint Darkshore,39.03,67.32,70,0
+    .waypoint Darkshore,42.54,67.76,70,0
+    .waypoint Darkshore,39.99,78.46,70,0
     >>Kill |cRXP_ENEMY_Rabid Thistle Bears|r in southern Darkshore
-    >>|cRXP_WARN_Be careful as they cast|r |T135914:0|t[Rabies] |cRXP_WARN_if you dont kill them fast enough (Instant Melee: Reduces ALL health regen by 50% for 10 Minutes)|r
+    >>|cRXP_WARN_Be careful as they cast|r |T135914:0|t[Rabies] |cRXP_WARN_if you dont kill them fast enough (Instant Melee: Reduces all health regeneration by 50% for 10 minutes)|r
     .complete 2138,1 -- Rabid Thistle Bear slain (20)
     .mob Rabid Thistle Bear
 step << Druid
@@ -3601,6 +3618,7 @@ step
 step
     #xprate <1.5
     #season 0
+    #label BeachedTurnins
     .goto 1439,36.701,45.122,8,0
     .goto 1439,36.621,45.596
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Gwennyth Bly'Leggonde|r
@@ -3789,6 +3807,7 @@ step << Hunter
     >>Make sure your HS cooldown is <10 min
     >>Skip this step if the area is too crowded
 step
+    #label LateStalkerFangs
     #xprate <1.5 --<< !NightElf/Hunter
     #optional
     #loop
@@ -3933,6 +3952,7 @@ step
     .mob Giant Foreststrider
 step
     #xprate <1.59
+    #label NorthStalkerPelts
     .goto Darkshore,61.40,9.40,45,0
     .goto Darkshore,62.42,7.67
     >>Kill |cRXP_ENEMY_Moonstalker Sires|r and |cRXP_ENEMY_Moonstalker Matriarchs|r. Loot them for their |cRXP_LOOT_Pelts|r
@@ -5008,7 +5028,7 @@ step << Rogue
     #label Rendevous
     .goto Redridge Mountains,28.07,52.02
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Lucius|r
-    .turnin 2281 >> Turn in Redridge Rendevous
+    .turnin 2281 >> Turn in Redridge Rendezvous
     .accept 2282 >> Accept Alther's Mill
     .target Lucius
     .dungeon !DM
@@ -7015,7 +7035,7 @@ step << Rogue
     #xprate >1.59
     .goto Redridge Mountains,28.07,52.02
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Lucius|r
-    .turnin 2281 >> Turn in Redridge Rendevous
+    .turnin 2281 >> Turn in Redridge Rendezvous
     .accept 2282 >> Accept Alther's Mill
     .target Lucius
     .dungeon DM
@@ -8164,12 +8184,13 @@ step << !Hunter NightElf
     >>|cRXP_WARN_This is a limited supply item. Skip this step if |cRXP_FRIENDLY_Neal Allen|r doesn't have one|r
 	.target Neal Allen
     .bronzetube
-step << !Hunter NightElf
+step << !Hunter NightElf !Warrior
     #xprate <1.59
     #completewith crocs
     >>Kill |cRXP_ENEMY_Young Wetlands Crocolisks|r. Loot them for their |cRXP_LOOT_Young Crocolisk Skin|r
     .complete 484,1
     .mob Young Wetlands Crocolisk
+    .xp <19,1--ignore if level 18 or below
 step << !Hunter NightElf
     #xprate <1.59
     #completewith next
@@ -8181,7 +8202,7 @@ step << !Hunter NightElf
     .target Einar Stonegrip
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Einar Stonegrip|r
     .accept 469 >> Accept Daily Delivery
-step << !Hunter NightElf
+step << !Hunter NightElf !Warrior
     #xprate <1.59
     .goto Wetlands,53.2,41.3,55,0
     .goto Wetlands,58.5,50.8,55,0
@@ -8190,6 +8211,7 @@ step << !Hunter NightElf
     >>Kill |cRXP_ENEMY_Young Wetlands Crocolisks|r. Loot them for their |cRXP_LOOT_Young Crocolisk Skin|r
     .complete 484,1
     .mob Young Wetlands Crocolisk
+    .xp <19,1
 step << skip --logout skip !Hunter NightElf
     #xprate 1.49-1.59
 	#completewith next
@@ -8305,6 +8327,7 @@ step << !Hunter
 RXPGuides.RegisterGuide([[
 #xprate <1.59
 #classic
+#tbc
 #season 0,1
 #version 1
 << Alliance !Hunter
@@ -8903,7 +8926,7 @@ step
     .goto StormwindClassic,65.438,21.175
     .turnin 2040 >> Turn in Underground Assault
     .target +Shoni the Shilent
-    .goto StormwindClassic,55.510,12.504    
+    .goto StormwindClassic,55.510,12.504
 step << Rogue
 .dungeon DM
     .goto StormwindClassic,74.64,52.82
@@ -9179,7 +9202,7 @@ step << Warlock
 step << Rogue
     .goto Redridge Mountains,28.07,52.02
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Lucius|r
-    .turnin 2281 >> Turn in Redridge Rendevous
+    .turnin 2281 >> Turn in Redridge Rendezvous
     .accept 2282 >> Accept Alther's Mill
     .target Lucius
 step
@@ -9954,6 +9977,7 @@ step
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 #season 0,1
 #version 1
 #season 0
@@ -10027,25 +10051,28 @@ step
     >>|cRXP_WARN_This quest can be VERY difficult. Engage the |cRXP_ENEMY_Murlocs|r 1 by 1, otherwise you may agro multiple at the same time|r
     .link https://youtu.be/lfQM3Q-Ag5A >> |cRXP_WARN_Click here for a video guide|r
 step
+    #optional
     .goto 1439,43.555,76.293
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Onu|r
     .turnin 951 >> Turn in Mathystra Relics
     .target Onu
-    .isQuestComplete 731 --Only shows if Prospector was already escorted
+    .isQuestTurnedIn 731 --Only shows if Prospector was already escorted
 step
+    #optional
     .goto 1439,44.401,76.425
     >>|Tinterface/worldmap/chatbubble_64grey.blp:20|tTalk to |cRXP_FRIENDLY_Kerlonian Evershade|r to start the escort
     >>|cRXP_WARN_Skip this step if he is not there. It can take up to 25 minutes for him to respawn|r
     >>|cRXP_WARN_This is a timed quest, you have to escort him all the way to ashenvale in 20 minutes|r
     .accept 5321 >> Accept The Sleeper Has Awakened
     .target Kerlonian Evershade
-    .isQuestComplete 731 --Only shows if Prospector was already escorted
+    .isQuestTurnedIn 731 --Only shows if Prospector was already escorted
 step
+    #optional
     .isOnQuest 5321
     .goto Darkshore,44.38,76.30
     >>Open |cRXP_PICK_Kerlonian's Chest|r. Loot it for the |T134229:0|t[|cRXP_LOOT_Horn of Awakening|r]
     .complete 5321,1 -- Horn of Awakening (1)
-    .isQuestComplete 731 --Only shows if Prospector was already escorted
+    .isQuestTurnedIn 731 --Only shows if Prospector was already escorted
 step
     #sticky
     #label prospector
@@ -10228,6 +10255,7 @@ step
     .complete 5321,1 -- Horn of Awakening (1)
     .itemcount 13536,<1 --Horn of Awakening
 step
+    #label AshenStart
     #completewith tower
     .zone Ashenvale >> Travel south to Ashenvale
     .goto Ashenvale,29.7,13.6
@@ -10734,6 +10762,7 @@ step << Dwarf Hunter
 
 RXPGuides.RegisterGuide([[
 #classic
+#tbc
 #season 0
 #version 1
 << Alliance !Hunter

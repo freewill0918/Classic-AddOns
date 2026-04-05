@@ -52,8 +52,7 @@ accept Tower Defense##32151 |goto Krasarang Wilds/0 89.69,33.08 |or 3
 accept Hero Killer##32153 |goto Krasarang Wilds/0 89.69,33.08 |or 3
 accept Siege Damage##32152 |goto Krasarang Wilds/0 89.69,33.08 |or 3
 |tip If quests are offered, you will not be able to accept all of these quests.
-Check for Quests |complete nodailies(67631) or completedq(32149,32150) |or
-|tip If no quests are offered, this step will advance.
+Click Here If No Quests Are Available |confirm |complete nodailies(67631) or completedq(32149,32150) |or 3
 step
 talk Amber Kearnen##68908
 accept Send A Message##32451 |goto Krasarang Wilds/0 89.79,32.43 |or |next "Domination_Point_Hub"
@@ -121,7 +120,7 @@ turnin And Then There Were Goblins##32452 |goto Krasarang Wilds/0 16.48,79.20
 accept The Only Good Goblin...##32157 |goto Krasarang Wilds/0 16.48,79.20
 |only if haveq(32452) or completedq(32452)
 step
-talk Mishka##54614
+talk Mishka##67444
 |tip On the deck of the Skyfire ship.
 accept It's Only Right##32156 |goto Krasarang Wilds/0 16.66,78.52
 |only if completedq(32452)
@@ -197,7 +196,7 @@ turnin Two Step Program##32158 |goto Krasarang Wilds/0 16.71,78.54 |only if have
 turnin Undermining the Under Miner##32433 |goto Krasarang Wilds/0 16.71,78.54 |only if haveq(32433) or completedq(32433)
 |only if haveq(32158,32433) or completedq(32158,32433)
 step
-talk Mishka##54614
+talk Mishka##67444
 |tip On the deck of the Skyfire ship.
 turnin It's Only Right##32156 |goto Krasarang Wilds/0 16.66,78.52
 |only if haveq(32156) or completedq(32156)
@@ -300,6 +299,19 @@ accept Ogudei's Lieutenants##32122 |goto Krasarang Wilds/1 30.19,27.43 |or 5
 accept It Is A Mystery##32119 |goto Krasarang Wilds/1 30.19,27.43 |or 5
 |tip Five of these quests will be available.
 |only if haveq(32116) or completedq(32116)
+stickystart "Kill_Meng-do_Strength_of_Mountains"
+stickystart "Destroy_Spirit_Traps"
+stickystart "Slay_Spiritbound_Mogu"
+stickystart "Release_Troubled_Slave_Spirits"
+step
+Follow the path |goto Krasarang Wilds/3 70.47,84.96 < 10
+Continue following the path |goto Krasarang Wilds/3 93.56,47.83 < 10
+kill Gen-li Twister of Words##68169 |q 32122/1 |goto Krasarang Wilds/2 68.08,82.44
+|only if haveq(32122) or completedq(32122)
+step
+label "Kill_Meng-do_Strength_of_Mountains"
+kill Meng-do Strength of Mountains##68170 |q 32122/2 |goto Krasarang Wilds/2 66.59,78.85
+|only if haveq(32122) or completedq(32122)
 stickystart "Destroy_Spirit_Traps"
 stickystart "Slay_Spiritbound_Mogu"
 stickystart "Release_Troubled_Slave_Spirits"
@@ -326,22 +338,12 @@ kill Troubled Slave Spirit##68074+
 Release #14# Troubled Slave Spirits |q 32115/1 |goto Krasarang Wilds/3 46.31,12.11
 |only if haveq(32115) or completedq(32115)
 step
-Follow the path down |goto Krasarang Wilds/3 70.93,40.35 < 10 |only if walking
+Follow the path down |goto Krasarang Wilds/3 70.71,39.19
 kill Reliquary Scout##67861, Reliquary Blood Knight##68126, Reliquary Mage##68114
 Slay #10# Reliquaries |q 32347/1 |goto Krasarang Wilds/3 62.60,58.64
 |only if haveq(32347) or completedq(32347)
-stickystart "Kill_Meng-do_Strength_of_Mountains"
 step
-Follow the path up |goto Krasarang Wilds/3 80.75,30.19 < 10 |only if walking and haveq(32347)
-Follow the path |goto Krasarang Wilds/3 94.74,47.06
-kill Gen-li Twister of Words##68169 |q 32122/1 |goto Krasarang Wilds/2 68.08,82.44
-|only if haveq(32122) or completedq(32122)
-step
-label "Kill_Meng-do_Strength_of_Mountains"
-kill Meng-do Strength of Mountains##68170 |q 32122/2 |goto Krasarang Wilds/2 66.59,78.85
-|only if haveq(32122) or completedq(32122)
-step
-Follow the path |goto Krasarang Wilds/3 89.20,35.08 < 10 |only if walking |only if haveq(32122)
+Follow the path |goto Krasarang Wilds/3 61.27,38.35 < 10 |only if walking |only if haveq(32122)
 talk Hilda Hornswaggle##68312
 turnin The Spirit Trap##32121 |goto Krasarang Wilds/1 30.19,27.43 |only if haveq(32121) or completedq(32121)
 turnin Shackles of the Past##32115 |goto Krasarang Wilds/1 30.19,27.43 |only if haveq(32115) or completedq(32115)
@@ -353,6 +355,793 @@ turnin It Is A Mystery##32119 |goto Krasarang Wilds/1 30.19,27.43 |only if haveq
 step
 label "End_of_Quests"
 You Have Completed the Available Daily Quests |complete false or not completedq(32116,32451,32452,32149,32150,32148,32151,32153,32152,32157,32156,32158,32433,32154,32446,32159,32155,32146,32142,32143,32144,32145,32121,32115,32347,32346,32122,32119) |next "Begin_Daily_Quests"
+|tip New quests will become available with the next daily server reset.
+|tip |only if rep("Operation: Shieldwall") >= Revered
+buy Grand Commendation of Operation: Shieldwall##93231 |goto Krasarang Wilds/0 89.66,33.46 |n |only if rep("Operation: Shieldwall") >= Revered
+|tip You can buy the Grand Commedation of the Operation: Shieldwall from Agent Malley. |only if rep("Operation: Shieldwall") >= Revered
+|tip If you're seeing {b}bonus{} rep at the end of daily turnins, you don't need to purchase this. |only if rep("Operation: Shieldwall") >= Revered
+]])
+ZygorGuidesViewer:RegisterGuide("Daily Guides\\Mists of Pandaria Dailies\\Kirin Tor Offensive Dailies",{
+mopready=true,
+startlevel=90,
+description="This guide will take you through the bonus quests for the Kirin Tor.",
+},[[
+step
+label "dailies"
+clicknpc Assignment Map##70567 |goto Isle of Thunder/0 63.20,72.20
+Click PvE at the assignment screen |q 32260 |future
+|tip If no daily quests are available, make sure you're caught up with the Isle of Thunder questline.
+step
+talk Lady Jaina Proudmoore##67992
+accept Za'Tual##32733 |goto Isle of Thunder/0 63.20,72.20
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+step
+talk Vereesa Windrunner##67993
+accept The Court of Bones##32731 |or 2 |goto Isle of Thunder/0 63.20,72.10
+accept The Shuddering Moor##32574 |or 2 |goto Isle of Thunder/0 63.20,72.10
+accept The Zandalari Colossus##32575 |or 2 |goto Isle of Thunder/0 63.20,72.10
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+step
+talk Warmage Yurias##67994
+accept A Wing to Fly On##32571 |goto Isle of Thunder/0 63.50,73.60
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+step
+talk Captain Elleane Wavecrest##67995
+accept Ihgaluk Crag##32732 |or 2 |goto Isle of Thunder/0 62.70,73.60
+accept The Sleepless Legion##32572 |or 2 |goto Isle of Thunder/0 62.70,73.60
+accept Enemies Beneath the Tower##32573 |or 2 |goto Isle of Thunder/0 62.70,73.60
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+step
+talk Archmage Modera##67996
+turnin Ihgaluk Crag##32732 |goto Isle of Thunder/0 55.70,74.40
+accept Subtle Encouragement##32606 |goto Isle of Thunder/0 55.70,74.40
+accept De-Constructed##32537 |goto Isle of Thunder/0 55.70,74.40
+accept Manipulating the Saurok##32536 |goto Isle of Thunder/0 55.70,74.40
+accept The Skumblade Threat##32535 |goto Isle of Thunder/0 55.70,74.40
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32732) or completedq(32732)
+step
+talk Lyalia##69675
+accept The Residents of Ihgaluk##32545 |goto Isle of Thunder/0 55.90,74.40
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if completedq(32732)
+step
+talk Sanitation Sorcerer Stephen Litmatch##69677
+accept The Creeping Carpet of Ihgaluk##32547 |goto Isle of Thunder/0 55.50,74.50
+accept Just Some Light Clean-Up Work##32546 |goto Isle of Thunder/0 55.50,74.50
+accept Left To Rot##32548 |goto Isle of Thunder/0 55.50,74.50
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if completedq(32732)
+step
+talk Image of Archmage Vargoth##69678
+accept Skin of the Saurok##32549 |goto Isle of Thunder/0 55.60,74.40
+|tip NOTE: This quest will give you the ability to disguise yourself as a saurok.
+|tip This spell will happen automatically whenever you are outside of combat and inside Ihgaluk Crag.
+|tip If you try to attack another saurok, the disguise will vanish and all saurok will be hostile to you until you are out of combat again.
+|only if not completedq(32549)
+step
+Kill Skumblade enemies around this area |kill Skumblade Filthmonger##69228, Skumblade Brute##69338, Skumblade Scavenger##69227,Skumblade Fleshripper##69210,Skumblade Shortfang##69348,Skumblade Seadragon##69226,Skumblade Saur-Priest##69229,Skumblade Saurok##69362,Skumblade Brute##69338
+Slay a Skumblade Saurok |q 32549/1 |goto Isle of Thunder/0 47.20,79.60
+|only if not completedq(32549)
+step
+Click the Complete Quest Box:
+turnin Skin of the Saurok##32549
+|only if not completedq(32549)
+stickystart "Crush_75_Ihgaluk_Roaches"
+stickystart "Kill_3_Fetid_Meat_Piles"
+stickystart "Slay_10_Skumblade_Saurok"
+stickystart "Collect_9_Mogu_Weapons"
+step
+kill Quivering Filth##69251+
+Disperse #75# Pieces of Filth |q 32546/1 |goto Isle of Thunder/0 52.70,80.20
+|only if haveq(32546) or completedq(32546)
+step
+talk Magister Lyanis##69684
+|tip He's in a magic bubble inside the cave here, you will need to approach him in order to see him.
+Speak with Magister Lyanis |q 32536/2 |goto Isle of Thunder/0 51.60,84.40
+|only if haveq(32536) or completedq(32536)
+step
+kill 1 Skumblade Brute##69338+ |q 32545/1 |goto Isle of Thunder/0 51.30,78.80
+|only if haveq(32545) or completedq(32545)
+step
+talk Magistrix Sanal##69686
+|tip She's in a magic bubble, you will need to approach her in order to see her.
+|tip If you have trouble finding her, look for the moving streaks of light.
+Speak with Magistrix Sanal |q 32536/3 |goto Isle of Thunder/0 50.80,73.40
+|only if haveq(32536) or completedq(32536)
+step
+map Isle of Thunder/0
+path follow loose;loop;ants straight
+path	51.80,74.40	53.30,77.00	54.30,79.30	55.10,82.20	55.10,82.20
+path	55.30,84.20	54.90,86.70	53.90,88.30	52.40,90.40	50.80,90.50
+path	49.20,89.50	49.40,85.80	49.80,84.00	49.40,82.00	49.20,79.80
+path	50.10,78.40	50.40,77.10	50.60,75.80
+Follow the path
+clicknpc Distressed Sunreaver Construct##69290
+|tip It runs around in a large area, follow the path if you have trouble finding it.
+Recover Distressed Construct |q 32537/3
+|only if haveq(32537) or completedq(32537)
+step
+kill 1 Skumblade Saur-Priest##69229+ |q 32545/2 |goto Isle of Thunder/0 49.80,76.20
+|tip He's on top of the mountain on a cliffside.
+|only if haveq(32545) or completedq(32545)
+step
+kill 1 Skumblade Seadragon##69226+ |q 32545/3 |goto Isle of Thunder/0 48.00,88.70
+|only if haveq(32545) or completedq(32545)
+step
+clicknpc Buried Sunreaver Construct##69288
+Recover Buried Construct |q 32537/2 |goto Isle of Thunder/0 53.60,91.20
+|only if haveq(32537) or completedq(32537)
+step
+clicknpc Malfunctioning Sunreaver##69289
+Recover Malfunctioning Construct |q 32537/4 |goto Isle of Thunder/0 46.60,71.90
+|only if haveq(32537) or completedq(32537)
+step
+clicknpc Disabled Sunreaver Construct##69439
+Recover Disabled Construct |q 32537/1 |goto Isle of Thunder/0 44.20,81.80
+|only if haveq(32537) or completedq(32537)
+step
+talk Magister Yalis##69682
+|tip He's in a magic bubble, you will need to approach him in order to see him.
+|tip If you have trouble finding him, look for the moving streaks of light.
+Speak with Magister Yalis |q 32536/1 |goto Isle of Thunder/0 45.10,84.00
+|only if haveq(32536) or completedq(32536)
+step
+kill Skumblade Seadragon##69226 |q 32545/3 |goto Isle of Thunder/0 53.20,90.00
+|only if haveq(32545) or completedq(32545)
+step
+talk Buried Silver Covenant Construct##69688
+Recover Buried Construct |q 32537/2 |goto Isle of Thunder/0 53.60,91.20
+|only if haveq(32537) or completedq(32537)
+step
+label "Crush_75_Ihgaluk_Roaches"
+Ride around the area, stepping on top of roaches
+Crush #75# Ihgaluk Roaches |q 32547/1 |goto Isle of Thunder/0 45.60,76.50
+You can find additional roaches around [Isle of Thunder/0 49.1,79.4].
+|only if haveq(32547) or completedq(32547)
+step
+label "Kill_3_Fetid_Meat_Piles"
+kill 3 Fetid Meat Pile##69247 |q 32548/1 |goto Isle of Thunder/0 50.10,78.00
+|only if haveq(32548) or completedq(32548)
+step
+label "Slay_10_Skumblade_Saurok"
+Kill Skumblade enemies around this area |kill Skumblade Fleshripper##69210, Skumblade Scavenger##69227, Skumblade Filthmonger##69228
+Slay #10# Skumblade Saurok |q 32535/1 |goto Isle of Thunder/0 52.30,82.60
+|only if haveq(32535) or completedq(32535)
+step
+label "Collect_9_Mogu_Weapons"
+Kill Skumblade enemies around this area |kill Skumblade Fleshripper##69210, Skumblade Scavenger##69227, Skumblade Filthmonger##69228
+|tip Click the Plant Mogu Weapon icon that appears at the center of your screen.
+Plant #9# Mogu Weapons on Skumblade Corpses |q 32606/1 |goto Isle of Thunder/0 52.30,82.60
+|only if haveq(32606) or completedq(32606)
+step
+clicknpc Wild Pterrorwing Hatchling##69428
+|tip The Pterrorwing will be flying and landing around these 6 different locations.
+Recover a Wild Thunder Ptrerrorwing Hatchling |q 32571/1 |goto Isle of Thunder/0 54.60,57.40
+You can find more around:
+[Isle of Thunder/0 53.80,65.10]
+[Isle of Thunder/0 49.80,64.90]
+[Isle of Thunder/0 52.70,60.30]
+[Isle of Thunder/0 51.10,54.90]
+[Isle of Thunder/0 53.40,52.20]
+[Isle of Thunder/0 54.60,57.40]
+|only if haveq(32571) or completedq(32571)
+stickystart "Kill_6_Animated_Warriors"
+step
+Kill Shan'ze enemies around this area |kill Shan'ze Animator##70069, Shan'ze Animator##70069, Shan'ze Bloodseeker##69431
+kill 7 Diremoor Shan'ze mogu |q 32573/1 |goto Isle of Thunder/0 49.50,65.40
+|only if haveq(32573) or completedq(32573)
+step
+label "Kill_6_Animated_Warriors"
+kill 6 Animated Warrior##67473+ |q 32572/1 |goto Isle of Thunder/0 49.50,65.40
+|tip If you lure the enemies into the squad of soldiers here, they will do the killing for you.
+|only if haveq(32572) or completedq(32572)
+step
+kill Zandalari Colossus##69405 |q 32575/1 |goto Isle of Thunder/0 42.30,64.00
+|tip It patrols around this half of the Diremoor path. Some searching may be necessary.
+only if haveq(32575) or completedq(32575)
+step
+kill 1 Mighty Devilsaur##69406 |q 32574/1 |goto Isle of Thunder/0 50.50,51.40
+|tip It patrols around this half of the Diremoor path. Some searching may be necessary.
+|only if haveq(32574) or completedq(32574)
+step
+talk Archmage Lan'dalock##70517
+turnin Za'Tual##32733 |goto Isle of Thunder/0 42.20,66.30
+accept Harbingers of the Loa##32540 |goto Isle of Thunder/0 42.20,66.30
+accept Dangers of Za'Tual##32543 |goto Isle of Thunder/0 42.20,66.30
+accept Surgical Strike##32542 |goto Isle of Thunder/0 42.20,66.30
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32733) or completedq(32733)
+step
+talk Dalvin Jaacor##69674
+accept Dark Offerings##32539 |goto Isle of Thunder/0 42.30,66.30
+accept Heinous Sacrifice##32538 |goto Isle of Thunder/0 42.30,66.30
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32733) or completedq(32733)
+step
+talk Ako##69673
+accept Pterrible Ptorment##32544 |goto Isle of Thunder/0 42.10,66.50
+accept Preventing a Future Threat##32541 |goto Isle of Thunder/0 42.10,66.50
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32733) or completedq(32733)
+stickystart "Destroy_6_Zandalari_Offerings"
+stickystart "Kill_3_Zandalari_Beastcallers"
+stickystart "Kill_3_Zandalari_Jaguar_Warriors"
+stickystart "Kill_3_Zandalari_Spiritbinders"
+stickystart "Slay_12_Trolls_in_Za'Tual"
+step
+click Tec'uat's Sacrificial Altar##218425
+Destroy the Tec'uat's Altar |q 32538/2 |goto Isle of Thunder/0 39.80,65.30
+|only if haveq(32538) or completedq(32538)
+step
+kill Zandalari Arcweaver##69224+
+Free the Tormented Skyscreamer |q 32544/1 |goto Isle of Thunder/0 41.10,69.40
+|only if haveq(32544) or completedq(32544)
+step
+click Pa'chek's Sacrificial Altar##218426
+Destroy the Pa'chek's Altar |q 32538/3 |goto Isle of Thunder/0 38.70,78.60
+|only if haveq(32538) or completedq(32538)
+step
+click Cha'lat's Sacrificial Altar##218424
+Destroy the Cha'lat's Altar |q 32538/1 |goto Isle of Thunder/0 33.90,76.00
+|only if haveq(32538) or completedq(32538)
+step
+Kill Zandalari enemies around this area |kill Zandalari Arcanital##69281, Zandalari Spiritweaver##69285
+Slay #2# Harbingers of the Loa |q 32540/1 |goto Isle of Thunder/0 36.50,70.00
+Another Can Spawn Here If You Don't Feel Like Waiting [38.90,76.50]
+|only if haveq(32540) or completedq(32540)
+step
+Frighten #12# Hatchling Skyscreamers |q 32541/1 |goto Isle of Thunder/0 30.90,77.50
+|tip Moving over them causes them to become frightened.
+|only if haveq(32541) or completedq(32541)
+step
+label "Destroy_6_Zandalari_Offerings"
+click Zandalari Offering##216991
+Destroy #6# Zandalari Offerings |q 32539/1 |goto Isle of Thunder/0 40.10,72.40
+You Can Find More Around [Isle of Thunder/0 40.60,74.10]
+|only if haveq(32539) or completedq(32539)
+step
+label "Kill_3_Zandalari_Beastcallers"
+kill 3 Zandalari Beastcaller##69065+ |q 32542/1 |goto Isle of Thunder/0 35.30,75.80
+|only if haveq(32542) or completedq(32542)
+step
+label "Kill_3_Zandalari_Jaguar_Warriors"
+kill 3 Zandalari Jaguar Warrior##69171+ |q 32542/2 |goto Isle of Thunder/0 35.30,75.80
+|only if haveq(32542) or completedq(32542)
+step
+label "Kill_3_Zandalari_Spiritbinders"
+kill 3 Zandalari Spiritbinder##69225+ |q 32542/3 |goto Isle of Thunder/0 35.30,75.80
+|only if haveq(32542) or completedq(32542)
+step
+label "Slay_12_Trolls_in_Za'Tual"
+Kill Zandalari enemies around this area |kill Zandalari Stoneshield##69223+, Zandalari Commoner##69170+, Zandalari Beastcaller##69065+, Zandalari Jaguar Warrior##69171+, Zandalari Spiritbinder##69225+ |notinsticky
+Slay #12# Trolls in Za'Tual |q 32543/1 |goto Isle of Thunder/0 40.70,74.20
+|only if haveq(32543) or completedq(32543)
+step
+label "Court_Of_Bones"
+talk Narasi Snowdawn##67997
+turnin The Court of Bones##32731 |goto Isle of Thunder/0 40.20,59.60
+accept Soul Surrender##32526 |goto Isle of Thunder/0 40.20,59.60
+accept Grave Circumstances##32527 |goto Isle of Thunder/0 40.20,59.60
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32731) or completedq(32731)
+step
+talk Danara Silverglass##69668
+accept Rise No More!##32532 |goto Isle of Thunder/0 40.10,59.30
+accept Ashes of the Enemy##32525 |goto Isle of Thunder/0 40.10,59.30
+accept Stone Cold##32533 |goto Isle of Thunder/0 40.10,59.30
+accept Into the Crypts##32528 |goto Isle of Thunder/0 40.10,59.30
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32731) or completedq(32731)
+step
+talk Vylene Amaranth##69670
+accept The Call of Thunder##32529 |or |goto Isle of Thunder/0 40.10,59.10
+accept The Bloodletter##32530 |or |goto Isle of Thunder/0 40.10,59.10
+accept The Conquest of Stone##32531 |or |goto Isle of Thunder/0 40.10,59.10
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32731) or completedq(32731)
+stickystart "Slay_10_Shan'ze_Mogu"
+stickystart "Kill_15_Risen_Anscestors"
+stickystart "Kill_8_Grave_Guardians"
+stickystart "Burn_8_Mummified_Remains"
+step
+click Tormentor's Cage##217768
+|tip They will be all over the Court of Bones, usually close to walls.
+Rescue #6# Scouts |q 32526/1 |goto Isle of Thunder/0 36.90,53.00
+|only if haveq(32526) or completedq(32526)
+step
+kill Kaida the Bloodletter##69250 |q 32530/1 |goto Isle of Thunder/0 35.00,47.90
+|only if haveq(32530) or completedq(32530)
+step
+kill Shan'ze Thundercaller##69264+
+|tip You will need to just down in the water here.
+Stop the Shan'ze Thundercallers' Ritual |q 32529/1 |goto Isle of Thunder/0 33.00,56.70
+|only if haveq(32529) or completedq(32529)
+step
+kill Shan'ze Soulripper##69903+
+Disrupt the Ancient Stone Conqueror Ritual |q 32531/1 |goto Isle of Thunder/0 35.10,63.80
+|only if haveq(32531) or completedq(32531)
+step
+use the Incantation of Gura##93803
+kill Gura the Reclaimed##69241 |q 32528/1 |goto Isle of Thunder/0 36.80,56.50
+|only if haveq(32528) or completedq(32528)
+step
+label "Slay_10_Shan'ze_Mogu"
+Kill Shan'ze enemies around this area |kill Shan'ze Gravekeeper##69235, Shan'ze Thundercaller##69264, Shan'ze Soulripper##69236
+|tip Shan'ze Thundercallers will cast Chain Lightning appearing as a circle around your character.
+|tip Move out of to avoid heavy damage.
+Slay #10# Shan'ze Mogu in the Court of Bones |q 32527/1 |goto Isle of Thunder/0 35.50,52.30
+|only if haveq(32527) or completedq(32527)
+step
+label "Kill_15_Risen_Anscestors"
+kill 15 Risen Ancestor##69237+ |q 32532/1 |goto Isle of Thunder/0 35.50,52.30
+|only if haveq(32532) or completedq(32532)
+step
+label "Kill_8_Grave_Guardians"
+kill 8 Grave Guardian##69240+ |q 32533/1 |goto Isle of Thunder/0 35.50,52.30
+|tip They sit as stone statues, you need to activate them first.
+|only if haveq(32533) or completedq(32533)
+step
+label "Burn_8_Mummified_Remains"
+use the Blessed Torch##93751
+|tip Use it on Mummified Remains.
+Burn #8# Mummified Remains |q 32525/1 |goto Isle of Thunder/0 35.50,52.30
+|only if haveq(32525) or completedq(32525)
+step
+talk Vylene Amaranth##69670
+turnin The Call of Thunder##32529 |goto Isle of Thunder/0 40.10,59.10 |only if haveq(32529) or completedq(32529)
+turnin The Bloodletter##32530 |goto Isle of Thunder/0 40.10,59.10 |only if haveq(32530) or completedq(32530)
+turnin The Conquest of Stone##32531 |goto Isle of Thunder/0 40.10,59.10 |only if haveq(32531) or completedq(32531)
+|only if haveq(32529,32530,32531) or completedq(32529,32530,32531)
+step
+talk Danara Silverglass##69668
+turnin Rise No More!##32532 |goto Isle of Thunder/0 40.10,59.30 |only if haveq(32532) or completedq(32532)
+turnin Into the Crypts##32528 |goto Isle of Thunder/0 40.10,59.30 |only if haveq(32528) or completedq(32528)
+turnin Ashes of the Enemy##32525 |goto Isle of Thunder/0 40.10,59.30 |only if haveq(32525) or completedq(32525)
+turnin Stone Cold##32533 |goto Isle of Thunder/0 40.10,59.30 |only if haveq(32533) or completedq(32533)
+|only if haveq(32532,32528,32525,32533) or completedq(32532,32528,32525,32533)
+step
+talk Narasi Snowdawn##67997
+turnin Soul Surrender##32526 |goto Isle of Thunder/0 40.20,59.60 |only if haveq(32526) or completedq(32526)
+turnin Grave Circumstances##32527 |goto Isle of Thunder/0 40.20,59.60 |only if haveq(32527) or completedq(32527)
+|only if haveq(32526,32527) or completedq(32526,32527)
+step
+talk Narasi Snowdawn##67997
+accept The Beast Pens##32567 |goto Isle of Thunder/0 40.20,59.60
+accept Imposing Threat##32581 |goto Isle of Thunder/0 40.20,59.60
+Click here when no more quests are available |confirm
+|next "beast_pens" |only if haveq(32567)
+|only if haveq(32731) or completedq(32731)
+step
+talk Ako##69673
+turnin Pterrible Ptorment##32544 |goto Isle of Thunder/0 42.10,66.50 |only if haveq(32544) or completedq(32544)
+turnin Preventing a Future Threat##32541 |goto Isle of Thunder/0 42.10,66.50 |only if haveq(32541) or completedq(32541)
+|only if haveq(32544,32541) or completedq(32544,32541)
+step
+talk Dalvin Jaacor##69674
+turnin Dark Offerings##32539 |goto Isle of Thunder/0 42.30,66.30 |only if haveq(32539) or completedq(32539)
+turnin Heinous Sacrifice##32538 |goto Isle of Thunder/0 42.30,66.30 |only if haveq(32538) or completedq(32538)
+|only if haveq(32539,32538) or completedq(32539,32538)
+step
+talk Archmage Lan'dalock##70517
+turnin Harbingers of the Loa##32540 |goto Isle of Thunder/0 42.20,66.30 |only if haveq(32540) or completedq(32540)
+turnin Dangers of Za'Tual##32543 |goto Isle of Thunder/0 42.20,66.30 |only if haveq(32543) or completedq(32543)
+turnin Surgical Strike##32542 |goto Isle of Thunder/0 42.20,66.30 |only if haveq(32542) or completedq(32542)
+accept Among the Bones##32578 |goto Isle of Thunder/0 42.20,66.30
+accept No Time To Rest##32568 |goto Isle of Thunder/0 42.20,66.30
+accept Encroaching Force##32580 |goto Isle of Thunder/0 42.20,66.30
+accept The Beast Pens##32567 |goto Isle of Thunder/0 42.20,66.30
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32733) or completedq(32733)
+step
+talk Sanitation Sorcerer Stephen Litmatch##69677
+turnin The Creeping Carpet of Ihgaluk##32547 |goto Isle of Thunder/0 55.50,74.40 |only if haveq(32547) or completedq(32547)
+turnin Just Some Light Clean-Up Work##32546 |goto Isle of Thunder/0 55.50,74.40 |only if haveq(32546) or completedq(32546)
+turnin Left To Rot##32548 |goto Isle of Thunder/0 55.50,74.40 |only if haveq(32548) or completedq(32548)
+|only if haveq(32547,32546,32548) or completedq(32547,32546,32548)
+step
+talk Lyalia##69675
+turnin The Residents of Ihgaluk##32545 |goto Isle of Thunder/0 55.90,74.40
+|only if haveq(32545) or completedq(32545)
+step
+talk Archmage Modera##67996
+turnin Subtle Encouragement##32606 |goto Isle of Thunder/0 55.80,74.40 |only if haveq(32606) or completedq(32606)
+turnin The Skumblade Threat##32535 |goto Isle of Thunder/0 55.80,74.40 |only if haveq(32535) or completedq(32535)
+turnin De-Constructed##32537 |goto Isle of Thunder/0 55.80,74.40 |only if haveq(32537) or completedq(32537)
+turnin Manipulating the Saurok##32536 |goto Isle of Thunder/0 55.80,74.40 |only if haveq(32536) or completedq(32536)
+|only if haveq(32606,32535,32537,32536) or completedq(32606,32535,32537,32536)
+step
+talk Archmage Modera##67996
+accept Among the Bones##32578 |goto Isle of Thunder/0 55.80,74.40
+accept No Time To Rest##32568 |goto Isle of Thunder/0 55.80,74.40
+accept Imposing Threat##32581 |goto Isle of Thunder/0 55.80,74.40
+accept Encroaching Force##32580 |goto Isle of Thunder/0 55.80,74.40
+accept The Beast Pens##32567 |goto Isle of Thunder/0 55.80,74.40
+accept Competing Magic##32579 |goto Isle of Thunder/0 55.80,74.40
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32732) or completedq(32732)
+step
+talk Captain Elleane Wavecrest##67995
+turnin The Sleepless Legion##32572 |goto Isle of Thunder/0 62.70,73.60 |only if haveq(32572) or completedq(32572)
+turnin Enemies Beneath the Tower##32573 |goto Isle of Thunder/0 62.70,73.60 |only if haveq(32573) or completedq(32573)
+|only if haveq(32572,32573) or completedq(32572,32573)
+step
+talk Warmage Yurias##67994
+turnin A Wing to Fly On##32571 |goto Isle of Thunder/0 63.50,73.60
+|only if haveq(32571) or completedq(32571)
+step
+talk Vereesa Windrunner##67993
+turnin The Shuddering Moor##32574 |goto Isle of Thunder/0 63.20,72.10
+|only if haveq(32574) or completedq(32574)
+step
+talk Vereesa Windrunner##69600
+turnin The Zandalari Colossus##32575 |goto Isle of Thunder/0 63.20,72.10
+|only if haveq(32575) or completedq(32575)
+step
+talk Lady Jaina Proudmoore##67992
+accept The Beast Pens##32567 |or 2 |goto Isle of Thunder/0 63.20,72.20
+accept Imposing Threat##32581 |or 2 |goto Isle of Thunder/0 63.20,72.20
+accept Imposing Threat##32577 |or 2 |goto Isle of Thunder/0 63.20,72.20
+accept Encroaching Force##32580 |or 2 |goto Isle of Thunder/0 63.20,72.20
+accept No Time To Rest##32568 |or 2 |goto Isle of Thunder/0 63.20,72.20
+accept Among the Bones##32578 |or 2 |goto Isle of Thunder/0 63.20,72.20
+accept Competing Magic##32579 |or 2 |goto Isle of Thunder/0 63.20,72.20
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32571,32572,32573,32574,32575) or completedq(32571,32572,32573,32574,32575)
+step
+kill Nurkala##69663 |q 32580/1 |goto Isle of Thunder/0 61.80,61.40
+|only if haveq(32580) or completedq(32580)
+step
+kill Nurkala##69663 |q 32584/1 |goto Isle of Thunder/0 61.80,61.40
+|only if haveq(32584) or completedq(32584)
+step
+kill 1 Horgak the Enslaver##70176 |q 32581/1 |goto Isle of Thunder/0 45.70,59.50
+|only if haveq(32581) or completedq(32581)
+step
+kill 1 Horgak the Enslaver##70176 |q 32577/1 |goto Isle of Thunder/0 45.70,59.50
+|only if haveq(32577) or completedq(32577)
+step
+kill 1 Arcweaver Jor'guva##69665 |q 32579/1 |goto Isle of Thunder/0 43.90,69.00
+|only if haveq(32579) or completedq(32579)
+step
+kill 1 Arcweaver Jor'guva##69665 |q 32576/1 |goto Isle of Thunder/0 43.90,69.00
+|only if haveq(32576) or completedq(32576)
+step
+label "beast_pens"
+Find Scout Captain Daelin at the Beast Pens |q 32567/1 |goto Isle of Thunder/0 51.90,47.00
+|only if haveq(32567) or completedq(32567)
+step
+talk Scout Captain Daelin##67998
+turnin The Beast Pens##32567 |goto Isle of Thunder/0 51.80,47.10 |only if haveq(32567) or completedq(32567)
+accept Saur Loser##32550 |or 2 |goto Isle of Thunder/0 51.80,47.10
+accept Compy Stomp##32551 |or 2 |goto Isle of Thunder/0 51.80,47.10
+accept Dino Might##32554 |or 2 |goto Isle of Thunder/0 51.80,47.10
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32567) or completedq(32567)
+step
+talk Miura Brightweaver##67999
+accept Direhorn vs Devilsaur##32553 |goto Isle of Thunder/0 51.80,47.20
+accept Loa-saur##32552 |goto Isle of Thunder/0 51.80,47.20
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if completedq(32567) or completedq(32567)
+stickystart "Kill_8_Conquerors_Terrace_Zandalari"
+stickystart "Slay_10_Beast_Pen_Trolls"
+stickystart "Collect_5_Saur_Fetish"
+stickystart "Use_5_Saur_Fetishes"
+stickystart "Slay_5_Raptors"
+stickystart "Kill_10_Trained_Saurid"
+step
+kill Loa-Infused Bladetalon##69306+
+kill Loa Speaker##69302 |q 32552/1 |goto Isle of Thunder/0 53.30,44.30
+|only if haveq(32552) or completedq(32552)
+step
+Kill enemies around this area |kill Master Caller##69286, Zandalari Fetish-Binder##69155
+Disrupt the Binding Ritual |q 32553/1 |goto Isle of Thunder/0 53.40,42.20
+|only if haveq(32553) or completedq(32553)
+step
+label "Kill_8_Conquerors_Terrace_Zandalari"
+Kill Zandalari enemies around this area |kill Zandalari Soultwister##69296, Zandalari Haruspex##69297, Zandalari Bloodguard##69294,Zandalari Acolyte##69295
+Slay #8# Conqueror's Terrace Zandalari |q 32560/1 |goto Isle of Thunder/0 58.50,51.90
+|only if haveq(32560) or completedq(32560)
+step
+label "Slay_10_Beast_Pen_Trolls"
+Kill Zandalari enemies around this area |kill Zandalari Fetish-Binder##69155, Zandalari Beastlord##69144, Zandalari Fetish-Binder##69155, Zandalari Saurcaller##69154, Master Caller##69286, Disciple of Jalak##69376, Zandalari Venomblade##70328, Zandalari Arcweaver##70401
+Slay #10# Beast Pens Trolls |q 32550/1 |goto Isle of Thunder/0 49.20,40.90
+|only if haveq(32550) or completedq(32550)
+step
+label "Collect_5_Saur_Fetish"
+click Saur Fetish##218373
+collect 5 Saur Fetish##93668 |q 32554 |goto Isle of Thunder/0 50.70,43.20
+|only if haveq(32554) or completedq(32554)
+step
+label "Use_5_Saur_Fetishes"
+use the Saur Fetish##93668
+|tip Use them on Raptors, Compys, Skyscreamers or Direhorns around this area.
+Use #5# Saur Fetishes |q 32554/1 |goto Isle of Thunder/0 50.70,43.20
+|only if haveq(32554) or completedq(32554)
+step
+label "Slay_5_Raptors"
+Kill Raptor enemies around this area |kill Tamed Bladetalon##69180, Maturing Raptor##69183 |notinsticky
+Slay #5# Raptors |q 32551/1 |goot Isle of Thunder/0 49.60,37.90
+|only if haveq(32551) or completedq(32551)
+step
+label "Kill_10_Trained_Saurid"
+kill 10 Trained Saurid##58071 |q 32551/2 |goot Isle of Thunder/0 49.60,37.90
+|only if haveq(32551) or completedq(32551)
+step
+talk Scout Captain Daelin##67998
+turnin Compy Stomp##32551 |goto Isle of Thunder/0 51.80,47.10 |only if haveq(32551) or completedq(32551)
+turnin Saur Loser##32550 |goto Isle of Thunder/0 51.80,47.10 |only if haveq(32550) or completedq(32550)
+turnin Dino Might##32554 |goto Isle of Thunder/0 51.80,47.10 |only if haveq(32554) or completedq(32554)
+|only if haveq(32551,32550,32554) or completedq(32551,32550,32554)
+step
+talk Miura Brightweaver##67999
+turnin Direhorn vs Devilsaur##32553 |goto Isle of Thunder/0 51.80,47.20 |only if haveq(32553) or completedq(32553)
+turnin Loa-saur##32552 |goto Isle of Thunder/0 51.80,47.20 |only if haveq(32552) or completedq(32552)
+accept Maximum Capacitor##32586 |or |goto Isle of Thunder/0 51.80,47.20
+accept On Her Magic-ey Secret Service##32588 |or |goto Isle of Thunder/0 51.80,47.20
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32552,32553) or completedq(32552,32553)
+step
+talk Scout Captain Daelin##67998
+accept Among the Bones##32578 |or |goto Isle of Thunder/0 51.80,47.10
+accept No Time To Rest##32568 |or |goto Isle of Thunder/0 51.80,47.10
+accept Encroaching Force##32584 |or |goto Isle of Thunder/0 51.80,47.10
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if completedq(32567)
+step
+Enter the cave |goto Isle of Thunder/0 49.30,33.00 < 10 |walk
+use the Arcane Emancipator##93761
+|tip Use it on Agent Reginald.
+Rescue Agent Reginald |q 32588/1 |goto Isle of Thunder/1 34.60,70.80
+|only if haveq(32588) or completedq(32588)
+step
+Use your Arcane Emancipator on _Agent Grisel_ |use Arcane Emancipator##93761
+Rescue Agent Grisel |q 32588/2 |goto Isle of Thunder/1 40.80,53.80
+|only if haveq(32588) or completedq(32588)
+step
+Use your Arcane Emancipator on _Agent Grisel_. |use Arcane Emancipator##93761
+Rescue Agent Crowley |q 32588/3 |goto Isle of Thunder/1 49.40,44.00
+|only if haveq(32588) or completedq(32588)
+step
+kill Metal Lord Mono-Han##69326 |q 32588/4 |goto Isle of Thunder/0 54.90,31.30
+|only if haveq(32588) or completedq(32588)
+step
+clicknpc Lightning Drill##69671
+Destroy the Western Lightning Drill |q 32586/1 |goto Isle of Thunder/1 21.00,69.90
+|only if haveq(32586) or completedq(32586)
+step
+clicknpc Lightning Drill##69671
+Destroy the Central Lightning Drill |q 32586/2 |goto Isle of Thunder/1 32.60,37.50
+|only if haveq(32586) or completedq(32586)
+step
+clicknpc Lightning Drill##69671
+Destroy the Eastern Lightning Drill |q 32586/3 |goto Isle of Thunder/1 62.20,15.40
+|only if haveq(32586) or completedq(32586)
+step
+kill Metal Lord Mono-Han##69326 |q 32586/4 |goto Isle of Thunder/0 54.90,31.30
+|only if haveq(32586) or completedq(32586)
+step
+Click the _Quest Complete_ Box:
+turnin Maximum Capacitor##32586 |only if haveq(32586) or completedq(32586)
+turnin On Her Magic-ey Secret Service##32588 |only if haveq(32588) or completedq(32588)
+accept Forge Ahead!##32587
+|only if haveq(32586,32588) or completedq(32586,32588)
+step
+kill Itoka##69461 |q 32587/1 |goto Isle of Thunder/0 57.70,34.00
+|only if haveq(32587) or completedq(32587)
+step
+kill Fleshcrafter Hoku##69435
+collect Mogu Codex Fragment##93731 |q 32587/2 |goto Isle of Thunder/0 55.70,38.60
+|only if haveq(32587) or completedq(32587)
+step
+talk Scout Captain Daelin##67998
+turnin No Time To Rest##32568 |goto Isle of Thunder/0 61.90,52.00 |only if haveq(32568) or completedq(32568)
+accept Keep It Secret##32560 |goto Isle of Thunder/0 61.90,52.00
+accept Out of Enemy Hands##32557 |goto Isle of Thunder/0 61.90,52.00
+accept Even Giants Fall##32559 |goto Isle of Thunder/0 61.90,52.00
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32568) or completedq(32568)
+step
+talk Miura Brightweaver##67999
+accept The More You Know##32556 |goto Isle of Thunder/0 61.90,52.10
+accept Centuries in Sentries##32555 |goto Isle of Thunder/0 61.90,52.10
+accept All In the Family##32558 |goto Isle of Thunder/0 61.90,52.10
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if completedq(32568) or completedq(32568)
+stickystart "Slay_8_Conqueror_Terrace_Zandalari"
+stickystart "Capture_5_Zandalari_Spirits"
+stickystart "Collect_7_Loa_Infused_Blades"
+step
+kill Priest of the Serpent##69567
+kill Guardian Tak'u##69336 |q 32559/1 |goto Isle of Thunder/0 60.20,54.20
+|only if haveq(32559) or completedq(32559)
+step
+kill Spiritbinder Tu'chek##69301
+collect Mask of the Dark Mystic##93734 |q 32558/1 |goto Isle of Thunder/0 59.40,56.70
+|only if haveq(32560) or completedq(32559)
+step
+kill Arcanital Ra'kul##69300
+collect Mask of the Dark Mystic##93734 |q 32558/2 |goto Isle of Thunder/0 56.70,46.30
+|only if haveq(32560) or completedq(32560)
+step
+click Ritual Artifict
+collect 6 Ritual Artifact##93735 |q 32556/1 |goto Isle of Thunder/0 56.50,47.70
+|only if haveq(32556) or completedq(32556)
+step
+label "Capture_5_Zandalari_Spirits"
+kill Spirit-Bound Sentry##69335+
+use the Resonance Siphon##93806
+|tip Use it on the corpses of Spirit-Bound Sentry.
+Capture #5# Zandalari Spirits |q 32555/1 |goto Isle of Thunder/0 55.7,50.7
+|only if haveq(32555) or completedq(32555)
+step
+label "Slay_8_Conqueror_Terrace_Zandalari"
+Kill Zandalari enemies around this area |kill Zandalari Acolyte##69295, Zandalari Bloodguard##69294, Zandalari Haruspex##69297, Zandalari Soultwister##69296, Zandalari Acolyte##69295, Zandalari Commoner##69299, Priest of the Serpent##69567, Priest of the Hydra##69568, Priest of the Direhorn##69569, Priest of the Hawk##69570
+Slay #8# Conqueror's Terrace Zandalari |q 32560/1 |goto Isle of Thunder/0 59.0,51.3
+You can find more around [58.1,48.9]
+|only if haveq(32560) or completedq(32560)
+step
+label "Collect_7_Loa_Infused_Blades"
+click Loa-Infused Blades##218056
+collect 7 Loa-Infused Blade##93736 |q 32557/1 |goto Isle of Thunder/0 59.0,51.3
+You can find more around [58.1,48.9]
+|only if haveq(32557) or completedq(32557)
+step
+talk Scout Captain Daelin##67998
+turnin Keep It Secret##32560 |goto Isle of Thunder/0 61.90,52.00 |only if haveq(32560) or completedq(32560)
+turnin Out of Enemy Hands##32557 |goto Isle of Thunder/0 61.90,52.00 |only if haveq(32557) or completedq(32557)
+turnin Even Giants Fall##32559 |goto Isle of Thunder/0 61.90,52.00 |only if haveq(32559) or completedq(32559)
+|only if haveq(32568) or completedq(32568)
+step
+talk Miura Brightweaver##67999
+turnin The More You Know##32556 |goto Isle of Thunder/0 61.90,52.10 |only if haveq(32556) or completedq(32556)
+turnin All In the Family##32558 |goto Isle of Thunder/0 61.90,52.10 |only if haveq(32558) or completedq(32558)
+turnin Centuries in Sentries##32555 |goto Isle of Thunder/0 61.90,52.10 |only if haveq(32555) or completedq(32555)
+|only if haveq(32560,32557,32559) or completedq(32560,32557,32559)
+step
+talk Miura Brightweaver##67999
+accept Maximum Capacitor##32586 |goto Isle of Thunder/0 61.90,52.10
+accept On Her Magic-ey Secret Service##32588 |goto Isle of Thunder/0 61.90,52.10
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32560,32557,32559) or completedq(32560,32557,32559)
+step
+talk Scout Captain Daelin##67998
+accept Raining Bones##32582 |goto Isle of Thunder/0 61.90,52.00
+accept Encroaching Force##32585 |goto Isle of Thunder/0 61.90,52.00
+|tip If quests are offered, you will not be able to accept all of these quests.
+Click Here If No Quests Are Available |confirm
+|only if haveq(32568) or completedq(32568)
+step
+Enter the cave here |goto Isle of Thunder/0 49.30,33.00 < 10 |walk
+Use your Arcane Emancipator on _Agent Reginald_ |use Arcane Emancipator##93761
+Rescue Agent Reginald |q 32588/1 |goto Isle of Thunder/1 34.60,70.80
+|only if haveq(32588)
+step
+Use your Arcane Emancipator on _Agent Grisel_ |use Arcane Emancipator##93761
+Rescue Agent Grisel |q 32588/2 |goto Isle of Thunder/1 40.80,53.80
+|only if haveq(32588)
+step
+Use your Arcane Emancipator on _Agent Grisel_ |use Arcane Emancipator##93761
+Rescue Agent Crowley |q 32588/3 |goto Isle of Thunder/1 49.40,44.00
+|only if haveq(32588)
+step
+kill Metal Lord Mono-Han##69326 |q 32588/4 |goto Isle of Thunder/0 54.90,31.30
+|only if haveq(32588)
+step
+clicknpc Lightning Drill##69671
+Destroy the Western Lightning Drill |q 32586/1 |goto Isle of Thunder/1 21.00,69.90
+|only if haveq(32586)
+step
+clicknpc Lightning Drill##69671
+Destroy the Central Lightning Drill |q 32586/2 |goto Isle of Thunder/1 32.60,37.50
+|only if haveq(32586)
+step
+clicknpc Lightning Drill##69671
+Destroy the Eastern Lightning Drill |q 32586/3 |goto Isle of Thunder/1 62.20,15.40
+|only if haveq(32586)
+step
+kill Metal Lord Mono-Han##69326+ |q 32586/4 |goto Isle of Thunder/0 54.90,31.30
+|only if haveq(32586)
+step
+Click the _Quest Complete_ Box:
+turnin Maximum Capacitor##32586 |only if haveq(32586) or completedq(32586)
+turnin On Her Magic-ey Secret Service##32588 |only if haveq(32588) or completedq(32588)
+accept Forge Ahead!##32587
+|only if haveq(32586,32588) or completedq(32586,32588)
+step
+kill Itoka##69461 |q 32587/1 |goto Isle of Thunder/0/0 57.70,34.00
+only if haveq(32587)
+step
+kill Fleshcrafter Hoku##69435
+collect Mogu Codex Fragment##93731 |q 32587/2 |goto Isle of Thunder/0 55.70,38.60
+|only if haveq(32587)
+step
+talk Scout Captain Daelin##70552
+turnin Forge Ahead!##32587 |goto Isle of Thunder/0 58.70,42.70
+|only if haveq(32587) or completedq(32587)
+step
+talk Taoshi##69413
+accept Extended Shore Leave##32607 |or |goto Isle of Thunder/0 58.70,42.80
+accept Raiding the Vault##32608 |or |goto Isle of Thunder/0 58.70,42.80
+|only if completedq(32587) and thunderstage()>=5
+step
+Click the door to The Swollen Vault |goto Isle of Thunder/0 62.30,40.20
+Enter the Swollen Vault |goto Isle of Thunder/2 |noway |c
+|only if haveq(32608)
+step
+kill Lu-Shero##69274
+collect Hoard-Keeper's Key##95374 |goto Isle of Thunder/2 57.60,65.60
+|only if haveq(32608)
+step
+click Stormy Chest##218853
+collect Choker of Storms##95372 |q 32608/1 |goto Isle of Thunder/2 33.00,28.70
+|only if haveq(32608)
+step
+Click Workshop Orders
+Workshop Orders |q 32607/2 |goto Isle of Thunder 63.80,38.90
+|only if haveq(32607)
+step
+kill Zur'chaka the Bonecrafter##69666 |q 32578/1 |goto Isle of Thunder/0 41.90,79.40 |only if haveq(32578) or completedq(32578)
+kill Zur'chaka the Bonecrafter##69666 |q 32582/1 |goto Isle of Thunder/0 54.47,45.20 |only if haveq(32582) or completedq(32582)
+|only if haveq(32578,32582)
+step
+kill Nurkala##69663 |q 32585/1 |only if haveq(32585) |goto Isle of Thunder/0 61.80,61.50
+kill Nurkala##69663 |q 32580/1 |only if haveq(32580) |goto Isle of Thunder/0 61.80,61.50
+kill Nurkala##69663 |q 32584/1 |only if haveq(32584) |goto Isle of Thunder/0 61.80,61.50
+|only if haveq(32580) or haveq(32584) or haveq(32585)
+step
+kill 1 Arcweaver Jor'guva##69665 |q 32579/1 |only if haveq(32579) |goto Isle of Thunder/0 43.9,69.0
+kill 1 Arcweaver Jor'guva##69665 |q 32576/1 |only if haveq(32576) |goto Isle of Thunder/0 43.9,69.0
+|only if haveq(32579) or haveq(32576)
+step
+kill Zur'chaka the Bonecrafter##69666 |q 32578/1 |goto Isle of Thunder/0 41.90,79.40
+|only if haveq(32578)
+step
+kill Arcweaver Uzan##69272 |q 32607/1 |goto Isle of Thunder/0 68.30,45.30
+|only if haveq(32607)
+step
+talk Scout Captain Daelin##67998
+turnin Encroaching Force##32585 |goto Isle of Thunder/0 61.90,52.00 |only if haveq(32585) or completedq(32585)
+turnin Raining Bones##32582 |goto Isle of Thunder/0 61.90,52.00 |only if haveq(32582) or completedq(32582)
+|only if haveq(32585,32582) or completedq(32585,32582)
+step
+talk Lady Jaina Proudmoore##67992
+turnin ##32582 |only if haveq(32582) or completedq(32582)
+turnin Among the Bones##32578 |goto Isle of Thunder/0 63.20,72.30 |only if haveq(32578) or completedq(32578)
+turnin Encroaching Force##32580 |goto Isle of Thunder/0 63.20,72.30 |only if haveq(32580) or completedq(32580)
+turnin Encroaching Force##32584 |goto Isle of Thunder/0 63.20,72.30 |only if haveq(32584) or completedq(32584)
+turnin Raiding the Vault##32608 |goto Isle of Thunder/0 63.20,72.30 |only if haveq(32608) or completedq(32608)
+turnin Imposing Threat##32581 |goto Isle of Thunder/0 63.20,72.30 |only if haveq(32581) or completedq(32581)
+turnin Extended Shore Leave##32607 |goto Isle of Thunder/0 63.20,72.30 |only if haveq(32607) or completedq(32607)
+turnin Competing Magic##32576 |goto Isle of Thunder/0 63.20,72.30 |only if haveq(32576) or completedq(32576)
+turnin Competing Magic##32579 |goto Isle of Thunder/0 63.20,72.30 |only if haveq(32579) or completedq(32579)
+step
+label "end"
+You have completed the available daily quests |complete false or not completedq(32578,32580,32584,32608,32581,32607,32576,32579,32586,32588,32568,32552,32553,32554,32550,32551,32572,32573,32571,32574,32575,32536,32537,32535,32606,32545,32548,32546,32547,32542,32543,32540,32538,32539,32541,32544,32527,32526,32533,32525,32528,32532,32531,32530,32529,32731,32527,32526,32533,32525,32528,32532,32531,32530,32529,32731,32733,32732)  |next "dailies"
 |tip New quests will become available with the next daily server reset.
 ]])
 ZGV.BETAEND()

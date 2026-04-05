@@ -7,11 +7,11 @@ function addon:CreateChatOptions()
   local chatOptions = {
     type = "group",
     childGroups = "tree",
-    name = "聊天",
+    name = "Chat",
     args = {
       instructions = {
         type = "description",
-        name = "這些選項可以調整不再是預設使用者介面一部分的各種聊天設定",
+        name = "These options allow you to modify various chat settings that are no longer part of the default UI.",
         fontSize = "medium",
         order = 1,
       },
@@ -49,8 +49,8 @@ function addon:CreateChatOptions()
       },
       chatClassColorOverride = {
         type = "toggle",
-        name = "停用職業顏色",
-        desc = "停用聊天視窗中的職業顏色",
+        name = "Disable Class Colors",
+        desc = "Disables Class Colors in Chat",
         get = function()
           return C_CVar.GetCVarBool("chatClassColorOverride")
         end,

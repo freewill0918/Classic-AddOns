@@ -54,6 +54,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale("NovaInstanceTracker");
 local LDB = LibStub:GetLibrary("LibDataBroker-1.1");
 NIT.LDBIcon = LibStub("LibDBIcon-1.0");
 local GetAddOnMetadata = C_AddOns and C_AddOns.GetAddOnMetadata or GetAddOnMetadata;
+local SendChatMessage = SendChatMessage or C_ChatInfo.SendChatMessage;
 local version = GetAddOnMetadata("NovaInstanceTracker", "Version") or 9999;
 NIT.version = tonumber(version);
 if (NIT.expansionNum < 10) then
@@ -167,7 +168,7 @@ function NIT:print(msg, channel, prefix, nonClickable, tradeLog)
 		channel = "guild";
 	end
 	if (channel == "say" or channel == "yell" or channel == "party" or channel == "guild" or channel == "officer" or channel == "raid") then
-		SendChatMessage(printPrefix .. " " .. msg, channel);
+		NIT:SendChatMessage(printPrefix .. " " .. msg, channel);
 	elseif (tonumber(channel)) then
 		--Send to numbered channel by number.
 		local id, name = GetChannelName(channel);
@@ -178,7 +179,7 @@ function NIT:print(msg, channel, prefix, nonClickable, tradeLog)
 			print(NIT.chatColor .. "Type \"/nit channelname\" to post your current lockouts to a channel.");
 			return;
 		end
-		SendChatMessage(printPrefix .. " " .. NIT:stripColors(msg), "CHANNEL", nil, id);
+		NIT:SendChatMessage(printPrefix .. " " .. NIT:stripColors(msg), "CHANNEL", nil, id);
 	elseif (channel ~= nil) then
 		--Send to numbered channel by name.
 		local id, name = GetChannelName(channel);
@@ -189,7 +190,7 @@ function NIT:print(msg, channel, prefix, nonClickable, tradeLog)
 			print(NIT.chatColor .. "Type \"/nit channelname\" to post your current lockouts to a channel.");
 			return;
 		end
-		SendChatMessage(printPrefix .. " " .. NIT:stripColors(msg), "CHANNEL", nil, id);
+		NIT:SendChatMessage(printPrefix .. " " .. NIT:stripColors(msg), "CHANNEL", nil, id);
 	else
 		--if (not prefix) then
 		--	printPrefix = "|HNITCustomLink:instancelog|h[NIT]|h|r";
@@ -209,6 +210,15 @@ function NIT:print(msg, channel, prefix, nonClickable, tradeLog)
 			printPrefix = "|HNITCustomLink:instancelog|h" .. printPrefix .. "|h|r";
 		end
 		print(NIT.prefixColor .. printPrefix .. " " .. NIT.chatColor .. msg);
+	end
+end
+
+function NIT:SendChatMessage(message , chatType, languageID, target)
+	if (message) then
+		if (string.len(message) > 255) then
+			message = string.sub(message, 1, 255);
+		end
+		SendChatMessage(message , chatType, languageID, target);
 	end
 end
 
@@ -841,13 +851,13 @@ function SlashCmdList.NITCMD(msg, editBox)
 end
 
 local playedWindows = {};
-function NIT:isTimePlayedMsgRegistered()
+--[[function NIT:isTimePlayedMsgRegistered()
 	for i = 1, NUM_CHAT_WINDOWS do
 		if (_G['ChatFrame' .. i] and _G['ChatFrame' .. i]:IsEventRegistered("TIME_PLAYED_MSG")) then
 			return true;
 		end
 	end
-end
+end]]
 
 function NIT:registerTimePlayedMsg()
 	for k, v in pairs(playedWindows) do
@@ -868,6 +878,9 @@ function NIT:unregisterTimePlayedMsg()
 			_G['ChatFrame' .. i]:UnregisterEvent("TIME_PLAYED_MSG");
 			playedWindows[i] = true;
 		end
+	end
+	if (Chattynator and Chattynator.API.FilterTimePlayed) then
+		Chattynator.API.FilterTimePlayed(true);
 	end
 end
 
@@ -1122,7 +1135,7 @@ function NIT:updateMinimapButton(tooltip, frame)
 					elseif (data.enteredTime and data.leftTime and data.enteredTime > 0 and (GetServerTime() - data.enteredTime) < 21600) then
 						timeSpentRaw = GetServerTime() - data.enteredTime;
 					end
-					local xpPerHour = NIT:commaValue(NIT:round((tonumber(data.xpFromChat) / timeSpentRaw) * 3600));
+					local xpPerHour = NIT:commaValue(NIT:getAverageXpPerHour(data, 1));
 					tooltip:AddLine("|cFF9CD6DE" .. L["experiencePerHour"] .. ":|r |cFFFFFFFF" .. xpPerHour);
 					--tooltip:AddLine("|cFF9CD6DE" .. L["experiencePerHour"] .. ":|r |cFFFFFFFF" .. data.xpFromChat);
 				end
@@ -1370,6 +1383,20 @@ function NIT:getMinimapButtonNextExpires(char)
 	else
 		return;
 	end
+end
+
+function NIT:getAverageXpPerHour(data, id)
+	local averageXP = 0;
+	if (data) then
+		local timeSpent = 0;
+		if (data.enteredTime and data.enteredTime > 0 and NIT.inInstance and id == 1) then
+			timeSpent = GetServerTime() - data.enteredTime;
+		elseif (data.enteredTime and data.leftTime and data.enteredTime > 0 and data.leftTime > 0) then
+			timeSpent = data.leftTime - data.enteredTime;
+		end
+		averageXP = (tonumber(data.xpFromChat) / timeSpent) * 3600;
+	end
+	return NIT:round(averageXP);
 end
 
 function NIT:addBackdrop(string)
@@ -2681,7 +2708,7 @@ function NIT:recalcInstanceLineFramesTooltip(obj)
 				text = text .. " (" .. NIT:round(percent, 1) .. "% of level)";
 			end
 			if (timeSpentRaw and timeSpentRaw > 0 and tonumber(data.xpFromChat) and data.xpFromChat > 0) then
-				local xpPerHour = NIT:commaValue(NIT:round((tonumber(data.xpFromChat) / timeSpentRaw) * 3600));
+				local xpPerHour = NIT:commaValue(NIT:getAverageXpPerHour(data, obj.id));
 				text = text .. "\n|cFF9CD6DE" .. L["experiencePerHour"] .. ":|r " .. xpPerHour;
 				if (data.isPvp) then
 					text = text .. " |cFFA1A1A1(Excluding queue time)|r";
@@ -3052,17 +3079,21 @@ function NIT:recalcInstanceLineFramesTooltip(obj)
 				end
 				local time = NIT:getTimeFormat(v.time, true, true);
 				local timeAgo = GetServerTime() - v.time;
+				local tradeName = v.tradeWho;
+				if (v.tradeWhoRealm and v.tradeWhoRealm ~= GetRealmName()) then
+					tradeName = v.tradeWho .. "-" .. v.tradeWhoRealm;
+				end
 				if (v.playerMoney > 0) then
 					msg = msg .. "|cFF9CD6DE[|cFFDEDE42" .. time .. "|r] " .. L["gave"] .. " |cFFFFFFFF" .. NIT:getCoinString(v.playerMoney)
 							.. "|r " .. L["to"] .. " |c"
-							.. classColorHex .. v.tradeWho .. "|r " .. L["in"] .. " " .. v.where 
+							.. classColorHex .. tradeName.. "|r " .. L["in"] .. " " .. v.where 
 							.. " (" .. NIT:getTimeString(timeAgo, true) .. " " .. L["ago"] .. "|r\n";
 					foundTrades = true;
 				end
 				if (v.targetMoney > 0) then
 					msg = msg .. "|cFF9CD6DE[|cFFDEDE42" .. time .. "|r] " .. L["received"] .. " |cFFFFFFFF" .. NIT:getCoinString(v.targetMoney)
 							.. "|r " .. L["from"] .. " |c"
-							.. classColorHex .. v.tradeWho .. "|r " .. L["in"] .. " " .. v.where 
+							.. classColorHex .. tradeName .. "|r " .. L["in"] .. " " .. v.where 
 							.. " (" .. NIT:getTimeString(timeAgo, true) .. " " .. L["ago"] .. ")|r\n";
 					foundTrades = true;
 				end
@@ -3386,10 +3417,14 @@ function NIT:recalcTradeLogFrame()
 		end
 		local time = NIT:getTimeFormat(v.time, true, true);
 		local timeAgo = GetServerTime() - v.time;
+		local tradeName = v.tradeWho;
+		if (v.tradeWhoRealm and v.tradeWhoRealm ~= GetRealmName()) then
+			tradeName = v.tradeWho .. "-" .. v.tradeWhoRealm;
+		end
 		if (v.playerMoney > 0) then
 			msg = msg .. "[|cFFDEDE42" .. time .. "|r] |cFF9CD6DE" .. L["gave"] .. "|r "
 					.. NIT:getCoinString(v.playerMoney) .. "|r |cFF9CD6DE" .. L["to"] .. "|r |c"
-					.. classColorHex .. v.tradeWho .. "|r |cFF9CD6DE" .. L["in"] .. " " .. v.where 
+					.. classColorHex .. tradeName .. "|r |cFF9CD6DE" .. L["in"] .. " " .. v.where 
 					.. " (" .. NIT:getTimeString(timeAgo, true) .. " " .. L["ago"] .. ")|r\n";
 			traded = true;
 			found = true;
@@ -3397,7 +3432,7 @@ function NIT:recalcTradeLogFrame()
 		if (v.targetMoney > 0) then
 			msg = msg .. "[|cFFDEDE42" .. time .. "|r] |cFF9CD6DE" .. L["received"] .. "|r "
 					.. NIT:getCoinString(v.targetMoney) .. "|r |cFF9CD6DE" .. L["from"] .. "|r |c"
-					.. classColorHex .. v.tradeWho .. "|r |cFF9CD6DE" .. L["in"] .. " " .. v.where 
+					.. classColorHex .. tradeName .. "|r |cFF9CD6DE" .. L["in"] .. " " .. v.where 
 					.. " (" .. NIT:getTimeString(timeAgo, true) .. " " .. L["ago"] .. ")|r\n";
 			found = true;
 		end
@@ -3718,13 +3753,17 @@ function NIT:recalcTradeCopyFrame()
 		end
 		local time = NIT:getTimeFormat(v.time, true, true);
 		local timeAgo = GetServerTime() - v.time;
+		local tradeName = v.tradeWho;
+		if (v.tradeWhoRealm and v.tradeWhoRealm ~= GetRealmName()) then
+			tradeName = v.tradeWho .. "-" .. v.tradeWhoRealm;
+		end
 		if (v.playerMoney > 0) then
 			if (NIT.db.global.copyTradeTime) then
 				msg = msg .. "[|cFFDEDE42" .. time .. "|r] ";
 			end
 			msg = msg .. "|cFF9CD6DE" .. L["gave"] .. " |r"
 					..NIT:convertMoney(v.playerMoney, true, "", true) .. "|r |cFF9CD6DE" .. L["to"] .. " |c"
-					.. classColorHex .. v.tradeWho .. NIT.chatColor;
+					.. classColorHex .. tradeName .. NIT.chatColor;
 			if (NIT.db.global.copyTradeZone) then
 				msg = msg .. " |cFF9CD6DE" .. L["in"] .. " " .. v.where;
 			end
@@ -3740,7 +3779,7 @@ function NIT:recalcTradeCopyFrame()
 			end
 			msg = msg .. "|cFF9CD6DE" .. L["received"] .. " |r"
 					..NIT:convertMoney(v.targetMoney, true, "", true) .. "|r |cFF9CD6DE" .. L["from"] .. " |c"
-					.. classColorHex .. v.tradeWho .. NIT.chatColor;
+					.. classColorHex .. tradeName .. NIT.chatColor;
 			if (NIT.db.global.copyTradeZone) then
 				msg = msg .. " |cFF9CD6DE" .. L["in"] .. " " .. v.where;
 			end
@@ -5179,6 +5218,9 @@ f:SetScript('OnEvent', function(self, event, ...)
 		local npcGUID = UnitGUID("npc");
 		local npcID;
 		if (npcGUID) then
+			if (issecretvalue and issecretvalue(npcGUID)) then
+				return;
+			end
 			_, _, _, _, _, npcID = strsplit("-", npcGUID);
 		end
 		if (not g1 or not npcID) then
@@ -5699,7 +5741,7 @@ function NIT:createSimpleScrollFrame(name, width, height, x, y, borderSpacing, n
 	
 	frame.scrollChild:EnableMouse(true);
 	frame.scrollChild:SetHyperlinksEnabled(true);
-	frame.scrollChild:SetScript("OnHyperlinkClick", ChatFrame_OnHyperlinkShow);
+	--frame.scrollChild:SetScript("OnHyperlinkClick", ChatFrame_OnHyperlinkShow);
 	--Set all fonts in the module using the frame.
 	--Header string.
 	frame.scrollChild.fs = frame.scrollChild:CreateFontString(name .. "FS", "ARTWORK");
@@ -6240,11 +6282,11 @@ end
 
 function NIT:sendGroup(msg)
 	if (IsInRaid()) then
-		SendChatMessage(msg, "RAID");
+		NIT:SendChatMessage(msg, "RAID");
 	elseif (LE_PARTY_CATEGORY_INSTANCE and IsInGroup(LE_PARTY_CATEGORY_INSTANCE)) then
-        SendChatMessage(msg, "INSTANCE_CHAT");
+		NIT:SendChatMessage(msg, "INSTANCE_CHAT");
 	elseif (IsInGroup()) then
-		SendChatMessage(msg, "PARTY");
+		NIT:SendChatMessage(msg, "PARTY");
 	end
 end
 
@@ -6321,6 +6363,9 @@ f:SetScript('OnEvent', function(self, event, ...)
 	local npcGUID = UnitGUID("npc");
 	local npcID;
 	if (npcGUID) then
+		if (issecretvalue and issecretvalue(npcGUID)) then
+			return;
+		end
 		_, _, _, _, _, npcID = strsplit("-", npcGUID);
 	end
 	if (not npcID) then

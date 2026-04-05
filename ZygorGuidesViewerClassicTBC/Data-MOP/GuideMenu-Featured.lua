@@ -6,6 +6,11 @@ local GuideMenu = ZGV.GuideMenu
 
 GuideMenu.Featured={}
 
+
+
+
+
+
 table.insert(GuideMenu.Featured,{
 title="Mists of Pandaria Phase 2 - Landfall", group="mop",
 

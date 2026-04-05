@@ -1905,7 +1905,7 @@ accept The Looming Threat##25334 |goto Shimmering Expanse/0 56.02,13.69
 step
 talk Farseer Gadra##39226
 |tip Inside the underwater cave.
-Select _"I am ready to join you in the vision, Farseer."_
+Select _"I am ready to join you in the vision, Farseer."_ |gossip 112367
 Enter the Spirit Vision |havebuff Spirit Vision##74385 |goto Shimmering Expanse/0 56.02,13.69 |q 25334
 step
 Watch the dialogue
@@ -2085,7 +2085,7 @@ accept Nespirah##25890 |goto Shimmering Expanse/0 49.23,42.57
 step
 talk Swift Seahorse##40873
 |tip Inside the underwater cave.
-Select _"I need to get to Nespirah."_
+Select _"I need to get to Nespirah."_ |gossip 113196
 Begin Traveling to Nespirah |invehicle |goto Shimmering Expanse/0 49.52,41.21 |q 25890
 step
 Travel to Nespirah |outvehicle |goto Shimmering Expanse/0 51.79,48.54 |q 25890 |notravel
@@ -2104,7 +2104,7 @@ accept Making Contact##25900 |goto Shimmering Expanse/0 51.62,52.23
 step
 talk Earthmender Duarn##41531
 |tip Inside Nespirah.
-Select _"Whenever you're ready, Duarn."_
+Select _"Whenever you're ready, Duarn."_ |gossip 112284
 Watch the dialogue
 Speak with Earthmender Duarn |q 25900/1 |goto Shimmering Expanse/0 51.62,52.23
 step
@@ -2153,7 +2153,7 @@ accept Breaking Through##25916 |goto Shimmering Expanse/0 51.62,52.23
 step
 talk Earthmender Duarn##41531
 |tip Inside Nespirah.
-Select _"Let's speak with Nespirah."_
+Select _"Let's speak with Nespirah."_ |gossip 112285
 Watch the dialogue
 Speak with Earthmender Duarn |q 25916/1 |goto Shimmering Expanse/0 51.62,52.23
 step
@@ -2365,9 +2365,14 @@ talk Wavespeaker Valoren##39881
 |tip Inside the underwater cave.
 accept Visions of the Past: The Invasion of Vashj'ir##25760 |goto Shimmering Expanse/0 49.22,57.01
 step
+use the Ancient Elven Etching##62281
+accept Piece of the Past##27716
+|only if itemcount(62281) > 0
+step
 talk Levla Dreamwaker##40644
 |tip Inside the underwater cave.
 turnin An Occupation of Time##25581 |goto Shimmering Expanse/0 49.69,57.16
+turnin Piece of the Past##27716 |only if haveq(27716) or completedq(27716)
 step
 Leave the cave |goto Shimmering Expanse/0 46.92,57.45 < 30 |walk |only if subzone("Tranquil Wash")
 use the Blade of the Naz'jar Battlemaiden##55171
@@ -2476,7 +2481,7 @@ turnin Clear Goals##25748 |goto Shimmering Expanse/0 32.99,67.63
 accept Swift Action##25752 |goto Shimmering Expanse/0 32.99,67.63
 step
 talk Engineer Hexascrub##40639
-Select _"I'm ready to begin the assault on the terrace."_
+Select _"I'm ready to begin the assault on the terrace."_ |gossip 112243
 Speak to Engineer Hexascrub |q 25752/1 |goto Shimmering Expanse/0 32.91,69.23
 step
 Begin the Assault on the Terrace |invehicle |goto Shimmering Expanse/0 32.91,69.23 |q 25752
@@ -2502,7 +2507,7 @@ Scout the Northwestern Terrace |q 25754/2 |goto Shimmering Expanse/0 30.88,71.88
 step
 talk Injured Assault Volunteer##41281+
 |tip They look like friendly NPCs laying on the ground.
-Select _"The way to the rendevous point is mostly clear. You should get moving."_
+Select _"The way to the rendevous point is mostly clear. You should get moving."_ |gossip 112245
 Rescue #6# Injured Assault Volunteers |q 25753/1 |goto Shimmering Expanse/0 37.23,78.68
 step
 talk Admiral Dvorek##40643
@@ -2523,15 +2528,15 @@ talk Lady Naz'jar##42076
 accept By Her Lady's Word##25858 |goto Shimmering Expanse/0 29.00,78.44
 step
 talk Fathom-Lord Zin'jatar##42072
-Select _"I am to hunt the Crucible of Nazsharin. Do you have warriors to assist me?"_
+Select _"I am to hunt the Crucible of Nazsharin. Do you have warriors to assist me?"_ |gossip 112274
 Speak to Fathom-Lord Zin'jatar |q 25858/1 |goto Shimmering Expanse/0 34.42,78.65
 step
 talk Overseer Idra'kess##41455
-Select _"I am to hunt the Crucible of Nazsharin. Do you have warriors to assist me?"_
+Select _"I am to hunt the Crucible of Nazsharin. Do you have warriors to assist me?"_ |gossip 112275
 Speak to Overseer Idra'kess |q 25858/3 |goto Shimmering Expanse/0 36.84,79.75
 step
 talk Lady Sira'kess##42071
-Select _"I am to hunt the Crucible of Nazsharin. Do you have warriors to assist me?"_
+Select _"I am to hunt the Crucible of Nazsharin. Do you have warriors to assist me?"_ |gossip 112276
 Speak to Lady Sira'kess |q 25858/2 |goto Shimmering Expanse/0 39.22,77.99
 step
 talk Fathom-Stalker Azjentus##42074
@@ -2672,13 +2677,13 @@ stickystart "Gather_Sirakess_Tide_Priestesses"
 stickystart "Relieve_Nazjar_Honor_Guards"
 step
 talk Fathom-Caller Azrajar##41980
-Select _"Yes, Fathom-Caller. The Mistress awaits."_
+Select _"Yes, Fathom-Caller. The Mistress awaits."_ |gossip 112331
 Gather Fathom-Caller Azrajar |q 25896/2 |goto Shimmering Expanse/0 33.07,60.96
 step
 label "Gather_Sirakess_Tide_Priestesses"
 talk Sira'kess Tide Priestess##41985+
 |tip They look like nagas inside pink bubbles.
-Select _"Lady Sira'kess has sent for you. You are needed for the ritual."_
+Select _"Lady Sira'kess has sent for you. You are needed for the ritual."_ |gossip 112330
 Gather #6# Sira'kess Tide Priestesses |q 25896/1 |goto Shimmering Expanse/0 33.08,72.44
 step
 label "Relieve_Nazjar_Honor_Guards"
@@ -2796,15 +2801,20 @@ accept Fuel-ology 101##26106 |goto Abyssal Depths/0 55.50,72.91
 step
 click Fuel Sampling Station##203461
 |tip Inside the underwater cave.
-Choose _"Let's get started!"_
+Choose _"Let's get started!"_ |gossip 112341
 |tip Choose "Hammerhead Oil Sample" 3 Times.
 |tip Choose "Remora Oil Sample" 2 Times.
-Choose _"Mix the samples together!_"
+Select _"Hammerhead Oil Sample"_ |gossip 112363
+Select _"Hammerhead Oil Sample"_ |gossip 112344
+Select _"Hammerhead Oil Sample"_ |gossip 112348
+Select _"Remora Oil Sample"_ |gossip 112351
+Select _"Remora Oil Sample"_ |gossip 112355
+Choose _"Mix the samples together!_" |gossip 112358
 collect Promising Fuel Sample##56833 |goto Abyssal Depths/0 55.78,72.47 |q 26106
 step
 talk Engineer Hexascrub##41666
 |tip Inside the underwater cave.
-Select _"Here, I made a Promising Fuel Sample. Three parts hammerhead and two parts remora."_
+Select _"Here, I made a Promising Fuel Sample. Three parts hammerhead and two parts remora."_ |gossip 112297
 Create the Perfect Bio-Fuel |q 26106/1 |goto Abyssal Depths/0 55.50,72.91
 step
 talk Engineer Hexascrub##41666
@@ -3121,9 +3131,7 @@ turnin Back to Darkbreak Cove##26181 |goto Abyssal Depths/0 55.70,72.98
 accept Defending the Rift##26193 |goto Abyssal Depths/0 55.70,72.98
 step
 talk Erunak Stonespeaker##41600
-|tip Inside the underwater cave.
-Select _"I am prepared, Erunak. Let's go!"_
-Travel to the Battle for the Abyssal Breach |condition subzone("Abyssal Breach") |goto Abyssal Depths/0 55.70,72.98 |q 26193
+Travel to the Battle for the Abyssal Breach |condition subzone("Abyssal Breach") |goto Abyssal Depths/0 65.62,51.68 |q 26193
 step
 Watch the dialogue
 |tip Follow your allies through the battle and help them fight.

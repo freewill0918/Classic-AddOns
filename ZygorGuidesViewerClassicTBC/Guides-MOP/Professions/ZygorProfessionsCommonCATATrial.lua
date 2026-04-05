@@ -18,8 +18,11 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\General Farming G
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\General Farming Guides\\Eternal Earth")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\General Farming Guides\\Eternal Fire")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\General Farming Guides\\Eternal Life",{
-mopready=true,
 description="Eternal Life can be gathered from the Howling Fjord in Northrend.",
+mopready=true,
+meta={goldtype="route",levelreq=68},
+items={{35625},{37704}},
+maps={"Howling Fjord"},
 },[[
 step
 kill Thornvine Creeper##23874+
@@ -55,8 +58,11 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farmin
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Terocone")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Frost Lotus")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Goldclover",{
-mopready=true,
 description="Goldclover can be gathered from Borean Tundra.",
+meta={goldtype="route",skillreq={herbalism=375},levelreq=68},
+items={36901},
+maps={"Borean Tundra"},
+mopready=true,
 },[[
 step
 map Borean Tundra/0

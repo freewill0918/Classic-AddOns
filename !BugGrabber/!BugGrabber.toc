@@ -1,6 +1,6 @@
-## Interface: 11507, 30405, 50501, 110200, 110205
+## Interface: 11508, 11507, 20505, 30405, 38000, 40402, 50503, 50502, 120001, 120005, 120000
 ## Title: BugGrabber
-## Version: v11.2.2
+## Version: v12.0.12
 ## Notes: Grabs bugs for the bug sack.
 ## Notes-deDE: Grabs bugs for the bug sack.
 ## Notes-ruRU: Grabs bugs for the bug sack.
@@ -12,16 +12,22 @@
 ## Notes-esMX: Grabs bugs for the bug sack.
 ## Notes-itIT: Grabs bugs for the bug sack.
 ## Notes-ptBR: Grabs bugs for the bug sack.
+## Category: Development Tools
+## Category-deDE: Entwicklungstools
+## Category-esES: Herramientas de Desarrollo
+## Category-esMX: Herramientas de Desarrollo
+## Category-frFR: Outils de Développement
+## Category-itIT: Strumenti di sviluppo
+## Category-koKR: Development Tools
+## Category-ptBR: Ferramentas de Desenvolvimento
+## Category-ruRU: Инструменты разработки
+## Category-zhCN: 开发工具
+## Category-zhTW: 開發工具
 ## Author: Funkeh
 ## X-Credits: Rabbit, Rowne, Ramble, kergoth, ckknight, Fritti
 ## X-License: All Rights Reserved
 ## X-Category: Development Tools
+## LoadSavedVariablesFirst: 1
 ## SavedVariables: BugGrabberDB
 
-## Title-zhTW: |cffffffee[系統]|r 錯誤收集器
-## Notes-zhTW: BugGrabber |n|n收集錯誤訊息，防止遊戲中斷，訊息會顯示在錯誤訊息袋中。
-## Category-zhTW: 系統
-
 BugGrabber.lua
-locales.lua
-

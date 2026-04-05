@@ -199,16 +199,33 @@ do
 	local karesh_extra = {2398}
 	function Lib:GetMapContinent(mapID)
 		local cont = ZGV.GetMapContinent(mapID)
-		--if cont==ZONE_ARGUS_KROKUUN or cont==ZONE_ARGUS_MACAREE or cont==ZONE_ARGUS_ANTORAN then cont=ZONE_ARGUS end  -- Argus zones need to have a common continent (not so much for ants!).
 		local cont_scan = cont
+		local extracont
+
 		if cont==113 then cont_scan=988 end -- wotlk classic needs to be scanned via separate id
 		if Lib.IsClassicMOP and cont==101 then cont_scan=102 end -- wotlk classic needs to be scanned via separate id
-		if cont==905 then cont_scan=994 end -- argus needs to be scanned via separate id
-		if mapID==2346 then cont_scan=2374 end -- undermine has own taxi map
-		--if mapID==2371 or map==2472 then cont=2398 cont_scan=2398 end -- k'aresh/tazavesh have own, completely separate, taxi map
-		local extracont
-		if cont==1978 then extracont=dragonisles_extra end -- dragonflight needs to have subcontinent scanned
-		if cont==2274 then extracont=karesh_extra end -- kazalgar needs to have subcontinent scanned
+
+		if cont==905 then cont_scan=994 end -- argus
+		if cont==1978 then extracont=dragonisles_extra end -- dragonflight has subzones
+		if cont==2274 then extracont=karesh_extra end -- kazalgar has subzones
+
+		if mapID==2346 then cont_scan=2374 end -- undermine
+		
+		-- two midnight floating zones in theory are on 2357 continent, but have no connections to rest of the world, and have own taxi maps. 
+		-- set up virtual continents for both of them to avoid headaches
+		if mapID==2444 then cont_scan=2479 cont=2405 end -- voidstorm
+		if mapID==2405 then cont_scan=2479 cont=2405 end -- voidstorm
+		if mapID==2413 then cont_scan=2480 cont=2413 end -- harandar
+		if mapID==2576 then cont_scan=2480 cont=2413 end -- harandar
+
+		if mapID==2395 then cont,cont_scan = 2537,2537 end -- workaround for
+		if mapID==2424 then cont,cont_scan = 2537,2537 end -- mapcoords workaround
+		if mapID==2437 then cont,cont_scan = 2537,2537 end -- bring them back to QT
+		
+
+		if mapID==2352 then extracont={2401} end -- founders point
+		if mapID==2351 then extracont={2402} end -- razorwind shores
+				
 		return cont,cont_scan,extracont
 	end		
 
@@ -1306,7 +1323,6 @@ do
 		if onlycont==true or not IsShiftKeyDown() then onlycont=Lib:GetCurrentMapContinent() end
 
 		local s=""
-		if not onlycont then s="data.flightcost = {\n" end
 
 		for contnum,contdata in ZGV.OrderedPairs(Lib.flightcost) do  repeat
 			if onlycont and contnum~=onlycont then break end  --continue
@@ -1314,7 +1330,7 @@ do
 				s=s.."\n\n\n\n\n"..ZGV.Testing.FlightCostComments[contnum]
 			end
 
-			s=s.."["..contnum.."]={\n"
+			s=s.."data.flightcost["..contnum.."]={\n"
 			
 			local function namesort(a,b) 
 				if a.name==b.name then
@@ -1360,9 +1376,8 @@ do
 				end
 				s=s.."	},\n"
 			end
-			s=s.."},\n"
+			s=s.."}\n"
 		until true end
-		if not onlycont then  s=s.."}\n"  end
 		ZGV:ShowDump(s,"Paste into LibTaxi/data.lua"..(onlycont and " WHERE APPROPRIATE" or ""))
 	end
 
@@ -1635,7 +1650,7 @@ do
 					        or (taxi.known==true and "|cff00ff00KNOWN|r")
 					        or (taxi.known==false and "|cffff8800UNKNOWN|r")
 					        or "|cffff0000???|r")
-				     or "|cffff0000NPC NOT FOUND|r"
+				     or "|cffff0000NPC OR CONNECTIONS NOT FOUND|r"
 				)
 
 			tinsert(ret,s)
@@ -1942,8 +1957,14 @@ function HooksForFlightMapFrame:FlightMapPinOnEnter(mousePin)
 			local startPin = slotIndexToPin[sourceSlot]
 			local destinationPin = slotIndexToPin[destinationSlot]
 
+			if not (startPin and destinationPin) then 
+				Lib:Debug("Sigh, no startPin or destinationPin")
+				return 
+			end
+
 			if hops[#hops]~=startPin.taxiNodeData.nodeID then tinsert(hops,startPin.taxiNodeData.nodeID) end
 			tinsert(hops,destinationPin.taxiNodeData.nodeID)
+			
 
 			-- just checking if we have the nodes in data, we don't actually use any of that here
 			local startNode = Lib:FindTaxiByNodeID(startPin.taxiNodeData.nodeID)

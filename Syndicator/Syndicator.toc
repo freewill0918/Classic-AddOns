@@ -1,6 +1,6 @@
-## Interface: 11508, 30405, 50503, 110205, 110207
+## Interface: 120001, 120000, 50503, 38000, 20505, 11508
 ## Title: Syndicator
-## Version: 252
+## Version: 265
 ## Author: plusmouse
 ## SavedVariables: SYNDICATOR_CONFIG, SYNDICATOR_DATA, SYNDICATOR_SUMMARIES
 ## IconTexture: Interface\AddOns\Syndicator\Assets\logo.tga
@@ -17,12 +17,9 @@
 ## Category-zhCN: 物品栏
 ## Category-zhTW: 物品欄
 
-## Title-zhTW: |cffB973CC[物品]|r 多角色物品統計
-## Notes-zhTW: Syndicator |n|n在物品的浮動提示資訊中顯示所有角色擁有此物品的數量。|n|n|cffffd200使用方法: |r從Esc>選項>插件>物品統計，進行設定。
-## Category-zhTW: 物品
-
 Locales.lua
 
+Libs\LibStub.lua
 Libs\LibBattlePetTooltipLine\LibBattlePetTooltipLine.xml
 
 Core\Objects.lua

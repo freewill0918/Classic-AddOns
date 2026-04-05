@@ -1,0 +1,9 @@
+## Interface: 50503
+## Title: SmartQuest
+## Version: 1.31
+## Notes: Group Quest Tracking
+## Author: Zensunim of Dragonblight
+## DefaultState: Enabled
+## SavedVariables: SmartQuestOptions
+## Dependencies:
+SmartQuest.xml

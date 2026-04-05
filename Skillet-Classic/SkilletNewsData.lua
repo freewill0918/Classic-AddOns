@@ -18,14 +18,103 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]--
 
 local L = Skillet.L
-local isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
-local isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
-local isBCC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-local isWrath = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
-local isCata = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
+local isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE -- 1
+local isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC -- 2
+local isBCC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC -- 5
+local isWrath = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC -- 11
+local isCata = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC -- 14
+local isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC -- 19
 
 Skillet.NewsName = "Skillet-Classic News"
 Skillet.NewsData = {
+	{	version = "2.31",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "Addons", body = "Update TradeSkillMaster Compatibility" },
+					{ header = "Recipes", body = "Adjust triggering a recipe rescan" },
+					{ header = "Crafts", body = "Implement Enchanting invSlot filter" },
+					{ header = "Recipes", body = "Add option to always display skill up chance" },
+				},
+			},
+		},
+	},
+	{	version = "2.30",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "TOC", body = "Remove unused library and plugins" },
+					{ header = "Shopping", body = "Better fix for arithmetic on nil" },
+				},
+			},
+		},
+	},
+	{	version = "2.29",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "UI", body = "Fix ChatEdit_InsertLink calls" },
+				},
+			},
+		},
+	},
+	{	version = "2.28",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "UI", body = "Fix additional buttons" },
+				},
+			},
+		},
+	},
+	{	version = "2.27",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "Search", body = "Fix tooltipCache generation" },
+					{ header = "Shopping", body = "Fix arithmetic on nil" },
+				},
+			},
+		},
+	},
+	{	version = "2.26",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "SkillLevels", body = "Update SkillLevels code and data" },
+					{ header = "Sorting", body = "Fix By Difficulty sort" },
+					{ header = "UI", body = "Add delayupdate to reduce FPS loss when crafting" },
+				},
+			},
+		},
+	},
+	{	version = "2.25",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "TOC", body = "Update TOC" },
+				},
+			},
+		},
+	},
+	{	version = "2.24",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "UI", body = "Fix Thermal Anvil" },
+				},
+			},
+		},
+	},
+	{	version = "2.23",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "TOC", body = "Update TOC" },
+				},
+			},
+		},
+	},
 	{	version = "2.22",
 		data = {
 			{	name = "Changes",

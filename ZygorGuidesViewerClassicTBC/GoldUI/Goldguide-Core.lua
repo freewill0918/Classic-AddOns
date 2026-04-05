@@ -29,18 +29,12 @@ Goldguide.ITEM_AUCTION_STATUS = {
 	unscored = {"|cff777777","Unknown"}
 }
 
-local CRAFTING_SKILLS={"All","Mining","Jewelcrafting","Enchanting","Inscription","Blacksmithing","Engineering","Alchemy","Tailoring","Leatherworking","Cooking"}
-
 function Goldguide:Initialise()
 	Goldguide.OffsetFarming=0
-	Goldguide.OffsetGathering=0
-	Goldguide.OffsetCrafting=0
 	Goldguide.OffsetAuctions=0
 
 	ZGV.db.profile.goldsort = ZGV.db.profile.goldsort or {
-		["gathering"] = {"dispgold","desc"},
 		["farming"] = {"dispgold","desc"},
-		["crafting"] = {"profit","desc"},
 		["auctions"] = {"profit","desc"},
 	}
 
@@ -69,8 +63,6 @@ function Goldguide:Initialise()
 	Goldguide.herbalism = ZGV.Professions:GetSkill("Herbalism").level
 	Goldguide.mining = ZGV.Professions:GetSkill("Mining").level
 
-	Goldguide.CacheCraftingTooltip={}
-
 	Goldguide:CalculateAllChores(true)
 
 	if ZGV.db.global.gold_info_pages then Goldguide.ShowInfoPage=true end
@@ -84,24 +76,30 @@ end
 function Goldguide:CalculateAllChores(refresh)
 	-- If we are here, then it means that we got new AH data, or just started gg
 	Goldguide:InitialiseAuctionChores()
-	Goldguide:InitialiseCraftingChores()
 
 	for _,chore in pairs(Goldguide.Chores.Farming) do chore:CalculateDetails(refresh)   chore.needsRefresh=refresh end
-	for _,chore in pairs(Goldguide.Chores.Gathering) do chore:CalculateDetails(refresh) chore.needsRefresh=refresh end
-	for _,chore in pairs(Goldguide.Chores.Crafting) do chore:CalculateDetails(refresh)  chore.needsRefresh=refresh end
 	for _,chore in pairs(Goldguide.Chores.Auctions) do chore:CalculateDetails(refresh)  chore.needsRefresh=refresh end
 
-	if refresh then
-		Goldguide.knows_crafting = false
-		for _,skillname in ipairs(CRAFTING_SKILLS) do
-			if ZGV.Professions:GetSkill(skillname).level>0 then
-				Goldguide.knows_crafting = true
-			end
+	Goldguide:NormaliseFarmingChores()
+
+	Goldguide:Update()
+end
+
+function Goldguide:NormaliseFarmingChores()
+	-- rescale all farming chores scores
+	local maximum = 0
+	for _,chore in pairs(Goldguide.Chores.Farming) do 
+		--local icon, title, zone, score = chore:GetDisplayInfo(chore.needsRefresh)
+		maximum = math.max(maximum,chore.score_raw)
+	end
+	Goldguide.FarmingMaximum = maximum
+
+	if maximum > 0 then
+		for _,chore in pairs(Goldguide.Chores.Farming) do
+			chore.score = math.floor(chore.score_raw*10000/maximum)
 		end
 	end
 
-
-	Goldguide:Update()
 end
 
 function Goldguide:Update()
@@ -120,17 +118,6 @@ function Goldguide:Update()
 			end
 			if chore:IsValidChore() then results=results+1 end
 		end
-	elseif tab=="Gathering" then
-		for ii,chore in ipairs(Goldguide.Chores.Gathering) do 
-			if chore.needsRecalc then 
-				chore:CalculateDetails(true)
-			end
-			if chore:IsValidChore() then results=results+1 end
-		end
-	elseif tab=="Crafting" then
-		for ii,chore in ipairs(Goldguide.Chores.Crafting) do
-			if chore:IsValidChore() then results=results+1 end
-		end
 	elseif tab=="Auctions" then
 		for ii,chore in ipairs(Goldguide.Chores.Auctions) do 
 			if chore:IsValidChore() then results=results+1 end
@@ -141,10 +128,6 @@ function Goldguide:Update()
 	local Chores=Goldguide.Chores
 	if tab=="Farming" then
 		sort(Chores.Farming,Goldguide.Farming.dynamic_sort)
-	elseif tab=="Gathering" then
-		sort(Chores.Gathering,Goldguide.Gathering.dynamic_sort)
-	elseif tab=="Crafting" then
-		sort(Chores.Crafting,Goldguide.Crafting.dynamic_sort)
 	elseif tab=="Auctions" then
 		sort(Chores.Auctions,Goldguide.Auctions.dynamic_sort)
 	end
@@ -176,14 +159,12 @@ function Goldguide:Update()
 				rownum = itemindex-rowoff
 				if rownum>0 and rownum<ROW_COUNT+1 then 
 					local row = Goldguide.Farming_Frame.Entries.rows[rownum]
-					local icon, title, zone, rate, disptime, dispgold = chore:GetDisplayInfo(chore.needsRefresh)
+					local icon, title, zone, score = chore:GetDisplayInfo(chore.needsRefresh)
 					row.no:SetText(itemindex)
 					row.icon:SetTexture(icon)
 					row.title:SetText(title)
 					row.zone:SetText(zone)
-					row.rate:SetText(rate)
-					row.disptime:SetText(disptime)
-					row.dispgold:SetText(dispgold)
+					row.dispgold:SetText(score)
 
 					row.chore = chore
 
@@ -203,153 +184,12 @@ function Goldguide:Update()
 		end
 	end
 
-	if tab=="Gathering" then 
-		if results==0 then
-			if #Goldguide.Chores.Gathering==0 then
-				resultstatus = L["gold_gathering_no_results"]..L["gold_general_open_window1"]
-			else
-				local type = Goldguide.Gathering_Frame.TypeDropdown:GetCurrentSelectedItem():GetText()
-				local profstrings = "" 
-				local gatheringprofs={herbalism="Herbalism",mining="Mining",skinning="Skinning",fishing="Fishing",enchanting="Enchanting"}
-
-				for k,prof in pairs(gatheringprofs) do
-					local skill=ZGV.Professions:GetSkill(prof)
-					local level=skill.level
-					if level>0 then 
-						profstrings = profstrings .. "\n" .. L["gold_gathering_error_prof"]:format(prof,level)
-					end
-					if ZGV.Professions.tradeskills[skill.parentskillID] and ZGV.Professions.tradeskills[skill.parentskillID].subs then
-						for i,v in pairs(ZGV.Professions.tradeskills[skill.parentskillID].subs) do
-							if v.name ~= prof then
-								local subskill=ZGV.Professions:GetSkill(v.name)
-								local sublevel=subskill.level
-								if sublevel>0 then 
-									profstrings = profstrings .. "\n" .. L["gold_gathering_error_prof"]:format(v.name,sublevel)
-								end
-							end
-						end
-					end
-				end
-
-				if type~="All" then
-					local level = ZGV.Professions:GetSkill(type).level
-					if level==0 then
-						resultstatus = L["gold_gathering_error_one_noskillin"]:format(type) .. L["gold_general_open_window1"]
-						if profstrings~="" then
-							resultstatus = resultstatus..L["gold_gathering_error_one_noskillin_skills"]:format(profstrings)
-						end
-					else
-						resultstatus = L["gold_gathering_error_one_noresults"]:format(type)
-					end
-				else
-					if profstrings~="" then
-						resultstatus = L["gold_gathering_error_one_nothing"]:format(profstrings) .. L["gold_general_open_window2"]
-					else
-						resultstatus = L["gold_gathering_error_all_noprofessions"] .. L["gold_general_open_window1"]
-					end
-				end
-			end
-		end
-
-		local rownum=0
-		local ROW_COUNT = Goldguide.Gathering_Frame.Entries:CountRows()
-
-		Goldguide.OffsetGathering = max(0,min(Goldguide.OffsetGathering,results-ROW_COUNT))
-		local rowoff=Goldguide.OffsetGathering
-
-		local itemindex = 1
-		for ii,chore in ipairs(Goldguide.Chores.Gathering) do 
-			if chore.valid then
-				rownum = itemindex-rowoff
-				if rownum>0 and rownum<ROW_COUNT+1 then 
-					local row = Goldguide.Gathering_Frame.Entries.rows[rownum]
-					local icon, title, zone, rate, disptime, dispgold = chore:GetDisplayInfo(chore.needsRefresh)
-					row.no:SetText(itemindex)
-					row.icon:SetTexture(icon)
-					row.title:SetText(title)
-					row.zone:SetText(zone)
-					row.rate:SetText(rate)
-					row.disptime:SetText(disptime)
-					row.dispgold:SetText(dispgold)
-
-					row.chore = chore
-
-					row.backalpha = rownum%2==0 and 0.0 or 0.06
-					row.back:SetAlpha(row.backalpha)
-
-					row:Show()
-				end
-				itemindex=itemindex+1 
-			end
-		end
-
-		Goldguide.Gathering_Frame.Entries.scrollbar:TotalValue(results)
-		Goldguide.Gathering_Frame.Entries.scrollbar:SetValue(rowoff)
-		for r=rownum+1,ROW_COUNT do 
-			Goldguide.Gathering_Frame.Entries.rows[r]:Hide() 
-			Goldguide.Gathering_Frame.Entries.rows[r].chore=nil 
-		end
-	end
-
-	if tab=="Crafting" then 
-		if results==0 then
-			if #Goldguide.Chores.Crafting==0 then
-				if Goldguide.knows_crafting then
-					resultstatus = L["gold_crafting_error_recipesnotcached"]
-				else
-					resultstatus = L["gold_crafting_error_noprofessions"]
-				end
-			else
-				local type = Goldguide.Gathering_Frame.TypeDropdown:GetCurrentSelectedItem():GetText()
-				resultstatus = L["gold_crafting_error_noresults"]:format(type)
-			end
-		end
-
-		local rownum=0
-		local ROW_COUNT = Goldguide.Crafting_Frame.Entries:CountRows()
-
-		Goldguide.OffsetCrafting = max(0,min(Goldguide.OffsetCrafting,results-ROW_COUNT))
-		local rowoff=Goldguide.OffsetCrafting
-
-		local itemindex = 1
-		for ii,chore in ipairs(Goldguide.Chores.Crafting) do
-			if chore.valid then
-				rownum = itemindex-rowoff
-				if rownum>0 and rownum<ROW_COUNT+1 then 
-					local row = Goldguide.Crafting_Frame.Entries.rows[rownum]
-					local icon, name, status, materials, profit = chore:GetDisplayInfo(chore.needsRefresh)
-					row.no:SetText(itemindex)
-					row.icon:SetTexture(icon)
-					row.name:SetText(name)
-					row.status:SetText(status)
-					row.materials:SetText(materials)
-					row.profit:SetText(profit)
-
-					row.chore = chore
-
-					row.backalpha = rownum%2==0 and 0.0 or 0.06
-					row.back:SetAlpha(row.backalpha)
-
-					row:Show()
-				end
-				itemindex=itemindex+1 
-			end
-		end
-
-		Goldguide.Crafting_Frame.Entries.scrollbar:TotalValue(results)
-		Goldguide.Crafting_Frame.Entries.scrollbar:SetValue(rowoff)
-		for r=rownum+1,ROW_COUNT do 
-			Goldguide.Crafting_Frame.Entries.rows[r]:Hide() 
-			Goldguide.Crafting_Frame.Entries.rows[r].chore=nil 
-		end
-	end
-
 	if tab=="Auctions" then 
 		if results==0 then
 			if #Goldguide.Chores.Auctions==0 then
 				resultstatus = L["gold_auctions_error_noresults"]
 			else
-				local type = Goldguide.Gathering_Frame.TypeDropdown:GetCurrentSelectedItem():GetText()
+				local type = Goldguide.Auctions_Frame.TypeDropdown:GetCurrentSelectedItem():GetText()
 				resultstatus = L["gold_auctions_error_noresults"]:format(type)
 			end
 		end
@@ -466,20 +306,6 @@ function Goldguide.MainFrame_EventHandler(self, event, ...)
 				break
 			end
 		end
-		for k,row in pairs(Goldguide.Gathering_Frame.Entries.rows) do
-			if row:IsVisible() and row:IsMouseOver() then
-				Goldguide.GatheringTooltip:Hide()
-				row:GetScript("OnEnter")(row)
-				break
-			end
-		end
-		for k,row in pairs(Goldguide.Crafting_Frame.Entries.rows) do
-			if row:IsVisible() and row:IsMouseOver() then
-				Goldguide.CraftingTooltip:Hide()
-				row:GetScript("OnEnter")(row)
-				break
-			end
-		end
 		for k,row in pairs(Goldguide.Auctions_Frame.Entries.rows) do
 			if row:IsVisible() and row:IsMouseOver() then
 				Goldguide.AuctionTooltip:Hide()
@@ -505,9 +331,7 @@ tinsert(ZGV.startups,{"Goldguide core",function(self)
 	local t = debugprofilestop()
 
 	Goldguide.Chores = {
-		Gathering={},
 		Farming={},
-		Crafting={},
 		Auctions={},
 	}
 
@@ -516,26 +340,25 @@ tinsert(ZGV.startups,{"Goldguide core",function(self)
 		if guide.type=="GOLD" or guide.type=="PROFESSIONS" then
 			if guide.headerdata.meta and guide.headerdata.meta.goldtype=="route"  then -- we need header data. if it is not there, ignore
 				local chore = {}
-				chore.name=guide.title_short
+				chore.name=(ZGV.db.profile.dev_show_gold_path and guide.type.." " or "")..guide.title_short
 				chore.guide=guide
 				chore.meta=guide.headerdata.meta
 				chore.maps_array=guide.headerdata.maps
 
 				local items={}
 				for sitem,item in pairs(guide.headerdata.items) do
-					if not item[3] then
-						tinsert(items,item)
+					if type(item)=="table" then
+						if not item[3] then
+							tinsert(items,item)
+						end
+					else
+						tinsert(items,{item})
 					end
 				end
 				chore.items = items
 
-				if chore.meta.skillreq then 
-					chore.type="gathering"
-					Goldguide.Gathering:New(chore)
-				else
-					chore.type="farming"
-					Goldguide.Farming:New(chore)
-				end
+				chore.type="farming"
+				Goldguide.Farming:New(chore)
 			end
 
 			if debugprofilestop()-t>50 then t=debugprofilestop() coroutine.yield("more gold to do") end
@@ -675,6 +498,7 @@ function Goldguide.Common:GetProfitPerHour()  -- NOT SMART. Stupid as hell.
 	if not self.items then return 0 end
 	for i,pair in ipairs(self.items) do
 		local id,num,crap=unpack(pair)
+		num = num or 1
 		local vendorprice,ahprice = ZGVG:GetItemPrice(id)
 		if not crap and ahprice>0 then
 			profit=profit + num * ahprice
@@ -723,8 +547,10 @@ function Goldguide.Common:GetSmartProfitPerHour()
 	return self.profitperhour
 end
 
+local function titlecase(first, rest) return first:upper()..rest:lower() end
 function Goldguide.Common:CalculateDetails(refresh)
 	if self.calculated_details and not refresh and not self.needsRecalc then return self.calculated_details end
+	local wasrecalc = self.needsRecalc
 	self.needsRecalc = false
 
 	self.profitperhour = nil
@@ -734,6 +560,20 @@ function Goldguide.Common:CalculateDetails(refresh)
 	local s = ""
 
 	self.display_name = nil
+
+	self.parentskill = self.meta and self.meta.skillreq
+	if self.parentskill then
+		local skill,value = next(self.parentskill)
+		self.parentskill = skill:gsub("^.*_([^_]+)$","%1")
+		self.parentskilldesc = skill:gsub("_"," "):gsub("(%a)([%w_']*)", titlecase)
+		if value > 1 then self.parentskilldesc = self.parentskilldesc .. value end
+	end
+	if self.meta and self.meta.levelreq then
+		local level = type(self.meta.levelreq)=="table" and self.meta.levelreq[1] or self.meta.levelreq
+		if tonumber(level)>1 then
+			self.leveldesc = "Level "..level
+		end
+	end
 
 	if self.items then
 		local itemstrings = {}
@@ -827,7 +667,9 @@ function Goldguide.Common:CalculateDetails(refresh)
 							ZGV.GetMoneyString(trend.p_hi*ZGVG.OVERPRICE))
 							or (itemdata.empty and (" |cff00ff00EMPTY!|r") or "")
 						)
-					tinsert(good_items,{itemname,is,count=count,price=itemdata.price,profit=itemdata.price*count,is_lively=true,itemdata=itemdata})
+
+					local score = itemdata.demand * itemdata.price
+					tinsert(good_items,{itemname,is,count=count,price=itemdata.price,profit=itemdata.price*count,is_lively=true,itemdata=itemdata, score=score})
 
 				elseif trend and not itemdata.is_lively then
 					itemdata.price = trend.p_md or vendor or 0
@@ -837,7 +679,8 @@ function Goldguide.Common:CalculateDetails(refresh)
 						count, itemlink or "#"..itemid,
 						ZGV.GetMoneyString(itemdata.price),ZGV.GetMoneyString(itemdata.price*count)
 					)
-					tinsert(bad_items,{itemname,is,count=count,price=itemdata.price,profit=itemdata.price*count,is_lively=false,itemdata=itemdata})
+					local score = (itemdata.demand or 0 ) * itemdata.price / 2
+					tinsert(bad_items,{itemname,is,count=count,price=itemdata.price,profit=itemdata.price*count,is_lively=false,itemdata=itemdata, score=score})
 
 				elseif not trend then
 					itemdata.price = vendor or 0
@@ -847,7 +690,8 @@ function Goldguide.Common:CalculateDetails(refresh)
 						ZGV.GetMoneyString(itemdata.price),ZGV.GetMoneyString(itemdata.price*count),
 						useful and "useful, but " or ""
 						)
-					tinsert(bad_items,{itemname,is,count=count,price=itemdata.price,profit=itemdata.price*count,is_lively=false,itemdata=itemdata,no_trend=true})
+					local score = 0
+					tinsert(bad_items,{itemname,is,count=count,price=itemdata.price,profit=itemdata.price*count,is_lively=false,itemdata=itemdata,no_trend=true, score=score})
 
 				end
 			
@@ -858,7 +702,8 @@ function Goldguide.Common:CalculateDetails(refresh)
 				itemdata.price = ZGVG:GetItemPrice(itemid) or vendor or 0
 
 				local is = ("%d %s (%s each = %s total) |cff888888<- vendor|r"):format(count,itemlink or "#"..itemid,ZGV.GetMoneyString(itemdata.price),ZGV.GetMoneyString(itemdata.price*count))
-				tinsert(bad_items,{itemname,is,count=count,price=itemdata.price,profit=itemdata.price*count,itemdata=itemdata,no_trend=true})
+				local score = 0
+				tinsert(bad_items,{itemname,is,count=count,price=itemdata.price,profit=itemdata.price*count,itemdata=itemdata,no_trend=true, score=score})
 
 			end
 
@@ -928,9 +773,24 @@ function Goldguide.Common:CalculateDetails(refresh)
 		self.dispgold = 0
 	end
 
+	self.score = 0
+	for i,it in ipairs(self.good_items) do self.score = self.score + it.score end
+	for i,it in ipairs(self.bad_items) do self.score = self.score + it.score end
+
+	if self.meta.mult then
+		self.score = self.score * self.meta.mult
+	end
+
+	local changed = (self.score_raw == self.score)
+	self.score_raw = self.score
+	self.dispgold = self.score_raw
 
 	if self.maps_array then
 		self.maps = table.concat(self.maps_array, ", ") 
+	end
+
+	if wasrecalc and changed then
+		Goldguide:NormaliseFarmingChores()
 	end
 
 	Goldguide.needToUpdate = true

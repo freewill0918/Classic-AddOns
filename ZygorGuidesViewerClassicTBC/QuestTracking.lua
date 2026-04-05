@@ -127,7 +127,7 @@ function ZGV:GetQuestLeaderBoards(questindex,questID)
 		else
 			local title = C_QuestLog.GetTitleForLogIndex and C_QuestLog.GetTitleForLogIndex(questindex) or select(8,GetQuestLogTitle(questindex))
 			ZGV:Debug("Quest %s claims %d goals but leaderboard (%s) says nil,%s,%s",title,numgoals,g,tostring(type),tostring(complete))
-			goals[g] = { item=type or "?", num=0, needed=1, type=type or "?", complete=complete, leaderboard=type or "?" }
+			goals[g] = { item=type or "?", num=0, needed=1, type=type or "?", complete=complete, leaderboard=type or "?", unknown=true }
 		end
 	end
 	return goals
@@ -419,6 +419,8 @@ end
 --local detection_accepted=ERR_QUEST_ACCEPTED_S:gsub("%%[sd]","(.*)")
 local detection_complete=ERR_QUEST_COMPLETE_S:gsub("%%[sd]","(.*)")
 function ZGV:CHAT_MSG_SYSTEM_QuestTracking(event,text)
+	if ZGV.IsSecret(text) then return end
+
 	text = tostring(text)
 	--local quest = string.match(text,L["detection_accepted"])
 	--if quest then self:NewQuestEvent(quest,self:QuestTracking_GetQuestId(quest)) end

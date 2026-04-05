@@ -281,18 +281,10 @@ ZGV_DefaultSkin_DefaultStep_Mixin = {}
 		local lineframe
 
 		-- header?:
-			local did_header
-			local numbertext = profile.stepnumbers and L['step_num']:format(stepdata.stepnum)
-			local leveltext = (stepdata.level and stepdata.level>0 and profile.stepnumbers) and L['step_level']:format(stepdata.level or "?")
-			local reqtext = stepdata.requirement and (stepdata:AreRequirementsMet() and "|cff44aa44" or "|cffbb0000") .. L["stepreq"]:format((table.concat(stepdata.requirement,L["stepreqor"])):gsub("!([a-zA-Z ]+)",L["stepreqnot"]:format("%1")))
-			local titletext -- = stepdata:GetTitle()  titletext=titletext and " "..titletext
-			local betatext = (ZGV.CurrentGuide.beta or stepdata.beta) and L['stepbeta']
-			local devtext = (ZGV.CurrentGuide.devonly or stepdata.dev) and L['stepdev']
-			local prereqtext = ZGV.QuestDB.GetStepTag and ZGV.QuestDB:GetStepTag(stepdata)
-
-			if (numbertext or leveltext or reqtext or titletext or betatext or prereqtext or devtext) then
+		local steplabel = stepdata:GetStepDisplayLabel()
+		if steplabel then
 				lineframe = self:NextLine()
-				lineframe:ShowAsHeader((numbertext or "")..(leveltext or "")..(reqtext or "")..(titletext or "")..(betatext or "")..(prereqtext or "")..(devtext or ""))
+			lineframe:ShowAsHeader(steplabel)
 			end
 		--
 
@@ -392,9 +384,10 @@ ZGV_DefaultSkin_DefaultStep_Mixin = {}
 				--local goaltxt = goal:GetText(stepnum>=self.CurrentStepNum)
 				--local goaltxt = goal:GetText(true,profile.showbriefsteps and (self.briefstepexpansion<=0.1 --[[or stepdata~=self.briefstepexpanded--]]))
 				local goaltxt = goal:GetText(true,showbriefsteps and ((self.briefstepexpansionlines[self.num] or 0)<=0.1 --[[or stepdata~=self.briefstepexpanded--]]))
-				if profile.showwrongsteps and status=="hidden" then goaltxt = "|cff880000[*BAD*]|r "..goaltxt end
 
 				if goaltxt~="?" and goaltxt~="" then
+					if profile.showwrongsteps and status=="hidden" then goaltxt = "|cff880000[*BAD*]|r "..goaltxt end
+
 					lineframe = self:NextLine()
 					--local link = ((goal.tooltip and not profile.tooltipsbelow) or (goal.x and not profile.windowlocked)) and " |cffdd44ff*|r" or ""  -- goto asterisk
 					--if stepdata:IsCurrentlySticky() then link="" end
@@ -409,10 +402,15 @@ ZGV_DefaultSkin_DefaultStep_Mixin = {}
 				end
 
 				if (goaltxt=="?" or profile.tooltipsbelow) and goal.tooltip then
+					local goaltxt = goal.tooltip
+					if profile.showwrongsteps and status=="hidden" then goaltxt = "|cff880000[*BAD*]|r "..goaltxt end
+
 					lineframe = self:NextLine()
-					lineframe:ShowAsGoalTip(goal,indent.."|cffeeeecc".. goal.tooltip.."|r")
+					lineframe:ShowAsGoalTip(goal,indent.."|cffeeeecc".. goaltxt.."|r")
 				end
 				if goal.loadguide then
+					if profile.showwrongsteps and status=="hidden" then goaltxt = "|cff880000[*BAD*]|r "..goaltxt end
+
 					lineframe:ShowAsLoadguide(goal,indent..goaltxt)
 				end
 				if ZGV.Sync and goal:IsCompleteable() and ZGV.Sync:IsEnabled() and profile.share_showparty then
@@ -1155,8 +1153,11 @@ local function CreateProgressBar(frame)
 
 		-- progress
 		local percent,num,total = current_guide:GetCompletion(mode)
+		
 		if mode=="exp" then
 			num = UnitXP("player");
+			if UnitLevel("player") == GetMaxPlayerLevel() then num = UnitXPMax("player") end
+
 			total = UnitXPMax("player");
 			percent = max(num / total, 0);
 		end
@@ -1179,7 +1180,7 @@ local function CreateProgressBar(frame)
 
 		-- text and tooltip
 		local tooltiptext = L['frame_guide_'..mode..'completed']:format(num,total)
-		local maintext = (percent==1) and L['frame_guide_complete'] or L['frame_guide_'..mode..'progress']:format(floor(percent*100))
+		local maintext = (percent==1) and (mode=="exp" and L['frame_exp_complete'] or L['frame_guide_complete']) or L['frame_guide_'..mode..'progress']:format(floor(percent*100))
 
 		ProgressBar:SetColor(r,g,b,a)
 		ProgressBar:SetPercent(percent*100)
@@ -1475,7 +1476,7 @@ end
 
 		step:PrepareCompletion()
 
-		if (mode == "sticky") then
+		if (mode == "sticky" and not ZGV.db.profile.alwaysshowstickies) then
 			local iscomplete, ispossible = step:IsComplete()
 			if iscomplete then return end  -- refuse to add completed stickies
 		end
@@ -1960,7 +1961,7 @@ function ZGV_DefaultSkin_Frame_Mixin:MenuSettingsButton_OnClick()
 			text=L["menu_Startup"],
 			iconset=ZGV.ButtonSets.TitleButtons,
 			iconkey="WAND",
-			func=function() ZGV.Tabs:LoadGuideToTab("Leveling Guides\\Startup Guide Wizard") end,
+			func=function() ZGV.Modules.IntroWizard:Checklist() end,
 			notCheckable=1,
 		},
 		UIDropDownFork_separatorInfo, -- 2

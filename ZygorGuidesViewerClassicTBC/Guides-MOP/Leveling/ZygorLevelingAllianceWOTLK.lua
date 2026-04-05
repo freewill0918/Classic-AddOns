@@ -8622,7 +8622,7 @@ Gain Gidwin's Weapon Oil |havebuff Gidwin's Weapon Oil##85613 |or |q 27373 |goto
 Gain Tarenar's Talisman |havebuff Tarenar's Talisman##85614 |or |q 27373 |goto Eastern Plaguelands 8.80,66.60
 step
 clicknpc Fiona's Caravan##45400
-Choose _"Ride Fiona's Caravan to its next destination."_
+Select _"Ride Fiona's Caravan to its next destination."_ |gossip 112748
 Begin Riding Fiona's Caravan |invehicle |goto Eastern Plaguelands 8.80,66.60 |q 27373
 step
 Ride Fiona's Caravan |q 27373/1 |goto Eastern Plaguelands 34.72,68.58 |notravel
@@ -8646,7 +8646,7 @@ step
 talk Argus Highbeacon##45451
 |tip Walks around.
 |top Top of the tower.
-Select _"Are you interested in joining our caravan?  We're headed to Light's Hope Chapel."_
+Select _"Are you interested in joining our caravan?  We're headed to Light's Hope Chapel."_ |gossip 112745
 Find a Traveling Companion |q 27381/1 |goto Eastern Plaguelands 35.90,69.30
 step
 talk Argus Highbeacon##45451
@@ -8701,7 +8701,7 @@ accept Cenarion Tenacity##27544 |goto Eastern Plaguelands 35.02,68.14
 step
 talk Carlin Redpath##11063
 |tip Inside the tower.
-Select _"Carlin, do you have the extended Annals of Darrowshire?"_
+Select _"Carlin, do you have the extended Annals of Darrowshire?"_ |gossip 111489
 collect Extended Annals of Darrowshire##13202 |q 27388/1 |goto Eastern Plaguelands 35.60,68.90
 stickystart "Kill_Plaguebats"
 step
@@ -8804,7 +8804,7 @@ talk Fiona##45417
 accept The Trek Continues##27448 |goto Eastern Plaguelands 34.85,69.14
 step
 clicknpc Fiona's Caravan##45400
-Choose _"Ride Fiona's Caravan to its next destination."_
+Select _"Ride Fiona's Caravan to its next destination."_ |gossip 112749
 Begin Riding Fiona's Caravan |invehicle |goto Eastern Plaguelands 35.00,69.30 |q 27448
 step
 Ride in Fiona's Caravan |q 27448/1 |goto Eastern Plaguelands 52.61,53.92 |notravel
@@ -8890,7 +8890,7 @@ use the Death Cultist Disguise##61283
 Wear the Death Cultist Disguise |havebuff Death Cultist Disguise##85141 |goto Eastern Plaguelands 61.70,75.50 |q 27454
 step
 click Mereldar Plague Cauldron##205485
-Choose _"Throw in an entire flask."_
+Select _"Throw in an entire flask."_ |gossip 112758
 Disturb the Mereldar Plague Cauldron |q 27454/1 |goto Eastern Plaguelands 62.40,76.40
 step
 talk Betina Bigglezink##11035
@@ -9162,7 +9162,7 @@ turnin Impatience##27488 |goto Eastern Plaguelands 61.60,43.20
 accept Nobody to Blame but Myself##27489
 step
 clicknpc Fiona's Caravan##45400
-Choose _"Ride Fiona's Caravan to its next destination."_
+Select _"Ride Fiona's Caravan to its next destination."_ |gossip 112750
 Begin Riding Fiona's Caravan |invehicle |goto Eastern Plaguelands 61.60,42.50 |q 27489
 step
 Ride Fiona's Caravan to Northpass Tower |q 27489/1 |goto Eastern Plaguelands 50.51,20.67 |notravel
@@ -9343,7 +9343,7 @@ talk Fiona##45417
 turnin Journey's End##27527 |goto Eastern Plaguelands 73.70,52.10
 step
 talk Beezil Linkspanner##46022
-Select _"You know, if you're looking for a place to hide out, you're free to join us in our caravan."_
+Select _"You know, if you're looking for a place to hide out, you're free to join us in our caravan."_ |gossip 112821
 Earn the "Full Caravan" Achievement |achieve 5442 |goto Eastern Plaguelands 73.80,52.36
 |only if rep('Gadgetzan') > Hated
 ]])
@@ -9960,6 +9960,7 @@ label "Collect_Smithing_Tuyere"
 kill Dark Iron Steamsmith##5840+
 collect Smithing Tuyere##18959 |q 27977/1 |goto Searing Gorge 40.50,44.21
 collect Lookout's Spyglass##18960 |q 27977/2 |goto Searing Gorge 40.50,44.21
+|tip While you should be able to collect both items from the Steamsmiths, if the Spyglass wouldn't drop, try with Dark Iron Lookouts - they are mostly south of the gorge.
 step
 label "Kill_Greater_Lava_Spiders"
 kill 9 Greater Lava Spider##5858 |q 27980/1 |goto Searing Gorge 28.49,43.81
@@ -21305,10 +21306,10 @@ mopready=true,
 next="Leveling Guides\\Outland (60-70)\\Zangarmarsh (62-64)",
 },[[
 step
-Enter the building |goto Blasted Lands/0 64.16,17.12 < 10 |walk
+Enter the building |goto Blasted Lands/0 59.92,15.38 < 10 |walk
 talk Bernie Heisten##3546
 |tip Inside the building.
-buy Nethergarde Bitter##23848 |goto Blasted Lands/0 63.51,17.01 |q 9563 |future
+buy Nethergarde Bitter##23848 |goto Blasted Lands/0 59.40,14.87 |q 9563 |future
 step
 talk Watch Commander Relthorn Netherwane##16841
 accept Through the Dark Portal##10119 |goto Blasted Lands/0 58.32,55.90 |only if ZGV.IsClassicTBC
@@ -21323,7 +21324,7 @@ turnin Arrival in Outland##10288 |goto Hellfire Peninsula/0 87.36,52.42
 accept Journey to Honor Hold##10140 |goto Hellfire Peninsula/0 87.36,52.42
 step
 talk Amish Wildhammer##18931
-Select _"Send me to Honor Hold!"_
+Select _"Send me to Honor Hold!"_ |gossip 91764
 Begin Flying to Honor Hold |invehicle |goto Hellfire Peninsula/0 87.36,52.42 |q 10140
 step
 Fly to Honor Hold |outvehicle |goto Hellfire Peninsula/0 54.66,62.67 |q 10140 |notravel
@@ -21460,7 +21461,7 @@ turnin Disrupt Their Reinforcements##10144 |goto Hellfire Peninsula/0 71.34,62.7
 accept Mission: The Murketh and Shaadraz Gateways##10146 |goto Hellfire Peninsula/0 71.34,62.77
 step
 talk Wing Commander Dabir'ee##19409
-Select _"I'm on a bombing mission for Forward Commander Kingston. I need a gryphon destroyer!"_
+Select _"I'm on a bombing mission for Forward Commander Kingston. I need a gryphon destroyer!"_ |gossip 92184
 Begin the Bombing Mission |invehicle |goto Hellfire Peninsula/0 71.40,62.48 |q 10146
 step
 use the Seaforium PU-36 Explosive Nether Modulator##28038
@@ -21514,7 +21515,7 @@ turnin Warlord of the Bleeding Hollow##10485 |goto Hellfire Peninsula/0 70.96,63
 accept Return to Honor Hold##10903 |goto Hellfire Peninsula/0 70.96,63.37
 step
 talk Wing Commander Dabir'ee##19409
-Select _"Send me to Shatter Point!"_
+Select _"Send me to Shatter Point!"_ |gossip 92185
 Begin Flying to Shatter Point |invehicle |goto Hellfire Peninsula/0 71.40,62.48 |q 10340
 step
 Fly to Shatter Point |outvehicle |goto Hellfire Peninsula/0 78.51,35.05 |q 10340 |notravel
@@ -21539,7 +21540,7 @@ collect Area 52 Special##28132 |goto Hellfire Peninsula/0 79.34,33.86 |q 10163 |
 |tip Then, accept the quest again from this NPC to get the item again.
 step
 talk Gryphoneer Windbellow##20235
-Select _"Send me to the Abyssal Shelf!"_
+Select _"Send me to the Abyssal Shelf!"_ |gossip 92179
 Begin Flying to the Abyssal Shelf |invehicle |goto Hellfire Peninsula/0 78.25,34.46 |q 10163
 stickystart "Destroy_Fel_Cannons"
 stickystart "Slay_Ganarg_Peons"
@@ -21573,7 +21574,7 @@ turnin Mission: The Abyssal Shelf##10163 |goto Hellfire Peninsula/0 79.34,33.86
 accept Go to the Front##10382 |goto Hellfire Peninsula/0 79.34,33.86
 step
 talk Gryphoneer Windbellow##20235
-Select _"Send me to Honor Point!"_
+Select _"Send me to Honor Point!"_ |gossip 92180
 Begin Flying to Honor Point |invehicle |goto Hellfire Peninsula/0 78.25,34.46 |q 10382
 step
 Fly to Honor Point |outvehicle |goto Hellfire Peninsula/0 68.72,28.22 |q 10382 |notravel
@@ -21617,7 +21618,7 @@ collect Burning Legion Missive##29588 |n
 use Burning Legion Missive##29588
 accept The Dark Missive ##10395 |goto Hellfire Peninsula/0 53.09,26.47
 step
-click Forge Camp: Portal Glyph
+click Rune of Spite##182935
 |tip It looks like a floating rune inside the demon structure.
 Close the Burning Legion Gate |q 10397/2 |goto Hellfire Peninsula/0 53.04,27.71
 step
@@ -21725,6 +21726,8 @@ step
 talk Hargen Bronzewing##35100
 Learn Expert Riding |learnspell 34090 |goto Hellfire Peninsula/0 54.28,62.69
 |tip This is heavily recommended as it will let you fly around the zone.
+|only if not knowspell(34090) |and
+|only if not knowspell(90265)
 step
 Enter the building |goto Hellfire Peninsula/0 56.24,65.69 < 10 |walk
 talk Warp-Scryer Kryv##16839
@@ -21913,7 +21916,7 @@ accept The Exorcism of Colonel Jules##10935 |goto Hellfire Peninsula/0 54.32,63.
 step
 talk Anchorite Barada##22431
 |tip Upstairs inside the building.
-Select _"I am ready, Anchorite. Let us begin the exorcism."_
+Select _"I am ready, Anchorite. Let us begin the exorcism."_ |gossip 92510
 Click Here After Talking to Him |confirm |goto Hellfire Peninsula/0 53.93,63.55 |q 10935
 step
 Watch the dialogue
@@ -22108,19 +22111,19 @@ step
 Enter the building |goto Hellfire Peninsula/0 15.44,58.79 < 7 |walk
 talk Akoru the Firecaller##20678
 |tip Inside the building.
-Select _"Walk free, elder. Bring the spirits back to your tribe."_
+Select _"Walk free, elder. Bring the spirits back to your tribe."_ |gossip 92083
 Free Akoru |q 10368/2 |goto Hellfire Peninsula/0 15.59,58.75
 step
 Enter the building |goto Hellfire Peninsula/0 13.03,58.64 < 7 |walk
 talk Aylaan the Waterwaker##20679
 |tip Inside the building.
-Select _"Walk free, elder. Bring the spirits back to your tribe."_
+Select _"Walk free, elder. Bring the spirits back to your tribe."_ |gossip 92081
 Free Aylaan |q 10368/3 |goto Hellfire Peninsula/0 13.00,58.43
 step
 Enter the building |goto Hellfire Peninsula/0 13.29,60.77 < 7 |walk
 talk Morod the Windstirrer##20677
 |tip Inside the building.
-Select _"Walk free, elder. Bring the spirits back to your tribe."_
+Select _"Walk free, elder. Bring the spirits back to your tribe."_ |gossip 92082
 Free Morod |q 10368/1 |goto Hellfire Peninsula/0 13.13,61.04
 step
 Enter the building |goto Hellfire Peninsula/0 16.18,64.76 < 7 |walk
@@ -22165,7 +22168,7 @@ talk Mirren Longbeard##16851
 turnin Gaining Mirren's Trust##9563 |goto Hellfire Peninsula/0 23.97,72.35
 accept The Finest Down##9420 |goto Hellfire Peninsula/0 23.97,72.35
 step
-kill Quillfang Ravager##16932, Quillfang Skitterer##16933
+kill Quillfang Skitterer##19189, Quillfang Ravager##16934
 Slay #10# Quillfang Ravagers |q 9385/1 |goto Hellfire Peninsula/0 22.70,67.85
 stickystart "Kill_Haaleshi_Windwalkers"
 stickystart "Kill_Haaleshi_Talonguards"
@@ -22180,7 +22183,7 @@ use Avruu's Orb##23580
 accept Avruu's Orb##9418 |goto Hellfire Peninsula/0 25.66,76.40
 step
 click Haal'eshi Altar##181606
-Choose _"Place Avruu's Orb on the Altar."_
+Choose _"Place Avruu's Orb on the Altar."_ |gossip 94149
 kill Aeranas##17085
 |tip He will eventually surrender.
 talk Aeranas##17085
@@ -22276,12 +22279,12 @@ use the Sanctified Crystal##23417
 click Glowing Crystal##181574
 |tip It will appear above the Uncontrolled Voidwalker's corpse after you use the Sanctified Crystal.
 collect Glowing Sanctified Crystal##23442 |q 9383/1 |goto Hellfire Peninsula/0 46.31,83.29
-You can find more around [46.31,83.29]
+You can find more around [Hellfire Peninsula/0 50.19,83.18]
 step
 label "Collect_Condensed_Voidwalker_Essences"
 kill Uncontrolled Voidwalker##16975, Rogue Voidwalker##16974
 collect 10 Condensed Voidwalker Essence##23218 |q 9351/1 |goto Hellfire Peninsula/0 46.31,83.29
-You can find more around [46.31,83.29]
+You can find more around [Hellfire Peninsula/0 50.19,83.18]
 |only if haveq(9351) or completedq(9351)
 step
 talk "Screaming" Screed Luckheed##19367
@@ -22643,11 +22646,6 @@ Run up the stairs |goto Zangarmarsh/0 41.71,29.92 < 20 |only if walking
 talk Halu##22485
 fpath Orebor Harborage |goto Zangarmarsh/0 41.28,29.00
 step
-Enter the building |goto Zangarmarsh/0 42.10,26.66 < 10 |walk
-talk Innkeeper Kerp##18908
-|tip Inside the building.
-home Orebor Harborage |goto Zangarmarsh/0 41.86,26.23 |q 9801 |future
-step
 talk Timothy Daniels##18019
 accept Secrets of the Daggerfen##9848 |goto Zangarmarsh/0 41.21,28.67
 step
@@ -22716,6 +22714,11 @@ turnin Ango'rosh Encroachment##9835 |goto Zangarmarsh/0 41.94,27.19
 accept Overlord Gorefist##9839 |goto Zangarmarsh/0 41.94,27.19 |only if (completedq(9835) or haveq(9835))
 turnin Wanted: Chieftain Mummaki##10116 |goto Zangarmarsh/0 41.94,27.19
 turnin Daggerfen Deviance##10115 |goto Zangarmarsh/0 41.94,27.19
+step
+Enter the building |goto Zangarmarsh/0 42.10,26.66 < 10 |walk
+talk Innkeeper Kerp##18908
+|tip Inside the building.
+home Orebor Harborage |goto Zangarmarsh/0 41.86,26.23 |q 9801 |future
 step
 talk Maktu##18010
 accept Natural Armor##9834 |goto Zangarmarsh/0 41.61,27.29
@@ -22800,6 +22803,7 @@ step
 talk Fahssn##17923
 |tip Walks around.
 accept Sporeggar##9919 |goto Zangarmarsh/0 19.07,63.86
+|tip If he wouldn't have this quest ready, kill a few {o}Starving Bog Lords{} & {o}Starving Fungal Giants{}, to get your reputation to friendly. You can find them west from here.
 step
 talk Watcher Leesa'oh##17831
 turnin The Count of the Marshes##9911 |goto Zangarmarsh/0 23.32,66.21
@@ -22891,6 +22895,16 @@ step
 talk Vindicator Idaar##18004
 accept The Fate of Tuurem##9793 |goto Zangarmarsh/0 68.34,50.08
 step
+label "UNINDENTIFIED_PLANTS"
+talk Lauranna Thar'well##17909 |goto Zangarmarsh/0 80.32,64.17
+accept Identify Plant Parts##9784 |repeatable
+|only if (itemcount(24401) >= 10) and (rep("Cenarion Expedition") < Honored)
+step
+talk Lauranna Thar'well##17909 |goto Zangarmarsh/0 80.32,64.17
+turnin Identify Plant Parts##9784
+'|next UNINDENTIFIED_PLANTS
+|only if (itemcount(24401) >= 10) and (rep("Cenarion Expedition") < Honored)
+step
 talk Lauranna Thar'well##17909
 turnin Saving the Sporeloks##10096 |goto Zangarmarsh/0 80.32,64.17
 step
@@ -22903,12 +22917,12 @@ accept Blessings of the Ancients##9785 |goto Zangarmarsh/0 80.37,64.72
 step
 talk Ashyen##17900
 |tip It looks like a large tree that walks around this area.
-Select _"Grant me your mark, wise ancient."_
+Select _"Grant me your mark, wise ancient."_ |gossip 91227
 Receive the Mark of Lore |q 9785/1 |goto Zangarmarsh/0 81.09,63.91
 step
 talk Keleth##17901
 |tip It looks like a large tree that walks around this area.
-Select _"Grant me your mark, mighty ancient."_
+Select _"Grant me your mark, mighty ancient."_ |gossip 91231
 Receive the Mark of War |q 9785/2 |goto Zangarmarsh/0 78.98,67.42
 step
 talk Windcaller Blackhoof##18070
@@ -28811,16 +28825,6 @@ step
 talk Prospector Belvar##24328
 turnin The Rune of Command##11348 |goto Howling Fjord/0 62.28,17.21
 step
-Enter the building |goto Howling Fjord/0 60.61,15.89 < 10 |walk
-talk Christina Daniels##24057
-|tip Inside the building.
-home Fort Wildervar |goto Howling Fjord/0 60.48,15.86
-step
-Enter the building |goto Howling Fjord/0 30.90,41.91 < 10 |walk
-talk Innkeeper Celeste Goodhutch##23937
-|tip Inside the building.
-home Westguard Inn |goto Howling Fjord/0 30.86,41.45
-step
 talk Sapper Steelring##23976
 turnin Leader of the Deranged##11240 |goto Howling Fjord/0 29.11,41.78
 step
@@ -31304,24 +31308,24 @@ Enter the Spirit Form |havebuff Binding Life##48809 |goto Dragonblight 86.04,64.
 step
 talk Forgotten Peasant##27226
 |tip Human spirits working on the buildings around this area.
-Select _"Sorry to have bothered you, friend. Carry on!"_
+Select _"Sorry to have bothered you, friend. Carry on!"_ |gossip 93272
 Question a Forgotten Peasant |q 12291/1 |goto Dragonblight 86.48,65.49
 step
 label "Question_A_Forgotten_Rifleman"
 talk Forgotten Rifleman##27225
 |tip Dwarf spirits with guns all around this area.
-Select _"I'm sure Arthas will be back any day now, soldier. Keep your chin up!"_
+Select _"I'm sure Arthas will be back any day now, soldier. Keep your chin up!"_ |gossip 93426
 Question a Forgotten Rifleman |q 12291/2 |goto Dragonblight 86.48,65.49
 step
 label "Question_A_Forgotten_Footman"
 talk Forgotten Footman##27229
 |tip Armored knight spirits all around this area.
-Select _"I'm sure everything will work out, footman."_
+Select _"I'm sure everything will work out, footman."_ |gossip 93428
 Question a Forgotten Footman |q 12291/4 |goto Dragonblight 86.48,65.49
 step
 talk Forgotten Knight##27224
 |tip He looks like an armored human spirit riding on a horse that walks around this area. |notinsticky
-Select _"I must be going now, soldier. Stay vigilant!"_
+Select _"I must be going now, soldier. Stay vigilant!"_ |gossip 93427
 Question a Forgotten Knight |q 12291/3 |goto Dragonblight 85.98,68.75
 step
 Follow the path up to leave the Forgotten Shore |goto Dragonblight 86.09,64.32 < 30 |only if walking and subzone("The Forgotten Shore")
@@ -31396,7 +31400,7 @@ turnin Gaining an Audience##12119 |goto Dragonblight 57.91,54.16
 accept Speak with your Ambassador##12766 |goto Dragonblight 57.91,54.16
 step
 talk Tariolstrasz##26443
-Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_
+Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_ |gossip 93560
 Begin Flying to the Top of the Temple |invehicle |goto Dragonblight 57.91,54.16 |q 12458 |future
 step
 Fly to the Top of the Temple |outvehicle |goto Dragonblight 59.72,53.07 |q 12458 |future
@@ -31410,7 +31414,7 @@ talk Nalice##27765
 accept The Obsidian Dragonshrine##12447 |goto Dragonblight 60.07,54.20
 step
 talk Torastrasza##26949
-Select _"Yes, please, I would like to return to the ground level of the temple."_
+Select _"Yes, please, I would like to return to the ground level of the temple."_ |gossip 93074
 Begin Flying to the Ground Level of the Temple |invehicle |goto Dragonblight 59.51,53.33 |q 12447
 step
 Fly to the Ground Level of the Temple |outvehicle |goto Dragonblight 58.01,55.18 |q 12447
@@ -31420,7 +31424,7 @@ turnin Chasing Icestorm: The 7th Legion Front##12466 |goto Dragonblight 64.74,27
 accept Chasing Icestorm: Thel'zan's Phylactery##12467 |goto Dragonblight 64.74,27.93
 step
 talk "Wyrmbait"##27843
-Select _"Wyrmbait, eh?  Welp, go fetch us Icestorm!"_
+Select _"Wyrmbait, eh? Welp, go fetch us Icestorm!"_ |gossip 93435
 Watch the dialogue
 |tip Icestorm will fly to you and become chained by the harpoon guns nearby.
 kill Icestorm##26287
@@ -31695,7 +31699,7 @@ turnin The Steward of Wyrmrest Temple##12768 |goto Dragonblight 57.91,54.17
 accept Informing the Queen##12123 |goto Dragonblight 57.91,54.17
 step
 talk Tariolstrasz##26443
-Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_
+Select _"Steward, please allow me to ride one of the drakes to the queen's chamber at the top of the temple."_ |gossip 93560
 Begin Flying to the Top of the Temple |invehicle |goto Dragonblight 57.91,54.16 |q 12123
 step
 Fly to the Top of the Temple |outvehicle |goto Dragonblight 59.72,53.07 |q 12123
@@ -31933,6 +31937,11 @@ step
 talk Xink##26660
 turnin Lumber Hack##12050 |goto Dragonblight 55.03,23.42
 step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Coldwind Lumber##36733
+|only if itemcount(36733) > 0
+step
 talk Narf##26647
 |tip Walks around.
 accept Stiff Negotiations##12112 |goto Dragonblight 54.47,23.60
@@ -32020,7 +32029,7 @@ turnin On Ruby Wings##12498 |goto Dragonblight 59.84,54.65
 accept Return To Angrathar##12499 |goto Dragonblight 59.84,54.65
 step
 talk Torastrasza##26949
-Select _"I would like to go to Lord Devrestrasz in the middle of the temple."_
+Select _"I would like to go to Lord Devrestrasz in the middle of the temple."_ |gossip 93073
 Begin Flying to the Middle Level of the Temple |invehicle |goto Dragonblight 59.51,53.33 |q 12435
 step
 Fly to the Middle Level of the Temple |outvehicle |goto Dragonblight 59.20,54.33 |q 12435
@@ -32032,7 +32041,7 @@ accept Defending Wyrmrest Temple##12372 |goto Dragonblight 59.24,54.32 |only if 
 step
 talk Wyrmrest Defender##27629
 |tip On the middle level of the tower.
-Select _"We need to get into the fight. Are you ready?"_
+Select _"We need to get into the fight. Are you ready?"_ |gossip 93574
 Fly with the Wyrmrest Defender |invehicle |goto Dragonblight 58.35,55.22 |q 12372
 |only if haveq(12372) or completedq(12372)
 stickystart "Kill_Azure_Dragons"
@@ -32062,7 +32071,7 @@ talk Toalu'u the Mystic##26595
 turnin Conversing With the Depths##12032 |goto Dragonblight 49.14,75.65
 step
 talk Tariolstrasz##26443
-Select _"Can you spare a drake to take me to Lord Devrestrasz in the middle of the temple?"_
+Select _"Can you spare a drake to take me to Lord Devrestrasz in the middle of the temple?"_ |gossip 93559
 Begin Flying to the Middle Level of the Temple |invehicle |goto Dragonblight 57.91,54.16 |q 12372
 |only if haveq(12372) or completedq(12372)
 step
@@ -32074,23 +32083,22 @@ talk Lord Devrestrasz##27575
 turnin Defending Wyrmrest Temple##12372 |goto Dragonblight 59.24,54.32
 |only if haveq(12372) or completedq(12372)
 step
+talk Lord Devrestrasz##27575
+|tip Upstairs inside the tower, on the middle level.
+Select _"Can I get a ride back to ground level, Lord Devrestrasz?"_ |gossip 93568
+Begin Flying to the Groud Level of the Temple |invehicle |goto Dragonblight 59.51,53.33 |q 12499
+|only if haveq(12499) or completedq(12499)
+step
 Follow the path up through the cliffs |goto Dragonblight 38.13,26.00 < 20 |only if walking
 talk Highlord Bolvar Fordragon##27872
 turnin Return To Angrathar##12499 |goto Dragonblight 37.81,23.41
-step
-talk Alexstrasza the Life-Binder##31333
-accept Reborn From The Ashes##13347 |goto Dragonblight 38.42,19.25
-step
-click Fordragon's Shield
-|tip It looks like a small metal shield on the ground.
-collect Fordragon's Shield##44474 |q 13347/1 |goto Dragonblight 38,19.60
 step
 talk Image of Archmage Modera##26673
 accept The Magical Kingdom of Dalaran##12794 |goto Dragonblight 29.00,55.45 |or |only if not Mage
 accept Attunement to Dalaran##12172 |goto Dragonblight/0 29.00,55.46 |or |only Mage
 step
 talk Image of Archmage Modera##26673
-Select _"I am ready to be teleported to Dalaran."_
+Select _"I am ready to be teleported to Dalaran."_ |gossip 93650
 Teleport to Dalaran |complete zone("Dalaran") |goto Dragonblight/0 29.00,55.45 |q 12794
 |only if not Mage
 step
@@ -32121,15 +32129,11 @@ step
 talk Aludane Whitecloud##28674
 fpath Dalaran##310 |goto Dalaran/1 72.18,45.79
 step
-Enter Stormwind Keep |goto Stormwind City 73.14,46.63 < 15 |walk |only if not subzone("Stormwind Keep")
-talk King Varian Wrynn##29611
-turnin Reborn From The Ashes##13347 |goto Stormwind City 79.99,38.47
-step
 talk Gryphon Commander Urik##27317
 accept The Hills Have Us##12511 |goto Dragonblight 77.10,50.12
 step
 Watch the dialogue
-Fly to Amberpine Lodge |complete subzone("Amberpine Lodge") |goto Dragonblight 31.33,59.14 |q 12511 |notravel
+Fly to Amberpine Lodge |complete subzone("Amberpine Lodge") |goto Grizzly Hills/0 31.36,59.17 |q 12511 |notravel
 ]])
 ZygorGuidesViewer:RegisterGuide("Leveling Guides\\Northrend (70-80)\\Grizzly Hills (74-75)",{
 mopready=true,
@@ -32199,7 +32203,7 @@ accept Close the Deal##12293 |goto Grizzly Hills 31.83,60.17
 accept Troll Season!##12210 |goto Grizzly Hills 31.84,60.17
 step
 click Amberpine Outhouse##188666
-Choose _"Use the outhouse."_
+Select _"Use the outhouse."_ |gossip 93288
 Watch the dialogue
 collect Partially Processed Amberseeds##37250 |q 12227/1 |goto Grizzly Hills 32.22,58.92
 step
@@ -32340,7 +32344,7 @@ step
 label "PVP_Venture_Bay_SKIP"
 Follow the path up into Voldrune |goto Grizzly Hills 25.85,79.54 < 30 |only if walking and not subzone("Voldrune")
 clicknpc Flamebringer##27292
-Choose _"Unchain and control Flamebringer."_
+Select _"Unchain and control Flamebringer."_ |gossip 93651
 Ride Flamebringer |invehicle |goto Grizzly Hills 26.57,77.80 |q 12255
 step
 kill Thane Torvald Eriksson##27377 |q 12255/1 |goto Grizzly Hills 27.06,72.86
@@ -32355,7 +32359,7 @@ accept Filling the Cages##11984 |goto Grizzly Hills 16.19,47.60
 step
 talk Budd##26422
 |tip Inside the building.
-Select _"Come on, Budd. Time to play with the ice trolls!"_
+Select _"Come on, Budd. Time to play with the ice trolls!"_ |gossip 93243
 Get Budd's Attention |havebuff Budd's Attention Span##47014 |goto Grizzly Hills 16.37,48.26 |q 11984
 step
 use the Bounty Hunter's Cage##35736
@@ -32381,7 +32385,7 @@ use the Dull Carving Knife##38083
 Take the Blood Oath |havebuff Blood Oath##50001 |goto Grizzly Hills 16.43,47.81 |q 11989
 step
 talk Drakuru##26423
-Choose _"Shake Drakuru's outstretched hand."_
+Select _"Shake Drakuru's outstretched hand."_ |gossip 93581
 Form a Blood Pact With Drakuru |q 11989/1 |goto Grizzly Hills 16.42,47.81
 step
 talk Drakuru##26423
@@ -32462,7 +32466,7 @@ step
 Run up the stairs |goto Grizzly Hills 16.77,36.23 < 20 |only if walking
 click Seer of Zeb'Halak##188458
 |tip At the top of the temple.
-Choose _"Remove the Eye of the Prophets from the idol's face."_
+Select _"Remove the Eye of the Prophets from the idol's face."_ |gossip 93249
 collect Eye of the Prophets##35806 |q 12007/1 |goto Grizzly Hills 17.93,36.48
 step
 use Drakuru's Elixir##35797
@@ -32610,13 +32614,16 @@ Follow the path up |goto Grizzly Hills 46.84,56.54 < 40 |only if walking and not
 Enter the cave |goto Grizzly Hills 48.39,58.39 < 15 |walk
 talk Orsonn##27274
 |tip Inside the small cave.
-Select _"You're free to go Orsonn, but first tell me what's wrong with the furbolg."_
+Select _"You're free to go Orsonn, but first tell me what's wrong with the furbolg."_ |gossip 93451
+Select _"What happened then?"_ |gossip 93453
+Select _"Thank you, Son of Ursoc.  I'll see what can be done."_ |gossip 93454
 Listen to Orsonn's Story |q 12247/1 |goto Grizzly Hills 48.07,58.86
 step
 Enter the cave |goto Grizzly Hills 66.75,61.72 < 15 |walk
 talk Kodian##27275
 |tip Inside the small cave.
-Select _"Who was this stranger?"_
+Select _"Who was this stranger?"_ |gossip 93632
+Select _"Thank you, Kodian.  I'll do what I can."_ |gossip 93633
 Listen to Kodian's Story |q 12247/2 |goto Grizzly Hills 66.89,62.40
 step
 label "Collect_Crazed_Furbolg_Blood"
@@ -33176,7 +33183,7 @@ collect Snow of Eternal Slumber##36859 |q 12137/1 |goto Grizzly Hills 69.36,19.5
 step
 talk Gan'jo##26924
 |tip Inside the crypt.
-Select _"I am ready to return to the realm of the living."_
+Select _"I am ready to return to the realm of the living."_ |gossip 94150
 Leave the Spirit Realm |nobuff On the Other Side##61611 |goto Grizzly Hills 69.41,19.48 |q 12137
 step
 Follow the path down |goto Grizzly Hills 69.83,19.62 < 7 |walk
@@ -33403,7 +33410,7 @@ talk Captain Gryan Stoutmantle##26212
 accept Reallocating Resources##12770 |goto Grizzly Hills 59.42,26.00
 step
 talk Samuel Clearbook##26876
-Select _"I was told you could get me to Light's Breach...."_
+Select _"I was told you could get me to Light's Breach...."_ |gossip 93314
 Begin Flying to Light's Breach |invehicle |goto Grizzly Hills 59.89,26.69 |q 12770
 step
 Fly to Light's Breach |outvehicle |goto Grizzly Hills 32.18,74.47 |q 12770 |notravel
@@ -33568,7 +33575,7 @@ accept Taking a Stand##12795 |goto Zul'Drak 14.28,74.04
 |only if not completedq(12503)
 step
 talk Bloodrose Datura##28532
-Select _"Stefan told me you would demonstrate the purpose of this item."_
+Select _"Stefan told me you would demonstrate the purpose of this item."_ |gossip 93671
 Expose the Choker's Purpose |q 12637/1 |goto Zul'Drak 14.28,74.04	|only if haveq(12637) or completedq(12637)
 Expose the Choker's Purpose |q 12638/1 |goto Zul'Drak 14.28,74.04	|only if haveq(12638) or completedq(12638)
 step
@@ -33658,7 +33665,7 @@ turnin Our Only Hope##12916 |goto Zul'Drak 19.74,56.41
 accept The Storm King's Vengeance##12919 |goto Zul'Drak 19.74,56.41
 step
 talk Gymer##29647
-Select _"I'm ready, Gymer. Let's go!"_
+Select _"I'm ready, Gymer. Let's go!"_ |gossip 93218
 Ride on Gymer's Shoulder |invehicle |goto Zul'Drak 19.74,56.41 |q 12919
 stickystart "Slay_Scourge"
 step
@@ -33708,7 +33715,7 @@ step
 talk Gorebag##28666
 |tip Walks around.
 |tip Inside the floating building.
-Select _"Uhh, can you send me on the tour of Zul'Drak?"_
+Select _"Uhh, can you send me on the tour of Zul'Drak?"_ |gossip 93177
 Begin the Tour of Zul'Drak |invehicle |goto Zul'Drak 29.84,48.03 |q 12664	|only if haveq(12664) or completedq(12664)
 Begin the Tour of Zul'Drak |invehicle |goto Zul'Drak 29.84,48.03 |q 12663	|only if haveq(12663) or completedq(12663)
 step
@@ -33917,7 +33924,7 @@ Teleport Up to Voltarus |complete subzone("Voltarus") |goto Zul'Drak 28.37,44.87
 step
 talk Overlord Drakuru##28503 |goto Zul'Drak 27.08,46.16
 |tip Inside the floating building.
-Select _"I am ready to accompany you, Drakuru."_
+Select _"I am ready to accompany you, Drakuru."_ |gossip 93176
 Teleport to the Top fo Voltarus with Drakuru |goto Zul'Drak 28.34,45.28 < 5 |noway |c |q 12713
 step
 Watch the dialogue
@@ -33933,7 +33940,7 @@ collect Drakuru's Skull##40425 |q 12713/1 |goto Zul'Drak 28.39,44.87
 step
 click Drakuru's Last Wish##202357
 |tip On top of the floating building.
-Choose _"I'm ready."_
+Select _"I'm ready."_ |gossip 93665
 Teleport to the Ground |complete subzone("Reliquary of Pain") |goto Zul'Drak 28.62,44.55 |q 12713
 |only if subzone("Voltarus")
 step
@@ -34325,7 +34332,7 @@ label "Tell_Argent_Soldiers_To_Report_Back_To_The_Sergeant"
 talk Argent Soldier##28041+
 |tip Friendly NPCs wearing Alliance armor.
 |tip You can find them all around the Altar of Sseratus area. |notinsticky
-Select _"Soldier, you have new orders. You're to pull back and report to the sergeant!"_
+Select _"Soldier, you have new orders. You're to pull back and report to the sergeant!"_ |gossip 93280
 Tell #10# Argent Soldiers to Report Back to the Sergeant |q 12504/1 |goto Zul'Drak 40.38,44.81
 step
 label "Accept_Strange_Mojo"
@@ -34438,6 +34445,11 @@ talk Captain Grondel##28043
 |tip Inside the building.
 turnin Creature Comforts##12599 |goto Zul'Drak 48.15,63.89
 Complete Captain Grondel's Task |q 12596/3 |goto Zul'Drak 48.15,63.89
+step
+_Destroy This Item:_
+|tip It is no longer needed.
+trash Dead Thornwood##38563
+|only if itemcount(38563) > 0
 step
 Run up the stairs to leave the Drak'Agal area |goto Zul'Drak 43.69,68.78 < 30 |only if walking and subzone("Drak'Agal")
 talk Commander Kunz##28039
@@ -34665,7 +34677,7 @@ turnin Back to Har'koa##12653 |goto Zul'Drak 63.71,70.39
 accept I Sense a Disturbance##12665 |goto Zul'Drak 63.71,70.39
 step
 talk Har'koa##28401
-Select _"Great and powerful Har'koa, please call for one of your children that it might stealthily carry me into the Altar of Quetz'lun."_
+Select _"Great and powerful Har'koa, please call for one of your children that it might stealthily carry me into the Altar of Quetz'lun."_ |gossip 93201
 Ride with a Child of Har'koa |invehicle |goto Zul'Drak 63.71,70.39 |q 12665
 step
 Watch the dialogue
@@ -34694,7 +34706,7 @@ use To'kini's Blowgun##44890
 |tip You can only use the blowgun while not in combat.
 |tip They will become tranquilized and clickable.
 clicknpc Frost Leopard##29327+
-Choose _"Lift the frost leopard's tail to check if it's a male or a female."_
+Select _"Lift the frost leopard's tail to check if it's a male or a female."_ |gossip 94166
 |tip If they are male, they will attack you.
 |tip You can use Feign Death with your pet dismissed to avoid combat entirely. |only Hunter
 Recover #3# Female Frost Leopards |q 13549/1 |goto Zul'Drak 73.82,68.55
@@ -34706,7 +34718,7 @@ use To'kini's Blowgun##44890
 |tip You can only use the blowgun while not in combat.
 |tip They will become tranquilized and clickable.
 clicknpc Icepaw Bear##29319+
-Choose _"Lift the icepaw bear's tail to check if it's a male or a female."_
+Select _"Lift the icepaw bear's tail to check if it's a male or a female."_ |gossip 94167
 |tip If they are male, they will attack you.
 |tip You can use Feign Death with your pet dismissed to avoid combat entirely. |only Hunter
 Recover #3# Female Icepaw Bears |q 13549/2 |goto Zul'Drak 73.82,68.55
@@ -45515,7 +45527,7 @@ click Banshee's Bell##9889+
 |tip You can find more along the shore next to the river.
 |tip Work your way south while collecting them.
 collect 10 Banshee's Bells##60984 |q 27369/1 |goto Eastern Plaguelands 4.43,40.90
-|only if haveq(27368) and level < 48
+|only if haveq(27369) and level < 48
 step
 talk Fiona##45417
 turnin Greasing the Wheel##27369 |goto Eastern Plaguelands 9.00,66.50
@@ -45527,7 +45539,7 @@ accept What I Do Best##27371 |goto Eastern Plaguelands 18.40,74.80 |only if leve
 |only if level < 48 and (completedq(27370) or haveq(27370))
 step
 kill 5 Death's Step Miscreation##45444 |q 27371/1 |goto Eastern Plaguelands 18.45,78.27
-|only if haveq(27370) and level < 48
+|only if haveq(27371) and level < 48
 step
 _Click the Complete Quest Box:_
 turnin What I Do Best##27371 |only if readyq(27371)
@@ -45537,7 +45549,7 @@ step
 kill Plaguehound Runt##8596+
 |tip All around this area.
 collect 10 Plaguehound Blood##60986 |q 27372/1 |goto Eastern Plaguelands 17.20,68.70
-|only if haveq(27371) and level < 48
+|only if haveq(27372) and level < 48
 step
 talk Fiona##45417
 turnin A Gift For Fiona##27372 |goto Eastern Plaguelands 9.00,66.50 |only if readyq(27372)
@@ -45558,7 +45570,7 @@ Gain Tarenar's Talisman |havebuff Tarenar's Talisman##85614 |or |q 27373 |goto E
 |only if haveq(27373) and level < 48
 step
 clicknpc Fiona's Caravan##45400
-Choose _"Ride Fiona's Caravan to its next destination."_
+Select _"Ride Fiona's Caravan to its next destination."_ |gossip 112748
 Begin Riding Fiona's Caravan |invehicle |goto Eastern Plaguelands 8.80,66.60 |q 27373
 |only if haveq(27373) and level < 48
 step
@@ -45589,7 +45601,7 @@ step
 talk Argus Highbeacon##45451
 |tip Walks around.
 |tip At the top of the tower.
-Select _"Are you interested in joining our caravan?  We're headed to Light's Hope Chapel."_
+Select _"Are you interested in joining our caravan? We're headed to Light's Hope Chapel."_ |gossip 112745
 Find a Traveling Companion |q 27381/1 |goto Eastern Plaguelands 35.90,69.30
 |only if haveq(27381) and level < 48
 step
@@ -45644,7 +45656,7 @@ Enter the crypt |goto Eastern Plaguelands 24.22,78.55 < 10 |walk
 kill Zaeldarr the Outcast##12250
 |tip At the bottom of the crypt.
 collect Zaeldarr's Head##15785 |q 27432/1 |goto Eastern Plaguelands 23.84,77.93
-|only if haveq(27392) and level < 48
+|only if haveq(27432) and level < 48
 step
 talk Urk Gagbaz##45500
 turnin Zaeldarr the Outcast##27432 |goto Eastern Plaguelands 35.02,68.14
@@ -45669,7 +45681,7 @@ accept Cenarion Tenacity##27544 |goto Eastern Plaguelands 35.02,68.14 |only if (
 step
 talk Carlin Redpath##11063
 |tip Inside the tower.
-Select _"Carlin, do you have the extended Annals of Darrowshire?"_
+Select _"Carlin, do you have the extended Annals of Darrowshire?"_ |gossip 111489
 collect Extended Annals of Darrowshire##13202 |q 27388/1 |goto Eastern Plaguelands 35.60,68.90
 |only if haveq(27388) and level < 48
 step
@@ -45732,7 +45744,7 @@ turnin Amidst Death, Life##27421 |goto Eastern Plaguelands 30.20,56.90 |only if 
 step
 click Horgus' Skull##176208
 collect Skull of Horgus##12956 |q 27387/1 |goto Eastern Plaguelands 37.34,60.24
-|only if haveq(27421) and level < 48
+|only if haveq(27387) and level < 48
 step
 click Shattered Sword of Marduk##176209
 collect Shattered Sword of Marduk##12957 |q 27387/2 |goto Eastern Plaguelands 39.75,72.36
@@ -45765,7 +45777,7 @@ kill Redpath the Corrupted##10938
 talk Joseph Redpath##10936
 |tip He appears after the battle in this location.
 Accept Redpath's Forgiveness |q 27390/1 |goto Eastern Plaguelands 35.06,84.05
-|only if haveq(27382) and level < 48
+|only if haveq(27390) and level < 48
 step
 talk Pamela Redpath##10926
 |tip Walks around.
@@ -45784,7 +45796,7 @@ accept The Trek Continues##27448 |goto Eastern Plaguelands 34.85,69.14 |only if 
 |only if level < 48 and (completedq(27381) or haveq(27381))
 step
 clicknpc Fiona's Caravan##45400
-Choose _"Ride Fiona's Caravan to its next destination."_
+Select _"Ride Fiona's Caravan to its next destination."_ |gossip 112749
 Begin Riding Fiona's Caravan |invehicle |goto Eastern Plaguelands 35.00,69.30 |q 27448
 |only if haveq(27448) and level < 48
 step
@@ -45829,7 +45841,7 @@ step
 clicknpc Plague Puffer##45650+
 |tip Small blowfish underwater around this area.
 collect 8 Plague Puffer##61292 |q 27450/1 |goto Eastern Plaguelands 50.20,61.30
-|only if haveq(27449) and level < 48
+|only if haveq(27450) and level < 48
 step
 label "Collect_Infectis_Inchers"
 clicknpc Infectis Incher##45655+
@@ -45862,7 +45874,7 @@ kill Vile Tutor##8548, Dark Summoner##8551
 |tip Only Dark Summoners and Vile Tutors will drop the items.
 collect Death Cultist Headwear##61280 |q 27452/1 |goto Eastern Plaguelands 54.98,62.10
 collect Death Cultist Robes##61281 |q 27452/2 |goto Eastern Plaguelands 54.98,62.10
-|only if haveq(27451) and level < 48
+|only if haveq(27452) and level < 48
 step
 _Click the Complete Quest Box:_
 turnin Dark Garb##27452 |only if haveq(27452)
@@ -45873,7 +45885,7 @@ use Betina's Flasks##61284
 |tip Use it on Plague Ravagers and Blighted Surges underwater around this area.
 collect 8 Active Liquid Plague Agent##61285 |q 27453/1 |goto Eastern Plaguelands 57.60,72.60
 '|clicknpc Plague Ravager##8520, Blighted Surge##8519
-|only if haveq(27452) and level < 48
+|only if haveq(27453) and level < 48
 step
 _Click the Complete Quest Box:_
 turnin Catalysm##27453 |only if readyq(27453)
@@ -45882,10 +45894,10 @@ accept Just a Drop in the Bucket##27454 |only if level < 48 and (completedq(2745
 step
 use Death Cultist Disguise##61283
 Wear the Death Cultist Disguise |havebuff Death Cultist Disguise##85141 |goto Eastern Plaguelands 61.70,75.50 |q 27454
-|only if haveq(27453) and level < 48
+|only if haveq(27454) and level < 48
 step
 click Mereldar Plague Cauldron##205485
-Choose _"Throw in an entire flask."_
+Select _"Throw in an entire flask."_ |gossip 112758
 Disturb the Mereldar Plague Cauldron |q 27454/1 |goto Eastern Plaguelands 62.40,76.40
 |only if haveq(27454) and level < 48
 step
@@ -45914,7 +45926,7 @@ step
 talk Jessica Chambers##16256
 |tip Inside the building.
 home Light's Hope Chapel |goto Eastern Plaguelands 75.64,52.41 |q 27459 |future
-|only if haveq(27459) and level < 48
+|only if level < 48
 step
 talk Leonid Barthalomew the Revered##11036
 |tip Inside the building.
@@ -45929,7 +45941,7 @@ accept Argent Call: The Trial of the Crypt##27464 |goto Eastern Plaguelands 75.8
 step
 talk Khaelyn Steelwing##12617
 fpath Light's Hope Chapel |goto Eastern Plaguelands 75.86,53.41
-|only if haveq(27463)
+|only if level < 48
 step
 Enter the crypt |goto Eastern Plaguelands 77.36,50.81 < 10 |walk
 use Argent Scroll##61309
@@ -45961,7 +45973,7 @@ collect Browman's Wrappings##62028 |q 27458/1 |goto Eastern Plaguelands 71.87,45
 step
 kill Skullmage##45691, Noxious Assassin##45692
 |tip Only Skullmages and Noxious Assassins will count toward the goal.
-|tip Be careful of the large patrolling elite enemy, Garginox.
+|tip Be careful of the large patrolling {o}elite enemy, Garginox{}.
 Slay #8# Noxious Glade Cultists |q 27465/2 |goto Eastern Plaguelands 76.70,37.65
 |only if haveq(27465) and level < 48
 step
@@ -46077,7 +46089,7 @@ Run up the stairs |goto Eastern Plaguelands 77.67,71.54 < 7 |walk
 click Argent Portal
 |tip Upstairs inside the building.
 Open the Portal within the Library Wing |q 27612/2 |goto Eastern Plaguelands 77.86,70.97
-|only if haveq(27461) and level < 48
+|only if haveq(27612) and level < 48
 step
 click Argent Portal
 |tip Ground floor inside the building.
@@ -46145,7 +46157,7 @@ accept Ix'lar the Underlord##27487 |goto Eastern Plaguelands 61.57,43.22 |only i
 step
 talk Richard Trueflight##44230
 fpath Eastwall Tower |goto Eastern Plaguelands 61.64,43.84
-|only if haveq(27620) and level < 48
+|only if level < 48
 stickystart "Slay_Ixlars_Minions"
 step
 kill Ix'lar the Underlord##45744 |q 27487/1 |goto Eastern Plaguelands 61.03,32.88
@@ -46179,7 +46191,7 @@ use Body of Warlord Thresh'jin##61316
 |tip At the top of the temple.
 Watch the dialogue
 Burn Warlord Thresh'jin's Body |q 27482/1 |goto Eastern Plaguelands 67.33,9.10
-|only if haveq(27481) and level < 48
+|only if haveq(27482) and level < 48
 step
 _Click the Complete Quest Box:_
 turnin Into the Flames##27482
@@ -46189,7 +46201,7 @@ label "Collect_Mossflayer_Eyes"
 kill Mossflayer Scout##8560, Mossflayer Cannibal##8562, Mossflayer Shadowhunter##8561
 |tip Avoid the dirt piles on the ground, they spawn more enemies. |notinsticky
 collect 30 Mossflayer Eye##61313 |q 27479/1 |goto Eastern Plaguelands 65.95,11.28
-|only if haveq(27482) and level < 48
+|only if haveq(27479) and level < 48
 step
 talk Deacon Andaal##45736
 |tip Walks around.
@@ -46205,7 +46217,7 @@ turnin Ix'lar the Underlord##27487 |goto Eastern Plaguelands 61.47,42.69
 |only if readyq(27487)
 step
 talk Tarenar Sunstrike##45729
-accept Impatience##27488 |goto Eastern Plaguelands 61.60,43.20 |only if (completedq(27487) or haveq(27487))
+accept Impatience##27488 |goto Eastern Plaguelands 61.60,43.20
 |only if level < 48 and (completedq(27487) or haveq(27487))
 step
 click Open Prayer Book##205537
@@ -46218,9 +46230,9 @@ accept Nobody to Blame but Myself##27489 |only if level < 48 and (completedq(274
 |only if level < 48 and (completedq(27488) or haveq(27488)) or readyq(27488)
 step
 clicknpc Fiona's Caravan##45400
-Choose _"Ride Fiona's Caravan to its next destination."_
+Select _"Ride Fiona's Caravan to its next destination."_ |gossip 112750
 Begin Riding Fiona's Caravan |invehicle |goto Eastern Plaguelands 61.60,42.50 |q 27489
-|only if haveq(27488) and level < 48
+|only if haveq(27489) and level < 48
 step
 Ride Fiona's Caravan to Northpass Tower |q 27489/1 |goto Eastern Plaguelands 50.51,20.67 |notravel
 |only if haveq(27489) and level < 48
@@ -46296,7 +46308,7 @@ step
 kill Karthis Darkrune##45868 |q 27525/2 |goto Eastern Plaguelands 29.40,19.70
 |tip Inside the building.
 collect The Baroness' Missive##61378 |goto Eastern Plaguelands 29.40,19.70 |q 27551 |future
-|only if haveq(27551) and level < 48
+|only if haveq(27525) and level < 48
 step
 use The Baroness' Missive##61378
 accept The Baroness' Missive##27551 |only if (completedq(27524) or haveq(27524))
@@ -46324,7 +46336,7 @@ accept Journey's End##27527 |goto Eastern Plaguelands 28.46,25.90 |only if level
 step
 kill Omasum Blighthoof##45867 |q 27525/1 |goto Eastern Plaguelands 25.40,19.80
 |tip Inside the building.
-|only if haveq(27526) and level < 48
+|only if haveq(27525) and level < 48
 step
 label "Free_Darrowshire_Spirits"
 kill Cannibal Ghoul##8530+
@@ -46377,14 +46389,14 @@ turnin The Corpsebeasts##27530 |goto Eastern Plaguelands 27.65,20.86
 step
 talk William Kielar Jr.##44233
 fpath Plaguewood Tower |goto Eastern Plaguelands 18.46,27.36
-|only if haveq(27530) and level < 48
+|only if level < 48
 step
 talk Argent Apothecary Judkins##45828
 |tip Walks around.
 turnin The Plaguewood Tower##27532 |goto Eastern Plaguelands 17.65,27.86 |only if haveq(27532)
 accept Counter-Plague Research##27531 |goto Eastern Plaguelands 17.65,27.86 |only if level < 48
 accept Just a Little Touched##27535 |goto Eastern Plaguelands 17.65,27.86 |only if level < 48
-|only if level < 48 or haveq(27530)
+|only if level < 48
 stickystart "Disembodied_Arm"
 stickystart "Rotberry"
 step
@@ -46415,7 +46427,7 @@ talk Augustus the Touched##12384
 turnin Just a Little Touched##27535 |goto Eastern Plaguelands 11.34,28.59 |only if haveq(27535)
 accept A Fate Worse Than Butchery##27533 |goto Eastern Plaguelands 11.34,28.59 |only if level < 48
 accept Augustus' Receipt Book##27534 |goto Eastern Plaguelands 11.34,28.59 |only if level < 48
-|only if level < 48 or haveq(27531)
+|only if level < 48 or readyq(27535)
 stickystart "Kill_Plagued_Swine"
 step
 click Augustus' Receipt Book##177789
@@ -47217,6 +47229,7 @@ label "Collect_Smithing_Tuyere"
 kill Dark Iron Steamsmith##5840+
 collect Smithing Tuyere##18959 |q 27977/1 |goto Searing Gorge 40.50,44.21
 collect Lookout's Spyglass##18960 |q 27977/2 |goto Searing Gorge 40.50,44.21
+|tip While you should be able to collect both items from the Steamsmiths, if the Spyglass wouldn't drop, try with Dark Iron Lookouts - they are mostly south of the gorge.
 |only if haveq(27983) and level <= 51
 step
 label "Kill_Greater_Lava_Spiders"

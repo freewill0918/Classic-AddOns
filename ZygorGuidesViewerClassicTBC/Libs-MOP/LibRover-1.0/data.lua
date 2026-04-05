@@ -4,7 +4,7 @@ addon.LibRoverData = addon.LibRoverData or {}
 local data=addon.LibRoverData
 
 data.version={
-	nodes_version = 88,  -- Increase this when working on the nodes. Connections will be baked automatically when committing.
+	nodes_version = 90,  -- Increase this when working on the nodes. Connections will be baked automatically when committing.
 }
 
 -- These are kept strictly unique. Make up bogus names if you need to.
@@ -144,6 +144,8 @@ data.MapIDsByName = {
 ["Vale of Eternal Blossoms"] = {[0]=390,[1]=395,[2]=396},
 ["Valley of the Four Winds"] = {[0]=376,[14]=377},
 ["The Veiled Stair"] = {[0]=433,[5]=434},
+["Dalaran P"] = {[0]=501},
+["Dalaran P Sewers"] = {[0]=502},
 
 --Dungeons
 ["Old Scholomance"] = {[3]=306,[2]=307,[1]=308,[0]=309},

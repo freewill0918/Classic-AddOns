@@ -1,6 +1,7 @@
 # Baganator
 
-## [773](https://github.com/TheMouseNest/Baganator/tree/773) (2025-12-08)
-[Full Changelog](https://github.com/TheMouseNest/Baganator/compare/772...773) 
+## [795](https://github.com/TheMouseNest/Baganator/tree/795) (2026-03-25)
+[Full Changelog](https://github.com/TheMouseNest/Baganator/compare/794...795) [Previous Releases](https://github.com/TheMouseNest/Baganator/releases)
 
-- [Fixes #584] Retail: Fix search not clearing when changing bank type  
+- Fix starting disenchant spell before opening bags turning everything red  
+- Fix error caused by opening saved searches menu in combat  

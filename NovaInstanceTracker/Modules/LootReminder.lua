@@ -815,9 +815,9 @@ local function itemLooted(itemID, name)
 					name = "me";
 				end
 				if (IsInGroup()) then
-					SendChatMessage("[NIT] " .. itemName .. " looted by " .. name.. "!", "PARTY");
+					NIT:SendChatMessage("[NIT] " .. itemName .. " looted by " .. name.. "!", "PARTY");
 				else
-					SendChatMessage("[NIT] " .. itemName .. " looted by " .. name.. "!", "SAY");
+					NIT:SendChatMessage("[NIT] " .. itemName .. " looted by " .. name.. "!", "SAY");
 				end
 				addMsg(itemName .. " looted by " .. name .. "!", 5);
 			end);
@@ -845,9 +845,9 @@ local function relicLooted(itemID, name, class)
 				end
 				if (NIT.db.global.lootReminderMysRelicParty) then
 					if (name == me) then
-						SendChatMessage("[NIT] " .. itemName .. " (" .. type .. ") looted by " .. name.. "!", "PARTY");
+						NIT:SendChatMessage("[NIT] " .. itemName .. " (" .. type .. ") looted by " .. name.. "!", "PARTY");
 					else
-						SendChatMessage("[NIT] " .. itemName .. " (" .. type .. ") looted by " .. name .. "!", "PARTY");
+						NIT:SendChatMessage("[NIT] " .. itemName .. " (" .. type .. ") looted by " .. name .. "!", "PARTY");
 					end
 				end
 			end);
@@ -1026,6 +1026,9 @@ local function lootOpened()
 	local guid = UnitGUID("target");
 	--Check target as backup.
 	if (guid) then
+		if (issecretvalue and issecretvalue(guid)) then
+			return;
+		end
 		local _, _, _, _, zoneID, npcID = strsplit("-", guid);
 		if (npcID) then
 			npcID = tonumber(npcID);

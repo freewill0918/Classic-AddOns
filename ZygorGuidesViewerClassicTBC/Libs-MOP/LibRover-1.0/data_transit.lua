@@ -111,7 +111,7 @@ data.basenodes.transit = --[[LIBROVER]] {
 		"Tanaris/17 58.14,26.72 -to- @org_tp_dst {fac:H} {mode:PORTAL} {title:Click the Portal to Orgrimmar}",
 
 		-- Northern Stranglethorn Vale, Kalimdor -to- Undercity - Tirisfal Glades, Eastern Kingdoms --CHECKED
-		"Northern Stranglethorn/0 37.54,50.99 -to- Undercity/0 84.58,16.33 {fac:H} {mode:PORTAL}",
+		--"Northern Stranglethorn/0 37.54,50.99 -to- Undercity/0 84.58,16.33 {fac:H} {mode:Z}",
 
 		"Orgrimmar 49.2,36.5 -to- Kelp'thar Forest 44,28 {fac:H} {mode:PORTAL} {cond:PlayerCompletedQuest(26784) and not PlayerCompletedQuest(25222)}",
 		"Orgrimmar 49.2,36.5 -to- Shimmering Expanse 49.5,40.5 {fac:H} {mode:PORTAL} {cond:PlayerCompletedQuest(25222) and not PlayerCompletedQuest(99999)}",
@@ -198,7 +198,7 @@ data.basenodes.transit = --[[LIBROVER]] {
 		"Tirisfal Glades/0 59.09,58.91 -x- Howling Fjord/0 79.00,28.92 {fac:H} {mode:ZEPPELIN}",
 
 		"Orgrimmar/1 35.47,69.14 -to- Blasted Lands/0 53.90,46.08 <tag:cityportal> {fac:H} {mode:PORTAL} {title:Click the Portal to Blasted Lands Upstairs Inside the Hut} {cond:UnitLevel('player') >= 58}",
-		"Orgrimmar/2 44.70,67.97 -to- Blasted Lands/0 53.90,46.08 <tag:cityportal> {fac:H} {mode:PORTAL} {cond:UnitLevel('player') >= 58}",
+		"Orgrimmar/2 44.70,67.97 -to- Blasted Lands/0 53.90,46.08 <tag:cityportal> {fac:H} {mode:PORTAL} {title:Click the Portal to Blasted Lands Down in the Cleft of Shadows} {cond:UnitLevel('player') >= 58}",
 		"Silvermoon City/0 58.42,21.03 -to- Blasted Lands/0 53.90,46.08 <tag:cityportal> {fac:H} {mode:PORTAL} {cond:UnitLevel('player') >= 58}",
 		"Undercity/0 85.25,17.04 -to- Blasted Lands/0 53.90,46.08 <tag:cityportal> {fac:H} {mode:PORTAL} {cond:UnitLevel('player') >= 58}",
 

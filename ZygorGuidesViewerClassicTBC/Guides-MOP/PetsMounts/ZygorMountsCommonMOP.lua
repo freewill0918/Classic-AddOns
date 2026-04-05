@@ -1127,6 +1127,19 @@ step
 use the Enchanted Fey Dragon##97989
 learnmount Enchanted Fey Dragon##142878
 ]])
+ZygorGuidesViewer:RegisterGuide("Pets & Mounts\\Mounts\\Flying Mounts\\Promotion Mounts\\Imperial Quilen",{
+source='Promotion',
+author="support@zygorguides.com",
+description="This guide will teach you how to acquire the Imperial Quilen mount.",
+keywords={"imperial","quilen"},
+mounts={124659},
+mounttype="Flying",
+},[[
+step
+Obtain this mount from the Collector's Edition of Mists of Pandaria, or may be available for purchase in the Blizzard Store.
+|tip You may also be awarded this mount for a 6-month or 12-month subscription to World of Warcraft during the promotion of Classic MoP, or from the Trading Post.
+learnmount Imperial Quilen##124659
+]])
 ZygorGuidesViewer:RegisterGuide("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Blizzard Store Mounts\\Warforged Nightmare",{
 keywords={"blizzard","store","warforged","nightmare","flying","mount"},
 model={55896},
@@ -1137,7 +1150,7 @@ description="This guide will teach you how to acquire the Warforged Nightmare mo
 mopready=true,
 },[[
 step
-This mount used to be available for purchase for $30.00 from the official Blizzard Store
+This mount was available for purchase from the Blizzard Store
 |tip It may become available again as a Trader's Post mount, or may become available again in the Blizzard online store.
 collect Warforged Nightmare##112326 |or
 |tip You can find it in your mailbox.

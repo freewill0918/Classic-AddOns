@@ -40,9 +40,9 @@ local settings = {
   GUILD_CURRENT_TAB = {key = "guild_current_tab", default = 1},
 
   HIDE_BOE_ON_COMMON = {key = "hide_boe_on_common", default = false, refresh = {Refresh.ItemWidgets}},
-  ICON_TEXT_QUALITY_COLORS = {key = "icon_text_quality_colors", default = true, refresh = {Refresh.ItemWidgets}}, -- 更改預設值
+  ICON_TEXT_QUALITY_COLORS = {key = "icon_text_quality_colors", default = false, refresh = {Refresh.ItemWidgets}},
   ICON_MARK_UNUSABLE  = {key = "icon_mark_unusable", default = false, refresh = {Refresh.ItemWidgets}},
-  ICON_TEXT_FONT_SIZE = {key = "icon_text_font_size", default = 18, refresh = {Refresh.ItemTextures}}, -- 更改預設值
+  ICON_TEXT_FONT_SIZE = {key = "icon_text_font_size", default = 14, refresh = {Refresh.ItemTextures}},
   ICON_TOP_LEFT_CORNER_ARRAY = {key = "icon_top_left_corner_array", default = {"junk", "item_level"}, refresh = {Refresh.ItemTextures, Refresh.ItemWidgets}},
   ICON_TOP_RIGHT_CORNER_ARRAY = {key = "icon_top_right_corner_array", default = {}, refresh = {Refresh.ItemTextures, Refresh.ItemWidgets}},
   ICON_BOTTOM_LEFT_CORNER_ARRAY = {key = "icon_bottom_left_corner_array", default = {"equipment_set"}, refresh = {Refresh.ItemTextures, Refresh.ItemWidgets}},
@@ -87,7 +87,7 @@ local settings = {
   CATEGORY_HIDDEN = {key = "category_hidden", default = {}, refresh = {Refresh.Layout, Refresh.Cosmetic}},
   CATEGORY_SECTION_TOGGLED = {key = "category_section_toggled", default = {}, refresh = {Refresh.Cosmetic, Refresh.Layout}},
   CATEGORY_HORIZONTAL_SPACING = {key = "category_horizontal_spacing_2", default = 0.30, refresh = {Refresh.Layout}},
-  CATEGORY_ITEM_GROUPING = {key = "category_item_grouping", default = false, refresh = {Refresh.ItemData}}, -- 更改預設值,
+  CATEGORY_ITEM_GROUPING = {key = "category_item_grouping", default = true, refresh = {Refresh.ItemData}},
   CATEGORY_GROUP_EMPTY_SLOTS = {key = "category_group_empty_slots", default = true, refresh = {Refresh.Searches}},
   RECENT_TIMEOUT = {key = "recent_timeout", default = 15},
   RECENT_INCLUDE_OWNED = {key = "recent_include_owned", default = false},

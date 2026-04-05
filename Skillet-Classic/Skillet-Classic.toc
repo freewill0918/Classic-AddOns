@@ -1,10 +1,10 @@
-## Interface: 11507, 11508, 50501, 50502
+## Interface: 11508, 20505, 50503
 ## Title: Skillet-Classic |cff7fff7f -Ace3-|r
 ## Notes: A replacement tradeskill window
 ## Notes-esES: Una sustitucion de la ventana de Habilidades de Comercio
 ## Notes-ruRU: Заменяет окно профессий на более функциональное.
 ## Author: bsmorgan
-## Version: 2.22
+## Version: 2.31
 ## Category-enUS: Professions
 ## Category-deDE: Berufe
 ## Category-esES: Profesiones
@@ -23,7 +23,7 @@
 ## X-Website: https://www.curseforge.com/wow/addons/skillet-classic
 ## SavedVariables: SkilletDB
 ## SavedVariablesPerCharacter: SkilletWho, SkilletDBPC, SkilletMemory, SkilletProfile
-## OptionalDeps: Ace3, LibWindow-1.1, LibPeriodicTable-3.1, TradeSkillMaster, Auctionator, MissingTradeSkillsList, BeanCounter, DataStore, Journalator, CraftInfoAnywhere
+## OptionalDeps: Ace3, LibWindow-1.1, LibPeriodicTable-3.1, TradeSkillMaster, DataStore, Auctionator, Journalator, CraftInfoAnywhere
 ## X-Embeds: Ace3, LibStub, CallbackHandler-1.0, LibWindow-1.1, LibPeriodicTable-3.1
 
 ## LoadManagers: AddonLoader
@@ -45,7 +45,6 @@ Libs\AceTimer-3.0\AceTimer-3.0.xml
 Libs\LibWindow-1.1\LibWindow-1.1.lua
 Libs\LibPeriodicTable-3.1\LibPeriodicTable-3.1.lua
 Libs\LibPeriodicTable-3.1\LibPeriodicTable-3.1-Tradeskill\LibPeriodicTable-3.1-Tradeskill.lua
-Libs\LibPeriodicTable-3.1\LibPeriodicTable-3.1-TradeskillResultMats\LibPeriodicTable-3.1-TradeskillResultMats.lua
 Libs\LibPeriodicTable-3.1\LibPeriodicTable-3.1-TradeskillLevels\LibPeriodicTable-3.1-TradeskillLevels.lua
 Libs\EasySkillet\EasySkillet.lua
 Libs\EasySkillet\UIDropDownSkillet.xml
@@ -76,9 +75,13 @@ SkilletQueue.lua
 Upgrades.lua
 SkillLevelData.lua
 SkillLevelData1.lua [AllowLoadGameType vanilla]
-## SkillLevelData2.lua
-SkillLevelData4.lua	[AllowLoadGameType cata]
-SkillLevelData5.lua [AllowLoadGameType classic]
+SkillLevelData2.lua [AllowLoadGameType tbc]
+## SkillLevelData4.lua [AllowLoadGameType cata]
+SkillLevelData5.lua [AllowLoadGameType mists]
+EnchantData1.lua [AllowLoadGameType vanilla]
+EnchantData2.lua [AllowLoadGameType tbc]
+## EnchantData4.lua [AllowLoadGameType cata]
+EnchantData5.lua [AllowLoadGameType mists]
 RecipeGroups.lua
 Inventory.lua
 SkilletPlugin.lua
@@ -94,14 +97,7 @@ Plugins\AuctionDB.lua
 Plugins\Auctioneer.lua
 Plugins\AuctionLite.lua
 Plugins\DataStoreAuctions.lua
-#### Obsolete or Unused Addons
-## Plugins\CancelForm.lua
-## Plugins\BootyBayGazette.lua
-## Plugins\MissingTradeSkillsList.lua
-#### Addons not ported to Classic
-## Plugins\AckisRecipeList.lua
-## Plugins\TradeSkillInfo.lua
-## Plugins\TheUndermineJournal.lua
+Plugins\AckisRecipeList.lua
 
 #### UI files
 UI\Utils.lua

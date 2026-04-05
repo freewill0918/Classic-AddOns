@@ -7,7 +7,6 @@ local ldbi = LibStub("LibDBIcon-1.0")
 
 local category, layout = Settings.RegisterVerticalLayoutCategory(addonName)
 addon.settingsCategory = category
-category.name = L["BugSack"]
 
 local function InitializeSettings()
 	-- Auto popup setting

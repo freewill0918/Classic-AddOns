@@ -177,6 +177,11 @@ QuestieItemDropCorrections.Era = {
         [3269] = 75,
         [3271] = 75,
     },
+    [5055] = { -- Intact Raptor Horn
+        [3256] = DropKeys.WOWHEAD,
+        [3257] = DropKeys.WOWHEAD,
+        [5842] = DropKeys.WOWHEAD,
+    },
     [5085] = { -- Bristleback Quilboar Tusk
         [3258] = 100,
         [3260] = 100,
@@ -230,9 +235,16 @@ QuestieItemDropCorrections.Era = {
     [10639] = { -- Hyacinth Mushroom
         [1988] = 80,
     },
+    [11479] = { -- Un'Goro Stomper Pelt
+        [6513] = DropKeys.WOWHEAD,
+    },
     [15852] = { -- Kodo Horn
         [3234] = 100,
         [3236] = 100,
+    },
+    [190232] = { -- Withered Scarf
+        [3782] = 5, -- super bad drop rate, wowhead shows 3%. it's somewhere between 5-10%
+        [3784] = 5, -- super bad drop rate, wowhead shows 3%. it's somewhere between 5-10%
     },
 }
 
@@ -347,5 +359,29 @@ QuestieItemDropCorrections.Cata = {
 }
 
 QuestieItemDropCorrections.MoP = {
+    [97530] = { -- Kor'kron Lumber
+        [70997] = 100,
+        [70998] = 100,
+        [70999] = 100,
+        [71001] = 100,
+    },
+    [97543] = { -- Kor'kron Stone
+        [71007] = 100,
+        [71009] = 100,
+        [71187] = 100,
+        [71188] = 100,
+    },
+    [97544] = { -- Kor'kron Oil
+        [71000] = 100,
+        [71002] = 100,
+        [71005] = 100,
+        [71006] = 100,
+    },
+    [97545] = { -- Kor'kron Meat
+        [71010] = 100,
+        [71011] = 100,
+        [71012] = 100,
+        [73590] = 100,
+    },
 
 }

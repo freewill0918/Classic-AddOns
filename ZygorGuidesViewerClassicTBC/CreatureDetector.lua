@@ -23,15 +23,19 @@ end})
 
 function CreatureDetector:Detect(force)
 	if not UnitExists("target") or InCombatLockdown() then return end
+	if UnitIsUnit("target","player") then return end -- don't detect our own stuff
 
-	if UnitIsPlayer("target") then -- Screw the IDs this one is safer
-		self:DetectMount(not force)
-	elseif (CTR[UnitCreatureType("target")] == "Non-combat Pet") then -- 
-		self:DetectPet(not force)
-	elseif (string.find(UnitGUID("target"),"Pet-")) then
-		self:DetectHunterPet(not force)
-	end
-	return
+	local isplayer = UnitIsPlayer("target")
+	if ZGV.IsSecret(isplayer) then return end
+	if isplayer then return self:DetectMount(not force) end
+
+	local creaturetype = UnitCreatureType("target")
+	if ZGV.IsSecret(creaturetype) then return end
+	if CTR[creaturetype]=="Non-combat Pet" then return self:DetectPet(not force) end
+
+	local guid = UnitGUID("target")
+	if ZGV.IsSecret(guid) then return end
+	if guid:find("Pet-") then return self:DetectHunterPet(not force) end
 end
 
 -- Tries to detect a combat pet selected by player
@@ -143,6 +147,8 @@ function CreatureDetector:DetectMount(silent_mode)
 
 		local spellID = data.spellId
 
+		if ZGV.IsSecret(spellID) then return end
+		
 		if self.mountSpellDatabase[spellID] then
 			owned = ZGV.Parser.ConditionEnv.hasmount(spellID)
 			guide = self.mountSpellDatabase[spellID][1] --Only one guide per mount is needed. If there are more just ignore them.

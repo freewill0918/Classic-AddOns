@@ -4,7 +4,7 @@ if UnitFactionGroup("player")~="Alliance" then return end
 if ZGV:DoMutex("ProfessionsA") then return end
 ZygorGuidesViewer.GuideMenuTier = "TRI"
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Cooking (1-525)",{
-cataready=true,
+mopready=true,
 condition_suggested=function() return skill('Cooking') > 0 end,
 description="This guide will walk you through leveling your Cooking skill from 1-525.",
 },[[
@@ -118,62 +118,130 @@ create 30 Crab Cake##2544,Cooking,130 |goto Stormwind City/0 78.41,52.76
 |tip Each additional Crab Cake requires 1 Crawler Meat.
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Cooking + Fishing (1-525)")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Chunk of Boar Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Small Spider Leg")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Stringy Wolf Meat")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Bear Meat")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Big Bear Meat")
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Boar Ribs",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={2677},
+maps={"Westfall"},
+},[[
+step
+map Westfall/0
+path follow smart; loop on; ants straight; dist 30
+path	62.45,42.12	61.05,38.49	59.20,30.20	58.69,26.18	58.85,22.18
+path	55.99,22.99	53.72,26.55	51.15,26.31	48.14,25.64	47.04,19.68
+path	44.81,17.52	42.78,19.23	41.83,24.14	41.27,26.78	45.37,30.33
+path	49.58,30.72	53.39,28.48	55.63,29.25
+Kill Boar enemies along this path
+collect Boar Ribs##2677 |n
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Buzzard Wing")
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Clam Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={5503},
+maps={"Westfall"},
+},[[
+step
+Kill Murloc enemies around this area
+|tip They are found all along the coastline.
+collect Small Barnacled Clam##5523 |n
+use the Small Barnacled Clam##5523
+collect Clam Meat##5503 |n |goto Westfall 37.26,15.67
+|tip They are inside of the Small Barnacled Clams.
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Coyote Meat")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Crag Boar Rib")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Tough Condor Meat")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Crawler Claw")
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Crawler Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={2674},
+maps={"Westfall"},
+},[[
+step
+map Westfall
+path follow smart; loop off; dist 20
+path	51.32,9.67	49.06,10.01	44.72,8.70	41.78,10.34	38.85,13.51
+path	36.20,18.29	33.45,22.08	31.88,24.30
+Kill Crawler enemies around this area
+|tip You can find more further down the coast.
+collect Crawler Meat##2674 |n
+'|goto Westfall 31.88,24.30 < 20 |noway |c
+step
+map Westfall
+path follow smart; loop off; dist 20
+path	31.88,24.30	33.45,22.08	36.20,18.29	38.85,13.51	41.78,10.34
+path	44.72,8.70	49.06,10.01	51.32,9.67
+Kill Crawler enemies around this area
+|tip You can find more further down the coast.
+collect Crawler Meat##2674 |n
+'|goto Westfall 51.32,9.67 < 20 |noway |c
+]])
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Crocolisk Meat")
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Cooking\\Farming Guides\\Chunk of Boar Meat",{
+mopready=true,
+meta={goldtype="route",levelreq=1},
+items={769},
+maps={"Elwynn Forest"},
+},[[
+step
+kill Stonetusk Boar##113
+collect Chunk of Boar Meat##769 |n |goto Elwynn Forest 41.81,87.22
+You can find more around this area [32.96,84.95]
+'|confirm
+]])
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Giant Clam Meat")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Gooey Spider Leg")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Goretusk Liver")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Goretusk Snout")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Kodo Meat")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Lean Wolf Flank")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Lion Meat")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Meaty Bat Wing")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Murloc Eye")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Murloc Fin")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Mystery Meat")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Raptor Egg")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Raptor Flesh")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Red Wolf Meat")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Scorpid Stinger")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Small Egg")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Small Spider Leg")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Soft Frenzy Flesh")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Spider Ichor")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Strider Meat")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Stringy Vulture Meat")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Stringy Wolf Meat")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Tangy Clam Meat")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Tender Crocolisk Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Gooey Spider Leg")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Red Wolf Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Small Egg")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Spider Ichor")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Coyote Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Boar Intestines")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Stringy Vulture Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Strider Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Kodo Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Murloc Eye")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Bear Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Goretusk Snout")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Goretusk Liver")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Crawler Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Crawler Claw")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Clam Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Boar Ribs")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Crocolisk Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Soft Frenzy Flesh")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Murloc Fin")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Big Bear Meat")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Thunder Lizard Tail")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Lion Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Mystery Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Turtle Meat")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Tiger Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Raptor Flesh")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Buzzard Wing")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Giant Clam Meat")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Living Essence")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Essence of Fire")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Essence of Air")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Essence of Earth")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Ichor of Undeath")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Heart of Fire")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Globe of Water")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Core of Earth")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Tough Condor Meat")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Cooking\\Farming Guides\\Turtle Meat")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Breath of Wind")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Core of Earth")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Elemental Air")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Elemental Earth")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Elemental Fire")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Elemental Water")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Elemental Air")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Essence of Water")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Essence of Air")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Essence of Earth")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Essence of Fire")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Essence of Undeath")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Essence of Water")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Globe of Water")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Heart of Fire")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Heart of the Wild")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Elemental Earth")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Ichor of Undeath")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Elements\\Farming Guides\\Living Essence")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Strange Dust",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={10940},
 },[[
 step
 Disenchant level 5-20 green weapons and armor
@@ -183,7 +251,9 @@ collect Strange Dust##10940 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Magic Essence",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={10938},
 },[[
 step
 Disenchant level 3-12 green weapons and armor
@@ -193,7 +263,9 @@ collect Lesser Magic Essence##10938 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Magic Essence",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={10939},
 },[[
 step
 Disenchant level 9-21 green weapons and armor
@@ -209,7 +281,9 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Farmi
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Farming Guides\\Large Brilliant Shard")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Farming Guides\\Illusion Dust")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Lesser Astral Essence",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={10998},
 },[[
 step
 Disenchant level 20-25 green weapons and armor
@@ -218,7 +292,9 @@ collect Lesser Astral Essence##10998 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Enchanting\\Farming Guides\\Greater Astral Essence",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={Enchanting=1},levelreq=1},
+items={11082},
 },[[
 step
 Disenchant level 20-30 green weapons and armor
@@ -233,8 +309,6 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Farmi
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Farming Guides\\Lesser Nether Essence")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Farming Guides\\Greater Nether Essence")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Farming Guides\\Dream Dust")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Farming Guides\\Greater Nether Essence")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Enchanting\\Farming Guides\\Lesser Nether Essence")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Golden Darter")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Figluster's Mudfish")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Icefin Bluefish")
@@ -244,13 +318,16 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming 
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Raw Rainbow Fin Albacore")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Raw Longjaw Mud Snapper")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Raw Bristle Whisker Catfish")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Raw Mithril Head Trout")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Raw Sagefish")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Raw Mithril Head Trout")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Raw Rockscale Cod")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Fishing\\Farming Guides\\Raw Sunscale Salmon")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Silverleaf")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Peacebloom",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=1},levelreq=1},
+items={2447},
+maps={"Elwynn Forest"},
 },[[
 step
 map Elwynn Forest/0
@@ -270,19 +347,11 @@ collect Peacebloom##2447 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Earthroot")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Grave Moss")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Liferoot")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Fadeleaf")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Wildvine")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Blindweed")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Ghost Mushroom")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Mountain Silversage")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Icecap")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Black Lotus")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Mageroyal")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Stranglekelp")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Briarthorn",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=1},levelreq=10},
+items={2450},
+maps={"Loch Modan"},
 },[[
 step
 map Loch Modan/0
@@ -301,9 +370,23 @@ Click herbs as you follow the path around this area
 collect Briarthorn##2450 |n
 '|confirm
 ]])
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Grave Moss")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Liferoot")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Fadeleaf")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Wildvine")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Blindweed")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Ghost Mushroom")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Mountain Silversage")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Icecap")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Black Lotus")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Mageroyal")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Stranglekelp")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Swiftthistle")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Herbalism\\Farming Guides\\Bruiseweed",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={herbalism=100},levelreq=25},
+items={2453},
+maps={"Stonetalon Mountains"},
 },[[
 step
 map Stonetalon Mountains/0
@@ -330,12 +413,15 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farmin
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Gromsblood")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Golden Sansam")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Dreamfoil")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Sorrowbloom")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Herbalism\\Farming Guides\\Sorrowmoss")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Copper Ore",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={mining=1},levelreq=1},
+items={2770},
+maps={"Elwynn Forest"},
 },[[
 step
-map Elwynn Forest
+map Elwynn Forest/0
 path follow smart; loop on; ants curved; dist 20
 path	30.84,52.85	31.66,56.55	30.70,59.27	33.97,61.71	32.67,69.74
 path	34.82,71.77	38.65,70.47	41.90,72.73	38.79,78.16	36.73,83.14
@@ -349,16 +435,19 @@ path	65.45,55.47	63.86,53.92	61.15,54.32	59.49,56.50	57.71,57.94
 path	55.65,58.04	53.51,57.94	52.34,58.34	51.04,58.74	49.28,57.01
 path	50.05,53.17	48.15,51.19	47.15,49.29	43.66,49.22	41.39,51.02
 path	39.84,53.01	36.99,52.64	34.92,51.69	35.76,48.57	34.85,46.74
-Click ore as you follow the path around this area
+click Copper Vein##1731+
 |tip Track them on your minimap with "Find Minerals".
 collect Copper Ore##2770 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Rough Stone",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={mining=1},levelreq=1},
+items={2835},
+maps={"Elwynn Forest"},
 },[[
 step
-map Elwynn Forest
+map Elwynn Forest/0
 path follow smart; loop on; ants curved; dist 20
 path	30.84,52.85	31.66,56.55	30.70,59.27	33.97,61.71	32.67,69.74
 path	34.82,71.77	38.65,70.47	41.90,72.73	38.79,78.16	36.73,83.14
@@ -372,19 +461,22 @@ path	65.45,55.47	63.86,53.92	61.15,54.32	59.49,56.50	57.71,57.94
 path	55.65,58.04	53.51,57.94	52.34,58.34	51.04,58.74	49.28,57.01
 path	50.05,53.17	48.15,51.19	47.15,49.29	43.66,49.22	41.39,51.02
 path	39.84,53.01	36.99,52.64	34.92,51.69	35.76,48.57	34.85,46.74
-Click ore as you follow the path around this area
+click Copper Vein##1731+
 |tip Track them on your minimap with "Find Minerals".
 collect Rough Stone##2835 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Tin Ore",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={mining=50},levelreq=20},
+items={2771},
+maps={"Ashenvale"},
 },[[
 step
 map Kalimdor/0
 path follow smart; loop on; ants straight; dist 30
 path	44.89,34.26	44.33,34.72
-map Ashenvale
+map Ashenvale/0
 path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
 path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
 path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
@@ -396,20 +488,23 @@ path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
 path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
 path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
 path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
-Click ore as you follow the path around this area
+click Tin Vein##1732+
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 65 Mining to collect these.
+|tip You will need level 50 Mining to collect these.
 collect Tin Ore##2771 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Coarse Stone",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={mining=50},levelreq=20},
+items={2836},
+maps={"Ashenvale"},
 },[[
 step
 map Kalimdor/0
 path follow smart; loop on; ants straight; dist 30
 path	44.89,34.26	44.33,34.72
-map Ashenvale
+map Ashenvale/0
 path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
 path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
 path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
@@ -421,20 +516,23 @@ path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
 path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
 path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
 path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
-Click ore as you follow the path around this area
+click Tin Vein##1732+
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 65 Mining to collect these.
+|tip You will need level 50 Mining to collect these.
 collect Coarse Stone##2836 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Silver Ore",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={mining=50},levelreq=20},
+items={2775},
+maps={"Ashenvale"},
 },[[
 step
 map Kalimdor/0
 path follow smart; loop on; ants straight; dist 30
 path	44.89,34.26	44.33,34.72
-map Ashenvale
+map Ashenvale/0
 path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
 path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
 path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
@@ -446,20 +544,23 @@ path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
 path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
 path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
 path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
-Click ore as you follow the path around this area
+click Silver Vein##1733+
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 75 Mining to collect these.
+|tip You will need level 50 Mining to collect these.
 collect Silver Ore##2775 |n
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Moss Agate",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={mining=50},levelreq=20},
+items={1206},
+maps={"Ashenvale"},
 },[[
 step
 map Kalimdor/0
 path follow smart; loop on; ants straight; dist 30
 path	44.89,34.26	44.33,34.72
-map Ashenvale
+map Ashenvale/0
 path	16.61,27.89	20.48,28.08	20.00,33.38	16.87,36.59	19.99,41.70
 path	19.64,44.86	22.28,49.81	25.73,53.76	30.03,58.81	28.36,63.31
 path	31.43,64.91	32.88,70.11	38.79,63.61	42.14,63.26	42.24,68.10
@@ -471,21 +572,26 @@ path	64.33,43.71	61.84,42.80	59.00,37.01	57.53,30.19	54.73,33.28
 path	54.27,36.64	56.34,40.95	60.51,46.50	53.44,48.07	48.22,46.33
 path	45.28,47.32	43.45,41.62	41.73,40.62	41.32,36.20	36.59,36.37
 path	38.26,30.49	33.33,28.17	32.75,21.40	25.66,19.01	20.89,19.16
+click Tin Vein##1732+
+click Silver Vein##1733+
 Click ore as you follow the path around this area
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 65 Mining to collect Tin Ore nodes and 75 to collect Silver Ore nodes.
+|tip You will need level 50 Mining to collect these.
 collect Moss Agate##1206 |n
 |tip These are a rare drop from Tin and Silver Ore nodes.
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming Guides\\Iron Ore")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Mining\\Farming Guides\\Heavy Stone",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={mining=1},levelreq=30},
+items={2838},
+maps={"Feralas"},
 },[[
 step
-map Feralas
+map Feralas/0
 path	follow loose; loop on; ants curved; dist 20
-path	 84.90,39.90	81.80,39.30	79.20,37.20
+path	84.90,39.90	81.80,39.30	79.20,37.20
 path	75.30,35.50	71.50,34.70	68.40,39.70
 path	68.10,46.10	70.00,48.60	68.70,52.00
 path	65.50,52.50	63.80,54.90	61.50,50.50
@@ -506,9 +612,9 @@ path	61.00,59.10	64.10,58.70	63.70,61.00
 path	65.80,63.50	68.10,61.50	71.60,65.10
 path	77.20,62.10	75.90,53.50	76.20,49.60
 path	79.50,46.20	84.00,45.60	82.50,43.10
-Click ore as you follow the path around this area
+click Iron Deposit##1735+
 |tip Track them on your minimap with "Find Minerals".
-|tip You will need level 125 Mining to collect these.
+|tip You will need level 100 Mining to collect these.
 collect Heavy Stone##2838 |n
 '|confirm
 ]])
@@ -520,25 +626,30 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming G
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming Guides\\Thorium Ore")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming Guides\\Dense Stone")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming Guides\\Guardian Stone")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Mining\\Farming Guides\\Elementium Ore")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Green Whelp Scale")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Black Whelp Scale")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Ruined Leather Scraps",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=1},
+items={2934},
+maps={"Elwynn Forest"},
 },[[
 step
 kill Stonetusk Boar##113+
 |tip Skin their corpses.
-collect Ruined Leather Scraps##2934 |n |goto Elwynn Forest 41.58,86.96
+collect Ruined Leather Scraps##2934 |n |goto Elwynn Forest/0 41.58,86.96
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Light Leather",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=1},
+items={2318},
+maps={"Elwynn Forest"},
 },[[
 step
 kill Stonetusk Boar##113+
 |tip Skin their corpses.
-collect Light Leather##2318 |n |goto Elwynn Forest 41.58,86.96
+collect Light Leather##2318 |n |goto Elwynn Forest/0 41.58,86.96
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Slimy Murloc Scale")
@@ -558,22 +669,38 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Rugged Hide")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Black Dragonscale")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Heavy Scorpid Scale")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Core Leather")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Light Hide")
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Skinning\\Farming Guides\\Medium Leather",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",skillreq={skinning=1},levelreq=20},
+items={2319},
+maps={"Hillsbrad Foothills"},
 },[[
 step
 Kill Yeti enemies around this area
 |tip Skin their corpses.
 |tip You can find more inside the cave.
-|tip You will need level 155 Skinning to collect these.
-collect Medium Leather##2319 |n |goto Hillsbrad Foothills 46.64,54.41
+collect Medium Leather##2319 |n |goto Hillsbrad Foothills/0 46.64,54.41
 '|confirm
 ]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Skinning\\Farming Guides\\Warbear Leather")
+ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Linen Cloth",{
+mopready=true,
+meta={goldtype="route",levelreq=10},
+items={2589},
+maps={"Westfall"},
+},[[
+step
+Kill enemies around this area
+|tip Be sure to enter the mine as well.
+collect Linen Cloth##2589 |n |goto Westfall/0 44.55,25.01
+'|confirm
+]])
 ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Wool Cloth",{
-cataready=true,
+mopready=true,
+meta={goldtype="route",levelreq=15},
+items={2592},
+maps={"Redridge Mountains"},
 },[[
 step
 Kill Blackrock enemies around this area
@@ -587,11 +714,8 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Tailoring\\Farmin
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Tailoring\\Farming Guides\\Spider's Silk")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Tailoring\\Farming Guides\\Shadow Silk")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Tailoring\\Farming Guides\\Ironweb Spider Silk")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Dropped\\Farming Guides\\Righteous Orb")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Dropped\\Farming Guides\\Demonic Rune")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Dropped\\Farming Guides\\Dark Rune")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Dropped\\Farming Guides\\Sharp Claw")
-ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Dropped\\Farming Guides\\Ogre Tannin")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Dropped\\Farming Guides\\Small Venom Sac")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Dropped\\Farming Guides\\Huge Venom Sac")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Dropped\\Farming Guides\\Iridescent Pearl")
@@ -599,15 +723,6 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Dropped\\Farming 
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Dropped\\Farming Guides\\Golden Pearl")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Dropped\\Farming Guides\\Giant Egg")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Dropped\\Farming Guides\\Zesty Clam Meat")
-ZygorGuidesViewer:RegisterGuide("Profession Guides\\Tailoring\\Farming Guides\\Linen Cloth",{
-cataready=true,
-},[[
-step
-Kill enemies around this area
-|tip Be sure to enter the mine as well.
-collect Linen Cloth##2589 |n |goto Westfall 44.55,25.01
-'|confirm
-]])
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Tailoring\\Farming Guides\\Silk Cloth")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Tailoring\\Farming Guides\\Mooncloth")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Profession Guides\\Tailoring\\Farming Guides\\Thick Spider's Silk")

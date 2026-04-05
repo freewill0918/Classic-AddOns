@@ -1,8 +1,12 @@
 # FriendListColors
 
-## [v11.0.2.240908](https://github.com/Vladinator/wow-addon-friendlistcolors/tree/v11.0.2.240908) (2024-09-08)
-[Full Changelog](https://github.com/Vladinator/wow-addon-friendlistcolors/commits/v11.0.2.240908) [Previous Releases](https://github.com/Vladinator/wow-addon-friendlistcolors/releases)
+## [v12.0.0.260202](https://github.com/Vladinator/wow-addon-friendlistcolors/tree/v12.0.0.260202) (2026-02-02)
+[Full Changelog](https://github.com/Vladinator/wow-addon-friendlistcolors/commits/v12.0.0.260202) [Previous Releases](https://github.com/Vladinator/wow-addon-friendlistcolors/releases)
 
+- Implemented `FriendListColorsAPI` for Public API.  
+    Minor doc adjustments.  
+- maintenance and TOC encoding fix  
+- TOC bump  
 - TOC bump.  
 - TOC bump  
 - - TOC bump.  
@@ -73,6 +77,3 @@
 - Cleaned up TOC  
 - Initial Legion commit. Recoded the entire addon. Has backwards compatibility for Warlords of Draenor, despite it appearing as "Out of date"  
 - Fixed issue with patterns not matching properly.  
-- Updated libraries.  
-- License change. Get in touch with me if you wish to discuss.  
-- Fixed an error.  

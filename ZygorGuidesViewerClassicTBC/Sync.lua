@@ -631,7 +631,7 @@ function Sync:BroadcastStepContents()
 end
 
 function Sync.OnEvent(addon,event,...)
-	if event=="GROUP_ROSTER_UPDATE" or event=="PARTY_MEMBER_DISABLE" or event=="PARTY_MEMBER_ENABLE" then
+	if event=="GROUP_ROSTER_UPDATE" or event=="PARTY_MEMBER_DISABLE" or event=="PARTY_MEMBER_ENABLE" or event=="PLAYER_ENTERING_WORLD" then
 		Sync:ResetPartyStatus()
 		Sync:OnPartyStatusChanged()
 		if Sync:IsInGroup() then
@@ -653,6 +653,7 @@ function Sync:Init()
 	ZGV:AddEventHandler("GROUP_ROSTER_UPDATE",Sync.OnEvent)
 	ZGV:AddEventHandler("PARTY_MEMBER_DISABLE",Sync.OnEvent)
 	ZGV:AddEventHandler("PARTY_MEMBER_ENABLE",Sync.OnEvent)
+	ZGV:AddEventHandler("PLAYER_ENTERING_WORLD",Sync.OnEvent)
 
 	ZGV:AddMessageHandler("ZGV_GOAL_COMPLETED",function(_,_,step,goal)
 		if self:IsEnabled() then
@@ -807,6 +808,11 @@ function Sync:UpdateButtonColor()
 	else
 		r,g,b,a = 0.6,0.6,0.6,1
 	end
+	
+	if self:IsSecret() then
+		r,g,b,a = 1,1,0,1 -- yellow
+	end
+		
 	ZGV.Frame.Controls.GuideShareButton:GetNormalTexture():SetVertexColor(r,g,b,a)
 	ZGV.Frame.Controls.GuideShareButton:GetHighlightTexture():SetVertexColor(r,g,b,ZGV.Frame.Controls.GuideShareButton:GetHighlightTexture():GetAlpha())
 	ZGV.Frame.Controls.GuideShareButton:GetPushedTexture():SetVertexColor(r,g,b,a)
@@ -978,6 +984,10 @@ function Sync:IsEnabled()
 	return ZGV.db.profile.sync_enabled and self:IsInGroup()
 end
 
+function Sync:IsSecret()
+	return ZGV.db.profile.sync_enabled and ZGV.IsRetail and IsInInstance()
+end
+
 function Sync:IsSnapping()
 	return self:IsEnabled() and ZGV.db.profile.sync_snap
 end
@@ -986,6 +996,7 @@ end
 function Sync:Send(message,...)
 	if not message then return end
 	if not self:IsEnabled() then return end
+	if self:IsSecret() then return end
 
 	local message_packed = LibDeflate:CompressDeflate(message)
 	local message_encoded = LibDeflate:EncodeForWoWAddonChannel(message_packed)
@@ -1049,6 +1060,7 @@ function Sync:OnShareButtonEnter(button)
 	local txt2
 	local notslaves = self:GetParty_NotSlaveNames()
 	if not self:IsInGroup() then txt2=L['share_tooltip_noparty'] --txt2=L['opt_share_enabled_desc']
+	elseif self:IsSecret() then txt2=L['share_tooltip_secret']
 	elseif #ZGV.TableKeys(self.PartyStatus)==0 then txt2=L['share_tooltip_nozygor'] --txt2=L['opt_share_enabled_desc']
 	elseif self:IsSlave() then txt2=L['share_tooltip_stopslave']:format(self.master_present_status and self.master_present_status.sender or "?")
 	elseif self:IsMaster() and #notslaves>0 then txt2=L['share_tooltip_stopmaster_or_reinvite'].."\n"..L['share_tooltip_currentslaves']:format(comma_and(self:GetParty_SlaveNames()))
@@ -1064,6 +1076,8 @@ end
 
 function Sync:OnShareButtonClick()
 	if not self:IsInGroup() then  ZGV:Error("You are not in a group.")  return false end
+
+	if self:IsSecret() then ZGV:Error("You cannot share while in instances") return false end
 
 	local zygor_users = ZGV.TableKeys(self.PartyStatus)
 	local notslaves = self:GetParty_NotSlaveNames()

@@ -6598,7 +6598,8 @@ step
 talk Urda##2851 |goto Arathi Highlands/0 68.16,33.39
 Select _"Take me to Revantusk Village."_ |gossip 112418
 |tip Land in Revantusk Village
-|goto The Hinterlands/0 81.70,81.89 < 15
+|complete dist("The Hinterlands/0 81.70,81.89") < 15
+step
 talk Gorkas##4314
 fpath Revantusk Village |goto The Hinterlands 81.70,81.75
 step
@@ -9960,32 +9961,26 @@ _Next to you:_
 talk Gargal##47022
 accept Gargal, the Behemoth##27893
 step
-cast Amakkar's Kidney Shot##87608 |q 27891/1
 Use Amakkar's Kidney Shot |q 27891/1 |goto Badlands 17.65,45.35
 |tip Use Amakkar's Kidney Shot ability on any enemy around this area.
 |tip Your followers' abilities appear as buttons above your action bars.
 step
-cast Jurrix's Fiery Blast##87612 |q 27892/1
 Use Jurrix's Fiery Blast |q 27892/1 |goto Badlands 17.65,45.35
 |tip Use Jurrix's Fiery Blast ability on any enemy around this area.
 |tip Your followers' abilities appear as buttons above your action bars.
 step
-cast Gargal's Mighty Shout##87614 |q 27893/2
 Use Gargal's Mighty Shout |q 27893/2 |goto Badlands 17.65,45.35
 |tip Use Gargal's Mighty Shout ability on any enemy around this area.
 |tip Your followers' abilities appear as buttons above your action bars.
 step
-cast Amakkar's Pocket Potion##87609 |q 27891/2
 Use Amakkar's Pocket Potion |q 27891/2 |goto Badlands 17.65,45.35
 |tip Use Amakkar's Pocket Potion ability.
 |tip Your followers' abilities appear as buttons above your action bars.
 step
-cast Jurrix's Time Warp##87596 |q 27892/2
 Use Jurrix's Time Warp |q 27892/2 |goto Badlands 17.65,45.35
 |tip Use Jurrix's Time Warp ability.
 |tip Your followers' abilities appear as buttons above your action bars.
 step
-cast Gargal's Shield Wall##87607 |q 27893/1
 Use Gargal's Shield Wall |q 27893/1 |goto Badlands 17.65,45.35
 |tip Use Gargal's Shield Wall ability.
 |tip Your followers' abilities appear as buttons above your action bars.
@@ -10047,10 +10042,10 @@ kill 12 Nyxondra's Broodling##46916 |q 27896/2 |goto Badlands 9.55,39.69
 step
 _Click the Complete Quest Box:_
 turnin The Sorrow and the Fury##27896
-accept The Hidden Clutch##27832
+accept The Hidden Clutch##27897
 step
 talk Rhea##46654
-turnin The Hidden Clutch##27832 |goto Badlands 15.95,33.40
+turnin The Hidden Clutch##27897 |goto Badlands 15.95,33.40
 accept Rheastrasza's Gift##27898 |goto Badlands 15.95,33.40
 step
 Wait for Rhea to Retrieve the Egg |q 27898/1
@@ -10237,6 +10232,7 @@ label "Collect_Smithing_Tuyere"
 kill Dark Iron Steamsmith##5840+
 collect Smithing Tuyere##18959 |q 27977/1 |goto Searing Gorge 40.50,44.21
 collect Lookout's Spyglass##18960 |q 27977/2 |goto Searing Gorge 40.50,44.21
+|tip While you should be able to collect both items from the Steamsmiths, if the Spyglass wouldn't drop, try with Dark Iron Lookouts - they are mostly south of the gorge.
 step
 label "Kill_Greater_Lava_Spiders"
 kill 9 Greater Lava Spider##5858 |q 27980/1 |goto Searing Gorge 28.49,43.81
@@ -10282,7 +10278,9 @@ talk Zamael Lunthistle##8436
 accept Lunthistle's Tale##27984 |goto Searing Gorge 29.50,26.40
 step
 talk Zamael Lunthistle##8436
-Select _"I wish to hear your tale."_
+Select _"I wish to hear your tale."_ |gossip 88561
+Select _"Please continue, Zamael."_ |gossip 87730
+Select _"Let me think about it, Zamael."_ |gossip 87729
 Watch the dialogue
 Listen to Zamael's Story |q 27984/1 |goto Searing Gorge 29.50,26.40
 step
@@ -10390,7 +10388,7 @@ accept Lunk's Adventure: Rendan's Weakness##28034 |goto Searing Gorge 39.80,67.9
 step
 talk Iron Summit Guard##47434+
 |tip You will need to talk to three of them.
-Select _"Care to join our dance?"_
+Select _"Care to join our dance?"_ |gossip 113149
 Build Up a Three-Dwarf Conga Line |q 28034/1 |goto Searing Gorge 40.60,68.10
 step
 talk Mountain-Lord Rendan##47393
@@ -10404,7 +10402,7 @@ turnin The Mountain-Lord's Support##28035 |goto Searing Gorge 38.10,27.00
 accept Operation: Stir the Cauldron##28052 |goto Searing Gorge 38.10,27.00
 step
 talk Grisha##3305
-Select _"I'm ready to take the flight into the Cauldron!"_
+Select _"I'm ready to take the flight into the Cauldron!"_ |gossip 111566
 |tip Use the Shoot ability on your action on the dwarves that start shooting at you during the flight.
 Secure an Entrance into the Slag Pit |q 28052/1 |goto Searing Gorge/0 34.85,30.87
 stickystart "Free_Or_Kill_Slave_Workers"
@@ -10421,7 +10419,7 @@ step
 Click the Quarry Gate and follow the path |goto Searing Gorge/0 37.85,44.33 < 7 |walk
 click Altar of Suntara##148498
 |tip Inside the Slag Pit.
-Choose _"Touch the Suntara stone and call forth Lathoric the Black and his guardian, Obsidion."_
+Choose _"Touch the Suntara stone and call forth Lathoric the Black and his guardian, Obsidion."_ |gossip 87853
 Watch the dialogue
 kill Obsidion##8400 |q 28056/1 |goto Searing Gorge/0 41.30,25.40
 kill Lathoric the Black##8391 |q 28056/2 |goto Searing Gorge/0 41.30,25.40
@@ -10429,7 +10427,7 @@ step
 label "Free_Or_Kill_Slave_Workers"
 talk Slave Worker##5843+
 |tip All along the walls inside the Slag Pit
-Select _"Come on, let's get out of here!"_
+Select _"Come on, let's get out of here!"_ |gossip 113153
 |tip You can also just kill them, if you prefer.
 Free or Kill #12# Slave Workers |q 28055/1 |goto Searing Gorge/0 42.10,25.10
 step
@@ -10457,7 +10455,7 @@ accept Twisted Twilight Ties##28060 |goto Searing Gorge/0 42.20,34.50
 step
 talk Hansel Heavyhands##14627
 |tip Inside the Slag Pit.
-Select _"Let's do this! Let's take out Maltorius and Arkkus!"_
+Select _"Let's do this! Let's take out Maltorius and Arkkus!"_ |gossip 111563
 |tip He will begin attacking Overseer Maltorius nearby.
 Click Here to Continue |confirm |goto Searing Gorge/0 42.25,34.64 |q 28060
 step
@@ -10619,22 +10617,23 @@ accept A Perfect Costume##28430 |goto Burning Steppes 45.45,46.34 |only if Gobli
 accept A Perfect Costume##28431 |goto Burning Steppes 45.45,46.34 |only if Troll or BloodElf or ZTroll or Nightborne
 step
 click Tailor's Table##206947
-Choose _"Take two hides."_ |only if haveq(28428) or completedq(28428)
-Choose _"Take four hides."_ |only if haveq(28429) or completedq(28429)
-Choose _"Take one hides."_ |only if haveq(28430) or completedq(28430)
-Choose _"Take three hides."_ |only if haveq(28431) or completedq(28431)
-Choose _"Take four handfuls of mud."_ |only if haveq(28428) or completedq(28428)
-Choose _"Take one handfuls of mud."_ |only if haveq(28429) or completedq(28429)
-Choose _"Take three handfuls of mud."_ |only if haveq(28430) or completedq(28430)
-Choose _"Take two handfuls of mud."_ |only if haveq(28431) or completedq(28431)
-Choose _"Take two spools of thread."_ |only if haveq(28428) or completedq(28428)
-Choose _"Take three spools of thread."_ |only if haveq(28429) or completedq(28429)
-Choose _"Take four spools of thread."_  |only if haveq(28430) or completedq(28430)
-Choose _"Take one spools of thread."_ |only if haveq(28431) or completedq(28431)
+Select _"Investigate the hides."_ |gossip 113200
+Select _"Take two hides."_ |gossip 113203 |only if haveq(28428) or completedq(28428)
+Select _"Take four hides."_ |gossip 113205 |only if haveq(28429) or completedq(28429)
+Select _"Take one hide."_ |gossip 113202 |only if haveq(28430) or completedq(28430)
+Select _"Take three hides."_ |gossip 113204 |only if haveq(28431) or completedq(28431)
+Select _"Take four handfuls of mud."_ |gossip 113209 |only if haveq(28428) or completedq(28428)
+Select _"Take one handful of mud."_ |gossip 113206 |only if haveq(28429) or completedq(28429)
+Select _"Take three handfuls of mud."_ |gossip 113208 |only if haveq(28430) or completedq(28430)
+Select _"Take two handfuls of mud."_ |gossip 113207 |only if haveq(28431) or completedq(28431)
+Select _"Take two spools of thread."_ |gossip 113211 |only if haveq(28428) or completedq(28428)
+Select _"Take three spools of thread."_ |gossip 113212 |only if haveq(28429) or completedq(28429)
+Select _"Take four spools of thread."_ |gossip 113213  |only if haveq(28430) or completedq(28430)
+Select _"Take one spool of thread."_ |gossip 113210 |only if haveq(28431) or completedq(28431)
 Click Here After Making the Choices |confirm |goto Burning Steppes 45.58,46.27 |complete completedq(28428,28429,28430,28431)
 step
 talk Thelaron Direneedle##48001
-Select _"I brought you some hides, mud, and thread."_
+Select _"I brought you some hides, mud, and thread."_ |gossip 113216
 Create the Perfect Costume |q 28428/1 |goto Burning Steppes 45.45,46.34 |only if haveq(28428) or completedq(28428)
 Create the Perfect Costume |q 28429/1 |goto Burning Steppes 45.45,46.34 |only if haveq(28429) or completedq(28429)
 Create the Perfect Costume |q 28430/1 |goto Burning Steppes 45.45,46.34 |only if haveq(28430) or completedq(28430)
@@ -10650,6 +10649,7 @@ step
 use the Blackrock Disguise##63357
 Wear the Blackrock Disguise |havebuff Blackrock Orc Disguise##89253 |q 28432 |or
 '|havebuff Blackrock Orc Disguise##89254 |q 28432 |or
+'|havebuff Smolderthorn Troll Disguise##89260 |q 28432 |or
 step
 talk Quartermaster Kaoshin##48085
 turnin Into the Black Tooth Hovel##28432 |goto Burning Steppes 45.33,51.73
@@ -10722,7 +10722,7 @@ accept Golem Training##28227 |goto Burning Steppes 46.80,44.10
 step
 talk Chiseled Golem##48037+
 |tip They look like metal humanoid machines around town.
-Select _"I'm here to help you with your combat training, golem."_
+Select _"I'm here to help you with your combat training, golem."_ |gossip 113218
 kill Chiseled Golems##48037+
 |tip You will have to defeat them 3 times in a row to train them.
 Train #4# Chiseled Golems |q 28227/1 |goto Burning Steppes 46.32,44.81
@@ -10736,6 +10736,7 @@ step
 use the Blackrock Disguise##63357
 Wear the Blackrock Disguise |havebuff Blackrock Orc Disguise##89253 |q 28437 |or
 '|havebuff Blackrock Orc Disguise##89254 |q 28437 |or
+'|havebuff Smolderthorn Troll Disguise##89260 |q 28437 |or
 step
 talk General Thorg'izog##48133
 |tip Inside the building.
@@ -10744,7 +10745,7 @@ accept Trial by Magma##28438 |goto Burning Steppes 30.68,33.72
 step
 talk Wyrtle Spreelthonket##48159
 |tip Inside the building.
-Select _"I'd like to challenge your magma lord to a fight."_
+Select _"I'd like to challenge your magma lord to a fight."_ |gossip 113229
 kill Magma Lord Kolob##48156 |q 28438/1 |goto Burning Steppes 30.80,33.40
 |tip He looks like a large elemental in the middle of the room nearby.
 step
@@ -10759,12 +10760,14 @@ step
 use the Blackrock Cudgel of Discipline##63390
 |tip Use it on Blackrock Sergeants.
 |tip They look like orcs riding on wolves around this area.
+|tip {o}Keep on spamming{} the cudgel until Sergeant is down!
 kill 5 Blackrock Sergeant##48201 |q 28440/1 |goto Burning Steppes 33.60,36.30
 step
 label "Cudgel_Blackrock_Minions"
 use the Blackrock Cudgel of Discipline##63390
 |tip Use it on enemies around this area.
 |tip Blackrock Sergeants will not count for this goal. |notinsticky
+|tip {o}Keep on spamming{} the cudgel if your target tries to unmask you!
 Cudgel #20# Blackrock Minions |q 28439/1 |goto Burning Steppes 34.27,35.65
 step
 _Click the Complete Quest Box:_
@@ -10868,6 +10871,7 @@ use the Blackrock Disguise##63357
 |tip You will be granted one of two disguise buffs.
 Wear your Blackrock Disguise |havebuff Blackrock Orc Disguise##89253 |q 28450 |or
 '|havebuff Blackrock Orc Disguise##89254 |q 28450 |or
+'|havebuff Smolderthorn Troll Disguise##89260 |q 28450 |or
 step
 Enter the cave |goto Burning Steppes/0 70.58,38.34 < 15 |walk
 talk Dragon-Lord Neeralak##48314
@@ -10938,7 +10942,7 @@ talk Kibler##10260
 accept The Bogpaddle Bullet##28570 |goto Burning Steppes 54.95,22.56
 step
 talk Sharon Boomgetter##48948
-Select _"Alright! Let's head down to the Swamp of Sorrows!"_
+Select _"Alright! Let's head down to the Swamp of Sorrows!"_ |gossip 113277
 Begin Traveling to Swamp of Sorrows |invehicle |goto Burning Steppes 78.30,58.80 |q 28570
 step
 Travel to Swamp of Sorrows |outvehicle |goto Swamp of Sorrows 75.30,13.30 |q 28570 |notravel
@@ -10981,7 +10985,7 @@ accept Mostly Harmless##27536 |goto Swamp of Sorrows 73.16,14.90
 accept Croc-Out##27656 |goto Swamp of Sorrows 73.16,14.90
 step
 talk Trade Baron Silversnap##45786
-Select _"Gimme some more of that swim tonic!"_
+Select _"Gimme some more of that swim tonic!"_ |gossip 112839
 |tip You can use these for any quest that involves going underwater in the Swamp of Sorrows.
 collect 3 Silversnap Swim Tonic##62795 |goto Swamp of Sorrows 73.16,14.90 |future |q 27757
 step
@@ -11031,7 +11035,7 @@ turnin Can't Take It With Them##27599 |goto Swamp of Sorrows 84.03,40.14
 accept In With a Bang##27600 |goto Swamp of Sorrows 84.03,40.14
 step
 talk Lil' Crazy Jerry##46245
-Select _"Load me in that cannon, boy!"_
+Select _"Load me in that cannon, boy!"_ |gossip 112827
 Launch from the Cannon |invehicle |goto Swamp of Sorrows 83.58,37.87 |q 27600
 step
 click Thousand-Thread-Count Fuse##205826
@@ -11048,7 +11052,7 @@ collect Stack of Questionable Publications##61373 |q 27600/3 |goto Swamp of Sorr
 step
 click Landward Cannon##206679
 |tip On the deck of the ship.
-Choose _"I'll get in and fire it! What could go wrong?"_
+Choose _"I'll get in and fire it! What could go wrong?"_ |gossip 113169
 Launch from the Cannon |invehicle |goto Swamp of Sorrows 98.10,26.00 |q 27600
 step
 talk Crazy Larry##45948
@@ -11056,7 +11060,7 @@ turnin In With a Bang##27600 |goto Swamp of Sorrows 84.03,40.14
 accept Baba Bogbrew##27740 |goto Swamp of Sorrows 84.03,40.14
 step
 talk Lil' Crazy Daisy##46503
-Select _"Your dad says to fire me across the bay."_
+Select _"Your dad says to fire me across the bay."_ |gossip 112853
 Launch from the Cannon |invehicle |goto Swamp of Sorrows 82.85,41.11 |q 27740
 step
 talk Baba Bogbrew##46172
@@ -11133,7 +11137,7 @@ Defeat Jammal'an the Prophet |q 27773/1 |goto Swamp of Sorrows 76.60,41.50
 step
 _Click the Complete Quest Box:_
 turnin Step Three: Prophet##27773
-accept Blessing of the Green Dragonflight##27914
+accept Blessing of the Green Dragonflight##27914 |goto Swamp of Sorrows 69.47,54.53
 step
 talk Lord Itharius##46071
 |tip On top of the temple.
@@ -11877,7 +11881,7 @@ step
 talk Bloodmage Lynnore##7506
 |tip Upstairs inside the cave.
 Select _"I would like to start the Blood Ritual, Lynnore."_ |gossip 112241
-Speak with Bloodmage Mynnore |complete readyq(25686) |goto Blasted Lands 39.21,36.29
+Speak with Bloodmage Lynnore |complete readyq(25686) |goto Blasted Lands 39.21,36.29
 step
 Watch the dialogue
 talk Bloodmage Lynnore##7506
@@ -12644,9 +12648,9 @@ talk Gotura Fourwinds##35068
 accept Preserving the Barrens##26642 |goto Orgrimmar/1 47.64,71.21
 step
 talk Neeru Fireblade##3216
-|tip Inside the building, inside The Drag.
-turnin Neeru Fireblade##25263 |goto Orgrimmar/1 58.18,54.62
-accept Ak'Zeloth##25264 |goto Orgrimmar/1 58.18,54.62
+|tip Inside the cave under Orgrimmar called the Cleft of Shadow.
+turnin Neeru Fireblade##25263 |goto Orgrimmar/2 58.21,54.63
+accept Ak'Zeloth##25264 |goto Orgrimmar/2 58.21,54.63
 step
 talk Takrin Pathseeker##3336
 accept Conscript of the Horde##840 |goto Durotar 50.85,43.59
@@ -50989,6 +50993,7 @@ label "Collect_Smithing_Tuyere"
 kill Dark Iron Steamsmith##5840+
 collect Smithing Tuyere##18959 |q 27977/1 |goto Searing Gorge 40.50,44.21
 collect Lookout's Spyglass##18960 |q 27977/2 |goto Searing Gorge 33.19,53.49
+|tip While you should be able to collect both item from the Steamsmiths, if the Spyglass wouldn't drop, try with Dark Iron Lookouts - they are mostly south of the gorge.
 |only if haveq(27983)
 step
 label "Kill_Greater_Lava_Spiders"

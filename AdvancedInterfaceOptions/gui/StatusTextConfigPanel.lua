@@ -79,7 +79,7 @@ function addon:CreateStatusTextOptions()
       statusText = {
         type = "toggle",
         name = STATUS_TEXT,
-        desc = "狀態欄時否要顯示血量/法力數值",
+        desc = "Whether the status bars show numeric health/mana values",
         get = function()
           return self.getCustomVar("statusText")
         end,

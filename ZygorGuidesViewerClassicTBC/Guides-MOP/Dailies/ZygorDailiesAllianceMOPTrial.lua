@@ -5,6 +5,7 @@ if ZGV:DoMutex("DailiesAMOP") then return end
 ZygorGuidesViewer.GuideMenuTier = "TRI"
 ZGV.BETASTART()
 ZygorGuidesViewer:RegisterGuidePlaceholder("Daily Guides\\Mists of Pandaria Dailies\\Operation: Shieldwall Dailies")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Daily Guides\\Mists of Pandaria Dailies\\Kirin Tor Offensive Dailies")
 ZGV.BETAEND()
 ZygorGuidesViewer:RegisterGuide("Daily Guides\\Mists of Pandaria Dailies\\Beastmaster's Hunt Dailies (Operation: Shieldwall)",{
 mopready=true,

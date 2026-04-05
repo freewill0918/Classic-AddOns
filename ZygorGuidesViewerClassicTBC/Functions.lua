@@ -313,14 +313,22 @@ framemeta.__index.EnableIf = EnableIf
 --]]
 
 function ZGV.GetTargetId()
-	return tonumber((UnitGUID("target") or ""):match("Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)") or 0)
+	local unitguid = UnitGUID("target")
+	if ZGV.IsSecret(unitguid) then return 0 end
+	if not unitguid then return 0 end
+
+	return tonumber(unitguid:match("Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 end
 
 function ZGV.GetUnitId(unit)
+	local unitguid = UnitGUID(unit)
+	if ZGV.IsSecret(unitguid) then return 0 end
+	if not unitguid then return 0 end
+
 	if unit=="pet" then
-		return tonumber((UnitGUID(unit) or ""):match("[Creature|Pet]%-%d+%-%d+%-%d+%-%d+%-(%d+)") or 0)
+		return tonumber(unitguid:match("[Creature|Pet]%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 	else
-		return tonumber((UnitGUID(unit) or ""):match("[Creature|Vehicle]%-%d+%-%d+%-%d+%-%d+%-(%d+)") or 0)
+		return tonumber(unitguid:match("[Creature|Vehicle]%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 	end
 end
 
@@ -2153,6 +2161,7 @@ function ZGV.F.IsPlayerRole(role)
 end
 
 function ZGV.F.CutsceneCancel()
+	do return end
 	if not ZGV.db.profile.autoskipcutscenes then return end
 	if ZGV.CurrentStep and ZGV.CurrentStep.nomovieskip then return end
 	local text = ZGV.L['cinematic_cancelled']
@@ -2162,6 +2171,7 @@ function ZGV.F.CutsceneCancel()
 end
 
 function ZGV.F.MovieCancel()
+	do return end
 	if not ZGV.db.profile.autoskipcutscenes then return end
 	if ZGV.CurrentStep and ZGV.CurrentStep.nomovieskip then return end
 
@@ -2368,6 +2378,7 @@ local lastkills = {} ---@type table<integer,integer>
 local COMBATLOG_XPGAIN_FIRSTPERSON_PATTERN = COMBATLOG_XPGAIN_FIRSTPERSON:gsub("1%$",""):gsub("2%$",""):gsub("3%$",""):gsub("4%$",""):gsub("%%s","(.+)"):gsub("%%d","([0-9]+)")
 local COMBATLOG_XPGAIN_EXHAUSTION1_PATTERN = COMBATLOG_XPGAIN_EXHAUSTION1:gsub("1%$",""):gsub("2%$",""):gsub("3%$",""):gsub("4%$",""):gsub("%(","%%("):gsub("%)","%%)"):gsub("%%s","(.+)"):gsub("%%d","([0-9]+)")
 function ZGV.F.TrackKills(_,event,message)
+	if ZGV.IsSecret(message) then return end
 	if message=="" then return end
 	local mob,experience,rested,restedtype = message:match(COMBATLOG_XPGAIN_EXHAUSTION1_PATTERN)
 	if tonumber(rested) and tonumber(experience)>0 then
@@ -2489,6 +2500,11 @@ function ZGV.Replacements:Startup()
 		ZGV.Replacements.ObjectiveTracker = QuestWatchFrame
 		ZGV.Replacements.ExpBar = MainMenuExpBar
 	end
+	if ZGV.IsClassicTBC then
+		ZGV.Replacements.ObjectiveTracker = QuestWatchFrame
+		ZGV.Replacements.ExpBar = MainStatusTrackingBarContainer
+	end
+	
 	if ZGV.IsClassicWOTLK or ZGV.IsClassicCATA or ZGV.IsClassicMOP then
 		ZGV.Replacements.ObjectiveTracker = WatchFrame
 		ZGV.Replacements.ExpBar = MainMenuExpBar
@@ -2537,5 +2553,13 @@ end
 function ZGV:ThrottlerWrap(ident,delay,callback,params)
 	if not ZGV:Throttler(ident,delay,callback,params) then
 		callback(params and unpack(params))
+	end
+end
+
+function ZGV.IsSecret(value) 
+	if type(value)=="table" then
+		return issecrettable and issecrettable(value)
+	else
+		return issecretvalue and issecretvalue(value)
 	end
 end

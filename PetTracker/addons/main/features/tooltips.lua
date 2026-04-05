@@ -1,5 +1,5 @@
 --[[
-  Copyright 2012-2025 João Cardoso
+  Copyright 2012-2026 João Cardoso
   All Rights Reserved
 --]]
 
@@ -7,46 +7,55 @@ local ADDON, Addon = ...
 local Tooltips = Addon:NewModule('Tooltips')
 
 function Tooltips:OnLoad()
+	self.safe = scrubsecretvalues or function(...) return ... end
 	hooksecurefunc('BattlePetTooltipTemplate_SetBattlePet', self.OnBattlePet)
 	TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, self.OnUnit)
 end
 
 function Tooltips.OnUnit(tip)
 	local name = TooltipUtil.GetDisplayedUnit(tip)
-	local specie = name and C_PetJournal.FindPetIDByName(name)
-	if specie then
+	local success, specie = pcall(C_PetJournal.FindPetIDByName, name)
+	if success and specie then
 		local owned = Addon.Specie(specie):GetOwnedText()
 		if owned then
+			local owned = DIM_GREEN_FONT_COLOR:WrapTextInColorCode(owned)
+
 			for i = 1, tip:NumLines() do
 				local line = _G[tip:GetName() .. 'TextLeft' .. i]
 				local text = line:GetText()
 
-				if text and text:find('^' .. COLLECTED) then
-					line:SetText(DIM_GREEN_FONT_COLOR:WrapTextInColorCode(owned))
-					return
+				if Tooltips.safe(text) and text:find('^' .. COLLECTED) then
+					return line:SetText(owned)
 				end
 			end
+
+			tip:AddLine(owned)
 		end
 	end
 end
 
 function Tooltips.OnBattlePet(tip, data)
-	if data and data.speciesID then
-		tip.specie = Addon.Specie(data.speciesID)
-		tip.breed = Addon.Predict:Breed(data.speciesID, data.level, data.breedQuality + 1, data.maxHealth, data.power, data.speed)
+	tip.data = data
+	RunNextFrame(function()
+		local data = tip.data
+		if data and data.speciesID then
+			local specie = Addon.Specie(data.speciesID)
+			local owned, source = specie:GetOwnedText(), select(5, specie:GetInfo())
+			local breed = Addon.Predict:Breed(data.speciesID, data.level, data.breedQuality + 1, data.maxHealth, data.power, data.speed)
 
-		if not tip.Source then
-			tip.Source = tip:CreateFontString(nil, 'ARTWORK', 'GameFontHighlightLeft')
-			tip.Source:SetPoint('BOTTOMLEFT', tip, 11, 8)
-			tip.Source:SetSize(tip:GetWidth() - 20, 0)
+			if not tip.Source then
+				tip.Source = tip:CreateFontString(nil, 'ARTWORK', 'GameFontHighlightLeft')
+				tip.Source:SetPoint('BOTTOMLEFT', tip, 11, 8)
+				tip.Source:SetSize(tip:GetWidth() - 20, 0)
+			end
 
-			hooksecurefunc(tip, 'Show', function(tip)
-				tip.Owned:SetText(NORMAL_FONT_COLOR:WrapTextInColorCode(tip.specie:GetOwnedText() or ''))
-				tip.Name:SetText((tip.Name:GetText() or '') .. Addon.Breeds:Icon(tip.breed, .8, 5,0))
-				tip.Source:SetText(select(5, tip.specie:GetInfo()) or '')
+			tip.Owned:SetText(NORMAL_FONT_COLOR:WrapTextInColorCode(owned or ''))
+			tip.Name:SetText((tip.Name:GetText() or '') .. Addon.Breeds:Icon(breed, .8, 5,0))
+			tip.Source:SetText(source or '')
 
-				tip:SetHeight(tip:GetHeight() + tip.Source:GetHeight())
-			end)
+			tip:SetHeight(tip:GetHeight() + (source and tip.Source:GetHeight() + 6) + (owned and 6 or 0))
 		end
-	end
+
+		tip.data = nil
+	end)
 end

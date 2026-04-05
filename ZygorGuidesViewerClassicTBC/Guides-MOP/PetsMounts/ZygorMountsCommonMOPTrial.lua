@@ -36,6 +36,7 @@ ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Mounts\\Flying
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Achievement Mounts\\Spawn of Galakras")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Achievement Mounts\\Violet Pandaren Phoenix")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Blizzard Store Mounts\\Enchanted Fey Dragon")
+ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts\\Mounts\\Flying Mounts\\Promotion Mounts\\Imperial Quilen")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Blizzard Store Mounts\\Warforged Nightmare")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Dropped Mounts\\Thundering Cobalt Cloud Serpent")
 ZygorGuidesViewer:RegisterGuidePlaceholder("Pets & Mounts Guides\\Mounts\\Flying Mounts\\Dropped Mounts\\Thundering Onyx Cloud Serpent")

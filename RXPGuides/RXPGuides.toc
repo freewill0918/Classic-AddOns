@@ -1,10 +1,11 @@
-## Interface: 110200, 40402, 50500, 11507
+## Interface: 11508, 110205, 50503, 120001, 110207
 ## Title: RestedXP Guides
+## Title-zhCN: RestedXP 指南
 ## Notes: In-game leveling guides
 ## Author: RestedXP
-## Version: v4.8.11
+## Version: v4.10.9-2-gaa26788
 ## OptionalDeps: Questie, RXPGuides_Themes
-## SavedVariables: RXPData, RXPDB, RXPSettings
+## SavedVariables: RXPData, RXPDB, RXPSettings, RXPString
 ## SavedVariablesPerCharacter: RXPCData, RXPCTrackingData, RXPCComms, RXPCSettings
 ## X-Curse-Project-ID: 486246
 ## X-Wago-ID: ZKbebq61
@@ -12,10 +13,11 @@
 libs\embeds_Mainline.xml [AllowLoadGameType mainline]
 libs\embeds.xml [AllowLoadGameType classic]
 locale\locales.xml
-UI\includes.xml [AllowLoadGameType classic]
+UI\includes.xml
 
 Locale.lua
 Themes.lua
+Communications.lua
 RXPGuides.lua
 GuideWindow.lua
 Help.lua
@@ -33,7 +35,6 @@ QuestLog.lua
 ActiveItemFrame.lua
 LevelingTracker.lua
 Timers.lua
-Communications.lua
 Targeting.lua
 Tips.lua
 InventoryManager.lua
@@ -42,16 +43,19 @@ InventoryManager.lua
 map.lua
 functions.lua
 GuideLoader.lua
-HardcoreIntroUI.lua [AllowLoadGameType vanilla]
 
 Guides/GuideList-Mainline.xml [AllowLoadGameType mainline]
-Guides/GuideList-cata.xml [AllowLoadGameType cata,mists]
+Guides/GuideList-cata.xml [AllowLoadGameType cata]
+Guides/GuideList-mop.xml [AllowLoadGameType mists]
 Guides/GuideList-classic.xml [AllowLoadGameType vanilla]
+Guides/GuideList-tbc.xml [AllowLoadGameType tbc]
+lang/Guides-zhCN/GuideList-tbc.xml [AllowLoadGameType tbc]
 
-Talents.lua [AllowLoadGameType cata,vanilla]
+Talents.lua [AllowLoadGameType cata,vanilla,tbc]
 Guides/Talents/cata.xml [AllowLoadGameType cata]
+Guides/Talents/tbc.xml [AllowLoadGameType tbc]
 Guides/Talents/classic.xml [AllowLoadGameType vanilla]
 
-ItemUpgrades.lua [AllowLoadGameType cata,vanilla]
+ItemUpgrades.lua [AllowLoadGameType tbc,vanilla,cata]
 
-CptStadicsVendorTreasures.lua [AllowLoadGameType vanilla]
+CptStadicsVendorTreasures.lua [AllowLoadGameType vanilla,tbc,wrath]

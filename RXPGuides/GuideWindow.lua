@@ -285,11 +285,12 @@ function BottomFrame:StepScroll(n)
             break
         end
     end]]
-    if n == 1 or not stepPos[n] then
+    local height = ScrollChild.f1:GetHeight()
+    if n == 1 or not (stepPos[n] and stepPos[0] and height) then
         value = 0
     else
-        value = stepPos[n] / stepPos[0] * ScrollChild.f1:GetHeight() - 2
-        local smax = ScrollChild.f1:GetHeight() - BottomFrame:GetHeight() + 10
+        value = stepPos[n] / stepPos[0] * height - 2
+        local smax = height - BottomFrame:GetHeight() + 10
         if value > smax then value = smax end
     end
     ScrollFrame.ScrollBar:SetValue(value)
@@ -319,7 +320,7 @@ CurrentStepFrame:EnableMouse(1)
 local CheckStepCompletion = function(self,initialCheck)
     local stepCompleted = true
     for _,element in pairs(self.elements) do
-        if initialCheck then
+        if initialCheck and element.container and element.container.callback then
             --print('ok1',GetTime())
             element.container:callback()
         end
@@ -333,91 +334,102 @@ local hiddenFramePool = {}
 
 function addon.RegisterGeneratedSteps()
     local i = 1
-    local stepUnitscan, stepMobs, stepTargets = {},{},{}
-    for _,context in pairs(addon.generatedSteps) do
-    for _,step in ipairs(context) do
-    for _,element in ipairs(step.elements or {}) do
-        if element.tag then
-            local events = element.event or addon.functions.events[element.tag]
-            local container = hiddenFramePool[i] or CreateFrame("Frame",nil,addon.RXPFrame)
-            hiddenFramePool[i] = container
-            i = i + 1
-            container:Show()
-            container.callback = addon.functions[element.tag]
-            if type(events) == "string" then
-                if events == "OnUpdate" then
-                    container:SetScript("OnUpdate", container.callback)
-                else
-                    container:RegisterEvent(events)
-                    container:SetScript("OnEvent",
-                                        CurrentStepFrame.EventHandler)
-                end
-            elseif type(events) == "table" then
-                for _, event in ipairs(events) do
-                    if event == "OnUpdate" then
-                        container:SetScript("OnUpdate",
-                                            container.callback)
-                    else
-                        container:RegisterEvent(event)
-                        container:SetScript("OnEvent",
-                                            CurrentStepFrame.EventHandler)
+    local stepUnitscan, stepMobs, stepTargets = {}, {}, {}
+    local events, container
+
+    for generatedKind, context in pairs(addon.generatedSteps) do
+        for _, step in ipairs(context) do
+            for _, element in ipairs(step.elements or {}) do
+                if element.tag then
+                    events = element.event or addon.functions.events[element.tag]
+                    container = hiddenFramePool[i] or CreateFrame("Frame", nil, addon.RXPFrame)
+
+                    hiddenFramePool[i] = container
+                    i = i + 1
+
+                    container:Show()
+                    container.callback = addon.functions[element.tag]
+
+                    if type(events) == "string" then
+                        if events == "OnUpdate" then
+                            container:SetScript("OnUpdate", container.callback)
+                        else
+                            container:RegisterEvent(events)
+                            container:SetScript("OnEvent", CurrentStepFrame.EventHandler)
+                        end
+                    elseif type(events) == "table" then
+                        for _, event in ipairs(events) do
+                            if event == "OnUpdate" then
+                                container:SetScript("OnUpdate", container.callback)
+                            else
+                                container:RegisterEvent(event)
+                                container:SetScript("OnEvent", CurrentStepFrame.EventHandler)
+                            end
+                        end
                     end
-                end
-            end
-            container.element = element
-            element.container = container
-            if element.unitscan then
-                for _, t in ipairs(element.unitscan) do
-                    tinsert(stepUnitscan, addon.GetCreatureName(t))
-                end
-            end
-            if element.mobs then
-                for _, t in ipairs(element.mobs) do
-                    tinsert(stepMobs, addon.GetCreatureName(t))
-                end
-            end
-            if element.targets then
-                for _, t in ipairs(element.targets) do
-                    tinsert(stepTargets, addon.GetCreatureName(t))
+
+                    container.element = element
+                    element.container = container
+
+                    -- Crudely disable until coordinate based proxmity is implemented
+                    -- Otherwise Dangerous Mobs bloat Active Targets as a visual macro for all rares/mobs in a zone
+                    if generatedKind ~= "dangerousMobs" then
+                        if element.unitscan then
+                            for _, t in ipairs(element.unitscan) do
+                                tinsert(stepUnitscan, addon.GetCreatureName(t))
+                            end
+                        end
+
+                        if element.mobs then
+                            for _, t in ipairs(element.mobs) do
+                                tinsert(stepMobs, addon.GetCreatureName(t))
+                            end
+                        end
+
+                        if element.targets then
+                            for _, t in ipairs(element.targets) do
+                                tinsert(stepTargets, addon.GetCreatureName(t))
+                            end
+                        end
+                    end
                 end
             end
         end
     end
-    end
-    end
 
-    -- Update targets for macro
     addon.targeting:UpdateEnemyList(stepUnitscan, stepMobs, true)
     addon.targeting:UpdateTargetList(stepTargets, true)
+    addon.targeting:UpdateUnitList()
 
     -- Don't process new targets if targeting disabled
-    if addon.settings.profile.enableTargetAutomation then
-        addon.targeting:CheckNameplates()
-    end
+    if addon.settings.profile.enableTargetAutomation then addon.targeting:CheckNameplates() end
 
-    for j = i,#hiddenFramePool do
-        local container = hiddenFramePool[j]
+    for j = i, #hiddenFramePool do
+        container = hiddenFramePool[j]
+
         container:Hide()
-        container:SetScript("OnUpdate",nil)
-        container:SetScript("OnEvent",nil)
+        container:SetScript("OnUpdate", nil)
+        container:SetScript("OnEvent", nil)
+
         container.element = nil
         container.callback = nil
     end
-    addon:ScheduleTask(addon.ProcessGeneratedSteps,CheckStepCompletion,true)
+
+    addon:ScheduleTask(addon.ProcessGeneratedSteps, CheckStepCompletion, true)
     addon.UpdateMap()
 end
 
-function addon:ProcessGeneratedSteps(func,...)
+function addon:ProcessGeneratedSteps(func, ...)
     if type(func) ~= "function" then func = nil end
-    for _,context in pairs(addon.generatedSteps) do
-        for _,step in ipairs(context) do
+
+    for _, context in pairs(addon.generatedSteps) do
+        for _, step in ipairs(context) do
             if step.isActive then
                 step.active = step:isActive()
-                --print(step,GetTime(),step.active)
+                -- print(step,GetTime(),step.active)
             end
-            if step.active and func then
-                func(step,...)
-            end
+
+            if step.active and func then func(step, ...) end
         end
     end
 end
@@ -571,8 +583,10 @@ function addon.UpdateStepCompletion()
                 step.active = nil
             elseif step.index >= RXPCData.currentStep then
                 step.completed = true
-                RXPFrame.BottomFrame.UpdateFrame(nil, nil, step.index)
-                if step.index == RXPCData.currentStep then
+                RXPFrame.BottomFrame.UpdateFrame(nil, step.index)
+
+                if step.index == RXPCData.currentStep or
+                      (step.index > RXPCData.currentStep and not step.sticky) then
                     addon.loadNextStep = true
                 end
                 return
@@ -667,7 +681,7 @@ function addon.SetStep(n, n2, loopback)
                 while req and req.requires and not RXPCData.stepSkip[req.index] and
                     not req.active do
                     if requiredSteps[req] then
-                        print('ERROR: Step requirement loop at steps %d and %d',
+                        addon.comms.PrettyPrint('ERROR: Step requirement loop at steps %d and %d',
                               step.index or 0, req.index or 0)
                         break
                     end
@@ -758,7 +772,7 @@ function addon.SetStep(n, n2, loopback)
                 stepframe:SetPoint("BOTTOMLEFT", UIParent, 0, 0)
             end
             --TODO: Save window position
-            stepframe:SetWidth(200)
+            stepframe:SetWidth(230)
             stepframe:SetMovable(true)
             stepframe:EnableMouse(true)
             stepframe:SetClampedToScreen(true)
@@ -1446,7 +1460,7 @@ function addon.ProcessGuideTable(guide)
     function IncludeGuide(group,name)
         local startAt, stopAt
         if type(group) == "table" then
-            if not group.include then
+            if not group.include or group.include:sub(1,1) == "*" then
                 return
             end
             local step = group
@@ -1468,44 +1482,97 @@ function addon.ProcessGuideTable(guide)
         local newGuide = addon:FetchGuide(group,name)
         if not newGuide then
             if name ~= "QuestDB" then
-                print(format(L"RXPGuides - Error trying to include guide: %s\\%s",group,name))
+                addon.comms.PrettyPrint(L"RXPGuides - Error trying to include guide: %s\\%s", group, name)
             end
             return
         end
         if not guideRef[newGuide] and guide ~= newGuide then
             guideRef[newGuide] = true
-            ProcessSteps(newGuide,startAt,stopAt)
+            ProcessSteps(newGuide,startAt,stopAt,true)
             guideRef[newGuide] = false
         end
     end
     local lastTip
-    function ProcessSteps(guide,startAt,stopAt)
-        for _, step in ipairs(guide.steps) do
+    function ProcessSteps(guide,startAt,stopAt,isInclude)
+        local firstLabel = true
+        local secondLabel = true
+        for n, step in ipairs(guide.steps) do
             local isShown = addon.IsStepShown(step)
             if isShown and startAt and (step.label == startAt or startAt == step.stepId) then
+                firstLabel = startAt
                 startAt = nil
             end
             if isShown and not startAt then
-                if not(step.include and step.elements and #step.elements == 0 and not step.requires and not step.label) then
-                    if step.tip then
-                        tinsert(currentGuide.tips,step)
-                        lastTip = step
-                        step.title = step.title or "Tip"
-                    else
-                        tinsert(currentGuide.steps, step)
-                        step.tipWindow = lastTip
+                if step.inlcude and step.include:sub(1,1) == "*" then
+                    step.include = false
+                    local stepToInclude = addon.labels[step.include]
+                    if stepToInclude then
+                        for i,v in pairs(stepToInclude) do
+                            if not step[i] then
+                                step[i] = v
+                            end
+                        end
+                        for _,element in ipairs(stepToInclude.elements) do
+                            table.insert(step.elements,element)
+                        end
                     end
-                    if step.elements then
-                        for _,element in pairs(step.elements) do
+                end
+                local iStep = step
+                if not(step.include and step.elements and #step.elements == 0 and not step.requires and not step.label) then
+                    if isInclude then
+                        local t = {}
+                        for i,v in pairs(step) do
+                            t[i] = v
+                        end
+                        if t.elements then
+                            local refs = {}
+                            local e = {}
+                            for i,element in ipairs(t.elements) do
+                                local v = CopyTable(element,true)
+                                refs[element] = v
+                                e[i] = v
+                                v.step = t
+                            end
+                            t.elements = e
+                            for _,element in ipairs(t.elements) do
+                                for i,v in pairs(element) do
+                                    local new = refs[v]
+                                    if new then
+                                        element[i] = new
+                                    end
+                                end
+                            end
+                        end
+                        iStep = t
+                    end
+                    if step.tip then
+                        tinsert(currentGuide.tips,iStep)
+                        lastTip = iStep
+                        iStep.title = iStep.title or L"Tip"
+                    else
+                        tinsert(currentGuide.steps, iStep)
+                        iStep.tipWindow = lastTip
+                    end
+                    if iStep.elements then
+                        for _,element in pairs(iStep.elements) do
                             addon.settings.ReplaceColors(element)
                         end
                     end
                 end
-                IncludeGuide(step)
-                if stopAt and (step.label == stopAt or stopAt == step.stepId) then
+                IncludeGuide(iStep)
+                if stopAt and (iStep.label == stopAt or stopAt == iStep.stepId) then
+                    secondLabel = stopAt
+                    stopAt = nil
                     break
                 end
             end
+        end
+
+        if startAt then
+            addon.comms.PrettyDebug("Include not found: %s - %s//%s", startAt or "", guide.group, guide.name)
+        end
+        if stopAt then
+            addon.comms.PrettyDebug("Include not found: %s - %s//%s", stopAt or "", guide.group, guide.name)
         end
     end
     IncludeGuide(guide)
@@ -1513,9 +1580,26 @@ function addon.ProcessGuideTable(guide)
     return currentGuide
 end
 
-function addon:FetchGuide(guide,arg2)
+function addon:FetchGuide(guide,arg2,arg3)
     if type(guide) == "string" then
-        return addon:FetchGuide(addon.GetGuideTable(guide,arg2))
+            local grp, name = guide,arg2
+            local g = addon:FetchGuide(addon.GetGuideTable(grp,name),nil,arg3)
+            if g then return g end
+            if arg3 then return end
+            local newGrp
+            local newName
+            if addon.groupAlias[grp] then
+                newGrp = addon.groupAlias[grp]
+                g = addon:FetchGuide(addon.GetGuideTable(newGrp,name),nil,true)
+            end
+            newName = name:gsub("^(%d)-(%d%d?)", addon.affix)
+            if not g and newName ~= name then
+                g = addon:FetchGuide(addon.GetGuideTable(grp,newName),nil,true)
+                if not g and newGrp then
+                    g = addon:FetchGuide(addon.GetGuideTable(newGrp,newName),nil,true)
+                end
+            end
+            return g
     elseif guide and not guide.steps then
         --print('ok3',guide.key)
         local key = guide.key
@@ -1556,9 +1640,7 @@ function addon:FetchGuide(guide,arg2)
         else
             --print(guide.name,guide.group)
             --GG = guide
-            if addon.settings.profile.debug then
-                print(fmt('Error: Tried to load an invalid Guide: %s v%s',key,guide.version or 0))
-            end
+            addon.comms.PrettyDebug('Error: Tried to load an invalid Guide: %s v%s', key, guide.version or 0)
             return
         end
     end
@@ -1582,10 +1664,12 @@ function addon:LoadGuide(guide, OnLoad)
     guide = addon:FetchGuide(guide)
     if not guide or not guide.steps then
         return addon:LoadGuide(addon.emptyGuide)
-    elseif addon.HideIntroUI and not guide.empty then
-        addon.HideIntroUI()
     end
 
+    if addon.game ~= "CLASSIC" then
+        guide.hardcore = nil
+        guide.softcore = true
+    end
     if guide.hardcore then
         if not addon.settings.profile.hardcore then
             addon.settings.profile.hardcore = true
@@ -1679,10 +1763,13 @@ function addon:LoadGuide(guide, OnLoad)
         end
     end
 
-    for n, step in ipairs(guide.steps) do
+    for n, step in ipairs(addon.currentGuide.steps) do
         step.index = n
         if not step.elements or #step.elements == 0 then
             step.optional = true
+        end
+        if step.arrowtext then
+            step.arrowtext = step.arrowtext:gsub("\\n",'\n')
         end
         --BottomFrame.stepList[n] = n
         if step.completewith and not step.tip then step.sticky = true end
@@ -1827,7 +1914,7 @@ function addon:ReloadGuide(keepStep)
     return guide and addon:LoadGuide(guide,keepStep)
 end
 
-function BottomFrame.UpdateFrame(self, stepn)
+function BottomFrame.UpdateFrame(self, stepn, startFrom, skip)
     local level = UnitLevel("player")
 
     if stepPos[0] and ((not self and stepn) or (self and self.step)) and IsFrameShown(self,self and self.step) then
@@ -1848,8 +1935,15 @@ function BottomFrame.UpdateFrame(self, stepn)
 
         local text, rawtext, icon
         local stepDiff
+        local start = startFrom or 1
+        local n = 0
+        local elements = frame.step.elements
+        local nElements = elements and #elements or 0
 
-        for _, element in ipairs(frame.step.elements or {}) do
+        for i = start,nElements do
+            local element = elements[i]
+            if element.text or element.tooltipText or element.requestFromServer or step.active then
+
             stepDiff = element.step.index - RXPCData.currentStep
             element.element = element
 
@@ -1870,7 +1964,11 @@ function BottomFrame.UpdateFrame(self, stepn)
 
             rawtext = element.tooltipText
 
-            if not rawtext and element.text then
+            if type(element.text) ~= "string" then
+                if addon.settings.profile.debug then
+                    -- print('Error text at step ' .. step.index)
+                end
+            elseif not rawtext then
                 icon = element.icon or addon.icons[element.tag] or ""
                 rawtext = icon .. element.text
             end
@@ -1882,6 +1980,7 @@ function BottomFrame.UpdateFrame(self, stepn)
                 else
                     text = text .. "\n   " .. rawtext
                 end
+            end
             end
         end
 
@@ -1897,9 +1996,11 @@ function BottomFrame.UpdateFrame(self, stepn)
         end
 
         if hideStep then
+            frame.text:Hide()
             fheight = 1
             frame:SetAlpha(0)
         else
+            frame.text:Show()
             fheight = math.ceil(frame.text:GetStringHeight() + 8)
             frame:SetAlpha(1)
         end
@@ -2015,7 +2116,7 @@ function BottomFrame.UpdateFrame(self, stepn)
 
     if guide then
         ScrollChild:SetHeight(ScrollChild.f1:GetHeight() -
-                                  BottomFrame.hiddenFrames * 4)
+                                  (BottomFrame.hiddenFrames or 1) * 4)
     end
 
     local w = RXPFrame:GetWidth() - 35
@@ -2099,7 +2200,15 @@ function RXPFrame:GenerateMenuTable(menu)
     local farmGuides = {}
     local unusedGuides = {}
     local defaultGuide, defaultGuideHC
-
+    local function OnClick(self,...)
+        local guide = addon.GetGuideTable(...)
+        local func = guide.OnClick
+        if func then
+            addon.functions[func](guide)
+        else
+            addon:LoadGuide(guide)
+        end
+    end
     for group in pairs(addon.guideList) do
         local firstChar = group:sub(1, 1)
         if RXPCData and RXPCData.GA then
@@ -2129,7 +2238,7 @@ function RXPFrame:GenerateMenuTable(menu)
 
     local menuIndex = 1
     local function ProcessChapters(guide,tbl,activeChapters)
-        if guide.chapters then
+        if guide.chapters and addon.IsGuideActive(guide) then
             if not activeChapters then activeChapters = {} end
             for chapterName in string.gmatch(guide.chapters,"%s*([^;]+)%s*") do
                 local chapter = addon.GetGuideTable(guide.group, chapterName)
@@ -2144,7 +2253,7 @@ function RXPFrame:GenerateMenuTable(menu)
                     local item = {
                         arg1 = guide.group,
                         arg2 = chapterName,
-                        func = addon.LoadGuideTable,
+                        func = OnClick,
                         text = addon.GetGuideName(chapter),
                         notCheckable = 1,
                     }
@@ -2204,7 +2313,7 @@ function RXPFrame:GenerateMenuTable(menu)
                     if guide.disabled then
                         subitem.isTitle = 1
                     else
-                        subitem.func = addon.LoadGuideTable
+                        subitem.func = OnClick
                         subitem.arg1 = guide.group
                         subitem.arg2 = guideName
                     end
@@ -2221,7 +2330,7 @@ function RXPFrame:GenerateMenuTable(menu)
                     if guide.disabled then
                         subitem.isTitle = 1
                     else
-                        subitem.func = addon.LoadGuideTable
+                        subitem.func = OnClick
                         subitem.arg1 = guide.group
                         subitem.arg2 = guideName
                     end
@@ -2295,7 +2404,7 @@ function RXPFrame:GenerateMenuTable(menu)
     local tips = addon.currentGuide and addon.currentGuide.tips
     if tips and #tips > 0 then
         tinsert(menuList, {
-            text = "Display Tips",
+            text = L"Display Tips",
             func = addon.ShowTips,
             arg1 = "toggle",
             checked = function()

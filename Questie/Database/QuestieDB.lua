@@ -12,6 +12,8 @@ local QuestieLib = QuestieLoader:ImportModule("QuestieLib")
 local QuestiePlayer = QuestieLoader:ImportModule("QuestiePlayer")
 ---@type QuestieCorrections
 local QuestieCorrections = QuestieLoader:ImportModule("QuestieCorrections")
+---@type QuestieQuestBlacklist
+local QuestieQuestBlacklist = QuestieLoader:ImportModule("QuestieQuestBlacklist")
 ---@type QuestieProfessions
 local QuestieProfessions = QuestieLoader:ImportModule("QuestieProfessions")
 ---@type DailyQuests
@@ -37,7 +39,7 @@ local QuestieQuest = QuestieLoader:ImportModule("QuestieQuest")
 local _QuestieQuest = QuestieQuest.private
 
 --- A list of quests that will never be available, used to quickly skip quests.
----@alias AutoBlacklistString "rep"|"skill"|"race"|"class"
+---@alias AutoBlacklistString "rep"|"skill"|"race"|"class"|"rank"
 ---@type table<number, AutoBlacklistString>
 QuestieDB.autoBlacklist = {}
 
@@ -75,7 +77,7 @@ QuestieDB.DoableStates = {
     COMPLETED = 1,
     QUEST_LOG = 2,
     BLACKLISTED = 3,
-    HIDDEN = 4, -- no longer used, but left here for info
+    EXCEED_REPUTATION = 4,
     PARENT_ACTIVE = 5,
     WRONG_RACE = 6,
     NO_PREQUESTSINGLE = 7,
@@ -100,6 +102,8 @@ QuestieDB.DoableStates = {
     LEVEL_TOO_LOW = 26,
     DISABLING_QUEST_COMPLETED = 27,
     ENABLING_QUEST_MISSING = 28,
+    PROFESSION_MISSING = 29,
+    PROFESSION_RANK = 30,
 }
 
 -- * race bitmask data, for easy access
@@ -729,6 +733,20 @@ function QuestieDB.IsDoable(questId, debugPrint)
         end
     end
 
+    local requiredRanks = QuestieDB.QueryQuestSingle(questId, "requiredRanks")
+    if (requiredRanks) then
+        local hasProfession, hasRankLevel = QuestieProfessions:HasProfessionAndRankLevel(requiredRanks)
+        if (not (hasProfession and hasRankLevel)) then
+            --? We haven't got the profession so we blacklist it.
+            if(not hasProfession) then
+                QuestieDB.autoBlacklist[questId] = "rank"
+            end
+
+            if debugPrint then Questie:Debug(Questie.DEBUG_SPAM, "[QuestieDB.IsDoable] Player does not have profession rank for quest " .. questId) end
+            return false
+        end
+    end
+
     --? preQuestGroup and preQuestSingle are mutualy exclusive to eachother and preQuestSingle is more prevalent
     --? Only try group if single does not exist.
     if not preQuestSingle then
@@ -782,12 +800,11 @@ function QuestieDB.IsDoable(questId, debugPrint)
 
     local requiredSpell = QuestieDB.QueryQuestSingle(questId, "requiredSpell")
     if (requiredSpell) and (requiredSpell ~= 0) then
-        local hasSpell = IsSpellKnownOrOverridesKnown(math.abs(requiredSpell))
-        local hasProfSpell = IsPlayerSpell(math.abs(requiredSpell))
-        if (requiredSpell > 0) and (not hasSpell) and (not hasProfSpell) then -- if requiredSpell is positive, we make the quest unavailable if the player does NOT have the spell
+        local hasSpellorProfSpell = QuestieCompat.IsSpellKnown(math.abs(requiredSpell))
+        if (requiredSpell > 0) and (not hasSpellorProfSpell) then -- if requiredSpell is positive, we make the quest unavailable if the player does NOT have the spell
             if debugPrint then Questie:Debug(Questie.DEBUG_SPAM, "[QuestieDB.IsDoable] Player does not meet learned spell requirements for quest " .. questId) end
             return false
-        elseif (requiredSpell < 0) and (hasSpell or hasProfSpell) then -- if requiredSpell is negative, we make the quest unavailable if the player DOES have the spell
+        elseif (requiredSpell < 0) and (hasSpellorProfSpell) then -- if requiredSpell is negative, we make the quest unavailable if the player DOES have the spell
             if debugPrint then Questie:Debug(Questie.DEBUG_SPAM, "[QuestieDB.IsDoable] Player does not meet not learned spell requirements for quest " .. questId) end
             return false
         end
@@ -920,6 +937,15 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
         end
     end
 
+    -- AQ War Effort quests (one-time world event that has ended for all realms)
+    if (not Questie.IsSoD) and QuestieQuestBlacklist.AQWarEffortQuests[questId] then
+        if returnText and returnBrief then
+            return l10n("Unavailable")..l10n(": ")..l10n("Event inactive"), true, DoableStates.EVENT_INACTIVE
+        elseif returnText then
+            return "AQ event quest " .. questId .. " is not active", true, DoableStates.EVENT_INACTIVE
+        end
+    end
+
     -- Check character race
     local requiredRaces = QuestieDB.QueryQuestSingle(questId, "requiredRaces")
     if (requiredRaces and not checkRace[requiredRaces]) then
@@ -1000,6 +1026,75 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
         end
     end
 
+    -- Check reputation requirements
+    local requiredMinRep = QuestieDB.QueryQuestSingle(questId, "requiredMinRep")
+    local requiredMaxRep = QuestieDB.QueryQuestSingle(questId, "requiredMaxRep")
+    if (requiredMinRep or requiredMaxRep) then
+        local aboveMinRep, hasMinFaction, belowMaxRep, hasMaxFaction = QuestieReputation:HasFactionAndReputationLevel(requiredMinRep, requiredMaxRep)
+        -- Below reputation requirement
+        if not (aboveMinRep and hasMinFaction) then
+
+            local msg = "Reputation too low for quest " .. questId
+            if returnText and returnBrief then
+                return l10n("Unavailable")..l10n(": ")..l10n("Reputation too low"), true, DoableStates.MISSING_REPUTATION
+            elseif returnText and not returnBrief then
+                return msg, true, DoableStates.MISSING_REPUTATION
+            end
+        end
+        -- Above reputation requirement
+        if not (belowMaxRep and hasMaxFaction) then
+
+            local msg = "Reputation too high for quest " .. questId
+            if returnText and returnBrief then
+                return l10n("Unavailable")..l10n(": ")..l10n("Reputation too high"), true, DoableStates.EXCEED_REPUTATION
+            elseif returnText and not returnBrief then
+                return msg, true, DoableStates.EXCEED_REPUTATION
+            end
+        end
+    end
+
+    -- Check profession requirements
+    local requiredSkill = QuestieDB.QueryQuestSingle(questId, "requiredSkill")
+    local requiredRanks = QuestieDB.QueryQuestSingle(questId, "requiredRanks")
+    -- Until then these two should be mutually exclusive
+    -- TODO: if we find a quest that has both requiredSkill and requiredRanks we need to be able to return correct message
+    if (requiredSkill) then
+        local hasProfession, hasSkillLevel = QuestieProfessions:HasProfessionAndSkillLevel(requiredSkill)
+        if not hasProfession then
+            local msg = "Profession missing for quest " .. questId
+            if returnText and returnBrief then
+                return l10n("Unavailable")..l10n(": ")..l10n("Profession missing"), true, DoableStates.PROFESSION_MISSING
+            elseif returnText and not returnBrief then
+                return msg, true, DoableStates.PROFESSION_MISSING
+            end
+        elseif not hasSkillLevel then
+            local msg = "Player does not have required profession skill for quest " .. questId
+            if returnText and returnBrief then
+                return l10n("Unavailable")..l10n(": ")..l10n("Profession skill"), true, DoableStates.PROFESSION_SKILL
+            elseif returnText and not returnBrief then
+                return msg, true, DoableStates.PROFESSION_SKILL
+            end
+        end
+    end
+    if (requiredRanks) then
+        local hasProfession, hasRankLevel = QuestieProfessions:HasProfessionAndRankLevel(requiredRanks)
+        if not hasProfession then
+            local msg = "Profession missing for quest " .. questId
+            if returnText and returnBrief then
+                return l10n("Unavailable")..l10n(": ")..l10n("Profession missing"), true, DoableStates.PROFESSION_MISSING
+            elseif returnText and not returnBrief then
+                return msg, true, DoableStates.PROFESSION_MISSING
+            end
+        elseif not hasRankLevel then
+            local msg = "Player does not have required profession rank for quest " .. questId
+            if returnText and returnBrief then
+                return l10n("Unavailable")..l10n(": ")..l10n("Profession rank"), true, DoableStates.PROFESSION_RANK
+            elseif returnText and not returnBrief then
+                return msg, true, DoableStates.PROFESSION_RANK
+            end
+        end
+    end
+
     -- Check the preQuestSingle field where just one of the required quests has to be complete for a quest to show up
     local preQuestSingle = QuestieDB.QueryQuestSingle(questId, "preQuestSingle")
     if preQuestSingle then
@@ -1010,45 +1105,6 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
                 return l10n("Unavailable")..l10n(": ")..l10n("Incomplete pre-quest"), true, DoableStates.NO_PREQUESTSINGLE
             elseif returnText and not returnBrief then
                 return msg, true, DoableStates.NO_PREQUESTSINGLE
-            end
-        end
-    end
-
-    -- Check reputation requirements
-    local requiredMinRep = QuestieDB.QueryQuestSingle(questId, "requiredMinRep")
-    local requiredMaxRep = QuestieDB.QueryQuestSingle(questId, "requiredMaxRep")
-    if (requiredMinRep or requiredMaxRep) then
-        local aboveMinRep, hasMinFaction, belowMaxRep, hasMaxFaction = QuestieReputation:HasFactionAndReputationLevel(requiredMinRep, requiredMaxRep)
-        if (not ((aboveMinRep and hasMinFaction) and (belowMaxRep and hasMaxFaction))) then
-            --- If we haven't got the faction for min or max we blacklist it
-            if not hasMinFaction or not hasMaxFaction then -- or not belowMaxRep -- This is something we could have done, but would break if you rep downwards
-                QuestieDB.autoBlacklist[questId] = "rep"
-            end
-
-            local msg = "Player does not meet reputation requirements for quest " .. questId
-            if returnText and returnBrief then
-                return l10n("Unavailable")..l10n(": ")..l10n("Reputation requirement"), true, DoableStates.MISSING_REPUTATION
-            elseif returnText and not returnBrief then
-                return msg, true, DoableStates.MISSING_REPUTATION
-            end
-        end
-    end
-
-    -- Check profession requirements
-    local requiredSkill = QuestieDB.QueryQuestSingle(questId, "requiredSkill")
-    if (requiredSkill) then
-        local hasProfession, hasSkillLevel = QuestieProfessions:HasProfessionAndSkillLevel(requiredSkill)
-        if (not (hasProfession and hasSkillLevel)) then
-            --? We haven't got the profession so we blacklist it.
-            if(not hasProfession) then
-                QuestieDB.autoBlacklist[questId] = "skill"
-            end
-
-            local msg = "Player does not meet profession requirements for quest " .. questId
-            if returnText and returnBrief then
-                return l10n("Unavailable")..l10n(": ")..l10n("Profession requirement"), true, DoableStates.PROFESSION_SKILL
-            elseif returnText and not returnBrief then
-                return msg, true, DoableStates.PROFESSION_SKILL
             end
         end
     end
@@ -1110,16 +1166,15 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
     -- Check spell requirements
     local requiredSpell = QuestieDB.QueryQuestSingle(questId, "requiredSpell")
     if (requiredSpell) and (requiredSpell ~= 0) then
-        local hasSpell = IsSpellKnownOrOverridesKnown(math.abs(requiredSpell))
-        local hasProfSpell = IsPlayerSpell(math.abs(requiredSpell))
-        if (requiredSpell > 0) and (not hasSpell) and (not hasProfSpell) then --if requiredSpell is positive, we make the quest unavailable if the player does NOT have the spell
+        local hasSpellorProfSpell = QuestieCompat.IsSpellKnown(math.abs(requiredSpell))
+        if (requiredSpell > 0) and (not hasSpellorProfSpell) then -- if requiredSpell is positive, we make the quest unavailable if the player does NOT have the spell
             local msg = "Player does not know spell ID: " .. math.abs(requiredSpell) .. " for quest " .. questId
             if returnText and returnBrief then
                 return l10n("Unavailable")..l10n(": ")..l10n("Spell not yet learned"), true, DoableStates.SPELL_MISSING
             elseif returnText and not returnBrief then
                 return msg, true, DoableStates.SPELL_MISSING
             end
-        elseif (requiredSpell < 0) and (hasSpell or hasProfSpell) then --if requiredSpell is negative, we make the quest unavailable if the player DOES have the spell
+        elseif (requiredSpell < 0) and (hasSpellorProfSpell) then -- if requiredSpell is negative, we make the quest unavailable if the player DOES have the spell
             local msg = "Player knows spell ID: " .. math.abs(requiredSpell) .. " for quest " .. questId
             if returnText and returnBrief then
                 return l10n("Unavailable")..l10n(": ")..l10n("Already learned spell"), true, DoableStates.SPELL_KNOWN
@@ -1340,6 +1395,8 @@ function QuestieDB.GetQuest(questId) -- /dump QuestieDB.GetQuest(867)
     ---@field public breacrumbForQuestId number
     ---@field public breacrumbs QuestId[]
     ---@field public availableUntilCompleted QuestId
+    ---@field public availableStartingWith QuestId
+    ---@field public requiredRanks SkillPair[]
     local QO = {
         Id = questId
     }
@@ -1788,6 +1845,57 @@ local questsRequiringFriendsOnTheFarmAchievement = {
 
 local questsRequiringAllGrownsUpAchievement = {
     [32863] = true, -- What We've Been Training For
+}
+
+-- Quests where the reputation only goes in one direction (ex. Thorium Brotherhood)
+QuestieDB.questsOnlyAvailableUntilReputationValue = {
+    -- Thorium Brotherhood
+    [7736] = true, -- Restoring Fiery Flux Supplies via Kingsblood
+    [7737] = true, -- Gaining Acceptance
+    [8241] = true, -- Restoring Fiery Flux Supplies via Iron
+    [8242] = true, -- Restoring Fiery Flux Supplies via Heavy Leather
+
+    -- Brood of Nozdormu
+    [8302] = true, -- The Hand of the Righteous
+
+    -- Argent Dawn
+    [9221] = true, -- Superior Armaments of Battle - Friend of the Dawn
+    [9222] = true, -- Epic Armaments of Battle - Friend of the Dawn
+    [9223] = true, -- Superior Armaments of Battle - Honored Amongst the Dawn
+    [9224] = true, -- Epic Armaments of Battle - Honored Amongst the Dawn
+    [9225] = true, -- Epic Armaments of Battle - Revered Amongst the Dawn
+    [9226] = true, -- Superior Armaments of Battle - Revered Amongst the Dawn
+    [28755] = true, -- Annals of the Silver Hand
+    [28756] = true, -- Aberrations of Bone
+
+    -- Consortium
+    [9882] = true, -- Stealing from Thieves
+    [9883] = true, -- More Crystal Fragments
+    [9884] = true, -- Membership Benefits
+    [9885] = true, -- Membership Benefits
+    [9886] = true, -- Membership Benefits
+    [9914] = true, -- A Head Full of Ivory
+    [9915] = true, -- More Heads Full of Ivory
+
+    -- Cenarion Expedition
+    [9784] = true, -- Identify Plant Parts
+    --[9802] = true, -- Plants of Zangarmarsh -- TO DO CHECK THIS
+    [9875] = true, -- Uncatalogued Species
+
+    -- Sporregar
+    --[9739] = true, -- The Sporelings' Plight -- TO DO CHECK THIS
+    [9742] = true, -- More Spore Sacs
+    --[9743] = true, -- Natural Enemies -- TO DO CHECK THIS
+    [9744] = true, -- More Tendrils!
+    --[9808] = true, -- Glowcap Mushrooms -- TO DO CHECK THIS
+    [9809] = true, -- More Glowcaps
+
+    -- Lower City
+    --[10917] = true, -- The Outcast's Plight -- TO DO CHECK THIS
+    [10918] = true, -- More Feathers
+
+    -- Order of the Cloud Serpent
+    [31784] = true, -- Onyx To Goodness
 }
 
 function _QuestieDB:CheckAchievementRequirements(questId)

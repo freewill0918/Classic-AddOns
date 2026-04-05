@@ -274,9 +274,9 @@ function QuestieLib:GetRaceString(raceMask)
     end
 
     if raceMask == QuestieDB.raceKeys.ALL_ALLIANCE then
-        return l10n("Alliance")
+        return "|cFF1E90FF" .. l10n("Alliance") .. "|r"
     elseif raceMask == QuestieDB.raceKeys.ALL_HORDE then
-        return l10n("Horde")
+        return "|cFFDA4450" .. l10n("Horde") .. "|r"
     else
         local raceString = ""
         local raceTable = QuestieLib:UnpackBinary(raceMask)
@@ -322,18 +322,32 @@ function QuestieLib:GetClassString(classMask)
     else
         local classString = ""
         local classTable = QuestieLib:UnpackBinary(classMask)
+        local classColors = {
+            -- Class colors taken from RAID_CLASS_COLORS["WARRIOR"] etc
+            WARRIOR      = "|c" .. RAID_CLASS_COLORS["WARRIOR"].colorStr,
+            PALADIN      = "|c" .. RAID_CLASS_COLORS["PALADIN"].colorStr,
+            HUNTER       = "|c" .. RAID_CLASS_COLORS["HUNTER"].colorStr,
+            ROGUE        = "|c" .. RAID_CLASS_COLORS["ROGUE"].colorStr,
+            PRIEST       = "|c" .. RAID_CLASS_COLORS["PRIEST"].colorStr,
+            DEATH_KNIGHT = "|c" .. RAID_CLASS_COLORS["DEATHKNIGHT"].colorStr,
+            SHAMAN       = "|c" .. RAID_CLASS_COLORS["SHAMAN"].colorStr,
+            MAGE         = "|c" .. RAID_CLASS_COLORS["MAGE"].colorStr,
+            WARLOCK      = "|c" .. RAID_CLASS_COLORS["WARLOCK"].colorStr,
+            MONK         = "|c" .. RAID_CLASS_COLORS["MONK"].colorStr,
+            DRUID        = "|c" .. RAID_CLASS_COLORS["DRUID"].colorStr,
+        }
         local stringTable = {
-            l10n("Warrior"),                 -- 1
-            l10n("Paladin"),                 -- 2
-            l10n("Hunter"),                  -- 4
-            l10n("Rogue"),                   -- 8
-            l10n("Priest"),                  -- 16
-            l10n("Death Knight"),            -- 32
-            l10n("Shaman"),                  -- 64
-            l10n("Mage"),                    -- 128
-            l10n("Warlock"),                 -- 256
-            l10n("Monk"),                    -- 512
-            l10n("Druid"),                   -- 1024
+            classColors.WARRIOR .. l10n("Warrior") .. "|r",                 -- 1
+            classColors.PALADIN .. l10n("Paladin") .. "|r",                 -- 2
+            classColors.HUNTER .. l10n("Hunter") .. "|r",                   -- 4
+            classColors.ROGUE .. l10n("Rogue") .. "|r",                     -- 8
+            classColors.PRIEST .. l10n("Priest") .. "|r",                   -- 16
+            classColors.DEATH_KNIGHT .. l10n("Death Knight") .. "|r",       -- 32
+            classColors.SHAMAN .. l10n("Shaman") .. "|r",                   -- 64
+            classColors.MAGE .. l10n("Mage") .. "|r",                       -- 128
+            classColors.WARLOCK .. l10n("Warlock") .. "|r",                 -- 256
+            classColors.MONK .. l10n("Monk") .. "|r",                       -- 512
+            classColors.DRUID .. l10n("Druid") .. "|r",                     -- 1024
         }
         local firstRun = true
         for k, v in pairs(classTable) do

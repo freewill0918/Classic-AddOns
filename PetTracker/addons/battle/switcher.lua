@@ -1,11 +1,10 @@
 --[[
-Copyright 2012-2025 João Cardoso
+Copyright 2012-2026 João Cardoso
 All Rights Reserved
 --]]
 
-local MODULE =  ...
-local ADDON, Addon = MODULE:match('[^_]+'), _G[MODULE:match('[^_]+')]
-local Swap = Addon:NewModule('Switcher', CreateFrame('Frame', ADDON .. 'Switcher', PetBattleFrame, 'ButtonFrameTemplate'))
+local Addon = _G[(...):match('[^_]+')]
+local Swap = Addon:NewModule('Switcher', CreateFrame('Frame', 'PetTrackerSwitcher', PetBattleFrame, 'ButtonFrameTemplate'))
 
 
 --[[ Startup ]]--
@@ -18,7 +17,7 @@ function Swap:OnLoad()
 	self:SetSize(840, 424)
 	self:Hide()
 
-	SetPortraitToTexture(self.PortraitContainer.portrait, 'Interface/Icons/INV_Pet_SwapPet')
+	self.PortraitContainer.portrait:SetTexture('Interface/Icons/INV_Pet_SwapPet')
 	self.TitleContainer.TitleText:SetText(SWITCH_PET)
 	self.Close = _G[self:GetName() .. 'CloseButton']
 
@@ -48,7 +47,7 @@ function Swap:NewColumn(owner, point, off)
 		self[owner..i] = slot
 	end
 
-	local border = CreateFrame('Frame', nil, self, ADDON..'SlotBorder')
+	local border = CreateFrame('Frame', nil, self, 'PetTrackerSlotBorder')
 	border:SetPoint('TOP', self[owner..1], 0, 2)
 end
 

@@ -536,7 +536,8 @@ function Faction:CacheRepByID(id) -- OVERRIDDEN in Classic
 	if C_Reputation.IsFactionParagon(id) then
 		local currentValue, threshold, rewardQuestID, hasRewardPending, tooLowLevelForParagon = C_Reputation.GetFactionParagonInfo(id)
 		local oldParagonVal,oldParagonProgress
-		if not tooLowLevelForParagon then
+
+		if not tooLowLevelForParagon and (currentValue and threshold) then
 			local value = mod(currentValue, threshold)
 			oldParagonVal=rep.paragonVal
 			oldParagonProgress=rep.paragonProgress
@@ -876,7 +877,9 @@ end
 
 if ZGV.IsRetail then
 	ZGV.Covenants={}
-	function ZGV.Covenants.CacheResults()
+	function ZGV.Covenants.CacheResults(_,_,interactionType)
+		if interactionType~=Enum.PlayerInteractionType.CovenantSanctum then return end
+
 		table.wipe(ZGV.db.char.covenantupgrades)
 		ZGV.db.char.covenantupgrades["Reservoir Upgrades"]={}
 		ZGV.db.char.covenantupgrades["Anima Conductor"]={}
@@ -908,6 +911,6 @@ if ZGV.IsRetail then
 		ZGV.db.char.covenantupgrades = ZGV.db.char.covenantupgrades or {}
 		ZGV.Covenants.Data = ZGV.db.char.covenantupgrades
 
-		--ZGV:AddEventHandler("COVENANT_SANCTUM_INTERACTION_STARTED",ZGV.Covenants.CacheResults) -- DRAGONFLIGHT BUG, event missing
+		ZGV:AddEventHandler("PLAYER_INTERACTION_MANAGER_FRAME_SHOW",ZGV.Covenants.CacheResults)
 	end})
 end

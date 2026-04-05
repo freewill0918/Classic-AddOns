@@ -11,8 +11,6 @@
 
 local addonName, LBA = ...
 
-local C_Spell = LBA.C_Spell or C_Spell
-
 local L = LBA.L
 
 local AlwaysTrackedUnits = {
@@ -102,6 +100,9 @@ function LiteButtonAurasControllerMixin:Initialize()
     -- find what extra units we are tracking.
     self:RegisterEvent('ACTIONBAR_SLOT_CHANGED')
     self:RegisterEvent('UPDATE_MACROS')
+
+    -- Need to track modifier key state for mouseover/focus/self cast modifiers
+    self:RegisterEvent('MODIFIER_STATE_CHANGED')
 
     LBA.db.RegisterCallback(self, 'OnModified', 'StyleAllOverlays')
 end
@@ -282,6 +283,17 @@ function LiteButtonAurasControllerMixin:OnEvent(event, ...)
             LBA.state[unit]:UpdateAuras()
             LBA.state[unit]:UpdateInterrupt()
             self:MarkOverlaysDirty()
+        end
+    elseif event == 'MODIFIER_STATE_CHANGED' then
+        local key = select(1, ...):sub(2)
+        if key == GetModifiedClick('MOUSEOVERCAST') then
+            LBA.state.mouseover:UpdateAuras()
+            LBA.state.mouseover:UpdateInterrupt()
+            self:MarkOverlaysDirty(true)
+        elseif key == GetModifiedClick('FOCUSCAST') then
+            LBA.state.focus:UpdateAuras()
+            LBA.state.focus:UpdateInterrupt()
+            self:MarkOverlaysDirty(true)
         end
     end
 end

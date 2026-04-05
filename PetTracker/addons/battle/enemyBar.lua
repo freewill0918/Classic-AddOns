@@ -1,10 +1,9 @@
 --[[
-Copyright 2012-2025 João Cardoso
+Copyright 2012-2026 João Cardoso
 All Rights Reserved
 --]]
 
-local MODULE =  ...
-local ADDON, Addon = MODULE:match('[^_]+'), _G[MODULE:match('[^_]+')]
+local Addon = _G[(...):match('[^_]+')]
 local Bar = Addon:NewModule('EnemyBar', CreateFrame('Frame', nil, PetBattleFrame.BottomFrame))
 
 

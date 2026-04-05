@@ -1,7 +1,6 @@
 # Auto Potion
 
-## [3.11.3](https://github.com/ollidiemaus/AutoPotion/tree/3.11.3) (2025-10-08)
-[Full Changelog](https://github.com/ollidiemaus/AutoPotion/compare/3.11.2...3.11.3) [Previous Releases](https://github.com/ollidiemaus/AutoPotion/releases)
+## [3.12.13](https://github.com/ollidiemaus/AutoPotion/tree/3.12.13) (2026-03-11)
+[Full Changelog](https://github.com/ollidiemaus/AutoPotion/compare/3.12.12...3.12.13) [Previous Releases](https://github.com/ollidiemaus/AutoPotion/releases)
 
-- update for 11.2.5  
-- update to 11.2.5  
+- updated potion prio  

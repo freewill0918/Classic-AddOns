@@ -84,7 +84,10 @@
 		</Layers>
 		<Scripts>
 			<OnLoad>
+	<!--
 				self:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+	-->
+				self:RegisterForClicks("AnyUp", "AnyDown")
 			</OnLoad>
 			<OnEnter>
 				Skillet:TradeButtonAdditional_OnEnter(self)
@@ -116,6 +119,12 @@
 			<OnLeave>
 				Skillet:RankFrame_OnLeave(self)
 			</OnLeave>
+			<OnMouseUp>
+				Skillet:RankFrame_OnMouseUp(self)
+			</OnMouseUp>
+			<OnMouseDown>
+				Skillet:RankFrame_OnMouseDown(self)
+			</OnMouseDown>
 		</Scripts>
 	</StatusBar>
 	<CheckButton name="SkilletInvFilterButtonTemplate" virtual="true">
@@ -1183,6 +1192,15 @@
 								</Anchor>
 							</Anchors>
 						</FontString>
+						<FontString name="$parentSkillChance" inherits="GameFontHighlightSmall" justifyH="CENTER">
+							<Anchors>
+								<Anchor point="TOP" relativeTo="SkilletRankFrame">
+									<Offset>
+										<AbsDimension x="0" y="-24"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
 					</Layer>
 					<Layer level="BACKGROUND">
 						<Texture name="$parentBackground">
@@ -2124,7 +2142,7 @@
 						elseif ( IsShiftKeyDown() ) then
 							<!-- This will put a link to the *item* that can be created with this trade skill
 								 into the current chat  box -->
-							ChatEdit_InsertLink(link)
+							Skillet:ChatEdit_InsertLink(link)
 						elseif ( IsAltKeyDown() ) then
 						<!-- This will put a link to the *reagents* required by this *item*
 							 into the current chat edit box -->

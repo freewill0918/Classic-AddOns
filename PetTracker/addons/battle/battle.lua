@@ -1,10 +1,9 @@
 --[[
-Copyright 2012-2025 João Cardoso
+Copyright 2012-2026 João Cardoso
 All Rights Reserved
 --]]
 
-local MODULE =  ...
-local ADDON, Addon = MODULE:match('[^_]+'), _G[MODULE:match('[^_]+')]
+local Addon = _G[(...):match('[^_]+')]
 local Battle = Addon.Pet:NewClass('Battle')
 
 
@@ -50,21 +49,24 @@ end
 --[[ Instance ]]--
 
 function Battle:IsUpgrade()
-	if self:IsWildBattle() and not self:IsAlly() then
-		if self:GetSpecie() and self:GetSource() == 5 then
-			local _, quality, level = self:GetBestOwned()
+	if self:IsWildBattle() and self:IsPvE() and not self:IsAlly() then
+		if self:GetSpecie() and self:GetSource() == 5 and self:GetQuality() >= Addon.sets.minAlertQuality then
+			local _,_,_,_,_,_, isWild, _,_,_, isObtainable = self:GetInfo()
+			if isWild and isObtainable then
+				local _, quality, level = self:GetBestOwned()
 
-			if self:GetQuality() > quality then
-				return true
+				if self:GetQuality() > quality then
+					return true
 
-			elseif self:GetQuality() == quality then
-				if level > 20 then
-					level = level + 2
-				elseif level > 15 then
-					level = level + 1
+				elseif self:GetQuality() == quality then
+					if level > 20 then
+						level = level + 2
+					elseif level > 15 then
+						level = level + 1
+					end
+
+					return self:GetLevel() > level
 				end
-
-				return self:GetLevel() > level
 			end
 		end
 	end

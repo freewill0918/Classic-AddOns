@@ -1,5 +1,5 @@
 --[[
-	Copyright 2012-2025 João Cardoso
+	Copyright 2012-2026 João Cardoso
 	All Rights Reserved
 --]]
 
@@ -50,8 +50,7 @@ function MapCanvas:AnchorTip()
 		for frame, pins in pairs(self.Pins) do
 			if frame:IsVisible() then
 				for _, pin in ipairs(pins) do
-					local focus = pin:IsMouseOver()
-					if focus then
+					if pin:IsMouseOver() then
 						pin:OnTooltip(self.Tip)
 					end
 				end
@@ -119,11 +118,11 @@ function MapCanvas:Draw(frame)
 		if Addon.sets.rivalPortraits and GetCVarBool('showTamers') then
 			local rivals = Addon.Maps:GetRivalsIn(mapID)
 			for rival, spot in pairs(rivals) do
-					local rival = Addon.Rival(rival)
-					local x, y = spot:match('(%w%w)(%w%w)')
+				local rival = Addon.Rival(rival)
+				local x, y = spot:match('(%w%w)(%w%w)')
 
-					tinsert(self.Pins[frame], Addon.RivalPin(frame, index, x,y, rival))
-					index = index + 1
+				tinsert(self.Pins[frame], Addon.RivalPin(frame, index, x,y, rival))
+				index = index + 1
 			end
 		end
 	end

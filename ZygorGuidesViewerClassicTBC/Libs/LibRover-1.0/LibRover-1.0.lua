@@ -84,10 +84,8 @@ Lib.IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 local TIMERUNNING_SEASON_PANDARIA = Constants.TimerunningConsts.TIMERUNNING_SEASON_PANDARIA or 1
 local TIMERUNNING_SEASON_LEGION = Constants.TimerunningConsts.TIMERUNNING_SEASON_LEGION or 2
 
-Lib.RemixSeason = (C_TimerunningUI and C_TimerunningUI.GetActiveTimerunningSeasonID) and C_TimerunningUI.GetActiveTimerunningSeasonID()
-Lib.IsPandariaRemix =  Lib.RemixSeason and Lib.RemixSeason == TIMERUNNING_SEASON_PANDARIA
-Lib.IsLegionRemix =  Lib.RemixSeason and Lib.RemixSeason == TIMERUNNING_SEASON_LEGION
-Lib.IsServerRemix = Lib.RemixSeason and Lib.RemixSeason>0
+Lib.IsPandariaRemix =  function() return PlayerGetTimerunningSeasonID and PlayerGetTimerunningSeasonID() == TIMERUNNING_SEASON_PANDARIA end
+Lib.IsLegionRemix =  function() return PlayerGetTimerunningSeasonID and PlayerGetTimerunningSeasonID() == TIMERUNNING_SEASON_LEGION end
 
 --[[
 if not Lib then -- ookay, REPLACE the old thing! This is evil, I know.
@@ -178,7 +176,7 @@ local INVOLUNTARY_CUT=0.2
 
 Lib.FINDPATH_MAX_RETRIES = 10
 
-local COOLDOWN_SPELL = Lib.IsClassic and 29515 or 61304
+local COOLDOWN_SPELL = (Lib.IsClassic or Lib.IsClassicTBC) and 29515 or 61304
 
 local TAXI_WHISTLE_ITEM_ID = 141605
 
@@ -313,6 +311,9 @@ local MAPENUM={  -- IsRetail and IsClassicMOP
 	["DEEPHOLM"]=207,
 	["DRAGONISLES"]=1978,
 	["KHAZALGAR"]=2274,
+	["ISLEOFDORN"]=2248,
+	["ARCANTINA"]=2541,
+	["QUELTHALAS"]=2537,
 
 	["ARATHIHIGHLANDS"]=14,
 	["BADLANDS"]=15,
@@ -510,11 +511,17 @@ function Lib:GetCooldownWithoutGCD(what,id)
 	else 
 		return 0,0,0
 	end
+	if (issecretvalue and issecretvalue(dur)) then return 0,0,0 end
+
 	if (dur or 0)>0 then
 		local gcdtime,gcd = GetSpellCooldown(COOLDOWN_SPELL) -- spell created for checking global cooldowns
+
 		if type(gcdtime)=="table" then gcdtime,gcd = gcdtime.startTime,gcdtime.duration end
-		if gcdtime>0 and dur<=gcd then -- don't flash spell cooldown for gcd, but show if cooldown is greater
-			start,dur=0,0
+		
+		if not (issecretvalue and issecretvalue(gcdtime)) then 
+			if gcdtime>0 and dur<=gcd then -- don't flash spell cooldown for gcd, but show if cooldown is greater
+				start,dur=0,0
+			end
 		end
 	end
 	return (start or 0),(dur or 0),(active or 0)
@@ -1136,7 +1143,7 @@ local function SmartAddNode(data,deftype,dontlink,extra1,extra2)
 		end
 
 		
-		if Lib.IsPandariaRemix then
+		if Lib.IsPandariaRemix() then
 			if n1 and n2 and n1.c~=n2.c and n1.bordermeta then 
 				n1.bordermeta.cost=COST_FAILURE 
 			end
@@ -1332,10 +1339,10 @@ local function _StartupThread()
 		Lib.frame:RegisterEvent("UNIT_ENTERING_VEHICLE")
 	end
 
-	Lib.frame:RegisterEvent("LEARNED_SPELL_IN_TAB")
-	Lib.frame:RegisterEvent("UNIT_FLAGS")
+	if C_EventUtils.IsEventValid("LEARNED_SPELL_IN_SKILL_LINE") then Lib.frame:RegisterEvent("LEARNED_SPELL_IN_SKILL_LINE") end
+	if C_EventUtils.IsEventValid("LEARNED_SPELL_IN_TAB") then Lib.frame:RegisterEvent("LEARNED_SPELL_IN_TAB") end	Lib.frame:RegisterEvent("UNIT_FLAGS")
 	Lib.frame:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
-	Lib.frame:RegisterEvent("UNIT_SPELLCAST_FAILED_QUIET") -- switch flight style uses this
+	Lib.frame:RegisterEvent("SPELL_UPDATE_ICON") -- used to detect switching flight style
 	--Lib.frame:RegisterEvent("WORLD_MAP_UPDATE")
 	Lib.frame:RegisterEvent("ZONE_CHANGED")
 	Lib.frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
@@ -1343,6 +1350,9 @@ local function _StartupThread()
 	Lib.frame:RegisterEvent("NEW_WMO_CHUNK")  -- subzone change, or entering a building
 	Lib.frame:RegisterEvent("LOADING_SCREEN_DISABLED")
 	Lib.frame:SetScript("OnUpdate", function(frame,elapsed) Lib:OnUpdate(elapsed) end)
+
+	-- apply colour codes to templates
+	for i,v in pairs(Lib.data.point_context_templates) do v[2]=ZGV.Parser.apply_colours(v[2]) end
 
 	--punchStartupTime("sha2")
 	--Lib:Sha2Data()
@@ -2194,7 +2204,7 @@ function Lib:SetupInitialQuickTravel(startnode)
 			if UnitOnTaxi("player") then return "no keying the taxi" end
 			if port.spell and not IsSpellKnown(port.spell) then  return "spell unknown"  end
 			if port.item then
-				local valid = PlayerHasToy and PlayerHasToy(port.item) -- toy collected
+				local valid = port.toy and PlayerHasToy and PlayerHasToy(port.item) -- toy collected
 				valid = valid or (C_Item.GetItemCount(port.item)>0 and C_Item.IsUsableItem(port.item)) -- item owned
 				if not valid then return "no item or toy"  end
 			end
@@ -2211,12 +2221,20 @@ function Lib:SetupInitialQuickTravel(startnode)
 			if port.item==140192 and (startnode.m==1101 or startnode.m==1101) then rejected=true return "no DHS in class halls" end  -- don't use Dalaran HS in Class Halls
 
 			coolstart,cooldur,coolavail = self:GetCooldownWithoutGCD((port.spell and "spell") or (port.item and "item"),port.spell or port.item)
+
+			local cooldownInfo = port.cooldownfunc and port.cooldownfunc()
+			if cooldownInfo then
+				coolstart = cooldownInfo.startTime
+				cooldur = cooldownInfo.duration
+				coolavail = cooldownInfo.isEnabled and 0 or 1
+			end
+			
 			if port.item and coolavail==0 then  return "on cd" end ----------------
 		end)()
 
 		if reject_reason then
 			tinsert(Lib.debug_portkeys,{tostring=function() return ("%s #%d - |cffff0000%s|r")
-				:format(port.item and C_Item.GetItemInfo(port.item) or getSpellName(port.spell) or "name not ready",port.item or port.spell, reject_reason or "?") end,
+				:format(port.item and C_Item.GetItemInfo(port.item) or (port.initfunc and port.title) or getSpellName(port.spell) or "name not ready",port.item or port.spell or port.initfunc, reject_reason or "?") end,
 				data=port
 			})
 			break  --next item
@@ -2258,6 +2276,12 @@ function Lib:SetupInitialQuickTravel(startnode)
 		elseif port.spell then
 			link.mode = "spell"
 			link.cost = casttime + coolrem + (port.cost or 0)
+		elseif port.initfunc then
+			link.mode = "useitem"
+			link.cost = port.cost
+			link.initfunc = port.initfunc
+			link.cooldownfunc = port.cooldownfunc
+			link.atlas = port.atlas
 		end
 		link.time = casttime
 
@@ -2267,7 +2291,7 @@ function Lib:SetupInitialQuickTravel(startnode)
 		end
 
 		tinsert(Lib.debug_portkeys,{tostring=function() return ("%s #%d - cost:|cffffff44%.1f|rs, cd:|cff88ff00%.1f|rs, item cd:|cff00ff88%.1f|rs, final cost:|cff88aaff%.1f|rs")
-			:format(port.item and C_Item.GetItemInfo(port.item) or getSpellName(port.spell) or "name no ready",port.item or port.spell,
+			:format(port.item and C_Item.GetItemInfo(port.item) or (port.initfunc and port.title) or getSpellName(port.spell) or "name no ready",port.item or port.spell,
 				port.cost or 0,coolrem,port.cooldown or 0,link.cost or -1) end,
 			data=port}
 			)
@@ -2363,6 +2387,8 @@ function Lib:QueueFindPath(am,ax,ay,bm,bx,by, handler, extradata, force_new, qui
 end
 
 function Lib:DelayFindPath()
+	if Lib.IsRetail and InCombatLockdown() then return end
+
 	if #Lib.delayeddata == 0 then
 		self:Debug("No more jobs in queue, stopping timer")
 		self:CancelTimer(self.delayfindpath_timer)
@@ -2445,10 +2471,10 @@ function Lib:IsDestinationImpossible(mymap,destmap)
 		title = questdata and questdata.title
 		return true,"PANDARIA_LOCKED","You can't get to Pandaria until you're level 10 and have completed the " .. (title and "quest \""..title.."\"." or "initial quest.")
 
-	elseif Lib.IsPandariaRemix and (cont~=424 and not valid_remix_maps[TIMERUNNING_SEASON_PANDARIA][destmap]) then
+	elseif Lib.IsPandariaRemix() and (cont~=424 and not valid_remix_maps[TIMERUNNING_SEASON_PANDARIA][destmap]) then
 		return true,"REMIX_LOCKED","You can't leave Pandaria on this character."
 
-	elseif Lib.IsLegionRemix and (cont~=619 and not valid_remix_maps[TIMERUNNING_SEASON_LEGION][destmap]) then
+	elseif Lib.IsLegionRemix() and (cont~=619 and not valid_remix_maps[TIMERUNNING_SEASON_LEGION][destmap]) then
 		return true,"REMIX_LOCKED","You can't leave Broken isles on this character."
 
 	elseif false and destmap==808 and fac~="Neutral" then -- Can't get to Panda starter area
@@ -2572,6 +2598,8 @@ function Lib:FindPath(am,ax,ay,bm,bx,by, handler, extradata, force_new, quiet)
 
 	self.border_opti_gain = 0
 
+	extradata = extradata or {}
+
 	--if UnitOnTaxi("player") then
 
 	--[[
@@ -2587,7 +2615,6 @@ function Lib:FindPath(am,ax,ay,bm,bx,by, handler, extradata, force_new, quiet)
 		local FSP=self.FAKE_STARTING_POINT
 		ax,ay,am = FSP.x,FSP.y,FSP.m
 	end
-	extradata = extradata or {}
 	if Lib:GetCFG("forcedirect") then 
 		self:Debug("forcing direct route")
 		extradata.direct=true 
@@ -2625,8 +2652,8 @@ function Lib:FindPath(am,ax,ay,bm,bx,by, handler, extradata, force_new, quiet)
 
 	if not (am and am>0 and ax and ay) or (ax==0 and ay==0) or not (bm and bm>0 or extradata.multiple_ends) then
 		self:Debug("&_POP |cff00ff88FindPath|r |cffff0000failed|r: no start or end location (%s %s,%s to %s %s,%s). Force update? %s",am,ax,ay,bm,bx,by,self.force_update_counter)
-		self:ReportFail(GetPlayerFacing() and "Current location unknown.")
-		extradata = extradata or {}
+		self:ReportFail(not (C_Scenario and C_Scenario.IsInScenario()) and GetPlayerFacing() and "Current location unknown.")
+
 		extradata.retries = (extradata.retries or self.FINDPATH_MAX_RETRIES) - 1
 		if extradata.retries>0 then
 			self:Debug("Scheduling retry: %d",extradata.retries)
@@ -4862,6 +4889,7 @@ function Lib:CheckMaxSpeeds()
 			local run,fly,comfortdragon
 			local bonus=0.0
 			if system==MAPENUM["EASTERNKINGDOMS"] or system==MAPENUM["KALIMDOR"] or zoneid==MAPENUM["DEEPHOLM"] then run,fly,comfortdragon=unpack(Lib.speeds["Azeroth"])
+			elseif system==MAPENUM["QUELTHALAS"] then run,fly,comfortdragon=unpack(Lib.speeds["Azeroth"])
 			elseif system==MAPENUM["OUTLAND"] then run,fly,comfortdragon=unpack(Lib.speeds["Outland"])
 			elseif system==MAPENUM["NORTHREND"] then run,fly,comfortdragon=unpack(Lib.speeds["Northrend"])
 			elseif system==MAPENUM["PANDARIA"] then run,fly,comfortdragon=unpack(Lib.speeds["Pandaria"])
@@ -4874,7 +4902,10 @@ function Lib:CheckMaxSpeeds()
 			elseif system==MAPENUM["SHADOWLANDS"] then run,fly,comfortdragon=unpack(Lib.speeds["Shadowlands"])
 			elseif system==MAPENUM["ZERETHMORTIS"] then run,fly,comfortdragon=unpack(Lib.speeds["ShadowlandsZereth"])
 			elseif system==MAPENUM["DRAGONISLES"] then run,fly,comfortdragon=unpack(Lib.speeds["DragonIsles"])
-			elseif system==MAPENUM["KHAZALGAR"] then run,fly,comfortdragon=unpack(Lib.speeds["KhazAlgar"])
+			elseif system==MAPENUM["KHAZALGAR"] or system==MAPENUM["ISLEOFDORN"] then run,fly,comfortdragon=unpack(Lib.speeds["KhazAlgar"])
+
+			elseif system==MAPENUM["ARCANTINA"] then run,fly,comfortdragon=unpack(Lib.speeds["Azeroth"]) -- lets make arcantina flyable, to avoid switching between flyables when portalling
+			
 			else run,fly=1,0 end
 
 			if meta.flyable==false then 
@@ -4951,7 +4982,9 @@ local function onEvent(this, event, arg1, arg2, arg3, arg4, arg5)
 
 	if not Lib.ready then return end
 
-	if event=="ACHIEVEMENT_EARNED" or event=="LEARNED_SPELL_IN_TAB" or event=="RECEIVED_ACHIEVEMENT_LIST" then
+	if event=="ACHIEVEMENT_EARNED" or event=="LEARNED_SPELL_IN_TAB" or event=="LEARNED_SPELL_IN_SKILL_LINE" or event=="RECEIVED_ACHIEVEMENT_LIST" then
+		if Lib.IsRetail and InCombatLockdown() then return end
+		
 		Lib:CheckMaxSpeeds()
 	elseif event == "UNIT_ENTERING_VEHICLE"
 		and UnitVehicleSkin("player")=="INTERFACE\\PLAYERACTIONBARALT\\NATURAL.BLP"
@@ -4960,6 +4993,11 @@ local function onEvent(this, event, arg1, arg2, arg3, arg4, arg5)
 		Lib.unitOnTaxi=true
 		Lib:UpdateNow()
 	elseif event=="UNIT_SPELLCAST_SUCCEEDED" then
+		if (issecretvalue and issecretvalue(arg1)) then return end
+		if (issecretvalue and issecretvalue(arg3)) then return end
+
+		if arg1~="player" then return end
+
 		if Lib.DarkshoreCatSpells[arg3] then
 			LibTaxi.LastTaxi = {fullname = Lib.DarkshoreCatSpells[arg3]..", Darkshore"}
 			LibTaxi.LastTaxi.node = LibTaxi:FindTaxi(Lib.DarkshoreCatSpells[arg3])
@@ -4970,8 +5008,16 @@ local function onEvent(this, event, arg1, arg2, arg3, arg4, arg5)
 			end
 		end
 
-	elseif event=="UNIT_SPELLCAST_FAILED_QUIET" then
-		if arg3==460002 or arg==460003 then -- switch flight style
+		if arg3==1255801 then
+			Lib.Arcantina:Arriving()
+		end
+
+		if arg3==1233637 then
+			Lib.Housing:Arriving()
+		end
+
+	elseif event=="SPELL_UPDATE_ICON" then
+		if arg1==436854 then -- switch flight style
 			Lib:CheckMaxSpeeds()
 			Lib:UpdateNow()
 		end
@@ -5032,6 +5078,8 @@ local function onEvent(this, event, arg1, arg2, arg3, arg4, arg5)
 			end
 			Lib:UpdateNow()
 		end
+	elseif event=="PLAYER_HOUSE_LIST_UPDATED" then
+		--Lib.Housing = arg1
 	end
 end
 
@@ -5181,9 +5229,7 @@ function Lib.ShowDebugMenu(parent,but)
 		{ text = "Explore node sources",  notCheckable=true, disabled=not Spoo, func=function() Spoo(LibRover.NODE_SOURCES) end, tooltipTitle=(not Spoo and "|cffff0000Spoo not loaded!"), tooltipWhileDisabled=true },
 	}})
 	tinsert(menu,{ text = "Is player in region..?",  notCheckable=true, disabled=not Spoo or not Lib.startnode, func=function() Spoo(LibRover:DebugRegionsForPlayer()) end, tooltipTitle=(not Spoo and "|cffff0000Spoo not loaded or no start point!"), tooltipWhileDisabled=true })
-	tinsert(menu,{ text = "Show overlay info", notCheckable=true, hasArrow=true, menuList = {
-		{ text = "max speeds",  checked=ZGV.db.profile.pointer_dev_showroverzoneinfo, func=function() ZGV.db.profile.pointer_dev_showroverzoneinfo=not ZGV.db.profile.pointer_dev_showroverzoneinfo end }
-	}})
+
 	tinsert(menu,{ text = "Debug bad nodes?",  isNotRadio=true, checked=LibRover.debug_badnodes, func=function() LibRover.debug_badnodes = not LibRover.debug_badnodes end })
 	tinsert(menu,{ text = "Ignore node conditions?",  isNotRadio=true, checked=Lib.ignore_travel_conditions, func=function() Lib.ignore_travel_conditions = not Lib.ignore_travel_conditions Lib:UpdateNow() end })
 	tinsert(menu,{ text = "Subzones of '"..ZGV.GetMapFloorNameByID(mapid).."':",  notCheckable=true, disabled=not subzones_src, hasArrow=not not subzones_src, menuList = subzones_menu, keepShownOnClick=true })
@@ -5346,6 +5392,7 @@ function LibRover:Explain()
 		[Enum.UIMapType.Micro] = "Micro",
 		[Enum.UIMapType.Zone] = "Zone",
 		[Enum.UIMapType.Orphan] = "Orphan",
+		[-999] = "Unknown",
 	}
 
 		
@@ -5364,14 +5411,14 @@ function LibRover:Explain()
 	local n1_floor = LibRover.data.FloorByID[n1.m]
 	local n2_floor = LibRover.data.FloorByID[n2.m]
 
-	local n1parent_info = ZGV.GetMapInfo(n1_info.parentMapID)
-	local n2parent_info = ZGV.GetMapInfo(n2_info.parentMapID)
+	local n1parent_info = ZGV.GetMapInfo(n1_info.parentMapID) or {name="UNKNOWN", mapType=-999}
+	local n2parent_info = ZGV.GetMapInfo(n2_info.parentMapID) or {name="UNKNOWN", mapType=-999}
 
 	local n1continent = ZGV.GetMapContinent(n1.m)
 	local n2continent = ZGV.GetMapContinent(n2.m)
 
-	local n1continent_info = ZGV.GetMapInfo(n1continent)
-	local n2continent_info = ZGV.GetMapInfo(n2continent)
+	local n1continent_info = ZGV.GetMapInfo(n1continent) or {name="UNKNOWN", mapType=-999}
+	local n2continent_info = ZGV.GetMapInfo(n2continent) or {name="UNKNOWN", mapType=-999}
 
 	local outstring = ""
 
@@ -5956,7 +6003,8 @@ do -- TaxiWhistle predictor
 		local m=ZGV.CurrentMapID
 		local valid = valid_maps[m]
 		if not valid then return false end 
-		
+		if IsIndoors() then return false end -- can't whistle indoors. bad luck, mate
+
 		if type(valid)=="boolean" then return true end
 		if type(valid)=="number" then return IsQuestFlaggedCompleted(valid) end
 		if type(valid)=="table" then 
@@ -5979,6 +6027,156 @@ do -- TaxiWhistle predictor
 
 end
 
+do -- Arcantina handler
+	local Arcantina = {}
+	Lib.Arcantina = Arcantina
+	function Arcantina:Init()
+		Arcantina.ExitDestination = Lib.nodes.id["arcantina_exit"]
+
+		if ZGV.db.char.keyarcantina and Arcantina.ExitDestination then
+			Arcantina.ExitDestination:Update(unpack(ZGV.db.char.keyarcantina))
+		end
+	end
+
+	function Arcantina:Ready()
+		if not C_QuestLog.IsQuestFlaggedCompleted(86903) then return false end
+		local x,y,m = LibRover:GetPlayerPosition()
+
+		return m==2541 -- only suggest portal when on cantina map. do not attempt to take shortcuts through it
+	end
+
+
+	function Arcantina:Arriving()
+		if not Arcantina.ExitDestination then return end
+
+		-- fires when key is used, but player is still on source map
+		local x,y,m = LibRover:GetPlayerPosition()
+		if not m then return end
+
+		if m==2541 then return end -- we are in cantina, and we only care about the other end
+
+		Arcantina.ExitDestination:Update(m,x,y)
+		ZGV.db.char.keyarcantina = {m,x,y}
+	end
+
+	tinsert(Lib.startup_modules_funcs,{"Setting up Arcantina",function(self)
+		self.Arcantina:Init()
+	end})
+
+end
+
+do -- Player Housing handler
+	local Housing = {}
+	Lib.Housing = Housing
+
+	function Housing:Init()
+		if not C_Housing then return end
+		
+		Housing.ExitDestination = Lib.nodes.id["player_house_exit"]
+		if ZGV.db.char.houseexit and Housing.ExitDestination then
+			Housing.ExitDestination:Update(unpack(ZGV.db.char.houseexit))
+		end
+		
+		Housing.HomeNode = Housing:GetHomeNode()
+		if ZGV.db.char.housespot and Housing.HomeNode then
+			Housing.HomeNode:Update(unpack(ZGV.db.char.housespot))
+		end
+	
+		Lib.frame:RegisterEvent("NEIGHBORHOOD_MAP_DATA_UPDATED",Housing.UpdateHomePosition)
+	end
+	
+	function Housing:GetHomeNode()
+		if Housing.HomeNode then return Housing.HomeNode end
+		return myfac=="H" and Lib.nodes.id["player_house_horde"] or myfac=="A" and Lib.nodes.id["player_house_alliance"]
+	end
+	
+	function Housing:UpdateHomePosition()
+		local locations = C_HousingNeighborhood.GetNeighborhoodMapData()
+		local playerName = UnitName("player")
+
+		Housing.HomeNode = Housing:GetHomeNode()
+		if not Housing.HomeNode then return end
+		
+		for i,v in pairs(locations) do
+			if v.ownerType == Enum.HousingPlotOwnerType.Self and v.ownerName==playerName then
+				ZGV.db.char.housespot = {C_Map.GetBestMapForUnit("player"),v.mapPosition.x,v.mapPosition.y}
+				Housing.HomeNode:Update(unpack(ZGV.db.char.housespot))
+				break
+			end
+		end
+	end
+	
+	function Housing:Arriving()
+		if not Housing.ExitDestination then return end
+
+		-- fires when key is used, but player is still on source map
+		local x,y,m = LibRover:GetPlayerPosition()
+		if not m then return end
+		
+		Housing.ExitDestination:Update(m,x,y)
+		ZGV.db.char.houseexit = {m,x,y}
+	end
+
+	function Housing:Teleport()
+		local neighborhoodGUID = ZGV.Modules.Housing.House.neighborhoodGUID
+		local houseGUID = ZGV.Modules.Housing.House.houseGUID
+		local plotID = ZGV.Modules.Housing.House.plotID
+		return {
+			["type"]="teleporthome",
+			["house-neighborhood-guid"]=neighborhoodGUID,
+			["house-guid"]=houseGUID,
+			["house-plot-id"]=plotID,
+		}
+	end
+
+	function Housing:Return()
+		return {
+			["type"]="returnhome",
+		}
+	end
+
+	function Housing:CanArrive(faction)
+		if not C_Housing then return false end
+		if not ZGV.Modules.Housing.House then return false end
+
+		if faction=="Horde" then 
+			return ZGV.GetCurrentMapID() ~= 2351
+		end
+		if faction=="Alliance" then 
+			return ZGV.GetCurrentMapID() ~= 2352
+		end
+		return false
+	end
+
+	function Housing:CanDepart()
+		if not C_Housing then return false end
+		if not ZGV.Modules.Housing.House then return false end
+
+		return (ZGV.GetCurrentMapID() == 2351 or ZGV.GetCurrentMapID() == 2352)
+	end
+
+	function Housing:Init()
+		if not Lib.IsRetail then return end
+		
+		Housing.ExitDestination = Lib.nodes.id["player_house_exit"]
+		if ZGV.db.char.houseexit and Housing.ExitDestination then
+			Housing.ExitDestination:Update(unpack(ZGV.db.char.houseexit))
+		end
+		
+		Housing.HomeNode = Housing:GetHomeNode()
+		if ZGV.db.char.housespot and Housing.HomeNode then
+			Housing.HomeNode:Update(unpack(ZGV.db.char.housespot))
+		end
+	
+		Lib.frame:RegisterEvent("NEIGHBORHOOD_MAP_DATA_UPDATED",Housing.UpdateHomePosition)
+		Housing:UpdateHomePosition()
+	end
+
+	tinsert(Lib.startup_modules_funcs,{"Setting up Housing",function(self)
+		self.Housing:Init()
+	end})
+
+end
 
 do -- Mole Machine handler
 	local MoleMachineHandler = {}
@@ -5998,6 +6196,8 @@ do -- Mole Machine handler
 
 	function MMH.FrameOnEvent(frame,event,arg1,arg2,arg3)
 		if event=="UNIT_SPELLCAST_SUCCEEDED" then
+			if (issecretvalue and issecretvalue(arg3)) then return end
+
 			if (arg3==265225 --[[D.I.Mole Machine]] or arg3==168657 --[[bubble wand toy]]) then
 				ZGV:Debug("Mole Machine appeared!")
 				local x,y,m = LibRover:GetPlayerPosition()
