@@ -55,6 +55,8 @@ function QuestieItemFixes:Load()
             [itemKeys.npcDrops] = {},
         },
         [1708] = { -- Sweet Nectar
+            [itemKeys.npcDrops] = {},
+            [itemKeys.objectDrops] = {},
             [itemKeys.vendors] = {258, 274, 295, 465, 734, 955, 982, 1149, 1237, 1247, 1285, 1328, 1464, 1697, 2084, 2303, 2352, 2364, 2366, 2388, 2401, 2803, 2806, 2808, 2820, 2832, 2908, 3086, 3298, 3313, 3350, 3411, 3541, 3546, 3577, 3621, 3625, 3689, 3708, 3881, 3882, 3883, 3884, 3934, 3937, 3959, 3961, 4167, 4169, 4170, 4181, 4190, 4191, 4192, 4195, 4241, 4255, 4266, 4554, 4555, 4571, 4782, 4875, 4879, 4893, 4896, 4963, 4981, 5101, 5111, 5112, 5134, 5140, 5611, 5620, 5688, 5814, 5871, 6091, 6272, 6495, 6727, 6734, 6735, 6736, 6737, 6738, 6739, 6740, 6741, 6746, 6747, 6790, 6791, 6807, 6928, 6929, 6930, 7485, 7714, 7731, 7733, 7736, 7737, 7744, 7941, 7942, 7943, 8125, 8137, 8139, 8143, 8150, 8152, 8362, 8931, 9356, 9501, 10367, 11038, 11103, 11106, 11116, 11118, 11187, 11287, 11555, 12019, 12021, 12026, 12027, 12196, 12246, 12794, 12959, 12960, 14371, 14624, 14731, 14963, 14964, 15124, 15125, 15174, 16256, 16458},
         },
         [1939] = { -- Skin of Sweet Rum
@@ -217,10 +219,18 @@ function QuestieItemFixes:Load()
         [3823] = { -- Lesser Invisibility Potion
             [itemKeys.relatedQuests] = {715},
         },
+        [3827] = { -- Mana Potion
+            [itemKeys.npcDrops] = {},
+            [itemKeys.objectDrops] = {},
+        },
         [3829] = { -- Frost Oil
             [itemKeys.relatedQuests] = {713, 1193},
             [itemKeys.npcDrops] = {},
             [itemKeys.itemDrops] = {11887},
+        },
+        [3857] = { -- Coal
+            [itemKeys.npcDrops] = {},
+            [itemKeys.objectDrops] = {},
         },
         [3864] = { -- Citrine
             [itemKeys.npcDrops] = {},
@@ -678,6 +688,9 @@ function QuestieItemFixes:Load()
             [itemKeys.relatedQuests] = {2879, 2942},
             [itemKeys.npcDrops] = {},
             [itemKeys.objectDrops] = {144063},
+        },
+        [9316] = { -- Prismatic Punch Card
+            [itemKeys.objectDrops] = {142696},
         },
         [9330] = { -- Snapshot of Gammerita
             [itemKeys.relatedQuests] = {2944},
@@ -1461,6 +1474,11 @@ function QuestieItemFixes:Load()
         [22527] = { -- Core of Elements
             [itemKeys.npcDrops] = {6520, 6521, 7031, 7032, 7132, 8519, 8520, 8521, 8522, 8909, 8910, 8911, 9017, 9025, 9026, 9816, 9878, 9879, 11480, 11483, 11484, 11744, 11745, 11746, 11747, 13279, 13280, 14399, 14400, 14455, 14458, 14460, 14462},
         },
+        [22719] = { -- Omarion's Handbook
+            --[itemKeys.npcDrops] = {16365}, -- hiding until logic is fixed
+            [itemKeys.npcDrops] = {},
+            [itemKeys.startQuest] = 9233,
+        },
         [23179] = { -- Flame of Orgrimmar
             [itemKeys.objectDrops] = {181336},
         },
@@ -1514,6 +1532,13 @@ function QuestieItemFixes:Load()
             [itemKeys.objectDrops] = {400001},
             [itemKeys.flags] = 2, -- Conjured
             [itemKeys.relatedQuests] = {65602},
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [190308] = { -- Burning Torch
+            [itemKeys.name] = "Burning Torch",
+            [itemKeys.flags] = 2, -- Conjured
+            [itemKeys.relatedQuests] = {65602},
+            [itemKeys.class] = itemClasses.QUEST,
         },
         [190309] = { -- Wooden Figurine
             [itemKeys.name] = "Wooden Figurine",

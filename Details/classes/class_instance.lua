@@ -696,8 +696,6 @@ local instanceMixins = {
 	SetSegmentFromCooltip = function(_, instance, segmentId, bForceChange)
 		---@cast instance instance
 		Details:StopTestBarUpdate()
-		local byUser = true
-		instance:SetSegmentId(segmentId, byUser)
 		return instance:SetSegment(segmentId, bForceChange)
 	end,
 

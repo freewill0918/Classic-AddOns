@@ -49,8 +49,6 @@ local PartyMemberFrame_UpdateVoiceStatus = PartyMemberFrame_UpdateVoiceStatus;
 local PartyMemberFrame_UpdateReadyCheck = PartyMemberFrame_UpdateReadyCheck;
 local PartyMemberFrame_UpdateNotPresentIcon = PartyMemberFrame_UpdateNotPresentIcon;
 local PartyMemberFrame_ToPlayerArt = PartyMemberFrame_ToPlayerArt;
-local CompactRaidFrameManager_UpdateShown = CompactRaidFrameManager_UpdateShown;
-local CompactRaidFrameManager_UpdateContainerLockVisibility = CompactRaidFrameManager_UpdateContainerLockVisibility;
 local BlizzardOptionsPanel_CheckButton_Enable = BlizzardOptionsPanel_CheckButton_Enable;
 local BlizzardOptionsPanel_CheckButton_Disable = BlizzardOptionsPanel_CheckButton_Disable;
 local StaticPopup_Show = StaticPopup_Show;
@@ -1552,22 +1550,12 @@ end
 --     end
 -- end
 
--- -- Interface/AddOns/Blizzard_CompactRaidFrames/Blizzard_CompactRaidFrameManager.lua
--- local _CompactRaidFrameManager_UpdateShown = CompactRaidFrameManager_UpdateShown
--- function UnitFramesPlus_CompactRaidFrameManager_UpdateShown(self)
---     local combat = UnitFramesPlus_CombatCheck();
---     if combat == false then
---         if ( GetDisplayedAllyFrames() ) then
---             self:Show();
---         else
---             self:Hide();
---         end
---         CompactRaidFrameManager_UpdateOptionsFlowContainer(self);
---         CompactRaidFrameManager_UpdateContainerVisibility();
---     else
---         updateneeded = 1;
---     end
--- end
+-- Interface/AddOns/Blizzard_CompactRaidFrames/Blizzard_CompactRaidFrameManager.lua
+local _CompactRaidFrameManager_UpdateShown = CompactRaidFrameManager_UpdateShown
+function UnitFramesPlus_CompactRaidFrameManager_UpdateShown(self)
+    if InCombatLockdown() then return end
+    _CompactRaidFrameManager_UpdateShown(self)
+end
 
 -- Interface/FrameXML/RaidFrame.lua
 local _RaidOptionsFrame_UpdatePartyFrames = RaidOptionsFrame_UpdatePartyFrames;
@@ -1702,7 +1690,7 @@ end
 function UnitFramesPlus_ShowPartyFrameSet()
     PartyMemberFrame_UpdateMember = UnitFramesPlus_PartyMemberFrame_UpdateMember;
     -- -- CompactRaidFrameManager_UpdateContainerLockVisibility = UnitFramesPlus_CompactRaidFrameManager_UpdateContainerLockVisibility;
-    -- -- CompactRaidFrameManager_UpdateShown = UnitFramesPlus_CompactRaidFrameManager_UpdateShown;
+    CompactRaidFrameManager_UpdateShown = UnitFramesPlus_CompactRaidFrameManager_UpdateShown;
     RaidOptionsFrame_UpdatePartyFrames = UnitFramesPlus_RaidOptionsFrame_UpdatePartyFrames;
     -- HidePartyFrame = UnitFramesPlus_HidePartyFrame;
     -- ShowPartyFrame = UnitFramesPlus_ShowPartyFrame;
@@ -1820,8 +1808,6 @@ function UnitFramesPlus_PartyStyleSet()
     local state = IsAddOnLoaded("Blizzard_CompactRaidFrames");
     if state == true then
         RaidOptionsFrame_UpdatePartyFrames();
-        CompactRaidFrameManager_UpdateContainerLockVisibility(CompactRaidFrameManager);
-        CompactRaidFrameManager_UpdateShown(CompactRaidFrameManager);
     end
 end
 

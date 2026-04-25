@@ -14,3 +14,6 @@ AGENTS.md
 # Claude Code temp files
 tmpclaude-*
 nul
+
+# Local Details snapshot kept for diffing
+Details-Details.*/

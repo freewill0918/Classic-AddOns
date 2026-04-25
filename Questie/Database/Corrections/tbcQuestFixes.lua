@@ -226,6 +226,9 @@ function QuestieTBCQuestFixes:Load()
         [1177] = {
             [questKeys.objectivesText] = {"Mudcrush Durtfeet in northern Dustwallow wants 8 Mirefin Heads."},
         },
+        [1206] = { -- Jarl Needs Eyes
+            [questKeys.objectivesText] = {"Bring 20 Unpopped Darkmist Eyes to \"Swamp Eye\" Jarl at the Swamplight Manor.",},
+        },
         [1220] = {
             [questKeys.startedBy] = {{23951}},
         },
@@ -381,14 +384,14 @@ function QuestieTBCQuestFixes:Load()
         [1704] = { -- Klockmort Spannerspan
             [questKeys.requiredRaces] = raceIDs.GNOME + raceIDs.DWARF,
         },
+        [1716] = { -- Devourer of Souls
+            [questKeys.preQuestSingle] = {},
+        },
         [1719] = {
             [questKeys.triggerEnd] = {"Step on the grate to begin the Affray", {[zoneIDs.THE_BARRENS]={{68.61,48.72}}}},
         },
         [1782] = { -- Furen's Armor
             [questKeys.zoneOrSort] = sortKeys.WARRIOR,
-        },
-        [1799] = {
-            [questKeys.preQuestSingle] = {4967,4969},
         },
         [1800] = {
             [questKeys.questLevel] = -1,
@@ -484,9 +487,6 @@ function QuestieTBCQuestFixes:Load()
         },
         [2239] = { -- Onin's Report
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
-        },
-        [2240] = {
-            [questKeys.triggerEnd] = {"Explore the Hidden Chamber", {[zoneIDs.BADLANDS]={{35.22,10.32}}}},
         },
         [2279] = {
             [questKeys.requiredLevel] = 40,
@@ -916,8 +916,14 @@ function QuestieTBCQuestFixes:Load()
         [6983] = { -- You're a Mean One...
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
         },
-        [7484] = {
-            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+        [7483] = { -- Libram of Rapidity
+            [questKeys.reputationReward] = {{factionIDs.SHEN_DRALAR,500}},
+        },
+        [7484] = { -- Libram of Focus
+            [questKeys.reputationReward] = {{factionIDs.SHEN_DRALAR,500}},
+        },
+        [7485] = { -- Libram of Protection
+            [questKeys.reputationReward] = {{factionIDs.SHEN_DRALAR,500}},
         },
         [7583] = {
             [questKeys.preQuestGroup] = {7581,7582},
@@ -2078,11 +2084,11 @@ function QuestieTBCQuestFixes:Load()
             [questKeys.objectives] = {{{17551,nil,Questie.ICON_TYPE_INTERACT}}},
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
         },
-        [9587] = {
-            [questKeys.startedBy] = {nil,nil,{23890}},
+        [9587] = { -- Dark Tidings
+            [questKeys.nextQuestInChain] = 9589,
         },
-        [9588] = {
-            [questKeys.startedBy] = {nil,nil,{23892}},
+        [9588] = { -- Dark Tidings
+            [questKeys.nextQuestInChain] = 9590,
         },
         [9589] = { -- The Blood is Life
             [questKeys.zoneOrSort] = zoneIDs.HELLFIRE_CITADEL,
@@ -3192,6 +3198,12 @@ function QuestieTBCQuestFixes:Load()
         },
         [10491] = { -- Call of Air
             [questKeys.breadcrumbForQuestId] = 9552,
+        },
+        [10492] = { -- An Earnest Proposition
+            [questKeys.nextQuestInChain] = 8922,
+        },
+        [10493] = { -- An Earnest Proposition
+            [questKeys.nextQuestInChain] = 8922,
         },
         [10506] = {
             [questKeys.objectives] = {{{20058,nil,Questie.ICON_TYPE_INTERACT}}},

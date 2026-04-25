@@ -46,6 +46,7 @@ function QuestieQuestFixes:Load()
     local specialFlags = QuestieDB.specialFlags
     local profKeys = QuestieProfessions.professionKeys
     local specKeys = QuestieProfessions.specializationKeys
+    local factionIDs = QuestieDB.factionIDs
 
     return {
         [5] = {
@@ -1047,6 +1048,9 @@ function QuestieQuestFixes:Load()
         [1448] = {
             [questKeys.triggerEnd] = {"Search for the Temple of Atal'Hakkar", {[zoneIDs.SWAMP_OF_SORROWS]={{70.2,45.2},{66.6,48.1},{73.6,48.1},{64.9,53.3},{75.4,53.3},{66.6,58.4},{73.6,58.4},{70.2,60.5}}}},
         },
+        [1452] = { -- Rhapsody's Kalimdor Kocktail
+            [questKeys.nextQuestInChain] = 1469,
+        },
         [1462] = { -- Earth Sapta
             [questKeys.preQuestSingle] = {1520},
             [questKeys.objectivesText] = {},
@@ -1072,6 +1076,9 @@ function QuestieQuestFixes:Load()
             [questKeys.requiredSourceItems] = {},
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_EVENT, l10n("Summon the Voidwalker"), 0, {{"object", 37097}}}},
         },
+        [1472] = { -- Devourer of Souls
+            [questKeys.questLevel] = -1,
+        },
         [1473] = { -- Creature of the Void
             [questKeys.preQuestSingle] = {},
             [questKeys.breadcrumbs] = {1478},
@@ -1083,6 +1090,7 @@ function QuestieQuestFixes:Load()
         },
         [1476] = { -- Hearts of the Pure
             [questKeys.exclusiveTo] = {1507},
+            [questKeys.questLevel] = -1,
         },
         [1477] = {
             [questKeys.breadcrumbForQuestId] = 1395, -- #1727
@@ -1131,8 +1139,12 @@ function QuestieQuestFixes:Load()
         [1506] = { -- Gan'rul's Summons
             [questKeys.breadcrumbForQuestId] = 1501,
         },
+        [1507] = { -- Devourer of Souls
+            [questKeys.questLevel] = -1,
+        },
         [1508] = { -- Blind Cazul
             [questKeys.exclusiveTo] = {1472},
+            [questKeys.questLevel] = -1,
         },
         [1509] = { -- News of Dogran
             [questKeys.exclusiveTo] = {1472},
@@ -1370,11 +1382,10 @@ function QuestieQuestFixes:Load()
         [1715] = { -- The Slaughtered Lamb
             [questKeys.exclusiveTo] = {1688},
         },
-        [1716] = {
+        [1716] = { -- Devourer of Souls
             [questKeys.questLevel] = -1,
-            [questKeys.nextQuestInChain] = 0,
         },
-        [1717] = {
+        [1717] = { -- Gakin's Summons
             [questKeys.exclusiveTo] = {1716},
             [questKeys.nextQuestInChain] = 0,
         },
@@ -1412,7 +1423,8 @@ function QuestieQuestFixes:Load()
         [1796] = {
             [questKeys.breadcrumbs] = {4736,4737,4738,4739},
         },
-        [1798] = {
+        [1798] = { -- Seeking Strahad
+            [questKeys.startedBy] = {{6120,6122}},
             [questKeys.breadcrumbForQuestId] = 1758,
         },
         [1799] = { -- Fragments of the Orb of Orahil
@@ -1635,7 +1647,6 @@ function QuestieQuestFixes:Load()
             [questKeys.nextQuestInChain] = 2139,
         },
         [2201] = {
-            [questKeys.childQuests] = {3375},
             [questKeys.requiredLevel] = 37, -- #2447
         },
         [2205] = { -- Seek out SI: 7
@@ -1649,7 +1660,7 @@ function QuestieQuestFixes:Load()
             [questKeys.exclusiveTo] = {}, -- #1466
         },
         [2240] = {
-            [questKeys.triggerEnd] = { "Explore the Hidden Chamber", {[zoneIDs.BADLANDS]={{35.22,10.32}}}},
+            [questKeys.triggerEnd] = { "Explore the Hidden Chamber", {[zoneIDs.ULDAMAN]={{-1,-1}}}},
         },
         [2241] = { -- The Apple Falls
             [questKeys.exclusiveTo] = {}, -- #1466
@@ -1989,8 +2000,9 @@ function QuestieQuestFixes:Load()
         [3367] = {
             [questKeys.triggerEnd] = {"Dorius Escort", {[zoneIDs.SEARING_GORGE]={{74.47,19.44}}}},
         },
-        [3375] = {
-            [questKeys.parentQuest] = 2201,
+        [3375] = { -- Replacement Phial
+            [questKeys.availableStartingWith] = 2201,
+            [questKeys.availableUntilCompleted] = 2204,
         },
         [3377] = {
             [questKeys.objectives] = {{{8436,nil,Questie.ICON_TYPE_TALK}}},
@@ -1999,7 +2011,10 @@ function QuestieQuestFixes:Load()
             [questKeys.triggerEnd] = {"Protect Captain Vanessa Beltis from the naga attack", {[zoneIDs.AZSHARA]={{52.86,87.77}}}},
         },
         [3385] = {
-            [questKeys.requiredSkill] = {197,226}, -- You need to be an Artisan for this quest -- this needs proper fix
+            [questKeys.requiredSkill] = {197,230},
+        },
+        [3402] = {
+            [questKeys.requiredSkill] = {197,230},
         },
         [3441] = {
             [questKeys.objectives] = {{{8479,nil,Questie.ICON_TYPE_TALK}}},
@@ -3592,14 +3607,15 @@ function QuestieQuestFixes:Load()
             [questKeys.objectives] = {nil,{{179544}}},
             [questKeys.objectivesText] = {"Search Dire Maul for Telmius Dreamseeker. Report back to Scholar Runethorn at Feathermoon with whatever information that you may find."},
         },
-        [7483] = {
+        [7483] = { -- Libram of Rapidity
             [questKeys.preQuestSingle] = {7481,7482},
+            [questKeys.reputationReward] = {{factionIDs.SHEN_DRALAR,200}},
         },
-        [7484] = {
+        [7484] = { -- Libram of Focus
             [questKeys.preQuestSingle] = {7481,7482},
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
-        [7485] = {
+        [7485] = { -- Libram of Protection
             [questKeys.preQuestSingle] = {7481,7482},
         },
         [7488] = {
@@ -5378,6 +5394,9 @@ function QuestieQuestFixes:Load()
         [9118] = {
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
+        [9120] = { -- The Fall of Kel'Thuzad
+            [questKeys.preQuestSingle] = {9121,9122,9123},
+        },
         [9121] = {
             [questKeys.requiredMinRep] = {529,0},
         },
@@ -5422,6 +5441,10 @@ function QuestieQuestFixes:Load()
         },
         [9232] = {
             [questKeys.preQuestSingle] = {9033},
+        },
+        [9233] = { -- Omarion's Handbook
+            [questKeys.preQuestSingle] = {9121,9122,9123},
+            [questKeys.requiredMinRep] = {factionIDs.ARGENT_DAWN,21000},
         },
         [9234] = {
             [questKeys.requiredClasses] = classIDs.WARRIOR + classIDs.PALADIN,
@@ -5651,8 +5674,8 @@ function QuestieQuestFixes:Load()
             [questKeys.objectives] = {nil,nil,{{190309}}},
             [questKeys.exclusiveTo] = {},
             [questKeys.zoneOrSort] = sortKeys.WARLOCK,
-            [questKeys.requiredSourceItems] = {190307},
-            [questKeys.extraObjectives] = {{{[zoneIDs.ASHENVALE]={{26.7,22.5}}}, Questie.ICON_TYPE_EVENT, l10n("Light the Unlit Torch near a fire and use the Burning Torch to set the Archaeologist's Cart on fire."),}},
+            [questKeys.requiredSourceItems] = {190307,190308},
+            [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_INTERACT, l10n("Light the Unlit Torch near a fire and use the Burning Torch to set the Archaeologist's Cart on fire."), 0, {{"object", 400002}}}},
         },
         [65603] = { -- The Binding
             [questKeys.name] = "The Binding",

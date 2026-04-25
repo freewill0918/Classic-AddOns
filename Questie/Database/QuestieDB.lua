@@ -62,6 +62,7 @@ QuestieDB.questTagIds = {
     PVP = 41,
     RAID = 62,
     DUNGEON = 81,
+    WORLD_EVENT = 82,
     LEGENDARY = 83,
     ESCORT = 84,
     HEROIC = 85,
@@ -1255,8 +1256,6 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
     end
 
     -- Check if this quest is visible if you have a certain quest in log or turned in (slightly different to preQuestSingle)
-    -- In order to not mess with the existing logic for preQuestSingle/preQuestGroup in all the many other places,
-    -- this field must be accompanied by preQuestSingle/preQuestGroup
     local availableStartingWith = QuestieDB.QueryQuestSingle(questId, "availableStartingWith")
     if availableStartingWith and availableStartingWith ~= 0 then
         if not completedQuests[availableStartingWith] and not currentQuestlog[availableStartingWith] then
