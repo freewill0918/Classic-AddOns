@@ -1,5 +1,33 @@
 local L = LibStub("AceLocale-3.0"):GetLocale("ExtVendor", true);
 
+-- MoP Classic 5.5.x removed the legacy LE_ITEM_WEAPON_*/LE_ITEM_ARMOR_* globals.
+-- Restore the ones this addon relies on from the Enum tables (keep any that
+-- still exist via "or"). These are used as table keys below, so leaving them
+-- nil would error at load with "table index is nil".
+LE_ITEM_WEAPON_AXE1H       = LE_ITEM_WEAPON_AXE1H       or Enum.ItemWeaponSubclass.Axe1H;
+LE_ITEM_WEAPON_AXE2H       = LE_ITEM_WEAPON_AXE2H       or Enum.ItemWeaponSubclass.Axe2H;
+LE_ITEM_WEAPON_BOWS        = LE_ITEM_WEAPON_BOWS        or Enum.ItemWeaponSubclass.Bows;
+LE_ITEM_WEAPON_GUNS        = LE_ITEM_WEAPON_GUNS        or Enum.ItemWeaponSubclass.Guns;
+LE_ITEM_WEAPON_MACE1H      = LE_ITEM_WEAPON_MACE1H      or Enum.ItemWeaponSubclass.Mace1H;
+LE_ITEM_WEAPON_MACE2H      = LE_ITEM_WEAPON_MACE2H      or Enum.ItemWeaponSubclass.Mace2H;
+LE_ITEM_WEAPON_POLEARM     = LE_ITEM_WEAPON_POLEARM     or Enum.ItemWeaponSubclass.Polearm;
+LE_ITEM_WEAPON_SWORD1H     = LE_ITEM_WEAPON_SWORD1H     or Enum.ItemWeaponSubclass.Sword1H;
+LE_ITEM_WEAPON_SWORD2H     = LE_ITEM_WEAPON_SWORD2H     or Enum.ItemWeaponSubclass.Sword2H;
+LE_ITEM_WEAPON_STAFF       = LE_ITEM_WEAPON_STAFF       or Enum.ItemWeaponSubclass.Staff;
+LE_ITEM_WEAPON_UNARMED     = LE_ITEM_WEAPON_UNARMED     or Enum.ItemWeaponSubclass.Unarmed;
+LE_ITEM_WEAPON_GENERIC     = LE_ITEM_WEAPON_GENERIC     or Enum.ItemWeaponSubclass.Generic;
+LE_ITEM_WEAPON_DAGGER      = LE_ITEM_WEAPON_DAGGER      or Enum.ItemWeaponSubclass.Dagger;
+LE_ITEM_WEAPON_THROWN      = LE_ITEM_WEAPON_THROWN      or Enum.ItemWeaponSubclass.Thrown;
+LE_ITEM_WEAPON_CROSSBOW    = LE_ITEM_WEAPON_CROSSBOW    or Enum.ItemWeaponSubclass.Crossbow;
+LE_ITEM_WEAPON_WAND        = LE_ITEM_WEAPON_WAND        or Enum.ItemWeaponSubclass.Wand;
+LE_ITEM_WEAPON_FISHINGPOLE = LE_ITEM_WEAPON_FISHINGPOLE or Enum.ItemWeaponSubclass.Fishingpole;
+
+LE_ITEM_ARMOR_CLOTH        = LE_ITEM_ARMOR_CLOTH        or Enum.ItemArmorSubclass.Cloth;
+LE_ITEM_ARMOR_LEATHER      = LE_ITEM_ARMOR_LEATHER      or Enum.ItemArmorSubclass.Leather;
+LE_ITEM_ARMOR_MAIL         = LE_ITEM_ARMOR_MAIL         or Enum.ItemArmorSubclass.Mail;
+LE_ITEM_ARMOR_PLATE        = LE_ITEM_ARMOR_PLATE        or Enum.ItemArmorSubclass.Plate;
+LE_ITEM_ARMOR_SHIELD       = LE_ITEM_ARMOR_SHIELD       or Enum.ItemArmorSubclass.Shield;
+
 local CLASS_PROFICIENCIES = {
     ["DRUID"]       = {
         weapons = { LE_ITEM_WEAPON_MACE1H, LE_ITEM_WEAPON_MACE2H, LE_ITEM_WEAPON_POLEARM, LE_ITEM_WEAPON_STAFF, LE_ITEM_WEAPON_DAGGER, LE_ITEM_WEAPON_UNARMED },

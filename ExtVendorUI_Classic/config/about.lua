@@ -2,7 +2,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale("ExtVendor", true);
 
 local ABOUT = {
     author = "Germbread (Deathwing-US, Whitemane-US)",
-    email = GetAddOnMetadata("ExtVendorUI_Classic", "X-Email"),
+    email = C_AddOns.GetAddOnMetadata("ExtVendorUI_Classic", "X-Email"),
     hosts = {
         "https://www.curseforge.com/wow/addons",
         "https://www.curseforge.com/wow/addons/extended-vendor-ui",

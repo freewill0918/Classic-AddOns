@@ -1,6 +1,6 @@
 EXTVENDOR_DATA = {};
 EXTVENDOR = {
-    Version = GetAddOnMetadata("ExtVendorUI_Classic", "Version"),
+    Version = C_AddOns.GetAddOnMetadata("ExtVendorUI_Classic", "Version"),
     VersionID = 10004,
     ItemsPerSubpage = MERCHANT_ITEMS_PER_PAGE,
     SubpagesPerPage = 2,
