@@ -14,7 +14,8 @@ local IS_WOW_PROJECT_CLASSIC_ERA = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 local IS_WOW_PROJECT_CLASSIC_TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 local IS_WOW_PROJECT_CLASSIC_WRATH = IS_WOW_PROJECT_NOT_MAINLINE and ClassicExpansionAtLeast and LE_EXPANSION_WRATH_OF_THE_LICH_KING and ClassicExpansionAtLeast(LE_EXPANSION_WRATH_OF_THE_LICH_KING)
 --local IS_WOW_PROJECT_CLASSIC_CATACLYSM = IS_WOW_PROJECT_NOT_MAINLINE and ClassicExpansionAtLeast and LE_EXPANSION_CATACLYSM and ClassicExpansionAtLeast(LE_EXPANSION_CATACLYSM)
-local IS_WOW_PROJECT_MIDNIGHT = DF.IsAddonApocalypseWow()
+--local IS_WOW_PROJECT_MIDNIGHT = DF.IsAddonApocalypseWow()
+local IS_WOW_PROJECT_MIDNIGHT = DF.IsMidnightWowAPI()
 
 local PixelUtil = PixelUtil or DFPixelUtil
 
@@ -194,8 +195,8 @@ function Plater.ImportAndSwitchProfile(profileName, profile, bIsUpdate, bKeepMod
 
 	--check if parent to UIParent is enabled and calculate the new scale
 	if (Plater.db.profile.use_ui_parent) then
-		if (not bIsUpdate or not bWasUsingUIParent and not keepScaleTune) then --only update if necessary
-			Plater.db.profile.ui_parent_scale_tune = 1 / UIParent:GetEffectiveScale()
+		if ((not bIsUpdate or not bWasUsingUIParent) and not keepScaleTune) then --only update if necessary
+			Plater.db.profile.ui_parent_scale_tune = 1 / (IS_WOW_PROJECT_MIDNIGHT and 1 or UIParent:GetEffectiveScale())
 		end
 	else
 		Plater.db.profile.ui_parent_scale_tune = 0
@@ -511,7 +512,7 @@ function Plater.OpenOptionsPanel(pageNumber, bIgnoreLazyLoad)
 		{name = "CastColorManagement",		text = "OPTIONS_TABNAME_CASTCOLORS"},
 		{name = "DebuffLastEvent",			text = "OPTIONS_TABNAME_BUFF_LIST"},
 		{name = "AnimationPanel",			text = "OPTIONS_TABNAME_ANIMATIONS"},
-		{name = "Automation",				text = "OPTIONS_TABNAME_AUTO"},
+		{name = "Automation",				text = "OPTIONS_TABNAME_AUTO", createOnDemandFunc = platerInternal.CreateAutomationOptions},
 		{name = "ProfileManagement",		text = "OPTIONS_TABNAME_PROFILES"},
 		{name = "AdvancedConfig",			text = "OPTIONS_TABNAME_ADVANCED", createOnDemandFunc = platerInternal.CreateAdvancedOptions},
 		{name = "resourceFrame",			text = "OPTIONS_TABNAME_COMBOPOINTS"},
@@ -1411,8 +1412,8 @@ function Plater.OpenOptionsPanel(pageNumber, bIgnoreLazyLoad)
 	local textures = LibSharedMedia:HashTable ("statusbar")
 
 	--outline table
-	local outline_modes = {"NONE", "MONOCHROME", "OUTLINE", "THICKOUTLINE", "MONOCHROME, OUTLINE", "MONOCHROME, THICKOUTLINE"}
-	local outline_modes_names = {"None", "Monochrome", "Outline", "Thick Outline", "Monochrome Outline", "Monochrome Thick Outline"}
+	local outline_modes = {"NONE", "MONOCHROME", "OUTLINE", "THICKOUTLINE", "MONOCHROME, OUTLINE", "MONOCHROME, THICKOUTLINE", "Slug", "OUTLINE, SLUG" }
+	local outline_modes_names = {"None", "Monochrome", "Outline", "Thick Outline", "Monochrome Outline", "Monochrome Thick Outline", "Slug", "Slug Outline"}
 	local build_outline_modes_table = function (actorType, member)
 		local t = {}
 		for i = 1, #outline_modes do
@@ -3571,7 +3572,7 @@ Plater.CreateAuraTesting()
 					Plater.UpdateAllPlates()
 				end,
 				name = "Show Caster Name",
-				desc = "Show Caster Name (if player)",
+				desc = "Show Caster Name (if player).\nWill not work in Midnight, unfortunately.",
 			},
 			{
 				type = "select",
@@ -4496,6 +4497,16 @@ do
 			usedecimals = false,
 			name = "Max width",
 			desc = "Spell name text length limitation.\n 0 = no limitation",
+		},
+		{
+			type = "toggle",
+			get = function() return Plater.db.profile.plate_config.player.spellname_text_wrap end,
+			set = function (self, fixedparam, value) 
+				Plater.db.profile.plate_config.player.spellname_text_wrap = value
+				Plater.UpdateAllPlates()
+			end,
+			name = "Text wrap",
+			desc = "Enables/Disables text wrapping to multi-line.",
 		},
 
 		
@@ -5629,8 +5640,35 @@ local relevance_options = {
 					self:SetValue (GetCVarBool ("nameplateShowOnlyNameForFriendlyPlayerUnits"))
 				end
 			end,
-			name = "Hide Friendly Health Bar|cFFFF7700*|r", --show friendly nameplates
-			desc = "Hide Friendly Health Bar\nCVar: nameplateShowOnlyNameForFriendlyPlayerUnits",
+			name = "OPTIONS_NAMEPLATE_HIDE_FRIENDLY_HEALTH",
+			desc = "OPTIONS_NAMEPLATE_HIDE_FRIENDLY_HEALTH_DESC",
+			nocombat = true,
+			hidden = not IS_WOW_PROJECT_MIDNIGHT,
+		},
+
+		{
+			type = "toggle",
+			boxfirst = true,
+			get = function() return Plater.db.profile.hide_friendly_npc_healthbar end,
+			set = function (self, fixedparam, value) 
+				Plater.db.profile.hide_friendly_npc_healthbar = value
+			end,
+			name = "Hide Friendly NPCs Health Bar", --show friendly nameplates
+			desc = "Hide Friendly NPCs Health Bar\nWill require the healthbars to be hidden and shown again to take effect after changing.",
+			nocombat = true,
+			hidden = not IS_WOW_PROJECT_MIDNIGHT,
+		},
+
+		{
+			type = "toggle",
+			boxfirst = true,
+			get = function() return Plater.db.profile.hide_realm_name_on_blizzard end,
+			set = function (self, fixedparam, value) 
+				Plater.db.profile.hide_realm_name_on_blizzard = value
+				Plater.UpdateBaseNameplateOptions()
+			end,
+			name = "Hide Realm Names",
+			desc = "Hide realm names on blizzard nameplates.",
 			nocombat = true,
 			hidden = not IS_WOW_PROJECT_MIDNIGHT,
 		},
@@ -5727,7 +5765,7 @@ local relevance_options = {
 			nocombat = true,
 		},
 		
-		{type = "blank"},
+		{type = "blank", hidden = IS_WOW_PROJECT_MIDNIGHT},
 		
 		{
 			type = "toggle",
@@ -7173,8 +7211,6 @@ end
 			desc = "Height of the health bar when in combat.",
 		},
 		
-		{type = "blank"},
-		
 		--cast bar size out of combat
 		{type = "label", get = function() return "Cast Bar Size out of Combat:" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE")},
 		{
@@ -7336,6 +7372,16 @@ end
 			name = "Max width",
 			desc = "Name text length limitation.\n 0 = no limitation",
 		},
+		{
+			type = "toggle",
+			get = function() return Plater.db.profile.plate_config.friendlyplayer.actorname_text_wrap end,
+			set = function (self, fixedparam, value) 
+				Plater.db.profile.plate_config.friendlyplayer.actorname_text_wrap = value
+				Plater.UpdateAllPlates()
+			end,
+			name = "Text wrap",
+			desc = "Enables/Disables text wrapping to multi-line.",
+		},
 		
 		--cast text size
 		{type = "breakline"},
@@ -7456,6 +7502,16 @@ end
 			usedecimals = false,
 			name = "Max width",
 			desc = "Spell name text length limitation.\n 0 = no limitation",
+		},
+		{
+			type = "toggle",
+			get = function() return Plater.db.profile.plate_config.friendlyplayer.spellname_text_wrap end,
+			set = function (self, fixedparam, value) 
+				Plater.db.profile.plate_config.friendlyplayer.spellname_text_wrap = value
+				Plater.UpdateAllPlates()
+			end,
+			name = "Text wrap",
+			desc = "Enables/Disables text wrapping to multi-line.",
 		},
 		
 		
@@ -8107,8 +8163,6 @@ end
 			desc = "Height of the health bar when in combat.",
 		},
 		
-		{type = "blank"},
-		
 		--cast bar size out of combat
 		{type = "label", get = function() return "Cast Bar Size out of Combat:" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE")},
 		{
@@ -8271,6 +8325,16 @@ end
 			name = "Max width",
 			desc = "Name text length limitation.\n 0 = no limitation",
 		},
+		{
+			type = "toggle",
+			get = function() return Plater.db.profile.plate_config.enemyplayer.actorname_text_wrap end,
+			set = function (self, fixedparam, value) 
+				Plater.db.profile.plate_config.enemyplayer.actorname_text_wrap = value
+				Plater.UpdateAllPlates()
+			end,
+			name = "Text wrap",
+			desc = "Enables/Disables text wrapping to multi-line.",
+		},
 		
 		{type = "breakline"},
 		
@@ -8390,6 +8454,16 @@ end
 			usedecimals = false,
 			name = "Max width",
 			desc = "Spell name text length limitation.\n 0 = no limitation",
+		},
+		{
+			type = "toggle",
+			get = function() return Plater.db.profile.plate_config.enemyplayer.spellname_text_wrap end,
+			set = function (self, fixedparam, value) 
+				Plater.db.profile.plate_config.enemyplayer.spellname_text_wrap = value
+				Plater.UpdateAllPlates()
+			end,
+			name = "Text wrap",
+			desc = "Enables/Disables text wrapping to multi-line.",
 		},
 		
 		--level text settings
@@ -9032,8 +9106,6 @@ end
 			desc = "Height of the health bar when in combat.",
 		},
 		
-		{type = "blank"},
-		
 		--cast bar size out of combat
 		{type = "label", get = function() return "Cast Bar Size out of Combat:" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE")},
 		{
@@ -9211,6 +9283,16 @@ end
 			name = "Max width",
 			desc = "Name text length limitation.\n 0 = no limitation",
 		},
+		{
+			type = "toggle",
+			get = function() return Plater.db.profile.plate_config.friendlynpc.actorname_text_wrap end,
+			set = function (self, fixedparam, value) 
+				Plater.db.profile.plate_config.friendlynpc.actorname_text_wrap = value
+				Plater.UpdateAllPlates()
+			end,
+			name = "Text wrap",
+			desc = "Enables/Disables text wrapping to multi-line.",
+		},
 		
 		{type = "breakline"},
 		
@@ -9330,6 +9412,16 @@ end
 			usedecimals = false,
 			name = "Max width",
 			desc = "Spell name text length limitation.\n 0 = no limitation",
+		},
+		{
+			type = "toggle",
+			get = function() return Plater.db.profile.plate_config.friendlynpc.spellname_text_wrap end,
+			set = function (self, fixedparam, value) 
+				Plater.db.profile.plate_config.friendlynpc.spellname_text_wrap = value
+				Plater.UpdateAllPlates()
+			end,
+			name = "Text wrap",
+			desc = "Enables/Disables text wrapping to multi-line.",
 		},
 
 		{type = "blank"},
@@ -10245,7 +10337,6 @@ end
 				name = "OPTIONS_HEIGHT",
 				desc = "Height of the health bar when in combat.",
 			},
-			{type = "blank"},
 			--cast bar size out of combat
 			{type = "label", get = function() return "Cast Bar Size out of Combat:" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE")},
 			{
@@ -10422,6 +10513,16 @@ end
 				name = "Max width",
 				desc = "Name text length limitation.\n 0 = no limitation",
 			},
+			{
+				type = "toggle",
+				get = function() return Plater.db.profile.plate_config.enemynpc.actorname_text_wrap end,
+				set = function (self, fixedparam, value) 
+					Plater.db.profile.plate_config.enemynpc.actorname_text_wrap = value
+					Plater.UpdateAllPlates()
+				end,
+				name = "Text wrap",
+				desc = "Enables/Disables text wrapping to multi-line.",
+			},
 			
 			{type = "breakline"},
 			
@@ -10541,6 +10642,16 @@ end
 				usedecimals = false,
 				name = "Max width",
 				desc = "Spell name text length limitation.\n 0 = no limitation",
+			},
+			{
+				type = "toggle",
+				get = function() return Plater.db.profile.plate_config.enemynpc.spellname_text_wrap end,
+				set = function (self, fixedparam, value) 
+					Plater.db.profile.plate_config.enemynpc.spellname_text_wrap = value
+					Plater.UpdateAllPlates()
+				end,
+				name = "Text wrap",
+				desc = "Enables/Disables text wrapping to multi-line.",
 			},
 			
 			{type = "blank"},
@@ -11264,412 +11375,7 @@ end
 --> ~auto ãuto
 
 	--autoFrame
-		
-	local auto_options = {
-		{type = "label", get = function() return "Combat toggle:" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE")},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_combat_enabled end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_combat_enabled = value
-				
-				Plater.RefreshDBUpvalues()
-				Plater.UpdateAllPlates()
-				Plater.RefreshAutoToggle()
-			end,
-			name = L["OPTIONS_ENABLED"],
-			desc = "When enabled, Plater will enable or disable nameplates and healthbars based on the settings below, when the player enters or leaves combat.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_combat.enemy_ic end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_combat.enemy_ic = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "Enemy Nameplates in combat",
-			desc = "Automatically enable / disable enemy nameplates in combat.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_combat.enemy_ooc end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_combat.enemy_ooc = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "Enemy Nameplates out of combat",
-			desc = "Automatically enable / disable enemy nameplates out of combat.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_combat.friendly_ic end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_combat.friendly_ic = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "Friendly Nameplates in combat",
-			desc = "Automatically enable / disable friendly nameplates in combat.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_combat.friendly_ooc end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_combat.friendly_ooc = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "Friendly Nameplates out of combat",
-			desc = "Automatically enable / disable friendly nameplates out of combat.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_combat.blizz_healthbar_ic end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_combat.blizz_healthbar_ic = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "Hide Blizzard Healthbars in combat",
-			desc = "Automatically enable / disable showing blizzard nameplate healthbars in combat.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_combat.blizz_healthbar_ooc end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_combat.blizz_healthbar_ooc = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "Hide Blizzard Healthbars out of combat",
-			desc = "Automatically enable / disable showing blizzard nameplate healthbars out of combat.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_combat.always_show_ic end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_combat.always_show_ic = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "Enable 'Always Show Nameplates' in combat",
-			desc = "Automatically enable / disable the 'always show' option in combat.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_combat.always_show_ooc end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_combat.always_show_ooc = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "Enable 'Always Show Nameplates' out of combat",
-			desc = "Automatically enable / disable the 'always show' option out of combat.",
-		},
-		
-		{type = "blank"},
-		
-		{type = "label", get = function() return "Raid and Party:" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE")},
 
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_inside_raid_dungeon.hide_enemy_player_pets end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_inside_raid_dungeon.hide_enemy_player_pets = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "Hide Enemy Pets",
-			desc = "Disable show enemy pets within a raid or a dungeon.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_inside_raid_dungeon.hide_enemy_player_totems end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_inside_raid_dungeon.hide_enemy_player_totems = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "Hide Enemy Totems",
-			desc = "Disable show enemy totems within a raid or a dungeon.",
-		},
-		
-		{type = "breakline"},
-		{type = "breakline"},
-		
-		{type = "label", get = function() return "Friendly Nameplates:" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE")},
-		
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_friendly_enabled end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_friendly_enabled = value
-				
-				Plater.RefreshDBUpvalues()
-				Plater.UpdateAllPlates()
-				Plater.RefreshAutoToggle()
-			end,
-			name = "OPTIONS_ENABLED",
-			desc = "When enabled, Plater will enable or disable friendly plates based on the settings below.",
-		},
-		
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_friendly ["party"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_friendly ["party"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Dungeons",
-			desc = "Show friendly nameplates when inside dungeons.",
-		},	
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_friendly ["raid"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_friendly ["raid"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Raid",
-			desc = "Show friendly nameplates when inside raids.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_friendly ["arena"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_friendly ["arena"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Arena / BG",
-			desc = "Show friendly nameplates when inside arena or battleground.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_friendly ["cities"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_friendly ["cities"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Major Cities",
-			desc = "Show friendly nameplates when inside a major city.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_friendly ["world"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_friendly ["world"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Open World",
-			desc = "Show friendly nameplates when at any place not listed on the other options.",
-		},
-		
-		{type = "blank"},
-		
-		{type = "label", get = function() return "Enemy Nameplates:" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE")},
-		
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_enemy_enabled end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_enemy_enabled = value
-				
-				Plater.RefreshDBUpvalues()
-				Plater.UpdateAllPlates()
-				Plater.RefreshAutoToggle()
-			end,
-			name = L["OPTIONS_ENABLED"],
-			desc = "When enabled, Plater will enable or disable enemy plates based on the settings below.",
-		},
-		
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_enemy ["party"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_enemy ["party"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Dungeons",
-			desc = "Show enemy nameplates when inside dungeons.",
-		},	
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_enemy ["raid"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_enemy ["raid"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Raid",
-			desc = "Show enemy nameplates when inside raids.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_enemy ["arena"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_enemy ["arena"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Arena / BG",
-			desc = "Show enemy nameplates when inside arena or battleground.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_enemy ["cities"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_enemy ["cities"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Major Cities",
-			desc = "Show enemy nameplates when inside a major city.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_enemy ["world"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_enemy ["world"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Open World",
-			desc = "Show enemy nameplates when at any place not listed on the other options.",
-		},
-		
-		{type = "breakline"},
-		{type = "breakline"},
-		
-		{type = "label", get = function() return "Stacking Nameplates:" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE")},
-		
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_stacking_enabled end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_stacking_enabled = value
-				
-				Plater.RefreshDBUpvalues()
-				Plater.UpdateAllPlates()
-				Plater.RefreshAutoToggle()
-			end,
-			name = "OPTIONS_ENABLED",
-			desc = "When enabled, Plater will enable or disable stacking nameplates based on the settings below.\n\n|cFFFFFF00 Important |r: only toggle on if 'Stacking Nameplates' is enabled in the General Settings tab.",
-		},
-		
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_stacking ["party"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_stacking ["party"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Dungeons",
-			desc = "Set stacking on when inside dungeons.",
-		},	
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_stacking ["raid"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_stacking ["raid"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Raid",
-			desc = "Set stacking on when inside raids.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_stacking ["arena"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_stacking ["arena"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Arena / BG",
-			desc = "Set stacking on when inside arena or battleground.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_stacking ["cities"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_stacking ["cities"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Major Cities",
-			desc = "Set stacking on when inside a major city.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_stacking ["world"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_stacking ["world"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Open World",
-			desc = "Set stacking on when at any place not listed on the other options.",
-		},
-		
-		{type = "blank"},
-		{type = "label", get = function() return "'Always Show Nameplates':" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE")},
-		
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_always_show_enabled end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_always_show_enabled = value
-				
-				Plater.RefreshDBUpvalues()
-				Plater.UpdateAllPlates()
-				Plater.RefreshAutoToggle()
-			end,
-			name = "OPTIONS_ENABLED",
-			desc = "When enabled, Plater will enable or disable 'always show nameplates' based on the settings below.",
-		},
-		
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_always_show ["party"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_always_show ["party"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Dungeons",
-			desc = "Set 'always show nameplates' on when inside dungeons.",
-		},	
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_always_show ["raid"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_always_show ["raid"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Raid",
-			desc = "Set 'always show nameplates' on when inside raids.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_always_show ["arena"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_always_show ["arena"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Arena / BG",
-			desc = "Set 'always show nameplates' on when inside arena or battleground.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_always_show ["cities"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_always_show ["cities"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Major Cities",
-			desc = "Set 'always show nameplates' on when inside a major city.",
-		},
-		{
-			type = "toggle",
-			get = function() return Plater.db.profile.auto_toggle_always_show ["world"] end,
-			set = function (self, fixedparam, value) 
-				Plater.db.profile.auto_toggle_always_show ["world"] = value
-				Plater.RefreshAutoToggle()
-			end,
-			name = "In Open World",
-			desc = "Set 'always show nameplates' on when at any place not listed on the other options.",
-		},
-	}
-	
-	_G.C_Timer.After(1.2, function() --~delay
-		auto_options.always_boxfirst = true
-		auto_options.language_addonId = addonId
-		auto_options.Name = "Auto Options"
-		DF:BuildMenu (autoFrame, auto_options, startX, startY, heightSize, false, options_text_template, options_dropdown_template, options_switch_template, true, options_slider_template, options_button_template, globalCallback)	
-	end)
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -11745,7 +11451,6 @@ end
 			end,
 			name = "OPTIONS_THREAT_AGGROSTATE_ANOTHERTANK",
 			desc = "OPTIONS_THREAT_COLOR_TANK_ANOTHERTANK_DESC",
-			hidden = IS_WOW_PROJECT_MIDNIGHT,
 		},
 		{
 			type = "color",
@@ -11785,7 +11490,6 @@ end
 			end,
 			name = "OPTIONS_THREAT_PULL_FROM_ANOTHER_TANK",
 			desc = "OPTIONS_THREAT_PULL_FROM_ANOTHER_TANK_DESC",
-			hidden = IS_WOW_PROJECT_MIDNIGHT,
 		},
 		
 		{type = "blank"},
@@ -11912,7 +11616,7 @@ end
 		
 		{type = "breakline"},
 	
-		{type = "label", get = function() return "Tank or DPS Colors:" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE"), hidden = not IS_WOW_PROJECT_NOT_MAINLINE},
+		{type = "label", get = function() return "Tank or DPS Colors:" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE"), hidden = IS_WOW_PROJECT_MAINLINE},
 			
 		{
 			type = "toggle",
@@ -11923,7 +11627,7 @@ end
 			end,
 			name = "OPTIONS_THREAT_CLASSIC_USE_TANK_COLORS",
 			desc = "OPTIONS_THREAT_CLASSIC_USE_TANK_COLORS",
-			hidden = not IS_WOW_PROJECT_NOT_MAINLINE
+			hidden = IS_WOW_PROJECT_MAINLINE
 		},
 	
 		{type = "blank", hidden = not IS_WOW_PROJECT_NOT_MAINLINE},

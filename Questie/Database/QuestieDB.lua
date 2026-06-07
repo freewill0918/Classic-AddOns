@@ -32,6 +32,10 @@ local l10n = QuestieLoader:ImportModule("l10n")
 local QuestLogCache = QuestieLoader:ImportModule("QuestLogCache")
 ---@type DropDB
 local DropDB = QuestieLoader:ImportModule("DropDB")
+---@type Expansions
+local Expansions = QuestieLoader:ImportModule("Expansions")
+---@type ContentPhases
+local ContentPhases = QuestieLoader:ImportModule("ContentPhases")
 
 ---@type QuestieQuest
 local QuestieQuest = QuestieLoader:ImportModule("QuestieQuest")
@@ -49,9 +53,11 @@ local bitband = bit.band
 -- questFlags https://github.com/cmangos/issues/wiki/Quest_template#questflags
 local QUEST_FLAGS_DAILY = 4096
 local QUEST_FLAGS_WEEKLY = 32768
+local QUEST_FLAGS_MONTHLY = 65536
 -- Pre calculated 2 * QUEST_FLAGS, for testing a bit flag
 local QUEST_FLAGS_DAILY_X2 = 2 * QUEST_FLAGS_DAILY
 local QUEST_FLAGS_WEEKLY_X2 = 2 * QUEST_FLAGS_WEEKLY
+local QUEST_FLAGS_MONTHLY_X2 = 2 * QUEST_FLAGS_MONTHLY
 local playerFaction = UnitFactionGroup("Player")
 local serverName = GetRealmName()
 
@@ -105,6 +111,7 @@ QuestieDB.DoableStates = {
     ENABLING_QUEST_MISSING = 28,
     PROFESSION_MISSING = 29,
     PROFESSION_RANK = 30,
+    DISABLED_BY = 31,
 }
 
 -- * race bitmask data, for easy access
@@ -457,6 +464,14 @@ end
 
 ---@param questId number
 ---@return boolean
+function QuestieDB.IsMonthlyQuest(questId)
+    local flags = QuestieDB.QueryQuestSingle(questId, "questFlags")
+    -- test a bit flag: (value % (2*flag) >= flag)
+    return flags and (flags % QUEST_FLAGS_MONTHLY_X2) >= QUEST_FLAGS_MONTHLY
+end
+
+---@param questId number
+---@return boolean
 function QuestieDB.IsCelestialQuest(questId)
     local questTagId, _ = QuestieDB.GetQuestTagInfo(questId)
     return questTagId == QuestieDB.questTagIds.CELESTIAL
@@ -711,7 +726,7 @@ function QuestieDB.IsDoable(questId, debugPrint)
         local aboveMinRep, hasMinFaction, belowMaxRep, hasMaxFaction = QuestieReputation:HasFactionAndReputationLevel(requiredMinRep, requiredMaxRep)
         if (not ((aboveMinRep and hasMinFaction) and (belowMaxRep and hasMaxFaction))) then
             --- If we haven't got the faction for min or max we blacklist it
-            if not hasMinFaction or not hasMaxFaction then -- or not belowMaxRep -- This is something we could have done, but would break if you rep downwards
+            if not (aboveMinRep and belowMaxRep) then
                 QuestieDB.autoBlacklist[questId] = "rep"
             end
 
@@ -736,15 +751,25 @@ function QuestieDB.IsDoable(questId, debugPrint)
 
     local requiredRanks = QuestieDB.QueryQuestSingle(questId, "requiredRanks")
     if (requiredRanks) then
-        local hasProfession, hasRankLevel = QuestieProfessions:HasProfessionAndRankLevel(requiredRanks)
-        if (not (hasProfession and hasRankLevel)) then
-            --? We haven't got the profession so we blacklist it.
-            if(not hasProfession) then
-                QuestieDB.autoBlacklist[questId] = "rank"
-            end
+        local hasProfession, hasRankLevel, hasNegativeRanks = QuestieProfessions:HasProfessionAndRankLevel(requiredRanks)
+        if (not hasNegativeRanks) then
+            if (not (hasProfession and hasRankLevel)) then
+                --? We haven't got the profession so we blacklist it.
+                if (not hasProfession) then
+                    QuestieDB.autoBlacklist[questId] = "rank"
+                end
 
-            if debugPrint then Questie:Debug(Questie.DEBUG_SPAM, "[QuestieDB.IsDoable] Player does not have profession rank for quest " .. questId) end
-            return false
+                if debugPrint then Questie:Debug(Questie.DEBUG_SPAM, "[QuestieDB.IsDoable] Player does not have profession rank for quest " .. questId) end
+                return false
+            end
+        else
+            if hasProfession and not hasRankLevel then
+                -- We have the exact profession and rank so we blacklist it.
+                QuestieDB.autoBlacklist[questId] = "rank"
+
+                if debugPrint then Questie:Debug(Questie.DEBUG_SPAM, "[QuestieDB.IsDoable] Player has the wrong profession rank for quest " .. questId) end
+                return false
+            end
         end
     end
 
@@ -841,9 +866,19 @@ function QuestieDB.IsDoable(questId, debugPrint)
     if breadcrumbs then
         for _, breadcrumbId in ipairs(breadcrumbs) do
             if QuestiePlayer.currentQuestlog[breadcrumbId] then
-                if debugPrint then Questie:Debug(Questie.DEBUG_SPAM, "[QuestieDB.IsDoable] Breadcrumb quest in the quest log for quest " .. questId) end
+                if debugPrint then Questie:Debug(Questie.DEBUG_SPAM, "[QuestieDB.IsDoable] Breadcrumb quest " .. breadcrumbId .. " in the quest log for quest " .. questId) end
                 return false
             end
+        end
+    end
+
+    -- Check if this quest has a quest that disables it while in quest log
+    local disabledByQuest = QuestieDB.QueryQuestSingle(questId, "disabledByQuest")
+    if disabledByQuest and disabledByQuest ~= 0 then
+        -- Check the disabling quest is active
+        if QuestiePlayer.currentQuestlog[disabledByQuest] then
+            if debugPrint then Questie:Debug(Questie.DEBUG_SPAM, "[QuestieDB.IsDoable] Disabling quest " .. disabledByQuest .. " in the quest log for quest " .. questId) end
+            return false
         end
     end
 
@@ -870,6 +905,12 @@ function QuestieDB.IsDoable(questId, debugPrint)
             if debugPrint then Questie:Debug(Questie.DEBUG_SPAM, "[QuestieDB.IsDoable] Quest " .. questId .. " is not available because " .. availableStartingWith .. " is not active/turned in!") end
             return false
         end
+    end
+
+    -- Invasion quests (Naxxramas launch on Era and Wotlk prepatch)
+    if not ContentPhases.IsInvasionActive[Expansions.Current] and QuestieQuestBlacklist.InvasionQuests[questId] then
+        if debugPrint then Questie:Debug(Questie.DEBUG_SPAM, "[QuestieDB.IsDoable] Invasion event quest " .. questId .. " is not active") end
+        return false
     end
 
     return true
@@ -900,6 +941,7 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
     local completedQuests = Questie.db.char.complete
     local currentQuestlog = QuestiePlayer.currentQuestlog
     local DoableStates = QuestieDB.DoableStates
+    local HIDE_ON_MAP = QuestieQuestBlacklist.HIDE_ON_MAP
 
     -- Completed quests
     if completedQuests[questId] then
@@ -921,7 +963,7 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
     end
 
     -- Automatically blacklisted quests by Questie. These are localized in the init function
-    if QuestieCorrectionshiddenQuests[questId] then
+    if QuestieCorrectionshiddenQuests[questId] and QuestieCorrectionshiddenQuests[questId] ~= HIDE_ON_MAP then
         local msg = "Quest " .. questId .. " is hidden automatically"
         local msgevent = "Quest " .. questId .. " is unavailable because the world event is inactive"
         if QuestieEvent.IsEventQuest(questId) and not QuestieEvent.IsEventActiveForQuest(questId) then
@@ -944,6 +986,15 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
             return l10n("Unavailable")..l10n(": ")..l10n("Event inactive"), true, DoableStates.EVENT_INACTIVE
         elseif returnText then
             return "AQ event quest " .. questId .. " is not active", true, DoableStates.EVENT_INACTIVE
+        end
+    end
+
+    -- Invasion quests (Naxxramas launch on Era and Wotlk prepatch)
+    if not ContentPhases.IsInvasionActive[Expansions.Current] and QuestieQuestBlacklist.InvasionQuests[questId] then
+        if returnText and returnBrief then
+            return l10n("Unavailable")..l10n(": ")..l10n("Event inactive"), true, DoableStates.EVENT_INACTIVE
+        elseif returnText then
+            return "Invasion event quest " .. questId .. " is not active", true, DoableStates.EVENT_INACTIVE
         end
     end
 
@@ -1004,6 +1055,73 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
         end
     end
 
+    -- Check profession requirements
+    local requiredSkill = QuestieDB.QueryQuestSingle(questId, "requiredSkill")
+    local requiredRanks = QuestieDB.QueryQuestSingle(questId, "requiredRanks")
+    -- Until then these two should be mutually exclusive
+    -- TODO: if we find a quest that has both requiredSkill and requiredRanks we need to be able to return correct message
+    if (requiredSkill) then
+        local hasProfession, hasSkillLevel = QuestieProfessions:HasProfessionAndSkillLevel(requiredSkill)
+        if not hasProfession then
+            local msg = "Profession missing for quest " .. questId
+            if returnText and returnBrief then
+                return l10n("Unavailable")..l10n(": ")..l10n("Profession missing"), true, DoableStates.PROFESSION_MISSING
+            elseif returnText and not returnBrief then
+                return msg, true, DoableStates.PROFESSION_MISSING
+            end
+        elseif not hasSkillLevel then
+            local msg = "Player does not have required profession skill for quest " .. questId
+            if returnText and returnBrief then
+                return l10n("Unavailable")..l10n(": ")..l10n("Profession skill"), true, DoableStates.PROFESSION_SKILL
+            elseif returnText and not returnBrief then
+                return msg, true, DoableStates.PROFESSION_SKILL
+            end
+        end
+    end
+    if (requiredRanks) then
+        local hasProfession, hasRankLevel, hasNegativeRanks = QuestieProfessions:HasProfessionAndRankLevel(requiredRanks)
+        if not hasNegativeRanks then
+            if not hasProfession then
+                local msg = "Profession missing for quest " .. questId
+                if returnText and returnBrief then
+                    return l10n("Unavailable")..l10n(": ")..l10n("Profession missing"), true, DoableStates.PROFESSION_MISSING
+                elseif returnText and not returnBrief then
+                    return msg, true, DoableStates.PROFESSION_MISSING
+                end
+            elseif not hasRankLevel then
+                local msg = "Player does not have required profession rank for quest " .. questId
+                if returnText and returnBrief then
+                    return l10n("Unavailable")..l10n(": ")..l10n("Profession rank"), true, DoableStates.PROFESSION_RANK
+                elseif returnText and not returnBrief then
+                    return msg, true, DoableStates.PROFESSION_RANK
+                end
+            end
+        else
+            if hasProfession and not hasRankLevel then
+                local msg = "Player has the wrong profession rank for quest " .. questId
+                if returnText and returnBrief then
+                    return l10n("Unavailable")..l10n(": ")..l10n("Profession rank"), true, DoableStates.PROFESSION_RANK
+                elseif returnText and not returnBrief then
+                    return msg, true, DoableStates.PROFESSION_RANK
+                end
+            end
+        end
+    end
+
+    -- Check profession specialization requirements
+    local requiredSpecialization = QuestieDB.QueryQuestSingle(questId, "requiredSpecialization")
+    if (requiredSpecialization) and (requiredSpecialization > 0) then
+        local hasSpecialization = QuestieProfessions.HasSpecialization(requiredSpecialization)
+        if (not hasSpecialization) then
+            local msg = "Player does not meet profession specialization requirements for quest " .. questId
+            if returnText and returnBrief then
+                return l10n("Unavailable")..l10n(": ")..l10n("Profession specialization requirement"), true, DoableStates.PROFESSION_SPECIALIZATION
+            elseif returnText and not returnBrief then
+                return msg, true, DoableStates.PROFESSION_SPECIALIZATION
+            end
+        end
+    end
+
     -- Check if the character is higher than the quest allows
     local requiredMaxLevel = QuestieDB.QueryQuestSingle(questId, "requiredMaxLevel")
     if (requiredMaxLevel and requiredMaxLevel ~= 0 and (UnitLevel("player") > requiredMaxLevel)) then
@@ -1025,6 +1143,31 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
         elseif returnText and not returnBrief then
             return msg, true, DoableStates.LEVEL_TOO_LOW
         end
+    end
+
+    -- Check if this quest is a breadcrumb
+    local breadcrumbForQuestId = QuestieDB.QueryQuestSingle(questId, "breadcrumbForQuestId")
+    if breadcrumbForQuestId and breadcrumbForQuestId ~= 0 then
+        -- Check the follow up quest of this breadcrumb
+        if completedQuests[breadcrumbForQuestId] or currentQuestlog[breadcrumbForQuestId] then
+            if returnText and returnBrief then
+                return l10n("Unavailable")..l10n(": ")..l10n("Follow up quest active or completed"), true, DoableStates.BREADCRUMB_FOLLOWUP
+            elseif returnText and not returnBrief then
+                return "Follow up of breadcrumb quest " .. breadcrumbForQuestId .. " already completed or in the quest log for quest " .. questId, true, DoableStates.BREADCRUMB_FOLLOWUP
+            end
+        end
+        -- The next case is commented out since it's not a valid check to have. Breadcrumbs to the same quest are not always exclusive to eachother
+        --[[ Check if the other breadcrumbs are active
+        local otherBreadcrumbs = QuestieDB.QueryQuestSingle(breadcrumbForQuestId, "breadcrumbs")
+        for _, breadcrumbId in ipairs(otherBreadcrumbs or {}) do
+            if breadcrumbId ~= questId and currentQuestlog[breadcrumbId] then
+                if returnText and returnBrief then
+                    return l10n("Unavailable")..l10n(": ")..l10n("Another breadcrumb is active"), true, DoableStates.EXCLUSIVE_BREADCRUMB
+                elseif returnText and not returnBrief then
+                    return "Alternative breadcrumb quest " .. breadcrumbId .." in the quest log for quest " .. questId, true, DoableStates.EXCLUSIVE_BREADCRUMB
+                end
+            end
+        end]]
     end
 
     -- Check reputation requirements
@@ -1050,48 +1193,6 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
                 return l10n("Unavailable")..l10n(": ")..l10n("Reputation too high"), true, DoableStates.EXCEED_REPUTATION
             elseif returnText and not returnBrief then
                 return msg, true, DoableStates.EXCEED_REPUTATION
-            end
-        end
-    end
-
-    -- Check profession requirements
-    local requiredSkill = QuestieDB.QueryQuestSingle(questId, "requiredSkill")
-    local requiredRanks = QuestieDB.QueryQuestSingle(questId, "requiredRanks")
-    -- Until then these two should be mutually exclusive
-    -- TODO: if we find a quest that has both requiredSkill and requiredRanks we need to be able to return correct message
-    if (requiredSkill) then
-        local hasProfession, hasSkillLevel = QuestieProfessions:HasProfessionAndSkillLevel(requiredSkill)
-        if not hasProfession then
-            local msg = "Profession missing for quest " .. questId
-            if returnText and returnBrief then
-                return l10n("Unavailable")..l10n(": ")..l10n("Profession missing"), true, DoableStates.PROFESSION_MISSING
-            elseif returnText and not returnBrief then
-                return msg, true, DoableStates.PROFESSION_MISSING
-            end
-        elseif not hasSkillLevel then
-            local msg = "Player does not have required profession skill for quest " .. questId
-            if returnText and returnBrief then
-                return l10n("Unavailable")..l10n(": ")..l10n("Profession skill"), true, DoableStates.PROFESSION_SKILL
-            elseif returnText and not returnBrief then
-                return msg, true, DoableStates.PROFESSION_SKILL
-            end
-        end
-    end
-    if (requiredRanks) then
-        local hasProfession, hasRankLevel = QuestieProfessions:HasProfessionAndRankLevel(requiredRanks)
-        if not hasProfession then
-            local msg = "Profession missing for quest " .. questId
-            if returnText and returnBrief then
-                return l10n("Unavailable")..l10n(": ")..l10n("Profession missing"), true, DoableStates.PROFESSION_MISSING
-            elseif returnText and not returnBrief then
-                return msg, true, DoableStates.PROFESSION_MISSING
-            end
-        elseif not hasRankLevel then
-            local msg = "Player does not have required profession rank for quest " .. questId
-            if returnText and returnBrief then
-                return l10n("Unavailable")..l10n(": ")..l10n("Profession rank"), true, DoableStates.PROFESSION_RANK
-            elseif returnText and not returnBrief then
-                return msg, true, DoableStates.PROFESSION_RANK
             end
         end
     end
@@ -1150,20 +1251,6 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
         end
     end
 
-    -- Check profession specialization requirements
-    local requiredSpecialization = QuestieDB.QueryQuestSingle(questId, "requiredSpecialization")
-    if (requiredSpecialization) and (requiredSpecialization > 0) then
-        local hasSpecialization = QuestieProfessions.HasSpecialization(requiredSpecialization)
-        if (not hasSpecialization) then
-            local msg = "Player does not meet profession specialization requirements for quest " .. questId
-            if returnText and returnBrief then
-                return l10n("Unavailable")..l10n(": ")..l10n("Profession specialization requirement"), true, DoableStates.PROFESSION_SPECIALIZATION
-            elseif returnText and not returnBrief then
-                return msg, true, DoableStates.PROFESSION_SPECIALIZATION
-            end
-        end
-    end
-
     -- Check spell requirements
     local requiredSpell = QuestieDB.QueryQuestSingle(questId, "requiredSpell")
     if (requiredSpell) and (requiredSpell ~= 0) then
@@ -1195,31 +1282,6 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
         end
     end
 
-    -- Check if this quest is a breadcrumb
-    local breadcrumbForQuestId = QuestieDB.QueryQuestSingle(questId, "breadcrumbForQuestId")
-    if breadcrumbForQuestId and breadcrumbForQuestId ~= 0 then
-        -- Check the follow up quest of this breadcrumb
-        if completedQuests[breadcrumbForQuestId] or currentQuestlog[breadcrumbForQuestId] then
-            if returnText and returnBrief then
-                return l10n("Unavailable")..l10n(": ")..l10n("Follow up quest active or completed"), true, DoableStates.BREADCRUMB_FOLLOWUP
-            elseif returnText and not returnBrief then
-                return "Follow up of breadcrumb quest " .. breadcrumbForQuestId .. " already completed or in the quest log for quest " .. questId, true, DoableStates.BREADCRUMB_FOLLOWUP
-            end
-        end
-        -- The next case is commented out since it's not a valid check to have. Breadcrumbs to the same quest are not always exclusive to eachother
-        --[[ Check if the other breadcrumbs are active
-        local otherBreadcrumbs = QuestieDB.QueryQuestSingle(breadcrumbForQuestId, "breadcrumbs")
-        for _, breadcrumbId in ipairs(otherBreadcrumbs or {}) do
-            if breadcrumbId ~= questId and currentQuestlog[breadcrumbId] then
-                if returnText and returnBrief then
-                    return l10n("Unavailable")..l10n(": ")..l10n("Another breadcrumb is active"), true, DoableStates.EXCLUSIVE_BREADCRUMB
-                elseif returnText and not returnBrief then
-                    return "Alternative breadcrumb quest " .. breadcrumbId .." in the quest log for quest " .. questId, true, DoableStates.EXCLUSIVE_BREADCRUMB
-                end
-            end
-        end]]
-    end
-
     -- Check if this quest has active breadcrumbs
     local breadcrumbs = QuestieDB.QueryQuestSingle(questId, "breadcrumbs")
     if breadcrumbs then
@@ -1230,6 +1292,19 @@ function QuestieDB.IsDoableVerbose(questId, debugPrint, returnText, returnBrief)
                 elseif returnText and not returnBrief then
                     return "A breadcrumb quest " .. breadcrumbId .." is in the quest log for quest " .. questId, true, DoableStates.BREADCRUMB_ACTIVE
                 end
+            end
+        end
+    end
+
+    -- Check if this quest has a quest that disables it while in quest log
+    local disabledByQuest = QuestieDB.QueryQuestSingle(questId, "disabledByQuest")
+    if disabledByQuest and disabledByQuest ~= 0 then
+        -- Check the disabling quest is active
+        if currentQuestlog[disabledByQuest] then
+            if returnText and returnBrief then
+                return l10n("Unavailable")..l10n(": ")..l10n("Disabling quest is active"), true, DoableStates.DISABLED_BY
+            elseif returnText and not returnBrief then
+                return "Disabling quest " .. disabledByQuest .. " is in the quest log for quest " .. questId, true, DoableStates.DISABLED_BY
             end
         end
     end
@@ -1396,6 +1471,7 @@ function QuestieDB.GetQuest(questId) -- /dump QuestieDB.GetQuest(867)
     ---@field public availableUntilCompleted QuestId
     ---@field public availableStartingWith QuestId
     ---@field public requiredRanks SkillPair[]
+    ---@field public disabledByQuest QuestId
     local QO = {
         Id = questId
     }

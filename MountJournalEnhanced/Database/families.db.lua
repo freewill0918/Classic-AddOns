@@ -128,6 +128,11 @@ ADDON.DB.Family = {
 [2694] = true, -- Amani Windcaller
 [2760] = true, -- Amani Sharptalon
 [2786] = true, -- Hexed Vilefeather Eagle
+[2939] = true, -- [PH] Giant Eagle Sunwalker Mount Blue
+[2940] = true, -- Dusk-Painted Sun Roc
+[2941] = true, -- Flame-Painted Sun Roc
+[2942] = true, -- [PH] Giant Eagle Sunwalker Mount White
+[2961] = true, -- Void-Corrupted Hex Eagle
 },
 ["Hawkstriders"] = {
 [146] = true, -- Swift Pink Hawkstrider
@@ -150,6 +155,8 @@ ADDON.DB.Family = {
 [2762] = true, -- Cerulean Hawkstrider
 [2805] = true, -- Spectral Hawkstrider
 [2817] = true, -- Lucent Hawkstrider
+[2818] = true, -- Emerald Hawkstrider
+[2935] = true, -- Void-Touched Hawkstrider
 },
 ["Mechanical Birds"] = {
 [1224] = true, -- Wonderwing 2.0
@@ -385,6 +392,7 @@ ADDON.DB.Family = {
 [2262] = true, -- Harmonious Salutations Bear
 [2776] = true, -- Amani Blessed Bear
 [2778] = true, -- Ancestral War Bear
+[2779] = true, -- Witherbark Warbear Mother
 },
 ["Foxes"] = {
 [656] = true, -- Llothien Prowler
@@ -507,6 +515,7 @@ ADDON.DB.Family = {
 [2614] = true, -- Fierce Grimlynx
 [2615] = true, -- Rootstalker Grimlynx
 [2616] = true, -- Ivory Grimlynx
+[2965] = true, -- Void-Corrupted Lynx
 },
 ["Manasabers"] = {
 [741] = true, -- Mystic Runesaber
@@ -822,12 +831,13 @@ ADDON.DB.Family = {
 [2646] = true, -- Sha-scarred Drake
 [2647] = true, -- Ashened Cataclysm
 [2936] = true, -- Golden Ashened Cataclysm
+[2948] = true, -- Golden Ashened Cataclysm
 },
 ["Grand Drakes"] = {
 [1727] = true, -- Tarecgosa's Visage
 },
 ["Nether Drakes"] = {
-[16] = true, -- Nether-Warped Drake
+[16] = true, -- Nether-Swept Drake
 [169] = true, -- Swift Nether Drake
 [186] = true, -- Onyx Netherwing Drake
 [187] = true, -- Azure Netherwing Drake
@@ -940,6 +950,8 @@ ADDON.DB.Family = {
 [2192] = true, -- Beledar's Spawn
 [2566] = true, -- Lana'thel's Crimson Cascade
 [2729] = true, -- Farseer's Felscorned Tempest
+[2735] = true, -- Lana'thel's Sanguine Cascade
+[3005] = true, -- Cerulean Deathwalker
 },
 ["Phoenixes"] = {
 [183] = true, -- Ashes of Al'ar
@@ -1142,6 +1154,10 @@ ADDON.DB.Family = {
 [2497] = true, -- Void-Forged Stallion
 [2726] = true, -- Felscorned Highlord's Charger
 [2785] = true, -- Relinquished Scarlet Charger
+[2926] = true, -- Gilnean Iron Charger
+[2927] = true, -- Gilnean Copper Charger
+[2928] = true, -- Pyrewood Rebel's Rouncey
+[2929] = true, -- Gilneas Loyalist's Rouncey
 },
 ["Demonic Steeds"] = {
 [17] = true, -- Felsteed
@@ -1303,6 +1319,10 @@ ADDON.DB.Family = {
 [2259] = true, -- Gigantic Grrloc
 [2573] = true, -- Grandiose Grrloc
 },
+["Primate"] = {
+[2930] = true, -- Blossomback Arboon
+[2931] = true, -- Amberback Arboon
+},
 ["Yetis"] = {
 [654] = true, -- Challenger's War Yeti
 [769] = true, -- Minion of Grumpus
@@ -1315,6 +1335,15 @@ ADDON.DB.Family = {
 [1320] = true, -- Shadowbarb Drone
 [1321] = true, -- Wicked Swarmer
 [1784] = true, -- Royal Swarmer
+},
+["Bee"] = {
+[1013] = true, -- Honeyback Harvester
+[1277] = true, -- Honeyback Hivemother
+[2148] = true, -- Smoldering Cinderbee
+[2165] = true, -- Soaring Meaderbee
+[2167] = true, -- Raging Cinderbee
+[2321] = true, -- Timely Buzzbee
+[2933] = true, -- Magister's Spell Bee
 },
 ["Beetle"] = {
 [1662] = true, -- Telix the Stormhorn
@@ -1366,12 +1395,6 @@ ADDON.DB.Family = {
 },
 ["Others"] = {
 [594] = true, -- Grinning Reaver
-[1013] = true, -- Honeyback Harvester
-[1277] = true, -- Honeyback Hivemother
-[2148] = true, -- Smoldering Cinderbee
-[2165] = true, -- Soaring Meaderbee
-[2167] = true, -- Raging Cinderbee
-[2321] = true, -- Timely Buzzbee
 },
 ["Silithids"] = {
 [116] = true, -- Black Qiraji Battle Tank
@@ -1580,6 +1603,7 @@ ADDON.DB.Family = {
 [2769] = true, -- Preyseeker's Hubris
 [2770] = true, -- Preyseeker's Wrath
 [2771] = true, -- Preyseeker's Nightmare
+[2915] = true, -- Unbound Manawyrm
 },
 ["Mushan"] = {
 [515] = true, -- Son of Galleon
@@ -1626,6 +1650,7 @@ ADDON.DB.Family = {
 [1255] = true, -- Deepcoral Snapdragon
 [1256] = true, -- Snapdragon Kelpstalker
 [2469] = true, -- Prismatic Snapdragon
+[2964] = true, -- Void-Touched Snapdragon
 },
 ["Thunder Lizard"] = {
 [1474] = true, -- Bestowed Thunderspine Packleader
@@ -1683,6 +1708,10 @@ ADDON.DB.Family = {
 [2701] = true, -- Cindertuft Groveglider
 [2702] = true, -- Gloombough Groveglider
 [2703] = true, -- Blossombranch Groveglider
+[2738] = true, -- Snowfall Groveglider
+[2739] = true, -- Embertuft Groveglider
+[2740] = true, -- Petalbranch Groveglider
+[2741] = true, -- Shadowbough Groveglider
 },
 },
 ["Rylaks"] = {
@@ -1959,6 +1988,7 @@ ADDON.DB.Family = {
 [2840] = true, -- Silvermoon's Arcane Defender
 [2841] = true, -- Elven Arcane Guardian
 [2842] = true, -- Arcanovoid Construct
+[3006] = true, -- Amethyst Mechsuit
 },
 ["Mechanical Animals"] = {
 [552] = true, -- Ironbound Wraithcharger
@@ -2054,6 +2084,10 @@ ADDON.DB.Family = {
 [1552] = true, -- Carcinized Zerethsteed
 [2480] = true, -- Crimson Shreddertank
 [2508] = true, -- Enterprising Shreddertank
+[3007] = true, -- Blue-Chip Shreddertank
+[3008] = true, -- Profit-Green Shreddertank
+[3009] = true, -- Speculative Shreddertank
+[3010] = true, -- High-Yield Shreddertank
 },
 },
 ["Vombata"] = {

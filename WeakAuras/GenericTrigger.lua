@@ -212,7 +212,7 @@ function TestForMultiSelect(trigger, arg)
     test = "(";
     local any = false;
     if trigger[name] and trigger[name].multi then
-      for value, _ in pairs(trigger[name].multi) do
+      for value in pairs(trigger[name].multi) do
         if not arg.test then
           test = test..name.."=="..(tonumber(value) or ("[["..value.."]]")).." or ";
         else
@@ -811,8 +811,7 @@ local function RunTriggerFunc(allStates, data, id, triggernum, event, arg1, arg2
           end
         end
       elseif (data.statesParameter == "one") then
-        allStates[""] = allStates[""] or {};
-        local state = allStates[""];
+        local state = allStates[""] or {}
         if data.untriggerFunc then
           local ok, returnValue = xpcall(data.untriggerFunc, errorHandler, state, event, arg1, arg2, ...);
           if (ok and returnValue) then
@@ -2295,7 +2294,7 @@ do
 
   local function GetRuneDuration()
     local runeDuration = -100;
-    for id, _ in pairs(runes) do
+    for id in pairs(runes) do
       local _, duration = GetRuneCooldown(id);
       duration = duration or 0;
       runeDuration = duration > 0 and duration or runeDuration
@@ -2522,7 +2521,7 @@ do
   --- @field private spellCdsOnlyCooldownRune SpellCDHandler
   --- @field private spellCdsCharges SpellCDHandler
   --- @field private AddEffectiveSpellId fun(self: SpellDetails, effectiveSpellId: number, userSpellId: number)
-  --- @field CheckSpellKnown fun(self: SpellDetails) Handles the SPELLS_CHANGED event (and intial setup)
+  --- @field CheckSpellKnown fun(self: SpellDetails) Handles the SPELLS_CHANGED event (and initial setup)
   --- @field CheckSpellCooldowns fun(self: SpellDetails, runeDuration: number?)
   --- @field CheckSpellCooldown fun(self: SpellDetails, effectiveSpellId: number, runeDuration: number?)
   --- @field SendEventsForSpell fun(self: SpellDetails, effectiveSpellId: number, event: string, ...: any[])
@@ -2671,7 +2670,7 @@ do
     end,
 
     CheckSpellCooldowns = function(self, runeDuration)
-      for id, _ in pairs(self.data) do
+      for id in pairs(self.data) do
         self:CheckSpellCooldown(id, runeDuration)
       end
     end,
@@ -2895,12 +2894,20 @@ do
       then
         local spellId = nil
         if event == "SPELL_UPDATE_COOLDOWN" then
-          local arg1 = ...
+          local arg1, baseSpellID, category = ...
           if arg1 and type(arg1) == "number" then
             spellId = arg1
-            -- baseSpellId = arg2
           end
+
           mark_ACTIONBAR_UPDATE_COOLDOWN = nil
+
+          if category and category ~= 0 then
+            -- This SPELL_UPDATE_COOLDOWN has a cagetory, meaning that other spells
+            -- are now also on cooldown. Unfortunately we don't reliably get events
+            -- for those other spells. Thus update all spell cooldowns here
+            Private.CheckCooldownReady()
+            return
+          end
         elseif event == "SPELL_UPDATE_USES" then
           local arg1 = ...
           if arg1 and type(arg1) == "number" then
@@ -2911,14 +2918,12 @@ do
         Private.CheckCooldownReady(spellId)
         if spellId then
           if itemSpellIdToItemId[spellId] then
-            for _, itemId in ipairs(itemSpellIdToItemId[spellId]) do
-              Private.CheckItemCooldown(itemId)
-            end
+            Private.CheckItemCooldowns();
+            Private.CheckItemSlotCooldowns();
           end
           if itemSlotsSpellIdToSlot[spellId] then
-            for _, slot in ipairs(itemSlotsSpellIdToSlot[spellId]) do
-              Private.CheckItemSlotCooldown(slot, itemSlots[slot])
-            end
+            Private.CheckItemCooldowns();
+            Private.CheckItemSlotCooldowns();
           end
         end
       elseif(event == "SPELLS_CHANGED") then
@@ -3210,7 +3215,7 @@ do
   ---@return number
   function Private.CheckRuneCooldown()
     local runeDuration = -100;
-    for id, _ in pairs(runes) do
+    for id in pairs(runes) do
       local startTime, duration = GetRuneCooldown(id);
       startTime = startTime or 0;
       duration = duration or 0;
@@ -3364,7 +3369,7 @@ do
 
   ---@type fun()
   function Private.CheckItemCooldowns()
-    for id, _ in pairs(items) do
+    for id in pairs(items) do
       Private.CheckItemCooldown(id)
     end
   end
@@ -3615,7 +3620,9 @@ do
       itemCdEnabled[id] = 1
 
       local item = Item:CreateFromItemID(id)
-      local _, spellId = C_Item.GetItemSpell(id)
+      if not item:GetItemID() then
+        return
+      end
       item:ContinueOnItemLoad(function()
         local _, spellId = C_Item.GetItemSpell(id)
         if spellId then
@@ -3640,6 +3647,10 @@ do
           if not(itemCdHandles[id]) then
             itemCdHandles[id] = timer:ScheduleTimerFixed(ItemCooldownFinished, endTime - time, id);
           end
+
+          if not WeakAuras.IsPaused() then
+            Private.ScanEventsByID("ITEM_COOLDOWN_CHANGED", id)
+          end
         end
       end)
       C_Item.RequestLoadItemDataByID(id)
@@ -3663,6 +3674,9 @@ do
 
       if itemId then
         local item = Item:CreateFromItemID(itemId)
+        if not item:GetItemID() then
+          return
+        end
         item:ContinueOnItemLoad(function()
           if itemSlots[id] ~= itemId then
             return
@@ -4521,7 +4535,7 @@ do
 end
 
 -- combat assist next cast
-if C_AssistedCombat and C_AssistedCombat.GetNextCastSpell then
+if not WeakAuras.IsWrathClassic() and C_AssistedCombat and C_AssistedCombat.GetNextCastSpell then
   local assistedCombatFrame
 
   local function assistedCombatUpdate(self, elapsed)
@@ -4689,7 +4703,7 @@ function GenericTrigger.GetOverlayInfo(data, triggernum)
           count = variables.additionalProgress;
         end
       else
-        local allStates = setmetatable({}, Private.allstatesMetatable)
+        local allStates = Private.GetNewAllStates(data)
         Private.ActivateAuraEnvironment(data.id);
         RunTriggerFunc(allStates, events[data.id][triggernum], data.id, triggernum, "OPTIONS");
         Private.ActivateAuraEnvironment(nil);

@@ -438,6 +438,10 @@ L["STRING_OPTIONS_ANIMATESCROLL_DESC"] = "Aktiviert: Scrollbalken werden animier
 L["STRING_OPTIONS_APPEARANCE"] = "Aussehen"
 L["STRING_OPTIONS_ATTRIBUTE_TEXT"] = "Titeltext-Einstellungen"
 L["STRING_OPTIONS_ATTRIBUTE_TEXT_DESC"] = "Diese Einstellungen kontrollieren den Titeltext des Fensters."
+--[[Translation missing --]]
+L["STRING_OPTIONS_AUTO_COMBATLOG"] = "Auto Start Combatlog"
+--[[Translation missing --]]
+L["STRING_OPTIONS_AUTO_COMBATLOG_DESC"] = "Automatically start and stop logging combat to the combatlog.txt file when you enter or leave a raid or dungeon."
 L["STRING_OPTIONS_AUTO_SWITCH"] = "Alle Rollen |cFFFFAA00(im Kampf)|r"
 L["STRING_OPTIONS_AUTO_SWITCH_COMBAT"] = "|cFFFFAA00(im Kampf)|r"
 L["STRING_OPTIONS_AUTO_SWITCH_DAMAGER_DESC"] = "In Schadensspezialisierung zeigt dieses Fenster das ausgewählte Attribut oder Zusatzmodul an."
@@ -916,6 +920,16 @@ L["STRING_OPTIONS_PERFORMANCECAPTURES_DESC"] = "Diese Optionen sind verantwortli
 L["STRING_OPTIONS_PERFORMANCEPROFILES_ANCHOR"] = "Leistungsprofile:"
 L["STRING_OPTIONS_PICONS_DIRECTION"] = "Zusatzmodule rechts anordnen"
 L["STRING_OPTIONS_PICONS_DIRECTION_DESC"] = "Aktiviert: Zusatzmodulschaltflächen werden rechts von den Menüschaltflächen angezeigt."
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME"] = "Player Name"
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME_AUTO_ALIGNMENT"] = "Auto Alignment"
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME_AUTO_ALIGNMENT_DESC"] = "Disable this only if you experience player name alignment issues."
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME_AUTO_WIDTH"] = "Length Auto"
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME_WIDTH"] = "Length"
 L["STRING_OPTIONS_PLUGINS"] = "Zusatzmodule"
 L["STRING_OPTIONS_PLUGINS_AUTHOR"] = "Autor"
 L["STRING_OPTIONS_PLUGINS_NAME"] = "Name"
@@ -1093,6 +1107,8 @@ L["STRING_OPTIONS_SEGMENTSSAVE"] = "Segmente gespeichert"
 L["STRING_OPTIONS_SEGMENTSSAVE_DESC"] = [=[Zeigt die Anzahl der zu speichernden Segmente nach Spielende.
 
 Ein hoher Wert kann das Ausloggen verzögern.]=]
+--[[Translation missing --]]
+L["STRING_OPTIONS_SELECT_TEMPLATE"] = "Select Template"
 L["STRING_OPTIONS_SENDFEEDBACK"] = "Rückmeldung"
 L["STRING_OPTIONS_SHOW_SIDEBARS"] = "Skin Rand anzeigen"
 L["STRING_OPTIONS_SHOW_SIDEBARS_DESC"] = "Zeigt oder versteckt Fensterrahmen."
@@ -1180,6 +1196,10 @@ L["STRING_OPTIONS_TEXT_OUTLINE"] = "Textumriss"
 L["STRING_OPTIONS_TEXT_RIGHT_ANCHOR"] = "Rechter Text:"
 L["STRING_OPTIONS_TEXT_ROUTILINE_DESC"] = "Aktiviert oder deaktiviert den Umriss des rechten Textes."
 L["STRING_OPTIONS_TEXT_ROWICONS_ANCHOR"] = "Symbole:"
+--[[Translation missing --]]
+L["STRING_OPTIONS_TEXT_SHADOWCOLOR"] = "Shadow Color"
+--[[Translation missing --]]
+L["STRING_OPTIONS_TEXT_SHADOWOFFSET"] = "Shadow Offset %s"
 L["STRING_OPTIONS_TEXT_SHOW_BRACKET"] = "Einklammern"
 L["STRING_OPTIONS_TEXT_SHOW_BRACKET_DESC"] = "Wähle das Zeichen, das den Pro-Sekunde- und Prozent-Block umschließt."
 L["STRING_OPTIONS_TEXT_SHOW_PERCENT"] = "Prozent zeigen"
@@ -1256,6 +1276,10 @@ L["STRING_OPTIONS_TOOLTIPS_BACKGROUNDCOLOR_DESC"] = "Wähle die Farbe für den H
 L["STRING_OPTIONS_TOOLTIPS_BORDER_COLOR_DESC"] = "Ändert die Rahmenfarbe."
 L["STRING_OPTIONS_TOOLTIPS_BORDER_SIZE_DESC"] = "Ändert die Rahmengröße."
 L["STRING_OPTIONS_TOOLTIPS_BORDER_TEXTURE_DESC"] = "Wechselt die Rahmentextur."
+--[[Translation missing --]]
+L["STRING_OPTIONS_TOOLTIPS_DISABLE"] = "Disable Tooltips"
+--[[Translation missing --]]
+L["STRING_OPTIONS_TOOLTIPS_DISABLE_DESC"] = "Disable tooltips for the selected window."
 L["STRING_OPTIONS_TOOLTIPS_FONTCOLOR"] = "Schriftfarbe"
 L["STRING_OPTIONS_TOOLTIPS_FONTCOLOR_DESC"] = "Ändert die Schriftfarbe der Tooltips."
 L["STRING_OPTIONS_TOOLTIPS_FONTFACE"] = "Schriftart"
@@ -1411,6 +1435,8 @@ L["STRING_OPTIONSMENU_TOOLTIP"] = "Tooltips"
 L["STRING_OPTIONSMENU_WALLPAPER"] = "Fenster: Hintergrund"
 L["STRING_OPTIONSMENU_WINDOW"] = "Fenster: Allgemein"
 L["STRING_OPTIONSMENU_WINDOWBODY"] = "Fenster: Allgemein "
+--[[Translation missing --]]
+L["STRING_OR"] = "Or"
 L["STRING_OVERALL"] = "Gesamt"
 L["STRING_OVERHEAL"] = "Überheilung"
 L["STRING_OVERHEALED"] = "überheilt"

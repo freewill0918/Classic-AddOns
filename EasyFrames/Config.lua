@@ -62,7 +62,7 @@ local function getDeepOpt(info)
 end
 
 local function getOptionName(name)
-    return L["EasyFrames"] .. " - " .. name
+    return "Easy Frames" .. " - " .. name
 end
 
 local healthFormat = {
@@ -70,7 +70,6 @@ local healthFormat = {
     ["2"] = L["Current + Max"], --2
     ["3"] = L["Current + Max + Percent"], --3
     ["4"] = L["Current + Percent"], --4
-	["5"] = L["Current"], --5
     ["custom"] = L["Custom format"], --custom
 }
 
@@ -96,7 +95,6 @@ local portrait = {
 local frames = {
     ["player"] = L["Player"],
     ["target"] = L["Target"],
-    ["focus"] = L["Focus"],
 }
 
 local MIN_RANGE = 6
@@ -387,7 +385,7 @@ local generalOptions = {
                     max = 1.5,
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("General"):TargetFrame_UpdateAuras(TargetFrame)
+                        EasyFrames:GetModule("General"):UpdateAuras(TargetFrame)
                     end,
                     disabled = function()
                         local diabled = EasyFrames.db.profile.general.highlightDispelledBuff
@@ -560,99 +558,6 @@ local generalOptions = {
                     desc = L["Show welcome message when addon is loaded"],
                     arg = "general"
                 },
-
-                newLine = {
-                    type = "description",
-                    order = 4,
-                    name = "",
-                },
-
-                saveFramesPoints = {
-                    type = "execute",
-                    order = 5,
-                    name = L["Save positions of frames to current profile"],
-
-                    func = function(info)
-                        info.options.args.otherGroup.args.framesPointsLog.name = L["Saved"]
-
-                        EasyFrames:GetModule("General"):SaveFramesPoints()
-                    end,
-                },
-
-                restoreFramesPoints = {
-                    type = "execute",
-                    order = 6,
-                    name = L["Restore positions of frames from current profile"],
-
-                    disabled = function()
-                        local diabled = EasyFrames.db.profile.general.framesPoints
-                        if (diabled == false) then
-                            return true
-                        end
-                    end,
-
-                    func = function(info)
-                        info.options.args.otherGroup.args.framesPointsLog.name = L["Restored"]
-
-                        EasyFrames:GetModule("General"):RestoreFramesPoints()
-                    end,
-                },
-
-                framesPointsLog = {
-                    order = 7,
-                    type = "description",
-                    name = "",
-                    width = "default",
-                },
-
-                frameToSetPoints = {
-                    type = "select",
-                    order = 8,
-                    name = L["Frame"],
-                    desc = L["Select the frame you want to set the position"],
-                    values = frames,
-                    arg = "general"
-                },
-
-                frameToSetPointX = {
-                    type = "input",
-                    order = 9,
-                    name = L["X"],
-                    desc = L["X coordinate"],
-                    get = function()
-                        local frame = EasyFrames.Utils.GetFrameByUnit(EasyFrames.db.profile.general.frameToSetPoints)
-                        local _, _, _, x = frame:GetPoint()
-
-                        return tostring(x)
-                    end,
-
-                    set = function(_, value)
-                        local frame = EasyFrames.Utils.GetFrameByUnit(EasyFrames.db.profile.general.frameToSetPoints)
-                        local _, _, _, _, y = frame:GetPoint()
-
-                        EasyFrames:GetModule("General"):SetFramePoints(frame, value, y)
-                    end
-                },
-
-                frameToSetPointY = {
-                    type = "input",
-                    order = 10,
-                    name = L["Y"],
-                    desc = L["Y coordinate"],
-                    get = function()
-                        local frame = EasyFrames.Utils.GetFrameByUnit(EasyFrames.db.profile.general.frameToSetPoints)
-                        local _, _, _, _, y = frame:GetPoint()
-
-                        return tostring(y)
-                    end,
-
-                    set = function(_, value)
-                        local frame = EasyFrames.Utils.GetFrameByUnit(EasyFrames.db.profile.general.frameToSetPoints)
-                        local _, _, _, x = frame:GetPoint()
-
-                        EasyFrames:GetModule("General"):SetFramePoints(frame, x, value)
-                    end
-                },
             }
         },
     },
@@ -667,21 +572,7 @@ local playerOptions = {
         desc = {
             type = "description",
             order = 1,
-            name = L["In player options you can set scale player frame, healthbar text format, etc"],
-        },
-
-        scaleFrame = {
-            type = "range",
-            order = 2,
-            name = L["Player frame scale"],
-            desc = L["Scale of player unit frame"],
-            min = 0.5,
-            max = 2,
-            set = function(info, value)
-                setOpt(info, value)
-                EasyFrames:GetModule("Player"):SetScale(value)
-            end,
-            arg = "player"
+            name = L["In the player settings, you can set various settings, the format of the healthbar text, etc."],
         },
 
         portrait = {
@@ -717,7 +608,7 @@ local playerOptions = {
                     values = healthFormat,
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Player"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Player"):UpdateHealthBarTextString(PlayerFrame)
                     end,
                     arg = "player"
                 },
@@ -778,7 +669,7 @@ local playerOptions = {
                     values = manaFormat,
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Player"):UpdateTextStringWithValues(PlayerFrameManaBar)
+                        EasyFrames:GetModule("Player"):UpdateManaBarTextString(PlayerFrame)
                     end,
                     arg = "player"
                 },
@@ -871,7 +762,7 @@ local playerOptions = {
                         local key = info[#info]
                         EasyFrames.db.profile[ns][opt][key] = value
 
-                        EasyFrames:GetModule("Player"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Player"):UpdateHealthBarTextString(PlayerFrame)
                     end,
                     args = {
                         gt1T = {
@@ -951,7 +842,7 @@ local playerOptions = {
                     arg = "player",
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Player"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Player"):UpdateHealthBarTextString(PlayerFrame)
                     end,
                 },
 
@@ -967,7 +858,7 @@ local playerOptions = {
                             "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Player"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Player"):UpdateHealthBarTextString(PlayerFrame)
                     end,
                     arg = "player"
                 },
@@ -989,7 +880,7 @@ local playerOptions = {
                         "More information about Chinese numerals format you can read on project site"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Player"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Player"):UpdateHealthBarTextString(PlayerFrame)
                     end,
                     arg = "player",
                 },
@@ -1034,7 +925,7 @@ local playerOptions = {
                         local key = info[#info]
                         EasyFrames.db.profile[ns][opt][key] = value
 
-                        EasyFrames:GetModule("Player"):UpdateTextStringWithValues(PlayerFrameManaBar)
+                        EasyFrames:GetModule("Player"):UpdateManaBarTextString(PlayerFrame)
                     end,
                     args = {
                         gt1T = {
@@ -1114,7 +1005,7 @@ local playerOptions = {
                     arg = "player",
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Player"):UpdateTextStringWithValues(PlayerFrameManaBar)
+                        EasyFrames:GetModule("Player"):UpdateManaBarTextString(PlayerFrame)
                     end,
                 },
 
@@ -1130,7 +1021,7 @@ local playerOptions = {
                             "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Player"):UpdateTextStringWithValues(PlayerFrameManaBar)
+                        EasyFrames:GetModule("Player"):UpdateManaBarTextString(PlayerFrame)
                     end,
                     arg = "player"
                 },
@@ -1152,7 +1043,7 @@ local playerOptions = {
                         "More information about Chinese numerals format you can read on project site"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Player"):UpdateTextStringWithValues(PlayerFrameManaBar)
+                        EasyFrames:GetModule("Player"):UpdateManaBarTextString(PlayerFrame)
                     end,
                     arg = "player",
                 },
@@ -1267,10 +1158,21 @@ local playerOptions = {
                     arg = "player"
                 },
 
+                playerNameColorByClass = {
+                    type = "toggle",
+                    order = 8,
+                    name = L["Player name color is based on class"],
+                    desc = L["Player name color is based on class"],
+                    set = function(info, value)
+                        setOpt(info, value)
+                        EasyFrames:GetModule("Player"):SetFrameNameColor()
+                    end,
+                    arg = "player"
+                },
+
                 playerNameColor = {
                     type = "color",
-                    order = 8,
-                    width = "double",
+                    order = 9,
                     name = L["Player name color"],
                     desc = L["Set the color of the frame name"],
                     get = getColor,
@@ -1283,7 +1185,7 @@ local playerOptions = {
 
                 playerNameColorReset = {
                     type = "execute",
-                    order = 9,
+                    order = 10,
                     name = L["Reset color to default"],
 
                     func = function()
@@ -1444,21 +1346,7 @@ local targetOptions = {
         desc = {
             type = "description",
             order = 1,
-            name = L["In target options you can set scale target frame, healthbar text format, etc"],
-        },
-
-        scaleFrame = {
-            type = "range",
-            order = 2,
-            name = L["Target frame scale"],
-            desc = L["Scale of target unit frame"],
-            min = 0.5,
-            max = 2,
-            set = function(info, value)
-                setOpt(info, value)
-                EasyFrames:GetModule("Target"):SetScale(value)
-            end,
-            arg = "target"
+            name = L["In the target settings, you can set various settings, the format of the healthbar text, etc."],
         },
 
         portrait = {
@@ -1494,7 +1382,7 @@ local targetOptions = {
                     values = healthFormat,
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Target"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Target"):UpdateHealthBarTextString(TargetFrame)
                     end,
                     arg = "target"
                 },
@@ -1555,7 +1443,7 @@ local targetOptions = {
                     values = manaFormat,
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Target"):UpdateTextStringWithValues(TargetFrameManaBar)
+                        EasyFrames:GetModule("Target"):UpdateManaBarTextString(TargetFrameManaBar)
                     end,
                     arg = "target"
                 },
@@ -1661,7 +1549,7 @@ local targetOptions = {
                         local key = info[#info]
                         EasyFrames.db.profile[ns][opt][key] = value
 
-                        EasyFrames:GetModule("Target"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Target"):UpdateHealthBarTextString(TargetFrame)
                     end,
                     args = {
                         gt1T = {
@@ -1741,7 +1629,7 @@ local targetOptions = {
                     arg = "target",
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Target"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Target"):UpdateHealthBarTextString(TargetFrame)
                     end,
                 },
 
@@ -1757,7 +1645,7 @@ local targetOptions = {
                             "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Target"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Target"):UpdateHealthBarTextString(TargetFrame)
                     end,
                     arg = "target"
                 },
@@ -1779,7 +1667,7 @@ local targetOptions = {
                         "More information about Chinese numerals format you can read on project site"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Target"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Target"):UpdateHealthBarTextString(TargetFrame)
                     end,
                     arg = "target",
                 },
@@ -1824,7 +1712,7 @@ local targetOptions = {
                         local key = info[#info]
                         EasyFrames.db.profile[ns][opt][key] = value
 
-                        EasyFrames:GetModule("Target"):UpdateTextStringWithValues(TargetFrameManaBar)
+                        EasyFrames:GetModule("Target"):UpdateManaBarTextString(TargetFrame)
                     end,
                     args = {
                         gt1T = {
@@ -1904,7 +1792,7 @@ local targetOptions = {
                     arg = "target",
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Target"):UpdateTextStringWithValues(TargetFrameManaBar)
+                        EasyFrames:GetModule("Target"):UpdateManaBarTextString(TargetFrame)
                     end,
                 },
 
@@ -1920,7 +1808,7 @@ local targetOptions = {
                             "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Target"):UpdateTextStringWithValues(TargetFrameManaBar)
+                        EasyFrames:GetModule("Target"):UpdateManaBarTextString(TargetFrame)
                     end,
                     arg = "target"
                 },
@@ -1942,7 +1830,7 @@ local targetOptions = {
                         "More information about Chinese numerals format you can read on project site"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Target"):UpdateTextStringWithValues(TargetFrameManaBar)
+                        EasyFrames:GetModule("Target"):UpdateManaBarTextString(TargetFrame)
                     end,
                     arg = "target",
                 },
@@ -2057,10 +1945,21 @@ local targetOptions = {
                     arg = "target"
                 },
 
+                targetNameColorByClass = {
+                    type = "toggle",
+                    order = 8,
+                    name = L["Target name color is based on class"],
+                    desc = L["Target name color is based on class"],
+                    set = function(info, value)
+                        setOpt(info, value)
+                        EasyFrames:GetModule("Target"):SetFrameNameColor()
+                    end,
+                    arg = "target"
+                },
+
                 targetNameColor = {
                     type = "color",
-                    order = 8,
-                    width = "double",
+                    order = 9,
                     name = L["Target name color"],
                     desc = L["Set the color of the frame name"],
                     get = getColor,
@@ -2073,7 +1972,7 @@ local targetOptions = {
 
                 targetNameColorReset = {
                     type = "execute",
-                    order = 9,
+                    order = 10,
                     name = L["Reset color to default"],
 
                     func = function()
@@ -2182,21 +2081,7 @@ local focusOptions = {
         desc = {
             type = "description",
             order = 1,
-            name = L["In focus options you can set scale focus frame, healthbar text format, etc"],
-        },
-
-        scaleFrame = {
-            type = "range",
-            order = 2,
-            name = L["Focus frame scale"],
-            desc = L["Scale of focus unit frame"],
-            min = 0.5,
-            max = 2,
-            set = function(info, value)
-                setOpt(info, value)
-                EasyFrames:GetModule("Focus"):SetScale(value)
-            end,
-            arg = "focus"
+            name = L["In the focus settings, you can set various settings, the format of the healthbar text, etc."],
         },
 
         portrait = {
@@ -2232,7 +2117,7 @@ local focusOptions = {
                     values = healthFormat,
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Focus"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Focus"):UpdateHealthBarTextString(FocusFrame)
                     end,
                     arg = "focus"
                 },
@@ -2293,7 +2178,7 @@ local focusOptions = {
                     values = manaFormat,
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Focus"):UpdateTextStringWithValues(FocusFrameManaBar)
+                        EasyFrames:GetModule("Focus"):UpdateManaBarTextString(FocusFrame)
                     end,
                     arg = "focus"
                 },
@@ -2399,7 +2284,7 @@ local focusOptions = {
                         local key = info[#info]
                         EasyFrames.db.profile[ns][opt][key] = value
 
-                        EasyFrames:GetModule("Focus"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Focus"):UpdateHealthBarTextString(FocusFrame)
                     end,
                     args = {
                         gt1T = {
@@ -2479,7 +2364,7 @@ local focusOptions = {
                     arg = "focus",
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Focus"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Focus"):UpdateHealthBarTextString(FocusFrame)
                     end,
                 },
 
@@ -2495,7 +2380,7 @@ local focusOptions = {
                         "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Focus"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Focus"):UpdateHealthBarTextString(FocusFrame)
                     end,
                     arg = "focus"
                 },
@@ -2517,7 +2402,7 @@ local focusOptions = {
                         "More information about Chinese numerals format you can read on project site"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Focus"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Focus"):UpdateHealthBarTextString(FocusFrame)
                     end,
                     arg = "focus",
                 },
@@ -2562,7 +2447,7 @@ local focusOptions = {
                         local key = info[#info]
                         EasyFrames.db.profile[ns][opt][key] = value
 
-                        EasyFrames:GetModule("Focus"):UpdateTextStringWithValues(FocusFrameManaBar)
+                        EasyFrames:GetModule("Focus"):UpdateManaBarTextString(FocusFrame)
                     end,
                     args = {
                         gt1T = {
@@ -2642,7 +2527,7 @@ local focusOptions = {
                     arg = "focus",
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Focus"):UpdateTextStringWithValues(FocusFrameManaBar)
+                        EasyFrames:GetModule("Focus"):UpdateManaBarTextString(FocusFrame)
                     end,
                 },
 
@@ -2658,7 +2543,7 @@ local focusOptions = {
                         "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Focus"):UpdateTextStringWithValues(FocusFrameManaBar)
+                        EasyFrames:GetModule("Focus"):UpdateManaBarTextString(FocusFrame)
                     end,
                     arg = "focus"
                 },
@@ -2680,7 +2565,7 @@ local focusOptions = {
                         "More information about Chinese numerals format you can read on project site"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Focus"):UpdateTextStringWithValues(FocusFrameManaBar)
+                        EasyFrames:GetModule("Focus"):UpdateManaBarTextString(FocusFrame)
                     end,
                     arg = "focus",
                 },
@@ -2795,10 +2680,21 @@ local focusOptions = {
                     arg = "focus"
                 },
 
+                focusNameColorByClass = {
+                    type = "toggle",
+                    order = 8,
+                    name = L["Focus name color is based on class"],
+                    desc = L["Focus name color is based on class"],
+                    set = function(info, value)
+                        setOpt(info, value)
+                        EasyFrames:GetModule("Focus"):SetFrameNameColor()
+                    end,
+                    arg = "focus"
+                },
+
                 focusNameColor = {
                     type = "color",
-                    order = 8,
-                    width = "double",
+                    order = 9,
                     name = L["Focus name color"],
                     desc = L["Set the color of the frame name"],
                     get = getColor,
@@ -2811,7 +2707,7 @@ local focusOptions = {
 
                 focusNameColorReset = {
                     type = "execute",
-                    order = 9,
+                    order = 10,
                     name = L["Reset color to default"],
 
                     func = function()
@@ -2907,21 +2803,7 @@ local petOptions = {
         desc = {
             type = "description",
             order = 1,
-            name = L["In pet options you can set scale pet frame, show/hide pet name, enable/disable pet hit indicators, etc"],
-        },
-
-        scaleFrame = {
-            type = "range",
-            order = 2,
-            name = L["Pet frame scale"],
-            desc = L["Scale of pet unit frame"],
-            min = 0.5,
-            max = 2,
-            set = function(info, value)
-                setOpt(info, value)
-                EasyFrames:GetModule("Pet"):SetScale(value)
-            end,
-            arg = "pet"
+            name = L["In the pet settings, you can set various settings, the format of the healthbar text, etc."],
         },
 
         HPManaFormatOptions = {
@@ -2944,7 +2826,7 @@ local petOptions = {
                     values = healthFormat,
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Pet"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Pet"):UpdateHealthBarTextString(PetFrame);
                     end,
                     arg = "pet"
                 },
@@ -3005,7 +2887,7 @@ local petOptions = {
                     values = manaFormat,
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Pet"):UpdateTextStringWithValues(PetFrameManaBar)
+                        EasyFrames:GetModule("Pet"):UpdateManaBarTextString(PetFrame);
                     end,
                     arg = "pet"
                 },
@@ -3098,7 +2980,7 @@ local petOptions = {
                         local key = info[#info]
                         EasyFrames.db.profile[ns][opt][key] = value
 
-                        EasyFrames:GetModule("Pet"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Pet"):UpdateHealthBarTextString(PetFrame);
                     end,
                     args = {
                         gt1T = {
@@ -3178,7 +3060,7 @@ local petOptions = {
                     arg = "pet",
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Pet"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Pet"):UpdateHealthBarTextString(PetFrame);
                     end,
                 },
 
@@ -3194,7 +3076,7 @@ local petOptions = {
                             "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Pet"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Pet"):UpdateHealthBarTextString(PetFrame);
                     end,
                     arg = "pet"
                 },
@@ -3216,7 +3098,7 @@ local petOptions = {
                         "More information about Chinese numerals format you can read on project site"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Pet"):UpdateTextStringWithValues()
+                        EasyFrames:GetModule("Pet"):UpdateHealthBarTextString(PetFrame);
                     end,
                     arg = "pet",
                 },
@@ -3261,7 +3143,7 @@ local petOptions = {
                         local key = info[#info]
                         EasyFrames.db.profile[ns][opt][key] = value
 
-                        EasyFrames:GetModule("Pet"):UpdateTextStringWithValues(PetFrameManaBar)
+                        EasyFrames:GetModule("Pet"):UpdateManaBarTextString(PetFrame);
                     end,
                     args = {
                         gt1T = {
@@ -3341,7 +3223,7 @@ local petOptions = {
                     arg = "pet",
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Pet"):UpdateTextStringWithValues(PetFrameManaBar)
+                        EasyFrames:GetModule("Pet"):UpdateManaBarTextString(PetFrame);
                     end,
                 },
 
@@ -3357,7 +3239,7 @@ local petOptions = {
                             "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Pet"):UpdateTextStringWithValues(PetFrameManaBar)
+                        EasyFrames:GetModule("Pet"):UpdateManaBarTextString(PetFrame);
                     end,
                     arg = "pet"
                 },
@@ -3379,7 +3261,7 @@ local petOptions = {
                         "More information about Chinese numerals format you can read on project site"],
                     set = function(info, value)
                         setOpt(info, value)
-                        EasyFrames:GetModule("Pet"):UpdateTextStringWithValues(PetFrameManaBar)
+                        EasyFrames:GetModule("Pet"):UpdateManaBarTextString(PetFrame);
                     end,
                     arg = "pet",
                 },
@@ -3589,19 +3471,21 @@ local partyOptions = {
         desc = {
             type = "description",
             order = 1,
-            name = L["In party options you can set scale party frames, healthbar text format, etc"],
+            name = L["In the party settings, you can set various settings, the format of the healthbar text, etc."],
         },
 
-        scaleFrame = {
-            type = "range",
-            order = 2,
-            name = L["Party frames scale"],
-            desc = L["Scale of party unit frames"],
-            min = 0.5,
-            max = 2,
+        portrait = {
+            type = "select",
+            order = 3,
+            name = L["Portrait"],
+            desc = L["Set the party portrait"],
+            values = portrait,
             set = function(info, value)
                 setOpt(info, value)
-                EasyFrames:GetModule("Party"):SetScale(value)
+                EasyFrames:GetModule("Party"):MakeClassPortraits(PartyFrame.MemberFrame1)
+                EasyFrames:GetModule("Party"):MakeClassPortraits(PartyFrame.MemberFrame2)
+                EasyFrames:GetModule("Party"):MakeClassPortraits(PartyFrame.MemberFrame3)
+                EasyFrames:GetModule("Party"):MakeClassPortraits(PartyFrame.MemberFrame4)
             end,
             arg = "party"
         },
@@ -4842,7 +4726,7 @@ local bossOptions = {
 }
 
 function EasyFrames:ChatCommand(input)
-    Settings.OpenToCategory(L["Easy Frames"])
+    Settings.OpenToCategory(EasyFrames.optFrames.EasyFrames.name)
 end
 
 function EasyFrames:SetupOptions()
@@ -4851,7 +4735,7 @@ function EasyFrames:SetupOptions()
 
     -- General
     AceConfig:RegisterOptionsTable("EasyFrames", generalOptions)
-    self.optFrames.EasyFrames = AceConfigDialog:AddToBlizOptions("EasyFrames", L["Easy Frames"])
+    self.optFrames.EasyFrames = AceConfigDialog:AddToBlizOptions("EasyFrames", "Easy Frames")
 
     -- Player
     self:RegisterModuleOptions("Player", playerOptions, L["Player"])
@@ -4872,7 +4756,7 @@ function EasyFrames:SetupOptions()
     --self:RegisterModuleOptions("Boss", bossOptions, L["Boss"])
 
     -- Profiles
-    self:RegisterModuleOptions("Profiles", LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db), L["Profiles"])
+    self:RegisterModuleOptions("Profiles", LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db))
 
     -- Commands
     self:RegisterChatCommand("easyframes", "ChatCommand")
@@ -4881,5 +4765,5 @@ end
 
 function EasyFrames:RegisterModuleOptions(name, optTable, displayName)
     AceConfig:RegisterOptionsTable(name, optTable)
-    self.optFrames[name] = AceConfigDialog:AddToBlizOptions(name, displayName or name, L["Easy Frames"])
+    self.optFrames[name] = AceConfigDialog:AddToBlizOptions(name, displayName or name, "Easy Frames")
 end

@@ -25,9 +25,9 @@ local CreateFrame = CreateFrame
 local GetTime = GetTime
 local _GetCursorPosition = GetCursorPosition
 local UIParent = UIParent
-local _IsAltKeyDown = IsAltKeyDown
-local _IsShiftKeyDown = IsShiftKeyDown
-local _IsControlKeyDown = IsControlKeyDown
+local IsAltKeyDown = IsAltKeyDown
+local IsShiftKeyDown = IsShiftKeyDown
+local IsControlKeyDown = IsControlKeyDown
 local modo_raid = Details._detalhes_props["MODO_RAID"]
 local modo_alone = Details._detalhes_props["MODO_ALONE"]
 local IsInInstance = _G.IsInInstance
@@ -1022,7 +1022,8 @@ local BGFrame_scripts_onmousedown = function(self, button)
 		move_janela(self._instance.baseframe, true, self._instance)
 		if (self.is_toolbar) then
 			if (self._instance.attribute_text.enabled and self._instance.attribute_text.side == 1 and self._instance.toolbar_side == 1) then
-				self._instance.menu_attribute_string:SetPoint("bottomleft", self._instance.baseframe.cabecalho.ball, "bottomright", self._instance.attribute_text.anchor [1]+1, self._instance.attribute_text.anchor [2]-1)
+				local titleBarFontString = self._instance:GetTitleBarFontString()
+				titleBarFontString:SetPoint("bottomleft", self._instance.baseframe.cabecalho.ball, "bottomright", self._instance.attribute_text.anchor [1]+1, self._instance.attribute_text.anchor [2]-1)
 			end
 		end
 
@@ -1055,7 +1056,8 @@ local BGFrame_scripts_onmouseup = function(self, button)
 		self._instance:SaveMainWindowPosition()
 		if (self.is_toolbar) then
 			if (self._instance.attribute_text.enabled and self._instance.attribute_text.side == 1 and self._instance.toolbar_side == 1) then
-				self._instance.menu_attribute_string:SetPoint("bottomleft", self._instance.baseframe.cabecalho.ball, "bottomright", self._instance.attribute_text.anchor [1], self._instance.attribute_text.anchor [2])
+				local titleBarFontString = self._instance:GetTitleBarFontString()
+				titleBarFontString:SetPoint("bottomleft", self._instance.baseframe.cabecalho.ball, "bottomright", self._instance.attribute_text.anchor [1], self._instance.attribute_text.anchor [2])
 			end
 		end
 	end
@@ -1442,15 +1444,15 @@ local resize_scripts_onmousedown = function(self, button)
 		end
 
 		if (self._myside == "<") then
-			if (_IsShiftKeyDown()) then
+			if (IsShiftKeyDown()) then
 				self._instance.baseframe:StartSizing("left")
 				self._instance.eh_horizontal = true
 
-			elseif (_IsAltKeyDown()) then
+			elseif (IsAltKeyDown()) then
 				self._instance.baseframe:StartSizing("top")
 				self._instance.eh_vertical = true
 
-			elseif (_IsControlKeyDown()) then
+			elseif (IsControlKeyDown()) then
 				self._instance.baseframe:StartSizing("bottomleft")
 				self._instance.eh_tudo = true
 
@@ -1462,15 +1464,15 @@ local resize_scripts_onmousedown = function(self, button)
 			self.afundado = true
 
 		elseif (self._myside == ">") then
-			if (_IsShiftKeyDown()) then
+			if (IsShiftKeyDown()) then
 				self._instance.baseframe:StartSizing("right")
 				self._instance.eh_horizontal = true
 
-			elseif (_IsAltKeyDown()) then
+			elseif (IsAltKeyDown()) then
 				self._instance.baseframe:StartSizing("top")
 				self._instance.eh_vertical = true
 
-			elseif (_IsControlKeyDown()) then
+			elseif (IsControlKeyDown()) then
 				self._instance.baseframe:StartSizing("bottomright")
 				self._instance.eh_tudo = true
 
@@ -1812,7 +1814,7 @@ local shiftMonitor = function(self)
 		return
 	end
 
-	if (_IsShiftKeyDown()) then
+	if (IsShiftKeyDown()) then
 		if (not self.showing_allspells) then
 			self.showing_allspells = true
 			local instancia = Details:GetInstance(self.instance_id)
@@ -1825,7 +1827,7 @@ local shiftMonitor = function(self)
 		instancia:MontaTooltip(self, self.row_id)
 	end
 
-	if (_IsControlKeyDown()) then
+	if (IsControlKeyDown()) then
 		if (not self.showing_alltargets) then
 			self.showing_alltargets = true
 			local instancia = Details:GetInstance(self.instance_id)
@@ -1838,7 +1840,7 @@ local shiftMonitor = function(self)
 		instancia:MontaTooltip(self, self.row_id)
 	end
 
-	if (_IsAltKeyDown()) then
+	if (IsAltKeyDown()) then
 		if (not self.showing_allpets) then
 			self.showing_allpets = true
 			local instancia = Details:GetInstance(self.instance_id)
@@ -2005,8 +2007,8 @@ end
 
 ---@param self detailsline (row)
 local lineScript_Onmouseup = function(self, button)
-	local bIsShiftDown = _IsShiftKeyDown()
-	local bIsControlDown = _IsControlKeyDown()
+	local bIsShiftDown = IsShiftKeyDown()
+	local bIsControlDown = IsControlKeyDown()
 
 	---@type instance
 	local instanceObject = self._instance
@@ -2161,7 +2163,23 @@ end
 -- ~talent ~icon
 --code for when hovering over the class/spec icon in the player bar
 local iconFrame_OnEnter = function(self)
-	local actor = self.row.minha_tabela
+	---@type detailsline
+	local instanceLine = self.row
+	local actor = instanceLine.minha_tabela
+
+	if not actor then
+		if instanceLine.sourceData and not Details222.Apocalypse.IsServerInCombat() then
+			if issecretvalue(instanceLine.sourceData.name) then
+				--print("instanceLine.sourceData.name is secret, not showing tooltip")
+				return
+			end
+			local instance = Details:GetInstance(instanceLine.instance_id)
+			local settingsTable = Details:MakeSettingsForAdapter(instance, nil, instanceLine.sourceData)
+			local adapter = Details:MakeActorAdapter(settingsTable)
+			actor = adapter
+		end
+	end
+
 	if (actor) then
 		if (actor.frags) then
 
@@ -2299,7 +2317,7 @@ local iconFrame_OnEnter = function(self)
 				end
 			end
 
-			local actorName = actor:GetName()
+			local actorName = actor.nome
 			local RaiderIO = _G.RaiderIO
 
 			local lineHeight = 21
@@ -2387,6 +2405,13 @@ local iconFrame_OnEnter = function(self)
 					Details:AddTooltipBackgroundStatusbar()
 					height = height + lineHeight
 				end
+			end
+
+			if actor.spec then
+				GameCooltip:AddLine("SpecID:", actor.spec)
+				GameCooltip:AddIcon([[]], 1, 1, 1, 20)
+				Details:AddTooltipBackgroundStatusbar()
+				height = height + lineHeight
 			end
 
 			GameCooltip:SetOption("StatusBarTexture", [[Interface\AddOns\Details\images\bar_skyline]])
@@ -2542,7 +2567,7 @@ local icon_frame_on_click_up = function(self, button)
 
 	if (self.showing == "actor") then
 
-		if (Details.ilevel.core:HasQueuedInspec (self.unitname)) then
+		if (Details.ilevel.core:HasQueuedInspect (self.unitname)) then
 
 			--icon animation
 			local anim = table.remove(Details.icon_animations.load.available)
@@ -3739,7 +3764,10 @@ function gump:CriaJanelaPrincipal(ID, instancia, criando)
 	instancia.overall_data_warning:SetPoint("center", backgrounddisplay, "center")
 	instancia.overall_data_warning:SetTextColor(.8, .8, .8, .5)
 	instancia.overall_data_warning:Hide()
-	instancia.overall_data_warning:SetText(Loc["STRING_TUTORIAL_OVERALL1"])
+
+	if not detailsFramework.IsAddonApocalypseWow() then
+		instancia.overall_data_warning:SetText(Loc["STRING_TUTORIAL_OVERALL1"])
+	end
 
 	--freeze icon
 	instancia.freeze_icon = backgrounddisplay:CreateTexture(nil, "overlay")
@@ -4381,6 +4409,54 @@ function gump:CreateNewLine(instance, index)
 	return newLine
 end
 
+function Details:SetSimpleFormattingSettings(showPercent)
+	if showPercent ~= nil then
+		self.row_info.show_percent = showPercent
+		self:InstanceReset()
+		self:InstanceRefreshRows()
+	end
+end
+
+function Details:SetBarOutlineSettings(side, outlineMode, shadowColor, shadowXOffset, shadowYOffset)
+	if (outlineMode) then
+		if side == "left" then
+			self.row_info.textL_outline_mode = outlineMode
+		elseif side == "right" then
+			self.row_info.textR_outline_mode = outlineMode
+		end
+	end
+
+	if (shadowColor) then
+		local red, green, blue, alpha = detailsFramework:ParseColors(shadowColor)
+		local c
+		if side == "left" then
+			c = self.row_info.textL_shadow_color
+		elseif side == "right" then
+			c = self.row_info.textR_shadow_color
+		end
+		c[1], c[2], c[3], c[4] = red, green, blue, alpha
+	end
+
+	if (shadowXOffset) then
+		if side == "left" then
+			self.row_info.textL_shadow_offset[1] = shadowXOffset
+		elseif side == "right" then
+			self.row_info.textR_shadow_offset[1] = shadowXOffset
+		end
+	end
+
+	if (shadowYOffset) then
+		if side == "left" then
+			self.row_info.textL_shadow_offset[2] = shadowYOffset
+		elseif side == "right" then
+			self.row_info.textR_shadow_offset[2] = shadowYOffset
+		end
+	end
+
+	self:InstanceReset()
+	self:InstanceRefreshRows()
+end
+
 function Details:SetBarTextSettings(size, font, fixedcolor, leftcolorbyclass, rightcolorbyclass, leftoutline, rightoutline, customrighttextenabled, customrighttext, percentage_type, showposition, customlefttextenabled, customlefttext, smalloutline_left, smalloutlinecolor_left, smalloutline_right, smalloutlinecolor_right, translittext, yoffset, leftoffset)
 	--size
 	if (size) then
@@ -4542,8 +4618,8 @@ function Details:RefreshTitleBar()
 	local titleBar = self.baseframe.titleBar
 	titleBar:SetShown(shown)
 
-	--menu_attribute_string is nil in tbc (20 jun 2022)
-	if (not self.menu_attribute_string) then
+	local titleBarFontString = self:GetTitleBarFontString()
+	if (not titleBarFontString) then
 		return
 	end
 
@@ -4552,9 +4628,12 @@ function Details:RefreshTitleBar()
 		titleBar.texture:SetTexture(texturePath)
 		titleBar.texture:SetVertexColor(DetailsFramework:ParseColors(color))
 
-		self.menu_attribute_string:SetParent(titleBar)
+		titleBarFontString:SetParent(titleBar)
 	else
-		self.menu_attribute_string:SetParent(self.baseframe)
+		local titleBarFontString = self:GetTitleBarFontString()
+		if (titleBarFontString) then
+			titleBarFontString:SetParent(self.baseframe)
+		end
 	end
 end
 
@@ -4972,6 +5051,13 @@ function Details:InstanceRefreshRows(instance)
 	local textR_outline_small = self.row_info.textR_outline_small
 	local textR_outline_small_color = self.row_info.textR_outline_small_color
 
+	local leftTextOutline = self.row_info.textL_outline_mode
+	local rightTextOutline = self.row_info.textR_outline_mode
+	local leftTextShadowColor = self.row_info.textL_shadow_color
+	local rightTextShadowColor = self.row_info.textR_shadow_color
+	local leftTextShadowOffset = self.row_info.textL_shadow_offset
+	local rightTextShadowOffset = self.row_info.textR_shadow_offset
+
 	--texture color values
 	local bUseClassColor = self.row_info.texture_class_colors
 	local texture_r, texture_g, texture_b
@@ -5202,64 +5288,82 @@ function Details:InstanceRefreshRows(instance)
 		end
 
 		--outline
-		if (left_text_outline) then
-			Details:SetFontOutline(row.lineText1, left_text_outline)
-			Details:SetFontOutline(row.lineText11, left_text_outline)
+		if (leftTextOutline) then
+			detailsFramework:SetFontOutline(row.lineText1, leftTextOutline)
+			detailsFramework:SetFontOutline(row.lineText11, leftTextOutline)
 		else
-			Details:SetFontOutline(row.lineText1, nil)
-			Details:SetFontOutline(row.lineText11, nil)
+			detailsFramework:SetFontOutline(row.lineText1, "")
+			detailsFramework:SetFontOutline(row.lineText11, "")
 		end
 
-		if (right_text_outline) then
-			self:SetFontOutline(row.lineText2, right_text_outline)
-			self:SetFontOutline(row.lineText3, right_text_outline)
-			self:SetFontOutline(row.lineText4, right_text_outline)
-			self:SetFontOutline(row.lineText12, right_text_outline)
-			self:SetFontOutline(row.lineText13, right_text_outline)
-			self:SetFontOutline(row.lineText14, right_text_outline)
+		if (rightTextOutline) then
+			detailsFramework:SetFontOutline(row.lineText2, rightTextOutline)
+			detailsFramework:SetFontOutline(row.lineText3, rightTextOutline)
+			detailsFramework:SetFontOutline(row.lineText4, rightTextOutline)
+			detailsFramework:SetFontOutline(row.lineText12, rightTextOutline)
+			detailsFramework:SetFontOutline(row.lineText13, rightTextOutline)
+			detailsFramework:SetFontOutline(row.lineText14, rightTextOutline)
 		else
-			self:SetFontOutline(row.lineText2, nil)
-			self:SetFontOutline(row.lineText3, nil)
-			self:SetFontOutline(row.lineText4, nil)
-			self:SetFontOutline(row.lineText12, nil)
-			self:SetFontOutline(row.lineText13, nil)
-			self:SetFontOutline(row.lineText14, nil)
+			detailsFramework:SetFontOutline(row.lineText2, "")
+			detailsFramework:SetFontOutline(row.lineText3, "")
+			detailsFramework:SetFontOutline(row.lineText4, "")
+			detailsFramework:SetFontOutline(row.lineText12, "")
+			detailsFramework:SetFontOutline(row.lineText13, "")
+			detailsFramework:SetFontOutline(row.lineText14, "")
 		end
+
+		row.lineText1:SetShadowColor(unpack(leftTextShadowColor))
+		row.lineText11:SetShadowColor(unpack(leftTextShadowColor))
+		row.lineText2:SetShadowColor(unpack(rightTextShadowColor))
+		row.lineText3:SetShadowColor(unpack(rightTextShadowColor))
+		row.lineText4:SetShadowColor(unpack(rightTextShadowColor))
+		row.lineText12:SetShadowColor(unpack(rightTextShadowColor))
+		row.lineText13:SetShadowColor(unpack(rightTextShadowColor))
+		row.lineText14:SetShadowColor(unpack(rightTextShadowColor))
+
+		row.lineText1:SetShadowOffset(unpack(leftTextShadowOffset))
+		row.lineText11:SetShadowOffset(unpack(leftTextShadowOffset))
+		row.lineText2:SetShadowOffset(unpack(rightTextShadowOffset))
+		row.lineText3:SetShadowOffset(unpack(rightTextShadowOffset))
+		row.lineText4:SetShadowOffset(unpack(rightTextShadowOffset))
+		row.lineText12:SetShadowOffset(unpack(rightTextShadowOffset))
+		row.lineText13:SetShadowOffset(unpack(rightTextShadowOffset))
+		row.lineText14:SetShadowOffset(unpack(rightTextShadowOffset))
 
 		--small outline
-		if (textL_outline_small) then
-			local color = textL_outline_small_color
-			row.lineText1:SetShadowColor(color[1], color[2], color[3], color[4])
-			row.lineText1:SetShadowOffset(1, -1)
-			row.lineText11:SetShadowColor(color[1], color[2], color[3], color[4])
-			row.lineText11:SetShadowOffset(1, -1)
-		else
-			row.lineText1:SetShadowColor(0, 0, 0, 0)
-			row.lineText11:SetShadowColor(0, 0, 0, 0)
-		end
+		--if (textL_outline_small) then
+		--	local color = textL_outline_small_color
+		--	row.lineText1:SetShadowColor(color[1], color[2], color[3], color[4])
+		--	row.lineText1:SetShadowOffset(1, -1)
+		--	row.lineText11:SetShadowColor(color[1], color[2], color[3], color[4])
+		--	row.lineText11:SetShadowOffset(1, -1)
+		--else
+		--	row.lineText1:SetShadowColor(0, 0, 0, 0)
+		--	row.lineText11:SetShadowColor(0, 0, 0, 0)
+		--end
 
-		if (textR_outline_small) then
-			local color = textR_outline_small_color
-			row.lineText4:SetShadowColor(color[1], color[2], color[3], color[4])
-			row.lineText4:SetShadowOffset(1, -1)
-			row.lineText3:SetShadowColor(color[1], color[2], color[3], color[4])
-			row.lineText3:SetShadowOffset(1, -1)
-			row.lineText2:SetShadowColor(color[1], color[2], color[3], color[4])
-			row.lineText2:SetShadowOffset(1, -1)
-			row.lineText14:SetShadowColor(color[1], color[2], color[3], color[4])
-			row.lineText14:SetShadowOffset(1, -1)
-			row.lineText13:SetShadowColor(color[1], color[2], color[3], color[4])
-			row.lineText13:SetShadowOffset(1, -1)
-			row.lineText12:SetShadowColor(color[1], color[2], color[3], color[4])
-			row.lineText12:SetShadowOffset(1, -1)
-		else
-			row.lineText4:SetShadowColor(0, 0, 0, 0)
-			row.lineText3:SetShadowColor(0, 0, 0, 0)
-			row.lineText2:SetShadowColor(0, 0, 0, 0)
-			row.lineText14:SetShadowColor(0, 0, 0, 0)
-			row.lineText13:SetShadowColor(0, 0, 0, 0)
-			row.lineText12:SetShadowColor(0, 0, 0, 0)
-		end
+		--if (textR_outline_small) then
+		--	local color = textR_outline_small_color
+		--	row.lineText4:SetShadowColor(color[1], color[2], color[3], color[4])
+		--	row.lineText4:SetShadowOffset(1, -1)
+		--	row.lineText3:SetShadowColor(color[1], color[2], color[3], color[4])
+		--	row.lineText3:SetShadowOffset(1, -1)
+		--	row.lineText2:SetShadowColor(color[1], color[2], color[3], color[4])
+		--	row.lineText2:SetShadowOffset(1, -1)
+		--	row.lineText14:SetShadowColor(color[1], color[2], color[3], color[4])
+		--	row.lineText14:SetShadowOffset(1, -1)
+		--	row.lineText13:SetShadowColor(color[1], color[2], color[3], color[4])
+		--	row.lineText13:SetShadowOffset(1, -1)
+		--	row.lineText12:SetShadowColor(color[1], color[2], color[3], color[4])
+		--	row.lineText12:SetShadowOffset(1, -1)
+		--else
+		--	row.lineText4:SetShadowColor(0, 0, 0, 0)
+		--	row.lineText3:SetShadowColor(0, 0, 0, 0)
+		--	row.lineText2:SetShadowColor(0, 0, 0, 0)
+		--	row.lineText14:SetShadowColor(0, 0, 0, 0)
+		--	row.lineText13:SetShadowColor(0, 0, 0, 0)
+		--	row.lineText12:SetShadowColor(0, 0, 0, 0)
+		--end
 
 		--texture
 		row.textura:SetTexture(textureFile)
@@ -5340,6 +5444,10 @@ function Details:InstanceRefreshRows(instance)
 			row.modelbox_low:Hide()
 		end
 
+		if detailsFramework.IsAddonApocalypseWow() then
+			local forceUpdate = true
+			Details222.Apocalypse.UpdatePlayerNameLength(self, row, forceUpdate)
+		end
 	end
 
 	self:SetBarGrowDirection()
@@ -5936,18 +6044,19 @@ end
 local SetIconAlphaCacheButtonsTable = {}
 function Details:SetIconAlpha(alpha, hide, noAnimations)
 	if (self.attribute_text.enabled) then
-		if (not self.menu_attribute_string) then
+		local titleBarFontString = self:GetTitleBarFontString()
+		if (not titleBarFontString) then
 			--created on demand
 			self:AttributeMenu()
 		end
 
 		if (hide) then
-			Details.FadeHandler.Fader(self.menu_attribute_string.widget, unpack(Details.windows_fade_in))
+			Details.FadeHandler.Fader(titleBarFontString.widget, unpack(Details.windows_fade_in))
 		else
 			if (noAnimations) then
-				self.menu_attribute_string:SetAlpha(alpha)
+				titleBarFontString:SetAlpha(alpha)
 			else
-				Details.FadeHandler.Fader(self.menu_attribute_string.widget, "ALPHAANIM", alpha)
+				Details.FadeHandler.Fader(titleBarFontString.widget, "ALPHAANIM", alpha)
 			end
 		end
 	end
@@ -6689,7 +6798,7 @@ local iconLoreCoords = {30/512, 355/512, 45/512, 290/512}
 --overlay color for the encounter journal "icon lore" image of the instance
 local wallpaperColor = {1, 1, 1, 0.5}
 
--- search key: ~segments
+-- search key: ~segments ~segment
 local buildSegmentTooltip = function(self, deltaTime, allInOneWindowFrame)
 	---@type instance
 	local instance = allInOneWindowFrame or parameters_table[1]
@@ -6707,12 +6816,12 @@ local buildSegmentTooltip = function(self, deltaTime, allInOneWindowFrame)
 	if (parameters_table[2] > 0.15) then
 		self:SetScript("OnUpdate", nil)
 
-		if false and detailsFramework.IsAddonApocalypseWow() then
+		if false and detailsFramework.IsAddonApocalypseWow() then --false and
 			local frame = Details222.SegmentSelectionMidnight.Show(instance)
 			frame:ClearAllPoints()
 			frame:SetPoint("bottom", self, "top", 0, 5)
 			local x, y = detailsFramework:ClampToScreen(frame)
-			frame:SetPoint("bottom", self, "top", x, y)
+			frame:SetPoint("bottom", self, "top", x, y+5)
 			return
 		end
 
@@ -7871,11 +7980,17 @@ function Details:ChangeSkin(skin_name)
 			fullWindowFrame:EnableRoundedCorners()
 		end
 
-		self.menu_attribute_string:SetParent(fullWindowFrame)
+		local titleBarFontString = self:GetTitleBarFontString()
+		if (titleBarFontString) then
+			titleBarFontString:SetParent(fullWindowFrame)
+		end
 	else
 		if (fullWindowFrame.__rcorners) then
 			fullWindowFrame:DisableRoundedCorners()
-			self.menu_attribute_string:SetParent(baseFrame)
+			local titleBarFontString = self:GetTitleBarFontString()
+			if (titleBarFontString) then
+				titleBarFontString:SetParent(baseFrame)
+			end
 		end
 	end
 
@@ -8396,13 +8511,14 @@ end
 
 -- ~attributemenu (text with attribute name)
 function Details:RefreshAttributeTextSize()
-	if (self.attribute_text.enabled and self.total_buttons_shown and self.baseframe and self.menu_attribute_string) then
+	local titleBarFontString = self:GetTitleBarFontString()
+	if (self.attribute_text.enabled and self.total_buttons_shown and self.baseframe and titleBarFontString) then
 
 		local window_width = self:GetSize()
 
 		if (self.auto_hide_menu.left and not self.is_interacting) then
-			self.menu_attribute_string:SetWidth(window_width)
-			self.menu_attribute_string:SetHeight(self.attribute_text.text_size + 2)
+			titleBarFontString:SetWidth(window_width)
+			titleBarFontString:SetHeight(self.attribute_text.text_size + 2)
 			return
 		end
 
@@ -8412,8 +8528,8 @@ function Details:RefreshAttributeTextSize()
 		local width_by_buttons = (buttons_shown * buttons_width) + (buttons_spacement * (buttons_shown - 1))
 
 		local text_size = window_width - width_by_buttons - 6
-		self.menu_attribute_string:SetWidth(text_size)
-		self.menu_attribute_string:SetHeight(self.attribute_text.text_size + 2)
+		titleBarFontString:SetWidth(text_size)
+		titleBarFontString:SetHeight(self.attribute_text.text_size + 2)
 	end
 end
 
@@ -8443,7 +8559,8 @@ function Details:CheckForTextTimeCounter(combatStart) --called from combat start
 		--end
 	else
 		for instanceId, instance in Details:ListInstances() do
-			if (Details.instance_title_text_timer[instance:GetId()] and instance.baseframe and instance:IsEnabled() and instance.menu_attribute_string) then --check if the instance is initialized
+			local titleBarFontString = instance:GetTitleBarFontString()
+			if (Details.instance_title_text_timer[instance:GetId()] and instance.baseframe and instance:IsEnabled() and titleBarFontString) then --check if the instance is initialized
 				Details.Schedules.Cancel(Details.instance_title_text_timer[instance:GetId()])
 				local currentText = instance:GetTitleBarText()
 				if (currentText) then
@@ -8470,7 +8587,8 @@ local formatTime = function(t)
 end
 
 local updateTimerInTheTitleBarText = function(instance, timer)
-	local originalText = instance.menu_attribute_string.originalText
+	local titleBarFontString = instance:GetTitleBarFontString()
+	local originalText = titleBarFontString.originalText
 	if (originalText) then
 		local formattedTime = formatTime(timer)
 		instance:SetTitleBarText(formattedTime .. " " .. originalText)
@@ -8542,22 +8660,37 @@ function Details:TitleTextTickTimer(instance)
 end
 
 function Details:RefreshTitleBarText()
-	local titleBarText = self.menu_attribute_string
+	local titleBarFontString = self:GetTitleBarFontString()
 
-	if (titleBarText and self == titleBarText.owner_instance) then
+	if (titleBarFontString and self == titleBarFontString.owner_instance) then
 		local sName = self:GetInstanceAttributeText()
 		local instanceMode = self:GetMode()
 
+		local segmentId
+		if detailsFramework.IsAddonApocalypseWow() then
+			if self:GetApocalypseSourceType() == Details222.Apocalypse.TypeGame then
+				segmentId = self:GetSegmentType()
+			else
+				segmentId = self:GetSegment()
+			end
+		else
+			segmentId = self:GetSegment()
+		end
+
 		if (instanceMode == DETAILS_MODE_GROUP or instanceMode == DETAILS_MODE_ALL) then
-			local segment = self:GetSegment()
-			if (segment == DETAILS_SEGMENTID_OVERALL) then
+			if (segmentId == DETAILS_SEGMENTID_OVERALL) then
 				local dynamicOverallDataCustomID = Details222.GetCustomDisplayIDByName(Loc["STRING_CUSTOM_DYNAMICOVERAL"])
 				if ((dynamicOverallDataCustomID ~= self.sub_atributo) and self.atributo ~= 5) then
 					sName = sName .. " " .. Loc["STRING_OVERALL"]
 				end
 
-			elseif (segment >= 2) then
-				sName = sName .. " [" .. segment .. "]"
+			elseif (segmentId >= 2) then
+				sName = sName .. " [" .. segmentId .. "]"
+
+			elseif self:GetApocalypseSourceType() == Details222.Apocalypse.TypeGame then
+				if self:GetSegmentType() == 0 then
+					sName = sName .. " " .. Loc["STRING_OVERALL"]
+				end
 			end
 		end
 
@@ -8565,29 +8698,38 @@ function Details:RefreshTitleBarText()
 			local timer = false --self:GetShowingCombat().hasTimer
 			if (timer) then
 				local timeFormatted = formatTime(timer)
-				titleBarText.originalText = sName
+				titleBarFontString.originalText = sName
 				sName = timeFormatted .. " " .. sName
-				titleBarText:SetText(sName)
+				self:SetTitleBarText(sName)
 			else
-				titleBarText:SetText(sName)
-				titleBarText.originalText = sName
+				self:SetTitleBarText(sName)
+				titleBarFontString.originalText = sName
 			end
 		else
-			titleBarText:SetText(sName)
-			titleBarText.originalText = sName
+			self:SetTitleBarText(sName)
+			titleBarFontString.originalText = sName
 		end
 	end
 end
 
 function Details:SetTitleBarText(text)
-	if (self.menu_attribute_string) then
-		self.menu_attribute_string:SetText(text)
+	local titleBarFontString = self:GetTitleBarFontString()
+	if (titleBarFontString) then
+		titleBarFontString:SetText(text)
+		--print(debugstack())
 	end
 end
 
 function Details:GetTitleBarText()
+	local titleBarFontString = self:GetTitleBarFontString()
+	if (titleBarFontString) then
+		return titleBarFontString:GetText()
+	end
+end
+
+function Details:GetTitleBarFontString()
 	if (self.menu_attribute_string) then
-		return self.menu_attribute_string:GetText()
+		return self.menu_attribute_string
 	end
 end
 
@@ -8652,84 +8794,88 @@ function Details:AttributeMenu(enabled, pos_x, pos_y, font, size, color, side, s
 	self.attribute_text.show_timer_bg = timer_bg
 	self.attribute_text.show_timer_arena = timer_arena
 
+	local titleBarFontString = self:GetTitleBarFontString()
+
 	--enabled
-	if (not enabled and self.menu_attribute_string) then
-		return self.menu_attribute_string:Hide()
+	if (not enabled and titleBarFontString) then
+		return titleBarFontString:Hide()
 	elseif (not enabled) then
 		return
 	end
 
 	--protection against failed clean up framework table
-	if (self.menu_attribute_string and not getmetatable(self.menu_attribute_string)) then
-		self.menu_attribute_string = nil
+	if (titleBarFontString and not getmetatable(titleBarFontString)) then
+		titleBarFontString = nil
 	end
 
-	if (not self.menu_attribute_string) then
+	if (not titleBarFontString) then
 		--local label = gump:NewLabel(self.floatingframe, nil, "DetailsAttributeStringInstance" .. self.meu_id, nil, "", "GameFontHighlightSmall")
 		local label = gump:NewLabel(self.baseframe, nil, "DetailsAttributeStringInstance" .. self.meu_id, nil, "", "GameFontHighlightSmall")
 		self.baseframe.titleText = label
 		self.menu_attribute_string = label
-		self.menu_attribute_string.owner_instance = self
-		self.menu_attribute_string.Enabled = true
-		self.menu_attribute_string.__enabled = true
 
-		function self.menu_attribute_string:OnEvent(instance, attribute, subAttribute)
+		titleBarFontString = label
+		titleBarFontString.owner_instance = self
+		titleBarFontString.Enabled = true
+		titleBarFontString.__enabled = true
+
+		function titleBarFontString:OnEvent(instance, attribute, subAttribute)
 			instance:RefreshTitleBarText()
 		end
 
-		Details:RegisterEvent(self.menu_attribute_string, "DETAILS_INSTANCE_CHANGEATTRIBUTE", self.menu_attribute_string.OnEvent)
-		Details:RegisterEvent(self.menu_attribute_string, "DETAILS_INSTANCE_CHANGEMODE", self.menu_attribute_string.OnEvent)
-		Details:RegisterEvent(self.menu_attribute_string, "DETAILS_INSTANCE_CHANGESEGMENT", self.menu_attribute_string.OnEvent)
+		Details:RegisterEvent(titleBarFontString, "DETAILS_INSTANCE_CHANGEATTRIBUTE", titleBarFontString.OnEvent)
+		Details:RegisterEvent(titleBarFontString, "DETAILS_INSTANCE_CHANGEMODE", titleBarFontString.OnEvent)
+		Details:RegisterEvent(titleBarFontString, "DETAILS_INSTANCE_CHANGESEGMENT", titleBarFontString.OnEvent)
 
 		self:RefreshTitleBarText()
 	end
 
-	self.menu_attribute_string:Show()
+	titleBarFontString:Show()
 
 	--anchor
 	if (side == 1) then --a string esta no lado de cima
 		if (self.toolbar_side == 1) then -- a toolbar esta em cima
-			self.menu_attribute_string:ClearAllPoints()
-			self.menu_attribute_string:SetPoint("bottomleft", self.baseframe.cabecalho.ball, "bottomright", self.attribute_text.anchor [1], self.attribute_text.anchor [2])
+			titleBarFontString:ClearAllPoints()
+			titleBarFontString:SetPoint("bottomleft", self.baseframe.cabecalho.ball, "bottomright", self.attribute_text.anchor [1], self.attribute_text.anchor [2])
 
 		elseif (self.toolbar_side == 2) then --a toolbar esta em baixo
-			self.menu_attribute_string:ClearAllPoints()
-			self.menu_attribute_string:SetPoint("bottomleft", self.baseframe, "topleft", self.attribute_text.anchor [1] + 21, self.attribute_text.anchor [2])
+			titleBarFontString:ClearAllPoints()
+			titleBarFontString:SetPoint("bottomleft", self.baseframe, "topleft", self.attribute_text.anchor [1] + 21, self.attribute_text.anchor [2])
 
 		end
 
 	elseif (side == 2) then --a string esta no lado de baixo
 		if (self.toolbar_side == 1) then --toolbar esta em cima
-			self.menu_attribute_string:ClearAllPoints()
-			self.menu_attribute_string:SetPoint("left", self.baseframe.rodape.StatusBarLeftAnchor, "left", self.attribute_text.anchor [1] + 16, self.attribute_text.anchor [2] - 6)
+			titleBarFontString:ClearAllPoints()
+			titleBarFontString:SetPoint("left", self.baseframe.rodape.StatusBarLeftAnchor, "left", self.attribute_text.anchor [1] + 16, self.attribute_text.anchor [2] - 6)
 
 		elseif (self.toolbar_side == 2) then --toolbar esta em baixo
-			self.menu_attribute_string:SetPoint("bottomleft", self.baseframe.cabecalho.ball, "topright", self.attribute_text.anchor [1], self.attribute_text.anchor [2] - 19)
+			titleBarFontString:SetPoint("bottomleft", self.baseframe.cabecalho.ball, "topright", self.attribute_text.anchor [1], self.attribute_text.anchor [2] - 19)
 
 		end
 	end
 
 	--font face
 	local fontPath = SharedMedia:Fetch("font", font)
-	Details:SetFontFace(self.menu_attribute_string, fontPath)
+	Details:SetFontFace(titleBarFontString, fontPath)
 	if fontPath:find("FRIZQT__.TTF") then
 		C_Timer.After(1, function()
 			fontPath = SharedMedia:Fetch("font", font)
-			Details:SetFontFace(self.menu_attribute_string, fontPath)
+			Details:SetFontFace(titleBarFontString, fontPath)
 		end)
 	end
 
 	--font size
-	Details:SetFontSize(self.menu_attribute_string, size)
+	Details:SetFontSize(titleBarFontString, size)
 
 	--color
-	Details:SetFontColor(self.menu_attribute_string, color)
+	Details:SetFontColor(titleBarFontString, color)
 	C_Timer.After(1, function()
-		Details:SetFontColor(self.menu_attribute_string, color)
+		Details:SetFontColor(titleBarFontString, color)
 	end)
 
 	--shadow
-	Details:SetFontOutline(self.menu_attribute_string, shadow)
+	Details:SetFontOutline(titleBarFontString, shadow)
 
 	--refresh size
 	self:RefreshAttributeTextSize()

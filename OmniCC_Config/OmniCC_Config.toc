@@ -1,4 +1,4 @@
-## Interface: 11507, 38000, 50503, 110205, 110207
+## Interface: 110207, 50503, 38000, 20505, 11508
 ## Title: OmniCC Config
 ## Title-ruRU: Конфигурация OmniCC
 ## Notes: OmniCC's configuration menu
@@ -12,12 +12,7 @@
 ## Dependencies: OmniCC
 ## LoadOnDemand: 1
 ## IconTexture: Interface/Icons/spell_nature_timestop
-
-## Title-zhTW: |cff00CCFF[快捷列]|r 冷卻時間-設定選項
-## Notes-zhTW: OmniCC Config |n|n冷卻倒數計時的設定選項。|n|n|cffffd200使用方法: |r輸入 /occ 打開設定選項。
-## Category-zhTW: 介面
-
-## embeds.xml
+embeds.xml
 localization\localization.xml
 preview.lua
 themes.lua

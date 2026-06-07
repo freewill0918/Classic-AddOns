@@ -17,6 +17,8 @@ local IsleOfQuelDanas = QuestieLoader:ImportModule("IsleOfQuelDanas");
 local l10n = QuestieLoader:ImportModule("l10n")
 ---@type Expansions
 local Expansions = QuestieLoader:ImportModule("Expansions")
+---@type QuestieJourney
+local QuestieJourney = QuestieLoader:ImportModule("QuestieJourney")
 
 QuestieOptions.tabs.advanced = {...}
 local optionsDefaults = QuestieOptionsDefaults:Load()
@@ -83,21 +85,20 @@ function QuestieOptions.tabs.advanced:Initialize()
                 width = 0.3,
                 func = function() end,
             },
-            clusterLevelHotzone = {
+            objectiveFilterDistance = {
                 type = "range",
                 order = 1.4,
-                name = function() return l10n("Objective icon cluster amount"); end,
-                desc = function() return l10n("How much objective icons should cluster."); end,
+                name = function() return l10n("Objective icon filter distance"); end,
+                desc = function() return l10n("Minimum distance between two objective icons in the same zone.\n\nSet to 0 to show all icons. Higher values reduce icon clutter."); end,
                 width = 1.5,
                 disabled = function() return (not Questie.db.profile.enabled); end,
-                min = 1,
-                max = 300,
+                min = 0,
+                max = 5,
                 step = 1,
                 get = function(info) return QuestieOptions:GetProfileValue(info); end,
                 set = function(info, value)
-                    QuestieOptionsUtils:Delay(0.5, QuestieOptions.ClusterRedraw, l10n("Setting clustering value, clusterLevelHotzone set to %s : Redrawing!", value))
                     QuestieOptions:SetProfileValue(info, value)
-                    QuestieOptionsUtils.DetermineTheme()
+                    QuestieOptionsUtils:Delay(0.5, QuestieQuest.SmoothReset, l10n("Setting objective filter distance to %s : Redrawing!", value))
                 end,
             },
             spawnFilterDistance = {
@@ -191,7 +192,6 @@ function QuestieOptions.tabs.advanced:Initialize()
                     },
                 },
             },
-
             Spacer_A = QuestieOptionsUtils:Spacer(2.9),
             locale_header = {
                 type = "header",
@@ -258,6 +258,14 @@ function QuestieOptions.tabs.advanced:Initialize()
                 func = function(_,_)
                     StaticPopup_Show("QUESTIE_JOURNEY_RESET_CONFIRM")
                 end,
+            },
+            Spacer_Browse = QuestieOptionsUtils:Spacer(4.4),
+            journeyBrowseCharacters = {
+                type = "execute",
+                order = 4.46,
+                name = function() return l10n("Import Journey data") end,
+                desc = function() return l10n("Browse other characters on this account and import their journey data.") end,
+                func = function() QuestieJourney:ShowCharacterBrowserFrame() end,
             },
             Spacer_F = QuestieOptionsUtils:Spacer(4.5),
             recompileDatabase = {

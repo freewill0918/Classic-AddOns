@@ -128,7 +128,7 @@ function bossModPrototype:AddPrivateAuraSoundOption(auraspellId, default, groupS
 		optionId = auraspellId
 	end
 	if type(optionId) ~= "number" then
-		DBM:Debug("Attempting to add private aura sound failed due to invalid optionId type for mod " .. self.id, 2)
+		DBM:Debug("Attempting to add private aura sound failed due to invalid optionId type for mod " .. self.id, 2, nil, nil, true)
 		return
 	end
 	self.DefaultOptions["PrivateAuraSound" .. optionId] = (default == nil) or default
@@ -137,8 +137,8 @@ function bossModPrototype:AddPrivateAuraSoundOption(auraspellId, default, groupS
 		default = self:GetRoleFlagValue(default)
 	end
 	self.Options["PrivateAuraSound" .. optionId] = (default == nil) or default
-	--Temp hide UI options for private auras that are flagged not private until 12.0.5 because reasons.
 	if not C_UnitAuras.AuraIsPrivate(optionId) then
+		DBM:Debug("Attempting to add private aura sound failed because spell ID " .. optionId .. " is not a private aura. Check spell ID and try again for mod " .. self.id, 1, nil, nil, true)
 		return
 	end
 	--LuaLS is just stupid here. There is no rule that says self.Options.Variable has to be a bool. Entire SWSound variable scope is always a number
@@ -609,7 +609,7 @@ function bossModPrototype:SetOptionCategory(name, cat, optionSubType, waCustomNa
 	for _, options in pairs(self.optionCategories) do
 		removeEntry(options, name)
 	end
-	if self.addon and self.groupSpells[name] and not (optionSubType == "gtfo" or optionSubType == "adds" or optionSubType == "addscount" or optionSubType == "addscustom" or optionSubType:find("stage") or cat == "icon" and DBM.Options.GroupOptionsExcludeIcon) then--or cat == "paura" and DBM.Options.GroupOptionsExcludePA
+	if self.addon and self.groupSpells[name] and not (optionSubType == "adds" or optionSubType == "addscount" or optionSubType == "addscustom" or optionSubType:find("stage") or cat == "icon" and DBM.Options.GroupOptionsExcludeIcon) then--or cat == "paura" and DBM.Options.GroupOptionsExcludePA
 		local sSpell = self.groupSpells[name]
 		if not self.groupOptions[sSpell] then
 			self.groupOptions[sSpell] = {}

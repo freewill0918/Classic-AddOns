@@ -18,7 +18,6 @@ L["Current + Max"] = true
 L["Current + Max + Percent"] = true
 L["Current + Percent"] = true
 L["Custom format"] = true
-L["Current"] = true
 L["Smart"] = true
 
 L["None"] = true
@@ -100,8 +99,6 @@ L["Setting for unit frames"] = true
 L["Class colored healthbars"] = true
 L["If checked frames becomes class colored.\n\n" ..
     "This option excludes the option 'Healthbar color is based on the current health value'"] = true
-L["Set the class color for shamans to blue"] = true
-L["Shamans originally had a pink color, which was changed to blue in The Burning Crusade. This option sets the color for shamans to blue."] = true
 L["Healthbar color is based on the current health value"] = true
 L["Healthbar color is based on the current health value.\n\n"..
     "This option excludes the option 'Class colored healthbars'"] = true
@@ -176,13 +173,14 @@ L["Y coordinate"] = true
 L["Set the color of the frame name"] = true
 
 L["Player"] = true
-L["In player options you can set scale player frame, healthbar text format, etc"] = true
+L["In the player settings, you can set various settings, the format of the healthbar text, etc."] = true
 L["Set the player's portrait"] = true
 L["Player name"] = true
 L["Player name font family"] = true
 L["Player name font size"] = true
 L["Player name font style"] = true
 L["Player name color"] = true
+L["Player name color is based on class"] = true
 L["Show or hide some elements of frame"] = true
 L["Show player name"] = true
 L["Show player name inside the frame"] = true
@@ -211,13 +209,14 @@ L["Show or hide player PVP icon"] = true
 
 
 L["Target"] = true
-L["In target options you can set scale target frame, healthbar text format, etc"] = true
+L["In the target settings, you can set various settings, the format of the healthbar text, etc."] = true
 L["Set the target's portrait"] = true
 L["Target name"] = true
 L["Target name font family"] = true
 L["Target name font size"] = true
 L["Target name font style"] = true
 L["Target name color"] = true
+L["Target name color is based on class"] = true
 L["Target frame scale"] = true
 L["Scale of target unit frame"] = true
 L["Target healthbar text format"] = true
@@ -236,13 +235,14 @@ L["Show or hide target PVP icon"] = true
 
 
 L["Focus"] = true
-L["In focus options you can set scale focus frame, healthbar text format, etc"] = true
+L["In the focus settings, you can set various settings, the format of the healthbar text, etc."] = true
 L["Set the focus's portrait"] = true
 L["Focus name"] = true
 L["Focus name font family"] = true
 L["Focus name font size"] = true
 L["Focus name font style"] = true
 L["Focus name color"] = true
+L["Focus name color is based on class"] = true
 L["Focus frame scale"] = true
 L["Scale of focus unit frame"] = true
 L["Focus healthbar text format"] = true
@@ -259,7 +259,7 @@ L["Show or hide focus PVP icon"] = true
 
 
 L["Pet"] = true
-L["In pet options you can set scale pet frame, show/hide pet name, enable/disable pet hit indicators, etc"] = true
+L["In the pet settings, you can set various settings, the format of the healthbar text, etc."] = true
 L["Pet name"] = true
 L["Pet name font family"] = true
 L["Pet name font size"] = true
@@ -280,8 +280,9 @@ L["Show or hide pet red background texture (blinking red glow outside the frame 
 
 
 L["Party"] = true
-L["In party options you can set scale party frames, healthbar text format, etc"] = true
+L["In the party settings, you can set various settings, the format of the healthbar text, etc."] = true
 L["Party frames scale"] = true
+L["Set the party portrait"] = true
 L["Scale of party unit frames"] = true
 L["Party healthbar text format"] = true
 L["Set the party healthbar text format"] = true
@@ -310,8 +311,3 @@ L["Boss names font family"] = true
 L["Boss names font size"] = true
 L["Boss names color"] = true
 L["Show names of boss frames inside the frame"] = true
-
--- 自行加入
-L["Profiles"] = true
-L["EasyFrames"] = "Easy Frames"
-L["Easy Frames"] = true

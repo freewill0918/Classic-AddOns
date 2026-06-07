@@ -16,6 +16,8 @@ end
 
 local dynamicTextInputs = {}
 
+
+
 local function createOptions(id, data)
   local function hideCustomTextOption()
     if OptionsPrivate.Private.ContainsCustomPlaceHolder(data.displayText) then
@@ -444,7 +446,7 @@ local function modifyThumbnail(parent, borderframe, data, fullModify, size)
   size = size or 28;
 
   local fontPath = SharedMedia:Fetch("font", data.font) or data.font;
-  text:SetFont(fontPath, data.fontSize, data.outline and "OUTLINE" or nil);
+  text:SetFont(fontPath, data.fontSize, data.outline and "OUTLINE" or "");
   text:SetTextHeight(data.fontSize);
   text:SetText(data.displayText);
   text:SetTextColor(data.color[1], data.color[2], data.color[3], data.color[4]);

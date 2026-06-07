@@ -118,7 +118,7 @@ local function loadFullDatabase()
     coYield()
     QuestieCorrections:Initialize()
 
-    print("\124cFF4DDBFF [3/9] " .. l10n("Initializing townfolks") .. l10n("..."))
+    print("\124cFF4DDBFF [3/9] " .. l10n("Initializing townsfolk") .. l10n("..."))
     coYield()
     Townsfolk.Initialize()
 
@@ -197,7 +197,8 @@ QuestieInit.Stages[1] = function() -- run as a coroutine
 
     local dbCompiledCount = Questie.IsSoD and Questie.db.global.sod.dbCompiledCount or Questie.db.global.dbCompiledCount
 
-    if (not Questie.db.char.townsfolk) or (dbCompiledCount ~= Questie.db.char.townsfolkVersion) or (Questie.db.char.townsfolkClass ~= UnitClass("player")) then
+    -- For townsfolkClass we use UnitClassBase so it works across locales
+    if (not Questie.db.char.townsfolk) or (dbCompiledCount ~= Questie.db.char.townsfolkVersion) or (Questie.db.char.townsfolkClass ~= UnitClassBase("player")) then
         Questie.db.char.townsfolkVersion = dbCompiledCount
         coYield()
         Townsfolk:BuildCharacterTownsfolk()

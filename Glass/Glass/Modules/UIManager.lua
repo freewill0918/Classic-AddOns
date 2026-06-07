@@ -16,6 +16,7 @@ local ChatFrameChannelButton = ChatFrameChannelButton
 local ChatFrameMenuButton = ChatFrameMenuButton
 local CreateFrame = CreateFrame
 local GetCVar = C_CVar and C_CVar.GetCVar or GetCVar
+local IsAddOnLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
 local NUM_CHAT_WINDOWS = NUM_CHAT_WINDOWS
 local QuickJoinToastButton = QuickJoinToastButton
 local SetCVar = C_CVar and C_CVar.SetCVar or SetCVar

@@ -279,7 +279,7 @@ function _QuestieJourney.questsByZone:CategorizeQuests(quests)
                     local requiredRaces = QuestieDB.QueryQuestSingle(questId, "requiredRaces")
                     if (not Questie.db.char.complete[questId]) and (not hiddenQuests[questId]) and (QuestiePlayer.HasRequiredRace(requiredRaces)) then
                         -- some childQuest remain completed after abandoning and retaking parentQuest
-                        -- here we are checking against 
+                        -- here we are checking against
                         local childQuestExclusiveTo = QuestieDB.QueryQuestSingle(questId, "exclusiveTo")
                         local blockedByExclusiveTo = false
                         for _, exclusiveToQuestId in pairs(childQuestExclusiveTo or {}) do
@@ -400,8 +400,11 @@ function _QuestieJourney.questsByZone:CategorizeQuests(quests)
                     end
                     -- "Regular" exclusives
                     if not questDecidedCategory then
-                        tinsert(zoneTree[4].children, temp)
-                        if not QuestieDB.IsRepeatable(questId) then
+                        if QuestieDB.IsRepeatable(questId) then
+                            tinsert(zoneTree[6].children, temp)
+                            unobtainableCounter = unobtainableCounter + 1
+                        else
+                            tinsert(zoneTree[4].children, temp)
                             completedCounter = completedCounter + 1
                         end
                     end
@@ -458,16 +461,15 @@ function _QuestieJourney.questsByZone:CategorizeQuests(quests)
                 elseif returnReason == DoableStates.PROFESSION_MISSING then -- profession missing completely
                     tinsert(zoneTree[6].children, temp)
                     unobtainableCounter = unobtainableCounter + 1
+                elseif returnReason == DoableStates.DISABLED_BY then -- disabling quest is active
+                    tinsert(zoneTree[5].children, temp)
+                    if not QuestieDB.IsRepeatable(questId) then
+                        prequestMissingCounter = prequestMissingCounter + 1
+                    end
                 end
             end
 
-            -- AQ War Effort quests (one-time world event that has ended for all realms)
-            if (not Questie.IsSoD) and QuestieQuestBlacklist.AQWarEffortQuests[questId] then
-                tinsert(zoneTree[6].children, temp)
-                unobtainableCounter = unobtainableCounter + 1
-            end
-
-            -- show manually hidden quests 
+            -- show manually hidden quests
             if Questie.db.char.hidden[questId] then
                 if not zoneTree[7] then
                     zoneTree[7] = {

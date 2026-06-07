@@ -17,6 +17,8 @@ local L = {}
 local debugMode = false
 local debugTime = GetTime()
 local debugTexts = {}
+local cantStartUpdater = nil
+local updaterTicker
 
 local printDebug = function(...)
     if debugMode then
@@ -235,100 +237,6 @@ local getDetailsSegmentIdFromSegment = function(sessionId)
     end
 end
 
-local language = GetLocale()
-
-
-local abbreviateOptionsDamage =
-{
-    {
-        breakpoint = 1000000000,
-        abbreviation = "THIRD_NUMBER_CAP_NO_SPACE",
-        significandDivisor = 10000000,
-        fractionDivisor = 100,
-        --abbreviationIsGlobal = false
-    },
-    {
-        breakpoint = 1000000,
-        --abbreviation = "SECOND_NUMBER_CAP_NO_SPACE",
-        abbreviation = "M",
-        significandDivisor = 10000,
-        fractionDivisor = 100,
-        abbreviationIsGlobal = false
-    },
-    {
-        breakpoint = 10000,
-        --abbreviation = "FIRST_NUMBER_CAP_NO_SPACE",
-        abbreviation = "K",
-        significandDivisor = 1000,
-        fractionDivisor = 1,
-        abbreviationIsGlobal = false,
-    },
-    {
-        breakpoint = 1000,
-        --abbreviation = "FIRST_NUMBER_CAP_NO_SPACE",
-        abbreviation = "K",
-        significandDivisor = 100,
-        fractionDivisor = 10,
-        abbreviationIsGlobal = false,
-    },
-    {
-        breakpoint = 1,
-        abbreviation = "",
-        significandDivisor = 1,
-        fractionDivisor = 1,
-        abbreviationIsGlobal = false
-    },
-}
-
-local abbreviateOptionsDPS =
-{
-    {
-        breakpoint = 1000000000,
-        abbreviation = "THIRD_NUMBER_CAP_NO_SPACE",
-        significandDivisor = 10000000,
-        fractionDivisor = 100,
-        abbreviationIsGlobal = false
-    },
-    {
-        breakpoint = 1000000,
-        --abbreviation = "SECOND_NUMBER_CAP_NO_SPACE",
-        abbreviation = "M",
-        significandDivisor = 10000,
-        fractionDivisor = 100,
-        abbreviationIsGlobal = false
-    },
-    {
-        breakpoint = 1000,
-        --abbreviation = "FIRST_NUMBER_CAP_NO_SPACE",
-        abbreviation = "K",
-        significandDivisor = 100,
-        fractionDivisor = 10,
-        abbreviationIsGlobal = false,
-    },
-    {
-        breakpoint = 1,
-        abbreviation = "",
-        significandDivisor = 1,
-        fractionDivisor = 1,
-        abbreviationIsGlobal = false
-    },
-}
-
-local abbreviateSettingsDamage
-local abbreviateSettingsDPS
-
-if CreateAbbreviateConfig then
-    abbreviateSettingsDamage = CreateAbbreviateConfig(abbreviateOptionsDamage)
-    abbreviateSettingsDamage = {config = abbreviateSettingsDamage}
-    Details.abbreviateOptionsDamage = abbreviateSettingsDamage
-
-    abbreviateSettingsDPS = CreateAbbreviateConfig(abbreviateOptionsDPS)
-    abbreviateSettingsDPS = {config = abbreviateSettingsDPS}
-    Details.abbreviateOptionsDPS = abbreviateSettingsDPS
-end
-
-
-
 --debug function
 local showActiveRestrictions = function()
     local stateCombat = C_RestrictedActions.GetAddOnRestrictionState(Enum.AddOnRestrictionType.Combat)
@@ -365,6 +273,9 @@ local createAndAddSession = function(segmentId)
             sessionId = segmentId,
             added = false,
             detailsId = getDetailsSegmentIdFromSegment(segmentId),
+            playerAuras = {},
+            playerCasts = {},
+            alreadyAdded = false,
         }
         segmentInfoCache[segmentId] = newCache
         return newCache
@@ -546,7 +457,7 @@ end
 ---@param sessionID damagemeter_session_type|segmentid
 ---@param damageMeterType damagemeter_type
 ---@param sourceGUID guid
----@param isPlayer boolean
+---@param isPlayer boolean?
 ---@return damagemeter_unit_spells sourceSpells
 local getSpells = function(sessionType, sessionID, damageMeterType, sourceGUID, isPlayer)
     if (sessionType <= 1) then
@@ -758,6 +669,367 @@ local startWaitSecretDropTimer = function(sessionId)
     end)
 end
 
+
+local addOverallAsSegment = function()
+    ---@type combat
+    local currentCombat
+    local segments = Details222.B.GetAllCombatTypes(DETAILS_SEGMENTTYPE_TYPE, 0)
+    local damageContainer, healingContainer, utilityContainer
+
+    do
+        local damageActorList = Details222.B.GetSegmentInfo(segments[1])
+        Details222.StartCombat()
+        currentCombat = Details:GetCurrentCombat()
+        damageContainer = currentCombat:GetContainer(DETAILS_ATTRIBUTE_DAMAGE)
+        healingContainer = currentCombat:GetContainer(DETAILS_ATTRIBUTE_HEAL)
+        utilityContainer = currentCombat:GetContainer(DETAILS_ATTRIBUTE_MISC)
+
+        Details222.MythicPlus.LogStep("addOverallAsSegment() -> start saving data: damage done.")
+
+        local canAddToCache = getcache(damageActorList)
+        for i = 1, #damageActorList do
+            local thisActor = damageActorList[i]
+            local actorName = thisActor.name
+            local actorSerial = thisActor.sourceGUID
+            local totalAmount = thisActor.totalAmount
+            local class = thisActor.classFilename
+            local icon = thisActor.specIconID
+
+            local actor = damageContainer:GetOrCreateActor(actorSerial, actorName, 0x512, true)
+            actor.nome = actorName
+            actor.total = totalAmount
+            actor.classe = class
+            actor.last_dps = thisActor.amountPerSecond
+            actor.specIcon = icon
+            actor.serial = actorSerial
+            actor.grupo = true
+            actor.displayName = actorName
+            if (icon and canAddToCache[icon]) then
+                guidCache[icon]= actorSerial
+            end
+
+            currentCombat.totals[1] = currentCombat.totals[1] + totalAmount
+            currentCombat.totals_grupo[1] = currentCombat.totals_grupo[1] + totalAmount
+
+            --spells
+            local spells = getSpells(0, nil, Enum.DamageMeterType.DamageDone, thisActor.sourceGUID)
+            for j = 1, #spells.combatSpells do
+                local thisSpell = spells.combatSpells[j]
+                local bCanCreateSpellIfMissing = true
+                local spellTable = actor.spells:GetOrCreateSpell(thisSpell.spellID, bCanCreateSpellIfMissing, "SPELL_DAMAGE")
+                spellTable.total = thisSpell.totalAmount
+                spellTable.id = thisSpell.spellID
+                spellTable.counter = 1
+                --thisSpell.creatureName
+                --thisSpell.combatSpellDetails
+            end
+        end
+    end
+
+    do
+        local actorList = Details222.B.GetSegmentInfo(segments[11])
+        for i = 1, #actorList do
+            local thisActor = actorList[i]
+            local actorName = thisActor.name
+
+            if issecretvalue(actorName) then
+                print("actorName is secret:", actorName)
+            end
+
+            local actorSerial = thisActor.sourceGUID
+            local totalAmount = thisActor.totalAmount
+            local class = thisActor.classFilename
+            local icon = thisActor.specIconID
+
+            local actor = damageContainer:GetOrCreateActor(actorSerial, actorName, 0x60, true)
+            actor.nome = actorName
+            actor.classe = class
+            actor.last_dps = thisActor.amountPerSecond
+            actor.specIcon = icon
+            actor.serial = actorSerial
+            actor.grupo = false
+            actor.displayName = actorName
+            actor.damage_taken = totalAmount
+
+            local damageFromPlayers = actor.damage_from_players
+
+            currentCombat.totals[1] = currentCombat.totals[1] + totalAmount
+            currentCombat.totals_grupo[1] = currentCombat.totals_grupo[1] + totalAmount
+
+            --spells
+            local spells = getSpells(0, nil, 10, thisActor.sourceGUID, thisActor.sourceCreatureID)
+            for j = 1, #spells.combatSpells do
+                --spell details
+                local spellDetails = spells.combatSpells[j]
+                local spellId = spellDetails.spellID
+                local spellAmount = spellDetails.totalAmount
+                local dps = spellDetails.amountPerSecond
+                local isDeadly = spellDetails.isDeadly
+                local creatureName = spellDetails.creatureName
+                local isAvoidable = spellDetails.isAvoidable
+                local overkillAmount = spellDetails.overkillAmount
+
+                --creature info
+                local isPet = spellDetails.combatSpellDetails.isPet
+                local unitClassFilename = spellDetails.combatSpellDetails.unitClassFilename
+                local amount = spellDetails.combatSpellDetails.amount
+                local unitName = spellDetails.combatSpellDetails.unitName
+                local isMob = spellDetails.combatSpellDetails.isMob
+                local classification = spellDetails.combatSpellDetails.classification
+                local specIconID = spellDetails.combatSpellDetails.specIconID
+
+                ---@class damage_from_player : table
+                ---@field name string
+                ---@field class string
+                ---@field amount number
+                ---@field dps number
+                ---@field icon number
+
+                --don't trust blizzard on enemy damage taken
+                local damageFromPlayer = {
+                    name = unitName or UNKNOWN,
+                    class = unitClassFilename or "PRIEST",
+                    amount = spellAmount or 0,
+                    dps = dps or 0,
+                    icon = specIconID or 0,
+                }
+
+                local damagerActor = damageContainer:GetOrCreateActor(nil, thisActor.name, 0x512, false)
+                if damagerActor then
+                    local targetsTable = damagerActor.targets
+                    targetsTable[actorName] = (targetsTable[actorName] or 0) + (spellAmount or 0)
+                end
+
+                damageFromPlayers[#damageFromPlayers+1] = damageFromPlayer
+            end
+        end
+    end
+
+    do
+        local damageActorList = Details222.B.GetSegmentInfo(segments[9])
+        for i = 1, #damageActorList do
+            local thisActor = damageActorList[i]
+            local actorName = thisActor.name
+            local actorSerial = thisActor.sourceGUID
+            local totalAmount = thisActor.totalAmount
+            local class = thisActor.classFilename
+            local icon = thisActor.specIconID
+
+            local actor = damageContainer:GetOrCreateActor(actorSerial, actorName, 0x512, true)
+            actor.nome = actorName
+            actor.classe = class
+            actor.specIcon = icon
+            actor.serial = actorSerial
+            actor.grupo = true
+            actor.displayName = actorName
+            actor.avoidable_damage_taken = totalAmount
+
+            --spells
+            local spells = getSpells(0, nil, 8, thisActor.sourceGUID)
+            for j = 1, #spells.combatSpells do
+                local thisSpell = spells.combatSpells[j]
+                local bCanCreateSpellIfMissing = true
+                local spellTable = actor.avoidable_damage_spells:GetOrCreateSpell(thisSpell.spellID, bCanCreateSpellIfMissing, "SPELL_DAMAGE")
+                spellTable.total = thisSpell.totalAmount
+                spellTable.id = thisSpell.spellID
+                spellTable.counter = 1
+                --thisSpell.creatureName
+                --thisSpell.combatSpellDetails
+            end
+        end
+    end
+
+    do
+        local actorList = Details222.B.GetSegmentInfo(segments[8])
+        for i = 1, #actorList do
+            local thisActor = actorList[i]
+            local actor = damageContainer:GetOrCreateActor(thisActor.sourceGUID, thisActor.name, 0x512, true)
+            actor.nome = thisActor.name
+            actor.damage_taken = thisActor.totalAmount
+            actor.damage_taken_ps = thisActor.amountPerSecond
+            actor.classe = thisActor.classFilename
+            actor.last_dps = thisActor.amountPerSecond
+            actor.specIcon = thisActor.specIconID
+            actor.serial = thisActor.sourceGUID
+            actor.grupo = true
+            actor.displayName = thisActor.name
+        end
+    end
+
+    do
+        local actorList = Details222.B.GetSegmentInfo(segments[3])
+        for i = 1, #actorList do
+            local thisActor = actorList[i]
+            local actor = healingContainer:GetOrCreateActor(thisActor.sourceGUID, thisActor.name, 0x512, true)
+            actor.nome = thisActor.name
+            actor.total = thisActor.totalAmount
+            actor.classe = thisActor.classFilename
+            actor.last_hps = thisActor.amountPerSecond
+            actor.specIcon = thisActor.specIconID
+            actor.serial = thisActor.sourceGUID
+            actor.grupo = true
+            actor.displayName = thisActor.name
+
+            currentCombat.totals[2] = currentCombat.totals[2] + thisActor.totalAmount
+            currentCombat.totals_grupo[2] = currentCombat.totals_grupo[2] + thisActor.totalAmount
+
+            --spells
+            local spells = getSpells(0, nil, Enum.DamageMeterType.HealingDone, thisActor.sourceGUID)
+            for j = 1, #spells.combatSpells do
+                local thisSpell = spells.combatSpells[j]
+                local bCanCreateSpellIfMissing = true
+                local spellTable = actor.spells:GetOrCreateSpell(thisSpell.spellID, bCanCreateSpellIfMissing, "SPELL_HEAL")
+                spellTable.total = thisSpell.totalAmount
+                spellTable.id = thisSpell.spellID
+                --thisSpell.creatureName
+                --thisSpell.combatSpellDetails
+                spellTable.counter = 1
+            end
+
+            local t = Details222.B.GetSpells(DETAILS_SEGMENTTYPE_TYPE, 0, 2, actor.serial)
+            actor.healpotion = 0
+            for k, v in pairs(t.combatSpells) do
+                local spellId = v.spellID
+                if not issecretvalue(spellId) and (spellId == DETAILS_HEALTH_POTION1_ID or spellId == DETAILS_HEALTH_POTION2_ID or spellId == DETAILS_HEALTH_POTION3_ID or spellId == DETAILS_HEALTHSTONE_ID) then
+                    actor.healpotion = actor.healpotion + v.totalAmount
+                end
+            end
+        end
+    end
+
+    do
+        local actorList = Details222.B.GetSegmentInfo(segments[5])
+        for i = 1, #actorList do
+            ---@type damagemeter_combat_source
+            local thisActor = actorList[i]
+
+            ---@type actorheal
+            local actor = healingContainer:GetOrCreateActor(thisActor.sourceGUID, thisActor.name, 0x512, true)
+
+            actor.nome = thisActor.name
+            actor.totalabsorb = thisActor.totalAmount
+            actor.totalabsorb_ps = thisActor.amountPerSecond
+            actor.classe = thisActor.classFilename
+            actor.last_hps = thisActor.amountPerSecond
+            actor.specIcon = thisActor.specIconID
+            actor.serial = thisActor.sourceGUID
+            actor.grupo = true
+            actor.displayName = thisActor.name
+        end
+    end
+
+    do
+        local actorList = Details222.B.GetSegmentInfo(segments[6])
+        for i = 1, #actorList do
+            ---@type damagemeter_combat_source
+            local thisActor = actorList[i]
+
+            ---@type actorutility
+            local actor = utilityContainer:GetOrCreateActor(thisActor.sourceGUID, thisActor.name, 0x512, true)
+
+            actor.interrupt_cast_overlap = 0
+            actor.interrupt_targets = {}
+            actor.interrupt_spells = spellContainerClass:CreateSpellContainer(containerUtilityType)
+            actor.interrompeu_oque = {}
+
+            actor.nome = thisActor.name
+            actor.interrupt = thisActor.totalAmount + Details:GetOrderNumber()
+            actor.classe = thisActor.classFilename
+            actor.specIcon = thisActor.specIconID
+            actor.serial = thisActor.sourceGUID
+            actor.grupo = true
+            actor.displayName = thisActor.name
+
+            currentCombat.totals[4].interrupt = currentCombat.totals[4].interrupt + 1
+            currentCombat.totals_grupo[4].interrupt = currentCombat.totals_grupo[4].interrupt + 1
+
+            --spells
+            local spells = getSpells(0, nil, Enum.DamageMeterType.Interrupts, thisActor.sourceGUID)
+            for j = 1, #spells.combatSpells do
+                local thisSpell = spells.combatSpells[j]
+                local bCanCreateSpellIfMissing = true
+                local spellTable = actor.interrupt_spells:GetOrCreateSpell(thisSpell.spellID, bCanCreateSpellIfMissing, "SPELL_INTERRUPT")
+                spellTable.total = thisSpell.totalAmount
+                spellTable.id = thisSpell.spellID
+                --thisSpell.creatureName
+                --thisSpell.combatSpellDetails
+                spellTable.counter = 1
+            end
+        end
+    end
+
+    do
+        local actorList = Details222.B.GetSegmentInfo(segments[7])
+        for i = 1, #actorList do
+            ---@type damagemeter_combat_source
+            local thisActor = actorList[i]
+
+            ---@type actorutility
+            local actor = utilityContainer:GetOrCreateActor(thisActor.sourceGUID, thisActor.name, 0x512, true)
+            actor.dispell_targets = {}
+            actor.dispell_spells = spellContainerClass:CreateSpellContainer(containerUtilityType)
+            actor.dispell_oque = {}
+
+            actor.nome = thisActor.name
+            actor.dispell = thisActor.totalAmount + Details:GetOrderNumber()
+            actor.classe = thisActor.classFilename
+            actor.specIcon = thisActor.specIconID
+            actor.serial = thisActor.sourceGUID
+            actor.grupo = true
+            actor.displayName = thisActor.name
+
+            currentCombat.totals[4].dispell = currentCombat.totals[4].dispell + 1
+            currentCombat.totals_grupo[4].dispell = currentCombat.totals_grupo[4].dispell + 1
+
+            --spells
+            local spells = getSpells(0, nil, Enum.DamageMeterType.Dispels, thisActor.sourceGUID)
+            for j = 1, #spells.combatSpells do
+                local thisSpell = spells.combatSpells[j]
+                local bCanCreateSpellIfMissing = true
+                local spellTable = actor.dispell_spells:GetOrCreateSpell(thisSpell.spellID, bCanCreateSpellIfMissing, "SPELL_DISPEL")
+                spellTable.total = thisSpell.totalAmount
+                spellTable.id = thisSpell.spellID
+                --thisSpell.creatureName
+                --thisSpell.combatSpellDetails
+                spellTable.counter = 1
+            end
+        end
+    end
+
+    do
+        local actorList = Details222.B.GetSegmentInfo(segments[10])
+        for i = 1, #actorList do
+            ---@type damagemeter_combat_source
+            local thisActor = actorList[i]
+            local hasDeathRecap, events, maxHealth, link = Details222.Recap.GetRecapInfo(thisActor.deathRecapID)
+            if hasDeathRecap then
+                local deathLog = Details:CreateDeathLogTable(thisActor.name, thisActor.classFilename, thisActor.specIconID, events, maxHealth)
+                table.insert(currentCombat.last_events_tables, #currentCombat.last_events_tables+1, deathLog)
+            end
+        end
+    end
+
+    Details222.MythicPlus.LogStep("addOverallAsSegment() -> done building the overall segment.")
+
+    currentCombat:SetDate("", "")
+    local elapsedTime = Details222.B.GetCombatTime(0) or 0
+    currentCombat:SetStartTime(GetTime() - elapsedTime)
+    currentCombat:SetEndTime(GetTime())
+
+    local _, instanceType = GetInstanceInfo()
+    if (instanceType == "arena") then
+        currentCombat.secretArena = true
+    end
+
+    currentCombat:SetEndTime(GetTime())
+    Details:SairDoCombate()
+
+    Details222.MythicPlus.LogStep("addOverallAsSegment() -> finished creating the overall data segment, returning currentCombat.")
+
+    return currentCombat
+end
+Details222.BParser.AddOverallAsSegment = addOverallAsSegment
+
 ---@param parameterType any
 ---@param session sessioncache
 ---@param bIsUpdate boolean|nil
@@ -818,6 +1090,7 @@ local addSegment = function(parameterType, session, bIsUpdate, detailsId)
             actor.specIcon = icon
             actor.serial = actorSerial
             actor.grupo = true
+            actor.displayName = actorName
             if (icon and canAddToCache[icon]) then
                 guidCache[icon]= actorSerial
             end
@@ -853,6 +1126,7 @@ local addSegment = function(parameterType, session, bIsUpdate, detailsId)
             actor.specIcon = thisActor.specIconID
             actor.serial = thisActor.sourceGUID
             actor.grupo = true
+            actor.displayName = thisActor.name
         end
     end
 
@@ -867,6 +1141,7 @@ local addSegment = function(parameterType, session, bIsUpdate, detailsId)
             actor.last_hps = thisActor.amountPerSecond
             actor.specIcon = thisActor.specIconID
             actor.serial = thisActor.sourceGUID
+            actor.displayName = thisActor.name
             actor.grupo = true
 
             currentCombat.totals[2] = currentCombat.totals[2] + thisActor.totalAmount
@@ -883,6 +1158,15 @@ local addSegment = function(parameterType, session, bIsUpdate, detailsId)
                 --thisSpell.creatureName
                 --thisSpell.combatSpellDetails
                 spellTable.counter = 1
+            end
+
+            local t = Details222.B.GetSpells(DETAILS_SEGMENTTYPE_TYPE, 0, 2, actor.serial)
+            actor.healpotion = 0
+            for k, v in pairs(t.combatSpells) do
+                local spellId = v.spellID
+                if not issecretvalue(spellId) and (spellId == DETAILS_HEALTH_POTION1_ID or spellId == DETAILS_HEALTH_POTION2_ID or spellId == DETAILS_HEALTH_POTION3_ID or spellId == DETAILS_HEALTHSTONE_ID) then
+                    actor.healpotion = actor.healpotion + v.totalAmount
+                end
             end
         end
     end
@@ -904,6 +1188,7 @@ local addSegment = function(parameterType, session, bIsUpdate, detailsId)
             actor.specIcon = thisActor.specIconID
             actor.serial = thisActor.sourceGUID
             actor.grupo = true
+            actor.displayName = thisActor.name
         end
     end
 
@@ -927,6 +1212,7 @@ local addSegment = function(parameterType, session, bIsUpdate, detailsId)
             actor.specIcon = thisActor.specIconID
             actor.serial = thisActor.sourceGUID
             actor.grupo = true
+            actor.displayName = thisActor.name
 
             currentCombat.totals[4].interrupt = currentCombat.totals[4].interrupt + 1
             currentCombat.totals_grupo[4].interrupt = currentCombat.totals_grupo[4].interrupt + 1
@@ -964,6 +1250,7 @@ local addSegment = function(parameterType, session, bIsUpdate, detailsId)
             actor.specIcon = thisActor.specIconID
             actor.serial = thisActor.sourceGUID
             actor.grupo = true
+            actor.displayName = thisActor.name
 
             currentCombat.totals[4].dispell = currentCombat.totals[4].dispell + 1
             currentCombat.totals_grupo[4].dispell = currentCombat.totals_grupo[4].dispell + 1
@@ -990,6 +1277,7 @@ local addSegment = function(parameterType, session, bIsUpdate, detailsId)
             local thisActor = actorList[i]
             local hasDeathRecap, events, maxHealth, link = Details222.Recap.GetRecapInfo(thisActor.deathRecapID)
             if hasDeathRecap then
+                --attempt to index field '_NameIndexTable' (a nil value)
                 local deathLog = Details:CreateDeathLogTable(thisActor.name, thisActor.classFilename, thisActor.specIconID, events, maxHealth)
                 table.insert(currentCombat.last_events_tables, #currentCombat.last_events_tables+1, deathLog)
             end
@@ -1628,7 +1916,7 @@ local updateWindow = function(instance) --~update
 
                     local perCent = nil
                     local ruleToUse = 2 --total dps
-                    Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(value, abbreviateSettingsDamage), AbbreviateNumbers(totalAmountPerSecond, abbreviateSettingsDPS), perCent, ruleToUse)
+                    Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(value, Details.abbreviateOptionsDamage), AbbreviateNumbers(totalAmountPerSecond, Details.abbreviateOptionsDPS), perCent, ruleToUse)
 
                     instanceLine.statusbar:SetMinMaxValues(0, topValue, Enum.StatusBarInterpolation.ExponentialEaseOut)
                     instanceLine.statusbar:SetValue(value, Enum.StatusBarInterpolation.ExponentialEaseOut)
@@ -1700,11 +1988,17 @@ local showFontStringsForPrivateText = function(instance)
 end
 
 local formatTime = function(elapsedTime)
+    if not elapsedTime then
+        return ""
+    end
+
     local minutes = math.floor(elapsedTime / 60)
     local seconds = math.floor(elapsedTime % 60)
     local timeString = string.format("%02d:%02d", minutes, seconds)
     return timeString
 end
+
+bParser.FormatTime = formatTime
 
 ---@param self instance
 function Details:GetFormattedTimeForTitleBar()
@@ -1743,51 +2037,144 @@ function Details:GetFormattedTimeForTitleBar()
     return "00:00"
 end
 
-local setTitleText = function(instance, timeString)
-    if instance.attribute_text.show_timer then
-        if instance:GetSegmentId() ~= DETAILS_SEGMENTID_OVERALL then
-            local attributeText = instance:GetInstanceAttributeText() --this return the title, like 'damage done'
-            timeString = timeString .. " " .. attributeText
+local setTitleText = function(instance, timeString) --0 = overall 1 = current
+    local attributeText = instance:GetInstanceAttributeText() --this return the title, like 'damage done'
+    if instance:GetSegmentType() == 0 then
+        attributeText = _G["DAMAGE_METER_OVERALL_SESSION"] .. " " .. attributeText
+    end
+
+    local lowerInstanceId = Details:GetLowerInstanceNumber()
+    if lowerInstanceId and instance:GetId() == lowerInstanceId then
+        if instance.attribute_text.show_timer then
+            timeString = format("%s %s", timeString, attributeText)
             instance:SetTitleBarText(timeString)
+        else
+            instance:SetTitleBarText(attributeText)
         end
+    else
+        instance:SetTitleBarText(attributeText)
     end
 end
 
+bParser.SetTitleText = setTitleText
+
+
 local timerUpdateInterval = 1 --time in seconds
-local timerUpdateObject = nil
+local timerUpdateObject = nil --the C_Timer.NewTicker object that will update the time in the window every X seconds
 local updateTime = function(timerObject) --~update ~time
+    local elapsedTime = 0
     ---@type instance
     local instance = timerObject.instance
     if Details:IsUsingBlizzardAPI() then
-        if instance:GetSegmentType() <= 1 then
-            local elapsed = Details222.B.GetCurrentTime(instance:GetSegmentType())
-            if elapsed and not issecretvalue(elapsed) then
-                setTitleText(instance, formatTime(elapsed))
+        if Details222.IsPTR1205() then
+            local segmentType = instance:GetSegmentType()
+            if (segmentType <= 1) then
+                local thisElapsedTime = Details222.B.GetCombatTime(segmentType)
+
+                if thisElapsedTime == nil and segmentType == 0 then
+                    --get using older method
+                    thisElapsedTime = C_DamageMeter.GetSessionDurationSeconds(0)
+                end
+
+                if (thisElapsedTime and issecretvalue(thisElapsedTime) and segmentType == 1) then
+                    thisElapsedTime = C_DamageMeter.GetSessionDurationSeconds(1)
+                end
+
+                local formattedTime = formatTime(thisElapsedTime)
+                setTitleText(instance, formattedTime)
                 return
             else
-                elapsed = getSegmentCombatTime(instance:GetNewSegmentIdFromCurrent()) --'no cache for segment 1'
-                if elapsed then
-                    setTitleText(instance, formatTime(elapsed))
-                else
-                    setTitleText(instance, "")
+                local s = Details222.B.GetSegment(DETAILS_SEGMENTTYPE_ID, instance:GetNewSegmentId(), 0)
+                local thisElapsedTime = s.durationSeconds
+                if thisElapsedTime and issecretvalue(thisElapsedTime) then
+                    local allSegments = Details222.B.GetAllSegments()
+                    for i = 1, #allSegments do
+                        local thisSegment = allSegments[i]
+                        if thisSegment.sessionID == instance:GetNewSegmentId() then
+                            thisElapsedTime = thisSegment.durationSeconds
+                            break
+                        end
+                    end
                 end
+
+                local formattedTime = formatTime(thisElapsedTime)
+                setTitleText(instance, formattedTime)
                 return
             end
         else
-            local elapsed = Details222.B.GetCombatTime(instance:GetNewSegmentId())
-            if elapsed and not issecretvalue(elapsed) then
-                setTitleText(instance, formatTime(elapsed))
+            local segmentType = instance:GetSegmentType()
+            if segmentType >= 1 then
+                local allSegments = Details222.B.GetAllSegments()
+                if segmentType == 1 then
+                    elapsedTime = allSegments[#allSegments] and allSegments[#allSegments].durationSeconds
+                else
+                    local segmentId = instance:GetNewSegmentId()
+                    for i = 1, #allSegments do
+                        local thisSegment = allSegments[i]
+                        if thisSegment.sessionID == segmentId then
+                            elapsedTime = thisSegment.durationSeconds
+                            break
+                        end
+                    end
+                end
             else
-                setTitleText(instance, "")
+                elapsedTime = C_DamageMeter.GetSessionDurationSeconds(0)
             end
-            return
         end
+    else
+        local combat = instance:GetCombat()
+        elapsedTime = combat:GetCombatTime()
     end
-    setTitleText(instance, instance:GetFormattedTimeForTitleBar())
+
+    if issecretvalue(elapsedTime) then
+        setTitleText(instance, elapsedTime)
+    else
+        if elapsedTime == nil then
+            if instance:GetSegmentType() == 1 then
+                local combat = Details222.B.GetSegment(DETAILS_SEGMENTTYPE_TYPE, 1, 0)
+                if combat then
+                    elapsedTime = combat.durationSeconds
+                    if elapsedTime then
+                        if issecretvalue(elapsedTime) then
+                            setTitleText(instance, elapsedTime)
+                            return
+                        end
+                    end
+                end
+            end
+        end
+
+        if elapsedTime == nil then
+            elapsedTime = 1
+        end
+
+        if (elapsedTime > 1800 and instance:GetSegmentType() > 0) then
+            local detailsCombat = Details:GetTwinCombat(instance:GetNewSegmentId())
+
+            if detailsCombat then
+                elapsedTime = detailsCombat:GetCombatTime()
+            else
+                local combatTime = getSegmentCombatTime(instance:GetNewSegmentId())
+                if combatTime then
+                    elapsedTime = combatTime
+                end
+            end
+        end
+
+        local timeFormatted = formatTime(elapsedTime)
+        setTitleText(instance, timeFormatted)
+    end
 end
 
 local updateTimeOnEvent = function(eventName, instance)
-    updateTime({instance=instance})
+    if detailsFramework.IsAddonApocalypseWow() then
+        local lowerInstanceId = Details:GetLowerInstanceNumber()
+        if lowerInstanceId then
+            if instance:GetId() == lowerInstanceId then
+                updateTime({instance=instance})
+            end
+        end
+    end
 end
 local changeSegmentListener = Details:CreateEventListener()
 changeSegmentListener:RegisterEvent("DETAILS_INSTANCE_CHANGESESSION", updateTimeOnEvent)
@@ -2097,6 +2484,116 @@ function bParser.SetSessionCache(t)
     end
 end
 
+---@class auratable : table
+---@field isActive boolean
+---@field startTime number|nil
+---@field totalTime number
+
+---@class playerauraparser : frame
+---@field playerAuraData table<number, auratable>
+---@field playerAuraTicker table|nil
+---@field StartTicker fun(self:playerauraparser)
+---@field StopTicker fun(self:playerauraparser)
+---@field ResetData fun(self:playerauraparser)
+---@field CreateAuraTable fun():auratable
+---@type playerauraparser
+local playerAuraParser = CreateFrame("frame")
+playerAuraParser.playerAuraData = {}
+playerAuraParser.playerAuraTicker = nil
+
+---@return auratable
+function playerAuraParser.CreateAuraTable()
+    local auraTable = {
+        isActive = true,
+        startTime = GetTime(),
+        totalTime = 0,
+    }
+    return auraTable
+end
+
+function playerAuraParser:StartTicker()
+    if self.playerAuraTicker then
+        return
+    end
+
+    self:ResetData()
+
+    self.playerAuraTicker = C_Timer.NewTicker(0.1, function()
+        ---@type aurainfo[]
+        local allBuffs = C_UnitAuras.GetUnitAuras("player", "HELPFUL")
+        local seenSpells = {}
+
+        for i = 1, #allBuffs do
+            local auraInfo = allBuffs[i]
+            if (not issecretvalue(auraInfo.spellId)) then
+                local spellId = auraInfo.spellId
+                seenSpells[spellId] = true
+
+                ---@type auratable?
+                local existingData = self.playerAuraData[spellId]
+                if existingData and existingData.isActive then
+                    --already up, do something?
+                else
+                    if not existingData then
+                        self.playerAuraData[spellId] = playerAuraParser.CreateAuraTable()
+                    else
+                        existingData.isActive = true
+                        existingData.startTime = GetTime()
+                    end
+                end
+            end
+        end
+
+        --check for auras that were UP but are no longer present this tick
+        for spellId, auraData in pairs(self.playerAuraData) do
+            if auraData.isActive and not seenSpells[spellId] then
+                auraData.isActive = false
+                auraData.totalTime = auraData.totalTime + (GetTime() - auraData.startTime)
+                auraData.startTime = nil
+            end
+        end
+    end)
+end
+
+function playerAuraParser:StopTicker()
+    if self.playerAuraTicker then
+        self.playerAuraTicker:Cancel()
+        self.playerAuraTicker = nil
+    end
+
+    local now = GetTime()
+    for spellId, auraData in pairs(self.playerAuraData) do
+        if auraData.isActive then
+            auraData.isActive = false
+            auraData.totalTime = auraData.totalTime + (now - auraData.startTime)
+            auraData.startTime = nil
+        end
+    end
+
+    --dumpt(self.playerAuraData)
+end
+
+function playerAuraParser:ResetData()
+    table.wipe(self.playerAuraData)
+end
+
+if detailsFramework.IsAddonApocalypseWow() then
+    playerAuraParser:RegisterEvent("PLAYER_REGEN_ENABLED")
+    playerAuraParser:RegisterEvent("PLAYER_REGEN_DISABLED")
+end
+
+playerAuraParser:SetScript("OnEvent", function(self, event, ...)
+    if (event == "PLAYER_REGEN_ENABLED") then
+        self:StopTicker()
+
+    elseif (event == "PLAYER_REGEN_DISABLED") then
+        self:ResetData()
+        self:StartTicker()
+
+    end
+end)
+
+
 combatEventFrame:SetScript("OnEvent", function(mySelf, ev, ...)
     if (ev == "PLAYER_LOGIN") then
 
@@ -2329,7 +2826,7 @@ combatEventFrame:SetScript("OnEvent", function(mySelf, ev, ...)
             end
         end
 
-    elseif (ev == "PLAYER_REGEN_DISABLED") then --entered in combat
+    elseif (ev == "PLAYER_REGEN_DISABLED") then --entered in combat ~regen
         --print("(debug-event) PLAYER_REGEN_DISABLED", GetTime())
         Details:StopTestBarUpdate()
         Details:InstanceCallMethod("ResetTempSegment")

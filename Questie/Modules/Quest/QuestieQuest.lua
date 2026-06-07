@@ -91,9 +91,9 @@ function QuestieQuest.ToggleAvailableQuests(showIcons)
     AvailableQuests.CalculateAndDrawAll()
 
     if showIcons then
-        _QuestieQuest:ShowQuestIcons()
+        QuestieQuest:ShowQuestIcons()
     else
-        _QuestieQuest:HideQuestIcons()
+        QuestieQuest:HideQuestIcons()
     end
 end
 
@@ -102,15 +102,15 @@ function QuestieQuest:ToggleNotes(showIcons)
     QuestieQuest:GetAllQuestIds() -- add notes that weren't added from previous hidden state
 
     if showIcons then
-        _QuestieQuest:ShowQuestIcons()
+        QuestieQuest:ShowQuestIcons()
         _QuestieQuest:ShowManualIcons()
     else
-        _QuestieQuest:HideQuestIcons()
+        QuestieQuest:HideQuestIcons()
         _QuestieQuest:HideManualIcons()
     end
 end
 
-function _QuestieQuest:ShowQuestIcons()
+function QuestieQuest:ShowQuestIcons()
     local trackerHiddenQuests = Questie.db.char.TrackerHiddenQuests
     for questId, frameList in pairs(QuestieMap.questIdFrames) do
         if (not trackerHiddenQuests) or (not trackerHiddenQuests[questId]) then -- Skip quests which are completely hidden from the Tracker menu
@@ -156,7 +156,7 @@ function _QuestieQuest:ShowManualIcons()
     end
 end
 
-function _QuestieQuest:HideQuestIcons()
+function QuestieQuest:HideQuestIcons()
     for _, frameList in pairs(QuestieMap.questIdFrames) do
         for _, frameName in pairs(frameList) do -- this may seem a bit expensive, but its actually really fast due to the order things are checked
             local icon = _G[frameName];
@@ -539,7 +539,7 @@ function QuestieQuest:CompleteQuest(questId)
 
     -- Only quests that are daily quests or aren't repeatable should be marked complete,
     -- otherwise objectives for repeatable quests won't track correctly - #1433
-    Questie.db.char.complete[questId] = (not QuestieDB.IsRepeatable(questId)) or QuestieDB.IsDailyQuest(questId) or QuestieDB.IsWeeklyQuest(questId);
+    Questie.db.char.complete[questId] = (not QuestieDB.IsRepeatable(questId)) or QuestieDB.IsDailyQuest(questId) or QuestieDB.IsWeeklyQuest(questId) or QuestieDB.IsMonthlyQuest(questId);
 
     if Expansions.Current >= Expansions.Wotlk then
         if allianceChampionMarkerQuests[questId] then
@@ -1196,6 +1196,23 @@ _DetermineIconsToDraw = function(quest, objective, objectiveIndex, objectiveCent
     return iconsToDraw, spawnItemId
 end
 
+---Returns true if coords are far enough from every already-placed icon in the same zone.
+---@param coords table  {x, y} in zone-local coordinates (numeric indices)
+---@param placed table  array of {x, y} coords already placed in this zone
+---@return boolean
+local function _HasProperDistanceToAlreadyPlacedObjectives(coords, placed)
+    local minDist = Questie.db.profile.objectiveFilterDistance
+    if minDist == 0 then
+        return true
+    end
+    for _, placedCoords in ipairs(placed) do
+        if QuestieLib.GetSpawnDistance(coords, placedCoords) < minDist then
+            return false
+        end
+    end
+    return true
+end
+
 _DrawObjectiveIcons = function(questId, iconsToDraw, objective, maxPerType)
     Questie:Debug(Questie.DEBUG_INFO, "[QuestieQuest:_DrawObjectiveIcons] Adding Icons for quest:", questId)
 
@@ -1203,69 +1220,79 @@ _DrawObjectiveIcons = function(questId, iconsToDraw, objective, maxPerType)
     local icon
     local iconPerZone = {}
 
-    local range = Questie.db.profile.clusterLevelHotzone
-
     local iconCount, orderedList = _GetIconsSortedByDistance(iconsToDraw)
 
-    if orderedList[1] and orderedList[1].Icon == Questie.ICON_TYPE_OBJECT then -- new clustering / limit code should prevent problems, always show all object notes
-        range = range * 0.2; -- Only use 20% of the default range.
+    local alreadyPlacedByZone = {}
+    ---@param zoneKey number?
+    ---@param coords CoordPair
+    local function _MarkCoordsAsAlready(zoneKey, coords)
+        if (not zoneKey) then
+            return
+        end
+        if (not alreadyPlacedByZone[zoneKey]) then
+            alreadyPlacedByZone[zoneKey] = {}
+        end
+        tinsert(alreadyPlacedByZone[zoneKey], coords)
     end
 
-    local hotzones = QuestieMap.utils:CalcHotzones(orderedList, range, iconCount);
-
-    for i = 1, #hotzones do
-        local hotzone = hotzones[i]
-        if (spawnedIconCount > maxPerType) then
+    for i = 1, iconCount do
+        icon = orderedList[i]
+        if spawnedIconCount > maxPerType then
             Questie:Debug(Questie.DEBUG_DEVELOP, "[QuestieQuest] Too many icons for quest:", questId)
-            break;
+            break
         end
 
-        --Any icondata will do because they are all the same
-        icon = hotzone[1];
+        local zoneKey = icon.UiMapID
+        if (not alreadyPlacedByZone[zoneKey]) then
+            alreadyPlacedByZone[zoneKey] = {}
+        end
 
-        local spawnsMapRefs = objective.AlreadySpawned[icon.AlreadySpawnedId].mapRefs
-        local spawnsMinimapRefs = objective.AlreadySpawned[icon.AlreadySpawnedId].minimapRefs
+        local coords = {icon.x, icon.y}
+        if _HasProperDistanceToAlreadyPlacedObjectives(coords, alreadyPlacedByZone[zoneKey]) then
+            local spawnsMapRefs = objective.AlreadySpawned[icon.AlreadySpawnedId].mapRefs
+            local spawnsMinimapRefs = objective.AlreadySpawned[icon.AlreadySpawnedId].minimapRefs
 
-        local centerX, centerY = QuestieMap.utils.CenterPoint(hotzone)
+            local x, y = icon.x, icon.y
+            local dungeonLocation = ZoneDB:GetDungeonLocation(icon.zone)
 
-        local dungeonLocation = ZoneDB:GetDungeonLocation(icon.zone)
+            if dungeonLocation and x == -1 and y == -1 then
+                if dungeonLocation[2] then -- We have more than 1 instance entrance (e.g. Blackrock dungeons)
+                    local secondDungeonLocation = dungeonLocation[2]
+                    icon.zone = secondDungeonLocation[1]
+                    icon.UiMapID = ZoneDB:GetUiMapIdByAreaId(icon.zone)
+                    zoneKey = icon.UiMapID
+                    local dX, dY = secondDungeonLocation[2], secondDungeonLocation[3]
 
-        if dungeonLocation and centerX == -1 and centerY == -1 then
-            if dungeonLocation[2] then -- We have more than 1 instance entrance (e.g. Blackrock dungeons)
-                local secondDungeonLocation = dungeonLocation[2]
+                    local iconMap, iconMini = QuestieMap:DrawWorldIcon(icon.data, icon.zone, dX, dY)
+                    if iconMap and iconMini then
+                        iconPerZone[icon.zone] = {iconMap, dX, dY}
+                        spawnsMapRefs[#spawnsMapRefs + 1] = iconMap
+                        spawnsMinimapRefs[#spawnsMinimapRefs + 1] = iconMini
+                    end
 
-                icon.zone = secondDungeonLocation[1]
-                centerX = secondDungeonLocation[2]
-                centerY = secondDungeonLocation[3]
-
-                -- Phase is already checked in _DetermineIconsToDraw
-                local iconMap, iconMini = QuestieMap:DrawWorldIcon(icon.data, icon.zone, centerX, centerY) -- clustering code takes care of duplicates as long as min-dist is more than 0
-
-                if iconMap and iconMini then
-                    iconPerZone[icon.zone] = {iconMap, centerX, centerY}
-                    spawnsMapRefs[#spawnsMapRefs + 1] = iconMap
-                    spawnsMinimapRefs[#spawnsMinimapRefs + 1] = iconMini
+                    _MarkCoordsAsAlready(zoneKey, {dX, dY})
+                    spawnedIconCount = spawnedIconCount + 1
                 end
 
-                spawnedIconCount = spawnedIconCount + 1;
+                local firstDungeonLocation = dungeonLocation[1]
+                icon.zone = firstDungeonLocation[1]
+                icon.UiMapID = ZoneDB:GetUiMapIdByAreaId(icon.zone)
+                zoneKey = icon.UiMapID
+                x = firstDungeonLocation[2]
+                y = firstDungeonLocation[3]
+                coords = {x, y}
             end
 
-            local firstDungeonLocation = dungeonLocation[1]
-            icon.zone = firstDungeonLocation[1]
-            centerX = firstDungeonLocation[2]
-            centerY = firstDungeonLocation[3]
+            local iconMap, iconMini = QuestieMap:DrawWorldIcon(icon.data, icon.zone, x, y)
+            if iconMap and iconMini then
+                iconPerZone[icon.zone] = {iconMap, x, y}
+                spawnsMapRefs[#spawnsMapRefs + 1] = iconMap
+                spawnsMinimapRefs[#spawnsMinimapRefs + 1] = iconMini
+            end
+
+            _MarkCoordsAsAlready(zoneKey, coords)
+            spawnedIconCount = spawnedIconCount + 1
         end
-
-        -- Phase is already checked in _DetermineIconsToDraw
-        local iconMap, iconMini = QuestieMap:DrawWorldIcon(icon.data, icon.zone, centerX, centerY) -- clustering code takes care of duplicates as long as min-dist is more than 0
-
-        if iconMap and iconMini then
-            iconPerZone[icon.zone] = {iconMap, centerX, centerY}
-            spawnsMapRefs[#spawnsMapRefs + 1] = iconMap
-            spawnsMinimapRefs[#spawnsMinimapRefs + 1] = iconMini
-        end
-
-        spawnedIconCount = spawnedIconCount + 1;
     end
 
     return icon, iconPerZone
@@ -1384,12 +1411,19 @@ function QuestieQuest:PopulateQuestLogInfo(quest)
                 Questie:Error(l10n("Missing objective data for quest "), quest.Id, " ", objective.text)
             else
                 if not quest.Objectives[objectiveIndex] then
+                    local fullDesc
+                    if (not Questie.db.profile.trimObjectiveText) then
+                        -- Grab the entire objective text including "slain". First regex is for non-Chinese clients, second is for Chinese clients where the colon is a different character
+                        fullDesc = string.match(objective.raw_text, "^(.*):%s*%d+/%d+$") or string.match(objective.raw_text, "^(.*)：%s*%d+/%d+$")
+                    end
+
                     quest.Objectives[objectiveIndex] = {
                         Id = quest.ObjectiveData[objectiveIndex].Id,
                         Index = objectiveIndex,
                         questId = quest.Id,
                         _lastUpdate = 0,
                         Description = objective.text,
+                        FullDescription = fullDesc,
                         spawnList = {},
                         AlreadySpawned = {},
                         Update = _QuestieQuest.ObjectiveUpdate,
@@ -1459,8 +1493,15 @@ function _QuestieQuest.ObjectiveUpdate(self)
             local numRequired = obj.numRequired or 0
             local finished = obj.finished or false -- ensure its boolean false and not nil (hack)
 
+            local fullDesc
+            if (not Questie.db.profile.trimObjectiveText) then
+                -- Grab the entire objective text including "slain". First regex is for non-Chinese clients, second is for Chinese clients where the colon is a different character
+                fullDesc = string.match(obj.raw_text, "^(.*):%s*%d+/%d+$") or string.match(obj.raw_text, "^(.*)：%s*%d+/%d+$")
+            end
+
             self.Type = obj.type;
             self.Description = obj.text
+            self.FullDescription = fullDesc
             self.Collected = tonumber(numFulfilled);
             self.Needed = tonumber(numRequired);
             self.Completed = (self.Needed == self.Collected and self.Needed > 0) or

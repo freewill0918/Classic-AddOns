@@ -4,7 +4,33 @@ if not L then return end
 --------------------------------------------------------------------------------------------------------------------------------------------
 L = L or {}
 
+L["STRING_OPTIONS_AUTO_COMBATLOG"] = "Auto Start Combatlog"
+L["STRING_OPTIONS_AUTO_COMBATLOG_DESC"] = "Automatically start and stop logging combat to the combatlog.txt file when you enter a raid or dungeon."
 
+L["STRING_OPTIONS_PLAYERNAME_AUTO_ALIGNMENT"] = "Auto Alignment"
+L["STRING_OPTIONS_PLAYERNAME_AUTO_ALIGNMENT_DESC"] = "Disable this only if you experience player name alignment issues."
+
+L["LE_EXPANSION_CLASSIC"] = "Classic"
+L["LE_EXPANSION_BURNING_CRUSADE"] = "The Burning Crusade"
+L["LE_EXPANSION_WRATH_OF_THE_LICH_KING"] = "Wrath of the Lich King"
+L["LE_EXPANSION_CATACLYSM"] = "Cataclysm"
+L["LE_EXPANSION_MISTS_OF_PANDARIA"] = "Mists of Pandaria"
+L["LE_EXPANSION_WARLORDS_OF_DRAENOR"] = "Warlords of Draenor"
+L["LE_EXPANSION_LEGION"] = "Legion"
+L["LE_EXPANSION_BATTLE_FOR_AZEROTH"] = "Battle for Azeroth"
+L["LE_EXPANSION_SHADOWLANDS"] = "Shadowlands"
+L["LE_EXPANSION_DRAGONFLIGHT"] = "Dragonflight"
+L["LE_EXPANSION_WAR_WITHIN"] = "The War Within"
+L["LE_EXPANSION_MIDNIGHT"] = "Midnight"
+
+L["STRING_OR"] = "Or"
+L["STRING_OPTIONS_SELECT_TEMPLATE"] = "Select Template"
+L["STRING_OPTIONS_TEXT_SHADOWCOLOR"] = "Shadow Color"
+L["STRING_OPTIONS_TEXT_SHADOWOFFSET"] = "Shadow Offset %s"
+L["STRING_OPTIONS_PLAYERNAME"] = "Player Name"
+L["STRING_OPTIONS_PLAYERNAME_AUTO_WIDTH"] = "Length Auto"
+L["STRING_OPTIONS_PLAYERNAME_WIDTH"] = "Length"
+L["STRING_ATTRIBUTE_HEAL_POTIONS"] = "Potions"
 L["STRING_SIMPLE_TEXT_FORMAT_TITLE"] = "Midnight Right Text: Simple or Aligned"
 L["STRING_SIMPLE_TEXT_FORMAT"] = "Use Simple Text Formatting"
 L["STRING_SIMPLE_TEXT_FORMAT_DESC"] = "Enable the use of the three rules below."
@@ -13,7 +39,7 @@ L["STRING_SIMPLE_TEXT_FORMAT_TYPE2"] = "When the line has information\nabout the
 L["STRING_SIMPLE_TEXT_FORMAT_TYPE1"] = "When the line has information\nabout the total and percent.\n|cFFAAAAAA%s order: total, percent."
 L["STRING_SIMPLE_TEXT_FORMAT_ASLIGNED"] = "Use Aligned Text"
 L["STRING_SIMPLE_TEXT_FORMAT_ASLIGNED_DESC"] = "The text is aligned in columns, setup the spacing between columns."
-L["STRING_SIMPLE_TEXT_FORMAT_ASLIGNED_SPACE_BETWEEN"] = "Space Between Columns"
+L["STRING_SIMPLE_TEXT_FORMAT_ASLIGNED_SPACE_BETWEEN"] = "Columns Gap"
 L["STRING_SIMPLE_TEXT_FORMAT_TEMPLATE2"] = "Don't Show Percent"
 L["STRING_SIMPLE_TEXT_FORMAT_TEMPLATE3"] = "Only Show Total"
 L["STRING_SIMPLE_TEXT_FORMAT_TEMPLATE4"] = "Separate | by | Pipe"
@@ -188,9 +214,11 @@ L["STRING_CUSTOM_TARGET_DESC"] = [=[This is the target of the source.
 
 The button in the right shows a list of npcs from raid encounters.]=]
 L["STRING_CUSTOM_TEMPORARILY"] = " (|cFFFFC000temporarily|r)"
-L["STRING_CUSTOM_TEXTURE_GUIDE"] = [=[To load a texture file in the World of Warcraft client you need a file in .TGA format and its width and height must be multiples of 8.
-
-Place the texture inside /WoW Install Folder/retail/Interface/]=]
+L["STRING_CUSTOM_TEXTURE_GUIDE"] = [=[To use a custom file for icons:
+- The file must be in the .TGA format.
+- The file must be 512x512 pixels.
+- For spec, the file name must contain 'spec_'.
+- Place the texture inside /WoW Install Folder/_retail_/Interface/]=]
 L["STRING_DAMAGE"] = "Damage"
 L["STRING_DAMAGE_DPS_IN"] = "DPS received from"
 L["STRING_DAMAGE_FROM"] = "Took damage from"
@@ -1262,6 +1290,8 @@ L["STRING_OPTIONS_TOOLBARSIDE_DESC"] = [=[Places the title bar on the top of the
 
 |cFFFFFF00Important|r: when alternating the position, title text won't change, check out |cFFFFFF00Title Bar: Text|r section for more options.]=]
 L["STRING_OPTIONS_TOOLS_ANCHOR"] = "Tools:"
+L["STRING_OPTIONS_TOOLTIPS_DISABLE"] = "Disable Tooltips"
+L["STRING_OPTIONS_TOOLTIPS_DISABLE_DESC"] = "Disable tooltips for the selected window."
 L["STRING_OPTIONS_TOOLTIP_ANCHOR"] = "Settings:"
 L["STRING_OPTIONS_TOOLTIP_ANCHORTEXTS"] = "Texts:"
 L["STRING_OPTIONS_TOOLTIPS_ABBREVIATION"] = "Abbreviation Type"
@@ -1930,9 +1960,11 @@ L["STRING_CUSTOM_TARGET_DESC"] = [=[This is the target of the source.
 
 The button in the right shows a list of npcs from raid encounters.]=]
 L["STRING_CUSTOM_TEMPORARILY"] = " (|cFFFFC000temporarily|r)"
-L["STRING_CUSTOM_TEXTURE_GUIDE"] = [=[To load a texture file in the World of Warcraft client you need a file in .TGA format and its width and height must be multiples of 8.
-
-Place the texture inside /WoW Install Folder/retail/Interface/]=]
+L["STRING_CUSTOM_TEXTURE_GUIDE"] = [=[To use a custom file for icons:
+- The file must be in the .TGA format.
+- The file must be 512x512 pixels.
+- For spec, the file name must contain 'spec_'.
+- Place the texture inside /WoW Install Folder/_retail_/Interface/]=]
 L["STRING_DAMAGE"] = "Damage"
 L["STRING_DAMAGE_DPS_IN"] = "DPS received from"
 L["STRING_DAMAGE_FROM"] = "Took damage from"
@@ -2200,6 +2232,8 @@ L["STRING_OPTIONS_ANIMATESCROLL_DESC"] = "When enabled, scrollbar uses a animati
 L["STRING_OPTIONS_APPEARANCE"] = "Appearance"
 L["STRING_OPTIONS_ATTRIBUTE_TEXT"] = "Title Text Settings"
 L["STRING_OPTIONS_ATTRIBUTE_TEXT_DESC"] = "These options control the title text of window."
+L["STRING_OPTIONS_AUTO_COMBATLOG"] = "Auto Start Combatlog"
+L["STRING_OPTIONS_AUTO_COMBATLOG_DESC"] = "Automatically start and stop logging combat to the combatlog.txt file when you enter or leave a raid or dungeon."
 L["STRING_OPTIONS_AUTO_SWITCH"] = "All Roles |cFFFFAA00(in combat)|r"
 L["STRING_OPTIONS_AUTO_SWITCH_COMBAT"] = "|cFFFFAA00(in combat)|r"
 L["STRING_OPTIONS_AUTO_SWITCH_DAMAGER_DESC"] = "When in damager specialization, this window show the selected attribute or plugin."
@@ -2686,6 +2720,11 @@ L["STRING_OPTIONS_PERFORMANCECAPTURES_DESC"] = "These options are responsible fo
 L["STRING_OPTIONS_PERFORMANCEPROFILES_ANCHOR"] = "Performance Profiles:"
 L["STRING_OPTIONS_PICONS_DIRECTION"] = "Plugins Attach on Right"
 L["STRING_OPTIONS_PICONS_DIRECTION_DESC"] = "When checked, plugin buttons are shown on right side of the menu buttons."
+L["STRING_OPTIONS_PLAYERNAME"] = "Player Name"
+L["STRING_OPTIONS_PLAYERNAME_AUTO_ALIGNMENT"] = "Auto Alignment"
+L["STRING_OPTIONS_PLAYERNAME_AUTO_ALIGNMENT_DESC"] = "Disable this only if you experience player name alignment issues."
+L["STRING_OPTIONS_PLAYERNAME_AUTO_WIDTH"] = "Length Auto"
+L["STRING_OPTIONS_PLAYERNAME_WIDTH"] = "Length"
 L["STRING_OPTIONS_PLUGINS"] = "Plugins"
 L["STRING_OPTIONS_PLUGINS_AUTHOR"] = "Author"
 L["STRING_OPTIONS_PLUGINS_NAME"] = "Name"
@@ -2863,6 +2902,7 @@ L["STRING_OPTIONS_SEGMENTSSAVE"] = "Segments Saved"
 L["STRING_OPTIONS_SEGMENTSSAVE_DESC"] = [=[How many segments you want to save between game sessions.
 
 High values may increase the time your character takes to logoff.]=]
+L["STRING_OPTIONS_SELECT_TEMPLATE"] = "Select Template"
 L["STRING_OPTIONS_SENDFEEDBACK"] = "Feedback"
 L["STRING_OPTIONS_SHOW_SIDEBARS"] = "Show Skin Border"
 L["STRING_OPTIONS_SHOW_SIDEBARS_DESC"] = "Show the border of the window from the skin file, use the same color as the 'Window Color'."
@@ -2950,6 +2990,8 @@ L["STRING_OPTIONS_TEXT_OUTLINE"] = "Text Outline"
 L["STRING_OPTIONS_TEXT_RIGHT_ANCHOR"] = "Right Text:"
 L["STRING_OPTIONS_TEXT_ROUTILINE_DESC"] = "Enable or disable the outline for right text."
 L["STRING_OPTIONS_TEXT_ROWICONS_ANCHOR"] = "Icons:"
+L["STRING_OPTIONS_TEXT_SHADOWCOLOR"] = "Shadow Color"
+L["STRING_OPTIONS_TEXT_SHADOWOFFSET"] = "Shadow Offset %s"
 L["STRING_OPTIONS_TEXT_SHOW_BRACKET"] = "Bracket"
 L["STRING_OPTIONS_TEXT_SHOW_BRACKET_DESC"] = "Choose which character is used to open and close the per second and percent block."
 L["STRING_OPTIONS_TEXT_SHOW_PERCENT"] = "Show Percent"
@@ -3028,6 +3070,8 @@ L["STRING_OPTIONS_TOOLTIPS_BACKGROUNDCOLOR_DESC"] = "Choose the color used on th
 L["STRING_OPTIONS_TOOLTIPS_BORDER_COLOR_DESC"] = "Change the border color."
 L["STRING_OPTIONS_TOOLTIPS_BORDER_SIZE_DESC"] = "Change the border size."
 L["STRING_OPTIONS_TOOLTIPS_BORDER_TEXTURE_DESC"] = "Modify the border texture file."
+L["STRING_OPTIONS_TOOLTIPS_DISABLE"] = "Disable Tooltips"
+L["STRING_OPTIONS_TOOLTIPS_DISABLE_DESC"] = "Disable tooltips for the selected window."
 L["STRING_OPTIONS_TOOLTIPS_FONTCOLOR"] = "Text Color"
 L["STRING_OPTIONS_TOOLTIPS_FONTCOLOR_DESC"] = "Change the color used on tooltip texts."
 --[[Translation missing --]]
@@ -3193,6 +3237,7 @@ L["STRING_OPTIONSMENU_TOOLTIP"] = "Tooltips"
 L["STRING_OPTIONSMENU_WALLPAPER"] = "Wallpaper"
 L["STRING_OPTIONSMENU_WINDOW"] = "Window: General"
 L["STRING_OPTIONSMENU_WINDOWBODY"] = "Window Body"
+L["STRING_OR"] = "Or"
 L["STRING_OVERALL"] = "Overall"
 L["STRING_OVERHEAL"] = "Overheal"
 L["STRING_OVERHEALED"] = "Overhealed"
@@ -3317,8 +3362,7 @@ L["STRING_SIMPLE_TEXT_FORMAT"] = "Use Simple Text Formatting"
 L["STRING_SIMPLE_TEXT_FORMAT_ASLIGNED"] = ""
 --[[Translation missing --]]
 L["STRING_SIMPLE_TEXT_FORMAT_ASLIGNED_DESC"] = ""
---[[Translation missing --]]
-L["STRING_SIMPLE_TEXT_FORMAT_ASLIGNED_SPACE_BETWEEN"] = ""
+L["STRING_SIMPLE_TEXT_FORMAT_ASLIGNED_SPACE_BETWEEN"] = "Columns Gap"
 L["STRING_SIMPLE_TEXT_FORMAT_DESC"] = "Enable the use of the three rules below."
 --[[Translation missing --]]
 L["STRING_SIMPLE_TEXT_FORMAT_TEMPLATE2"] = ""

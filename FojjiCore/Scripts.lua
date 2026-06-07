@@ -1,6 +1,6 @@
 local SharedMedia = LibStub("LibSharedMedia-3.0")
 FojjiCore = {}
-FojjiCore_Version = "1.6.7"
+FojjiCore_Version = "1.7.1"
 
 -- Get Font
 function FojjiCore:GetFontFromAura(auraName)
@@ -74,3 +74,20 @@ function FojjiCore:PatchFontForGroup(groupName, fontName, isRecursive)
     end
 end
 
+-- Send custom event on WA Options
+function FojjiCore:InitWeakAurasOptionsHook()
+    if self.waOptionsHooked then 
+		return
+	end
+    if not WeakAuras then
+		return
+	end
+    self.waOptionsHooked = true
+	
+    if WeakAuras.OpenOptions then
+        hooksecurefunc(WeakAuras, "OpenOptions", function()
+            WeakAuras.ScanEvents("WA_FJI_OPTIONS_OPENED")
+        end)
+    end
+end
+FojjiCore:InitWeakAurasOptionsHook()

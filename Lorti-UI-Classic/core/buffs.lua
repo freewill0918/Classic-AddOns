@@ -300,17 +300,21 @@
   end
 
   --temp enchant stuff
-  applySkin(TempEnchant1)
-  applySkin(TempEnchant2)
-  applySkin(TempEnchant3)
+  --MoP Classic 5.5.x replaced the classic BuffFrame; TempEnchant1/2/3 globals no longer exist.
+  --No reliable reference for the new structure, so skip skinning these (Blizzard default look).
+  if TempEnchant1 then
+    applySkin(TempEnchant1)
+    applySkin(TempEnchant2)
+    applySkin(TempEnchant3)
 
-  --position the temp enchant buttons
-  TempEnchant1:ClearAllPoints()
-  TempEnchant1:SetPoint("TOPRIGHT", rBFS_BuffDragFrame, "TOPRIGHT", 0, 0) --button will be repositioned later in case temp enchant and consolidated buffs are both available
-  TempEnchant2:ClearAllPoints()
-  TempEnchant2:SetPoint("TOPRIGHT", TempEnchant1, "TOPLEFT", -cfg.buffFrame.colSpacing, 0)
-  TempEnchant3:ClearAllPoints()
-  TempEnchant3:SetPoint("TOPRIGHT", TempEnchant2, "TOPLEFT", -cfg.buffFrame.colSpacing, 0)
+    --position the temp enchant buttons
+    TempEnchant1:ClearAllPoints()
+    TempEnchant1:SetPoint("TOPRIGHT", rBFS_BuffDragFrame, "TOPRIGHT", 0, 0) --button will be repositioned later in case temp enchant and consolidated buffs are both available
+    TempEnchant2:ClearAllPoints()
+    TempEnchant2:SetPoint("TOPRIGHT", TempEnchant1, "TOPLEFT", -cfg.buffFrame.colSpacing, 0)
+    TempEnchant3:ClearAllPoints()
+    TempEnchant3:SetPoint("TOPRIGHT", TempEnchant2, "TOPLEFT", -cfg.buffFrame.colSpacing, 0)
+  end
   
   --consolidated buff stuff
   --ConsolidatedBuffs:SetScript("OnLoad", nil) --do not fuck up the icon anymore
@@ -320,6 +324,118 @@
   --ConsolidatedBuffs:SetPoint("TOPRIGHT", rBFS_BuffDragFrame, "TOPRIGHT", 0, 0)
   --ConsolidatedBuffsTooltip:SetScale(cfg.consolidatedTooltipScale)
   
-  --hook Blizzard functions
-  hooksecurefunc("BuffFrame_UpdateAllBuffAnchors", updateAllBuffAnchors)
-  hooksecurefunc("DebuffButton_UpdateAnchors", updateDebuffAnchors)
+  --hook Blizzard functions (removed in MoP Classic 5.5.x; only hook if they still exist)
+  if type(BuffFrame_UpdateAllBuffAnchors) == "function" then
+    hooksecurefunc("BuffFrame_UpdateAllBuffAnchors", updateAllBuffAnchors)
+  end
+  if type(DebuffButton_UpdateAnchors) == "function" then
+    hooksecurefunc("DebuffButton_UpdateAnchors", updateDebuffAnchors)
+  end
+
+  ---------------------------------------
+  -- MoP Classic 5.5.x: retail-style BuffFrame/DebuffFrame
+  ---------------------------------------
+  -- The player buff/debuff frames were rewritten as pooled, nameless aura buttons
+  -- (b.Icon / b.Duration / b.Count, no b.Border, no global BuffButton1), so the old
+  -- hook-driven applySkin above can't reach them. Skin them directly on aura updates.
+  --BuffFrame.auraFrames mixes two templates: some elements have .Icon as a Texture,
+  --others (isAuraAnchor) wrap it in a Frame. Dig out the real Texture either way.
+  local function iconTex(b)
+    local ic = b.Icon
+    if not ic then return nil end
+    if ic.GetTexture then return ic end                       --Icon is itself a Texture
+    if ic.Icon and ic.Icon.GetTexture then return ic.Icon end --Icon is a Frame wrapping a Texture
+    if ic.Texture and ic.Texture.GetTexture then return ic.Texture end
+    if ic.GetRegions then
+      for _, r in ipairs({ ic:GetRegions() }) do
+        if r.GetObjectType and r:GetObjectType() == "Texture" then return r end
+      end
+    end
+    return nil
+  end
+  local function fontStr(o)
+    if not o then return nil end
+    if o.SetFont then return o end
+    if o.GetRegions then
+      for _, r in ipairs({ o:GetRegions() }) do
+        if r.GetObjectType and r:GetObjectType() == "FontString" then return r end
+      end
+    end
+    return nil
+  end
+
+  local function skinAuraButton(b, conf)
+    if not b or not b.CreateTexture then return end
+    --icon (crop the default border)
+    local icon = iconTex(b)
+    if icon and icon.SetTexCoord then icon:SetTexCoord(0.1, 0.9, 0.1, 0.9) end
+    --anchor decorations to the icon, not the frame: the modern aura frame is taller than
+    --the icon (extra room for the duration text below), so framing the whole frame looks oversized
+    local anchor = icon or b
+    --border: drawn on an overlay frame above the icon (gloss sheen), created once
+    if not b.lortiBorder then
+      local ov = CreateFrame("Frame", nil, b)
+      ov:SetAllPoints(b)
+      ov:SetFrameLevel(b:GetFrameLevel() + 4)
+      local border = ov:CreateTexture(nil, "OVERLAY")
+      border:SetTexture(conf.border.texture)
+      border:SetTexCoord(0, 1, 0, 1)
+      border:SetAllPoints(anchor)
+      local col = conf.border.classcolored and classColor or conf.border.color
+      border:SetVertexColor(col.r, col.g, col.b)
+      b.lortiBorder = border
+    end
+    --shadow backdrop (behind the button), created once
+    if not b.lortiBg and conf.background.show then
+      local back = CreateFrame("Frame", nil, b, "BackdropTemplate")
+      back:SetPoint("TOPLEFT", anchor, "TOPLEFT", -conf.background.padding, conf.background.padding)
+      back:SetPoint("BOTTOMRIGHT", anchor, "BOTTOMRIGHT", conf.background.padding, -conf.background.padding)
+      back:SetFrameLevel(max(0, b:GetFrameLevel() - 1))
+      back:SetBackdrop({ edgeFile = conf.background.edgeFile, edgeSize = conf.background.inset })
+      back:SetBackdropBorderColor(conf.background.color.r, conf.background.color.g, conf.background.color.b, conf.background.color.a)
+      b.lortiBg = back
+    end
+    --fonts
+    local dur = fontStr(b.Duration)
+    if dur then
+      dur:SetFont(conf.duration.font, conf.duration.size, "THINOUTLINE")
+      --the modern frame re-anchors the duration below the whole (taller) frame every update,
+      --leaving a gap under the icon. Hook SetPoint to keep pulling it back under the icon.
+      if icon and not dur.lortiAnchored then
+        dur.lortiAnchored = true
+        local function reanchor()
+          if dur.lortiBusy then return end
+          dur.lortiBusy = true
+          dur:ClearAllPoints()
+          dur:SetPoint("TOP", icon, "BOTTOM", 0, -1)
+          dur.lortiBusy = false
+        end
+        reanchor()
+        hooksecurefunc(dur, "SetPoint", reanchor)
+      end
+    end
+    local cnt = fontStr(b.Count)
+    if cnt then cnt:SetFont(conf.count.font, conf.count.size, "THINOUTLINE") end
+    --only show our decorations when the slot actually holds an aura (the pool keeps
+    --empty, still-shown frames; without this they render as bare black boxes)
+    local active = b:IsShown() and icon and icon.GetTexture and icon:GetTexture() and true or false
+    if b.lortiBorder then b.lortiBorder:SetShown(active) end
+    if b.lortiBg then b.lortiBg:SetShown(active) end
+  end
+
+  local function skinAllAuras()
+    if BuffFrame and BuffFrame.auraFrames then
+      for _, b in ipairs(BuffFrame.auraFrames) do skinAuraButton(b, ns.cfg.buffFrame) end
+    end
+    if DebuffFrame and DebuffFrame.auraFrames then
+      for _, b in ipairs(DebuffFrame.auraFrames) do skinAuraButton(b, ns.cfg.debuffFrame) end
+    end
+  end
+
+  if BuffFrame and BuffFrame.auraFrames then
+    local af = CreateFrame("Frame")
+    af:RegisterUnitEvent("UNIT_AURA", "player")
+    af:RegisterEvent("PLAYER_ENTERING_WORLD")
+    af:SetScript("OnEvent", skinAllAuras)
+    skinAllAuras()
+  end

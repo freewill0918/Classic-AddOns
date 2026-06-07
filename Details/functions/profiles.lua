@@ -255,7 +255,7 @@ function Details:ApplyProfile(profileName, bNoSave, bIsCopy)
 
 	--apply the skin
 		--first save the local instance configs
-		Details:SaveLocalInstanceConfig()
+		Details222.SaveVariables.SaveLocalInstanceConfig()
 
 		local saved_skins = profile.instances
 		local instance_limit = Details.instances_amount
@@ -554,7 +554,7 @@ function Details:SaveProfile (saveas)
 		end
 	end
 	Details.do_not_save_skins = nil
-	Details:SaveLocalInstanceConfig()
+	Details222.SaveVariables.SaveLocalInstanceConfig()
 
 	return profile
 end
@@ -564,6 +564,7 @@ local default_profile = {
 	class_specs_coords = {
 		[577] = {128/512, 192/512, 256/512, 320/512}, --havoc demon hunter
 		[581] = {192/512, 256/512, 256/512, 320/512}, --vengeance demon hunter
+		[1480] = {448/512, 512/512, 256/512, 320/512}, --devourer demon hunter
 
 		[250] = {0, 64/512, 0, 64/512}, --blood dk
 		[251] = {64/512, 128/512, 0, 64/512}, --frost dk
@@ -1189,6 +1190,7 @@ local default_profile = {
 
 Details.default_profile = default_profile
 
+
 -- aqui fica as propriedades do jogador que n�o ser�o armazenadas no profile
 local default_player_data = {
 		coach = {
@@ -1196,6 +1198,10 @@ local default_player_data = {
 			welcome_panel_pos = {},
 			last_coach_name = false,
 		},
+
+		auto_combatlog = false,
+
+		apocalypse_savedsegments = {},
 
 		arena_data_headers = {},
 		arena_data_compressed = {}, --store data for arena the character did
@@ -1394,6 +1400,7 @@ local default_global_data = {
 
 	--profile pool
 		__profiles = {},
+		__char_profiles = {}, --table<name or guid> = profile name
 		latest_news_saw = "",
 		always_use_profile = false,
 		always_use_profile_name = "",
@@ -1486,6 +1493,7 @@ local default_global_data = {
 
 	--keystone cache
 		keystone_cache = {},
+		keystone_alts_cache = {},
 
 	--all switch settings (panel shown when right click the title bar)
 		all_switch_config = {
@@ -1531,7 +1539,7 @@ local default_global_data = {
 	breakdown_midnight = {
 		players = {width = 200, height = 296},
 		segments = {width = 200, height = 228},
-		spells = {width = 464, height = 398},
+		spells = {width = 464, height = 400},
 		targets = {width = 300, height = 170},
 		spelldetails = {width = 231, height = 261},
 		compare = {width = 231, height = 200},
@@ -1724,6 +1732,8 @@ local default_global_data = {
 
 			mythicrun_time_type = 1, --1: combat time (the amount of time the player is in combat) 2: run time (the amount of time it took to finish the mythic+ run)
 		}, --implementar esse time_type quando estiver dando refresh na janela
+
+		mythic_small_window_pos = {},
 
 	--plugin window positions
 		plugin_window_pos = {},
@@ -1926,7 +1936,7 @@ function Details:RestoreState_CurrentMythicDungeonRun()
 				print("D! (debug) mythic level isn't equal.", mythicLevel, savedTable.level)
 			end
 		else
-			print("D! (debug) zone name or zone Id isn't the same:", zoneName, savedTable.dungeon_name, currentZoneID, savedTable.dungeon_zone_id)
+			--print("D! (debug) zone name or zone Id isn't the same:", zoneName, savedTable.dungeon_name, currentZoneID, savedTable.dungeon_zone_id)
 		end
 
 		--mythic run is over
@@ -1939,7 +1949,7 @@ end
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 --~export ~ import ~profile
-
+--these are keys in the profile that should not be exported
 local exportProfileBlacklist = {
 	custom = true,
 	cached_specs = true,
@@ -1981,16 +1991,44 @@ local exportProfileBlacklist = {
 	installed_skins_cache = true,
 	trinket_data = true,
 	keystone_cache = true,
+	keystone_alts_cache = true,
 	performance_profiles = true,
+	coach = true,
+	apocalypse_savedsegments = true,
+	arena_data_headers = true,
+	arena_data_compressed = true, --store data for arena the character did
+	arena_data_index_selected = true, --index of the arena data selected to be shown in the arena data panel
+	player_stats = true,
+	combat_log = true,
+	data_harvest_for_charsts = true,
+	data_harvested_for_charts = true,
+	ocd_tracker = true,
+	mythic_plus_log = true,
+	cached_roles = true,
+	last_day = true,
+	last_instance_id = true,
+	last_instance_time = true,
+	mythic_dungeon_id = true,
+	local_instances_config = true,
+	on_death_menu = true,
+	damage_meter_sessions = true,
+	damage_meter_session_info = true,
+	current_exp_raid_encounters = true,
+	savedCustomSpells = true,
+	recent_players = true,
+	third_party = true,
+	mythic_small_window_pos = true,
 }
 
 --transform the current profile into a string which can be shared in the internet
-function Details:ExportCurrentProfile()
+---@param self details
+---@param profileName string|nil if passing nil it export the current profile
+function Details:ExportCurrentProfile(profileName)
 	--save the current profile
 	Details:SaveProfile()
 
 	--data saved inside the profile
-	local profileObject = Details:GetProfile (Details:GetCurrentProfileName())
+	local profileObject = Details:GetProfile(profileName or Details:GetCurrentProfileName(), false)
 	if (not profileObject) then
 		Details:Msg("fail to get the current profile.")
 		return false
@@ -2030,7 +2068,8 @@ function Details:ExportCurrentProfile()
 		version = 1,
 	}
 
-	local compressedData = Details:CompressData (exportedData, "print")
+	local bUseBlizzardEncoding = true
+	local compressedData = Details:CompressData (exportedData, "print", bUseBlizzardEncoding)
 	return compressedData
 end
 
@@ -2052,7 +2091,6 @@ function Details:ImportProfile (profileString, newProfileName, bImportAutoRunCod
 
 	local dataTable = Details:DecompressData (profileString, "print")
 	if (dataTable) then
-
 		local profileObject = Details:GetProfile (newProfileName, false)
 		local nameWasDuplicate = false
     if not overwriteExisting then
@@ -2148,7 +2186,8 @@ function Details:ImportProfile (profileString, newProfileName, bImportAutoRunCod
 		--transfer instance data to the new created profile
 		profileObject.instances = DetailsFramework.table.copy({}, profileData.instances)
 
-		Details:ApplyProfile (newProfileName)
+		local shouldSkipSave = overwriteExisting and Details:GetCurrentProfileName() == newProfileName
+		Details:ApplyProfile (newProfileName, shouldSkipSave)
 
 		--reset automation settings (due to user not knowing why some windows are disappearing)
 		for instanceId, instance in Details:ListInstances() do

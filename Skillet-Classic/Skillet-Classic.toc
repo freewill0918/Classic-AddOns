@@ -1,10 +1,10 @@
-## Interface: 11508, 20505, 50503
+## Interface: 11508, 20505, 50504
 ## Title: Skillet-Classic |cff7fff7f -Ace3-|r
 ## Notes: A replacement tradeskill window
 ## Notes-esES: Una sustitucion de la ventana de Habilidades de Comercio
 ## Notes-ruRU: Заменяет окно профессий на более функциональное.
 ## Author: bsmorgan
-## Version: 2.31
+## Version: 2.37
 ## Category-enUS: Professions
 ## Category-deDE: Berufe
 ## Category-esES: Profesiones
@@ -96,6 +96,7 @@ Plugins\Auctionator.lua
 Plugins\AuctionDB.lua
 Plugins\Auctioneer.lua
 Plugins\AuctionLite.lua
+Plugins\CanIMogIt.lua
 Plugins\DataStoreAuctions.lua
 Plugins\AckisRecipeList.lua
 

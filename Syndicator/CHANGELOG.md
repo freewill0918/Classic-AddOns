@@ -1,6 +1,6 @@
 # Syndicator
 
-## [265](https://github.com/TheMouseNest/Syndicator/tree/265) (2026-03-18)
-[Full Changelog](https://github.com/TheMouseNest/Syndicator/compare/264...265) [Previous Releases](https://github.com/TheMouseNest/Syndicator/releases)
+## [270](https://github.com/TheMouseNest/Syndicator/tree/270) (2026-06-04)
+[Full Changelog](https://github.com/TheMouseNest/Syndicator/compare/269...270) 
 
-- Fix "active season" keyword including last season gear  
+- Mists: Fix for function existing, but no keyring  

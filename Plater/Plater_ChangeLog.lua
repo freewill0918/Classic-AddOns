@@ -8,6 +8,28 @@ function Plater.GetChangelogTable()
 	if (not Plater.ChangeLogTable) then
 		Plater.ChangeLogTable = {
 
+			{1779175611, "Bug Fix", "May 19th, 2026", "Fixing wrong outline value.", "cont1nuity"},
+			{1779175611, "Bug Fix", "May 19th, 2026", "Fixing font scaling leading to pixelated fonts.", "cont1nuity"},
+			{1779175611, "Bug Fix", "May 8th, 2026", "Base compatibility for MoP 5.5.4 client.", "cont1nuity"},
+			{1779175611, "Backend Change", "May 4th, 2026", "Preparational changes to hit-test frames (clickable area) in the Midnight client.", "cont1nuity"},
+			{1779175611, "Backend Change", "Apr 23rd, 2026", "Additions and fixes for the Designer.", "Terciob"},
+			{1779175611, "Bug Fix", "Apr 25th, 2026", "Fixed text wrapping for friendly player name-only mode.", "cont1nuity"},
+			{1779175611, "Backend Change", "Apr 23rd, 2026", "Fonts are now set to smoot scaling, improving font handling.", "cont1nuity"},
+			{1779175611, "Backend Change", "Apr 23rd, 2026", "Added Slug font style suport accross all fonts for Midnight clients.", "cont1nuity"},
+			{1779175611, "Bug Fix", "Apr 23rd, 2026", "Adjusted fine-tune-scale on profile import for Midnight client.", "cont1nuity"},
+			{1779175611, "Bug Fix", "Apr 23rd, 2026", "Fixed number abbreviation for different locales.", "cont1nuity"},
+			{1779175611, "Bug Fix", "Apr 22nd, 2026", "Fixed a few bugs around Midnight 12.0.5 release (where things just got worse for everyone).", "cont1nuity"},
+			
+			{1776773152, "Bug Fix", "Apr 18th, 2026", "Fixed a few bugs around stored CVars and secrets.", "cont1nuity"},
+			{1776773152, "Backend Change", "Apr 8th, 2026", "Adding public profile API for wago.", "cont1nuity"},
+			{1776773152, "Backend Change", "Apr 5th, 2026", "Re-adding missing options for classic client.", "cont1nuity"},
+			{1776773152, "Backend Change", "Apr 3rd, 2026", "Localizations for the Auto tab.", "Terciob"},
+			
+			{1775215167, "Backend Change", "Mar 19th, 2026", "Added option to hide blizzard friendly npc helathbars separately from players.", "cont1nuity"},
+			{1775215167, "Bug Fix", "Mar 19th, 2026", "Fixed a few missing options.", "cont1nuity"},
+			{1775215167, "Backend Change", "Mar 19th, 2026", "Added option to remove realm name on friendly players for blizzard default nameplates.", "cont1nuity"},
+			{1775215167, "Backend Change", "Mar 19th, 2026", "Improved aura border sizing.", "cont1nuity"},
+
 			{1773961544, "Bug Fix", "Mar 19th, 2026", "Fix 'no tank aggro' detection for Midnight.", "cont1nuity"},
 			{1773961544, "Bug Fix", "Mar 19th, 2026", "Adding option to hide cast bar border shield for unitnrerruptible casts.", "cont1nuity"},
 			{1773961544, "Bug Fix", "Mar 19th, 2026", "Fix the border on aura icons (a bit).", "cont1nuity"},

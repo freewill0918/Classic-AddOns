@@ -213,6 +213,9 @@ local xpStrings = {
 
 --Only mobs that gave xp.
 function NIT:addLevelLogMobCount(text)
+	if (issecretvalue and issecretvalue(text)) then
+		return;
+	end
 	if (LOCALE_enUS or LOCALE_enGB or LOCALE_esES or LOCALE_esMX) then
 		--invalid capture index
 		--Disabled in some non-english clients until I work out how to capture for all.

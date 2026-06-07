@@ -18,6 +18,7 @@ local GetBestMapForUnit = C_Map.GetBestMapForUnit;
 local GetPlayerMapPosition = C_Map.GetPlayerMapPosition;
 local GameTooltip_AddNewbieTip = GameTooltip_AddNewbieTip;
 local hooksecurefunc = hooksecurefunc;
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded;
 
 --非战斗状态中允许shift+左键拖动玩家头像
 local function UnitFramesPlus_PlayerShiftDrag()
@@ -42,19 +43,21 @@ local function UnitFramesPlus_PlayerShiftDrag()
         end
     end)
 
-    PlayerFrame_SetLocked(true);
+    if PlayerFrame_SetLocked then PlayerFrame_SetLocked(true) end
     PlayerFrame:SetMovable(true);
     PlayerFrame:SetUserPlaced(false);
     PlayerFrame:SetClampedToScreen(true);
 
-    hooksecurefunc("PlayerFrame_ResetUserPlacedPosition", function()
-        UnitFramesPlusVar["player"]["moved"] = 0;
-        -- UnitFramesPlusVar["target"]["moved"] = 0;
-        -- UnitFramesPlus_TargetPosition();
-        if TitanPanel_AdjustFrames then
-            TitanPanel_AdjustFrames();
-        end
-    end)
+    if _G.PlayerFrame_ResetUserPlacedPosition then
+        hooksecurefunc("PlayerFrame_ResetUserPlacedPosition", function()
+            UnitFramesPlusVar["player"]["moved"] = 0;
+            -- UnitFramesPlusVar["target"]["moved"] = 0;
+            -- UnitFramesPlus_TargetPosition();
+            if TitanPanel_AdjustFrames then
+                TitanPanel_AdjustFrames();
+            end
+        end)
+    end
 end
 
 function UnitFramesPlus_PlayerPositionSet()
@@ -112,6 +115,12 @@ PlayerExtraBarBG:Hide();
 --精英头像
 local UFP_PlayerTexture = "Interface\\TargetingFrame\\UI-TargetingFrame";
 function UnitFramesPlus_PlayerDragon()
+    -- Let a frame-skinning addon (EasyFrames / Lorti-UI-Classic) own the player frame border.
+    -- Overwriting it with the ornate UI-TargetingFrame texture looks like an oversized block
+    -- once a dark skin recolors it; mirror the EasyFrames handling in PlayerInit.
+    if C_AddOns.IsAddOnLoaded("EasyFrames") or C_AddOns.IsAddOnLoaded("Lorti-UI-Classic") then
+        return
+    end
     if UnitFramesPlusDB["player"]["dragonborder"] == 1 then
         if UnitFramesPlusDB["player"]["bordertype"] == 1 then
             UFP_PlayerTexture = "Interface\\TargetingFrame\\UI-TargetingFrame-Elite";
@@ -468,16 +477,20 @@ function UnitFramesPlus_PlayerColorHPBarDisplayUpdate()
 end
 
 --目标生命条染色
+if _G.UnitFrameHealthBar_Update then
 hooksecurefunc("UnitFrameHealthBar_Update", function(statusbar, unit)
-    if unit == "player" and statusbar.unit == "player" then 
+    if unit == "player" and statusbar.unit == "player" then
         UnitFramesPlus_PlayerColorHPBarDisplayUpdate();
     end
 end);
+end
+if _G.HealthBar_OnValueChanged then
 hooksecurefunc("HealthBar_OnValueChanged", function(self, value, smooth)
-    if self.unit == "player" then 
+    if self.unit == "player" then
         UnitFramesPlus_PlayerColorHPBarDisplayUpdate();
     end
 end);
+end
 
 --玩家头像内战斗信息
 function UnitFramesPlus_PlayerPortraitIndicator()
@@ -678,8 +691,10 @@ function UnitFramesPlus_PlayerFrameScaleSet(newscale)
     local newscale = newscale or UnitFramesPlusDB["player"]["scale"];
     local point, relativeTo, relativePoint, offsetX, offsetY = PlayerFrame:GetPoint();
     PlayerFrame:SetScale(newscale);
-    PlayerFrame:ClearAllPoints();
-    PlayerFrame:SetPoint(point, relativeTo, relativePoint, offsetX*oldscale/newscale, offsetY*oldscale/newscale);
+    if point then
+        PlayerFrame:ClearAllPoints();
+        PlayerFrame:SetPoint(point, relativeTo, relativePoint, offsetX*oldscale/newscale, offsetY*oldscale/newscale);
+    end
     UnitFramesPlus_TargetPosition();
     if UnitFramesPlusDB["player"]["portrait"] == 1 and UnitFramesPlusDB["player"]["portraittype"] == 1 then
         UnitFramesPlus_PlayerPortraitDisplayUpdate();
@@ -799,7 +814,7 @@ end
 --模块初始化
 function UnitFramesPlus_PlayerInit()
 
-	if IsAddOnLoaded("EasyFrames") then
+	if C_AddOns.IsAddOnLoaded("EasyFrames") then
 		UnitFramesPlusDB["player"]["extrabar"] = 0
 		UnitFramesPlusDB["player"]["dragonborder"] = 0
 		UnitFramesPlusDB["player"]["colorhp"] = 0

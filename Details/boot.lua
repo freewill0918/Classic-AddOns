@@ -17,12 +17,12 @@
 		end
 		local addonName, Details222 = ...
 		local version, build, date, tvs = GetBuildInfo()
-		Details.build_counter = 14850
-		Details.alpha_build_counter = 14850 --if this is higher than the regular counter, use it instead
+		Details.build_counter = 15101
+		Details.alpha_build_counter = 15101 --if this is higher than the regular counter, use it instead
 		Details.dont_open_news = true
 		Details.game_version = version
 		Details.userversion = version .. " " .. Details.build_counter
-		Details.realversion = 171 --core version, this is used to check API version for scripts and plugins (see alias below)
+		Details.realversion = 172 --core version, this is used to check API version for scripts and plugins (see alias below)
 		Details.gametoc = tvs
 		Details.APIVersion = Details.realversion --core version
 		Details.version = Details.userversion .. " (core " .. Details.realversion .. ")" --simple stirng to show to players
@@ -94,6 +94,19 @@
 		Details222.IsPTR = function()
 			local _, _, _, a = GetBuildInfo()
 			if a >= 120005 then
+				return true
+			end
+		end
+
+		Details222.IsTOCBiggerOrEqualTo = function(tocNumber)
+			if tvs >= tocNumber then
+				return true
+			end
+		end
+
+		function Details222.IsPTR1205()
+			local _, _, _, a = GetBuildInfo()
+			if tvs >= 120005 then
 				return true
 			end
 		end
@@ -208,6 +221,7 @@
 		}
 		Details222.Notes = {}
 		Details222.MythicPlusBreakdown = {}
+		Details222.MythicKeys = {}
 		Details222.EJCache = {}
 		Details222.Segments = {}
 		Details222.Tables = {}
@@ -272,7 +286,19 @@
 			SetType = function(newType)
 				Details222.Apocalypse.segmentType = newType
 			end,
-			IsServerInCombat = function()
+			IsServerInCombat = function(forceCheckOverall)
+				if (forceCheckOverall) then
+					local s = Details222.B.GetSegment("Type", 0, 0)
+					if s and s.combatSources and s.combatSources[1] and issecretvalue(s.combatSources[1].name) then
+						return true
+					else
+						local e = Details222.B.GetSegment("Type", 0, 10)
+						if e and e.combatSources and e.combatSources[1] and issecretvalue(e.combatSources[1].name) then
+							return true
+						end
+						return false
+					end
+				end
 				return Details222.Apocalypse.ServerInCombat
 			end
 		}
@@ -297,8 +323,13 @@
 		---@param attribute number
 		---@return damagemeter_combat_session
 		function Details222.B.GetSegment(type, identifier, attribute)
-			local result = Details.DM[(getSegmentFName .. type)](identifier, attribute)
-			return result
+			if attribute < 0 then
+				local result = Details222.BParser.GetCustomDataForWindow(nil, attribute, type, identifier)
+				return result
+			else
+				local result = Details.DM[(getSegmentFName .. type)](identifier, attribute)
+				return result
+			end
 		end
 
 		---return a spell container
@@ -313,6 +344,10 @@
 			else
 				return Details.DM[(getSpellFname .. type)](identifier, attribute, guid, x)
 			end
+		end
+
+		function Details222.B.GetCombatTime(type)
+			return C_DamageMeter.GetSessionDurationSeconds(type)
 		end
 
 		---usage: local actorList, amountOfActors, totalAmount, combatTime = Details222.B.GetSegmentInfo(segment)
@@ -411,6 +446,10 @@
 
 		function Details222.B.GetCurrentTime(segmentType)
 			return Details222.B.GetSegment("Type", segmentType, 0).durationSeconds
+		end
+
+		function Details222.B.GetOverallTime()
+			return  C_DamageMeter.GetSessionDurationSeconds(0)
 		end
 
 		function Details:BleachFontString(fontString)
@@ -781,6 +820,8 @@ do
 
 		--store functions to create options frame
 		Details.optionsSection = {}
+
+		Details.ilevel = {}
 
 	--containers
 		--armazenas as fun��es do parser - All parse functions
@@ -1155,7 +1196,7 @@ do
 		--constants
 
 		if (DetailsFramework.IsWotLKWow()) then
-			--[[global]] DETAILS_HEALTH_POTION_ID = 33447 -- Runic Healing Potion
+			--[[global]] DETAILS_HEALTH_POTION1_ID = 33447 -- Runic Healing Potion
 			--[[global]] DETAILS_HEALTH_POTION2_ID = 41166 -- Runic Healing Injector
 			--[[global]] DETAILS_REJU_POTION_ID = 40087 -- Powerful Rejuvenation Potion
 			--[[global]] DETAILS_REJU_POTION2_ID = 40077 -- Crazy Alchemist's Potion
@@ -1171,7 +1212,7 @@ do
 			--[[global]] DETAILS_STR_POTION_ID = 307164
 			--[[global]] DETAILS_STAMINA_POTION_ID = 40093 --Indestructible Potion
 			--[[global]] DETAILS_HEALTH_POTION_LIST = {
-					[DETAILS_HEALTH_POTION_ID] = true, -- Runic Healing Potion
+					[DETAILS_HEALTH_POTION1_ID] = true, -- Runic Healing Potion
 					[DETAILS_HEALTH_POTION2_ID] = true, -- Runic Healing Injector
 					[DETAILS_HEALTHSTONE_ID] = true, --Warlock's Healthstone
 					[DETAILS_HEALTHSTONE2_ID] = true, --Warlock's Healthstone (1/2 Talent)
@@ -1183,8 +1224,10 @@ do
 				}
 
 		else
-			--[[global]] DETAILS_HEALTH_POTION_ID = 307192 -- spiritual healing potion
-			--[[global]] DETAILS_HEALTH_POTION2_ID = 359867 --cosmic healing potion
+			--[[global]] DETAILS_HEALTH_POTION1_ID = 307192 -- spiritual healing potion
+			--[[global]] DETAILS_HEALTH_POTION2_ID = 1234768 --cosmic healing potion
+			--[[global]] DETAILS_HEALTH_POTION3_ID = 1262857 --Potent Healing Potion
+
 			--[[global]] DETAILS_REJU_POTION_ID = 307194
 			--[[global]] DETAILS_MANA_POTION_ID = 307193
 			--[[global]] DETAILS_FOCUS_POTION_ID = 307161
@@ -1195,7 +1238,7 @@ do
 			--[[global]] DETAILS_STR_POTION_ID = 307164
 			--[[global]] DETAILS_STAMINA_POTION_ID = 307163
 			--[[global]] DETAILS_HEALTH_POTION_LIST = {
-					[DETAILS_HEALTH_POTION_ID] = true, --Healing Potion
+					[DETAILS_HEALTH_POTION1_ID] = true, --Healing Potion
 					[DETAILS_HEALTHSTONE_ID] = true, --Warlock's Healthstone
 					[DETAILS_REJU_POTION_ID] = true, --Rejuvenation Potion
 					[DETAILS_MANA_POTION_ID] = true, --Mana Potion
@@ -1476,6 +1519,7 @@ do
 		SharedMedia:Register("font", "TrashHand", [[Interface\Addons\Details\fonts\TrashHand.TTF]])
 		SharedMedia:Register("font", "Harry P", [[Interface\Addons\Details\fonts\HARRYP__.TTF]])
 		SharedMedia:Register("font", "FORCED SQUARE", [[Interface\Addons\Details\fonts\FORCED SQUARE.ttf]])
+		SharedMedia:Register("font", "Expressway", [[Interface\Addons\Details\fonts\Expressway.TTF]])
 
 		SharedMedia:Register("sound", "Details Gun1", [[Interface\Addons\Details\sounds\sound_gun2.ogg]])
 		SharedMedia:Register("sound", "Details Gun2", [[Interface\Addons\Details\sounds\sound_gun3.ogg]])
@@ -2100,3 +2144,67 @@ end
 C_Timer.After(5, function()
 --TutorialPointerFrame_1:HookScript("OnShow", function(self) self:Hide() end) --remove on v11 launch
 end)
+
+-- Support for wago addon packs
+DetailsAPI = DetailsAPI or {}
+---@param profileKey string --the name of the profile to be exported
+---@return string --the encoded profile string that can be imported by other users
+function DetailsAPI:ExportProfile(profileKey)
+    local profileString = Details:ExportCurrentProfile(profileKey)
+	return profileString
+end
+
+---@param profileString string --the encoded profile string to be imported
+---@param profileKey string --the name of the profile to be imported
+function DetailsAPI:ImportProfile(profileString, profileKey)
+	local bImportAutoRunCode = false
+	local bIsFromImportPrompt = false
+	local overwriteExisting = true
+	Details:ImportProfile(profileString, profileKey, bImportAutoRunCode, bIsFromImportPrompt, overwriteExisting)
+end
+
+---@param profileString string --the profile string to decode
+---@return table --the decoded profile data as a table
+function DetailsAPI:DecodeProfileString(profileString)
+    local profileTable = Details:DecompressData(profileString, "print")
+	return profileTable
+end
+
+---@param profileName string -- profileKey of an existing profile
+function DetailsAPI:SetProfile(profileName)
+	Details:ApplyProfile(profileName)
+end
+
+---@return table<string, boolean>  -- a table of all available profile keys in the format [profileKey] = true
+function DetailsAPI:GetProfileKeys()
+    local profileList = Details:GetProfileList()
+    local profileKeys = {}
+    for index, key in ipairs(profileList) do
+        profileKeys[key] = true
+    end
+    return profileKeys
+end
+
+---@return string --the profileKey of the currently active profile
+function DetailsAPI:GetCurrentProfileKey()
+    local currentProfileName = Details:GetCurrentProfileName()
+	return currentProfileName
+end
+
+function DetailsAPI:OpenConfig()
+    Details_OpenDefaultOptionsWindow()
+end
+
+function DetailsAPI:CloseConfig()
+    if (DetailsPluginContainerWindow and DetailsPluginContainerWindow:IsShown()) then
+        DetailsPluginContainerWindow:Hide()
+    end
+end
+
+---return a ready only table with which profile is assigned to other characters of the account.
+---@param self details
+---@return table<charname, profilekey> --a table in the format [charName] = profileKey
+function DetailsAPI:GetProfileAssignments()
+	local result = DetailsFramework.table.copy({}, _detalhes_global.__char_profiles)
+	return result
+end

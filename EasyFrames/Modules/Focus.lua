@@ -33,14 +33,12 @@ local OnShowHookScript = function(frame)
     frame:Hide()
 end
 
-
 function Focus:OnInitialize()
     self.db = EasyFrames.db
     db = self.db.profile
 end
 
 function Focus:OnEnable()
-    self:SetScale(db.focus.scaleFrame)
     self:ShowFocusFrameToT()
     self:ShowName(db.focus.showName)
     self:SetFrameNameFont()
@@ -51,10 +49,21 @@ function Focus:OnEnable()
     self:ReverseDirectionLosingHP(db.focus.reverseDirectionLosingHP)
 
     self:ShowAttackBackground(db.focus.showAttackBackground)
-    self:SetAttackBackgroundOpacity(db.focus.attackBackgroundOpacity)
+    --self:SetAttackBackgroundOpacity(db.focus.attackBackgroundOpacity)
     self:ShowPVPIcon(db.focus.showPVPIcon)
 
-    self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
+    hooksecurefunc(FocusFrame, "CheckClassification", function()
+        self:CheckClassification(FocusFrame);
+    end);
+
+    hooksecurefunc(FocusFrameHealthBar, "UpdateTextString", function()
+        self:UpdateHealthBarTextString(FocusFrame)
+    end)
+
+    hooksecurefunc(FocusFrameManaBar, "UpdateTextString", function()
+        self:UpdateManaBarTextString(FocusFrame)
+    end)
+
     self:SecureHook("UnitFramePortrait_Update", "MakeClassPortraits")
 end
 
@@ -62,7 +71,6 @@ function Focus:OnProfileChanged(newDB)
     self.db = newDB
     db = self.db.profile
 
-    self:SetScale(db.focus.scaleFrame)
     self:MakeClassPortraits(FocusFrame)
     self:ShowFocusFrameToT()
     self:ShowName(db.focus.showName)
@@ -77,17 +85,39 @@ function Focus:OnProfileChanged(newDB)
     self:SetAttackBackgroundOpacity(db.focus.attackBackgroundOpacity)
     self:ShowPVPIcon(db.focus.showPVPIcon)
 
-    self:UpdateTextStringWithValues()
-    self:UpdateTextStringWithValues(FocusFrameManaBar)
+    self:UpdateHealthBarTextString(FocusFrame)
+    self:UpdateManaBarTextString(FocusFrame)
 end
 
+function Focus:CheckClassification(frame)
+    local classification = UnitClassification(frame.unit);
 
-function Focus:SetScale(value)
-    FocusFrame:SetScale(value)
+    frame.Background:SetHeight(41)
+    frame.nameBackground:SetVertexColor(0, 0, 0, 0.0)
+
+    if (classification == "minus") then
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "minus"));
+        frame.nameBackground:Hide();
+        frame.Background:SetHeight(31)
+        frame.manabar:Hide();
+        frame.manabar.TextString:Hide();
+    elseif (classification == "worldboss" or classification == "elite") then
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "elite"));
+    elseif (classification == "rareelite") then
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "rareelite"));
+    elseif (classification == "rare") then
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "rare"));
+    else
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "default"));
+    end
+
+    if db.focus.focusNameColorByClass then
+        self:SetFrameNameColor()
+    end
 end
 
 function Focus:MakeClassPortraits(frame)
-    if (frame.portrait and frame.unit == "focus") then
+    if (frame.portrait and (frame.unit == "focus" or frame.unit == "focustarget")) then
         if (db.focus.portrait == "2") then
             ClassPortraits(frame)
         else
@@ -96,29 +126,29 @@ function Focus:MakeClassPortraits(frame)
     end
 end
 
-function Focus:UpdateTextStringWithValues(statusBar)
-    local frame = statusBar or FocusFrameHealthBar
-
+function Focus:UpdateHealthBarTextString(frame)
     if (frame.unit == "focus") then
-        if (frame == FocusFrameHealthBar) then
-            UpdateHealthValues(
-                frame,
-                db.focus.healthFormat,
-                db.focus.customHealthFormat,
-                db.focus.customHealthFormatFormulas,
-                db.focus.useHealthFormatFullValues,
-                db.focus.useChineseNumeralsHealthFormat
-            )
-        elseif (frame == FocusFrameManaBar) then
-            UpdateManaValues(
-                frame,
-                db.focus.manaFormat,
-                db.focus.customManaFormat,
-                db.focus.customManaFormatFormulas,
-                db.focus.useManaFormatFullValues,
-                db.focus.useChineseNumeralsManaFormat
-            )
-        end
+        UpdateHealthValues(
+            FocusFrameHealthBar,
+            db.focus.healthFormat,
+            db.focus.customHealthFormat,
+            db.focus.customHealthFormatFormulas,
+            db.focus.useHealthFormatFullValues,
+            db.focus.useChineseNumeralsHealthFormat
+        )
+    end
+end
+
+function Focus:UpdateManaBarTextString(frame)
+    if (frame.unit == "focus") then
+        UpdateManaValues(
+            FocusFrameManaBar,
+            db.focus.manaFormat,
+            db.focus.customManaFormat,
+            db.focus.customManaFormatFormulas,
+            db.focus.useManaFormatFullValues,
+            db.focus.useChineseNumeralsManaFormat
+        )
     end
 end
 
@@ -154,13 +184,11 @@ function Focus:ShowNameInsideFrame(value)
         local point, relativeTo, relativePoint, xOffset, yOffset = healthBar:GetPoint()
 
         if (value and db.focus.showName) then
-            Core:MoveFocusFrameName(nil, nil, nil, nil, 20)
-
-            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, yOffset - 4)
+            Core:MoveFocusFrameName(nil, nil, nil, nil, 16)
+            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, yOffset - 5)
         else
             Core:MoveFocusFrameName()
-
-            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, 12)
+            Core:MoveFocusFramesBarsTextString()
         end
     end
 end
@@ -195,12 +223,17 @@ end
 
 function Focus:SetFrameNameColor()
     local color = db.focus.focusNameColor
+    local classColor = EasyFrames.Utils.GetColorByClass(FocusFrame)
 
-    EasyFrames.Utils.SetTextColor(FocusFrame.name, color)
+    if db.focus.focusNameColorByClass and classColor then
+        EasyFrames.Utils.SetTextColor(FocusFrame.name, classColor)
+    else
+        EasyFrames.Utils.SetTextColor(FocusFrame.name, color)
+    end
 end
 
 function Focus:ResetFrameNameColor()
-    EasyFrames.db.profile.focus.focusNameColor = {unpack(EasyFrames.Const.DEFAULT_FRAMES_NAME_COLOR)}
+    EasyFrames.db.profile.focus.focusNameColor = { unpack(EasyFrames.Const.DEFAULT_FRAMES_NAME_COLOR) }
 end
 
 function Focus:ReverseDirectionLosingHP(value)

@@ -1,4 +1,4 @@
-## Interface: 11507, 38000, 50503, 110205, 110207
+## Interface: 110207, 50503, 38000, 20505, 11508
 ## Title: OmniCC
 ## Notes: Cooldown count for everything
 ## Notes-esMX: Contador de tiempo de reutilización
@@ -21,12 +21,7 @@
 ## Version: 11.2.8
 ## SavedVariables: OmniCCDB, OmniCC4Config
 ## IconTexture: Interface/Icons/spell_nature_timestop
-
-## Title-zhTW: |cff00CCFF[快捷列]|r 冷卻時間
-## Notes-zhTW: OmniCC |n|n所有東西的冷卻倒數計時，冷卻完畢會顯示動畫效果提示。|n|n|cffffd200使用方法: |r輸入 /occ 打開設定選項。
-## Category-zhTW: 快捷列
-
-## embeds.xml
+embeds.xml
 localization\localization.xml
 main.lua
 core\core.xml

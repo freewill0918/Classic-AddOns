@@ -939,7 +939,7 @@ function QuestieTracker:Update()
                                     line.questHasSecondaryQIB = secondaryButton
 
                                     -- Set Objective based on states
-                                    local objDesc = objective.Description:gsub("%.$", "")
+                                    local objDesc = QuestieLib:GetObjectiveDescription(objective)
 
                                     -- Sometimes the API returns messy objective data (finished=false, but numRequired==numFulfilled)
                                     local questIsIncompleteButObjectiveIsComplete = ((not quest.isComplete) and objective.Completed == true and #quest.Objectives == 1)
@@ -1952,8 +1952,8 @@ function QuestieTracker:UntrackQuestId(questId)
     end
 
     if Questie.db.profile.hideUntrackedQuestsMapIcons then
-        -- Hides objective icons for untracked quests.
-        QuestieQuest:ToggleNotes(false)
+        -- Hides objective icons for untracked quests. We don't want to hide townsfolk icons.
+        QuestieQuest:HideQuestIcons()
 
         -- Removes objective tooltips for untracked quests.
         QuestieTooltips:RemoveQuest(questId)
@@ -2032,7 +2032,7 @@ function QuestieTracker:AQW_Insert(index, expire)
             -- Unhide quest icons when retracking quests.
             if Questie.db.profile.hideUntrackedQuestsMapIcons then
                 -- Shows objective icons for tracked quests.
-                QuestieQuest:ToggleNotes(true)
+                QuestieQuest:ShowQuestIcons()
 
                 -- Read objective tooltips for tracked quests.
                 QuestieQuest:PopulateObjectiveNotes(quest)

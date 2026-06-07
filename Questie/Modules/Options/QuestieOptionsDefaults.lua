@@ -4,7 +4,7 @@ local QuestieOptionsDefaults = QuestieLoader:CreateModule("QuestieOptionsDefault
 function QuestieOptionsDefaults:Load()
     return {
         profile = {
-            clusterLevelHotzone = 50,
+            objectiveFilterDistance = 2,
             spawnFilterDistance = 28,
             availableIconLimit = 30,
             enableIconLimit = false,
@@ -67,6 +67,7 @@ function QuestieOptionsDefaults:Load()
             questieShutUp = false,
             bugWorkarounds = true,
             hideIconsOnContinents = false,
+            trimObjectiveText = true,
 
             -- Tracker Settings Tab
             autoTrackQuests = true,
@@ -113,7 +114,7 @@ function QuestieOptionsDefaults:Load()
             trackerFontSizeObjective = 10,
             trackerFontObjective = "Friz Quadrata TT",
             trackerQuestPadding = 4,
-            trackerFontOutline = "None",
+            trackerFontOutline = "",
             trackerBackdropColor = {r = 0, g = 0, b = 0, a = 1},
             trackerHeightRatio = 0.50,
             trackerWidthRatio = 0.20,
@@ -167,6 +168,7 @@ function QuestieOptionsDefaults:Load()
             objectiveCompleteSoundChoiceName = "ObjectiveDefault",
             soundOnObjectiveProgress = false,
             objectiveProgressSoundChoiceName = "ObjectiveProgress",
+            soundChannel = "Master",
             iconTheme = "questie",
 
             minimap = {
@@ -229,6 +231,7 @@ function QuestieOptionsDefaults:Load()
             lastDailyRequestDate = "",
             questieLocale = "enUS",
             questieLocaleDiff = false,
+            journeyKeybindDefaultApplied = false,
             sod = {}, -- Special place for the SoD database
         }
     }

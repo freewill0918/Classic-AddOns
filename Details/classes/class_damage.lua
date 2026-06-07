@@ -442,6 +442,8 @@ end
 			total_extra = 0,
 			--totalabsorbed: amount of damage done absorbed by shields
 			totalabsorbed = alphabetical,
+			--avoidable damage taken
+			avoidable_damage_taken = alphabetical,
 			--total_without_pet: amount of damage done without pet damage
 			total_without_pet = alphabetical,
 			--custom: used by custom scripts, works more like a cache
@@ -452,6 +454,7 @@ end
 			--damage_from: table with actor names as keys and boolean true as value
 			damage_from = {},
 			avoidable_damage = {},
+			damage_from_players = {},
 
 			--dps_started: is false until this actor does damage
 			dps_started = false,
@@ -483,7 +486,8 @@ end
 			--targets: table where key is the target name(actor name) and the value is the amount of damage done to that target
 			targets = {},
 			--spells: spell container
-			spells = spellContainerClass:NovoContainer(container_damage)
+			spells = spellContainerClass:NovoContainer(container_damage),
+			avoidable_damage_spells = spellContainerClass:NovoContainer(container_damage),
 		}
 
 		setmetatable(newDamageActor, damageClass)
@@ -1812,6 +1816,9 @@ function Details:RefreshWindowAddOnApocalypse(instanceObject, session, durationI
 		instanceObject:ReajustaGump()
 	end
 
+	local baseframe = instanceObject.baseframe
+	baseframe.reportData = session
+
 	---@type damagemeter_combat_source[]
 	local combatSources = session.combatSources
 	if not combatSources or #combatSources == 0 then
@@ -1829,6 +1836,12 @@ function Details:RefreshWindowAddOnApocalypse(instanceObject, session, durationI
 	local attributeId = instanceObject:GetAttributeType()
 	if attributeId == 9 then
 		combatSources = detailsFramework.table.reverse(combatSources)
+		for i = #combatSources, 1, -1 do
+			local thisPlayerDeath = combatSources[i]
+			if thisPlayerDeath.deathRecapID == -1 then
+				--table.remove(combatSources, i)
+			end
+		end
 	end
 
     ---@type attributeid, attributeid
@@ -1844,7 +1857,6 @@ function Details:RefreshWindowAddOnApocalypse(instanceObject, session, durationI
 	local barsShowData = instanceObject.row_info.textR_show_data
 	local barsBrackets = instanceObject:GetBarBracket()
 	local barsSeparator = instanceObject:GetBarSeparator()
-	local baseframe = instanceObject.baseframe
 	local useAnimations = Details.is_using_row_animations and(not baseframe.isStretching and not bForceUpdate and not baseframe.isResizing)
 
 	--if (total == 0) then --hello secret my old friend
@@ -1935,17 +1947,17 @@ function Details:RefreshWindowAddOnApocalypse(instanceObject, session, durationI
 					if (combatSources[i]) then
 						---@type detailsline
 						local thisLine = lineContainer[whichRowLine]
-						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, i)
+						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, total, i)
 						whichRowLine = whichRowLine+1
 					end
 				end
 				local thisLine = lineContainer[iterLast]
-				Details:UpdateBarApocalypseWow(thisLine, myTable, instanceObject, topValue, myPos)
+				Details:UpdateBarApocalypseWow(thisLine, myTable, instanceObject, topValue, total, myPos)
 			else
 				for i = instanceObject.barraS[1], iterLast, 1 do
 					if (combatSources[i]) then
 						local thisLine = lineContainer[whichRowLine]
-						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, i)
+						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, total, i)
 						whichRowLine = whichRowLine+1
 					end
 				end
@@ -1955,19 +1967,19 @@ function Details:RefreshWindowAddOnApocalypse(instanceObject, session, durationI
 				for i = instanceObject.barraS[1], instanceObject.barraS[2]-1, 1 do
 					if (combatSources[i]) then
 						local thisLine = lineContainer[whichRowLine]
-						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, i)
+						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, total, i)
 						whichRowLine = whichRowLine+1
 					end
 				end
 
 				local thisLine = lineContainer[whichRowLine]
-				Details:UpdateBarApocalypseWow(thisLine, combatSources[myPos], instanceObject, topValue, myPos)
+				Details:UpdateBarApocalypseWow(thisLine, combatSources[myPos], instanceObject, topValue, total, myPos)
 				whichRowLine = whichRowLine+1
 			else
 				for i = instanceObject.barraS[1], instanceObject.barraS[2], 1 do
 					if (combatSources[i]) then
 						local thisLine = lineContainer[whichRowLine]
-						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, i)
+						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, total, i)
 						whichRowLine = whichRowLine+1
 					end
 				end
@@ -2009,13 +2021,13 @@ function Details:RefreshWindowAddOnApocalypse(instanceObject, session, durationI
 
 			if (following and myPos and myPos+1 > instanceObject.rows_fit_in_window and instanceObject.barraS[2] < myPos+1) then
 				local thisLine = lineContainer[whichRowLine]
-				Details:UpdateBarApocalypseWow(thisLine, combatSources[myPos], instanceObject, topValue, myPos)
+				Details:UpdateBarApocalypseWow(thisLine, combatSources[myPos], instanceObject, topValue, total, myPos)
 				whichRowLine = whichRowLine+1
 
 				for i = iter_last-1, instanceObject.barraS[1], -1 do
 					if (combatSources[i]) then
 						local thisLine = lineContainer[whichRowLine]
-						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, i)
+						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, total, i)
 						whichRowLine = whichRowLine+1
 					end
 				end
@@ -2023,7 +2035,7 @@ function Details:RefreshWindowAddOnApocalypse(instanceObject, session, durationI
 				for i = iter_last, instanceObject.barraS[1], -1 do
 					if (combatSources[i]) then
 						local thisLine = lineContainer[whichRowLine]
-						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, i)
+						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, total, i)
 						whichRowLine = whichRowLine+1
 					end
 				end
@@ -2031,13 +2043,13 @@ function Details:RefreshWindowAddOnApocalypse(instanceObject, session, durationI
 		else
 			if (following and myPos and myPos > instanceObject.rows_fit_in_window and instanceObject.barraS[2] < myPos) then
 				local thisLine = lineContainer[whichRowLine]
-				Details:UpdateBarApocalypseWow(thisLine, combatSources[myPos], instanceObject, topValue, myPos)
+				Details:UpdateBarApocalypseWow(thisLine, combatSources[myPos], instanceObject, topValue, total, myPos)
 				whichRowLine = whichRowLine+1
 
 				for i = instanceObject.barraS[2]-1, instanceObject.barraS[1], -1 do
 					if (combatSources[i]) then
 						local thisLine = lineContainer[whichRowLine]
-						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, i)
+						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, total, i)
 						whichRowLine = whichRowLine+1
 					end
 				end
@@ -2045,7 +2057,7 @@ function Details:RefreshWindowAddOnApocalypse(instanceObject, session, durationI
 				for i = instanceObject.barraS[2], instanceObject.barraS[1], -1 do
 					if (combatSources[i]) then
 						local thisLine = lineContainer[whichRowLine]
-						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, i)
+						Details:UpdateBarApocalypseWow(thisLine, combatSources[i], instanceObject, topValue, total, i)
 						whichRowLine = whichRowLine+1
 					end
 				end
@@ -2134,6 +2146,10 @@ end
 local lastEventTime = 0
 function Details222.BParser.UpdateAppocalypse(instance, bForceUpdate)
 	---@cast instance instance
+
+	if Details:IsTestBarOngoing() then
+		return
+	end
 
 	--check if the window is showing a pluging, if yes do not update
 	local mode = instance:GetMode()
@@ -2273,6 +2289,9 @@ function damageClass:RefreshWindow(instance, combatObject, bForceUpdate, bExport
 
 			elseif(subAttribute == 8) then --BY SPELL
 				keyName = "damage_taken_by_spells"
+
+			elseif(subAttribute == 9) then --avoidable damage taken
+				keyName = "avoidable_damage_taken"
 			end
 		else
 			keyName = bExportData.key
@@ -2310,6 +2329,9 @@ function damageClass:RefreshWindow(instance, combatObject, bForceUpdate, bExport
 
 		elseif(subAttribute == 8) then --BY SPELL
 			keyName = "damage_taken_by_spells"
+
+		elseif(subAttribute == 9) then --avoidable damage taken
+			keyName = "avoidable_damage_taken"
 		end
 	end
 
@@ -3197,16 +3219,101 @@ local classColor_Red, classColor_Green, classColor_Blue
 	end
 end
 
+local dummyFrameForText = CreateFrame("frame", nil, UIParent)
+local dummyText = dummyFrameForText:CreateFontString(nil, "overlay", "GameFontNormal")
+
+if detailsFramework.IsAddonApocalypseWow() then
+	dummyFrameForText:SetSize(100, 100)
+	dummyFrameForText:RegisterEvent("PLAYER_REGEN_DISABLED")
+
+	dummyFrameForText:SetScript("OnEvent", function(self, event)
+		Details:InstanceCall(function(instance)
+			if instance:IsEnabled() then
+				---@cast instance instance
+				local allLines = instance:GetAllLines()
+				for _, line in ipairs(allLines) do
+					---@cast line detailsline
+					line.lineText1.__playerNameUpdated = nil
+				end
+			end
+		end)
+	end)
+end
+
+---@param instance instance
+local dealWithPlayerName = function(instance, line, forceUpdate)
+	if not instance.row_info.playername_alignment_auto then
+		return
+	end
+
+	if InCombatLockdown() and line.lineText1.__playerNameUpdated and not forceUpdate then
+		local baseFrame = instance.baseframe
+		if not baseFrame.isStretching and not baseFrame.isResizing then
+			return
+		end
+	end
+
+	detailsFramework:SetFont(dummyText, instance.row_info.font_face_file, instance.row_info.font_size, "")
+	dummyText:SetText("MMM")
+
+	local textHeight = dummyText:GetStringHeight()
+	local lineHeight = instance.row_info.height
+	local lineWidth = instance.baseframe:GetWidth()
+
+	local yOffset = -math.max((lineHeight - textHeight) / 2, 0)
+
+	yOffset = yOffset + instance.row_info.text_yoffset
+
+	line.lineText1:ClearAllPoints()
+	if (instance.row_info.no_icon) then
+		line.lineText1:SetPoint("topleft", line, "topleft", 2 + instance.row_info.textL_offset, yOffset)
+	else
+		line.lineText1:SetPoint("topleft", line.icone_classe, "topright", 2 + instance.row_info.textL_offset, yOffset)
+	end
+
+	local playerNameWidth = 0
+
+	if instance.row_info.playername_size_auto then
+		local minWidth = lineWidth - lineHeight - 2 - (dummyText:GetStringWidth()*2) - 14 --lineHeight is the width of the icon; -2 is the space between the icon and the text; dummy text is the damageDone and DPS space.
+		line.lineText1:SetWidth(minWidth)
+		playerNameWidth = minWidth
+	else
+		line.lineText1:SetWidth(instance.row_info.playername_size)
+		playerNameWidth = instance.row_info.playername_size
+	end
+	line.lineText1:SetHeight(lineHeight*2)
+
+	line.lineText1:SetNonSpaceWrap(true)
+	line.lineText1:SetWordWrap(false)
+	line.lineText1:SetJustifyH("LEFT")
+	line.lineText1:SetJustifyV("TOP")
+
+	line.lineText1.__playerNameUpdated = true
+end
+
+Details222.Apocalypse.UpdatePlayerNameLength = dealWithPlayerName
+
+function Details222.Apocalypse.UpdateInstancePlayerNameLength(instance)
+	local allLines = instance:GetAllLines()
+	for _, line in ipairs(allLines) do
+		---@cast line detailsline
+		local forceUpdate = true
+		dealWithPlayerName(instance, line, forceUpdate)
+	end
+end
+
 --~update ~bar ~apocalypse ~apoc ãpoc
 ---@param instanceLine detailsline
 ---@param source damagemeter_combat_source
 ---@param instance instance
 ---@param topValue number
+---@param totalValue number
 ---@param rank number
-function Details:UpdateBarApocalypseWow(instanceLine, source, instance, topValue, rank)
+function Details:UpdateBarApocalypseWow(instanceLine, source, instance, topValue, totalValue, rank) --~refresh
 	local percenNumber = 0
 	local mainDisplay, subDisplay = instance:GetDisplay()
 	instanceLine.statusbar:SetMinMaxValues(0, 100)
+	local attributeId = instance:GetAttributeType()
 
 	--total bar does not pass here, because it is handled in the main refresh function, so set this value to false
 	instanceLine.isTotalBar = false
@@ -3248,18 +3355,57 @@ function Details:UpdateBarApocalypseWow(instanceLine, source, instance, topValue
 			end
 		end)
 	else
-		actorName = UnitName(actorName)
+		--actorName = UnitName(actorName)
 	end
 
+	local canShowPercent = false
+
 	if not issecretvalue(actorName) then
-		actorName = actorName or source.name
+		if Details.righttext_simple_formatting.use_alignment then
+			if (instance.row_info.show_percent) then
+				canShowPercent = true
+			end
+		else
+			canShowPercent = true
+		end
+
+		if source.amountPerSecond < 1 then
+			source.amountPerSecond = 1
+		end
+
+		if actorName then
+			actorName = detailsFramework:RemoveRealmName(actorName)
+		else
+			actorName = source.name
+			if not issecretvalue(actorName) then
+				actorName = detailsFramework:RemoveRealmName(actorName)
+			else
+				if Details222.IsTOCBiggerOrEqualTo(120005) then
+					actorName = Ambiguate(source.name, "short")
+				end
+			end
+		end
+	else
+		if specIcon then
+			if Details222.IsTOCBiggerOrEqualTo(120005) then
+				actorName = Ambiguate(source.name, "short")
+			else
+				actorName = UnitName(actorName)
+				if actorName == nil then
+					actorName = source.name
+				end
+			end
+		else
+			actorName = source.name
+		end
 	end
+
+	dealWithPlayerName(instance, instanceLine)
 
 	if (instance.row_info.textL_show_number) then
 		if issecretvalue(actorName) then
 			instanceLine.lineText1:SetText(format("%d. %s", rank, actorName)) --left text
 		else
-			actorName = detailsFramework:RemoveRealmName(actorName)
 			instanceLine.lineText1:SetText(format("%d. %s", rank, actorName)) --left text
 		end
 	else
@@ -3306,44 +3452,127 @@ function Details:UpdateBarApocalypseWow(instanceLine, source, instance, topValue
 
 	if mainDisplay == DETAILS_ATTRIBUTE_DAMAGE then
 		if (subDisplay == DETAILS_SUBATTRIBUTE_DAMAGEDONE or subDisplay == DETAILS_SUBATTRIBUTE_DAMAGETAKEN) then
-			local ruleToUse = 2 --total dps
-			Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), nil, ruleToUse)
+			if canShowPercent then
+				local ruleToUse = 3 --total dps percent
+				local percentValue
+				if (instance.row_info.percent_type == 1) then --relative to the total
+					percentValue = source.totalAmount / totalValue * 100
+				elseif (instance.row_info.percent_type == 2) then --relative to the top player
+					percentValue = source.totalAmount / topValue * 100
+				end
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), format("%.0f%%", percentValue), ruleToUse)
+			else
+				local ruleToUse = 2 --total dps
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), nil, ruleToUse)
+			end
 			--percentNumber = math.floor((damageTotal/instanceObject.top) * 100)
 
 		elseif (subDisplay == DETAILS_SUBATTRIBUTE_DPS) then
-			local ruleToUse = -1 --only show total
-			Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.amountPerSecond), nil, nil, ruleToUse)
-			--percentNumber = math.floor((dps/instanceObject.top) * 100)
+			if canShowPercent then
+				local ruleToUse = 1 --total and percent
+				local percentValue
+				if (instance.row_info.percent_type == 1) then --relative to the total
+					percentValue = source.totalAmount / totalValue * 100
+				elseif (instance.row_info.percent_type == 2) then --relative to the top player
+					percentValue = source.totalAmount / topValue * 100
+				end
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), nil, format("%.0f%%", percentValue), ruleToUse)
+			else
+				local ruleToUse = -1 --only show total
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), nil, nil, ruleToUse)
+				--percentNumber = math.floor((dps/instanceObject.top) * 100)
+			end
 
 		elseif (subDisplay == DETAILS_SUBATTRIBUTE_ENEMIES) then
-			local ruleToUse = 2
-			Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), nil, nil, ruleToUse)
-			--percentNumber = math.floor((dps/instanceObject.top) * 100)
+			if canShowPercent then
+				local percentValue
+				if (instance.row_info.percent_type == 1) then --relative to the total
+					percentValue = source.totalAmount / totalValue * 100
+				elseif (instance.row_info.percent_type == 2) then --relative to the top player
+					percentValue = source.totalAmount / topValue * 100
+				end
+				local ruleToUse = 3 --total dps percent
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), format("%.0f%%", percentValue), ruleToUse)
+			else
+				local ruleToUse = 2
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), nil, ruleToUse)
+				--percentNumber = math.floor((dps/instanceObject.top) * 100)
+			end
 
 		elseif (subDisplay == DETAILS_SUBATTRIBUTE_AVOIDABLE) then
-			local ruleToUse = 2 --total dps
-			Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), nil, ruleToUse)
+			if canShowPercent then
+				local ruleToUse = 3 --total dps percent
+				local percentValue
+				if (instance.row_info.percent_type == 1) then --relative to the total
+					percentValue = source.totalAmount / totalValue * 100
+				elseif (instance.row_info.percent_type == 2) then --relative to the top player
+					percentValue = source.totalAmount / topValue * 100
+				end
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), format("%.0f%%", percentValue), ruleToUse)
+			else
+				local ruleToUse = 2 --total dps
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), nil, ruleToUse)
+			end
 		end
 
 	elseif mainDisplay == DETAILS_ATTRIBUTE_HEAL then
 		if (subDisplay == DETAILS_SUBATTRIBUTE_HEALDONE or subDisplay == DETAILS_SUBATTRIBUTE_OVERHEAL) then
-			local ruleToUse = 2 --total hps
-			Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsHealing), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsHPS), nil, ruleToUse)
-			--percentNumber = math.floor((healingTotal/instanceObject.top) * 100)
+			if canShowPercent then
+				local ruleToUse = 3 --total hps percent
+				local percentValue
+				if (instance.row_info.percent_type == 1) then --relative to the total
+					percentValue = source.totalAmount / totalValue * 100
+				elseif (instance.row_info.percent_type == 2) then --relative to the top player
+					percentValue = source.totalAmount / topValue * 100
+				end
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsHealing), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), format("%.0f%%", percentValue), ruleToUse)
+			else
+				local ruleToUse = 2 --total hps
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsHealing), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), nil, ruleToUse)
+				--percentNumber = math.floor((healingTotal/instanceObject.top) * 100)
+			end
+
 		elseif (subDisplay == DETAILS_SUBATTRIBUTE_HPS) then
-			local ruleToUse = -1 --only show total
-			Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsHPS), nil, nil, ruleToUse)
-			--percentNumber = math.floor((hps/instanceObject.top) * 100)
+			if canShowPercent then
+				local ruleToUse = 1 --total and percent
+				local percentValue
+				if (instance.row_info.percent_type == 1) then --relative to the total
+					percentValue = source.totalAmount / totalValue * 100
+				elseif (instance.row_info.percent_type == 2) then --relative to the top player
+					percentValue = source.totalAmount / topValue * 100
+				end
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.amountPerSecond), nil, format("%.0f%%", percentValue), ruleToUse)
+			else
+				local ruleToUse = -1 --only show total
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsHPS), nil, nil, ruleToUse)
+				--percentNumber = math.floor((hps/instanceObject.top) * 100)
+			end
+
+		elseif (attributeId == DETAILS_SUBATTRIBUTE_HEALPOTION) then
+			local ruleToUse = 3 --total hps percent
+			Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsHealing), AbbreviateNumbers(source.amountPerSecond, Details.abbreviateOptionsDPS), source.percent, ruleToUse)
 		end
 
 	elseif mainDisplay == DETAILS_ATTRIBUTE_ENERGY then
 
 	elseif mainDisplay == DETAILS_ATTRIBUTE_MISC then
 		if (subDisplay == DETAILS_SUBATTRIBUTE_DISPELL or subDisplay == DETAILS_SUBATTRIBUTE_INTERRUPT) then
-			local ruleToUse = -1 --total
-			Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4,
-			AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsBuffs), nil, nil, ruleToUse)
-			--percentNumber = math.floor((uptimeTotal/instanceObject.top) * 100)
+			if canShowPercent then
+				local ruleToUse = 2 --total percent
+				local percentValue
+				if (instance.row_info.percent_type == 1) then --relative to the total
+					percentValue = source.totalAmount / totalValue * 100
+				elseif (instance.row_info.percent_type == 2) then --relative to the top player
+					percentValue = source.totalAmount / topValue * 100
+				end
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4, AbbreviateNumbers(source.totalAmount), format("%.0f%%", percentValue), nil, ruleToUse)
+				--percentNumber = math.floor((dispellTotal/instanceObject.top) * 100)
+			else
+				local ruleToUse = -1 --total
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4,
+				AbbreviateNumbers(source.totalAmount, Details.abbreviateOptionsBuffs), nil, nil, ruleToUse)
+				--percentNumber = math.floor((uptimeTotal/instanceObject.top) * 100)
+			end
 
 		elseif (subDisplay == DETAILS_SUBATTRIBUTE_DEATH) then
 			local ruleToUse = -1 --total
@@ -3354,8 +3583,14 @@ function Details:UpdateBarApocalypseWow(instanceLine, source, instance, topValue
 			else
 				--waiting a solution from blizzard
 			end
-			Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4,
-			timeOfDeath, nil, nil, ruleToUse)
+			local recapId = instanceLine.deathRecapId
+			if recapId == -1 and instanceLine.classFilename == "HUNTER" then
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4,
+				format("%s (*?*)", timeOfDeath, recapId), nil, nil, ruleToUse)
+			else
+				Details:SimpleFormat(instanceLine.lineText2, instanceLine.lineText3, instanceLine.lineText4,
+				format("%s", timeOfDeath), nil, nil, ruleToUse)
+			end
 			instanceLine.statusbar:SetMinMaxValues(0, 100)
 			instanceLine.statusbar:SetValue(100)
 			--percentNumber = math.floor((deathsTotal/instanceObject.top) * 100)
@@ -4127,11 +4362,28 @@ function Details:SetClassIcon(texture, instance, class) --[[exported]] --~icons
 			if (self.thisSpecIcon) then
 				local specInfo = detailsFramework:GetSpecInfoFromSpecIcon(self.thisSpecIcon)
 				local specId = specInfo and specInfo.specId
+
+				if (specId and not Details.class_specs_coords[specId]) then
+					if (self.thisSpecIcon == 461112) then --bm hunter
+						specId = 253
+					elseif (self.thisSpecIcon == 608953) then --windwalker monk
+						specId = 269
+					elseif (self.thisSpecIcon == 135846) then --frost mage
+						specId = 64
+					elseif (self.thisSpecIcon == 136145) then --affliction warlock
+						specId = 265
+					end
+				end
+
+				--print(specId, specInfo, self.thisSpecIcon)
+
 				if (specId and Details.class_specs_coords[specId]) then
+					--print(1)
 					texture:SetTexture(instance.row_info.spec_file)
 					texture:SetTexCoord(unpack(Details.class_specs_coords[specId]))
 					texture:SetVertexColor(1, 1, 1)
 				else
+					--print(2)
 					texture:SetTexture(self.thisSpecIcon)
 					texture:SetTexCoord(.1, .9, .1, .9)
 					texture:SetVertexColor(1, 1, 1)
@@ -4142,6 +4394,7 @@ function Details:SetClassIcon(texture, instance, class) --[[exported]] --~icons
 				texture:SetTexCoord(unpack(Details.class_specs_coords[self.spec]))
 				texture:SetVertexColor(1, 1, 1)
 			else
+				--issue is here
 				texture:SetTexture(instance.row_info.icon_file or [[Interface\AddOns\Details\images\classes_small]])
 				if (not class or class == "" or type(class) ~= "string" or not Details.class_coords[class]) then
 					class = "UNKNOW"
@@ -7638,6 +7891,7 @@ damageClass.__add = function(tabela1, tabela2)
 
 	--total de dano
 		tabela1.total = tabela1.total + tabela2.total
+		tabela1.avoidable_damage_taken = tabela1.avoidable_damage_taken + tabela2.avoidable_damage_taken
 		tabela1.totalabsorbed = tabela1.totalabsorbed + tabela2.totalabsorbed
 	--total de dano sem o pet
 		tabela1.total_without_pet = tabela1.total_without_pet + tabela2.total_without_pet
@@ -7645,6 +7899,28 @@ damageClass.__add = function(tabela1, tabela2)
 		tabela1.damage_taken = tabela1.damage_taken + tabela2.damage_taken
 	--total do friendly fire causado
 		tabela1.friendlyfire_total = tabela1.friendlyfire_total + tabela2.friendlyfire_total
+
+	--damage_from_players
+		if tabela1.damage_from_players then
+			if tabela2.damage_from_players then
+				for index, damageByPlayerTable in ipairs(tabela2.damage_from_players) do
+					---@cast damageByPlayerTable damage_from_player
+					--find the player in tabela1.damage_from_players
+					local found = false
+					for i = 1, #tabela1.damage_from_players do
+						if tabela1.damage_from_players[i].name == damageByPlayerTable.name then
+							tabela1.damage_from_players[i].amount = tabela1.damage_from_players[i].amount + damageByPlayerTable.amount
+							found = true
+							break
+						end
+					end
+
+					if not found then
+						tabela1.damage_from_players[#tabela1.damage_from_players + 1] = detailsFramework.table.copy({}, damageByPlayerTable)
+					end
+				end
+			end
+		end
 
 	--soma o damage_from
 		for nome, _ in pairs(tabela2.damage_from) do
@@ -7747,6 +8023,7 @@ damageClass.__sub = function(tabela1, tabela2)
 
 	--total de dano
 		tabela1.total = tabela1.total - tabela2.total
+		tabela1.avoidable_damage_taken = tabela1.avoidable_damage_taken - tabela2.avoidable_damage_taken
 		tabela1.totalabsorbed = tabela1.totalabsorbed - tabela2.totalabsorbed
 
 	--total de dano sem o pet
@@ -7755,6 +8032,24 @@ damageClass.__sub = function(tabela1, tabela2)
 		tabela1.damage_taken = tabela1.damage_taken - tabela2.damage_taken
 	--total do friendly fire causado
 		tabela1.friendlyfire_total = tabela1.friendlyfire_total - tabela2.friendlyfire_total
+
+	--damage_from_players
+		if tabela1.damage_from_players then
+			if tabela2.damage_from_players then
+				for index, damageByPlayerTable in ipairs(tabela2.damage_from_players) do
+					---@cast damageByPlayerTable damage_from_player
+					--find the player in tabela1.damage_from_players
+					local found = false
+					for i = 1, #tabela1.damage_from_players do
+						if tabela1.damage_from_players[i].name == damageByPlayerTable.name then
+							tabela1.damage_from_players[i].amount = tabela1.damage_from_players[i].amount - damageByPlayerTable.amount
+							found = true
+							break
+						end
+					end
+				end
+			end
+		end
 
 	--reduz os containers de alvos
 		for target_name, amount in pairs(tabela2.targets) do
@@ -7841,6 +8136,7 @@ function Details.refresh:r_atributo_damage(actorObject)
 
 	--restore metatable for the spell container
 	Details.refresh:r_container_habilidades(actorObject.spells)
+	Details.refresh:r_container_habilidades(actorObject.avoidable_damage_spells)
 	if (actorObject.augmentedSpellsContainer) then
 		Details.refresh:r_container_habilidades(actorObject.augmentedSpellsContainer)
 	end
@@ -7852,6 +8148,7 @@ function Details.clear:c_atributo_damage(este_jogador)
 	este_jogador.minha_barra = nil
 
 	Details.clear:c_container_habilidades(este_jogador.spells)
+	Details.clear:c_container_habilidades(este_jogador.avoidable_damage_spells)
 end
 
 

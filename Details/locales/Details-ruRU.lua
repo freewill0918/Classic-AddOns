@@ -169,7 +169,7 @@ L["STRING_CUSTOM_TARGET_DESC"] = [=[Эта цель источник.
 
 Кнопка справа показывает список нипов из сражений в рейде.]=]
 L["STRING_CUSTOM_TEMPORARILY"] = "(|cFFFFC000временно|r)"
-L["STRING_CUSTOM_TEXTURE_GUIDE"] = "Чтобы загрузить файл текстуры в клиент World of Warcraft, Вам нужен файл в формате .TGA, а также его ширина и высота должны быть кратны 8. Поместите текстуру в папку /место установленного клиента WoW/retail/Interface/"
+L["STRING_CUSTOM_TEXTURE_GUIDE"] = "Чтобы использовать пользовательский файл для иконок: - Файл должен быть в формате .TGA. - Размер файла должен быть 512x512 пикселей. - Для специализаций имя файла должно содержать 'spec_'. - Поместите текстуру в папку /Папка установки WoW /_retail_/Interface/"
 L["STRING_DAMAGE"] = "Урон"
 L["STRING_DAMAGE_DPS_IN"] = "Урон, полученный от "
 L["STRING_DAMAGE_FROM"] = "Получил урон от"
@@ -442,6 +442,10 @@ L["STRING_OPTIONS_ANIMATESCROLL_DESC"] = "При включении полосы
 L["STRING_OPTIONS_APPEARANCE"] = "Внешний вид"
 L["STRING_OPTIONS_ATTRIBUTE_TEXT"] = "Настройки текста заголовка "
 L["STRING_OPTIONS_ATTRIBUTE_TEXT_DESC"] = "Эти параметры управляют заголовочным текстом окна."
+--[[Translation missing --]]
+L["STRING_OPTIONS_AUTO_COMBATLOG"] = "Auto Start Combatlog"
+--[[Translation missing --]]
+L["STRING_OPTIONS_AUTO_COMBATLOG_DESC"] = "Automatically start and stop logging combat to the combatlog.txt file when you enter or leave a raid or dungeon."
 L["STRING_OPTIONS_AUTO_SWITCH"] = "Все роли |cFFFFAA00(в бою)|r"
 L["STRING_OPTIONS_AUTO_SWITCH_COMBAT"] = "|cFFFFAA00(в бою)|r"
 L["STRING_OPTIONS_AUTO_SWITCH_DAMAGER_DESC"] = "Когда в специализации боец, это окно показывает выбранный атрибут или плагин."
@@ -921,6 +925,11 @@ L["STRING_OPTIONS_PERFORMANCECAPTURES_DESC"] = "Эти параметры отв
 L["STRING_OPTIONS_PERFORMANCEPROFILES_ANCHOR"] = "Профили производительности:"
 L["STRING_OPTIONS_PICONS_DIRECTION"] = "Плагины прикрепляются справа"
 L["STRING_OPTIONS_PICONS_DIRECTION_DESC"] = "Если стоит галочка, кнопки плагина отображаются в правой части кнопок меню."
+L["STRING_OPTIONS_PLAYERNAME"] = "Имя игрока"
+L["STRING_OPTIONS_PLAYERNAME_AUTO_ALIGNMENT"] = "Автоматическое выравнивание"
+L["STRING_OPTIONS_PLAYERNAME_AUTO_ALIGNMENT_DESC"] = "Отключайте эту функцию только в том случае, если у Вас возникают проблемы с выравниванием имен игроков."
+L["STRING_OPTIONS_PLAYERNAME_AUTO_WIDTH"] = "Автоматическая длина"
+L["STRING_OPTIONS_PLAYERNAME_WIDTH"] = "Длина"
 L["STRING_OPTIONS_PLUGINS"] = "Плагины"
 L["STRING_OPTIONS_PLUGINS_AUTHOR"] = "Автор"
 L["STRING_OPTIONS_PLUGINS_NAME"] = "Название"
@@ -1098,6 +1107,7 @@ L["STRING_OPTIONS_SEGMENTSSAVE"] = "Сохраненные сегменты"
 L["STRING_OPTIONS_SEGMENTSSAVE_DESC"] = [=[Сколько сегментов Вы хотите сохранить между игровыми сеансами.
 
 Высокие значения могут увеличить время, затрачиваемое на выход из системы.]=]
+L["STRING_OPTIONS_SELECT_TEMPLATE"] = "Выбрать шаблон"
 L["STRING_OPTIONS_SENDFEEDBACK"] = "Обратная связь"
 L["STRING_OPTIONS_SHOW_SIDEBARS"] = "Показывать границы:"
 L["STRING_OPTIONS_SHOW_SIDEBARS_DESC"] = "Показать или скрыть границы окна."
@@ -1185,6 +1195,8 @@ L["STRING_OPTIONS_TEXT_OUTLINE"] = "Контур текста"
 L["STRING_OPTIONS_TEXT_RIGHT_ANCHOR"] = "Текст справа:"
 L["STRING_OPTIONS_TEXT_ROUTILINE_DESC"] = "Включение или отключение контура для правого текста."
 L["STRING_OPTIONS_TEXT_ROWICONS_ANCHOR"] = "Значки:"
+L["STRING_OPTIONS_TEXT_SHADOWCOLOR"] = "Цвет тени"
+L["STRING_OPTIONS_TEXT_SHADOWOFFSET"] = "Смещение тени %s"
 L["STRING_OPTIONS_TEXT_SHOW_BRACKET"] = "Скобка"
 L["STRING_OPTIONS_TEXT_SHOW_BRACKET_DESC"] = "Выберите символ, используемый для открытия и закрытия блока в секунду и процент."
 L["STRING_OPTIONS_TEXT_SHOW_PERCENT"] = "Показывать процент"
@@ -1261,6 +1273,10 @@ L["STRING_OPTIONS_TOOLTIPS_BACKGROUNDCOLOR_DESC"] = "Выберите цвет, 
 L["STRING_OPTIONS_TOOLTIPS_BORDER_COLOR_DESC"] = "Изменить цвет границы."
 L["STRING_OPTIONS_TOOLTIPS_BORDER_SIZE_DESC"] = "Изменить размер границы."
 L["STRING_OPTIONS_TOOLTIPS_BORDER_TEXTURE_DESC"] = "Изменить файл текстуры границы."
+--[[Translation missing --]]
+L["STRING_OPTIONS_TOOLTIPS_DISABLE"] = "Disable Tooltips"
+--[[Translation missing --]]
+L["STRING_OPTIONS_TOOLTIPS_DISABLE_DESC"] = "Disable tooltips for the selected window."
 L["STRING_OPTIONS_TOOLTIPS_FONTCOLOR"] = "Цвет текста"
 L["STRING_OPTIONS_TOOLTIPS_FONTCOLOR_DESC"] = "Изменение цвета, используемого в текстах подсказки."
 L["STRING_OPTIONS_TOOLTIPS_FONTFACE"] = "Шрифт текста"
@@ -1419,6 +1435,7 @@ L["STRING_OPTIONSMENU_TOOLTIP"] = "Подсказки"
 L["STRING_OPTIONSMENU_WALLPAPER"] = "Окно: Обои"
 L["STRING_OPTIONSMENU_WINDOW"] = "Окно: Общее"
 L["STRING_OPTIONSMENU_WINDOWBODY"] = "Настройки окон"
+L["STRING_OR"] = "Или"
 L["STRING_OVERALL"] = "Общий"
 L["STRING_OVERHEAL"] = "Избыточное лечение"
 L["STRING_OVERHEALED"] = "Избыточно исцелено"

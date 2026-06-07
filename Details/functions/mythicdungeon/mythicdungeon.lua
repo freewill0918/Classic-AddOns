@@ -1,6 +1,7 @@
 
 local Details = _G.Details
 local DF = _G.DetailsFramework
+local detailsFramework = _G.DetailsFramework
 local addonName, Details222 = ...
 local _
 
@@ -107,6 +108,13 @@ function DetailsMythicPlusFrame.MythicDungeonFinished(bFromZoneLeft)
             DetailsMythicPlusFrame.MergeSegmentsOnEnd()
         end
 
+
+        --assuming `Details222.MythicPlus.ElapsedTime` is only available at the end of the run, so if is nil, the run did not finished
+        if detailsFramework.IsAddonApocalypseWow() and Details222.MythicPlus.ElapsedTime then
+            --
+        end
+
+
         Details.MythicPlus.IsRestoredState = nil
 
 		--the run is valid, schedule to open the chart window
@@ -122,6 +130,18 @@ function DetailsMythicPlusFrame.MythicDungeonFinished(bFromZoneLeft)
             Details:CaptureSet(false, "aura", false, 15)
             Details:CaptureSet(false, "energy", false, 15)
             Details:CaptureSet(false, "spellcast", false, 15)
+        end
+
+        if detailsFramework.IsAddonApocalypseWow() then
+            --delete all other segments of this run except the overall
+            local runId = Details.mythic_dungeon_id
+            local allSegments = Details:GetCombatSegments()
+            for segmentId = #allSegments, 1, -1 do
+                local thisSegment = allSegments[segmentId]
+                if (thisSegment.is_mythic_dungeon and thisSegment.is_mythic_dungeon.RunID == runId and not thisSegment.is_mythic_dungeon.OverallSegment) then
+                    Details:RemoveSegment(segmentId)
+                end
+            end
         end
     end
 end
@@ -593,3 +613,7 @@ function DetailsMythicPlusFrame.SaveMythicPlusStats(combatObject)
     end
 end
 
+--[=[
+    1x ...ns/Details/functions/mythicdungeon/mythicdungeon.lua:117: attempt to perform arithmetic on field 'ElapsedTime' (a nil value)
+    [Details/functions/mythicdungeon/mythicdungeon.lua]:117: in function <...ns/Details/functions/mythicdungeon/mythicdungeon.lua:114>
+]=]

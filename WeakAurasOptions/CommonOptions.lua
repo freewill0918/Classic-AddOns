@@ -569,7 +569,7 @@ local function replaceNameDescFuncs(intable, data, subOption)
         local childOptions = OptionsPrivate.EnsureOptions(child, subOption)
         local get = getValueFor(childOptions, info, "get");
         if (combinedKeys) then
-          for key, _ in pairs(combinedKeys) do
+          for key in pairs(combinedKeys) do
             local values = {};
             if (get) then
               values = { get(info, key) };
@@ -1039,6 +1039,55 @@ local function CreateSetAll(subOption, getAll)
     OptionsPrivate.Private.ScanForLoads();
     OptionsPrivate.SortDisplayButtons(nil, true);
     OptionsPrivate.UpdateOptions()
+  end
+end
+
+local function CreateSetAllTimeMachine(subOption, getAll)
+  return function(data, info, ...)
+    OptionsPrivate.Private.pauseOptionsProcessing(true);
+    OptionsPrivate.Private.TimeMachine:StartTransaction()
+    local suspended = OptionsPrivate.Private.PauseAllDynamicGroups()
+    local before = getAll(data, info, ...)
+    for child in OptionsPrivate.Private.TraverseLeafs(data) do
+      local childOptions = OptionsPrivate.EnsureOptions(child, subOption)
+      local childOption = childOptions;
+      local childOptionTable = {[0] = childOption};
+      for i=1,#info do
+        childOption = childOption.args[info[i]];
+        childOptionTable[i] = childOption;
+      end
+
+      if (childOption and not disabledOrHiddenChild(childOptionTable, info)) then
+        for i=#childOptionTable,0,-1 do
+          local optionTable = childOptionTable[i]
+          if(optionTable.set) then
+            if (optionTable.type == "multiselect") then
+              local newValue
+              if optionTable.multiTristate then
+                if before == true then
+                  newValue = false
+                elseif before == false then
+                  newValue = nil
+                elseif before == nil then
+                  newValue = true
+                end
+              else
+                newValue = not before
+              end
+              optionTable.set(info, ..., newValue)
+            else
+              optionTable.set(info, ...);
+            end
+            break;
+          end
+        end
+      end
+    end
+
+    OptionsPrivate.Private.ResumeAllDynamicGroups(suspended)
+    OptionsPrivate.Private.pauseOptionsProcessing(false);
+
+    OptionsPrivate.Private.TimeMachine:Commit()
   end
 end
 
@@ -2105,6 +2154,7 @@ OptionsPrivate.commonOptions.replaceImageFuncs = replaceImageFuncs
 OptionsPrivate.commonOptions.replaceValuesFuncs = replaceValuesFuncs
 OptionsPrivate.commonOptions.CreateGetAll = CreateGetAll
 OptionsPrivate.commonOptions.CreateSetAll = CreateSetAll
+OptionsPrivate.commonOptions.CreateSetAllTimeMachine = CreateSetAllTimeMachine
 OptionsPrivate.commonOptions.CreateExecuteAll = CreateExecuteAll
 
 OptionsPrivate.commonOptions.PositionOptions = PositionOptions
@@ -2116,4 +2166,3 @@ OptionsPrivate.commonOptions.AddCodeOption = AddCodeOption
 
 OptionsPrivate.commonOptions.AddCommonTriggerOptions = AddCommonTriggerOptions
 OptionsPrivate.commonOptions.AddTriggerGetterSetter = AddTriggerGetterSetter
-

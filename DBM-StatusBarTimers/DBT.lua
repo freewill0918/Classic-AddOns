@@ -202,6 +202,25 @@ local barPrototype = {}
 local unusedBarObjects, barIsAnimating = {}, false
 local smallBars, largeBars, hiddenBars = {}, {}, {}
 
+local dbtFontResetNotified = false
+
+function DBT:ValidateFontSettings()
+	local opts = self.Options
+	if not opts then return end
+	local font = opts.Font == "standardFont" and standardFont or opts.Font
+	local size = opts.FontSize
+	local style = (opts.FontFlag and not DBM:IsNoneValue(opts.FontFlag)) and opts.FontFlag or ""
+	if not DBM:IsFontValid(font, standardFont, size, style) then
+		opts.Font = self.DefaultOptions.Font
+		opts.FontSize = self.DefaultOptions.FontSize
+		opts.FontFlag = self.DefaultOptions.FontFlag
+		if not dbtFontResetNotified then
+			DBM:AddMsg("Invalid timer bar font settings were detected and reset to defaults.")
+			dbtFontResetNotified = true
+		end
+	end
+end
+
 local smallBarsAnchor, largeBarsAnchor, hiddenBarsAnchor = CreateFrame("Frame", nil, UIParent), CreateFrame("Frame", nil, UIParent), CreateFrame("Frame", nil, UIParent)
 smallBarsAnchor:SetSize(1, 1)
 smallBarsAnchor:SetPoint("TOPRIGHT", 223, -260)
@@ -707,12 +726,13 @@ do
 		smallBarsAnchor:SetPoint(self.Options.TimerPoint, UIParent, self.Options.TimerPoint, self.Options.TimerX, self.Options.TimerY)
 		largeBarsAnchor:SetPoint(self.Options.HugeTimerPoint, UIParent, self.Options.HugeTimerPoint, self.Options.HugeTimerX, self.Options.HugeTimerY)
 		hiddenBarsAnchor:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", 9999, 0)
+		self:ValidateFontSettings()
 		self:ApplyStyle()
 	end
 end
 
 do
-	local oldInfoFrameLocked, oldRangeFrameLocked
+	local oldInfoFrameLocked, unlockTriggeredPrivateAurasPreview--oldRangeFrameLocked
 
 	local function updateClickThrough(self, newValue)
 		if not self.movable then
@@ -730,8 +750,14 @@ do
 		self.movable = false
 		DBM.Options.InfoFrameLocked = oldInfoFrameLocked
 		DBM.InfoFrame:Hide()
-		DBM.Options.RangeFrameLocked = oldRangeFrameLocked
-		DBM.RangeCheck:Hide(true)
+--		DBM.Options.RangeFrameLocked = oldRangeFrameLocked
+--		DBM.RangeCheck:Hide(true)
+		if unlockTriggeredPrivateAurasPreview then
+			if DBM.PrivateAuras and DBM.PrivateAuras.IsInPreview then
+				DBM.PrivateAuras:PreviewToggle()
+			end
+			unlockTriggeredPrivateAurasPreview = false
+		end
 	end
 
 	function DBT:ShowMovableBar(small, large)
@@ -748,9 +774,15 @@ do
 		oldInfoFrameLocked = DBM.Options.InfoFrameLocked
 		DBM.Options.InfoFrameLocked = false
 		DBM.InfoFrame:Show(5, "test")
-		oldRangeFrameLocked = DBM.Options.RangeFrameLocked
-		DBM.Options.RangeFrameLocked = false
-		DBM.RangeCheck:Show(nil, nil, true)
+--		oldRangeFrameLocked = DBM.Options.RangeFrameLocked
+--		DBM.Options.RangeFrameLocked = false
+--		DBM.RangeCheck:Show(nil, nil, true)
+		if DBM.PrivateAuras and not DBM.PrivateAuras.IsInPreview then
+			DBM.PrivateAuras:PreviewToggle()
+			unlockTriggeredPrivateAurasPreview = true
+		else
+			unlockTriggeredPrivateAurasPreview = false
+		end
 	end
 
 	function DBT:SetOption(option, value, noUpdate)
@@ -770,6 +802,9 @@ do
 			updateClickThrough(self, value)
 		end
 		self.Options[option] = value
+		if option == "Font" or option == "FontSize" or option == "FontFlag" then
+			self:ValidateFontSettings()
+		end
 		if not noUpdate then
 			self:UpdateBars(true)
 			self:ApplyStyle()
@@ -869,7 +904,7 @@ end
 
 function DBT:UpdateBars(sortBars)
 	local barOptions = self.Options
-	if sortBars and barOptions.Sort ~= "None" then
+	if sortBars and not DBM:IsNoneValue(barOptions.Sort) then
 		tsort(largeBars, function(x, y)
 			if barOptions.HugeSort == "Invert" then
 				return x.timer < y.timer
@@ -1569,7 +1604,7 @@ function barPrototype:ApplyStyle()
 --	bar:SetStatusBarColor(r, g, b, 1)--GetStatusBarTexture():SetVertexColor
 	bar:SetStatusBarTexture(barOptions.Texture)
 	local barFont = barOptions.Font == "standardFont" and standardFont or barOptions.Font
-	local barFontSize, barFontFlag = barOptions.FontSize, barOptions.FontFlag
+	local barFontSize, barFontFlag = barOptions.FontSize, (barOptions.FontFlag and not DBM:IsNoneValue(barOptions.FontFlag)) and barOptions.FontFlag or ""
 	name:SetFont(barFont, barFontSize, barFontFlag)
 	timer:SetFont(barFont, barFontSize, barFontFlag)
 	local textXOffset = enlarged and (barOptions.HugeTextXOffset or 0) or (barOptions.TextXOffset or 0)

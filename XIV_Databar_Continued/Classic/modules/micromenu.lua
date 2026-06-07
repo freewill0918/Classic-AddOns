@@ -346,10 +346,34 @@ function MenuModule:UpdateMenu()
     self:RegisterFrameEvents()
 end
 
+function MenuModule:ResolveSecureButtonAction(key, frame)
+    local action = self.secureActions and self.secureActions[key]
+    if not action or not frame then
+        return nil
+    end
+
+    if action.macro then
+        frame:SetAttribute('*macrotext1', action.macro)
+        frame:SetAttribute('*clickbutton1', nil)
+        return 'macro'
+    end
+
+    local micro = action.resolveMicro and action.resolveMicro() or action.micro
+    frame:SetAttribute('*macrotext1', nil)
+    frame:SetAttribute('*clickbutton1', micro)
+
+    if micro then
+        return 'click'
+    end
+
+    return nil
+end
+
 function MenuModule:CreateFrames()
     local parentFrame = xb:GetFrame('microMenuFrame')
     local mm = xb.db.profile.modules.microMenu
     self.actionTypes = {}
+    self.secureActions = {}
     local buttons = {
         {
             key = 'menu',
@@ -397,15 +421,19 @@ function MenuModule:CreateFrames()
         },
         {
             key = 'lfg', frameName = 'XIVBar_LFGButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
-            macro = "/click LFDMicroButton\n/click PVEFrameTab1",
+            macro = compat.GetMicroButtonMacro and compat.GetMicroButtonMacro('lfg') or nil,
         },
+        --[[ {
+            key = 'lfg', frameName = 'XIVBar_LFGButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
+            macro = "/click LFGMinimapFrame\n/click LFGParentFrameTab1",
+        }, ]]
         {
             key = 'journal', frameName = 'XIVBar_JournalButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
             micro = EJMicroButton,
         },
         {
             key = 'pvp', frameName = 'XIVBar_PVPButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
-            macro = "/click LFDMicroButton\n/click PVEFrameTab2",
+            macro = compat.GetMicroButtonMacro and compat.GetMicroButtonMacro('pvp') or nil,
         },
         {
             key = 'pet', frameName = 'XIVBar_PetButton', template = 'SecureActionButtonTemplate,SecureHandlerStateTemplate',
@@ -426,14 +454,13 @@ function MenuModule:CreateFrames()
         if enabled then
             local frame = CreateFrame('BUTTON', cfg.frameName or cfg.key, parentFrame, cfg.template)
             self.frames[cfg.key] = frame
+            self.secureActions[cfg.key] = {
+                macro = cfg.macro,
+                micro = cfg.micro,
+                resolveMicro = cfg.resolveMicro,
+            }
 
-            local actionType = cfg.macro and 'macro' or (cfg.micro and 'click' or nil)
-
-            if cfg.macro then
-                frame:SetAttribute('*macrotext1', cfg.macro)
-            elseif cfg.micro then
-                frame:SetAttribute('*clickbutton1', cfg.micro)
-            end
+            local actionType = self:ResolveSecureButtonAction(cfg.key, frame)
 
             frame:SetAttribute('useOnKeyDown', false)
             if cfg.setup then cfg.setup(frame) end
@@ -461,6 +488,9 @@ function MenuModule:CreateFrames()
         else
             if self.frames[cfg.key] then
                 self.frames[cfg.key] = nil
+            end
+            if self.secureActions[cfg.key] then
+                self.secureActions[cfg.key] = nil
             end
             if cfg.key == 'guild' then
                 self.text.guild = nil
@@ -507,7 +537,8 @@ function MenuModule:ApplyCombatState()
     end
 
     for name, frame in pairs(self.frames) do
-        local actionType = self.actionTypes and self.actionTypes[name]
+        local actionType = self:ResolveSecureButtonAction(name, frame)
+        self.actionTypes[name] = actionType
         if frame and actionType then
             if not mm.combatEn then
                 RegisterStateDriver(frame, 'combatlock', '[combat] combat; nocombat')
@@ -523,6 +554,10 @@ function MenuModule:ApplyCombatState()
                 frame:SetAttribute('*type1', actionType)
                 frame:EnableMouse(true)
             end
+        elseif frame then
+            UnregisterStateDriver(frame, 'combatlock')
+            frame:SetAttribute('*type1', nil)
+            frame:EnableMouse(true)
         end
     end
 end
@@ -732,6 +767,10 @@ function MenuModule:ShowButtonTooltip(name)
     if name == 'social' or name == 'guild' then
         return
     end
+    if not xb:ShouldShowTooltip() then
+        GameTooltip:Hide()
+        return
+    end
 
     local frame = self.frames[name]
     if not frame then
@@ -786,6 +825,11 @@ function MenuModule:SocialHover(hoverFunc)
     return function()
         -- get out of here if showTooltips in the options is set to false
         if not xb.db.profile.modules.microMenu.showTooltips then
+            hoverFunc()
+            return
+        end
+        if not xb:ShouldShowTooltip() then
+            self.tipHover = false
             hoverFunc()
             return
         end
@@ -1072,6 +1116,11 @@ function MenuModule:GuildHover(hoverFunc)
             hoverFunc()
             return
         end
+        if not xb:ShouldShowTooltip() then
+            self.gtipHover = false
+            hoverFunc()
+            return
+        end
 
         -- determines whether SHIFT/ALT/CTRL has been pressed based on the user's designated modifier
         local modifierFunc = IsShiftKeyDown
@@ -1191,7 +1240,7 @@ function MenuModule:CreateClickFunctions()
         return;
     end
 
-    self.functions.menu = function(_, button, down)
+    self.functions.menu = function(_, button)
         if InCombatLockdown() and not xb.db.profile.modules.microMenu.combatEn then
             return;
         end
@@ -1207,7 +1256,7 @@ function MenuModule:CreateClickFunctions()
         end
     end; -- menu
 
-    self.functions.chat = function(_, button, down)
+    self.functions.chat = function(_, button)
         if InCombatLockdown() then
             return;
         end
@@ -1220,7 +1269,7 @@ function MenuModule:CreateClickFunctions()
         end
     end; -- chat
 
-    self.functions.char = function(_, button, down)
+    self.functions.char = function(_, button)
         if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
             return;
         end
@@ -1228,6 +1277,24 @@ function MenuModule:CreateClickFunctions()
             ToggleCharacter("PaperDollFrame")
         end
     end; -- char
+
+    self.functions.lfg = function(_, button)
+        if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
+            return;
+        end
+        if button == "LeftButton" and compat and compat.ToggleLFG then
+            compat.ToggleLFG()
+        end
+    end; -- lfg
+
+    self.functions.pvp = function(_, button)
+        if (not xb.db.profile.modules.microMenu.combatEn) and InCombatLockdown() then
+            return;
+        end
+        if button == "LeftButton" and compat and compat.TogglePVP then
+            compat.TogglePVP()
+        end
+    end; -- pvp
 end
 
 function MenuModule:GetDefaultOptions()
@@ -1440,7 +1507,7 @@ function MenuModule:GetConfig()
                 get = function()
                     return xb.db.profile.modules.microMenu.modifierTooltip;
                 end,
-                set = function(info, val)
+                set = function(_, val)
                     xb.db.profile.modules.microMenu.modifierTooltip = val;
                     self:Refresh();
                 end,

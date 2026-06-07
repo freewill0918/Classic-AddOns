@@ -44,8 +44,6 @@ function Pet:OnInitialize()
 end
 
 function Pet:OnEnable()
-    self:SetScale(db.pet.scaleFrame)
-
     self:SetHealthBarsFont()
 
     self:ShowName(db.pet.showName)
@@ -58,16 +56,27 @@ function Pet:OnEnable()
     self:ShowAttackBackground(db.pet.showAttackBackground)
     self:SetAttackBackgroundOpacity(db.pet.attackBackgroundOpacity)
 
-    self:SecureHook("PetFrame_Update", "PetFrameUpdate")
-    self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
+    --self:SecureHook("PetFrame_Update", "PetFrameUpdate")
+
+    hooksecurefunc(PetFrame, "Update", function()
+        self:PetFrameUpdate(PetFrame);
+    end)
+
+    hooksecurefunc(PetFrameHealthBar, "UpdateTextString", function()
+        self:UpdateHealthBarTextString(PetFrame);
+    end)
+
+    hooksecurefunc(PetFrameManaBar, "UpdateTextString", function()
+        self:UpdateManaBarTextString(PetFrame);
+    end)
+
+    --self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
 end
 
 function Pet:OnProfileChanged(newDB)
     self.db = newDB
     db = self.db.profile
 
-    self:SetScale(db.pet.scaleFrame)
-
     self:SetHealthBarsFont()
 
     self:ShowName(db.pet.showName)
@@ -80,8 +89,8 @@ function Pet:OnProfileChanged(newDB)
     self:ShowAttackBackground(db.pet.showAttackBackground)
     self:SetAttackBackgroundOpacity(db.pet.attackBackgroundOpacity)
 
-    self:UpdateTextStringWithValues()
-    self:UpdateTextStringWithValues(PetFrameManaBar)
+    self:UpdateHealthBarTextString(PetFrame);
+    self:UpdateManaBarTextString(PetFrame);
 end
 
 
@@ -118,33 +127,29 @@ function Pet:PetFrameUpdate(frame, override)
     end
 end
 
-function Pet:SetScale(value)
-    PetFrame:SetScale(value)
+function Pet:UpdateHealthBarTextString(frame)
+    if (frame.unit == "pet") then
+        UpdateHealthValues(
+            PetFrameHealthBar,
+            db.pet.healthFormat,
+            db.pet.customHealthFormat,
+            db.pet.customHealthFormatFormulas,
+            db.pet.useHealthFormatFullValues,
+            db.pet.useChineseNumeralsHealthFormat
+        )
+    end
 end
 
-function Pet:UpdateTextStringWithValues(statusBar)
-    local frame = statusBar or PetFrameHealthBar
-
+function Pet:UpdateManaBarTextString(frame)
     if (frame.unit == "pet") then
-        if (frame == PetFrameHealthBar) then
-            UpdateHealthValues(
-                frame,
-                db.pet.healthFormat,
-                db.pet.customHealthFormat,
-                db.pet.customHealthFormatFormulas,
-                db.pet.useHealthFormatFullValues,
-                db.pet.useChineseNumeralsHealthFormat
-            )
-        elseif (frame == PetFrameManaBar) then
-            UpdateManaValues(
-                frame,
-                db.pet.manaFormat,
-                db.pet.customManaFormat,
-                db.pet.customManaFormatFormulas,
-                db.pet.useManaFormatFullValues,
-                db.pet.useChineseNumeralsManaFormat
-            )
-        end
+        UpdateManaValues(
+            PetFrameManaBar,
+            db.pet.manaFormat,
+            db.pet.customManaFormat,
+            db.pet.customManaFormatFormulas,
+            db.pet.useManaFormatFullValues,
+            db.pet.useChineseNumeralsManaFormat
+        )
     end
 end
 
@@ -154,6 +159,8 @@ function Pet:SetHealthBarsFont()
     local fontStyle = db.pet.healthBarFontStyle
 
     PetFrameHealthBar.TextString:SetFont(fontFamily, fontSize, fontStyle)
+    PetFrameHealthBar.RightText:SetFont(fontFamily, fontSize, fontStyle)
+    PetFrameHealthBar.LeftText:SetFont(fontFamily, fontSize, fontStyle)
 end
 
 function Pet:SetManaBarsFont()
@@ -162,6 +169,8 @@ function Pet:SetManaBarsFont()
     local fontStyle = db.pet.manaBarFontStyle
 
     PetFrameManaBar.TextString:SetFont(fontFamily, fontSize, fontStyle)
+    PetFrameManaBar.RightText:SetFont(fontFamily, fontSize, fontStyle)
+    PetFrameManaBar.LeftText:SetFont(fontFamily, fontSize, fontStyle)
 end
 
 function Pet:ShowName(value)

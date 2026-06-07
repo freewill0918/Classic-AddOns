@@ -1,6 +1,6 @@
 ﻿
 	----------------------------------------------------------------------
-	-- 	Leatrix Maps 5.1.30 (1st April 2026)
+	-- 	Leatrix Maps 5.1.39 (5th June 2026)
 	----------------------------------------------------------------------
 
 	-- 10:Func, 20:Comm, 30:Evnt, 40:Panl
@@ -12,7 +12,7 @@
 	local LeaMapsLC, LeaMapsCB, LeaDropList, LeaConfigList, LeaLockList = {}, {}, {}, {}, {}
 
 	-- Version
-	LeaMapsLC["AddonVer"] = "5.1.30"
+	LeaMapsLC["AddonVer"] = "5.1.39"
 
 	-- Get locale table
 	local void, Leatrix_Maps = ...
@@ -28,7 +28,7 @@
 			end)
 			return
 		end
-		if gametocversion and gametocversion == 50500 then -- 5.5.0
+		if gametocversion and gametocversion == 50504 then -- 5.5.4
 			LeaMapsLC.NewPatch = true
 		end
 	end
@@ -1342,11 +1342,11 @@
 					local scale = GetScaleDistance() / moveDistance * mapNormalScale
 					if scale < 0.2 then	scale = 0.2	elseif scale > 3.0 then	scale = 3.0	end
 					WorldMapFrame:SetScale(scale)
-					local s = mapNormalScale / WorldMapScreenAnchor:GetScale()
+					local s = mapNormalScale / WorldMapFrame:GetScale()
 					local x = mapX * s
 					local y = mapY * s
-					WorldMapScreenAnchor:ClearAllPoints()
-					WorldMapScreenAnchor:SetPoint("TOPLEFT", nil, "TOPLEFT", x, y)
+					WorldMapFrame:ClearAllPoints()
+					WorldMapFrame:SetPoint("TOPLEFT", nil, "TOPLEFT", x, y)
 					LeaMapsLC["MapScale"] = WorldMapFrame:GetScale()
 					LeaMapsCB["MapScale"]:Hide(); LeaMapsCB["MapScale"]:Show()
 				end)
@@ -1708,6 +1708,12 @@
 		if LeaMapsLC["UseDefaultMap"] == "Off" then
 
 			-- Remove frame management
+			WorldMapFrame:SetAttribute("UIPanelLayout-area", nil)
+			WorldMapFrame:SetAttribute("UIPanelLayout-enabled", false)
+			WorldMapFrame:SetAttribute("UIPanelLayout-allowOtherPanels", true)
+			tinsert(UISpecialFrames, "WorldMapFrame")
+
+			-- Remove frame management
 			WorldMapFrame:SetIgnoreParentScale(false)
 			WorldMapFrame.ScrollContainer:SetIgnoreParentScale(false)
 
@@ -1716,32 +1722,75 @@
 			WorldMapFrame:RegisterForDrag("LeftButton")
 			WorldMapFrame:SetScript("OnDragStart", function()
 				if LeaMapsLC["UnlockMapFrame"] == "On" then
-					WorldMapScreenAnchor:StartMoving()
+					WorldMapFrame:StartMoving()
 				end
 			end)
 			WorldMapFrame:SetScript("OnDragStop", function()
 				if LeaMapsLC["UnlockMapFrame"] == "On" then
-					WorldMapScreenAnchor:StopMovingOrSizing()
-					WorldMapScreenAnchor:SetUserPlaced(false)
+					WorldMapFrame:StopMovingOrSizing()
+					WorldMapFrame:SetUserPlaced(false)
 					-- Save map frame position
-					LeaMapsLC["MapPosA"], void, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"] = WorldMapScreenAnchor:GetPoint()
+					LeaMapsLC["MapPosA"], void, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"] = WorldMapFrame:GetPoint()
 				end
 			end)
 
-			-- Set position on startup
-			WorldMapFrame:HookScript("OnShow", function()
-				if not LeaMapsLC.MapLoadPositioned then
-					WorldMapScreenAnchor:ClearAllPoints()
-					WorldMapScreenAnchor:SetPoint(LeaMapsLC["MapPosA"], nil, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"])
-					LeaMapsLC.MapLoadPositioned = true
-				end
+			-- Set map position
+			hooksecurefunc(WorldMapFrame, "SynchronizeDisplayState", function()
+				WorldMapFrame:ClearAllPoints()
+				WorldMapFrame:SetPoint(LeaMapsLC["MapPosA"], nil, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"])
 			end)
+			hooksecurefunc(WorldMapFrame, "OnFrameSizeChanged", function()
+				LeaMapsLC["MapPosA"], void, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"] = WorldMapFrame:GetPoint()
+				WorldMapFrame:ClearAllPoints()
+				WorldMapFrame:SetPoint(LeaMapsLC["MapPosA"], nil, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"])
+			end)
+			WorldMapFrame:ClearAllPoints()
+			WorldMapFrame:SetPoint(LeaMapsLC["MapPosA"], nil, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"])
 
-			-- Fix for Demodal clamping the map frame to the screen
+			-- Set map screen clamp
+			WorldMapFrame:SetClampedToScreen(true)
+			WorldMapFrame:SetClampRectInsets(800, -800, -600, 600)
+
+			-- Reset map position if it's significantly off the screen on startup
+			local function IsOffScreenWithInsets(frame)
+				local x, y, w, h = frame:GetRect()
+				if not x then return false end
+				local lI, rI, tI, bI = frame:GetHitRectInsets()
+				lI, rI, tI, bI = lI or 0, rI or 0, tI or 0, bI or 0
+
+				local left   = x + lI
+				local bottom = y + bI
+				local right  = x + w - rI
+				local top    = y + h - tI
+
+				local scale = frame:GetEffectiveScale()
+				local screenLeft, screenBottom = 0, 0
+				local screenRight = GetScreenWidth() / scale * UIParent:GetScale()
+				local screenTop   = GetScreenHeight() / scale * UIParent:GetScale()
+
+				local offLeft   = math.max(0, screenLeft - left)
+				local offRight  = math.max(0, right - screenRight)
+				local offBottom = math.max(0, screenBottom - bottom)
+				local offTop    = math.max(0, top - screenTop)
+
+				if offLeft >= 800 or offRight >= 400 or offBottom >= 300 or offTop >= 500 then
+					return true
+				end
+			end
+
+			-- Not used as map is clamped to screen
+			-- if IsOffScreenWithInsets(WorldMapFrame) then
+			-- 	LeaMapsLC["MapPosA"], LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"] = "TOPLEFT", "TOPLEFT", 0, 0
+			-- 	WorldMapScreenAnchor:ClearAllPoints()
+			-- 	WorldMapScreenAnchor:SetPoint(LeaMapsLC["MapPosA"], nil, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"])
+			-- end
+
+		else
+
+			-- Fix for Demodal if default map frame is on
 			EventUtil.ContinueOnAddOnLoaded("Demodal",function()
-				if WorldMapFrame:IsClampedToScreen() then
-					WorldMapFrame:SetClampedToScreen(false)
-				end
+				WorldMapFrame:SetClampedToScreen(true)
+				WorldMapFrame:SetClampRectInsets(500, -500, -400, 400)
 			end)
 
 		end

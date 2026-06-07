@@ -27,7 +27,7 @@ local GetDisplayedAllyFrames = GetDisplayedAllyFrames;
 local GetTime = GetTime;
 local GetCVar = GetCVar;
 local SetCVar = SetCVar;
-local IsAddOnLoaded = IsAddOnLoaded;
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded;
 local IsShiftKeyDown = IsShiftKeyDown;
 local InCombatLockdown = InCombatLockdown;
 local RegisterUnitWatch = RegisterUnitWatch;
@@ -1557,6 +1557,12 @@ function UnitFramesPlus_CompactRaidFrameManager_UpdateShown(self)
     _CompactRaidFrameManager_UpdateShown(self)
 end
 
+local _CompactRaidFrameManager_UpdateContainerLockVisibility = CompactRaidFrameManager_UpdateContainerLockVisibility
+function UnitFramesPlus_CompactRaidFrameManager_UpdateContainerLockVisibility(self)
+    if InCombatLockdown() then return end
+    _CompactRaidFrameManager_UpdateContainerLockVisibility(self)
+end
+
 -- Interface/FrameXML/RaidFrame.lua
 local _RaidOptionsFrame_UpdatePartyFrames = RaidOptionsFrame_UpdatePartyFrames;
 function UnitFramesPlus_RaidOptionsFrame_UpdatePartyFrames()
@@ -1689,7 +1695,7 @@ end
 
 function UnitFramesPlus_ShowPartyFrameSet()
     PartyMemberFrame_UpdateMember = UnitFramesPlus_PartyMemberFrame_UpdateMember;
-    -- -- CompactRaidFrameManager_UpdateContainerLockVisibility = UnitFramesPlus_CompactRaidFrameManager_UpdateContainerLockVisibility;
+    CompactRaidFrameManager_UpdateContainerLockVisibility = UnitFramesPlus_CompactRaidFrameManager_UpdateContainerLockVisibility;
     CompactRaidFrameManager_UpdateShown = UnitFramesPlus_CompactRaidFrameManager_UpdateShown;
     RaidOptionsFrame_UpdatePartyFrames = UnitFramesPlus_RaidOptionsFrame_UpdatePartyFrames;
     -- HidePartyFrame = UnitFramesPlus_HidePartyFrame;

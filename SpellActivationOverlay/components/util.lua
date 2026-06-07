@@ -433,7 +433,11 @@ if not eventHandlers[event] then
 eventHandlers[event]={}
 end
 table.insert(eventHandlers[event],handler)
-handler:RegisterEvent(event)
+--MoP Classic 5.5.x removed some legacy events (e.g. LEARNED_SPELL_IN_TAB); skip unknowns instead of erroring
+local ok=pcall(handler.RegisterEvent,handler,event)
+if not ok then
+SAO:Debug(Module, "Skipping unknown event "..tostring(event))
+end
 SAO:Debug(Module, "Handling event "..tostring(event).." for "..getHandlerName(handler)..getFromDescription(from))
 end
 function SAO:UnregisterEventHandler(handler,event,from)

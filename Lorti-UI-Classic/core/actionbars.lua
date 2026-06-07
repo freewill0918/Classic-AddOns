@@ -8,6 +8,9 @@
   --get the config values
   local cfg = ns.cfg
 
+  --MoP Classic 5.5.x: IsAddOnLoaded moved to C_AddOns
+  local IsAddOnLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
+
   local classcolor = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
   local dominos = IsAddOnLoaded("Dominos")
   local bartender4 = IsAddOnLoaded("Bartender4")
@@ -74,6 +77,43 @@
     end
   end
 
+  --registry of buttons we've styled, so the delayed re-scans can re-suppress the modern
+  --frame art (it is created lazily on button update, after the first suppress pass).
+  local styledButtons = {}
+
+  --MoP Classic 5.5.x: the modern button frame is built from many textures whose fileIDs
+  --change between sessions, so matching by id/atlas is unreliable. Instead hide EVERY
+  --texture region except the spell icon and the mouseover highlight. Our gloss border lives
+  --on a child frame (not in bu:GetRegions()), so it is never touched by this.
+  local function suppressArt(bu)
+    if not bu or not bu.GetRegions then return end
+    local name = bu.GetName and bu:GetName()
+    local icons = {}
+    if bu.icon then icons[bu.icon] = true end
+    if bu.Icon then icons[bu.Icon] = true end
+    if name and _G[name.."Icon"] then icons[_G[name.."Icon"]] = true end
+    for _, r in ipairs({ bu:GetRegions() }) do
+      if r.GetObjectType and r:GetObjectType() == "Texture" and not icons[r]
+        and r ~= bu.lortiBorder and r:GetDrawLayer() ~= "HIGHLIGHT" then
+        r:SetAlpha(0)
+      end
+    end
+  end
+
+  --shared gloss border. Drawn UNDER the icon (low BACKGROUND sublayer) like the original Lorti
+  --design, so it only shows in the ring around the inset icon and never covers the icon art or
+  --the hotkey/count text. suppressArt (which clears the modern frame art) explicitly skips it.
+  local function addLortiBorder(bu)
+    if not bu or bu.lortiBorder then return end
+    local border = bu:CreateTexture(nil, "BACKGROUND", nil, -7)
+    border:SetTexture(cfg.textures.normal)
+    border:SetTexCoord(0, 1, 0, 1)
+    border:SetAllPoints(bu)
+    border:SetVertexColor(cfg.color.normal.r, cfg.color.normal.g, cfg.color.normal.b, 1)
+    bu.lortiBorder = border
+    styledButtons[#styledButtons + 1] = bu
+  end
+
   --initial style func
   local function styleActionButton(bu)
     if not bu or (bu and bu.rabs_styled) then
@@ -130,10 +170,11 @@
       --fix the non existent texture problem (no clue what is causing this)
       nt = bu:GetNormalTexture()
     end
-    --cut the default border of the icons and make them shiny
+    --cut the default border of the icons and make them shiny. Inset the icon 2.5px so the gloss
+    --border underneath shows as a ring around it.
     ic:SetTexCoord(0.1,0.9,0.1,0.9)
-    ic:SetPoint("TOPLEFT", bu, "TOPLEFT", 2, -2)
-    ic:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2, 2)
+    ic:SetPoint("TOPLEFT", bu, "TOPLEFT", 2.5, -2.5)
+    ic:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2.5, 2.5)
     --adjust the cooldown frame
     cd:SetPoint("TOPLEFT", bu, "TOPLEFT", cfg.cooldown.spacing, -cfg.cooldown.spacing)
     cd:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -cfg.cooldown.spacing, cfg.cooldown.spacing)
@@ -173,6 +214,19 @@
         end
       end
     end)
+    --MoP Classic 5.5.x: modern buttons re-apply their own normal texture/atlas on update; force Lorti's to persist
+    hooksecurefunc(nt, "SetTexture", function(self, tex)
+      if tex ~= cfg.textures.normal then self:SetTexture(cfg.textures.normal) end
+    end)
+    if nt.SetAtlas then
+      hooksecurefunc(nt, "SetAtlas", function(self) self:SetTexture(cfg.textures.normal) end)
+    end
+    nt:SetTexture(cfg.textures.normal)
+    --MoP Classic 5.5.x: modern Dominos/Blizzard buttons swap out their whole NormalTexture
+    --object on update, so hooking nt loses the war. Use an independent gloss border instead,
+    --then hide the modern frame art so only our border shows.
+    addLortiBorder(bu)
+    suppressArt(bu)
     --shadows+background
     if not bu.bg then applyBackground(bu) end
     bu.rabs_styled = true
@@ -209,15 +263,14 @@
     local name = bu:GetName()
     local ic  = _G[name.."Icon"]
     local fl  = _G[name.."Flash"]
-    local nt  = _G[name.."NormalTexture2"]
-    nt:SetAllPoints(bu)
-    --applying color
-    nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
+    local nt  = _G[name.."NormalTexture2"] or _G[name.."NormalTexture"] or bu.NormalTexture
+    if nt then
+      nt:SetAllPoints(bu)
+      nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
+    end
     --setting the textures
-    fl:SetTexture(cfg.textures.flash)
-    --bu:SetHighlightTexture(cfg.textures.hover)
+    if fl then fl:SetTexture(cfg.textures.flash) end
     bu:SetPushedTexture(cfg.textures.pushed)
-    --bu:SetCheckedTexture(cfg.textures.checked)
     bu:SetNormalTexture(cfg.textures.normal)
     hooksecurefunc(bu, "SetNormalTexture", function(self, texture)
       --make sure the normaltexture stays the way we want it
@@ -226,9 +279,14 @@
       end
     end)
     --cut the default border of the icons and make them shiny
-    ic:SetTexCoord(0.1,0.9,0.1,0.9)
-	ic:SetPoint("TOPLEFT", bu, "TOPLEFT", 2, -2)
-	ic:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2, 2)
+    if ic then
+      ic:SetTexCoord(0.1,0.9,0.1,0.9)
+      ic:SetPoint("TOPLEFT", bu, "TOPLEFT", 2, -2)
+      ic:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2, 2)
+    end
+    --modern buttons fight the NormalTexture; use our own overlay border and hide their art
+    addLortiBorder(bu)
+    suppressArt(bu)
     --shadows+background
     if not bu.bg then applyBackground(bu) end
     bu.rabs_styled = true
@@ -238,22 +296,26 @@
   local function styleStanceButton(bu)
     if not bu or (bu and bu.rabs_styled) then return end
     local name = bu:GetName()
-    local ic  = _G[name.."Icon"]
-    local fl  = _G[name.."Flash"]
-    local nt  = _G[name.."NormalTexture2"]
-    nt:SetAllPoints(bu)
-    --applying color
-    nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
+    local ic  = name and _G[name.."Icon"]
+    local fl  = name and _G[name.."Flash"]
+    local nt  = (name and (_G[name.."NormalTexture2"] or _G[name.."NormalTexture"])) or bu.NormalTexture
+    if nt then
+      nt:SetAllPoints(bu)
+      nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
+    end
     --setting the textures
-    fl:SetTexture(cfg.textures.flash)
-    --bu:SetHighlightTexture(cfg.textures.hover)
+    if fl then fl:SetTexture(cfg.textures.flash) end
     bu:SetPushedTexture(cfg.textures.pushed)
-    --bu:SetCheckedTexture(cfg.textures.checked)
     bu:SetNormalTexture(cfg.textures.normal)
     --cut the default border of the icons and make them shiny
-    ic:SetTexCoord(0.1,0.9,0.1,0.9)
-    ic:SetPoint("TOPLEFT", bu, "TOPLEFT", 2, -2)
-    ic:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2, 2)
+    if ic then
+      ic:SetTexCoord(0.1,0.9,0.1,0.9)
+      ic:SetPoint("TOPLEFT", bu, "TOPLEFT", 2, -2)
+      ic:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2, 2)
+    end
+    --modern buttons fight the NormalTexture; use our own overlay border and hide their art
+    addLortiBorder(bu)
+    suppressArt(bu)
     --shadows+background
     if not bu.bg then applyBackground(bu) end
     bu.rabs_styled = true
@@ -263,22 +325,26 @@
   local function stylePossessButton(bu)
     if not bu or (bu and bu.rabs_styled) then return end
     local name = bu:GetName()
-    local ic  = _G[name.."Icon"]
-    local fl  = _G[name.."Flash"]
-    local nt  = _G[name.."NormalTexture"]
-    nt:SetAllPoints(bu)
-    --applying color
-    nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
+    local ic  = name and _G[name.."Icon"]
+    local fl  = name and _G[name.."Flash"]
+    local nt  = (name and _G[name.."NormalTexture"]) or bu.NormalTexture
+    if nt then
+      nt:SetAllPoints(bu)
+      nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
+    end
     --setting the textures
-    fl:SetTexture(cfg.textures.flash)
-    --bu:SetHighlightTexture(cfg.textures.hover)
+    if fl then fl:SetTexture(cfg.textures.flash) end
     bu:SetPushedTexture(cfg.textures.pushed)
-    --bu:SetCheckedTexture(cfg.textures.checked)
     bu:SetNormalTexture(cfg.textures.normal)
     --cut the default border of the icons and make them shiny
-    ic:SetTexCoord(0.1,0.9,0.1,0.9)
-    ic:SetPoint("TOPLEFT", bu, "TOPLEFT", 2, -2)
-    ic:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2, 2)
+    if ic then
+      ic:SetTexCoord(0.1,0.9,0.1,0.9)
+      ic:SetPoint("TOPLEFT", bu, "TOPLEFT", 2, -2)
+      ic:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2, 2)
+    end
+    --modern buttons fight the NormalTexture; use our own overlay border and hide their art
+    addLortiBorder(bu)
+    suppressArt(bu)
     --shadows+background
     if not bu.bg then applyBackground(bu) end
     bu.rabs_styled = true
@@ -332,13 +398,25 @@ end
   ---------------------------------------
 
   local function init()
-    --style the actionbar buttons
+    --style the actionbar buttons. MoP Classic 5.5.x renamed the secondary bars'
+    --buttons (e.g. MultiBarLeftButton -> MultiBarLeftActionButton), so try the modern
+    --name first and fall back to the old one. The main bar (ActionButton) is unchanged.
     for i = 1, NUM_ACTIONBAR_BUTTONS do
       styleActionButton(_G["ActionButton"..i])
-      styleActionButton(_G["MultiBarBottomLeftButton"..i])
-      styleActionButton(_G["MultiBarBottomRightButton"..i])
-      styleActionButton(_G["MultiBarRightButton"..i])
-      styleActionButton(_G["MultiBarLeftButton"..i])
+      styleActionButton(_G["MultiBarBottomLeftActionButton"..i] or _G["MultiBarBottomLeftButton"..i])
+      styleActionButton(_G["MultiBarBottomRightActionButton"..i] or _G["MultiBarBottomRightButton"..i])
+      styleActionButton(_G["MultiBarRightActionButton"..i] or _G["MultiBarRightButton"..i])
+      styleActionButton(_G["MultiBarLeftActionButton"..i] or _G["MultiBarLeftButton"..i])
+      styleActionButton(_G["MultiBar5ActionButton"..i])
+      styleActionButton(_G["MultiBar6ActionButton"..i])
+      styleActionButton(_G["MultiBar7ActionButton"..i])
+    end
+    --naming-agnostic catch-all: modern action bars expose their buttons via bar.actionButtons
+    for _, bar in ipairs({ MultiBarBottomLeft, MultiBarBottomRight, MultiBarRight, MultiBarLeft,
+                           MultiBar5, MultiBar6, MultiBar7 }) do
+      if bar and bar.actionButtons then
+        for _, b in ipairs(bar.actionButtons) do styleActionButton(b) end
+      end
     end
 	--style bags
     for i = 0, 3 do
@@ -355,14 +433,17 @@ end
     for i=1, NUM_PET_ACTION_SLOTS do
       stylePetButton(_G["PetActionButton"..i])
     end
-    --stancebar buttons
-    for i=1, NUM_STANCE_SLOTS do
-      styleStanceButton(_G["StanceButton"..i])
+    --stancebar buttons (modern client may name them StanceBarButton or expose StanceBar.actionButtons)
+    for i=1, (NUM_STANCE_SLOTS or 10) do
+      styleStanceButton(_G["StanceButton"..i] or _G["StanceBarButton"..i])
+    end
+    if StanceBar and StanceBar.actionButtons then
+      for _, b in ipairs(StanceBar.actionButtons) do styleStanceButton(b) end
     end
     --dominos styling
     if dominos then
       --print("Dominos found")
-      for i = 1, 60 do
+      for i = 1, 120 do
         styleActionButton(_G["DominosActionButton"..i])
       end
     end
@@ -377,8 +458,15 @@ end
 
     --hide the hotkeys if needed
     if not dominos and not bartender4 and not cfg.hotkeys.show then
-      hooksecurefunc("ActionButton_UpdateHotkeys",  updateHotkey)
+      if type(ActionButton_UpdateHotkeys) == "function" then
+        hooksecurefunc("ActionButton_UpdateHotkeys", updateHotkey)
+      elseif ActionBarActionButtonMixin and ActionBarActionButtonMixin.UpdateHotkeys then
+        hooksecurefunc(ActionBarActionButtonMixin, "UpdateHotkeys", updateHotkey)
+      end
     end
+
+    --re-hide the modern frame art on every pass (it is rebuilt lazily after we first style)
+    for _, bu in ipairs(styledButtons) do suppressArt(bu) end
 
   end
 
@@ -389,3 +477,10 @@ end
   local a = CreateFrame("Frame")
   a:RegisterEvent("PLAYER_LOGIN")
   a:SetScript("OnEvent", init)
+  --Dominos/Bartender often build their extra bars after PLAYER_LOGIN, so re-scan a few
+  --times to catch buttons that didn't exist yet (styleActionButton is idempotent).
+  if C_Timer and C_Timer.After then
+    C_Timer.After(2, init)
+    C_Timer.After(5, init)
+    C_Timer.After(10, init)
+  end

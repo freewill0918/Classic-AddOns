@@ -1123,11 +1123,13 @@ Skillet.options =
 				Skillet.data.customgroups = value
 				if value then
 					SkilletRecipeGroupOperations:Enable()
+					print("Custom Groups enabled")
 				else
 					SkilletRecipeGroupOperations:Disable()
+					print("Custom Groups disabled")
 				end
 			end,
-			order = 78
+			order = 77
 		},
 		nomodkeys = {
 			type = "toggle",
@@ -1258,15 +1260,33 @@ Skillet.options =
 		delayupdate = {
 			type = "toggle",
 			name = "DelayUpdate",
-			desc = "Delay UpdateTradeSkillWindow calls",
+			desc = "Delay UpdateTradeSkillWindow",
 			get = function()
 				return Skillet.db.profile.delayupdate
 			end,
 			set = function(self,value)
 				Skillet.db.profile.delayupdate = value
 				print("delayupdate= "..tostring(value))
+				if not Skillet.db.profile.updatedelay then
+					Skillet.db.profile.updatedelay = 0.5
+				end
 			end,
 			order = 86
+		},
+		updatedelay = {
+			type = "input",
+			name = "UpdateDelay",
+			desc = "Tenths of a second to delay UpdateTradeSkillWindow",
+			get = function()
+				return Skillet.db.profile.updatedelay
+			end,
+			set = function(self,value)
+				local value = tonumber(value)
+				value = math.max(1,math.min(value,10))/10
+				print("updatedelay= "..tostring(value))
+				Skillet.db.profile.updatedelay = value
+			end,
+			order = 87
 		},
 
 --
@@ -1585,6 +1605,28 @@ Skillet.options =
 			end,
 			order = 108
 		},
+--
+-- DA.DUMP (and DA.DUMP1) command recursion level
+--   default value is 1
+--	 limited to a max of 5 but that will probably
+--   cause stack overflow
+--
+		DumpLevel = {
+			type = "input",
+			name = "DumpLevel",
+			desc = "Recursion level in DA.DUMP commands",
+			get = function()
+				return Skillet.db.profile.dumplevel
+			end,
+			set = function(self,value)
+				local value = tonumber(value)
+				value = math.max(1,math.min(value,5))
+				Skillet.db.profile.dumplevel = value
+				print("dumplevel= "..tostring(value))
+			end,
+			order = 109
+		},
+
 --
 -- Commands to set/show how many TRADE_SKILL_UPDATE / CRAFT_UPDATE events to ignore
 --

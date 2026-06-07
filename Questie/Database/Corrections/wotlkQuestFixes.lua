@@ -49,7 +49,7 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.objectives] = {{{1200}}},
         },
         [75] = {
-            [questKeys.specialFlags] = 0,
+            [questKeys.specialFlags] = specialFlags.NONE,
         },
         [171] = {
             [questKeys.startedBy] = {{14305}},
@@ -63,6 +63,9 @@ function QuestieWotlkQuestFixes:Load()
         [236] = {
             [questKeys.finishedBy] = {{31108}},
             [questKeys.exclusiveTo] = {13153,13154,13156,13195,13196,13197,13198},
+            [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
+        },
+        [254] = { -- Digging Through the Dirt
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
         },
         [403] = {
@@ -227,7 +230,7 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.startedBy] = {nil,{164909,186419}},
         },
         [4144] = {
-            [questKeys.specialFlags] = nil,
+            [questKeys.specialFlags] = specialFlags.NONE,
         },
         [4362] = {
             [questKeys.preQuestSingle] = {4361},
@@ -375,15 +378,6 @@ function QuestieWotlkQuestFixes:Load()
         [7704] = {
             [questKeys.startedBy] = {nil,nil,{18950}},
         },
-        [7785] = {
-            [questKeys.requiredClasses] = classIDs.NONE,
-        },
-        [7786] = {
-            [questKeys.requiredClasses] = classIDs.NONE,
-        },
-        [7787] = {
-            [questKeys.requiredClasses] = classIDs.NONE,
-        },
         [8149] = {
             [questKeys.objectives] = {nil,{{1323}}},
             [questKeys.extraObjectives] = {},
@@ -417,7 +411,7 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.requiredRaces] = raceIDs.NONE,
         },
         [8552] = {
-            [questKeys.specialFlags] = 0,
+            [questKeys.specialFlags] = specialFlags.NONE,
         },
         [8553] = {
             [questKeys.requiredRaces] = raceIDs.NONE,
@@ -487,34 +481,34 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.requiredRaces] = raceIDs.BLOOD_ELF,
         },
         [9211] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [9213] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [9221] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [9222] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [9223] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [9224] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [9225] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [9226] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [9227] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [9228] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [9247] = {
             [questKeys.finishedBy] = {{16281}},
@@ -561,6 +555,12 @@ function QuestieWotlkQuestFixes:Load()
         [9876] = {
             [questKeys.nextQuestInChain] = 9738,
         },
+        [10106] = { -- Hellfire Fortifications
+            [questKeys.preQuestSingle] = {13408,13410},
+        },
+        [10110] = { -- Hellfire Fortifications
+            [questKeys.preQuestSingle] = {13409,13411},
+        },
         [10137] = {
             [questKeys.requiredSourceItems] = {},
         },
@@ -573,7 +573,8 @@ function QuestieWotlkQuestFixes:Load()
         [10180] = {
             [questKeys.nextQuestInChain] = 10097,
         },
-        [10445] = {
+        [10445] = { -- The Vials of Eternity
+            [questKeys.startedBy] = {},
             [questKeys.exclusiveTo] = {13432},
         },
         [10460] = {
@@ -675,8 +676,8 @@ function QuestieWotlkQuestFixes:Load()
         [10888] = {
             [questKeys.exclusiveTo] = {13430},
         },
-        [10900] = {
-            [questKeys.requiredMaxLevel] = 70,
+        [10900] = { -- The Mark of Vashj
+            [questKeys.nextQuestInChain] = 13431,
         },
         [10901] = {
             [questKeys.exclusiveTo] = {13431},
@@ -690,8 +691,19 @@ function QuestieWotlkQuestFixes:Load()
         [10985] = {
             [questKeys.exclusiveTo] = {13429},
         },
+        [11009] = { -- Ogre Heaven
+            [questKeys.breadcrumbForQuestId] = 11025,
+            [questKeys.nextQuestInChain] = 11025,
+        },
         [11010] = {
             [questKeys.requiredClasses] = classIDs.WARLOCK + classIDs.ROGUE + classIDs.MAGE + classIDs.PRIEST + classIDs.WARRIOR + classIDs.PALADIN + classIDs.HUNTER + classIDs.SHAMAN + classIDs.DEATH_KNIGHT,
+        },
+        [11025] = { -- The Crystals
+            [questKeys.preQuestSingle] = {11000},
+            [questKeys.breadcrumbs] = {11009},
+        },
+        [11026] = { -- Banish the Demons
+            [questKeys.preQuestSingle] = {11009},
         },
         [11117] = {
             [questKeys.startedBy] = {{23486}},
@@ -1126,6 +1138,9 @@ function QuestieWotlkQuestFixes:Load()
         },
         [11448] = {
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_OBJECT, l10n("Ask McGoyver for a ride to the Explorers' League Outpost"),0,{{"monster",24040}}}},
+        },
+        [11451] = { -- Alicia's Poem
+            [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
         },
         [11452] = {
             [questKeys.startedBy] = {nil,nil,{34090}},
@@ -1604,9 +1619,6 @@ function QuestieWotlkQuestFixes:Load()
         [11995] = {
             [questKeys.exclusiveTo] = {12439},
         },
-        [12000] = {
-            [questKeys.preQuestSingle] = {},
-        },
         [12007] = {
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_EVENT, l10n("Drink Drakuru's Elixir after gathering Zim'bo's Mojo"),0,{{"object", 420033}}}},
             [questKeys.requiredSourceItems] = {35797,35836},
@@ -1938,9 +1950,10 @@ function QuestieWotlkQuestFixes:Load()
             },
             [questKeys.requiredSourceItems] = {},
         },
-        [12204] = {
+        [12204] = { -- In the Name of Loken
             [questKeys.preQuestSingle] = {12099,12058},
             [questKeys.preQuestGroup] = {},
+            [questKeys.objectives] = {{{26484,nil,Questie.ICON_TYPE_TALK},{26420,nil,Questie.ICON_TYPE_TALK}}},
         },
         [12206] = {
             [questKeys.objectives] = {{{27349,nil,Questie.ICON_TYPE_INTERACT}}},
@@ -2211,49 +2224,49 @@ function QuestieWotlkQuestFixes:Load()
         [12423] = {
             [questKeys.startedBy] = {nil,nil,{37830}},
         },
-        [12427] = {
+        [12427] = { -- The Conquest Pit: Bear Wrestling!
             [questKeys.preQuestSingle] = {12413},
-            [questKeys.triggerEnd] = {"Ironhide defeated",{[zoneIDs.GRIZZLY_HILLS]={{23.2,64.68}}}},
             [questKeys.objectives] = {{{27715}}},
+            [questKeys.nextQuestInChain] = 12428,
         },
-        [12428] = {
-            [questKeys.triggerEnd] = {"Torgg Thundertotem defeated",{[zoneIDs.GRIZZLY_HILLS]={{23.05,64.55}}}},
+        [12428] = { -- The Conquest Pit: Mad Furbolg Fighting
             [questKeys.objectives] = {{{27716}}},
+            [questKeys.nextQuestInChain] = 12429,
         },
-        [12429] = {
-            [questKeys.triggerEnd] = {"Rustblood defeated",{[zoneIDs.GRIZZLY_HILLS]={{23.12,64.62}}}},
+        [12429] = { -- The Conquest Pit: Blood and Metal
             [questKeys.objectives] = {{{27717}}},
+            [questKeys.nextQuestInChain] = 12430,
         },
-        [12430] = {
-            [questKeys.triggerEnd] = {"Horgrenn Hellcleave defeated",{[zoneIDs.GRIZZLY_HILLS]={{23.11,64.6}}}},
+        [12430] = { -- The Conquest Pit: Death Is Likely
             [questKeys.objectives] = {{{27718}}},
+            [questKeys.nextQuestInChain] = 12431,
         },
-        [12431] = {
+        [12431] = { -- The Conquest Pit: Final Showdown
             [questKeys.objectives] = {{{27727}}},
         },
-        [12432] = {
+        [12432] = { -- Riding the Red Rocket
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_TALK, l10n("Ride the rocket!"), 0, {{"monster", 27593}}}},
         },
-        [12434] = {
-            [questKeys.specialFlags] = 1,
+        [12434] = { -- Always Seeking Solvent
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
             [questKeys.preQuestSingle] = {12433},
             [questKeys.startedBy] = {{27565}},
             [questKeys.finishedBy] = {{27565}},
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
         },
-        [12435] = { -- #4675
+        [12435] = { -- Report to Lord Devrestrasz
             [questKeys.name] = "Report to Lord Devrestrasz",
             [questKeys.objectivesText] = {"Speak with Lord Devrestrasz at Wyrmrest Temple."},
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_TALK, l10n("Take a drake to the middle of the temple"), 0, {{"monster", 26949}}}},
         },
-        [12437] = {
+        [12437] = { -- Riding the Red Rocket
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_TALK, l10n("Ride the rocket!"), 0, {{"monster", 27593}}}},
         },
         [12439] = {
             [questKeys.exclusiveTo] = {11995,12000},
         },
-        [12446] = {
-            [questKeys.specialFlags] = 1,
+        [12446] = { -- Always Seeking Solvent
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
             [questKeys.preQuestSingle] = {12443},
             [questKeys.startedBy] = {{27495}},
             [questKeys.finishedBy] = {{27495}},
@@ -3321,23 +3334,27 @@ function QuestieWotlkQuestFixes:Load()
         [12930] = {
             [questKeys.requiredSourceItems] = {},
         },
-        [12932] = { -- This is the version of the quest you get if you have NOT completed 9977
+        [12932] = { -- The Amphitheater of Anguish: Yggdras!
             [questKeys.objectives] = {{{30014}}},
-            [questKeys.exclusiveTo] = {12954,9977},
+            [questKeys.exclusiveTo] = {12954,9977}, -- This is the version of the quest you get if you have NOT completed 9977
             [questKeys.nextQuestInChain] = 12933,
         },
-        [12933] = {
+        [12933] = { -- The Amphitheater of Anguish: Magnataur!
             [questKeys.objectives] = {{{30017}}},
             [questKeys.preQuestSingle] = {12932,12954},
+            [questKeys.nextQuestInChain] = 12934,
         },
-        [12934] = {
+        [12934] = { -- The Amphitheater of Anguish: From Beyond!
             [questKeys.objectives] = {nil,nil,nil,nil,{{{30019,30024,30025,30026},30019}}},
+            [questKeys.nextQuestInChain] = 12935,
         },
-        [12935] = {
+        [12935] = { -- The Amphitheater of Anguish: Tuskarrmageddon!
             [questKeys.objectives] = {{{30020}}},
+            [questKeys.nextQuestInChain] = 12936,
         },
-        [12936] = {
+        [12936] = { -- The Amphitheater of Anguish: Korrak the Bloodrager!
             [questKeys.objectives] = {{{30023}}},
+            [questKeys.nextQuestInChain] = 12948,
         },
         [12937] = {
             [questKeys.requiredSourceItems] = {},
@@ -3383,7 +3400,7 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.finishedBy] = {nil,{191881}},
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
         },
-        [12948] = {
+        [12948] = { -- The Champion of Anguish
             [questKeys.objectives] = {{{30022}}},
         },
         [12950] = {
@@ -3424,8 +3441,9 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_EVENT, l10n("Get in Brann's Flying Machine"), 0, {{"monster", 30134}}}},
             [questKeys.preQuestSingle] = {12880},
         },
-        [12974] = {
-            [questKeys.exclusiveTo] = {12932,12954},
+        [12974] = { -- The Champion's Call!
+            [questKeys.exclusiveTo] = {12954},
+            [questKeys.nextQuestInChain] = 12932,
         },
         [12975] = {
             [questKeys.preQuestSingle] = {12924},
@@ -3651,7 +3669,8 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.preQuestSingle] = {},
             [questKeys.preQuestGroup] = {13008,13039,13040},
         },
-        [13045] = {
+        [13045] = { -- Into The Wild Green Yonder
+            [questKeys.objectives] = {{{30407,nil,Questie.ICON_TYPE_EVENT}}},
             [questKeys.extraObjectives] = {
                 {nil, Questie.ICON_TYPE_MOUNT_UP, l10n("Mount Argent Skytalon"), 0, {{"monster", 30500}}},
                 {{[zoneIDs.ICECROWN]={{86.85,76.61}}}, Questie.ICON_TYPE_EVENT, l10n("Drop Off Captured Crusader"), 0},
@@ -3742,7 +3761,7 @@ function QuestieWotlkQuestFixes:Load()
         },
         [13092] = {
             [questKeys.preQuestSingle] = {12999},
-            [questKeys.specialFlags] = 0,
+            [questKeys.specialFlags] = specialFlags.NONE,
         },
         [13093] = {
             [questKeys.preQuestSingle] = {13092},
@@ -4358,8 +4377,9 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.preQuestSingle] = {13332},
             [questKeys.requiredSourceItems] = {},
         },
-        [13315] = {
+        [13315] = { -- Sneak Preview
             [questKeys.preQuestSingle] = {13288},
+            [questKeys.objectives] = {{{32195,nil,Questie.ICON_TYPE_EVENT},{32196,nil,Questie.ICON_TYPE_EVENT},{32197,nil,Questie.ICON_TYPE_EVENT},{32199,nil,Questie.ICON_TYPE_EVENT}}},
         },
         [13316] = {
             [questKeys.preQuestSingle] = {13329},
@@ -4468,8 +4488,9 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.objectives] = {{{32300}}},
             [questKeys.requiredSourceItems] = {44476,44477,44478,44479,44480},
         },
-        [13351] = {
+        [13351] = { -- Sneak Preview
             [questKeys.preQuestSingle] = {13264},
+            [questKeys.objectives] = {{{32195,nil,Questie.ICON_TYPE_EVENT},{32196,nil,Questie.ICON_TYPE_EVENT},{32197,nil,Questie.ICON_TYPE_EVENT},{32199,nil,Questie.ICON_TYPE_EVENT}}},
         },
         [13352] = {
             [questKeys.objectives] = {{{32236,nil,Questie.ICON_TYPE_INTERACT}}},
@@ -4628,21 +4649,25 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.finishedBy] = {{15350}},
             [questKeys.exclusiveTo] = {11339,11340,11341,11342,14164},
         },
-        [13408] = {
+        [13408] = { -- Hellfire Fortifications A
             [questKeys.preQuestSingle] = {10143,10483},
             [questKeys.objectives] = {{{19028,nil,Questie.ICON_TYPE_EVENT},{19029,nil,Questie.ICON_TYPE_EVENT},{19032,nil,Questie.ICON_TYPE_EVENT}}},
+            [questKeys.nextQuestInChain] = 10106,
         },
-        [13409] = {
-            [questKeys.preQuestSingle] = {10124},
+        [13409] = { -- Hellfire Fortifications H
+            [questKeys.preQuestSingle] = {10124,10449},
             [questKeys.objectives] = {{{19028,nil,Questie.ICON_TYPE_EVENT},{19029,nil,Questie.ICON_TYPE_EVENT},{19032,nil,Questie.ICON_TYPE_EVENT}}},
+            [questKeys.nextQuestInChain] = 10110,
         },
-        [13410] = {
+        [13410] = { -- Hellfire Fortifications A
             [questKeys.preQuestSingle] = {10143,10483},
             [questKeys.objectives] = {{{19028,nil,Questie.ICON_TYPE_EVENT},{19029,nil,Questie.ICON_TYPE_EVENT},{19032,nil,Questie.ICON_TYPE_EVENT}}},
+            [questKeys.nextQuestInChain] = 10106,
         },
-        [13411] = {
-            [questKeys.preQuestSingle] = {10124},
+        [13411] = { -- Hellfire Fortifications H
+            [questKeys.preQuestSingle] = {10124,10449},
             [questKeys.objectives] = {{{19028,nil,Questie.ICON_TYPE_EVENT},{19029,nil,Questie.ICON_TYPE_EVENT},{19032,nil,Questie.ICON_TYPE_EVENT}}},
+            [questKeys.nextQuestInChain] = 10110,
         },
         [13413] = {
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_MOUNT_UP, l10n("Mount up"), 1, {{"monster", 32548}}}},
@@ -6125,7 +6150,7 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.requiredSourceItems] = {},
         },
         [14103] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
             [questKeys.startedBy] = {{28701}},
             [questKeys.finishedBy] = {{28701}},
         },
@@ -6518,7 +6543,7 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.startedBy] = {nil,nil,{49643}},
         },
         [24431] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [24442] = { -- Battle Plans Of The Kvaldir
             [questKeys.startedBy] = {nil,nil,{49676}},
@@ -6982,7 +7007,7 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.objectives] = {{{37554,nil,Questie.ICON_TYPE_EVENT},{36954,nil,Questie.ICON_TYPE_EVENT}}},
         },
         [24803] = {
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [24815] = {
             [questKeys.requiredMinRep] = {1156,3000},
@@ -7399,10 +7424,10 @@ function QuestieWotlkQuestFixes:Load()
         [26013] = { -- Assault on the Sanctum
             [questKeys.preQuestSingle] = {},
         },
-        [26034] = {
+        [26034] = { -- The Twilight Destroyer
             [questKeys.preQuestSingle] = {26013},
         },
-        [64845] = {
+        [64845] = { -- Alliance War Effort
             [questKeys.triggerEnd] = {"Victory in a battleground match", {
                 [zoneIDs.ALTERAC_MOUNTAINS] = {{39.4,82.2}},
                 [zoneIDs.ARATHI_HIGHLANDS] = {{45.6,45.8}},
@@ -7816,8 +7841,8 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.objectivesText] = {"Archmage Lan\'dalock in Dalaran wants you to return with the Defiler\'s Medallion from any final dungeon boss.","","This quest may only be completed on any Titan Rune Protocol Gamma dungeon difficulty."},
             [questKeys.objectives] = {nil,nil,{{211206}}},
             [questKeys.zoneOrSort] = 4395,
-            [questKeys.questFlags] = 4232,
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+            [questKeys.questFlags] = questFlags.DAILY,
             [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
         },
         [78753] = {
@@ -7830,8 +7855,8 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.objectivesText] = {"Archmage Lan\'dalock in Dalaran wants you to return with the Mysterious Artifact from any final dungeon boss.","","This quest may only be completed on any Heroic dungeon difficulty."},
             [questKeys.objectives] = {nil,nil,{{211207}}},
             [questKeys.zoneOrSort] = 4395,
-            [questKeys.questFlags] = 4232,
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+            [questKeys.questFlags] = questFlags.DAILY,
             [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
         },
         [83713] = {
@@ -7844,8 +7869,8 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.objectivesText] = {"Archmage Lan\'dalock in Dalaran wants you to return with the Defiler\'s Medallion from any final dungeon boss.","","This quest may only be completed on any Titan Rune Protocol Alpha dungeon difficulty."},
             [questKeys.objectives] = {nil,nil,{{211206}}},
             [questKeys.zoneOrSort] = 4395,
-            [questKeys.questFlags] = 4232,
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+            [questKeys.questFlags] = questFlags.DAILY,
             [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
         },
         [83714] = {
@@ -7858,8 +7883,8 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.objectivesText] = {"Archmage Lan\'dalock in Dalaran wants you to return with the Mysterious Artifact from any final dungeon boss.","","This quest may only be completed on any Heroic dungeon difficulty."},
             [questKeys.objectives] = {nil,nil,{{211207}}},
             [questKeys.zoneOrSort] = 4395,
-            [questKeys.questFlags] = 4232,
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+            [questKeys.questFlags] = questFlags.DAILY,
             [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
         },
         [83717] = {
@@ -7872,8 +7897,8 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.objectivesText] = {"Archmage Lan\'dalock in Dalaran wants you to return with the Defiler\'s Medallion from any final dungeon boss.","","This quest may only be completed on any Titan Rune Protocol Beta dungeon difficulty."},
             [questKeys.objectives] = {nil,nil,{{211206}}},
             [questKeys.zoneOrSort] = 4395,
-            [questKeys.questFlags] = 4232,
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+            [questKeys.questFlags] = questFlags.DAILY,
             [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
         },
         [87379] = {
@@ -7886,75 +7911,282 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.objectivesText] = {"Archmage Lan\'dalock in Dalaran wants you to return with the Mysterious Artifact from any final dungeon boss.","","This quest may only be completed on any Heroic dungeon difficulty."},
             [questKeys.objectives] = {nil,nil,{{211207}}},
             [questKeys.zoneOrSort] = 4395,
-            [questKeys.questFlags] = 4232,
-            [questKeys.specialFlags] = 1,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+            [questKeys.questFlags] = questFlags.DAILY,
             [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
         },
-        [93975] = {
-            [questKeys.name] = "拉格纳罗斯必须死！", -- "Ragnaros Must Die!", only present on titan reforged
+        [93950] = { -- A Message From The Stars -- only present on titan reforged
+            [questKeys.name] = "A Message From The Stars",
+            [questKeys.startedBy] = {{257012}},
+            [questKeys.finishedBy] = {{257012}},
+            [questKeys.requiredLevel] = 1,
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.objectivesText] = {"Accept Algalon's Gift."},
+            [questKeys.zoneOrSort] = sortKeys.TITAN_REFORGED_REALM,
+            [questKeys.specialFlags] = specialFlags.NONE,
+            [questKeys.questFlags] = questFlags.NONE,
+        },
+        [93975] = { -- Ragnaros Must Die! -- only present on titan reforged
+            [questKeys.name] = "Ragnaros Must Die!",
             [questKeys.startedBy] = {{20735}},
             [questKeys.finishedBy] = {{20735}},
             [questKeys.requiredLevel] = 80,
             [questKeys.questLevel] = 80,
             [questKeys.requiredRaces] = raceIDs.NONE,
-            [questKeys.objectivesText] = {"团队消灭拉格纳罗斯。"}, -- "Kill Ragnaros.", only present on titan reforged
+            [questKeys.objectivesText] = {"Kill Ragnaros."},
             [questKeys.objectives] = {{{11502}}},
             [questKeys.zoneOrSort] = zoneIDs.MOLTEN_CORE,
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
             [questKeys.questFlags] = questFlags.WEEKLY,
+            [questKeys.exclusiveTo] = {94577,94579,95037,96312,96315,96318},
             [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
         },
-        [94577] = {
-            [questKeys.name] = "凯尔萨斯必须死！", -- "Kael'thas Must Die!", only present on titan reforged
+        [94376] = { -- Titanic Power -- only present on titan reforged
+            [questKeys.name] = "Titanic Power",
+            [questKeys.startedBy] = {{257403}},
+            [questKeys.finishedBy] = {{257403}},
+            [questKeys.requiredLevel] = 69,
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.objectivesText] = {"Speak to Algalon and learn about Titanic Embers."},
+            [questKeys.zoneOrSort] = zoneIDs.STORM_PEAKS,
+            [questKeys.specialFlags] = specialFlags.NONE,
+            [questKeys.questFlags] = questFlags.NONE,
+        },
+        [94576] = { -- Find a New Way -- only present on titan reforged
+            [questKeys.name] = "Find a New Way",
+            [questKeys.startedBy] = {{31136}},
+            [questKeys.finishedBy] = {{31136}},
+            [questKeys.requiredLevel] = 80,
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.objectivesText] = {"Find a way to power the Wind - Kissed Blade, then return to High Warlord Uro in the sewers of Dalaran."},
+            [questKeys.zoneOrSort] = sortKeys.LEGENDARY,
+            [questKeys.specialFlags] = specialFlags.NONE,
+            [questKeys.questFlags] = questFlags.NONE,
+            [questKeys.preQuestSingle] = {7787},
+        },
+        [94577] = { -- Kael'thas Must Die! -- only present on titan reforged
+            [questKeys.name] = "Kael'thas Must Die!",
             [questKeys.startedBy] = {{20735}},
             [questKeys.finishedBy] = {{20735}},
             [questKeys.requiredLevel] = 80,
             [questKeys.questLevel] = 80,
             [questKeys.requiredRaces] = raceIDs.NONE,
-            [questKeys.objectivesText] = {"消灭风暴要塞的凯尔萨斯逐日者。"}, -- "Kill Kael'thas Sunstrider in Tempest Keep." only present on titan reforged
+            [questKeys.objectivesText] = {"Kill Kael'thas Sunstrider in Tempest Keep."},
             [questKeys.objectives] = {{{19622}}},
             [questKeys.zoneOrSort] = zoneIDs.TEMPEST_KEEP,
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
             [questKeys.questFlags] = questFlags.WEEKLY,
+            [questKeys.exclusiveTo] = {93975,94579,95037,96312,96315,96318},
             [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
         },
-        [94579] = {
-            [questKeys.name] = "消灭帕奇维克！", -- "Patchwerk Must Die!", only present on titan reforged
+        [94579] = { -- Patchwerk Must Die! -- only present on titan reforged
+            [questKeys.name] = "Patchwerk Must Die!",
             [questKeys.startedBy] = {{20735}},
             [questKeys.finishedBy] = {{20735}},
             [questKeys.requiredLevel] = 80,
             [questKeys.questLevel] = 80,
             [questKeys.requiredRaces] = raceIDs.NONE,
-            [questKeys.objectivesText] = {"消灭帕奇维克。"}, -- "Kill Patchwerk." only present on titan reforged
+            [questKeys.objectivesText] = {"Kill Patchwerk."},
             [questKeys.objectives] = {{{16028}}},
             [questKeys.zoneOrSort] = zoneIDs.NAXXRAMAS,
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
             [questKeys.questFlags] = questFlags.WEEKLY,
+            [questKeys.exclusiveTo] = {93975,94577,95037,96312,96315,96318},
             [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
         },
-        [95706] = { -- Gobb's Weekly Greed Deal
-            [questKeys.name] = "“哥布”的每周贪婪交易", -- only present on titan reforged
+        [95037] = { -- Lord Jaraxxus Must Die! -- only present on titan reforged
+            [questKeys.name] = "Lord Jaraxxus Must Die!",
+            [questKeys.startedBy] = {{20735}},
+            [questKeys.finishedBy] = {{20735}},
+            [questKeys.requiredLevel] = 80,
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.objectivesText] = {"Kill Lord Jaraxxus."},
+            [questKeys.objectives] = {{{34780}}},
+            [questKeys.zoneOrSort] = zoneIDs.TRIAL_OF_THE_CRUSADER,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+            [questKeys.questFlags] = questFlags.WEEKLY,
+            [questKeys.exclusiveTo] = {93975,94577,94579,96312,96315,96318},
+            [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
+        },
+        [95705] = { -- Gobb's Grand Opening! -- only present on titan reforged
+            [questKeys.name] = "Gobb's Grand Opening!",
             [questKeys.startedBy] = {{262258}},
             [questKeys.finishedBy] = {{262258}},
             [questKeys.requiredLevel] = 80,
             [questKeys.questLevel] = 80,
-            [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
-            [questKeys.objectivesText] = {"从老板“哥布”金痕的限量库存中购买每周贪婪宝箱。货源每周重置。如果错过了，那就自认倒霉吧！"}, --  only present on titan reforged
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.objectivesText] = {"Boss Gobb Goldnick wants you to purchase one Greedy Chest from his black-market stash to prove you're a paying customer worth fleec-- err, serving."},
+            [questKeys.zoneOrSort] = sortKeys.SPECIAL,
+            [questKeys.specialFlags] = specialFlags.NONE,
+            [questKeys.questFlags] = questFlags.NONE,
+            [questKeys.nextQuestInChain] = 95706,
+        },
+        [95706] = { -- Gobb's Weekly Greed Deal -- only present on titan reforged
+            [questKeys.name] = "Gobb's Weekly Greed Deal",
+            [questKeys.startedBy] = {{262258}},
+            [questKeys.finishedBy] = {{262258}},
+            [questKeys.requiredLevel] = 80,
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.objectivesText] = {"Purchase a weekly Greedy Chest from Boss Gobb Goldnick's limited stock. Supplies reset every week. If you miss out, tough luck!"},
             [questKeys.zoneOrSort] = sortKeys.SPECIAL,
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
+            [questKeys.questFlags] = questFlags.NONE,
+            [questKeys.preQuestSingle] = {95705},
+        },
+        [95844] = { -- Gobb's Grand Tank Temptation -- only present on titan reforged
+            [questKeys.name] = "Gobb's Grand Tank Temptation",
+            [questKeys.startedBy] = {{262258}},
+            [questKeys.finishedBy] = {{262258}},
+            [questKeys.requiredLevel] = 80,
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.objectivesText] = {"Purchase a weekly Black Qiraji Chest from Boss Gobb Goldnick's limited stock. Supplies reset every week. If you miss out, tough luck!"},
+            [questKeys.zoneOrSort] = sortKeys.SPECIAL,
+            [questKeys.specialFlags] = specialFlags.NONE,
+            [questKeys.questFlags] = questFlags.NONE,
+            [questKeys.nextQuestInChain] = 95845,
+        },
+        [95845] = { -- Another Shot at the Scarab -- only present on titan reforged
+            [questKeys.name] = "Another Shot at the Scarab",
+            [questKeys.startedBy] = {{262258}},
+            [questKeys.finishedBy] = {{262258}},
+            [questKeys.requiredLevel] = 80,
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.objectivesText] = {"Purchase a weekly Black Qiraji Chest from Boss Gobb Goldnick's limited stock. Supplies reset every week. If you miss out, tough luck!"},
+            [questKeys.zoneOrSort] = sortKeys.SPECIAL,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+            [questKeys.questFlags] = questFlags.NONE,
+            [questKeys.preQuestSingle] = {95844},
+        },
+        [96211] = { -- Heart of the Eredar -- only present on titan reforged
+            [questKeys.name] = "Heart of the Eredar",
+            [questKeys.startedBy] = {nil,nil,{272955}},
+            [questKeys.finishedBy] = {{80007}},
+            [questKeys.sourceItemId] = 272955,
+            [questKeys.requiredLevel] = 80,
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredClasses] = classIDs.WARRIOR + classIDs.HUNTER + classIDs.ROGUE + classIDs.SHAMAN,
+            [questKeys.objectivesText] = {"Find a suitable purpose for the Eredar Heart."},
+            [questKeys.objectives] = {nil,{{420002}}},
+            [questKeys.zoneOrSort] = sortKeys.LEGENDARY,
+            [questKeys.specialFlags] = specialFlags.NONE,
             [questKeys.questFlags] = questFlags.NONE,
         },
-        [95844] = { -- Gobb's Grand Tank Temptation
-            [questKeys.name] = "“哥布”的至尊坦克诱惑", -- only present on titan reforged
-            [questKeys.startedBy] = {{262258}},
-            [questKeys.finishedBy] = {{262258}},
+        [96312] = { -- Brutallus Must Die! -- only present on titan reforged
+            [questKeys.name] = "Brutallus Must Die!",
+            [questKeys.startedBy] = {{20735}},
+            [questKeys.finishedBy] = {{20735}},
             [questKeys.requiredLevel] = 80,
             [questKeys.questLevel] = 80,
-            [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
-            [questKeys.objectivesText] = {"从老板“哥布”金痕的限量库存中购买每周黑色其拉宝箱。货源每周重置。如果错过了，那就自认倒霉吧！"}, --  only present on titan reforged
-            [questKeys.zoneOrSort] = sortKeys.SPECIAL,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.objectivesText] = {"Kill Brutallus."},
+            [questKeys.objectives] = {{{24882}}},
+            [questKeys.zoneOrSort] = zoneIDs.SUNWELL_PLATEAU,
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
-            [questKeys.questFlags] = questFlags.NONE,
+            [questKeys.questFlags] = questFlags.WEEKLY,
+            [questKeys.exclusiveTo] = {93975,94577,94579,95037,96315,96318},
+            [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
+        },
+        [96315] = { -- XT-002 Deconstructor Must Die! -- only present on titan reforged
+            [questKeys.name] = "XT-002 Deconstructor Must Die!",
+            [questKeys.startedBy] = {{20735}},
+            [questKeys.finishedBy] = {{20735}},
+            [questKeys.requiredLevel] = 80,
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.objectivesText] = {"Kill XT-002 Deconstructor."},
+            [questKeys.objectives] = {{{33293}}},
+            [questKeys.zoneOrSort] = zoneIDs.ULDUAR,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+            [questKeys.questFlags] = questFlags.WEEKLY,
+            [questKeys.exclusiveTo] = {93975,94577,94579,95037,96312,96318},
+            [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
+        },
+        [96318] = { -- Shade of Aran Must Die!-- only present on titan reforged
+            [questKeys.name] = "Shade of Aran Must Die!",
+            [questKeys.startedBy] = {{20735}},
+            [questKeys.finishedBy] = {{20735}},
+            [questKeys.requiredLevel] = 80,
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.objectivesText] = {"Kill Shade of Aran."},
+            [questKeys.objectives] = {{{16524}}},
+            [questKeys.zoneOrSort] = zoneIDs.KARAZHAN,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+            [questKeys.questFlags] = questFlags.WEEKLY,
+            [questKeys.exclusiveTo] = {93975,94577,94579,95037,96312,96315},
+            [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
+        },
+    }
+end
+
+function QuestieWotlkQuestFixes:LoadTitanReforgedFixes()
+    local questKeys = QuestieDB.questKeys
+    local classIDs = QuestieDB.classKeys
+
+    return {
+        [6805] = { -- Greater Stormers and Rumblers
+            [questKeys.name] = "Greater Stormers and Rumblers",
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
+            [questKeys.objectivesText] = {"Kill 15 Greater Dust Stormers and 15 Greater Desert Rumblers and then return to Duke Hydraxis in Azshara."},
+            [questKeys.objectives] = {{{256887},{256889}}},
+            [questKeys.nextQuestInChain] = 6822,
+        },
+        [6822] = { -- The Molten Core
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
+            [questKeys.preQuestSingle] = {6805},
+        },
+        [6823] = { -- Agent of Hydraxis
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
+        },
+        [6824] = { -- Hands of the Enemy
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
+        },
+        [7486] = { -- A Hero's Reward
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
+        },
+        [7787] = { -- Rise, Thunderfury!
+            [questKeys.name] = "Legend of the Past",
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
+            [questKeys.finishedBy] = {{31136}},
+            [questKeys.objectivesText] = {"Look for someone who has knowledge about the Dormant Blade."},
+            [questKeys.preQuestSingle] = {},
+            [questKeys.nextQuestInChain] = 94576,
+        },
+        [9250] = { -- Frame of Atiesh
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
+            [questKeys.requiredClasses] = classIDs.SHAMAN + classIDs.MAGE + classIDs.WARLOCK + classIDs.PRIEST + classIDs.DRUID,
+        },
+        [9251] = { -- Atiesh, the Befouled Greatstaff
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
+            [questKeys.requiredClasses] = classIDs.SHAMAN + classIDs.MAGE + classIDs.WARLOCK + classIDs.PRIEST + classIDs.DRUID,
+        },
+        [9269] = { -- Atiesh, Greatstaff of the Guardian
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
+            [questKeys.requiredClasses] = classIDs.SHAMAN + classIDs.MAGE + classIDs.WARLOCK + classIDs.PRIEST + classIDs.DRUID,
+        },
+        [11007] = { -- Kael'thas and the Verdant Sphere
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
+        },
+        [13432] = { -- The Vials of Eternity
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
         },
     }
 end
@@ -8006,7 +8238,17 @@ function _QuestieWotlkQuestFixes:InsertMissingQuestIds()
     QuestieDB.questData[78752] = {} -- Proof of Demise: Titan Rune Protocol Gamma
     QuestieDB.questData[78753] = {} -- Proof of Demise: Threats to Azeroth
 
-    -- Titan reforged P3 weekly quests
+    -- Titan reforged quests
+    QuestieDB.questData[93950] = {} -- A Message From The Stars
+    QuestieDB.questData[94376] = {} -- Titanic Power
     QuestieDB.questData[94579] = {} -- Patchwerk Must Die!
-
+    QuestieDB.questData[95705] = {} -- Gobb's Grand Opening!
+    QuestieDB.questData[95706] = {} -- Gobb's Weekly Greed Deal
+    QuestieDB.questData[95844] = {} -- Gobb's Grand Tank Temptation
+    QuestieDB.questData[95845] = {} -- Another Shot at the Scarab
+    QuestieDB.questData[95037] = {} -- Lord Jaraxxus Must Die!
+    QuestieDB.questData[96211] = {} -- Heart of the Eredar
+    QuestieDB.questData[96312] = {} -- Brutallus Must Die!
+    QuestieDB.questData[96315] = {} -- XT-002 Deconstructor Must Die!
+    QuestieDB.questData[96318] = {} -- Shade of Aran Must Die!
 end

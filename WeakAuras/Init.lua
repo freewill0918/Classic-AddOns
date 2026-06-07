@@ -118,6 +118,7 @@ Private.frames = {}
 --- @field spec_types string[]
 --- @field spec_types_3 string[]
 --- @field spec_types_2 string[]
+--- @field SquelchingActions fun(uid: uid): boolean
 --- @field StartProfileAura fun(id: auraId)
 --- @field StartProfileSystem fun(system: string)
 --- @field StopProfileAura fun(id: auraId)
@@ -382,8 +383,8 @@ WeakAuras.normalWidth = 1.3
 WeakAuras.halfWidth = WeakAuras.normalWidth / 2
 WeakAuras.doubleWidth = WeakAuras.normalWidth * 2
 local versionStringFromToc = C_AddOns.GetAddOnMetadata("WeakAuras", "Version")
-local versionString = "5.21.3"
-local buildTime = "20260403185053"
+local versionString = "5.21.7"
+local buildTime = "20260602223331"
 
 local flavorFromToc = C_AddOns.GetAddOnMetadata("WeakAuras", "X-Flavor")
 local flavorFromTocToNumber = {
@@ -411,7 +412,7 @@ WeakAuras.buildType = "pr"
 --@end-experimental@]=====]
 
 --[==[@debug@
-if versionStringFromToc == "5.21.3" then
+if versionStringFromToc == "5.21.7" then
   versionStringFromToc = "Dev"
   buildTime = "Dev"
   WeakAuras.buildType = "dev"
@@ -430,6 +431,7 @@ end
 -- save compatibility with old auras
 WeakAuras.IsClassic = WeakAuras.IsClassicEra
 
+---@return boolean result
 function WeakAuras.IsTBC()
   return flavor == 2
 end
@@ -681,7 +683,7 @@ end
 
 ---@type fun(regionType: string, createOptions: function, icon: string|function, displayName: string, createThumbnail: function?, modifyThumbnail: function?, description: string?, templates: table?, getAnchors: function?)
 ---@diagnostic disable-next-line: duplicate-set-field
-function Private.RegisterRegionOptions(_, _ , _ ,_ )
+function Private.RegisterRegionOptions(_, _ , _ ,_)
 end
 
 function Private.StartProfileSystem(_)

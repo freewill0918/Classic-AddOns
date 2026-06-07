@@ -409,6 +409,10 @@ L["STRING_OPTIONS_ANIMATESCROLL_DESC"] = "Cuando está habilitada, la barra de d
 L["STRING_OPTIONS_APPEARANCE"] = "Apariencia"
 L["STRING_OPTIONS_ATTRIBUTE_TEXT"] = "Configuración del texto del título"
 L["STRING_OPTIONS_ATTRIBUTE_TEXT_DESC"] = "Estas opciones configurar el texto del título de la ventana."
+--[[Translation missing --]]
+L["STRING_OPTIONS_AUTO_COMBATLOG"] = "Auto Start Combatlog"
+--[[Translation missing --]]
+L["STRING_OPTIONS_AUTO_COMBATLOG_DESC"] = "Automatically start and stop logging combat to the combatlog.txt file when you enter or leave a raid or dungeon."
 L["STRING_OPTIONS_AUTO_SWITCH"] = "Todos roles |cFFFFAA00(en combate)|r"
 L["STRING_OPTIONS_AUTO_SWITCH_COMBAT"] = "|cFFFFAA00(en combate)|r"
 L["STRING_OPTIONS_AUTO_SWITCH_DAMAGER_DESC"] = "Cuando está en la especialización de daños, esta ventana muestra el atributo o plugin seleccionado."
@@ -763,6 +767,16 @@ L["STRING_OPTIONS_PERFORMANCECAPTURES_DESC"] = "Estos opciones configurar cómo 
 L["STRING_OPTIONS_PERFORMANCEPROFILES_ANCHOR"] = "Perfiles de rendimiento:"
 L["STRING_OPTIONS_PICONS_DIRECTION"] = "Alineación de iconos de plugins"
 L["STRING_OPTIONS_PICONS_DIRECTION_DESC"] = "Cuando está marcado, los botones del plugin se muestran en el lado derecho de los botones del menú."
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME"] = "Player Name"
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME_AUTO_ALIGNMENT"] = "Auto Alignment"
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME_AUTO_ALIGNMENT_DESC"] = "Disable this only if you experience player name alignment issues."
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME_AUTO_WIDTH"] = "Length Auto"
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME_WIDTH"] = "Length"
 L["STRING_OPTIONS_PLUGINS"] = "Plugins"
 L["STRING_OPTIONS_PLUGINS_AUTHOR"] = "Autor"
 L["STRING_OPTIONS_PLUGINS_NAME"] = "Nombre"
@@ -898,6 +912,8 @@ L["STRING_OPTIONS_SCROLLBAR"] = "Barra de desplazamiento"
 L["STRING_OPTIONS_SCROLLBAR_DESC"] = "Habilitar o deshabilitar la barra de desplazamiento. Por defecto, las barras de desplazamiento se reemplazan por un mecanismo que estira la ventana. El |cFFFFFF00mango de estiramiento|r está afuera sobre el botón/menú de la ventana (a la izquierda del botón de cierre)."
 L["STRING_OPTIONS_SEGMENTSSAVE"] = "Segmentos se han guardados"
 L["STRING_OPTIONS_SEGMENTSSAVE_DESC"] = "Cuántos segmentos quieres guardar entre sesiones de juego. Los valores altos pueden aumentar el tiempo que tarda tu personaje en cerrar sesión."
+--[[Translation missing --]]
+L["STRING_OPTIONS_SELECT_TEMPLATE"] = "Select Template"
 L["STRING_OPTIONS_SENDFEEDBACK"] = "Comentarios"
 L["STRING_OPTIONS_SHOW_SIDEBARS"] = "Mostrar borde de piel"
 L["STRING_OPTIONS_SHOW_SIDEBARS_DESC"] = "Mostrar los bordes de la ventana."
@@ -975,6 +991,10 @@ L["STRING_OPTIONS_TEXT_OUTLINE"] = "Contorno del texto"
 L["STRING_OPTIONS_TEXT_RIGHT_ANCHOR"] = "Texto derecho:"
 L["STRING_OPTIONS_TEXT_ROUTILINE_DESC"] = "Añadir un contorno al texto derecho."
 L["STRING_OPTIONS_TEXT_ROWICONS_ANCHOR"] = "Iconos:"
+--[[Translation missing --]]
+L["STRING_OPTIONS_TEXT_SHADOWCOLOR"] = "Shadow Color"
+--[[Translation missing --]]
+L["STRING_OPTIONS_TEXT_SHADOWOFFSET"] = "Shadow Offset %s"
 L["STRING_OPTIONS_TEXT_SHOW_BRACKET"] = "Paréntesis"
 L["STRING_OPTIONS_TEXT_SHOW_BRACKET_DESC"] = "Elija qué carácter se usa para abrir y cerrar el bloque por segundo y el porcentaje."
 L["STRING_OPTIONS_TEXT_SHOW_PERCENT"] = "Mostrar porcentaje"
@@ -1038,6 +1058,10 @@ L["STRING_OPTIONS_TOOLTIPS_BACKGROUNDCOLOR_DESC"] = "Cambiar el color del fondo 
 L["STRING_OPTIONS_TOOLTIPS_BORDER_COLOR_DESC"] = "Cambia el color del borde."
 L["STRING_OPTIONS_TOOLTIPS_BORDER_SIZE_DESC"] = "Cambiar el tamaño del borde."
 L["STRING_OPTIONS_TOOLTIPS_BORDER_TEXTURE_DESC"] = "Modifica el archivo de textura de borde."
+--[[Translation missing --]]
+L["STRING_OPTIONS_TOOLTIPS_DISABLE"] = "Disable Tooltips"
+--[[Translation missing --]]
+L["STRING_OPTIONS_TOOLTIPS_DISABLE_DESC"] = "Disable tooltips for the selected window."
 L["STRING_OPTIONS_TOOLTIPS_FONTCOLOR"] = "Color del texto"
 L["STRING_OPTIONS_TOOLTIPS_FONTCOLOR_DESC"] = "Cambiar el color del texto en la descripción."
 L["STRING_OPTIONS_TOOLTIPS_FONTFACE"] = "Fuente del texto"
@@ -1168,6 +1192,8 @@ L["STRING_OPTIONSMENU_TOOLTIP"] = "Descripciones"
 L["STRING_OPTIONSMENU_WALLPAPER"] = "Fondo de pantalla"
 L["STRING_OPTIONSMENU_WINDOW"] = "Configuración de ventana"
 L["STRING_OPTIONSMENU_WINDOWBODY"] = "Configuraciones de ventana"
+--[[Translation missing --]]
+L["STRING_OR"] = "Or"
 L["STRING_OVERALL"] = "Total"
 L["STRING_OVERHEAL"] = "Sobresanar"
 L["STRING_OVERHEALED"] = "Sobresanado"

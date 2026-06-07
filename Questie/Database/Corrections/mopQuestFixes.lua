@@ -136,6 +136,7 @@ QuestieCorrections.killCreditObjectiveFirst[32659] = true
 QuestieCorrections.itemObjectiveFirst[32809] = true
 QuestieCorrections.killCreditObjectiveFirst[32943] = true
 QuestieCorrections.killCreditObjectiveFirst[32945] = true
+QuestieCorrections.objectObjectiveFirst[33228] = true
 
 function MopQuestFixes.Load()
     local questKeys = QuestieDB.questKeys
@@ -150,6 +151,9 @@ function MopQuestFixes.Load()
 
     ---@format disable
     return {
+        [236] = { -- Fueling the Demolishers
+            [questKeys.requiredLevel] = 75,
+        },
         [2383] = { -- Simple Parchment
             [questKeys.requiredLevel] = 2,
         },
@@ -322,11 +326,98 @@ function MopQuestFixes.Load()
         [10277] = { -- The Caverns of Time
             [questKeys.triggerEnd] = {"Caverns of Time Explained", {[zoneIDs.CAVERNS_OF_TIME]={{44.31,38.73}}}},
         },
-        [13408] = { -- Hellfire Fortifications
-            [questKeys.requiredClasses] = 2015, -- all classes except DK
+        [13153] = { -- Warding the Warriors
+            [questKeys.requiredLevel] = 75,
         },
-        [13409] = { -- Hellfire Fortifications
-            [questKeys.requiredClasses] = 2015, -- all classes except DK
+        [13154] = { -- Bones and Arrows
+            [questKeys.requiredLevel] = 75,
+        },
+        [13156] = { -- A Rare Herb
+            [questKeys.requiredLevel] = 75,
+        },
+        [13177] = { -- No Mercy for the Merciless
+            [questKeys.requiredLevel] = 85,
+            [questKeys.questLevel] = 90,
+        },
+        [13178] = { -- Slay them all!
+            [questKeys.requiredLevel] = 85,
+            [questKeys.questLevel] = 90,
+        },
+        [13179] = { -- No Mercy for the Merciless
+            [questKeys.requiredLevel] = 85,
+            [questKeys.questLevel] = 90,
+        },
+        [13180] = { -- Slay them all!
+            [questKeys.requiredLevel] = 85,
+            [questKeys.questLevel] = 90,
+        },
+        [13181] = { -- Victory in Wintergrasp
+            [questKeys.requiredLevel] = 85,
+            [questKeys.questLevel] = 90,
+        },
+        [13183] = { -- Victory in Wintergrasp
+            [questKeys.requiredLevel] = 85,
+            [questKeys.questLevel] = 90,
+        },
+        [13185] = { -- Stop the Siege
+            [questKeys.requiredLevel] = 85,
+            [questKeys.questLevel] = 90,
+        },
+        [13186] = { -- Stop the Siege
+            [questKeys.requiredLevel] = 85,
+            [questKeys.questLevel] = 90,
+        },
+        [13191] = { -- Fueling the Demolishers
+            [questKeys.requiredLevel] = 75,
+        },
+        [13192] = { -- Warding the Walls
+            [questKeys.requiredLevel] = 75,
+        },
+        [13193] = { -- Bones and Arrows
+            [questKeys.requiredLevel] = 75,
+        },
+        [13194] = { -- Healing with Roses
+            [questKeys.requiredLevel] = 75,
+        },
+        [13195] = { -- A Rare Herb
+            [questKeys.requiredLevel] = 75,
+        },
+        [13196] = { -- Bones and Arrows
+            [questKeys.requiredLevel] = 75,
+        },
+        [13197] = { -- Fueling the Demolishers
+            [questKeys.requiredLevel] = 75,
+        },
+        [13198] = { -- Warding the Warriors
+            [questKeys.requiredLevel] = 75,
+        },
+        [13199] = { -- Bones and Arrows
+            [questKeys.requiredLevel] = 75,
+        },
+        [13200] = { -- Fueling the Demolishers
+            [questKeys.requiredLevel] = 75,
+        },
+        [13201] = { -- Healing with Roses
+            [questKeys.requiredLevel] = 75,
+        },
+        [13202] = { -- Jinxing the Walls
+            [questKeys.requiredLevel] = 75,
+        },
+        [13222] = { -- Defend the Siege
+            [questKeys.requiredLevel] = 85,
+            [questKeys.questLevel] = 90,
+        },
+        [13223] = { -- Defend the Siege
+            [questKeys.requiredLevel] = 85,
+            [questKeys.questLevel] = 90,
+        },
+        [13538] = { -- Southern Sabotage
+            [questKeys.requiredLevel] = 85,
+            [questKeys.questLevel] = 90,
+        },
+        [13539] = { -- Toppling the Towers
+            [questKeys.requiredLevel] = 85,
+            [questKeys.questLevel] = 90,
         },
         [14007] = { -- Steady Shot
             [questKeys.requiredLevel] = 2,
@@ -1218,6 +1309,7 @@ function MopQuestFixes.Load()
             [questKeys.finishedBy] = {{110005}},
             [questKeys.objectives] = {nil,{{214873}}},
             [questKeys.preQuestSingle] = {29745},
+            [questKeys.questFlags] = questFlags.NONE,
         },
         [29749] = { -- An Urgent Plea
             [questKeys.preQuestSingle] = {},
@@ -2654,7 +2746,6 @@ function MopQuestFixes.Load()
         [30280] = { -- The Thunder Below
             [questKeys.startedBy] = {{58503,59332}},
             [questKeys.finishedBy] = {{58503,59332}},
-            --[questKeys.objectives] = {{{64965}}}, -- TO DO: check ID and Milau needs spawn anyway
             [questKeys.requiredMinRep] = {factionIDs.GOLDEN_LOTUS,21000},
             [questKeys.questFlags] = questFlags.DAILY,
             [questKeys.preQuestGroup] = {30642},
@@ -4502,6 +4593,9 @@ function MopQuestFixes.Load()
         [30907] = { -- Round 4: The P.U.G
             [questKeys.questFlags] = questFlags.DAILY,
         },
+        [30910] = { -- Greenstone Village
+            [questKeys.questFlags] = questFlags.NONE,
+        },
         [30921] = { -- The Motives of the Mantid
             [questKeys.objectives] = {nil,nil,nil,nil,{ -- all clues are found on the same NPCs
                 {{61376,61377},61376},
@@ -4726,6 +4820,7 @@ function MopQuestFixes.Load()
             [questKeys.objectives] = {nil,{{212524}}},
             [questKeys.preQuestSingle] = {31006},
             [questKeys.extraObjectives] = {{nil,Questie.ICON_TYPE_TALK,l10n("Talk to Kil'ruk"),0,{{"monster",62538}}}},
+            [questKeys.questFlags] = questFlags.NONE,
         },
         [31010] = { -- In Her Clutch
             [questKeys.objectives] = {nil,{{214674}}},
@@ -8450,6 +8545,7 @@ function MopQuestFixes.Load()
         },
         [32317] = { -- Seeking the Soulstones
             [questKeys.objectives] = {nil,nil,{{92494},{92495},{92496},{92497}}},
+            [questKeys.questFlags] = questFlags.NONE,
         },
         [32318] = { -- Regeneration Takes Time
             [questKeys.preQuestSingle] = {32284},
@@ -8935,9 +9031,15 @@ function MopQuestFixes.Load()
             [questKeys.objectives] = {{{68463,nil,Questie.ICON_TYPE_PET_BATTLE}}},
         },
         [32435] = { -- Second Place
+            [questKeys.startedBy] = {{15077}},
+            [questKeys.requiredLevel] = 1,
+            [questKeys.requiredSkill] = {},
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [32436] = { -- Third Place
+            [questKeys.startedBy] = {{15077}},
+            [questKeys.requiredLevel] = 1,
+            [questKeys.requiredSkill] = {},
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
         },
         [32439] = { -- Flowing Pandaren Spirit
@@ -9744,6 +9846,7 @@ function MopQuestFixes.Load()
             -- TODO: turn gongs into extraobjectives, figure out ids for NPCs you need to kill in each challenge
             [questKeys.startedBy] = {{69782}},
             [questKeys.finishedBy] = {{71424}},
+            [questKeys.requiredLevel] = 90,
             [questKeys.preQuestSingle] = {32598},
             [questKeys.objectives] = {{{70921,nil,Questie.ICON_TYPE_TALK},{71165,nil,Questie.ICON_TYPE_TALK},{71108,nil,Questie.ICON_TYPE_TALK},{71139,nil,Questie.ICON_TYPE_TALK}},nil,nil,nil,{{{71029,71170,71109,71146},71029,nil,Questie.ICON_TYPE_TALK}}},
         },
@@ -9896,6 +9999,9 @@ function MopQuestFixes.Load()
             [questKeys.startedBy] = {{71426}},
             [questKeys.preQuestSingle] = {32861},
             [questKeys.objectives] = {{{69782,nil,Questie.ICON_TYPE_EVENT}}},
+            [questKeys.breadcrumbForQuestId] = 33088,
+            [questKeys.nextQuestInChain] = 33088,
+            [questKeys.exclusiveTo] = {33087},
         },
         [32871] = { -- Vol'jin of the Darkspear
             [questKeys.startedBy] = {{71320}},
@@ -9943,8 +10049,62 @@ function MopQuestFixes.Load()
             [questKeys.questFlags] = questFlags.DAILY,
             [questKeys.objectives] = {nil,nil,{{74841}},nil,{{{63154,63156,63158},63154,nil,Questie.ICON_TYPE_INTERACT}}},
         },
+        [32974] = { -- Rolo's Riddle
+            [questKeys.startedBy] = {nil,nil,{102225}},
+            [questKeys.objectives] = {{{72751,nil,Questie.ICON_TYPE_EVENT}}},
+        },
+        [32975] = { -- Rolo's Riddle
+            [questKeys.objectives] = {{{72754,nil,Questie.ICON_TYPE_EVENT}}},
+        },
+        [32976] = { -- Rolo's Riddle
+            [questKeys.objectives] = {{{72755,nil,Questie.ICON_TYPE_EVENT}}},
+        },
+        [33018] = { -- Noodle Secrets Long Forgotten
+            [questKeys.preQuestGroup] = {31467,31471,31474,31476,31477,31480},
+        },
+        [33021] = { -- Secrets Lost, Forever?
+            [questKeys.startedBy] = {{110020}},
+        },
+        [33022] = { -- Catch and Carry
+            [questKeys.startedBy] = {{64231}},
+            [questKeys.extraObjectives] = {{nil,Questie.ICON_TYPE_OBJECT,l10n("Bring the sacks here"),0,{{"object",213756}}}},
+            [questKeys.objectives] = {nil,{{213756}}},
+        },
+        [33024] = { -- Is That A Real Measurement?
+            [questKeys.preQuestSingle] = {33022},
+        },
+        [33027] = { -- The Secret Ingredient Is...
+            [questKeys.objectives] = {{{64231,nil,Questie.ICON_TYPE_TALK},{72984}}},
+        },
+        [33087] = { -- Meet Me Back at the Inn
+            [questKeys.startedBy] = {{71426}},
+            [questKeys.preQuestSingle] = {32861},
+            [questKeys.breadcrumbForQuestId] = 33088,
+            [questKeys.nextQuestInChain] = 33088,
+            [questKeys.exclusiveTo] = {32870},
+        },
+        [33088] = { -- A Timeless Discovery
+            [questKeys.startedBy] = {{69782}},
+            [questKeys.preQuestSingle] = {32861},
+            [questKeys.breadcrumbs] = {32870,33087},
+        },
         [33098] = { -- Secrets of the Timeless Isle
+            [questKeys.startedBy] = {{72695}},
+            [questKeys.preQuestSingle] = {33088},
             [questKeys.objectivesText] = {"Collect 5000 Timeless Coins from creatures and events on the Timeless Isle."},
+            [questKeys.objectives] = {nil,{{440009}}},
+        },
+        [33100] = { -- The Emperor's Way
+            [questKeys.preQuestSingle] = {33088},
+        },
+        [33104] = { -- A Pandaren Legend
+            [questKeys.preQuestSingle] = {},
+            [questKeys.preQuestGroup] = {33098,33100},
+            [questKeys.objectives] = {{{72723,nil,Questie.ICON_TYPE_EVENT},{72723,nil,Questie.ICON_TYPE_TALK}}},
+        },
+        [33107] = { -- Bad Feeling, Worse Result
+            [questKeys.finishedBy] = {{110019}},
+            [questKeys.extraObjectives] = {{nil,Questie.ICON_TYPE_OBJECT,l10n("Get in"),0,{{"object",221413}}}},
         },
         [33133] = { -- Warforged Seals
             [questKeys.objectives] = {nil,{{440004}}},
@@ -9968,12 +10128,78 @@ function MopQuestFixes.Load()
             [questKeys.questFlags] = questFlags.WEEKLY,
             [questKeys.objectives] = {{{73082,nil,Questie.ICON_TYPE_PET_BATTLE}}},
         },
+        [33146] = { -- Noodle Time
+            [questKeys.preQuestSingle] = {33027},
+        },
+        [33161] = { -- A Timeless Tour
+            [questKeys.preQuestSingle] = {33156,33160},
+            [questKeys.objectives] = {{{73577,nil,Questie.ICON_TYPE_EVENT},{73576,nil,Questie.ICON_TYPE_EVENT},{73579,nil,Questie.ICON_TYPE_EVENT},{73578,nil,Questie.ICON_TYPE_EVENT},{73574,nil,Questie.ICON_TYPE_EVENT},{73575,nil,Questie.ICON_TYPE_EVENT}}},
+        },
+        [33211] = { -- A Timeless Question
+            [questKeys.objectives] = {{{73570,nil,Questie.ICON_TYPE_TALK}}},
+        },
         [33222] = { -- Little Tommy Newcomer
             [questKeys.requiredSpell] = 119467,
             [questKeys.objectives] = {{{73626,nil,Questie.ICON_TYPE_PET_BATTLE}}},
         },
+        [33228] = { -- Time In Your Hands
+            [questKeys.preQuestSingle] = {33156,33160},
+            [questKeys.objectivesText] = {"Gather 1000 Timeless Coins and introduce yourself to Mistweaver Ai and Mistweaver Ku."},
+            [questKeys.objectives] = {{{73305,nil,Questie.ICON_TYPE_TALK},{73306,nil,Questie.ICON_TYPE_TALK}},{{440009}}},
+        },
+        [33229] = { -- A Flash of Bronze...
+            [questKeys.breadcrumbForQuestId] = 33231,
+        },
+        [33230] = { -- A Flash of Bronze...
+            [questKeys.breadcrumbForQuestId] = 33232,
+        },
+        [33231] = { -- Journey to the Timeless Isle
+            [questKeys.preQuestSingle] = {},
+            [questKeys.breadcrumbs] = {33229},
+        },
+        [33232] = { -- Journey to the Timeless Isle
+            [questKeys.preQuestSingle] = {},
+            [questKeys.breadcrumbs] = {33230},
+        },
+        [33234] = { -- Meaty Crane Leg
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+        },
+        [33235] = { -- Great Turtle Meat
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+        },
+        [33236] = { -- Heavy Yak Flank
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+        },
+        [33238] = { -- Thick Tiger Haunch
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+        },
+        [33239] = { -- Pristine Firestorm Egg
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+        },
+        [33248] = { -- Proving Grounds
+            [questKeys.objectives] = {{{72536,nil,Questie.ICON_TYPE_TALK}}},
+        },
+        [33249] = { -- Proving Grounds
+            [questKeys.objectives] = {{{72536,nil,Questie.ICON_TYPE_TALK}}},
+        },
+        [33250] = { -- A Time-Lost Treasure
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+        },
         [33252] = { -- A Winter Veil Gift
             [questKeys.startedBy] = {nil,{187236}},
+        },
+        [33332] = { -- Hints From The Past
+            [questKeys.preQuestSingle] = {33228},
+        },
+        [33333] = { -- Timeless Treasures
+            [questKeys.preQuestSingle] = {33332},
+        },
+        [33334] = { -- Strong Enough To Survive
+            [questKeys.preQuestSingle] = {33333},
+        },
+        [33335] = { -- The Last Emperor
+            [questKeys.preQuestSingle] = {33228},
+            [questKeys.objectives] = {{{73303,nil,Questie.ICON_TYPE_TALK}}},
         },
         [33336] = { -- The Essence of Time
             [questKeys.preQuestSingle] = {33161},
@@ -9984,9 +10210,30 @@ function MopQuestFixes.Load()
         [33338] = { -- Empowering the Hourglass
             [questKeys.preQuestSingle] = {33336},
         },
+        [33340] = { -- Timeless Nutriment
+            [questKeys.preQuestSingle] = {33335},
+            [questKeys.extraObjectives] = {{nil,Questie.ICON_TYPE_INTERACT,l10n("Use it"),0,{{"object",221689},{"object",221690},{"object",221725},{"object",221747},{"object",221763},{"object",221764}}}},
+        },
+        [33341] = { -- Wayshrines Of The Celestials
+            [questKeys.preQuestSingle] = {33340},
+        },
+        [33342] = { -- Drive Back The Flame
+            [questKeys.preQuestSingle] = {33374},
+        },
+        [33343] = { -- The Archiereus Of Flame
+            [questKeys.preQuestSingle] = {33342},
+            [questKeys.requiredSourceItems] = {103684},
+        },
         [33354] = { -- Den Mother's Demise
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
             [questKeys.questFlags] = questFlags.WEEKLY,
+        },
+        [33358] = { -- Noodle Time: Bonus
+            [questKeys.preQuestSingle] = {33027},
+        },
+        [33374] = { -- Path of the Mistwalker
+            [questKeys.preQuestSingle] = {33341},
+            [questKeys.questFlags] = questFlags.DAILY,
         },
         [33375] = { -- Refining The Vision
             [questKeys.preQuestSingle] = {33337},

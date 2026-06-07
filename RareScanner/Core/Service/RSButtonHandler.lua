@@ -192,17 +192,6 @@ local function UpdateRareFound(entityID, vignetteInfo, coordinates)
 	local vignettePosition = nil
 	if (coordinates and coordinates.x and coordinates.y) then
 		vignettePosition = coordinates
-	elseif (not vignetteInfo.simulated) then
-		vignettePosition = C_VignetteInfo.GetVignettePosition(vignetteInfo.vignetteGUID, mapID)
-
-		if (not vignettePosition) then
-			for i=1,9999,1 do 
-				vignettePosition = C_VignetteInfo.GetVignettePosition(vignetteInfo.vignetteGUID, i)
-				if (vignettePosition) then
-					break
-				end
-			end
-		end
 	end
 
 	if (not vignettePosition) then

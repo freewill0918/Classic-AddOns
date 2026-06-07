@@ -1,7 +1,8 @@
-## Interface: 50500
+## Interface: 50503
 ## Plain Title: Glass
 ## Author: mixxorz
 ## Version: 1.8.0 Classic Fix
+## Dependencies: !Ace3
 
 ## Title: |c00DFBA69Glass|r
 ## Notes: Immersive and minimalistic chat UI.

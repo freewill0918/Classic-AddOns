@@ -2,6 +2,7 @@
 local deg = math.deg;
 local atan2 = math.atan2;
 local GetCursorPosition = GetCursorPosition;
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded;
 
 --地图按钮，参考了Xinhuan的BankItems
 local MinimapButton = CreateFrame("Button", "UFP_MinimapButton", Minimap);

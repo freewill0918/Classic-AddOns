@@ -256,7 +256,9 @@ end
 end
 SAO:UpdateActionButton(button)
 end
-if SAO.HasMidnightUI()then
+--MoP Classic 5.5.x removed the global ActionButton_Update (like Retail/Midnight); when it is
+--gone, hook each button's :Update via bar.actionButtons instead.
+if SAO.HasMidnightUI() or type(ActionButton_Update)~="function" then
 local actionBars={
 MainActionBar,
 MultiBarLeft,

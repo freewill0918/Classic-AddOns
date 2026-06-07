@@ -3,7 +3,7 @@ local AddonName = ...
 ---@class Private
 local Private = select(2, ...)
 
-local internalVersion = 89
+local internalVersion = 90
 
 -- Lua APIs
 local insert = table.insert
@@ -402,7 +402,6 @@ WeakAuras.UnitIsPet = function(unit)
 end
 
 local playerLevel = UnitLevel("player");
-local currentInstanceType = "none"
 
 -- Custom Action Functions, keyed on id, "init" / "start" / "finish"
 Private.customActionsFunctions = {};
@@ -1379,6 +1378,7 @@ loadedFrame:SetScript("OnEvent", function(self, event, ...)
       db.features = db.features or {}
       db.migrationCutoff = db.migrationCutoff or 730
       db.historyCutoff = db.historyCutoff or 730
+      db.lastLoaded = {}
 
       Private.SyncParentChildRelationships();
       local isFirstUIDValidation = db.dbVersion == nil or db.dbVersion < 26;
@@ -1495,8 +1495,20 @@ function WeakAuras.Toggle()
   end
 end
 
-function Private.SquelchingActions()
-  return squelch_actions;
+function Private.SquelchingActions(uid)
+  if squelch_actions then
+    return true
+  end
+
+  local data = Private.GetDataByUID(uid)
+  if data.information.squelchOnLoad then
+    local lastLoaded = db.lastLoaded[uid]
+    if lastLoaded and GetTime() - lastLoaded < 0.5 then
+      return true
+    end
+  end
+
+  return false
 end
 
 function WeakAuras.InLoadingScreen()
@@ -2027,8 +2039,11 @@ function Private.Resume()
 end
 
 function Private.LoadDisplays(toLoad, ...)
+  local currentTime = GetTime()
   for id in pairs(toLoad) do
-    local uid = WeakAuras.GetData(id).uid
+    local data = WeakAuras.GetData(id)
+    local uid = data.uid
+    db.lastLoaded[uid] = currentTime
     Private.RegisterForGlobalConditions(uid);
     triggerState[id].triggers = {};
     triggerState[id].activationTime = {}
@@ -2200,6 +2215,7 @@ function WeakAuras.Delete(data)
   end
 
   db.displays[id] = nil;
+  db.lastLoaded[uid] = nil
 
   Private.DeleteAuraEnvironment(id)
   triggerState[id] = nil;
@@ -2321,10 +2337,11 @@ function WeakAuras.Rename(data, newid)
 
   Private.ProfileRenameAura(oldid, newid);
 
-  -- TODO: This should not be necessary
-  WeakAuras.Add(data)
 
   Private.callbacks:Fire("Rename", data.uid, oldid, newid)
+
+  -- TODO: This should not be necessary
+  WeakAuras.Add(data)
 end
 
 function Private.Convert(data, newType)
@@ -2700,7 +2717,7 @@ function Private.AddMany(tbl, takeSnapshots)
     else
       if next(WeakAuras.LoadFromArchive("Repository", "migration").stores) ~= nil then
         C_Timer.After(1, function()
-          prettyPrint(L["WeakAuras has detected empty settings. If this is unexpected, ask for assitance on https://discord.gg/weakauras."])
+          prettyPrint(L["WeakAuras has detected empty settings. If this is unexpected, ask for assistance on https://discord.gg/weakauras."])
         end)
       end
     end
@@ -2883,6 +2900,10 @@ local function validateUserConfig(data, options, config)
           end
         elseif option.type == "multiselect" then
           local multiselect = config[key]
+          if type(multiselect) ~= "table" then
+            config[key] = {}
+            multiselect = config[key]
+          end
           for i, v in ipairs(multiselect) do
             if option.default[i] ~= nil then
               if type(v) ~= "boolean" then
@@ -2892,12 +2913,18 @@ local function validateUserConfig(data, options, config)
               multiselect[i] = nil
             end
           end
+          if type(option.default) ~= "table" then
+            option.default = {}
+          end
           for i, v in ipairs(option.default) do
             if type(multiselect[i]) ~= "boolean" then
               multiselect[i] = v
             end
           end
         elseif option.type == "color" then
+          if type(config[key]) ~= "table" then
+            config[key] = {}
+          end
           for i = 1, 4 do
             local c = config[key][i]
             if type(c) ~= "number" or c < 0 or c > 1 then
@@ -3406,6 +3433,7 @@ function Private.SetRegion(data, cloneId)
         end
       end
       region.id = id;
+      region.uid = data.uid
       region.cloneId = cloneId or "";
       Private.validate(data, regionTypes[regionType].default);
 
@@ -3538,7 +3566,7 @@ end
 function Private.SetAllStatesHidden(id, triggernum)
   local triggerState = WeakAuras.GetTriggerStateForTrigger(id, triggernum);
   local changed = false
-  for cloneId, state in pairs(triggerState) do
+  for cloneId in pairs(triggerState) do
     changed = true
     triggerState[cloneId] = nil
   end
@@ -3547,7 +3575,7 @@ end
 
 function Private.SetAllStatesHiddenExcept(id, triggernum, list)
   local triggerState = WeakAuras.GetTriggerStateForTrigger(id, triggernum);
-  for cloneId, state in  pairs(triggerState) do
+  for cloneId in pairs(triggerState) do
     if (not (list[cloneId])) then
       triggerState[cloneId] = nil
     end
@@ -3575,7 +3603,7 @@ function Private.HandleChatAction(message_type, message, message_dest, message_d
   if(message_type == "PRINT") then
     DEFAULT_CHAT_FRAME:AddMessage(message, r or 1, g or 1, b or 1);
   elseif message_type == "TTS" then
-    if not Private.SquelchingActions() then
+    if not Private.SquelchingActions(region.uid) then
       pcall(function()
         local voice = TextToSpeech_GetSelectedVoice(Enum.TtsVoiceType.Standard)
         if not voice then return end
@@ -4642,7 +4670,7 @@ function WeakAuras.GetTriggerStateForTrigger(id, triggernum)
     return Private.GetGlobalConditionState();
   end
   if triggerState[id][triggernum] == nil then
-    triggerState[id][triggernum] = setmetatable({}, Private.allstatesMetatable)
+    triggerState[id][triggernum] = Private.GetNewAllStates(WeakAuras.GetData(id))
   end
   return triggerState[id][triggernum];
 end
@@ -5011,7 +5039,7 @@ function Private.UpdatedTriggerState(id)
 
   local changed = false;
   for triggernum = 1, triggerState[id].numTriggers do
-    triggerState[id][triggernum] = triggerState[id][triggernum] or setmetatable({}, Private.allstatesMetatable)
+    triggerState[id][triggernum] = triggerState[id][triggernum] or Private.GetNewAllStates(WeakAuras.GetData(id))
 
     local anyStateShown = false;
 
@@ -5858,11 +5886,11 @@ function Private.ensurePRDFrame()
       end
       personalRessourceDisplayFrame.texture:SetTexture("Interface\\AddOns\\WeakAuras\\Media\\Textures\\PRDFrameKui");
     else
-      local namePlateVerticalScale = tonumber(GetCVar("NamePlateVerticalScale"));
+      local namePlateVerticalScale = tonumber(GetCVar("NamePlateVerticalScale")) or 1
       local zeroBasedScale = namePlateVerticalScale - 1.0;
       local clampedZeroBasedScale = Saturate(zeroBasedScale);
-      local horizontalScale = tonumber(GetCVar("NamePlateHorizontalScale"));
-      local baseNamePlateWidth = NamePlateDriverFrame.baseNamePlateWidth;
+      local horizontalScale = tonumber(GetCVar("NamePlateHorizontalScale")) or 1
+      local baseNamePlateWidth = NamePlateDriverFrame.baseNamePlateWidth or 200
       prdWidth = baseNamePlateWidth * horizontalScale * Lerp(1.1, 1.0, clampedZeroBasedScale) - 24;
       prdHeight = 4 * namePlateVerticalScale * Lerp(1.2, 1.0, clampedZeroBasedScale) * 2  + 1;
       personalRessourceDisplayFrame:SetScale(1 / UIParent:GetEffectiveScale());
@@ -6003,7 +6031,7 @@ local function tryAnchorAgain()
   postPonedAnchors = {};
   anchorTimer = nil;
 
-  for id, _ in pairs(delayed) do
+  for id in pairs(delayed) do
     local data = WeakAuras.GetData(id);
     local region = WeakAuras.GetRegion(id);
     if (data and region) then

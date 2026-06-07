@@ -117,7 +117,11 @@ function QuestieOptions.tabs.icons:Initialize()
                 get = function() return Questie.db.profile.hideUntrackedQuestsMapIcons; end,
                 set = function(info, value)
                     Questie.db.profile.hideUntrackedQuestsMapIcons = value
-                    QuestieQuest:ToggleNotes(not value)
+                    if value then
+                       QuestieQuest:HideQuestIcons()
+                    else
+                       QuestieQuest:ShowQuestIcons()
+                    end
 
                     -- Hides tooltips for untracked quests
                     if value == true then
@@ -1285,7 +1289,7 @@ function QuestieOptionsUtils.SetPfQuestIcons(info, value)
         Questie.db.profile.alwaysGlowMap = false
         Questie.db.profile.questMinimapObjectiveColors = true
         Questie.db.profile.alwaysGlowMinimap = false
-        Questie.db.profile.clusterLevelHotzone = 1
+        Questie.db.profile.objectiveFilterDistance = 0
     else
         Questie.db.profile.ICON_SLAY = Questie.icons["slay"]
         Questie.db.profile.ICON_LOOT = Questie.icons["loot"]
@@ -1298,7 +1302,7 @@ function QuestieOptionsUtils.SetPfQuestIcons(info, value)
         Questie.db.profile.alwaysGlowMap = true
         Questie.db.profile.questMinimapObjectiveColors = false
         Questie.db.profile.alwaysGlowMinimap = false
-        Questie.db.profile.clusterLevelHotzone = 50
+        Questie.db.profile.objectiveFilterDistance = optionsDefaults.profile.objectiveFilterDistance
     end
     Questie:SetIcons()
     QuestieQuest:SmoothReset()
@@ -1353,7 +1357,7 @@ function QuestieOptionsUtils.DetermineTheme()
             Questie.db.profile.alwaysGlowMap == false and
             Questie.db.profile.questMinimapObjectiveColors == true and
             Questie.db.profile.alwaysGlowMinimap == false and
-            Questie.db.profile.clusterLevelHotzone == 1)
+            Questie.db.profile.objectiveFilterDistance == 0)
             then
             Questie.db.profile.iconTheme = "pfquest"
         elseif (Questie.db.profile.enableObjectives == true and
@@ -1367,7 +1371,7 @@ function QuestieOptionsUtils.DetermineTheme()
             Questie.db.profile.alwaysGlowMap == optionsDefaults.profile.alwaysGlowMap and
             Questie.db.profile.questMinimapObjectiveColors == optionsDefaults.profile.questMinimapObjectiveColors and
             Questie.db.profile.alwaysGlowMinimap == optionsDefaults.profile.alwaysGlowMinimap and
-            Questie.db.profile.clusterLevelHotzone == optionsDefaults.profile.clusterLevelHotzone)
+            Questie.db.profile.objectiveFilterDistance == optionsDefaults.profile.objectiveFilterDistance)
             then
             Questie.db.profile.iconTheme = "questie"
         else
@@ -1397,7 +1401,7 @@ function QuestieOptionsUtils.ExecuteTheme(info, value)
         Questie.db.profile.alwaysGlowMap = optionsDefaults.profile.alwaysGlowMap
         Questie.db.profile.questMinimapObjectiveColors = optionsDefaults.profile.questMinimapObjectiveColors
         Questie.db.profile.alwaysGlowMinimap = optionsDefaults.profile.alwaysGlowMinimap
-        Questie.db.profile.clusterLevelHotzone = optionsDefaults.profile.clusterLevelHotzone
+        Questie.db.profile.objectiveFilterDistance = optionsDefaults.profile.objectiveFilterDistance
     elseif value == "pfquest" then
         if GetCVar("questPOI") then -- check for Blizzard style objectives
             SetCVar("questPOI", "0")
@@ -1417,7 +1421,7 @@ function QuestieOptionsUtils.ExecuteTheme(info, value)
         Questie.db.profile.alwaysGlowMap = false
         Questie.db.profile.questMinimapObjectiveColors = true
         Questie.db.profile.alwaysGlowMinimap = false
-        Questie.db.profile.clusterLevelHotzone = 1
+        Questie.db.profile.objectiveFilterDistance = 0
     elseif value == "blizzard" then
         if GetCVar("questPOI") then -- check for Blizzard style objectives
             SetCVar("questPOI", "1")
@@ -1437,7 +1441,7 @@ function QuestieOptionsUtils.ExecuteTheme(info, value)
         Questie.db.profile.alwaysGlowMap = optionsDefaults.profile.alwaysGlowMap
         Questie.db.profile.questMinimapObjectiveColors = optionsDefaults.profile.questMinimapObjectiveColors
         Questie.db.profile.alwaysGlowMinimap = optionsDefaults.profile.alwaysGlowMinimap
-        Questie.db.profile.clusterLevelHotzone = optionsDefaults.profile.clusterLevelHotzone
+        Questie.db.profile.objectiveFilterDistance = optionsDefaults.profile.objectiveFilterDistance
     elseif value == "custom" then
         return
     end

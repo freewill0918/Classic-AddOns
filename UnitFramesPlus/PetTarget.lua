@@ -248,10 +248,12 @@ local function UnitFramesPlus_PetTargetShiftDrag()
     ToPetFrameBase:SetClampedToScreen(1);
 
     --重置目标位置时同时重置宠物位置
-    hooksecurefunc("PlayerFrame_ResetUserPlacedPosition", function()
-        UnitFramesPlusVar["pet"]["targetmoved"] = 0;
-        UnitFramesPlus_PetTargetPosition();
-    end)
+    if _G.PlayerFrame_ResetUserPlacedPosition then
+        hooksecurefunc("PlayerFrame_ResetUserPlacedPosition", function()
+            UnitFramesPlusVar["pet"]["targetmoved"] = 0;
+            UnitFramesPlus_PetTargetPosition();
+        end)
+    end
 end
 
 --模块初始化

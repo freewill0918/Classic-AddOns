@@ -414,6 +414,10 @@ L["STRING_OPTIONS_ANIMATESCROLL_DESC"] = "Quando attivo, la barra di scorrimento
 L["STRING_OPTIONS_APPEARANCE"] = "Apparenza"
 L["STRING_OPTIONS_ATTRIBUTE_TEXT"] = "Impostazioni Testo del Titolo"
 L["STRING_OPTIONS_ATTRIBUTE_TEXT_DESC"] = "Namespace Base"
+--[[Translation missing --]]
+L["STRING_OPTIONS_AUTO_COMBATLOG"] = "Auto Start Combatlog"
+--[[Translation missing --]]
+L["STRING_OPTIONS_AUTO_COMBATLOG_DESC"] = "Automatically start and stop logging combat to the combatlog.txt file when you enter or leave a raid or dungeon."
 L["STRING_OPTIONS_AUTO_SWITCH"] = "Tutti i Ruoli |cFFFFAA00(in combattimento)|r"
 L["STRING_OPTIONS_AUTO_SWITCH_COMBAT"] = "|cFFFFAA00(in combattimento)|r"
 L["STRING_OPTIONS_AUTO_SWITCH_DAMAGER_DESC"] = "Nella specializzazione attaccante, questa finestra mostra l'attributo o il plugin selezionato"
@@ -765,6 +769,16 @@ L["STRING_OPTIONS_PERFORMANCECAPTURES_DESC"] = "Queste opzioni sono responsabili
 L["STRING_OPTIONS_PERFORMANCEPROFILES_ANCHOR"] = "Profili Prestazioni:"
 L["STRING_OPTIONS_PICONS_DIRECTION"] = "Plugin ancorati a destra"
 L["STRING_OPTIONS_PICONS_DIRECTION_DESC"] = "Quando è selezionato, i pulsanti del plugin vengono visualizzati sul lato destro dei pulsanti del menu."
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME"] = "Player Name"
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME_AUTO_ALIGNMENT"] = "Auto Alignment"
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME_AUTO_ALIGNMENT_DESC"] = "Disable this only if you experience player name alignment issues."
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME_AUTO_WIDTH"] = "Length Auto"
+--[[Translation missing --]]
+L["STRING_OPTIONS_PLAYERNAME_WIDTH"] = "Length"
 L["STRING_OPTIONS_PLUGINS"] = "Plugin"
 L["STRING_OPTIONS_PLUGINS_AUTHOR"] = "Autore"
 L["STRING_OPTIONS_PLUGINS_NAME"] = "Nome"
@@ -896,6 +910,8 @@ L["STRING_OPTIONS_SCROLLBAR"] = "Barra di Scorrimento"
 L["STRING_OPTIONS_SCROLLBAR_DESC"] = "Attiva o disattiva la barra di scorrimento. Per impostazione predefinita, le barre di scorrimento di Details! sono sostituite da un meccanismo che allunga la finestra. Il |cFFFFFF00tasto movibile|r si trova oltre la finestra pulsanti/menu (a sinistra del pulsante di chiusura)."
 L["STRING_OPTIONS_SEGMENTSSAVE"] = "Segmenti Salvati"
 L["STRING_OPTIONS_SEGMENTSSAVE_DESC"] = "Quanti segmenti vuoi salvare tra le sessioni di gioco. Valori alti possono aumentare il tempo impiegato dal tuo personaggio per disconnettersi."
+--[[Translation missing --]]
+L["STRING_OPTIONS_SELECT_TEMPLATE"] = "Select Template"
 L["STRING_OPTIONS_SENDFEEDBACK"] = "Feedback"
 L["STRING_OPTIONS_SHOW_SIDEBARS"] = "Mostra Bordi"
 L["STRING_OPTIONS_SHOW_SIDEBARS_DESC"] = "Mostra o nascondi i bordi finestra"
@@ -973,6 +989,10 @@ L["STRING_OPTIONS_TEXT_OUTLINE"] = "Contorno del testo"
 L["STRING_OPTIONS_TEXT_RIGHT_ANCHOR"] = "Testo Destro:"
 L["STRING_OPTIONS_TEXT_ROUTILINE_DESC"] = "Attiva o Disattiva il contorno per il testo a destra."
 L["STRING_OPTIONS_TEXT_ROWICONS_ANCHOR"] = "Icone"
+--[[Translation missing --]]
+L["STRING_OPTIONS_TEXT_SHADOWCOLOR"] = "Shadow Color"
+--[[Translation missing --]]
+L["STRING_OPTIONS_TEXT_SHADOWOFFSET"] = "Shadow Offset %s"
 L["STRING_OPTIONS_TEXT_SHOW_BRACKET"] = "Parentesi"
 L["STRING_OPTIONS_TEXT_SHOW_BRACKET_DESC"] = "Scegli il carattere da utilizzare per aprire e chiudere il blocco al secondo e percentuale."
 L["STRING_OPTIONS_TEXT_SHOW_PERCENT"] = "Mostra Percentuale"
@@ -1034,6 +1054,10 @@ L["STRING_OPTIONS_TOOLTIPS_BACKGROUNDCOLOR_DESC"] = "Scegli il colore utilizzato
 L["STRING_OPTIONS_TOOLTIPS_BORDER_COLOR_DESC"] = "Cambia il colore del bordo."
 L["STRING_OPTIONS_TOOLTIPS_BORDER_SIZE_DESC"] = "Cambia la dimensione del bordo."
 L["STRING_OPTIONS_TOOLTIPS_BORDER_TEXTURE_DESC"] = "Cambia il file texture del bordo."
+--[[Translation missing --]]
+L["STRING_OPTIONS_TOOLTIPS_DISABLE"] = "Disable Tooltips"
+--[[Translation missing --]]
+L["STRING_OPTIONS_TOOLTIPS_DISABLE_DESC"] = "Disable tooltips for the selected window."
 L["STRING_OPTIONS_TOOLTIPS_FONTCOLOR"] = "Colore Testo"
 L["STRING_OPTIONS_TOOLTIPS_FONTCOLOR_DESC"] = "Cambia il colore utilizzato nei tooltip."
 L["STRING_OPTIONS_TOOLTIPS_FONTFACE"] = "‎"
@@ -1150,6 +1174,8 @@ L["STRING_OPTIONSMENU_TOOLTIP"] = "Tooltips"
 L["STRING_OPTIONSMENU_WALLPAPER"] = "Sfondo"
 L["STRING_OPTIONSMENU_WINDOW"] = "Finestra: Generale"
 L["STRING_OPTIONSMENU_WINDOWBODY"] = "Impostazioni Finestra"
+--[[Translation missing --]]
+L["STRING_OR"] = "Or"
 L["STRING_OVERALL"] = "Complessivamente"
 L["STRING_OVERHEAL"] = "Sovraccura"
 L["STRING_OVERHEALED"] = "Sovraccurato"

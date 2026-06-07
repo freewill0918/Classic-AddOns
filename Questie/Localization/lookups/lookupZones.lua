@@ -1349,7 +1349,6 @@ l10n.zoneLookup = {
     [229]={
         [1583]="Blackrock Spire",
         [4628]="Halls of Binding",
-        [7307]="Upper Blackrock Spire",
         [10003]="Blackrock Spire",
         [10004]="Blackrock Spire",
         [10005]="Blackrock Spire",
@@ -1358,7 +1357,7 @@ l10n.zoneLookup = {
     },
     [230]={
         [1584]="Blackrock Depths",
-        [10002]="Blackrock Depths",
+        [1585]="Blackrock Depths",
     },
     [242] = {
         [1585]="Blackrock Depths",
@@ -1385,6 +1384,9 @@ l10n.zoneLookup = {
     },
     [369]={
         [2257]="Deeprun Tram",
+    },
+    [379]={
+        [6852]="Proving Grounds",
     },
     [389]={
         [2437]="Ragefire Chasm",
@@ -1813,7 +1815,6 @@ l10n.zoneLookup = {
     },
     [532]={
         [3457]="Karazhan",
-        [10102]="Karazhan",
         [10103]="Karazhan",
         [10104]="Karazhan",
         [10105]="Karazhan",
@@ -2841,7 +2842,7 @@ l10n.zoneLookup = {
         [10076]="Scarlet Halls",
     },
     [1004]={
-        [6384]="Scarlet Monastery",
+        [6109]="Scarlet Monastery",
         [6386]="Scarlet Monastery",
     },
     [1005]={
@@ -3088,12 +3089,14 @@ l10n.zoneCategoryLookup = {
         [-399] = "Brawler's Guild", -- Category added in MoP
         [-641] = "Nightmare Incursions", -- Category added in SoD P3
         [-644] = "Blackrock Eruption", -- Category added in SoD P4
+        [-662] = "Titan-Reforged Realm", -- Chinese region
         -- Below are dummy IDs to not interfere with other IDs
         -- These are needed because the events are listed as "seasonal" or "special",
         -- not with a separate ID
         [-400] = "Proving Grounds",
         [-402] = "Harvest Festival",
         [-404] = "Winter Veil",
+        [-1000] = "Special", -- for actual "Special" quests that are not part of events
     },
     [13] = {
         [-394] = "Battle Pets",

@@ -14,6 +14,8 @@ local IS_WOW_PROJECT_CLASSIC_WRATH = IS_WOW_PROJECT_NOT_MAINLINE and ClassicExpa
 --local IS_WOW_PROJECT_CLASSIC_CATACLYSM = IS_WOW_PROJECT_NOT_MAINLINE and ClassicExpansionAtLeast and LE_EXPANSION_CATACLYSM and ClassicExpansionAtLeast(LE_EXPANSION_CATACLYSM)
 local IS_WOW_PROJECT_MIDNIGHT = DF.IsAddonApocalypseWow()
 
+local GetSpecialization = C_SpecializationInfo and C_SpecializationInfo.GetSpecialization or GetSpecialization
+
 local PlayerClass = select(2, UnitClass("player"))
 
 local CONST_SPECID_MONK_WINDWALKER = 269
@@ -1386,12 +1388,14 @@ end
 	--Evoker Essence
 	local FillingAnimationTime = 5.0; 
 	local evokerEssenceOnUpdate = function(self, elapsed)
-	   	local pace,interrupted = GetPowerRegenForPowerType(Plater.Resources.playerResourceId)
-		if (pace == nil or pace == 0) then
-			pace = 0.2
-		end
-		local cooldownDuration = 1 / pace
-		local animationSpeedMultiplier = FillingAnimationTime / cooldownDuration
+	   	--local pace,interrupted = GetPowerRegenForPowerType(Plater.Resources.playerResourceId)
+		--if (pace == nil or pace == 0) then
+		--	pace = 0.2
+		--end
+		--local cooldownDuration = 1 / pace
+		--local animationSpeedMultiplier = FillingAnimationTime / cooldownDuration
+		local spellInfo = C_Spell.GetSpellInfo(361227)
+		local animationSpeedMultiplier = spellInfo and (10000/spellInfo.castTime) or 1
 		self.EssenceFilling.FillingAnim:SetAnimationSpeedMultiplier(animationSpeedMultiplier)
 		self.EssenceFilling.CircleAnim:SetAnimationSpeedMultiplier(animationSpeedMultiplier)
 	end
@@ -1410,10 +1414,10 @@ end
 		local currentResources = UnitPower("player", Plater.Resources.playerResourceId)
 		local maxResources = UnitPowerMax("player", Plater.Resources.playerResourceId)
 		local isAtMaxPoints = currentResources == maxResources
-		local pace, interrupted = GetPowerRegenForPowerType(Plater.Resources.playerResourceId)
-		if (pace == nil or pace == 0) then
-			pace = 0.2
-		end
+		--local pace, interrupted = GetPowerRegenForPowerType(Plater.Resources.playerResourceId)
+		--if (pace == nil or pace == 0) then
+		--	pace = 0.2
+		--end
 		
 		--resources amount got updated?
 		if (currentResources == resourceBar.lastResourceAmount and not forcedRefresh) then
@@ -1469,8 +1473,10 @@ end
 			widget:Show()
 		end
 
-		local cooldownDuration = 1 / pace
-		local animationSpeedMultiplier = FillingAnimationTime / cooldownDuration
+		--local cooldownDuration = 1 / pace
+		--local animationSpeedMultiplier = FillingAnimationTime / cooldownDuration
+		local spellInfo = C_Spell.GetSpellInfo(361227)
+		local animationSpeedMultiplier = spellInfo and (10000/spellInfo.castTime) or 1
 		local widget = resourceBar.widgets[currentResources + 1]
 		if (not isAtMaxPoints and widget )then --this just fucks up: and not (widget.EssenceFilling.FillingAnim:IsPlaying() or widget.EssenceFull:IsShown())) then
 			widget.EssenceDepleting.AnimIn:Stop()

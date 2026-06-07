@@ -6,8 +6,13 @@ local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
 local L ---@type XIV_DatabarLocale
 L = AceLocale:NewLocale(AddOnName, "enUS", true, false)
 
--- NOTE: Some strings are sourced from BlizzardInterfaceResources:
--- https://github.com/Ketho/BlizzardInterfaceResources/blob/live/Resources/GlobalStrings/enUS.lua
+-- Reference:
+-- Some strings below are sourced from BlizzardInterfaceResources.
+-- Source: https://github.com/Ketho/BlizzardInterfaceResources/blob/live/Resources/GlobalStrings/enUS.lua
+-- @Translation Team: If you find a false positive (a string that should stay identical),
+-- add `-- @no-translate` at the end of the line so the locale sync script ignores it.
+
+-- ## Translations Start ## --
 
 L["MODULES"] = "Modules"
 L["LEFT_CLICK"] = "Left-Click"
@@ -15,9 +20,6 @@ L["RIGHT_CLICK"] = "Right-Click"
 L["k"] = true -- short for 1000
 L["M"] = true -- short for 1000000
 L["B"] = true -- short for 1000000000
-L["w"] = true -- short for 10000 (used in zh locales)
-L["e"] = true -- short for 100000000 (used in zh locales)
-L["c"] = true -- short for 1000000000000 (used in zh locales)
 L["L"] = true -- For the local ping
 L["W"] = true -- For the world ping
 
@@ -114,7 +116,7 @@ L["SHOW_GUILD_BUTTON"] = "Show Guild Button"
 L["SHOW_SOCIAL_BUTTON"] = "Show Social Button"
 L["SHOW_CHARACTER_BUTTON"] = "Show Character Button"
 L["SHOW_SPELLBOOK_BUTTON"] = "Show Spellbook Button"
-L["SHOW_PROFESSIONS_BUTTON"] = "Show " .. (PROFESSIONS_BUTTON or "Professions") .. " Button"
+L["SHOW_PROFESSIONS_BUTTON"] = "Show Professions Button"
 L["SHOW_TALENTS_BUTTON"] = "Show Talents Button"
 L["SHOW_ACHIEVEMENTS_BUTTON"] = "Show Achievements Button"
 L["SHOW_QUESTS_BUTTON"] = "Show Quests Button"
@@ -128,6 +130,7 @@ L["SHOW_HOUSING_BUTTON"] = "Show Housing Button"
 L["NO_INFO"] = "No Info"
 L["Alliance"] = FACTION_ALLIANCE
 L["Horde"] = FACTION_HORDE
+L["DISABLE_TOOLTIPS_IN_COMBAT"] = "Hide Tooltips in Combat"
 
 L["DURABILITY_WARNING_THRESHOLD"] = "Durability Warning Threshold"
 L["SHOW_ITEM_LEVEL"] = "Show Item Level"
@@ -174,7 +177,8 @@ L["SHORTEN_GOLD"] = "Shorten Gold"
 L["TOGGLE_BAGS"] = "Toggle Bags"
 L["SESSION_TOTAL"] = "Session Total"
 L["DAILY_TOTAL"] = "Daily Total"
-L["SHOW_WARBAND_BANK_GOLD"] = "Show " .. (ACCOUNT_BANK_PANEL_TITLE or "Warband Bank") .. " Gold"
+L["SHOW_TOKEN_PRICE"] = "Show Token Price"
+L["SHOW_WARBAND_BANK_GOLD"] = "Show Bank Gold"
 L["GOLD_ROUNDED_VALUES"] = "Gold rounded values"
 L["HIDE_CHAR_UNDER_THRESHOLD"] = "Hide Characters Under Threshold"
 L["HIDE_CHAR_UNDER_THRESHOLD_AMOUNT"] = "Threshold"
@@ -208,7 +212,7 @@ L["GARBAGE_COLLECT"] = "Garbage Collect"
 L["CLEANED"] = "Cleaned"
 
 -- Reputation
-L["OPEN_REPUTATION"] = "Open " .. (REPUTATION or "Reputation")
+L["OPEN_REPUTATION"] = "Open " .. REPUTATION
 L["PARAGON_REWARD_AVAILABLE"] = "Paragon Reward available"
 L["CLASS_COLORS_REPUTATION"] = "Use Class Colors for Reputation Bar"
 L["REPUTATION_COLORS_REPUTATION"] = "Use Reputation Colors for Reputation Bar"
@@ -218,7 +222,9 @@ L["PROGRESS"] = "Progress"
 L["RANK"] = "Rank"
 L["PARAGON"] = "Paragon"
 
+-- Tradeskills
 L["USE_CLASS_COLORS"] = "Use Class Colors"
+L["USE_INTERACTIVE_TOOLTIP"] = "Use Interactive Tooltip"
 L["COOLDOWNS"] = "Cooldowns"
 L["TOGGLE_PROFESSION_FRAME"] = "Toggle Profession Frame"
 L["TOGGLE_PROFESSION_SPELLBOOK"] = "Toggle Profession Spellbook"
@@ -315,5 +321,5 @@ L["BUGFIX"] = "Bugfix"
 L["CHANGELOG"] = "Changelog"
 
 -- Vault Module
-L["GREAT_VAULT_DISABLED"] = "The " .. (DELVES_GREAT_VAULT_LABEL or "Great Vault") .. " is currently disabled until the next season starts."
+L["GREAT_VAULT_DISABLED"] = "The Great Vault is currently disabled until the next season starts."
 L["MAX_LEVEL_DISCLAIMER"] = "This module will only show when you reach max level."

@@ -50,14 +50,13 @@ function Core:OnEnable()
     self:RegisterEvent("PLAYER_FOCUS_CHANGED", "EventHandler")
     self:RegisterEvent("UNIT_FACTION", "EventHandler")
 
-    self:SecureHook("TargetFrame_CheckClassification", "CheckClassification")
+    --self:SecureHook("TargetFrame_CheckClassification", "CheckClassification")
 
     self:MoveFramesNames()
     self:MoveToTFrames()
     self:MovePlayerFrameBars()
     self:MoveTargetFrameBars()
     self:MoveFocusFrameBars()
-    self:MovePetFrame()
     self:MovePetFrameBars()
     self:MovePartyFrameBars()
     self:MoveBossFrameBars()
@@ -77,9 +76,11 @@ end
 function Core:EventHandler()
     TargetFrameNameBackground:SetVertexColor(0, 0, 0, 0.0)
     TargetFrameNameBackground:SetHeight(41)
+    TargetFrameBackground:SetHeight(41)
 
     FocusFrameNameBackground:SetVertexColor(0, 0, 0, 0.0)
     FocusFrameNameBackground:SetHeight(41)
+    FocusFrameBackground:SetHeight(41)
 end
 
 
@@ -127,15 +128,15 @@ function Core:MoveRegion(frame, point, relativeTo, relativePoint, xOffset, yOffs
 end
 
 function Core:MovePlayerFrameName(point, relativeTo, relativePoint, xOffset, yOffset)
-    self:MoveRegion(PlayerName, point or "CENTER", relativeTo or PlayerFrame, relativePoint or "CENTER", xOffset or 52, yOffset or 35)
+    self:MoveRegion(PlayerName, point or "CENTER", relativeTo or PlayerFrame, relativePoint or "CENTER", xOffset or 34, yOffset or 32)
 end
 
 function Core:MoveTargetFrameName(point, relativeTo, relativePoint, xOffset, yOffset)
-    self:MoveRegion(TargetFrame.name, point or "CENTER", relativeTo or TargetFrame, relativePoint or "CENTER", xOffset or -51, yOffset or 35)
+    self:MoveRegion(TargetFrame.name, point or "CENTER", relativeTo or TargetFrame, relativePoint or "CENTER", xOffset or -34, yOffset or 32)
 end
 
 function Core:MoveFocusFrameName(point, relativeTo, relativePoint, xOffset, yOffset)
-    self:MoveRegion(FocusFrame.name, point or "CENTER", relativeTo or FocusFrame, relativePoint or "CENTER", xOffset or -51, yOffset or 35)
+    self:MoveRegion(FocusFrame.name, point or "CENTER", relativeTo or FocusFrame, relativePoint or "CENTER", xOffset or -34, yOffset or 33)
 end
 
 function Core:MoveFramesNames()
@@ -144,7 +145,7 @@ function Core:MoveFramesNames()
     self:MoveTargetFrameName()
     self:MoveFocusFrameName()
 
-    self:MoveRegion(PetFrame.name, "CENTER", PetFrame, "CENTER", 15, 15) -- 調整寵物名字的位置
+    self:MoveRegion(PetFrame.name, "CENTER", PetFrame, "CENTER", 15, 17)
 
     PartyIterator(function(frame)
         local point, relativeTo, relativePoint, xOffset, yOffset = frame.name:GetPoint()
@@ -173,9 +174,8 @@ function Core:MovePlayerFrameBars()
     PlayerFrameHealthBar:SetHeight(27)
     PlayerStatusTexture:SetHeight(69)
 
-    self:MoveRegion(PlayerFrameHealthBar, "CENTER", PlayerFrame, "CENTER", 50, 14)
-    self:MoveRegion(PlayerFrameManaBar, "CENTER", PlayerFrame, "CENTER", 51, -7)
-    --self:MoveRegion(PlayerFrameAlternateManaBarText, "CENTER", PlayerFrameAlternateManaBar, "CENTER", 0, -1)
+    self:MoveRegion(PlayerFrameHealthBar, "TOPLEFT", PlayerFrame, "TOPLEFT", 90, -27)
+    --self:MoveRegion(PlayerFrameManaBar, "CENTER", PlayerFrame, "CENTER", 51, -7)
 
     PlayerFrameGroupIndicator:ClearAllPoints()
     PlayerFrameGroupIndicator:SetPoint("TOPLEFT", 34, 15)
@@ -190,10 +190,9 @@ function Core:MoveTargetFrameBars()
     TargetFrameHealthBar:SetHeight(27)
     --TargetFrameNumericalThreat:SetScale(0.9)
 
-    self:MoveRegion(TargetFrameHealthBar, "CENTER", TargetFrame, "CENTER", -50, 14)
-    self:MoveRegion(TargetFrameTextureFrameDeadText, "CENTER", TargetFrame, "CENTER", -50, 12)
-    self:MoveRegion(TargetFrameManaBar, "CENTER", TargetFrame, "CENTER", -51, -7)
-    --self:MoveRegion(TargetFrameNumericalThreat, "CENTER", TargetFrame, "CENTER", 44, 48)
+    self:MoveRegion(TargetFrameHealthBar, "TOPRIGHT", TargetFrame, "TOPRIGHT", -90, -27)
+
+    --self:MoveRegion(TargetFrameManaBar, "CENTER", TargetFrame, "CENTER", -51, -7)
 end
 
 function Core:MoveFocusFrameBars()
@@ -201,19 +200,9 @@ function Core:MoveFocusFrameBars()
     FocusFrameHealthBar:SetHeight(27)
     --FocusFrameNumericalThreat:SetScale(0.9)
 
-    self:MoveRegion(FocusFrameHealthBar, "CENTER", FocusFrame, "CENTER", -50, 14)
-    self:MoveRegion(FocusFrameTextureFrameDeadText, "CENTER", FocusFrame, "CENTER", -50, 12)
-    self:MoveRegion(FocusFrameManaBar, "CENTER", FocusFrame, "CENTER", -51, -7)
-    --self:MoveRegion(FocusFrameNumericalThreat, "CENTER", FocusFrame, "CENTER", 44, 48)
-end
+    self:MoveRegion(FocusFrameHealthBar, "TOPRIGHT", FocusFrame, "TOPRIGHT", -90, -27)
 
-function Core:MovePetFrame()
-    local point, relativeTo, relativePoint, xOffset, yOffset = PetFrame:GetPoint()
-
-    if (point and db.pet.showName) then
-        PetFrame:ClearAllPoints()
-        PetFrame:SetPoint(point, relativeTo, relativePoint, xOffset, yOffset - 5)
-    end
+    --self:MoveRegion(FocusFrameManaBar, "CENTER", FocusFrame, "CENTER", -51, -7)
 end
 
 function Core:MovePetFrameBars()
@@ -222,33 +211,47 @@ function Core:MovePetFrameBars()
     self:MoveRegion(PetFrameHealthBar, "CENTER", PetFrame, "CENTER", 16, 4)
     self:MoveRegion(PetFrameManaBar, "CENTER", PetFrame, "CENTER", 16, -8)
 
+    self:MoveRegion(PetFrameHealthBar.RightText, "RIGHT", PetFrame, "TOPLEFT", 113, -22)
+    self:MoveRegion(PetFrameHealthBar.LeftText, "LEFT", PetFrame, "TOPLEFT", 46, -22)
     self:MoveRegion(PetFrameHealthBar.TextString, "CENTER", PetFrameHealthBar, "CENTER", 0, 0)
 
+    self:MoveRegion(PetFrameManaBar.RightText, "RIGHT", PetFrame, "TOPLEFT", 113, -35)
+    self:MoveRegion(PetFrameManaBar.LeftText, "LEFT", PetFrame, "TOPLEFT", 46, -35)
     self:MoveRegion(PetFrameManaBar.TextString, "CENTER", PetFrameManaBar, "CENTER", 0, 0)
 end
 
 function Core:MovePlayerFramesBarsTextString()
-    self:MoveRegion(PlayerFrameHealthBar.RightText, "RIGHT", PlayerFrame, "RIGHT", -8, 12)
-    self:MoveRegion(PlayerFrameHealthBar.LeftText, "LEFT", PlayerFrame, "LEFT", 110, 12)
-    self:MoveRegion(PlayerFrameHealthBar.TextString, "CENTER", PlayerFrame, "CENTER", 52, 12)
+    self:MoveRegion(PlayerFrameHealthBar.TextString, "CENTER", PlayerFrame, "CENTER", 34, 10)
+    self:MoveRegion(PlayerFrameHealthBar.LeftText, "LEFT", PlayerFrame, "LEFT", 94, 10)
+    self:MoveRegion(PlayerFrameHealthBar.RightText, "RIGHT", PlayerFrame, "RIGHT", -24, 10)
 
-    self:MoveRegion(PlayerFrameManaBar.TextString, "CENTER", PlayerFrame, "CENTER", 52, -8)
+    self:MoveRegion(PlayerFrameManaBar.TextString, "CENTER", PlayerFrame, "CENTER", 34, -11)
+    self:MoveRegion(PlayerFrameManaBar.LeftText, "LEFT", PlayerFrame, "LEFT", 94, -11)
+    self:MoveRegion(PlayerFrameManaBar.RightText, "RIGHT", PlayerFrame, "RIGHT", -24, -11)
 end
 
 function Core:MoveTargetFramesBarsTextString()
-    self:MoveRegion(TargetFrameHealthBar.RightText, "RIGHT", TargetFrame, "RIGHT", -110, 12)
-    self:MoveRegion(TargetFrameHealthBar.LeftText, "LEFT", TargetFrame, "LEFT", 8, 12)
-    self:MoveRegion(TargetFrameHealthBar.TextString, "CENTER", TargetFrame, "CENTER", -51, 12)
+    self:MoveRegion(TargetFrameHealthBar.TextString, "CENTER", TargetFrame, "CENTER", -34, 10)
+    self:MoveRegion(TargetFrameHealthBar.LeftText, "LEFT", TargetFrame, "LEFT", 25, 10)
+    self:MoveRegion(TargetFrameHealthBar.RightText, "RIGHT", TargetFrame, "RIGHT", -93, 10)
 
-    self:MoveRegion(TargetFrameManaBar.TextString, "CENTER", TargetFrame, "CENTER", -51, -8)
+    self:MoveRegion(TargetFrameManaBar.TextString, "CENTER", TargetFrame, "CENTER", -34, -11)
+    self:MoveRegion(TargetFrameManaBar.LeftText, "LEFT", TargetFrame, "LEFT", 25, -11)
+    self:MoveRegion(TargetFrameManaBar.RightText, "RIGHT", TargetFrame, "RIGHT", -93, -11)
+
+    self:MoveRegion(TargetFrameTextureFrameDeadText, "CENTER", TargetFrame, "CENTER", -33, 11)
 end
 
 function Core:MoveFocusFramesBarsTextString()
-    self:MoveRegion(FocusFrameHealthBar.RightText, "RIGHT", FocusFrame, "RIGHT", -110, 12)
-    self:MoveRegion(FocusFrameHealthBar.LeftText, "LEFT", FocusFrame, "LEFT", 8, 12)
-    self:MoveRegion(FocusFrameHealthBar.TextString, "CENTER", FocusFrame, "CENTER", -51, 12)
+    self:MoveRegion(FocusFrameHealthBar.TextString, "CENTER", FocusFrame, "CENTER", -34, 10)
+    self:MoveRegion(FocusFrameHealthBar.LeftText, "LEFT", FocusFrame, "LEFT", 25, 10)
+    self:MoveRegion(FocusFrameHealthBar.RightText, "RIGHT", FocusFrame, "RIGHT", -93, 10)
 
-    self:MoveRegion(FocusFrameManaBar.TextString, "CENTER", FocusFrame, "CENTER", -51, -8)
+    self:MoveRegion(FocusFrameManaBar.TextString, "CENTER", FocusFrame, "CENTER", -34, -11)
+    self:MoveRegion(FocusFrameManaBar.LeftText, "LEFT", FocusFrame, "LEFT", 25, -11)
+    self:MoveRegion(FocusFrameManaBar.RightText, "RIGHT", FocusFrame, "RIGHT", -93, -11)
+
+    self:MoveRegion(FocusFrameTextureFrameDeadText, "CENTER", FocusFrame, "CENTER", -33, 11)
 end
 
 function Core:MovePartyFrameBars()

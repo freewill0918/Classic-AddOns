@@ -473,8 +473,7 @@ Bleed classification via LibDispel]=] ] = [=[여러 속성 중 해제가 되는 
 	L["Hawk"] = "매"
 	L["Help"] = "도움말"
 	L["Hide After"] = "이후 숨기기"
-	--[[Translation missing --]]
-	L["Hide auras on setting show to nil in custom triggers"] = "Hide auras on setting show to nil in custom triggers"
+	L["Hide auras on setting show to nil in custom triggers"] = "사용자 정의 활성 조건에 show 설정값이 nil 일때 위크오라 숨김"
 	L["Hide Background"] = "배경 숨기기"
 	L["Hide Glows applied by this aura"] = "이 위크오라를 통해 적용된 반짝임 효과 숨김"
 	L["Hide on"] = "숨기기"
@@ -808,6 +807,8 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=] ] = [=[이벤트 
 	L["Specific Currency ID"] = "화폐 ID 지정"
 	L["Spell Selection Filters"] = "주문 선정 필터"
 	L["Spells found:"] = "발견된 주문:"
+	L["Squelch Sounds/Actions on Load"] = "불러올 때 소음/동작 억제"
+	L["Squelched"] = "억제"
 	L["Stack Info"] = "중첩 정보"
 	L["Stacks - The number of stacks of an aura (usually)"] = "중첩 - 오라의 중첩 갯수입니다 (일반적으로)"
 	L["Standby"] = "대기 중"
@@ -839,8 +840,10 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=] ] = [=[이벤트 
 	L["Texture X Offset"] = "텍스처 X 위치 조정"
 	L["Texture Y Offset"] = "텍스처 Y 위치 조정"
 	L["Thanks"] = "감사 인사"
-	L["The addon ElvUI is enabled. It might add cooldown numbers to the swipe. You can configure these in the ElvUI settings"] = "ElvUI 애드온을 사용중이므로 쿨타임 진행 부위에 쿨타임 시간이 표시될 것입니다. 남은 시간 텍스트는 ElvUI 설정에서 조정할 수 있습니다"
-	L["The addon OmniCC is enabled. It might add cooldown numbers to the swipe. You can configure these in the OmniCC settings"] = "OmniCC 애드온을 사용중이므로 쿨타임 진행 부위에 쿨타임 시간이 표시될 것입니다. 남은 시간 텍스트는 OmniCC 설정에서 조정할 수 있습니다"
+	--[[Translation missing --]]
+	L["The addon ElvUI is enabled. It might add cooldown numbers to the swipe. You can configure these in the ElvUI settings."] = "The addon ElvUI is enabled. It might add cooldown numbers to the swipe. You can configure these in the ElvUI settings."
+	--[[Translation missing --]]
+	L["The addon OmniCC is enabled. It might add cooldown numbers to the swipe. You can configure these in the OmniCC settings."] = "The addon OmniCC is enabled. It might add cooldown numbers to the swipe. You can configure these in the OmniCC settings."
 	L["The duration of the animation in seconds."] = "애니메이션 지속시간 (초)"
 	L["The duration of the animation in seconds. The finish animation does not start playing until after the display would normally be hidden."] = "애니메이션의 초단위 지속시간입니다. 종료 애니메이션은 일반적으로는 디스플레이가 숨겨지기 전까진 재생을 시작하지 않습니다."
 	L["The group and all direct children will share the same base frame level."] = "이 그룹과 모든 직속 자식 위크오라는 같은 기반의 프레임 레벨을 공유합니다."

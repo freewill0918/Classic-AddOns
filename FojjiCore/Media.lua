@@ -113,6 +113,13 @@ LSM:Register("sound", "fojjiMeme |cFFFF0000JoardeeImAFuckingGamer|r", [[Interfac
 LSM:Register("sound", "fojjiMeme |cFFFF0000JoardeeMassiveThingOnAss|r", [[Interface\Addons\FojjiCore\sound\JoardeeMassiveThingOnAss.ogg]])
 LSM:Register("sound", "fojjiMeme |cFFFF0000Run|r", [[Interface\Addons\FojjiCore\sound\Run.ogg]])
 LSM:Register("sound", "fojjiMeme |cFFFF0000ShadeChant|r", [[Interface\Addons\FojjiCore\sound\ShadeChant.ogg]])
+LSM:Register("sound", "fojjiMeme |cFFFF0000WelcomeToJurassicPark|r", [[Interface\Addons\FojjiCore\sound\WelcomeToJurassicPark.ogg]])
+LSM:Register("sound", "fojjiMeme |cFFFF0000DinosaurRoar|r", [[Interface\Addons\FojjiCore\sound\DinosaurRoar.ogg]])
+LSM:Register("sound", "fojjiMeme |cFFFF0000LifeUhFindsAWay|r", [[Interface\Addons\FojjiCore\sound\LifeUhFindsAWay.ogg]])
+LSM:Register("sound", "fojjiMeme |cFFFF0000DinosaurEat|r", [[Interface\Addons\FojjiCore\sound\DinosaurEat.ogg]])
+LSM:Register("sound", "fojjiMeme |cFFFF0000CleverGirl|r", [[Interface\Addons\FojjiCore\sound\CleverGirl.ogg]])
+LSM:Register("sound", "fojjiMeme |cFFFF0000DinosaurEat2|r", [[Interface\Addons\FojjiCore\sound\DinosaurEat2.ogg]])
+LSM:Register("sound", "fojjiMeme |cFFFF0000JurassicParkTheme|r", [[Interface\Addons\FojjiCore\sound\JurassicParkTheme.ogg]])
 
 -- -----
 --   STATUSBAR

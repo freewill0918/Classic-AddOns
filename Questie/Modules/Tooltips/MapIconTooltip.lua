@@ -161,7 +161,7 @@ function MapIconTooltip:Show()
                         local add = true;
                         for _, data in pairs(questOrder[key]) do
                             for text, _ in pairs(data) do
-                                if (text == iconData.ObjectiveData.Description) then
+                                if (text == QuestieLib:GetObjectiveDescription(iconData.ObjectiveData)) then
                                     add = false;
                                     break;
                                 end
@@ -286,11 +286,13 @@ function MapIconTooltip:Show()
                 end
 
                 if Questie.db.profile.enableTooltipsNextInChain then
+                    local DoableStates = QuestieDB.DoableStates
                     local nextQuestInChain = QuestieDB.QueryQuestSingle(questData.questId, "nextQuestInChain")
                     if shift and nextQuestInChain > 0 and (not QuestieCorrections.hiddenQuests[nextQuestInChain]) then
                         local nextQuest = QuestieDB.GetQuest(nextQuestInChain)
+                        local _, _, returnReason = QuestieDB.IsDoableVerbose(nextQuest.Id, false, true, true)
                         local firstInChain = true;
-                        while nextQuest ~= nil and (not QuestieCorrections.hiddenQuests[nextQuest.Id]) do
+                        while nextQuest ~= nil and (not QuestieCorrections.hiddenQuests[nextQuest.Id]) and (returnReason ~= DoableStates.WRONG_RACE and returnReason ~= DoableStates.WRONG_CLASS) do
                             if firstInChain then
                                 self:AddLine("  |TInterface\\Addons\\Questie\\Icons\\nextquest.blp:16|t " .. l10n("Next in chain") .. l10n(": "), 0.86, 0.86, 0.86)
                                 firstInChain = false
@@ -476,6 +478,8 @@ local function _GetQuestTag(quest)
                 return l10n("(") .. (RAID or l10n("Raid")) .. l10n(")");
             end
             return l10n("(") .. (WEEKLY or l10n("Weekly")) .. l10n(")");
+        elseif (QuestieDB.IsMonthlyQuest(quest.Id)) then
+            return l10n("(") .. (l10n("Monthly")) .. l10n(")");
         elseif (QuestieDB.IsDailyQuest(quest.Id)) then
             if questTagId == 81 then
                 return l10n("(") .. l10n("Daily Dungeon") .. l10n(")");
@@ -509,10 +513,11 @@ function _MapIconTooltip:GetAvailableOrCompleteTooltip(icon)
 end
 
 function _MapIconTooltip:GetEventObjectiveTooltip(iconData)
+    local desc = QuestieLib:GetObjectiveDescription(iconData.ObjectiveData)
     if iconData.Name then
         return {
             [iconData.ObjectiveData.Index] = {
-                [iconData.ObjectiveData.Description] = {
+                [desc] = {
                     [iconData.Name] = true
                 }
             }
@@ -520,7 +525,7 @@ function _MapIconTooltip:GetEventObjectiveTooltip(iconData)
     else
         return {
             [iconData.ObjectiveData.Index] = {
-                [iconData.ObjectiveData.Description] = true
+                [desc] = true
             }
         }
     end
@@ -529,7 +534,7 @@ end
 function _MapIconTooltip:GetObjectiveTooltip(icon)
     local tooltips = {}
     local iconData = icon.data
-    local text = iconData.ObjectiveData.Description
+    local text = QuestieLib:GetObjectiveDescription(iconData.ObjectiveData)
     local color = QuestieLib:GetRGBForObjective(iconData.ObjectiveData)
     if iconData.ObjectiveData.Needed then
         if iconData.ObjectiveData.Type == "spell" and iconData.ObjectiveData.spawnList[iconData.ObjectiveTargetId].ItemId then
@@ -563,7 +568,7 @@ function _MapIconTooltip:GetObjectiveTooltip(icon)
                     end
                     local remoteColor = QuestieLib:GetRGBForObjective(objectiveEntry)
                     local colorizedPlayerName = " " .. l10n("(") .. playerColor .. playerName .. "|r" .. remoteColor .. l10n(")") .. "|r" .. playerType
-                    local remoteText = iconData.ObjectiveData.Description
+                    local remoteText = QuestieLib:GetObjectiveDescription(iconData.ObjectiveData)
 
                     if objectiveEntry and objectiveEntry.fulfilled and objectiveEntry.required then
                         local fulfilled = objectiveEntry.fulfilled;
@@ -584,8 +589,8 @@ function _MapIconTooltip:GetObjectiveTooltip(icon)
             end
             if anotherPlayer then
                 local name = UnitName("player");
-                local _, classFilename = UnitClass("player");
-                local _, _, _, argbHex = GetClassColor(classFilename)
+                local playerClass = UnitClassBase("player")
+                local _, _, _, argbHex = GetClassColor(playerClass)
                 name = " " .. l10n("(") .. "|c" .. argbHex .. name .. "|r" .. color .. l10n(")") .. "|r";
                 text = text .. name;
             end

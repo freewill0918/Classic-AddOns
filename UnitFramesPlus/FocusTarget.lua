@@ -251,10 +251,12 @@ local function UnitFramesPlus_FocusTargetShiftDrag()
     ToFFrame:SetClampedToScreen(1);
 
     --重置目标位置时同时重置焦点目标位置
-    hooksecurefunc("TargetFrame_ResetUserPlacedPosition", function()
-        UnitFramesPlusVar["focustarget"]["moved"] = 0;
-        UnitFramesPlus_FocusTargetPosition();
-    end)
+    if _G.TargetFrame_ResetUserPlacedPosition then
+        hooksecurefunc("TargetFrame_ResetUserPlacedPosition", function()
+            UnitFramesPlusVar["focustarget"]["moved"] = 0;
+            UnitFramesPlus_FocusTargetPosition();
+        end)
+    end
 end
 
 --焦点目标头像缩放

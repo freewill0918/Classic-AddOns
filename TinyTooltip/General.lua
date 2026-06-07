@@ -33,7 +33,7 @@ end
 
 LibEvent:attachEvent("VARIABLES_LOADED", function()
     --CloseButton
-    if (ItemRefCloseButton and not IsAddOnLoaded("ElvUI")) then
+    if (ItemRefCloseButton and not C_AddOns.IsAddOnLoaded("ElvUI")) then
         ItemRefCloseButton:SetSize(14, 14)
         ItemRefCloseButton:SetPoint("TOPRIGHT", -4, -4)
         ItemRefCloseButton:SetNormalTexture("Interface\\\Buttons\\UI-StopButton")
@@ -58,8 +58,10 @@ LibEvent:attachEvent("VARIABLES_LOADED", function()
         if (hp <= 0) then
             local min, max = self:GetMinMaxValues()
             self.TextString:SetFormattedText("|cff999999%s|r |cffffcc33<%s>|r", AbbreviateLargeNumbers(max), DEAD)
-        else
+        elseif (TextStatusBar_UpdateTextString) then
             TextStatusBar_UpdateTextString(self)
+        else
+            self.TextString:SetText(AbbreviateLargeNumbers(hp))
         end
         ColorStatusBar(self, hp)
     end)

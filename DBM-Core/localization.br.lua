@@ -11,7 +11,7 @@ end
 
 L.HOW_TO_USE_MOD					= "Bem vindo ao " .. L.DBM .. " Digite /dbm help para obter uma lista dos comandos disponíveis. Para acessar as opções, digite /dbm no seu bate-papo para começar a configuração. Carregue zonas específicas manualmente para configurar opções específicas de cada chefe para o seu gosto pessoal. O " .. L.DBM .. " tenta fazer isso automaticamente para você, observando sua spec na primeira vez que é executado. De qualquer forma, você pode querer ativar outras opções."
 L.SILENT_REMINDER 					= "Lembrete: " .. L.DBM .. " ainda está em modo silencioso."
-L.NEWS_UPDATE						= "|h|c11ff1111Notícias|r|h: Esta atualização altera a estrutura do módulo para que o clássico e o principal agora usem módulos unificados (iguais). Isso significa que os módulos Vanilla, TBC, Wrath e Cata agora são instalados separadamente usando os mesmos pacotes que o jogo original. Leia mais sobre isso |Hgarrmission:DBM:news|h|cff3588ff[aqui]|r|h"
+L.NEWS_UPDATE						= "|h|c11ff1111Notícias|r|h: O DBM foi atualizado com o recurso de renomear habilidades. Basta digitar /dbm, ir para a categoria de módulos (raides, masmorras etc.) e abrir o módulo no qual você quer renomear habilidades."
 L.NEWS_UPDATE_REPEAT				= "|h|c11ff1111Notícias|r|h: Esta atualização altera a estrutura do módulo para que o clássico e o principal agora usem módulos unificados (iguais). Isso significa que os módulos Vanilla, TBC, Wrath e Cata agora são instalados separadamente usando os mesmos pacotes que o jogo original. Você está atualmente em um raide que está com um módulo ausente. Esta mensagem continuará aparecendo (e você não terá alertas funcionais para esta zona) até que você tenha instalado o módulo de raide ausente."
 
 L.COPY_URL_DIALOG_NEWS 				= "Para ler as últimas notícias, visite o link abaixo"
@@ -29,7 +29,7 @@ L.LOAD_MOD_DISABLED 				= "%s está instalado, mas atualmente desativado. Este m
 L.LOAD_MOD_DISABLED_PLURAL 			= "%s estão instalados, mas atualmente desativados. Estes mods não serão carregados a menos que você os ative."
 
 L.COPY_URL_DIALOG 					= "Copiar URL"
-L.COPY_WA_DIALOG 					= "Copiar Chave WA"
+L.COPY_WA_DIALOG 					= "Copiar chave de feitiço"
 
 --Post Patch 7.1
 L.TEXT_ONLY_RANGE 					= "O quadro de distância está limitado apenas a texto devido a restrições de API nesta área."
@@ -56,9 +56,9 @@ L.GUILD_COMBAT_STARTED				= "%s engrenou em combate com a guilda"--Uncomment whe
 L.SCENARIO_STARTED					= "%s começou. Boa sorte e divirta-se! :)"
 L.SCENARIO_STARTED_IN_PROGRESS		= "Juntando-se à %s em progresso. Boa sorte e divirta-se! :)"
 L.BOSS_DOWN							= "%s derrotado após %s!"
-L.BOSS_DOWN_I						= "%s derrotado! você tem %d |vitória:vitórias; no total."
-L.BOSS_DOWN_L						= "%s derrotado após %s! Sua última vitória levou %s, sua vitória mais rápida %s. Você tem um total de %d vitórias."
-L.BOSS_DOWN_NR						= "%s derrotado após %s! Esse é um novo recorde! (Recorde antigo era %s). Você tem um total de %d vitórias."
+L.BOSS_DOWN_I						= "%s derrotado! você tem %d |4vitória:vitórias; no total."
+L.BOSS_DOWN_L						= "%s derrotado após %s! Sua última vitória levou %s, sua vitória mais rápida %s. Você tem %d |4vitória:vitórias; no total."
+L.BOSS_DOWN_NR						= "%s derrotado após %s! Esse é um novo recorde! (Recorde antigo era %s). Você tem %d |4vitória:vitórias; no total."
 L.RAID_DOWN							= "%s derrotado após %s!"
 L.RAID_DOWN_L						= "%s derrotado após %s! Sua última vitória levou %s."
 L.RAID_DOWN_NR						= "%s derrotado após %s! Esse é um novo recorde! (Recorde antigo era %s)."
@@ -194,7 +194,8 @@ L.VOICE_MISSING						= "Você tinha um pacote de vozes " .. L.DBM .. " seleciona
 L.VOICE_DISABLED					= "Você atualmente tem pelo menos um pacote de voz do " .. L.DBM .. " instalado, mas nenhum está ativado. Se pretende usar um pacote de voz, certifique-se de que está selecionado em 'Alertas falados'. Caso contrário, desinstale os pacotes de voz não utilizados para ocultar esta mensagem."
 L.VOICE_COUNT_MISSING				= "A voz de contagem regressiva %d está selecionada para um pacote de voz que não pôde ser encontrado ou que não é compatível no momento. Foi restaurada para a configuração padrão: %s."
 L.BIG_WIGS							= "BigWigs" -- OPTIONAL
-L.WEAKAURA_KEY						= " (|cff308530Chave WA:|r %s)"
+L.WEAKAURA_KEY 						= " (|cff308530ID:|r %s)"
+L.RENAME							= " (|cff359030Renomes:|r |cff71d5ff%s|r)"
 
 L.UPDATEREMINDER_HEADER				= "Sua versão de " .. L.DEADLY_BOSS_MODS .. " está desatualizada.\nA versão %s (%s) está disponível para download nos sites Curse, Wago, WoWI ou Github."
 L.UPDATEREMINDER_HEADER_SUBMODULE	= "Seu módulo %s está desatualizado.\nA versão %s está disponível para download nos sites Curse, Wago, WoWI ou Github."
@@ -221,7 +222,7 @@ L.HARDCODED_FALLBACK					= L.DBM .. " detectou um resultado inesperado em um mó
 L.MOVABLE_BAR						= "Arraste-me!"
 L.MOVABLE_FRAMES 					= "Quadros arrastáveis"
 
-L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h te enviou um cronômetro do " .. L.DBM .. ": '%2$s'\n|Hgarrmission:DBM:cancel:%2$s:nil|h|cff3588ff[Cancelar esse cronômetro]|r|h  |Hgarrmission:DBM:ignore:%2$s:%1$s|h|cff3588ff[Ignorar cronômetros de %1$s]|r|h"
+L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h te enviou um cronômetro do " .. L.DBM .. ": '%2$s'\n|Haddon:DBM:cancel:%2$s:nil|h|cff3588ff[Cancelar esse cronômetro]|r|h  |Haddon:DBM:ignore:%2$s:%1$s|h|cff3588ff[Ignorar cronômetros de %1$s]|r|h"
 L.PIZZA_CONFIRM_IGNORE				= "Você tem certeza de que realmente deseja ignorar cronômetros de %s até o fim desta sessão?"
 L.PIZZA_ERROR_USAGE					= "Uso: /dbm [broadcast] timer <tempo> <texto>"
 
@@ -255,6 +256,7 @@ L.INFOFRAME_TITLE					= "Quadro de info"
 L.INFOFRAME_SHOW_SELF				= "Sempre exibir seu poder"		-- Always show your own power value even if you are below the threshold
 L.INFOFRAME_SETLINES				= "Linhas máximas"
 L.INFOFRAME_SETCOLS					= "Colunas máximas"
+L.INFOFRAME_SETSTRATA				= "Definir camada do quadro"
 L.INFOFRAME_LINESDEFAULT			= "Definido pelo mod"
 L.INFOFRAME_LINES_TO				= "%d linhas"
 L.INFOFRAME_COLS_TO					= "%d colunas"
@@ -393,6 +395,8 @@ L.AUTO_SPEC_WARN_TEXTS.youposcount 		= "%s (%%s) (Posição: %%s) em você"
 L.AUTO_SPEC_WARN_TEXTS.soakpos 			= "%s (Posição de absorção: %%s)"
 L.AUTO_SPEC_WARN_TEXTS.target			= "%s em >%%s<"
 L.AUTO_SPEC_WARN_TEXTS.targetcount 		= "%s (%%s) em >%%s< "
+L.AUTO_SPEC_WARN_TEXTS.blizztarget 		= "%s (%%s) em >%%s< "
+L.AUTO_SPEC_WARN_TEXTS.blizzyou			= "%s (%%s) em você"
 L.AUTO_SPEC_WARN_TEXTS.link 			= "%s ligado a >%%s<"
 L.AUTO_SPEC_WARN_TEXTS.defensive 		= "%s - Defensivo"
 L.AUTO_SPEC_WARN_TEXTS.taunt 			= "%s em >%%s< - Provoque agora"
@@ -442,6 +446,8 @@ L.AUTO_SPEC_WARN_OPTIONS.youposcount 	= "Exibir anúncio especial (com posição
 L.AUTO_SPEC_WARN_OPTIONS.soakpos 		= "Exibir anúncio especial (com posição) para ajudar a absorver outros afetados por $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.target 		= "Exibir anúncio especial quando alguém é afetado por $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.targetcount 	= "Exibir anúncio especial (com contagem) quando alguém é afetado por $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.blizztarget 	= "Exibir anúncio especial (com contagem) quando alguém é afetado por $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.blizzyou		= "Exibir anúncio especial (com contagem) quando você é afetado por $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.link			= "Exibir anúncio especial quando você estiver ligado a outro jogador por $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.defensive 		= "Exibir anúncio especial para usar habilidades defensivas para $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.taunt 			= "Exibir anúncio especial para provocar quando o outro tanque for afetado por $spell:%s"

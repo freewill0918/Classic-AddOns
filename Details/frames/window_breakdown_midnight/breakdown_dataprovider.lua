@@ -38,6 +38,11 @@ end
 ---@field icon number spell icon id
 ---@field texts string[] array of strings to be shown in the tooltip, the information maybe different based on mob type, in combat, etc.
 ---@field amount number the amount of damage or healing done by this spell
+---@field dps number?
+---@field percent number?
+---@field spellID number?
+---@field maxAmount number?
+---@field data table?
 
 --spells return a indexed table
 
@@ -61,6 +66,7 @@ local getActorSpells = function(actorObject)
 
     local spellContainer = actorObject.spells._ActorTable
     local couldGetPercent = false
+    local maxAmount = 0
 
     for spellId, spellTable in pairs(spellContainer) do
         ---@cast spellTable spelltable
@@ -69,27 +75,45 @@ local getActorSpells = function(actorObject)
         local spellAmountStr = AbbreviateNumbers(spellAmount, Details.abbreviateOptionsDamage)
         local dps = spellTable.dps --need review
         local dpsStr = AbbreviateNumbers(dps, Details.abbreviateOptionsDPS)
-        local percent = spellAmount / actorObject.total * 100
+        local totalAmount = actorObject.total or 0
+        local percent = totalAmount > 0 and (spellAmount / totalAmount * 100) or 0
         local percentStr = format("%.1f%%", percent)
+        maxAmount = math.max(maxAmount, spellAmount)
+        couldGetPercent = totalAmount > 0
 
         local data = {
             name = spellInfo.name, --missing pet name
             icon = spellInfo.iconID,
             texts = {spellAmountStr, dpsStr, percentStr},
             amount = spellAmount,
+            dps = dps,
+            percent = percent,
+            spellID = spellId,
+            data = {spellID = spellId},
         }
 
         spellData[#spellData + 1] = data
     end
 
-    local header
-    if not couldGetPercent then
-        header = {"Spell Name", "Amount", "DPS"}
-    else
-        header = {"Spell Name", "Amount", "DPS", "%"}
+    for i = 1, #spellData do
+        spellData[i].maxAmount = maxAmount
     end
 
-    return spellData, header
+    local headerData = {
+        {key="icon", text="", width=false, align="left", canSort=false, dataType="string", offset=0},
+        {key="rank", text="#", width=false, align="center", canSort=true, dataType="number", offset=0},
+        {key="expand", text="", width=16, align="center", canSort=false, dataType="string", offset=0},
+        {key="name", text="Spell Name", width=174, align="left", canSort=true, dataType="string", offset=0},
+        {key="amount", text="Amount", width=false, align="center", canSort=true, dataType="number", offset=0},
+        {key="dps", text="DPS", width=false, align="center", canSort=true, dataType="number", offset=0},
+        {key="percent", text="Percent", width=false, align="center", canSort=true, dataType="number", offset=0, usable=true},
+    }
+
+    if not couldGetPercent then
+        headerData[7].usable = false
+    end
+
+    return spellData, headerData
 end
 
 local getEDT = function(sourceSpells, classFileName)
@@ -121,7 +145,8 @@ local getEDT = function(sourceSpells, classFileName)
         --if width is false, use the default width
         {key="icon", text="", width=false, align="left", canSort=false, dataType="string", offset=0}, --icon
         {key="rank", text="#", width=false, align="center", canSort=true, dataType="number", offset=0}, --rank
-        {key="name", text="From Player", width=170, align="left", canSort=true, dataType="string", offset=0}, --spell name
+        {key="expand", text="", width=16, align="center", canSort=false, dataType="string", offset=0}, --expand
+        {key="name", text="From Player", width=154, align="left", canSort=true, dataType="string", offset=0}, --spell name
         {key="amount", text="Amount", width=false, align="right", canSort=true, dataType="number", offset=0}, --amount
         --{key="dps", text="DPS", width=false, align="right", canSort=true, dataType="number", offset=0}, --dps
         --{key="percent", text="Percent", width=false, align="right", canSort=true, dataType="number", offset=0, usable=false}, --percent
@@ -215,6 +240,8 @@ local getSourceSpells = function(sourceSpells, classFileName)
                 name = leftText,
                 texts = {AbbreviateNumbers(spellAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(dps, Details.abbreviateOptionsDPS)},
                 amount = spellAmount,
+                dps = dps,
+                spellID = spellId,
                 data = spellDetails,
                 maxAmount = maxAmount,
             }
@@ -227,6 +254,9 @@ local getSourceSpells = function(sourceSpells, classFileName)
                 name = leftText,
                 texts = {AbbreviateNumbers(spellAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(dps, Details.abbreviateOptionsDPS), format("%.1f%%", percent)},
                 amount = spellAmount,
+                dps = dps,
+                percent = percent,
+                spellID = spellId,
                 data = spellDetails,
                 maxAmount = maxAmount,
             }
@@ -241,20 +271,21 @@ local getSourceSpells = function(sourceSpells, classFileName)
         --if width is false, use the default width
         {key="icon", text="", width=false, align="left", canSort=false, dataType="string", offset=0}, --icon
         {key="rank", text="#", width=false, align="center", canSort=true, dataType="number", offset=0}, --rank
-        {key="name", text="Spell Name", width=190, align="left", canSort=true, dataType="string", offset=0}, --spell name
+        {key="expand", text="", width=16, align="center", canSort=false, dataType="string", offset=0}, --expand
+        {key="name", text="Spell Name", width=174, align="left", canSort=true, dataType="string", offset=0}, --spell name
         {key="amount", text="Amount", width=false, align="center", canSort=true, dataType="number", offset=0}, --amount
         {key="dps", text="DPS", width=false, align="center", canSort=true, dataType="number", offset=0}, --dps
         {key="percent", text="Percent", width=false, align="center", canSort=true, dataType="number", offset=0, usable=true}, --percent
     }
 
     if not couldGetPercent then
-        headerData[6].usable = false
+        headerData[7].usable = false
     end
 
     return spellData, headerData
 end
 
-function breakdownMidnight.LoadTargets(segmentType, segmentId, actorName)
+function breakdownMidnight.LoadTargets(segmentType, segmentId, actorName) --~targets
     local actors = Details222.B.GetSegment(segmentType <= 1 and "Type" or "ID", segmentType <= 1 and segmentType or segmentId, 10)
     --dumpt(actors)
     local targets = {}
@@ -271,12 +302,14 @@ function breakdownMidnight.LoadTargets(segmentType, segmentId, actorName)
                 local playerName = spellDetails.unitName
                 if playerName == actorName then
                     local percent = thisResult.totalAmount / thisActor.totalAmount * 100
+                    local dps = thisResult.amountPerSecond
+                    dps = breakdownMidnight.FixUnderOneValue(dps)
                     local data = {
                         icon = [[Interface\COMMON\friendship-FistHuman]],
                         iconcoords = {0, 1, 0, 1},
                         iconsize = 16,
                         name = thisActor.name,
-                        texts = {AbbreviateNumbers(thisResult.totalAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(thisResult.amountPerSecond, Details.abbreviateOptionsDPS), string.format("%.1f%%", percent)},
+                        texts = {AbbreviateNumbers(thisResult.totalAmount, Details.abbreviateOptionsDamage), AbbreviateNumbers(dps, Details.abbreviateOptionsDPS), string.format("%.1f%%", percent)},
                         amount = thisResult.totalAmount,
                         data = thisResult,
                         maxAmount = 1,
@@ -286,6 +319,11 @@ function breakdownMidnight.LoadTargets(segmentType, segmentId, actorName)
             end
         end
     end
+
+    table.sort(targets, function(a, b)
+        return a.amount > b.amount
+    end)
+
     return targets
 end
 
@@ -301,9 +339,9 @@ function breakdownMidnight.GenerateTargetsData(windowFrame)
         {key="icon", text="", width=false, align="left", canSort=false, dataType="string", offset=0},
         {key="rank", text="#", width=false, align="center", canSort=true, dataType="number", offset=0},
         {key="name", text="Target Name", width=180, align="left", canSort=true, dataType="string", offset=0},
-        {key="amount", text="Amount", width=false, align="left", canSort=true, dataType="number", offset=0},
-        --{key="dps", text="DPS", width=false, align="right", canSort=true, dataType="number", offset=0},
-        --{key="percent", text="Percent", width=false, align="right", canSort=true, dataType="number", offset=0},
+        {key="amount", text="Amount", width=false, align="center", canSort=true, dataType="number", offset=0},
+        {key="dps", text="DPS", width=false, align="center", canSort=true, dataType="number", offset=0},
+        {key="percent", text="Percent", width=false, align="center", canSort=true, dataType="number", offset=0},
     }
 
     return targets, headerData
@@ -315,6 +353,7 @@ function breakdownMidnight.GenerateSpellData(windowFrame)
     local segmentType = windowFrame:GetCurrentSegmentType()
     local attributeId = windowFrame:GetCurrentAttributeId()
     local actor = windowFrame:GetPlayerObject()
+    local instance = windowFrame:GetInstance()
 
     local spells, header, isDude
     if (isActor(actor)) then
@@ -335,7 +374,8 @@ function breakdownMidnight.GenerateSpellData(windowFrame)
             local headerData = {
                 {key="icon", text="", width=false, align="left", canSort=false, dataType="string", offset=0}, --icon
                 {key="rank", text="#", width=false, align="center", canSort=true, dataType="number", offset=0}, --rank
-                {key="name", text="Source", width=170, align="left", canSort=true, dataType="string", offset=0}, --spell name
+                {key="expand", text="", width=16, align="center", canSort=false, dataType="string", offset=0}, --expand
+                {key="name", text="Source", width=154, align="left", canSort=true, dataType="string", offset=0}, --spell name
                 {key="time", text="Time", width=false, align="right", canSort=true, dataType="number", offset=0}, --time
                 {key="amount", text="Amount", width=false, align="right", canSort=true, dataType="number", offset=0}, --amount
                 {key="critical", text="Critical", width=false, align="left", canSort=true, dataType="string", offset=0}, --critical
@@ -396,7 +436,12 @@ function breakdownMidnight.GenerateSpellData(windowFrame)
 
             local t = segmentType <= 1
             if guid and not issecretvalue(guid) then
-                local sourceSpells = Details222.B.GetSpells(t and DETAILS_SEGMENTTYPE_TYPE or DETAILS_SEGMENTTYPE_ID, t and segmentType or segmentId, attributeId, guid)
+                local sourceSpells
+                if Details222.BParser.IsCustomAttribute(attributeId) then
+                    sourceSpells = Details222.BParser.GetCustomDataForTooltip(instance, attributeId, actor)
+                else
+                    sourceSpells = Details222.B.GetSpells(t and DETAILS_SEGMENTTYPE_TYPE or DETAILS_SEGMENTTYPE_ID, t and segmentType or segmentId, attributeId, guid)
+                end
                 spells, header = getSourceSpells(sourceSpells, actor.classFilename)
                 isDude = true
 
@@ -425,7 +470,13 @@ function breakdownMidnight.GeneratePlayerData(windowFrame)
     local segmentId = windowFrame:GetCurrentSegmentId()
     local attributeId = windowFrame:GetCurrentAttributeId()
 
-    local playerList = Details222.B.GetSegment(segmentType <= 1 and "Type" or "ID", segmentType <= 1 and segmentType or segmentId, attributeId)
+    local playerList
+    if Details222.BParser.IsCustomAttribute(attributeId) then
+        playerList = Details222.BParser.GetCustomDataForWindow(windowFrame:GetInstance(), attributeId)
+    else
+        playerList = Details222.B.GetSegment(segmentType <= 1 and "Type" or "ID", segmentType <= 1 and segmentType or segmentId, attributeId)
+    end
+
     local headerData = {
         {key="icon", text="", width=false, align="left", canSort=false, dataType="string", offset=0},
         {key="rank", text="#", width=false, align="center", canSort=true, dataType="number", offset=0},

@@ -39,11 +39,11 @@ FocusPlus.lua
 ## 焦点目标
 FocusTarget.lua
 
-## 队友
-PartyPlus.lua
+## 队友 - 已停用：MoP 5.5.x 用 PartyFrame.MemberFrame1..4 取代了舊的 PartyMemberFrame1..4 全域，整個舊隊伍框架系統已移除，交由 EasyFrames 處理
+#PartyPlus.lua
 
-## 队友目标
-PartyTarget.lua
+## 队友目标 - 同上，依賴已移除的 PartyMemberFrame1..4
+#PartyTarget.lua
 
 ## 队友施法条
 #PartyCastbar.lua

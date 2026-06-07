@@ -6,12 +6,12 @@ local OptionsPrivate = select(2, ...)
 
 -- Lua APIs
 local tinsert, tremove, wipe = table.insert, table.remove, wipe
-local pairs, type, error = pairs, type, error
+local pairs, type = pairs, type
 local _G = _G
 
 -- WoW APIs
-local GetScreenWidth, GetScreenHeight, CreateFrame, UnitName
-  = GetScreenWidth, GetScreenHeight, CreateFrame, UnitName
+local GetScreenWidth, GetScreenHeight, CreateFrame
+  = GetScreenWidth, GetScreenHeight, CreateFrame
 
 local AceGUI = LibStub("AceGUI-3.0")
 local AceConfigDialog = LibStub("AceConfigDialog-3.0")
@@ -122,9 +122,8 @@ function OptionsPrivate.CreateFrame()
   frame:SetFrameStrata("DIALOG")
   -- Workaround classic issue
 
-  local serverTime = C_DateAndTime.GetServerTimeLocal()
-  if serverTime >= 1748736000 -- June 1.
-     and serverTime <= 1751328000 -- July 1.
+  local serverDate = C_DateAndTime.GetCurrentCalendarTime()
+  if serverDate.month == 6
   then
     WeakAurasOptionsPortrait:SetTexture([[Interface\AddOns\WeakAuras\Media\Textures\logo_256_round_pride.tga]])
   else
@@ -186,7 +185,7 @@ function OptionsPrivate.CreateFrame()
       OptionsPrivate.Private.personalRessourceDisplayFrame:OptionsClosed()
     end
 
-    if frame.dynamicTextCodesFrame  then
+    if frame.dynamicTextCodesFrame then
       frame.dynamicTextCodesFrame:Hide()
     end
 
@@ -386,7 +385,7 @@ function OptionsPrivate.CreateFrame()
   local tipPopupLabel = tipPopup:CreateFontString(nil, "BACKGROUND", "GameFontWhite")
   local fontPath = SharedMedia:Fetch("font", "Fira Sans Medium")
   if (fontPath) then
-    tipPopupLabel:SetFont(fontPath, 12)
+    tipPopupLabel:SetFont(fontPath, 12, "")
   end
   tipPopupLabel:SetPoint("TOPLEFT", tipPopupTitle, "BOTTOMLEFT", 0, -6)
   tipPopupLabel:SetPoint("TOPRIGHT", tipPopupTitle, "BOTTOMRIGHT", 0, -6)
@@ -394,14 +393,14 @@ function OptionsPrivate.CreateFrame()
   tipPopupLabel:SetJustifyV("TOP")
 
   local tipPopupLabelCJ = tipPopup:CreateFontString(nil, "BACKGROUND", "GameFontWhite")
-  tipPopupLabelCJ:SetFont("Fonts\\ARKai_T.ttf", 12)
+  tipPopupLabelCJ:SetFont("Fonts\\ARKai_T.ttf", 12, "")
   tipPopupLabelCJ:SetPoint("TOPLEFT", tipPopupLabel, "BOTTOMLEFT", 0, 0)
   tipPopupLabelCJ:SetPoint("TOPRIGHT", tipPopupLabel, "BOTTOMRIGHT", 0, 0)
   tipPopupLabelCJ:SetJustifyH("LEFT")
   tipPopupLabelCJ:SetJustifyV("TOP")
 
   local tipPopupLabelK = tipPopup:CreateFontString(nil, "BACKGROUND", "GameFontWhite")
-  tipPopupLabelK:SetFont("Fonts\\K_Pagetext.TTF", 12)
+  tipPopupLabelK:SetFont("Fonts\\K_Pagetext.TTF", 12, "")
   tipPopupLabelK:SetPoint("TOPLEFT", tipPopupLabelCJ, "BOTTOMLEFT", 0, 0)
   tipPopupLabelK:SetPoint("TOPRIGHT", tipPopupLabelCJ, "BOTTOMRIGHT", 0, 0)
   tipPopupLabelK:SetJustifyH("LEFT")
@@ -1107,6 +1106,17 @@ function OptionsPrivate.CreateFrame()
   end
 
   frame.ClearAndUpdateOptions = function(self, id, clearChildren)
+    if not id then
+      if type(self.pickedDisplay) == "table" then
+        id = tempGroup.id
+      else
+        id = self.pickedDisplay
+      end
+      if not id then
+        return
+      end
+    end
+
     frame:ClearOptions(id)
 
     if clearChildren then

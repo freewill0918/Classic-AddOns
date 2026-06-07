@@ -124,8 +124,24 @@ function General:OnEnable()
         self:MakeFramesColored(statusbar, statusbar.unit)
     end)
 
-    self:SecureHook("TargetFrame_UpdateAuraPositions", "MakeCustomBuffSize")
-    self:SecureHook("TargetFrame_UpdateAuras", "TargetFrame_UpdateAuras")
+    --self:SecureHook("TargetFrame_UpdateAuraPositions", "MakeCustomBuffSize")
+    --self:SecureHook("TargetFrame_UpdateAuras", "UpdateAuras")
+
+    hooksecurefunc(TargetFrame, "UpdateAuras", function()
+        self:UpdateAuras(TargetFrame);
+    end)
+
+    hooksecurefunc(TargetFrame, "UpdateAuraPositions", function(...)
+        self:MakeCustomBuffSize(...)
+    end)
+
+    hooksecurefunc(FocusFrame, "UpdateAuras", function()
+        self:UpdateAuras(FocusFrame);
+    end)
+
+    hooksecurefunc(FocusFrame, "UpdateAuraPositions", function(...)
+        self:MakeCustomBuffSize(...)
+    end)
 
     if (db.general.barTexture ~= "Blizzard") then
         self:SetFrameBarTexture(db.general.barTexture)
@@ -165,6 +181,131 @@ function General:OnProfileChanged(newDB)
     self:SetMaxDebuffCount(db.general.maxDebuffCount)
 end
 
+function General:MakeCustomBuffSize(frame, auraName, numAuras, numOppositeAuras, largeAuraList, updateFunc, maxRowWidth, offsetX, mirrorAurasVertically)
+    if (db.general.customBuffSize) then
+        local AURA_OFFSET = 3
+        local AURA_ROW_WIDTH = 120
+        local LARGE_AURA_SIZE = db.general.selfBuffSize
+        local SMALL_AURA_SIZE = db.general.buffSize
+        local size
+        local offsetY = AURA_OFFSET
+        local offsetX = AURA_OFFSET
+        local rowWidth = 0
+        local firstBuffOnRow = 1
+
+        for i = 1, numAuras do
+            if (largeAuraList[i]) then
+                size = LARGE_AURA_SIZE
+                offsetY = AURA_OFFSET
+                offsetX = AURA_OFFSET
+            else
+                size = SMALL_AURA_SIZE
+            end
+
+            if (i == 1) then
+                rowWidth = size
+                -- frame.auraRows = frame.auraRows + 1
+            else
+                rowWidth = rowWidth + size + offsetX
+            end
+
+            if (rowWidth > AURA_ROW_WIDTH) then
+                updateFunc(frame, auraName, i, numOppositeAuras, firstBuffOnRow, size, offsetX, offsetY, mirrorAurasVertically)
+                rowWidth = size
+                -- frame.auraRows = frame.auraRows + 1
+                firstBuffOnRow = i
+                offsetY = AURA_OFFSET
+            else
+                updateFunc(frame, auraName, i, numOppositeAuras, i - 1, size, offsetX, offsetY, mirrorAurasVertically)
+            end
+        end
+    end
+end
+
+function General:UpdateAuras(frame, forceHide)
+    local buffFrame, frameStealable, icon, debuffType, caster, isStealable, _
+    local selfName = frame:GetName()
+    local isEnemy = UnitIsEnemy(PlayerFrame.unit, frame.unit)
+
+    local LARGE_AURA_SIZE = db.general.selfBuffSize
+    local SMALL_AURA_SIZE = db.general.buffSize
+    local buffSize = DEFAULT_BUFF_SIZE
+
+    -- Debuffs on top
+    if (frame.maxDebuffs and frame.maxDebuffs > 0 and frame.buffsOnTop) then
+        local _, fisrtDebuffIcon = UnitDebuff(frame.unit, 1)
+        local _, fisrtBuffIcon = UnitBuff(frame.unit, 1)
+
+        if (fisrtDebuffIcon and not fisrtBuffIcon) then
+            local firstDebuffFrame = _G[selfName .. 'Debuff1']
+            local point, relativeTo, relativePoint, xOffset, yOffset = firstDebuffFrame:GetPoint()
+
+            firstDebuffFrame:ClearAllPoints()
+            firstDebuffFrame:SetPoint(point, relativeTo, relativePoint, xOffset, yOffset + 8)
+        end
+    end
+
+    for i = 1, MAX_TARGET_BUFFS do
+        _, icon, _, debuffType, _, _, caster, isStealable = UnitBuff(frame.unit, i)
+
+        if (icon and (not frame.maxBuffs or i <= frame.maxBuffs)) then
+            local frameName = selfName .. 'Buff' .. i
+
+            buffFrame = _G[frameName]
+
+            -- Custom buff size
+            if (icon and (not frame.maxBuffs or i <= frame.maxBuffs)) then
+                if (db.general.customBuffSize) then
+                    if (caster == 'player') then
+                        buffSize = LARGE_AURA_SIZE
+                    else
+                        buffSize = SMALL_AURA_SIZE
+                    end
+                end
+
+                buffFrame:SetHeight(buffSize)
+                buffFrame:SetWidth(buffSize)
+            end
+
+            -- Buffs on top
+            if (i == 1 and frame.buffsOnTop) then
+                local point, relativeTo, relativePoint, xOffset, yOffset = buffFrame:GetPoint()
+
+                buffFrame:ClearAllPoints()
+                buffFrame:SetPoint(point, relativeTo, relativePoint, xOffset, yOffset + 8)
+            end
+
+            -- Stealable buffs
+            if (db.general.highlightDispelledBuff or forceHide) then
+                frameStealable = _G[frameName .. 'Stealable']
+
+                local allCanSteal = true
+                if (db.general.ifPlayerCanDispelBuff) then
+                    allCanSteal = isStealable
+                end
+
+                if (isEnemy and debuffType == 'Magic' and allCanSteal and not forceHide) then
+                    local buffSize
+
+                    if (db.general.customBuffSize) then
+                        buffSize = db.general.buffSize * db.general.dispelledBuffScale
+                    else
+                        buffSize = DEFAULT_BUFF_SIZE * db.general.dispelledBuffScale
+                    end
+
+                    buffFrame:SetHeight(buffSize)
+                    buffFrame:SetWidth(buffSize)
+
+                    frameStealable:Show()
+                    frameStealable:SetHeight(buffSize * 1.4)
+                    frameStealable:SetWidth(buffSize * 1.4)
+                elseif (forceHide) then
+                    frameStealable:Hide()
+                end
+            end
+        end
+    end
+end
 
 function General:ResetFriendlyFrameDefaultColors()
     EasyFrames.db.profile.general.friendlyFrameDefaultColors = {0, 1, 0}
@@ -177,8 +318,6 @@ end
 function General:ResetNeutralFrameDefaultColors()
     EasyFrames.db.profile.general.neutralFrameDefaultColors = {1, 1, 0}
 end
-
-
 
 function General:SetFramesColored()
     local healthBars = GetFramesHealthBar()
@@ -240,7 +379,6 @@ function General:HideFramesOutOfCombat(forceShow)
         self:RegisterEvent("PLAYER_REGEN_ENABLED", "CombatStatusEvent")
     end
 end
-
 
 function General:SetFrameBarTexture(value)
     local texture = Media:Fetch("statusbar", value)
@@ -378,118 +516,11 @@ function General:SetCustomBuffSize(value)
     end
 end
 
-function General:MakeCustomBuffSize(frame, auraName, numAuras, numOppositeAuras, largeAuraList, updateFunc, maxRowWidth, offsetX, mirrorAurasVertically)
-    if (db.general.customBuffSize) then
-        local AURA_OFFSET = 3
-        local LARGE_AURA_SIZE = db.general.selfBuffSize
-        local SMALL_AURA_SIZE = db.general.buffSize
-        local size
-        local offsetY = AURA_OFFSET
-        local offsetX = AURA_OFFSET
-        local rowWidth = 0
-        local firstBuffOnRow = 1
-
-        for i = 1, numAuras do
-            if (largeAuraList[i]) then
-                size = LARGE_AURA_SIZE
-                offsetY = AURA_OFFSET
-                offsetX = AURA_OFFSET
-            else
-                size = SMALL_AURA_SIZE
-            end
-
-            if (i == 1) then
-                rowWidth = size
---                frame.auraRows = frame.auraRows + 1
-            else
-                rowWidth = rowWidth + size + offsetX
-            end
-
-            if (rowWidth > 121) then
-                updateFunc(frame, auraName, i, numOppositeAuras, firstBuffOnRow, size, offsetX, offsetY, mirrorAurasVertically)
-                rowWidth = size
---                frame.auraRows = frame.auraRows + 1
-                firstBuffOnRow = i
-                offsetY = AURA_OFFSET
-            else
-                updateFunc(frame, auraName, i, numOppositeAuras, i - 1, size, offsetX, offsetY, mirrorAurasVertically)
-            end
-        end
-    end
-end
-
 function General:SetHighlightDispelledBuff()
     if (db.general.highlightDispelledBuff) then
-        self:TargetFrame_UpdateAuras(TargetFrame)
+        self:UpdateAuras(TargetFrame)
     else
-        self:TargetFrame_UpdateAuras(TargetFrame, true)
-    end
-end
-
-function General:TargetFrame_UpdateAuras(frame, forceHide)
-    local buffFrame, frameStealable, icon, debuffType, isStealable, _
-    local selfName = frame:GetName()
-    local isEnemy = UnitIsEnemy(PlayerFrame.unit, frame.unit)
-
-    -- Debuffs on top
-    if ((frame.maxDebuffs and frame.maxDebuffs > 0) and frame.buffsOnTop) then -- 暫時修正
-        local _, fisrtDebuffIcon = UnitDebuff(frame.unit, 1)
-        local _, fisrtBuffIcon = UnitBuff(frame.unit, 1)
-
-        if (fisrtDebuffIcon and not fisrtBuffIcon) then
-            local firstDebuffFrame = _G[selfName .. 'Debuff1']
-            local point, relativeTo, relativePoint, xOffset, yOffset = firstDebuffFrame:GetPoint()
-
-            firstDebuffFrame:ClearAllPoints()
-            firstDebuffFrame:SetPoint(point, relativeTo, relativePoint, xOffset, yOffset + 8)
-        end
-    end
-
-    for i = 1, MAX_TARGET_BUFFS do
-        _, icon, _, debuffType, _, _, _, isStealable = UnitBuff(frame.unit, i)
-
-        if (icon and (not frame.maxBuffs or i <= frame.maxBuffs)) then
-            local frameName = selfName .. 'Buff' .. i
-
-            buffFrame = _G[frameName]
-
-            -- Buffs on top
-            if (i == 1 and frame.buffsOnTop) then
-                local point, relativeTo, relativePoint, xOffset, yOffset = buffFrame:GetPoint()
-
-                buffFrame:ClearAllPoints()
-                buffFrame:SetPoint(point, relativeTo, relativePoint, xOffset, yOffset + 8)
-            end
-
-            -- Stealable buffs
-            if (db.general.highlightDispelledBuff or forceHide) then
-                frameStealable = _G[frameName .. 'Stealable']
-
-                local allCanSteal = true
-                if (db.general.ifPlayerCanDispelBuff) then
-                    allCanSteal = isStealable
-                end
-
-                if (isEnemy and debuffType == 'Magic' and allCanSteal and not forceHide) then
-                    local buffSize
-
-                    if (db.general.customBuffSize) then
-                        buffSize = db.general.buffSize * db.general.dispelledBuffScale
-                    else
-                        buffSize = DEFAULT_BUFF_SIZE * db.general.dispelledBuffScale
-                    end
-
-                    buffFrame:SetHeight(buffSize)
-                    buffFrame:SetWidth(buffSize)
-
-                    frameStealable:Show()
-                    frameStealable:SetHeight(buffSize * 1.4)
-                    frameStealable:SetWidth(buffSize * 1.4)
-                elseif (forceHide) then
-                    frameStealable:Hide()
-                end
-            end
-        end
+        self:UpdateAuras(TargetFrame, true)
     end
 end
 
@@ -501,34 +532,4 @@ end
 function General:SetMaxDebuffCount(value)
     TargetFrame.maxDebuffs = value
     FocusFrame.maxDebuffs = value
-end
-
-function General:SaveFramesPoints()
-    db.general.framesPoints = {
-        player = {PlayerFrame:GetPoint()},
-        target = {TargetFrame:GetPoint()},
-        focus = {FocusFrame:GetPoint()},
-    }
-end
-
-function General:RestoreFramesPoints()
-    if (db.general.framesPoints) then
-        for _, frame in pairs({
-            PlayerFrame,
-            TargetFrame,
-            FocusFrame
-        }) do
-            frame:ClearAllPoints()
-            frame:SetPoint(unpack(db.general.framesPoints[frame.unit]))
-            frame:SetUserPlaced(true)
-        end
-    end
-end
-
-function General:SetFramePoints(frame, x, y)
-    local point, relativeTo, relativePoint = frame:GetPoint()
-
-    frame:ClearAllPoints()
-    frame:SetPoint(point, relativeTo, relativePoint, x, y)
-    frame:SetUserPlaced(true)
 end

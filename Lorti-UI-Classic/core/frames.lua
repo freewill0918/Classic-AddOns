@@ -4,6 +4,9 @@
   local cfg = ns.cfg
   local dragFrameList = ns.dragFrameList
 
+  --MoP Classic 5.5.x: IsAddOnLoaded moved to C_AddOns
+  local IsAddOnLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
+
   -- v:SetVertexColor(.35, .35, .35) GREY
   -- v:SetVertexColor(.05, .05, .05) DARKEST
 
@@ -68,7 +71,11 @@
 	CF:RegisterEvent("PLAYER_ENTERING_WORLD")
 	CF:RegisterEvent("GROUP_ROSTER_UPDATE")
 
-	hooksecurefunc('TargetFrame_CheckClassification', function(self, forceNormalTexture)
+	-- TargetFrame_CheckClassification (global) was removed in MoP Classic 5.5.x.
+	-- The frame fields (borderTexture/nameBackground/manabar) still exist, so keep the skin body
+	-- and re-trigger it via the TargetFrameMixin hook, falling back to target/focus change events.
+	local function lortiCheckClassification(self, forceNormalTexture)
+		if not self or not self.unit then return end
 		 local classification = UnitClassification(self.unit);
 		if ( classification == "minus" ) then
 			self.borderTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Minus");
@@ -93,7 +100,21 @@
 			self.borderTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame")
 			self.borderTexture:SetVertexColor(.05, .05, .05)
 		end
-	end)
+	end
+
+	if TargetFrameMixin and TargetFrameMixin.CheckClassification then
+		hooksecurefunc(TargetFrameMixin, "CheckClassification", lortiCheckClassification)
+	elseif type(TargetFrame_CheckClassification) == "function" then
+		hooksecurefunc("TargetFrame_CheckClassification", lortiCheckClassification)
+	else
+		local ccf = CreateFrame("Frame")
+		ccf:RegisterEvent("PLAYER_TARGET_CHANGED")
+		ccf:RegisterEvent("PLAYER_FOCUS_CHANGED")
+		ccf:SetScript("OnEvent", function()
+			lortiCheckClassification(TargetFrame)
+			if FocusFrame then lortiCheckClassification(FocusFrame) end
+		end)
+	end
 
 	function ColorRaid()
 		for g = 1, NUM_RAID_GROUPS do
@@ -110,7 +131,8 @@
 				if frame then
 					groupcolored = true
 					for _, region in pairs({frame:GetRegions()}) do
-						if region:GetName():find("Border") then
+						local rname = region.GetName and region:GetName()
+						if rname and rname:find("Border") then
 							region:SetVertexColor(.05, .05, .05)
 						end
 					end
@@ -119,21 +141,26 @@
 				if frame then
 					singlecolored = true
 					for _, region in pairs({frame:GetRegions()}) do
-						if region:GetName():find("Border") then
+						local rname = region.GetName and region:GetName()
+						if rname and rname:find("Border") then
 							region:SetVertexColor(.05, .05, .05)
 						end
 					end
 				end
 			end
 		end
-		for _, region in pairs({CompactRaidFrameContainerBorderFrame:GetRegions()}) do
-			if region:IsObjectType("Texture") then
-				region:SetVertexColor(.05, .05, .05)
+		if CompactRaidFrameContainerBorderFrame then
+			for _, region in pairs({CompactRaidFrameContainerBorderFrame:GetRegions()}) do
+				if region:IsObjectType("Texture") then
+					region:SetVertexColor(.05, .05, .05)
+				end
 			end
 		end
 	end
 
 	CF:SetScript("OnEvent", function(self, event)
+		-- CastingBarFrame was renamed to PlayerCastingBarFrame in MoP Classic 5.5.x
+		local castingBar = PlayerCastingBarFrame or CastingBarFrame
 		ColorRaid()
 		CF:SetScript("OnUpdate", function()
 			if CompactRaidGroup1 and not groupcolored == true then
@@ -163,7 +190,7 @@
 				PartyMemberFrame3PetFrameTexture,
 				PartyMemberFrame4PetFrameTexture,
    				TargetFrameToTTextureFrameTexture,
-				CastingBarFrame.Border,
+				castingBar and castingBar.Border,
 				TargetFrameSpellBar.Border,
         MirrorTimer1Border,
         MirrorTimer2Border,
@@ -205,22 +232,23 @@
 				v:SetAlpha(0.35)
 			end
 			for i=1,4 do
-				_G["PartyMemberFrame"..i.."PVPIcon"]:SetAlpha(0)
-				_G["PartyMemberFrame"..i.."NotPresentIcon"]:Hide()
-				_G["PartyMemberFrame"..i.."NotPresentIcon"].Show = function() end
+				local pvp = _G["PartyMemberFrame"..i.."PVPIcon"]
+				if pvp then pvp:SetAlpha(0) end
+				local notpresent = _G["PartyMemberFrame"..i.."NotPresentIcon"]
+				if notpresent then notpresent:Hide(); notpresent.Show = function() end end
 			end
-			PlayerFrameGroupIndicator:SetAlpha(0)
-			PlayerHitIndicator:SetText(nil)
-			PlayerHitIndicator.SetText = function() end
-			PetHitIndicator:SetText(nil)
-			PetHitIndicator.SetText = function() end
+			if PlayerFrameGroupIndicator then PlayerFrameGroupIndicator:SetAlpha(0) end
+			if PlayerHitIndicator then PlayerHitIndicator:SetText(nil); PlayerHitIndicator.SetText = function() end end
+			if PetHitIndicator then PetHitIndicator:SetText(nil); PetHitIndicator.SetText = function() end end
 
 		else
-			CastingBarFrameBorder:SetVertexColor(.05,.05,.05)
+			if castingBar and castingBar.Border then castingBar.Border:SetVertexColor(.05,.05,.05) end
 		end
 	end)
 
  -- COLORING THE MAIN BAR
+-- ReputationWatchBar was replaced by StatusTrackingBarManager in MoP Classic 5.5.x; guard so nil-index won't error
+local repBar = ReputationWatchBar and ReputationWatchBar.StatusBar
 for i,v in pairs({
       SlidingActionBarTexture0,
       SlidingActionBarTexture1,
@@ -237,14 +265,14 @@ for i,v in pairs({
 	  MainMenuXPBarTexture2,
 	  MainMenuXPBarTexture3,
 	  MainMenuXPBarTexture4,
-	  ReputationWatchBar.StatusBar.WatchBarTexture0,
-      ReputationWatchBar.StatusBar.WatchBarTexture1,
-      ReputationWatchBar.StatusBar.WatchBarTexture2,
-      ReputationWatchBar.StatusBar.WatchBarTexture3,
-	  ReputationWatchBar.StatusBar.XPBarTexture0,
-	  ReputationWatchBar.StatusBar.XPBarTexture1,
-	  ReputationWatchBar.StatusBar.XPBarTexture2,
-	  ReputationWatchBar.StatusBar.XPBarTexture3,
+	  repBar and repBar.WatchBarTexture0,
+      repBar and repBar.WatchBarTexture1,
+      repBar and repBar.WatchBarTexture2,
+      repBar and repBar.WatchBarTexture3,
+	  repBar and repBar.XPBarTexture0,
+	  repBar and repBar.XPBarTexture1,
+	  repBar and repBar.XPBarTexture2,
+	  repBar and repBar.XPBarTexture3,
 
 
 }) do
@@ -377,8 +405,11 @@ for i,v in pairs({
    v:SetVertexColor(.35, .35, .35)
 end
 
+-- Many of these windows were renamed/removed in MoP Classic 5.5.x; regions() safely returns nothing if the frame is gone
+local function regions(frame) if frame then return frame:GetRegions() end end
+
 --BANK
-local a, b, c, d, _, e = BankFrame:GetRegions()
+local a, b, c, d, _, e = regions(BankFrame)
 for _, v in pairs({a, b, c, d, e
 
 })do
@@ -397,7 +428,7 @@ for i,v in pairs({
 end
 
 --PAPERDOLL/Characterframe
-local a, b, c, d, _, e = PaperDollFrame:GetRegions()
+local a, b, c, d, _, e = regions(PaperDollFrame)
 for _, v in pairs({a, b, c, d, e
 
 })do
@@ -406,7 +437,7 @@ for _, v in pairs({a, b, c, d, e
 end
 
 --Spellbook
-local _, a, b, c, d = SpellBookFrame:GetRegions()
+local _, a, b, c, d = regions(SpellBookFrame)
 for _, v in pairs({a, b, c, d
 
 }) do
@@ -414,7 +445,7 @@ for _, v in pairs({a, b, c, d
 end
 
 -- Skilltab
-local a, b, c, d = SkillFrame:GetRegions()
+local a, b, c, d = regions(SkillFrame)
 for _, v in pairs({a, b, c ,d
 
 }) do
@@ -426,7 +457,7 @@ for _, v in pairs({ReputationDetailCorner, ReputationDetailDivider
      v:SetVertexColor(.35, .35, .35)
 end
 --Reputation Frame
-local a, b, c, d = ReputationFrame:GetRegions()
+local a, b, c, d = regions(ReputationFrame)
 for _, v in pairs({a, b, c, d
 
 }) do
@@ -434,7 +465,7 @@ for _, v in pairs({a, b, c, d
 end
 
 -- HONOR
-local a, b, c, d, e = PVPFrame:GetRegions()
+local a, b, c, d, e = regions(PVPFrame)
 for _, v in pairs({a, b, c, d, e
 
 }) do
@@ -442,7 +473,7 @@ for _, v in pairs({a, b, c, d, e
 end
 
 -- MERCHANT
-local _, a, b, c, d, _, _, _, e, f, g, h, j, k = MerchantFrame:GetRegions()
+local _, a, b, c, d, _, _, _, e, f, g, h, j, k = regions(MerchantFrame)
 for _, v in pairs({a, b, c ,d, e, f, g, h, j, k
 
 }) do
@@ -457,7 +488,7 @@ for i,v in pairs({
 end
 
 --PETPAPERDOLL/PET Frame
-local a, b, c, d, _, e = PetPaperDollFrame:GetRegions()
+local a, b, c, d, _, e = regions(PetPaperDollFrame)
 for _, v in pairs({a, b, c, d, e
 
 })do
@@ -466,17 +497,19 @@ for _, v in pairs({a, b, c, d, e
 end
 
 -- SPELLBOOK
-local _, a, b, c, d = SpellBookFrame:GetRegions()
+local _, a, b, c, d = regions(SpellBookFrame)
 for _, v in pairs({a, b, c, d}) do
      v:SetVertexColor(.35, .35, .35)
 end
 
+if SpellBookFrame then
  SpellBookFrame.Material = SpellBookFrame:CreateTexture(nil, 'OVERLAY', nil, 7)
  SpellBookFrame.Material:SetTexture[[Interface\AddOns\Lorti-UI-Classic\textures\quest\QuestBG.tga]]
  SpellBookFrame.Material:SetWidth(547)
  SpellBookFrame.Material:SetHeight(541)
  SpellBookFrame.Material:SetPoint('TOPLEFT', SpellBookFrame, 22, -74)
  SpellBookFrame.Material:SetVertexColor(.5, .5, .5)
+end
 
  --THINGS THAT SHOULD REMAIN THE REGULAR COLOR
 for i,v in pairs({

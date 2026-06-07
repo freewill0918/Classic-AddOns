@@ -1,6 +1,7 @@
 ﻿--变量
 local id = 1;
 local _G = _G;
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded;
 local select = select;
 local floor = math.floor;
 local UnitExists = UnitExists;

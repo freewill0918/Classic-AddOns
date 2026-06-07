@@ -8,6 +8,7 @@ local UPDATE_CONFIG = Constants.EVENTS.UPDATE_CONFIG
 
 -- luacheck: push ignore 113
 local Mixin = Mixin
+local IsAddOnLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
 -- luacheck: pop
 
 local EditBoxMixin = {}

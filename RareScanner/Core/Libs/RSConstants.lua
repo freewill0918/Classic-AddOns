@@ -28,7 +28,7 @@ RSConstants.LOOT_ITEM_ID = nil
 -- Current versions
 ---============================================================================
 
-RSConstants.CURRENT_DB_VERSION = 7
+RSConstants.CURRENT_DB_VERSION = 8
 RSConstants.CURRENT_LOOT_DB_VERSION = 5
 
 ---============================================================================
@@ -65,7 +65,7 @@ RSConstants.EVENTS = {
 	[RSConstants.NPCS_ADDED_IN_5_2_0] = true;
 	[RSConstants.NPCS_ADDED_IN_5_2_1] = true;
 	[RSConstants.NPCS_ADDED_IN_5_3_0] = true;
-	[RSConstants.NPCS_ADDED_IN_5_4_0] = false;
+	[RSConstants.NPCS_ADDED_IN_5_4_0] = true;
 }
 
 ---============================================================================

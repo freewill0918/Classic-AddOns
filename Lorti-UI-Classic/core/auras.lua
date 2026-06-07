@@ -118,24 +118,28 @@ end
   -- INIT
  ---------------------------------------
 
-hooksecurefunc("TargetFrame_UpdateAuras", function(self)
-	for i = 1, MAX_TARGET_BUFFS do
-		b = _G["TargetFrameBuff"..i]
-		applySkin(b)
-	end
-	for i = 1, MAX_TARGET_DEBUFFS do
-		b = _G["TargetFrameDebuff"..i]
-		applySkin(b)
-	end
-	for i = 1, MAX_TARGET_BUFFS do
-		b = _G["FocusFrameBuff"..i]
-		applySkin(b)
-	end
-	for i = 1, MAX_TARGET_DEBUFFS do
-		b = _G["FocusFrameDebuff"..i]
-		applySkin(b)
-	end
-end)
+-- TargetFrame_UpdateAuras (global) was removed in MoP Classic 5.5.x; re-skin via the
+-- TargetFrameMixin hook or aura/target change events. applySkin self-guards against nil buttons.
+local function skinTargetAuras()
+	local maxBuffs = MAX_TARGET_BUFFS or 32
+	local maxDebuffs = MAX_TARGET_DEBUFFS or 16
+	for i = 1, maxBuffs do applySkin(_G["TargetFrameBuff"..i]) end
+	for i = 1, maxDebuffs do applySkin(_G["TargetFrameDebuff"..i]) end
+	for i = 1, maxBuffs do applySkin(_G["FocusFrameBuff"..i]) end
+	for i = 1, maxDebuffs do applySkin(_G["FocusFrameDebuff"..i]) end
+end
+
+if TargetFrameMixin and TargetFrameMixin.UpdateAuras then
+	hooksecurefunc(TargetFrameMixin, "UpdateAuras", skinTargetAuras)
+elseif type(TargetFrame_UpdateAuras) == "function" then
+	hooksecurefunc("TargetFrame_UpdateAuras", skinTargetAuras)
+else
+	local af = CreateFrame("Frame")
+	af:RegisterUnitEvent("UNIT_AURA", "target", "focus")
+	af:RegisterEvent("PLAYER_TARGET_CHANGED")
+	af:RegisterEvent("PLAYER_FOCUS_CHANGED")
+	af:SetScript("OnEvent", skinTargetAuras)
+end
 
 
 	

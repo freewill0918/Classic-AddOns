@@ -20,7 +20,7 @@ local cSyncSender, eeSyncSender = {}, {}
 local eeSyncReceived, cSyncReceived, updateSubNotificationDisplayed = 0, 0, 0
 local newerVersionPerson, newersubVersionPerson, forceDisablePerson, iconSetRevision, iconSetPerson = {}, {}, {}, {}, {}
 local handleSync
-local PForceDisable = 23--When this is incremented, trigger force disable regardless of major patch
+local PForceDisable = 26--When this is incremented, trigger force disable regardless of major patch
 -- Localize frequently accessed private namespace items for performance (avoid table lookups on hot paths)
 local DBMPrefix = private.DBMPrefix
 local DBMSyncProtocol = private.DBMSyncProtocol
@@ -68,7 +68,7 @@ end
 ---@param priority string ChatThrottleLib sync priority
 ---@param isLogged boolean?
 local function sendSync(protocol, prefix, msg, priority, isLogged)
-	if DBM:MidRestrictionsActive() then return end--Block all in instance syncs in Midnight Alpha
+	if DBM:MidRestrictionsActive(false, false, true) then return end--Block all in instance syncs in Midnight Alpha
 	if DBM:IsEnabled() or prefix == "V" or prefix == "H" then--Only show version checks if force disabled, nothing else
 		msg = msg or ""
 		local fullname = playerName .. "-" .. normalizedPlayerRealm
@@ -105,7 +105,7 @@ private.sendSync = sendSync
 ---@param priority string ChatThrottleLib sync priority
 ---@param isLogged boolean?
 local function sendWhisperSync(protocol, prefix, msg, whisperTarget, priority, isLogged)
-	if DBM:MidRestrictionsActive() then return end--Block all in instance syncs in Midnight Alpha
+	if DBM:MidRestrictionsActive(false, false, true) then return end--Block all in instance syncs in Midnight Alpha
 	local fullname = playerName .. "-" .. normalizedPlayerRealm
 	if isLogged then
 		ChatThrottleLib:SendAddonMessageLogged(priority, DBMPrefix, fullname .. "\t" .. (protocol or DBMSyncProtocol) .. "\t" .. prefix .. "\t" .. msg, "WHISPER", whisperTarget)
@@ -120,7 +120,7 @@ private.sendWhisperSync = sendWhisperSync
 ---@param prefix string
 ---@param msg any
 local function sendGuildSync(protocol, prefix, msg)
-	if DBM:MidRestrictionsActive() then return end--Block all in instance syncs in Midnight Alpha
+	if DBM:MidRestrictionsActive(false, false, true) then return end--Block all in instance syncs in Midnight Alpha
 	if IsInGuild() and (DBM:IsEnabled() or prefix == "V" or prefix == "H") then--Only show version checks if force disabled, nothing else
 		msg = msg or ""
 		local fullname = playerName .. "-" .. normalizedPlayerRealm
@@ -137,7 +137,7 @@ private.sendGuildSync = sendGuildSync
 ---@param noBNet boolean?
 local function SendWorldSync(self, protocol, prefix, msg, noBNet)
 	if not DBM:IsEnabled() then return end--Block all world syncs if force disabled
-	if DBM:MidRestrictionsActive() then return end--Block all in instance syncs in Midnight Alpha
+	if DBM:MidRestrictionsActive(false, false, true) then return end--Block all in instance syncs in Midnight Alpha
 	DBM:Debug("SendWorldSync running for " .. prefix)
 	local fullname = playerName .. "-" .. normalizedPlayerRealm
 	local sendChannel = "SOLO"
@@ -198,7 +198,7 @@ private.SendWorldSync = SendWorldSync
 ---@param channel string
 ---@param priority string ChatThrottleLib sync priority
 local function sendBWSync(prefix, msg, channel, priority)
-	if DBM:MidRestrictionsActive() then return end--Block all in instance syncs in Midnight Alpha
+	if DBM:MidRestrictionsActive(false, false, true) then return end--Block all in instance syncs in Midnight Alpha
 	if DBM:IsEnabled() and not IsTrialAccount() then--Only show version checks if force disabled, nothing else
 		msg = msg or ""
 		ChatThrottleLib:SendAddonMessage(priority, "BigWigs", prefix .. "^" .. msg, channel)
@@ -209,7 +209,7 @@ private.sendBWSync = sendBWSync
 -- sends a whisper to a player by their character name or BNet presence id
 -- returns true if the message was sent, nil otherwise
 local function sendWhisper(target, msg)
-	if DBM:MidRestrictionsActive() then return end--Block all in instance chat messages in Midnight Alpha
+	if DBM:MidRestrictionsActive(false, false, true) then return end--Block all in instance chat messages in Midnight Alpha
 	if IsTrialAccount() then return end
 	if type(target) == "number" then
 		if not BNIsSelf(target) then -- Never send BNet whispers to ourselves
@@ -250,6 +250,10 @@ do
 	-- WBE = World Boss engage info
 	-- WBD = World Boss defeat info
 	-- WBA = World Buff Activation
+	-- GIQ = Gear Inspect Query (instance channel)
+	-- GIR = Gear Inspect Reply (instance channel)
+	-- GGQ = Guild Gear Query (guild channel)
+	-- GGR = Guild Gear Reply (whisper back to requester)
 	-- RLO = Raid Leader Override
 	-- NS = Note Share
 
@@ -272,13 +276,49 @@ do
 		if mod and modvar and text and text ~= "" then
 			if DBM:AntiSpam(5, modvar) then--Don't allow calling same note more than once per 5 seconds
 				DBM:AddMsg(L.NOTE_SHARE_SUCCESS:format(sender, ability))
-				DBM:AddMsg(("|Hgarrmission:DBM:noteshare:%s:%s:%s:%s:%s|h|cff3588ff[%s]|r|h"):format(modid, modvar, ability, text, sender, L.NOTE_SHARE_LINK))
+				DBM:AddMsg(("|Haddon:DBM:noteshare:%s:%s:%s:%s:%s|h|cff3588ff[%s]|r|h"):format(modid, modvar, ability, text, sender, L.NOTE_SHARE_LINK))
 --				DBM:ShowNoteEditor(mod, modvar, ability, text, sender)
 			else
 				DBM:Debug(sender .. " is attempting to send too many notes so notes are being throttled")
 			end
 		else
 			DBM:AddMsg(L.NOTE_SHARE_FAIL:format(sender, ability))
+		end
+	end
+
+	syncHandlers["GIQ"] = function(sender)
+		if sender == playerName then
+			return
+		end
+		if DBM.GearCheck and DBM.GearCheck.OnSync then
+			DBM.GearCheck:OnSync("GIQ", sender)
+		end
+	end
+
+	syncHandlers["GIR"] = function(sender, _, itemLevel, missingGems, missingEnchants)
+		if sender == playerName then
+			return
+		end
+		if DBM.GearCheck and DBM.GearCheck.OnSync then
+			DBM.GearCheck:OnSync("GIR", sender, itemLevel, missingGems, missingEnchants)
+		end
+	end
+
+	guildSyncHandlers["GGQ"] = function(sender)
+		if sender == playerName then
+			return
+		end
+		if DBM.GearCheck and DBM.GearCheck.OnSync then
+			DBM.GearCheck:OnSync("GGQ", sender)
+		end
+	end
+
+	whisperSyncHandlers["GGR"] = function(sender, _, itemLevel, missingGems, missingEnchants, classToken)
+		if sender == playerName then
+			return
+		end
+		if DBM.GearCheck and DBM.GearCheck.OnSync then
+			DBM.GearCheck:OnSync("GGR", sender, itemLevel, missingGems, missingEnchants, classToken)
 		end
 	end
 
@@ -453,7 +493,7 @@ do
 			if #newerVersionPerson < 4 then
 				if not checkEntry(newerVersionPerson, sender) then
 					newerVersionPerson[#newerVersionPerson + 1] = sender
-					DBM:Debug("Newer version detected from " .. sender .. " : Rev - " .. revision .. ", Ver - " .. version .. ", Rev Diff - " .. (revision - DBM.Revision), 3)
+					--DBM:Debug("Newer version detected from " .. sender .. " : Rev - " .. revision .. ", Ver - " .. version .. ", Rev Diff - " .. (revision - DBM.Revision), 3)
 					if (forceDisable > PForceDisable) and not checkEntry(forceDisablePerson, sender) then
 						forceDisablePerson[#forceDisablePerson + 1] = sender
 						DBM:Debug("Newer force disable detected from " .. sender .. " : Rev - " .. forceDisable, 3)
@@ -519,7 +559,7 @@ do
 			if #newersubVersionPerson < 4 then
 				if not checkEntry(newersubVersionPerson, sender) then
 					newersubVersionPerson[#newersubVersionPerson + 1] = sender
-					DBM:Debug("Newer classic subversion detected from " .. sender .. " : Rev - " .. classicSubVers .. ", Rev Diff - " .. (classicSubVers - DBM.classicSubVersion), 3)
+					--DBM:Debug("Newer classic subversion detected from " .. sender .. " : Rev - " .. classicSubVers .. ", Rev Diff - " .. (classicSubVers - DBM.classicSubVersion), 3)
 				end
 				if #newersubVersionPerson == 2 and updateSubNotificationDisplayed < 2 then--Only requires 2 for update notification.
 					updateSubNotificationDisplayed = 2
@@ -592,7 +632,7 @@ do
 				properties.classicSubVers = classicSubVers
 			end
 			private.setRaidMemberProperties(sender, properties)
-			DBM:Debug("Received version info from " .. sender .. " : Rev - " .. revision .. ", Ver - " .. version .. ", Rev Diff - " .. (revision - DBM.Revision), 3)
+			--DBM:Debug("Received version info from " .. sender .. " : Rev - " .. revision .. ", Ver - " .. version .. ", Rev Diff - " .. (revision - DBM.Revision), 3)
 			HandleVersion(revision, version, displayVersion, forceDisable, sender, classicSubVers)
 		end
 		DBM:GROUP_ROSTER_UPDATE()
@@ -609,7 +649,7 @@ do
 			end
 		end
 		if revision and version and displayVersion then
-			DBM:Debug("Received G version info from " .. sender .. " : Rev - " .. revision .. ", Ver - " .. version .. ", Rev Diff - " .. (revision - DBM.Revision) .. ", Display Version " .. displayVersion, 3)
+			--DBM:Debug("Received G version info from " .. sender .. " : Rev - " .. revision .. ", Ver - " .. version .. ", Rev Diff - " .. (revision - DBM.Revision) .. ", Display Version " .. displayVersion, 3)
 			HandleVersion(revision, version, displayVersion, forceDisable, sender, classicSubVers)
 		end
 	end
@@ -679,7 +719,7 @@ do
 
 	guildSyncHandlers["GCE"] = function(_, protocol, modId, wipe, time, difficulty, difficultyModifier, name, groupLeader, wipeHP)
 		if not DBM.Options.ShowGuildMessages or not difficulty or DBM:GetRaidRank(groupLeader or "") == 2 then return end
-		if not protocol or protocol ~= 8 then return end--Ignore old versions
+		if not protocol or protocol ~= 11 then return end--Ignore old versions
 		if DBM:AntiSpam(isRetail and 10 or 20, "GCE") then
 			if IsInInstance() then return end--Simple filter, if you are inside an instance, just filter it, if not in instance, good to go.
 			difficulty = tonumber(difficulty)
@@ -720,7 +760,11 @@ do
 				end
 			else--Vanilla and TBC single format raids
 				if wipe == "1" then
-					DBM:AddMsg(L.GUILD_COMBAT_ENDED_AT:format(groupLeader or CL.UNKNOWN, bossName, wipeHP, time))
+					if wipeHP then
+						DBM:AddMsg(L.GUILD_COMBAT_ENDED_AT:format(groupLeader or CL.UNKNOWN, bossName, wipeHP, time))
+					else
+						DBM:AddMsg(L.GUILD_COMBAT_ENDED:format(groupLeader or CL.UNKNOWN, bossName, time))
+					end
 				else
 					DBM:AddMsg(L.GUILD_BOSS_DOWN:format(bossName, groupLeader or CL.UNKNOWN, time))
 				end
@@ -872,7 +916,7 @@ do
 			handler = whisperSyncHandlers[prefix]
 		--Whisper syncs sent from non friends are automatically rejected if not from a friend or someone in your group
 		elseif channel == "WHISPER" and sender ~= playerName then -- separate between broadcast and unicast, broadcast must not be sent as unicast or vice-versa
-			if (checkForSafeSender(sender, true) or DBM:GetRaidUnitId(sender)) then--Sender passes safety check, or is in group
+			if (checkForSafeSender(sender, true, true) or DBM:GetRaidUnitId(sender)) then--Sender passes safety check, or is in group
 				handler = whisperSyncHandlers[prefix]
 			end
 		elseif channel == "GUILD" then

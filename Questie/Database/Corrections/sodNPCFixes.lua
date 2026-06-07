@@ -1091,7 +1091,7 @@ function SeasonOfDiscovery:LoadNPCs()
             [npcKeys.questEnds] = {5243,5462,5464,5522,87459,87497,89229,89562},
         },
         [11039] = { -- Duke Nicholas Zverenhoff
-            [npcKeys.questStarts] = {5251,5263,5264,5405,5508,5509,5510,85963,85964,85965,85966},
+            [npcKeys.questStarts] = {5251,5263,5264,5503,5508,5509,5510,85963,85964,85965,85966},
             [npcKeys.questEnds] = {5251,5262,5263,5503,5508,5509,5510,6030,85963,85964,85965,85966},
         },
         [11082] = { -- Stratholme Courier
@@ -2536,12 +2536,12 @@ function SeasonOfDiscovery:LoadNPCs()
             },
         },
         [230775] = { -- Rage Talon Quartermaster
-            [npcKeys.zoneID] = zoneIDs.LOWER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.LOWER_BLACKROCK_SPIRE] = {{-1, -1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1, -1}}},
         },
         [231050] = { -- Syndicate Infiltrator
-            [npcKeys.zoneID] = zoneIDs.LOWER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.LOWER_BLACKROCK_SPIRE] = {{-1, -1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1, -1}}},
         },
         [231430] = { -- Caius Blackwood
             [npcKeys.zoneID] = zoneIDs.FELWOOD,

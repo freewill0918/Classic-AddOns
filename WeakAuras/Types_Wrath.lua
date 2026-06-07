@@ -90,6 +90,31 @@ function Private.InitializeEncounterAndZoneLists()
       }
     },
     {
+      L["Zul'Gurub"],
+      {
+        { L["High Priest Venoxis"], 784 },
+        { L["High Priestess Jeklik"], 785 },
+        { L["High Priestess Mar'li"], 786 },
+        { L["Bloodlord Mandokir"], 787 },
+        { L["Edge of Madness"], 788 },
+        { L["High Priest Thekal"], 789 },
+        { L["Gahz'ranka"], 790 },
+        { L["High Priestess Arlokk"], 791 },
+        { L["Jin'do the Hexxer"], 792 },
+        { L["Hakkar"], 793 }
+      }
+    },
+    {
+      L["Trial of the Crusader"],
+      {
+        { L["Northrend Beasts"], 629 },
+        { L["Lord Jaraxxus"], 633 },
+        { L["Faction Champions"], 637 },
+        { L["Val'kyr Twins"], 641 },
+        { L["Anub'arak"], 645 },
+      }
+    },
+    {
       L["Vault of Archavon"],
       {
         { L["Archavon the Stone Watcher"], 772 },
@@ -2798,7 +2823,7 @@ Private.talentInfo = {
       237566, -- [1]
       10, -- [2]
       3, -- [3]
-      51167, -- [4]
+      47578, -- [4]
     }, -- [102]
     {
       237568, -- [1]
@@ -3284,14 +3309,14 @@ Private.talentInfo = {
     }, -- [95]
     {
       136201, -- [1]
-      9, -- [2]
+      8, -- [2]
       2, -- [3]
       30283, -- [4]
     }, -- [96]
     {
       136196, -- [1]
       8, -- [2]
-      2, -- [3]
+      3, -- [3]
       30292, -- [4]
     }, -- [97]
     {
@@ -3325,10 +3350,10 @@ Private.talentInfo = {
       47260, -- [4]
     }, -- [102]
     {
-      236300, -- [1]
-      8, -- [2]
+      135804, -- [1]
+      9, -- [2]
       3, -- [3]
-      54118, -- [4]
+      1295198, -- [4]
     }, -- [103]
     {
       236297, -- [1]
@@ -3344,10 +3369,16 @@ Private.talentInfo = {
     }, -- [105]
     {
       236294, -- [1]
-      9, -- [2]
-      3, -- [3]
+      8, -- [2]
+      4, -- [3]
       47223, -- [4]
     }, -- [106]
+    {
+      135803, -- [1]
+      9, -- [2]
+      2, -- [3]
+      1295358, -- [4]
+    }, -- [107]
     [121] = {
       "WarlockCurses", -- [1]
       "WarlockSummoning", -- [2]
@@ -4875,7 +4906,7 @@ Private.talentInfo = {
       35395, -- [4]
     }, -- [100]
     {
-      236262, -- [1]
+      135875, -- [1]
       8, -- [2]
       3, -- [3]
       53376, -- [4]
@@ -4907,9 +4938,21 @@ Private.talentInfo = {
     {
       236263, -- [1]
       9, -- [2]
-      3, -- [3]
+      4, -- [3]
       53503, -- [4]
     }, -- [106]
+    {
+      236262, -- [1]
+      9, -- [2]
+      3, -- [3]
+      1299093, -- [4]
+    }, -- [107]
+    {
+      236262, -- [1]
+      10, -- [2]
+      3, -- [3]
+      1299096, -- [4]
+    }, -- [108]
     [121] = {
       "PaladinHoly", -- [1]
       "PaladinProtection", -- [2]

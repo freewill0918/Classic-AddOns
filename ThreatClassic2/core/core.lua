@@ -24,6 +24,8 @@ local wipe      = _G.table.wipe
 local GetTime               = _G.GetTime
 local GetNumGroupMembers    = _G.GetNumGroupMembers
 local GetNumSubgroupMembers = _G.GetNumSubgroupMembers
+local GetPartyAssignment    = _G.GetPartyAssignment
+local UnitGroupRolesAssigned = _G.UnitGroupRolesAssigned
 local GetInstanceInfo       = _G.GetInstanceInfo
 local IsInRaid              = _G.IsInRaid
 local UnitAffectingCombat   = _G.UnitAffectingCombat
@@ -223,6 +225,22 @@ local function TruncateString(str, i, ellipsis)
     end
 end
 
+local function IsUnitMarkedTank(unit)
+    if not unit or not UnitExists(unit) then return false end
+
+    -- 1. Check if they are assigned as Main Tank by the Raid Leader (Works everywhere)
+    if GetPartyAssignment and GetPartyAssignment("MAINTANK", unit) then
+        return true
+    end
+
+    -- 2. Check if they selected the Tank role (Cata Classic / MoP PTR / Retail only)
+    if UnitGroupRolesAssigned and UnitGroupRolesAssigned(unit) == "TANK" then
+        return true
+    end
+
+    return false
+end
+
 local function DefaultUnitColor(unit)
     local colorUnit
     if UnitIsPlayer(unit) then
@@ -245,6 +263,8 @@ local function GetColor(unit, isTanking, hasActiveIgnite)
                 return C.customBarColors.playerColor
             elseif isTanking and C.customBarColors.activeTankEnabled then
                 return C.customBarColors.activeTankColor
+            elseif IsUnitMarkedTank(unit) and C.customBarColors.offTankEnabled then
+                return C.customBarColors.offTankColor
             elseif hasActiveIgnite and C.customBarColors.igniteEnabled then
                 return C.customBarColors.igniteColor
             else
@@ -253,6 +273,8 @@ local function GetColor(unit, isTanking, hasActiveIgnite)
         else
             if isTanking and C.customBarColors.activeTankEnabled then
                 return C.customBarColors.activeTankColor
+            elseif IsUnitMarkedTank(unit) and C.customBarColors.offTankEnabled then
+                return C.customBarColors.offTankColor
             elseif hasActiveIgnite and C.customBarColors.igniteEnabled then
                 return C.customBarColors.igniteColor
             elseif C.customBarColors.otherUnitEnabled then
@@ -266,6 +288,48 @@ local function GetColor(unit, isTanking, hasActiveIgnite)
     end
 end
 
+local function DesaturateColor(color, desaturationAmount)
+    -- 1. Extract the RGBA values from the passed color table
+    local r, g, b, a = color[1], color[2], color[3], color[4]
+    
+    -- Safety fallback if amount is nil
+    local desat = desaturationAmount or 1.0 
+
+    -- 2. Calculate Standard RGB Luminance
+    local luminance = (r * 0.299) + (g * 0.587) + (b * 0.114)
+    
+    -- 3. Blend original color with the grayscale color
+    r = r + (luminance - r) * desat
+    g = g + (luminance - g) * desat
+    b = b + (luminance - b) * desat
+
+    -- 4. Return new table so we don't permanently taint global class colors
+    return {r, g, b, a}
+end
+
+local function DarkenColor(color, darkenAmount)
+    -- 1. Extract the RGBA values from the passed color table
+    local r, g, b, a = color[1], color[2], color[3], color[4]
+
+    -- Safety fallback if amount is nil
+    local darken = darkenAmount or 1.0 
+
+    -- 2. darken color
+    r = r * (1- darken)
+    g = g * (1- darken)
+    b = b * (1- darken)
+
+    -- 3. Return new table so we don't permanently taint global class colors
+    return {r, g, b, a}
+end
+
+local function FadeBarBackdrop(bar, fadeAmount)
+    local r,g,b,a = unpack(C.backdrop.color)
+    bar:SetBackdropColor(r,g,b, a * (1-fadeAmount))
+    r,g,b,a = unpack(C.backdrop.edgeColor)
+    bar.edgeBackdrop:SetBackdropBorderColor(r,g,b, a * (1-fadeAmount))
+end
+
 function TC2:UpdateThreatBars()
     -- sort the threat table
     sort(self.threatData, Compare)
@@ -274,18 +338,50 @@ function TC2:UpdateThreatBars()
     -- ignite
     local igniteOwner = nil
     local hasActiveIgnite = false
-    if C.bar.showIgniteIndicator or C.customBarColors.igniteEnabled then
-        igniteOwner = select(7, AuraUtil.FindAuraByName(C_Spell.GetSpellName(12848), TC2.playerTarget, "HARMFUL"))
+    if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC and (C.bar.showIgniteIndicator or C.customBarColors.igniteEnabled) then
+        local igniteName = C_Spell.GetSpellName(12848)
+        if igniteName then
+            igniteOwner = select(7, AuraUtil.FindAuraByName(igniteName, TC2.playerTarget, "HARMFUL"))
+        end
+    end
+
+    -- prepare for pull aggro bar
+    local tankData = nil
+    local playerData = nil
+    for _, data in pairs(self.threatData) do
+        if data then
+            if data.isTanking then
+                tankData = data
+            end
+            if UnitIsUnit(data.unit, "player") then
+                playerData = data
+            end
+        end
+        if tankData and playerData then
+            -- small tweak for test mode otherwise playerData will always be equal to tankData as all datas are considered the player
+            if C.frame.test then
+                playerData = self.threatData[3]
+            end
+            break
+        end
+    end
+    local offset = 0
+    -- show the pull aggro bar if there is a tank that isn't the player
+    local playerIsNotTanking = not playerData or not playerData.isTanking -- short circuit guards against nil
+    local showPullAggrobar = C.bar.showPullAggroBar and tankData and playerIsNotTanking 
+    if showPullAggrobar then
+        offset = 1 -- shift other bars
     end
     -- update view
-    for i = 1, C.bar.count do
+    for i = 1 + offset, C.bar.count do
         -- get values out of table
-        local data = self.threatData[i]
+        local data = self.threatData[i-offset]
         local bar = self.bars[i]
         if data and data.threatValue > 0 then
             if UnitIsUnit(data.unit, "player") then
                 playerIncluded = true
             end
+
             if igniteOwner and UnitIsUnit(igniteOwner, data.unit) then
                 bar.ignite:Show()
                 bar.name:SetPoint("LEFT", bar, 5+C.igniteIndicator.size, 0)
@@ -297,9 +393,20 @@ function TC2:UpdateThreatBars()
             end
             bar.name:SetText(UnitName(data.unit) or UNKNOWN)
             bar.val:SetText(NumFormat(data.threatValue))
-            bar.perc:SetText(floor(data.threatPercent).."%")
+            bar.perc:SetText(floor(data.threatPercent + 0.5).."%") -- floor(x + 0.5) is lua's missing round()
             bar:SetValue(data.threatPercent)
             local color = GetColor(data.unit, data.isTanking, hasActiveIgnite)
+            if (C.filter.yourself or not UnitIsUnit(data.unit, "player")) and C.filter.outOfMelee.color and data.outOfMeleeRange and (not C.filter.useTargetList or C.filter.targetList[UnitName(TC2.playerTarget)]) then
+                if C.filter.outOfMelee.overwriteColorEnabled then
+                    color = C.filter.outOfMelee.overwriteColor
+                end
+                color = DesaturateColor(color, C.filter.outOfMelee.desaturate)
+                color = DarkenColor(color, C.filter.outOfMelee.darken)
+                color[4] = color[4] * (1-C.filter.outOfMelee.fade)
+                FadeBarBackdrop(bar, C.filter.outOfMelee.fade)
+            else
+                FadeBarBackdrop(bar, 0)
+            end
             bar:SetStatusBarColor(unpack(color))
 
             bar:Show()
@@ -307,32 +414,96 @@ function TC2:UpdateThreatBars()
             bar:Hide()
         end
     end
+
     -- overwrite last bar if player wasn't included above
-    if not playerIncluded then
-        for _, data in pairs(self.threatData) do
-            if data and UnitIsUnit(data.unit, "player") then
-                if data.threatValue > 0 then
-                    local bar = self.bars[C.bar.count]
-                    if igniteOwner and UnitIsUnit(igniteOwner, data.unit) then
-                        bar.ignite:Show()
-                        bar.name:SetPoint("LEFT", bar, 5+C.igniteIndicator.size, 0)
-                        hasActiveIgnite = true
-                    else
-                        bar.ignite:Hide()
-                        bar.name:SetPoint("LEFT", bar, 4, 0)
-                        hasActiveIgnite = false
-                    end
-                    bar.name:SetText(UnitName(data.unit) or UNKNOWN)
-                    bar.val:SetText(NumFormat(data.threatValue))
-                    bar.perc:SetText(floor(data.threatPercent).."%")
-                    bar:SetValue(data.threatPercent)
-                    local color = GetColor(data.unit, data.isTanking, hasActiveIgnite)
-                    bar:SetStatusBarColor(unpack(color))
-                    bar:Show()
-                    break
+    if not playerIncluded and playerData then
+        local data = playerData
+        if data.threatValue > 0 then
+            local bar = self.bars[C.bar.count]
+            if igniteOwner and UnitIsUnit(igniteOwner, data.unit) then
+                bar.ignite:Show()
+                bar.name:SetPoint("LEFT", bar, 5+C.igniteIndicator.size, 0)
+                hasActiveIgnite = true
+            else
+                bar.ignite:Hide()
+                bar.name:SetPoint("LEFT", bar, 4, 0)
+                hasActiveIgnite = false
+            end
+            bar.name:SetText(UnitName(data.unit) or UNKNOWN)
+            bar.val:SetText(NumFormat(data.threatValue))
+            bar.perc:SetText(floor(data.threatPercent + 0.5).."%")  -- floor(x + 0.5) is lua's missing round()
+            bar:SetValue(data.threatPercent)
+            local color = GetColor(data.unit, data.isTanking, hasActiveIgnite)
+            -- this only runs for the player
+            if C.filter.yourself and C.filter.outOfMelee.color and data.outOfMeleeRange and (not C.filter.useTargetList or C.filter.targetList[UnitName(TC2.playerTarget)]) then
+                if C.filter.outOfMelee.overwriteColorEnabled then
+                    color = C.filter.outOfMelee.overwriteColor
                 end
+                color = DesaturateColor(color, C.filter.outOfMelee.desaturate)
+                color = DarkenColor(color, C.filter.outOfMelee.darken)
+                color[4] = color[4] * (1-C.filter.outOfMelee.fade)
+                FadeBarBackdrop(bar, C.filter.outOfMelee.fade)
+            else
+                FadeBarBackdrop(bar, 0)
+            end
+            bar:SetStatusBarColor(unpack(color))
+            bar:Show()
+        end
+    end
+
+    -- add pull aggrobar
+    if showPullAggrobar then
+        local bar = self.bars[1]
+        
+        -- If no playerData exists, we safely default to false (melee) for a stricter 110% warning
+        local isOutOfMelee = playerData and playerData.outOfMeleeRange or fa
+        local playerThreat = (playerData and playerData.threatValue) or 0
+        local currentThreatPercent = (playerData and playerData.threatPercent) or 0
+        
+        -- Calculate the exact threat value needed to pull (110% melee, 130% ranged)
+        local pullAggroThreatValue = tankData.threatValue * (isOutOfMelee and 1.3 or 1.1)
+        local threatRequired = pullAggroThreatValue - playerThreat
+        
+        local isAbsolute = (C.bar.pullAggroBarPercentage == "ABSOLUTE")
+        local threatPercentageRequired = 1000 -- Default to >999 for relative division by zero
+        
+        if isAbsolute then
+            -- ABSOLUTE: Simple subtraction based on the user's raw vs scaled setting
+            local targetPercent = 100 -- Base target if threat is scaled
+            
+            if C.general.rawPercent then
+                targetPercent = isOutOfMelee and 130 or 110
+            end
+            
+            threatPercentageRequired = targetPercent - currentThreatPercent
+        else
+            -- RELATIVE: Percentage relative to the player's current threat
+            if playerThreat > 0 then
+                threatPercentageRequired = (threatRequired / playerThreat) * 100
             end
         end
+
+        bar.ignite:Hide()
+        bar.name:SetPoint("LEFT", bar, 4, 0)
+        bar.name:SetText(C.bar.pullAggroBarText)
+        bar.val:SetText("+"..NumFormat(floor(threatRequired + 0.5)))  -- floor(x + 0.5) is lua's missing round()
+        
+        local suffix = isAbsolute and "pp" or "%"
+        
+        if threatPercentageRequired > 999 then
+            bar.perc:SetText(">999" .. suffix)
+        else
+            bar.perc:SetText("+"..floor(threatPercentageRequired + 0.5)..suffix)  -- floor(x + 0.5) is lua's missing round()
+        end
+        
+        if C.bar.pullAggroBarGrow then
+            bar:SetValue(math.max(0, 100-threatPercentageRequired))
+        else
+            bar:SetValue(100)
+        end
+        
+        bar:SetStatusBarColor(unpack(C.bar.pullAggroBarColor))
+        bar:Show()
     end
 end
 
@@ -361,12 +532,13 @@ local function UpdateThreatData(unit)
         threatPercent = 100
     end
 
-    -- never filter player
-    if not UnitIsUnit(unit, "player") then
+    local outOfMeleeRange = rawThreatPercent and threatPercent > 0 and rawThreatPercent / threatPercent > 1.2
+
+    if C.filter.yourself or not UnitIsUnit(unit, "player") then
         -- target list disabled or target in filter targetlist
         if not C.filter.useTargetList or C.filter.targetList[UnitName(TC2.playerTarget)] then
             -- melee range filter; threatPercent > 0 to avoid divison by zero on fucked up api response
-            if C.filter.outOfMelee and rawThreatPercent and threatPercent > 0 and rawThreatPercent / threatPercent > 1.2 then
+            if C.filter.outOfMelee.hide and outOfMeleeRange then
                 return
             end
         end
@@ -390,6 +562,7 @@ local function UpdateThreatData(unit)
         threatPercent   = threatPercent or 0,
         threatValue     = threatValue or 0,
         isTanking       = isTanking or false,
+        outOfMeleeRange = outOfMeleeRange
     })
 end
 
@@ -792,14 +965,33 @@ function TC2:TestMode()
 
     C.frame.test = true
     wipe(TC2.threatData)
-    for i = 1, C.bar.count do
+    for i = 1, 10 do
         self.threatData[i] = {
             unit = self.playerName,
-            threatPercent = i / C.bar.count * 100,
-            threatValue = i * 1e4,
+            threatValue = floor((12-i)/10.0 * 10000),
+            threatPercent = floor((12-i)/10.0 * 10000) / 10000.0 * 100,
         }
-        tinsert(self.bars, i)
+        if i <= C.bar.count then
+            tinsert(self.bars, i)
+        end
     end
+
+    self.threatData[2].isTanking = true
+    self.threatData[1].outOfMeleeRange = true
+    self.threatData[4].outOfMeleeRange = true
+
+    if not C.general.rawPercent then
+        for i = 1, 10 do
+            if not self.threatData[i].isTanking then
+                if self.threatData[i].outOfMeleeRange then
+                    self.threatData[i].threatPercent = self.threatData[i].threatPercent / 1.3
+                else
+                    self.threatData[i].threatPercent = self.threatData[i].threatPercent / 1.1
+                end
+            end
+        end
+    end
+
     self:UpdateThreatBars()
 end
 
@@ -1027,11 +1219,13 @@ function TC2:SetupConfig()
 
     local ACD = LibStub("AceConfigDialog-3.0")
     self.config = {}
-    self.config.general = ACD:AddToBlizOptions(TC2.addonName, TC2.addonName, nil, "general")
-    self.config.appearance = ACD:AddToBlizOptions(TC2.addonName, L.appearance, TC2.addonName, "appearance")
-    self.config.appearance = ACD:AddToBlizOptions(TC2.addonName, L.filter, TC2.addonName, "filter")
-    self.config.warnings = ACD:AddToBlizOptions(TC2.addonName, L.warnings, TC2.addonName, "warnings")
-    self.config.profiles = ACD:AddToBlizOptions(TC2.addonName, L.profiles, TC2.addonName, "profiles")
+    self.configIds = {}
+
+    self.config.general, self.configIds.general        = ACD:AddToBlizOptions(TC2.addonName, TC2.addonName, nil, "general")
+    self.config.appearance, self.configIds.appearance  = ACD:AddToBlizOptions(TC2.addonName, L.appearance, TC2.addonName, "appearance")
+    self.config.filter, self.configIds.filter          = ACD:AddToBlizOptions(TC2.addonName, L.filter, TC2.addonName, "filter")
+    self.config.warnings, self.configIds.warnings      = ACD:AddToBlizOptions(TC2.addonName, L.warnings, TC2.addonName, "warnings")
+    self.config.profiles, self.configIds.profiles      = ACD:AddToBlizOptions(TC2.addonName, L.profiles, TC2.addonName, "profiles")
 end
 
 function TC2:RefreshProfile()
@@ -1069,6 +1263,12 @@ TC2.configTable = {
                     name = L.general_rawPercent,
                     type = "toggle",
                     width = "full",
+                    set = function(info, value)
+                        C[info[1]][info[2]] = value
+                        if C.frame.test then
+                            TC2:TestMode()
+                        end
+                    end,
                 },
                 downscaleThreat = {
                     order = 4,
@@ -1105,7 +1305,7 @@ TC2.configTable = {
                 },
                 --]]
                 visibility = {
-                    order = 5,
+                    order = 5.5,
                     name = L.visibility,
                     type = "header",
                 },
@@ -1488,12 +1688,75 @@ TC2.configTable = {
                             name = L.bar_showThreatPercentage,
                             type = "toggle",
                         },
-                        showIgniteIndicator = {
+                        extraOptions = {
                             order = 17,
+                            name = L.bar_extraOptions,
+                            type = "header",
+                        },
+                        showPullAggroBar = {
+                            order = 18,
+                            name = L.bar_showPullAggroBar,
+                            type = "toggle",
+                        },
+                        showIgniteIndicator = {
+                            order = 19,
                             name = L.bar_showIgniteIndicator,
                             desc = L.bar_showIgniteIndicator_desc,
                             type = "toggle",
+                            -- Hide this if we are NOT on Vanilla Classic
+                            hidden = WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC,
                         },
+                        pullAggroBarOptions = {
+                            order = 20,
+                            name = L.bar_pullAggroBarOptions,
+                            type = "header",
+                            hidden = function() return not C.bar.showPullAggroBar end,
+                        },
+                        pullAggroBarColor = {
+                            order = 21,
+                            name = L.bar_pullAggroBarColor,
+                            type = "color",
+                            hasAlpha = true,
+                            hidden = function() return not C.bar.showPullAggroBar end,
+                            get = function(info)
+                                return unpack(C.bar.pullAggroBarColor)
+                            end,
+                            set = function(info, r, g, b, a)
+                                local cfg = C.bar.pullAggroBarColor
+                                cfg[1] = r
+                                cfg[2] = g
+                                cfg[3] = b
+                                cfg[4] = a
+                                TC2:UpdateFrame()
+                            end,
+                        },
+                        pullAggroBarText = {
+                            order = 22,
+                            name = L.bar_pullAggroBarText,
+                            type = "input",
+                            multiline = false,
+                            hidden = function() return not C.bar.showPullAggroBar end,
+                        },
+                        pullAggroBarGrow = {
+                            order = 23,
+                            name = L.bar_pullAggroBarGrow,
+                            desc = L.bar_pullAggroBarGrow_desc,
+                            type = "toggle",
+                            hidden = function() return not C.bar.showPullAggroBar end,
+                        },
+                        pullAggroBarPercentage = {
+                            order = 24,
+                            name = L.bar_pullAggroBarPercentage,
+                            desc = L.bar_pullAggroBarPercentage_desc,
+                            type = "select",
+                            values = {
+                                ["RELATIVE"] = L.bar_pullAggroBarPercentage_relative,
+                                ["ABSOLUTE"] = L.bar_pullAggroBarPercentage_absolute,
+                            },
+                            style = "dropdown",
+                            hidden = function() return not C.bar.showPullAggroBar end,
+                        },
+                        
                     },
                 },
                 igniteIndicator = {
@@ -1501,7 +1764,7 @@ TC2.configTable = {
                     name = L.igniteIndicator,
                     type = "group",
                     inline = true,
-                    hidden = function() return not C.bar.showIgniteIndicator end,
+                    hidden = function() return WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC or not C.bar.showIgniteIndicator end,
                     args = {
                         size = {
                             order = 1,
@@ -1530,25 +1793,37 @@ TC2.configTable = {
                             name = L.customBarColorsPlayer_enabled,
                             desc = L.customBarColorsPlayer_desc,
                             type = "toggle",
+                            width = 1.3,
                         },
                         activeTankEnabled = {
                             order = 2,
                             name = L.customBarColorsActiveTank_enabled,
                             type = "toggle",
+                            width = "double",
                         },
                         otherUnitEnabled = {
                             order = 3,
                             name = L.customBarColorsOtherUnit_enabled,
                             type = "toggle",
+                            width = 1.3,
+                        },
+                        offTankEnabled = {
+                            order = 4,
+                            name = L.customBarColorsOffTank_enabled,
+                            desc = L.customBarColorsOffTank_desc,
+                            type = "toggle",
+                            width = "double",
                         },
                         igniteEnabled = {
-                            order = 4,
+                            order = 5,
                             name = L.customBarColorsIgnite_enabled,
                             desc = L.customBarColorsIgnite_desc,
                             type = "toggle",
+                            -- Hide this if we are NOT on Vanilla Classic
+                            hidden = WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC,
                         },
                         colors = {
-                            order = 5,
+                            order = 6,
                             name = L.color,
                             type = "group",
                             inline = false,
@@ -1575,6 +1850,7 @@ TC2.configTable = {
                                     name = L.customBarColorsActiveTank_color,
                                     type = "color",
                                     hasAlpha = true,
+                                    width="double",
                                 },
                                 otherUnitColor = {
                                     order = 3,
@@ -1582,11 +1858,20 @@ TC2.configTable = {
                                     type = "color",
                                     hasAlpha = true,
                                 },
-                                igniteColor = {
+                                offTankColor = {
                                     order = 4,
+                                    name = L.customBarColorsOffTank_color,
+                                    type = "color",
+                                    hasAlpha = true,
+                                    width="double",
+                                },
+                                igniteColor = {
+                                    order = 5,
                                     name = L.customBarColorsIgnite_color,
                                     type = "color",
                                     hasAlpha = true,
+                                    -- Hide this if we are NOT on Vanilla Classic
+                                    hidden = WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC,
                                 },
                             },
                         },
@@ -1648,20 +1933,162 @@ TC2.configTable = {
             type = "group",
             name = L.filter,
             args = {
-                outOfMelee = {
-                    order = 1,
+                outOfMeleeGroup = {
+                    type = "group",
                     name = L.filter_outOfMelee,
+                    inline = true, -- Draws a nice border box around these options
+                    order = 1,
+                    args = {
+                        description = {
+                            type = "description",
+                            name = L.filter_outOfMelee_desc,
+                            order = 0.5,
+                        },
+                        hide = {
+                            type = "toggle",
+                            name = L.filter_hideOutOfMelee,
+                            order = 1,
+                            width = "normal", -- Keeps it on the left side
+                            get = function(info) return C.filter.outOfMelee.hide end,
+                            set = function(info, value)
+                                C.filter.outOfMelee.hide = value
+                                -- either this or desaturate
+                                if value then
+                                    C.filter.outOfMelee.color = false
+                                end
+                                TC2:UpdateFrame()
+                            end,
+                        },
+                        color = {
+                            type = "toggle",
+                            name = L.filter_colorOutOfMelee,
+                            order = 2,
+                            width = "normal", -- Sits right next to the Hide toggle
+                            get = function(info) return C.filter.outOfMelee.color end,
+                            set = function(info, value)
+                                C.filter.outOfMelee.color = value
+                                -- either this or desaturate
+                                if value then
+                                    C.filter.outOfMelee.hide = false
+                                end
+                                TC2:UpdateFrame()
+                            end,
+                        },
+                        overwriteColorEnabled = {
+                            order = 3,
+                            name = L.filter_overwriteColorEnabled,
+                            type = "toggle",
+                            hidden = function() return not C.filter.outOfMelee.color end,
+                            get = function(info) return C.filter.outOfMelee.overwriteColorEnabled end,
+                            set = function(info, value)
+                                C.filter.outOfMelee.overwriteColorEnabled = value
+                                TC2:UpdateFrame()
+                            end,
+                        },
+                        overwriteColor = {
+                            order = 4,
+                            name = L.filter_overwriteColor,
+                            type = "color",
+                            hasAlpha = true,
+                            hidden = function() return not C.filter.outOfMelee.color end,
+                            get = function(info)
+                                return unpack(C.filter.outOfMelee.overwriteColor)
+                            end,
+                            set = function(info, r, g, b, a)
+                                local cfg = C.filter.outOfMelee.overwriteColor
+                                cfg[1] = r
+                                cfg[2] = g
+                                cfg[3] = b
+                                cfg[4] = a
+                                TC2:UpdateFrame()
+                            end,
+                        },
+                        desaturate = {
+                            type = "range",
+                            name = L.filter_desaturateOutOfMelee,
+                            desc = L.filter_desaturateOutOfMelee_desc,
+                            order = 5,
+                            min = 0,
+                            max = 100,
+                            step = 1,
+                            width = "double",
+                            -- Map the 0.0-1.0 backend value to the 0-100 UI slider
+                            get = function(info) 
+                                return (C.filter.outOfMelee.desaturate or 1.0) * 100 
+                            end,
+                            -- Convert the 0-100 UI slider back down to a 0.0-1.0 multiplier
+                            set = function(info, value)
+                                C.filter.outOfMelee.desaturate = value / 100
+                                TC2:UpdateFrame()
+                            end,
+                            hidden = function() return not C.filter.outOfMelee.color end,
+                        },
+                        darken = {
+                            type = "range",
+                            name = L.filter_darkenOutOfMelee,
+                            desc = L.filter_darkenOutOfMelee_desc,
+                            order = 6,
+                            min = 0,
+                            max = 100,
+                            step = 1,
+                            width = "double",
+                            -- Map the 0.0-1.0 backend value to the 0-100 UI slider
+                            get = function(info) 
+                                return (C.filter.outOfMelee.darken or 1.0) * 100 
+                            end,
+                            -- Convert the 0-100 UI slider back down to a 0.0-1.0 multiplier
+                            set = function(info, value)
+                                C.filter.outOfMelee.darken = value / 100
+                                TC2:UpdateFrame()
+                            end,
+                            hidden = function() return not C.filter.outOfMelee.color end,
+                        },
+                        fade = {
+                            type = "range",
+                            name = L.filter_fadeOutOfMelee,
+                            desc = L.filter_fadeOutOfMelee_desc,
+                            order = 7,
+                            min = 0,
+                            max = 100,
+                            step = 1,
+                            width = "double",
+                            -- Map the 0.0-1.0 backend value to the 0-100 UI slider
+                            get = function(info) 
+                                return (C.filter.outOfMelee.fade or 1.0) * 100 
+                            end,
+                            -- Convert the 0-100 UI slider back down to a 0.0-1.0 multiplier
+                            set = function(info, value)
+                                C.filter.outOfMelee.fade = value / 100
+                                TC2:UpdateFrame()
+                            end,
+                            hidden = function() return not C.filter.outOfMelee.color end,
+                        },
+                    },
+                },
+                yourself = {
+                    order = 2,
+                    name = L.filter_yourself,
                     type = "toggle",
                     width = "full",
+                    get = function(info) return C.filter.yourself end,
+                    set = function(info, value)
+                        C.filter.yourself = value
+                        TC2:UpdateFrame()
+                    end,
                 },
                 useTargetList = {
-                    order = 2,
+                    order = 3,
                     name = L.filter_useTargetList,
                     type = "toggle",
                     width = "full",
+                    get = function(info) return C.filter.useTargetList end,
+                    set = function(info, value)
+                        C.filter.useTargetList = value
+                        TC2:UpdateFrame()
+                    end,
                 },
                 targetList = {
-                    order = 3,
+                    order = 4,
                     name = L.filter_targetList,
                     desc = L.filter_targetList_desc,
                     type = "input",
@@ -1689,6 +2116,7 @@ TC2.configTable = {
                             num = num + 1
                         end
                         C[info[1]][info[2]] = targets
+                        TC2:UpdateFrame()
                     end,
                     disabled = function() return not C.filter.useTargetList end,
                 },
@@ -1773,6 +2201,6 @@ SlashCmdList["TC2_SLASHCMD"] = function(arg)
     elseif arg == "ver" or arg == "version" then
         print("|c00FFAA00"..TC2.addonName.." v"..TC2.version.."|r")
     else
-        LibStub("AceConfigDialog-3.0"):Open("ThreatClassic2")
+        LibStub("AceConfigDialog-3.0"):Open(TC2.addonName)
     end
 end

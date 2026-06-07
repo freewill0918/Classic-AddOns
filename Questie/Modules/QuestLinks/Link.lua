@@ -17,12 +17,14 @@ local QuestieEvent = QuestieLoader:ImportModule("QuestieEvent")
 local l10n = QuestieLoader:ImportModule("l10n")
 ---@type ZoneDB
 local ZoneDB = QuestieLoader:ImportModule("ZoneDB")
+---@type QuestieReputation
+local QuestieReputation = QuestieLoader:ImportModule("QuestieReputation")
 
 QuestieLink.lastItemRefTooltip = ""
 
 -- Forward declaration
 local _AddQuestTitle, _AddQuestStatus, _AddQuestDescription, _AddQuestRequirements, _AddDungeonInfo, _GetQuestStarter, _GetQuestFinisher, _AddPlayerQuestProgress
-local _AddTooltipLine, _AddColoredTooltipLine
+local _AddTooltipLine, _AddColoredTooltipLine, _GetObjectiveText
 
 
 local oldItemSetHyperlink = ItemRefTooltip.SetHyperlink
@@ -87,11 +89,15 @@ end
 
 ---@param link string
 function QuestieLink:CreateQuestTooltip(link)
+    -- Fixes error when clicking quest links before full init
+    if (not Questie.started) then
+        print(Questie:Colorize(l10n("Please wait a moment for Questie to finish loading")))
+        return
+    end
     local isQuestieLink, _, _ = string.match(link, "questie:(%d+):.*")
     if isQuestieLink then
         ---@type string
-        local questIdStr = select(2, strsplit(":", link))
-        local questId = tonumber(questIdStr)
+        local questId = tonumber(isQuestieLink)
         local quest = QuestieDB.GetQuest(questId)
 
         if quest then
@@ -146,6 +152,8 @@ end
 
 ---@param quest Quest
 _AddQuestStatus = function(quest)
+    local DoableStates = QuestieDB.DoableStates
+    local eligibilityText, _, returnReason = QuestieDB.IsDoableVerbose(quest.Id, false, true, true)
     if QuestiePlayer.currentQuestlog[quest.Id] then
         local onQuestText = l10n("You are on this quest")
         local stateText
@@ -163,8 +171,8 @@ _AddQuestStatus = function(quest)
         end
     elseif Questie.db.char.complete[quest.Id] then
         _AddColoredTooltipLine(l10n("You have completed this quest"), "green")
-    elseif (UnitLevel("player") < quest.requiredLevel or (not QuestieDB.IsDoable(quest.Id))) and (not Questie.db.char.hidden[quest.Id]) then
-        _AddColoredTooltipLine(l10n("You are ineligible for this quest"), "red")
+    elseif returnReason ~= DoableStates.AVAILABLE then
+        _AddColoredTooltipLine(eligibilityText, "red")
     elseif quest.specialFlags == 1 then
         _AddColoredTooltipLine(l10n("This quest is repeatable"), "yellow")
     else
@@ -200,9 +208,61 @@ _AddDungeonInfo = function(quest)
     end
 end
 
+---@param objectiveId number
+---@param objectiveType "event"|"item"|"killcredit"|"monster"|"object"|"reputation"|"spell"
+---@return string
+_GetObjectiveText = function(objectiveId, objectiveType)
+    if objectiveType == "monster" then
+        return QuestieDB.QueryNPCSingle(objectiveId, "name")
+    elseif objectiveType == "object" then
+        return QuestieDB.QueryObjectSingle(objectiveId, "name")
+    elseif objectiveType == "item" then
+        return QuestieDB.QueryItemSingle(objectiveId, "name")
+    elseif objectiveType == "reputation" then
+        return QuestieReputation.GetFactionName(objectiveId)
+    elseif objectiveType == "spell" then
+        return C_Spell.GetSpellName(objectiveId)
+    end
+    return ""
+end
+
 ---@param quest Quest
 _AddQuestRequirements = function(quest)
-    if #quest.ObjectiveData > 0 and not (QuestiePlayer.currentQuestlog[quest.Id] or Questie.db.char.complete[quest.Id]) then
+    local questId = quest.Id
+    if QuestiePlayer.currentQuestlog[questId] or Questie.db.char.complete[questId] then
+        return
+    end
+
+    if HaveQuestData(questId) then
+        local blizzardObjectives = C_QuestLog.GetQuestObjectives(questId)
+        if #quest.ObjectiveData > 0 then
+            _AddTooltipLine(" ")
+            _AddColoredTooltipLine(l10n("Objectives"), "gold")
+        end
+        for i = 1, #blizzardObjectives do
+            local objective = blizzardObjectives[i]
+            if objective and objective.text and objective.text ~= "" then
+                if (l10n:GetUILocale() == "zhCN" or l10n:GetUILocale() == "zhTW") then
+                    -- we look for any uncached objective
+                    for j = 1, #objective.text do
+                        if string.sub(objective.text, j, j) == " " then
+                            local objectiveText = _GetObjectiveText(quest.ObjectiveData[i].Id, quest.ObjectiveData[i].Type)
+                            objective.text = string.gsub(objective.text, "%s", objectiveText)
+                        end
+                    end
+                -- we look for any uncached objective
+                elseif string.byte(objective.text, 1) == 32 then
+                    local objectiveText = _GetObjectiveText(quest.ObjectiveData[i].Id, quest.ObjectiveData[i].Type)
+                    objective.text = string.gsub(objective.text, "^%s", objectiveText)
+                end
+                _AddColoredTooltipLine(" - " .. objective.text, "white")
+            end
+        end
+        return
+    end
+
+    -- Fallback: use Questie's static database objective data
+    if #quest.ObjectiveData > 0 then
         for i = 1, #quest.ObjectiveData do
             local currentObjective = quest.ObjectiveData[i]
             if currentObjective then
@@ -211,22 +271,15 @@ _AddQuestRequirements = function(quest)
                         _AddTooltipLine(" ")
                         _AddColoredTooltipLine(l10n("Objectives"), "gold")
                     end
-                    _AddColoredTooltipLine(currentObjective.Text, "white")
+                    _AddColoredTooltipLine(" - " .. currentObjective.Text, "white")
                 else
-                    local objectiveName
-                    if currentObjective.Type == "monster" then
-                        objectiveName = QuestieDB.QueryNPCSingle(currentObjective.Id, "name")
-                    else
-                        objectiveName = QuestieDB.QueryItemSingle(currentObjective.Id, "name")
-                    end
+                    local objectiveText = _GetObjectiveText(currentObjective.Id, currentObjective.Type)
 
-                    if objectiveName then
-                        if currentObjective == quest.ObjectiveData[1] then
-                            _AddTooltipLine(" ")
-                            _AddColoredTooltipLine(l10n("Objectives"), "gold")
-                        end
-                        _AddColoredTooltipLine(objectiveName, "white")
+                    if currentObjective == quest.ObjectiveData[1] then
+                        _AddTooltipLine(" ")
+                        _AddColoredTooltipLine(l10n("Objectives"), "gold")
                     end
+                    _AddColoredTooltipLine(" - " .. objectiveText, "white")
                 end
             end
         end
@@ -325,9 +378,9 @@ _AddPlayerQuestProgress = function(quest, starterName, starterZoneName, finisher
         -- On Quest: display quest progress
         if (QuestieDB.IsComplete(quest.Id) == 0) then
             _AddTooltipLine(" ")
-            _AddTooltipLine(l10n("Your progress")..l10n(": "))
+            _AddColoredTooltipLine(l10n("Your progress")..l10n(": "), "gold")
             for _, objective in pairs(quest.Objectives) do
-                local objDesc = objective.Description:gsub("%.$", "")
+                local objDesc = QuestieLib:GetObjectiveDescription(objective)
 
                 if objective.Needed > 0 then
                     local lineEnding = tostring(objective.Collected) .. "/" .. tostring(objective.Needed)
@@ -418,3 +471,5 @@ else
         HandleHyperlinkClick(link, button)
     end)
 end
+
+return QuestieLink

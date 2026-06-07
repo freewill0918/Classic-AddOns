@@ -547,7 +547,7 @@ if not WeakAuras.IsMistsOrRetail() then
               else
                 local state = states[cloneId]
                 if state then
-                  statest[cloneId] = nil
+                  states[cloneId] = nil
                   changed = true
                 end
               end
@@ -1731,7 +1731,7 @@ Private.event_prototypes["Boss Mod Timer"] = {
                 if state then
                   local bar_remainingTime = state.expirationTime - GetTime() + (state.extend or 0)
                   if state.extend == 0 or bar_remainingTime <= 0 then
-                    states[timeId] = nil
+                    states[timerId] = nil
                     changed = true
                   end
                 end
@@ -1875,5 +1875,3 @@ Private.event_prototypes["Boss Mod Timer"] = {
   automaticrequired = true,
 }
 Private.category_event_prototype.addons["Boss Mod Timer"] = L["Boss Mod Timer"]
-
-

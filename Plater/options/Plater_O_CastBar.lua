@@ -133,8 +133,8 @@ function platerInternal.CreateCastBarOptions()
 
 
         --outline table
-        local outline_modes = {"NONE", "MONOCHROME", "OUTLINE", "THICKOUTLINE", "MONOCHROME, OUTLINE", "MONOCHROME, THICKOUTLINE"}
-        local outline_modes_names = {"None", "Monochrome", "Outline", "Thick Outline", "Monochrome Outline", "Monochrome Thick Outline"}
+        local outline_modes = {"NONE", "MONOCHROME", "OUTLINE", "THICKOUTLINE", "MONOCHROME, OUTLINE", "MONOCHROME, THICKOUTLINE", "SLUG", "OUTLINE, SLUG"}
+        local outline_modes_names = {"None", "Monochrome", "Outline", "Thick Outline", "Monochrome Outline", "Monochrome Thick Outline", "SLUG", "Slug Outline"}
         local build_outline_modes_table = function (actorType, member)
             local t = {}
             for i = 1, #outline_modes do
@@ -434,7 +434,7 @@ function platerInternal.CreateCastBarOptions()
             desc = "OPTIONS_ALPHA",
         },
 
-        {type = "blank"},
+        {type = "blank"}, --cast bar colors
         {type = "label", get = function() return "OPTIONS_CASTBAR_COLORS" end, text_template = DF:GetTemplate ("font", "ORANGE_FONT_TEMPLATE")},
 
         {
@@ -615,6 +615,16 @@ function platerInternal.CreateCastBarOptions()
 			name = "Max width",
 			desc = "Target text width limitation.\n 0 = no limitation",
 		},
+        {
+            type = "toggle",
+            get = function() return Plater.db.profile.castbar_target_text_wrap  end,
+            set = function (self, fixedparam, value) 
+                Plater.db.profile.castbar_target_text_wrap  = value
+                Plater.UpdateAllPlates()
+            end,
+            name = "Text wrap",
+            desc = "Enables/Disables text wrapping to multi-line.",
+        },
         --text font
         {
             type = "select",

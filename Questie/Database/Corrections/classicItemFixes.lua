@@ -48,6 +48,9 @@ function QuestieItemFixes:Load()
         [1357] = { -- Captain Sander's Treasure Map
             [itemKeys.npcDrops] = {126, 127, 171, 391, 456, 458, 513, 515, 517},
         },
+        [1468] = { -- Murloc Fin
+            [itemKeys.npcDrops] = {422,544,545,548,578,1024,1025,1026,1027,1028,1029,1083,1259,1418,3654,3737,3739,3740,3742,4818,4819,4820,6243,10643,14270},
+        },
         [1524] = { -- Skullsplitter Tusk
             [itemKeys.npcDrops] = {667, 669, 670, 672, 696, 780, 781, 782, 783, 784, 1059, 1061, 1062},
         },
@@ -534,6 +537,9 @@ function QuestieItemFixes:Load()
         [6992] = { -- Jordan's Ore Shipment
             [itemKeys.npcDrops] = {},
         },
+        [6993] = { -- Jordan's Refined Ore Shipment
+            [itemKeys.npcDrops] = {6241},
+        },
         [7067] = { -- Elemental Earth
             [itemKeys.npcDrops] = {92, 2258, 2359, 2592, 2735, 2736, 2752, 2755, 2791, 2919, 4034, 4035, 4120, 4499, 5465, 7031, 7032, 7135, 7136, 7137, 8278, 9396, 10119, 11658, 11659, 11665, 11746, 11747, 11777, 11778, 11781, 11782, 11783, 11784, 12076, 12100, 12101, 13256, 14462, 14464, 15205, 15208, 15307},
         },
@@ -548,7 +554,7 @@ function QuestieItemFixes:Load()
         },
         [7083] = { -- Purified Kor Gem
             [itemKeys.relatedQuests] = {1442, 1654},
-            [itemKeys.npcDrops] = {},
+            [itemKeys.npcDrops] = {3649},
             [itemKeys.objectDrops] = {},
         },
         [7134] = { -- Sturdy Dragonmaw Shinbone (#1163)
@@ -755,6 +761,9 @@ function QuestieItemFixes:Load()
             [itemKeys.npcDrops] = {},
             [itemKeys.objectDrops] = {},
         },
+        [10444] = { -- Standard Issue Flare Gun
+            [itemKeys.npcDrops] = {8517},
+        },
         [10515] = { -- Torch of Retribution
             [itemKeys.class] = itemClasses.QUEST,
         },
@@ -884,6 +893,7 @@ function QuestieItemFixes:Load()
         },
         [11953] = { -- Empty Pure Sample Jar
             [itemKeys.class] = 12,
+            [itemKeys.npcDrops] = {},
         },
         [11954] = { -- Filled Pure Sample Jar (#1070)
             [itemKeys.relatedQuests] = {4513},
@@ -999,6 +1009,9 @@ function QuestieItemFixes:Load()
         },
         [13172] = { -- Grimm's Premium Tobacco
             [itemKeys.name] = "Grimm's Premium Tobacco",
+        },
+        [13250] = { -- Head of Balnazzar
+            [itemKeys.npcDrops] = {10812},
         },
         [13422] = { -- Stonescale Eel
             [itemKeys.objectDrops] = {},
@@ -1190,6 +1203,9 @@ function QuestieItemFixes:Load()
             [itemKeys.npcDrops] = {2246, 2590, 2240, 2586, 2589, 2587, 2588, 2242, 2241, 2319, 2261, 2244, 2260},
             [itemKeys.objectDrops] = {},
         },
+        [17126] = { -- Elegant Letter
+            [itemKeys.npcDrops] = {332,918,3327,3328,3401,4163,4214,4215,4582,4583,4584,5165,5166,5167},
+        },
         [17309] = { -- Discordant Bracers
             [itemKeys.npcDrops] = {8519, 8520, 8521, 8522},
         },
@@ -1236,8 +1252,17 @@ function QuestieItemFixes:Load()
             [itemKeys.name] = "Nostro's Compendium of Dragon Slaying",
             [itemKeys.startQuest] = 7507,
         },
-        [18605] = { -- Imprisoned Doomguard (#7583)
-            [itemKeys.npcDrops] = {12396},
+        [18513] = { -- A Dull and Flat Elven Blade
+            [itemKeys.startQuest] = 7508,
+        },
+        [18597] = { -- Orcish Orphan Whistle
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [18598] = { -- Human Orphan Whistle
+            [itemKeys.class] = itemClasses.QUEST,
+        },
+        [18628] = { -- Thorium Brotherhood Contract
+            [itemKeys.npcDrops] = {12944},
         },
         [18642] = { -- Jaina's Autograph
             [itemKeys.npcDrops] = {4968},
@@ -1475,8 +1500,7 @@ function QuestieItemFixes:Load()
             [itemKeys.npcDrops] = {6520, 6521, 7031, 7032, 7132, 8519, 8520, 8521, 8522, 8909, 8910, 8911, 9017, 9025, 9026, 9816, 9878, 9879, 11480, 11483, 11484, 11744, 11745, 11746, 11747, 13279, 13280, 14399, 14400, 14455, 14458, 14460, 14462},
         },
         [22719] = { -- Omarion's Handbook
-            --[itemKeys.npcDrops] = {16365}, -- hiding until logic is fixed
-            [itemKeys.npcDrops] = {},
+            [itemKeys.npcDrops] = {16365},
             [itemKeys.startQuest] = 9233,
         },
         [23179] = { -- Flame of Orgrimmar
@@ -1573,6 +1597,9 @@ function QuestieItemFixes:LoadFactionFixes()
         [15883] = { -- Half Pendant of Aquatic Agility
             [itemKeys.objectDrops] = {177794},
         },
+        [17126] = { -- Elegant Letter
+            [itemKeys.npcDrops] = {3327,3328,3401,4582,4583,4584},
+        },
         [20810] = { -- Signed Field Duty Papers
             [itemKeys.npcDrops] = {15612},
         },
@@ -1590,6 +1617,9 @@ function QuestieItemFixes:LoadFactionFixes()
         },
         [15883] = { -- Half Pendant of Aquatic Agility
             [itemKeys.objectDrops] = {177792},
+        },
+        [17126] = { -- Elegant Letter
+            [itemKeys.npcDrops] = {332,918,4163,4214,4215,5165,5166,5167},
         },
         [20810] = { -- Signed Field Duty Papers
             [itemKeys.npcDrops] = {15440},

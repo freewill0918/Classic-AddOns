@@ -49,7 +49,7 @@ function QuestieNPCFixes:Load()
             [npcKeys.questStarts] = {8250},
         },
         [332] = { -- Master Mathias Shaw
-            [npcKeys.questStarts] = {141,350,395,2206,2360,2607,6183,6184,6681},
+            [npcKeys.questStarts] = {141,350,395,2206,2360,2607,6183,6184},
         },
         [376] = { -- High Priestess Laurena
             [npcKeys.questStarts] = {5631,5634,5645,5673,5676},
@@ -65,8 +65,9 @@ function QuestieNPCFixes:Load()
             [npcKeys.npcFlags] = npcFlags.NONE,
         },
         [412] = { -- Stitches <Gift from the Embalmer>
+            [npcKeys.spawns] = {[zoneIDs.DUSKWOOD] = {{28.96,31.60}}},
+            [npcKeys.waypoints] = {[zoneIDs.DUSKWOOD] = {{{28.96,31.60},{29.12,32.34},{29.26,33.09},{29.42,33.83},{29.60,34.56},{29.77,35.09},{30.08,35.26},{30.58,35.45},{31.09,35.63},{31.59,35.82},{31.79,35.98},{31.93,36.36},{32.12,37.08},{32.24,37.68},{32.25,37.74},{32.34,38.51},{32.42,39.27},{32.49,40.04},{32.56,40.82},{32.61,41.59},{32.61,41.65},{32.67,42.28},{32.71,42.67},{32.75,42.97},{32.81,43.37},{32.89,43.85},{32.98,44.32},{33.09,44.91},{33.20,45.56},{33.31,46.14},{33.34,46.27},{33.46,46.98},{33.48,47.14},{33.57,47.88},{33.58,48.00},{33.63,48.44},{33.69,49.01},{33.74,49.60},{33.78,50.11},{33.78,50.14},{33.83,50.91},{33.89,51.68},{33.91,52.06},{33.94,52.69},{33.94,52.78},{33.97,53.47},{33.99,54.00},{34.03,54.42},{34.05,54.53},{34.20,54.94},{34.30,55.19},{34.53,55.80},{34.80,56.47},{34.81,56.50},{34.86,56.61},{34.94,56.81},{35.20,57.48},{35.46,58.16},{35.57,58.45},{35.60,58.54},{35.85,59.23},{35.92,59.42},{36.14,60.03},{36.28,60.36},{36.39,60.59},{36.54,60.92},{36.83,61.48},{36.93,61.69},{37.07,61.96},{37.29,62.18},{37.78,62.43},{38.27,62.65},{38.78,62.83},{39.29,62.98},{39.80,63.13},{40.31,63.28},{40.82,63.43},{41.33,63.62},{41.82,63.86},{42.30,64.16},{42.77,64.48},{43.24,64.81},{43.71,65.17},{44.18,65.49},{44.65,65.81},{45.16,65.92},{45.68,65.96},{46.20,66.01},{46.72,66.06},{47.24,66.11},{47.76,66.16},{48.27,66.19},{48.79,66.20},{49.31,66.24},{49.83,66.32},{50.34,66.45},{50.84,66.65},{51.33,66.93},{51.81,67.22},{52.26,67.61},{52.66,68.10},{53.08,68.55},{53.56,68.82},{54.07,68.93},{54.59,68.92},{55.07,68.64},{55.49,68.17},{55.90,67.70},{56.33,67.26},{56.80,66.92},{57.26,66.57},{57.71,66.19},{58.14,65.75},{58.52,65.22},{58.88,64.66},{59.24,64.11},{59.62,63.55},{60.01,63.04},{60.44,62.60},{60.88,62.19},{61.34,61.83},{61.81,61.50},{62.28,61.19},{62.77,60.88},{63.25,60.62},{63.75,60.39},{64.25,60.17},{64.76,59.97},{65.27,59.92},{65.78,60.07},{66.26,60.34},{66.76,60.54},{67.28,60.60},{67.80,60.58},{68.32,60.55},{68.83,60.47},{69.34,60.33},{69.84,60.10},{70.29,59.72},{70.76,59.41},{71.27,59.28},{71.79,59.17},{72.28,58.95},{72.72,58.52},{73.11,58.02},{73.45,57.44},{73.75,56.80},{74.04,56.16},{74.31,55.49},{74.57,54.82},{74.80,54.12},{74.97,53.38},{75.02,52.61},{74.98,51.83},{74.86,51.08},{74.72,50.33},{74.58,49.58},{74.46,48.82},{74.44,48.05},{74.42,47.27},{74.42,47.12},}}},
             [npcKeys.zoneID] = zoneIDs.DUSKWOOD,
-            [npcKeys.spawns] = {[zoneIDs.DUSKWOOD] = {{74.45,47.86},{44.81,66.02},{74.56,52.05},{64.52,60.65},{73.68,56.09}}},
         },
         [415] = { -- Verner Osgood
             [npcKeys.questStarts] = {118,122,124,126,1097},
@@ -145,7 +146,7 @@ function QuestieNPCFixes:Load()
             [npcKeys.questStarts] = {},
         },
         [918] = { -- Osborne the Night Man
-            [npcKeys.questStarts] = {6681,8233},
+            [npcKeys.questStarts] = {8233},
         },
         [928] = { -- Lord Grayson Shadowbreaker
             [npcKeys.questEnds] = {7638,7639,7640,7644,7646,7648,7666,7670},
@@ -481,9 +482,6 @@ function QuestieNPCFixes:Load()
         [3044] = { -- Miles Welsh
             [npcKeys.questStarts] = {5642,5644,5656,5663},
         },
-        [3045] = { -- Malakai Cross
-            [npcKeys.questStarts] = {},
-        },
         [3046] = { -- Father Cobb
             [npcKeys.questStarts] = {},
         },
@@ -556,10 +554,10 @@ function QuestieNPCFixes:Load()
             [npcKeys.questStarts] = {},
         },
         [3327] = { -- Gest
-            [npcKeys.questStarts] = {6681},
+            [npcKeys.questStarts] = {},
         },
         [3328] = { -- Ormok
-            [npcKeys.questStarts] = {6681,8233},
+            [npcKeys.questStarts] = {8233},
         },
         [3344] = { -- Kardris Dreamseeker
             [npcKeys.questStarts] = {},
@@ -582,7 +580,7 @@ function QuestieNPCFixes:Load()
             [npcKeys.spawns] = {[zoneIDs.THE_BARRENS] = {{53.06,41.74}}},
         },
         [3401] = { -- Shenthul
-            [npcKeys.questStarts] = {2379,2458,2460,2479,6681},
+            [npcKeys.questStarts] = {2379,2458,2460,2479},
         },
         [3403] = { -- Sian'tsu
             [npcKeys.questStarts] = {},
@@ -626,7 +624,7 @@ function QuestieNPCFixes:Load()
             [npcKeys.spawns] = {[zoneIDs.SILVERPINE_FOREST] = {{44.16,73.83}}},
         },
         [3535] = { -- Blackmoss the Fetid
-            [npcKeys.spawns] = {[zoneIDs.TELDRASSIL] = {{43.955,29.557},{42.427,37.837},{43.26,27.02}}},
+            [npcKeys.spawns] = {[zoneIDs.TELDRASSIL] = {{42.81,28.39},{43.96,29.56},{42.43,37.84},{43.26,27.02}}},
         },
         [3537] = { -- Zixil <Merchant Supreme>
             [npcKeys.spawns] = {[zoneIDs.HILLSBRAD_FOOTHILLS] = {{55.38,34.71}}},
@@ -667,6 +665,9 @@ function QuestieNPCFixes:Load()
         [3654] = { -- Mutanus the Devourer
             [npcKeys.spawns] = {[zoneIDs.WAILING_CAVERNS]={{-1,-1}}},
             [npcKeys.zoneID] = zoneIDs.WAILING_CAVERNS,
+        },
+        [3655] = { -- Mad Magglish
+            [npcKeys.spawns] = {[zoneIDs.THE_BARRENS] = {{46.46,35.47},{46.83,34.66},{45.69,33.62}}},
         },
         [3657] = { -- Sentinel Elissa Starbreeze
             [npcKeys.questStarts] = {965,1684},
@@ -760,16 +761,16 @@ function QuestieNPCFixes:Load()
             [npcKeys.spawns] = {[zoneIDs.THOUSAND_NEEDLES]={{70.03,86.22},{68.38,82.32},{67.26,86.1}}},
         },
         [4163] = { -- Syurna
-            [npcKeys.questStarts] = {2242,6681,8233},
+            [npcKeys.questStarts] = {2242,8233},
         },
         [4205] = { -- Dorion
             [npcKeys.questStarts] = {8151},
         },
         [4214] = { -- Erion Shadewhisper
-            [npcKeys.questStarts] = {2260,6681},
+            [npcKeys.questStarts] = {2260},
         },
         [4215] = { -- Anishar
-            [npcKeys.questStarts] = {6681},
+            [npcKeys.questStarts] = {},
         },
         [4217] = { -- Mathrengyl Bearwalker
             [npcKeys.questStarts] = {26,3785,3803,5921,6001,6121,6762,9063},
@@ -884,13 +885,13 @@ function QuestieNPCFixes:Load()
             [npcKeys.questStarts] = {1882,1943,1947,1953,1960,1961,2861},
         },
         [4582] = { -- Carolyn Ward
-            [npcKeys.questStarts] = {6681},
+            [npcKeys.questStarts] = {},
         },
         [4583] = { -- Miles Dexter
-            [npcKeys.questStarts] = {6681,8233},
+            [npcKeys.questStarts] = {8233},
         },
         [4584] = { -- Gregory Charles
-            [npcKeys.questStarts] = {6681},
+            [npcKeys.questStarts] = {},
         },
         [4595] = { -- Baltus Fowler
             [npcKeys.questStarts] = {1718,1818,1823},
@@ -1011,15 +1012,16 @@ function QuestieNPCFixes:Load()
         },
         [5149] = { -- Brandur Ironhammer <Paladin Trainer>
             [npcKeys.questStarts] = {2999,3681,4486,7670,8415},
+            [npcKeys.questEnds] = {},
         },
         [5165] = { -- Hulfdan Blackbeard
-            [npcKeys.questStarts] = {2238,2298,6681,8233},
+            [npcKeys.questStarts] = {2238,2298,8233},
         },
         [5166] = { -- Ormyr Flinteye
-            [npcKeys.questStarts] = {6681},
+            [npcKeys.questStarts] = {},
         },
         [5167] = { -- Fenthwick
-            [npcKeys.questStarts] = {6681},
+            [npcKeys.questStarts] = {8233},
         },
         [5171] = { -- Thistleheart
             [npcKeys.questStarts] = {},
@@ -1183,10 +1185,14 @@ function QuestieNPCFixes:Load()
         },
         [6179] = { -- Tiza Battleforge
             [npcKeys.questStarts] = {1645,1647,1779,1789,1794,4485},
+            [npcKeys.questEnds] = {1645,1646,1778,1785,1789,1794,2997,2999,3000},
         },
         [6180] = { -- Defias Raider
             [npcKeys.zoneID] = zoneIDs.WESTFALL,
             [npcKeys.spawns] = {[zoneIDs.WESTFALL] = {{42.15,88.43}}},
+        },
+        [6182] = { -- Daphne Stilwell
+            [npcKeys.waypoints] = {},
         },
         [6215] = { -- Chomper
             [npcKeys.zoneID] = zoneIDs.GNOMEREGAN,
@@ -1494,10 +1500,9 @@ function QuestieNPCFixes:Load()
             [npcKeys.zoneID] = zoneIDs.TANARIS,
             [npcKeys.spawns] = {[zoneIDs.TANARIS] = {{59.3,37.95}}},
         },
-        [9026] = { -- Overmaster Pyron (Overmaster Pyron (not inside BRD, but at the entrance and this is the best way to show him, since there is no map for inside Blackrock Mountain))
-            -- Overmaster Pyron (not inside BRD, but at the entrance and this is the best way to show him, since there is no map for inside Blackrock Mountain)
-            [npcKeys.zoneID] = zoneIDs.BLACKROCK_DEPTHS,
-            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_DEPTHS] = {{-1,-1}}},
+        [9026] = { -- Overmaster Pyron
+            [npcKeys.spawns] = {[zoneIDs.EASTERN_KINGDOMS] = {{46.818,67.705}}},
+            [npcKeys.zoneID] = zoneIDs.EASTERN_KINGDOMS,
         },
         [9027] = { -- Gorosh the Dervish
             [npcKeys.zoneID] = zoneIDs.BLACKROCK_DEPTHS,
@@ -1657,22 +1662,22 @@ function QuestieNPCFixes:Load()
             [npcKeys.zoneID] = zoneIDs.DESOLACE,
         },
         [10258] = { -- Rookery Guardian
-            [npcKeys.zoneID] = zoneIDs.UPPER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10263] = { -- Burning Felguard
-            [npcKeys.zoneID] = zoneIDs.UPPER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10264] = { -- Solakar Flamewreath
-            [npcKeys.zoneID] = zoneIDs.UPPER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10268] = { -- Gizrul the Slavener
-            [npcKeys.spawns] = {[zoneIDs.LOWER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10296] = { -- Vaelan
-            [npcKeys.spawns] = {[zoneIDs.LOWER_BLACKROCK_SPIRE]={{-1, -1}}},
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE]={{-1,-1}}},
             [npcKeys.questStarts] = {},
             [npcKeys.questEnds] = {},
         },
@@ -1685,7 +1690,7 @@ function QuestieNPCFixes:Load()
             [npcKeys.spawns] = {[zoneIDs.DARKSHORE] = {{36.44,76.51}}},
         },
         [10339] = { -- Gyth <Rend Blackhand's Mount>
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10373] = { -- Xabraxxis
             [npcKeys.zoneID] = zoneIDs.DARKSHORE,
@@ -1703,8 +1708,8 @@ function QuestieNPCFixes:Load()
             [npcKeys.spawns] = {[zoneIDs.STRATHOLME] = {{-1,-1}}},
         },
         [10429] = { -- Warchief Rend Blackhand
-            [npcKeys.zoneID] = zoneIDs.UPPER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10439] = { -- Ramstein the Gorger
             [npcKeys.zoneID] = zoneIDs.STRATHOLME,
@@ -1714,8 +1719,8 @@ function QuestieNPCFixes:Load()
             [npcKeys.spawns] = {[zoneIDs.STRATHOLME] = {{-1,-1}}},
         },
         [10447] = { -- Chromatic Dragonspawn
-            [npcKeys.zoneID] = zoneIDs.UPPER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10506] = { -- Kirtonos the Herald
             [npcKeys.zoneID] = zoneIDs.SCHOLOMANCE,
@@ -1725,26 +1730,26 @@ function QuestieNPCFixes:Load()
             [npcKeys.spawns] = {[zoneIDs.UN_GORO_CRATER]={{49,45}}}, -- #2055
         },
         [10584] = { -- Urok Doomhowl
-            [npcKeys.zoneID] = zoneIDs.LOWER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.LOWER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10665] = { -- Junior Apothecary Holland <Royal Apothecary Society>
             [npcKeys.waypoints] = {[zoneIDs.TIRISFAL_GLADES]={{{57.4,48.8},{57.6,49},{57.8,49.6},{58.4,47.8},{58.6,47.6},{59,47.2}}}},
         },
         [10680] = { -- Summoned Blackhand Dreadweaver <Blackhand Legion>
-            [npcKeys.zoneID] = zoneIDs.UPPER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10681] = { -- Summoned Blackhand Veteran <Blackhand Legion>
-            [npcKeys.zoneID] = zoneIDs.UPPER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10682] = { -- Raider Kerr
             [npcKeys.npcFlags] = npcFlags.NONE,
         },
         [10683] = { -- Rookery Hatcher
-            [npcKeys.zoneID] = zoneIDs.UPPER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10717] = { -- Temporal Parasite
             [npcKeys.spawns] = {[zoneIDs.WESTERN_PLAGUELANDS]={{45.15,62.28},{45.21,62.83},{46.38,62.33},{46.69,62.08},{47.03,61.96},{47.21,65.86},{47.76,66.51},{47.83,63.45},{47.92,65.91},{48.23,64.39},{48.26,65.77},{48.45,62.81},{48.57,63.98},{49.02,69.3},{49.1,68.86},{49.4,68.84},{49.95,66.1},{50.15,66.77},{50.2,66.34},{50.31,67.23}}},
@@ -1759,24 +1764,24 @@ function QuestieNPCFixes:Load()
             [npcKeys.spawns] = {[zoneIDs.WINTERSPRING] = {{49.81,9.8}}},
         },
         [10740] = { -- Awbee
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE]={{-1,-1}}},
-            [npcKeys.zoneID] = zoneIDs.UPPER_BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE]={{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
         },
         [10741] = { -- Sian-Rotam
             [npcKeys.zoneID] = zoneIDs.WINTERSPRING,
             [npcKeys.spawns] = {[zoneIDs.WINTERSPRING] = {{49.85,9.8}}},
         },
         [10742] = { -- Blackhand Dragon Handler <Blackhand Legion>
-            [npcKeys.zoneID] = zoneIDs.UPPER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10776] = { -- Pip Quickwit
             [npcKeys.name] = "Pip Quickwit",
-            [npcKeys.zoneID] = zoneIDs.UPPER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10800] = { -- Warosh the Redeemed
-            [npcKeys.spawns] = {[zoneIDs.LOWER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [10801] = { -- Jabbering Ghoul
             [npcKeys.spawns] = {[zoneIDs.WESTERN_PLAGUELANDS]={{36.2,56.6},{36.6,57.6},{37,57.2},{37.2,55.4},{37.4,55.6},{37.8,57.6},{38,56.4},{38,56.6},{38.4,55.4},{38.6,55.2},{38.6,56.2}}},
@@ -1806,9 +1811,6 @@ function QuestieNPCFixes:Load()
         [10838] = { -- Commander Ashlam Valorfist
             [npcKeys.questStarts] = {211,5092,5097,5215,5237,5533,8414,8418},
             [npcKeys.questEnds] = {211,5066,5090,5091,5092,5097,5237,8415,8416,8418},
-        },
-        [10839] = { -- Argent Officer Garush
-            [npcKeys.questStarts] = {5406,5407,5408,5503},
         },
         [10877] = { -- Courier Hammerfall
             [npcKeys.questStarts] = {1019,5090,7494},
@@ -1849,9 +1851,6 @@ function QuestieNPCFixes:Load()
         },
         [11018] = { -- Arko'narin
             [npcKeys.spawns] = {[zoneIDs.FELWOOD] = {{36.88,54.9}}},
-        },
-        [11039] = { -- Duke Nicholas Zverenhoff
-            [npcKeys.questStarts] = {5251,5263,5264,5405,5508,5509,5510},
         },
         [11048] = { -- Victor Ward
             [npcKeys.questStarts] = {1962},
@@ -1929,12 +1928,129 @@ function QuestieNPCFixes:Load()
         [11407] = { -- Var'jun
             [npcKeys.questStarts] = {5655,5661},
         },
+        [11441] = { -- Gordok Brute
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [11444] = { -- Gordok Mage-Lord
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [11445] = { -- Gordok Captain
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [11448] = { -- Gordok Warlock
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [11450] = { -- Gordok Reaver
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [11451] = { -- Wildspawn Satyr
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11452] = { -- Wildspawn Rogue
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11453] = { -- Wildspawn Trickster
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11454] = { -- Wildspawn Betrayer
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11455] = { -- Wildspawn Felsworn
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11456] = { -- Wildspawn Shadowstalker
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11457] = { -- Wildspawn Hellcaller
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11458] = { -- Petrified Treant
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11459] = { -- Ironbark Protector
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_CAPITAL_GARDENS] = {{-1,-1}}},
+        },
         [11460] = { -- Alzzin's Minion
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
             [npcKeys.zoneID] = zoneIDs.DIRE_MAUL,
-            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL] = {{-1,-1}}},
+        },
+        [11461] = { -- Warpwood Guardian
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11462] = { -- Warpwood Treant
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11464] = { -- Warpwood Tangler
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11465] = { -- Warpwood Stomper
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11467] = { -- Tsu'zee
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_COURT_OF_THE_HIGHBORNE] = {{-1,-1}}},
+        },
+        [11469] = { -- Eldreth Seether
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [11470] = { -- Eldreth Sorcerer
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [11471] = { -- Eldreth Apparition
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [11472] = { -- Eldreth Spirit
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [11473] = { -- Eldreth Spectre
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [11475] = { -- Eldreth Phantasm
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [11476] = { -- Skeletal Highborne
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_CAPITAL_GARDENS] = {{-1,-1}}},
+        },
+        [11477] = { -- Rotting Highborne
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_CAPITAL_GARDENS] = {{-1,-1}}},
+        },
+        [11480] = { -- Arcane Aberration
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [11483] = { -- Mana Remnant
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [11484] = { -- Residual Monstrosity
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [11486] = { -- Prince Tortheldrin
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}},[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [11487] = { -- Magister Kalendris
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_COURT_OF_THE_HIGHBORNE] = {{-1,-1}}},
+        },
+        [11488] = { -- Illyanna Ravenoak
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_CAPITAL_GARDENS] = {{-1,-1}}},
+        },
+        [11489] = { -- Tendris Warpwood
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_CAPITAL_GARDENS] = {{-1,-1}}},
+        },
+        [11490] = { -- Zevrim Thornhoof
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11491] = { -- Old Ironbark
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11492] = { -- Alzzin the Wildshaper
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [11496] = { -- Immol'thar
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
         },
         [11498] = { -- Skarr the Unbreakable
             [npcKeys.spawns] = {[zoneIDs.FERALAS] = {{62.5,30.37}}},
+        },
+        [11501] = { -- King Gordok
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
         },
         [11502] = { -- Ragnaros
             [npcKeys.zoneID] = zoneIDs.MOLTEN_CORE,
@@ -2176,6 +2292,15 @@ function QuestieNPCFixes:Load()
         [13018] = { -- Nipsy
             [npcKeys.spawns] = {[zoneIDs.DEEPRUN_TRAM] = {{-1,-1}}},
         },
+        [13021] = { -- Warpwood Crusher
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [13022] = { -- Whip Lasher
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [13036] = { -- Gordok Mastiff
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
         [13081] = { -- Irondeep Raider
             [npcKeys.spawns] = {[zoneIDs.ALTERAC_VALLEY]={{52.43,4.59},{50.95,5.24},{49.85,5.68},{51.4,5.75},{52.94,6.21},{51.21,6.28},{52.35,6.61},{51.65,7.12},{50.17,7.25},{50.1,7.41},{51.52,7.46},{51.57,7.56},{51.56,7.57},{51.57,7.57},{51.58,7.57},{51.57,7.57},{51.57,7.58},{51.3,7.69},{51.29,7.69},{51.3,7.7},{51.29,7.71},{52.41,8.03},{50.59,8.28},{50.23,8.44},{51.99,8.61},{50.8,8.75},{51.89,9.13},{52.83,9.15},{49.64,9.2},{52.5,7.71},{52.77,4.54},{49.74,4.79},{50.45,5.26},{51.93,5.63},{51.41,5.69},{53.27,6.49},{50.03,6.65},{50.16,7.18},{51.48,7.22},{51.49,7.27},{51.9,7.34},{51.57,7.58},{51.57,7.59},{51.38,8.07},{51.37,8.08},{51.35,8.08},{51.37,8.08},{51.36,8.1},{51.25,8.3},{51.2,8.42},{51.11,8.62},{51.22,8.97},{51.93,9.13},{50.28,9.17},{52.79,9.47},{49.73,9.79}}},
             [npcKeys.zoneID] = zoneIDs.ALTERAC_VALLEY,
@@ -2191,6 +2316,9 @@ function QuestieNPCFixes:Load()
             [npcKeys.zoneID] = zoneIDs.SILITHUS,
             [npcKeys.spawns] = {[zoneIDs.SILITHUS] = {{61.73,52.51},{62.79,49.69}}},
         },
+        [13160] = { -- Carrion Swarmer
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
         [13179] = { -- Wing Commander Guse
             [npcKeys.spawns] = {[zoneIDs.ALTERAC_VALLEY]={{49.85,85.57},{50.6,30.6}}},
         },
@@ -2200,12 +2328,24 @@ function QuestieNPCFixes:Load()
         [13181] = { -- Wing Commander Mulverick
             [npcKeys.spawns] = {[zoneIDs.ALTERAC_VALLEY]={{44.9,14.6},{49.84,85.91}}},
         },
+        [13196] = { -- Phase Lasher
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [13197] = { -- Fel Lash
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
         [13279] = { -- Discordant Surge
             [npcKeys.zoneID] = zoneIDs.EASTERN_PLAGUELANDS,
             [npcKeys.spawns] = {[zoneIDs.EASTERN_PLAGUELANDS] = {{71.43,34.56},{51.02,48.94}}},
         },
+        [13280] = { -- Hydrospawn
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
         [13283] = { -- Lord Tony Romano
             [npcKeys.questStarts] = {},
+        },
+        [13285] = { -- Death Lash
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
         },
         [13301] = { -- Hive'Ashi Ambusher
             [npcKeys.spawns] = {[zoneIDs.SILITHUS]={{60.2,52.4},{60.2,52.6}}},
@@ -2441,6 +2581,9 @@ function QuestieNPCFixes:Load()
         [14233] = { -- Ripscale
             [npcKeys.spawns] = {[zoneIDs.DUSTWALLOW_MARSH] = {{37.8,50.29},{49.06,57.33},{44.08,50.17},{42.35,55},{47.26,54.65}}},
         },
+        [14303] = { -- Petrified Guardian
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
         [14304] = { -- Kor'kron Elite
             [npcKeys.npcFlags] = npcFlags.NONE,
         },
@@ -2448,13 +2591,49 @@ function QuestieNPCFixes:Load()
             [npcKeys.zoneID] = zoneIDs.STORMWIND_CITY, -- default zone where you start the chain
             [npcKeys.spawns] = {[zoneIDs.STORMWIND_CITY] = {{47.32,38.58}}}, -- only SW for consistency
         },
+        [14321] = { -- Guard Fengus
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [14322] = { -- Stomper Kreeg
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [14323] = { -- Guard Slip'kik
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [14324] = { -- Cho'Rush the Observer
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [14325] = { -- Captain Kromcrush
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [14326] = { -- Guard Mol'dar
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [14327] = { -- Lethtendris
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_WARPWOOD_QUARTER] = {{-1,-1}}},
+        },
+        [14338] = { -- Knot Thimblejack
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [14349] = { -- Pimgib
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_WARPWOOD_QUARTER] = {{-1,-1}}},
+        },
         [14351] = { -- Gordok Bushwacker
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
             [npcKeys.zoneID] = zoneIDs.DIRE_MAUL,
-            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL] = {{-1,-1}}},
         },
         [14353] = { -- Mizzle the Crafty
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
             [npcKeys.zoneID] = zoneIDs.DIRE_MAUL,
-            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL] = {{-1,-1}}},
+        },
+        [14354] = { -- Pusillin
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_WARPWOOD_QUARTER] = {{-1,-1}}},
+        },
+        [14358] = { -- Shen'dralar Ancient
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_CAPITAL_GARDENS] = {{-1,-1}}},
+        },
+        [14368] = { -- Lorekeeper Lydros
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}},[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
         },
         [14373] = { -- Sage Korolusk
             [npcKeys.spawns] = {[zoneIDs.FERALAS]={{74.4,44}}},
@@ -2468,6 +2647,15 @@ function QuestieNPCFixes:Load()
         [14377] = { -- Scout Tharr
             [npcKeys.npcFlags] = npcFlags.NONE,
         },
+        [14381] = { -- Lorekeeper Javon
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}},[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [14382] = { -- Lorekeeper Mykos
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}},[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [14383] = { -- Lorekeeper Kildrath
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}},[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
         [14387] = { -- Lothos Riftwaker
             [npcKeys.spawns] = {
                 [zoneIDs.BURNING_STEPPES] = {{26.4,24.45},},
@@ -2475,25 +2663,32 @@ function QuestieNPCFixes:Load()
             },
             [npcKeys.zoneID] = zoneIDs.BURNING_STEPPES,
         },
+        [14399] = { -- Arcane Torrent
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
         [14444] = { -- Orcish Orphan (default zone where you start the chain) (only OG for consistency)
             [npcKeys.zoneID] = zoneIDs.ORGRIMMAR, -- default zone where you start the chain
             [npcKeys.spawns] = {[zoneIDs.ORGRIMMAR] = {{70.92,25.62}}}, -- only OG for consistency
         },
+        [14480] = { -- Alowicious Czervik
+            [npcKeys.zoneID] = zoneIDs.ORGRIMMAR,
+            [npcKeys.spawns] = {[zoneIDs.ORGRIMMAR] = {{52.24,69.06}}},
+        },
         [14500] = { -- J'eevee
-            [npcKeys.spawns] = {[zoneIDs.SCHOLOMANCE]={{-1, -1}}}, -- #1506
+            [npcKeys.spawns] = {[zoneIDs.SCHOLOMANCE]={{-1,-1}}}, -- #1506
             [npcKeys.zoneID] = zoneIDs.SCHOLOMANCE, -- #1506
         },
         [14502] = { -- Xorothian Dreadsteed
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
             [npcKeys.zoneID] = zoneIDs.DIRE_MAUL,
-            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL] = {{-1,-1}}},
         },
         [14504] = { -- Dreadsteed Spirit
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
             [npcKeys.zoneID] = zoneIDs.DIRE_MAUL,
-            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL] = {{-1,-1}}},
         },
         [14506] = { -- Lord Hel'nurath
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
             [npcKeys.zoneID] = zoneIDs.DIRE_MAUL,
-            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL] = {{-1,-1}}},
         },
         [14515] = { -- High Priestess Arlokk
             [npcKeys.zoneID] = zoneIDs.ZUL_GURUB,
@@ -2539,8 +2734,8 @@ function QuestieNPCFixes:Load()
             [npcKeys.spawns] = {[zoneIDs.EASTERN_PLAGUELANDS] = {{13.96,29.34},{15.34,29.29},{14.38,26.46},{19.03,27.43},{15.25,31.1},{14.65,26.3},{14.46,27.27},{16.42,31.75},{14.97,27.85},{15.17,29.91},{18.04,32.68},{18.85,31.22},{11.62,27.37},{14.66,27.74},{14.52,26.2},{13.47,25.62},{14.26,26.42},{18.62,27.22},{14.99,29.43},{18.32,29.66},{13.2,21.86},{14.31,27.63},{18.34,27.91},{13.45,26.07},{10.84,27.36},{11.48,26.2},{11.32,28.17},{12.31,26.94},{12.22,28.61},{11.99,29.29},{13.35,26.19},{16.3,27.37},{14.18,23.53},{14.88,24.34},{17.18,28.38}}},
         },
         [14566] = { -- Ancient Equine Spirit
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_COURT_OF_THE_HIGHBORNE] = {{-1,-1}}},
             [npcKeys.zoneID] = zoneIDs.DIRE_MAUL,
-            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL] = {{-1,-1}}},
         },
         [14568] = { -- Darkreaver's Fallen Charger
             [npcKeys.zoneID] = zoneIDs.SCHOLOMANCE,
@@ -2572,6 +2767,9 @@ function QuestieNPCFixes:Load()
         [14661] = { -- Stinglasher
             [npcKeys.spawns] = {[zoneIDs.FERALAS]={{75.58,60.85}}},
             [npcKeys.waypoints] = {[zoneIDs.FERALAS]={{{73.81,63.45},{73.78,63.74},{73.71,63.86},{73.60,63.98},{73.55,64.00},{73.37,63.93},{73.29,63.80},{73.24,63.55},{73.28,63.40},{73.36,63.22},{73.43,63.16},{73.50,63.13},{73.61,63.10},{73.64,63.10},{73.81,63.15},{73.93,63.19},{74.05,63.08},{74.05,63.07},{74.11,62.97},{74.17,62.88},{74.25,62.76},{74.30,62.68},{74.37,62.59},{74.53,62.42},{74.63,62.35},{74.76,62.26},{74.85,62.19},{74.88,62.17},{74.98,62.09},{75.08,61.98},{75.15,61.84},{75.23,61.69},{75.33,61.48},{75.36,61.36},{75.39,61.19},{75.41,61.03},{75.46,60.85},{75.58,60.85},{75.68,60.87},{75.77,60.90},{75.89,60.94},{75.97,60.98},{76.11,61.07},{76.12,61.08},{76.25,61.17},{76.28,61.19},{76.40,61.26},{76.55,61.34},{76.62,61.38},{76.66,61.40},{76.84,61.49},{76.92,61.53},{77.00,61.56},{77.09,61.60},{77.15,61.65},{77.16,61.66},{77.25,61.77},{77.32,61.89},{77.42,62.04},{77.43,62.05},{77.54,62.02},{77.74,62.07},{77.88,62.21},{78.03,62.44},{78.14,62.48},{78.15,62.47},{78.32,62.38},{78.42,62.48},{78.49,62.72},{78.47,62.87},{78.46,62.89},{78.42,62.95},{78.19,63.07},{78.09,63.01},{78.02,62.84},{78.06,62.53},{77.97,62.35}}}},
+        },
+        [14690] = { -- Revanchion
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
         },
         [14693] = { -- Scorn
             [npcKeys.spawns] = {[zoneIDs.SCARLET_MONASTERY] = {{-1,-1}}},
@@ -3102,12 +3300,15 @@ function QuestieNPCFixes:Load()
             [npcKeys.zoneID] = zoneIDs.STRATHOLME,
             [npcKeys.spawns] = {[zoneIDs.STRATHOLME] = {{-1,-1}}},
         },
+        [16032] = { -- Falrin Treeshaper
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}},[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
         [16033] = { -- Bodley
             [npcKeys.spawns] = {[zoneIDs.EASTERN_KINGDOMS] = {{48.896,63.93}}},
             [npcKeys.zoneID] = zoneIDs.EASTERN_KINGDOMS,
         },
         [16042] = { -- Lord Valthalak
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [16059] = { -- Theldren
             [npcKeys.zoneID] = zoneIDs.BLACKROCK_DEPTHS,
@@ -3118,14 +3319,14 @@ function QuestieNPCFixes:Load()
             [npcKeys.waypoints] = {},
         },
         [16073] = { -- Spirit of Lord Valthalak
-            [npcKeys.zoneID] = zoneIDs.UPPER_BLACKROCK_SPIRE,
-            [npcKeys.spawns] = {[zoneIDs.UPPER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [16080] = { -- Mor Grayhoof
-            [npcKeys.spawns] = {[zoneIDs.LOWER_BLACKROCK_SPIRE] = {{-1,-1}}},
+            [npcKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE] = {{-1,-1}}},
         },
         [16097] = { -- Isalien
-            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL] = {{-1,-1}}},
+            [npcKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
         },
         [16101] = { -- Jarien
             [npcKeys.spawns] = {[zoneIDs.STRATHOLME] = {{-1,-1}}},

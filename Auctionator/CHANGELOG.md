@@ -1,7 +1,6 @@
 # Auctionator
 
-## [319](https://github.com/TheMouseNest/Auctionator/tree/319) (2026-03-13)
-[Full Changelog](https://github.com/TheMouseNest/Auctionator/compare/318...319) 
+## [325](https://github.com/TheMouseNest/Auctionator/tree/325) (2026-06-03)
+[Full Changelog](https://github.com/TheMouseNest/Auctionator/compare/324...325) 
 
-- Update version slash command  
-- Retail: Professions: Fix concentration not updating profits value  
+- Update toc for MoP 5.5.4  

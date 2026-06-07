@@ -4595,7 +4595,8 @@ function lib:activate()
     self.frame = frame
 
     if not isMidnight then
-      frame:RegisterEvent("LEARNED_SPELL_IN_TAB")
+      -- LEARNED_SPELL_IN_TAB was removed in MoP Classic 5.5.x; SPELLS_CHANGED below covers the same purpose
+      pcall(frame.RegisterEvent, frame, "LEARNED_SPELL_IN_TAB")
     end
     frame:RegisterEvent("CHARACTER_POINTS_CHANGED")
     frame:RegisterEvent("SPELLS_CHANGED")

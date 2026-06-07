@@ -1,46 +1,27 @@
 # DBM - Core
 
-## [12.0.38](https://github.com/DeadlyBossMods/DeadlyBossMods/tree/12.0.38) (2026-04-13)
-[Full Changelog](https://github.com/DeadlyBossMods/DeadlyBossMods/compare/12.0.37...12.0.38) [Previous Releases](https://github.com/DeadlyBossMods/DeadlyBossMods/releases)
+## [12.0.52](https://github.com/DeadlyBossMods/DeadlyBossMods/tree/12.0.52) (2026-05-27)
+[Full Changelog](https://github.com/DeadlyBossMods/DeadlyBossMods/compare/12.0.51...12.0.52) [Previous Releases](https://github.com/DeadlyBossMods/DeadlyBossMods/releases)
 
-- prep new tag. maybe  
-- also use GetPartyAssignment as additional fallback for classic "isTank" checks  
-- cleanup redundant checks in specrole  
-- fix to gearcheck queries so they aren't over aggressive and hitting unnessesary throttles or timeouts  
-- Fix bad scrollbar/refresh button behaviors that'd cause tools gui frames to have over scroll and place refresh button under a needless scroll when frames would have too few columns to trigger auto resize.  
-- Fix nitpick  
-- Durability, gear, Keystones, and latency will now use unified player column width and realm name to * logic for cleaner reading and reduced footprint for player name  
-    Gear check will now also show missing enchants/gems. In coming days will update it to also show number of cheap gems/enchants in use.  
-- reduce unnessesary global space functions in ilvl check  
-- non player check is already rounded (and not to first decimal unfortunately), so no sense in rounding again.  
-- fix bug causing close button to disappear  
-- update remaining translations  
-- Add very basic gear ilvl check (#2025)  
-- Update deDE (#2021)  
-- Update commonlocal.tw.lua (#2022)  
-- Mini dragon patch 1 (#2024)  
-- scope morium tank warning to only show if you have status 3 return on threat.  
-- Add pre warning and warning for color swaps on beloren  
-    Scope rift slash warning on crown to only be on tank who has threat on simulacrum  
-    Preliminary Vanguard mythic hardcode.  
-- also readd original log command  
-- don't ever clear debug log on debugmode disabling to avoid all the accidental clears  
-- wrath titan toc bump  
-- workaround blizzards overscheduling of timers on lightbound with a force enable of 60 second bar filter rule on fight (especially on mythic) to avoid bar spam.  
-- adjust threat checks for midnight  
-- here too, to reduce spam  
-- Add a litle experiment while at it  
-- enable in LFR too for testing purposes  
-- Upgrade midnight falls to hardcode for both normal and heroic  
-    cleanup unused  
-- prevent skipping midnight falls cutscene if manually played  
-- Add missing Averzian mythic hardcode  
-- Crown  
-     - Fixed a bug that could cause hardcode misrouting for 2 sting timers in longer Stage 2 pulls on heroic  
-     - Fixed a regression that caused stage 3 changeover not to occur anymore on heroic difficulty do to over correction in stage change filter.  
-     - Fixed invalid sound and bar colors on interrupting tremor.  
-    Vaelgor and Ezzorak  
-     - Added additional timer routing for longer stage 3 pulls on heroic  
-- Fixes #2018 (#2019)  
-- add heroic routing to beloren from week 4  
-- Fix DBM not loading on Predaxas  
+- prep new tag  
+- Update translation (#2110)  
+- Improve option version validation  
+- Fix regression causing salad bar timers to all be missing. eventState isn't sent by ADDED payload anymore so a recent filter I added didn't quite work  
+- Update translation (#2107)  
+- Tighten timer variances to eliminate more false collisions on dragons mythic  
+- Fix regressed lua error from no nil check. status == 3 was both a number check AND a nil check, but status >= 2 is only a numeric check that lost the nil check. Lua semantics 🤣  
+- handle light and dark feather custom sounds differently so they always play  
+- Update Translations / Sort CL keys alphabetical order (#2105)  
+- Update koKR (#2103)  
+- Update RU locales (#2104)  
+- make threat check more likley to succeed on retail  
+- modify skipped globals  
+- Improve keystone slash register so it waits for other addons to load after DBM before checking if /key commands have been registered by someone else.  
+    In addition, also added an option that's off by default if user wants to intentionally overrite another addons slash commands (especially ones that do not give user an opt out of overriding)  
+- use more robust caching of boss HP to try and fix https://github.com/DeadlyBossMods/DeadlyBossMods/issues/2102  
+- Some rename tweaks  
+- Switch light/void dive back to private aura. trying to use the blizz warning text isn't clean because they happen at same time (therefor cannot cleanly be disambiguated)  
+- Begin next phase of rename api rollout. (#2100)  
+- Fix checkout misbehaving  
+- Fix extra space in version messages  
+- bump alpha  

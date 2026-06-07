@@ -69,17 +69,18 @@ end
 ---@param offset number
 ---@param totalLines number
 local refreshFunc = function(self, data, offset, totalLines)
-    if not data.combatSources then
-        print(debugstack())
+    local header = self.Header
+    local playerData = data and data.combatSources
+    if (not playerData) then
+        header.refreshColumn = nil
+        return
     end
 
-    local header = self.Header
     local windowFrame = self:GetWindow()
     local selectedActor = windowFrame:GetPlayerObject()
     local selectedActorGuid = getActorGuid(selectedActor)
     local selectedActorName = getActorName(selectedActor)
-    local playerData = data.combatSources
-    local maxAmount = data.maxAmount
+    local maxAmount = data.maxAmount or 1
 
     for i = 1, totalLines do
         local index = i + offset
@@ -111,7 +112,11 @@ local refreshFunc = function(self, data, offset, totalLines)
             if not issecretvalue(name) then
                 name = detailsFramework:RemoveRealmName(name)
             else
-                name = UnitName(name) or name
+                if Details222.IsTOCBiggerOrEqualTo(120005) then
+                    name = Ambiguate(name, "none")
+                else
+                    name = UnitName(name) or name
+                end
             end
 
             line.Texts[2]:SetText(name)
@@ -153,6 +158,11 @@ function breakdownMidnight.PlayerSectionInit(sectionFrame, windowFrame)
         local playerData, headerLabels = breakdownMidnight.GeneratePlayerData(windowFrame)
         breakdownMidnight.UpdateSectionHeader(windowFrame, breakdownMidnight.Enums.SectionIds.Players, headerLabels)
         --assignPlayerRank(playerData.combatSources)
+
+        local total = #playerData.combatSources
+        for i = 1, total do
+            playerData[i] = true
+        end
 
         thisPlayerScroll:SetData(playerData)
         thisPlayerScroll:Refresh()

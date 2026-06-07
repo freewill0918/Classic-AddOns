@@ -38,6 +38,7 @@ LibSharedMedia:Register ("font", "Accidental Presidency", [[Interface\Addons\Pla
 LibSharedMedia:Register ("font", "TrashHand", [[Interface\Addons\Plater\fonts\TrashHand.TTF]])
 LibSharedMedia:Register ("font", "Harry P", [[Interface\Addons\Plater\fonts\HARRYP__.TTF]])
 LibSharedMedia:Register ("font", "FORCED SQUARE", [[Interface\Addons\Plater\fonts\FORCED SQUARE.ttf]])
+LibSharedMedia:Register ("font", "Expressway", [[Interface\Addons\Plater\fonts\Expressway.TTF]])
 
 LibSharedMedia:Register("sound", "Plater HiHat", [[Interface\Addons\Plater\sounds\Plater HiHat.ogg]])
 LibSharedMedia:Register("sound", "Plater Hit", [[Interface\Addons\Plater\sounds\Plater Hit.ogg]])
@@ -162,6 +163,9 @@ PLATER_DEFAULT_SETTINGS = {
 		click_space_always_show = false,
 		hide_friendly_castbars = false,
 		hide_enemy_castbars = false,
+
+		hide_realm_name_on_blizzard = true,
+		hide_friendly_npc_healthbar = false,
 		
 		--> offset of the whole nameplate
 		global_offset_y = 0,
@@ -208,6 +212,7 @@ PLATER_DEFAULT_SETTINGS = {
 				actorname_text_shadow_color_offset = {1, -1},
 				actorname_text_anchor = {side = 8, x = 0, y = 0},
 				actorname_text_max_width = 0,
+				actorname_text_wrap = false,
 				
 				spellname_text_size = 10,
 				spellname_text_font = "Arial Narrow",
@@ -217,6 +222,7 @@ PLATER_DEFAULT_SETTINGS = {
 				spellname_text_shadow_color_offset = {1, -1},
 				spellname_text_anchor = {side = 9, x = 0, y = 0},
 				spellname_text_max_width = 0,
+				spellname_text_wrap = false,
 				
 				spellpercent_text_enabled = false,
 				spellpercent_text_size = 10,
@@ -281,6 +287,7 @@ PLATER_DEFAULT_SETTINGS = {
 				actorname_text_shadow_color_offset = {1, -1},
 				actorname_text_anchor = {side = 4, x = 0, y = 0},
 				actorname_text_max_width = 0,
+				actorname_text_wrap = false,
 				
 				spellname_text_size = 10,
 				spellname_text_font = "Arial Narrow",
@@ -290,6 +297,7 @@ PLATER_DEFAULT_SETTINGS = {
 				spellname_text_shadow_color_offset = {1, -1},
 				spellname_text_anchor = {side = 9, x = 0, y = 0},
 				spellname_text_max_width = 0,
+				spellname_text_wrap = false,
 				
 				spellpercent_text_enabled = true,
 				spellpercent_text_size = 10,
@@ -367,6 +375,7 @@ PLATER_DEFAULT_SETTINGS = {
 				actorname_text_shadow_color_offset = {1, -1},
 				actorname_text_anchor = {side = 8, x = 0, y = 0},
 				actorname_text_max_width = 0,
+				actorname_text_wrap = false,
 				
 				spellname_text_size = 10,
 				spellname_text_font = "Arial Narrow",
@@ -376,6 +385,7 @@ PLATER_DEFAULT_SETTINGS = {
 				spellname_text_shadow_color_offset = {1, -1},
 				spellname_text_anchor = {side = 9, x = 0, y = 0},
 				spellname_text_max_width = 0,
+				spellname_text_wrap = false,
 				
 				spellpercent_text_enabled = false,
 				spellpercent_text_size = 10,
@@ -454,6 +464,7 @@ PLATER_DEFAULT_SETTINGS = {
 				actorname_text_shadow_color_offset = {1, -1},
 				actorname_text_anchor = {side = 4, x = 0, y = 0},
 				actorname_text_max_width = 0,
+				actorname_text_wrap = false,
 				
 				spellname_text_size = 12,
 				spellname_text_font = "Arial Narrow",
@@ -463,6 +474,7 @@ PLATER_DEFAULT_SETTINGS = {
 				spellname_text_shadow_color_offset = {1, -1},
 				spellname_text_anchor = {side = 9, x = 0, y = 0},
 				spellname_text_max_width = 0,
+				spellname_text_wrap = false,
 				
 				spellpercent_text_enabled = true,
 				spellpercent_text_size = 11,
@@ -547,6 +559,7 @@ PLATER_DEFAULT_SETTINGS = {
 				actorname_text_shadow_color_offset = {1, -1},
 				actorname_text_anchor = {side = 8, x = 0, y = 0},
 				actorname_text_max_width = 0,
+				actorname_text_wrap = false,
 				
 				spellname_text_size = 10,
 				spellname_text_font = "Arial Narrow",
@@ -556,6 +569,7 @@ PLATER_DEFAULT_SETTINGS = {
 				spellname_text_shadow_color_offset = {1, -1},
 				spellname_text_anchor = {side = 9, x = 0, y = 0},
 				spellname_text_max_width = 0,
+				spellname_text_wrap = false,
 				
 				spellpercent_text_enabled = true,
 				spellpercent_text_size = 10,
@@ -764,6 +778,7 @@ PLATER_DEFAULT_SETTINGS = {
 		castbar_target_color = {0.968627, 0.992156, 1, 1},
 		castbar_target_font = "Arial Narrow",
 		castbar_target_text_max_width = 0,
+		castbar_target_text_wrap = false,
 
 		--> castbar icon
 		castbar_icon_customization_enabled = true,

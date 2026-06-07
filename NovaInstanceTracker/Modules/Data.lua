@@ -532,9 +532,9 @@ f:SetScript('OnEvent', function(self, event, ...)
 		end)
 	elseif (event == "PLAYER_GUILD_UPDATE") then
 		NIT:throddleEventByFunc(event, 1, "recordGuildInfo");
-	elseif( event == "ACTIVE_DELVE_DATA_UPDATE") then
+	elseif(event == "ACTIVE_DELVE_DATA_UPDATE") then
 		if (C_PartyInfo and C_PartyInfo.IsDelveInProgress and C_PartyInfo.IsDelveInProgress() and not NIT.inInstance) then
-			NIT:enteredDelve();
+			NIT:enteredDelve(nil, nil, nil, true);
 		end
 	elseif (event == "ZONE_CHANGED_NEW_AREA") then
 		if (C_PartyInfo and C_PartyInfo.IsDelveInProgress) then
@@ -1001,6 +1001,10 @@ function NIT:playerEnteringWorld(...)
 		end
 	elseif (NIT.inInstance and not isReload) then
 		NIT:leftInstance();
+	elseif (isReload) then
+		NIT:checkDelveReloadOrLogon(true);
+	elseif (isLogon) then
+		NIT:checkDelveReloadOrLogon(nil, true);
 	end
 end
 
@@ -1444,10 +1448,24 @@ end
 	RaidNotice_AddMessage(RaidWarningFrame, NIT.prefixColor .. "[NIT Reminder]:|r |cFF00FF00" .. string.format(L["autoGammaBuffReminder"], npcType), colorTable, 6);
 end]]
 
-function NIT:enteredDelve()
+function NIT:checkDelveReloadOrLogon(isReload, isLogon)
 	C_Timer.After(1, function()
 		if (not NIT.inInstance) then
-			NIT:enteredInstance();
+			local instance, instanceType = IsInInstance();
+			if (instanceType == "scenario") then
+				local _, _, difficultyID = GetInstanceInfo();
+				if (difficultyID == 208) then
+					NIT:enteredDelve(isReload, isLogon, nil, true);
+				end
+			end
+		end
+	end)
+end
+
+function NIT:enteredDelve(isReload, isLogon, checkAgain, checkDelve)
+	C_Timer.After(1, function()
+		if (not NIT.inInstance) then
+			NIT:enteredInstance(isReload, isLogon, checkAgain, checkDelve);
 		end
 	end)
 end
@@ -1459,7 +1477,7 @@ end
 local isGhost = false;
 NIT.lastInstanceName = "(Unknown Instance)";
 local doneFirstGUIDCheck;
-function NIT:enteredInstance(isReload, isLogon, checkAgain)
+function NIT:enteredInstance(isReload, isLogon, checkAgain, checkDelve)
 	doGUID = true;
 	local instance, instanceType = IsInInstance();
 	local type;
@@ -1489,6 +1507,10 @@ function NIT:enteredInstance(isReload, isLogon, checkAgain)
 	end
 	if (checkAgain) then
 		NIT:debug("Rechecked Instance:", instance, "Type:", instanceType, NIT:isInArena(), UnitInBattleground("player"));
+	end
+	if (checkDelve and instanceType == "scenario" and not instance and not NIT.inInstance) then
+		--Backup check for new midnight delves
+		instance = true;
 	end
 	if (instance and instanceType == "scenario") then
 		--Check for delves.
@@ -2072,6 +2094,12 @@ function NIT:parseGUID(unit, GUID, source, isCast)
 		return;
 	end
 	if (not GUID) then
+		if (not unit) then
+			return;
+		end
+		if (issecretvalue and issecretvalue(unit)) then
+			return;
+		end
 		GUID = UnitGUID(unit);
 	end
 	if (GUID and doGUID and NIT.inInstance and (not string.match(source, "combatlog") or GetServerTime() - NIT.inInstance > 2)) then

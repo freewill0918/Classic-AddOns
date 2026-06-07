@@ -39,7 +39,6 @@ local OnSetTextHookScript = function(frame, text, flag)
     end
 end
 
-
 function Player:OnInitialize()
     self.db = EasyFrames.db
     db = self.db.profile
@@ -47,23 +46,27 @@ function Player:OnInitialize()
 end
 
 function Player:OnEnable()
-    self:SetScale(db.player.scaleFrame)
     self:ShowName(db.player.showName)
     self:SetFrameNameFont()
     self:SetFrameNameColor()
     self:SetHealthBarsFont()
     self:SetManaBarsFont()
     self:ShowHitIndicator(db.player.showHitIndicator)
-    --self:ShowSpecialbar(db.player.showSpecialbar)
     self:ShowRestIcon(db.player.showRestIcon)
     self:ShowStatusTexture(db.player.showStatusTexture)
     self:ShowAttackBackground(db.player.showAttackBackground)
-    self:SetAttackBackgroundOpacity(db.player.attackBackgroundOpacity)
     self:ShowGroupIndicator(db.player.showGroupIndicator)
     self:ShowRoleIcon(db.player.showRoleIcon)
     self:ShowPVPIcon(db.player.showPVPIcon)
 
-    self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
+    hooksecurefunc(PlayerFrame_GetHealthBar(), "UpdateTextString", function()
+        self:UpdateHealthBarTextString(PlayerFrame);
+    end)
+
+    hooksecurefunc(PlayerFrame_GetManaBar(), "UpdateTextString", function()
+        self:UpdateManaBarTextString(PlayerFrame);
+    end)
+
     self:SecureHook("UnitFramePortrait_Update", "MakeClassPortraits")
 end
 
@@ -71,7 +74,6 @@ function Player:OnProfileChanged(newDB)
     self.db = newDB
     db = self.db.profile
 
-    self:SetScale(db.player.scaleFrame)
     self:MakeClassPortraits(PlayerFrame)
     self:ShowName(db.player.showName)
     self:SetFrameNameFont()
@@ -88,13 +90,8 @@ function Player:OnProfileChanged(newDB)
     self:ShowRoleIcon(db.player.showRoleIcon)
     self:ShowPVPIcon(db.player.showPVPIcon)
 
-    self:UpdateTextStringWithValues()
-    self:UpdateTextStringWithValues(PlayerFrameManaBar)
-end
-
-
-function Player:SetScale(value)
-    PlayerFrame:SetScale(value)
+    self:UpdateHealthBarTextString(PlayerFrame)
+    self:UpdateManaBarTextString(PlayerFrame)
 end
 
 function Player:MakeClassPortraits(frame)
@@ -136,13 +133,11 @@ function Player:ShowNameInsideFrame(value)
         local point, relativeTo, relativePoint, xOffset, yOffset = healthBar:GetPoint()
 
         if (value and db.player.showName) then
-            Core:MovePlayerFrameName(nil, nil, nil, nil, 20)
-
-            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, yOffset - 4)
+            Core:MovePlayerFrameName(nil, nil, nil, nil, 16)
+            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, yOffset - 5)
         else
             Core:MovePlayerFrameName()
-
-            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, 12)
+            Core:MovePlayerFramesBarsTextString()
         end
     end
 end
@@ -202,29 +197,29 @@ end
 --    end
 --end
 
-function Player:UpdateTextStringWithValues(statusBar)
-    local frame = statusBar or PlayerFrameHealthBar
-
+function Player:UpdateHealthBarTextString(frame)
     if (frame.unit == "player") then
-        if (frame == PlayerFrameHealthBar) then
-            UpdateHealthValues(
-                frame,
-                db.player.healthFormat,
-                db.player.customHealthFormat,
-                db.player.customHealthFormatFormulas,
-                db.player.useHealthFormatFullValues,
-                db.player.useChineseNumeralsHealthFormat
-            )
-        elseif (frame == PlayerFrameManaBar) then
-            UpdateManaValues(
-                frame,
-                db.player.manaFormat,
-                db.player.customManaFormat,
-                db.player.customManaFormatFormulas,
-                db.player.useManaFormatFullValues,
-                db.player.useChineseNumeralsManaFormat
-            )
-        end
+        UpdateHealthValues(
+            PlayerFrameHealthBar,
+            db.player.healthFormat,
+            db.player.customHealthFormat,
+            db.player.customHealthFormatFormulas,
+            db.player.useHealthFormatFullValues,
+            db.player.useChineseNumeralsHealthFormat
+        )
+    end
+end
+
+function Player:UpdateManaBarTextString(frame)
+    if (frame.unit == "player") then
+        UpdateManaValues(
+            PlayerFrameManaBar,
+            db.player.manaFormat,
+            db.player.customManaFormat,
+            db.player.customManaFormatFormulas,
+            db.player.useManaFormatFullValues,
+            db.player.useChineseNumeralsManaFormat
+        )
     end
 end
 
@@ -244,8 +239,8 @@ function Player:SetManaBarsFont()
     local fontStyle = db.player.manaBarFontStyle
 
     PlayerFrameManaBar.TextString:SetFont(fontFamily, fontSize, fontStyle)
-    PlayerFrameManaBar.RightText:SetFont(fontFamily, fontSize, fontStyle)
     PlayerFrameManaBar.LeftText:SetFont(fontFamily, fontSize, fontStyle)
+    PlayerFrameManaBar.RightText:SetFont(fontFamily, fontSize, fontStyle)
     --PlayerFrameAlternateManaBar.TextString:SetFont(fontFamily, fontSize, fontStyle)
 end
 
@@ -259,12 +254,17 @@ end
 
 function Player:SetFrameNameColor()
     local color = db.player.playerNameColor
+    local classColor = EasyFrames.Utils.GetColorByClass(PlayerFrame)
 
-    EasyFrames.Utils.SetTextColor(PlayerName, color)
+    if db.player.playerNameColorByClass and classColor then
+        EasyFrames.Utils.SetTextColor(PlayerName, classColor)
+    else
+        EasyFrames.Utils.SetTextColor(PlayerName, color)
+    end
 end
 
 function Player:ResetFrameNameColor()
-    EasyFrames.db.profile.player.playerNameColor = {unpack(EasyFrames.Const.DEFAULT_FRAMES_NAME_COLOR)}
+    EasyFrames.db.profile.player.playerNameColor = { unpack(EasyFrames.Const.DEFAULT_FRAMES_NAME_COLOR) }
 end
 
 function Player:ShowRestIcon(value)
@@ -308,7 +308,6 @@ function Player:ShowStatusTexture(value)
         end
     end
 end
-
 
 function Player:ShowAttackBackground(value)
     for _, frame in pairs({

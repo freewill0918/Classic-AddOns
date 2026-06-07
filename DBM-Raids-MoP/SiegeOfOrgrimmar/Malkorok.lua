@@ -1,9 +1,13 @@
 local mod	= DBM:NewMod(846, "DBM-Raids-MoP", 1, 369)
 local L		= mod:GetLocalizedStrings()
 
-mod.statTypes = "normal,heroic,mythic,lfr"
+if mod:IsMop() then
+	mod.statTypes = "normal10,normal25,heroic10,heroic25,lfr"
+else
+	mod.statTypes = "normal,heroic,mythic,lfr"
+end
 
-mod:SetRevision("20260315035327")
+mod:SetRevision("20260517214918")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(71454)
 mod:SetEncounterID(1595)
@@ -55,7 +59,7 @@ local timerFatalStrike					= mod:NewTargetTimer(30, 142990, nil, "Tank", nil, 5,
 local berserkTimer						= mod:NewBerserkTimer(360)
 
 mod:AddSetIconOption("SetIconOnDisplacedEnergy", 142913, false)
-mod:AddSetIconOption("SetIconOnAdds", "ej7952", false, 5)
+mod:AddSetIconOption("SetIconOnAdds", -7952, false, 5)
 
 --Upvales, don't need variables
 local displacedEnergyDebuff = DBM:GetSpellName(142913)

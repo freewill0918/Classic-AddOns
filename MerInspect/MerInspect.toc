@@ -1,4 +1,4 @@
-## Interface: 50501, 50500, 40402, 30405, 11507
+## Interface: 50504, 50503, 50501, 50500, 40402, 30405, 11507
 ## Title: MerInspect
 ## Version: 1.2.7
 ## Notes: Inspect Assiest

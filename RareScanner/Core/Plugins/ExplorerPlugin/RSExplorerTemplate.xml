@@ -29,8 +29,8 @@
 				</Texture>
 				<Texture parentKey="BaseFrameLeftEdge" atlas="GarLanding-Left" useAtlasSize="false">
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="83" y="-30" />
-						<Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMLEFT" x="-3" y="30" />
+						<Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="-5" y="-5" />
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMLEFT" x="83" y="5" />
 					</Anchors>
 				</Texture>
 				<Texture parentKey="BaseFrameRightEdge" atlas="GarLanding-Right" useAtlasSize="false">
@@ -127,7 +127,7 @@
 								<AbsDimension x="12" y="626" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="-3" />
+								<Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT"  />
 							</Anchors>
 						</Texture>
 						<Texture parentKey="BaseFrameRightEdge" atlas="GarLanding-Right" useAtlasSize="false">
@@ -161,7 +161,7 @@
 								<AbsDimension x="32" y="32" />
 							</Size>
 							<Anchors>
-								<Anchor point="BOTTOMLEFT" x="-3" />
+								<Anchor point="BOTTOMLEFT" />
 							</Anchors>
 						</Texture>
 						<Texture parentKey="BaseFrameBottomRightCorner" atlas="GarrLanding-lowerright" useAtlasSize="false">
@@ -307,9 +307,9 @@
 				</Scripts>
 			</Button>
 			<Frame parentKey="Map">
+				<Size x="580" y="385"/>
 				<Anchors>
-					<Anchor point="BOTTOMLEFT" relativeKey="$parent.Header" relativePoint="BOTTOMLEFT" />
-					<Anchor point="TOPRIGHT" x="-10" y="-450" />
+					<Anchor point="TOPLEFT" relativeKey="$parent.Header" relativePoint="BOTTOMLEFT" />
 				</Anchors>
 			</Frame>
 			<Frame parentKey="Mounts" inherits="RSExplorerRareInfoLootTemplate">

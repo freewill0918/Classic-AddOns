@@ -27,6 +27,65 @@ local isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC -- 19
 
 Skillet.NewsName = "Skillet-Classic News"
 Skillet.NewsData = {
+	{	version = "2.37",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "Shopping", body = "Update to C_Item. and C_Container. functions" },
+				},
+			},
+		},
+	},
+	{	version = "2.36",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "Recipes", body = "Fix recipe scanning" },
+				},
+			},
+		},
+	},
+	{	version = "2.35",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "TOC", body = "Update TOC" },
+					{ header = "Recipes", body = "Ignore recipes with no valid links" },
+				},
+			},
+		},
+	},
+	{	version = "2.34",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "Groups", body = "Better groupSN implementation\nLess active DEBUG" },
+					{ header = "Plugins", body = "Restore CanIMogIt plugin" },
+				},
+			},
+		},
+	},
+	{	version = "2.33",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "Groups", body = "Fix RecipeGroupRenameEntry" },
+				},
+			},
+		},
+	},
+	{	version = "2.32",
+		data = {
+			{	name = "Changes",
+				data = {
+					{ header = "Recipes", body = "Update option to always display skill up chance\nAdd options to recipe right-click menu" },
+					{ header = "SkillLevels", body = "Hide unimplemented mouse actions when not debugging" },
+					{ header = "Errors", body = "Add specific text to some combat restriction messages" },
+					{ header = "UI", body = "More fixes to delayupdate" },
+				},
+			},
+		},
+	},
 	{	version = "2.31",
 		data = {
 			{	name = "Changes",

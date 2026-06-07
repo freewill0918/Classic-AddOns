@@ -78,6 +78,33 @@ QuestieItemDropCorrections.Era = {
         [930] = DropKeys.WOWHEAD,
         [949] = DropKeys.WOWHEAD,
     },
+    [1468] = { -- Murloc Fin
+        [422] = DropKeys.WOWHEAD,
+        [544] = DropKeys.WOWHEAD,
+        [545] = DropKeys.WOWHEAD,
+        [548] = DropKeys.WOWHEAD,
+        [578] = DropKeys.WOWHEAD,
+        [1024] = DropKeys.WOWHEAD,
+        [1025] = DropKeys.WOWHEAD,
+        [1026] = DropKeys.WOWHEAD,
+        [1027] = DropKeys.WOWHEAD,
+        [1028] = DropKeys.WOWHEAD,
+        [1029] = DropKeys.WOWHEAD,
+        [1083] = DropKeys.WOWHEAD,
+        [1259] = DropKeys.WOWHEAD,
+        [1418] = DropKeys.WOWHEAD,
+        [3654] = DropKeys.WOWHEAD,
+        [3737] = DropKeys.WOWHEAD,
+        [3739] = DropKeys.WOWHEAD,
+        [3740] = DropKeys.WOWHEAD,
+        [3742] = DropKeys.WOWHEAD,
+        [4818] = DropKeys.WOWHEAD,
+        [4819] = DropKeys.WOWHEAD,
+        [4820] = DropKeys.WOWHEAD,
+        [6243] = DropKeys.WOWHEAD,
+        [10643] = DropKeys.WOWHEAD,
+        [14270] = DropKeys.WOWHEAD,
+    },
     [1519] = { -- Bloodscalp Ear
         [587] = DropKeys.WOWHEAD,
         [588] = DropKeys.WOWHEAD,
@@ -199,6 +226,16 @@ QuestieItemDropCorrections.Era = {
         [1022] = 1.5,
         [1023] = 1.5,
     },
+    [5366] = { -- Glowing Soul Gem
+        [3725] = DropKeys.WOWHEAD,
+        [3727] = DropKeys.WOWHEAD,
+        [3728] = DropKeys.WOWHEAD,
+        [3730] = DropKeys.WOWHEAD,
+        [3879] = DropKeys.WOWHEAD,
+    },
+    [5669] = { -- Dust Devil Debris
+        [832] = 50.0, -- not 100%, not 5%. Could be more than 50%
+    },
     [6443] = { -- Deviate Hide
         [3630] = DropKeys.WOWHEAD,
         [3631] = DropKeys.WOWHEAD,
@@ -225,6 +262,9 @@ QuestieItemDropCorrections.Era = {
     [6652] = { -- Reagent Pouch
         [3199] = 75,
     },
+    [6915] = { -- Large Soran'ruk Fragment
+        [3855] = 20, -- empyrical value
+    },
     [7267] = { -- Pristine Spider Silk
         [930] = 18,
         [949] = 100,
@@ -238,9 +278,37 @@ QuestieItemDropCorrections.Era = {
     [11479] = { -- Un'Goro Stomper Pelt
         [6513] = DropKeys.WOWHEAD,
     },
+    [11829] = { -- Un'Goro Ash
+        [6520] = 100.0,
+        [6521] = 100.0,
+        [9376] = 10.0,
+        [14460] = 100.0,
+        [14461] = 10.0,
+    },
     [15852] = { -- Kodo Horn
         [3234] = 100,
         [3236] = 100,
+    },
+    [20373] = { -- Stonelash Scorpid Stinger
+        [11735] = DropKeys.WOWHEAD,
+    },
+    [20374] = { -- Stonelash Pincer Stinger
+        [11736] = DropKeys.WOWHEAD,
+    },
+    [20375] = { -- Stonelash Flayer Stinger
+        [11737] = DropKeys.WOWHEAD,
+    },
+    [20376] = { -- Sand Skitterer Fang
+        [11738] = DropKeys.WOWHEAD,
+    },
+    [20377] = { -- Rock Stalker Fang
+        [11739] = DropKeys.WOWHEAD,
+    },
+    [21108] = { -- Draconic for Dummies (Chapter VI)
+        [10184] = 100,
+    },
+    [21110] = { -- Draconic for Dummies (Chapter VIII)
+        [11502] = 100,
     },
     [190232] = { -- Withered Scarf
         [3782] = 5, -- super bad drop rate, wowhead shows 3%. it's somewhere between 5-10%
@@ -310,8 +378,20 @@ QuestieItemDropCorrections.Tbc = {
         [18133] = DropKeys.WOWHEAD,
         [20198] = DropKeys.WOWHEAD,
     },
+    [25461] = { -- Book of Forgotten Names
+        [18472] = 100,
+    },
+    [25462] = { -- Tome of Dusk
+        [16807] = 100,
+    },
+    [25463] = { -- Pair of Ivory Tusks
+        [18334] = 100,
+    },
     [25891] = { -- Pristine Shimmerscale Eel
         [18750] = DropKeys.WOWHEAD,
+    },
+    [28667] = { -- Flawless Greater Windroc Beak
+        [17129] = DropKeys.WOWHEAD,
     },
     [28668] = { -- Aged Clefthoof Blubber
         [17133] = DropKeys.WOWHEAD,
@@ -320,11 +400,23 @@ QuestieItemDropCorrections.Tbc = {
         [17014] = 100,
         [19527] = 100,
     },
+    [29163] = { -- Raw Farahlite
+        [18885] = 100,
+        [18886] = 100,
+        [20202] = 100,
+    },
     [29480] = { -- Parched Hydra Sample
         [20324] = DropKeys.WOWHEAD,
     },
     [29481] = { -- Withered Bog Lord Sample
         [19402] = DropKeys.WOWHEAD,
+    },
+    [29591] = { -- Prepared Ethereum Wrapping
+        [20458] = DropKeys.WOWHEAD,
+        [20459] = DropKeys.WOWHEAD,
+    },
+    [30184] = { -- Thunderlord Dire Wolf Tail
+        [20748] = 100,
     },
     [30327] = { -- Bonechewer Blood
         [16876] = DropKeys.WOWHEAD,
@@ -332,8 +424,23 @@ QuestieItemDropCorrections.Tbc = {
         [18952] = DropKeys.WOWHEAD,
         [19701] = DropKeys.WOWHEAD,
     },
+    [30743] = { -- Proto-Nether Drake Essence
+        [20021] = 100,
+    },
+    [30782] = { -- Adolescent Nether Drake Essence
+        [20021] = 100,
+    },
+    [30783] = { -- Mature Nether Drake Essence
+        [20021] = 100,
+    },
     [30798] = { -- Extra Sharp Daggermaw Tooth
         [20751] = DropKeys.WOWHEAD,
+    },
+    [30819] = { -- Felfire Spleen
+        [21408] = DropKeys.WOWHEAD,
+    },
+    [30867] = { -- Overdeveloped Felfire Gizzard
+        [21462] = DropKeys.WOWHEAD,
     },
     [31119] = { -- Wyrmcult Net
         [21809] = DropKeys.WOWHEAD,
@@ -344,9 +451,17 @@ QuestieItemDropCorrections.Tbc = {
         [21849] = DropKeys.WOWHEAD,
         [22466] = DropKeys.WOWHEAD,
     },
+    [31316] = { -- Lianthe's Key
+        [19792] = DropKeys.WOWHEAD,
+        [19796] = DropKeys.WOWHEAD,
+        [19806] = DropKeys.WOWHEAD,
+    },
     [31812] = { -- Doom Skull
         [21242] = DropKeys.WOWHEAD,
         [21285] = DropKeys.WOWHEAD,
+    },
+    [31814] = { -- Mature Bone Sifter Carcass
+        [22482] = 100,
     },
 }
 

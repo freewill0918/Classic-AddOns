@@ -27,6 +27,8 @@ local db
 local UpdateHealthValues = EasyFrames.Utils.UpdateHealthValues
 local UpdateManaValues = EasyFrames.Utils.UpdateManaValues
 local PartyIterator = EasyFrames.Helpers.Iterator(EasyFrames.Utils.GetPartyFrames())
+local ClassPortraits = EasyFrames.Utils.ClassPortraits
+local DefaultPortraits = EasyFrames.Utils.DefaultPortraits
 
 function Party:OnInitialize()
     self.db = EasyFrames.db
@@ -34,29 +36,24 @@ function Party:OnInitialize()
 end
 
 function Party:OnEnable()
-    self:SetScale(db.party.scaleFrame)
     self:ShowName(db.party.showName)
-    self:SetFlashTexture()
     self:SetFrameNameFont()
     self:SetFrameNameColor()
     --self:SetHealthBarsFont()
     --self:SetManaBarsFont()
 
-    -- 暫時修正與 UnitFramesPlus 的相容性
-	if not IsAddOnLoaded("UnitFramesPlus") then
-		self:SecureHook("PartyMemberFrame_OnEvent", "PartyFrame_UpdateAuras")
-	end
+    --self:SecureHook("PartyMemberFrame_OnEvent", "PartyFrame_UpdateAuras")
 
     --self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
+
+    self:SecureHook("UnitFramePortrait_Update", "MakeClassPortraits")
 end
 
 function Party:OnProfileChanged(newDB)
     self.db = newDB
     db = self.db.profile
 
-    self:SetScale(db.party.scaleFrame)
     self:ShowName(db.party.showName)
-    self:SetFlashTexture()
     self:SetFrameNameFont()
     self:SetFrameNameColor()
     --self:SetHealthBarsFont()
@@ -66,17 +63,14 @@ function Party:OnProfileChanged(newDB)
     --self:UpdateTextStringWithValues(PartyMemberFrame1ManaBar)
 end
 
-function Party:SetScale(value)
-    PartyIterator(function(frame)
-        frame:SetScale(value)
-    end)
-end
-
-function Party:SetFlashTexture()
-    PartyIterator(function(frame)
-        local flashBar = _G[frame:GetName() .. "Flash"]
-        flashBar:SetTexture(Media:Fetch("misc", "party-frame-flash"));
-    end)
+function Party:MakeClassPortraits(frame)
+    if (frame and (frame.unit == "party1" or frame.unit == "party2" or frame.unit == "party3" or frame.unit == "party4")) then
+        if (db.party.portrait == "2") then
+            ClassPortraits(frame)
+        else
+            DefaultPortraits(frame)
+        end
+    end
 end
 
 --function Party:UpdateTextStringWithValues(statusBar)

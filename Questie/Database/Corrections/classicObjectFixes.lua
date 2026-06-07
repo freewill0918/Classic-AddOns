@@ -48,6 +48,10 @@ function QuestieObjectFixes:Load()
         [2712] = {
             [objectKeys.spawns] = {[zoneIDs.ARATHI_HIGHLANDS]={{18,89},{19,90},{20,85},{21,87},{21,90},{21,92},{22,84},{22,90},{23,84},{23,90},{23,88},{23,89},{23,92},{24,87},{24,88},{24,89},{24,85},{24,86},{25,86},{25,87},{25,89},{25,90},{25,91}}},
         },
+        [2743] = { -- Carved Stone Urn
+            [objectKeys.spawns] = {[zoneIDs.EASTERN_KINGDOMS]={{52.32,63.467}},[zoneIDs.BADLANDS]={{34.72,23.94},{39.79,19.67},{42.81,9.95}},[zoneIDs.LOCH_MODAN]={{34.64,96.14},{33.84,92.91},{33.87,95.63},{32.16,90.6},{33.03,88.66},{38.78,92.87},{35.13,90.97},{35.46,86.71},{40.06,90.65},{37.34,88.77},{39.73,87.12}}},
+            [objectKeys.zoneID] = zoneIDs.EASTERN_KINGDOMS,
+        },
         [2744] = {
             [objectKeys.spawns] = {[zoneIDs.STRANGLETHORN_VALE]={{23.6,23.4},{23.6,23.5},{23.7,27.2},{23.7,29.8},{23.8,29.1},{24,25.4},{24,25.5},{24.4,28},{24.8,29.5},{24.9,29.1},{25.2,26.9},{25.3,25},{25.3,26.4},{25.3,27.5},{25.4,22.7},{25.4,24.1},{25.7,22.9},{25.7,25.3},{25.8,24.4},{25.8,28.3},{25.9,29.4},{25.9,30.4},{26.1,30.6},{26.3,26.1},{26.4,27.1},{26.5,29.4},{26.5,29.5},{26.6,24.5},{26.8,30.8},{27.1,23.1},{27.1,26.5},{27.2,26.3},{27.3,24},{27.3,27.9},{27.5,24.2},{27.6,25.6},{27.6,29.2},{27.8,23},{27.8,25.3},{27.8,27.7},{28,26.7}}},
         },
@@ -120,7 +124,7 @@ function QuestieObjectFixes:Load()
             [objectKeys.spawns] = {[zoneIDs.EASTERN_KINGDOMS]={{51.878,64.295}}},
             [objectKeys.zoneID] = zoneIDs.EASTERN_KINGDOMS,
         },
-        [126049] = {
+        [126049] = { -- Magenta Cap Clusters
             [objectKeys.spawns] = {[zoneIDs.EASTERN_KINGDOMS]={{52.039,63.9}},[38]={{33.27,88.68},{37.57,91.57},{39.79,85.71},{35.74,87.49},{40.08,89.74},{36.98,89.97},{37.19,85.58},{37.19,85.58},{36.98,89.97},{37.57,91.57}},[3]={{34.04,24.42}},[1337]={{-1,-1}}},
             [objectKeys.zoneID] = zoneIDs.EASTERN_KINGDOMS,
         },
@@ -136,6 +140,9 @@ function QuestieObjectFixes:Load()
         [142194] = {
             [objectKeys.spawns] = {[zoneIDs.TANARIS]={{54,93}}},
             [objectKeys.zoneID] = zoneIDs.TANARIS,
+        },
+        [142343] = { -- Uldum Pedestal
+            [objectKeys.questStarts] = {2954,2967,2977},
         },
         [142345] = { -- Matrix Punchograph 3005-A
             [objectKeys.spawns] = {[zoneIDs.EASTERN_KINGDOMS] = {{42.83,59.191},{42.854,59.193},{42.838,59.386},{42.798,59.381}}},
@@ -201,8 +208,8 @@ function QuestieObjectFixes:Load()
         },
         [175124] = {
             [objectKeys.name] = "Rookery Egg", -- Rookery Egg in UBRS
-            [objectKeys.spawns] = {[zoneIDs.LOWER_BLACKROCK_SPIRE]={{-1,-1}}},
-            [objectKeys.zoneID] = zoneIDs.LOWER_BLACKROCK_SPIRE,
+            [objectKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE]={{-1,-1}}},
+            [objectKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
         },
         [175265] = {
             [objectKeys.spawns] = {[zoneIDs.UNDERCITY]={{47.74,73.57}}}, -- #1520
@@ -217,8 +224,8 @@ function QuestieObjectFixes:Load()
         },
         [175584] = {
             [objectKeys.name] = "Challenge to Urok",
-            [objectKeys.spawns] = {[zoneIDs.LOWER_BLACKROCK_SPIRE]={{-1,-1}}},
-            [objectKeys.zoneID] = zoneIDs.LOWER_BLACKROCK_SPIRE,
+            [objectKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE]={{-1,-1}}},
+            [objectKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
         },
         [175964] = {
             [objectKeys.spawns] = {[zoneIDs.SCHOLOMANCE]={{-1,-1}}},
@@ -241,6 +248,9 @@ function QuestieObjectFixes:Load()
                 [zoneIDs.EASTERN_PLAGUELANDS]={{7.1,50.7},{8,54.5},{14.2,64.7},{20,61},{20.5,66.9},{21.5,73.9},{22.1,85.1},{24.3,88.2},{26,74.7},{26.3,70.5},{26.7,69.5},{27.1,75.6},{27.3,64},{28.8,86},{29.2,78.8},{30.9,65.5},{32,71},{33.6,32.6},{34,80.2},{34.3,67.8},{34.4,76.9},{34.5,25.8},{35.6,73.3},{35.9,75.8},{36.7,38},{36.9,70.6},{37.1,65.7},{37.6,68.5},{38.4,31.1},{38.5,54},{38.8,26.7},{38.9,36.1},{40,49.9},{41.4,79.7},{41.5,65.7},{42.4,75.8},{44.9,32.9},{46.2,70.8},{46.3,64},{46.5,74.8},{47.5,40.8},{47.9,80},{48.9,67.2},{49.1,35.5},{50.3,45.5},{50.4,77.4},{51.8,70.3},{53.5,50.7},{55.5,58.7},{56.2,63.9},{56.5,76.1},{57.1,81.9},{57.4,71.9},{57.8,76.1},{58.1,79.7},{58.4,64.8},{58.6,79.6},{59.2,62.2},{59.3,80.9},{59.5,76},{59.9,67.5},{61.8,70.2},{63.6,67.7},{64.7,65.4},{64.7,81},{66.2,53},{67.6,66.8},{68.2,70.6},{68.3,74.6},{68.6,78.4},{68.8,80.8},{68.9,83.3},{69,71.5},{70.6,80.8},{70.7,69.5},{71.1,75.3},{72.2,78.4},{73.3,77.2},{73.4,69.8},{73.4,82.1},{73.6,76.8},{73.8,51.1},{74.1,83.8},{74.7,58.7},{75.6,55.3},{75.9,83.5},{76.1,78.2},{76.2,50.4},{76.7,72.4},{78.4,57.5},{78.7,67.3},{78.8,63.5},{80.4,59.8}},
                 [zoneIDs.TIRISFAL_GLADES]={{82.8,72.7},{83,71.4},{83,71.5}},
             },
+        },
+        [176248] = { -- Premium Grimm Tobacco
+            [objectKeys.name] = "Premium Grimm Tobacco",
         },
         [176344] = { -- Document Chest
             [objectKeys.spawns] = {[zoneIDs.THOUSAND_NEEDLES] = {{31.79,32.58}}},
@@ -290,15 +300,48 @@ function QuestieObjectFixes:Load()
         [178907] = {
             [objectKeys.name] = "Maraudon Orange Crystal Pool", -- Desolace for quest 7041
         },
-        [179544] = {
+        [179485] = { -- Broken Trap
+            [objectKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [179499] = { -- Ogre Tannin Basket
+            [objectKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}}},
+        },
+        [179517] = { -- Treasure of the Shen'dralar
+            [objectKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}},[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [179544] = { -- Skeletal Remains of Telmius Dreamseeker
             [objectKeys.name] = "Skeletal Remains of Telmius Dreamseeker",
+            [objectKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}},[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [179545] = { -- The Prince's Chest
+            [objectKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}},[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
         },
         [179547] = { -- A Dusty Tome
-            [objectKeys.spawns] = {[zoneIDs.DIRE_MAUL]={{-1,-1}}},
+            [objectKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}},[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
             [objectKeys.zoneID] = zoneIDs.DIRE_MAUL,
+        },
+        [179548] = { -- A Dusty Tome
+            [objectKeys.spawns] = {[zoneIDs.DIRE_MAUL_GORDOK_COMMONS] = {{-1,-1}},[zoneIDs.DIRE_MAUL_PRISON_OF_IMMOLTHAR] = {{-1,-1}}},
+        },
+        [179553] = { -- Core Fragment
+            [objectKeys.spawns] = {[zoneIDs.BLACKROCK_DEPTHS] = {{-1,-1}}},
+        },
+        [179559] = { -- Felvine Shard
+            [objectKeys.spawns] = {[zoneIDs.DIRE_MAUL_THE_SHRINE_OF_ELDRETHARR] = {{-1,-1}}},
+        },
+        [179562] = { -- Ancient Heated Blade
+            [objectKeys.spawns] = {[zoneIDs.ONYXIAS_LAIR] = {{-1,-1}}},
+            [objectKeys.zoneID] = zoneIDs.ONYXIAS_LAIR,
+        },
+        [179644] = { -- Imprisoned Doomguard
+            [objectKeys.spawns] = {[zoneIDs.BLASTED_LANDS] = {{37.95,69.18},{44.27,75.29},{34.55,63.73},{45.08,73.43},{40.09,63.33},{42.87,74.12},{41.75,78.48},{34.93,63.73},{39.96,78.68},{40.13,66.54},{44.86,73.24},{44.77,72.97},{43.12,77.19},{59.44,55.4},{56.97,55.22}}},
+            [objectKeys.zoneID] = zoneIDs.BLASTED_LANDS,
         },
         [179703] = { -- Cache of the Firelord
             [objectKeys.questStarts] = {7632},
+        },
+        [179888] = { -- Rizzle's Guarded Plans
+            [objectKeys.questStarts] = {1194},
         },
         [179908] = {
             [objectKeys.spawns] = {[zoneIDs.THE_HINTERLANDS]={{53.3,38.8},{57.4,42.6},{57.5,42.6},{66.4,44.8},{71,48.6},{72.6,52.9}}},
@@ -391,13 +434,13 @@ function QuestieObjectFixes:Load()
         },]]
         --[[[400004] = { -- REUSE
             [objectKeys.name] = "Rookery Egg", -- Rookery Egg in UBRS
-            [objectKeys.spawns] = {[zoneIDs.LOWER_BLACKROCK_SPIRE]={{-1,-1}}},
-            [objectKeys.zoneID] = zoneIDs.LOWER_BLACKROCK_SPIRE,
+            [objectKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE]={{-1,-1}}},
+            [objectKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
         },]]
         --[[[400005] = { -- REUSE
             [objectKeys.name] = "Challenge to Urok",
-            [objectKeys.spawns] = {[zoneIDs.LOWER_BLACKROCK_SPIRE]={{-1,-1}}},
-            [objectKeys.zoneID] = zoneIDs.LOWER_BLACKROCK_SPIRE,
+            [objectKeys.spawns] = {[zoneIDs.BLACKROCK_SPIRE]={{-1,-1}}},
+            [objectKeys.zoneID] = zoneIDs.BLACKROCK_SPIRE,
         },]]
         [400006] = { -- Feralas Ahi Fishing Location
             [objectKeys.name] = "Feralas Ahi Fishing Location",

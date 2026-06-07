@@ -1,11 +1,10 @@
 local _, Addon = ...
 local OmniCC = _G.OmniCC
-local L = LibStub("AceLocale-3.0"):GetLocale("OmniCC")
+
 -- create the options menu child frames
 local options = {
     type = 'group',
     childGroups = "tab",
-	name = L.OmniCC,
     args = {
         themes = Addon.ThemeOptions,
         rules = Addon.RuleOptions,

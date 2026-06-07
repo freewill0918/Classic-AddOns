@@ -11,7 +11,7 @@ end
 
 L.HOW_TO_USE_MOD					= "Bienvenue sur " .. L.DBM .. ". Tapez /dbm help pour une liste des commandes supportées. Pour accédez aux options, tapez /dbm dans la fenêtre de discussion pour commencer la configuration. Chargez des zones spécifiques manuellement pour configurer tous les paramètres spécifiques aux boss selon vos envies. " .. L.DBM .. " essaie de le faire pour vous en analysant votre spécialisation au premier lancement, mais nous savons que de toute façon certaines personnes souhaitant activer d'autres options."
 L.SILENT_REMINDER 					= "Rappel : " .. L.DBM .. " est toujours en mode silencieux."
-L.NEWS_UPDATE						= "|h|c11ff1111Nouvelles|r|h: Cette mise à jour modifie la structure des mods pour que le classique et le principal utilisent désormais des modules unifiés (identiques). Cela signifie que les modules Vanilla, TBC, Wrath et Cata sont maintenant installés séparément en utilisant les mêmes packages que le jeu de base. En savoir plus à ce sujet |Hgarrmission:DBM:news|h|cff3588ff[ici]|r|h"
+L.NEWS_UPDATE						= "|h|c11ff1111Nouvelles|r|h: DBM a été mis à jour avec une fonctionnalité de renommage des techniques. Tapez simplement /dbm, allez dans la catégorie des modules (raids, donjons, etc.) puis ouvrez le module dans lequel vous voulez renommer des techniques."
 L.NEWS_UPDATE_REPEAT				= "|h|c11ff1111Nouvelles|r|h: Cette mise à jour modifie la structure des mods pour que le classique et le principal utilisent désormais des modules unifiés (identiques). Cela signifie que les modules Vanilla, TBC, Wrath et Cata sont maintenant installés séparément en utilisant les mêmes packages que le jeu de base. Vous êtes actuellement dans un raid qui a un module manquant. Ce message continuera de s'afficher (et vous n'aurez pas d'alertes fonctionnelles pour cette zone) jusqu'à ce que vous ayez installé le module de raid manquant."
 
 L.COPY_URL_DIALOG_NEWS 				= "Pour lire les dernières nouvelles, visitez le lien ci-dessous"
@@ -29,7 +29,7 @@ L.LOAD_MOD_DISABLED 		= "%s est installé mais actuellement désactivé. Ce mod 
 L.LOAD_MOD_DISABLED_PLURAL 	= "%s sont installés mais actuellement désactivés. Ces mods ne seront pas chargés à moins que vous ne les activiez."
 
 L.COPY_URL_DIALOG 			= "Copier l'URL"
-L.COPY_WA_DIALOG 			= "Copier la clé WA"
+L.COPY_WA_DIALOG 			= "Copier la clé de sort"
 
 --Post Patch 7.1
 L.TEXT_ONLY_RANGE 			= "La fenêtre de portée est limitée au texte uniquement en raison des restrictions de l'API dans cette zone."
@@ -180,20 +180,21 @@ L.WHISPER_SCENARIO_END_KILL_STATS	= "%s vient de terminer %s ! Ils ont un total 
 L.WHISPER_SCENARIO_END_WIPE		 	= "%s a subi une défaite dans %s"
 L.WHISPER_SCENARIO_END_WIPE_STATS	= "%s a subi une défaite dans %s. Ils ont un total de %d défaites dans cette difficulté."
 
-L.DUNGEONS					= "Donjons : "--prefix for dungeons version check
-L.VERSIONCHECK_HEADER		= "Module de boss - Versions"
-L.VERSIONCHECK_ENTRY		= "%s: %s (%s)"
-L.VERSIONCHECK_ENTRY_TWO	= "%s: %s (%s) & %s (%s)"--Two Boss mods
-L.VERSIONCHECK_ENTRY_NO_DBM	= "%s: " .. L.DBM .. " non installé"--Two Boss mods
-L.VERSIONCHECK_FOOTER		= "%d joueurs trouvés avec " .. L.DEADLY_BOSS_MODS .. " & %d joueurs avec BigWigs"
-L.VERSIONCHECK_OUTDATED		= "Les joueurs suivants %d ont une version périmée du bossmod: %s"
-L.YOUR_VERSION_OUTDATED	  	= "Votre version de " .. L.DEADLY_BOSS_MODS .. " est périmée. Veuillez vous rendre sur Curse, Wago, WoWInterface ou Github pour obtenir la dernière version."
-L.VOICE_PACK_OUTDATED		= "Il semble que votre paquet de voix " .. L.DBM .. " manque de sons supportés sur cette version de " .. L.DBM .. ". Certains sons d'alertes spéciales ne seront pas joués s'ils utilisent des voix non supportées par votre version. Téléchargez une nouvelle version du paquet de voix ou contactez l'auteur pour une mise à jour qui l'inclut."
-L.VOICE_MISSING				= "Vous aviez un paquet de voix sélectionné qui ne pouvait pas être trouvé. Votre sélection a été réinitialisée à 'Aucun'. Si ceci est une erreur, assurez-vous que votre paquet est correctement installé et activé."
-L.VOICE_DISABLED			= "Vous avez actuellement au moins un paquet de voix " .. L.DBM .. " installé, mais aucun n'est activé. Si vous prévoyez d'utiliser un paquet de voix, assurez-vous qu'il est sélectionné dans 'Alertes vocales'. Sinon, désinstallez les paquets de voix inutilisés pour cacher ce message."
-L.VOICE_COUNT_MISSING		= "Le compte à rebours de la voix %d est défini sur un paquet de voix qui n’a pas pu être trouvé ou qui n’est actuellement pas pris en charge. Il a été réinitialisé au paramètre par défaut : %s."
-L.BIG_WIGS					= "BigWigs" -- OPTIONAL
-L.WEAKAURA_KEY				= " (|cff308530Clé WA:|r %s)"
+L.DUNGEONS							= "Donjons : "--prefix for dungeons version check
+L.VERSIONCHECK_HEADER				= "Module de boss - Versions"
+L.VERSIONCHECK_ENTRY				= "%s: %s (%s)"
+L.VERSIONCHECK_ENTRY_TWO			= "%s: %s (%s) & %s (%s)"--Two Boss mods
+L.VERSIONCHECK_ENTRY_NO_DBM			= "%s: " .. L.DBM .. " non installé"--Two Boss mods
+L.VERSIONCHECK_FOOTER				= "%d joueurs trouvés avec " .. L.DEADLY_BOSS_MODS .. " & %d joueurs avec BigWigs"
+L.VERSIONCHECK_OUTDATED				= "Les joueurs suivants %d ont une version périmée du bossmod: %s"
+L.YOUR_VERSION_OUTDATED	  			= "Votre version de " .. L.DEADLY_BOSS_MODS .. " est périmée. Veuillez vous rendre sur Curse, Wago, WoWInterface ou Github pour obtenir la dernière version."
+L.VOICE_PACK_OUTDATED				= "Il semble que votre paquet de voix " .. L.DBM .. " manque de sons supportés sur cette version de " .. L.DBM .. ". Certains sons d'alertes spéciales ne seront pas joués s'ils utilisent des voix non supportées par votre version. Téléchargez une nouvelle version du paquet de voix ou contactez l'auteur pour une mise à jour qui l'inclut."
+L.VOICE_MISSING						= "Vous aviez un paquet de voix sélectionné qui ne pouvait pas être trouvé. Votre sélection a été réinitialisée à 'Aucun'. Si ceci est une erreur, assurez-vous que votre paquet est correctement installé et activé."
+L.VOICE_DISABLED					= "Vous avez actuellement au moins un paquet de voix " .. L.DBM .. " installé, mais aucun n'est activé. Si vous prévoyez d'utiliser un paquet de voix, assurez-vous qu'il est sélectionné dans 'Alertes vocales'. Sinon, désinstallez les paquets de voix inutilisés pour cacher ce message."
+L.VOICE_COUNT_MISSING				= "Le compte à rebours de la voix %d est défini sur un paquet de voix qui n’a pas pu être trouvé ou qui n’est actuellement pas pris en charge. Il a été réinitialisé au paramètre par défaut : %s."
+L.BIG_WIGS							= "BigWigs" -- OPTIONAL
+L.WEAKAURA_KEY						= " (|cff308530ID :|r %s)"
+L.RENAME							= " (|cff359030Renommage :|r |cff71d5ff%s|r)"
 
 L.UPDATEREMINDER_HEADER 			= "Votre version de " .. L.DEADLY_BOSS_MODS .. " est périmée.\nLa version %s (%s) est disponible sur Curse, Wago, WoWInterface ou Github."
 L.UPDATEREMINDER_HEADER_SUBMODULE 	= "Votre module %s est périmé.\nLa version %s est disponible sur Curse, Wago, WoWInterface ou Github."
@@ -220,7 +221,7 @@ L.HARDCODED_FALLBACK					= L.DBM .. " a détecté un résultat inattendu dans un
 L.MOVABLE_BAR					= "Bougez-moi !"
 L.MOVABLE_FRAMES 				= "Cadres déplaçables"
 
-L.PIZZA_SYNC_INFO				= "|Hplayer:%1$s|h[%1$s]|h vous a envoyé un délai " .. L.DBM .. ": '%2$s'\n|Hgarrmission:DBM:cancel:%2$s:nil|h|cff3588ff[Annuler ce délais]|r|h |Hgarrmission:DBM:ignore:%2$s:%1$s|h|cff3588ff[Ignorer les délais de %1$s]|r|h"
+L.PIZZA_SYNC_INFO				= "|Hplayer:%1$s|h[%1$s]|h vous a envoyé un délai " .. L.DBM .. ": '%2$s'\n|Haddon:DBM:cancel:%2$s:nil|h|cff3588ff[Annuler ce délais]|r|h |Haddon:DBM:ignore:%2$s:%1$s|h|cff3588ff[Ignorer les délais de %1$s]|r|h"
 L.PIZZA_CONFIRM_IGNORE			= "Voulez-vous réellement ignorer les délais " .. L.DBM .. " de %s durant cette session ?"
 L.PIZZA_ERROR_USAGE				= "Utilisation: /dbm [broadcast] timer <durée> <texte>"
 
@@ -253,6 +254,7 @@ L.INFOFRAME_TITLE				= "Fenêtre d'info"
 L.INFOFRAME_SHOW_SELF			= "Toujours afficher votre puissance"		-- Always show your own power value even if you are below the threshold
 L.INFOFRAME_SETLINES 			= "Maximum de lignes"
 L.INFOFRAME_SETCOLS 			= "Maximum de colonnes"
+L.INFOFRAME_SETSTRATA 			= "Définir la strate du cadre"
 L.INFOFRAME_LINESDEFAULT 		= "Défini par le mod"
 L.INFOFRAME_LINES_TO 			= "%d lignes"
 L.INFOFRAME_COLS_TO 			= "%d colonnes"
@@ -390,6 +392,8 @@ L.AUTO_SPEC_WARN_TEXTS.youposcount 		= "%s (%%s) (Position : %%s) sur vous"
 L.AUTO_SPEC_WARN_TEXTS.soakpos 			= "%s (Position d'absorption : %%s)"
 L.AUTO_SPEC_WARN_TEXTS.target			= "%s sur >%%s<"
 L.AUTO_SPEC_WARN_TEXTS.targetcount		= "%s (%%s) sur >%%s< "
+L.AUTO_SPEC_WARN_TEXTS.blizztarget		= "%s (%%s) sur >%%s< "
+L.AUTO_SPEC_WARN_TEXTS.blizzyou			= "%s (%%s) sur vous"
 L.AUTO_SPEC_WARN_TEXTS.link				= "%s lié avec >%%s<"
 L.AUTO_SPEC_WARN_TEXTS.defensive		= "%s - Défensif !"
 L.AUTO_SPEC_WARN_TEXTS.taunt		   	= "%s sur >%%s< - Provoquez maintenant !"
@@ -439,6 +443,8 @@ L.AUTO_SPEC_WARN_OPTIONS.youposcount 	= "Afficher une annonce spéciale (avec po
 L.AUTO_SPEC_WARN_OPTIONS.soakpos 		= "Afficher une annonce spéciale (avec position) pour aider à absorber les effets de $spell:%s sur d'autres"
 L.AUTO_SPEC_WARN_OPTIONS.target 		= "Afficher une annonce spéciale lorsque quelqu'un subit $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.targetcount 	= "Afficher une annonce spéciale (avec compte) quand quelqu'un est affecté par $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.blizztarget 	= "Afficher une annonce spéciale (avec compte) quand quelqu'un est affecté par $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.blizzyou		= "Afficher une annonce spéciale (avec compte) quand vous êtes affecté par $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.link			= "Afficher une annonce spéciale lorsque vous êtes lié à un autre joueur par $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.defensive 		= "Afficher une annonce spéciale pour utiliser les capacités défensives pour $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.taunt		   	= "Afficher une annonce spéciale de provoquer lorsque l'autre tank subit $spell:%s"
@@ -462,11 +468,11 @@ L.AUTO_SPEC_WARN_OPTIONS.lookaway		= "Afficher une annonce spéciale pour regard
 L.AUTO_SPEC_WARN_OPTIONS.reflect		= "Afficher une annonce spéciale lorsqu'il faut arrêter d'attaquer pour $spell:%s"--Spell Reflect
 L.AUTO_SPEC_WARN_OPTIONS.count		   	= "Afficher une annonce spéciale pour $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.stack			= "Afficher une annonce spéciale lorsque vous cumulez >=%d stacks de $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.switch 		= "Afficher une annonce spéciale de changement de cible pour\n $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.switch 		= "Afficher une annonce spéciale de changer de cible pour $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.switchcount	= "Afficher une annonce spéciale (avec compte) de changer de cible pour $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.gtfo 			= "Afficher une annonce spéciale pour sortir de la zone des dégâts au sol"
-L.AUTO_SPEC_WARN_OPTIONS.adds 			= "Afficher une annonce spéciale pour changer de cibles pour les adds imminents"
-L.AUTO_SPEC_WARN_OPTIONS.addscount 		= "Afficher une annonce spéciale (avec compte) pour changer de cibles pour les adds imminents"
+L.AUTO_SPEC_WARN_OPTIONS.adds 			= "Afficher une annonce spéciale pour changer de cible pour les adds imminents"
+L.AUTO_SPEC_WARN_OPTIONS.addscount 		= "Afficher une annonce spéciale (avec compte) pour changer de cible pour les adds imminents"
 L.AUTO_SPEC_WARN_OPTIONS.addscustom 	= "Afficher une annonce spéciale pour les adds imminents"
 L.AUTO_SPEC_WARN_OPTIONS.targetchange 	= "Afficher une annonce spéciale pour les changements de cible prioritaires"
 
@@ -672,8 +678,8 @@ L.LAG_HEADER				= L.DBM .. " - Résultats sur la latence"
 L.DUR_HEADER 				= L.DBM .. " - Résultats de durabilité"
 L.KEYSTONES_HEADER			= L.DBM .. " - Mythiques"
 L.GEAR_HEADER				= L.DBM .. " - Résultats d'équipement"
-L.GEAR_MISSING_GEMS		= "Gemmes manquantes"
-L.GEAR_MISSING_ENCHANTS	= "Enchantements manquants"
+L.GEAR_MISSING_GEMS			= "Gemmes manquantes"
+L.GEAR_MISSING_ENCHANTS		= "Enchantements manquants"
 L.BREZ_HEADER				= "Rés. de combat"
 
 L.OVERRIDE_ACTIVATED 		= "Les remplacements de configuration ont été activés pour cette rencontre par le responsable de raid"

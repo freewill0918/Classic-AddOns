@@ -34,7 +34,7 @@ local ChatFrame_SendTell = ChatFrame_SendTell;
 local FollowUnit = FollowUnit;
 local CombatFeedback_OnCombatEvent = CombatFeedback_OnCombatEvent;
 local CombatFeedback_OnUpdate = CombatFeedback_OnUpdate;
-local IsAddOnLoaded = IsAddOnLoaded;
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded;
 local CooldownFrame_Set = CooldownFrame_Set;
 local CooldownFrame_Clear = CooldownFrame_Clear;
 local GetTime = GetTime;
@@ -107,25 +107,29 @@ local function UnitFramesPlus_TargetShiftDrag()
         end
     end)
 
-    TargetFrame_SetLocked(true);
+    if TargetFrame_SetLocked then TargetFrame_SetLocked(true) end
     TargetFrame:SetMovable(true);
     TargetFrame:SetUserPlaced(false);
     TargetFrame:SetClampedToScreen(true);
 
     --更改目标头像默认位置以防止其和玩家扩展框重叠
-    hooksecurefunc("UIParent_UpdateTopFramePositions", function()
-        if (TargetFrame and not TargetFrame:IsUserPlaced()) then
-            UnitFramesPlus_TargetPosition();
-        end
-    end)
+    if _G.UIParent_UpdateTopFramePositions then
+        hooksecurefunc("UIParent_UpdateTopFramePositions", function()
+            if (TargetFrame and not TargetFrame:IsUserPlaced()) then
+                UnitFramesPlus_TargetPosition();
+            end
+        end)
+    end
 
-    hooksecurefunc("TargetFrame_ResetUserPlacedPosition", function()
-        UnitFramesPlusVar["target"]["moved"] = 0;
-        UnitFramesPlus_TargetPosition();
-        if TitanPanel_AdjustFrames then
-            TitanPanel_AdjustFrames();
-        end
-    end)
+    if _G.TargetFrame_ResetUserPlacedPosition then
+        hooksecurefunc("TargetFrame_ResetUserPlacedPosition", function()
+            UnitFramesPlusVar["target"]["moved"] = 0;
+            UnitFramesPlus_TargetPosition();
+            if TitanPanel_AdjustFrames then
+                TitanPanel_AdjustFrames();
+            end
+        end)
+    end
 end
 
 --头像缩放
@@ -138,8 +142,10 @@ function UnitFramesPlus_TargetFrameScaleSet(newscale)
     if ComboFrame then
         ComboFrame:SetScale(newscale);
     end
-    TargetFrame:ClearAllPoints();
-    TargetFrame:SetPoint(point, relativeTo, relativePoint, offsetX*oldscale/newscale, offsetY*oldscale/newscale);
+    if point then
+        TargetFrame:ClearAllPoints();
+        TargetFrame:SetPoint(point, relativeTo, relativePoint, offsetX*oldscale/newscale, offsetY*oldscale/newscale);
+    end
     if UnitFramesPlusDB["target"]["portrait"] == 1 and UnitFramesPlusDB["target"]["portraittype"] == 1 then
         UnitFramesPlus_TargetPortraitDisplayUpdate();
     end
@@ -494,16 +500,20 @@ function UnitFramesPlus_TargetColorHPBarDisplayUpdate()
 end
 
 --目标生命条染色
+if _G.UnitFrameHealthBar_Update then
 hooksecurefunc("UnitFrameHealthBar_Update", function(statusbar, unit)
     if unit == "target" and statusbar.unit == "target" then
         UnitFramesPlus_TargetColorHPBarDisplayUpdate();
     end
 end);
+end
+if _G.HealthBar_OnValueChanged then
 hooksecurefunc("HealthBar_OnValueChanged", function(self, value, smooth)
     if self.unit == "target" then
         UnitFramesPlus_TargetColorHPBarDisplayUpdate();
     end
 end);
+end
 
 --目标种族或类型
 local TargetRace = TargetFrame:CreateFontString("UFP_TargetRace", "ARTWORK", "TextStatusBarText");
@@ -756,7 +766,9 @@ local function MakeCustomBuffSize(frame, auraName, numAuras, numOppositeAuras, l
 end
 
 function UnitFramesPlus_TargetBuffSize()
-    hooksecurefunc("TargetFrame_UpdateAuraPositions", MakeCustomBuffSize);
+    if _G.TargetFrame_UpdateAuraPositions then
+        hooksecurefunc("TargetFrame_UpdateAuraPositions", MakeCustomBuffSize);
+    end
 end
 
 --目标头像

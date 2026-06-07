@@ -1,0 +1,136 @@
+local _, addonTable = ...
+if addonTable.Locale ~= "ptBR" then return end
+
+local L = addonTable.L
+
+--[[Translation missing --]]
+--[[ L["%s does not match your currently equipped %s. ReforgeLiteMopClassic only supports equipped items."] = ""--]] 
+--[[Translation missing --]]
+--[[ L["^+(%d+) %s$"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Active window color"] = "Cor da janela ativa"--]] 
+--[[Translation missing --]]
+--[[ L["Add cap"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Apply %s Output"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Pelo menos"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["At most"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Bearweave"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Best Resultado"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Buffs"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Cap value"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Click an item to lock it"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Compute"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Crítico block"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Debug"] = "Depurar"--]] 
+--[[Translation missing --]]
+--[[ L["Destination stat color"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Ativar perfis de especialização"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Enter pawn string"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Enter the preset name"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Enter WoWSims JSON"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Enter WoWSims JSON or Pawn string"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Exactly"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Aptidão hard cap"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Limite suave de aptidão"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Export"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Highlight reforged stats"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Import"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Import WoWSims/Pawn"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Inactive window color"] = "Cor da janela inativa"--]] 
+--[[Translation missing --]]
+--[[ L["Masterfrost"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Melee DW hit cap"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Limite de acerto corpo a corpo"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Monocat"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["No reforge"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Abrir janela ao reforjar"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Other/No flask"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Other/No food"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Presets"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Reforging window must be open"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Remove cap"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Resultado"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Score"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Exibir reforged stats in item tooltips"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Slide to the left if the calculation slows your game too much."] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Source stat color"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Spell Aceleração"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Spell hit cap"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Espírito to hit"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Stat Weights"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Sum"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Summarize reforged stats"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Tanking model"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["ticks"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Weight after cap"] = ""--]] 
+--[[Translation missing --]]
+--[[ L["Window Configurações"] = ""--]] 
+
+
+L["At least"] = "Pelo menos"
+
+L["Melee hit cap"] = "Limite de acerto corpo a corpo"
+
+L["Expertise soft cap"] = "Limite suave de aptidão"
+
+L["Open window when reforging"] = "Abrir janela ao reforjar"
+
+L["Summarize reforged stats on tooltip"] = "Mostrar resumo dos atributos reforjados no tooltip"
+
+L["Enable spec profiles"] = "Ativar perfis de especialização"
+
+L["Show import button on Reforging window"] = "Exibir botão de importar na janela de reforja"
+
+L["Accuracy"] = "Precisão"
+
+L["Low"] = "Baixo"
+
+L["High"] = "Alto"

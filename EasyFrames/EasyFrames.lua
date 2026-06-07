@@ -22,8 +22,8 @@ local Media = LibStub("LibSharedMedia-3.0")
 local db
 
 local DEFAULT_BAR_FONT_FAMILY = "Friz Quadrata TT"
-local DEFAULT_BAR_FONT_SIZE = 14
-local DEFAULT_BAR_LARGE_FONT_SIZE = 16
+local DEFAULT_BAR_FONT_SIZE = 13
+local DEFAULT_BAR_LARGE_FONT_SIZE = 11
 local DEFAULT_BAR_SMALL_FONT_SIZE = 12
 local DEFAULT_BAR_FONT_STYLE = "OUTLINE"
 
@@ -33,12 +33,12 @@ local DEFAULT_CUSTOM_FORMAT = "%CURRENT% / %MAX% (%PERCENT%%)"
 
 local DefaultCustomFormatFormulas = function()
     return {
-        ["gt1T"] = "%.2f萬",
-        ["gt100T"] = "%.1f萬",
-        ["gt1M"] = "%.1f萬",
-        ["gt10M"] = "%.0f萬",
-        ["gt100M"] = "%.2f億",
-        ["gt1B"] = "%.2f億",
+        ["gt1T"] = "%.fk",
+        ["gt100T"] = "%.fk",
+        ["gt1M"] = "%.1fM",
+        ["gt10M"] = "%.fM",
+        ["gt100M"] = "%.fM",
+        ["gt1B"] = "%.fB",
     }
 end
 
@@ -89,22 +89,11 @@ local function CustomChineseReadableNumber(num, format)
 end
 
 local function ReadableNumber(num)
-    local ret
-
+    -- User prefers full comma-separated numbers (e.g. 560,845) over abbreviations (560T).
     if not num then
         return 0
-    elseif num < 10000 then
-        ret = num -- num < 10000
-	elseif num < 1000000 then
-		ret = string.format("%.1f萬", num / 10000) -- num > 100 000
-	elseif num < 100000000 then
-		ret = string.format("%.0f萬", num / 10000) -- num > 10 000 000
-	elseif num < 1000000000 then
-		ret = string.format("%.1f億", num / 100000000) -- num > 100 000 000										  
-	else
-		ret = string.format("%.0f億", num / 100000000)  -- num > 1 000 000 000
     end
-    return ret
+    return BreakUpLargeNumbers(num)
 end
 
 local defaults = {
@@ -127,7 +116,7 @@ local defaults = {
             hideOutOfCombat = false,
             hideOutOfCombatWithFullHP = false,
             hideOutOfCombatOpacity = 0.1,
-            barTexture = "Rainbow", -- 彩虹血條
+            barTexture = "Blizzard",
             forceManaBarTexture = false,
             brightFrameBorder = 1,
             lightTexture = false,
@@ -135,7 +124,7 @@ local defaults = {
             enemyFrameDefaultColors = { 1, 0, 0 },
             neutralFrameDefaultColors = { 1, 1, 0 },
 
-            showWelcomeMessage = false,
+            showWelcomeMessage = true,
             framesPoints = false,
             frameToSetPoints = "player"
         },
@@ -144,14 +133,14 @@ local defaults = {
             scaleFrame = 1,
             portrait = "2",
             -- Custom HP format.
-            healthFormat = "4",
+            healthFormat = "2",
             healthBarFontStyle = DEFAULT_BAR_FONT_STYLE,
             healthBarFontFamily = DEFAULT_BAR_FONT_FAMILY,
-            healthBarFontSize = DEFAULT_BAR_FONT_SIZE,
+            healthBarFontSize = 11,
             useHealthFormatFullValues = false,
             customHealthFormatFormulas = DefaultCustomFormatFormulas(),
             customHealthFormat = DEFAULT_CUSTOM_FORMAT,
-            useChineseNumeralsHealthFormat = true,
+            useChineseNumeralsHealthFormat = false,
             -- Custom mana format.
             manaFormat = "2",
             manaBarFontStyle = DEFAULT_BAR_FONT_STYLE,
@@ -165,8 +154,9 @@ local defaults = {
             showName = true,
             showNameInsideFrame = false,
             playerNameFontFamily = DEFAULT_BAR_FONT_FAMILY,
-            playerNameFontSize = 14,
-            playerNameFontStyle = "NONE",
+            playerNameFontSize = DEFAULT_BAR_FONT_SIZE,
+            playerNameFontStyle = "",
+            playerNameColorByClass = false,
             playerNameColor = { unpack(DEFAULT_FRAMES_NAME_COLOR) },
 
             showHitIndicator = true,
@@ -184,15 +174,15 @@ local defaults = {
             scaleFrame = 1,
             portrait = "2",
             -- Custom HP format.
-            healthFormat = "4",
+            healthFormat = "2",
             healthBarFontStyle = DEFAULT_BAR_FONT_STYLE,
             healthBarFontFamily = DEFAULT_BAR_FONT_FAMILY,
-            healthBarFontSize = DEFAULT_BAR_FONT_SIZE,
+            healthBarFontSize = 11,
             useHealthFormatFullValues = false,
             reverseDirectionLosingHP = false,
             customHealthFormatFormulas = DefaultCustomFormatFormulas(),
             customHealthFormat = DEFAULT_CUSTOM_FORMAT,
-            useChineseNumeralsHealthFormat = true,
+            useChineseNumeralsHealthFormat = false,
             -- Custom mana format.
             manaFormat = "2",
             manaBarFontStyle = DEFAULT_BAR_FONT_STYLE,
@@ -206,8 +196,9 @@ local defaults = {
             showName = true,
             showNameInsideFrame = false,
             targetNameFontFamily = DEFAULT_BAR_FONT_FAMILY,
-            targetNameFontSize = 14,
-            targetNameFontStyle = "NONE",
+            targetNameFontSize = DEFAULT_BAR_FONT_SIZE,
+            targetNameFontStyle = "",
+            targetNameColorByClass = false,
             targetNameColor = { unpack(DEFAULT_FRAMES_NAME_COLOR) },
 
             showToTFrame = true,
@@ -221,15 +212,15 @@ local defaults = {
             scaleFrame = 1,
             portrait = "2",
             -- Custom HP format.
-            healthFormat = "4",
+            healthFormat = "2",
             healthBarFontStyle = DEFAULT_BAR_FONT_STYLE,
             healthBarFontFamily = DEFAULT_BAR_FONT_FAMILY,
-            healthBarFontSize = DEFAULT_BAR_FONT_SIZE,
+            healthBarFontSize = 11,
             useHealthFormatFullValues = false,
             reverseDirectionLosingHP = false,
             customHealthFormatFormulas = DefaultCustomFormatFormulas(),
             customHealthFormat = DEFAULT_CUSTOM_FORMAT,
-            useChineseNumeralsHealthFormat = true,
+            useChineseNumeralsHealthFormat = false,
             -- Custom mana format.
             manaFormat = "2",
             manaBarFontStyle = DEFAULT_BAR_FONT_STYLE,
@@ -243,8 +234,9 @@ local defaults = {
             showName = true,
             showNameInsideFrame = false,
             focusNameFontFamily = DEFAULT_BAR_FONT_FAMILY,
-            focusNameFontSize = 14,
-            focusNameFontStyle = "NONE",
+            focusNameFontSize = DEFAULT_BAR_FONT_SIZE,
+            focusNameFontStyle = "",
+            focusNameColorByClass = false,
             focusNameColor = { unpack(DEFAULT_FRAMES_NAME_COLOR) },
 
             showToTFrame = true,
@@ -256,14 +248,14 @@ local defaults = {
         pet = {
             scaleFrame = 1,
             -- Custom HP format.
-            healthFormat = "5",
+            healthFormat = "2",
             healthBarFontStyle = DEFAULT_BAR_FONT_STYLE,
             healthBarFontFamily = DEFAULT_BAR_FONT_FAMILY,
             healthBarFontSize = DEFAULT_BAR_SMALL_FONT_SIZE,
             useHealthFormatFullValues = false,
             customHealthFormatFormulas = DefaultCustomFormatFormulas(),
             customHealthFormat = DEFAULT_CUSTOM_FORMAT,
-            useChineseNumeralsHealthFormat = true,
+            useChineseNumeralsHealthFormat = false,
             -- Custom mana format.
             manaFormat = "2",
             manaBarFontStyle = DEFAULT_BAR_FONT_STYLE,
@@ -276,8 +268,8 @@ local defaults = {
             -- Name.
             showName = true,
             petNameFontFamily = DEFAULT_BAR_FONT_FAMILY,
-            petNameFontSize = 12,
-            petNameFontStyle = "NONE",
+            petNameFontSize = DEFAULT_BAR_SMALL_FONT_SIZE,
+            petNameFontStyle = "",
             petNameColor = { unpack(DEFAULT_FRAMES_NAME_COLOR) },
 
             showHitIndicator = true,
@@ -288,6 +280,7 @@ local defaults = {
 
         party = {
             scaleFrame = 1,
+            portrait = "2",
             -- Custom HP format.
             healthFormat = "2",
             healthBarFontStyle = DEFAULT_BAR_FONT_STYLE,
@@ -296,7 +289,7 @@ local defaults = {
             useHealthFormatFullValues = false,
             customHealthFormatFormulas = DefaultCustomFormatFormulas(),
             customHealthFormat = DEFAULT_CUSTOM_FORMAT,
-            useChineseNumeralsHealthFormat = true,
+            useChineseNumeralsHealthFormat = false,
             -- Custom mana format.
             manaFormat = "2",
             manaBarFontStyle = DEFAULT_BAR_FONT_STYLE,
@@ -309,8 +302,8 @@ local defaults = {
             -- Name.
             showName = true,
             partyNameFontFamily = DEFAULT_BAR_FONT_FAMILY,
-            partyNameFontSize = 14,
-            partyNameFontStyle = "NONE",
+            partyNameFontSize = DEFAULT_BAR_FONT_SIZE,
+            partyNameFontStyle = "",
             partyNameColor = { unpack(DEFAULT_FRAMES_NAME_COLOR) },
 
             showPetFrames = true,
@@ -342,8 +335,7 @@ Media:Register("frames", "nomana", "Interface\\AddOns\\EasyFrames\\Textures\\Tar
 Media:Register("frames", "boss", "Interface\\AddOns\\EasyFrames\\Textures\\TargetingFrame\\UI-UnitFrame-Boss")
 
 Media:Register("misc", "player-status", "Interface\\AddOns\\EasyFrames\\Textures\\TargetingFrame\\UI-Player-Status")
-Media:Register("misc", "pet-frame-flash", "Interface\\AddOns\\EasyFrames\\Textures\\TargetingFrame\\UI-PetFrame-Flash")
-Media:Register("misc", "party-frame-flash", "Interface\\AddOns\\EasyFrames\\Textures\\TargetingFrame\\UI-PartyFrame-Flash")
+Media:Register("misc", "pet-frame-flash", "Interface\\AddOns\\EasyFrames\\Textures\\TargetingFrame\\UI-PartyFrame-Flash")
 
 function EasyFrames:OnInitialize()
     self.db = LibStub("AceDB-3.0"):New("EasyFramesDB", defaults, true)
@@ -355,10 +347,6 @@ function EasyFrames:OnInitialize()
     db = self.db.profile
 
     self:SetupOptions()
-
-	-- 將內建的頭像狀態文字設為數值
-	SetCVar("statusText", 1)
-	SetCVar("statusTextDisplay", "NUMERIC")
 end
 
 function EasyFrames:OnProfileChanged(event, database, newProfileKey)
@@ -451,12 +439,6 @@ function EasyFrames.Utils.UpdateHealthValues(frame, healthFormat, customHealthFo
 
             healthbar.TextString:SetText(ReadableNumber(Health) .. " (" .. string.format("%.0f", HealthPercent) .. "%)");
         end
-	elseif (healthFormat == "5") then
-        -- Current
-
-        if (UnitHealth(unit) > 0) then
-            healthbar.TextString:SetText(ReadableNumber(UnitHealth(unit)));
-        end
     end
 end
 
@@ -477,12 +459,10 @@ function EasyFrames.Utils.UpdateManaValues(frame, manaFormat, customManaFormat, 
         end
 
     elseif (manaFormat == "2") then
-		-- 自行修改成智能顯示當前法力值
         -- Smart
         if (UnitPowerType(unit) == 0) then
             --mana
-            --manabar.TextString:SetText(string.format("%.0f%%", ManaPercent))
-			manabar.TextString:SetText(ReadableNumber(UnitPower(unit)))
+            manabar.TextString:SetText(string.format("%.0f%%", ManaPercent))
         elseif (UnitPowerType(unit) == 1 or UnitPowerType(unit) == 2 or UnitPowerType(unit) == 3 or UnitPowerType(unit) == 6) then
             manabar.TextString:SetText(AbbreviateLargeNumbers(UnitPower(unit)))
         end
@@ -633,6 +613,17 @@ end
 function EasyFrames.Utils.DefaultPortraits(frame)
     SetPortraitTexture(frame.portrait, frame.unit)
     frame.portrait:SetTexCoord(0, 1, 0, 1)
+end
+
+function EasyFrames.Utils.GetColorByClass(frame)
+    if (UnitIsPlayer(frame.unit) and UnitClass(frame.unit)) then
+        local _, class, classColor
+
+        _, class = UnitClass(frame.unit)
+        classColor = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[class] or RAID_CLASS_COLORS[class]
+
+        return { classColor.r, classColor.g, classColor.b }
+    end
 end
 
 EasyFrames.Helpers = {};

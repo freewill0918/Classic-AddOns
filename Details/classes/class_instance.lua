@@ -13,7 +13,7 @@ local _table_remove = table.remove --lua local
 local _string_len = string.len --lua local
 local _unpack = unpack --lua local
 local _cstr = string.format --lua local
-local _SendChatMessage = SendChatMessage --wow api locals
+local _SendChatMessage = SendChatMessage or C_ChatInfo.SendChatMessage --wow api locals
 local _UnitExists = UnitExists --wow api locals
 local _UnitName = UnitName --wow api locals
 local _UnitIsPlayer = UnitIsPlayer --wow api locals
@@ -193,7 +193,6 @@ end
 
 --instance class prototype/mixin
 local instanceMixins = {
-	apocalypseSourceType = detailsFramework.IsAddonApocalypseWow() and Details222.Apocalypse.TypeGame or Details222.Apocalypse.TypeDetails,
 	overallByUser = false, --true when the user selected overall data, false when Details! set to overall
 
 	---check if the instance is the lower instance id
@@ -263,6 +262,8 @@ local instanceMixins = {
 	---@param instance instance
 	RefreshCombat = function(instance)
 		Details:StopTestBarUpdate()
+
+		instance:ClearRestoredSavedSegment()
 
 		---@type segmentid
 		local segmentId = instance:GetSegmentId()
@@ -580,11 +581,14 @@ local instanceMixins = {
 	end,
 
 	GetApocalypseSourceType = function(instance)
-		return instance.apocalypseSourceType
+		return instance.source_type
 	end,
 
 	SetApocalypseSourceType = function(instance, sourceType)
-		instance.apocalypseSourceType = sourceType
+		if instance.savedSegmentIndex and sourceType ~= instance.source_type then
+			instance:ClearRestoredSavedSegment()
+		end
+		instance.source_type = sourceType
 	end,
 
 	---@param instance instance
@@ -614,6 +618,8 @@ local instanceMixins = {
 		instance.sessionType = sessionType
 		Details222.BParser.lastEventTime = 0
 
+		Details222.BParser.SetTitleText(instance, "")
+
 		if bForceRefresh then
 			instance:RefreshWindow(bForceRefresh)
 		end
@@ -641,8 +647,8 @@ local instanceMixins = {
 		return Details222.BParser.GetAttributeTypeFromDisplay(mainDisplay, subDisplay)
 	end,
 
-	GetSources = function(instance)
-		local thisSegment = instance:GetSegmentObject()
+	GetSources = function(instance, attributeId)
+		local thisSegment = instance:GetSegmentObject(attributeId)
 		if (thisSegment) then
 			return thisSegment.combatSources
 		end
@@ -665,10 +671,26 @@ local instanceMixins = {
 	---@return damagemeter_combat_source
 	GetSourceActorFromName = function(instance, actorName)
 		--if not issecretvalue(actorName) then
+			local foundSecret = false
 			local sources = instance:GetSources()
 			for i = 1, #sources do
-				if sources[i].name == actorName then
-					return sources[i]
+				if not issecretvalue(sources[i].name) then
+					if sources[i].name == actorName then
+						return sources[i]
+					end
+				else
+					foundSecret = true
+				end
+			end
+
+			if foundSecret then
+				sources = instance:GetSources(0)
+				for i = 1, #sources do
+					if not issecretvalue(sources[i].name) then
+						if sources[i].name == actorName then
+							return sources[i]
+						end
+					end
 				end
 			end
 		--end
@@ -696,6 +718,9 @@ local instanceMixins = {
 	SetSegmentFromCooltip = function(_, instance, segmentId, bForceChange)
 		---@cast instance instance
 		Details:StopTestBarUpdate()
+		local byUser = true
+		instance:SetSegmentId(segmentId, byUser)
+		bForceChange = true
 		return instance:SetSegment(segmentId, bForceChange)
 	end,
 
@@ -712,13 +737,15 @@ local instanceMixins = {
 
 		Details:StopTestBarUpdate()
 		local currentSegment = instance:GetSegmentId()
+
 		if (segmentId ~= currentSegment or bForceChange) then
 			--check if the instance is frozen
 			if (instance.freezed) then
 				instance:UnFreeze()
 			end
 
-			instance.segmento = segmentId
+			instance:SetSegmentId(segmentId)
+
 			instance:RefreshCombat()
 			Details:SendEvent("DETAILS_INSTANCE_CHANGESEGMENT", nil, instance, segmentId)
 
@@ -737,7 +764,7 @@ local instanceMixins = {
 									otherInstance:UnFreeze()
 								end
 
-								otherInstance.segmento = segmentId
+								otherInstance:SetSegmentId(segmentId)
 								otherInstance:RefreshCombat()
 
 								if (not otherInstance.showing) then
@@ -927,7 +954,56 @@ local instanceMixins = {
 		if (needRefreshRows) then
 			self:InstanceRefreshRows()
 		end
-	end
+	end,
+
+	ClearRestoredSavedSegment = function(instance)
+		local saved = instance.savedSegmentCombat
+		instance.savedSegmentCombat = nil
+		instance.savedSegmentIndex = nil
+		instance.showing = Details:GetCurrentCombat()
+		if saved then
+			Details:DestroyCombat(saved)
+		end
+	end,
+
+	---@param instance instance
+	---@param savedIndex number index into Details.apocalypse_savedsegments
+	ShowSavedSegment = function(instance, savedIndex)
+		instance:ClearRestoredSavedSegment()
+		instance:SetApocalypseSourceType(Details222.Apocalypse.TypeDetails)
+
+		local segmentsSaved = Details:GetSavedSegments()
+		local saved = segmentsSaved[savedIndex]
+		local restoredCombat = Details.DecompressSegment(saved.combatData)
+
+		instance.savedSegmentCombat = restoredCombat
+		instance.savedSegmentIndex = savedIndex
+	end,
+
+	---@param instance instance
+	GetModeButton = function(instance)
+		return instance.baseframe.cabecalho.modo_selecao
+	end,
+
+	---@param instance instance
+	GetSegmentButton = function(instance)
+		return instance.baseframe.cabecalho.segmento
+	end,
+
+	---@param instance instance
+	GetAttributeButton = function(instance)
+		return instance.baseframe.cabecalho.atributo
+	end,
+
+	---@param instance instance
+	GetReportButton = function(instance)
+		return instance.baseframe.cabecalho.report
+	end,
+
+	---@param instance instance
+	GetResetButton = function(instance)
+		return instance.baseframe.cabecalho.reset
+	end,
 }
 
 if detailsFramework.IsAddonApocalypseWow() then
@@ -936,14 +1012,22 @@ if detailsFramework.IsAddonApocalypseWow() then
 		for _, instance in ipairs(Details:GetAllInstances()) do
 			if instance:IsEnabled() then
 				if instance:GetApocalypseSourceType() == Details222.Apocalypse.TypeDetails then
+					--caches will be tagged as dirty and require a cleanup later
 					instance:SetSegmentType(1, true)
-					print("swapping")
+					print("Details! (debug) auto swapping.")
 				end
 			end
 		end
 	end)
 	serverCombatListener:RegisterEvent("SERVER_COMBAT_ENDED", function(eventName, combatObject)
-		--do nothing
+		--force a refresh in all window to clean the dirty caches if the window data is from the game
+		for _, instance in ipairs(Details:GetAllInstances()) do
+			if instance:IsEnabled() then
+				if instance:GetApocalypseSourceType() == Details222.Apocalypse.TypeGame then
+					instance:RefreshWindow(true)
+				end
+			end
+		end
 	end)
 end
 
@@ -1032,16 +1116,23 @@ function Details:GetSegment()
 	return self.segmento
 end
 
-function Details:GetSegmentObject()
-	local attribute = self:GetAttributeType()
-	if attribute == 100 then
-		attribute = 0
+function Details:GetSegmentObject(attributeId)
+	attributeId = attributeId or self:GetAttributeType()
+	if attributeId == 100 then
+		attributeId = 0
 	end
+
+	if Details222.BParser.IsCustomAttribute(attributeId) then
+		--custom attribute
+		local data = Details222.BParser.GetCustomDataForWindow(self, attributeId)
+		return data
+	end
+
 	if self:GetSegmentType() > 1 then
-		local s = Details222.B.GetSegment(DETAILS_SEGMENTTYPE_ID, self:GetNewSegmentId(), attribute)
+		local s = Details222.B.GetSegment(DETAILS_SEGMENTTYPE_ID, self:GetNewSegmentId(), attributeId)
 		return s
 	else
-		local s = Details222.B.GetSegment(DETAILS_SEGMENTTYPE_TYPE, self:GetSegmentType(), attribute)
+		local s = Details222.B.GetSegment(DETAILS_SEGMENTTYPE_TYPE, self:GetSegmentType(), attributeId)
 		return s
 	end
 end
@@ -1552,6 +1643,7 @@ end
 		self.cached_bar_width = self.cached_bar_width or 0
 
 		self.modo = self.modo or 2
+		self.source_type = self.source_type or (detailsFramework.IsAddonApocalypseWow() and Details222.Apocalypse.TypeGame or Details222.Apocalypse.TypeDetails)
 
 		local lower = Details:GetLowerInstanceNumber()
 
@@ -1569,7 +1661,10 @@ end
 		end
 
 		self:ChangeSkin() --carrega a skin aqui que era antes feito dentro do restaura janela
-		Details:TrocaTabela(self, nil, nil, nil, true)
+
+		if self:GetApocalypseSourceType() == Details222.Apocalypse.TypeDetails then
+			Details:TrocaTabela(self, nil, nil, nil, true)
+		end
 
 		if (self.hide_icon) then
 			Details.FadeHandler.Fader(self.baseframe.cabecalho.atributo_icon, 1)
@@ -1831,7 +1926,71 @@ function Details:EstaAgrupada(esta_instancia, lado) --lado //// 1 = encostou na 
 	return false --do contr�rio retorna false
 end
 
+---@param self instance
 function Details:BaseFrameSnap()
+	local group = self:GetInstanceGroup()
+
+	-- clear all points before re-anchoring to avoid stale constraints
+	for _, instancia in ipairs(group) do
+		if (instancia:IsAtiva()) then
+			instancia.baseframe:ClearAllPoints()
+		end
+	end
+
+	local scale = self.window_scale
+	for _, instance in ipairs(group) do
+		instance:SetWindowScale(scale)
+	end
+
+	-- self is the absolute anchor; all other frames are positioned relative to
+	-- an already-positioned frame via BFS, which guarantees no circular anchoring.
+	self:RestoreMainWindowPositionNoResize()
+
+	local positioned = {}
+	positioned[self.meu_id] = true
+
+	local queue = {self}
+
+	while #queue > 0 do
+		local current = table.remove(queue, 1)
+
+		for whichSide, neighborId in pairs(current.snap) do
+			if not positioned[neighborId] then
+				---@type instance
+				local neighbor = Details.tabela_instancias[neighborId]
+
+				if (neighbor and neighbor.ativa and neighbor.baseframe) then
+					if (whichSide == 1) then --neighbor is to the left
+						neighbor.baseframe:SetPoint("TOPRIGHT", current.baseframe, "TOPLEFT", -Details.grouping_horizontal_gap, 0)
+
+					elseif (whichSide == 2) then --neighbor is below
+						local statusbar_y_mod = 0
+						if (not current.show_statusbar) then
+							statusbar_y_mod = 14
+						end
+						neighbor.baseframe:SetPoint("TOPLEFT", current.baseframe, "BOTTOMLEFT", 0, -34 + statusbar_y_mod)
+
+					elseif (whichSide == 3) then --neighbor is to the right
+						neighbor.baseframe:SetPoint("TOPLEFT", current.baseframe, "TOPRIGHT", Details.grouping_horizontal_gap, 0)
+
+					elseif (whichSide == 4) then --neighbor is above
+						local statusbar_y_mod = 0
+						if (not neighbor.show_statusbar) then
+							statusbar_y_mod = -14
+						end
+						neighbor.baseframe:SetPoint("BOTTOMLEFT", current.baseframe, "TOPLEFT", 0, 34 + statusbar_y_mod)
+					end
+
+					positioned[neighborId] = true
+					queue[#queue + 1] = neighbor
+				end
+			end
+		end
+	end
+end
+
+---@param self instance
+function Details:BaseFrameSnap_Backup()
 	local group = self:GetInstanceGroup()
 
 	for meu_id, instancia in ipairs(group) do
@@ -1849,30 +2008,31 @@ function Details:BaseFrameSnap()
 
     self:RestoreMainWindowPositionNoResize()
 
-	for lado, snap_to in pairs(self.snap) do
-		local instancia_alvo = Details.tabela_instancias [snap_to]
+	for whichSide, InstanceId_SnapTo in pairs(self.snap) do
+		---@type instance
+		local targetInstance = Details.tabela_instancias[InstanceId_SnapTo]
 
-		if (instancia_alvo) then
-			if (instancia_alvo.ativa and instancia_alvo.baseframe) then
-				if (lado == 1) then --a esquerda
-					instancia_alvo.baseframe:SetPoint("TOPRIGHT", my_baseframe, "TOPLEFT", -Details.grouping_horizontal_gap, 0)
+		if (targetInstance) then
+			if (targetInstance.ativa and targetInstance.baseframe) then
+				if (whichSide == 1) then --attach to the left side
+					targetInstance.baseframe:SetPoint("TOPRIGHT", my_baseframe, "TOPLEFT", -Details.grouping_horizontal_gap, 0)
 
-				elseif (lado == 2) then --em baixo
+				elseif (whichSide == 2) then --attach to the bottom
 					local statusbar_y_mod = 0
 					if (not self.show_statusbar) then
 						statusbar_y_mod = 14
 					end
-					instancia_alvo.baseframe:SetPoint("TOPLEFT", my_baseframe, "BOTTOMLEFT", 0, -34 + statusbar_y_mod)
+					targetInstance.baseframe:SetPoint("TOPLEFT", my_baseframe, "BOTTOMLEFT", 0, -34 + statusbar_y_mod)
 
-				elseif (lado == 3) then --a direita
-					instancia_alvo.baseframe:SetPoint("TOPLEFT", my_baseframe, "TOPRIGHT", Details.grouping_horizontal_gap, 0)
+				elseif (whichSide == 3) then --attach to the right side
+					targetInstance.baseframe:SetPoint("TOPLEFT", my_baseframe, "TOPRIGHT", Details.grouping_horizontal_gap, 0)
 
-				elseif (lado == 4) then --em cima
+				elseif (whichSide == 4) then --attach to the top
 					local statusbar_y_mod = 0
-					if (not instancia_alvo.show_statusbar) then
+					if (not targetInstance.show_statusbar) then
 						statusbar_y_mod = -14
 					end
-					instancia_alvo.baseframe:SetPoint("BOTTOMLEFT", my_baseframe, "TOPLEFT", 0, 34 + statusbar_y_mod)
+					targetInstance.baseframe:SetPoint("BOTTOMLEFT", my_baseframe, "TOPLEFT", 0, 34 + statusbar_y_mod)
 
 				end
 			end
@@ -1907,14 +2067,14 @@ function Details:BaseFrameSnap()
 					--fazer os setpoints
 					if (instancia_alvo.ativa and instancia_alvo.baseframe) then
 
-						if (lado_reverso == 1) then --a esquerda
+						if (lado_reverso == 1) then --attach to the left side
 							--check if it is already anchored
 							local anchor, parent, anchor2, x, y = instancia.baseframe:GetPoint()
 							if not (parent and parent == instancia_alvo.baseframe) then
 								instancia_alvo.baseframe:SetPoint("BOTTOMLEFT", instancia.baseframe, "BOTTOMRIGHT", Details.grouping_horizontal_gap, 0)
 							end
 
-						elseif (lado_reverso == 2) then --em baixo
+						elseif (lado_reverso == 2) then --attach to the bottom
 							local statusbar_y_mod = 0
 							if (not instancia_alvo.show_statusbar) then
 								statusbar_y_mod = -14
@@ -1926,14 +2086,14 @@ function Details:BaseFrameSnap()
 								instancia_alvo.baseframe:SetPoint("BOTTOMLEFT", instancia.baseframe, "TOPLEFT", 0, 34 + statusbar_y_mod) -- + (statusbar_y_mod*-1)
 							end
 
-						elseif (lado_reverso == 3) then --a direita
+						elseif (lado_reverso == 3) then --attach to the right side
 							--check if it is already anchored
 							local anchor, parent, anchor2, x, y = instancia.baseframe:GetPoint()
 							if not (parent and parent == instancia_alvo.baseframe) then
 								instancia_alvo.baseframe:SetPoint("TOPRIGHT", instancia.baseframe, "TOPLEFT", -Details.grouping_horizontal_gap, 0)
 							end
 
-						elseif (lado_reverso == 4) then --em cima
+						elseif (lado_reverso == 4) then --attach to the top
 							local statusbar_y_mod = 0
 							if (not instancia.show_statusbar) then
 								statusbar_y_mod = 14
@@ -1959,20 +2119,20 @@ function Details:BaseFrameSnap()
 					local instancia_alvo = Details.tabela_instancias [snap_to]
 
 					if (instancia_alvo.ativa and instancia_alvo.baseframe) then
-						if (lado == 1) then --a esquerda
+						if (lado == 1) then --attach to the left side
 							instancia_alvo.baseframe:SetPoint("TOPRIGHT", instancia.baseframe, "TOPLEFT", -Details.grouping_horizontal_gap, 0)
 
-						elseif (lado == 2) then --em baixo
+						elseif (lado == 2) then --attach to the bottom
 							local statusbar_y_mod = 0
 							if (not instancia.show_statusbar) then
 								statusbar_y_mod = 14
 							end
 							instancia_alvo.baseframe:SetPoint("TOPLEFT", instancia.baseframe, "BOTTOMLEFT", 0, -34 + statusbar_y_mod)
 
-						elseif (lado == 3) then --a direita
+						elseif (lado == 3) then --attach to the right side
 							instancia_alvo.baseframe:SetPoint("BOTTOMLEFT", instancia.baseframe, "BOTTOMRIGHT", Details.grouping_horizontal_gap, 0)
 
-						elseif (lado == 4) then --em cima
+						elseif (lado == 4) then --attach to the top
 
 							local statusbar_y_mod = 0
 							if (not instancia_alvo.show_statusbar) then
@@ -2208,72 +2368,74 @@ end
 --cria uma janela para uma nova inst�ncia
 	--search key: ~new ~nova
 	function Details:CreateDisabledInstance(ID, skin_table)
-	--first check if we can recycle a old instance
-	if (Details.unused_instances [ID]) then
-		local new_instance = Details.unused_instances [ID]
-		Details.tabela_instancias [ID] = new_instance
-		Details.unused_instances [ID] = nil
-		--replace the values on recycled instance
+		--first check if we can recycle a old instance
+		if (Details.unused_instances[ID]) then
+			local new_instance = Details.unused_instances[ID]
+			Details.tabela_instancias[ID] = new_instance
+			Details.unused_instances[ID] = nil
+			--replace the values on recycled instance
 			new_instance:ResetInstanceConfig()
 
-		--copy values from a previous skin saved
+			--copy values from a previous skin saved
 			if (skin_table) then
 				--copy from skin_table to new_instance
 				Details.table.copy(new_instance, skin_table)
 			end
 
-		return new_instance
-	end
+			return new_instance
+		end
 
-	--must create a new one
+		--must create a new one
 		local new_instance = {
 			--instance id
-				meu_id = ID,
+			meu_id = ID,
 			--internal stuff
-				barras = {}, --container que ir� armazenar todas as barras
-				barraS = {nil, nil}, --de x at� x s�o as barras que est�o sendo mostradas na tela
-				rolagem = false, --barra de rolagem n�o esta sendo mostrada
-				largura_scroll = 26,
-				bar_mod = 0,
-				bgdisplay_loc = 0,
+			barras = {},     --container que ir� armazenar todas as barras
+			barraS = { nil, nil }, --de x at� x s�o as barras que est�o sendo mostradas na tela
+			rolagem = false, --barra de rolagem n�o esta sendo mostrada
+			largura_scroll = 26,
+			bar_mod = 0,
+			bgdisplay_loc = 0,
 
 			--displaying row info
-				rows_created = 0,
-				rows_showing = 0,
-				rows_max = 50,
+			rows_created = 0,
+			rows_showing = 0,
+			rows_max = 50,
 
 			--saved pos for normal mode and lone wolf mode
-				posicao = {
-					["normal"] = {x = 1, y = 2, w = 300, h = 200},
-					["solo"] = {x = 1, y = 2, w = 300, h = 200}
-				},
+			posicao = {
+				["normal"] = { x = 1, y = 2, w = 300, h = 200 },
+				["solo"] = { x = 1, y = 2, w = 300, h = 200 }
+			},
 
 			--save information about window snaps
-				snap = {},
+			snap = {},
 
 			--current state starts as normal
-				mostrando = "normal",
+			mostrando = "normal",
 			--menu consolidated
-				consolidate = false, --deprecated
-				icons = {true, true, true, true},
+			consolidate = false, --deprecated
+			icons = { true, true, true, true },
 
 			--status bar stuff
-				StatusBar = {options = {}},
+			StatusBar = { options = {} },
 
 			--more stuff
-				atributo = 1, --dano
-				sub_atributo = 1, --damage done
-				sub_atributo_last = {1, 1, 1, 1, 1},
-				segmento = 0, --combate atual
-				modo = modo_grupo,
-				last_modo = modo_grupo,
-				LastModo = modo_grupo,
+			atributo = 1, --dano
+			sub_atributo = 1, --damage done
+			sub_atributo_last = { 1, 1, 1, 1, 1 },
+			segmento = 0, --combate atual
+			modo = modo_grupo,
+			last_modo = modo_grupo,
+			LastModo = modo_grupo,
+
+			source_type = detailsFramework.IsAddonApocalypseWow() and Details222.Apocalypse.TypeGame or Details222.Apocalypse.TypeDetails
 		}
 
 		DetailsFramework:Mixin(new_instance, instanceMixins)
 
 		setmetatable(new_instance, Details)
-		Details.tabela_instancias[#Details.tabela_instancias+1] = new_instance
+		Details.tabela_instancias[#Details.tabela_instancias + 1] = new_instance
 
 		--fill the empty instance with default values
 		new_instance:ResetInstanceConfig()
@@ -2303,6 +2465,7 @@ end
 
 		--instance id
 		newInstance.meu_id = instanceId
+		newInstance.source_type = detailsFramework.IsAddonApocalypseWow() and Details222.Apocalypse.TypeGame or Details222.Apocalypse.TypeDetails
 
 		--setup all config
 		newInstance:ResetInstanceConfig()
@@ -2434,6 +2597,8 @@ function Details:RestauraJanela(index, temp, load_only)
 		self.row_height = self.row_info.height + self.row_info.space.between
 		self.rows_fit_in_window = _math_floor(self.posicao[self.mostrando].h / self.row_height)
 
+		self.source_type = self.source_type or (detailsFramework.IsAddonApocalypseWow() and Details222.Apocalypse.TypeGame or Details222.Apocalypse.TypeDetails)
+
 	--create frames
 		local isLocked = self.isLocked
 		local _baseframe, _bgframe, _bgframe_display, _scrollframe = gump:CriaJanelaPrincipal (self.meu_id, self)
@@ -2447,7 +2612,9 @@ function Details:RestauraJanela(index, temp, load_only)
 		--self.isLocked = isLocked --window isn't locked when just created it
 
 	--change the attribute
+	if self:GetApocalypseSourceType() == Details222.Apocalypse.TypeDetails then
 		Details:TrocaTabela(self, self.segmento, self.atributo, self.sub_atributo, true) --passando true no 5� valor para a fun��o ignorar a checagem de valores iguais
+	end
 
 	--set wallpaper
 		if (self.wallpaper.enabled) then
@@ -3030,6 +3197,7 @@ function Details:Freeze(instance)
 	end
 
 	if instance:GetApocalypseSourceType() == Details222.Apocalypse.TypeGame then
+		instance:InstanceMsg(false)
 		return
 	end
 
@@ -3072,18 +3240,21 @@ eventListener:RegisterEvent("DETAILS_DATA_SEGMENTREMOVED", function()
 end)
 
 function Details:UpdateCombatObjectInUse(instance)
-	if (instance.iniciada) then
-		if (instance.segmento == -1) then
-			instance.showing = Details.tabela_overall
+    if (instance.iniciada) then
+        if (instance.savedSegmentCombat and not instance.savedSegmentCombat.__destroyed) then
+            instance.showing = instance.savedSegmentCombat
 
-		elseif (instance.segmento == 0) then
-			instance.showing = Details:GetCurrentCombat()
-		else
-			local segmentsTable = Details:GetCombatSegments()
-			local combatObject = segmentsTable[instance.segmento]
-			instance.showing = combatObject
-		end
-	end
+        elseif (instance.segmento == -1) then
+            instance.showing = Details.tabela_overall
+
+        elseif (instance.segmento == 0) then
+            instance.showing = Details:GetCurrentCombat()
+        else
+            local segmentsTable = Details:GetCombatSegments()
+            local combatObject = segmentsTable[instance.segmento]
+            instance.showing = combatObject
+        end
+    end
 end
 
 function Details:AtualizaSegmentos_AfterCombat(instancia)
@@ -3310,7 +3481,7 @@ function Details:TrocaTabela(instance, segmentId, attributeId, subAttributeId, f
 			end
 		end
 
-		instance.segmento = segmentId
+		instance:SetSegmentId(segmentId, true)
 
 		---@type combat[]
 		local segmentsTable = Details:GetCombatSegments()
@@ -3789,9 +3960,10 @@ function Details:ChangeIcon(icon)
 			self.baseframe.cabecalho.atributo_icon:SetSize(titleBarIconSize, titleBarIconSize)
 
 			self.baseframe.cabecalho.atributo_icon:ClearAllPoints()
-			if (self.menu_attribute_string) then
+			local titleBarFontString = self:GetTitleBarFontString()
+			if (titleBarFontString) then
 				local yOffset = getFineTunedIconCoords(self.atributo, self.sub_atributo)
-				self.baseframe.cabecalho.atributo_icon:SetPoint("right", self.menu_attribute_string.widget, "left", -4, 1 + yOffset)
+				self.baseframe.cabecalho.atributo_icon:SetPoint("right", titleBarFontString.widget, "left", -4, 1 + yOffset)
 			end
 
 			if (skin.attribute_icon_anchor) then
@@ -3875,6 +4047,207 @@ local function GetDpsHps (_thisActor, key)
 				end
 			end
 		end
+	end
+end
+
+---@param self instance
+function Details:SendApocalypseReport()
+	local baseframe = self.baseframe
+	local reportData = baseframe.reportData
+	if (reportData) then
+		local totalAmount = reportData.totalAmount
+		if (issecretvalue(totalAmount)) then
+			Details:Msg("Report data is secret, try after combat.")
+			return
+		end
+
+		local reportLines = {}
+		for i, data in ipairs(reportData.combatSources) do
+			local name = data.name
+			local total = data.totalAmount
+			local percent = format("%.1f%%", totalAmount > 0 and (total / totalAmount) * 100 or 0)
+			reportLines[#reportLines+1] = {name = name, total = total, percent = percent, result = ""}
+		end
+
+        local attributeText = self:GetInstanceAttributeText() --this return the title, like 'damage done'
+        if self:GetSegmentType() == 0 then
+            attributeText = _G["DAMAGE_METER_OVERALL_SESSION"] .. " " .. attributeText
+        end
+
+		local reportTitle = "Details! " .. attributeText .. " Report"
+		local fontSize = select(2, FCF_GetChatWindowInfo(1))
+
+		local dummyFontString = Details.fontstring_len
+		if (not dummyFontString) then
+			Details.fontstring_len = Details.listener:CreateFontString(nil, "background", "GameFontNormal")
+			dummyFontString = Details.fontstring_len
+		end
+
+		local font, size, flags = dummyFontString:GetFont()
+		dummyFontString:SetFont(font, fontSize, flags)
+		dummyFontString:SetText("DEFAULT NAME")
+		local biggest_len = dummyFontString:GetStringWidth()
+
+		local formatFunc = Details:GetCurrentToKFunction()
+		for index, reportLine in ipairs(reportData) do
+			local total = reportLine.total
+			if total > 10000 then
+				total = formatFunc(_, total)
+			end
+			Details.fontstring_len:SetText(total)
+			local len = Details.fontstring_len:GetStringWidth()
+			if (len > biggest_len) then
+				biggest_len = len
+			end
+		end
+
+		if (biggest_len > 130) then
+			biggest_len = 130
+		end
+
+		for index, reportLine in ipairs(reportLines) do
+			local name = reportLine.name
+			local total = reportLine.total
+			local percent = reportLine.percent
+
+			name = name .. " "
+			Details.fontstring_len:SetText(name)
+			local len = Details.fontstring_len:GetStringWidth()
+
+			while (len < biggest_len) do
+				name = name .. "."
+				Details.fontstring_len:SetText(name)
+				len = Details.fontstring_len:GetStringWidth()
+			end
+
+			if total > 10000 then
+				total = formatFunc(_, total)
+			end
+
+			reportLine.result = index .. ". " .. name .. " " .. total .. " " .. percent
+		end
+
+		local toWho = Details.report_where
+
+		--build the final flat lines table: title first, then each formatted result
+		local lines = {reportTitle}
+		for _, reportLine in ipairs(reportLines) do
+			lines[#lines + 1] = reportLine.result
+		end
+
+		--Details:DelayUpdateReportWindowRecentlyReported()
+
+		if (Details.report_where == "COPY") then
+			--dumpt(lines)
+			Details:SendReportTextWindow(lines)
+			return
+		end
+
+		local channel = toWho:find("CHANNEL")
+		local isBtag = toWho:find("REALID")
+
+		local sendReportChannel = function(timerObject)
+			_SendChatMessage(timerObject.Arg1, timerObject.Arg2, timerObject.Arg3, timerObject.Arg4)
+		end
+
+		local sendReportBnet = function(timerObject)
+			BNSendWhisper(timerObject.Arg1, timerObject.Arg2)
+		end
+
+		local delay = 200
+
+		if (channel) then
+			channel = toWho:gsub((".*|"), "")
+
+			for i = 1, #lines do
+				if (channel == "Trade") then
+					channel = "Trade - City"
+				end
+
+				local channelName = GetChannelName(channel)
+				local timer = C_Timer.NewTimer(i * delay / 1000, sendReportChannel)
+				timer.Arg1 = lines[i]
+				timer.Arg2 = "CHANNEL"
+				timer.Arg3 = nil
+				timer.Arg4 = channelName
+			end
+
+			return
+
+		elseif (isBtag) then
+			local bnetAccountID = toWho:gsub((".*|"), "")
+			bnetAccountID = tonumber(bnetAccountID)
+
+			for i = 1, #lines do
+				local timer = C_Timer.NewTimer(i * delay / 1000, sendReportBnet)
+				timer.Arg1 = bnetAccountID
+				timer.Arg2 = lines[i]
+			end
+
+			return
+
+		elseif (toWho == "WHISPER") then
+			local target = Details.report_to_who
+
+			if (not target or target == "") then
+				Details:Msg(Loc["STRING_REPORT_INVALIDTARGET"])
+				return
+			end
+
+			for i = 1, #lines do
+				local timer = C_Timer.NewTimer(i * delay / 1000, sendReportChannel)
+				timer.Arg1 = lines[i]
+				timer.Arg2 = toWho
+				timer.Arg3 = nil
+				timer.Arg4 = target
+			end
+			return
+
+		elseif (toWho == "WHISPER2") then
+			toWho = "WHISPER"
+
+			local target
+			if (_UnitExists("target")) then
+				if (_UnitIsPlayer("target")) then
+					local targetName, realm = _UnitName("target")
+					if (realm and realm ~= "") then
+						targetName = targetName .. "-" .. realm
+					end
+					target = targetName
+				else
+					Details:Msg(Loc["STRING_REPORT_INVALIDTARGET"])
+					return
+				end
+			else
+				Details:Msg(Loc["STRING_REPORT_INVALIDTARGET"])
+				return
+			end
+
+			for i = 1, #lines do
+				local timer = C_Timer.NewTimer(i * delay / 1000, sendReportChannel)
+				timer.Arg1 = lines[i]
+				timer.Arg2 = toWho
+				timer.Arg3 = nil
+				timer.Arg4 = target
+			end
+
+			return
+		end
+
+		if (toWho == "RAID" or toWho == "PARTY") then
+			if (GetNumGroupMembers(LE_PARTY_CATEGORY_INSTANCE) > 0) then
+				toWho = "INSTANCE_CHAT"
+			end
+		end
+
+		for i = 1, #lines do
+			local timer = C_Timer.NewTimer(i * delay / 1000, sendReportChannel)
+			timer.Arg1 = lines[i]
+			timer.Arg2 = toWho
+			timer.Arg3 = nil
+			timer.Arg4 = nil
+		end
+
 	end
 end
 
@@ -4121,7 +4494,7 @@ function Details:monta_relatorio (este_relatorio, custom)
 		amt = math.min (amt, container_amount or 0)
 		local raw_data_to_report = {}
 
-		for i = 1, container_amount do
+		for i = 1, container_amount do --is nil
 			local actor = container [i]
 			if (actor) then
 				-- get the total

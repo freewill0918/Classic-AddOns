@@ -44,6 +44,7 @@ L["can be created from reagents in your inventory"] = true
 L["can be created from reagents on all characters"] = true
 L["can be created from reagents on other characters"] = true
 L["can be created with reagents bought at vendor"] = true
+L["Chance"] = true
 L["Changing profession to"] = true
 L["CLAMPTOSCREENDESC"] = "Force frames to remain on screen"
 L["CLAMPTOSCREENNAME"] = "Clamp frames to screen"

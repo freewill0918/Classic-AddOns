@@ -282,10 +282,12 @@ local function UnitFramesPlus_TargetTargetShiftDrag()
     ToTFrame:SetClampedToScreen(1);
 
     --重置目标位置时同时重置ToT位置
-    hooksecurefunc("TargetFrame_ResetUserPlacedPosition", function()
-        UnitFramesPlusVar["targettarget"]["moved"] = 0;
-        UnitFramesPlus_TargetTargetPosition();
-    end)
+    if _G.TargetFrame_ResetUserPlacedPosition then
+        hooksecurefunc("TargetFrame_ResetUserPlacedPosition", function()
+            UnitFramesPlusVar["targettarget"]["moved"] = 0;
+            UnitFramesPlus_TargetTargetPosition();
+        end)
+    end
 end
 
 --ToT debuff

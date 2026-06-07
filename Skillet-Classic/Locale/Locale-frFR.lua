@@ -44,6 +44,8 @@ L["can be created from reagents in your inventory"] = "peut être créé à part
 L["can be created from reagents on all characters"] = "peut être créé à partir des composants sur tous les personnages"
 L["can be created from reagents on other characters"] = "Peut être créé à partir des composants sur tous vos personnages"
 L["can be created with reagents bought at vendor"] = "peut être créé avec des composants achetés chez le vendeur"
+--[[Translation missing --]]
+L["Chance"] = "Chance"
 L["Changing profession to"] = "Changer la profession en"
 L["CLAMPTOSCREENDESC"] = "Forcer les cadres à rester à l'écran"
 L["CLAMPTOSCREENNAME"] = "Fixez les cadres à l'écran"

@@ -32,8 +32,8 @@
 						</Texture>
 						<Texture parentKey="BaseFrameLeftEdge" atlas="GarLanding-Left" useAtlasSize="false">
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="83" y="-30" />
-								<Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMLEFT" x="-3" y="30" />
+								<Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x ="-3" />
+								<Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMLEFT" x="85" />
 							</Anchors>
 						</Texture>
 						<Texture parentKey="BaseFrameRightEdge" atlas="GarLanding-Right" useAtlasSize="false">

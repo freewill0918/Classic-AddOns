@@ -33,14 +33,13 @@ local OnShowHookScript = function(frame)
     frame:Hide()
 end
 
-
 function Target:OnInitialize()
     self.db = EasyFrames.db
     db = self.db.profile
 end
 
 function Target:OnEnable()
-    self:SetScale(db.target.scaleFrame)
+    --self:CreateNumericFrame
     self:ShowTargetFrameToT()
     self:ShowName(db.target.showName)
     self:SetFrameNameFont()
@@ -51,10 +50,20 @@ function Target:OnEnable()
     self:ReverseDirectionLosingHP(db.target.reverseDirectionLosingHP)
 
     self:ShowAttackBackground(db.target.showAttackBackground)
-    self:SetAttackBackgroundOpacity(db.target.attackBackgroundOpacity)
     self:ShowPVPIcon(db.target.showPVPIcon)
 
-    self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
+    hooksecurefunc(TargetFrame, "CheckClassification", function()
+        self:CheckClassification(TargetFrame);
+    end);
+
+    hooksecurefunc(TargetFrameHealthBar, "UpdateTextString", function()
+        self:UpdateHealthBarTextString(TargetFrame)
+    end)
+
+    hooksecurefunc(TargetFrameManaBar, "UpdateTextString", function()
+        self:UpdateManaBarTextString(TargetFrame)
+    end)
+
     self:SecureHook("UnitFramePortrait_Update", "MakeClassPortraits")
 end
 
@@ -62,7 +71,6 @@ function Target:OnProfileChanged(newDB)
     self.db = newDB
     db = self.db.profile
 
-    self:SetScale(db.target.scaleFrame)
     self:MakeClassPortraits(TargetFrame)
     self:ShowTargetFrameToT()
     self:ShowName(db.target.showName)
@@ -77,17 +85,59 @@ function Target:OnProfileChanged(newDB)
     self:SetAttackBackgroundOpacity(db.target.attackBackgroundOpacity)
     self:ShowPVPIcon(db.target.showPVPIcon)
 
-    self:UpdateTextStringWithValues()
-    self:UpdateTextStringWithValues(TargetFrameManaBar)
+    self:UpdateHealthBarTextString(TargetFrame)
+    self:UpdateManaBarTextString(TargetFrame)
 end
 
+function Target:CreateNumericFrame()
+    local healthbarFrame = CreateFrame("Frame", nil, TargetFrame)
+    healthbarFrame:SetWidth(1)
+    healthbarFrame:SetHeight(27)
+    healthbarFrame:SetPoint("CENTER", TargetFrame, "CENTER", -51, 0)
 
-function Target:SetScale(value)
-    TargetFrame:SetScale(value)
+    TargetFrame.healthbar.TextString = healthbarFrame:CreateFontString(nil, "ARTWORK")
+    TargetFrame.healthbar.TextString:SetPoint("CENTER", 0, 0)
+    TargetFrame.healthbar.TextString:Show()
+
+    local manabarFrame = CreateFrame("Frame", nil, TargetFrame)
+    manabarFrame:SetWidth(1)
+    manabarFrame:SetHeight(27)
+    manabarFrame:SetPoint("CENTER", TargetFrame, "CENTER", -51, -8)
+
+    TargetFrameManaBar.TextString = manabarFrame:CreateFontString(nil, "ARTWORK")
+    TargetFrameManaBar.TextString:SetPoint("CENTER", 0, 0)
+    TargetFrameManaBar.TextString:Show()
+end
+
+function Target:CheckClassification(frame)
+    local classification = UnitClassification(frame.unit);
+
+    frame.Background:SetHeight(41)
+    frame.nameBackground:SetVertexColor(0, 0, 0, 0.0)
+
+    if (classification == "minus") then
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "minus"));
+        frame.nameBackground:Hide();
+        frame.Background:SetHeight(31)
+        frame.manabar:Hide();
+        frame.manabar.TextString:Hide();
+    elseif (classification == "worldboss" or classification == "elite") then
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "elite"));
+    elseif (classification == "rareelite") then
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "rareelite"));
+    elseif (classification == "rare") then
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "rare"));
+    else
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "default"));
+    end
+
+    if db.target.targetNameColorByClass then
+        self:SetFrameNameColor()
+    end
 end
 
 function Target:MakeClassPortraits(frame)
-    if (frame.portrait and frame.unit == "target") then
+    if (frame.portrait and (frame.unit == "target" or frame.unit == "targettarget")) then
         if (db.target.portrait == "2") then
             ClassPortraits(frame)
         else
@@ -96,29 +146,29 @@ function Target:MakeClassPortraits(frame)
     end
 end
 
-function Target:UpdateTextStringWithValues(statusBar)
-    local frame = statusBar or TargetFrameHealthBar
-
+function Target:UpdateHealthBarTextString(frame)
     if (frame.unit == "target") then
-        if (frame == TargetFrameHealthBar) then
-            UpdateHealthValues(
-                frame,
-                db.target.healthFormat,
-                db.target.customHealthFormat,
-                db.target.customHealthFormatFormulas,
-                db.target.useHealthFormatFullValues,
-                db.target.useChineseNumeralsHealthFormat
-            )
-        elseif (frame == TargetFrameManaBar) then
-            UpdateManaValues(
-                frame,
-                db.target.manaFormat,
-                db.target.customManaFormat,
-                db.target.customManaFormatFormulas,
-                db.target.useManaFormatFullValues,
-                db.target.useChineseNumeralsManaFormat
-            )
-        end
+        UpdateHealthValues(
+            TargetFrameHealthBar,
+            db.target.healthFormat,
+            db.target.customHealthFormat,
+            db.target.customHealthFormatFormulas,
+            db.target.useHealthFormatFullValues,
+            db.target.useChineseNumeralsHealthFormat
+        )
+    end
+end
+
+function Target:UpdateManaBarTextString(frame)
+    if (frame.unit == "target") then
+        UpdateManaValues(
+            TargetFrameManaBar,
+            db.target.manaFormat,
+            db.target.customManaFormat,
+            db.target.customManaFormatFormulas,
+            db.target.useManaFormatFullValues,
+            db.target.useChineseNumeralsManaFormat
+        )
     end
 end
 
@@ -154,13 +204,11 @@ function Target:ShowNameInsideFrame(value)
         local point, relativeTo, relativePoint, xOffset, yOffset = healthBar:GetPoint()
 
         if (value and db.target.showName) then
-            Core:MoveTargetFrameName(nil, nil, nil, nil, 20)
-
-            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, yOffset - 4)
+            Core:MoveTargetFrameName(nil, nil, nil, nil, 16)
+            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, yOffset - 5)
         else
             Core:MoveTargetFrameName()
-
-            Core:MoveRegion(healthBar, point, relativeTo, relativePoint, xOffset, 12)
+            Core:MoveTargetFramesBarsTextString()
         end
     end
 end
@@ -191,18 +239,21 @@ function Target:SetFrameNameFont()
     local fontStyle = db.target.targetNameFontStyle
 
     TargetFrame.name:SetFont(fontFamily, fontSize, fontStyle)
-	-- 加大顯示名字的長度
-	TargetFrame.name:SetWidth(200)
 end
 
 function Target:SetFrameNameColor()
     local color = db.target.targetNameColor
+    local classColor = EasyFrames.Utils.GetColorByClass(TargetFrame)
 
-    EasyFrames.Utils.SetTextColor(TargetFrame.name, color)
+    if db.target.targetNameColorByClass and classColor then
+        EasyFrames.Utils.SetTextColor(TargetFrame.name, classColor)
+    else
+        EasyFrames.Utils.SetTextColor(TargetFrame.name, color)
+    end
 end
 
 function Target:ResetFrameNameColor()
-    EasyFrames.db.profile.target.targetNameColor = {unpack(EasyFrames.Const.DEFAULT_FRAMES_NAME_COLOR)}
+    EasyFrames.db.profile.target.targetNameColor = { unpack(EasyFrames.Const.DEFAULT_FRAMES_NAME_COLOR) }
 end
 
 function Target:ReverseDirectionLosingHP(value)

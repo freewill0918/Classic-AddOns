@@ -394,8 +394,8 @@ QuestieEvent.eventDates = {
         startDate = "5/4",
         endDate = "11/4"
     },
-    ["Children's Week"] = {startDate = "28/4", endDate = "12/5"}, -- TODO: Usually it is only a week long
-    ["Midsummer"] = (Questie.IsChinaRegion and Questie.IsWotlk) and {startDate = "21/6", endDate = "28/7"} or {startDate = "21/6", endDate = "4/7"},
+    ["Children's Week"] = {startDate = "27/4", endDate = "4/5"}, -- TODO: Usually it is only a week long
+    ["Midsummer"] = (Questie.IsTitanReforged) and {startDate = "28/6", endDate = "12/7"} or {startDate = "21/6", endDate = "5/7"},
     ["Brewfest"] = {startDate = "20/9", endDate = "5/10"}, -- TODO: This might be different (retail date)
     ["Harvest Festival"] = { -- WARNING THIS DATE VARIES!!!!
         startDate = "2/10",
@@ -417,7 +417,7 @@ QuestieEvent.eventDateCorrections = {
         ["Love is in the Air"] = {startDate = "11/2", endDate = "15/2"}, -- WARNING THIS DATE VARIES!!!!
     },
     ["TBC"] = {
-        ["Noblegarden"] = false,
+        ["Noblegarden"] = {startDate = "28/3", endDate = "28/3"}, -- One day event on TBC, on the actual day of Easter. Date is set for 2027. Please update this every year.
         ["Love is in the Air"] = {startDate = "11/2", endDate = "15/2"}, -- WARNING THIS DATE VARIES!!!!
     },
 }

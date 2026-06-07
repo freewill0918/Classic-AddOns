@@ -1,4 +1,16 @@
-﻿5.1.26 - 4th March 2026
+﻿5.1.39 - 5th June 2026
+- Updated for Mists of Pandaria game patch 5.5.4.
+
+5.1.35 - 6th May 2026
+- PTR (5.5.4): More updates for game patch 5.5.4.
+
+5.1.34 - 29th April 2026
+- PTR (5.5.4): Updated for Mists of Pandaria game patch 5.5.4.
+
+5.1.31 - 8th April 2026
+- Fixed a situational issue which may have caused the map to be positioned off-screen.
+
+5.1.26 - 4th March 2026
 - Updated LibDBIcon library.
 
 5.1.17 - 31st December 2025

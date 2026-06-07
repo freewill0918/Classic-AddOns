@@ -1,4 +1,6 @@
-﻿--非战斗状态中允许shift+左键拖动焦点头像
+﻿local IsAddOnLoaded = C_AddOns.IsAddOnLoaded;
+
+--非战斗状态中允许shift+左键拖动焦点头像
 local function UnitFramesPlus_FocusShiftDrag()
     FocusFrame:SetScript("OnMouseDown", function(self, elapsed)
         if UnitFramesPlusDB["focus"]["movable"] == 1 then
@@ -26,8 +28,10 @@ function UnitFramesPlus_FocusFrameScaleSet(newscale)
     local newscale = newscale or UnitFramesPlusDB["focus"]["scale"];
     local point, relativeTo, relativePoint, offsetX, offsetY = FocusFrame:GetPoint();
     FocusFrame:SetScale(newscale);
-    FocusFrame:ClearAllPoints();
-    FocusFrame:SetPoint(point, relativeTo, relativePoint, offsetX*oldscale/newscale, offsetY*oldscale/newscale);
+    if point then
+        FocusFrame:ClearAllPoints();
+        FocusFrame:SetPoint(point, relativeTo, relativePoint, offsetX*oldscale/newscale, offsetY*oldscale/newscale);
+    end
     if UnitFramesPlusDB["focus"]["portrait"] == 1 and UnitFramesPlusDB["focus"]["portraittype"] == 1 then
         UnitFramesPlus_FocusPortraitDisplayUpdate();
     end

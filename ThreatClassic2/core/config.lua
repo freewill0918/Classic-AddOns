@@ -65,6 +65,11 @@ defaultConfig.bar = {
     alpha               = 1,                                    -- statusbar alpha
     showThreatValue     = true,                                 -- show threat value in bar
     showThreatPercentage = true,                                -- show threat percentage in bar
+    showPullAggroBar    = false,                                -- show an extra bar indicating when aggro would be pulled
+    pullAggroBarColor   = {0, 0.7, 0, 1},                       -- color of pull aggro bar
+    pullAggroBarText    = "Pull aggro at",                      -- text of pull aggro bar
+    pullAggroBarGrow    = true,                                 -- grow the pull aggro bar when getting closer to pulling threat
+    pullAggroBarPercentage = "RELATIVE",                        -- relative vs absolute (percentage points) number for pull aggro bar
     showIgniteIndicator = true,                                 -- show ignite icon when target has ignite
 }
 
@@ -77,10 +82,12 @@ defaultConfig.igniteIndicator = {
 defaultConfig.customBarColors  = {
     playerEnabled       = false,                                -- enable custom color for player
     activeTankEnabled   = false,                                -- enable custom color for active tank
+    offTankEnabled      = false,                                -- enable custom color for off tank
     otherUnitEnabled    = false,                                -- enable custom color for other units
     igniteColorEnabled  = false,                                -- enable custom color for active ignite player
     playerColor         = {0.8, 0, 0, 1},                       -- custom color for player
     activeTankColor     = {0, 0.8, 0, 1},                       -- custom color for active tank
+    offTankColor        = {0, 0.5, 0, 1},                       -- custom color for off tank
     otherUnitColor      = {0.3, 0.3, 0.3, 1},                   -- custom color for other units
     igniteColor         = {1.0, 0.6, 0, 1},                     -- custom color for active ignite player
 }
@@ -96,9 +103,18 @@ defaultConfig.font = {
 
 -- filter settings
 defaultConfig.filter = {
-    outOfMelee          = false,                                -- hide players out of melee range
-    useTargetList       = true,                                 -- only filter targets in list
-    targetList          = {},                                   -- list of targets to apply filters for
+    useTargetList               = true,                         -- only filter targets in list
+    targetList                  = {},                           -- list of targets to apply filters for
+    outOfMelee = {
+        hide                    = false,                            -- hide players out of melee range
+        color                   = false,                            -- alter color out of melee range
+        overwriteColorEnabled   = false,                            -- overwrite out of melee color
+        overwriteColor          = {0.2, 0.2, 0.2, 1},               -- overwrite color
+        desaturate              = 0.8,                              -- how much to desaturate out of melee range
+        darken                  = 0.0,                              -- how much to darken out of melee range
+        fade                    = 0.2,                              -- how much to fade out of melee range
+        yourself                = false,                            -- apply filter to yourself
+    },
 }
 
 -- warning settings
