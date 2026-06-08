@@ -11,10 +11,13 @@ local CreateSlidingMessageFramePool = Core.Components.CreateSlidingMessageFrameP
 
 -- luacheck: push ignore 113
 local BNToastFrame = BNToastFrame
+local C_Timer = C_Timer
 local ChatAlertFrame = ChatAlertFrame
 local ChatFrameChannelButton = ChatFrameChannelButton
 local ChatFrameMenuButton = ChatFrameMenuButton
 local CreateFrame = CreateFrame
+local FCFDock_UpdateTabs = FCFDock_UpdateTabs
+local GeneralDockManager = GeneralDockManager
 local GetCVar = C_CVar and C_CVar.GetCVar or GetCVar
 local IsAddOnLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
 local NUM_CHAT_WINDOWS = NUM_CHAT_WINDOWS
@@ -59,6 +62,15 @@ function UIManager:OnEnable()
     self.state.frames[i] = smf
     self.state.tabs[i] = CreateChatTab(smf)
   end
+
+  -- 重排 dock 標題列 tab：Glass 在上面把 tab 字型/寬度改窄後，暴雪先前用原生
+  -- 寬度算好的 tab 位置就過時了，必須再跑一次 FCFDock_UpdateTabs 才會對齊，
+  -- 否則登入後要手動 click 一下 tab 才會排版正常。延遲一個 frame 等寬度套用完。
+  C_Timer.After(0, function ()
+    if GeneralDockManager and FCFDock_UpdateTabs then
+      FCFDock_UpdateTabs(GeneralDockManager, true)
+    end
+  end)
 
   -- Edit box
   self.editBox = CreateEditBox(self.container)
