@@ -13,7 +13,22 @@ local function IsUsableAnchor(frame)
     return frame and frame:IsShown() and frame:GetWidth() > 0
 end
 
+-- Chinese clients group numbers by the myriad (萬/億/兆 = 10000^n) rather than
+-- by the Western thousand (千/百萬/十億). Use the appropriate grouping per locale.
+local USE_MYRIAD = GetLocale() == "zhCN" or GetLocale() == "zhTW"
+
 local function shortenNumber(num)
+    if USE_MYRIAD then
+        if num < 10000 then
+            return tostring(num)
+        elseif num < 100000000 then
+            return format("%.2f" .. L["w"], num / 10000)
+        elseif num < 1000000000000 then
+            return format("%.2f" .. L["e"], num / 100000000)
+        else
+            return format("%.3f" .. L["c"], num / 1000000000000)
+        end
+    end
     if num < 1000 then
         return tostring(num)
     elseif num < 1000000 then

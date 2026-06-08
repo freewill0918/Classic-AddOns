@@ -20,6 +20,9 @@ L["RIGHT_CLICK"] = "Right-Click"
 L["k"] = true -- short for 1000
 L["M"] = true -- short for 1000000
 L["B"] = true -- short for 1000000000
+L["w"] = true -- short for 10000 (myriad grouping, used in zhCN/zhTW)
+L["e"] = true -- short for 100000000
+L["c"] = true -- short for 1000000000000
 L["L"] = true -- For the local ping
 L["W"] = true -- For the world ping
 

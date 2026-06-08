@@ -1,0 +1,27 @@
+## Interface: 50504
+## Author: Karlzen
+## Title: Reforge One - Classic MOP
+## Notes: Optimizes reforging for your weights with up to three selectable cap stats and built-in WoWSims export.
+## Version: v5.2.2
+## SavedVariables: ReforgeOneDB
+## SavedVariablesPerCharacter: ReforgeOneCharacterDB
+## OptionalDeps: Ace3, LibStub, Pawn
+## X-Curse-Project-ID: 1379733
+
+#@no-lib-strip@
+embeds.xml
+#@end-no-lib-strip@
+
+util\tables.lua
+
+data\ItemStatsRef.lua
+data\ItemUpgradeStats.lua
+data\RandPropPoints.lua
+data\ScalingTable.lua
+GUI.lua
+ReforgeOne.lua
+ReforgeEngine.lua
+Presets.lua
+ExportImport.lua
+util\WowSimsExport.lua
+locales\[TextLocale].lua

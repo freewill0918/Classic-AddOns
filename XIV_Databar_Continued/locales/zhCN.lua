@@ -18,6 +18,9 @@ L["RIGHT_CLICK"] = "右键单击"
 -- TODO: L["k"] = true -- short for 1000
 -- TODO: L["M"] = true -- short for 1000000
 -- TODO: L["B"] = true -- short for 1000000000
+L["w"] = "万" -- short for 10000 (myriad grouping)
+L["e"] = "亿" -- short for 100000000
+L["c"] = "兆" -- short for 1000000000000
 L["L"] = "本地" -- For the local ping
 L["W"] = "世界" -- For the world ping
 

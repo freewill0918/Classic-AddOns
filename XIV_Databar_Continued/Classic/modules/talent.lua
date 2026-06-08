@@ -217,6 +217,14 @@ function TalentModule:Refresh()
         self.currentSpecID = GetSpecialization()
         self.currentLootSpecID = GetLootSpecialization()
 
+        -- GetSpecialization() can transiently return 5 (no spec selected / not
+        -- yet loaded) early at login; specCoords has no entry for it, so bail
+        -- out of this refresh rather than unpack(nil). A later refresh with a
+        -- valid spec will draw correctly.
+        if self.specCoords[self.currentSpecID or 0] == nil then
+            return
+        end
+
         local _, name = GetSpecializationInfo(self.currentSpecID)
 
         self.specIcon:SetTexture(self.classIcon)

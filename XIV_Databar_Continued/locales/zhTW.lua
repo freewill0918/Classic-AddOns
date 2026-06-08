@@ -18,6 +18,9 @@ L["RIGHT_CLICK"] = "右鍵"
 L["k"] = "千" -- short for 1000
 L["M"] = "百萬" -- short for 1000000
 L["B"] = "十億" -- short for 1000000000
+L["w"] = "萬" -- short for 10000 (myriad grouping)
+L["e"] = "億" -- short for 100000000
+L["c"] = "兆" -- short for 1000000000000
 L["L"] = "本地" -- For the local ping
 L["W"] = "世界" -- For the world ping
 

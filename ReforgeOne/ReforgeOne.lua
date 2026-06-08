@@ -1,0 +1,7793 @@
+if type(GetLootMethod) ~= "function" and C_PartyInfo and C_PartyInfo.GetLootMethod then
+  local lootMethodEnumToString
+  if Enum and Enum.LootMethod then
+    lootMethodEnumToString = {}
+    local enum = Enum.LootMethod
+    local function assign(enumKey, legacyValue)
+      if enum[enumKey] then
+        lootMethodEnumToString[enum[enumKey]] = legacyValue
+      end
+    end
+
+    assign("FreeForAll", "freeforall")
+    assign("RoundRobin", "roundrobin")
+    assign("Master", "master")
+    assign("GroupLoot", "group")
+    assign("Group", "group")
+    assign("NeedBeforeGreed", "needbeforegreed")
+    assign("Personal", "personalloot")
+    assign("PersonalLoot", "personalloot")
+
+    for key, value in pairs(enum) do
+      if type(value) == "number" and lootMethodEnumToString[value] == nil and type(key) == "string" then
+        local normalized = key:gsub("(%u)", " %1"):lower():gsub("[%s_]+", "")
+        lootMethodEnumToString[value] = normalized
+      end
+    end
+  end
+
+  local function NormalizeLootMethod(method)
+    if type(method) == "string" then
+      return method:lower()
+    end
+    if lootMethodEnumToString and lootMethodEnumToString[method] then
+      return lootMethodEnumToString[method]
+    end
+    return method
+  end
+
+  local function NormalizeLootMasterUnit(unit)
+    if unit == nil then
+      return nil, nil
+    end
+
+    if unit == "player" then
+      return 0, nil
+    end
+
+    local partyIndex = unit:match("^party(%d+)$")
+    if partyIndex then
+      return tonumber(partyIndex), nil
+    end
+
+    local raidIndex = unit:match("^raid(%d+)$")
+    if raidIndex then
+      return nil, tonumber(raidIndex)
+    end
+
+    return nil, nil
+  end
+
+  function GetLootMethod()
+    local lootMethod = C_PartyInfo.GetLootMethod()
+    if lootMethod == nil then
+      return nil
+    end
+
+    local masterUnit
+    if C_PartyInfo.GetLootMasterUnit then
+      masterUnit = C_PartyInfo.GetLootMasterUnit()
+    end
+
+    local partyIndex, raidIndex = NormalizeLootMasterUnit(masterUnit)
+    return NormalizeLootMethod(lootMethod), partyIndex, raidIndex
+  end
+end
+
+local addonName, addonTable = ...
+local addonTitle = C_AddOns.GetAddOnMetadata(addonName, "title")
+
+local ReforgeOne = CreateFrame("Frame", addonName, UIParent, "BackdropTemplate")
+addonTable.ReforgeOne = ReforgeOne
+addonTable.ADDON_TITLE = addonTitle
+
+local function RegisterEscapeKeyDismissal(frame)
+  if type(frame) ~= "table" or type(frame.GetName) ~= "function" then
+    return
+  end
+
+  local frameName = frame:GetName()
+  if type(frameName) ~= "string" or frameName == "" then
+    return
+  end
+
+  UISpecialFrames = UISpecialFrames or {}
+  for index = 1, #UISpecialFrames do
+    if UISpecialFrames[index] == frameName then
+      return
+    end
+  end
+
+  UISpecialFrames[#UISpecialFrames + 1] = frameName
+end
+
+local EMBEDDED_LIBRARIES = {
+  {
+    name = "AceDB-3.0",
+    required = true,
+    description = "Persistiert Profil-, Charakter- und Klassendaten.",
+  },
+  {
+    name = "AceGUI-3.0",
+    required = false,
+    description = "Stellt die Import-/Export-Dialoge für WoWSims und Pawn bereit.",
+  },
+  {
+    name = "LibParse",
+    required = false,
+    description = "Serialisiert WoWSims-Daten nach JSON.",
+  },
+}
+
+local libraryStatusCache
+local missingRequiredCache
+local reportMissingLibrary
+
+local function CollectLibraryStatus()
+  local status = {}
+  local missingRequired = {}
+
+  local stub = type(LibStub) == "table" and LibStub or nil
+  local stubReady = stub and type(stub.GetLibrary) == "function"
+
+  status["LibStub"] = {
+    loaded = stubReady,
+    required = true,
+    description = "Verwaltet registrierte Bibliotheken.",
+  }
+
+  if not stubReady then
+    table.insert(missingRequired, "LibStub")
+    return status, missingRequired
+  end
+
+  for _, spec in ipairs(EMBEDDED_LIBRARIES) do
+    local loaded = stub:GetLibrary(spec.name, true) ~= nil
+    status[spec.name] = {
+      loaded = loaded,
+      required = spec.required,
+      description = spec.description,
+    }
+    if not loaded and spec.required then
+      table.insert(missingRequired, spec.name)
+    end
+  end
+
+  return status, missingRequired
+end
+
+local function CreateMissingLibraryReporter(status)
+  local reported = {}
+  return function(name)
+    if reported[name] then
+      return
+    end
+    reported[name] = true
+    local entry = status and status[name]
+    local descriptor = entry and entry.description and (name .. " – " .. entry.description) or name
+    if entry and entry.required then
+      print(('%s: Kritische Bibliothek fehlt: %s. Bitte installiere das Addon erneut.'):format(addonTitle, descriptor))
+    else
+      print(('%s: Optionale Bibliothek fehlt: %s. Entsprechende Funktionen wurden deaktiviert.'):format(addonTitle, descriptor))
+    end
+  end
+end
+
+local function InitializeLibraryHelpers()
+  if libraryStatusCache then
+    return libraryStatusCache, missingRequiredCache, reportMissingLibrary
+  end
+
+  local status, missingRequired = CollectLibraryStatus()
+  local reporter = CreateMissingLibraryReporter(status)
+
+  libraryStatusCache = status
+  missingRequiredCache = missingRequired
+  reportMissingLibrary = reporter
+
+  addonTable.LibraryStatus = status
+  addonTable.ReportMissingLibrary = reporter
+  addonTable.AcquireLibrary = function(name, silent)
+    local stub = type(LibStub) == "table" and LibStub or nil
+    if not (stub and type(stub.GetLibrary) == "function") then
+      if not silent then
+        reporter("LibStub")
+      end
+      if status["LibStub"] then
+        status["LibStub"].loaded = false
+      end
+      return nil
+    end
+
+    local library = stub:GetLibrary(name, true)
+    if library then
+      status[name] = status[name] or {}
+      status[name].loaded = true
+      if status[name].required == nil then
+        status[name].required = false
+      end
+      return library
+    end
+
+    status[name] = status[name] or { required = false }
+    status[name].loaded = false
+    if not silent then
+      reporter(name)
+    end
+    return nil
+  end
+  addonTable.IsLibraryAvailable = function(name)
+    local entry = status and status[name]
+    return entry and entry.loaded or false
+  end
+
+  return status, missingRequired, reporter
+end
+
+InitializeLibraryHelpers()
+ReforgeOne.computeInProgress = false
+ReforgeOne.methodAlternatives = nil
+ReforgeOne.allMethodAlternatives = nil
+ReforgeOne.selectedMethodAlternative = nil
+
+if not addonTable.L then
+  local translations = {}
+  local lower = string.lower
+  addonTable.L = setmetatable(translations, {
+    __index = function(self, key)
+      if type(key) == "string" then
+        local lowerKey = lower(key)
+        if lowerKey ~= key then
+          local lowerValue = rawget(self, lowerKey)
+          if lowerValue ~= nil then
+            rawset(self, key, lowerValue)
+            return lowerValue
+          end
+        end
+      end
+
+      rawset(self, key, key or "")
+      return self[key]
+    end,
+    __newindex = function(self, key, value)
+      rawset(self, key, value)
+      if type(key) == "string" then
+        local lowerKey = lower(key)
+        if lowerKey ~= key then
+          rawset(self, lowerKey, value)
+        end
+      end
+    end,
+  })
+end
+
+local L = addonTable.L
+local GUI = addonTable.GUI
+local GetThemeColor = type(addonTable.GetThemeColor) == "function" and addonTable.GetThemeColor or function()
+  return 1, 1, 1, 1
+end
+
+local function ThemeRGB(name, fallbackR, fallbackG, fallbackB)
+  local r, g, b = GetThemeColor(name)
+  if type(r) ~= "number" then
+    return fallbackR, fallbackG, fallbackB
+  end
+  return r, g, b
+end
+
+local function ThemeRGBA(name, fallbackR, fallbackG, fallbackB, fallbackA)
+  local r, g, b, a = GetThemeColor(name)
+  if type(r) ~= "number" then
+    return fallbackR, fallbackG, fallbackB, fallbackA
+  end
+  return r, g, b, a
+end
+
+local function ApplyStatHeaderColor(fontString)
+  if not fontString or not fontString.SetTextColor then
+    return
+  end
+
+  local color = addonTable.FONTS and addonTable.FONTS.darkyellow
+  if color then
+    if type(color.GetRGB) == "function" then
+      fontString:SetTextColor(color:GetRGB())
+      return
+    elseif type(color) == "table" then
+      if color.r and color.g and color.b then
+        fontString:SetTextColor(color.r, color.g, color.b)
+        return
+      elseif color[1] and color[2] and color[3] then
+        fontString:SetTextColor(color[1], color[2], color[3])
+        return
+      end
+    end
+  end
+
+  fontString:SetTextColor(0.9, 0.8, 0.2)
+end
+addonTable.MAX_LOOPS = 200000
+addonTable.DEFAULT_COMPUTE_SPEED = addonTable.DEFAULT_COMPUTE_SPEED or (addonTable.MAX_LOOPS * 0.2)
+addonTable.MAX_METHOD_ALTERNATIVES = 5
+addonTable.CORE_SPEED_PRESET_MULTIPLIERS = {
+  extra_fast = 0.45,
+  fast = 0.65,
+  normal = 1,
+}
+addonTable.CORE_SPEED_PRESET = addonTable.CORE_SPEED_PRESET or "fast"
+
+addonTable.printLog = {}
+local gprint = print
+local function print(...)
+    local message = strjoin(" ", date("[%X]:"), tostringall(...))
+    tinsert(addonTable.printLog, message)
+    gprint("|cff33ff99"..addonName.."|r:", ...)
+end
+addonTable.print = print
+
+local CopyTableShallow = addonTable.CopyTableShallow
+
+local GetBaseItemStats = GetItemStats
+
+do
+
+  local floor = math.floor
+  local tonumber = tonumber
+
+  local RandPropPoints = addonTable.RandPropPoints or {}
+  local ItemUpgradeStats = addonTable.ItemUpgradeStats or {}
+  local ItemStatsRef = addonTable.ItemStatsRef or {}
+
+  local C_Item = C_Item
+  local GetItemInfo = GetItemInfo
+
+  function addonTable.GetRandPropPoints(iLvl, t)
+      return (RandPropPoints[iLvl] and RandPropPoints[iLvl][t] or 0)
+  end
+
+  local function EnsureItemInfoTable(itemInfoOrLink)
+      local itemInfo
+      if type(itemInfoOrLink) == "table" then
+          itemInfo = itemInfoOrLink
+      elseif itemInfoOrLink then
+          itemInfo = { link = itemInfoOrLink }
+      end
+      if not itemInfo then
+          return
+      end
+
+      if itemInfo.link and not itemInfo.itemId and C_Item and C_Item.GetItemInfoInstant then
+          local itemId = C_Item.GetItemInfoInstant(itemInfo.link)
+          if itemId then
+              itemInfo.itemId = itemInfo.itemId or itemId
+          end
+      end
+
+      return itemInfo
+  end
+
+  local ITEM_LINK_UPGRADE_PATTERN = "item:(%d+):%d+:%d+:%d+:%d+:%d+:%-?%d+:%-?%d+:%d+:%d+:(%d+)"
+
+  local ItemUpgrade = {
+      [1]   =  8,
+      [373] =  4,
+      [374] =  8,
+      [375] =  4,
+      [376] =  4,
+      [377] =  4,
+      [378] =  7,
+      [379] =  4,
+      [380] =  4,
+      [445] =  0,
+      [446] =  4,
+      [447] =  8,
+      [451] =  0,
+      [452] =  8,
+      [453] =  0,
+      [454] =  4,
+      [455] =  8,
+      [456] =  0,
+      [457] =  8,
+      [458] =  0,
+      [459] =  4,
+      [460] =  8,
+      [461] = 12,
+      [462] = 16,
+      [465] =  0,
+      [466] =  4,
+      [467] =  8,
+      [468] =  0,
+      [469] =  4,
+      [470] =  8,
+      [471] = 12,
+      [472] = 16,
+  }
+
+  local function GetLinkUpgradeData(link)
+      if type(link) ~= "string" then
+          return
+      end
+
+      local itemId, upgradeId = link:match(ITEM_LINK_UPGRADE_PATTERN)
+      if not itemId then
+          return
+      end
+
+      itemId = tonumber(itemId)
+      upgradeId = tonumber(upgradeId)
+
+      local upgradeDelta = upgradeId and ItemUpgrade[upgradeId]
+
+      return itemId, upgradeId, upgradeDelta
+  end
+
+  local function NormalizeOverrides(itemInfo, arg1, arg2)
+      local ilvlCap, upgradeLevel
+
+      if type(arg1) == "table" then
+          ilvlCap = tonumber(arg1.ilvlCap)
+          upgradeLevel = tonumber(arg1.upgradeLevel or arg1[1])
+      elseif type(arg1) == "number" then
+          if type(arg2) == "number" then
+              ilvlCap = arg1
+              upgradeLevel = arg2
+          else
+              upgradeLevel = arg1
+          end
+      end
+
+      if upgradeLevel == nil and type(arg2) == "number" then
+          upgradeLevel = arg2
+      end
+
+      if itemInfo then
+          if ilvlCap == nil then
+              ilvlCap = tonumber(itemInfo.ilvlCap)
+          end
+          if upgradeLevel == nil then
+              upgradeLevel = tonumber(itemInfo.upgradeLevel)
+          end
+      end
+
+      if upgradeLevel and upgradeLevel < 0 then
+          upgradeLevel = 0
+      end
+      if ilvlCap and ilvlCap < 0 then
+          ilvlCap = 0
+      end
+
+      return ilvlCap, upgradeLevel
+  end
+
+  addonTable.EnsureItemInfoTable = EnsureItemInfoTable
+  addonTable.NormalizeOverrides = NormalizeOverrides
+  addonTable.GetLinkUpgradeData = GetLinkUpgradeData
+  _G.EnsureItemInfoTable = EnsureItemInfoTable
+  _G.NormalizeOverrides = NormalizeOverrides
+
+  local function SafeGetDetailedItemLevelInfo(...)
+      if not (C_Item and C_Item.GetDetailedItemLevelInfo) then
+          return
+      end
+
+      local function IsPlausibleItemLevel(value)
+          return type(value) == "number" and value >= 50
+      end
+
+      local numericArgs, otherArgs = {}, {}
+      local argCount = select("#", ...)
+      for index = 1, argCount do
+          local arg = select(index, ...)
+          if arg ~= nil then
+              if type(arg) == "number" then
+                  numericArgs[#numericArgs + 1] = arg
+              else
+                  otherArgs[#otherArgs + 1] = arg
+              end
+          end
+      end
+
+      local function Evaluate(handle)
+          local ok, effective, preview, base = pcall(C_Item.GetDetailedItemLevelInfo, handle)
+          if ok then
+              if not IsPlausibleItemLevel(base) then
+                  base = nil
+              end
+              if not IsPlausibleItemLevel(preview) then
+                  preview = nil
+              end
+              if not IsPlausibleItemLevel(effective) then
+                  effective = nil
+              end
+
+              local best = base or preview or effective
+              if best or effective then
+                  best = best or effective
+                  return {
+                      best = best,
+                      effective = effective,
+                      preview = preview,
+                      base = base,
+                  }
+              end
+          end
+      end
+
+      local fallback
+
+      local function Consider(handle)
+          local result = Evaluate(handle)
+          if not result then
+              return
+          end
+
+          if result.base then
+              return result
+          end
+
+          if not fallback then
+              fallback = result
+          end
+      end
+
+      for index = 1, #numericArgs do
+          local candidate = Consider(numericArgs[index])
+          if candidate then
+              return candidate.best, candidate.effective, candidate.preview, candidate.base
+          end
+      end
+
+      for index = 1, #otherArgs do
+          local candidate = Consider(otherArgs[index])
+          if candidate then
+              return candidate.best, candidate.effective, candidate.preview, candidate.base
+          end
+      end
+
+      if fallback then
+          return fallback.best, fallback.effective, fallback.preview, fallback.base
+      end
+  end
+
+  addonTable.SafeGetDetailedItemLevelInfo = SafeGetDetailedItemLevelInfo
+
+  local function FetchBaseItemLevel(itemLocation, itemLink, itemId)
+      local best, effective, _, base = SafeGetDetailedItemLevelInfo(itemId, itemLocation, itemLink)
+      if base and base > 0 then
+          return base
+      end
+
+      if itemLink then
+          local _, _, upgradeDelta = GetLinkUpgradeData(itemLink)
+          if upgradeDelta and upgradeDelta > 0 then
+              local sourceLevel = effective or best
+              if sourceLevel and sourceLevel > 0 then
+                  local derived = sourceLevel - upgradeDelta
+                  if derived > 0 then
+                      return derived
+                  end
+              end
+          end
+      end
+
+      return best or effective
+  end
+
+  local function ResolveBaseItemLevel(itemInfo)
+      if not itemInfo then
+          return 0
+      end
+
+      local baseIlvl = tonumber(itemInfo.baseIlvl) or tonumber(itemInfo.ilvlBase)
+      if baseIlvl and baseIlvl > 0 then
+          return floor(baseIlvl + 0.5)
+      end
+
+      local itemId = itemInfo.itemId
+      if not itemId and itemInfo.link and C_Item and C_Item.GetItemInfoInstant then
+          itemId = C_Item.GetItemInfoInstant(itemInfo.link)
+      end
+
+      local baseFromAPI = FetchBaseItemLevel(itemInfo.itemLocation, itemInfo.link, itemId)
+      local current = tonumber(itemInfo.ilvl)
+      local upgrade = tonumber(itemInfo.upgradeLevel)
+      if upgrade and upgrade < 0 then
+          upgrade = 0
+      end
+
+      local candidate = baseFromAPI
+      if current and current > 0 and upgrade and upgrade > 0 then
+          local derived = current - upgrade * 4
+          if derived > 0 then
+              if not candidate or candidate <= 0 or derived < candidate then
+                  candidate = derived
+              end
+          end
+      end
+
+      if candidate and candidate > 0 then
+          return floor(candidate + 0.5)
+      end
+
+      if itemInfo.link then
+          local _, _, _, infoLevel = GetItemInfo(itemInfo.link)
+          if infoLevel and infoLevel > 0 then
+              return floor(infoLevel + 0.5)
+          end
+      end
+
+      return 0
+  end
+
+  addonTable.ResolveBaseItemLevel = ResolveBaseItemLevel
+
+  local function DetermineUpgradeLevel(currentIlvl, baseIlvl, overrideUpgrade, storedUpgrade)
+      if overrideUpgrade ~= nil then
+          local coerced = tonumber(overrideUpgrade) or 0
+          if coerced < 0 then
+              coerced = 0
+          end
+          return floor(coerced + 0.5), true
+      end
+
+      if storedUpgrade ~= nil then
+          local coerced = tonumber(storedUpgrade) or 0
+          if coerced < 0 then
+              coerced = 0
+          end
+          return floor(coerced + 0.5), false
+      end
+
+      if currentIlvl and baseIlvl and currentIlvl > baseIlvl then
+          local diff = currentIlvl - baseIlvl
+          if diff > 0.01 then
+              return floor(diff / 4 + 0.5), false
+          end
+      end
+
+      return 0, false
+  end
+
+  local function ComputeEffectiveItemLevel(itemInfo, ilvlCap, overrideUpgradeLevel, skipAutomaticUpgrade)
+      if not itemInfo or not itemInfo.link then
+          return nil, 0, 0
+      end
+
+      local linkItemId, _, linkUpgradeDelta = GetLinkUpgradeData(itemInfo.link)
+      local itemId = tonumber(itemInfo.itemId) or linkItemId
+      local upgradeDelta = linkUpgradeDelta
+
+      local baseIlvl = tonumber(itemInfo.baseIlvl) or tonumber(itemInfo.ilvlBase) or 0
+      local currentIlvl = tonumber(itemInfo.ilvl)
+
+      local bestFromAPI, effectiveFromAPI, _, rawBase = SafeGetDetailedItemLevelInfo(itemId, itemInfo.itemLocation, itemInfo.link)
+
+      if (not currentIlvl or currentIlvl <= 0) then
+          if effectiveFromAPI and effectiveFromAPI > 0 then
+              currentIlvl = effectiveFromAPI
+          elseif bestFromAPI and bestFromAPI > 0 then
+              currentIlvl = bestFromAPI
+          end
+      end
+
+      if baseIlvl == 0 then
+          if rawBase and rawBase > 0 then
+              baseIlvl = rawBase
+          elseif bestFromAPI and bestFromAPI > 0 then
+              baseIlvl = bestFromAPI
+          end
+      end
+
+      if upgradeDelta and upgradeDelta > 0 and currentIlvl and currentIlvl > 0 then
+          local candidate = currentIlvl - upgradeDelta
+          if candidate > 0 then
+              if baseIlvl == 0 or baseIlvl >= currentIlvl or (currentIlvl - baseIlvl) < upgradeDelta - 0.25 then
+                  baseIlvl = candidate
+              end
+          end
+      end
+
+      if baseIlvl == 0 and itemInfo.link and C_Item and C_Item.GetItemInfo then
+          local _, _, _, infoLevel = C_Item.GetItemInfo(itemInfo.link)
+          baseIlvl = infoLevel or 0
+      end
+
+      if baseIlvl == 0 and itemInfo.link then
+          local _, _, _, infoLevel = GetItemInfo(itemInfo.link)
+          if infoLevel and infoLevel > 0 then
+              baseIlvl = infoLevel
+          end
+      end
+
+      if baseIlvl == 0 and currentIlvl then
+          if overrideUpgradeLevel and overrideUpgradeLevel > 0 then
+              baseIlvl = currentIlvl - overrideUpgradeLevel * 4
+          elseif itemInfo.upgradeLevel and tonumber(itemInfo.upgradeLevel) and tonumber(itemInfo.upgradeLevel) > 0 then
+              baseIlvl = currentIlvl - tonumber(itemInfo.upgradeLevel) * 4
+          elseif upgradeDelta and upgradeDelta > 0 then
+              baseIlvl = currentIlvl - upgradeDelta
+          else
+              baseIlvl = currentIlvl
+          end
+      end
+
+      if currentIlvl and currentIlvl > 0 and baseIlvl > currentIlvl then
+          baseIlvl = currentIlvl
+      end
+
+      if baseIlvl and baseIlvl > 0 then
+          baseIlvl = floor(baseIlvl + 0.5)
+      else
+          baseIlvl = 0
+      end
+
+      local effectiveIlvl = baseIlvl
+
+      if overrideUpgradeLevel and overrideUpgradeLevel > 0 then
+          effectiveIlvl = baseIlvl + overrideUpgradeLevel * 4
+      elseif not skipAutomaticUpgrade then
+          local storedUpgrade = tonumber(itemInfo.upgradeLevel)
+          if storedUpgrade and storedUpgrade > 0 then
+              effectiveIlvl = baseIlvl + storedUpgrade * 4
+          elseif baseIlvl >= 458 and upgradeDelta and upgradeDelta > 0 then
+              effectiveIlvl = baseIlvl + upgradeDelta
+          elseif currentIlvl and currentIlvl > effectiveIlvl then
+              effectiveIlvl = currentIlvl
+          end
+      elseif currentIlvl and currentIlvl > effectiveIlvl then
+          effectiveIlvl = currentIlvl
+      end
+
+      if ilvlCap and ilvlCap > 0 and effectiveIlvl > ilvlCap then
+          effectiveIlvl = ilvlCap
+      end
+
+      if effectiveIlvl and effectiveIlvl > 0 then
+          effectiveIlvl = floor(effectiveIlvl + 0.5)
+      else
+          effectiveIlvl = 0
+      end
+
+      return itemId or tonumber(itemInfo.itemId) or 0, baseIlvl, effectiveIlvl
+  end
+
+  function addonTable.GetItemBaseAndUpgrade(itemInfoOrLink, overrides, upgradeOverride)
+      local itemInfo = EnsureItemInfoTable(itemInfoOrLink)
+      if not itemInfo or not itemInfo.link then
+          return 0, 0, 0, 0
+      end
+
+      local ilvlCap, overrideUpgradeLevel = NormalizeOverrides(itemInfo, overrides, upgradeOverride)
+
+      local itemId, baseIlvl, effectiveIlvl = ComputeEffectiveItemLevel(itemInfo, ilvlCap, overrideUpgradeLevel)
+      if not itemId and itemInfo.link and C_Item and C_Item.GetItemInfoInstant then
+          itemId = C_Item.GetItemInfoInstant(itemInfo.link)
+      end
+
+      local currentIlvl = tonumber(itemInfo.ilvl)
+      if currentIlvl and currentIlvl > 0 then
+          currentIlvl = floor(currentIlvl + 0.5)
+      else
+          currentIlvl = nil
+      end
+
+      if baseIlvl and baseIlvl > 0 then
+          baseIlvl = floor(baseIlvl + 0.5)
+      else
+          baseIlvl = ResolveBaseItemLevel(itemInfo)
+      end
+
+      if baseIlvl <= 0 and currentIlvl then
+          baseIlvl = currentIlvl
+      end
+
+      local upgradeLevel, appliedOverride = DetermineUpgradeLevel(currentIlvl, baseIlvl, overrideUpgradeLevel, itemInfo.upgradeLevel)
+
+      if upgradeLevel and upgradeLevel > 0 then
+          effectiveIlvl = baseIlvl + upgradeLevel * 4
+      end
+
+      if (not effectiveIlvl or effectiveIlvl <= 0) and currentIlvl then
+          effectiveIlvl = currentIlvl
+      end
+
+      if ilvlCap and ilvlCap > 0 and effectiveIlvl and effectiveIlvl > ilvlCap then
+          effectiveIlvl = ilvlCap
+          if baseIlvl > 0 then
+              upgradeLevel = floor(((effectiveIlvl - baseIlvl) / 4) + 0.5)
+              if upgradeLevel < 0 then
+                  upgradeLevel = 0
+              end
+          end
+      end
+
+      if currentIlvl and baseIlvl > 0 and not appliedOverride then
+          local diff = currentIlvl - baseIlvl
+          if diff > (upgradeLevel or 0) * 4 + 0.01 then
+              upgradeLevel = floor(diff / 4 + 0.5)
+              effectiveIlvl = baseIlvl + upgradeLevel * 4
+          end
+      end
+
+      if baseIlvl and baseIlvl > 0 then
+          baseIlvl = floor(baseIlvl + 0.5)
+      else
+          baseIlvl = 0
+      end
+
+      upgradeLevel = floor((tonumber(upgradeLevel) or 0) + 0.5)
+      if upgradeLevel < 0 then
+          upgradeLevel = 0
+      end
+
+      if not effectiveIlvl or effectiveIlvl <= 0 then
+          effectiveIlvl = baseIlvl + upgradeLevel * 4
+      end
+
+      if currentIlvl and currentIlvl > 0 and currentIlvl > effectiveIlvl then
+          effectiveIlvl = currentIlvl
+      end
+
+      if effectiveIlvl < baseIlvl then
+          effectiveIlvl = baseIlvl
+      end
+
+      itemInfo.baseIlvl = baseIlvl
+      itemInfo.upgradeLevel = upgradeLevel
+      itemInfo.effectiveIlvl = effectiveIlvl
+      if effectiveIlvl and effectiveIlvl > 0 then
+          itemInfo.ilvl = effectiveIlvl
+      end
+      if itemId and itemId ~= 0 then
+          itemInfo.itemId = itemId
+      elseif itemInfo.link and C_Item and C_Item.GetItemInfoInstant then
+          local resolvedId = C_Item.GetItemInfoInstant(itemInfo.link)
+          if resolvedId then
+              itemId = resolvedId
+              itemInfo.itemId = resolvedId
+          end
+      end
+
+      return baseIlvl, upgradeLevel, effectiveIlvl, itemId or 0
+  end
+
+  _G.GetItemBaseAndUpgrade = addonTable.GetItemBaseAndUpgrade
+
+  local function ComputeEffectiveItemLevelPublic(itemInfo, ilvlCap, overrideUpgradeLevel, skipAutomaticUpgrade)
+      local itemId, baseIlvl, effectiveIlvl = ComputeEffectiveItemLevel(itemInfo, ilvlCap, overrideUpgradeLevel, skipAutomaticUpgrade)
+      if skipAutomaticUpgrade and overrideUpgradeLevel == nil then
+          effectiveIlvl = baseIlvl
+      elseif overrideUpgradeLevel ~= nil and baseIlvl and baseIlvl > 0 then
+          effectiveIlvl = baseIlvl + (overrideUpgradeLevel or 0) * 4
+      end
+      return itemId, baseIlvl, effectiveIlvl
+  end
+
+  addonTable.ComputeEffectiveItemLevel = ComputeEffectiveItemLevelPublic
+  _G.ComputeEffectiveItemLevel = ComputeEffectiveItemLevelPublic
+
+end
+
+local DeepCopy = addonTable.DeepCopy
+local GetItemStats
+local SafeGetDetailedItemLevelInfo = addonTable.SafeGetDetailedItemLevelInfo
+local GetLinkUpgradeData = addonTable.GetLinkUpgradeData
+
+if type(ReforgeOneDB) ~= "table" then
+  ReforgeOneDB = {}
+end
+
+local ITEM_SIZE = 24
+
+local NUM_CAPS = 3
+local EXACT_CAP_LIMIT = 2
+addonTable.NUM_CAPS = NUM_CAPS
+
+local ITEM_SLOTS = {
+  "HEADSLOT",
+  "NECKSLOT",
+  "SHOULDERSLOT",
+  "BACKSLOT",
+  "CHESTSLOT",
+  "WRISTSLOT",
+  "HANDSSLOT",
+  "WAISTSLOT",
+  "LEGSSLOT",
+  "FEETSLOT",
+  "FINGER0SLOT",
+  "FINGER1SLOT",
+  "TRINKET0SLOT",
+  "TRINKET1SLOT",
+  "MAINHANDSLOT",
+  "SECONDARYHANDSLOT",
+}
+local ITEM_GRID_LAYOUT = {
+  { "HEADSLOT", false, false, "HANDSSLOT", false },
+  { "NECKSLOT", false, false, "WAISTSLOT", false },
+  { "SHOULDERSLOT", false, false, "LEGSSLOT", false },
+  { "BACKSLOT", false, false, "FEETSLOT", false },
+  { "CHESTSLOT", false, false, "FINGER0SLOT", "TRINKET0SLOT" },
+  { "WRISTSLOT", "MAINHANDSLOT", "SECONDARYHANDSLOT", "FINGER1SLOT", "TRINKET1SLOT" },
+}
+
+local ITEM_SLOT_COUNT = #ITEM_SLOTS
+
+local abs = math.abs
+local floor = math.floor
+local max = math.max
+
+local METHOD_ALTERNATIVE_BUTTON_HEIGHT = 32
+local METHOD_ACTION_BUTTON_HEIGHT = 22
+local METHOD_ACTION_BUTTON_SPACING = 14
+local METHOD_ALTERNATIVE_BUTTON_SPACING = 6
+local METHOD_ALTERNATIVE_BUTTON_MIN_WIDTH = 72
+local METHOD_ALTERNATIVE_COLUMN_SPACING = 8
+local METHOD_ALTERNATIVE_CONTAINER_WIDTH = 145
+
+local PRIMARY_ACTION_BUTTON_COLOR_OVERRIDES = {
+  accent = {0.09, 0.32, 0.62, 1},
+  accentSoft = {0.07, 0.24, 0.46, 1},
+  accentHighlight = {0.26, 0.52, 0.86, 1},
+  highlight = {0.24, 0.52, 0.9, 0.32},
+  highlightSoft = {0.16, 0.36, 0.64, 0.18},
+}
+
+local RESET_ACTION_BUTTON_COLOR_OVERRIDES = {
+  accent = {0.32, 0.34, 0.38, 1},
+  accentSoft = {0.26, 0.27, 0.3, 1},
+  accentHighlight = {0.45, 0.47, 0.52, 1},
+  highlight = {0.95, 0.95, 0.95, 0.22},
+  highlightSoft = {0.75, 0.75, 0.75, 0.12},
+  border = {0.18, 0.19, 0.22, 0.9},
+}
+
+local RESET_BUTTON_TEXT_COLOR = {0.92, 0.2, 0.26}
+
+local function ApplyPrimaryActionButtonStyle(button)
+  if not button or not GUI or type(GUI.SetPanelButtonColorOverrides) ~= "function" then
+    return
+  end
+
+  GUI:SetPanelButtonColorOverrides(button, PRIMARY_ACTION_BUTTON_COLOR_OVERRIDES)
+end
+
+local function ApplyResetActionButtonStyle(button)
+  if not button or not GUI or type(GUI.SetPanelButtonColorOverrides) ~= "function" then
+    return
+  end
+
+  GUI:SetPanelButtonColorOverrides(button, RESET_ACTION_BUTTON_COLOR_OVERRIDES)
+
+  local function applyTextColor()
+    local fontString = button:GetFontString()
+    if fontString then
+      fontString:SetTextColor(RESET_BUTTON_TEXT_COLOR[1], RESET_BUTTON_TEXT_COLOR[2], RESET_BUTTON_TEXT_COLOR[3])
+    end
+  end
+
+  applyTextColor()
+
+  if not button._reforgeResetTextColorHooked then
+    button._reforgeResetTextColorHooked = true
+    button:HookScript("OnShow", applyTextColor)
+    button:HookScript("OnEnable", applyTextColor)
+    button:HookScript("OnDisable", applyTextColor)
+  end
+end
+
+local function CreateDefaultCap()
+  return {
+    stat = 0,
+    points = {
+      {
+        method = 1,
+        value = 0,
+        after = 0,
+        preset = 1
+      }
+    }
+  }
+end
+
+local COMPUTE_DURATION_STORAGE_THRESHOLD = 7
+
+local function GetComputeTimeSeconds()
+  if type(GetTimePreciseSec) == "function" then
+    return GetTimePreciseSec()
+  end
+  if type(debugprofilestop) == "function" then
+    return debugprofilestop() / 1000
+  end
+  if type(GetTime) == "function" then
+    return GetTime()
+  end
+  return 0
+end
+
+addonTable.COMPUTE_DURATION_STORAGE_THRESHOLD = COMPUTE_DURATION_STORAGE_THRESHOLD
+addonTable.GetComputeTimeSeconds = GetComputeTimeSeconds
+
+local function CreateDefaultCaps()
+  local caps = {}
+  for i = 1, NUM_CAPS do
+    caps[i] = CreateDefaultCap()
+  end
+  return caps
+end
+
+function ReforgeOne:SetCoreSpeedPreset(preset)
+  if addonTable.CORE_SPEED_PRESET_MULTIPLIERS[preset] == nil then
+    preset = "fast"
+  end
+  if self.db then
+    self.db.coreSpeedPreset = preset
+  end
+  addonTable.CORE_SPEED_PRESET = preset
+end
+
+local TITLEBAR_COLOR = {18 / 255, 17 / 255, 18 / 255}
+
+addonTable.TITLEBAR_COLOR = TITLEBAR_COLOR
+
+local function ApplyTitlebarColor(titlebar)
+  if not titlebar or not titlebar.SetColorTexture then
+    return
+  end
+
+  titlebar:SetColorTexture(TITLEBAR_COLOR[1], TITLEBAR_COLOR[2], TITLEBAR_COLOR[3])
+end
+
+addonTable.ApplyTitlebarColor = ApplyTitlebarColor
+
+local WINDOW_MIN_WIDTH = 425
+local WINDOW_MAX_WIDTH = 425
+local WINDOW_MIN_HEIGHT = 300
+local WINDOW_MAX_HEIGHT = 650
+
+local DEFAULT_WINDOW_WIDTH = WINDOW_MIN_WIDTH
+local DEFAULT_WINDOW_HEIGHT = math.min(math.max(564, WINDOW_MIN_HEIGHT), WINDOW_MAX_HEIGHT)
+
+local function ClampDimension(value, minValue, maxValue)
+  if type(value) ~= "number" then
+    return nil
+  end
+
+  if minValue and value < minValue then
+    value = minValue
+  end
+
+  if maxValue and value > maxValue then
+    value = maxValue
+  end
+
+  return value
+end
+
+local SHOW_ITEMS_CATEGORY_STORAGE_KEY = "SHOW_ITEMS"
+
+local function GetSettingsLegacyLabel()
+  return L["Settings"]
+end
+
+local function GetShowItemsLabel()
+  return L["Show Items"]
+end
+
+local DefaultDB = {
+  global = {
+    windowLocation = false,
+    methodWindowLocation = false,
+    wowSimsPopupLocation = false,
+    openOnReforge = true,
+    speed = addonTable.DEFAULT_COMPUTE_SPEED,
+    coreSpeedPreset = "fast",
+    computeDurations = {},
+  },
+  char = {
+    windowWidth = DEFAULT_WINDOW_WIDTH,
+    windowHeight = DEFAULT_WINDOW_HEIGHT,
+    targetLevel = 3,
+    ilvlCap = 0,
+    meleeHaste = true,
+    spellHaste = true,
+    mastery = false,
+    weights = {0, 0, 0, 0, 0, 0, 0, 0},
+    caps = CreateDefaultCaps(),
+    methodOrigin = addonName,
+    itemsLocked = {},
+    categoryStates = { [SHOW_ITEMS_CATEGORY_STORAGE_KEY] = false },
+  },
+  class = {
+    customPresets = {}
+  },
+}
+
+local function EnsurePerCharacterSavedVariables()
+  local db = _G.ReforgeOneCharacterDB
+  if type(db) ~= "table" then
+    db = {}
+    _G.ReforgeOneCharacterDB = db
+  end
+
+  if type(db.savedEquips) ~= "table" then
+    db.savedEquips = {}
+  end
+
+  return db
+end
+
+local RFL_FRAMES = { ReforgeOne }
+function RFL_FRAMES:CloseAll()
+  for _, frame in ipairs(self) do
+    frame:Hide()
+  end
+end
+
+local function ReforgeFrameIsVisible()
+  return ReforgingFrame and ReforgingFrame:IsShown()
+end
+
+addonTable.localeClass, addonTable.playerClass, addonTable.playerClassID = UnitClass("player")
+addonTable.playerRace = select(2, UnitRace("player"))
+
+ReforgeOne.itemSlots = ITEM_SLOTS
+local PLAYER_ITEM_DATA = setmetatable({}, {
+  __index = function(t, k)
+    if type(k) == "number" and k >= INVSLOT_FIRST_EQUIPPED and k <= INVSLOT_LAST_EQUIPPED then
+      rawset(t, k, Item:CreateFromEquipmentSlot(k))
+      return t[k]
+    elseif tContains(ITEM_SLOTS, k) then
+      local slotId = GetInventorySlotInfo(k)
+      rawset(t, k, t[slotId])
+      return t[slotId]
+    end
+  end
+})
+addonTable.playerData = PLAYER_ITEM_DATA
+
+local UNFORGE_INDEX = -1
+addonTable.StatCapMethods = EnumUtil.MakeEnum("AtLeast", "AtMost", "NewValue", "Exactly")
+
+function ReforgeOne:UpgradeDB()
+  local db = ReforgeOneDB
+  if not db then return end
+  if db.classProfiles then
+    db.class = DeepCopy(db.classProfiles)
+    db.classProfiles = nil
+  end
+  if db.profiles then
+    db.char = DeepCopy(db.profiles)
+    db.profiles = nil
+  end
+  if not db.global then
+    db.global = {}
+    for k, v in pairs(db) do
+      local default = DefaultDB.global[k]
+      if default ~= nil then
+        if default ~= v then
+          db.global[k] = DeepCopy(v)
+        end
+        db[k] = nil
+      end
+    end
+  end
+
+  if db.global then
+    if type(db.global.computeDurations) ~= "table" then
+      db.global.computeDurations = {}
+    end
+    local width = ClampDimension(db.global.windowWidth, WINDOW_MIN_WIDTH, WINDOW_MAX_WIDTH)
+    local height = ClampDimension(db.global.windowHeight, WINDOW_MIN_HEIGHT, WINDOW_MAX_HEIGHT)
+    if width or height then
+      db.char = db.char or {}
+      for _, profile in pairs(db.char) do
+        if type(profile) == "table" then
+          if width and profile.windowWidth == nil then
+            profile.windowWidth = width
+          end
+          if height and profile.windowHeight == nil then
+            profile.windowHeight = height
+          end
+        end
+      end
+      db.global.windowWidth = nil
+      db.global.windowHeight = nil
+    end
+    db.global.specProfiles = nil
+    db.global.importButton = nil
+    db.global.showHelp = nil
+    db.global.activeWindowTitle = nil
+    db.global.inactiveWindowTitle = nil
+    db.global.speed = addonTable.DEFAULT_COMPUTE_SPEED
+  end
+
+  if db.char then
+    for _, profile in pairs(db.char) do
+      if type(profile) == "table" then
+        profile.prevSpecSettings = nil
+        profile.computeDurations = nil
+
+        local categoryStates = profile.categoryStates
+        if type(categoryStates) == "table" then
+          local storageKey = SHOW_ITEMS_CATEGORY_STORAGE_KEY
+          local legacyKeys = {
+            GetSettingsLegacyLabel(),
+            "SETTINGS",
+            "Show Items",
+            GetShowItemsLabel(),
+          }
+
+          if categoryStates[storageKey] == nil then
+            for index = 1, #legacyKeys do
+              local legacyKey = legacyKeys[index]
+              if legacyKey and categoryStates[legacyKey] ~= nil then
+                categoryStates[storageKey] = categoryStates[legacyKey]
+                categoryStates[legacyKey] = nil
+                break
+              end
+            end
+          end
+
+          for index = 1, #legacyKeys do
+            local legacyKey = legacyKeys[index]
+            if legacyKey and legacyKey ~= storageKey and categoryStates[legacyKey] ~= nil then
+              categoryStates[legacyKey] = nil
+            end
+          end
+
+          if categoryStates[storageKey] == nil then
+            categoryStates[storageKey] = false
+          end
+        end
+      end
+    end
+  end
+
+end
+
+local function BuildCustomPresetDropdownValues()
+  local presetNames = {}
+  local customPresets = ReforgeOne.cdb and ReforgeOne.cdb.customPresets
+  if type(customPresets) == "table" then
+    for name in pairs(customPresets) do
+      if type(name) == "string" and name ~= "" then
+        presetNames[#presetNames + 1] = name
+      end
+    end
+  end
+
+  table.sort(presetNames, function(a, b)
+    return a:lower() < b:lower()
+  end)
+
+  if #presetNames == 0 then
+    return nil
+  end
+
+  local entries = {}
+  for index = 1, #presetNames do
+    local presetName = presetNames[index]
+    entries[index] = {
+      name = presetName,
+      value = presetName,
+    }
+  end
+
+  return entries
+end
+
+local function BuildSavedEquipDropdownValues()
+  if not (ReforgeOne and ReforgeOne.pdb) then
+    return nil
+  end
+
+  local storage = ReforgeOne:GetSavedEquipStorage()
+  if not storage then
+    return nil
+  end
+
+  local names = {}
+  for savedName in pairs(storage) do
+    if type(savedName) == "string" and savedName ~= "" then
+      names[#names + 1] = savedName
+    end
+  end
+
+  table.sort(names, function(a, b)
+    return string.lower(a) < string.lower(b)
+  end)
+
+  if #names == 0 then
+    return nil
+  end
+
+  local entries = {}
+  for index = 1, #names do
+    local savedName = names[index]
+    entries[index] = {
+      name = savedName,
+      value = savedName,
+    }
+  end
+
+  return entries
+end
+
+local function SetupSavePresetPopup(dialog, context)
+  if not dialog or not ReforgeOne or not ReforgeOne.cdb then
+    return
+  end
+
+  local editBox = context and context.editBox or dialog:GetEditBox()
+  if not editBox then
+    return
+  end
+
+  if not editBox._reforgeOriginalWidth then
+    editBox._reforgeOriginalWidth = editBox:GetWidth()
+  end
+
+  local dropdownValues = BuildCustomPresetDropdownValues()
+  if not dropdownValues then
+    if dialog._reforgePresetDropdown then
+      dialog._reforgePresetDropdown.values = nil
+      dialog._reforgePresetDropdown:Hide()
+    end
+    if editBox._reforgeOriginalWidth then
+      editBox:SetWidth(editBox._reforgeOriginalWidth)
+    end
+    return
+  end
+
+  if not GUI or type(GUI.CreateDropdown) ~= "function" then
+    if dialog._reforgePresetDropdown then
+      dialog._reforgePresetDropdown.values = nil
+      dialog._reforgePresetDropdown:Hide()
+    end
+    if editBox._reforgeOriginalWidth then
+      editBox:SetWidth(editBox._reforgeOriginalWidth)
+    end
+    return
+  end
+
+  local targetWidth = editBox._reforgeOriginalWidth and (editBox._reforgeOriginalWidth - 50) or (editBox:GetWidth() - 50)
+  if targetWidth and targetWidth > 0 then
+    editBox:SetWidth(max(targetWidth, 40))
+  end
+
+  local dropdown = dialog._reforgePresetDropdown
+  if dropdown and dropdown.GetObjectType and dropdown:GetObjectType() == "Button" then
+    if dropdown.Recycle then
+      dropdown:Recycle()
+    else
+      dropdown:Hide()
+    end
+    dropdown = nil
+  end
+
+  local function ApplyPresetSelection(selectedPreset)
+    if type(selectedPreset) ~= "string" or selectedPreset == "" then
+      return
+    end
+
+    local targetEditBox = context and context.editBox or dialog:GetEditBox()
+    if not targetEditBox then
+      return
+    end
+
+    targetEditBox:SetText(selectedPreset)
+    targetEditBox:SetCursorPosition(targetEditBox:GetNumLetters())
+    local acceptButton = dialog:GetButton1()
+    if acceptButton then
+      acceptButton:SetEnabled(true)
+      if acceptButton:IsEnabled() then
+        acceptButton:Click()
+      end
+    end
+  end
+
+  if not dropdown then
+    dropdown = GUI:CreateDropdown(dialog, dropdownValues, {
+      height = editBox:GetHeight(),
+      width = 40,
+    })
+    dialog._reforgePresetDropdown = dropdown
+  end
+
+  dropdown.values = dropdownValues
+  dropdown.setter = function(frame, value)
+    ApplyPresetSelection(value)
+  end
+
+  if dropdown.SetHeight then
+    dropdown:SetHeight(editBox:GetHeight())
+  end
+  if dropdown.SetWidth then
+    dropdown:SetWidth(40)
+  end
+
+  if dropdown.SetValue then
+    local currentText = editBox:GetText()
+    local selectedValue
+    if type(currentText) == "string" and currentText ~= "" then
+      for index = 1, #dropdownValues do
+        if dropdownValues[index].value == currentText then
+          selectedValue = currentText
+          break
+        end
+      end
+    end
+
+    dropdown:SetValue(selectedValue)
+  end
+
+  dropdown:ClearAllPoints()
+  dropdown:SetPoint("LEFT", editBox, "RIGHT", 10, 0)
+  dropdown:Show()
+end
+
+local function ResetSavePresetPopup(dialog, context)
+  if not dialog then
+    return
+  end
+
+  local dropdown = dialog._reforgePresetDropdown
+  if dropdown then
+    dropdown:Hide()
+    if dropdown.SetValue then
+      dropdown:SetValue(nil)
+    end
+    dropdown.values = nil
+  end
+
+  local editBox = context and context.editBox or dialog:GetEditBox()
+  if editBox and editBox._reforgeOriginalWidth then
+    editBox:SetWidth(editBox._reforgeOriginalWidth)
+  end
+end
+
+addonTable.SetupSavePresetPopup = SetupSavePresetPopup
+addonTable.ResetSavePresetPopup = ResetSavePresetPopup
+
+local function SetupSaveEquipPopup(dialog, context)
+  if not dialog then
+    return
+  end
+
+  local acceptButton = dialog:GetButton1()
+  if acceptButton then
+    if ReforgeOne and ReforgeOne.pendingSavedEquipSnapshot then
+      acceptButton:SetEnabled(true)
+    else
+      acceptButton:Disable()
+    end
+  end
+
+  if not (ReforgeOne and ReforgeOne.pdb) then
+    return
+  end
+
+  local editBox = context and context.editBox or dialog:GetEditBox()
+  if not editBox then
+    return
+  end
+
+  if not editBox._reforgeOriginalWidth then
+    editBox._reforgeOriginalWidth = editBox:GetWidth()
+  end
+
+  local dropdownValues = BuildSavedEquipDropdownValues()
+  if not dropdownValues then
+    local dropdown = dialog._reforgeEquipDropdown
+    if dropdown then
+      dropdown:Hide()
+      if dropdown.SetValue then
+        dropdown:SetValue(nil)
+      end
+      dropdown.values = nil
+    end
+    if editBox._reforgeOriginalWidth then
+      editBox:SetWidth(editBox._reforgeOriginalWidth)
+    end
+    return
+  end
+
+  if not GUI or type(GUI.CreateDropdown) ~= "function" then
+    local dropdown = dialog._reforgeEquipDropdown
+    if dropdown then
+      dropdown:Hide()
+      if dropdown.SetValue then
+        dropdown:SetValue(nil)
+      end
+      dropdown.values = nil
+    end
+    if editBox._reforgeOriginalWidth then
+      editBox:SetWidth(editBox._reforgeOriginalWidth)
+    end
+    return
+  end
+
+  local targetWidth = editBox._reforgeOriginalWidth and (editBox._reforgeOriginalWidth - 50) or (editBox:GetWidth() - 50)
+  if targetWidth and targetWidth > 0 then
+    editBox:SetWidth(max(targetWidth, 40))
+  end
+
+  local dropdown = dialog._reforgeEquipDropdown
+  if dropdown and dropdown.GetObjectType and dropdown:GetObjectType() == "Button" then
+    if dropdown.Recycle then
+      dropdown:Recycle()
+    else
+      dropdown:Hide()
+    end
+    dropdown = nil
+  end
+
+  local function ApplySavedEquipSelection(selectedEquip)
+    if type(selectedEquip) ~= "string" or selectedEquip == "" then
+      return
+    end
+
+    local targetEditBox = context and context.editBox or dialog:GetEditBox()
+    if not targetEditBox then
+      return
+    end
+
+    targetEditBox:SetText(selectedEquip)
+    targetEditBox:SetCursorPosition(targetEditBox:GetNumLetters())
+
+    local button = dialog:GetButton1()
+    if button then
+      button:SetEnabled(true)
+      if button:IsEnabled() then
+        button:Click()
+      end
+    end
+  end
+
+  if not dropdown then
+    dropdown = GUI:CreateDropdown(dialog, dropdownValues, {
+      height = editBox:GetHeight(),
+      width = 40,
+    })
+    dialog._reforgeEquipDropdown = dropdown
+  end
+
+  dropdown.values = dropdownValues
+  dropdown.setter = function(frame, value)
+    ApplySavedEquipSelection(value)
+  end
+
+  if dropdown.SetHeight then
+    dropdown:SetHeight(editBox:GetHeight())
+  end
+  if dropdown.SetWidth then
+    dropdown:SetWidth(40)
+  end
+
+  if dropdown.SetValue then
+    local currentText = editBox:GetText()
+    local selectedValue
+    if type(currentText) == "string" and currentText ~= "" then
+      for index = 1, #dropdownValues do
+        if dropdownValues[index].value == currentText then
+          selectedValue = currentText
+          break
+        end
+      end
+    end
+
+    dropdown:SetValue(selectedValue)
+  end
+
+  dropdown:ClearAllPoints()
+  dropdown:SetPoint("LEFT", editBox, "RIGHT", 10, 0)
+  dropdown:Show()
+end
+
+local function ResetSaveEquipPopup(dialog, context)
+  if not dialog then
+    return
+  end
+
+  local dropdown = dialog._reforgeEquipDropdown
+  if dropdown then
+    dropdown:Hide()
+    if dropdown.SetValue then
+      dropdown:SetValue(nil)
+    end
+    dropdown.values = nil
+  end
+
+  local editBox = context and context.editBox or dialog:GetEditBox()
+  if editBox and editBox._reforgeOriginalWidth then
+    editBox:SetWidth(editBox._reforgeOriginalWidth)
+  end
+end
+
+GUI.CreateStaticPopup("REFORGE_LITE_SAVE_PRESET", L["Enter the preset name"], function(popup)
+  local text = popup:GetEditBox():GetText()
+  ReforgeOne.cdb.customPresets[text] = {
+    caps = DeepCopy(ReforgeOne.pdb.caps),
+    weights = DeepCopy(ReforgeOne.pdb.weights),
+  }
+  ReforgeOne:InitCustomPresets()
+  if ReforgeOne.RefreshPresetMenu then
+    ReforgeOne:RefreshPresetMenu()
+  elseif ReforgeOne.presetMenuGenerator and ReforgeOne.presetsButton then
+    ReforgeOne.presetsButton:SetupMenu(ReforgeOne.presetMenuGenerator)
+  end
+end, {
+  hasEditBox = true,
+  editBoxWidth = 240,
+  dialogWidthPadding = 30,
+  onShow = SetupSavePresetPopup,
+  onHide = ResetSavePresetPopup,
+})
+
+local function EnsureSaveEquipPopup()
+  if type(StaticPopupDialogs) ~= "table" then
+    return
+  end
+
+  if StaticPopupDialogs.REFORGE_ONE_SAVE_EQUIP then
+    return
+  end
+
+  GUI.CreateStaticPopup("REFORGE_ONE_SAVE_EQUIP", L["Enter a Reforge set name for your current equipment"], function(dialog)
+    if ReforgeOne then
+      ReforgeOne:PersistSavedEquipFromPopup(dialog)
+    end
+  end, {
+    hasEditBox = true,
+    editBoxWidth = 240,
+    dialogWidthPadding = 30,
+    onShow = SetupSaveEquipPopup,
+    onHide = function(dialog, context)
+      ResetSaveEquipPopup(dialog, context)
+      if ReforgeOne then
+        ReforgeOne:ClearPendingSavedEquipSnapshot()
+      end
+    end,
+  })
+end
+
+local function TrimSavedEquipName(value)
+  if type(value) ~= "string" then
+    return ""
+  end
+  local trimmed = value:match("^%s*(.-)%s*$")
+  if not trimmed then
+    return ""
+  end
+  return trimmed
+end
+
+local CLIENT_LOCALE = (type(GetLocale) == "function" and GetLocale()) or "enUS"
+
+local function EnsureSavedEquipTimestamp(entry)
+  if type(entry) ~= "table" then
+    return nil
+  end
+
+  if type(entry.savedAt) ~= "number" or entry.savedAt <= 0 then
+    entry.savedAt = time()
+  end
+
+  return entry.savedAt
+end
+
+local function FormatSavedEquipDate(entry)
+  local timestamp = EnsureSavedEquipTimestamp(entry)
+  if not timestamp then
+    return nil
+  end
+
+  local breakdown = date("*t", timestamp)
+  if not breakdown then
+    return nil
+  end
+
+  local day = tonumber(breakdown.day)
+  local month = tonumber(breakdown.month)
+  local year = tonumber(breakdown.year)
+  if not (day and month and year) then
+    return nil
+  end
+
+  local dayText = string.format("%02d", day)
+  local monthText = string.format("%02d", month)
+  local yearText = string.format("%02d", year % 100)
+
+  if CLIENT_LOCALE == "deDE" then
+    return string.format("%s.%s.%s", dayText, monthText, yearText)
+  end
+
+  return string.format("%s/%s/%s", monthText, dayText, yearText)
+end
+
+local function BuildSavedEquipDisplayName(name, entry)
+  local formattedDate = FormatSavedEquipDate(entry)
+  if not formattedDate then
+    return name
+  end
+  return string.format("%s | %s", name, formattedDate)
+end
+
+local function WrapSavedEquipWarningText(text)
+  if not text or text == "" then
+    return text
+  end
+
+  if type(RED_FONT_COLOR) == "table" and RED_FONT_COLOR.WrapTextInColorCode then
+    return RED_FONT_COLOR:WrapTextInColorCode(text)
+  end
+
+  return string.format("|cffff2020%s|r", text)
+end
+
+local function ApplySavedEquipButtonCompatibilityState(button, isCompatible)
+  if not button then
+    return
+  end
+
+  button._savedEquipIsCompatible = not not isCompatible
+
+  local canToggleEnabledState = button.SetEnabled and button.HookScript
+
+  if button.SetEnabled then
+    if canToggleEnabledState then
+      button:SetEnabled(isCompatible)
+    else
+      -- Ohne HookScript kann der Button nicht dynamisch entsperrt werden,
+      -- daher bleibt er aktiv, damit Shift+Klick weiterhin funktioniert.
+      button:SetEnabled(true)
+    end
+  end
+
+  if isCompatible or not canToggleEnabledState or button._savedEquipShiftHooked then
+    return
+  end
+
+  button._savedEquipShiftHooked = true
+  button:HookScript("OnUpdate", function(btn)
+    if not (btn and btn.SetEnabled and btn.IsEnabled) then
+      return
+    end
+
+    if btn._savedEquipIsCompatible then
+      if not btn:IsEnabled() then
+        btn:SetEnabled(true)
+      end
+      return
+    end
+
+    local shouldEnable = IsShiftKeyDown()
+    if shouldEnable ~= btn._savedEquipShiftEnabled then
+      btn._savedEquipShiftEnabled = shouldEnable
+      btn:SetEnabled(shouldEnable)
+    end
+  end)
+end
+
+local function ResolveSlotDisplayName(slotToken, index)
+  if type(slotToken) == "string" and slotToken ~= "" then
+    local localized = _G[slotToken]
+    if type(localized) == "string" and localized ~= "" then
+      return localized
+    end
+    return slotToken
+  end
+  if index then
+    return string.format("#%d", index)
+  end
+  return ""
+end
+
+local function ResolveStatDisplayName(stats, statIndex)
+  local stat = stats and stats[statIndex]
+  if not stat then
+    return tostring(statIndex or "")
+  end
+  return stat.tip or stat.long or stat.name or tostring(statIndex)
+end
+
+local function ResolveResultStatLabel(stat)
+  if not stat then
+    return ""
+  end
+  return stat.resultLabel or stat.tip or stat.long or stat.name or ""
+end
+
+function ReforgeOne:InitializeSavedEquipStorage()
+  local charDB = EnsurePerCharacterSavedVariables()
+  self.perCharacterStorage = charDB
+
+  if self.pdb then
+    local legacyStorage = self.pdb.savedEquips
+    if type(legacyStorage) == "table" and next(legacyStorage) ~= nil then
+      local target = charDB.savedEquips or {}
+      for name, entry in pairs(legacyStorage) do
+        if target[name] == nil then
+          target[name] = DeepCopy(entry)
+        end
+      end
+      charDB.savedEquips = target
+    end
+    self.pdb.savedEquips = nil
+  end
+
+  return charDB
+end
+
+function ReforgeOne:GetSavedEquipStorage()
+  local charDB = self.perCharacterStorage
+  if not charDB then
+    charDB = self:InitializeSavedEquipStorage()
+  end
+
+  local storage = charDB and charDB.savedEquips
+  if type(storage) ~= "table" then
+    storage = {}
+    charDB.savedEquips = storage
+  end
+
+  return storage
+end
+
+local function ResolveSavedEquipItemId(slotData)
+  if not slotData then
+    return nil
+  end
+
+  local itemId = slotData.itemId
+  if type(itemId) ~= "number" then
+    local itemInfo = slotData.itemInfo
+    if itemInfo then
+      itemId = itemInfo.itemId or itemInfo.id
+      if type(itemId) ~= "number" then
+        local link = itemInfo.link
+        if link and C_Item and C_Item.GetItemInfoInstant then
+          itemId = C_Item.GetItemInfoInstant(link)
+        end
+      end
+    end
+  end
+
+  if type(itemId) ~= "number" and slotData.slotId and GetInventoryItemID then
+    itemId = GetInventoryItemID("player", slotData.slotId)
+  end
+
+  if type(itemId) ~= "number" then
+    itemId = tonumber(itemId)
+  end
+
+  return itemId
+end
+
+function ReforgeOne:GetCurrentEquippedItemIds()
+  if not self.itemData then
+    return nil
+  end
+
+  local equipped = {}
+  for index, slotData in ipairs(self.itemData) do
+    local slotKey = slotData.slotId or index
+    if slotKey then
+      local itemId = ResolveSavedEquipItemId(slotData)
+      equipped[slotKey] = itemId or 0
+    end
+  end
+
+  return equipped
+end
+
+function ReforgeOne:IsSavedEquipEntryCompatible(entry, currentItems)
+  if type(entry) ~= "table" then
+    return false
+  end
+
+  local savedItems = entry.items
+  if type(savedItems) ~= "table" or next(savedItems) == nil then
+    return true
+  end
+
+  currentItems = currentItems or self:GetCurrentEquippedItemIds()
+  if not currentItems then
+    return true
+  end
+
+  for slotId, savedItemId in pairs(savedItems) do
+    local currentItemId = currentItems[slotId] or 0
+    if currentItemId ~= savedItemId then
+      return false
+    end
+  end
+
+  return true
+end
+
+function ReforgeOne:NotifySavedEquipMismatch()
+  local message = L["Current gear no longer matches this saved setup"]
+  if UIErrorsFrame and message then
+    UIErrorsFrame:AddMessage(message, 1, 0.2, 0.2)
+  end
+end
+
+function ReforgeOne:ClearPendingSavedEquipSnapshot()
+  self.pendingSavedEquipSnapshot = nil
+end
+
+function ReforgeOne:PersistSavedEquipFromPopup(dialog)
+  if not dialog or not dialog.GetEditBox then
+    return
+  end
+  local name = dialog:GetEditBox():GetText()
+  self:PersistSavedEquip(name, self.pendingSavedEquipSnapshot)
+end
+
+function ReforgeOne:PersistSavedEquip(name, snapshot)
+  if not (self.pdb and snapshot and snapshot.reforgeString) then
+    return
+  end
+  local storage = self:GetSavedEquipStorage()
+  if not storage then
+    return
+  end
+
+  local entryName = TrimSavedEquipName(name)
+  if entryName == "" then
+    entryName = snapshot.reforgeString
+  end
+
+  storage[entryName] = {
+    reforges = DeepCopy(snapshot.reforges or {}),
+    reforgeString = snapshot.reforgeString,
+    stats = DeepCopy(snapshot.stats or {}),
+    savedAt = time(),
+    items = DeepCopy(snapshot.equippedItemIds or {}),
+  }
+
+  self:ClearPendingSavedEquipSnapshot()
+  self:RefreshSavedEquipMenu()
+end
+
+function ReforgeOne:BuildEquippedReforgeSnapshot()
+  if not self.itemData then
+    return nil
+  end
+
+  local encoded = {}
+  local reforges = {}
+  local equippedItemIds = self:GetCurrentEquippedItemIds() or {}
+
+  for index, slotData in ipairs(self.itemData) do
+    local slotId = slotData.slotId or index
+    local info = slotData.itemInfo
+    local reforgeId = info and info.reforge
+    if type(reforgeId) ~= "number" or reforgeId < 1 then
+      reforgeId = nil
+    end
+
+    reforges[index] = reforgeId
+    encoded[#encoded + 1] = string.format("%d=%d", slotId or index, reforgeId or 0)
+
+  end
+
+  if #encoded == 0 then
+    return nil
+  end
+
+  local snapshot = {
+    reforges = reforges,
+    reforgeString = table.concat(encoded, ";"),
+    stats = self:BuildSavedEquipStatSnapshot(),
+    equippedItemIds = equippedItemIds,
+  }
+
+  return snapshot
+end
+
+local function FormatMethodStatValue(value)
+  if type(value) ~= "number" then
+    return tostring(value or "")
+  end
+  local rounded = floor(value + 0.5)
+  if abs(value - rounded) < 0.01 then
+    return FormatLargeNumber(rounded)
+  end
+  return string.format("%.2f", value)
+end
+
+local function Tooltip_AddDoubleLine(tooltip, leftText, rightText, leftR, leftG, leftB, rightR, rightG, rightB)
+  if GameTooltip_AddDoubleLine then
+    return GameTooltip_AddDoubleLine(tooltip, leftText, rightText, leftR, leftG, leftB, rightR, rightG, rightB)
+  end
+
+  if tooltip and tooltip.AddDoubleLine then
+    tooltip:AddDoubleLine(leftText or "", rightText or "", leftR, leftG, leftB, rightR, rightG, rightB)
+  elseif tooltip and tooltip.AddLine then
+    tooltip:AddLine(leftText or "", leftR, leftG, leftB)
+    if rightText and rightText ~= "" then
+      tooltip:AddLine(rightText, rightR, rightG, rightB)
+    end
+  end
+end
+
+local function Tooltip_AddNormalLine(tooltip, text, r, g, b, wrap)
+  if GameTooltip_AddNormalLine then
+    return GameTooltip_AddNormalLine(tooltip, text, r, g, b, wrap)
+  end
+
+  if tooltip and tooltip.AddLine then
+    tooltip:AddLine(text or "", r or 1, g or 1, b or 1, wrap)
+  end
+end
+
+local function Tooltip_AddColoredLine(tooltip, text, color)
+  if GameTooltip_AddColoredLine then
+    return GameTooltip_AddColoredLine(tooltip, text, color)
+  end
+
+  if tooltip and tooltip.AddLine then
+    local r, g, b = 1, 1, 1
+    if type(color) == "table" then
+      r = color.r or color[1] or r
+      g = color.g or color[2] or g
+      b = color.b or color[3] or b
+    end
+    tooltip:AddLine(text or "", r, g, b)
+  end
+end
+
+function ReforgeOne:BuildSavedEquipStatSnapshot()
+  local orderedStatIndexes = self.methodStats and self.methodStats.orderedStatIndexes
+  if not orderedStatIndexes or #orderedStatIndexes == 0 then
+    orderedStatIndexes = BuildMethodStatDisplayOrder(self.itemStats)
+  end
+
+  local stats = {}
+  for _, statIndex in ipairs(orderedStatIndexes or {}) do
+    if self:ShouldDisplayStat(statIndex) then
+      local stat = self.itemStats and self.itemStats[statIndex]
+      if stat and stat.getter then
+        local value = stat.getter()
+        stats[#stats + 1] = {
+          label = ResolveResultStatLabel(stat),
+          value = value,
+          percent = stat.percent or false,
+        }
+      end
+    end
+  end
+
+  return stats
+end
+
+function ReforgeOne:BeginSaveCurrentEquip()
+  if not self.pdb then
+    return
+  end
+
+  EnsureSaveEquipPopup()
+
+  self:UpdateItems()
+  local snapshot = self:BuildEquippedReforgeSnapshot()
+  if not snapshot then
+    return
+  end
+
+  self.pendingSavedEquipSnapshot = snapshot
+  StaticPopup_Show("REFORGE_ONE_SAVE_EQUIP")
+end
+
+function ReforgeOne:AttachSavedEquipTooltip(tooltip, name, entry, isCompatible)
+  if not (tooltip and entry) then
+    return
+  end
+
+  tooltip:AddLine(name or "", 1, 1, 1)
+  tooltip:AddLine(" ")
+
+  if entry.stats and #entry.stats > 0 then
+    for _, statEntry in ipairs(entry.stats) do
+      local formattedValue = FormatMethodStatValue(statEntry.value)
+      if statEntry.percent then
+        formattedValue = string.format("%s%%", formattedValue)
+      end
+      Tooltip_AddDoubleLine(tooltip, statEntry.label or "", formattedValue, 1, 1, 1, 1, 1, 1)
+    end
+  else
+    Tooltip_AddNormalLine(tooltip, L["No reforge"])
+  end
+
+  if GameTooltip_AddBlankLineToTooltip then
+    GameTooltip_AddBlankLineToTooltip(tooltip)
+  else
+    tooltip:AddLine(" ")
+  end
+
+  if isCompatible then
+    Tooltip_AddNormalLine(tooltip, L["Click to load equip"])
+  else
+    Tooltip_AddColoredLine(tooltip, L["Current gear no longer matches this saved setup"], RED_FONT_COLOR)
+  end
+
+  Tooltip_AddColoredLine(tooltip, L["Shift+Click to delete"], RED_FONT_COLOR)
+end
+
+function ReforgeOne:RefreshSavedEquipMenu()
+  if not self.pdb then
+    return
+  end
+
+  local function BuildMenu(frame, rootDescription)
+    GUI:ClearEditFocus()
+
+    frame:UpdateItems()
+    local currentItems = frame:GetCurrentEquippedItemIds()
+
+    rootDescription:CreateButton(SAVE, function()
+      frame:BeginSaveCurrentEquip()
+    end)
+
+    rootDescription:CreateDivider()
+
+    local storage = frame:GetSavedEquipStorage() or {}
+    local names = {}
+    for savedName in pairs(storage) do
+      names[#names + 1] = savedName
+    end
+    table.sort(names, function(a, b)
+      return string.lower(a) < string.lower(b)
+    end)
+
+    if #names == 0 then
+      local emptyButton = rootDescription:CreateButton(L["No saved equips yet"], function() end)
+      if emptyButton and emptyButton.SetEnabled then
+        emptyButton:SetEnabled(false)
+      end
+      return
+    end
+
+    for _, savedName in ipairs(names) do
+      local entry = storage[savedName]
+      local displayName = BuildSavedEquipDisplayName(savedName, entry)
+      local isCompatible = frame:IsSavedEquipEntryCompatible(entry, currentItems)
+      local buttonLabel = isCompatible and displayName or WrapSavedEquipWarningText(displayName)
+      local button = rootDescription:CreateButton(buttonLabel, function()
+        if IsShiftKeyDown() then
+          frame:PromptDeleteSavedEquip(savedName)
+          return
+        end
+
+        if isCompatible then
+          frame:LoadSavedEquip(savedName)
+        else
+          frame:NotifySavedEquipMismatch()
+        end
+      end)
+      ApplySavedEquipButtonCompatibilityState(button, isCompatible)
+      if button and button.SetTooltip then
+        button:SetTooltip(function(tooltip)
+          frame:AttachSavedEquipTooltip(tooltip, savedName, entry, isCompatible)
+        end)
+      end
+    end
+  end
+
+  self.savedEquipMenuGenerator = function(_, rootDescription)
+    BuildMenu(self, rootDescription)
+  end
+
+  if self.savedEquipButton and self.savedEquipMenuGenerator then
+    self.savedEquipButton:SetupMenu(self.savedEquipMenuGenerator)
+  end
+end
+
+function ReforgeOne:PromptDeleteSavedEquip(name)
+  if not name then
+    return
+  end
+
+  GUI.CreateStaticPopup(
+    "REFORGE_ONE_DELETE_SAVED_EQUIP",
+    L["Delete Reforge setup '%s'?"]:format(name),
+    function()
+      self:DeleteSavedEquip(name)
+    end,
+    {
+      button1 = DELETE,
+      hasEditBox = false,
+      dialogWidth = 320,
+    }
+  )
+  StaticPopup_Show("REFORGE_ONE_DELETE_SAVED_EQUIP")
+end
+
+function ReforgeOne:DeleteSavedEquip(name)
+  local storage = self:GetSavedEquipStorage()
+  if storage and storage[name] then
+    storage[name] = nil
+    self:RefreshSavedEquipMenu()
+  end
+end
+
+function ReforgeOne:LoadSavedEquip(name)
+  if self.UpdateItems then
+    self:UpdateItems()
+  end
+
+  local storage = self:GetSavedEquipStorage()
+  local entry = storage and storage[name]
+  if not entry then
+    return
+  end
+
+  if not self:IsSavedEquipEntryCompatible(entry) then
+    self:NotifySavedEquipMismatch()
+    return
+  end
+
+  local method = { items = {} }
+  local totalSlots = #self.itemSlots
+  for index = 1, totalSlots do
+    method.items[index] = {}
+    local reforgeId = entry.reforges and entry.reforges[index]
+    if type(reforgeId) == "number" and reforgeId >= 1 then
+      method.items[index].reforge = reforgeId
+      local mapping = self.reforgeTable[reforgeId]
+      if mapping then
+        method.items[index].src = mapping[1]
+        method.items[index].dst = mapping[2]
+      end
+    end
+  end
+
+  self.pdb.method = method
+  self.pdb.methodOrigin = addonName
+  self:SetMethodAlternatives({ method }, 1)
+  self:UpdateMethodCategory()
+  self:RefreshMethodWindow()
+end
+
+local ignoredSlots = { [INVSLOT_TABARD] = true, [INVSLOT_BODY] = true }
+
+local statIds = EnumUtil.MakeEnum("SPIRIT", "DODGE", "PARRY", "HIT", "CRIT", "HASTE", "EXP", "MASTERY", "SPELLHIT")
+addonTable.statIds = statIds
+ReforgeOne.STATS = statIds
+
+local FIRE_SPIRIT = 4
+local function GetFireSpirit()
+  local s2h = (ReforgeOne.conversion[statIds.SPIRIT] or {})[statIds.HIT]
+  if s2h and C_UnitAuras.GetPlayerAuraBySpellID(7353) then
+    return floor(FIRE_SPIRIT * s2h)
+  end
+  return 0
+end
+
+local CR_HIT, CR_CRIT, CR_HASTE = CR_HIT_SPELL, CR_CRIT_SPELL, CR_HASTE_SPELL
+if addonTable.playerClass == "HUNTER" then
+  CR_HIT, CR_CRIT, CR_HASTE = CR_HIT_RANGED, CR_CRIT_RANGED, CR_HASTE_RANGED
+end
+
+local StatAdditives = {
+  [CR_HIT] = function(rating)
+    return rating - GetFireSpirit()
+  end,
+  [CR_MASTERY] = function(rating)
+    if ReforgeOne.pdb.mastery and not ReforgeOne:PlayerHasMasteryBuff() then
+      rating = rating + (addonTable.MASTERY_BY_LEVEL[UnitLevel("player")] or 0)
+    end
+    return rating
+  end,
+}
+
+local hitStatWeightLabel
+local hitResultLabel
+local dodgeStatLabel
+local masteryStatLabel
+local expertiseStatLabel = addonTable.STAT_EXPERTISE_LABEL or EXPERTISE_ABBR
+local expertiseLongLabel = addonTable.STAT_EXPERTISE_LONG_LABEL or STAT_EXPERTISE
+
+local function RefreshItemStatLabels()
+  hitStatWeightLabel = addonTable.WEIGHT_HIT_LABEL or HIT
+  hitResultLabel = addonTable.RESULT_HIT_LABEL or hitStatWeightLabel
+  dodgeStatLabel = addonTable.STAT_DODGE_LABEL or STAT_DODGE
+  masteryStatLabel = addonTable.STAT_MASTERY_LABEL or STAT_MASTERY
+  expertiseStatLabel = addonTable.STAT_EXPERTISE_LABEL or EXPERTISE_ABBR
+  expertiseLongLabel = addonTable.STAT_EXPERTISE_LONG_LABEL or STAT_EXPERTISE
+
+  local itemStats = ReforgeOne.itemStats
+  if type(itemStats) == "table" then
+    for _, stat in ipairs(itemStats) do
+      if stat and stat.name == "ITEM_MOD_DODGE_RATING" then
+        stat.tip = dodgeStatLabel
+      elseif stat and stat.name == "ITEM_MOD_HIT_RATING" then
+        stat.tip = hitStatWeightLabel
+        stat.long = hitStatWeightLabel
+        stat.resultLabel = hitResultLabel
+      elseif stat and stat.name == "ITEM_MOD_MASTERY_RATING_SHORT" then
+        stat.tip = masteryStatLabel
+      elseif stat and stat.name == "ITEM_MOD_EXPERTISE_RATING" then
+        stat.tip = expertiseStatLabel
+        stat.long = expertiseLongLabel
+      end
+    end
+  end
+
+  local statHeaders = ReforgeOne.statHeaders
+  if type(statHeaders) == "table" then
+    for index, header in ipairs(statHeaders) do
+      local stat = itemStats and itemStats[index]
+      if header and stat and header.SetText then
+        header:SetText(stat.tip or "")
+      end
+    end
+  end
+end
+
+RefreshItemStatLabels()
+
+local function Stat(options)
+  local function EscapePattern(text)
+    return (text:gsub("([%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1"))
+  end
+  local stat = {
+    statId = options.statId,
+    name = options.name,
+    tip = options.tip,
+    long = options.long,
+    resultLabel = options.resultLabel,
+    tooltipConstant = options.tooltipConstant,
+    tooltipPrefix = options.tooltipPrefix,
+    tooltipSuffix = options.tooltipSuffix,
+    customTooltipPatterns = options.tooltipPatterns,
+    getter = options.getter or function ()
+      local rating = GetCombatRating(options.ratingId)
+      if StatAdditives[options.ratingId] then
+        rating = StatAdditives[options.ratingId](rating)
+      end
+      return rating
+    end,
+    mgetter = options.mgetter or function (method, orig)
+      return (orig and method.orig_stats and method.orig_stats[options.statId]) or method.stats[options.statId]
+    end,
+  }
+
+  function stat:getTooltipPatterns()
+    if self.customTooltipPatterns then
+      return self.customTooltipPatterns
+    end
+
+    local tooltipText = _G[self.tooltipConstant or self.name]
+    if type(tooltipText) ~= "string" or tooltipText == "" then
+      return nil
+    end
+
+    if self.generatedTooltipText ~= tooltipText then
+      local escapedText = EscapePattern(tooltipText)
+      local prefix = self.tooltipPrefix or "%+"
+      local suffix = self.tooltipSuffix or "%+"
+
+      self.generatedTooltipPatterns = {
+        "^" .. prefix .. "([%d%.,%s]+)%s*" .. escapedText,
+        "^" .. escapedText .. "%s*" .. suffix .. "([%d%.,%s]+)"
+      }
+      self.generatedTooltipText = tooltipText
+    end
+
+    return self.generatedTooltipPatterns
+  end
+
+  return stat
+end
+
+local ITEM_STATS = {
+    Stat {
+      statId = statIds.SPIRIT,
+      name = "ITEM_MOD_SPIRIT_SHORT",
+      tip = SPELL_STAT5_NAME,
+      long = ITEM_MOD_SPIRIT_SHORT,
+      getter = function ()
+        local _, spirit = UnitStat("player", LE_UNIT_STAT_SPIRIT)
+        if GetFireSpirit() ~= 0 then
+          spirit = spirit - FIRE_SPIRIT
+        end
+        return spirit
+      end,
+      mgetter = function (method, orig)
+        return (orig and method.orig_stats and method.orig_stats[statIds.SPIRIT]) or method.stats[statIds.SPIRIT]
+      end,
+    },
+    Stat {
+      statId = statIds.DODGE,
+      name = "ITEM_MOD_DODGE_RATING",
+      tooltipConstant = "ITEM_MOD_DODGE_RATING_SHORT",
+      tip = dodgeStatLabel,
+      long = STAT_DODGE,
+      ratingId = CR_DODGE,
+    },
+    Stat {
+      statId = statIds.PARRY,
+      name = "ITEM_MOD_PARRY_RATING",
+      tooltipConstant = "ITEM_MOD_PARRY_RATING_SHORT",
+      tip = STAT_PARRY,
+      long = STAT_PARRY,
+      ratingId = CR_PARRY,
+    },
+    Stat {
+      statId = statIds.HIT,
+      name = "ITEM_MOD_HIT_RATING",
+      tooltipConstant = "ITEM_MOD_HIT_RATING_SHORT",
+      tip = hitStatWeightLabel,
+      long = ITEM_MOD_HIT_RATING_SHORT,
+      resultLabel = hitResultLabel,
+      getter = function()
+        return GetCombatRating(CR_HIT)
+      end,
+      mgetter = function (method, orig)
+        return (orig and method.orig_stats and method.orig_stats[statIds.HIT]) or method.stats[statIds.HIT]
+      end,
+    },
+    Stat {
+      statId = statIds.CRIT,
+      name = "ITEM_MOD_CRIT_RATING",
+      tooltipConstant = "ITEM_MOD_CRIT_RATING_SHORT",
+      tip = CRIT_ABBR,
+      long = CRIT_ABBR,
+      ratingId = CR_CRIT,
+    },
+    Stat {
+      statId = statIds.HASTE,
+      name = "ITEM_MOD_HASTE_RATING",
+      tooltipConstant = "ITEM_MOD_HASTE_RATING_SHORT",
+      tip = STAT_HASTE,
+      long = STAT_HASTE,
+      ratingId = CR_HASTE,
+    },
+    Stat {
+      statId = statIds.EXP,
+      name = "ITEM_MOD_EXPERTISE_RATING",
+      tooltipConstant = "ITEM_MOD_EXPERTISE_RATING_SHORT",
+      tip = expertiseStatLabel,
+      long = expertiseLongLabel,
+      ratingId = CR_EXPERTISE,
+    },
+    Stat {
+      statId = statIds.MASTERY,
+      name = "ITEM_MOD_MASTERY_RATING_SHORT",
+      tip = masteryStatLabel,
+      long = STAT_MASTERY,
+      ratingId = CR_MASTERY,
+    },
+}
+
+local ITEM_STAT_COUNT = #ITEM_STATS
+local STAT_INDEX_BY_ID = {}
+for index, stat in ipairs(ITEM_STATS) do
+  if stat and stat.statId then
+    STAT_INDEX_BY_ID[stat.statId] = index
+  end
+end
+
+local function BuildActiveTalentSignature()
+  local activeSpecGroup = 1
+  if C_SpecializationInfo and C_SpecializationInfo.GetActiveSpecGroup then
+    activeSpecGroup = C_SpecializationInfo.GetActiveSpecGroup() or 1
+  end
+
+  local parts = {}
+  local maxTalentTiers = MAX_NUM_TALENT_TIERS or 0
+  for tier = 1, maxTalentTiers do
+    local selectedColumn = 0
+    if type(GetTalentTierInfo) == "function" then
+      local tierAvailable, column = GetTalentTierInfo(tier, activeSpecGroup, false, "player")
+      if tierAvailable and type(column) == "number" and column > 0 then
+        selectedColumn = column
+      end
+    end
+    parts[#parts + 1] = tostring(selectedColumn)
+  end
+
+  return table.concat(parts, "")
+end
+
+local function FormatComputeDurationClock(seconds, roundUp)
+  seconds = tonumber(seconds) or 0
+  seconds = max(seconds, 0)
+
+  if roundUp then
+    seconds = math.ceil(seconds)
+  else
+    seconds = floor(seconds + 0.5)
+  end
+
+  local hours = floor(seconds / 3600)
+  local minutes = floor((seconds % 3600) / 60)
+  local wholeSeconds = seconds % 60
+
+  if hours > 0 then
+    return string.format("%d:%02d:%02d", hours, minutes, wholeSeconds)
+  end
+
+  return string.format("%02d:%02d", minutes, wholeSeconds)
+end
+
+local function CountConfiguredComputeCaps(caps)
+  local count = 0
+  if type(caps) ~= "table" then
+    return count
+  end
+
+  for i = 1, NUM_CAPS do
+    local cap = caps[i]
+    if cap and cap.stat and cap.stat > 0 then
+      local points = cap.points
+      if type(points) == "table" and #points > 0 then
+        count = count + 1
+      end
+    end
+  end
+
+  return count
+end
+
+function ReforgeOne:GetActiveComputeSetupKey()
+  local capCount = CountConfiguredComputeCaps(self.pdb and self.pdb.caps)
+  local speedPreset = (self.db and self.db.coreSpeedPreset) or addonTable.CORE_SPEED_PRESET or "fast"
+  return string.format("caps:%d|speed:%s", capCount, tostring(speedPreset))
+end
+
+function ReforgeOne:GetComputeDurationStorage()
+  if not self.db then
+    return nil
+  end
+
+  local storage = self.db.computeDurations
+  if type(storage) ~= "table" then
+    storage = {}
+    self.db.computeDurations = storage
+  end
+
+  return storage
+end
+
+function ReforgeOne:GetStoredComputeDurationForSetup(setupKey)
+  if type(setupKey) ~= "string" or setupKey == "" then
+    return nil
+  end
+
+  local storage = self:GetComputeDurationStorage()
+  local entry = storage and storage[setupKey]
+  if type(entry) == "table" then
+    entry = entry.duration
+  end
+
+  if type(entry) ~= "number" or entry <= COMPUTE_DURATION_STORAGE_THRESHOLD then
+    return nil
+  end
+
+  return entry
+end
+
+function ReforgeOne:StoreComputeDurationForSetup(setupKey, duration)
+  if type(setupKey) ~= "string" or setupKey == "" then
+    return
+  end
+
+  local storage = self:GetComputeDurationStorage()
+  if not storage then
+    return
+  end
+
+  if type(duration) == "number" and duration > COMPUTE_DURATION_STORAGE_THRESHOLD then
+    storage[setupKey] = {
+      duration = duration,
+      updatedAt = time(),
+    }
+  else
+    storage[setupKey] = nil
+  end
+end
+
+local METHOD_STAT_DISPLAY_ORDER = {
+  statIds.HIT,
+  statIds.EXP,
+  statIds.SPIRIT,
+  statIds.HASTE,
+  statIds.CRIT,
+  statIds.MASTERY,
+  statIds.DODGE,
+  statIds.PARRY,
+}
+
+local function BuildMethodStatDisplayOrder(stats)
+  stats = stats or ITEM_STATS
+
+  local orderedIndexes = {}
+  local usedIndexes = {}
+
+  for _, statId in ipairs(METHOD_STAT_DISPLAY_ORDER) do
+    local index = STAT_INDEX_BY_ID[statId]
+    if index and stats[index] then
+      tinsert(orderedIndexes, index)
+      usedIndexes[index] = true
+    end
+  end
+
+  for index = 1, #stats do
+    if not usedIndexes[index] then
+      tinsert(orderedIndexes, index)
+    end
+  end
+
+  return orderedIndexes
+end
+
+local STAT_WEIGHT_LAYOUT = {
+  {
+    statIds.HIT,
+    statIds.EXP,
+    statIds.SPIRIT,
+    statIds.HASTE,
+  },
+  {
+    statIds.CRIT,
+    statIds.MASTERY,
+    statIds.DODGE,
+    statIds.PARRY,
+  },
+}
+
+local STAT_WEIGHT_INPUT_WIDTH = 64
+local STAT_WEIGHT_INPUT_HEIGHT = 15
+local STAT_WEIGHT_COLUMN_GAP = 25
+local STAT_WEIGHT_COLUMN_MIN_WIDTH = STAT_WEIGHT_INPUT_WIDTH + STAT_WEIGHT_COLUMN_GAP
+local STAT_WEIGHT_ROW_HEIGHT = STAT_WEIGHT_INPUT_HEIGHT + 28
+local STAT_WEIGHTS_MAX_CONTENT_WIDTH = 380
+local STAT_CAP_VALUE_INPUT_WIDTH = STAT_WEIGHT_INPUT_WIDTH
+local STAT_CAP_VALUE_COLUMN_PADDING = 10
+
+addonTable.itemStats = ITEM_STATS
+addonTable.itemStatCount = ITEM_STAT_COUNT
+ReforgeOne.itemStats = ITEM_STATS
+
+RefreshItemStatLabels()
+
+local REFORGE_TABLE_BASE = 112
+
+local reforgeTable = {}
+for srcIdx in ipairs(ITEM_STATS) do
+  for dstIdx in ipairs(ITEM_STATS) do
+    if srcIdx ~= dstIdx then
+      tinsert(reforgeTable, {srcIdx, dstIdx})
+    end
+  end
+end
+
+ReforgeOne.reforgeTable = reforgeTable
+
+local VALID_REFORGE_ID_MIN = REFORGE_TABLE_BASE + 1
+local VALID_REFORGE_ID_MAX = REFORGE_TABLE_BASE + #reforgeTable
+local KNOWN_LINK_UPGRADE_IDS = {
+  [1] = true,
+  [373] = true,
+  [374] = true,
+  [375] = true,
+  [376] = true,
+  [377] = true,
+  [378] = true,
+  [379] = true,
+  [380] = true,
+  [445] = true,
+  [446] = true,
+  [447] = true,
+  [451] = true,
+  [452] = true,
+  [453] = true,
+  [454] = true,
+  [455] = true,
+  [456] = true,
+  [457] = true,
+  [458] = true,
+  [459] = true,
+  [460] = true,
+  [461] = true,
+  [462] = true,
+  [465] = true,
+  [466] = true,
+  [467] = true,
+  [468] = true,
+  [469] = true,
+  [470] = true,
+  [471] = true,
+  [472] = true,
+}
+
+local function ExtractItemLinkOptions(itemLink)
+  if type(itemLink) ~= "string" or itemLink == "" then
+    return nil
+  end
+
+  local itemString = itemLink
+  local _, itemOptions = GetItemInfoFromHyperlink(itemLink)
+  if type(itemOptions) == "string" and itemOptions ~= "" then
+    itemString = itemOptions
+  else
+    local hyperlinkOptions = itemLink:match("|Hitem:([^|]+)|h")
+    if hyperlinkOptions and hyperlinkOptions ~= "" then
+      itemString = "item:" .. hyperlinkOptions
+    end
+  end
+
+  local options = { strsplit(":", itemString) }
+  if options[1] == "item" then
+    table.remove(options, 1)
+  end
+
+  return options
+end
+
+local function FindLinkField(options, startIndex, endIndex, predicate)
+  if type(options) ~= "table" then
+    return nil, nil
+  end
+
+  local maxIndex = math.min(#options, endIndex or #options)
+  for index = startIndex or 1, maxIndex do
+    local value = tonumber(options[index])
+    if value and predicate(value, index) then
+      return value, index
+    end
+  end
+
+  return nil, nil
+end
+
+local function ParseItemLinkData(itemLink)
+  local options = ExtractItemLinkOptions(itemLink)
+  if not options or #options == 0 then
+    return nil
+  end
+
+  local parsed = {
+    id = tonumber(options[1]),
+    enchant = tonumber(options[2]),
+    gems = {
+      tonumber(options[3]),
+      tonumber(options[4]),
+      tonumber(options[5]),
+      tonumber(options[6]),
+    },
+    random_suffix = tonumber(options[7]),
+    unique_id = tonumber(options[8]),
+    link_level = tonumber(options[9]),
+    raw_options = options,
+  }
+
+  parsed.refId, parsed.refFieldIndex = FindLinkField(options, 10, 16, function(value)
+    return value >= VALID_REFORGE_ID_MIN and value <= VALID_REFORGE_ID_MAX
+  end)
+
+  parsed.upgrade, parsed.upgradeFieldIndex = FindLinkField(options, 10, 16, function(value, index)
+    return KNOWN_LINK_UPGRADE_IDS[value] and index ~= parsed.refFieldIndex
+  end)
+
+  return parsed
+end
+
+addonTable.ParseItemLinkData = ParseItemLinkData
+
+local scanTooltip = CreateFrame("GameTooltip", "ReforgeOneScanTooltip", nil, "GameTooltipTemplate")
+local tooltipStatsCache = {}
+local trackedTooltipStatCount = 0
+
+local function SetTooltipFromItemInfo(itemInfo)
+  scanTooltip:ClearLines()
+  scanTooltip:SetOwner(UIParent, "ANCHOR_NONE")
+  if itemInfo.slotId then
+    local success = scanTooltip:SetInventoryItem("player", itemInfo.slotId)
+    if success then
+      return true
+    end
+  end
+  scanTooltip:SetHyperlink(itemInfo.link)
+  return true
+end
+
+local function NormalizeTooltipText(text)
+  if type(text) ~= "string" then
+    return ""
+  end
+
+  text = text:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
+  text = text:gsub("%b()", "")
+  text = text:gsub("%s+", " ")
+  text = text:gsub("^%s+", ""):gsub("%s+$", "")
+  return text
+end
+
+local EQUIPMENT_SET_TOOLTIP_KEYWORDS = {
+  "sets:",
+}
+
+local function DetectTooltipMultiEquipmentSetLine(lines)
+  if type(lines) ~= "table" then
+    return nil
+  end
+
+  for _, line in ipairs(lines) do
+    if type(line) == "string" and line ~= "" then
+      local loweredLine = string.lower(line)
+      for _, keyword in ipairs(EQUIPMENT_SET_TOOLTIP_KEYWORDS) do
+        if loweredLine:find(keyword, 1, true) then
+          if line:find(",", 1, true) then
+            return true, line
+          end
+          return false, line
+        end
+      end
+    end
+  end
+
+  return nil
+end
+
+local function GetStatSearchTokens(statInfo)
+  local tokens = {}
+
+  local function AddToken(value)
+    if type(value) ~= "string" or value == "" then
+      return
+    end
+    local normalized = value:lower()
+    if normalized ~= "" then
+      tokens[normalized] = true
+    end
+  end
+
+  AddToken(statInfo and statInfo.tip)
+  AddToken(statInfo and statInfo.long)
+  AddToken(statInfo and statInfo.name and _G[statInfo.name])
+  AddToken(statInfo and statInfo.tooltipConstant and _G[statInfo.tooltipConstant])
+
+  return tokens
+end
+
+local function ExtractReforgeAmountFromTooltip(lines, srcStatInfo, dstStatInfo)
+  if type(lines) ~= "table" or not srcStatInfo or not dstStatInfo then
+    return nil
+  end
+
+  local srcTokens = GetStatSearchTokens(srcStatInfo)
+  local dstTokens = GetStatSearchTokens(dstStatInfo)
+
+  local function ContainsToken(line, tokenSet)
+    for token in pairs(tokenSet) do
+      if line:find(token, 1, true) then
+        return true
+      end
+    end
+    return false
+  end
+
+  for _, line in ipairs(lines) do
+    local lowered = line:lower()
+    if ContainsToken(lowered, srcTokens) and ContainsToken(lowered, dstTokens) then
+      local signedNumbers = {}
+      for rawValue in lowered:gmatch("([%+%-]%s*[%d%.,]+)") do
+        local numeric = tonumber((rawValue:gsub("[^%d%-]", "")))
+        if numeric and numeric ~= 0 then
+          signedNumbers[#signedNumbers + 1] = numeric
+        end
+      end
+
+      for i = 1, #signedNumbers do
+        for j = i + 1, #signedNumbers do
+          local first, second = signedNumbers[i], signedNumbers[j]
+          if first * second < 0 and math.abs(first) == math.abs(second) then
+            return math.abs(first)
+          end
+        end
+      end
+    end
+  end
+
+  return nil
+end
+
+local function DetectTooltipReforge(lines, itemStats)
+  if type(lines) ~= "table" or type(itemStats) ~= "table" then
+    return nil
+  end
+
+  for reforgeIndex, reforgeInfo in ipairs(reforgeTable) do
+    local srcIndex, dstIndex = unpack(reforgeInfo)
+    local amount = ExtractReforgeAmountFromTooltip(lines, itemStats[srcIndex], itemStats[dstIndex])
+    if amount and amount > 0 then
+      return {
+        index = reforgeIndex,
+        srcIndex = srcIndex,
+        dstIndex = dstIndex,
+        amount = amount,
+      }
+    end
+  end
+
+  return nil
+end
+
+local function ReadTooltipStats(itemInfo, allowedStatNames)
+  SetTooltipFromItemInfo(itemInfo)
+
+  local stats = {}
+  local itemStats = addonTable.itemStats or {}
+  if trackedTooltipStatCount ~= #itemStats then
+    trackedTooltipStatCount = #itemStats
+    wipe(tooltipStatsCache)
+  end
+  local tooltipLines = {}
+  local foundStatOrder = {}
+  local maxTrackedStats = 2
+  local statBlockClosed = false
+
+  if itemInfo and itemInfo.reforge and itemInfo.slotId == INVSLOT_BACK then
+    maxTrackedStats = 4
+  elseif itemInfo and (itemInfo.reforge or itemInfo.slotId == INVSLOT_BACK) then
+    maxTrackedStats = 3
+  end
+
+  for _, region in ipairs({scanTooltip:GetRegions()}) do
+    if region.GetText then
+      local text = NormalizeTooltipText(region:GetText())
+      if text ~= "" then
+        tooltipLines[#tooltipLines + 1] = text
+        if not statBlockClosed and #foundStatOrder < maxTrackedStats then
+          local matchedTrackedStat = false
+          for _, statInfo in ipairs(itemStats) do
+            if not stats[statInfo.name] and statInfo.getTooltipPatterns
+              and (not allowedStatNames or allowedStatNames[statInfo.name]) then
+              local tooltipPatterns = statInfo:getTooltipPatterns()
+              if tooltipPatterns then
+                local value
+                for _, pattern in ipairs(tooltipPatterns) do
+                  value = text:match(pattern)
+                  if value then
+                    break
+                  end
+                end
+                if value then
+                  local numericValue = tonumber((value:gsub("[^%d%-]", "")))
+                  if numericValue then
+                    stats[statInfo.name] = numericValue
+                    foundStatOrder[#foundStatOrder + 1] = statInfo.name
+                    matchedTrackedStat = true
+                  end
+                  break
+                end
+              end
+            end
+          end
+
+          if not matchedTrackedStat and #foundStatOrder > 0 and text:match("^%+") then
+            statBlockClosed = true
+          end
+        end
+      end
+    end
+  end
+
+  scanTooltip:Hide()
+
+  local hasMultipleSets, equipmentSetLine = DetectTooltipMultiEquipmentSetLine(tooltipLines)
+  if itemInfo then
+    itemInfo.tooltipHasMultipleEquipmentSets = hasMultipleSets or false
+    itemInfo.tooltipEquipmentSetLine = equipmentSetLine
+  end
+
+  return stats, tooltipLines, DetectTooltipReforge(tooltipLines, itemStats)
+end
+
+local function GetStatDebugLabel(statInfo)
+  if not statInfo then
+    return "?"
+  end
+  return statInfo.tip or statInfo.long or _G[statInfo.name] or statInfo.name or "?"
+end
+
+local function FormatReforgeDebugLabel(reforgeIndex)
+  if type(reforgeIndex) ~= "number" or reforgeIndex < 1 then
+    return L["No reforge"]
+  end
+
+  local mapping = reforgeTable[reforgeIndex]
+  if not mapping then
+    return ("Invalid (%s)"):format(tostring(reforgeIndex))
+  end
+
+  local srcLabel = GetStatDebugLabel(ITEM_STATS[mapping[1]])
+  local dstLabel = GetStatDebugLabel(ITEM_STATS[mapping[2]])
+  return ("%s -> %s (%d)"):format(srcLabel, dstLabel, reforgeIndex)
+end
+
+local function FormatTooltipStatsDebug(stats)
+  local parts = {}
+
+  for _, statInfo in ipairs(ITEM_STATS) do
+    local value = stats and stats[statInfo.name]
+    if value and value ~= 0 then
+      parts[#parts + 1] = ("%s=%d"):format(GetStatDebugLabel(statInfo), value)
+    end
+  end
+
+  if #parts == 0 then
+    return "-"
+  end
+
+  return table.concat(parts, ", ")
+end
+
+function addonTable.GetItemStatsFromTooltip(itemInfo)
+  if type(itemInfo) ~= "table" or type(itemInfo.link) ~= "string" or itemInfo.link == "" then
+    return {}
+  end
+
+  local cacheKey = itemInfo.link
+  if itemInfo.itemGUID then
+    cacheKey = ("%s#guid:%s"):format(cacheKey, tostring(itemInfo.itemGUID))
+  elseif itemInfo.slotId then
+    cacheKey = ("%s#slot:%s"):format(cacheKey, tostring(itemInfo.slotId))
+  end
+  if itemInfo.reforge then
+    cacheKey = ("%s#r%d"):format(cacheKey, itemInfo.reforge)
+  end
+  if cacheKey and tooltipStatsCache[cacheKey] then
+    local cachedEntry = tooltipStatsCache[cacheKey]
+    if type(cachedEntry) == "table" then
+      itemInfo.tooltipReforge = cachedEntry.tooltipReforge
+      itemInfo.tooltipReforgeAmount = cachedEntry.tooltipReforgeAmount
+      itemInfo.tooltipHasMultipleEquipmentSets = cachedEntry.tooltipHasMultipleEquipmentSets or false
+      itemInfo.tooltipEquipmentSetLine = cachedEntry.tooltipEquipmentSetLine
+      return CopyTableShallow(cachedEntry.stats or {})
+    end
+  end
+
+  local itemStats = addonTable.itemStats or {}
+  local srcName, destName
+  local srcIndex, dstIndex
+
+  local reforgeIndex = itemInfo.reforge
+  if type(reforgeIndex) == "number" and reforgeIndex >= 1 then
+    local reforgeEntry = reforgeTable[reforgeIndex]
+    if reforgeEntry then
+      srcIndex, dstIndex = unpack(reforgeEntry)
+      srcName = itemStats[srcIndex] and itemStats[srcIndex].name or nil
+      destName = itemStats[dstIndex] and itemStats[dstIndex].name or nil
+    end
+  end
+
+  local baseItemStats = GetBaseItemStats(itemInfo.link) or {}
+  local allowedStatNames
+  if itemInfo.slotId == INVSLOT_BACK and itemInfo.reforge then
+    allowedStatNames = nil
+  elseif next(baseItemStats) then
+    allowedStatNames = {}
+    for statName in pairs(baseItemStats) do
+      allowedStatNames[statName] = true
+    end
+    if destName then
+      allowedStatNames[destName] = true
+    end
+  end
+
+  local stats, tooltipLines, tooltipReforge = ReadTooltipStats(itemInfo, allowedStatNames)
+
+  if tooltipReforge then
+    itemInfo.tooltipReforge = tooltipReforge.index
+    itemInfo.tooltipReforgeAmount = tooltipReforge.amount
+    if reforgeIndex ~= tooltipReforge.index then
+      reforgeIndex = tooltipReforge.index
+      srcIndex = tooltipReforge.srcIndex
+      dstIndex = tooltipReforge.dstIndex
+      srcName = itemStats[srcIndex] and itemStats[srcIndex].name or nil
+      destName = itemStats[dstIndex] and itemStats[dstIndex].name or nil
+    end
+  else
+    itemInfo.tooltipReforge = nil
+    itemInfo.tooltipReforgeAmount = nil
+  end
+
+  if srcName and destName and stats[destName] then
+    if not itemInfo.tooltipReforgeAmount then
+      itemInfo.tooltipReforgeAmount = tonumber(stats[destName]) or 0
+    end
+    if stats[srcName] and floor((stats[srcName] or 0) * addonTable.REFORGE_COEFF) ~= stats[destName] then
+      stats[srcName] = stats[srcName] + stats[destName]
+    end
+    stats[destName] = nil
+  end
+
+  if not next(stats) then
+    local fallbackStats = CopyTableShallow(baseItemStats)
+    if cacheKey then
+      tooltipStatsCache[cacheKey] = {
+        stats = CopyTableShallow(fallbackStats),
+        tooltipReforge = itemInfo.tooltipReforge,
+        tooltipReforgeAmount = itemInfo.tooltipReforgeAmount,
+        tooltipHasMultipleEquipmentSets = itemInfo.tooltipHasMultipleEquipmentSets or false,
+        tooltipEquipmentSetLine = itemInfo.tooltipEquipmentSetLine,
+      }
+    end
+    return fallbackStats
+  end
+
+  if cacheKey then
+    tooltipStatsCache[cacheKey] = {
+      stats = CopyTableShallow(stats),
+      tooltipReforge = itemInfo.tooltipReforge,
+      tooltipReforgeAmount = itemInfo.tooltipReforgeAmount,
+      tooltipHasMultipleEquipmentSets = itemInfo.tooltipHasMultipleEquipmentSets or false,
+      tooltipEquipmentSetLine = itemInfo.tooltipEquipmentSetLine,
+    }
+  end
+
+  return CopyTableShallow(stats)
+end
+
+GetItemStats = addonTable.GetItemStatsFromTooltip
+
+addonTable.REFORGE_COEFF = 0.4
+
+function ReforgeOne:UpdateWindowSize ()
+  if not self.pdb then
+    return
+  end
+  local width = ClampDimension(self:GetWidth(), WINDOW_MIN_WIDTH, WINDOW_MAX_WIDTH) or DEFAULT_WINDOW_WIDTH
+  local height = ClampDimension(self:GetHeight(), WINDOW_MIN_HEIGHT, WINDOW_MAX_HEIGHT) or DEFAULT_WINDOW_HEIGHT
+
+  self.pdb.windowWidth = width
+  self.pdb.windowHeight = height
+end
+
+function ReforgeOne:GetCapScore (cap, value, weights)
+  weights = weights or (self.pdb and self.pdb.weights) or {}
+  local score = 0
+  for i = #cap.points, 1, -1 do
+    if value > cap.points[i].value then
+      score = score + (cap.points[i].after or 0) * (value - cap.points[i].value)
+      value = cap.points[i].value
+    end
+  end
+  score = score + (weights[cap.stat] or 0) * value
+  return score
+end
+
+function ReforgeOne:GetStatScore (stat, value, weights, caps)
+  caps = caps or (self.pdb and self.pdb.caps) or {}
+  for i = 1, NUM_CAPS do
+    local cap = caps[i]
+    if cap and stat == cap.stat then
+      return self:GetCapScore (cap, value, weights)
+    end
+  end
+  weights = weights or (self.pdb and self.pdb.weights) or {}
+  return (weights[stat] or 0) * value
+end
+
+addonTable.WoWSimsOriginTag = "WoWSims"
+
+local function IsItemSwapped(slot, wowsims)
+  local SWAPPABLE_SLOTS = {
+    [INVSLOT_FINGER1] = INVSLOT_FINGER2,
+    [INVSLOT_FINGER2] = INVSLOT_FINGER1,
+    [INVSLOT_TRINKET1] = INVSLOT_TRINKET2,
+    [INVSLOT_TRINKET2] = INVSLOT_TRINKET1,
+  }
+  local slotName = ReforgeOne.itemSlots[slot]
+  if not slotName then return end
+  local oppositeSlotId = SWAPPABLE_SLOTS[GetInventorySlotInfo(slotName)]
+  if not oppositeSlotId then return end
+  local slotItemId = (wowsims.player.equipment.items[slot] or {}).id or 0
+  local oppositeSlotItemId = (wowsims.player.equipment.items[oppositeSlotId] or {}).id or 0
+  if C_Item.IsEquippedItem(slotItemId) and C_Item.IsEquippedItem(oppositeSlotItemId) then
+    return oppositeSlotId
+  end
+end
+
+function ReforgeOne:ValidateWoWSimsString(importStr)
+  local success, wowsims = pcall(function () return C_EncodingUtil.DeserializeJSON(importStr) end)
+  if not success or type(wowsims) ~= "table" then return false, wowsims end
+  if not (wowsims.player or {}).equipment then
+    return false, L['This import is missing player equipment data! Please make sure "Gear" is selected when exporting from WoWSims.']
+  end
+  local newItems = DeepCopy((self.pdb.method or self:InitializeMethod()).items)
+  for slot, item in ipairs(newItems) do
+    local simItemInfo = wowsims.player.equipment.items[slot] or {}
+    local equippedItemInfo = self.itemData[slot]
+    if simItemInfo.id ~= equippedItemInfo.itemId then
+      local swappedSlotId = IsItemSwapped(slot, wowsims)
+      if swappedSlotId then
+        simItemInfo = wowsims.player.equipment.items[swappedSlotId] or {}
+      else
+        return false, { itemId = simItemInfo.id, slot = slot }
+      end
+    end
+    if simItemInfo.reforging then
+      item.src, item.dst = unpack(self.reforgeTable[simItemInfo.reforging - REFORGE_TABLE_BASE])
+    else
+      item.src, item.dst = nil, nil
+    end
+  end
+  return true, newItems
+end
+
+function ReforgeOne:ApplyWoWSimsImport(newItems, attachToReforge)
+  if not self.pdb.method then
+    self.pdb.method = { items = {} }
+  end
+  self.pdb.method.items = newItems
+  self.pdb.methodOrigin = addonTable.WoWSimsOriginTag
+  self:FinalizeReforge({ method = self.pdb.method })
+  self:SetMethodAlternatives({ self.pdb.method }, 1)
+  self:UpdateMethodCategory()
+  self:RefreshMethodWindow()
+end
+
+function ReforgeOne:ValidatePawnString(importStr)
+  local pos, _, version, name, values = strfind (importStr, "^%s*%(%s*Pawn%s*:%s*v(%d+)%s*:%s*\"([^\"]+)\"%s*:%s*(.+)%s*%)%s*$")
+  version = tonumber (version)
+  if version and version > 1 then return false end
+  if not (pos and version and name and values) or name == "" or values == "" then
+    return false
+  end
+  return true, values
+end
+
+function ReforgeOne:ParsePawnString(values)
+  local raw = {}
+  local average = 0
+  local total = 0
+  gsub (values .. ",", "[^,]*,", function (pair)
+    local pos, _, stat, value = strfind (pair, "^%s*([%a%d]+)%s*=%s*(%-?[%d%.]+)%s*,$")
+    value = tonumber (value)
+    if pos and stat and stat ~= "" and value then
+      raw[stat] = value
+      average = average + value
+      total = total + 1
+    end
+  end)
+  local factor = 1
+  if average / total < 10 then
+    factor = 100
+  end
+  for k, v in pairs (raw) do
+    raw[k] = Round(v * factor)
+  end
+
+  self:SetStatWeights ({
+    raw["Spirit"] or 0,
+    raw["DodgeRating"] or 0,
+    raw["ParryRating"] or 0,
+    raw["HitRating"] or 0,
+    raw["CritRating"] or 0,
+    raw["HasteRating"] or 0,
+    raw["ExpertiseRating"] or 0,
+    raw["MasteryRating"] or 0
+  })
+end
+
+
+function ReforgeOne:CreateCategory (name, options)
+  options = options or {}
+  local allowCollapse = not options.alwaysExpanded
+  local storageKey = options.storageKey or name
+  local categoryStates = self.pdb and self.pdb.categoryStates
+  if self.pdb and not categoryStates then
+    self.pdb.categoryStates = {}
+    categoryStates = self.pdb.categoryStates
+  end
+
+  local c = CreateFrame ("Frame", nil, self.content)
+  c:ClearAllPoints ()
+  c:SetSize(16,16)
+  c.allowCollapse = allowCollapse
+  c.storageKey = storageKey
+  if allowCollapse and categoryStates then
+    c.expanded = categoryStates[storageKey] ~= false
+  else
+    c.expanded = true
+    if categoryStates then
+      categoryStates[storageKey] = true
+    end
+  end
+  c.name = c:CreateFontString (nil, "OVERLAY", "GameFontNormal")
+  c.catname = c.name
+  c.name:SetPoint ("TOPLEFT", c, "TOPLEFT", 18, -1)
+  c.name:SetTextColor (ThemeRGB("textPrimary", 1, 1, 1))
+  c.name:SetText (name)
+
+  c.button = CreateFrame ("Button", nil, c)
+  c.button:ClearAllPoints ()
+  c.button:SetSize (14,14)
+  c.button:SetPoint ("TOPLEFT")
+  if allowCollapse then
+    c.button:SetHighlightTexture ("Interface\\Buttons\\UI-PlusButton-Hilight")
+    c.button.UpdateTexture = function (self)
+      if self:GetParent ().expanded then
+        self:SetNormalTexture ("Interface\\Buttons\\UI-MinusButton-Up")
+        self:SetPushedTexture ("Interface\\Buttons\\UI-MinusButton-Down")
+      else
+        self:SetNormalTexture ("Interface\\Buttons\\UI-PlusButton-Up")
+        self:SetPushedTexture ("Interface\\Buttons\\UI-PlusButton-Down")
+      end
+    end
+    c.button:UpdateTexture ()
+    c.button:SetScript ("OnClick", function (btn) btn:GetParent():Toggle() end)
+  else
+    c.button:Hide()
+    c.button.UpdateTexture = function () end
+  end
+  c.button.anchor = {point = "TOPLEFT", rel = c, relPoint = "TOPLEFT", x = 0, y = 0}
+
+  c.frames = {}
+  c.anchors = {}
+  c.AddFrame = function (cat, frame)
+    tinsert (cat.frames, frame)
+    frame.Show2 = function (f)
+      if f.category.expanded then
+        f:Show ()
+      end
+      f.chidden = nil
+    end
+    frame.Hide2 = function (f)
+      f:Hide ()
+      f.chidden = true
+    end
+    frame.category = cat
+    if not cat.expanded then
+      frame:Hide()
+    end
+  end
+
+  c.Refresh = function(category)
+    if not category.allowCollapse then
+      category.expanded = true
+    end
+    if category.expanded then
+      for _, frame in pairs(category.frames) do
+        if not frame.chidden then
+          frame:Show()
+        end
+      end
+      for _, anchor in pairs(category.anchors) do
+        anchor.frame:SetPoint(anchor.point, anchor.rel, anchor.relPoint, anchor.x, anchor.y)
+      end
+    else
+      for _, frame in pairs(category.frames) do
+        frame:Hide()
+      end
+      for k, v in pairs (category.anchors) do
+        v.frame:SetPoint (v.point, category.button, v.relPoint, v.x, v.y)
+      end
+    end
+
+    category.button:UpdateTexture()
+  end
+
+  c.Toggle = function (category)
+    if not category.allowCollapse then
+      return
+    end
+    category.expanded = not category.expanded
+    if self.pdb and self.pdb.categoryStates then
+      self.pdb.categoryStates[category.storageKey or name] = category.expanded
+    end
+    category:Refresh()
+    self:UpdateContentSize ()
+  end
+
+  return c
+end
+
+function ReforgeOne:SetAnchor (frame_, point_, rel_, relPoint_, offsX, offsY)
+  if frame_ and frame_.anchor then
+    local previous = frame_.anchor
+    local previousRel = previous.rel
+    local previousCategory = previousRel and previousRel.category
+    if previousCategory and previousCategory.anchors then
+      for index = #previousCategory.anchors, 1, -1 do
+        local anchor = previousCategory.anchors[index]
+        if anchor and anchor.frame == frame_ then
+          tremove(previousCategory.anchors, index)
+        end
+      end
+    end
+  end
+  if rel_ and rel_.catname and rel_.button then
+    rel_ = rel_.button
+  end
+  if rel_.category then
+    tinsert (rel_.category.anchors, {frame = frame_, point = point_, rel = rel_, relPoint = relPoint_, x = offsX, y = offsY})
+    if rel_.category.expanded then
+      frame_:SetPoint (point_, rel_, relPoint_, offsX, offsY)
+    else
+      frame_:SetPoint (point_, rel_.category.button, relPoint_, offsX, offsY)
+    end
+  else
+    frame_:SetPoint (point_, rel_, relPoint_, offsX, offsY)
+  end
+  frame_.anchor = {point = point_, rel = rel_, relPoint = relPoint_, x = offsX, y = offsY}
+end
+function ReforgeOne:GetFrameY (frame)
+  local cur = frame
+  local offs = 0
+  while cur and cur ~= self.content do
+    if cur.anchor == nil then
+      return offs
+    end
+    if cur.anchor.point:find ("BOTTOM") then
+      offs = offs + cur:GetHeight ()
+    end
+    local rel = cur.anchor.rel
+    if rel.category and not rel.category.expanded then
+      rel = rel.category.button
+    end
+    if cur.anchor.relPoint:find ("BOTTOM") then
+      offs = offs - rel:GetHeight ()
+    end
+    offs = offs + cur.anchor.y
+    cur = rel
+  end
+  return offs
+end
+
+local plusSign = (_G and _G.PLUS_SIGN) or "+"
+local minusSign = (_G and _G.MINUS_SIGN) or "-"
+
+local function FormatNumber(num)
+  if type(num) ~= "number" then
+    return tostring(num or "")
+  end
+
+  if num == 0 then
+    return FormatLargeNumber(0)
+  end
+
+  local prefix = num > 0 and plusSign or minusSign
+  local magnitude = abs(num)
+  local rounded = floor(magnitude + 0.5)
+  if abs(magnitude - rounded) < 0.01 then
+    magnitude = rounded
+    return prefix .. FormatLargeNumber(magnitude)
+  end
+
+  local decimalFormatted = string.format("%.2f", magnitude)
+  local integerPart, fractionalPart = decimalFormatted:match("^(%d+)%.(%d+)$")
+  if integerPart and fractionalPart then
+    local formattedInteger = FormatLargeNumber(tonumber(integerPart))
+    return string.format("%s%s.%s", prefix, formattedInteger, fractionalPart)
+  end
+
+  return prefix .. decimalFormatted
+end
+
+local function SetTextDelta (text, value, cur, override)
+  override = override or (value - cur)
+  if override == 0 then
+    text:SetTextColor(0.7, 0.7, 0.7)
+  elseif override > 0 then
+    text:SetTextColor(0.6, 1, 0.6)
+  else
+    text:SetTextColor(1, 0.4, 0.4)
+  end
+  text:SetText(FormatNumber(value - cur))
+end
+
+
+function ReforgeOne:SetScroll (value)
+  local viewheight = self.scrollFrame:GetHeight ()
+  local height = self.content:GetHeight ()
+  local offset
+
+  if viewheight > height then
+    offset = 0
+  else
+    offset = floor ((height - viewheight) / 1000 * value)
+  end
+  self.content:ClearAllPoints ()
+  self.content:SetPoint ("TOPLEFT", 0, offset)
+  self.content:SetPoint ("TOPRIGHT", 0, offset)
+  self.scrollOffset = offset
+  self.scrollValue = value
+end
+
+function ReforgeOne:FixScroll ()
+  local offset = self.scrollOffset
+  local viewheight = self.scrollFrame:GetHeight ()
+  local height = self.content:GetHeight ()
+  if height < viewheight + 2 then
+    if self.scrollBarShown then
+      self.scrollBarShown = false
+      self.scrollBar:Hide ()
+      self.scrollBar:SetValue (0)
+    end
+  else
+    if not self.scrollBarShown then
+      self.scrollBarShown = true
+      self.scrollBar:Show ()
+    end
+    local value = (offset / (height - viewheight) * 1000)
+    if value > 1000 then value = 1000 end
+    self.scrollBar:SetValue (value)
+    self:SetScroll (value)
+    if value < 1000 then
+      self.content:ClearAllPoints ()
+      self.content:SetPoint ("TOPLEFT", 0, offset)
+      self.content:SetPoint ("TOPRIGHT", 0, offset)
+    end
+  end
+end
+
+function ReforgeOne:SetNewTopWindow(newTopWindow)
+  if not RFL_FRAMES[2] then return end
+  newTopWindow = newTopWindow or self
+
+  for _, frame in ipairs(RFL_FRAMES) do
+    if frame._reforgeAlwaysOnTop then
+      frame:SetFrameActive(true)
+    elseif frame == newTopWindow then
+      frame:Raise()
+      frame:SetFrameActive(true)
+    else
+      frame:Lower()
+      frame:SetFrameActive(false)
+    end
+  end
+
+  for _, frame in ipairs(RFL_FRAMES) do
+    if frame._reforgeAlwaysOnTop then
+      frame:Raise()
+      frame:SetToplevel(true)
+    end
+  end
+end
+
+function ReforgeOne:CreateFrame()
+  self:InitPresets()
+  self:RefreshSavedEquipMenu()
+  self:SetFrameStrata ("DIALOG")
+  self:SetToplevel(true)
+  self:ClearAllPoints ()
+  local rawWindowWidth = (self.pdb and self.pdb.windowWidth) or (self.db and self.db.windowWidth) or DefaultDB.char.windowWidth
+  local windowWidth = ClampDimension(rawWindowWidth, WINDOW_MIN_WIDTH, WINDOW_MAX_WIDTH) or DEFAULT_WINDOW_WIDTH
+
+  local rawWindowHeight = (self.pdb and self.pdb.windowHeight) or (self.db and self.db.windowHeight) or DefaultDB.char.windowHeight
+  local windowHeight = ClampDimension(rawWindowHeight, WINDOW_MIN_HEIGHT, WINDOW_MAX_HEIGHT) or DEFAULT_WINDOW_HEIGHT
+  if self.pdb then
+    self.pdb.windowWidth = windowWidth
+    self.pdb.windowHeight = windowHeight
+  end
+  self:SetSize(windowWidth, windowHeight)
+  self:SetResizeBounds(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT, WINDOW_MAX_WIDTH, WINDOW_MAX_HEIGHT)
+  if self.db.windowLocation then
+    self:SetPoint (SafeUnpack(self.db.windowLocation))
+  else
+    self:SetPoint ("CENTER")
+  end
+  self.backdropInfo = {
+    bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+    tile = true, tileSize = 16, edgeSize = 16,
+    insets = { left = 3, right = 3, top = 22, bottom = 3 }
+  }
+  self:ApplyBackdrop()
+  local borderR, borderG, borderB = ThemeRGB("border", 0.1, 0.1, 0.1)
+  local bgR, bgG, bgB, bgA = ThemeRGBA("background", 0.1, 0.1, 0.1, 1)
+  self:SetBackdropBorderColor (borderR, borderG, borderB)
+  self:SetBackdropColor (bgR, bgG, bgB, bgA)
+
+  self.titlebar = self:CreateTexture(nil,"BACKGROUND")
+  self.titlebar:SetPoint("TOPLEFT", 3, -3)
+  self.titlebar:SetPoint("TOPRIGHT", -3, 3)
+  self.titlebar:SetHeight(20)
+  ApplyTitlebarColor(self.titlebar)
+  self.SetFrameActive = function(frame, _)
+    ApplyTitlebarColor(frame.titlebar)
+  end
+  self:SetFrameActive(true)
+
+  self:EnableMouse (true)
+  self:SetMovable (true)
+  self:SetResizable (true)
+  self:SetScript ("OnMouseDown", function (self, arg)
+    self:SetNewTopWindow()
+    if arg == "LeftButton" then
+      self:StartMoving ()
+      self.moving = true
+    end
+  end)
+  self:SetScript ("OnMouseUp", function (self)
+    if self.moving then
+      self:StopMovingOrSizing ()
+      self.moving = false
+      self.db.windowLocation = SafePack(self:GetPoint())
+    end
+  end)
+  RegisterEscapeKeyDismissal(self)
+
+  self.title = self:CreateFontString (nil, "OVERLAY", "GameFontNormal")
+  self.title:SetText (addonTitle)
+  self.title:SetTextColor (ThemeRGB("textPrimary", 1, 1, 1))
+  self.title:SetPoint("BOTTOMLEFT", self.titlebar, "BOTTOMLEFT", 12, 1)
+
+  self.close = CreateFrame ("Button", nil, self, "UIPanelCloseButtonNoScripts")
+  self.close:SetSize(28, 28)
+  self.close:SetPoint("TOPRIGHT")
+  self.close:SetScript("OnClick", function(btn) btn:GetParent():Hide() end)
+
+  local function GripOnMouseDown(btn, arg)
+    if arg == "LeftButton" then
+      local anchorPoint = btn:GetPoint()
+      btn:GetParent():StartSizing(anchorPoint)
+      btn:GetParent().sizing = true
+    end
+  end
+
+  local function GripOnMouseUp(btn, arg)
+    if btn:GetParent().sizing then
+      btn:GetParent():StopMovingOrSizing ()
+      btn:GetParent().sizing = false
+      btn:GetParent():UpdateWindowSize ()
+    end
+  end
+
+  self.leftGrip = CreateFrame ("Button", nil, self, "PanelResizeButtonTemplate")
+  self.leftGrip:SetSize(16, 16)
+  self.leftGrip:SetRotationDegrees(-90)
+  self.leftGrip:SetPoint("BOTTOMLEFT")
+  self.leftGrip:SetScript("OnMouseDown", GripOnMouseDown)
+  self.leftGrip:SetScript("OnMouseUp", GripOnMouseUp)
+
+  self.rightGrip = CreateFrame ("Button", nil, self, "PanelResizeButtonTemplate")
+  self.rightGrip:SetSize(16, 16)
+  self.rightGrip:SetPoint("BOTTOMRIGHT")
+  self.rightGrip:SetScript("OnMouseDown", GripOnMouseDown)
+  self.rightGrip:SetScript("OnMouseUp", GripOnMouseUp)
+
+  self:CreateItemTable ()
+
+  self.scrollValue = 0
+  self.scrollOffset = 0
+  self.scrollBarShown = false
+
+  self.scrollFrame = CreateFrame ("ScrollFrame", nil, self)
+  self.scrollFrame:ClearAllPoints ()
+  self.scrollFrame:SetPoint ("TOPLEFT", self, "TOPLEFT", 12, -28)
+  self.scrollFrame:SetPoint ("BOTTOMRIGHT", -22, 15)
+  self.scrollFrame:EnableMouseWheel (true)
+  self.scrollFrame:SetScript ("OnMouseWheel", function (frame, value)
+    if self.scrollBarShown then
+      local diff = self.content:GetHeight() - frame:GetHeight ()
+      local delta = (value > 0 and -1 or 1)
+      self.scrollBar:SetValue (min (max (self.scrollValue + delta * (1000 / (diff / 45)), 0), 1000))
+    end
+
+  end)
+  self.scrollFrame:SetScript ("OnSizeChanged", function (frame)
+    RunNextFrame(function() self:FixScroll() end)
+  end)
+
+  self.scrollBar = CreateFrame ("Slider", "ReforgeOneScrollBar", self.scrollFrame, "UIPanelScrollBarTemplate")
+  self.scrollBar:SetPoint ("TOPLEFT", self.scrollFrame, "TOPRIGHT", 0, -14)
+  self.scrollBar:SetPoint ("BOTTOMLEFT", self.scrollFrame, "BOTTOMRIGHT", 4, 16)
+  self.scrollBar:SetMinMaxValues (0, 1000)
+  self.scrollBar:SetValueStep (1)
+  self.scrollBar:SetValue (0)
+  self.scrollBar:SetWidth (16)
+  self.scrollBar:SetScript ("OnValueChanged", function (bar, value)
+    self:SetScroll (value)
+  end)
+  self.scrollBar:Hide ()
+
+  self.scrollBg = self.scrollBar:CreateTexture (nil, "BACKGROUND")
+  self.scrollBg:SetAllPoints (self.scrollBar)
+  local scrollR, scrollG, scrollB, scrollA = ThemeRGBA("backgroundAlt", 0, 0, 0, 0.4)
+  self.scrollBg:SetColorTexture (scrollR, scrollG, scrollB, scrollA)
+
+  self.content = CreateFrame ("Frame", nil, self.scrollFrame)
+  self.scrollFrame:SetScrollChild (self.content)
+  self.content:ClearAllPoints ()
+  self.content:SetPoint ("TOPLEFT")
+  self.content:SetPoint ("TOPRIGHT")
+  self.content:SetHeight (1000)
+
+  GUI.defaultParent = self.content
+
+  self:CreateOptionList ()
+
+  self:ApplyRightOnlyLayout()
+
+  RunNextFrame(function() self:FixScroll() end)
+end
+
+local function EnsureTableAutoWidthRespectsMinimums(table)
+  if not table or type(table.AutoSizeColumns) ~= "function" or table._hasMinWidthHook then
+    return
+  end
+
+  table._hasMinWidthHook = true
+
+  local originalAutoSizeColumns = table.AutoSizeColumns
+  table.AutoSizeColumns = function(tbl, columnIndex)
+    originalAutoSizeColumns(tbl, columnIndex)
+
+    local function enforceMinimum(colIndex)
+      if not colIndex then
+        return false
+      end
+
+      local desired = nil
+      if tbl.minColumnWidth and tbl.minColumnWidth[colIndex] then
+        desired = tbl.minColumnWidth[colIndex]
+      end
+      if not desired and tbl.defaultColumnWidth and tbl.defaultColumnWidth[colIndex] then
+        desired = tbl.defaultColumnWidth[colIndex]
+      end
+      if not desired then
+        return false
+      end
+
+      local current = tbl.colWidth and tbl.colWidth[colIndex]
+      if current == "AUTO" or (type(current) == "number" and current < desired) then
+        tbl.colWidth[colIndex] = desired
+        return true
+      end
+
+      return false
+    end
+
+    local adjusted = false
+    if columnIndex then
+      adjusted = enforceMinimum(columnIndex) or adjusted
+    else
+      if tbl.autoWidthColumns then
+        for colIndex, enabled in pairs(tbl.autoWidthColumns) do
+          if enabled then
+            adjusted = enforceMinimum(colIndex) or adjusted
+          end
+        end
+      end
+      if tbl.minColumnWidth then
+        for colIndex in pairs(tbl.minColumnWidth) do
+          adjusted = enforceMinimum(colIndex) or adjusted
+        end
+      end
+    end
+
+    if adjusted then
+      tbl:OnUpdateFix()
+    end
+  end
+end
+
+function ReforgeOne:ShouldShowLeftPane()
+  return false
+end
+
+function ReforgeOne:CreateItemTable ()
+  if not self:ShouldShowLeftPane() then
+    self.playerSpecTexture = nil
+    self.playerTalents = nil
+    self.itemTable = nil
+    self.itemLevel = nil
+    self.statHeaders = nil
+    self.statTotals = nil
+
+    self.itemData = {}
+    for index, slotName in ipairs(self.itemSlots) do
+      local slotId, slotTexture = GetInventorySlotInfo(slotName)
+      local slotData = {
+        slot = slotName,
+        slotId = slotId,
+        slotTexture = slotTexture,
+        itemInfo = {},
+        stats = {},
+      }
+
+      slotData.displayTexture = slotTexture
+      slotData.displayTexCoord = {0.07, 0.93, 0.07, 0.93}
+
+      self.itemData[index] = slotData
+    end
+
+    self.statColumnShown = {}
+    self.statColumnShownInitialized = false
+    return
+  end
+
+  self.playerSpecTexture = self:CreateTexture (nil, "ARTWORK")
+  self.playerSpecTexture:SetPoint ("TOPLEFT", 10, -28)
+  self.playerSpecTexture:SetSize(18, 18)
+  self.playerSpecTexture:SetTexCoord(0.0825, 0.0825, 0.0825, 0.9175, 0.9175, 0.0825, 0.9175, 0.9175)
+
+  self.playerTalents = {}
+  for tier = 1, MAX_NUM_TALENT_TIERS do
+    self.playerTalents[tier] = self:CreateTexture(nil, "ARTWORK")
+    self.playerTalents[tier]:SetPoint("TOPLEFT", self.playerTalents[tier-1] or self.playerSpecTexture, "TOPRIGHT", 4, 0)
+    self.playerTalents[tier]:SetSize(18, 18)
+    self.playerTalents[tier]:SetTexCoord(0.0825, 0.0825, 0.0825, 0.9175, 0.9175, 0.0825, 0.9175, 0.9175)
+    self.playerTalents[tier]:SetScript("OnLeave", GameTooltip_Hide)
+  end
+
+  self:UpdatePlayerSpecInfo()
+
+  self.itemTable = GUI:CreateTable (#self.itemSlots + 1, #self.itemStats, ITEM_SIZE, ITEM_SIZE + 4, {0.5, 0.5, 0.5, 1}, self)
+  self.itemTable:SetPoint ("TOPLEFT", self.playerSpecTexture, "BOTTOMLEFT", 0, -6)
+  self.itemTable:SetPoint ("BOTTOM", 0, 10)
+  self.itemTable:SetWidth (400)
+  local autoColumns = {}
+  self.itemTable.defaultColumnWidth = self.itemTable.defaultColumnWidth or {}
+  self.itemTable.minColumnWidth = self.itemTable.minColumnWidth or {}
+  for index = 1, #self.itemStats do
+    local defaultWidth = 45
+    self.itemTable:SetColumnWidth(index, defaultWidth)
+    self.itemTable.defaultColumnWidth[index] = defaultWidth
+    local previousMin = self.itemTable.minColumnWidth[index] or 0
+    if previousMin < defaultWidth then
+      self.itemTable.minColumnWidth[index] = defaultWidth
+    end
+    autoColumns[#autoColumns + 1] = index
+  end
+  EnsureTableAutoWidthRespectsMinimums(self.itemTable)
+  if #autoColumns > 0 then
+    self.itemTable:EnableColumnAutoWidth(unpack(autoColumns))
+  end
+
+  self.itemLevel = self:CreateFontString (nil, "OVERLAY", "GameFontNormal")
+  ReforgeOne.itemLevel:SetPoint ("BOTTOMRIGHT", ReforgeOne.itemTable, "TOPRIGHT", 0, 8)
+  self.itemLevel:SetTextColor (ThemeRGB("accentHighlight", 1, 1, 0.8))
+  self:RegisterEvent("PLAYER_AVG_ITEM_LEVEL_UPDATE")
+  self:PLAYER_AVG_ITEM_LEVEL_UPDATE()
+
+  self.statHeaders = {}
+  local headerColor = {ThemeRGB("accent", 1, 0.8, 0)}
+  for i, v in ipairs (self.itemStats) do
+    self.itemTable:SetCellText (0, i, v.tip, nil, headerColor)
+    self.statHeaders[i] = self.itemTable.cells[0][i]
+  end
+
+  local masteryColumnIndex = statIds.MASTERY
+  local masteryHeader = self.statHeaders[masteryColumnIndex]
+  if masteryHeader then
+    local minWidth = math.ceil((masteryHeader:GetStringWidth() or 0) + 12)
+    if minWidth > 0 then
+      local previousMin = self.itemTable.minColumnWidth[masteryColumnIndex] or 0
+      if minWidth > previousMin then
+        self.itemTable.minColumnWidth[masteryColumnIndex] = minWidth
+      end
+      self.itemTable:AutoSizeColumns(masteryColumnIndex)
+    end
+  end
+  self.itemData = {}
+  for i, v in ipairs (self.itemSlots) do
+    self.itemData[i] = CreateFrame ("Frame", nil, self.itemTable)
+    self.itemData[i].slot = v
+    self.itemData[i]:ClearAllPoints ()
+    self.itemData[i]:SetSize(ITEM_SIZE, ITEM_SIZE)
+    self.itemTable:SetCell (i, 0, self.itemData[i])
+    self.itemData[i]:EnableMouse (true)
+    self.itemData[i]:SetScript ("OnEnter", function (frame)
+      GameTooltip:SetOwner (frame, "ANCHOR_LEFT")
+      if frame.item then
+        GameTooltip:SetInventoryItem("player", frame.slotId)
+      else
+        GameTooltip:SetText(_G[strupper(frame.slot)])
+      end
+      GameTooltip:Show ()
+    end)
+    self.itemData[i]:SetScript ("OnLeave", GameTooltip_Hide)
+    self.itemData[i]:SetScript("OnMouseDown", function()
+      self:ToggleItemLockByIndex(i)
+    end)
+    self.itemData[i].slotId, self.itemData[i].slotTexture = GetInventorySlotInfo (v)
+    self.itemData[i].texture = self.itemData[i]:CreateTexture (nil, "ARTWORK")
+    self.itemData[i].texture:SetAllPoints (self.itemData[i])
+    self.itemData[i].texture:SetTexture (self.itemData[i].slotTexture)
+    self.itemData[i].texture:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+    self.itemData[i].locked = self.itemData[i]:CreateTexture (nil, "OVERLAY")
+    self.itemData[i].locked:SetAllPoints (self.itemData[i])
+    self.itemData[i].locked:SetTexture ("Interface\\PaperDollInfoFrame\\UI-GearManager-LeaveItem-Transparent")
+    self.itemData[i].quality = self.itemData[i]:CreateTexture (nil, "OVERLAY")
+    self.itemData[i].quality:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
+    self.itemData[i].quality:SetBlendMode("ADD")
+    self.itemData[i].quality:SetAlpha(0.75)
+    self.itemData[i].quality:SetSize(44,44)
+    self.itemData[i].quality:SetPoint ("CENTER", self.itemData[i])
+    self.itemData[i].itemInfo = {}
+
+    self.itemData[i].stats = {}
+    for j, s in ipairs (self.itemStats) do
+      local fontColors = {
+        grey = {ThemeRGB("textDim", 0.8, 0.8, 0.8)},
+        red = {ThemeRGB("negative", 1, 0.4, 0.4)},
+        green = {ThemeRGB("positive", 0.6, 1, 0.6)},
+        white = {ThemeRGB("textPrimary", 1, 1, 1)},
+      }
+      self.itemTable:SetCellText (i, j, "-", nil, fontColors.grey)
+      self.itemData[i].stats[j] = self.itemTable.cells[i][j]
+      self.itemData[i].stats[j].fontColors = fontColors
+    end
+  end
+  self.statTotals = {}
+  local footerColor = {ThemeRGB("accentHighlight", 1, 0.8, 0)}
+  self.itemTable:SetCellText (#self.itemSlots + 1, 0, "", "CENTER", footerColor)
+  for i, v in ipairs (self.itemStats) do
+    self.itemTable:SetCellText (#self.itemSlots + 1, i, FormatLargeNumber(0), nil, footerColor)
+    self.statTotals[i] = self.itemTable.cells[#self.itemSlots + 1][i]
+  end
+
+  self.statColumnShown = {}
+  self.statColumnShownInitialized = false
+end
+
+function ReforgeOne:ApplyRightOnlyLayout()
+  self.leftPaneVisible = false
+
+  if self.playerSpecTexture then
+    self.playerSpecTexture:Hide()
+  end
+
+  if self.playerTalents then
+    for _, talentIcon in ipairs(self.playerTalents) do
+      talentIcon:Hide()
+      talentIcon:SetScript("OnEnter", nil)
+    end
+  end
+
+  if self.itemLevel then
+    self.itemLevel:Hide()
+  end
+
+  if self.itemTable then
+    if self.itemTable.Hide then
+      self.itemTable:Hide()
+    end
+    if self.itemTable.SetWidth then
+      self.itemTable:SetWidth(1)
+    end
+  end
+end
+
+local ITEM_GRID_COLUMN_SPACING = 15
+local ITEM_GRID_ROW_SPACING = 5
+local ITEM_GRID_TITLE_PADDING = 6
+local SHOW_ITEM_DEBUG_CONTROLS = false
+
+local function SetCategoryFrameVisibility(frame, isVisible)
+  if not frame then
+    return
+  end
+
+  if isVisible then
+    if type(frame.Show2) == "function" then
+      frame:Show2()
+    else
+      frame.chidden = nil
+      frame:Show()
+    end
+  else
+    if type(frame.Hide2) == "function" then
+      frame:Hide2()
+    else
+      frame.chidden = true
+      frame:Hide()
+    end
+  end
+end
+
+function ReforgeOne:ToggleItemLockByIndex(slotIndex)
+  if not slotIndex or not self.itemData or not self.pdb then
+    return
+  end
+
+  local slotData = self.itemData[slotIndex]
+  if not slotData then
+    return
+  end
+
+  local itemGUID = slotData.itemInfo and slotData.itemInfo.itemGUID
+  if not itemGUID then
+    return
+  end
+
+  self.pdb.itemsLocked = self.pdb.itemsLocked or {}
+  if self.pdb.itemsLocked[itemGUID] then
+    self.pdb.itemsLocked[itemGUID] = nil
+  else
+    self.pdb.itemsLocked[itemGUID] = 1
+  end
+
+  if slotData.locked then
+    slotData.locked:SetShown(self.pdb.itemsLocked[itemGUID])
+  end
+
+  self:UpdateOptionItemGridSlot(slotIndex)
+end
+
+function ReforgeOne:ShowOptionItemTooltip(slotIndex, owner)
+  if not owner then
+    return
+  end
+
+  local slotData = self.itemData and self.itemData[slotIndex]
+  GameTooltip:SetOwner(owner, "ANCHOR_RIGHT")
+  if slotData and slotData.slotId and slotData.item then
+    GameTooltip:SetInventoryItem("player", slotData.slotId)
+  else
+    local slotName = slotData and slotData.slot or self.itemSlots[slotIndex]
+    local label = slotName and (_G[slotName] or slotName) or ""
+    GameTooltip:SetText(label)
+  end
+  GameTooltip:Show()
+end
+
+function ReforgeOne:CreateOptionItemGridFrame(parent)
+  if self.optionItemGrid then
+    self.optionItemGrid:SetParent(parent)
+    if self.optionItemGridTitle then
+      self.optionItemGridTitle:SetParent(parent)
+      self.optionItemGridTitle:SetText(L["Click to ignore item for the calculation"] or "Click to ignore item for the calculation")
+    end
+    return self.optionItemGrid
+  end
+
+  local grid = CreateFrame("Frame", nil, parent)
+  grid.buttons = {}
+
+  local title = parent:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+  title:SetJustifyH("LEFT")
+  title:SetJustifyV("TOP")
+  title:SetWordWrap(true)
+  title:SetNonSpaceWrap(true)
+  title:SetMaxLines(0)
+  title:SetText(L["Click to ignore item for the calculation"] or "Click to ignore item for the calculation")
+  title:Show()
+  self.optionItemGridTitle = title
+  grid.title = title
+
+  local slotIndexByName = {}
+  for index, slotName in ipairs(self.itemSlots) do
+    slotIndexByName[slotName] = index
+  end
+
+  local maxColumns = 0
+  local rows = #ITEM_GRID_LAYOUT
+  local itemSize = ITEM_SIZE
+
+  for _, row in ipairs(ITEM_GRID_LAYOUT) do
+    if #row > maxColumns then
+      maxColumns = #row
+    end
+  end
+
+  for rowIndex, row in ipairs(ITEM_GRID_LAYOUT) do
+    for columnIndex, slotName in ipairs(row) do
+      if slotName then
+        local slotIndex = slotIndexByName[slotName]
+        if slotIndex then
+          local button = CreateFrame("Frame", nil, grid)
+          button:SetSize(itemSize, itemSize)
+          button:SetPoint(
+            "TOPLEFT",
+            grid,
+            "TOPLEFT",
+            (columnIndex - 1) * (itemSize + ITEM_GRID_COLUMN_SPACING),
+            -(rowIndex - 1) * (itemSize + ITEM_GRID_ROW_SPACING)
+          )
+
+          button.slotIndex = slotIndex
+          button.slotName = slotName
+          button.slotId, button.slotTexture = GetInventorySlotInfo(slotName)
+          button:EnableMouse(true)
+
+          button:SetScript("OnEnter", function(btn)
+            self:ShowOptionItemTooltip(btn.slotIndex, btn)
+          end)
+          button:SetScript("OnLeave", GameTooltip_Hide)
+          button:SetScript("OnMouseDown", function(btn, mouseButton)
+            if mouseButton == "LeftButton" then
+              self:ToggleItemLockByIndex(btn.slotIndex)
+            end
+          end)
+
+          button.texture = button:CreateTexture(nil, "ARTWORK")
+          button.texture:SetAllPoints(button)
+          button.texture:SetTexture(button.slotTexture)
+          button.texture:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+
+          button.border = button:CreateTexture(nil, "OVERLAY")
+          button.border:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
+          button.border:SetBlendMode("ADD")
+          button.border:SetAlpha(0.75)
+          button.border:SetSize(itemSize + 20, itemSize + 20)
+          button.border:SetPoint("CENTER", button)
+          button.border:Hide()
+
+          button.lockOverlay = button:CreateTexture(nil, "OVERLAY")
+          button.lockOverlay:SetAllPoints(button)
+          button.lockOverlay:SetTexture("Interface\\PaperDollInfoFrame\\UI-GearManager-LeaveItem-Transparent")
+          button.lockOverlay:Hide()
+
+          button.lockBorder = {}
+          button.lockBorder.top = button:CreateTexture(nil, "OVERLAY")
+          button.lockBorder.top:SetColorTexture(0.9, 0.12, 0.12, 0.95)
+          button.lockBorder.top:SetPoint("TOPLEFT", button, "TOPLEFT", 2, -2)
+          button.lockBorder.top:SetPoint("TOPRIGHT", button, "TOPRIGHT", -2, -2)
+          button.lockBorder.top:SetHeight(2)
+          button.lockBorder.top:Hide()
+
+          button.lockBorder.bottom = button:CreateTexture(nil, "OVERLAY")
+          button.lockBorder.bottom:SetColorTexture(0.9, 0.12, 0.12, 0.95)
+          button.lockBorder.bottom:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 2, 2)
+          button.lockBorder.bottom:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -2, 2)
+          button.lockBorder.bottom:SetHeight(2)
+          button.lockBorder.bottom:Hide()
+
+          button.lockBorder.left = button:CreateTexture(nil, "OVERLAY")
+          button.lockBorder.left:SetColorTexture(0.9, 0.12, 0.12, 0.95)
+          button.lockBorder.left:SetPoint("TOPLEFT", button, "TOPLEFT", 2, -2)
+          button.lockBorder.left:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 2, 2)
+          button.lockBorder.left:SetWidth(2)
+          button.lockBorder.left:Hide()
+
+          button.lockBorder.right = button:CreateTexture(nil, "OVERLAY")
+          button.lockBorder.right:SetColorTexture(0.9, 0.12, 0.12, 0.95)
+          button.lockBorder.right:SetPoint("TOPRIGHT", button, "TOPRIGHT", -2, -2)
+          button.lockBorder.right:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -2, 2)
+          button.lockBorder.right:SetWidth(2)
+          button.lockBorder.right:Hide()
+
+          button.sharedSetBorder = {}
+          button.sharedSetBorder.top = button:CreateTexture(nil, "OVERLAY")
+          button.sharedSetBorder.top:SetColorTexture(0.16, 0.5, 0.98, 0.95)
+          button.sharedSetBorder.top:SetPoint("TOPLEFT", button, "TOPLEFT", -2, 2)
+          button.sharedSetBorder.top:SetPoint("TOPRIGHT", button, "TOPRIGHT", 2, 2)
+          button.sharedSetBorder.top:SetHeight(2)
+          button.sharedSetBorder.top:Hide()
+
+          button.sharedSetBorder.bottom = button:CreateTexture(nil, "OVERLAY")
+          button.sharedSetBorder.bottom:SetColorTexture(0.16, 0.5, 0.98, 0.95)
+          button.sharedSetBorder.bottom:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", -2, -2)
+          button.sharedSetBorder.bottom:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 2, -2)
+          button.sharedSetBorder.bottom:SetHeight(2)
+          button.sharedSetBorder.bottom:Hide()
+
+          button.sharedSetBorder.left = button:CreateTexture(nil, "OVERLAY")
+          button.sharedSetBorder.left:SetColorTexture(0.16, 0.5, 0.98, 0.95)
+          button.sharedSetBorder.left:SetPoint("TOPLEFT", button, "TOPLEFT", -2, 2)
+          button.sharedSetBorder.left:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", -2, -2)
+          button.sharedSetBorder.left:SetWidth(2)
+          button.sharedSetBorder.left:Hide()
+
+          button.sharedSetBorder.right = button:CreateTexture(nil, "OVERLAY")
+          button.sharedSetBorder.right:SetColorTexture(0.16, 0.5, 0.98, 0.95)
+          button.sharedSetBorder.right:SetPoint("TOPRIGHT", button, "TOPRIGHT", 2, 2)
+          button.sharedSetBorder.right:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 2, -2)
+          button.sharedSetBorder.right:SetWidth(2)
+          button.sharedSetBorder.right:Hide()
+
+          grid.buttons[slotIndex] = button
+        end
+      end
+    end
+  end
+
+  local totalWidth = maxColumns * itemSize + (maxColumns - 1) * ITEM_GRID_COLUMN_SPACING
+  local totalHeight = rows * itemSize + (rows - 1) * ITEM_GRID_ROW_SPACING
+  grid:SetSize(totalWidth, totalHeight)
+
+  self.optionItemGrid = grid
+  return grid
+end
+
+function ReforgeOne:CenterOptionItemGrid()
+  local container = self.optionItemGridContainer
+  local grid = self.optionItemGrid
+  if not container or not grid then
+    return
+  end
+
+  local title = self.optionItemGridTitle
+  if title then
+    title:SetParent(container)
+    title:ClearAllPoints()
+    title:SetPoint("TOPLEFT", container, "TOPLEFT", 0, 0)
+    title:SetPoint("RIGHT", container, "RIGHT", 0, 0)
+    local containerWidth = container:GetWidth()
+    if containerWidth and containerWidth > 0 then
+      title:SetWidth(containerWidth)
+    end
+  end
+
+  local titleHeight = 0
+  if title and title:IsShown() then
+    titleHeight = title:GetStringHeight() or 0
+    if (not titleHeight or titleHeight <= 0) and title.GetLineHeight then
+      titleHeight = title:GetLineHeight() or 0
+    end
+    if (not titleHeight or titleHeight <= 0) and title.GetHeight then
+      titleHeight = title:GetHeight() or 0
+    end
+    if titleHeight and titleHeight < 0 then
+      titleHeight = 0
+    end
+  end
+
+  local gridHeight = grid:GetHeight() or 0
+  local topOffset = titleHeight > 0 and (titleHeight + ITEM_GRID_TITLE_PADDING) or 0
+
+  local containerHeight = gridHeight + topOffset
+  if containerHeight <= 0 then
+    containerHeight = 1
+  end
+  container:SetHeight(containerHeight)
+
+  grid:ClearAllPoints()
+  grid:SetPoint("TOP", container, "TOP", 0, -topOffset)
+end
+
+function ReforgeOne:UpdateOptionItemGridSlot(slotIndex)
+  local grid = self.optionItemGrid
+  if not grid or not grid.buttons then
+    return
+  end
+
+  local button = grid.buttons[slotIndex]
+  if not button then
+    return
+  end
+
+  local slotData = self.itemData and self.itemData[slotIndex]
+  if not slotData then
+    button.texture:SetTexture(button.slotTexture)
+    button.texture:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+    button.border:Hide()
+    button.lockOverlay:Hide()
+    if button.lockBorder then
+      for _, borderPart in pairs(button.lockBorder) do
+        borderPart:Hide()
+      end
+    end
+    if button.sharedSetBorder then
+      for _, borderPart in pairs(button.sharedSetBorder) do
+        borderPart:Hide()
+      end
+    end
+    button:SetAlpha(0.6)
+    return
+  end
+
+  local texture = slotData.displayTexture or button.slotTexture
+  button.texture:SetTexture(texture)
+
+  local coords = slotData.displayTexCoord
+  if coords then
+    button.texture:SetTexCoord(coords[1], coords[2], coords[3], coords[4])
+  else
+    button.texture:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+  end
+
+  local qualityColor = slotData.qualityColor
+  if qualityColor then
+    button.border:SetVertexColor(qualityColor.r, qualityColor.g, qualityColor.b)
+  else
+    button.border:SetVertexColor(1, 1, 1)
+  end
+  button.border:SetShown(slotData.item ~= nil)
+
+  local itemGUID = slotData.itemInfo and slotData.itemInfo.itemGUID
+  if itemGUID and self.pdb and self.pdb.itemsLocked and self.pdb.itemsLocked[itemGUID] then
+    button.lockOverlay:Show()
+    if button.lockBorder then
+      for _, borderPart in pairs(button.lockBorder) do
+        borderPart:Show()
+      end
+    end
+  else
+    button.lockOverlay:Hide()
+    if button.lockBorder then
+      for _, borderPart in pairs(button.lockBorder) do
+        borderPart:Hide()
+      end
+    end
+  end
+
+  if slotData.tooltipHasMultipleEquipmentSets then
+    if button.sharedSetBorder then
+      for _, borderPart in pairs(button.sharedSetBorder) do
+        borderPart:Show()
+      end
+    end
+  else
+    if button.sharedSetBorder then
+      for _, borderPart in pairs(button.sharedSetBorder) do
+        borderPart:Hide()
+      end
+    end
+  end
+
+  button:SetAlpha(slotData.item and 1 or 0.6)
+end
+
+function ReforgeOne:UpdateOptionItemGrid()
+  local grid = self.optionItemGrid
+  if not grid or not grid.buttons then
+    return
+  end
+
+  for slotIndex in pairs(grid.buttons) do
+    self:UpdateOptionItemGridSlot(slotIndex)
+  end
+end
+
+function ReforgeOne:GetCapBaseRow(index)
+  local base = 1
+  for i = 1, index - 1 do
+    if self.pdb.caps[i] then
+      base = base + #self.pdb.caps[i].points + 1
+    end
+  end
+  return base
+end
+
+function ReforgeOne:GetExactCapSelectionCount(excludeCapIndex, excludePointIndex)
+  local count = 0
+  for capIndex = 1, NUM_CAPS do
+    local cap = self.pdb.caps and self.pdb.caps[capIndex]
+    if cap and cap.points then
+      for pointIndex, point in ipairs(cap.points) do
+        if point.method == addonTable.StatCapMethods.Exactly then
+          if not (capIndex == excludeCapIndex and pointIndex == excludePointIndex) then
+            count = count + 1
+          end
+        end
+      end
+    end
+  end
+  return count
+end
+
+function ReforgeOne:CanUseExactCapMethod(capIndex, pointIndex)
+  local cap = self.pdb.caps and self.pdb.caps[capIndex]
+  local point = cap and cap.points and cap.points[pointIndex]
+  if point and point.method == addonTable.StatCapMethods.Exactly then
+    return true
+  end
+  return self:GetExactCapSelectionCount(capIndex, pointIndex) < EXACT_CAP_LIMIT
+end
+
+function ReforgeOne:GetCapMethodCounts(capIndex, excludePointIndex)
+  local counts = {
+    [addonTable.StatCapMethods.AtLeast] = 0,
+    [addonTable.StatCapMethods.AtMost] = 0,
+    [addonTable.StatCapMethods.Exactly] = 0,
+  }
+
+  local cap = self.pdb.caps and self.pdb.caps[capIndex]
+  if not cap or not cap.points then
+    return counts
+  end
+
+  for index, point in ipairs(cap.points) do
+    if not excludePointIndex or index ~= excludePointIndex then
+      if counts[point.method] ~= nil then
+        counts[point.method] = counts[point.method] + 1
+      end
+    end
+  end
+
+  return counts
+end
+
+function ReforgeOne:CanAddCapPoint(capIndex)
+  local cap = self.pdb.caps and self.pdb.caps[capIndex]
+  if not cap or cap.stat == 0 then
+    return false
+  end
+
+  cap.points = cap.points or {}
+  local numPoints = #cap.points
+  if numPoints == 0 then
+    return true
+  end
+
+  if numPoints >= 2 then
+    return false
+  end
+
+  for _, point in ipairs(cap.points) do
+    if point.method == addonTable.StatCapMethods.Exactly then
+      return false
+    end
+  end
+
+  return true
+end
+
+function ReforgeOne:ShouldDisableCapMethodOption(capIndex, pointIndex, method, currentMethod)
+  if method == addonTable.StatCapMethods.Exactly then
+    return not self:CanUseExactCapMethod(capIndex, pointIndex)
+  end
+
+  local cap = self.pdb.caps and self.pdb.caps[capIndex]
+  if not cap or not cap.points then
+    return false
+  end
+
+  if currentMethod == nil and pointIndex and cap.points[pointIndex] then
+    currentMethod = cap.points[pointIndex].method
+  end
+
+  local occurrences = 0
+  for index, point in ipairs(cap.points) do
+    if point.method == method then
+      occurrences = occurrences + 1
+      if pointIndex and cap.points[pointIndex] and index ~= pointIndex then
+        return true
+      end
+    end
+  end
+
+  if (not pointIndex or not cap.points[pointIndex]) and currentMethod ~= method and occurrences > 0 then
+    return true
+  end
+
+  return false
+end
+
+function ReforgeOne:UpdateCapAddButtonState(capIndex)
+  if not self.statCaps or not self.statCaps[capIndex] then
+    return
+  end
+
+  local addButton = self.statCaps[capIndex].add
+  if not addButton then
+    return
+  end
+
+  local cap = self.pdb.caps and self.pdb.caps[capIndex]
+  if not cap or cap.stat == 0 then
+    addButton:Disable()
+    return
+  end
+
+  if self:CanAddCapPoint(capIndex) then
+    addButton:Enable()
+  else
+    addButton:Disable()
+  end
+end
+
+function ReforgeOne:NormalizeExactCapSelections()
+  local exactCount = 0
+  for capIndex = 1, NUM_CAPS do
+    local cap = self.pdb.caps and self.pdb.caps[capIndex]
+    if cap and cap.points then
+      for _, point in ipairs(cap.points) do
+        if point.method == addonTable.StatCapMethods.Exactly then
+          exactCount = exactCount + 1
+          if exactCount > EXACT_CAP_LIMIT then
+            point.method = addonTable.StatCapMethods.AtLeast
+          end
+        end
+      end
+    end
+  end
+end
+
+function ReforgeOne:AddCapPoint (i, loading)
+  if not loading and not self:CanAddCapPoint(i) then
+    return
+  end
+
+  self.pdb.caps[i] = self.pdb.caps[i] or CreateDefaultCap()
+  self.pdb.caps[i].points = self.pdb.caps[i].points or {}
+  local base = self:GetCapBaseRow(i)
+  local row = (loading or #self.pdb.caps[i].points + 1) + base
+  local point = (loading or #self.pdb.caps[i].points + 1)
+  self.statCaps:AddRow (row)
+
+  local function GetCapPoints()
+    local capData = self.pdb.caps[i]
+    if not capData then
+      capData = CreateDefaultCap()
+      self.pdb.caps[i] = capData
+    end
+    if not capData.points then
+      capData.points = {}
+    end
+    return capData.points
+  end
+
+  local capPoints = GetCapPoints()
+  local capPointRef = loading and capPoints[loading] or nil
+
+  if not loading then
+    local methodCounts = self:GetCapMethodCounts(i)
+    local newMethod = addonTable.StatCapMethods.AtLeast
+    if methodCounts[addonTable.StatCapMethods.AtLeast] > 0 and methodCounts[addonTable.StatCapMethods.AtMost] == 0 then
+      newMethod = addonTable.StatCapMethods.AtMost
+    elseif methodCounts[addonTable.StatCapMethods.AtMost] > 0 and methodCounts[addonTable.StatCapMethods.AtLeast] == 0 then
+      newMethod = addonTable.StatCapMethods.AtLeast
+    elseif methodCounts[addonTable.StatCapMethods.Exactly] > 0 then
+      newMethod = addonTable.StatCapMethods.Exactly
+    end
+
+    local points = GetCapPoints()
+    tinsert(points, 1, {value = 0, method = newMethod, preset = 1})
+    capPointRef = points[1]
+  end
+
+  capPointRef = capPointRef or GetCapPoints()[point]
+
+  local function ResolvePointIndex(widget)
+    local points = GetCapPoints()
+    if not points or #points == 0 then
+      return 1
+    end
+
+    if widget then
+      local ref = widget.capPointRef
+      if ref then
+        for idx, entry in ipairs(points) do
+          if entry == ref then
+            widget.pointIndex = idx
+            return idx
+          end
+        end
+      end
+
+      local widgetIndex = widget.pointIndex
+      if widgetIndex and points[widgetIndex] then
+        return widgetIndex
+      end
+    end
+
+    if capPointRef then
+      for idx, entry in ipairs(points) do
+        if entry == capPointRef then
+          return idx
+        end
+      end
+    end
+
+    local fallback = point or 1
+    if fallback < 1 then
+      fallback = 1
+    elseif fallback > #points then
+      fallback = #points
+    end
+    return fallback
+  end
+
+  local rem
+  rem = GUI:CreateImageButton (self.statCaps, 20, 20, "Interface\\PaperDollInfoFrame\\UI-GearManager-LeaveItem-Transparent",
+    "Interface\\PaperDollInfoFrame\\UI-GearManager-LeaveItem-Transparent", nil, nil, function ()
+    local targetIndex = ResolvePointIndex(rem)
+    self:RemoveCapPoint (i, targetIndex)
+    self.statCaps:ToggleStatDropdownToCorrectState()
+  end)
+  rem.capPointRef = capPointRef
+  rem.pointIndex = ResolvePointIndex(rem)
+
+  local methodList = {
+    {value = addonTable.StatCapMethods.AtLeast, name = L["At least"]},
+    {value = addonTable.StatCapMethods.AtMost, name = L["At most"]},
+    {value = addonTable.StatCapMethods.Exactly, name = L["Exactly"]}
+  }
+  local method
+  method = GUI:CreateDropdown(self.statCaps, methodList, {
+    default = (capPointRef and capPointRef.method) or addonTable.StatCapMethods.AtLeast,
+    setter = function(dropdown, val)
+      local methodDropdown = dropdown or method
+      local targetIndex = ResolvePointIndex(methodDropdown)
+      local points = GetCapPoints()
+      if points[targetIndex] then
+        points[targetIndex].method = val
+      end
+      if methodDropdown then
+        methodDropdown.value = val
+      end
+      self:UpdateCapAddButtonState(i)
+    end,
+    width = 95,
+    menuItemDisabled = function(methodValue, dropdown)
+      local methodDropdown = dropdown or method
+      if not methodDropdown then
+        return false
+      end
+      local targetIndex = ResolvePointIndex(methodDropdown)
+      return self:ShouldDisableCapMethodOption(i, targetIndex, methodValue, methodDropdown.value)
+    end,
+  })
+  method.capPointRef = capPointRef
+  method.pointIndex = ResolvePointIndex(method)
+
+  local preset
+  preset = GUI:CreateDropdown (self.statCaps, self.capPresets, {
+    default = (capPointRef and capPointRef.preset) or 1,
+    width = 60,
+    setter = function (_,val)
+      local targetIndex = ResolvePointIndex(preset)
+      local points = GetCapPoints()
+      if points[targetIndex] then
+        points[targetIndex].preset = val
+        self:UpdateCapPreset (i, targetIndex)
+        self:ReorderCapPoint (i, targetIndex)
+        self:RefreshMethodStats ()
+      end
+    end,
+    menuItemHidden = function(info)
+      return info.category and info.category ~= self.statCaps[i].stat.selectedValue
+    end
+  })
+  preset.capPointRef = capPointRef
+  preset.pointIndex = ResolvePointIndex(preset)
+
+  local value
+  value = GUI:CreateEditBox (self.statCaps, STAT_CAP_VALUE_INPUT_WIDTH, 30, (capPointRef and capPointRef.value) or 0, function (val)
+    local targetIndex = ResolvePointIndex(value)
+    local points = GetCapPoints()
+    if points[targetIndex] then
+      points[targetIndex].value = val
+      self:ReorderCapPoint (i, targetIndex)
+      self:RefreshMethodStats ()
+    end
+  end)
+  value.capPointRef = capPointRef
+  value.pointIndex = ResolvePointIndex(value)
+
+  GUI:SetTooltip (rem, L["Remove cap"])
+  GUI:SetTooltip (value, function()
+    local cap = self.pdb.caps[i]
+    if cap.stat == statIds.SPIRIT then return end
+    local targetIndex = ResolvePointIndex(value)
+    local pointValue = (cap.points[targetIndex].value or 0)
+    local rating = pointValue / self:RatingPerPoint(cap.stat)
+    if cap.stat == statIds.HIT then
+      local meleeHitBonus = self:GetMeleeHitBonus()
+      rating = RoundToSignificantDigits(rating, 1)
+      if meleeHitBonus > 0 then
+        rating = ("%.2f%% + %s%% = %.2f"):format(rating, meleeHitBonus, rating + meleeHitBonus)
+      else
+        rating = ("%.2f"):format(rating)
+      end
+      local spellHitRating = RoundToSignificantDigits(pointValue / self:RatingPerPoint(statIds.SPELLHIT), 1)
+      local spellHitBonus = self:GetSpellHitBonus()
+      if spellHitBonus > 0 then
+        spellHitRating = ("%.2f%% + %s%% = %.2f"):format(spellHitRating,spellHitBonus,spellHitRating+spellHitBonus)
+      else
+        spellHitRating = ("%.2f"):format(spellHitRating)
+      end
+      rating = ("%s: %s%%\n%s: %s%%"):format(MELEE, rating, STAT_CATEGORY_SPELL, spellHitRating)
+    elseif cap.stat == statIds.EXP then
+      rating = RoundToSignificantDigits(rating, 1)
+      local expBonus = self:GetExpertiseBonus()
+      if expBonus > 0 then
+        rating = ("%.2f%% + %s%% = %.2f%%"):format(rating, expBonus, rating + expBonus)
+      else
+        rating = ("%.2f%%"):format(rating)
+      end
+    elseif cap.stat == statIds.HASTE then
+      local meleeHaste, rangedHaste, spellHaste = self:CalcHasteWithBonuses(rating)
+      rating = ("%s: %.2f\n%s: %.2f\n%s: %.2f"):format(MELEE, meleeHaste, RANGED, rangedHaste, STAT_CATEGORY_SPELL, spellHaste)
+    else
+      rating = ("%.2f"):format(rating)
+    end
+    return ("%s\n%s"):format(L["Cap value"], rating)
+  end)
+  self.statCaps:SetCell (row, 0, rem, "LEFT")
+  self.statCaps:SetCell (row, 1, method, "LEFT")
+  self.statCaps:SetCell (row, 2, preset, "LEFT", 5, 0)
+  self.statCaps:SetCell (row, 3, value)
+
+  if not loading then
+    self:UpdateCapPoints (i)
+    self:UpdateContentSize ()
+  end
+  self:UpdateCapAddButtonState(i)
+  self.statCaps:OnUpdateFix()
+end
+function ReforgeOne:RemoveCapPoint (i, point, loading)
+  if not (self.pdb.caps[i] and self.pdb.caps[i].points) then
+    return
+  end
+
+  local points = self.pdb.caps[i].points
+  local numPoints = #points
+  if numPoints == 0 then
+    return
+  end
+
+  local targetPoint = point or numPoints
+  if targetPoint < 1 or targetPoint > numPoints then
+    return
+  end
+
+  local base = self:GetCapBaseRow(i)
+  local row = base + targetPoint
+
+  tremove(points, targetPoint)
+  self.statCaps:DeleteRow(row)
+
+  if not loading then
+    self:UpdateCapPoints(i)
+    self:UpdateContentSize()
+  end
+
+  if #points == 0 then
+    self.pdb.caps[i].stat = 0
+    self.statCaps[i].add:Disable()
+    self.statCaps[i].stat:SetValue(0)
+  end
+
+  if self.statCaps and self.statCaps.ToggleStatDropdownToCorrectState then
+    self.statCaps:ToggleStatDropdownToCorrectState()
+  end
+
+  self:UpdateCapAddButtonState(i)
+end
+function ReforgeOne:ReorderCapPoint (i, point)
+  local newpos = point
+  while newpos > 1 and self.pdb.caps[i].points[newpos - 1].value > self.pdb.caps[i].points[point].value do
+    newpos = newpos - 1
+  end
+  while newpos < #self.pdb.caps[i].points and self.pdb.caps[i].points[newpos + 1].value < self.pdb.caps[i].points[point].value do
+    newpos = newpos + 1
+  end
+  if newpos ~= point then
+    local tmp = self.pdb.caps[i].points[point]
+    tremove (self.pdb.caps[i].points, point)
+    tinsert (self.pdb.caps[i].points, newpos, tmp)
+    self:UpdateCapPoints (i)
+  end
+end
+function ReforgeOne:UpdateCapPreset (i, point)
+  local preset = self.pdb.caps[i].points[point].preset
+  local row = point + self:GetCapBaseRow(i)
+  if self.capPresets[preset] == nil then
+    preset = 1
+  end
+  if self.capPresets[preset].getter then
+    self.statCaps.cells[row][3]:SetTextColor (ThemeRGB("textDim", 0.5, 0.5, 0.5))
+    self.statCaps.cells[row][3]:SetMouseClickEnabled (false)
+    self.statCaps.cells[row][3]:ClearFocus ()
+    self.pdb.caps[i].points[point].value = max(0, floor(self.capPresets[preset].getter()))
+  else
+    self.statCaps.cells[row][3]:SetTextColor (ThemeRGB("textPrimary", 1, 1, 1))
+    self.statCaps.cells[row][3]:SetMouseClickEnabled (true)
+  end
+  self.statCaps.cells[row][3]:SetText(self.pdb.caps[i].points[point].value)
+end
+function ReforgeOne:UpdateCapPoints (i)
+  local base = self:GetCapBaseRow(i)
+  for point = 1, #self.pdb.caps[i].points do
+    local row = base + point
+    local cells = self.statCaps.cells[row]
+    if cells then
+      local capPoint = self.pdb.caps[i].points[point]
+      if cells[0] then
+        cells[0].pointIndex = point
+        cells[0].capPointRef = capPoint
+      end
+      if cells[1] then
+        cells[1].pointIndex = point
+        cells[1].capPointRef = capPoint
+        if type(cells[1].SetValue) == "function" then
+          cells[1]:SetValue(capPoint.method)
+        end
+      end
+      if cells[2] then
+        cells[2].pointIndex = point
+        cells[2].capPointRef = capPoint
+        if type(cells[2].SetValue) == "function" then
+          cells[2]:SetValue(capPoint.preset)
+        end
+      end
+      if cells[3] then
+        cells[3].pointIndex = point
+        cells[3].capPointRef = capPoint
+      end
+    end
+    self:UpdateCapPreset (i, point)
+  end
+end
+function ReforgeOne:CollapseStatCaps()
+  local caps = DeepCopy(self.pdb.caps)
+  table.sort(caps, function(a,b)
+    local aIsNone = a.stat == 0 and 1 or 0
+    local bIsNone = b.stat == 0 and 1 or 0
+    return aIsNone < bIsNone
+  end)
+  self:SetStatWeights(nil, caps)
+end
+function ReforgeOne:SetStatWeights (weights, caps)
+  if weights then
+    self.pdb.weights = DeepCopy (weights)
+    for i = 1, #self.itemStats do
+      if self.statWeights.inputs[i] then
+        self.statWeights.inputs[i]:SetText (self.pdb.weights[i])
+      end
+    end
+  end
+  if caps then
+    for i = 1, NUM_CAPS do
+      local count = 0
+      if caps[i] then
+        count = #caps[i].points
+      end
+      self.pdb.caps[i] = self.pdb.caps[i] or CreateDefaultCap()
+      self.pdb.caps[i].stat = caps[i] and caps[i].stat or 0
+      if self.statCaps[i] and self.statCaps[i].stat then
+        self.statCaps[i].stat:SetValue (self.pdb.caps[i].stat)
+      end
+      while #self.pdb.caps[i].points < count do
+        local before = #self.pdb.caps[i].points
+        self:AddCapPoint(i)
+        if #self.pdb.caps[i].points <= before then
+          break
+        end
+      end
+      while #self.pdb.caps[i].points > count do
+        self:RemoveCapPoint (i, 1)
+      end
+      if caps[i] then
+        self.pdb.caps[i] = DeepCopy (caps[i])
+        for p = 1, #self.pdb.caps[i].points do
+          local point = self.pdb.caps[i].points[p]
+          if point.method == addonTable.StatCapMethods.NewValue then
+            point.method = addonTable.StatCapMethods.AtLeast
+          end
+          point.method = point.method or addonTable.StatCapMethods.AtLeast
+          point.value = point.value or 0
+          point.preset = point.preset or 1
+        end
+      else
+        self.pdb.caps[i].stat = 0
+        self.pdb.caps[i].points = {}
+      end
+      self:UpdateCapAddButtonState(i)
+    end
+    self:NormalizeExactCapSelections()
+    for i = 1, NUM_CAPS do
+      self:UpdateCapPoints (i)
+    end
+    self.statCaps:ToggleStatDropdownToCorrectState()
+    self.statCaps.onUpdate ()
+    self:UpdateContentSize ()
+    RunNextFrame(function() self:CapUpdater() end)
+  end
+  self:RefreshMethodStats ()
+end
+function ReforgeOne:CapUpdater ()
+  for i = 1, NUM_CAPS do
+    if not self.pdb.caps[i] then
+      self.pdb.caps[i] = CreateDefaultCap()
+    end
+    if self.statCaps[i] and self.statCaps[i].stat then
+      self.statCaps[i].stat:SetValue (self.pdb.caps[i].stat or 0)
+    end
+    self:UpdateCapPoints (i)
+  end
+end
+
+function ReforgeOne:CustomPresetsExist()
+  return next(ReforgeOne.cdb.customPresets) ~= nil
+end
+function ReforgeOne:UpdateStatWeightList ()
+  if not (self.statWeights and self.itemStats) then
+    return
+  end
+
+  local stats = self.itemStats
+  self.statWeights:ClearCells()
+  self.statWeights.inputs = {}
+  self.statWeights.cellFrames = self.statWeights.cellFrames or {}
+
+  local weightRows = #STAT_WEIGHT_LAYOUT
+  local weightColumns = weightRows > 0 and #STAT_WEIGHT_LAYOUT[1] or 0
+  if weightColumns > 0 then
+    local totalColumnWidth = weightColumns * STAT_WEIGHT_COLUMN_MIN_WIDTH
+    local maxContentWidth = self.statWeightsCategory and self.statWeightsCategory:GetWidth() or STAT_WEIGHTS_MAX_CONTENT_WIDTH
+    if not maxContentWidth or maxContentWidth <= 0 then
+      maxContentWidth = STAT_WEIGHTS_MAX_CONTENT_WIDTH
+    end
+    local tableWidth = math.min(totalColumnWidth, maxContentWidth)
+    self.statWeights:SetWidth(tableWidth)
+    self.statWeights:SetColumnWidth(STAT_WEIGHT_COLUMN_MIN_WIDTH)
+    self.statWeights.defaultColumnWidth = self.statWeights.defaultColumnWidth or {}
+    self.statWeights.minColumnWidth = self.statWeights.minColumnWidth or {}
+    for columnIndex = 1, weightColumns do
+      self.statWeights.defaultColumnWidth[columnIndex] = STAT_WEIGHT_COLUMN_MIN_WIDTH
+      self.statWeights.minColumnWidth[columnIndex] = STAT_WEIGHT_COLUMN_MIN_WIDTH
+    end
+    EnsureTableAutoWidthRespectsMinimums(self.statWeights)
+    if self.statWeights.OnUpdateFix then
+      self.statWeights:OnUpdateFix()
+    end
+  end
+
+  local usedCells = {}
+  local tabOrder = {}
+
+  for rowIndex, row in ipairs(STAT_WEIGHT_LAYOUT) do
+    for columnIndex, statId in ipairs(row) do
+      local statIndex = STAT_INDEX_BY_ID[statId]
+      local statInfo = statIndex and stats[statIndex]
+      if statInfo then
+        local key = string.format("%d:%d", rowIndex, columnIndex)
+        usedCells[key] = true
+        local cell = self.statWeights.cellFrames[key]
+        if not cell then
+          cell = CreateFrame("Frame", nil, self.statWeights)
+          cell:SetHeight(STAT_WEIGHT_ROW_HEIGHT)
+          cell.label = cell:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+          cell.label:SetPoint("TOPLEFT", 4, -2)
+          cell.label:SetPoint("TOPRIGHT", -4, -2)
+          cell.label:SetJustifyH("LEFT")
+          cell.label:SetWordWrap(true)
+          cell.label:SetMaxLines(2)
+          local capturedIndex = statIndex
+          cell.statIndex = capturedIndex
+          cell.input = GUI:CreateEditBox(cell, STAT_WEIGHT_INPUT_WIDTH, STAT_WEIGHT_INPUT_HEIGHT, self.pdb.weights[capturedIndex], function(val)
+            self.pdb.weights[capturedIndex] = val
+            self:RefreshMethodStats()
+          end)
+          self.statWeights.cellFrames[key] = cell
+        else
+          cell:SetParent(self.statWeights)
+          cell:Show()
+          if cell.input then
+            cell.input:SetParent(cell)
+            cell.input:Show()
+          end
+        end
+
+        cell.statIndex = statIndex
+        if cell.label then
+          cell.label:SetText(statInfo.long or "")
+          cell.label:SetWidth(STAT_WEIGHT_COLUMN_MIN_WIDTH - 8)
+          ApplyStatHeaderColor(cell.label)
+        end
+        if cell.input then
+          cell.input:ClearAllPoints()
+          cell.input:SetPoint("TOPLEFT", cell.label, "BOTTOMLEFT", 0, -4)
+          cell.input:SetWidth(STAT_WEIGHT_INPUT_WIDTH)
+          cell.input:SetHeight(STAT_WEIGHT_INPUT_HEIGHT)
+          cell.input:SetJustifyH("CENTER")
+          cell.input:SetText(self.pdb.weights[statIndex])
+        end
+
+        self.statWeights:SetCell(rowIndex, columnIndex, cell, "FILL")
+        if cell.input then
+          self.statWeights.inputs[statIndex] = cell.input
+          tabOrder[#tabOrder + 1] = cell.input
+        end
+      end
+    end
+  end
+
+  for key, cell in pairs(self.statWeights.cellFrames) do
+    if not usedCells[key] then
+      if cell.input then
+        cell.input:Hide()
+      end
+      cell:Hide()
+    end
+  end
+
+  for index, input in ipairs(tabOrder) do
+    local nextInput = tabOrder[index + 1]
+    input:SetScript("OnTabPressed", function(frame)
+      if nextInput and nextInput:IsShown() and nextInput:IsEnabled() then
+        nextInput:SetFocus()
+      else
+        frame:ClearFocus()
+      end
+    end)
+  end
+
+  self.statCaps:Show2()
+
+  self:UpdateContentSize ()
+end
+
+function ReforgeOne:CreateOptionList ()
+  self.statWeightsCategory = self:CreateCategory (L["Stat Weights"])
+  self:SetAnchor (self.statWeightsCategory, "TOPLEFT", self.content, "TOPLEFT", 2, -2)
+
+  self.presetsButton = GUI:CreateFilterDropdown(self.content, L["Presets"], {resizeToTextPadding = 35})
+  self.statWeightsCategory:AddFrame(self.presetsButton)
+  self:SetAnchor(self.presetsButton, "TOPLEFT", self.statWeightsCategory, "BOTTOMLEFT", 0, -5)
+  if self.presetMenuGenerator then
+    self.presetsButton:SetupMenu(self.presetMenuGenerator)
+  end
+
+  local levelList = function()
+    return {
+        {value=0,name=("%s (+%d)"):format(PVP, 0)},
+        {value=1,name=("%d (+%d)"):format(UnitLevel('player') + 1, 1)},
+        {value=2,name=("%s (+%d)"):format(LFG_TYPE_HEROIC_DUNGEON, 2)},
+        {value=3,name=("%s %s (+%d)"):format(CreateSimpleTextureMarkup([[Interface\TargetingFrame\UI-TargetingFrame-Skull]], 16, 16), LFG_TYPE_RAID, 3)},
+    }
+  end
+
+  self.targetLevel = GUI:CreateDropdown(self.content, levelList, {
+    default =  self.pdb.targetLevel,
+    setter = function(_,val) self.pdb.targetLevel = val; self:UpdateItems() end,
+    width = 110,
+  })
+  self.statWeightsCategory:AddFrame(self.targetLevel)
+  self:SetAnchor(self.targetLevel, "TOPLEFT", self.presetsButton, "TOPRIGHT", 8, 0)
+
+  local targetLevelLabelText = STAT_TARGET_LEVEL or TARGET or ""
+  if targetLevelLabelText ~= "" then
+    if not self.targetLevelLabel then
+      local label = self.content:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+      label:SetJustifyH("CENTER")
+      label:SetJustifyV("MIDDLE")
+      self.targetLevelLabel = label
+      self.statWeightsCategory:AddFrame(label)
+    end
+
+    local label = self.targetLevelLabel
+    label:SetParent(self.content)
+    label:SetText(targetLevelLabelText)
+    label:SetWidth(math.max(1, self.targetLevel:GetWidth() or 0))
+    ApplyStatHeaderColor(label)
+    self:SetAnchor(label, "TOP", self.targetLevel, "BOTTOM", 0, -4)
+    label:Show()
+  elseif self.targetLevelLabel then
+    self.targetLevelLabel:SetText("")
+    self.targetLevelLabel:Hide()
+  end
+
+  self.pawnButton = GUI:CreatePanelButton(self.content, L["Import Sim"], function(btn) self:ImportData() end, {
+    colorOverrides = PRIMARY_ACTION_BUTTON_COLOR_OVERRIDES,
+  })
+  self.statWeightsCategory:AddFrame (self.pawnButton)
+  self:SetAnchor (self.pawnButton, "TOPLEFT", self.targetLevel, "TOPRIGHT", 8, 0)
+
+  self.buffsContextMenu = GUI:CreateFilterDropdown(self.content, L["Buffs"], {resizeToTextPadding = 25})
+  self.statWeightsCategory:AddFrame(self.buffsContextMenu)
+  self:SetAnchor(self.buffsContextMenu, "TOPLEFT", self.pawnButton, "TOPRIGHT", 8, 0)
+
+  local buffsContextValues = {
+    spellHaste = { text = addonTable.CreateIconMarkup(136092) .. L["Spell Haste"], selected = self.PlayerHasSpellHasteBuff },
+    meleeHaste = { text = addonTable.CreateIconMarkup(133076) .. L["Melee Haste"], selected = self.PlayerHasMeleeHasteBuff },
+    mastery = { text = addonTable.CreateIconMarkup(136046) .. STAT_MASTERY, selected = self.PlayerHasMasteryBuff },
+  }
+
+  self.buffsContextMenu:SetupMenu(function(dropdown, rootDescription)
+    local function IsSelected(value)
+        return self.pdb[value] or buffsContextValues[value].selected(self)
+    end
+    local function SetSelected(value)
+        self.pdb[value] = not self.pdb[value]
+        self:QueueUpdate()
+    end
+    for key, box in pairs(buffsContextValues) do
+        local checkbox = rootDescription:CreateCheckbox(box.text, IsSelected, SetSelected, key)
+        checkbox.IsEnabled = function(chkbox) return not buffsContextValues[chkbox.data].selected(self) end
+    end
+  end)
+  local weightRows = #STAT_WEIGHT_LAYOUT
+  if weightRows <= 0 then
+    weightRows = math.max(1, math.ceil(#self.itemStats / 4))
+  end
+  local weightColumns = weightRows > 0 and #STAT_WEIGHT_LAYOUT[1] or 0
+  if weightColumns <= 0 then
+    weightColumns = math.max(1, math.min(#self.itemStats, 4))
+  end
+
+  self.statWeights = GUI:CreateTable(weightRows, weightColumns)
+  local statWeightsTopOffset = -2
+  if self.targetLevelLabel and self.targetLevelLabel:IsShown() then
+    local labelHeight = math.ceil(self.targetLevelLabel:GetStringHeight() or 0)
+    statWeightsTopOffset = statWeightsTopOffset - math.max(labelHeight, 0) - 4
+  end
+  self:SetAnchor (self.statWeights, "TOPLEFT", self.presetsButton, "BOTTOMLEFT", 0, statWeightsTopOffset)
+  self.statWeightsCategory:AddFrame (self.statWeights)
+  self.statWeights:SetRowHeight (STAT_WEIGHT_ROW_HEIGHT)
+
+  if weightColumns > 0 then
+    local totalColumnWidth = weightColumns * STAT_WEIGHT_COLUMN_MIN_WIDTH
+    local maxContentWidth = self.statWeightsCategory:GetWidth() or STAT_WEIGHTS_MAX_CONTENT_WIDTH
+    if not maxContentWidth or maxContentWidth <= 0 then
+      maxContentWidth = STAT_WEIGHTS_MAX_CONTENT_WIDTH
+    end
+    local tableWidth = math.min(totalColumnWidth, maxContentWidth)
+    self.statWeights:SetWidth(tableWidth)
+    self.statWeights:SetColumnWidth(STAT_WEIGHT_COLUMN_MIN_WIDTH)
+    self.statWeights.defaultColumnWidth = self.statWeights.defaultColumnWidth or {}
+    self.statWeights.minColumnWidth = self.statWeights.minColumnWidth or {}
+    for columnIndex = 1, weightColumns do
+      self.statWeights.defaultColumnWidth[columnIndex] = STAT_WEIGHT_COLUMN_MIN_WIDTH
+      self.statWeights.minColumnWidth[columnIndex] = STAT_WEIGHT_COLUMN_MIN_WIDTH
+    end
+    EnsureTableAutoWidthRespectsMinimums(self.statWeights)
+    if self.statWeights.OnUpdateFix then
+      self.statWeights:OnUpdateFix()
+    end
+  end
+
+  self.statCaps = GUI:CreateTable (NUM_CAPS, 3, nil, ITEM_SIZE + 2)
+  self.statWeightsCategory:AddFrame (self.statCaps)
+  self:SetAnchor (self.statCaps, "TOPLEFT", self.statWeights, "BOTTOMLEFT", 0, -5)
+  self.statCaps:SetPoint ("RIGHT", -5, 0)
+  self.statCaps:SetRowHeight (ITEM_SIZE + 2)
+  self.statCaps:SetColumnWidth (1, 100)
+  self.statCaps:SetColumnWidth (3, STAT_CAP_VALUE_INPUT_WIDTH + STAT_CAP_VALUE_COLUMN_PADDING)
+
+  local statList = {{value = 0, name = NONE}}
+  for _, statId in ipairs (METHOD_STAT_DISPLAY_ORDER) do
+    local statIndex = STAT_INDEX_BY_ID[statId]
+    local statInfo = statIndex and self.itemStats[statIndex]
+    if statInfo then
+      tinsert (statList, {value = statIndex, name = statInfo.long})
+    end
+  end
+
+  self.statCaps.ToggleStatDropdownToCorrectState = function(caps)
+    for i = 2, NUM_CAPS do
+      local dropdown = caps[i] and caps[i].stat
+      if dropdown then
+        GUI:SetDropdownEnabled(dropdown, self.pdb.caps[i - 1] and self.pdb.caps[i - 1].stat ~= 0)
+      end
+    end
+  end
+
+  for i = 1, NUM_CAPS do
+    self.pdb.caps[i] = self.pdb.caps[i] or CreateDefaultCap()
+    self.statCaps[i] = {}
+    self.statCaps[i].stat = GUI:CreateDropdown (self.statCaps, statList, {
+      default = self.pdb.caps[i].stat,
+      setter = function (dropdown, val, oldVal)
+        local previous = oldVal
+        if previous == nil then
+          previous = dropdown.value
+        end
+
+        self.pdb.caps[i].stat = val
+
+        if val == 0 then
+          while #self.pdb.caps[i].points > 0 do
+            self:RemoveCapPoint (i, 1)
+          end
+        elseif previous == 0 then
+          self:AddCapPoint(i)
+        end
+
+        if val == 0 then
+          self:CollapseStatCaps()
+        end
+
+        self.statCaps:ToggleStatDropdownToCorrectState()
+        self:UpdateCapAddButtonState(i)
+      end,
+      width = 125,
+      menuItemDisabled = function(val)
+        if val <= 0 then
+          return false
+        end
+        for j = 1, NUM_CAPS do
+          if j ~= i and self.statCaps[j] and self.statCaps[j].stat.value == val then
+            return true
+          end
+        end
+        return false
+      end
+    })
+
+    self.statCaps[i].add = GUI:CreateImageButton (self.statCaps, 20, 20, "Interface\\Buttons\\UI-PlusButton-Up",
+      "Interface\\Buttons\\UI-PlusButton-Down", "Interface\\Buttons\\UI-PlusButton-Hilight", "Interface\\Buttons\\UI-PlusButton-Disabled", function()
+      if self:CanAddCapPoint(i) then
+        self:AddCapPoint (i)
+      end
+      self:UpdateCapAddButtonState(i)
+    end)
+    GUI:SetTooltip (self.statCaps[i].add, L["Add cap"])
+
+    self.statCaps:SetCell (i, 0, self.statCaps[i].stat, "LEFT")
+    self.statCaps:SetCell (i, 2, self.statCaps[i].add, "LEFT")
+    self:UpdateCapAddButtonState(i)
+  end
+
+  for i = 1, NUM_CAPS do
+    for point in ipairs(self.pdb.caps[i].points) do
+      self:AddCapPoint (i, point)
+    end
+    self:UpdateCapPoints (i)
+    if self.pdb.caps[i].stat == 0 then
+      self:RemoveCapPoint(i)
+    end
+  end
+
+  self.statCaps:ToggleStatDropdownToCorrectState()
+
+  self.statCaps.onUpdate = function ()
+    local row = 1
+    for i = 1, NUM_CAPS do
+      row = row + 1
+      for point = 1, #self.pdb.caps[i].points do
+        local cell = self.statCaps.cells[row] and self.statCaps.cells[row][2]
+        if cell and cell.values then
+          cell:SetWidth(self.statCaps:GetColumnWidth (2) - 20)
+        end
+        row = row + 1
+      end
+    end
+  end
+
+  self.statCaps.saveOnUpdate = self.statCaps.onUpdate
+  self.statCaps.onUpdate ()
+  RunNextFrame(function() self:CapUpdater() end)
+  self.computeButton = GUI:CreatePanelButton(self.content, L["Compute"], function() self:StartCompute() end, {
+    colorOverrides = PRIMARY_ACTION_BUTTON_COLOR_OVERRIDES,
+  })
+  self.computeButton:SetScript ("PreClick", function (btn)
+    GUI:Lock()
+    GUI:ClearFocus()
+    btn:RenderText(IN_PROGRESS)
+  end)
+  self.computeButton:Hide()
+
+  local accuracyContainer = self:EnsureAccuracyContainer()
+  accuracyContainer.label:SetText(L["Accuracy"])
+  accuracyContainer:ClearAllPoints()
+  if self.methodCategory and self.methodResultActions then
+    self:SetAnchor(accuracyContainer, "RIGHT", self.computeButton, "LEFT", -12, 0)
+  else
+    self:SetAnchor(accuracyContainer, "TOPLEFT", self.statCaps, "BOTTOMLEFT", 0, -10)
+  end
+
+  if accuracyContainer.label then
+    accuracyContainer.label:Hide()
+  end
+
+  self:UpdateStatWeightList ()
+
+  self.settingsCategory = self:CreateCategory (GetShowItemsLabel(), { storageKey = SHOW_ITEMS_CATEGORY_STORAGE_KEY })
+  self:SetAnchor (self.settingsCategory, "TOPLEFT", self.accuracyContainer, "BOTTOMLEFT", 0, -10, { ignoreCollapseOffset = true })
+  if not self.optionItemGridContainer then
+    self.optionItemGridContainer = CreateFrame("Frame", nil, self.content)
+    self.optionItemGridContainer:SetSize(1, 1)
+    self.optionItemGridContainer:SetScript("OnSizeChanged", function()
+      self:CenterOptionItemGrid()
+    end)
+    self.settingsCategory:AddFrame(self.optionItemGridContainer)
+  else
+    self.optionItemGridContainer:SetParent(self.content)
+  end
+
+  self:SetAnchor(self.optionItemGridContainer, "TOPLEFT", self.settingsCategory, "BOTTOMLEFT", 0, -5)
+  self.optionItemGridContainer:SetPoint("RIGHT", self.content, "RIGHT", -10, 0)
+
+  self.optionItemGrid = self:CreateOptionItemGridFrame(self.optionItemGridContainer)
+  self:CenterOptionItemGrid()
+
+  local settingsAnchorFrame = self.optionItemGridContainer
+  if SHOW_ITEM_DEBUG_CONTROLS then
+    if not self.itemDebugContainer then
+      self.itemDebugContainer = CreateFrame("Frame", nil, self.content)
+      self.itemDebugContainer:SetSize(1, 56)
+      self.settingsCategory:AddFrame(self.itemDebugContainer)
+
+      self.itemDebugButton = CreateFrame("Button", nil, self.itemDebugContainer, "UIPanelButtonTemplate")
+      self.itemDebugButton:SetSize(150, 22)
+      self.itemDebugButton:SetPoint("TOPLEFT", self.itemDebugContainer, "TOPLEFT", 0, 0)
+      self.itemDebugButton:SetText(L["Open Item Debug"])
+      self.itemDebugButton:SetScript("OnClick", function()
+        self:ShowItemDebugReport()
+      end)
+      if GUI and GUI.ApplyPanelButtonTheme then
+        GUI.ApplyPanelButtonTheme(self.itemDebugButton)
+      end
+
+      self.itemDebugNote = self.itemDebugContainer:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+      self.itemDebugNote:SetJustifyH("LEFT")
+      self.itemDebugNote:SetPoint("TOPLEFT", self.itemDebugButton, "BOTTOMLEFT", 0, -4)
+      self.itemDebugNote:SetPoint("RIGHT", self.content, "RIGHT", -10, 0)
+      self.itemDebugNote:SetText(L["Debug area note"])
+    else
+      self.itemDebugContainer:SetParent(self.content)
+    end
+
+    self:SetAnchor(self.itemDebugContainer, "TOPLEFT", self.optionItemGridContainer, "BOTTOMLEFT", 0, -8)
+    self.itemDebugContainer:SetPoint("RIGHT", self.content, "RIGHT", -10, 0)
+    self.itemDebugContainer:SetHeight(56)
+    SetCategoryFrameVisibility(self.itemDebugContainer, true)
+    settingsAnchorFrame = self.itemDebugContainer
+  elseif self.itemDebugContainer then
+    SetCategoryFrameVisibility(self.itemDebugContainer, false)
+  end
+
+  self.settings = GUI:CreateTable (7, 1, nil, 200)
+  self.settingsCategory:AddFrame (self.settings)
+  self:SetAnchor (self.settings, "TOPLEFT", settingsAnchorFrame, "BOTTOMLEFT", 0, -10)
+  self.settings:SetPoint ("RIGHT", self.content, -10, 0)
+  self.settings:SetRowHeight (ITEM_SIZE + 2)
+
+  self:FillSettings()
+
+  self:UpdateOptionItemGrid()
+
+  self.lastElement = CreateFrame ("Frame", nil, self.content)
+  self.lastElement:ClearAllPoints ()
+  self.lastElement:SetSize(0, 0)
+  self:SetAnchor (self.lastElement, "TOPLEFT", self.settings, "BOTTOMLEFT", 0, -10)
+  self:UpdateContentSize ()
+
+  ReforgeOne:UpdateMethodCategory ()
+end
+function ReforgeOne:GetActiveWindow()
+  if not RFL_FRAMES[2] and self:IsShown() then
+    return self
+  end
+  local topWindow
+  for _, frame in ipairs(RFL_FRAMES) do
+    if frame:IsShown() and (not topWindow or frame:GetRaisedFrameLevel() > topWindow:GetRaisedFrameLevel()) then
+      topWindow = frame
+    end
+  end
+  return topWindow
+end
+
+function ReforgeOne:GetInactiveWindows()
+  if not RFL_FRAMES[2] then
+    return {}
+  end
+  local activeWindow = self:GetActiveWindow()
+  local bottomWindows = {}
+  for _, frame in ipairs(RFL_FRAMES) do
+    if frame:IsShown() and frame ~= activeWindow and frame:GetRaisedFrameLevel() < activeWindow:GetRaisedFrameLevel() then
+      tinsert(bottomWindows, frame)
+    end
+  end
+  return bottomWindows
+end
+
+local function GetColorRGB(color, fallbackR, fallbackG, fallbackB)
+  if color then
+    if color.GetRGB then
+      return color:GetRGB()
+    elseif color.r then
+      return color.r, color.g, color.b
+    end
+  end
+  return fallbackR, fallbackG, fallbackB
+end
+
+function ReforgeOne:UpdateSpeedPresetRadiosEnabled()
+  if not self.settings then
+    return
+  end
+
+  local dropdown = self.settings.speedPresetDropdown
+  if dropdown then
+    GUI:SetDropdownEnabled(dropdown, not self.computeInProgress)
+  end
+
+  local radioFrame = self.settings.speedPresetRadioFrame
+  if not radioFrame or not radioFrame.radios then
+    return
+  end
+
+  local enabled = not self.computeInProgress
+  local defaultR, defaultG, defaultB = GetColorRGB(NORMAL_FONT_COLOR, 1, 1, 1)
+  local disabledR, disabledG, disabledB = GetColorRGB(GRAY_FONT_COLOR, 0.5, 0.5, 0.5)
+
+  for _, radio in ipairs(radioFrame.radios) do
+    if enabled then
+      radio:Enable()
+      if radio.Text then
+        local original = radio.Text.originalColor
+        if original then
+          radio.Text:SetTextColor(original[1], original[2], original[3])
+        else
+          radio.Text:SetTextColor(defaultR, defaultG, defaultB)
+        end
+      end
+    else
+      radio:Disable()
+      if radio.Text then
+        radio.Text:SetTextColor(disabledR, disabledG, disabledB)
+      end
+    end
+  end
+end
+
+function ReforgeOne:EnsureAccuracyContainer()
+  if not self.accuracyContainer then
+    local container = CreateFrame("Frame", nil, self.content)
+    container:SetSize(1, 1)
+
+    local label = container:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    label:SetJustifyH("LEFT")
+    label:SetJustifyV("MIDDLE")
+    container.label = label
+
+    self.accuracyContainer = container
+  end
+
+  self.accuracyContainer:SetParent(self.content)
+  self.accuracyContainer:Show()
+  return self.accuracyContainer
+end
+
+function ReforgeOne:FillSettings()
+  self.settings:ClearCells()
+
+  local container = self:EnsureAccuracyContainer()
+
+  local speedOptions = {
+    { value = "extra_fast", name = L["Extra Fast"] },
+    { value = "fast", name = L["Fast"] },
+    { value = "normal", name = L["Normal"] },
+  }
+
+  local selectedPreset = self.db.coreSpeedPreset or "fast"
+  local selectedPresetValid = false
+  for _, option in ipairs(speedOptions) do
+    if option.value == selectedPreset then
+      selectedPresetValid = true
+      break
+    end
+  end
+  if not selectedPresetValid then
+    selectedPreset = "fast"
+    self:SetCoreSpeedPreset(selectedPreset)
+  end
+
+  local dropdown = self.settings.speedPresetDropdown
+  local preferredDropdownWidth = 130
+  if not dropdown then
+    dropdown = GUI:CreateDropdown(container, speedOptions, {
+      default = selectedPreset,
+      height = 24,
+      width = 130,
+      setter = function(_, value)
+        self:SetCoreSpeedPreset(value)
+      end,
+    })
+    self.settings.speedPresetDropdown = dropdown
+    dropdown._reforgePreferredWidth = preferredDropdownWidth
+  else
+    dropdown:SetParent(container)
+    dropdown.values = speedOptions
+    preferredDropdownWidth = dropdown._reforgePreferredWidth or preferredDropdownWidth
+  end
+
+  dropdown:Show()
+  dropdown:SetValue(selectedPreset)
+  dropdown.values = speedOptions
+
+  if dropdown.SetWidth then
+    dropdown:SetWidth(preferredDropdownWidth)
+  end
+  dropdown._reforgePreferredWidth = preferredDropdownWidth
+
+  local dropdownWidth = preferredDropdownWidth
+  if type(dropdown.GetWidth) == "function" then
+    local measuredWidth = dropdown:GetWidth()
+    if type(measuredWidth) == "number" and measuredWidth > 0 then
+      dropdownWidth = measuredWidth
+    end
+  end
+
+  if self.settings.speedPresetRadioFrame then
+    self.settings.speedPresetRadioFrame:Hide()
+    self.settings.speedPresetRadioFrame = nil
+  end
+
+  local label = container and container.label
+  if label then
+    label:SetText("")
+    label:Hide()
+    label:ClearAllPoints()
+    label:SetWidth(0)
+  end
+
+  container:SetWidth(dropdownWidth)
+
+  local dropdownHeight = dropdown:GetHeight()
+  if type(dropdownHeight) ~= "number" or dropdownHeight <= 0 then
+    dropdownHeight = 24
+  end
+  container:SetHeight(dropdownHeight)
+
+  dropdown:ClearAllPoints()
+  dropdown:SetPoint("TOPLEFT", container, "TOPLEFT", 0, 0)
+  dropdown:SetPoint("RIGHT", container, "RIGHT", 0, 0)
+
+  self:UpdateSpeedPresetRadiosEnabled()
+
+  while self.settings.rows > 0 do
+    self.settings:DeleteRow(self.settings.rows)
+  end
+end
+
+function ReforgeOne:CreateImportButton()
+  if self.importButton then
+    self.importButton:Show()
+  else
+    self.importButton = CreateFrame("Button", nil, ReforgingFrame.TitleContainer, "UIPanelButtonTemplate")
+    self.importButton:SetPoint("TOPRIGHT")
+    self.importButton:SetText(L["Import"])
+    self.importButton.fitTextWidthPadding = 20
+    self.importButton:FitToText()
+    self.importButton:SetScript("OnClick", function(btn) self:ImportData(btn) end)
+    if GUI and GUI.ApplyPanelButtonTheme then
+      GUI.ApplyPanelButtonTheme(self.importButton)
+    end
+    ApplyPrimaryActionButtonStyle(self.importButton)
+  end
+end
+
+local function FormatMethodDelta(value, base)
+  local delta = value - base
+  if abs(delta) < 0.01 then
+    delta = 0
+  end
+  return FormatNumber(delta)
+end
+
+function ReforgeOne:GetMethodAlternativeLabel(index)
+  if index == 1 then
+    return L["Best Result"]
+  end
+  local altLabel = L["Alt %d"] or L["Alternative %d"]
+  return string.format(altLabel, index - 1)
+end
+
+function ReforgeOne:SetMethodAlternatives(methods, selectedIndex)
+
+  self.allMethodAlternatives = methods or {}
+
+  local maxDisplay = addonTable.MAX_METHOD_ALTERNATIVES or #self.allMethodAlternatives
+  local display = {}
+  for index = 1, math.min(#self.allMethodAlternatives, maxDisplay) do
+    display[index] = self.allMethodAlternatives[index]
+  end
+
+  self.methodAlternatives = display
+  local count = #self.methodAlternatives
+  if count == 0 then
+    self.methodAlternativesHidden = true
+    self.selectedMethodAlternative = nil
+    self.pdb.method = nil
+    if self.methodAlternativeButtons then
+      self:UpdateMethodAlternativeButtons()
+    end
+    self:RefreshWowSimsPopup()
+    return
+  end
+
+  local firstSelectable
+  for index, method in ipairs(self.methodAlternatives) do
+    if method and not method.isPlaceholder then
+      firstSelectable = firstSelectable or index
+    end
+  end
+
+  if not firstSelectable then
+    self.methodAlternativesHidden = true
+    self.selectedMethodAlternative = nil
+    self.pdb.method = self.methodAlternatives[1] or nil
+    if self.methodAlternativeButtons then
+      self:UpdateMethodAlternativeButtons()
+    end
+    self:RefreshWowSimsPopup()
+    return
+  end
+
+  local selection = selectedIndex or self.selectedMethodAlternative or firstSelectable
+  if selection < 1 or selection > count or (self.methodAlternatives[selection] and self.methodAlternatives[selection].isPlaceholder) then
+    selection = firstSelectable
+  end
+
+  self.methodAlternativesHidden = false
+  self.selectedMethodAlternative = selection
+  self.pdb.method = self.methodAlternatives[self.selectedMethodAlternative]
+
+  if self.methodAlternativeButtons then
+    self:UpdateMethodAlternativeButtons()
+  end
+  self:RefreshWowSimsPopup()
+end
+
+function ReforgeOne:GetSelectedMethodAlternative()
+  if self.methodAlternativesHidden then
+    return nil
+  end
+  return self.selectedMethodAlternative or 1
+end
+
+function ReforgeOne:SelectMethodAlternative(index)
+  if self.methodAlternativesHidden then
+    return
+  end
+  if not self.methodAlternatives or not self.methodAlternatives[index] then
+    return
+  end
+  if self.selectedMethodAlternative == index then
+    return
+  end
+
+  self.selectedMethodAlternative = index
+  self.pdb.method = self.methodAlternatives[index]
+  GUI:ClearFocus()
+  self:RefreshMethodStats()
+  self:RefreshMethodWindow()
+  self:UpdateMethodChecks()
+  self:UpdateMethodAlternativeButtons()
+end
+
+function ReforgeOne:ShowMethodAlternativeTooltip(button)
+  if not button or not button.altIndex then
+    return
+  end
+  local method = self.methodAlternatives and self.methodAlternatives[button.altIndex]
+  if not method then
+    return
+  end
+
+  GameTooltip:SetOwner(button, "ANCHOR_LEFT")
+  GameTooltip:SetText(self:GetMethodAlternativeLabel(button.altIndex))
+
+  GameTooltip:AddLine(" ")
+  local orderedStatIndexes = self.methodStats and self.methodStats.orderedStatIndexes
+  if not orderedStatIndexes or #orderedStatIndexes == 0 then
+    orderedStatIndexes = BuildMethodStatDisplayOrder(self.itemStats)
+  end
+
+  for _, statIndex in ipairs(orderedStatIndexes) do
+    local stat = self.itemStats[statIndex]
+    if stat and self:ShouldDisplayStat(statIndex) then
+      local value = stat.mgetter(method)
+      local current = stat.getter()
+      local delta = value - current
+      local r, g, b = 0.9, 0.9, 0.9
+      if delta > 0.01 then
+        r, g, b = 0.6, 1, 0.6
+      elseif delta < -0.01 then
+        r, g, b = 1, 0.4, 0.4
+      end
+      GameTooltip:AddDoubleLine(stat.tip, string.format("%s (%s)", FormatMethodStatValue(value), FormatMethodDelta(value, current)), 1, 1, 1, r, g, b)
+    end
+  end
+
+  if method.satisfied then
+    local missing = {}
+    for capIndex, satisfied in ipairs(method.satisfied) do
+      if satisfied == false then
+        local cap = self.pdb.caps and self.pdb.caps[capIndex]
+        local statId = cap and cap.stat
+        if statId and statId > 0 and self.itemStats[statId] then
+          missing[#missing + 1] = self.itemStats[statId].tip
+        end
+      end
+    end
+    if #missing > 0 then
+      GameTooltip:AddLine(" ")
+      GameTooltip:AddLine(string.format("%s: %s", L["Caps not met"], table.concat(missing, ", ")), ThemeRGB("negative", 1, 0.4, 0.4))
+    end
+  end
+
+  GameTooltip:Show()
+end
+
+function ReforgeOne:EnsureMethodAlternativeButtons(count)
+  if not self.methodAlternativesContainer then
+    return
+  end
+
+  self.methodAlternativeButtons = self.methodAlternativeButtons or {}
+
+  for index = #self.methodAlternativeButtons + 1, count do
+    local button = CreateFrame("Button", nil, self.methodAlternativesContainer, "BackdropTemplate")
+    button:SetHeight(METHOD_ALTERNATIVE_BUTTON_HEIGHT)
+    if index == 1 then
+      button:SetPoint("TOPLEFT")
+      button:SetPoint("TOPRIGHT")
+    else
+      local altIndex = index - 2
+      if altIndex >= 0 and altIndex < 4 then
+        local column = altIndex % 2
+        local row = floor(altIndex / 2)
+        if column == 0 then
+          if row == 0 then
+            button:SetPoint("TOPLEFT", self.methodAlternativeButtons[1], "BOTTOMLEFT", 0, -METHOD_ALTERNATIVE_BUTTON_SPACING)
+          else
+            button:SetPoint("TOPLEFT", self.methodAlternativeButtons[index - 2], "BOTTOMLEFT", 0, -METHOD_ALTERNATIVE_BUTTON_SPACING)
+          end
+        else
+          if row == 0 then
+            button:SetPoint("TOPRIGHT", self.methodAlternativeButtons[1], "BOTTOMRIGHT", 0, -METHOD_ALTERNATIVE_BUTTON_SPACING)
+          else
+            button:SetPoint("TOPRIGHT", self.methodAlternativeButtons[index - 2], "BOTTOMRIGHT", 0, -METHOD_ALTERNATIVE_BUTTON_SPACING)
+          end
+        end
+        button:SetWidth(self.methodAlternativeButtonWidth or METHOD_ALTERNATIVE_BUTTON_MIN_WIDTH)
+      else
+        button:SetPoint("TOPLEFT", self.methodAlternativeButtons[index - 1], "BOTTOMLEFT", 0, -METHOD_ALTERNATIVE_BUTTON_SPACING)
+        button:SetPoint("TOPRIGHT", self.methodAlternativeButtons[index - 1], "BOTTOMRIGHT", 0, -METHOD_ALTERNATIVE_BUTTON_SPACING)
+      end
+    end
+
+    button.bg = button:CreateTexture(nil, "BACKGROUND")
+    button.bg:SetAllPoints()
+    local bgR, bgG, bgB = ThemeRGB("backgroundAlt", 0.08, 0.08, 0.08)
+    button.bg:SetColorTexture(bgR, bgG, bgB, 0.82)
+
+    button.selected = button:CreateTexture(nil, "BORDER")
+    button.selected:SetAllPoints()
+    local selR, selG, selB, selA = ThemeRGBA("highlight", 0.3, 0.55, 0.85, 0.25)
+    button.selected:SetColorTexture(selR, selG, selB, selA)
+    button.selected:Hide()
+
+    button.highlight = button:CreateTexture(nil, "HIGHLIGHT")
+    button.highlight:SetAllPoints()
+    local hiR, hiG, hiB, hiA = ThemeRGBA("highlightSoft", 1, 1, 1, 0.08)
+    button.highlight:SetColorTexture(hiR, hiG, hiB, hiA)
+
+    button.label = button:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    button.label:SetPoint("LEFT", 8, 0)
+    button.label:SetPoint("RIGHT", -8, 0)
+    button.label:SetPoint("TOP", 0, -2)
+    button.label:SetPoint("BOTTOM", 0, 2)
+    button.label:SetJustifyH("CENTER")
+    button.label:SetJustifyV("MIDDLE")
+    button.label:SetWordWrap(false)
+
+    button:SetScript("OnEnter", function(btn) self:ShowMethodAlternativeTooltip(btn) end)
+    button:SetScript("OnLeave", GameTooltip_Hide)
+    button:SetScript("OnClick", function(btn) self:SelectMethodAlternative(btn.altIndex) end)
+
+    self.methodAlternativeButtons[index] = button
+  end
+end
+
+function ReforgeOne:UpdateMethodAlternativeButtons()
+  if not self.methodAlternativeButtons then
+    return
+  end
+
+  if self.methodAlternativesHidden then
+    for _, button in ipairs(self.methodAlternativeButtons) do
+      button:Hide()
+      button.selected:Hide()
+    end
+    if self.methodAlternativesContainer then
+      self.methodAlternativesContainer:Hide()
+    end
+    if self.methodWowSimsButton then
+      self.methodWowSimsButton:Hide()
+    end
+    return
+  end
+
+  local methods = self.methodAlternatives or {}
+  local selected = self:GetSelectedMethodAlternative()
+  local visible = 0
+  local lastRowAnchor
+
+  local maxButtons = addonTable.MAX_METHOD_ALTERNATIVES or #self.methodAlternativeButtons
+
+  self:EnsureMethodAlternativeButtons(maxButtons)
+
+  for index, button in ipairs(self.methodAlternativeButtons) do
+    if index > maxButtons then
+      button:Hide()
+      button.altIndex = nil
+      button.selected:Hide()
+    else
+      local method = methods[index]
+      if method and method.isPlaceholder then
+        method = nil
+      end
+      button.altIndex = index
+      if method then
+        visible = visible + 1
+        button:Show()
+        button.label:SetText(self:GetMethodAlternativeLabel(index))
+        if index == selected then
+          button.selected:Show()
+        else
+          button.selected:Hide()
+        end
+        if index == 1 then
+          lastRowAnchor = button
+        else
+          local altIndex = index - 2
+          if altIndex < 0 then
+            lastRowAnchor = button
+          elseif (altIndex % 2) == 0 then
+            lastRowAnchor = button
+          end
+        end
+      else
+        button:Hide()
+        button.selected:Hide()
+      end
+    end
+  end
+
+  if self.methodAlternativesContainer then
+    if visible > 0 then
+      self.methodAlternativesContainer:Show()
+    else
+      self.methodAlternativesContainer:Hide()
+    end
+  end
+  if self.methodWowSimsButton then
+    if visible > 0 and lastRowAnchor then
+      self.methodWowSimsButton:Show()
+      self.methodWowSimsButton:ClearAllPoints()
+      self.methodWowSimsButton:SetPoint("TOP", lastRowAnchor, "BOTTOM", 0, -METHOD_ALTERNATIVE_BUTTON_SPACING)
+      self.methodWowSimsButton:SetPoint("LEFT", self.methodAlternativesContainer, "LEFT", 0, 0)
+      self.methodWowSimsButton:SetPoint("RIGHT", self.methodAlternativesContainer, "RIGHT", 0, 0)
+    else
+      self.methodWowSimsButton:Hide()
+    end
+  end
+
+  self:RefreshWowSimsPopup()
+end
+
+local function PrintWowSimsMessage(message)
+  if DEFAULT_CHAT_FRAME and message then
+    DEFAULT_CHAT_FRAME:AddMessage(("[%s] %s"):format(addonName, message))
+  end
+end
+
+function ReforgeOne:EnsureMethodOverride()
+  self.methodOverride = self.methodOverride or {}
+  for index = 1, ITEM_SLOT_COUNT do
+    if self.methodOverride[index] == nil then
+      self.methodOverride[index] = 0
+    end
+  end
+end
+
+local function GetExportMethod(self)
+  if self.methodAlternativesHidden then
+    return self.pdb and self.pdb.method
+  end
+
+  local alternatives = self.methodAlternatives
+  if alternatives and #alternatives > 0 then
+    local index = self:GetSelectedMethodAlternative()
+    local method = alternatives[index]
+    if method and not method.isPlaceholder then
+      return method
+    end
+  end
+
+  return self.pdb and self.pdb.method
+end
+
+local WOW_SIMS_POPUP_TITLE = "WoW Sims Export"
+
+function ReforgeOne:EnsureComputeProgressPopup()
+  if self.computeProgressPopup then
+    return self.computeProgressPopup
+  end
+
+  local frame = CreateFrame("Frame", addonName .. "ComputeProgressPopup", UIParent, "BackdropTemplate")
+  frame:SetSize(320, 150)
+  frame:SetFrameStrata("FULLSCREEN_DIALOG")
+  frame:SetToplevel(true)
+  frame:SetClampedToScreen(true)
+  frame:EnableMouse(true)
+  frame._reforgeAlwaysOnTop = true
+
+  frame.backdropInfo = self.backdropInfo
+  frame:ApplyBackdrop()
+  frame:SetBackdropColor(self:GetBackdropColor())
+  frame:SetBackdropBorderColor(self:GetBackdropBorderColor())
+
+  frame.titlebar = frame:CreateTexture(nil, "BACKGROUND")
+  frame.titlebar:SetPoint("TOPLEFT", frame, "TOPLEFT", 3, -3)
+  frame.titlebar:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -3, -3)
+  frame.titlebar:SetHeight(20)
+  ApplyTitlebarColor(frame.titlebar)
+
+  frame.title = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+  frame.title:SetTextColor(ThemeRGB("textPrimary", 1, 1, 1))
+  frame.title:SetPoint("TOP", frame, "TOP", 0, -13)
+  frame.title:SetText(L["Calculation running"])
+
+  frame.status = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+  frame.status:SetWidth(270)
+  frame.status:SetJustifyH("CENTER")
+  frame.status:SetPoint("TOP", frame.title, "BOTTOM", 0, -22)
+
+  frame.timer = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
+  frame.timer:SetPoint("TOP", frame.status, "BOTTOM", 0, -10)
+  frame.timer:SetTextColor(ThemeRGB("accentHighlight", 0.35, 0.62, 0.99))
+
+  frame.note = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+  frame.note:SetWidth(270)
+  frame.note:SetJustifyH("CENTER")
+  frame.note:SetPoint("TOP", frame.timer, "BOTTOM", 0, -12)
+
+  frame.cancelButton = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+  frame.cancelButton:SetSize(110, 22)
+  frame.cancelButton:SetPoint("BOTTOM", frame, "BOTTOM", 0, 16)
+  frame.cancelButton:SetText(CANCEL)
+  if GUI and GUI.ApplyPanelButtonTheme then
+    GUI.ApplyPanelButtonTheme(frame.cancelButton)
+  end
+  frame.cancelButton:SetScript("OnClick", function()
+    self:CancelCompute()
+  end)
+
+  frame:SetScript("OnShow", function(window)
+    window:Raise()
+    self:SetNewTopWindow(window)
+  end)
+
+  frame:Hide()
+
+  self.computeProgressPopup = frame
+  return frame
+end
+
+function ReforgeOne:HideComputeProgressPopup()
+  if self.computeProgressPopup then
+    self.computeProgressPopup:Hide()
+  end
+end
+
+function ReforgeOne:RefreshComputeProgressPopup()
+  local tracker = self.activeComputeTracker
+  if not (self.computeInProgress and tracker) then
+    self:HideComputeProgressPopup()
+    return
+  end
+
+  local elapsed = max(GetComputeTimeSeconds() - (tracker.startedAt or 0), 0)
+  local expectedDuration = tracker.expectedDuration
+  local hasExpectedDuration = type(expectedDuration) == "number" and expectedDuration > COMPUTE_DURATION_STORAGE_THRESHOLD
+  local shouldShow = hasExpectedDuration or elapsed >= 0
+
+  if not shouldShow then
+    self:HideComputeProgressPopup()
+    return
+  end
+
+  local popup = self:EnsureComputeProgressPopup()
+  popup:ClearAllPoints()
+  if self:IsShown() then
+    popup:SetPoint("CENTER", self, "CENTER", 0, 10)
+  else
+    popup:SetPoint("CENTER", UIParent, "CENTER")
+  end
+
+  popup.title:SetText(L["Calculation running"])
+
+  if hasExpectedDuration then
+    local remaining = max(expectedDuration - elapsed, 0)
+    local overtime = max(elapsed - expectedDuration, 0)
+    popup.status:SetText(L["Approx. calculation duration"])
+    if overtime > 0 then
+      popup.timer:SetText("-" .. FormatComputeDurationClock(overtime, true))
+      popup.timer:SetTextColor(ThemeRGB("negative", 0.92, 0.38, 0.42))
+    else
+      popup.timer:SetText(FormatComputeDurationClock(remaining, true))
+      popup.timer:SetTextColor(ThemeRGB("accentHighlight", 0.35, 0.62, 0.99))
+    end
+    popup.status:Show()
+    popup.timer:Show()
+    popup.note:SetText("")
+    popup.note:Hide()
+  else
+    popup.status:SetText("")
+    popup.status:Hide()
+    popup.timer:SetText("")
+    popup.timer:SetTextColor(ThemeRGB("accentHighlight", 0.35, 0.62, 0.99))
+    popup.timer:Hide()
+    popup.note:SetText("")
+    popup.note:Hide()
+  end
+
+  popup:Show()
+end
+
+local function GetWowSimsSuffix(self)
+  if self.methodAlternativesHidden then
+    local method = self.pdb and self.pdb.method
+    if method and method.items then
+      return "(Best)"
+    end
+    return nil
+  end
+
+  local selected = self:GetSelectedMethodAlternative()
+  if not selected then
+    return nil
+  end
+
+  if selected <= 1 then
+    return "(Best)"
+  end
+
+  return string.format("(ALT %d)", selected - 1)
+end
+
+function ReforgeOne:SetWowSimsPopupTitleSuffix(suffix)
+  local popup = self.wowSimsPopup
+  if not popup or not popup.title then
+    return
+  end
+
+  if suffix and suffix ~= "" then
+    popup.title:SetText(('%s - Code: %s'):format(WOW_SIMS_POPUP_TITLE, suffix))
+  else
+    popup.title:SetText(WOW_SIMS_POPUP_TITLE)
+  end
+end
+
+function ReforgeOne:EnsureWowSimsPopup()
+  if self.wowSimsPopup then
+    return self.wowSimsPopup
+  end
+
+  local frame = CreateFrame("Frame", addonName .. "WowSimsPopup", UIParent, "BackdropTemplate")
+  frame:SetSize(500, 320)
+  frame:SetFrameStrata("DIALOG")
+  frame:SetToplevel(true)
+  frame:SetClampedToScreen(true)
+  frame:EnableMouse(true)
+  frame:SetMovable(true)
+
+  frame.backdropInfo = self.backdropInfo
+  frame:ApplyBackdrop()
+  frame:SetBackdropColor(self:GetBackdropColor())
+  frame:SetBackdropBorderColor(self:GetBackdropBorderColor())
+
+  frame.titlebar = frame:CreateTexture(nil, "BACKGROUND")
+  frame.titlebar:SetPoint("TOPLEFT", frame, "TOPLEFT", 3, -3)
+  frame.titlebar:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -3, -3)
+  frame.titlebar:SetHeight(20)
+  ApplyTitlebarColor(frame.titlebar)
+
+  if self.SetFrameActive then
+    frame.SetFrameActive = self.SetFrameActive
+    frame:SetFrameActive(true)
+  end
+
+  frame.title = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+  frame.title:SetTextColor(ThemeRGB("textPrimary", 1, 1, 1))
+  frame.title:SetText(WOW_SIMS_POPUP_TITLE)
+  frame.title:SetPoint("TOPLEFT", 12, frame.title:GetHeight() - frame.titlebar:GetHeight())
+
+  frame.close = CreateFrame("Button", nil, frame, "UIPanelCloseButtonNoScripts")
+  frame.close:SetPoint("TOPRIGHT")
+  frame.close:SetSize(28, 28)
+  frame.close:SetScript("OnClick", function(btn)
+    btn:GetParent():Hide()
+  end)
+
+  frame:SetScript("OnMouseDown", function(window, button)
+    self:SetNewTopWindow(window)
+    if button == "LeftButton" then
+      window:StartMoving()
+      window.moving = true
+    end
+  end)
+  frame:SetScript("OnMouseUp", function(window)
+    if window.moving then
+      window:StopMovingOrSizing()
+      window.moving = nil
+      if self.db then
+        self.db.wowSimsPopupLocation = SafePack(window:GetPoint())
+      end
+    end
+  end)
+  frame:SetScript("OnShow", function(window)
+    self:SetNewTopWindow(window)
+  end)
+  frame:SetScript("OnHide", function(window)
+    window.moving = nil
+    if window.SetFrameActive then
+      window:SetFrameActive(false)
+    end
+    if self:IsShown() then
+      self:SetNewTopWindow(self)
+    end
+  end)
+
+  frame:ClearAllPoints()
+  if self.db and self.db.wowSimsPopupLocation then
+    frame:SetPoint(SafeUnpack(self.db.wowSimsPopupLocation))
+  else
+    frame:SetPoint("CENTER", self, "CENTER")
+  end
+
+  tinsert(UISpecialFrames, frame:GetName())
+  tinsert(RFL_FRAMES, frame)
+
+  local scrollFrame = CreateFrame("ScrollFrame", nil, frame, "UIPanelScrollFrameTemplate")
+  scrollFrame:SetPoint("TOPLEFT", frame.title, "BOTTOMLEFT", 0, -12)
+  scrollFrame:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -32, 12)
+
+  local editBox = CreateFrame("EditBox", nil, scrollFrame)
+  editBox:SetMultiLine(true)
+  editBox:SetMaxLetters(0)
+  editBox:SetAutoFocus(false)
+  editBox:SetFontObject(ChatFontNormal or GameFontHighlight)
+  editBox:SetWidth(450)
+  editBox:SetScript("OnEscapePressed", function(box)
+    box:ClearFocus()
+    frame:Hide()
+  end)
+
+  scrollFrame:SetScrollChild(editBox)
+  scrollFrame:SetScript("OnSizeChanged", function(_, width)
+    editBox:SetWidth(width)
+  end)
+
+  frame.scrollFrame = scrollFrame
+  frame.editBox = editBox
+
+  frame:Hide()
+
+  self.wowSimsPopup = frame
+  return frame
+end
+
+function ReforgeOne:DisplayWowSimsExport(text, suffix, shouldHighlight)
+  local popup = self:EnsureWowSimsPopup()
+  local editBox = popup.editBox
+  local hadFocus = editBox:HasFocus()
+
+  editBox:SetText(text or "")
+
+  if shouldHighlight then
+    editBox:HighlightText()
+    editBox:SetFocus()
+  elseif hadFocus then
+    editBox:SetFocus()
+  else
+    editBox:HighlightText(0, 0)
+    editBox:ClearFocus()
+  end
+
+  self:SetWowSimsPopupTitleSuffix(suffix)
+  popup:Show()
+end
+
+function ReforgeOne:GenerateWowSimsExportText()
+  local exporter = addonTable.WowSimsExport
+  if not exporter or type(exporter.Generate) ~= "function" then
+    return nil, "WowSims export not available."
+  end
+
+  local method = GetExportMethod(self)
+  if not method or not method.items then
+    return nil, "No reforge method available."
+  end
+
+  local result, err = exporter.Generate(method)
+  if not result then
+    return nil, ("WowSims export failed: %s"):format(tostring(err or "unknown error"))
+  end
+
+  return result
+end
+
+function ReforgeOne:RefreshWowSimsPopup()
+  local popup = self.wowSimsPopup
+  if not popup or not popup:IsShown() then
+    return
+  end
+
+  local result = self:GenerateWowSimsExportText()
+  if not result then
+    popup:Hide()
+    return
+  end
+
+  self:DisplayWowSimsExport(result, GetWowSimsSuffix(self), popup.editBox:HasFocus())
+end
+
+function ReforgeOne:ShowWowSimsExportPopup()
+  local result, err = self:GenerateWowSimsExportText()
+  if not result then
+    if err then
+      PrintWowSimsMessage(err)
+    end
+    return
+  end
+
+  self:DisplayWowSimsExport(result, GetWowSimsSuffix(self), true)
+end
+
+function ReforgeOne:UpdateMethodCategory()
+  if self.methodCategory == nil then
+    self.methodCategory = self:CreateCategory (L["Result"], { alwaysExpanded = true })
+    self:SetAnchor(self.methodCategory, "TOPLEFT", self.statCaps, "BOTTOMLEFT", 0, -10)
+
+    local resultGridR, resultGridG, resultGridB, resultGridA = ThemeRGBA("accentHighlight", 0.33, 0.56, 0.85, 0.7)
+    local resultGridAlpha = resultGridA or 0.7
+    if resultGridAlpha > 0 then
+      resultGridAlpha = math.min(0.85, math.max(0.35, resultGridAlpha * 0.75))
+    else
+      resultGridAlpha = 0.45
+    end
+
+    self.methodStats = GUI:CreateTable (#self.itemStats - 1, 2, ITEM_SIZE, 60, {
+      resultGridR,
+      resultGridG,
+      resultGridB,
+      resultGridAlpha,
+    })
+    self.methodCategory:AddFrame (self.methodStats)
+    self:SetAnchor (self.methodStats, "TOPLEFT", self.methodCategory, "BOTTOMLEFT", 0, -5)
+    self.methodStats:SetRowHeight (ITEM_SIZE + 2)
+    self.methodStats.defaultRowHeight = ITEM_SIZE + 2
+
+    local labelMeasure = self.methodStats:CreateFontString(nil, "ARTWORK", "GameFontNormalSmall")
+    labelMeasure:Hide()
+    local maxLabelWidth = 0
+
+    local orderedStatIndexes = BuildMethodStatDisplayOrder(self.itemStats)
+    self.methodStats.orderedStatIndexes = orderedStatIndexes
+    self.methodStats.rowIndexByStatIndex = {}
+    self.methodStats.statIndexByRow = {}
+
+    for orderPosition = 1, #orderedStatIndexes do
+      local statIndex = orderedStatIndexes[orderPosition]
+      local stat = self.itemStats[statIndex]
+      if stat then
+        local row = orderPosition - 1
+        self.methodStats.rowIndexByStatIndex[statIndex] = row
+        self.methodStats.statIndexByRow[row] = statIndex
+
+        local label = stat.resultLabel or stat.tip
+        self.methodStats:SetCellText(row, 0, label, "LEFT")
+
+        local statRow = { row = row, statIndex = statIndex }
+        self.methodStats[statIndex] = statRow
+
+        statRow.value = self.methodStats:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+        self.methodStats:SetCell(row, 1, statRow.value)
+        statRow.value:SetTextColor(ThemeRGB("textPrimary", 1, 1, 1))
+        statRow.value:SetText(FormatLargeNumber(0))
+
+        statRow.delta = self.methodStats:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+        self.methodStats:SetCell(row, 2, statRow.delta)
+        statRow.delta:SetTextColor(ThemeRGB("neutral", 0.7, 0.7, 0.7))
+        statRow.delta:SetText(FormatNumber(0))
+
+        labelMeasure:SetText(label or "")
+        local labelWidth = labelMeasure:GetStringWidth() or 0
+        if labelWidth > maxLabelWidth then
+          maxLabelWidth = labelWidth
+        end
+      end
+    end
+
+    labelMeasure:SetText("")
+    labelMeasure:Hide()
+
+    local labelColumnPadding = 16
+    local labelColumnWidth = math.ceil(maxLabelWidth) + labelColumnPadding
+    local paddingReduction = 6
+    local minimumPadding = 8
+    local reducedWidth = labelColumnWidth - paddingReduction
+    local minimumWidth = math.ceil(maxLabelWidth) + minimumPadding
+    labelColumnWidth = max(minimumWidth, reducedWidth)
+    local valueColumnWidth = 67
+    self.methodStats:SetColumnWidth(0, labelColumnWidth)
+    self.methodStats:SetColumnWidth(1, valueColumnWidth)
+    self.methodStats:SetColumnWidth(2, valueColumnWidth)
+
+    self.methodStats.visibleRows = {}
+
+    self.methodAlternativesContainer = CreateFrame("Frame", nil, self.content)
+    self.methodCategory:AddFrame(self.methodAlternativesContainer)
+    self:SetAnchor (self.methodAlternativesContainer, "TOPLEFT", self.methodStats, "TOPRIGHT", 10, 0)
+    self.methodAlternativesContainer:SetPoint("BOTTOMLEFT", self.methodStats, "BOTTOMRIGHT", 10, 0)
+
+    local alternativeLabelMeasure = self.methodAlternativesContainer:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+    alternativeLabelMeasure:Hide()
+
+    local maxButtons = addonTable.MAX_METHOD_ALTERNATIVES or 5
+    local altLabelWidth = 0
+    for index = 1, maxButtons do
+      alternativeLabelMeasure:SetText(self:GetMethodAlternativeLabel(index))
+      local width = alternativeLabelMeasure:GetStringWidth() or 0
+      if index > 1 and width > altLabelWidth then
+        altLabelWidth = width
+      end
+    end
+
+    alternativeLabelMeasure:SetText("")
+    alternativeLabelMeasure:Hide()
+
+    local baseAltWidth = math.ceil(altLabelWidth) + 16
+    if baseAltWidth < METHOD_ALTERNATIVE_BUTTON_MIN_WIDTH then
+      baseAltWidth = METHOD_ALTERNATIVE_BUTTON_MIN_WIDTH
+    end
+
+    local containerWidth = METHOD_ALTERNATIVE_CONTAINER_WIDTH
+    local availableColumnWidth = math.max(1, floor((containerWidth - METHOD_ALTERNATIVE_COLUMN_SPACING) / 2))
+    local finalAltWidth = math.min(baseAltWidth, availableColumnWidth)
+
+    self.methodAlternativeButtonWidth = finalAltWidth
+    self.methodAlternativesContainer:SetWidth(containerWidth)
+    self.methodAlternativesContainer:Hide()
+
+    self.methodAlternativeButtons = {}
+    self:EnsureMethodAlternativeButtons(addonTable.MAX_METHOD_ALTERNATIVES)
+
+    self.methodWowSimsButton = GUI:CreatePanelButton(self.content, "WowSims", function()
+      self:ShowWowSimsExportPopup()
+    end, {
+      colorOverrides = PRIMARY_ACTION_BUTTON_COLOR_OVERRIDES,
+    })
+    self.methodWowSimsButton:SetHeight(METHOD_ACTION_BUTTON_HEIGHT)
+    self.methodWowSimsButton:SetPoint("TOPLEFT", self.methodAlternativesContainer, "BOTTOMLEFT", 0, 0)
+    self.methodWowSimsButton:SetPoint("TOPRIGHT", self.methodAlternativesContainer, "BOTTOMRIGHT", 0, 0)
+    self.methodWowSimsButton:Hide()
+    self.methodCategory:AddFrame(self.methodWowSimsButton)
+
+    self.methodReforge = GUI:CreatePanelButton(self.content, REFORGE, function(btn)
+      self:EnsureMethodOverride()
+      self:DoReforge()
+    end, {
+      colorOverrides = PRIMARY_ACTION_BUTTON_COLOR_OVERRIDES,
+    })
+    self.methodReforge:SetSize(114, 22)
+    self.methodReforge:SetMotionScriptsWhileDisabled(true)
+    GUI:SetTooltip(self.methodReforge, function()
+      if not ReforgeFrameIsVisible() then
+        return L["Reforging window must be open"]
+      end
+    end)
+    self.methodCategory:AddFrame (self.methodReforge)
+    self:SetAnchor (self.methodReforge, "TOPLEFT", self.methodStats, "BOTTOMLEFT", 0, -5)
+
+    self.methodCost = CreateFrame("Frame", nil, self.content, "SmallMoneyFrameTemplate")
+    MoneyFrame_SetType(self.methodCost, "REFORGE")
+    self.methodCost:Hide()
+    self.methodCategory:AddFrame(self.methodCost)
+    self:SetAnchor(self.methodCost, "TOPLEFT", self.methodReforge, "TOPRIGHT", 5, -4)
+
+    self.savedEquipButton = GUI:CreateFilterDropdown(self.content, "Save equip", {resizeToTextPadding = 35})
+    self.methodCategory:AddFrame(self.savedEquipButton)
+    local savedEquipOffsetX = 155
+    local savedEquipOffsetY = 5
+    self:SetAnchor(self.savedEquipButton, "BOTTOMRIGHT", self.methodStats, "TOPRIGHT", savedEquipOffsetX, savedEquipOffsetY)
+    if self.savedEquipMenuGenerator then
+      self.savedEquipButton:SetupMenu(self.savedEquipMenuGenerator)
+    end
+
+    if not self.methodResultActions then
+      self.methodResultActions = CreateFrame("Frame", nil, self.content)
+      self.methodResultActions:SetHeight(22)
+      self.methodCategory:AddFrame(self.methodResultActions)
+    end
+
+    self.methodResultActions:ClearAllPoints()
+    self:SetAnchor(self.methodResultActions, "TOPLEFT", self.methodReforge, "BOTTOMLEFT", 0, -METHOD_ACTION_BUTTON_SPACING)
+    local statsWidth = self.methodStats:GetWidth() or 0
+    local actionRowWidth = math.max(statsWidth, 300)
+    self.methodResultActions:SetWidth(actionRowWidth)
+
+    local actionButtonWidth = 114
+    local actionButtonHeight = 22
+
+    self.computeButton:ClearAllPoints()
+    self.computeButton.anchor = nil
+    self.computeButton:SetParent(self.methodResultActions)
+    self.computeButton:SetSize(actionButtonWidth, actionButtonHeight)
+    local computeButtonOffsetX = 145
+    local actionButtonSpacing = 4
+    local resetButtonOffsetX = computeButtonOffsetX + actionButtonWidth + actionButtonSpacing
+
+    self.computeButton:SetPoint("TOP", self.methodResultActions, "TOP", 0, 0)
+    self.computeButton:SetPoint("BOTTOM", self.methodResultActions, "BOTTOM", 0, 0)
+    self.computeButton:SetPoint("LEFT", self.methodResultActions, "LEFT", computeButtonOffsetX, 0)
+
+    if not self.methodReset then
+      self.methodReset = GUI:CreatePanelButton(self.methodResultActions, RESET, function(btn) self:ResetMethod() end)
+    else
+      self.methodReset:SetParent(self.methodResultActions)
+    end
+    ApplyResetActionButtonStyle(self.methodReset)
+    self.methodReset:SetSize(actionButtonWidth, actionButtonHeight)
+    self.methodReset:ClearAllPoints()
+    self.methodReset:SetPoint("TOP", self.methodResultActions, "TOP", 0, 0)
+    self.methodReset:SetPoint("BOTTOM", self.methodResultActions, "BOTTOM", 0, 0)
+    self.methodReset:SetPoint("LEFT", self.methodResultActions, "LEFT", resetButtonOffsetX, 0)
+
+    self:SetAnchor(self.settingsCategory, "TOPLEFT", self.methodResultActions, "BOTTOMLEFT", 0, -10)
+    if self.settingsCategory.Refresh then
+      self.settingsCategory:Refresh()
+    end
+  end
+
+  if self.pdb.method and (not self.methodAlternatives or #self.methodAlternatives == 0) then
+    self:SetMethodAlternatives({self.pdb.method}, self.selectedMethodAlternative or 1)
+  end
+
+  if self.methodCategory and self.computeButton then
+    self.computeButton:Show()
+    if self.accuracyContainer then
+      local container = self.accuracyContainer
+      container:ClearAllPoints()
+      self:SetAnchor(container, "RIGHT", self.computeButton, "LEFT", -12, 0)
+    end
+  end
+
+  self:UpdateMethodAlternativeButtons()
+
+  self:RefreshMethodStats()
+
+  self:RefreshMethodWindow()
+  self:UpdateContentSize ()
+end
+
+function ReforgeOne:ShouldGroupExpertiseWithHit()
+  if not self.conversionInitialized then
+    if type(self.GetConversion) ~= "function" then
+      return false
+    end
+    self:GetConversion()
+  end
+
+  if not self.conversion then
+    return false
+  end
+
+  local expertiseConversion = (self.conversion[statIds.EXP] or {})[statIds.HIT]
+  if not expertiseConversion or expertiseConversion == 0 then
+    return false
+  end
+
+  if not C_SpecializationInfo or not C_SpecializationInfo.GetSpecialization then
+    return false
+  end
+
+  local specIndex = C_SpecializationInfo.GetSpecialization()
+  if not specIndex then
+    return false
+  end
+
+  local role = select(6, C_SpecializationInfo.GetSpecializationInfo(specIndex))
+  return role == "DAMAGER"
+end
+
+function ReforgeOne:RefreshMethodStats()
+  self:UpdateMethodStatVisibility()
+
+  local method = self.pdb.method
+  if method then
+    self:UpdateMethodStats (method)
+  end
+
+  local methodStats = self.methodStats
+  if methodStats then
+    local weights = self.pdb.weights or {}
+    local spiritWeight = weights[statIds.SPIRIT] or 0
+    local spiritConversion = (self.conversion[statIds.SPIRIT] or {})[statIds.HIT]
+    local expertiseConversion = (self.conversion[statIds.EXP] or {})[statIds.HIT]
+    local groupExpertiseWithHit = self:ShouldGroupExpertiseWithHit()
+
+    local rowIndexByStatIndex = methodStats.rowIndexByStatIndex or {}
+
+    for index, stat in ipairs (self.itemStats) do
+      local row = rowIndexByStatIndex[index]
+      if row == nil then
+        row = index - 1
+      end
+
+      if row ~= nil then
+        local baseVisible = methodStats.visibleRows and methodStats.visibleRows[row]
+        if baseVisible == nil then
+          baseVisible = true
+        end
+
+        local statRow = methodStats[index]
+        local methodValue = 0
+        if method and stat.mgetter then
+          methodValue = stat.mgetter (method)
+          local formattedValue
+          if stat.percent then
+            formattedValue = string.format("%s%%", FormatMethodStatValue(methodValue))
+          else
+            formattedValue = FormatMethodStatValue(methodValue)
+          end
+          if statRow and statRow.value then
+            statRow.value:SetText(formattedValue)
+          else
+            methodStats:SetCellText(row, 1, formattedValue)
+          end
+          local override
+          local compareValue = stat.mgetter (method, true)
+          local currentValue = stat.getter and stat.getter () or 0
+          if self:GetStatScore (index, compareValue) == self:GetStatScore (index, currentValue) then
+            override = 0
+          end
+          if statRow and statRow.delta then
+            SetTextDelta (statRow.delta, compareValue, currentValue, override)
+          end
+        end
+
+        local shouldShow = baseVisible
+        if index == statIds.SPIRIT then
+          local hasSpiritStat = methodValue > 0
+          shouldShow = shouldShow and (spiritWeight > 0 or spiritConversion or hasSpiritStat)
+        elseif index == statIds.EXP and groupExpertiseWithHit then
+          local hasExpertiseStat = expertiseConversion and methodValue > 0
+          if statRow and statRow.value then
+            if hasExpertiseStat then
+              statRow.value:SetText("")
+            end
+          end
+          shouldShow = shouldShow and hasExpertiseStat
+        end
+
+        methodStats:SetRowExpanded(row, shouldShow)
+      end
+    end
+  end
+
+  self:UpdateMethodChecks()
+end
+
+local function QueueDeferredContentMeasurement(frame)
+  frame.pendingContentSizeUpdate = true
+  RunNextFrame(function()
+    frame.pendingContentSizeUpdate = nil
+    if frame.content then
+      frame:UpdateContentSize(true)
+    end
+  end)
+end
+
+function ReforgeOne:UpdateContentSize (skipDeferred)
+  if not self.content then
+    return
+  end
+
+  local newHeight
+  local contentTop = self.content and self.content:GetTop()
+
+  local lowestBottom
+  if self.content then
+    local children = { self.content:GetChildren() }
+    for index = 1, #children do
+      local child = children[index]
+      if child and child:IsShown() then
+        local childBottom = child:GetBottom()
+        if childBottom and (not lowestBottom or childBottom < lowestBottom) then
+          lowestBottom = childBottom
+        end
+      end
+    end
+  end
+
+  if contentTop and lowestBottom then
+    newHeight = contentTop - lowestBottom
+  end
+
+  if (not newHeight or newHeight <= 0) and self.lastElement and contentTop then
+    local contentBottom = self.lastElement:GetBottom()
+    if contentBottom then
+      newHeight = contentTop - contentBottom
+    end
+  end
+
+  if not newHeight or newHeight <= 0 then
+    newHeight = -self:GetFrameY (self.lastElement)
+  end
+
+  if newHeight <= 0 then
+    newHeight = 1
+  end
+
+  self.content:SetHeight (newHeight)
+  RunNextFrame(function() self:FixScroll() end)
+
+  if not skipDeferred and not self.pendingContentSizeUpdate then
+    QueueDeferredContentMeasurement(self)
+  end
+end
+
+function ReforgeOne:GetReforgeTableIndex(src, dst)
+  for k,v in ipairs(reforgeTable) do
+    if v[1] == src and v[2] == dst then
+      return k
+    end
+  end
+  return UNFORGE_INDEX
+end
+
+local reforgeIdStringCache = setmetatable({}, {
+  __index = function(self, key)
+    local parsed = ParseItemLinkData(key)
+    local reforgeId = parsed and parsed.refId or nil
+    if not reforgeId then
+      reforgeId = UNFORGE_INDEX
+    else
+      reforgeId = reforgeId - REFORGE_TABLE_BASE
+    end
+    rawset(self, key, reforgeId)
+    return reforgeId
+  end
+})
+
+local function GetReforgeIDFromString(item)
+  local id = reforgeIdStringCache[item]
+  if id and id ~= UNFORGE_INDEX then
+    return id
+  end
+end
+
+function ReforgeOne:BuildItemDebugReport()
+  self:Initialize()
+  self:UpdateItems()
+
+  local lines = {
+    addonTitle or addonName,
+    date("%Y-%m-%d %H:%M:%S"),
+  }
+
+  if self.pdb and self.pdb.methodOrigin then
+    lines[#lines + 1] = ("Method origin: %s"):format(tostring(self.pdb.methodOrigin))
+  end
+
+  for index, slotData in ipairs(self.itemData or {}) do
+    local slotName = slotData and slotData.slot
+    local slotLabel = slotName and (_G[slotName] or slotName) or tostring(index)
+    lines[#lines + 1] = ""
+    lines[#lines + 1] = ("[%02d] %s"):format(index, slotLabel)
+
+    local info = slotData and slotData.itemInfo
+    if not (info and info.link) then
+      lines[#lines + 1] = "Item: -"
+    else
+      local methodItem = self.pdb and self.pdb.method and self.pdb.method.items and self.pdb.method.items[index]
+      local parsedLink = ParseItemLinkData(info.link)
+      local rawTooltipStats, tooltipLines, tooltipReforge = ReadTooltipStats(info)
+      local resolvedStats = GetItemStats(info) or {}
+
+      lines[#lines + 1] = ("ItemID: %s"):format(tostring(info.itemId or "?"))
+      lines[#lines + 1] = ("ItemLevel: %s | Base: %s | Upgrade: %s"):format(
+        tostring(info.ilvl or 0),
+        tostring(info.baseIlvl or 0),
+        tostring(info.upgradeLevel or 0)
+      )
+      lines[#lines + 1] = ("Current reforge: %s"):format(FormatReforgeDebugLabel(info.reforge))
+      lines[#lines + 1] = ("Link reforge: %s"):format(FormatReforgeDebugLabel(parsedLink and parsedLink.refId and (parsedLink.refId - REFORGE_TABLE_BASE) or nil))
+      lines[#lines + 1] = ("Tooltip reforge: %s"):format(tooltipReforge and FormatReforgeDebugLabel(tooltipReforge.index) or L["No reforge"])
+      lines[#lines + 1] = ("Target reforge: %s"):format(methodItem and methodItem.reforge and FormatReforgeDebugLabel(methodItem.reforge) or L["No reforge"])
+      lines[#lines + 1] = ("Tooltip stats: %s"):format(FormatTooltipStatsDebug(rawTooltipStats))
+      lines[#lines + 1] = ("Resolved stats: %s"):format(FormatTooltipStatsDebug(resolvedStats))
+
+      if parsedLink and parsedLink.raw_options then
+        lines[#lines + 1] = ("Link fields: %s"):format(table.concat(parsedLink.raw_options, ":"))
+      end
+
+      if tooltipLines and #tooltipLines > 0 then
+        lines[#lines + 1] = "Tooltip:"
+        for _, tooltipLine in ipairs(tooltipLines) do
+          lines[#lines + 1] = ("  %s"):format(tooltipLine)
+        end
+      end
+    end
+  end
+
+  return table.concat(lines, "\n")
+end
+
+function ReforgeOne:ShowItemDebugReport()
+  self:DisplayMessage(self:BuildItemDebugReport(), L["Item Debug Report"], true)
+end
+
+local function GetReforgeID(slotId)
+  if ignoredSlots[slotId] then return end
+  local item = PLAYER_ITEM_DATA[slotId]
+  if item and not item:IsItemEmpty() then
+    local link = item:GetItemLink()
+    if link then
+      return GetReforgeIDFromString(link)
+    end
+  end
+end
+
+local function CopyItemInfoFields(target, source)
+  wipe(target)
+  if not source then
+    return
+  end
+
+  for key, value in pairs(source) do
+    target[key] = value
+  end
+end
+
+local function DeriveItemUpgradeData(item)
+  if not item or item:IsItemEmpty() then
+    return 0, nil
+  end
+
+  local rareQuality = Enum and Enum.ItemQuality and Enum.ItemQuality.Rare or LE_ITEM_QUALITY_RARE or 3
+
+  if not item:HasItemLocation()
+    or item:GetItemQuality() < rareQuality then
+    return 0, nil
+  end
+
+  local link = item:GetItemLink()
+  if not link then
+    return 0, nil
+  end
+
+  local _, _, linkUpgradeDelta = GetLinkUpgradeData(link)
+
+  local baseIlvl
+
+  if SafeGetDetailedItemLevelInfo then
+    local best, effective, _, rawBase = SafeGetDetailedItemLevelInfo(item:GetItemID(), item:GetItemLocation(), link)
+    baseIlvl = rawBase or best
+
+    if (not baseIlvl or baseIlvl <= 0) and effective and effective > 0 then
+      baseIlvl = effective
+    end
+
+    if linkUpgradeDelta and linkUpgradeDelta > 0 then
+      local current = effective or (best and best > 0 and best) or item:GetCurrentItemLevel()
+      if current and current > 0 then
+        local candidate = current - linkUpgradeDelta
+        if candidate > 0 then
+          if not baseIlvl or baseIlvl <= 0 or baseIlvl >= current or (current - baseIlvl) < linkUpgradeDelta - 0.25 then
+            baseIlvl = candidate
+          end
+        end
+      end
+    end
+  end
+
+  if (not baseIlvl or baseIlvl <= 0) then
+    local _, _, _, infoLevel = GetItemInfo(link)
+    if infoLevel and infoLevel > 0 then
+      baseIlvl = infoLevel
+    end
+  end
+
+  local currentIlvl = item:GetCurrentItemLevel() or 0
+  if currentIlvl <= 0 and SafeGetDetailedItemLevelInfo then
+    local best, effective = SafeGetDetailedItemLevelInfo(item:GetItemID(), item:GetItemLocation(), link)
+    currentIlvl = (effective and effective > 0 and effective) or (best and best > 0 and best) or 0
+  end
+  if not currentIlvl or currentIlvl <= 0 then
+    if baseIlvl and baseIlvl > 0 then
+      return 0, baseIlvl
+    end
+    return 0, nil
+  end
+
+  if currentIlvl < 458 then
+    if baseIlvl and baseIlvl > 0 then
+      return 0, baseIlvl
+    end
+    return 0, nil
+  end
+
+  if (not baseIlvl or baseIlvl <= 0) and linkUpgradeDelta and linkUpgradeDelta > 0 then
+    baseIlvl = currentIlvl - linkUpgradeDelta
+  end
+
+  if not baseIlvl or baseIlvl <= 0 then
+    return 0, nil
+  end
+
+  local upgradeLevel = (currentIlvl - baseIlvl) / 4
+  if upgradeLevel < 0 then
+    upgradeLevel = 0
+  end
+
+  return floor(upgradeLevel + 0.5), baseIlvl
+end
+
+local function CollectItemInfoWithUpgrade(item, slotId)
+  if not item or item:IsItemEmpty() then
+    return
+  end
+
+  local link = item:GetItemLink()
+  if not link then
+    return
+  end
+
+  local apiBaseIlvl, apiCurrentIlvl
+  if SafeGetDetailedItemLevelInfo then
+    local itemId = item:GetItemID()
+    if itemId then
+      local itemLocation = item.HasItemLocation and item:HasItemLocation() and item:GetItemLocation() or nil
+      local best, effective, _, rawBase = SafeGetDetailedItemLevelInfo(itemId, itemLocation, link)
+      apiBaseIlvl = rawBase
+      apiCurrentIlvl = (effective and effective > 0 and effective) or (best and best > 0 and best) or nil
+    end
+  end
+
+  local derivedUpgrade, derivedOriginalIlvl = DeriveItemUpgradeData(item)
+
+  local originalIlvl = apiBaseIlvl
+  if not originalIlvl or originalIlvl <= 0 then
+    originalIlvl = derivedOriginalIlvl
+  end
+
+  local currentIlvl = apiCurrentIlvl
+  if not currentIlvl or currentIlvl <= 0 then
+    currentIlvl = item:GetCurrentItemLevel()
+  end
+
+  local computedUpgrade
+  if currentIlvl and currentIlvl > 0 and originalIlvl and originalIlvl > 0 then
+    computedUpgrade = floor(((currentIlvl - originalIlvl) / 4) + 0.5)
+    if computedUpgrade < 0 then
+      computedUpgrade = 0
+    end
+  end
+
+  local itemInfo = {
+    link = link,
+    itemId = item:GetItemID(),
+    itemGUID = item:GetItemGUID(),
+    ilvl = currentIlvl,
+    slotId = slotId,
+  }
+
+  if item:HasItemLocation() then
+    itemInfo.itemLocation = item:GetItemLocation()
+  end
+
+  if originalIlvl and originalIlvl > 0 then
+    local roundedBase = floor(originalIlvl + 0.5)
+    itemInfo.baseIlvl = roundedBase
+    itemInfo.ilvlBase = roundedBase
+    itemInfo.originalIlvl = roundedBase
+  end
+  if computedUpgrade and computedUpgrade > 0 then
+    itemInfo.upgradeLevel = computedUpgrade
+  elseif derivedUpgrade and derivedUpgrade > 0 then
+    itemInfo.upgradeLevel = derivedUpgrade
+  end
+
+  local _, baseIlvl, effectiveIlvl = addonTable.GetItemBaseAndUpgrade(itemInfo)
+  local upgradeLevel
+
+  if baseIlvl and baseIlvl > 0 and effectiveIlvl and effectiveIlvl > 0 then
+    upgradeLevel = floor(((effectiveIlvl - baseIlvl) / 4) + 0.5)
+    if upgradeLevel < 0 then
+      upgradeLevel = 0
+    end
+  end
+
+  if (not baseIlvl or baseIlvl <= 0) and originalIlvl and originalIlvl > 0 then
+    baseIlvl = floor(originalIlvl + 0.5)
+  end
+
+  if (not upgradeLevel or upgradeLevel <= 0) and computedUpgrade and computedUpgrade > 0 then
+    upgradeLevel = computedUpgrade
+  elseif (not upgradeLevel or upgradeLevel <= 0) and derivedUpgrade and derivedUpgrade > 0 then
+    upgradeLevel = derivedUpgrade
+  end
+
+  if (not baseIlvl or baseIlvl <= 0) and itemInfo.ilvl then
+    baseIlvl = itemInfo.ilvl
+  end
+
+  if (not effectiveIlvl or effectiveIlvl <= 0) and baseIlvl then
+    effectiveIlvl = baseIlvl + (upgradeLevel or 0) * 4
+  end
+
+  upgradeLevel = upgradeLevel or 0
+  baseIlvl = baseIlvl or 0
+  effectiveIlvl = effectiveIlvl or baseIlvl
+
+  itemInfo.baseIlvl = baseIlvl
+  itemInfo.upgradeLevel = upgradeLevel
+  itemInfo.effectiveIlvl = effectiveIlvl
+  itemInfo.ilvl = effectiveIlvl
+  if not itemInfo.originalIlvl then
+    itemInfo.originalIlvl = baseIlvl
+  end
+
+  return itemInfo, baseIlvl, upgradeLevel
+end
+
+function ReforgeOne:UpdateItems()
+  if not self.itemData or not self.pdb then
+    return
+  end
+  self.pdb.itemsLocked = self.pdb.itemsLocked or {}
+  local columnHasData = {}
+  for _, v in ipairs (self.itemData) do
+    local item = PLAYER_ITEM_DATA[v.slotId]
+    local stats = {}
+    local statsOrig = {}
+    local reforgeSrc, reforgeDst
+    v.itemInfo = v.itemInfo or {}
+    local info = v.itemInfo
+    if not item:IsItemEmpty() then
+      local itemInfo, baseIlvl, upgradeLevel = CollectItemInfoWithUpgrade(item, v.slotId)
+      if itemInfo then
+        CopyItemInfoFields(info, itemInfo)
+        info.reforge = GetReforgeID(v.slotId)
+
+        v.item = info.link
+        v.itemId = info.itemId
+        v.ilvl = info.ilvl
+        v.itemGUID = info.itemGUID
+        v.baseIlvl = baseIlvl
+        v.upgradeLevel = upgradeLevel
+        v.reforge = info.reforge
+        v.tooltipHasMultipleEquipmentSets = false
+
+        local iconTexture = item:GetItemIcon()
+        if not iconTexture then
+          iconTexture = v.slotTexture
+        end
+
+        if iconTexture then
+          v.displayTexture = iconTexture
+        else
+          v.displayTexture = nil
+        end
+
+        local coords = v.displayTexCoord or {}
+        coords[1], coords[2], coords[3], coords[4] = 0, 1, 0, 1
+        v.displayTexCoord = coords
+
+        if v.texture and v.texture.SetTexture then
+          v.texture:SetTexture(iconTexture)
+        end
+
+        local qualityColor = item:GetItemQualityColor()
+        v.qualityColor = qualityColor
+        if v.quality and v.quality.SetVertexColor then
+          if qualityColor then
+            v.quality:SetVertexColor(qualityColor.r, qualityColor.g, qualityColor.b)
+          else
+            v.quality:SetVertexColor(1, 1, 1)
+          end
+        end
+
+        local statsSource = GetItemStats(info)
+        v.tooltipHasMultipleEquipmentSets = info.tooltipHasMultipleEquipmentSets or false
+        if info.tooltipReforge and info.tooltipReforge ~= info.reforge then
+          info.reforgeLink = info.reforge
+          info.reforge = info.tooltipReforge
+          v.reforge = info.reforge
+        end
+        statsOrig = CopyTableShallow(statsSource)
+        stats = CopyTableShallow(statsSource)
+        if info.reforge then
+          local srcIndex, dstIndex = unpack(reforgeTable[info.reforge])
+          reforgeSrc = self.itemStats[srcIndex].name
+          reforgeDst = self.itemStats[dstIndex].name
+          local amount = floor ((stats[reforgeSrc] or 0) * addonTable.REFORGE_COEFF)
+          stats[reforgeSrc] = (stats[reforgeSrc] or 0) - amount
+          stats[reforgeDst] = (stats[reforgeDst] or 0) + amount
+        end
+      else
+        CopyItemInfoFields(info)
+        info.reforge = nil
+        v.item = nil
+        v.itemId = nil
+        v.ilvl = nil
+        v.itemGUID = nil
+        v.baseIlvl = nil
+        v.upgradeLevel = nil
+        v.reforge = nil
+        v.tooltipHasMultipleEquipmentSets = false
+        local iconTexture = item:GetItemIcon()
+        if not iconTexture then
+          iconTexture = v.slotTexture
+        end
+
+        if iconTexture then
+          v.displayTexture = iconTexture
+        else
+          v.displayTexture = nil
+        end
+
+        local coords = v.displayTexCoord or {}
+        coords[1], coords[2], coords[3], coords[4] = 0, 1, 0, 1
+        v.displayTexCoord = coords
+
+        if v.texture and v.texture.SetTexture then
+          v.texture:SetTexture(iconTexture)
+        end
+
+        local qualityColor = item:GetItemQualityColor()
+        v.qualityColor = qualityColor
+        if v.quality and v.quality.SetVertexColor then
+          if qualityColor then
+            v.quality:SetVertexColor(qualityColor.r, qualityColor.g, qualityColor.b)
+          else
+            v.quality:SetVertexColor(1, 1, 1)
+          end
+        end
+        stats = {}
+        statsOrig = {}
+      end
+    else
+      CopyItemInfoFields(info)
+      v.item = nil
+      v.itemId = nil
+      v.ilvl = nil
+      v.reforge = nil
+      v.itemGUID = nil
+      v.qualityColor = nil
+      v.upgradeLevel = nil
+      v.baseIlvl = nil
+      v.tooltipHasMultipleEquipmentSets = false
+      v.displayTexture = v.slotTexture
+      local coords = v.displayTexCoord or {}
+      coords[1], coords[2], coords[3], coords[4] = 0.07, 0.93, 0.07, 0.93
+      v.displayTexCoord = coords
+
+      if v.texture and v.texture.SetTexture then
+        v.texture:SetTexture (v.slotTexture)
+        if v.texture.SetTexCoord then
+          v.texture:SetTexCoord(coords[1], coords[2], coords[3], coords[4])
+        end
+      end
+
+      if v.quality and v.quality.SetVertexColor then
+        v.quality:SetVertexColor(1,1,1)
+      end
+      stats = {}
+      statsOrig = {}
+    end
+
+    if v.quality and v.quality.SetShown then
+      v.quality:SetShown(not item:IsItemEmpty())
+    end
+
+    local itemGUID = info.itemGUID
+    if v.locked and v.locked.SetShown then
+      v.locked:SetShown(itemGUID and self.pdb.itemsLocked[itemGUID])
+    end
+
+    for j, s in ipairs (self.itemStats) do
+      local statFont = v.stats and v.stats[j]
+      local fontColors = statFont and statFont.fontColors
+      local currentValue = stats[s.name]
+      local origValue = statsOrig[s.name]
+
+      if (origValue and origValue ~= 0) or (currentValue and currentValue ~= 0) then
+        columnHasData[j] = true
+      end
+
+      if statFont and statFont.SetText then
+        if currentValue and currentValue ~= 0 then
+          statFont:SetText (FormatLargeNumber(currentValue))
+          if fontColors then
+            if s.name == reforgeSrc then
+              statFont:SetTextColor (unpack(fontColors.red))
+            elseif s.name == reforgeDst then
+              statFont:SetTextColor (unpack(fontColors.green))
+            else
+              statFont:SetTextColor (unpack(fontColors.white))
+            end
+          end
+        else
+          statFont:SetText ("-")
+          if fontColors then
+            statFont:SetTextColor (unpack(fontColors.grey))
+          end
+        end
+      end
+    end
+  end
+
+  local hasAnyData = false
+  for _, hasData in pairs(columnHasData) do
+    if hasData then
+      hasAnyData = true
+      break
+    end
+  end
+
+  self.statColumnShown = self.statColumnShown or {}
+  for i, v in ipairs (self.itemStats) do
+    local hasData = columnHasData[i]
+    local showColumn = hasData or not hasAnyData
+    self.statColumnShown[i] = showColumn
+
+    if self.statTotals and self.statTotals[i] then
+      local totalValue = v.getter and v.getter() or 0
+      if totalValue and totalValue ~= 0 then
+        self.statTotals[i]:SetText(FormatLargeNumber(totalValue))
+      else
+        self.statTotals[i]:SetText(FormatLargeNumber(0))
+      end
+    end
+
+    if showColumn then
+      if self.itemTable and self.itemTable.ExpandColumn then
+        self.itemTable:ExpandColumn(i)
+        if self.itemTable.AutoSizeColumns then
+          self.itemTable:AutoSizeColumns(i)
+        end
+      end
+      if self.statHeaders and self.statHeaders[i] then
+        self.statHeaders[i]:Show()
+        if self.statHeaders[i].SetAlpha then
+          self.statHeaders[i]:SetAlpha(1)
+        end
+      end
+      if self.statTotals and self.statTotals[i] then
+        self.statTotals[i]:Show()
+        if self.statTotals[i].SetAlpha then
+          self.statTotals[i]:SetAlpha(1)
+        end
+      end
+    else
+      if self.itemTable and self.itemTable.CollapseColumn then
+        self.itemTable:CollapseColumn(i)
+      end
+      if self.statHeaders and self.statHeaders[i] then
+        if self.statHeaders[i].Hide then
+          self.statHeaders[i]:Hide()
+        else
+          self.statHeaders[i]:SetAlpha(0)
+        end
+      end
+      if self.statTotals and self.statTotals[i] then
+        if self.statTotals[i].Hide then
+          self.statTotals[i]:Hide()
+        else
+          self.statTotals[i]:SetAlpha(0)
+        end
+      end
+    end
+  end
+
+  self:UpdateOptionItemGrid()
+
+  self.statColumnShownInitialized = true
+
+  self:UpdateMethodStatVisibility()
+
+  local _, existingMinHeight, existingMaxWidth, existingMaxHeight = self:GetResizeBounds()
+  local methodStatsWidth = self.methodStats and self.methodStats:GetWidth() or 0
+  if not methodStatsWidth or methodStatsWidth <= 0 then
+    methodStatsWidth = 280
+  end
+  local alternativesWidth = 0
+  if self.methodAlternativesContainer and self.methodAlternativesContainer:GetWidth() then
+    alternativesWidth = self.methodAlternativesContainer:GetWidth()
+  end
+  if alternativesWidth < 0 then
+    alternativesWidth = 0
+  end
+  local methodSpacing = (alternativesWidth > 0) and 10 or 0
+  local methodPanelWidth = methodStatsWidth + methodSpacing + alternativesWidth
+  if methodPanelWidth <= 0 then
+    methodPanelWidth = 400
+  end
+  local leftPaneWidth = 0
+  if self.itemTable and self.itemTable.IsShown and self.itemTable:IsShown() then
+    leftPaneWidth = self.itemTable:GetWidth() + 10
+  end
+  local minWidth = leftPaneWidth + methodPanelWidth + 22
+  if leftPaneWidth == 0 and minWidth < 420 then
+    minWidth = 420
+  end
+
+  local targetMinWidth = math.max(WINDOW_MIN_WIDTH, minWidth)
+  local targetMinHeight = math.max(WINDOW_MIN_HEIGHT, existingMinHeight or WINDOW_MIN_HEIGHT)
+
+  local targetMaxWidth = WINDOW_MAX_WIDTH or existingMaxWidth
+  if targetMaxWidth and targetMaxWidth < targetMinWidth then
+    targetMaxWidth = targetMinWidth
+  end
+
+  local targetMaxHeight = WINDOW_MAX_HEIGHT or existingMaxHeight
+  if targetMaxHeight and targetMaxHeight < targetMinHeight then
+    targetMaxHeight = targetMinHeight
+  end
+
+  self:SetResizeBounds(targetMinWidth, targetMinHeight, targetMaxWidth, targetMaxHeight)
+
+  local clampedWidth = ClampDimension(self:GetWidth(), targetMinWidth, targetMaxWidth) or targetMinWidth
+  if clampedWidth ~= self:GetWidth() then
+    self:SetWidth(clampedWidth)
+  end
+
+  local clampedHeight = ClampDimension(self:GetHeight(), targetMinHeight, targetMaxHeight) or targetMinHeight
+  if clampedHeight ~= self:GetHeight() then
+    self:SetHeight(clampedHeight)
+  end
+
+  for capIndex, cap in ipairs(self.pdb.caps) do
+    for pointIndex, point in ipairs(cap.points) do
+      local oldValue = point.value
+      self:UpdateCapPreset (capIndex, pointIndex)
+      if oldValue ~= point.value then
+        self:ReorderCapPoint (capIndex, pointIndex)
+      end
+    end
+  end
+  self:RefreshMethodStats()
+end
+
+function ReforgeOne:DoesMethodUseStat(statIndex)
+  local method = self.pdb and self.pdb.method
+  if not method or not method.items then
+    return false
+  end
+
+  for _, slotInfo in ipairs(method.items) do
+    if slotInfo and slotInfo.reforge and (slotInfo.src == statIndex or slotInfo.dst == statIndex) then
+      return true
+    end
+  end
+
+  return false
+end
+
+function ReforgeOne:ShouldDisplayStat(statIndex)
+  if not statIndex or statIndex <= 0 then
+    return false
+  end
+
+  if not self.statColumnShownInitialized then
+    return true
+  end
+
+  if self.statColumnShown and self.statColumnShown[statIndex] then
+    return true
+  end
+
+  return self:DoesMethodUseStat(statIndex)
+end
+
+function ReforgeOne:UpdateMethodStatVisibility()
+  if not self.methodStats then
+    return
+  end
+
+  self.methodStats.visibleRows = self.methodStats.visibleRows or {}
+
+  local orderedStatIndexes = self.methodStats.orderedStatIndexes
+  if not orderedStatIndexes or #orderedStatIndexes == 0 then
+    orderedStatIndexes = {}
+    for index = 1, #self.itemStats do
+      orderedStatIndexes[#orderedStatIndexes + 1] = index
+    end
+  end
+
+  for _, statIndex in ipairs(orderedStatIndexes) do
+    local shouldShow = self:ShouldDisplayStat(statIndex)
+    local row = self.methodStats.rowIndexByStatIndex and self.methodStats.rowIndexByStatIndex[statIndex] or (statIndex - 1)
+    if row then
+      local changed = self.methodStats.visibleRows[row] ~= shouldShow
+      self.methodStats.visibleRows[row] = shouldShow
+      self.methodStats:SetRowExpanded(row, shouldShow)
+
+      if changed then
+        local labelCell = self.methodStats.cells and self.methodStats.cells[row] and self.methodStats.cells[row][0]
+        if labelCell then
+          labelCell:SetShown(shouldShow)
+        end
+
+        local statRow = self.methodStats[statIndex]
+        if statRow then
+          if statRow.value then
+            statRow.value:SetShown(shouldShow)
+          end
+          if statRow.delta then
+            statRow.delta:SetShown(shouldShow)
+          end
+        end
+      end
+    end
+  end
+end
+
+function ReforgeOne:UpdatePlayerSpecInfo()
+  if not self.playerSpecTexture then return end
+  if self.leftPaneVisible == false then
+    self.playerSpecTexture:Hide()
+    if self.playerTalents then
+      for _, talentIcon in ipairs(self.playerTalents) do
+        talentIcon:Hide()
+      end
+    end
+    return
+  end
+  local _, specName, _, icon = C_SpecializationInfo.GetSpecializationInfo(C_SpecializationInfo.GetSpecialization())
+  if specName == "" then
+    specName, icon = NONE, 132222
+  end
+  self.playerSpecTexture:SetTexture(icon)
+  local activeSpecGroup = C_SpecializationInfo.GetActiveSpecGroup()
+  for tier = 1, MAX_NUM_TALENT_TIERS do
+    self.playerTalents[tier]:Show()
+    local tierAvailable, selectedTalentColumn = GetTalentTierInfo(tier, activeSpecGroup, false, "player")
+    if tierAvailable then
+      if selectedTalentColumn > 0 then
+        local talentInfo = C_SpecializationInfo.GetTalentInfo({
+          tier = tier,
+          column = selectedTalentColumn,
+          groupIndex = activeSpecGroup,
+          target = 'player'
+        })
+        self.playerTalents[tier]:SetTexture(talentInfo.icon)
+        self.playerTalents[tier]:SetScript("OnEnter", function(f)
+          GameTooltip:SetOwner(f, "ANCHOR_LEFT")
+          GameTooltip:SetTalent(talentInfo.talentID, false, false, activeSpecGroup)
+          GameTooltip:Show()
+        end)
+      else
+        self.playerTalents[tier]:SetTexture(132222)
+        self.playerTalents[tier]:SetScript("OnEnter", nil)
+      end
+    else
+      self.playerTalents[tier]:Hide()
+    end
+  end
+end
+
+local queueUpdateEvents = {
+  COMBAT_RATING_UPDATE = true,
+  MASTERY_UPDATE = true,
+  PLAYER_EQUIPMENT_CHANGED = true,
+  FORGE_MASTER_ITEM_CHANGED = true,
+  UNIT_AURA = "player",
+  UNIT_SPELL_HASTE = "player",
+}
+
+function ReforgeOne:RegisterQueueUpdateEvents()
+  for event, unitID in pairs(queueUpdateEvents) do
+    local eventIsValid = not (C_EventUtils and C_EventUtils.IsEventValid) or C_EventUtils.IsEventValid(event)
+    if eventIsValid and not self:IsEventRegistered(event) then
+      if unitID == true then
+        self:RegisterEvent(event)
+      else
+        self:RegisterUnitEvent(event, unitID)
+      end
+    end
+  end
+end
+
+function ReforgeOne:UnregisterQueueUpdateEvents()
+  for event in pairs(queueUpdateEvents) do
+    if self:IsEventRegistered(event) then
+      self:UnregisterEvent(event)
+    end
+  end
+end
+
+function ReforgeOne:QueueUpdate()
+  local time = GetTime()
+  if self.lastRan == time then return end
+  self.lastRan = time
+  RunNextFrame(function()
+    self:UpdateItems()
+    self:RefreshMethodWindow()
+  end)
+end
+
+
+function ReforgeOne:RefreshMethodWindow()
+  self:EnsureMethodOverride()
+  for index = 1, ITEM_SLOT_COUNT do
+    self.methodOverride[index] = 0
+  end
+  self:UpdateMethodChecks()
+end
+
+local function IsReforgeMatching (slotId, reforge, override)
+  if override == 1 then
+    return true
+  end
+
+  if ReforgeOne.itemData then
+    for _, slotData in ipairs(ReforgeOne.itemData) do
+      if slotData and slotData.slotId == slotId then
+        local detectedReforge = slotData.itemInfo and slotData.itemInfo.reforge
+        if detectedReforge ~= nil then
+          return reforge == detectedReforge
+        end
+        break
+      end
+    end
+  end
+
+  return reforge == GetReforgeID(slotId)
+end
+
+function ReforgeOne:UpdateMethodChecks ()
+  self:EnsureMethodOverride()
+  local method = self.pdb and self.pdb.method
+  local cost = 0
+  local anyDiffer = false
+
+  if method and self.itemData then
+    local overrides = self.methodOverride
+    for index, slotData in ipairs(self.itemData) do
+      local methodItem = method.items and method.items[index]
+      if methodItem then
+        local override = overrides and overrides[index] or 0
+        local item = PLAYER_ITEM_DATA[slotData.slotId]
+        local isMatching = item:IsItemEmpty() or IsReforgeMatching(slotData.slotId, methodItem.reforge, override)
+        if not isMatching then
+          anyDiffer = true
+          if methodItem.reforge then
+            local itemLink = item:GetItemLink()
+            local itemCost = itemLink and select(11, C_Item.GetItemInfo(itemLink)) or 0
+            cost = cost + (itemCost > 0 and itemCost or 100000)
+          end
+        end
+      end
+    end
+  end
+
+  local enoughMoney = anyDiffer and GetMoney() >= cost
+  local canReforge = anyDiffer and ReforgeFrameIsVisible() and enoughMoney
+  local reforgeInProgress = reforgeCo ~= nil
+  local canClick = (canReforge or reforgeInProgress) and not self.computeInProgress
+
+  if self.methodCost then
+    self.methodCost:SetShown(anyDiffer)
+    SetMoneyFrameColorByFrame(self.methodCost, enoughMoney and "white" or "red")
+    MoneyFrame_Update(self.methodCost, cost)
+  end
+  if self.methodReforge then
+    self.methodReforge:SetEnabled(canClick)
+  end
+end
+
+
+local function ClearReforgeWindow()
+  ClearCursor()
+  C_Reforge.SetReforgeFromCursorItem ()
+  ClearCursor()
+end
+
+local reforgeCo
+
+local function ResumeReforgeCoroutine(self)
+  if not reforgeCo then
+    return
+  end
+
+  local ok, err = coroutine.resume(reforgeCo)
+  if not ok then
+    print(("Reforge coroutine error: %s"):format(tostring(err)))
+    self:StopReforging()
+  end
+end
+
+function ReforgeOne:DoReforge()
+  if self.pdb.method and ReforgeFrameIsVisible() then
+    self:EnsureMethodOverride()
+    if reforgeCo then
+      self:StopReforging()
+    else
+      ClearReforgeWindow()
+      if self.methodReforge then
+        self.methodReforge:SetText(CANCEL)
+      end
+      reforgeCo = coroutine.create( function() self:DoReforgeUpdate() end )
+      ResumeReforgeCoroutine(self)
+    end
+  end
+end
+
+function ReforgeOne:StopReforging()
+  if reforgeCo then
+    reforgeCo = nil
+    ClearReforgeWindow()
+    collectgarbage()
+  end
+  if self.methodReforge then
+    self.methodReforge:SetText(REFORGE)
+  end
+  self:UpdateMethodChecks()
+end
+
+function ReforgeOne:ContinueReforge()
+  if not reforgeCo then
+    return
+  end
+
+  if not (self.pdb.method and ReforgeFrameIsVisible()) then
+    self:StopReforging()
+    return
+  end
+
+  ResumeReforgeCoroutine(self)
+end
+
+local function IsReforgeOptionAvailableForStats(stats, srcIndex, dstIndex)
+  if not (stats and srcIndex and dstIndex) then
+    return false
+  end
+
+  local srcStat = ITEM_STATS[srcIndex]
+  local dstStat = ITEM_STATS[dstIndex]
+  if not (srcStat and dstStat) then
+    return false
+  end
+
+  return (stats[srcStat.name] or 0) > 0 and (stats[dstStat.name] or 0) == 0
+end
+
+local function ClearMethodItemReforge(methodItem)
+  if not methodItem then
+    return
+  end
+
+  methodItem.src = nil
+  methodItem.dst = nil
+  methodItem.reforge = nil
+  methodItem.amount = nil
+end
+
+function ReforgeOne:DoReforgeUpdate()
+  self:EnsureMethodOverride()
+  if not (self.pdb and self.pdb.method and self.itemData) then
+    self:StopReforging()
+    return
+  end
+
+  for slotId, slotData in ipairs(self.itemData) do
+    local methodItem = self.pdb.method.items and self.pdb.method.items[slotId]
+    local override = self.methodOverride[slotId]
+    if methodItem and slotData and slotData.slotId then
+      local item = PLAYER_ITEM_DATA[slotData.slotId]
+      if item and not item:IsItemEmpty() and not IsReforgeMatching(slotData.slotId, methodItem.reforge, override) then
+        PickupInventoryItem(slotData.slotId)
+        C_Reforge.SetReforgeFromCursorItem()
+        if methodItem.reforge then
+          local id = UNFORGE_INDEX
+          local applied = false
+          local targetSrc = methodItem.src
+          local targetDst = methodItem.dst
+          if (not targetSrc or not targetDst) and methodItem.reforge then
+            local targetReforge = reforgeTable[methodItem.reforge]
+            if targetReforge then
+              targetSrc, targetDst = unpack(targetReforge)
+            end
+          end
+          local reforgeItemInfo = slotData.itemInfo
+          if (not reforgeItemInfo or not reforgeItemInfo.link) and CollectItemInfoWithUpgrade then
+            reforgeItemInfo = CollectItemInfoWithUpgrade(item, slotData.slotId)
+          end
+          local stats = {}
+          if reforgeItemInfo and reforgeItemInfo.link then
+            stats = GetItemStats(reforgeItemInfo) or {}
+          end
+          if not IsReforgeOptionAvailableForStats(stats, targetSrc, targetDst) then
+            print(("Skipping impossible reforge for %s. Parsed stats: %s. Target: %s"):format(
+              tostring(slotData.item or _G[slotData.slot] or slotData.slotId),
+              FormatTooltipStatsDebug(stats),
+              FormatReforgeDebugLabel(methodItem.reforge)
+            ))
+            ClearMethodItemReforge(methodItem)
+            ClearReforgeWindow()
+          else
+            for _, reforgeInfo in ipairs(reforgeTable) do
+              local srcIndex, dstIndex = unpack(reforgeInfo)
+              local isAvailableOption = IsReforgeOptionAvailableForStats(stats, srcIndex, dstIndex)
+              if isAvailableOption then
+                id = id + 1
+                if srcIndex == targetSrc and dstIndex == targetDst then
+                  applied = true
+                  C_Reforge.ReforgeItem (id)
+                  coroutine.yield()
+                  break
+                end
+              end
+            end
+            if not applied then
+              print(("Unable to resolve reforge option for %s. Parsed stats: %s. Target: %s"):format(
+                tostring(slotData.item or _G[slotData.slot] or slotData.slotId),
+                FormatTooltipStatsDebug(stats),
+                FormatReforgeDebugLabel(methodItem.reforge)
+              ))
+              ClearMethodItemReforge(methodItem)
+              ClearReforgeWindow()
+            end
+          end
+        elseif (slotData.itemInfo and slotData.itemInfo.reforge) or GetReforgeID(slotData.slotId) then
+          C_Reforge.ReforgeItem (UNFORGE_INDEX)
+          coroutine.yield()
+        end
+      end
+    end
+  end
+  self:StopReforging()
+end
+
+
+
+function ReforgeOne:OnEvent(event, ...)
+  if self[event] then
+    self[event](self, ...)
+  end
+  if queueUpdateEvents[event] then
+    self:QueueUpdate()
+  end
+end
+
+function ReforgeOne:Initialize()
+  if not self.initialized then
+    self:CreateFrame()
+    self.initialized = true
+  end
+end
+
+function ReforgeOne:OnShow()
+  self:Initialize()
+  self:SetNewTopWindow()
+  self:UpdateItems()
+  self:RegisterQueueUpdateEvents()
+end
+
+function ReforgeOne:OnHide()
+  self:UnregisterQueueUpdateEvents()
+end
+
+function ReforgeOne:OnCommand (cmd)
+  if InCombatLockdown() then print(ERROR_CAPS, ERR_AFFECTING_COMBAT) return end
+  self:Show ()
+end
+
+function ReforgeOne:FORGE_MASTER_ITEM_CHANGED()
+  self:ContinueReforge()
+end
+
+function ReforgeOne:FORGE_MASTER_OPENED()
+  if self.db.openOnReforge and not self:IsShown() then
+    self.autoOpened = true
+    self:Show()
+  end
+  self:RefreshMethodWindow()
+  self:CreateImportButton()
+  self:StopReforging()
+end
+
+function ReforgeOne:FORGE_MASTER_CLOSED()
+  if self.autoOpened then
+    RFL_FRAMES:CloseAll()
+    self.autoOpened = nil
+  end
+  self:StopReforging()
+end
+
+function ReforgeOne:PLAYER_REGEN_DISABLED()
+  RFL_FRAMES:CloseAll()
+end
+
+function ReforgeOne:PLAYER_SPECIALIZATION_CHANGED()
+  self:GetConversion()
+  self:UpdatePlayerSpecInfo()
+end
+
+function ReforgeOne:PLAYER_ENTERING_WORLD()
+  self:GetConversion()
+end
+
+local ILVL_DISPLAY_FORMAT = "iLvl: %d"
+
+function ReforgeOne:PLAYER_AVG_ITEM_LEVEL_UPDATE()
+  if not (self.itemLevel and self.itemLevel:IsShown()) then
+    return
+  end
+  self.itemLevel:SetFormattedText(ILVL_DISPLAY_FORMAT, select(2, GetAverageItemLevel()))
+end
+
+function ReforgeOne:ADDON_LOADED (addon)
+  if addon ~= addonName then return end
+  local status, missingRequired, reporter = InitializeLibraryHelpers()
+  if missingRequired and #missingRequired > 0 then
+    for _, libName in ipairs(missingRequired) do
+      reporter(libName)
+    end
+    self:UnregisterEvent("ADDON_LOADED")
+    return
+  end
+  for name, info in pairs(status) do
+    if info and not info.required and not info.loaded then
+      reporter(name)
+    end
+  end
+  self:Hide()
+  self:UpgradeDB()
+
+  RefreshItemStatLabels()
+
+  local acquireLibrary = addonTable.AcquireLibrary
+  local aceDB = acquireLibrary and acquireLibrary("AceDB-3.0")
+  if not aceDB then
+    self:UnregisterEvent("ADDON_LOADED")
+    return
+  end
+  local db = aceDB:New(addonName.."DB", DefaultDB)
+
+  self.db = db.global
+  self.pdb = db.char
+  self.cdb = db.class
+
+  self:InitializeSavedEquipStorage()
+
+  if self.db then
+    self.db.openOnReforge = true
+    self.db.specProfiles = nil
+    self.db.importButton = nil
+    self.db.showHelp = nil
+    self.db.activeWindowTitle = nil
+    self.db.inactiveWindowTitle = nil
+    self.db.speed = addonTable.DEFAULT_COMPUTE_SPEED
+  end
+  if self.pdb then
+    self.pdb.prevSpecSettings = nil
+  end
+
+  if self.db then
+    self.db.methodAlternativeCount = nil
+  end
+
+  self:SetCoreSpeedPreset(self.db and self.db.coreSpeedPreset)
+
+  while #self.pdb.caps > #DefaultDB.char.caps do
+    tremove(self.pdb.caps)
+  end
+  while #self.pdb.caps < NUM_CAPS do
+    tinsert(self.pdb.caps, CreateDefaultCap())
+  end
+  for i = 1, #self.pdb.caps do
+    self.pdb.caps[i].points = self.pdb.caps[i].points or {}
+  end
+
+  self.conversion = setmetatable({}, {
+    __index = function(t, k)
+      local value = {}
+      rawset(t, k, value)
+      return value
+    end,
+  })
+
+  self:RegisterEvent("FORGE_MASTER_OPENED")
+  self:RegisterEvent("FORGE_MASTER_CLOSED")
+  self:RegisterEvent("PLAYER_REGEN_DISABLED")
+  self:RegisterEvent("PLAYER_ENTERING_WORLD")
+  self:RegisterUnitEvent("PLAYER_SPECIALIZATION_CHANGED", "player")
+  self:UnregisterEvent("ADDON_LOADED")
+
+  self:SetScript("OnShow", self.OnShow)
+  self:SetScript("OnHide", self.OnHide)
+
+  for k, v in ipairs({ addonName, "reforge", REFORGE:lower(), "rfl" }) do
+    _G["SLASH_"..addonName:upper()..k] = "/" .. v
+  end
+  SlashCmdList[addonName:upper()] = function(...) self:OnCommand(...) end
+end
+
+ReforgeOne:SetScript ("OnEvent", ReforgeOne.OnEvent)
+ReforgeOne:RegisterEvent ("ADDON_LOADED")
