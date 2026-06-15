@@ -633,15 +633,11 @@ end
 ClassIcon:SetScript("OnMouseDown", function(self, button)
     if UnitFramesPlusDB["target"]["moreaction"] == 1 and UnitIsPlayer("target") and (not UnitIsUnit("player", "target")) and (not UnitIsEnemy("player", "target")) then
 		if button == "LeftButton" then
-			if CheckInteractDistance("target", 1) then
-				isclicked = TargetClassIconDown();
-				InspectUnit("target");
-			end
+			isclicked = TargetClassIconDown();
+			InspectUnit("target");
 		elseif button == "RightButton" then
-			if CheckInteractDistance("target", 2) then
-				isclicked = TargetClassIconDown();
-				InitiateTrade("target");
-			end
+			isclicked = TargetClassIconDown();
+			InitiateTrade("target");
 		elseif button == "MiddleButton" then
 			isclicked = TargetClassIconDown();
 			local server = nil;
@@ -652,16 +648,14 @@ ClassIcon:SetScript("OnMouseDown", function(self, button)
 			end
 			ChatFrame_SendTell(fullname);
 		elseif button == "Button4" then
-			if CheckInteractDistance("target",4) then
-				isclicked = TargetClassIconDown();
-				local server = nil;
-				local name, server = UnitName("target");
-				local fullname = name;
-				if server and (not "target" or UnitIsSameServer("player", "target") ~= 1) then
-					fullname = name.."-"..server;
-				end
-				FollowUnit(fullname, 1);
+			isclicked = TargetClassIconDown();
+			local server = nil;
+			local name, server = UnitName("target");
+			local fullname = name;
+			if server and (not "target" or UnitIsSameServer("player", "target") ~= 1) then
+				fullname = name.."-"..server;
 			end
+			FollowUnit(fullname, 1);
 		end
     end
 end)

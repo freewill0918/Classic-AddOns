@@ -19,21 +19,21 @@ LBIS:AddGem(spec0, "77542", "3", "False") --Quick Tinker's Gear
 LBIS:AddGem(spec0, "77547", "3", "False") --Fractured Tinker's Gear
 LBIS:AddGem(spec0, "76671", "3", "False") --Keen Vermilion Onyx
 
-LBIS:AddEnchant(spec3, "121195", LBIS.L["Shoulder"]) --
-LBIS:AddEnchant(spec3, "142173", LBIS.L["Back"]) --
-LBIS:AddEnchant(spec3, "125481", LBIS.L["Back"]) --
-LBIS:AddEnchant(spec3, "104395", LBIS.L["Chest"]) --
-LBIS:AddEnchant(spec3, "104389", LBIS.L["Wrist"]) --
-LBIS:AddEnchant(spec3, "126731", LBIS.L["Hands"]) --
-LBIS:AddEnchant(spec3, "104420", LBIS.L["Hands"]) --
-LBIS:AddEnchant(spec3, "104416", LBIS.L["Hands"]) --
-LBIS:AddEnchant(spec3, "82175", LBIS.L["Hands"]) --
-LBIS:AddEnchant(spec3, "125496", LBIS.L["Legs"]) --
-LBIS:AddEnchant(spec3, "122392", LBIS.L["Legs"]) --
-LBIS:AddEnchant(spec3, "104414", LBIS.L["Feet"]) --
-LBIS:AddEnchant(spec3, "104407", LBIS.L["Feet"]) --
-LBIS:AddEnchant(spec3, "104427", LBIS.L["Main Hand"]) --
-LBIS:AddEnchant(spec3, "104445", LBIS.L["Off Hand"]) --
+LBIS:AddEnchant(spec5, "121195", LBIS.L["Shoulder"]) --
+LBIS:AddEnchant(spec5, "142173", LBIS.L["Back"]) --
+LBIS:AddEnchant(spec5, "125481", LBIS.L["Back"]) --
+LBIS:AddEnchant(spec5, "104395", LBIS.L["Chest"]) --
+LBIS:AddEnchant(spec5, "104389", LBIS.L["Wrist"]) --
+LBIS:AddEnchant(spec5, "126731", LBIS.L["Hands"]) --
+LBIS:AddEnchant(spec5, "104420", LBIS.L["Hands"]) --
+LBIS:AddEnchant(spec5, "104416", LBIS.L["Hands"]) --
+LBIS:AddEnchant(spec5, "82175", LBIS.L["Hands"]) --
+LBIS:AddEnchant(spec5, "125496", LBIS.L["Legs"]) --
+LBIS:AddEnchant(spec5, "122392", LBIS.L["Legs"]) --
+LBIS:AddEnchant(spec5, "104414", LBIS.L["Feet"]) --
+LBIS:AddEnchant(spec5, "104407", LBIS.L["Feet"]) --
+LBIS:AddEnchant(spec5, "104427", LBIS.L["Main Hand"]) --
+LBIS:AddEnchant(spec5, "104445", LBIS.L["Off Hand"]) --
 
 LBIS:AddItem(spec0, "94278", LBIS.L["Head"], "BIS") --Falling Blossom Cowl
 LBIS:AddItem(spec0, "81692", LBIS.L["Head"], "Alt") --Whitemane's Embroidered Chapeau
@@ -352,7 +352,7 @@ LBIS:AddItem(spec3, "87550", LBIS.L["Ring"], "Alt") --Vithrak, Gaze of the Deadm
 LBIS:AddItem(spec3, "95785", LBIS.L["Ring"], "Alt") --Ro'shak's Remembrance
 LBIS:AddItem(spec3, "81189", LBIS.L["Ring"], "Alt") --Ring of Malice
 LBIS:AddItem(spec3, "95638", LBIS.L["Ring"], "Alt") --Jin'rokh's Dreamshard
-LBIS:AddItem(spec3, "96516", LBIS.L["Trinket"], "BIS") --Cha-Ye's Essence of Brilliance
+LBIS:AddItem(spec3, "96413", LBIS.L["Trinket"], "BIS") --Wushoolay's Final Choice
 LBIS:AddItem(spec3, "96558", LBIS.L["Trinket"], "BIS") --Unerring Vision of Lei Shen
 LBIS:AddItem(spec3, "89081", LBIS.L["Trinket"], "Alt") --Blossom of Pure Snow
 LBIS:AddItem(spec3, "93254", LBIS.L["Trinket"], "Alt") --Static-Caster's Medallion
@@ -360,7 +360,7 @@ LBIS:AddItem(spec3, "93259", LBIS.L["Trinket"], "Alt") --Shock-Charger Medallion
 LBIS:AddItem(spec3, "94510", LBIS.L["Trinket"], "Alt") --Volatile Talisman of the Shado-Pan Assault
 LBIS:AddItem(spec3, "81192", LBIS.L["Trinket"], "Alt") --Vision of the Predator
 LBIS:AddItem(spec3, "95814", LBIS.L["Trinket"], "Alt") --Unerring Vision of Lei Shen
-LBIS:AddItem(spec3, "95711", LBIS.L["Trinket"], "Alt") --Breath of the Hydra
+LBIS:AddItem(spec3, "95669", LBIS.L["Trinket"], "Alt") --Wushoolay's Final Choice
 LBIS:AddItem(spec3, "81263", LBIS.L["Trinket"], "Alt") --Flashfrozen Resin Globule
 LBIS:AddItem(spec3, "96518", LBIS.L["Main Hand"], "BIS") --Athame of the Sanguine Ritual
 LBIS:AddItem(spec3, "89395", LBIS.L["Main Hand"], "Alt") --Amber Scythe of Klaxxi'vess
@@ -369,3 +369,171 @@ LBIS:AddItem(spec3, "95774", LBIS.L["Main Hand"], "Alt") --Athame of the Sanguin
 LBIS:AddItem(spec3, "82859", LBIS.L["Main Hand"], "Alt") --Headmaster's Will
 LBIS:AddItem(spec3, "96562", LBIS.L["Off Hand"], "BIS") --Lei Shen's Orb of Command
 LBIS:AddItem(spec3, "95818", LBIS.L["Off Hand"], "Alt") --Lei Shen's Orb of Command
+
+LBIS:AddItem(spec4, "96635", LBIS.L["Head"], "BIS") --Hood of the Chromatic Hydra
+LBIS:AddItem(spec4, "81692", LBIS.L["Head"], "Alt") --Whitemane's Embroidered Chapeau
+LBIS:AddItem(spec4, "95891", LBIS.L["Head"], "Alt") --Hood of the Chromatic Hydra
+LBIS:AddItem(spec4, "94278", LBIS.L["Head"], "Alt") --Falling Blossom Cowl
+LBIS:AddItem(spec4, "89337", LBIS.L["Head"], "Alt") --Firecracker Corona
+LBIS:AddItem(spec4, "96638", LBIS.L["Shoulder"], "BIS") --Mantle of the Chromatic Hydra
+LBIS:AddItem(spec4, "89340", LBIS.L["Shoulder"], "Alt") --Mantle of the Golden Sun
+LBIS:AddItem(spec4, "81291", LBIS.L["Shoulder"], "Alt") --Whisperwind Spaulders
+LBIS:AddItem(spec4, "95894", LBIS.L["Shoulder"], "Alt") --Mantle of the Chromatic Hydra
+LBIS:AddItem(spec4, "95096", LBIS.L["Shoulder"], "Alt") --Shoulders of Demonic Dreams
+LBIS:AddItem(spec4, "95102", LBIS.L["Shoulder"], "Alt") --Frost-Kissed Shoulderwraps
+LBIS:AddItem(spec4, "95014", LBIS.L["Back"], "BIS") --Red Sky Cloudcloak
+LBIS:AddItem(spec4, "89077", LBIS.L["Back"], "Alt") --Cloak of Snow Blossoms
+LBIS:AddItem(spec4, "97209", LBIS.L["Back"], "Alt") --Static-Collecting Cloak
+LBIS:AddItem(spec4, "97204", LBIS.L["Back"], "Alt") --Static-Collecting Cloak
+LBIS:AddItem(spec4, "95117", LBIS.L["Back"], "Alt") --Shadowspike Cloak
+LBIS:AddItem(spec4, "81575", LBIS.L["Back"], "Alt") --Scorched Earth Cloak
+LBIS:AddItem(spec4, "95741", LBIS.L["Back"], "Alt") --Deadly Glare Cape
+LBIS:AddItem(spec4, "96637", LBIS.L["Chest"], "BIS") --Robes of the Chromatic Hydra
+LBIS:AddItem(spec4, "89433", LBIS.L["Chest"], "Alt") --Vestments of Thundering Skies
+LBIS:AddItem(spec4, "95081", LBIS.L["Chest"], "Alt") --Fire Support Robes
+LBIS:AddItem(spec4, "81188", LBIS.L["Chest"], "Alt") --Robes of Fevered Dreams
+LBIS:AddItem(spec4, "95893", LBIS.L["Chest"], "Alt") --Robes of the Chromatic Hydra
+LBIS:AddItem(spec4, "96452", LBIS.L["Wrist"], "BIS") --Frostborn Wristwraps
+LBIS:AddItem(spec4, "88893", LBIS.L["Wrist"], "Alt") --Minh's Beaten Bracers
+LBIS:AddItem(spec4, "95136", LBIS.L["Wrist"], "Alt") --Troll-Burner Bracers
+LBIS:AddItem(spec4, "95708", LBIS.L["Wrist"], "Alt") --Frostborn Wristwraps
+LBIS:AddItem(spec4, "81064", LBIS.L["Wrist"], "Alt") --Bracers of Displaced Air
+LBIS:AddItem(spec4, "96634", LBIS.L["Hands"], "BIS") --Gloves of the Chromatic Hydra
+LBIS:AddItem(spec4, "88742", LBIS.L["Hands"], "Alt") --Sunspeaker's Flared Gloves
+LBIS:AddItem(spec4, "95106", LBIS.L["Hands"], "Alt") --Flameweaver Handwraps
+LBIS:AddItem(spec4, "95890", LBIS.L["Hands"], "Alt") --Gloves of the Chromatic Hydra
+LBIS:AddItem(spec4, "81240", LBIS.L["Hands"], "Alt") --Conflagrating Gloves
+LBIS:AddItem(spec4, "96462", LBIS.L["Waist"], "BIS") --Cord of Cacophonous Cawing
+LBIS:AddItem(spec4, "89062", LBIS.L["Waist"], "Alt") --Klaxxi Lash of the Orator
+LBIS:AddItem(spec4, "95532", LBIS.L["Waist"], "Alt") --Belt of Loa Charms
+LBIS:AddItem(spec4, "95527", LBIS.L["Waist"], "Alt") --Pain-Binder Girdle
+LBIS:AddItem(spec4, "95518", LBIS.L["Waist"], "Alt") --Pain-Binder Girdle
+LBIS:AddItem(spec4, "95523", LBIS.L["Waist"], "Alt") --Belt of Loa Charms
+LBIS:AddItem(spec4, "93330", LBIS.L["Waist"], "Alt") --Chang's Changing Cord
+LBIS:AddItem(spec4, "93339", LBIS.L["Waist"], "Alt") --Bon-iy's Unbreakable Cord
+LBIS:AddItem(spec4, "95090", LBIS.L["Waist"], "Alt") --Firestrike Cord
+LBIS:AddItem(spec4, "82861", LBIS.L["Waist"], "Alt") --Incineration Belt
+LBIS:AddItem(spec4, "95718", LBIS.L["Waist"], "Alt") --Cord of Cacophonous Cawing
+LBIS:AddItem(spec4, "95030", LBIS.L["Legs"], "BIS") --Leggings of the Discarded Warning
+LBIS:AddItem(spec4, "89088", LBIS.L["Legs"], "Alt") --Leggings of the Poisoned Soul
+LBIS:AddItem(spec4, "95123", LBIS.L["Legs"], "Alt") --Charfire Leggings
+LBIS:AddItem(spec4, "95635", LBIS.L["Legs"], "Alt") --Al'set's Tormented Leggings
+LBIS:AddItem(spec4, "81106", LBIS.L["Legs"], "Alt") --Leggings of the Frenzy
+LBIS:AddItem(spec4, "95004", LBIS.L["Feet"], "BIS") --Starwalker Sandals
+LBIS:AddItem(spec4, "93271", LBIS.L["Feet"], "Alt") --Beach-Born Sandals
+LBIS:AddItem(spec4, "93280", LBIS.L["Feet"], "Alt") --Sandals of Oiled Silk
+LBIS:AddItem(spec4, "88878", LBIS.L["Feet"], "Alt") --Void Flame Slippers
+LBIS:AddItem(spec4, "94277", LBIS.L["Feet"], "Alt") --Falling Blossom Treads
+LBIS:AddItem(spec4, "81699", LBIS.L["Feet"], "Alt") --Scarlet Sandals
+LBIS:AddItem(spec4, "95784", LBIS.L["Feet"], "Alt") --Dam'ren's Frozen Footguards
+LBIS:AddItem(spec4, "96453", LBIS.L["Neck"], "BIS") --Megaera's Shining Eye
+LBIS:AddItem(spec4, "95146", LBIS.L["Neck"], "Alt") --Destroyer's Battletags
+LBIS:AddItem(spec4, "89068", LBIS.L["Neck"], "Alt") --Wire of the Wakener
+LBIS:AddItem(spec4, "95964", LBIS.L["Neck"], "Alt") --Necklace of the Terra-Cotta Invoker
+LBIS:AddItem(spec4, "81566", LBIS.L["Neck"], "Alt") --Anarchist's Pendant
+LBIS:AddItem(spec4, "90596", LBIS.L["Neck"], "Alt") --Burning Necklace of the Golden Lotus
+LBIS:AddItem(spec4, "95019", LBIS.L["Ring"], "BIS") --Ra-den's Summoning Band
+LBIS:AddItem(spec4, "96529", LBIS.L["Ring"], "BIS") --Ro'shak's Remembrance
+LBIS:AddItem(spec4, "89072", LBIS.L["Ring"], "Alt") --Simple Harmonius Ring
+LBIS:AddItem(spec4, "93244", LBIS.L["Ring"], "Alt") --Band of the Shieldwall
+LBIS:AddItem(spec4, "93249", LBIS.L["Ring"], "Alt") --Dominator's Band
+LBIS:AddItem(spec4, "95138", LBIS.L["Ring"], "Alt") --Signet of the Shado-Pan Assault
+LBIS:AddItem(spec4, "97193", LBIS.L["Ring"], "Alt") --Restored Hexxer's Signet
+LBIS:AddItem(spec4, "90859", LBIS.L["Ring"], "Alt") --Seal of the Lucid
+LBIS:AddItem(spec4, "97188", LBIS.L["Ring"], "Alt") --Restored Hexxer's Signet
+LBIS:AddItem(spec4, "87550", LBIS.L["Ring"], "Alt") --Vithrak, Gaze of the Deadman
+LBIS:AddItem(spec4, "95785", LBIS.L["Ring"], "Alt") --Ro'shak's Remembrance
+LBIS:AddItem(spec4, "81189", LBIS.L["Ring"], "Alt") --Ring of Malice
+LBIS:AddItem(spec4, "95638", LBIS.L["Ring"], "Alt") --Jin'rokh's Dreamshard
+LBIS:AddItem(spec4, "96413", LBIS.L["Trinket"], "BIS") --Wushoolay's Final Choice
+LBIS:AddItem(spec4, "96558", LBIS.L["Trinket"], "BIS") --Unerring Vision of Lei Shen
+LBIS:AddItem(spec4, "89081", LBIS.L["Trinket"], "Alt") --Blossom of Pure Snow
+LBIS:AddItem(spec4, "93254", LBIS.L["Trinket"], "Alt") --Static-Caster's Medallion
+LBIS:AddItem(spec4, "93259", LBIS.L["Trinket"], "Alt") --Shock-Charger Medallion
+LBIS:AddItem(spec4, "94510", LBIS.L["Trinket"], "Alt") --Volatile Talisman of the Shado-Pan Assault
+LBIS:AddItem(spec4, "81192", LBIS.L["Trinket"], "Alt") --Vision of the Predator
+LBIS:AddItem(spec4, "95814", LBIS.L["Trinket"], "Alt") --Unerring Vision of Lei Shen
+LBIS:AddItem(spec4, "95669", LBIS.L["Trinket"], "Alt") --Wushoolay's Final Choice
+LBIS:AddItem(spec4, "81263", LBIS.L["Trinket"], "Alt") --Flashfrozen Resin Globule
+LBIS:AddItem(spec4, "96518", LBIS.L["Main Hand"], "BIS") --Athame of the Sanguine Ritual
+LBIS:AddItem(spec4, "89395", LBIS.L["Main Hand"], "Alt") --Amber Scythe of Klaxxi'vess
+LBIS:AddItem(spec4, "89397", LBIS.L["Main Hand"], "Alt") --Amber Saber of Klaxxi'vess
+LBIS:AddItem(spec4, "95774", LBIS.L["Main Hand"], "Alt") --Athame of the Sanguine Ritual
+LBIS:AddItem(spec4, "82859", LBIS.L["Main Hand"], "Alt") --Headmaster's Will
+LBIS:AddItem(spec4, "96562", LBIS.L["Off Hand"], "BIS") --Lei Shen's Orb of Command
+LBIS:AddItem(spec4, "95818", LBIS.L["Off Hand"], "Alt") --Lei Shen's Orb of Command
+
+LBIS:AddItem(spec5, "105420", LBIS.L["Head"], "BIS") --Hood of Swirling Senses
+LBIS:AddItem(spec5, "104922", LBIS.L["Head"], "Alt") --Hood of Swirling Senses
+LBIS:AddItem(spec5, "89337", LBIS.L["Head"], "Alt") --Firecracker Corona
+LBIS:AddItem(spec5, "99401", LBIS.L["Shoulder"], "BIS") --Chronomancer Mantle
+LBIS:AddItem(spec5, "89340", LBIS.L["Shoulder"], "Alt") --Mantle of the Golden Sun
+LBIS:AddItem(spec5, "99079", LBIS.L["Shoulder"], "Alt") --Chronomancer Mantle
+LBIS:AddItem(spec5, "95102", LBIS.L["Shoulder"], "Alt") --Frost-Kissed Shoulderwraps
+LBIS:AddItem(spec5, "95096", LBIS.L["Shoulder"], "Alt") --Shoulders of Demonic Dreams
+LBIS:AddItem(spec5, "102246", LBIS.L["Back"], "BIS") --Xing-Ho, Breath of Yu'lon
+LBIS:AddItem(spec5, "89077", LBIS.L["Back"], "Alt") --Cloak of Snow Blossoms
+LBIS:AddItem(spec5, "97209", LBIS.L["Back"], "Alt") --Static-Collecting Cloak
+LBIS:AddItem(spec5, "97204", LBIS.L["Back"], "Alt") --Static-Collecting Cloak
+LBIS:AddItem(spec5, "95117", LBIS.L["Back"], "Alt") --Shadowspike Cloak
+LBIS:AddItem(spec5, "99400", LBIS.L["Chest"], "BIS") --Chronomancer Robes
+LBIS:AddItem(spec5, "89433", LBIS.L["Chest"], "Alt") --Vestments of Thundering Skies
+LBIS:AddItem(spec5, "95081", LBIS.L["Chest"], "Alt") --Fire Support Robes
+LBIS:AddItem(spec5, "99078", LBIS.L["Chest"], "Alt") --Chronomancer Robes
+LBIS:AddItem(spec5, "105591", LBIS.L["Wrist"], "BIS") --Avool's Ancestral Bracers
+LBIS:AddItem(spec5, "88893", LBIS.L["Wrist"], "Alt") --Minh's Beaten Bracers
+LBIS:AddItem(spec5, "95136", LBIS.L["Wrist"], "Alt") --Troll-Burner Bracers
+LBIS:AddItem(spec5, "105093", LBIS.L["Wrist"], "Alt") --Avool's Ancestral Bracers
+LBIS:AddItem(spec5, "99397", LBIS.L["Hands"], "BIS") --Chronomancer Gloves
+LBIS:AddItem(spec5, "88742", LBIS.L["Hands"], "Alt") --Sunspeaker's Flared Gloves
+LBIS:AddItem(spec5, "95106", LBIS.L["Hands"], "Alt") --Flameweaver Handwraps
+LBIS:AddItem(spec5, "99083", LBIS.L["Hands"], "Alt") --Chronomancer Gloves
+LBIS:AddItem(spec5, "105515", LBIS.L["Waist"], "BIS") --Belt of Ominous Trembles
+LBIS:AddItem(spec5, "95527", LBIS.L["Waist"], "Alt") --Pain-Binder Girdle
+LBIS:AddItem(spec5, "95518", LBIS.L["Waist"], "Alt") --Pain-Binder Girdle
+LBIS:AddItem(spec5, "95532", LBIS.L["Waist"], "Alt") --Belt of Loa Charms
+LBIS:AddItem(spec5, "95523", LBIS.L["Waist"], "Alt") --Belt of Loa Charms
+LBIS:AddItem(spec5, "89062", LBIS.L["Waist"], "Alt") --Klaxxi Lash of the Orator
+LBIS:AddItem(spec5, "93330", LBIS.L["Waist"], "Alt") --Chang's Changing Cord
+LBIS:AddItem(spec5, "93339", LBIS.L["Waist"], "Alt") --Bon-iy's Unbreakable Cord
+LBIS:AddItem(spec5, "95090", LBIS.L["Waist"], "Alt") --Firestrike Cord
+LBIS:AddItem(spec5, "105017", LBIS.L["Waist"], "Alt") --Belt of Ominous Trembles
+LBIS:AddItem(spec5, "99399", LBIS.L["Legs"], "BIS") --Chronomancer Leggings
+LBIS:AddItem(spec5, "89088", LBIS.L["Legs"], "Alt") --Leggings of the Poisoned Soul
+LBIS:AddItem(spec5, "95123", LBIS.L["Legs"], "Alt") --Charfire Leggings
+LBIS:AddItem(spec5, "99077", LBIS.L["Legs"], "Alt") --Chronomancer Leggings
+LBIS:AddItem(spec5, "105493", LBIS.L["Feet"], "BIS") --Bone-Inlaid Sandals
+LBIS:AddItem(spec5, "93280", LBIS.L["Feet"], "Alt") --Sandals of Oiled Silk
+LBIS:AddItem(spec5, "88878", LBIS.L["Feet"], "Alt") --Void Flame Slippers
+LBIS:AddItem(spec5, "93271", LBIS.L["Feet"], "Alt") --Beach-Born Sandals
+LBIS:AddItem(spec5, "104995", LBIS.L["Feet"], "Alt") --Bone-Inlaid Sandals
+LBIS:AddItem(spec5, "105465", LBIS.L["Neck"], "BIS") --Untainted Guardian's Chain
+LBIS:AddItem(spec5, "95146", LBIS.L["Neck"], "Alt") --Destroyer's Battletags
+LBIS:AddItem(spec5, "89068", LBIS.L["Neck"], "Alt") --Wire of the Wakener
+LBIS:AddItem(spec5, "104967", LBIS.L["Neck"], "Alt") --Untainted Guardian's Chain
+LBIS:AddItem(spec5, "90596", LBIS.L["Neck"], "Alt") --Burning Necklace of the Golden Lotus
+LBIS:AddItem(spec5, "105628", LBIS.L["Ring"], "BIS") --Iyyokuk's Hereditary Seal
+LBIS:AddItem(spec5, "105606", LBIS.L["Ring"], "BIS") --Signet of the Dinomancers
+LBIS:AddItem(spec5, "93249", LBIS.L["Ring"], "Alt") --Dominator's Band
+LBIS:AddItem(spec5, "93244", LBIS.L["Ring"], "Alt") --Band of the Shieldwall
+LBIS:AddItem(spec5, "89072", LBIS.L["Ring"], "Alt") --Simple Harmonius Ring
+LBIS:AddItem(spec5, "95138", LBIS.L["Ring"], "Alt") --Signet of the Shado-Pan Assault
+LBIS:AddItem(spec5, "90859", LBIS.L["Ring"], "Alt") --Seal of the Lucid
+LBIS:AddItem(spec5, "97193", LBIS.L["Ring"], "Alt") --Restored Hexxer's Signet
+LBIS:AddItem(spec5, "97188", LBIS.L["Ring"], "Alt") --Restored Hexxer's Signet
+LBIS:AddItem(spec5, "105130", LBIS.L["Ring"], "Alt") --Iyyokuk's Hereditary Seal
+LBIS:AddItem(spec5, "105108", LBIS.L["Ring"], "Alt") --Signet of the Dinomancers
+LBIS:AddItem(spec5, "105422", LBIS.L["Trinket"], "BIS") --Purified Bindings of Immerseus
+LBIS:AddItem(spec5, "105540", LBIS.L["Trinket"], "BIS") --Kardris' Toxic Totem
+LBIS:AddItem(spec5, "89081", LBIS.L["Trinket"], "Alt") --Blossom of Pure Snow
+LBIS:AddItem(spec5, "94510", LBIS.L["Trinket"], "Alt") --Volatile Talisman of the Shado-Pan Assault
+LBIS:AddItem(spec5, "93259", LBIS.L["Trinket"], "Alt") --Shock-Charger Medallion
+LBIS:AddItem(spec5, "93254", LBIS.L["Trinket"], "Alt") --Static-Caster's Medallion
+LBIS:AddItem(spec5, "104924", LBIS.L["Trinket"], "Alt") --Purified Bindings of Immerseus
+LBIS:AddItem(spec5, "105042", LBIS.L["Trinket"], "Alt") --Kardris' Toxic Totem
+LBIS:AddItem(spec5, "105594", LBIS.L["Main Hand"], "BIS") --Immaculately Preserved Wand
+LBIS:AddItem(spec5, "89395", LBIS.L["Main Hand"], "Alt") --Amber Scythe of Klaxxi'vess
+LBIS:AddItem(spec5, "89397", LBIS.L["Main Hand"], "Alt") --Amber Saber of Klaxxi'vess
+LBIS:AddItem(spec5, "105096", LBIS.L["Main Hand"], "Alt") --Immaculately Preserved Wand
+LBIS:AddItem(spec5, "105650", LBIS.L["Off Hand"], "BIS") --Revelations of Y'Shaarj
+LBIS:AddItem(spec5, "105152", LBIS.L["Off Hand"], "Alt") --Revelations of Y'Shaarj

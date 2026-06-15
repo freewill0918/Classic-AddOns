@@ -7,8 +7,13 @@ local _ = nil
 local IS_WOW_PROJECT_MAINLINE = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 local IS_WOW_PROJECT_NOT_MAINLINE = WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE
 local IS_WOW_PROJECT_CLASSIC_ERA = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
---local IS_WOW_PROJECT_MIDNIGHT = DF.IsAddonApocalypseWow()
-local IS_WOW_PROJECT_MIDNIGHT = DF.IsMidnightWowAPI()
+-- MoP Classic 5.5.4 暫時相容修正：IsMidnightWowAPI() 對 buildInfo>=50504 回傳 true，
+-- 讓本檔走 midnight aura 路徑，但 5.5.4 的 C_UnitAuras.IsAuraFilteredOutByInstanceID
+-- (PLAYER/RAID 等過濾旗標)尚未生效，導致敵人 debuff 全部洩出、無法過濾。
+-- 改回 IsAddonApocalypseWow() 讓本檔與 Plater 其餘檔案一致(5.5.4 走 classic 的 sourceUnit 過濾)。
+-- 等官方補上 5.5.4 過濾相容性後，此行會被更新覆蓋還原。
+local IS_WOW_PROJECT_MIDNIGHT = DF.IsAddonApocalypseWow()
+--local IS_WOW_PROJECT_MIDNIGHT = DF.IsMidnightWowAPI()
 --local IS_WOW_PROJECT_MIDNIGHT_API = DF.IsMidnightWowAPI()
 
 --stop yellow lines on my editor
@@ -90,7 +95,17 @@ local MEMBER_NAME = "namePlateUnitName"
 local MEMBER_NAMELOWER = "namePlateUnitNameLower"
 local MEMBER_TARGET = "namePlateIsTarget"
 
-local DebuffTypeColor = _G.DebuffTypeColor
+-- MoP Classic 5.5.4 的 retail UI 移除了全域 DebuffTypeColor，導致 extra icon 邊框上色時
+-- index 到 nil 而報錯。全域不存在時補上暴雪標準的 dispel 類型顏色表當 fallback。
+local DebuffTypeColor = _G.DebuffTypeColor or {
+	[""]    = { r = 0.80, g = 0.00, b = 0.00 },
+	none    = { r = 0.80, g = 0.00, b = 0.00 },
+	Magic   = { r = 0.20, g = 0.60, b = 1.00 },
+	Curse   = { r = 0.60, g = 0.00, b = 1.00 },
+	Disease = { r = 0.60, g = 0.40, b = 0.00 },
+	Poison  = { r = 0.00, g = 0.60, b = 0.00 },
+	Enrage  = { r = 1.00, g = 0.00, b = 0.00 },
+}
 
 --> As accessible translator map (where nil needs to resemble "NONE") for modding/scripting to be published in .AuraType:
 local AURA_TYPES = {

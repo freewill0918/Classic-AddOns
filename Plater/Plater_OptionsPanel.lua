@@ -14,8 +14,11 @@ local IS_WOW_PROJECT_CLASSIC_ERA = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 local IS_WOW_PROJECT_CLASSIC_TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 local IS_WOW_PROJECT_CLASSIC_WRATH = IS_WOW_PROJECT_NOT_MAINLINE and ClassicExpansionAtLeast and LE_EXPANSION_WRATH_OF_THE_LICH_KING and ClassicExpansionAtLeast(LE_EXPANSION_WRATH_OF_THE_LICH_KING)
 --local IS_WOW_PROJECT_CLASSIC_CATACLYSM = IS_WOW_PROJECT_NOT_MAINLINE and ClassicExpansionAtLeast and LE_EXPANSION_CATACLYSM and ClassicExpansionAtLeast(LE_EXPANSION_CATACLYSM)
---local IS_WOW_PROJECT_MIDNIGHT = DF.IsAddonApocalypseWow()
-local IS_WOW_PROJECT_MIDNIGHT = DF.IsMidnightWowAPI()
+-- MoP Classic 5.5.4 暫時相容修正：與 Plater_Auras.lua 保持一致，讓選項面板顯示 classic
+-- 選項組(sourceUnit 過濾),而非 midnight 那組(依賴 5.5.4 尚未生效的 aura 過濾旗標)。
+-- 等官方補上 5.5.4 過濾相容性後，此行會被更新覆蓋還原。
+local IS_WOW_PROJECT_MIDNIGHT = DF.IsAddonApocalypseWow()
+--local IS_WOW_PROJECT_MIDNIGHT = DF.IsMidnightWowAPI()
 
 local PixelUtil = PixelUtil or DFPixelUtil
 

@@ -489,15 +489,11 @@ ClassIcon:SetScript("OnMouseDown", function(self, button)
     if UnitFramesPlusDB["focus"]["moreaction"] == 1 then
         if (not UnitCanAttack("player", "focus")) and UnitIsPlayer("focus") then
             if button == "LeftButton" then
-                if CheckInteractDistance("focus", 1) then
-                    isclicked = FocusClassIconDown();
-                    InspectUnit("focus");
-                end
+                isclicked = FocusClassIconDown();
+                InspectUnit("focus");
             elseif button == "RightButton" then
-                if CheckInteractDistance("focus", 2) then
-                    isclicked = FocusClassIconDown();
-                    InitiateTrade("focus");
-                end
+                isclicked = FocusClassIconDown();
+                InitiateTrade("focus");
             elseif button == "MiddleButton" then
                 isclicked = FocusClassIconDown();
                 local server = nil;
@@ -508,16 +504,14 @@ ClassIcon:SetScript("OnMouseDown", function(self, button)
                 end
                 ChatFrame_SendTell(fullname);
             elseif button == "Button4" then
-                if CheckInteractDistance("focus",4) then
-                    isclicked = FocusClassIconDown();
-                    local server = nil;
-                    local name, server = UnitName("focus");
-                    local fullname = name;
-                    if server and (not "focus" or UnitIsSameServer("player", "focus") ~= 1) then
-                        fullname = name.."-"..server;
-                    end
-                    FollowUnit(fullname, 1);
+                isclicked = FocusClassIconDown();
+                local server = nil;
+                local name, server = UnitName("focus");
+                local fullname = name;
+                if server and (not "focus" or UnitIsSameServer("player", "focus") ~= 1) then
+                    fullname = name.."-"..server;
                 end
+                FollowUnit(fullname, 1);
             end
         end
     end
