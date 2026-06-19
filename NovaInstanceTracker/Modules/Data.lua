@@ -3030,6 +3030,80 @@ local lockoutBossQuests = {
 		difficultyName = L["World Boss"],
 		journalEncounterID = 826,
 	},
+	[33117] = {
+		name = L["Celestials"],
+		difficultyName = L["World Boss"],
+		journalEncounterID = 853,
+	},
+	[33118] = {
+		name = L["Ordos"],
+		difficultyName = L["World Boss"],
+		journalEncounterID = 861,
+	},
+	
+	--WoD.
+	[37460] = {
+		name = L["Tarlna the Ageless"],
+		difficultyName = L["World Boss"],
+		journalEncounterID = 1211,
+	},
+	[37462] = {
+		name = L["Drov the Ruiner"],
+		difficultyName = L["World Boss"],
+		journalEncounterID = 1262,
+	},
+	[37464] = {
+		name = L["Rukhmar"],
+		difficultyName = L["World Boss"],
+		journalEncounterID = 1263,
+	},
+	[39380] = {
+		name = L["Supreme Lord Kazzak"],
+		difficultyName = L["World Boss"],
+		journalEncounterID = 1452,
+	},
+
+	--Legion.
+	[42268] = {
+		name = L["Nazak the Fiend"],
+		difficultyName = L["World Boss"],
+		journalEncounterID = 1783,
+	},
+	[42269] = {
+		name = L["Drugon the Frostblood"],
+		difficultyName = L["World Boss"],
+		journalEncounterID = 1789,
+	},
+	[42270] = {
+		name = L["Ana-Mouz / Nithogg"],
+		difficultyName = L["World Boss"],
+		--journalEncounterID = 1790, --Don't get name from dung journal for these shared ones, test stuff if/when legion comes.
+	},
+	[42779] = {
+		name = L["Calamir / Sharthos / The Soultakers"],
+		difficultyName = L["World Boss"],
+		--journalEncounterID = 1774,
+	},
+	[42819] = {
+		name = L["Humongris"],
+		difficultyName = L["World Boss"],
+		journalEncounterID = 1770,
+	},
+	[43192] = {
+		name = L["Levantus"],
+		difficultyName = L["World Boss"],
+		journalEncounterID = 1769,
+	},
+	[43193] = {
+		name = L["Flotsam"],
+		difficultyName = L["World Boss"],
+		journalEncounterID = 1795,
+	},
+	[44287] = {
+		name = L["Withered J'im"],
+		difficultyName = L["World Boss"],
+		journalEncounterID = 1796,
+	},
 };
 
 function NIT:recordLockoutData(isLogout)

@@ -321,7 +321,7 @@ end
 
 -- 頭銜 @param2:true為前綴
 function addon:GetTitle(name, pvpName)
-    if (not pvpName) then return end
+    if (not name or not pvpName) then return end
     if (name == pvpName) then return end
     local pos = string.find(pvpName, name)
     local title = pvpName:gsub(name, "", 1)

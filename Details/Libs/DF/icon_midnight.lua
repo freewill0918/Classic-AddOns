@@ -291,26 +291,15 @@ detailsFramework.IconMixin = {
 			if (duration) then
 				local now = GetTime()
 
-				if (type(duration) == "number") then
-					-- MoP Classic 5.5.4: duration 是純數字而非 duration 物件，
-					-- 用 startTime + duration 自行換算，避免 index number 報錯。
-					local startedAt = startTime or now
-					local noExpirationTime = duration == 0
-					iconFrame.timeRemaining = startedAt + duration - now
-					iconFrame.expirationTime = startedAt + duration
-					iconFrame.Cooldown:SetCooldown(startedAt, duration, modRate)
-					iconFrame.Cooldown:SetAlphaFromBoolean(noExpirationTime, 0, 1)
-				else
-					local durationObject = duration
+				local durationObject = duration
 
-					iconFrame.timeRemaining = durationObject:GetRemainingDuration()
-					iconFrame.expirationTime = durationObject:GetEndTime()
+				iconFrame.timeRemaining = durationObject:GetRemainingDuration()
+				iconFrame.expirationTime = durationObject:GetEndTime()
+				
 
-
-					local noExpirationTime = durationObject:IsZero()--C_UnitAuras.DoesAuraHaveExpirationTime(auraIconFrame.unitFrame.namePlateUnitToken, i)
-					iconFrame.Cooldown:SetCooldownFromDurationObject(durationObject)
-					iconFrame.Cooldown:SetAlphaFromBoolean(noExpirationTime, 0, 1)
-				end
+				local noExpirationTime = durationObject:IsZero()--C_UnitAuras.DoesAuraHaveExpirationTime(auraIconFrame.unitFrame.namePlateUnitToken, i)
+				iconFrame.Cooldown:SetCooldownFromDurationObject(durationObject)
+				iconFrame.Cooldown:SetAlphaFromBoolean(noExpirationTime, 0, 1)
 
 				if (self.options.show_text) then
 					iconFrame.Cooldown:SetHideCountdownNumbers(false)

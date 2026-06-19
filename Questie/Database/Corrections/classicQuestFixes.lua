@@ -230,6 +230,9 @@ function QuestieQuestFixes:Load()
         [297] = {
              [questKeys.breadcrumbs] = {436}, -- #2492
         },
+        [303] = { -- The Dark Iron War
+            [questKeys.nextQuestInChain] = 378,
+        },
         [308] = {
             [questKeys.specialFlags] = specialFlags.REPEATABLE,
             [questKeys.preQuestSingle] = {},
@@ -2871,6 +2874,7 @@ function QuestieQuestFixes:Load()
             [questKeys.requiredSkill] = {164,275},
         },
         [5126] = {
+            [questKeys.nextQuestInChain] = 5127,
             [questKeys.requiredClasses] = classIDs.WARRIOR + classIDs.PALADIN + classIDs.SHAMAN,
             [questKeys.objectives] = {{{10918,nil,Questie.ICON_TYPE_TALK}}},
             [questKeys.zoneOrSort] = sortKeys.BLACKSMITHING,
