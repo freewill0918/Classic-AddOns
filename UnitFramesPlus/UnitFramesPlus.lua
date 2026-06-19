@@ -471,7 +471,7 @@ function UnitFramesPlus_SlashHandler(arg)
     end
     local result = UnitFramesPlus_LoadOptionPanel();
     if result == false then return end
-	Settings.OpenToCategory(UnitFramesPlus_OptionsFrame.name)
+	Settings.OpenToCategory(UnitFramesPlus_OptionsFrame.categoryID or UnitFramesPlus_OptionsFrame.name)
 end
 
 SlashCmdList["UnitFramesPlus"] = UnitFramesPlus_SlashHandler;

@@ -1,6 +1,13 @@
 ﻿--变量
 local id = 1;
 local _G = _G;
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded;
+local GetAddOnMetadata = C_AddOns.GetAddOnMetadata;
+-- MoP 5.5.x: PartyPlus.lua is disabled (old PartyMemberFrame1..4 system removed, party handled by EasyFrames),
+-- so UnitFramesPlus_PartyStyle and PartyMemberFrame_UpdateMember are nil. Stub them as no-ops so the
+-- (non-functional) party option checkboxes don't error on click. Closures below capture these upvalues.
+local UnitFramesPlus_PartyStyle = UnitFramesPlus_PartyStyle or function() end
+local PartyMemberFrame_UpdateMember = PartyMemberFrame_UpdateMember or function() end
 -- local rl = "";
 
 -- 暴雪風格頭像也載入時隱藏一些重複的選項
@@ -37,8 +44,9 @@ if InterfaceOptions_AddCategory then
 	InterfaceOptions_AddCategory(UnitFramesPlus_OptionsFrame);
 else
 	local category = Settings.RegisterCanvasLayoutCategory(UnitFramesPlus_OptionsFrame, UnitFramesPlus_OptionsFrame.name)
-	category.ID = UnitFramesPlus_OptionsFrame.name
 	Settings.RegisterAddOnCategory(category)
+	UnitFramesPlus_OptionsFrame.categoryID = category:GetID()
+	UnitFramesPlus_OptionsFrame.category = category
 end
 
 --快速焦点快捷键下拉菜单
@@ -306,7 +314,7 @@ do
     if InterfaceOptions_AddCategory then
 		InterfaceOptions_AddCategory(UnitFramesPlus_Global_Options);
 	else
-		category = Settings.GetCategory(UnitFramesPlus_Global_Options.parent)
+		category = UnitFramesPlus_OptionsFrame.category
 		local subcategory = Settings.RegisterCanvasLayoutSubcategory(category, UnitFramesPlus_Global_Options, UnitFramesPlus_Global_Options.name)
 	end
 
