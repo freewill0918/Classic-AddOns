@@ -455,6 +455,9 @@ local Friends do
 	---@param data BNetAccountInfoExtended|BNetAccountInfo
 	---@param id number
 	function Friends.PackageFriendBNetCharacter(data, id)
+		if not data then
+			return nil
+		end
 		for i = 1, Friends.BNGetNumFriendGameAccounts(id) do
 			local temp = Friends.BNGetFriendGameAccountInfo(id, i)
 			if temp and temp.clientProgram == BNET_CLIENT_WOW then
