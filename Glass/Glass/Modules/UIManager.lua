@@ -135,6 +135,32 @@ function UIManager:OnEnable()
     self.state.temporaryTabs[chatFrame:GetName()] = nil
   end, true)
 
+  -- 切換 dock 視窗時，同步顯示對應的 Glass 訊息框。
+  -- Glass 讓原生聊天視窗永遠保持隱藏，所以暴雪 dock 是用 alpha 淡入來「顯示」被選取的
+  -- 視窗（不會呼叫 Show），Glass 只攔了 Show/Hide，因此只攔到被取消選取視窗的 Hide，
+  -- 攔不到被選取視窗的 Show → 新選取的視窗 SlidingMessageFrame 一直不顯示、看起來是空的。
+  -- 這裡直接依 dock 的選取結果同步每個 smf 的顯示/隱藏（戰鬥記錄維持原生，不處理）。
+  if FCFDock_SelectWindow then
+    self:SecureHook("FCFDock_SelectWindow", function (_, selectedFrame)
+      for _, smf in ipairs(self.state.frames) do
+        if not smf.state.isCombatLog then
+          if smf.chatFrame == selectedFrame then
+            smf:Show()
+          else
+            smf:Hide()
+          end
+        end
+      end
+      for _, smf in pairs(self.state.temporaryFrames) do
+        if smf.chatFrame == selectedFrame then
+          smf:Show()
+        else
+          smf:Hide()
+        end
+      end
+    end)
+  end
+
   -- Start rendering
   self.timeElapsed = 0
   self.tickerFrame:SetScript("OnUpdate", function (_, elapsed)

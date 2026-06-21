@@ -456,7 +456,7 @@ function TC2:UpdateThreatBars()
         local bar = self.bars[1]
         
         -- If no playerData exists, we safely default to false (melee) for a stricter 110% warning
-        local isOutOfMelee = playerData and playerData.outOfMeleeRange or fa
+        local isOutOfMelee = playerData and playerData.outOfMeleeRange or false
         local playerThreat = (playerData and playerData.threatValue) or 0
         local currentThreatPercent = (playerData and playerData.threatPercent) or 0
         
@@ -465,7 +465,7 @@ function TC2:UpdateThreatBars()
         local threatRequired = pullAggroThreatValue - playerThreat
         
         local isAbsolute = (C.bar.pullAggroBarPercentage == "ABSOLUTE")
-        local threatPercentageRequired = 1000 -- Default to >999 for relative division by zero
+        local threatPercentageRequired = 100 -- Default to >99 for relative division by zero
         
         if isAbsolute then
             -- ABSOLUTE: Simple subtraction based on the user's raw vs scaled setting
@@ -488,10 +488,10 @@ function TC2:UpdateThreatBars()
         bar.name:SetText(C.bar.pullAggroBarText)
         bar.val:SetText("+"..NumFormat(floor(threatRequired + 0.5)))  -- floor(x + 0.5) is lua's missing round()
         
-        local suffix = isAbsolute and "pp" or "%"
+        local suffix = isAbsolute and "p " or "%"
         
-        if threatPercentageRequired > 999 then
-            bar.perc:SetText(">999" .. suffix)
+        if threatPercentageRequired > 99 then
+            bar.perc:SetText(">99" .. suffix)
         else
             bar.perc:SetText("+"..floor(threatPercentageRequired + 0.5)..suffix)  -- floor(x + 0.5) is lua's missing round()
         end
@@ -1023,6 +1023,27 @@ function TC2:PublishVersion()
     end
 end
 
+-- migrate backwards incompatible settings db changes
+local function MigrateSettings(db)
+    local filter = db.profile.filter
+
+    -- migrate old outOfMeele format
+    if type(filter.outOfMelee) ~= "table" then
+        
+       -- Reset to the new table structure default values
+        filter.outOfMelee = {
+            hide                    = false,
+            color                   = false,
+            overwriteColorEnabled   = false,
+            overwriteColor          = {0.2, 0.2, 0.2, 1},
+            desaturate              = 0.8,
+            darken                  = 0.0,
+            fade                    = 0.2,
+        }
+    
+    end
+end
+
 -----------------------------
 -- EVENTS
 -----------------------------
@@ -1095,6 +1116,9 @@ function TC2:PLAYER_LOGIN()
 
     -- creates by default character specific profile, when 3rd argument is obmitted
     self.db = LibStub("AceDB-3.0"):New("ThreatClassic2DB", self.defaultConfig, true)
+
+    -- migrate settings to new structure for backwards incompatible changes
+    MigrateSettings(self.db)
 
     C = self.db.profile
 
