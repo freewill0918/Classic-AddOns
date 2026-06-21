@@ -109,6 +109,7 @@ function Plater.CreateDesignerWindow(tabFrame, tabContainer, parent)
     local gName = "PlaterDsgn"
 
     local isCastBarSelected = false
+    local isTargetSelected = false
 
     local startX, startY, heightSize = 10, platerInternal.optionsYStart, 755
 
@@ -156,6 +157,8 @@ function Plater.CreateDesignerWindow(tabFrame, tabContainer, parent)
                 isCastBarSelected = false
                 Plater.StopCastBarTest()
             end
+
+            isTargetSelected = objectInfo.id == "TARGET"
         end,
         selection_texture = "Interface\\AddOns\\Plater\\images\\selection_corner.png",
     }
@@ -363,6 +366,18 @@ function Plater.CreateDesignerWindow(tabFrame, tabContainer, parent)
     ---@type texture
     local castBarSpark = castBar.Spark
 
+    local raidTargetIcon = unitFrame.PlaterRaidTargetFrame.RaidTargetIcon
+    local raidTargetFrame = unitFrame.PlaterRaidTargetFrame
+    --anchor the icon to its container so changes to PlaterRaidTargetFrame's scale/anchor
+    --(from the Raid Mark widget's setters) actually move/scale the icon in the preview.
+    raidTargetIcon:ClearAllPoints()
+    raidTargetIcon:SetAllPoints(raidTargetFrame)
+    raidTargetFrame:SetSize(20, 20)
+    raidTargetFrame:SetScale(Plater.db.profile.indicator_raidmark_scale)
+    Plater.SetAnchor(raidTargetFrame, Plater.db.profile.indicator_raidmark_anchor, unitFrame)
+    raidTargetIcon:Show()
+    SetRaidTargetIconTexture(raidTargetIcon, 5)
+
     spellName:SetText("Blizzard")
     unitName:SetText("Unit Name")
     levelText:SetText("60")
@@ -485,6 +500,7 @@ function Plater.CreateDesignerWindow(tabFrame, tabContainer, parent)
     nameplateSizeOptions.can_move = false
     nameplateSizeOptions.can_click = false --healthBar.dummy fully overlaps the health bar; let those clicks reach Health Bar / Life Percent
     objectInfo = layoutEditor:RegisterObject(healthBar.dummy, "Nameplate Size", "NAMEPLATE_SIZE", plateConfig, subTablePath, options.WidgetSettingsMapTables.NameplateSize, options.WidgetSettingsExtraOptions.NameplateSize, onSettingChanged, nameplateSizeOptions, healthBar)
+    plateConfigObjectsInfo[#plateConfigObjectsInfo+1] = objectInfo
 
 
     --health options
@@ -493,12 +509,17 @@ function Plater.CreateDesignerWindow(tabFrame, tabContainer, parent)
     healthBarOptions.can_move = false
     objectInfo = layoutEditor:RegisterObject(healthBar, "Health Bar", "HEALTHBAR", profileRoot, rootKey, options.WidgetSettingsMapTables.HealthBar, options.WidgetSettingsExtraOptions.HealthBar, onSettingChanged, healthBarOptions, healthBar)
 
-    --target (highlight, overlay, indicator, focus, raid mark)
+    --target (highlight, overlay, indicator, focus)
     ---@type df_editobjectoptions
     local targetOptions = detailsFramework.table.copy({}, editObjectDefaultOptions)
     targetOptions.can_move = false
     objectInfo = layoutEditor:RegisterObject(healthBar.dummyTarget, "Target", "TARGET", profileRoot, rootKey, options.WidgetSettingsMapTables.Target, options.WidgetSettingsExtraOptions.Target, onSettingChanged, targetOptions, healthBar)
 
+    --raid mark (the icon on the right of the health bar)
+    ---@type df_editobjectoptions
+    local raidMarkOptions = detailsFramework.table.copy({}, editObjectDefaultOptions)
+    --raidMarkOptions.can_move = false
+    objectInfo = layoutEditor:RegisterObject(unitFrame.PlaterRaidTargetFrame, "Raid Mark", "RAIDMARK", profileRoot, rootKey, options.WidgetSettingsMapTables.RaidMark, options.WidgetSettingsExtraOptions.RaidMark, onSettingChanged, raidMarkOptions, unitFrame)
 
     objectInfo = layoutEditor:RegisterObject(unitName, "Unit Name", "UNITNAME", plateConfig, subTablePath, options.WidgetSettingsMapTables.UnitName, options.WidgetSettingsExtraOptions.UnitName, onSettingChanged, editObjectDefaultOptions, healthBar)
     plateConfigObjectsInfo[#plateConfigObjectsInfo+1] = objectInfo
@@ -509,14 +530,14 @@ function Plater.CreateDesignerWindow(tabFrame, tabContainer, parent)
     plateConfigObjectsInfo[#plateConfigObjectsInfo+1] = objectInfo
     platerInternal.UpdatePercentTextLayout(lifePercent, plateConfig[subTablePath])
 
-    --execute range
+    --execute range (profileRoot-bound; intentionally NOT in plateConfigObjectsInfo - the
+    --plate-config dropdown only repoints registrations whose values live under plate_config.*)
     objectInfo = layoutEditor:RegisterObject(healthBar.healthCutOff, "Execute Range", "EXECUTERANGE", profileRoot, rootKey, options.WidgetSettingsMapTables.ExecuteRange, options.WidgetSettingsExtraOptions.ExecuteRange, onSettingChanged, editObjectNoMoveOptions, healthBar)
-    plateConfigObjectsInfo[#plateConfigObjectsInfo+1] = objectInfo
 
     --actor title and name special
     objectInfo = layoutEditor:RegisterObject(actorNameSpecial, "Big Unit Name", "BIGUNITNAME", plateConfig, subTablePath, options.WidgetSettingsMapTables.BigUnitName, options.WidgetSettingsExtraOptions.BigUnitName, onSettingChanged, editObjectNoMoveOptions, plateFrame)
     plateConfigObjectsInfo[#plateConfigObjectsInfo+1] = objectInfo
-    layoutEditor:RegisterObject(actorTitleSpecial, "Big Unit Title", "BIGUNITTITLE", plateConfig, subTablePath, options.WidgetSettingsMapTables.BigActorTitle, options.WidgetSettingsExtraOptions.BigActorTitle, onSettingChanged, editObjectNoMoveOptions, plateFrame)
+    objectInfo = layoutEditor:RegisterObject(actorTitleSpecial, "Big Unit Title", "BIGUNITTITLE", plateConfig, subTablePath, options.WidgetSettingsMapTables.BigActorTitle, options.WidgetSettingsExtraOptions.BigActorTitle, onSettingChanged, editObjectNoMoveOptions, plateFrame)
     plateConfigObjectsInfo[#plateConfigObjectsInfo+1] = objectInfo
 
     --cast bar [no plate config]
@@ -525,6 +546,7 @@ function Plater.CreateDesignerWindow(tabFrame, tabContainer, parent)
     local castBarOptions = detailsFramework.table.copy({}, editObjectDefaultOptions)
     castBarOptions.can_move = false
     objectInfo = layoutEditor:RegisterObject(castBar, "Cast Bar", "CASTBAR", plateConfig, subTablePath, options.WidgetSettingsMapTables.CastBar, options.WidgetSettingsExtraOptions.CastBar, onSettingChanged, castBarOptions, castBar)
+    plateConfigObjectsInfo[#plateConfigObjectsInfo+1] = objectInfo
 
     objectInfo = layoutEditor:RegisterObject(spellName, "Cast Spell Name", "CASTSPELLNAME", plateConfig, subTablePath, options.WidgetSettingsMapTables.SpellName, options.WidgetSettingsExtraOptions.SpellName, onSettingChanged, editObjectDefaultOptions, castBar)
     plateConfigObjectsInfo[#plateConfigObjectsInfo+1] = objectInfo
@@ -559,6 +581,9 @@ function Plater.CreateDesignerWindow(tabFrame, tabContainer, parent)
         --stops when the frame hides
         --dv(plateFrame)
 
+        unitFrame.HighlightFrame.unit = "player"
+        unitFrame.HighlightFrame:Show()
+
         --castBarTargetName:Show()
         castBar:Show()
         castBar:SetMinMaxValues(0, 3)
@@ -568,6 +593,34 @@ function Plater.CreateDesignerWindow(tabFrame, tabContainer, parent)
         healthBar.healthCutOff:SetPoint("left", healthBar, "left", healthBar:GetWidth()*0.2, 0)
         healthBar.healthCutOff:SetSize(healthBar:GetHeight(), healthBar:GetHeight())
         healthBar.healthCutOff:Show()
+
+        if (Plater.db.profile.target_highlight) then
+            healthBar.dummyTargetBar.NeonUp:Show()
+            healthBar.dummyTargetBar.NeonDown:Show()
+        else
+            healthBar.dummyTargetBar.NeonUp:Hide()
+            healthBar.dummyTargetBar.NeonDown:Hide()
+        end
+
+        if (isTargetSelected) then
+            unitFrame.targetOverlayTexture:Show()
+        else
+            unitFrame.targetOverlayTexture:Hide()
+        end
+
+        if (Plater.db.profile.indicator_extra_raidmark) then
+            healthBar.ExtraRaidMark:Show()
+            healthBar.ExtraRaidMark:SetTexture([[Interface\TargetingFrame\UI-RaidTargetingIcons]])
+            SetRaidTargetIconTexture(healthBar.ExtraRaidMark, 6)
+            local height = healthBar:GetHeight() - 2
+            plateFrame.RaidTarget:SetSize (height, height)
+            plateFrame.RaidTarget:SetAlpha (.4)
+        else
+            healthBar.ExtraRaidMark:Hide()
+        end
+
+        SetRaidTargetIconTexture(raidTargetIcon, 6)
+        raidTargetIcon:Show()
 
         if (curCastBarValue >= 3) then
             curCastBarValue = 0
@@ -720,20 +773,25 @@ function designer.UpdatePreview()
     local castBar = unitFrame.castBar
     local castBar2 = unitFrame.castBar2
 
+    local raidTargetIcon = plateFrame.unitFrame.PlaterRaidTargetFrame.RaidTargetIcon
+    raidTargetIcon:SetPoint("left", healthBar, "right", 10, 0)
+    SetRaidTargetIconTexture(raidTargetIcon, 8)
+
     local dummyHealthBar = CreateFrame("frame", nil, healthBar)
     dummyHealthBar:SetAllPoints()
     healthBar.dummy = dummyHealthBar
 
     local dummyTargetBar = CreateFrame("frame", nil, healthBar, "BackdropTemplate")
+    healthBar.dummyTargetBar = dummyTargetBar
     dummyTargetBar:SetFrameLevel(healthBar:GetFrameLevel() - 1)
-    dummyTargetBar:SetPoint("topleft", healthBar, "topleft", 20, -20)
-    dummyTargetBar:SetPoint("bottomright", healthBar, "bottomright", 20, -20)
+    dummyTargetBar:SetPoint("topleft", healthBar, "topleft", -80, 0)
+    dummyTargetBar:SetPoint("bottomright", healthBar, "bottomright", 3, 0)
     dummyTargetBar:SetBackdrop({bgFile = [[Interface\ChatFrame\ChatFrameBackground]], edgeFile = [[Interface\Buttons\WHITE8X8]], tile = true, tileSize = 16, edgeSize = 1, insets = {left = 1, right = 1, top = 1, bottom = 1}})
     dummyTargetBar:SetBackdropColor(0, 0, 0, 0.1)
     dummyTargetBar:SetBackdropBorderColor(.2, .2, .2, 0.5)
     healthBar.dummyTarget = dummyTargetBar
     dummyTargetBar.text = dummyTargetBar:CreateFontString(nil, "overlay", "GameFontNormal")
-    dummyTargetBar.text:SetPoint("right", dummyTargetBar, "right", -2, 0)
+    dummyTargetBar.text:SetPoint("left", dummyTargetBar, "left", 2, 0)
     dummyTargetBar.text:SetText("target")
     detailsFramework:SetFontSize(dummyTargetBar.text, 9)
     detailsFramework:SetFontColor(dummyTargetBar.text, "silver")

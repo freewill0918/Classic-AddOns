@@ -1,3 +1,8 @@
+# 5.3.0 (Jun 17, 2026)
+- Added August Stone Cluster vendor items
+- Updated to Phase 5
+- Siege of Orgrimmar items updated
+
 # 5.2.1 (Jan 2, 2025)
 - Added August Stone Shard vendor items
 - Added Updated Celestial Dungeon drops

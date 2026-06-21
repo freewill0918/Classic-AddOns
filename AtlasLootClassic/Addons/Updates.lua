@@ -13,13 +13,14 @@ local IMAGE_PATH = ALPrivate.IMAGE_PATH
 --- NOTE:
 --- Update Text
 ---
-local update_version = 5.21
+local update_version = 5.30
 local update_text = {
-    "Welcome to AtlasLootClassic |cFF33FFBDMoP|r v5.2.1!",
-    "|cFFA335EEAugust Stone Shard|r vendor items have been added.",
-    "|cFF33FFBDCelestial Dungeon|r drops have been added. Thanks to all the contributors and special thanks to |cFFe6CC80Inncio/Tonylikewhoa|r for their awesome spreadsheet.",
-    "|cFF3366CCTier 15|r Tokens should have correct items now.",
-    "Fixes to holidays, thanks to all the contributors on GitHub!",
+    "Welcome to AtlasLootClassic |cFF33FFBDMoP|r v5.3.0!",
+    "Sorry for late update, been out of the game and dealing with family stuff",
+    "|cFFA335EEAugust Stone Cluster|r vendor items have been added.",
+    "Phase 5 activated and items updated.",
+    "Special Thanks to |cFFA335EEPewtro|r on GitHub for all the help, probably wouldn't have updated without their help!",
+    "Need help with dungeon loot tables, please contribute on GitHub!",
     "|cFFFF8000HELP|r: If you find any issues or something missing, let me know on GitHub ( |cFF3366CCgithub.com/snowflame0/AtlasLootClassic_MoP/issues|r )",
     "Again, if you appreciate all the work, feel free to support me at the link below (click, CTRL+A, and CTRL+C to copy)"
 }

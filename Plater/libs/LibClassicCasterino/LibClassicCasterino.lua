@@ -189,6 +189,7 @@ function f:COMBAT_LOG_EVENT_UNFILTERED(event)
     if isSrcPlayer and spellID == 0 then
         spellID = spellNameToID[spellName]
     end
+    print(spellID, spellName, isSrcPlayer, eventType)
     if eventType == "SPELL_CAST_START" then
         if isSrcPlayer then
             local isCasting = classCasts[spellID]

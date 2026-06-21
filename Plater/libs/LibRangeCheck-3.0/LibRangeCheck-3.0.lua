@@ -40,7 +40,7 @@ License: MIT
 -- @class file
 -- @name LibRangeCheck-3.0
 local MAJOR_VERSION = "LibRangeCheck-3.0"
-local MINOR_VERSION = 34
+local MINOR_VERSION = 31
 
 ---@class lib
 local lib, oldminor = LibStub:NewLibrary(MAJOR_VERSION, MINOR_VERSION)
@@ -52,8 +52,6 @@ local interfaceVersion = select(4, GetBuildInfo())
 
 local isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 local isEra = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
-local isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-local isWrath = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 local isCata = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
 local isMidnight = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and interfaceVersion >= 120000
 
@@ -229,7 +227,6 @@ if not isRetail then
 end
 
 tinsert(HarmSpells.MAGE, 44614) -- Flurry (40 yards)
-tinsert(HarmSpells.MAGE, 11366) -- Pyroblast (40 yards)
 tinsert(HarmSpells.MAGE, 5019) -- Shoot (30 yards)
 tinsert(HarmSpells.MAGE, 118) -- Polymorph (30 yards)
 tinsert(HarmSpells.MAGE, 116) -- Frostbolt (40 yards)
@@ -2200,6 +2197,7 @@ if isEra then
       233226, -- Ancient Zandalarian Rope
     },
     [35] = {
+      996,    -- Ring of Righteous Flame (TEST)
       1258,   -- Bind On Use Test Item
       1399,   -- Magic Candle
       1402,   -- Brimstone
@@ -4596,19 +4594,20 @@ function lib:activate()
     local frame = CreateFrame("Frame")
     self.frame = frame
 
+    if not isMidnight then
+      if C_EventUtils and C_EventUtils.IsEventValid("LEARNED_SPELL_IN_TAB") then
+        frame:RegisterEvent("LEARNED_SPELL_IN_TAB")
+      end
+    end
     frame:RegisterEvent("CHARACTER_POINTS_CHANGED")
     frame:RegisterEvent("SPELLS_CHANGED")
 
-    if C_EventUtils and C_EventUtils.IsEventValid("LEARNED_SPELL_IN_TAB") then
-      frame:RegisterEvent("LEARNED_SPELL_IN_TAB")
-    end
-
-    if C_EventUtils and C_EventUtils.IsEventValid("PLAYER_TALENT_UPDATE") then
-      frame:RegisterEvent("PLAYER_TALENT_UPDATE")
-    end
-
-    if (isEra or isTBC or isWrath or isCata) then
+    if isEra or isCata then
       frame:RegisterEvent("CVAR_UPDATE")
+    end
+
+    if isRetail or isCata then
+      frame:RegisterEvent("PLAYER_TALENT_UPDATE")
     end
 
     local _, playerClass = UnitClass("player")

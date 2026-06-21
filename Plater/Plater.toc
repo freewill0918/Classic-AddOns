@@ -1,4 +1,8 @@
-## Interface: 120005, 120007
+## Interface: 120007, 120100
+## Interface-Mainline: 120007, 120100
+## Interface-Mists: 50504
+## Interface-TBC: 20505
+## Interface-Vanilla: 11508
 ## Title: Plater
 ## Notes: Nameplate addon designed for advanced users.
 ## Notes-esES: Addon de placa de nombre diseñado para usuarios avanzados
@@ -10,7 +14,21 @@
 ## OptionalDeps: Masque
 ## IconTexture-blank: 982414
 ## IconTexture: Interface\AddOns\Plater\images\cast_bar
-## Version: Plater-v645-Retail
+#@version-retail@
+## Version: @project-version@-Retail
+#@end-version-retail@
+#@version-cata@
+## Version: @project-version@-Cata
+#@end-version-cata@
+#@version-mists@
+## Version: @project-version@-Mists
+#@end-version-mists@
+#@version-bcc@
+## Version: @project-version@-TBC
+#@end-version-bcc@
+#@version-classic@
+## Version: @project-version@-Vanilla
+#@end-version-classic@
 ## X-Curse-Project-ID: 100547
 ## X-Wago-ID: kRNLep6o
 

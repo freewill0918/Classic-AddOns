@@ -1,12 +1,34 @@
-﻿## Interface: 50503
+﻿## Interface: 50504
 ## Author: Snowflame0
-## Version: v5.2.1-11-g84c5da5
+## Version: @project-version@
 ## Dependencies: AtlasLootClassic
 ## LoadOnDemand: 1
+## IconTexture: Interface\Icons\INV_Box_01
+## Category: AtlasLoot
 
 ## Title: AtlasLootClassic |cFF33FFBDMoP|r |cFF0099FF[PvP]|r
 ## Notes: AtlasLoot PvP loot tables
 
+## Title-deDE: @localization(locale="deDE", key="Title-PvP", namespace="ToC")@
+## Title-esES: @localization(locale="esES", key="Title-PvP", namespace="ToC")@
+## Title-esMX: @localization(locale="esMX", key="Title-PvP", namespace="ToC")@
+## Title-frFR: @localization(locale="frFR", key="Title-PvP", namespace="ToC")@
+## Title-itIT: @localization(locale="itIT", key="Title-PvP", namespace="ToC")@
+## Title-koKR: @localization(locale="koKR", key="Title-PvP", namespace="ToC")@
+## Title-ptBR: @localization(locale="ptBR", key="Title-PvP", namespace="ToC")@
+## Title-ruRU: @localization(locale="ruRU", key="Title-PvP", namespace="ToC")@
+## Title-zhCN: @localization(locale="zhCN", key="Title-PvP", namespace="ToC")@
+## Title-zhTW: @localization(locale="zhTW", key="Title-PvP", namespace="ToC")@
+## Notes-deDE: @localization(locale="deDE", key="Notes-PvP", namespace="ToC")@
+## Notes-esES: @localization(locale="esES", key="Notes-PvP", namespace="ToC")@
+## Notes-esMX: @localization(locale="esMX", key="Notes-PvP", namespace="ToC")@
+## Notes-frFR: @localization(locale="frFR", key="Notes-PvP", namespace="ToC")@
+## Notes-itIT: @localization(locale="itIT", key="Notes-PvP", namespace="ToC")@
+## Notes-koKR: @localization(locale="koKR", key="Notes-PvP", namespace="ToC")@
+## Notes-ptBR: @localization(locale="ptBR", key="Notes-PvP", namespace="ToC")@
+## Notes-ruRU: @localization(locale="ruRU", key="Notes-PvP", namespace="ToC")@
+## Notes-zhCN: @localization(locale="zhCN", key="Notes-PvP", namespace="ToC")@
+## Notes-zhTW: @localization(locale="zhTW", key="Notes-PvP", namespace="ToC")@
 
 ## X-Category: Map
 ## X-License: GPL v2

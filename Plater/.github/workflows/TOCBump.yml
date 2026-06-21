@@ -1,0 +1,40 @@
+name: Update TOC Interface version(s)
+
+on:
+  schedule:
+    - cron: 0 1 * * *
+  workflow_dispatch:
+#  push:
+#    branches:
+#      - master
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  update-toc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone project
+        uses: actions/checkout@v4
+
+      - name: Update TOC Interface version
+        uses: cont1nuity/toc-interface-updater@master
+        with:
+          flavor: |
+            classic_era
+            classic
+            tbc
+            retail
+          beta: true
+          ptr: true
+          depth: '1'
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: Update Interface version
+          commit-message: Update Interface version
+          branch: interface-version
+          delete-branch: true

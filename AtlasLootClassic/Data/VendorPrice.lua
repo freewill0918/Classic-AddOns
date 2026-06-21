@@ -216,6 +216,9 @@ local PRICE_INFO_LIST = {
     ["BloodyCoin"] = {
         currencyID = 789
     },
+    ["PlatinumCoin"] = {
+        currencyID = 3407
+    },
 
     --- PvP
     ["honor"] = {
@@ -3753,3 +3756,4 @@ local function EventFrame_OnEvent(frame, event, arg1, arg2)
 end
 VendorPrice.EventFrame:SetScript("OnEvent", EventFrame_OnEvent)
 VendorPrice.EventFrame:RegisterEvent("MERCHANT_SHOW")
+
