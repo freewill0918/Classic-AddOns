@@ -248,11 +248,12 @@ function General:UpdateAuras(frame, forceHide)
     for i = 1, MAX_TARGET_BUFFS do
         _, icon, _, debuffType, _, _, caster, isStealable = UnitBuff(frame.unit, i)
 
-        if (icon and (not frame.maxBuffs or i <= frame.maxBuffs)) then
-            local frameName = selfName .. 'Buff' .. i
+        local frameName = selfName .. 'Buff' .. i
+        buffFrame = _G[frameName]
 
-            buffFrame = _G[frameName]
-
+        -- MoP 5.5.x: Blizzard creates target/focus aura frames on demand, so _G[frameName]
+        -- can be nil for indices the client hasn't created yet; skip those to avoid indexing nil.
+        if (buffFrame and icon and (not frame.maxBuffs or i <= frame.maxBuffs)) then
             -- Custom buff size
             if (icon and (not frame.maxBuffs or i <= frame.maxBuffs)) then
                 if (db.general.customBuffSize) then

@@ -4,6 +4,11 @@ BuyEmAll = {}
 
 local L = BUYEMALL_LOCALS;
 
+-- MoP 5.5.x removed the global GetCurrencyInfo; the modern table-returning C_CurrencyInfo API
+-- replaces it. Shadow it with a file-local so the existing table-aware call sites keep working
+-- (and still fall back to the old global on clients that lack C_CurrencyInfo).
+local GetCurrencyInfo = (C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfo) or GetCurrencyInfo;
+
 -- These are used for the text on the Max and Stack buttons. See BuyEmAll.xml.
 
 BUYEMALL_MAX = L.MAX;
