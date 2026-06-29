@@ -15,6 +15,7 @@ function QuestieQuestBlacklist:Load()
         [7462] = true, -- Duplicate of 7877. See #1583
         [7487] = true, -- Duplicate of 7848
         [7908] = true, -- Duplicate of 7810
+        [10708] = true, -- Duplicate of 11052
         [11072] = true, -- Duplicate of 11885
         [2358] = Expansions.Current == Expansions.Era or Expansions.Current >= Expansions.Wotlk, -- available in TBC anniversary (!)
         [787] = true, -- The New Horde is not in the game. See #830
@@ -1198,7 +1199,6 @@ function QuestieQuestBlacklist:Load()
         [11027] = true, -- NOT IN GAME: Yous Have Da Darkrune? , "replaced" by 11060 (A Crystalforged Darkrune)
 
         [1] = true, -- Unavailable quest "The "Chow" Quest (123)aa"
-        [2881] = Expansions.Current >= Expansions.Tbc, -- Wildhammer faction removed in TBC. Repeatable to gain rep
         [8329] = Expansions.Current < Expansions.Cata, --* Warrior Training (https://www.wowhead.com/wotlk/quest=8329) (Retail Data)
         [8547] = true, -- Welcome!
         [9065] = true, -- Unavailable quest "The "Chow" Quest (123)aa"
@@ -1343,20 +1343,20 @@ function QuestieQuestBlacklist:Load()
         [10377] = true,
 
         -- Marks of Honor PvP quests - All of them should only be available in Era
-        [8367] = Expansions.Current >= Expansions.Tbc,
+        [8367] = Expansions.Current >= Expansions.Wotlk or (Expansions.Current == Expansions.Tbc and ContentPhases.activePhases.TBC < 2), -- enabled in tbc P2
         [8368] = Expansions.Current >= Expansions.Tbc,
         [8369] = Expansions.Current >= Expansions.Tbc,
         [8370] = Expansions.Current >= Expansions.Tbc,
-        [8371] = Expansions.Current >= Expansions.Wotlk, -- enabled in tbc P2
+        [8371] = Expansions.Current >= Expansions.Wotlk or (Expansions.Current == Expansions.Tbc and ContentPhases.activePhases.TBC < 2), -- enabled in tbc P2
         [8372] = Expansions.Current >= Expansions.Tbc,
         [8374] = Expansions.Current >= Expansions.Tbc,
         [8375] = Expansions.Current >= Expansions.Tbc,
         [8383] = Expansions.Current >= Expansions.Tbc,
         [8384] = Expansions.Current >= Expansions.Tbc,
-        [8385] = Expansions.Current >= Expansions.Wotlk, -- enabled in tbc P2
+        [8385] = Expansions.Current >= Expansions.Wotlk or (Expansions.Current == Expansions.Tbc and ContentPhases.activePhases.TBC < 2), -- enabled in tbc P2
         [8386] = Expansions.Current >= Expansions.Tbc,
         [8387] = Expansions.Current >= Expansions.Tbc,
-        [8388] = Expansions.Current >= Expansions.Tbc,
+        [8388] = Expansions.Current >= Expansions.Wotlk or (Expansions.Current == Expansions.Tbc and ContentPhases.activePhases.TBC < 2), -- enabled in tbc P2
         [8389] = Expansions.Current >= Expansions.Tbc,
         [8390] = Expansions.Current >= Expansions.Tbc,
         [8391] = Expansions.Current >= Expansions.Tbc,
@@ -1717,6 +1717,7 @@ function QuestieQuestBlacklist:Load()
         [96312] = true, -- Brutallus Must Die! not open now
         [96315] = true, -- XT-002 Deconstructor Must Die! not open now
         [96318] = true, -- Shade of Aran Must Die! not open now
+        [98183] = not Questie.IsTitanReforged, -- A Ritual Renewed
 
         --- Daily quests
         [24788] = true, -- Daily Heroic Random (1st)
@@ -3314,6 +3315,7 @@ function QuestieQuestBlacklist:Load()
         [2877] = Expansions.Current >= Expansions.Cata, -- Removed with cata
         [2879] = Expansions.Current >= Expansions.Cata, -- Removed with cata
         [2880] = Expansions.Current >= Expansions.Cata, -- Removed with cata
+        [2881] = Expansions.Current >= Expansions.Cata, -- Wildhammer faction removed in TBC. Repeatable to gain rep
         [2882] = Expansions.Current >= Expansions.Cata, -- Removed with cata
         [2902] = Expansions.Current >= Expansions.Cata, -- Removed with cata
         [2903] = Expansions.Current >= Expansions.Cata, -- Removed with cata
@@ -8406,7 +8408,7 @@ function QuestieQuestBlacklist.LoadAutoBlacklistIsTitanReforged()
         [8073] = true, -- Paragons of Power: The Madcap's Tunic
         [8111] = true, -- Enchanted South Seas Kelp
         [9209] = true, -- The Savage Guard - Arcanum of Rapidity
-        [8243] = true, -- Zanza's Potent Potables
+        -- [8243] = true, -- Zanza's Potent Potables
         -- [8192] = true, -- Animist's Caress
         -- [8227] = true, -- Nat's Measuring Tape
         -- [8195] = true, -- Zulian, Razzashi, and Hakkari Coins
@@ -8477,7 +8479,7 @@ function QuestieQuestBlacklist.LoadAutoBlacklistIsTitanReforged()
         -- [8191] = true, -- Prophetic Aura
         -- [8188] = true, -- Vodouisant's Vigilant Embrace
         [8118] = true, -- Vision of Voodress
-        [8196] = true, -- Essence Mangoes
+        -- [8196] = true, -- Essence Mangoes
         -- [8239] = true, -- Sandfury, Skullsplitter, and Bloodscalp Coins
         -- [8190] = true, -- Hoodoo Hex
         -- [8184] = true, -- Presence of Might

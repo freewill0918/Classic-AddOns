@@ -33,8 +33,6 @@ local QuestieNameplate = QuestieLoader:ImportModule("QuestieNameplate")
 local QuestieMap = QuestieLoader:ImportModule("QuestieMap")
 ---@type QuestiePlayer
 local QuestiePlayer = QuestieLoader:ImportModule("QuestiePlayer")
----@type QuestieEvent
-local QuestieEvent = QuestieLoader:ImportModule("QuestieEvent")
 ---@type AutoQuesting
 local AutoQuesting = QuestieLoader:ImportModule("AutoQuesting")
 ---@type QuestieAnnounce
@@ -347,6 +345,12 @@ function EventHandler:RegisterLateEvents()
     Questie:RegisterEvent("GROUP_JOINED", GroupEventHandler.GroupJoined)
     Questie:RegisterEvent("GROUP_LEFT", GroupEventHandler.GroupLeft)
 
+    -- On a /reload (or login) while already in a group, GROUP_JOINED does not fire, so request party quest logs now;
+    -- otherwise we never receive party members' objectives until the group changes.
+    if IsInGroup() then
+        GroupEventHandler.GroupJoined()
+    end
+
     -- Nameplate / Target Frame Objective Events
     Questie:RegisterEvent("NAME_PLATE_UNIT_ADDED", QuestieNameplate.NameplateCreated)
     Questie:RegisterEvent("NAME_PLATE_UNIT_REMOVED", QuestieNameplate.NameplateDestroyed)
@@ -429,7 +433,14 @@ function _EventHandler:ChatMsgSystem(message)
     if string.find(message, questCompletedMessage) == 1 or string.find(message, questAcceptedMessage) == 1 then
         MinimapIcon:UpdateText(message)
     elseif string.find(message, FACTION_STANDING_CHANGED_PATTERN) then -- When you discover a new faction or increase standing eg. Neutral -> Friendly
-        QuestieReputation:Update()
+        local factionChanged, newFaction = QuestieReputation:Update(false)
+        if factionChanged or newFaction then
+            QuestieCombatQueue:Queue(function()
+                QuestieTracker:Update()
+            end)
+
+            AvailableQuests.CalculateAndDrawAll()
+        end
     end
 end
 

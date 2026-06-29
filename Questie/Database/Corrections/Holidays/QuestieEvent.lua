@@ -53,11 +53,30 @@ local QuestieEvent = QuestieLoader:CreateModule("QuestieEvent")
 ---@class QuestieEventPrivate
 local _QuestieEvent = QuestieEvent.private
 
+---[1] = Event Name
+---[2] = QuestId
+---[3] = Start Date (format: "DD/MM")
+---[4] = End Date (format: "DD/MM")
+---[5] = Hide Quest even during event (optional, default: false)
+---@alias EventQuestEntry {[1]: string, [2]: QuestId, [3]: string?, [4]: string?, [5]: boolean?}
+
 -- This variable will be cleared at the end of the load, do not use, use QuestieEvent.activeQuests.
+---@type EventQuestEntry[]
 QuestieEvent.eventQuests = {}
+
+---@type table<QuestId, boolean>
 QuestieEvent.activeQuests = {}
 QuestieEvent.calendarDataCached = false
-_QuestieEvent.eventNamesForQuests = {}
+
+---@type table<QuestId, string>
+local eventNamesForQuests = {}
+
+local alwaysTurnInAbleQuests = {
+    [7937] = true, -- Your Fortune Awaits You...
+    [7938] = true, -- Your Fortune Awaits You...
+    [7944] = true, -- Your Fortune Awaits You...
+    [7945] = true, -- Your Fortune Awaits You...
+}
 
 ---@type QuestieDB
 local QuestieDB = QuestieLoader:ImportModule("QuestieDB")
@@ -82,7 +101,7 @@ local DMF_LOCATIONS = {
 
 -- The ingame calender adds a texture to the DMF event.
 -- We use this to identify the event without relying on dates or localized event titles.
-local DMF_CALENDER_ICON_TEXTURES = {
+local DMF_CALENDAR_ICON_TEXTURES = {
     [235446] = true, -- End Texture
     [235447] = true, -- Ongoing Texture
     [235448] = true, -- Start Texture
@@ -155,7 +174,7 @@ function QuestieEvent:Load()
 
         for i = 1, numDayEvents do
             local event = C_Calendar.GetHolidayInfo(0, currentDate.monthDay, i)
-            if event and DMF_CALENDER_ICON_TEXTURES[event.texture] then
+            if event and DMF_CALENDAR_ICON_TEXTURES[event.texture] then
                 dmfIsActive = true
                 break
             end
@@ -179,7 +198,7 @@ function QuestieEvent:Load()
         end
 
         if (not hideQuest) then
-            _QuestieEvent.eventNamesForQuests[questId] = eventName
+            eventNamesForQuests[questId] = eventName
 
             if (activeEvents[eventName] == true and _WithinDates(startDay, startMonth, endDay, endMonth)) or (dmfIsActive and eventName == "Darkmoon Faire") then
                 QuestieCorrections.hiddenQuests[questId] = nil
@@ -230,6 +249,7 @@ _GetDarkmoonFaireLocation = function()
     end
 end
 
+---@param currentDate CalendarTime
 _GetDarkmoonFaireLocationEra = function(currentDate)
     local baseInfo = C_Calendar.GetMonthInfo() -- In Era+SoD this returns `GetMinDate` (November 2004)
     -- Calculate the offset in months from GetMinDate to make C_Calendar.GetMonthInfo return the correct month
@@ -239,54 +259,43 @@ _GetDarkmoonFaireLocationEra = function(currentDate)
     local eventLocation = (currentDate.month % 2) == 0 and DMF_LOCATIONS.MULGORE or DMF_LOCATIONS.ELWYNN_FOREST
 
     local dayOfMonth = currentDate.monthDay
-    if firstWeekday == 1 then
-        -- The 1st is a Sunday
-        if dayOfMonth >= 9 and dayOfMonth < 15 then
-            return eventLocation
-        end
-    elseif firstWeekday == 2 then
-        -- The 1st is a Monday
-        if dayOfMonth >= 8 and dayOfMonth < 14 then
-            return eventLocation
-        end
-    elseif firstWeekday == 3 then
-        -- The 1st is a Tuesday
-        if dayOfMonth >= 7 and dayOfMonth < 13 then
-            return eventLocation
-        end
-    elseif firstWeekday == 4 then
-        -- The 1st is a Wednesday
-        if dayOfMonth >= 6 and dayOfMonth < 12 then
-            return eventLocation
-        end
-    elseif firstWeekday == 5 then
-        -- The 1st is a Thursday
-        if dayOfMonth >= 5 and dayOfMonth < 11 then
-            return eventLocation
-        end
-    elseif firstWeekday == 6 then
-        -- The 1st is a Friday
-        if dayOfMonth >= 4 and dayOfMonth < 10 then
-            return eventLocation
-        end
-    elseif firstWeekday == 7 then
-        -- The 1st is a Saturday
-        if dayOfMonth >= 10 and dayOfMonth < 16 then
-            return eventLocation
-        end
+    -- Determine the DMF start day for the month based on what weekday the 1st is.
+    -- We also require the Monday start to have reached 03:00 server time before considering the event active.
+    local startDayByFirstWeekday = {
+        [1] = 9,  -- 1st is a Sunday -> Monday is 9th
+        [2] = 8,  -- 1st is a Monday -> Monday is 8th
+        [3] = 7,  -- 1st is a Tuesday -> Monday is 7th
+        [4] = 6,  -- 1st is a Wednesday -> Monday is 6th
+        [5] = 5,  -- 1st is a Thursday -> Monday is 5th
+        [6] = 4,  -- 1st is a Friday -> Monday is 4th
+        [7] = 10, -- 1st is a Saturday -> Monday is 10th
+    }
+
+    local startDay = startDayByFirstWeekday[firstWeekday]
+
+    local endDay = startDay + 6 -- faire runs Monday - Sunday
+
+    -- If we're on the first day (Monday) require hour >= 3
+    if dayOfMonth == startDay and currentDate.hour < 3 then
+        return DMF_LOCATIONS.NONE
+    end
+
+    if dayOfMonth >= startDay and dayOfMonth <= endDay then
+        return eventLocation
     end
 
     return DMF_LOCATIONS.NONE
 end
 
 -- DMF in SoD is every second week, starting on the 4th of December 2023
+---@param currentDate CalendarTime
 _GetDarkmoonFaireLocationSoD = function(currentDate)
     local initialStartDate = time({year = 2023, month = 12, day = 4, hour = 0, min = 1}) -- The first time DMF started in SoD
     local initialEndDate = time({year = 2023, month = 12, day = 10, hour = 23, min = 59}) -- The first time DMF ended in SoD
-    currentDate = time({year = currentDate.year, month = currentDate.month, day = currentDate.monthDay, hour = 0, min = 1})
+    local currentDateTimestamp = time({year = currentDate.year, month = currentDate.month, day = currentDate.monthDay, hour = 0, min = 1})
 
     local eventDuration = initialEndDate - initialStartDate
-    local timeSinceStart = currentDate - initialStartDate
+    local timeSinceStart = currentDateTimestamp - initialStartDate
 
     local positionInCurrentCycle = timeSinceStart % (eventDuration * 2) -- * 2 because the event repeats every two weeks
 
@@ -369,19 +378,25 @@ end
 ---@param questId QuestId
 ---@return string
 function QuestieEvent.GetEventNameFor(questId)
-    return _QuestieEvent.eventNamesForQuests[questId] or ""
+    return eventNamesForQuests[questId] or ""
 end
 
 ---@param questId QuestId
 ---@return boolean @True if the quest is part of an event, false otherwise
 function QuestieEvent.IsEventQuest(questId)
-    return _QuestieEvent.eventNamesForQuests[questId] ~= nil
+    return eventNamesForQuests[questId] ~= nil
 end
 
 ---@param questId QuestId
 ---@return boolean @True if the quest is part of an event and the event is currently active, false otherwise
 function QuestieEvent.IsEventActiveForQuest(questId)
     return QuestieEvent.activeQuests[questId] == true
+end
+
+---@param questId QuestId
+---@return boolean @True if the quest can be turned in outside of the event, false otherwise
+function QuestieEvent.CanQuestBeTurnedInOutsideOfEvent(questId)
+    return alwaysTurnInAbleQuests[questId] == true
 end
 
 -- EUROPEAN FORMAT! NO FUCKING AMERICAN SHIDAZZLE FORMAT!

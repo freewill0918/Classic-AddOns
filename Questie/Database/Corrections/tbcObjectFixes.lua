@@ -325,11 +325,13 @@ function QuestieTBCObjectFixes:Load()
         },
         [187559] = { -- Horde Bonfire
             [objectKeys.questStarts] = {11580},
+            [objectKeys.questEnds] = {11580},
         },
         [187564] = { -- Alliance Bonfire
             [objectKeys.questStarts] = {11581},
+            [objectKeys.questEnds] = {11581},
         },
-        [187578] = {
+        [187578] = { -- Scrying Orb
             [objectKeys.name] = "Scrying Orb",
             [objectKeys.spawns] = {[zoneIDs.MAGISTERS_TERRACE] = {{-1,-1}}},
             [objectKeys.zoneID] = zoneIDs.MAGISTERS_TERRACE,
@@ -337,10 +339,10 @@ function QuestieTBCObjectFixes:Load()
         [187892] = { -- Ice Chest
             [objectKeys.spawns] = {[zoneIDs.THE_SLAVE_PENS] = {{-1,-1}}},
             [objectKeys.zoneID] = zoneIDs.THE_SLAVE_PENS,
-            [objectKeys.questStarts] = {11972},
         },
         [187914] = { -- Alliance Bonfire
             [objectKeys.questStarts] = {11732},
+            [objectKeys.questEnds] = {11732},
         },
         [187917] = {
             [objectKeys.name] = "Alliance Bonfire",
@@ -364,12 +366,14 @@ function QuestieTBCObjectFixes:Load()
         },
         [187928] = { -- Alliance Bonfire
             [objectKeys.questStarts] = {11745},
+            [objectKeys.questEnds] = {11745},
         },
         [187929] = {
             [objectKeys.spawns] = {[zoneIDs.FERALAS]={{28.2,44.1}}},
         },
         [187932] = { -- Alliance Bonfire
             [objectKeys.questStarts] = {11749},
+            [objectKeys.questEnds] = {11749},
         },
         [187933] = {
             [objectKeys.name] = "Alliance Bonfire",
@@ -388,6 +392,7 @@ function QuestieTBCObjectFixes:Load()
         },
         [187938] = { -- Alliance Bonfire
             [objectKeys.questStarts] = {11755},
+            [objectKeys.questEnds] = {11755},
         },
         [187939] = {
             [objectKeys.name] = "Alliance Bonfire",
@@ -408,6 +413,9 @@ function QuestieTBCObjectFixes:Load()
             [objectKeys.name] = "Horde Bonfire",
             [objectKeys.spawns] = {[zoneIDs.NETHERSTORM] = {{32.3,68.3}}},
             [objectKeys.zoneID] = zoneIDs.NETHERSTORM,
+        },
+        [187954] = {
+            [objectKeys.questEnds] = {11766},
         },
         [187955] = {
             [objectKeys.name] = "Horde Bonfire",
@@ -441,6 +449,7 @@ function QuestieTBCObjectFixes:Load()
             [objectKeys.name] = "Horde Bonfire",
             [objectKeys.spawns] = {[zoneIDs.TIRISFAL_GLADES] = {{57.0,51.7}}},
             [objectKeys.zoneID] = zoneIDs.TIRISFAL_GLADES,
+            [objectKeys.questEnds] = {11786},
         },
         [188123] = {
             [objectKeys.spawns] = {[zoneIDs.DARNASSUS]={{67.18,16.47}}}, -- TBC only Mailbox
@@ -454,6 +463,15 @@ function QuestieTBCObjectFixes:Load()
             [objectKeys.name] = "Flame of Silvermoon",
             [objectKeys.spawns] = {[zoneIDs.SILVERMOON_CITY] = {{69.1,43.5}}},
             [objectKeys.zoneID] = zoneIDs.SILVERMOON_CITY,
+        },
+        [188130] = { -- Ice Stone
+            [objectKeys.name] = "Ice Stone",
+            [objectKeys.spawns] = {[zoneIDs.DESOLACE] = {{40.23,31.37}}},
+            [objectKeys.zoneID] = zoneIDs.DESOLACE,
+        },
+        [188139] = { -- Ice Stone
+            [objectKeys.spawns] = {[zoneIDs.STRANGLETHORN_VALE] = {{21.25,24.27}}},
+            [objectKeys.zoneID] = zoneIDs.STRANGLETHORN_VALE,
         },
         [189303] = { -- Candy Bucket
             [objectKeys.spawns] = {[zoneIDs.ELWYNN_FOREST]={{43.74,65.89}}},

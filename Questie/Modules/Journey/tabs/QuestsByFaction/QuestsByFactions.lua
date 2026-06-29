@@ -33,8 +33,6 @@ local AceGUI = LibStub("AceGUI-3.0")
 local factionTreeFrame
 local factionQuestMap
 
-local factionIDs = QuestieDB.factionIDs
-
 local expansionDefinitions = {
     { key = "classic", label = EXPANSION_NAME0, order = Expansions.Era },
     { key = "tbc", label = EXPANSION_NAME1, order = Expansions.Tbc },
@@ -151,14 +149,6 @@ local function _CollectReferencedFactionIds()
                         end
                     end
                 end
-
-                if requiredRaces and requiredRaces ~= QuestieDB.raceKeys.NONE then
-                    if bit.band(requiredRaces, QuestieDB.raceKeys.ALL_ALLIANCE) == requiredRaces then
-                        refs[factionIDs.ALLIANCE] = true
-                    elseif bit.band(requiredRaces, QuestieDB.raceKeys.ALL_HORDE) == requiredRaces then
-                        refs[factionIDs.HORDE] = true
-                    end
-                end
             end
         end
     end
@@ -238,22 +228,6 @@ local function _AddQuestToFaction(factionId, questId)
     factionQuestMap[factionId][questId] = true
 end
 
-local function _IsAllianceRaceMask(raceMask)
-    if not raceMask or raceMask == QuestieDB.raceKeys.NONE then
-        return false
-    end
-
-    return bit.band(raceMask, QuestieDB.raceKeys.ALL_ALLIANCE) == raceMask
-end
-
-local function _IsHordeRaceMask(raceMask)
-    if not raceMask or raceMask == QuestieDB.raceKeys.NONE then
-        return false
-    end
-
-    return bit.band(raceMask, QuestieDB.raceKeys.ALL_HORDE) == raceMask
-end
-
 function _EnsureFactionQuestData()
     if factionQuestMap then
         return
@@ -296,16 +270,6 @@ function _EnsureFactionQuestData()
                         _AddQuestToFaction(factionPair[1], questId)
                     end
                 end
-
-                -- Only add to ALLIANCE/HORDE factions if the quest provides reputation
-                -- Do we even want this? You can select each faction individually in the dropdown.
-                if reputationReward and next(reputationReward) then
-                    if _IsAllianceRaceMask(requiredRaces) then
-                        _AddQuestToFaction(factionIDs.ALLIANCE, questId)
-                    elseif _IsHordeRaceMask(requiredRaces) then
-                        _AddQuestToFaction(factionIDs.HORDE, questId)
-                    end
-                end
             end
         end
     end
@@ -340,6 +304,7 @@ function _QuestieJourney.questsByFaction:ManageTree(container, factionTree)
     factionTreeFrame = AceGUI:Create("TreeGroup")
     factionTreeFrame:SetFullWidth(true)
     factionTreeFrame:SetFullHeight(true)
+    factionTreeFrame:EnableButtonTooltips(false)
     factionTreeFrame:SetTree(factionTree)
 
     factionTreeFrame.treeframe:SetWidth(415)
@@ -465,6 +430,17 @@ function _QuestieJourney.questsByFaction:CollectFactionQuests(factionId)
                     "requiredLevel",
                 }
             ) or {}
+
+            temp.iconSize = 14
+            temp.useIconGutter = true
+            temp.iconGutterOffset = -3
+            if QuestiePlayer.currentQuestlog[questId] then
+                if QuestieDB.IsComplete(questId) == 1 then
+                    temp.icon = Questie.icons["complete"]
+                else
+                    temp.icon = Questie.icons["incomplete"]
+                end
+            end
 
             local questName = QuestieLib:GetColoredQuestName(questId, Questie.db.profile.enableTooltipsQuestLevel, false)
 

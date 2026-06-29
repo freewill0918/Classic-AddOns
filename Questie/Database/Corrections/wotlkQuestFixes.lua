@@ -51,6 +51,9 @@ function QuestieWotlkQuestFixes:Load()
         [75] = {
             [questKeys.specialFlags] = specialFlags.NONE,
         },
+        [105] = { -- Alas, Andorhal
+            [questKeys.reputationReward] = {{factionIDs.HORDE,350},{factionIDs.ARGENT_DAWN,700}},
+        },
         [171] = {
             [questKeys.startedBy] = {{14305}},
             [questKeys.questLevel] = -1,
@@ -226,9 +229,6 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.startedBy] = {{5111}},
             [questKeys.exclusiveTo] = {3763,3789},
         },
-        [4127] = {
-            [questKeys.startedBy] = {nil,{164909,186419}},
-        },
         [4144] = {
             [questKeys.specialFlags] = specialFlags.NONE,
         },
@@ -368,6 +368,12 @@ function QuestieWotlkQuestFixes:Load()
         [7042] = {
             [questKeys.startedBy] = {{13433}},
         },
+        [7490] = { -- Victory for the Horde
+            [questKeys.preQuestSingle] = {},
+        },
+        [7495] = { -- Victory for the Alliance
+            [questKeys.preQuestSingle] = {},
+        },
         [7641] = {
             [questKeys.preQuestSingle] = {7638,7670},
         },
@@ -377,6 +383,15 @@ function QuestieWotlkQuestFixes:Load()
         },
         [7704] = {
             [questKeys.startedBy] = {nil,nil,{18950}},
+        },
+        [7781] = { -- The Lord of Blackrock
+            [questKeys.preQuestSingle] = {},
+        },
+        [7783] = { -- The Lord of Blackrock
+            [questKeys.preQuestSingle] = {},
+        },
+        [7838] = { -- Arena Grandmaster
+            [questKeys.requiredLevel] = 1,
         },
         [8149] = {
             [questKeys.objectives] = {nil,{{1323}}},
@@ -412,12 +427,6 @@ function QuestieWotlkQuestFixes:Load()
         },
         [8552] = {
             [questKeys.specialFlags] = specialFlags.NONE,
-        },
-        [8553] = {
-            [questKeys.requiredRaces] = raceIDs.NONE,
-        },
-        [8554] = {
-            [questKeys.requiredRaces] = raceIDs.NONE,
         },
         [8579] = { -- Mortal Champions
             [questKeys.startedBy] = {{15503}},
@@ -471,6 +480,12 @@ function QuestieWotlkQuestFixes:Load()
         },
         [9078] = {
             [questKeys.requiredClasses] = classIDs.ROGUE,
+        },
+        [9121] = { -- The Dread Citadel - Naxxramas
+            [questKeys.reputationReward] = {{factionIDs.ARGENT_DAWN,1000}},
+        },
+        [9122] = { -- The Dread Citadel - Naxxramas
+            [questKeys.reputationReward] = {{factionIDs.ARGENT_DAWN,1000}},
         },
         [9154] = {
             [questKeys.startedBy] = {{16241,16255}},
@@ -1371,9 +1386,15 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_EVENT, l10n("Bring the kodos to Farmer Torp"), 0, {{"monster", 25607}}}},
             [questKeys.requiredSourceItems] = {},
         },
+        [11691] = { -- Summon Ahune
+            [questKeys.requiredLevel] = 75,
+        },
         [11694] = {
             [questKeys.objectives] = {nil,{{187879}}},
             [questKeys.requiredSourceItems] = {},
+        },
+        [11696] = { -- Ahune is Here!
+            [questKeys.requiredLevel] = 75,
         },
         [11704] = {
             [questKeys.preQuestSingle] = {11708},
@@ -1480,7 +1501,6 @@ function QuestieWotlkQuestFixes:Load()
         },
         [11891] = {
             [questKeys.requiredSourceItems] = {35828},
-            [questKeys.sourceItemId] = 35237,
         },
         [11892] = {
             [questKeys.requiredSourceItems] = {},
@@ -1567,6 +1587,9 @@ function QuestieWotlkQuestFixes:Load()
         [11951] = {
             [questKeys.requiredSourceItems] = {35671},
         },
+        [11955] = { -- Ahune, the Frost Lord
+            [questKeys.requiredLevel] = 75,
+        },
         [11956] = {
             [questKeys.extraObjectives] = {
                 {nil, Questie.ICON_TYPE_OBJECT, l10n("Ride Dusk"),0,{{"monster", 26191}}},
@@ -1592,6 +1615,9 @@ function QuestieWotlkQuestFixes:Load()
         [11969] = {
             [questKeys.extraObjectives] = {{nil, Questie.ICON_TYPE_EVENT, l10n("Use Raelorasz' Spark"),0,{{"object", 194151}}}},
             [questKeys.requiredSourceItems] = {},
+        },
+        [11972] = { -- Shards of Ahune
+            [questKeys.requiredLevel] = 75,
         },
         [11982] = {
             [questKeys.objectives] = {{{26270,nil,Questie.ICON_TYPE_INTERACT}}},
@@ -4802,41 +4828,49 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.startedBy] = {nil,{194032}},
             [questKeys.finishedBy] = {nil,{194032}},
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13441] = {
             [questKeys.startedBy] = {nil,{194033}},
             [questKeys.finishedBy] = {nil,{194033}},
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13442] = {
             [questKeys.startedBy] = {nil,{194035}},
             [questKeys.finishedBy] = {nil,{194035}},
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13443] = {
             [questKeys.startedBy] = {nil,{194036}},
             [questKeys.finishedBy] = {nil,{194036}},
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13444] = {
             [questKeys.startedBy] = {nil,{194038}},
             [questKeys.finishedBy] = {nil,{194038}},
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13445] = {
             [questKeys.startedBy] = {nil,{194040}},
             [questKeys.finishedBy] = {nil,{194040}},
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13446] = {
             [questKeys.startedBy] = {nil,{194044}},
             [questKeys.finishedBy] = {nil,{194044}},
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13447] = {
             [questKeys.startedBy] = {nil,{194045}},
             [questKeys.finishedBy] = {nil,{194045}},
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13448] = {
             [questKeys.startedBy] = {nil,{194063}},
@@ -4847,16 +4881,19 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.startedBy] = {nil,{194049}},
             [questKeys.finishedBy] = {nil,{194049}},
             [questKeys.requiredRaces] = raceIDs.ALL_HORDE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13450] = {
             [questKeys.startedBy] = {nil,{194034}},
             [questKeys.finishedBy] = {nil,{194034}},
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13451] = {
             [questKeys.startedBy] = {nil,{194037}},
             [questKeys.finishedBy] = {nil,{194037}},
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13452] = {
             [questKeys.startedBy] = {nil,{194065}},
@@ -4867,16 +4904,19 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.startedBy] = {nil,{194039}},
             [questKeys.finishedBy] = {nil,{194039}},
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13454] = {
             [questKeys.startedBy] = {nil,{194042}},
             [questKeys.finishedBy] = {nil,{194042}},
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13455] = {
             [questKeys.startedBy] = {nil,{194043}},
             [questKeys.finishedBy] = {nil,{194043}},
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13456] = {
             [questKeys.startedBy] = {nil,{194066}},
@@ -4887,11 +4927,13 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.startedBy] = {nil,{194046}},
             [questKeys.finishedBy] = {nil,{194046}},
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13458] = {
             [questKeys.startedBy] = {nil,{194048}},
             [questKeys.finishedBy] = {nil,{194048}},
             [questKeys.requiredRaces] = raceIDs.ALL_ALLIANCE,
+            [questKeys.zoneOrSort] = sortKeys.MIDSUMMER,
         },
         [13459] = {
             [questKeys.startedBy] = {nil,{194067}},
@@ -8572,7 +8614,186 @@ function QuestieWotlkQuestFixes:Load()
             [questKeys.exclusiveTo] = {93975,94577,94579,95037,96312,96315},
             [questKeys.reputationReward] = {{factionIDs.KIRIN_TOR,75}},
         },
+        [98183] = { -- A Ritual Renewed -- only present on titan reforged
+            [questKeys.name] = "A Ritual Renewed",
+            [questKeys.startedBy] = {{14910}},
+            [questKeys.finishedBy] = {{14910}},
+            [questKeys.requiredLevel] = 80,
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredRaces] = raceIDs.NONE,
+            [questKeys.objectivesText] = {"Accept The Empowered Zandalari Bijou."},
+            [questKeys.zoneOrSort] = zoneIDs.ZUL_GURUB,
+            [questKeys.specialFlags] = specialFlags.REPEATABLE,
+            [questKeys.questFlags] = questFlags.WEEKLY,
+        },
     }
+end
+
+function QuestieWotlkQuestFixes:LoadFactionFixes()
+    local questKeys = QuestieDB.questKeys
+    local factionIDs = QuestieDB.factionIDs
+
+    local questFixesHorde = {
+        [13012] = { -- Sardis the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13013] = { -- Beldak the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13014] = { -- Morthie the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13015] = { -- Fargal the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13016] = { -- Northal the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13017] = { -- Jarten the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13018] = { -- Sandrene the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13019] = { -- Thoim the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13020] = { -- Stonebeard the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13021] = { -- Igasho the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13022] = { -- Nurgen the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13023] = { -- Kilias the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13024] = { -- Wanikaya the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13025] = { -- Lunaro the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13026] = { -- Bluewolf the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13027] = { -- Tauros the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13028] = { -- Graymane the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13029] = { -- Pamuya the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13030] = { -- Whurain the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13031] = { -- Skywarden the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13032] = { -- Muraco the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13033] = { -- Arp the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13065] = { -- Ohanzee the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13066] = { -- Yurauk the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+        [13067] = { -- Chogan'gada the Elder
+            [questKeys.reputationReward] = {{factionIDs.HORDE,75}},
+        },
+    }
+
+    local questFixesAlliance = {
+        [13012] = { -- Sardis the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13013] = { -- Beldak the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13014] = { -- Morthie the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13015] = { -- Fargal the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13016] = { -- Northal the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13017] = { -- Jarten the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13018] = { -- Sandrene the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13019] = { -- Thoim the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13020] = { -- Stonebeard the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13021] = { -- Igasho the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13022] = { -- Nurgen the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13023] = { -- Kilias the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13024] = { -- Wanikaya the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13025] = { -- Lunaro the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13026] = { -- Bluewolf the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13027] = { -- Tauros the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13028] = { -- Graymane the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13029] = { -- Pamuya the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13030] = { -- Whurain the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13031] = { -- Skywarden the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13032] = { -- Muraco the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13033] = { -- Arp the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13065] = { -- Ohanzee the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13066] = { -- Yurauk the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+        [13067] = { -- Chogan'gada the Elder
+            [questKeys.reputationReward] = {{factionIDs.ALLIANCE,75}},
+        },
+    }
+
+    if UnitFactionGroup("Player") == "Horde" then
+        return questFixesHorde
+    else
+        return questFixesAlliance
+    end
 end
 
 function QuestieWotlkQuestFixes:LoadTitanReforgedFixes()
@@ -8676,6 +8897,10 @@ function QuestieWotlkQuestFixes:LoadTitanReforgedFixes()
             [questKeys.questLevel] = 80,
             [questKeys.requiredLevel] = 80,
         },
+        [8196] = { -- Essence Mangoes
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
+        },
         [8201] = { -- A Collection of Heads
             [questKeys.questLevel] = 80,
             [questKeys.requiredLevel] = 80,
@@ -8693,6 +8918,10 @@ function QuestieWotlkQuestFixes:LoadTitanReforgedFixes()
             [questKeys.requiredLevel] = 80,
         },
         [8240] = { -- A Bijou for Zanza
+            [questKeys.questLevel] = 80,
+            [questKeys.requiredLevel] = 80,
+        },
+        [8243] = { -- Zanza's Potent Potables
             [questKeys.questLevel] = 80,
             [questKeys.requiredLevel] = 80,
         },
@@ -8786,4 +9015,5 @@ function _QuestieWotlkQuestFixes:InsertMissingQuestIds()
     QuestieDB.questData[96312] = {} -- Brutallus Must Die!
     QuestieDB.questData[96315] = {} -- XT-002 Deconstructor Must Die!
     QuestieDB.questData[96318] = {} -- Shade of Aran Must Die!
+    QuestieDB.questData[98183] = {} -- A Ritual Renewed
 end
